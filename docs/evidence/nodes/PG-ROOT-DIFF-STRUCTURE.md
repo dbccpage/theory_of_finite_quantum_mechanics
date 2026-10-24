@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 20
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -37,7 +37,7 @@ DEFINITION (anomalon ledger C1); DEFINED (ENC-1138); GTLA rule 2 'admitted root'
 
 ## Review
 
-- PFP review: [dag/results/PG-ROOT-DIFF-STRUCTURE/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-ROOT-DIFF-STRUCTURE/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `ADMITTED_PRIMITIVE`; qualifies for E4: yes.
+- PFP review: [dag/results/PG-ROOT-DIFF-STRUCTURE/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-ROOT-DIFF-STRUCTURE/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `ADMITTED_PRIMITIVE`; qualifies for E4: no.
   - narrowest claim: The typed coproduct of two payload types (same two-constructor shape as OntologyBasic.Real0) is a categorical coproduct that supplies no map between the channels and no element of either channel: a map out of it that is the identity on one channel exists exactly when that channel is nonempty or the other is empty (so bare existence of such a map is not a reduction theorem for inhabited channels), and the two nonemptiness conditions are independent of the construction and of each other.
   - does not support: Anything about the actual OntologyBasic.Real0 beyond its constructor shape (the file is not imported; its payloads are universe-polymorphic record types). The real Real0 has the record TYPES PrimitiveDifference and Structure as channels; both are inhabited, so by retracts_to_pd_iff and retracts_to_s_iff retractions in both directions exist for it: the emptiness cases of this file are not instances of the real node, and nothing here says either channel is irreducible to the other. That either channel exists, is real or has an origin (admitted posits, ENC-1138 lineage withdrawn); the passage from the literal inscription (PG-INERT-DIAMOND, route marked GAP_NO_DERIVATION); the clauses "carrier-Structure precedes a primitive difference", "residual-Structure Q^1 = C^1/im d0 is what the difference produces" and "the ladder is a definability order"; any physical or interpretive reading.
   - next test: Formalise the clause "carrier-Structure precedes a primitive difference": define precedence as the statement that a PrimitiveDifference record can be built with no Structure value in scope (Source := PUnit) and a Structure record with no PrimitiveDifference, then decide whether Source must equal Structure.Carrier for the node text to be meant, by a finite model or a counterexample.

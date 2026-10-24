@@ -37,7 +37,7 @@ paper s11.2; exact primal/dual witnesses; Lean trace_zero_duality_gap_zero on sp
 
 ## Review
 
-- PFP review: [dag/results/FQ-TRACE-ZERO-DUALITY-K23/reviews/20261019_structure_audit/review_result.json](../../../dag/results/FQ-TRACE-ZERO-DUALITY-K23/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/FQ-TRACE-ZERO-DUALITY-K23/reviews/20261019_structure_audit/review_result.json](../../../dag/results/FQ-TRACE-ZERO-DUALITY-K23/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Actual diagonal K23 primal/dual arrays have equal objectives6 and9/2 at unit defect scale, with correct polar balls and divergence. Native certificates bind each edge and potential. Lean checks scalar-shift invariance under a trace-zero hypothesis and the exact objective arithmetic.
   - does not support: Transport the explicit matrix/graph certificates to a full Lean matrix-norm duality/LP theorem. No scalar4/12 substitution, no general strong-duality theorem, and no publication correction is inferred from these local certificates.
   - next test: Transport the explicit matrix/graph certificates to a full Lean matrix-norm duality/LP theorem. No scalar4/12 substitution, no general strong-duality theorem, and no publication correction is inferred from these local certificates.

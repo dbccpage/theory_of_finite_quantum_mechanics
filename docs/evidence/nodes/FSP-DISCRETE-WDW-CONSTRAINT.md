@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5). Narrowed in lean4/CampaignFspDiscreteWdwConstraint.lean and checks/independent/fsp-discrete-wdw-constraint.py while keeping status OPEN to: (1) Q-linearity and constant-cochain kernel of the direct-sum Regge-WDW operator D_joint = \[d_0, 0\]^T from code/python/src/fsp/regge_pachner_wdw.py; (2) signed rational L1 unscreenability ||h_perp||_1 \<= ||p - d_0 alpha||_1 + ||h_perp||_1 and exact strong duality on exact-momentum states via W^* = (0, sgn(h_perp)), plus the exact S^4 seed (N0 = 6, N1 = 15) flat (0, ExactRepair) vs curved (45, SplitBrainRefusal) receipts; (3) finite quadratic constraint operator H_perp = L^T L positive semidefiniteness, idempotent 2-state diffeomorphism projector P_inv and complement H_perp = I - P_inv, and 2-tick Page-Wootters clock conditioning; and (4) explicit scope fences for continuum DeWitt supermetric indefiniteness (-v_conf^2 + v_trans^2), Section 2.5 WDW zero-mode kernel vs thermal Gibbs trace distinctness, and fermionic sign-sector independence.
+Narrowed algebraic checks only. Rational residuals obey elementary norm bounds, and a zero-edge/sign-vertex witness has the displayed norm bound and objective equality. No incidence operator, transpose annihilation proposition, optimizer API, or general strong-duality theorem is constructed. A rank-one quadratic form, two supplied 2x2 projectors and a swap constraint have the stated identities. The thermal values 8 and 5 are second-order polynomial traces, not Gibbs exponential traces. The indefinite rational two-variable form is supplied and not derived from continuum DeWitt geometry; no physical Wheeler-DeWitt projector or fermion-sign mechanism follows. Status is unchanged. The original physical or operational bridge remains open.
 
 ## Source status
 
@@ -45,24 +45,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignFspDiscreteWdwConstraint.lean`
 
 - file: [lean4/CampaignFspDiscreteWdwConstraint.lean](../../../lean4/CampaignFspDiscreteWdwConstraint.lean)
-- sha256 (`bytes`): `5f9fc17b09a0e9967f6eed3641856ce49dd4634581cb6a78d89b9619f792c9ef`
-- cited in: node.lean, receipt dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json (CampaignFspDiscreteWdwConstraint), record TFQ-1213
+- sha256 (`bytes`): `b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3`
+- cited in: node.lean, record TFQ-1213
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json](../../../dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json) (module `CampaignFspDiscreteWdwConstraint`): recorded sha256 `5f9fc17b09a0e9967f6eed3641856ce49dd4634581cb6a78d89b9619f792c9ef` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json](../../../dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json) (module `CampaignFspDiscreteWdwConstraint`): recorded sha256 `b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3` matches the current file; exit code 0; Lean None; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignFspDiscreteWdwConstraint`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignFspDiscreteWdwConstraint.dJoint_linear_and_constant_kernel` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspDiscreteWdwConstraint.dJoint_linear_and_constant_kernel` |
-| `CampaignFspDiscreteWdwConstraint.dewitt_supermetric_indefinite_signature_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspDiscreteWdwConstraint.dewitt_supermetric_indefinite_signature_fence` |
-| `CampaignFspDiscreteWdwConstraint.diffeomorphism_averaging_projector_and_constraint_complement` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspDiscreteWdwConstraint.diffeomorphism_averaging_projector_and_constraint_complement` |
-| `CampaignFspDiscreteWdwConstraint.page_wootters_clock_system_conditioned_evolution` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspDiscreteWdwConstraint.page_wootters_clock_system_conditioned_evolution` |
-| `CampaignFspDiscreteWdwConstraint.primal_l1_edge_and_vertex_residual_lower_bound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspDiscreteWdwConstraint.primal_l1_edge_and_vertex_residual_lower_bound` |
-| `CampaignFspDiscreteWdwConstraint.quadratic_constraint_psd_and_null_kernel_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspDiscreteWdwConstraint.quadratic_constraint_psd_and_null_kernel_iff` |
-| `CampaignFspDiscreteWdwConstraint.s4_seed_flat_vs_curved_wdw_defect_mass` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspDiscreteWdwConstraint.s4_seed_flat_vs_curved_wdw_defect_mass` |
-| `CampaignFspDiscreteWdwConstraint.strong_duality_direct_sum_wdw_exact_coboundary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspDiscreteWdwConstraint.strong_duality_direct_sum_wdw_exact_coboundary` |
-| `CampaignFspDiscreteWdwConstraint.wdw_constraint_kernel_vs_thermal_gibbs_trace_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspDiscreteWdwConstraint.wdw_constraint_kernel_vs_thermal_gibbs_trace_fence` |
-| `CampaignFspDiscreteWdwConstraint.wdw_constraint_projection_preserves_fermion_sign_cancellation_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspDiscreteWdwConstraint.wdw_constraint_projection_preserves_fermion_sign_cancellation_fence` |
+| `CampaignFspDiscreteWdwConstraint.dJoint_linear_and_constant_kernel` | yes | yes | yes | module-level | `#print axioms CampaignFspDiscreteWdwConstraint.dJoint_linear_and_constant_kernel` |
+| `CampaignFspDiscreteWdwConstraint.dewitt_supermetric_indefinite_signature_fence` | yes | yes | yes | module-level | `#print axioms CampaignFspDiscreteWdwConstraint.dewitt_supermetric_indefinite_signature_fence` |
+| `CampaignFspDiscreteWdwConstraint.diffeomorphism_averaging_projector_and_constraint_complement` | yes | yes | yes | module-level | `#print axioms CampaignFspDiscreteWdwConstraint.diffeomorphism_averaging_projector_and_constraint_complement` |
+| `CampaignFspDiscreteWdwConstraint.page_wootters_clock_system_conditioned_evolution` | yes | yes | yes | module-level | `#print axioms CampaignFspDiscreteWdwConstraint.page_wootters_clock_system_conditioned_evolution` |
+| `CampaignFspDiscreteWdwConstraint.primal_l1_edge_and_vertex_residual_lower_bound` | yes | yes | yes | module-level | `#print axioms CampaignFspDiscreteWdwConstraint.primal_l1_edge_and_vertex_residual_lower_bound` |
+| `CampaignFspDiscreteWdwConstraint.quadratic_constraint_psd_and_null_kernel_iff` | yes | yes | yes | module-level | `#print axioms CampaignFspDiscreteWdwConstraint.quadratic_constraint_psd_and_null_kernel_iff` |
+| `CampaignFspDiscreteWdwConstraint.s4_seed_flat_vs_curved_wdw_defect_mass` | yes | yes | yes | module-level | `#print axioms CampaignFspDiscreteWdwConstraint.s4_seed_flat_vs_curved_wdw_defect_mass` |
+| `CampaignFspDiscreteWdwConstraint.strong_duality_direct_sum_wdw_exact_coboundary` | yes | yes | yes | module-level | `#print axioms CampaignFspDiscreteWdwConstraint.strong_duality_direct_sum_wdw_exact_coboundary` |
+| `CampaignFspDiscreteWdwConstraint.wdw_constraint_kernel_vs_thermal_gibbs_trace_fence` | yes | yes | yes | module-level | `#print axioms CampaignFspDiscreteWdwConstraint.wdw_constraint_kernel_vs_thermal_gibbs_trace_fence` |
+| `CampaignFspDiscreteWdwConstraint.wdw_constraint_projection_preserves_fermion_sign_cancellation_fence` | yes | yes | yes | module-level | `#print axioms CampaignFspDiscreteWdwConstraint.wdw_constraint_projection_preserves_fermion_sign_cancellation_fence` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md`
@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-discrete-wdw-constraint.md`
 
 - file: [dag/derivations/independent/fsp-discrete-wdw-constraint.md](../../../dag/derivations/independent/fsp-discrete-wdw-constraint.md)
-- sha256 (`lf-normalised`): `2784eca3cab74e4da0a9f18d8acab1882d81eea7cd644f5fcff012d0477c688d`
+- sha256 (`lf-normalised`): `50b23b262263fafb0c2c97a43cb393213d5e0589d2a972f20058c01c6163f65c`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -97,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json](../../../dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json)
-- sha256 (`lf-normalised`): `c93e708a8e09887b6fb55134470cc239a525f575698e52f66452fed0c990d832`
+- sha256 (`lf-normalised`): `06b99289eab5a36365a99a5402160416ac71c99f1b4d52f1cb31243958ffa028`
 - cited in: node.source
 - counts toward the grade: yes
 

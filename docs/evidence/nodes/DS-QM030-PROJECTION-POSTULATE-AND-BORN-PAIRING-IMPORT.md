@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -37,7 +37,7 @@ Overlaps L1_TO_L2 Born nodes (QM_020, other fragment).
 
 ## Review
 
-- PFP review: [dag/results/DS-QM030-PROJECTION-POSTULATE-AND-BORN-PAIRING-IMPORT/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM030-PROJECTION-POSTULATE-AND-BORN-PAIRING-IMPORT/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM030-PROJECTION-POSTULATE-AND-BORN-PAIRING-IMPORT/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM030-PROJECTION-POSTULATE-AND-BORN-PAIRING-IMPORT/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: no.
   - narrowest claim: Scalar idempotence holds exactly at 0 and 1 in Lean; retained diagonal effect controls and two different normalized pairings are exact.
   - does not support: Derive or explicitly admit the spectral/projector structure and the physical observer pairing. The bare finite carrier does not select the Born rule or an actual event.
   - next test: Derive or explicitly admit the spectral/projector structure and the physical observer pairing. The bare finite carrier does not select the Born rule or an actual event.

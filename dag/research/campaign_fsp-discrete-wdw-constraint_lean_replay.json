@@ -1,101 +1,184 @@
 {
   "schema_version": "campaign_lean_replay.v1",
   "authority_effect": "None",
-  "checked_at": "2026-10-24",
-  "source_base": "1fa451fe1",
-  "result": "Lean module CampaignFspDiscreteWdwConstraint compiles under Lean 4.35.0 with pinned Mathlib, built through lake from the CampaignFspDiscreteWdwConstraint library registered in lean4/lakefile.lean; every printed axiom list is a subset of propext, Classical.choice and Quot.sound.",
-  "proof_boundary": "This receipt records that lean4/CampaignFspDiscreteWdwConstraint.lean type-checks and which axioms its #print axioms lines report. It establishes direct-sum Regge-WDW cochain linearity, signed rational L1 unscreenability and strong duality on exact-momentum states, S^4 flat vs curved defect receipts, finite quadratic L^T L and idempotent projector kernel equivalences, 2-tick Page-Wootters conditioning, and explicit scope fences for DeWitt kinetic indefiniteness and Section 2.5 thermal-vs-WDW separation.",
-  "lean_replay": {
-    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
-    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
-    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
-    "lakefile_sha256": "0ea57752f03900874b5051cfb323baa958b1d19c5980a8e38d98631838d3e6f2",
-    "library": "CampaignFspDiscreteWdwConstraint (lean_lib in lean4/lakefile.lean; not a default target)",
-    "build_directory": "lean4/b",
-    "dependency_packages": "lean4/.lake/packages Mathlib v4.35.0 cache",
-    "command": "cd lean4 && lake build CampaignFspDiscreteWdwConstraint",
-    "allowed_axioms": [
-      "propext",
-      "Classical.choice",
-      "Quot.sound"
-    ],
-    "results": [
-      {
-        "module": "CampaignFspDiscreteWdwConstraint",
-        "dag_node": "FSP-DISCRETE-WDW-CONSTRAINT",
-        "source": "lean4/CampaignFspDiscreteWdwConstraint.lean",
-        "sha256": "5f9fc17b09a0e9967f6eed3641856ce49dd4634581cb6a78d89b9619f792c9ef",
-        "sha256_after_build": "5f9fc17b09a0e9967f6eed3641856ce49dd4634581cb6a78d89b9619f792c9ef",
-        "source_unchanged_during_build": true,
-        "exit_code": 0,
-        "admission_scan_passed": true,
-        "axiom_audit_passed": true,
-        "anchors": [
-          "CampaignFspDiscreteWdwConstraint.dJoint_linear_and_constant_kernel",
-          "CampaignFspDiscreteWdwConstraint.primal_l1_edge_and_vertex_residual_lower_bound",
-          "CampaignFspDiscreteWdwConstraint.strong_duality_direct_sum_wdw_exact_coboundary",
-          "CampaignFspDiscreteWdwConstraint.s4_seed_flat_vs_curved_wdw_defect_mass",
-          "CampaignFspDiscreteWdwConstraint.quadratic_constraint_psd_and_null_kernel_iff",
-          "CampaignFspDiscreteWdwConstraint.diffeomorphism_averaging_projector_and_constraint_complement",
-          "CampaignFspDiscreteWdwConstraint.page_wootters_clock_system_conditioned_evolution",
-          "CampaignFspDiscreteWdwConstraint.dewitt_supermetric_indefinite_signature_fence",
-          "CampaignFspDiscreteWdwConstraint.wdw_constraint_kernel_vs_thermal_gibbs_trace_fence",
-          "CampaignFspDiscreteWdwConstraint.wdw_constraint_projection_preserves_fermion_sign_cancellation_fence"
+  "checked_at": "2026-10-24T22:56:15.117384+00:00",
+  "lean_toolchain": "leanprover/lean4:v4.35.0",
+  "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+  "proof_boundary": "Rational residuals obey elementary norm bounds, and a zero-edge/sign-vertex witness has the displayed norm bound and objective equality. No incidence operator, transpose annihilation proposition, optimizer API, or general strong-duality theorem is constructed. A rank-one quadratic form, two supplied 2x2 projectors and a swap constraint have the stated identities. The thermal values 8 and 5 are second-order polynomial traces, not Gibbs exponential traces. The indefinite rational two-variable form is supplied and not derived from continuum DeWitt geometry; no physical Wheeler-DeWitt projector or fermion-sign mechanism follows.",
+  "results": [
+    {
+      "module": "CampaignFspDiscreteWdwConstraint",
+      "source": "lean4/CampaignFspDiscreteWdwConstraint.lean",
+      "sha256": "b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3",
+      "exit_code": 0,
+      "axioms": {
+        "dJoint_linear_and_constant_kernel": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
         ],
-        "anchors_reported": true,
-        "axioms": {
-          "CampaignFspDiscreteWdwConstraint.dJoint_linear_and_constant_kernel": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
+        "primal_l1_edge_and_vertex_residual_lower_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "strong_duality_direct_sum_wdw_exact_coboundary": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "s4_seed_flat_vs_curved_wdw_defect_mass": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "quadratic_constraint_psd_and_null_kernel_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "diffeomorphism_averaging_projector_and_constraint_complement": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "page_wootters_clock_system_conditioned_evolution": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "dewitt_supermetric_indefinite_signature_fence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "wdw_constraint_kernel_vs_thermal_gibbs_trace_fence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "wdw_constraint_projection_preserves_fermion_sign_cancellation_fence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "anchors": [
+        "dJoint_linear_and_constant_kernel",
+        "primal_l1_edge_and_vertex_residual_lower_bound",
+        "strong_duality_direct_sum_wdw_exact_coboundary",
+        "s4_seed_flat_vs_curved_wdw_defect_mass",
+        "quadratic_constraint_psd_and_null_kernel_iff",
+        "diffeomorphism_averaging_projector_and_constraint_complement",
+        "page_wootters_clock_system_conditioned_evolution",
+        "dewitt_supermetric_indefinite_signature_fence",
+        "wdw_constraint_kernel_vs_thermal_gibbs_trace_fence",
+        "wdw_constraint_projection_preserves_fermion_sign_cancellation_fence"
+      ],
+      "axiom_audit_passed": true,
+      "output": "⚠ [3137/3138] Built CampaignFspDiscreteWdwConstraint (28s)\nwarning: CampaignFspDiscreteWdwConstraint.lean: imports `Mathlib.Algebra.BigOperators.Fin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspDiscreteWdwConstraint.lean: imports `Mathlib.Data.Matrix.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspDiscreteWdwConstraint.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspDiscreteWdwConstraint.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignFspDiscreteWdwConstraint.lean:284:0: 'CampaignFspDiscreteWdwConstraint.dJoint_linear_and_constant_kernel' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspDiscreteWdwConstraint.lean:285:0: 'CampaignFspDiscreteWdwConstraint.primal_l1_edge_and_vertex_residual_lower_bound' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspDiscreteWdwConstraint.lean:286:0: 'CampaignFspDiscreteWdwConstraint.strong_duality_direct_sum_wdw_exact_coboundary' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspDiscreteWdwConstraint.lean:287:0: 'CampaignFspDiscreteWdwConstraint.s4_seed_flat_vs_curved_wdw_defect_mass' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspDiscreteWdwConstraint.lean:288:0: 'CampaignFspDiscreteWdwConstraint.quadratic_constraint_psd_and_null_kernel_iff' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspDiscreteWdwConstraint.lean:289:0: 'CampaignFspDiscreteWdwConstraint.diffeomorphism_averaging_projector_and_constraint_complement' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspDiscreteWdwConstraint.lean:290:0: 'CampaignFspDiscreteWdwConstraint.page_wootters_clock_system_conditioned_evolution' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspDiscreteWdwConstraint.lean:291:0: 'CampaignFspDiscreteWdwConstraint.dewitt_supermetric_indefinite_signature_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspDiscreteWdwConstraint.lean:292:0: 'CampaignFspDiscreteWdwConstraint.wdw_constraint_kernel_vs_thermal_gibbs_trace_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspDiscreteWdwConstraint.lean:293:0: 'CampaignFspDiscreteWdwConstraint.wdw_constraint_projection_preserves_fermion_sign_cancellation_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\nBuild completed successfully (3138 jobs).\n"
+    }
+  ],
+  "superseded_receipt": {
+    "schema_version": "campaign_lean_replay.v1",
+    "authority_effect": "None",
+    "checked_at": "2026-10-24",
+    "source_base": "1fa451fe1",
+    "result": "Lean module CampaignFspDiscreteWdwConstraint compiles under Lean 4.35.0 with pinned Mathlib, built through lake from the CampaignFspDiscreteWdwConstraint library registered in lean4/lakefile.lean; every printed axiom list is a subset of propext, Classical.choice and Quot.sound.",
+    "proof_boundary": "This receipt records that lean4/CampaignFspDiscreteWdwConstraint.lean type-checks and which axioms its #print axioms lines report. It establishes direct-sum Regge-WDW cochain linearity, signed rational L1 unscreenability and strong duality on exact-momentum states, S^4 flat vs curved defect receipts, finite quadratic L^T L and idempotent projector kernel equivalences, 2-tick Page-Wootters conditioning, and explicit scope fences for DeWitt kinetic indefiniteness and Section 2.5 thermal-vs-WDW separation.",
+    "lean_replay": {
+      "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+      "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "lakefile_sha256": "0ea57752f03900874b5051cfb323baa958b1d19c5980a8e38d98631838d3e6f2",
+      "library": "CampaignFspDiscreteWdwConstraint (lean_lib in lean4/lakefile.lean; not a default target)",
+      "build_directory": "lean4/b",
+      "dependency_packages": "lean4/.lake/packages Mathlib v4.35.0 cache",
+      "command": "cd lean4 && lake build CampaignFspDiscreteWdwConstraint",
+      "allowed_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "results": [
+        {
+          "module": "CampaignFspDiscreteWdwConstraint",
+          "dag_node": "FSP-DISCRETE-WDW-CONSTRAINT",
+          "source": "lean4/CampaignFspDiscreteWdwConstraint.lean",
+          "sha256": "5f9fc17b09a0e9967f6eed3641856ce49dd4634581cb6a78d89b9619f792c9ef",
+          "sha256_after_build": "5f9fc17b09a0e9967f6eed3641856ce49dd4634581cb6a78d89b9619f792c9ef",
+          "source_unchanged_during_build": true,
+          "exit_code": 0,
+          "admission_scan_passed": true,
+          "axiom_audit_passed": true,
+          "anchors": [
+            "CampaignFspDiscreteWdwConstraint.dJoint_linear_and_constant_kernel",
+            "CampaignFspDiscreteWdwConstraint.primal_l1_edge_and_vertex_residual_lower_bound",
+            "CampaignFspDiscreteWdwConstraint.strong_duality_direct_sum_wdw_exact_coboundary",
+            "CampaignFspDiscreteWdwConstraint.s4_seed_flat_vs_curved_wdw_defect_mass",
+            "CampaignFspDiscreteWdwConstraint.quadratic_constraint_psd_and_null_kernel_iff",
+            "CampaignFspDiscreteWdwConstraint.diffeomorphism_averaging_projector_and_constraint_complement",
+            "CampaignFspDiscreteWdwConstraint.page_wootters_clock_system_conditioned_evolution",
+            "CampaignFspDiscreteWdwConstraint.dewitt_supermetric_indefinite_signature_fence",
+            "CampaignFspDiscreteWdwConstraint.wdw_constraint_kernel_vs_thermal_gibbs_trace_fence",
+            "CampaignFspDiscreteWdwConstraint.wdw_constraint_projection_preserves_fermion_sign_cancellation_fence"
           ],
-          "CampaignFspDiscreteWdwConstraint.primal_l1_edge_and_vertex_residual_lower_bound": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspDiscreteWdwConstraint.strong_duality_direct_sum_wdw_exact_coboundary": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspDiscreteWdwConstraint.s4_seed_flat_vs_curved_wdw_defect_mass": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspDiscreteWdwConstraint.quadratic_constraint_psd_and_null_kernel_iff": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspDiscreteWdwConstraint.diffeomorphism_averaging_projector_and_constraint_complement": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspDiscreteWdwConstraint.page_wootters_clock_system_conditioned_evolution": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspDiscreteWdwConstraint.dewitt_supermetric_indefinite_signature_fence": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspDiscreteWdwConstraint.wdw_constraint_kernel_vs_thermal_gibbs_trace_fence": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspDiscreteWdwConstraint.wdw_constraint_projection_preserves_fermion_sign_cancellation_fence": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ]
+          "anchors_reported": true,
+          "axioms": {
+            "CampaignFspDiscreteWdwConstraint.dJoint_linear_and_constant_kernel": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspDiscreteWdwConstraint.primal_l1_edge_and_vertex_residual_lower_bound": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspDiscreteWdwConstraint.strong_duality_direct_sum_wdw_exact_coboundary": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspDiscreteWdwConstraint.s4_seed_flat_vs_curved_wdw_defect_mass": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspDiscreteWdwConstraint.quadratic_constraint_psd_and_null_kernel_iff": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspDiscreteWdwConstraint.diffeomorphism_averaging_projector_and_constraint_complement": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspDiscreteWdwConstraint.page_wootters_clock_system_conditioned_evolution": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspDiscreteWdwConstraint.dewitt_supermetric_indefinite_signature_fence": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspDiscreteWdwConstraint.wdw_constraint_kernel_vs_thermal_gibbs_trace_fence": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspDiscreteWdwConstraint.wdw_constraint_projection_preserves_fermion_sign_cancellation_fence": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ]
+          }
         }
-      }
-    ]
-  }
+      ]
+    }
+  },
+  "superseded_reason": "Interpretation overclaims and missing source axiom lines corrected; former source hash and receipt retained for history only."
 }

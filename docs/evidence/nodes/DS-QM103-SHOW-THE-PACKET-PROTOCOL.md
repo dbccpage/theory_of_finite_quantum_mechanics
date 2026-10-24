@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -36,7 +36,7 @@ Rotated-surface-code packet is an illustrative placeholder (no measured numbers)
 
 ## Review
 
-- PFP review: [dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: no.
   - narrowest claim: Exact field-completeness/scale/refusal controls are checked; presence of fields is not logical validation of their contents.
   - does not support: Provide substantive verified packet contents and meaningful scale/noise/throughput/leakage/overhead evidence. Eligibility for audit is not a physical or authority terminal.
   - next test: Provide substantive verified packet contents and meaningful scale/noise/throughput/leakage/overhead evidence. Eligibility for audit is not a physical or authority terminal.
