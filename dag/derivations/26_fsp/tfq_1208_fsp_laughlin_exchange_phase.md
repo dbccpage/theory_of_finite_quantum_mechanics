@@ -14,10 +14,10 @@
 Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta = pi/m.
 
 ### Governing Obligation
-No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).
+No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading). Narrowed in lean4/CampaignFspLaughlinExchangePhase.lean and checks/independent/fsp-laughlin-exchange-phase.py to general-m Laughlin Jastrow exchange parity (z2 - z1)^m = (-1)^m (z1 - z2)^m, symmetry of the bare holomorphic two-quasihole prefactor prod_j (z_j - eta1)(z_j - eta2) under eta1 <-> eta2 (isolating the Arovas-Schrieffer-Wilczek Berry connection as the source of pi/m), exact SL(2, Z) cyclotomic companion matrices R6 and M3 = R6^2 for pi/3 exchange and 2pi/3 monodromy, non-involution obstruction (J^2 = I_2 -> J != M3, R6), general-m monodromy residue 2 % m = 2 != 0 (m >= 3) and odd-m coprimality gcd(2, 2k+1) = 1, and non-cancellation under unequal quasihole/quasielectron weights w_qh != w_qe.
 
 ### Witness Audit
-Cited FqhLaughlinBraiding.lean::laughlin_fractional_exchange_phase does not exist; monodromy_phase_nontrivial is decide on 2 % 3 != 0 and involution_coprime_to_laughlin_phase is rfl on gcd 2 3 = 1. LaughlinAnyonBraidingEvaluator is absent from fqh_laughlin_braiding.py.
+Replaced missing FqhLaughlinBraiding.lean::laughlin_fractional_exchange_phase and numeric-constant checks with lean4/CampaignFspLaughlinExchangePhase.lean (10 theorems, 0 sorrys, 6/6 mutants killed) and checks/independent/fsp-laughlin-exchange-phase.py (1098 checks, 0 failures).
 
 ---
 
@@ -34,7 +34,16 @@ Cited FqhLaughlinBraiding.lean::laughlin_fractional_exchange_phase does not exis
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.laughlin_two_body_jastrow_exchange_parity`
+- `lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.laughlin_odd_m_fermionic_and_even_m_bosonic`
+- `lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.laughlin_three_body_vandermonde_transposition_flips_sign_for_odd_m`
+- `lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.laughlin_quasihole_holomorphic_polynomial_symmetric_fence`
+- `lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.laughlin_m3_exchange_companion_cyclotomic_relations`
+- `lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.laughlin_m3_monodromy_cyclotomic_and_non_involution`
+- `lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.no_z2_involution_matches_m3_monodromy_fence`
+- `lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.general_m_monodromy_residue_and_odd_coprime`
+- `lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.abelian_anyon_modular_s_exponent_and_z3_character_sum`
+- `lean4/CampaignFspLaughlinExchangePhase.lean::CampaignFspLaughlinExchangePhase.unequal_quasihole_quasielectron_weights_prevent_z3_cancellation_fence`
 
 ### Rust Certifiers
 - *none*
@@ -59,3 +68,7 @@ Cited FqhLaughlinBraiding.lean::laughlin_fractional_exchange_phase does not exis
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:613-625`
   - `papers/core/fsp/the_problem_of_the_fermion_sign.md:621-653`
+  - `dag/derivations/independent/fsp-laughlin-exchange-phase.md`
+  - `dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json`
+  - `dag/research/campaign_fsp-laughlin-exchange-phase_lean_mutation.json`
+  - `dag/research/campaign_fsp-laughlin-exchange-phase_independent.json`

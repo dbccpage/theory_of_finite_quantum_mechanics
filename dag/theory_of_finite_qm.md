@@ -10206,7 +10206,7 @@ Obligation: A sign-free sampling claim for this representation is not made or ch
 
 Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta = pi/m.
 
-Obligation: No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).
+Obligation: No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading). Narrowed in lean4/CampaignFspLaughlinExchangePhase.lean and checks/independent/fsp-laughlin-exchange-phase.py to general-m Laughlin Jastrow exchange parity (z2 - z1)^m = (-1)^m (z1 - z2)^m, symmetry of the bare holomorphic two-quasihole prefactor prod_j (z_j - eta1)(z_j - eta2) under eta1 <-> eta2 (isolating the Arovas-Schrieffer-Wilczek Berry connection as the source of pi/m), exact SL(2, Z) cyclotomic companion matrices R6 and M3 = R6^2 for pi/3 exchange and 2pi/3 monodromy, non-involution obstruction (J^2 = I_2 -> J != M3, R6), general-m monodromy residue 2 % m = 2 != 0 (m >= 3) and odd-m coprimality gcd(2, 2k+1) = 1, and non-cancellation under unequal quasihole/quasielectron weights w_qh != w_qe.
 
 ### TFQ-1209 Fibonacci anyon fusion and braiding data
 
