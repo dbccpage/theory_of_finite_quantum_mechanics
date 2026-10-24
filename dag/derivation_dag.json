@@ -12271,16 +12271,25 @@
       "stage": "IMPLEMENTATION_SIBLING",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 06)",
-      "statement": "Seven mutually unbiased bases in dimension 6 stay open. The README titled MUB(6): exact reductions, conditional interfaces and open gaps says whether seven mutually unbiased bases exist in dimension six is open, that the deposit does not settle it, and that gap G1 is OPEN. The F004 register repeats that G1 is OPEN, that code/src/main.rs prints a banner and does not run a solver, and that R6 and R7 stay NOT_A_CERTIFICATE. The obligation is to leave MUB(6) existence unresolved. Checked reductions and conditional interfaces in that deposit are not a substitute for the missing global count.",
+      "statement": "Narrowed boundary, status left OPEN: at the integer point (1, 1, 1, 1) the quadric piece (1-1)*(1-1) - (1-1)*(1-1) equals 0, the four square pieces (1*1-1) sum to 0, and the cleared collar 0*1000 - 1 equals -1. The comparisons -1 < 0 and 0 < 1000 record -1/1000 < 0. papers/core/mub6/README.md carries the title MUB(6): exact reductions, conditional interfaces and open gaps, and its status block says dimension six is open, that this deposit does not settle it, and that Gap G1 is OPEN. The same README text contains 185 lean files and imports 180. This commit has no directory lean4/research_programs/mub6. papers/core/mub6/code/src/main.rs says the binary prints a banner and does not run a solver, and that Gap G1 stays OPEN while R6 and R7 stay NOT_A_CERTIFICATE. papers/core/mub6/research/mub6_gap_registry.json records G1 with status OPEN and R6 and R7 with status NOT_A_CERTIFICATE, and the R7 note contains -1/1000. Whether seven mutually unbiased bases exist in dimension 6 stays unresolved. Status stays OPEN.",
       "source": [
-        "dag/derivations/22_implementation_sibling/tfq_0177_leave_the_existence_of_seven_mutually_unbiased_bases_in_dimension_6_open.md"
+        "dag/derivations/22_implementation_sibling/tfq_0177_leave_the_existence_of_seven_mutually_unbiased_bases_in_dimension_6_open.md",
+        "dag/derivations/independent/tfq-0177.md",
+        "dag/research/campaign_tfq-0177_lean_replay.json",
+        "papers/core/mub6/README.md",
+        "papers/core/mub6/research/mub6_gap_registry.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0177Mub6OpenFence.lean::tfq0177_point_quadric",
+        "lean4/CampaignTfq0177Mub6OpenFence.lean::tfq0177_point_squares",
+        "lean4/CampaignTfq0177Mub6OpenFence.lean::tfq0177_guard_cleared",
+        "lean4/CampaignTfq0177Mub6OpenFence.lean::tfq0177_collar_sign"
+      ],
       "rust": [
-        "code/rust/src/mub/src/omega_native/mub6_smale_sentry.rs"
+        "papers/core/mub6/code/src/main.rs"
       ],
       "imported_structure": [],
-      "bottleneck": "Leave the existence of seven mutually unbiased bases in dimension 6 open.",
+      "bottleneck": "The identities in the statement are one integer point of the Segre guard and the deposit texts. The README numerals 185 and 180 are text in that file. A directory census of lean4/research_programs/mub6 is absent from this commit. The general identity on every rational point, a global count of mutually unbiased bases in dimension 6, and any reading of checked reductions as that count stay open. Status stays OPEN.",
       "tags": [
         "unified-dag",
         "TFQ-0177",
@@ -47852,27 +47861,33 @@
       ],
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/010_mub6/README.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/README.md"
+        "omega_engine_atlas/coda_atlas/F004_papers/README.md",
+        "dag/derivations/independent/tfq-0177.md",
+        "dag/research/campaign_tfq-0177_lean_replay.json",
+        "papers/core/mub6/README.md",
+        "papers/core/mub6/research/mub6_gap_registry.json"
       ],
       "id": "TFQ-0177",
       "lean4": [
-        "absent: not located"
+        "lean4/CampaignTfq0177Mub6OpenFence.lean::tfq0177_point_quadric",
+        "lean4/CampaignTfq0177Mub6OpenFence.lean::tfq0177_point_squares",
+        "lean4/CampaignTfq0177Mub6OpenFence.lean::tfq0177_guard_cleared",
+        "lean4/CampaignTfq0177Mub6OpenFence.lean::tfq0177_collar_sign"
       ],
       "local_id": "A06-012",
       "name": "Leave the existence of seven mutually unbiased bases in dimension 6 open",
-      "obligation": "Leave the existence of seven mutually unbiased bases in dimension 6 open.",
+      "obligation": "The identities in the statement are one integer point of the Segre guard and the deposit texts. The README numerals 185 and 180 are text in that file. A directory census of lean4/research_programs/mub6 is absent from this commit. The general identity on every rational point, a global count of mutually unbiased bases in dimension 6, and any reading of checked reductions as that count stay open. Status stays OPEN.",
       "parent_id": "TFQ-0176",
       "python": [
-        "code/python/src/mub/mub_verify/a1_collar_swarm.py"
+        "checks/independent/tfq-0177.py"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
-        "code/rust/src/mub/src/omega_native/mub6_smale_sentry.rs",
-        "absent: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/010_mub6/rust/network_simplex.rs"
+        "papers/core/mub6/code/src/main.rs"
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",
-      "summary": "Seven mutually unbiased bases in dimension 6 stay open. The README titled MUB(6): exact reductions, conditional interfaces and open gaps says whether seven mutually unbiased bases exist in dimension six is open, that the deposit does not settle it, and that gap G1 is OPEN. The F004 register repeats that G1 is OPEN, that code/src/main.rs prints a banner and does not run a solver, and that R6 and R7 stay NOT_A_CERTIFICATE. The obligation is to leave MUB(6) existence unresolved. Checked reductions and conditional interfaces in that deposit are not a substitute for the missing global count.",
+      "summary": "Narrowed boundary, status left OPEN: at the integer point (1, 1, 1, 1) the quadric piece (1-1)*(1-1) - (1-1)*(1-1) equals 0, the four square pieces (1*1-1) sum to 0, and the cleared collar 0*1000 - 1 equals -1. The comparisons -1 < 0 and 0 < 1000 record -1/1000 < 0. papers/core/mub6/README.md carries the title MUB(6): exact reductions, conditional interfaces and open gaps, and its status block says dimension six is open, that this deposit does not settle it, and that Gap G1 is OPEN. The same README text contains 185 lean files and imports 180. This commit has no directory lean4/research_programs/mub6. papers/core/mub6/code/src/main.rs says the binary prints a banner and does not run a solver, and that Gap G1 stays OPEN while R6 and R7 stay NOT_A_CERTIFICATE. papers/core/mub6/research/mub6_gap_registry.json records G1 with status OPEN and R6 and R7 with status NOT_A_CERTIFICATE, and the R7 note contains -1/1000. Whether seven mutually unbiased bases exist in dimension 6 stays unresolved. Status stays OPEN.",
       "uuid": "e96070e1-5911-5764-9fab-3c39f39315c9"
     },
     {
