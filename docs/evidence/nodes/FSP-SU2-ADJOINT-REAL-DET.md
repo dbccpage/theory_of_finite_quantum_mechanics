@@ -1,6 +1,6 @@
 # FSP-SU2-ADJOINT-REAL-DET
 
-Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `IMPORTED_ASSUMPTION`. Evidence grade: **E1**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `IMPORTED_ASSUMPTION`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `IMPORTED_ASSUMPTION`.
 
 ## Grade
 
-Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 17
+- cited Lean declarations covered by a current replay receipt: 16
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite a Lean, Rust or Python symbol that exists in an in-repo file
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. Not established in this checkout.
+For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. CampaignFspSu2AdjointRealDet.lean establishes the 3x3 SO(3) adjoint representation of unit quaternions, Z_2 center blindness R(-q) = R(q), the antiunitary intertwiner reality identity C conj(D) = D C -\> Im(det D) = 0, reality of the 4D lattice adjoint Wilson-Dirac determinant wilsonDiracAdjoint4_det_im_zero, a negative-determinant witness (det = -1 \< 0), and the 2x2 and 4x4 skew-symmetric Majorana Pfaffian square identities and sign-flip pairs. Full continuum SU(2) path-integral construction and general 2n x 2n Berezin Grassmann integration remain literature imports.
 
 ## Source status
 
@@ -42,13 +42,60 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/CampaignFspSu2AdjointRealDet.lean`
+
+- file: [lean4/CampaignFspSu2AdjointRealDet.lean](../../../lean4/CampaignFspSu2AdjointRealDet.lean)
+- sha256 (`bytes`): `fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15`
+- cited in: node.lean, receipt dag/research/campaign_fsp-su2-adjoint-real-det_lean_replay.json (CampaignFspSu2AdjointRealDet), record TFQ-1200
+- replay: `verified`
+  - receipt [dag/research/campaign_fsp-su2-adjoint-real-det_lean_replay.json](../../../dag/research/campaign_fsp-su2-adjoint-real-det_lean_replay.json) (module `CampaignFspSu2AdjointRealDet`): recorded sha256 `fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignFspSu2AdjointRealDet`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_conj` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_conj` |
+| `CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_im_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_im_zero` |
+| `CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_two_flavor_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_two_flavor_nonneg` |
+| `CampaignFspSu2AdjointRealDet.chargeConj4_intertwines_gamma4d` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.chargeConj4_intertwines_gamma4d` |
+| `CampaignFspSu2AdjointRealDet.majorana_pfaffian2_sign_flip` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.majorana_pfaffian2_sign_flip` |
+| `CampaignFspSu2AdjointRealDet.majorana_pfaffian4_sign_flip` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.majorana_pfaffian4_sign_flip` |
+| `CampaignFspSu2AdjointRealDet.reality_not_positivity_witness` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.reality_not_positivity_witness` |
+| `CampaignFspSu2AdjointRealDet.skew2_det_eq_pfaffian2_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.skew2_det_eq_pfaffian2_sq` |
+| `CampaignFspSu2AdjointRealDet.skew4_det_eq_pfaffian4_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.skew4_det_eq_pfaffian4_sq` |
+| `CampaignFspSu2AdjointRealDet.su2AdjointMatrix_center_blind` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.su2AdjointMatrix_center_blind` |
+| `CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_eq_norm_cube` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_eq_norm_cube` |
+| `CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_one` |
+| `CampaignFspSu2AdjointRealDet.su2AdjointMatrix_transpose_mul_self` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.su2AdjointMatrix_transpose_mul_self` |
+| `CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_conj` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_conj` |
+| `CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_im_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_im_zero` |
+| `CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_intertwined` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_intertwined` |
+- counts toward the grade: yes
+
+### Python: `checks/independent/fsp-su2-adjoint-real-det.py`
+
+- file: [checks/independent/fsp-su2-adjoint-real-det.py](../../../checks/independent/fsp-su2-adjoint-real-det.py)
+- sha256 (`bytes`): `79ffe77aa0ee9357257c7ec27e7cbaef34646961e2c2f9f41848088a20927837`
+- cited in: record TFQ-1200
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `main` (python_symbol) | yes | yes | yes | - | - |
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/26_fsp/tfq_1200_fsp_su2_adjoint_real_det.md`
 
 - file: [dag/derivations/26_fsp/tfq_1200_fsp_su2_adjoint_real_det.md](../../../dag/derivations/26_fsp/tfq_1200_fsp_su2_adjoint_real_det.md)
-- sha256 (`lf-normalised`): `b89391fb009c1fa4c3ef32cdabf6c5a2fc58043738cf86aaf6ee3a0d984780fe`
+- sha256 (`lf-normalised`): `c5f0909ea831a3bdf066afd4c61067f25d8407026adaf6007a70d37427e75c32`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1200
 - counts toward the grade: no
+
+### Documents and data: `dag/derivations/independent/fsp-su2-adjoint-real-det.md`
+
+- file: [dag/derivations/independent/fsp-su2-adjoint-real-det.md](../../../dag/derivations/independent/fsp-su2-adjoint-real-det.md)
+- sha256 (`lf-normalised`): `8e71bfbbd34aaa6378ff4cce2a6252e6eaab5724fb1aa3172ea35af244347017`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign.md`
 

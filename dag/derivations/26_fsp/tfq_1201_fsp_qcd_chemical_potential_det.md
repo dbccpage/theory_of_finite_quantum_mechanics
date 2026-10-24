@@ -14,10 +14,10 @@
 For lattice Dirac operators with chemical potential, gamma5 D(mu) gamma5 = D(-mu*)^dagger, hence det D(mu)^* = det D(-mu*); for real mu != 0 this relates D(mu) to D(-mu) only and det D(mu) is in general complex.
 
 ### Governing Obligation
-Standard identity imported; the checkout has no SU(3) staggered operator and no computation of det D(mu).
+Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/CampaignFspQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast, while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.
 
 ### Witness Audit
-Cited NonAbelianGaugeSigns.lean::su3_chemical_potential_complex_determinant does not exist; the local evaluate_su3_chemical_potential symbol is absent from su3_polyakov_loop.py.
+Replaced missing NonAbelianGaugeSigns.lean::su3_chemical_potential_complex_determinant reference with lean4/CampaignFspQcdChemicalPotentialDet.lean and checks/independent/fsp-qcd-chemical-potential-det.py.
 
 ---
 
@@ -31,13 +31,29 @@ Cited NonAbelianGaugeSigns.lean::su3_chemical_potential_complex_determinant does
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.det_conj_by_involution`
+- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_mu_intertwine_det_conj`
+- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_real_mu_det_conj`
+- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_zero_mu_det_im_zero`
+- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_imag_mu_det_im_zero`
+- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.diracMu_gamma5_adjoint`
+- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.diracMu_det_conj`
+- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.staggeredDiracMu_gamma5_adjoint`
+- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.staggeredDiracMu_det_conj`
+- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_unitary`
+- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_det`
+- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_trace_im_ne_zero`
+- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_gamma5_intertwine`
+- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_two`
+- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_half`
+- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness`
+- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/fsp-qcd-chemical-potential-det.py::main`
 
 ### Cited by the source, not in this checkout
 - `external:omega_quantum_physics::quantum_channel::su3_staggered_dirac_determinant (cited by the source, not in this checkout)`
@@ -55,3 +71,4 @@ Cited NonAbelianGaugeSigns.lean::su3_chemical_potential_complex_determinant does
 
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:516-528`
+  - `dag/derivations/independent/fsp-qcd-chemical-potential-det.md`

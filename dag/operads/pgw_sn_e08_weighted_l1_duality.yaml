@@ -11,9 +11,7 @@ target:
     adjunction by functors, unit, counit and triangle identities, and says these maps are not the matrix
     pair d₀, d₀ᵀ.'
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions:
-  - Strong duality for finite feasible bounded linear programs over ℚ, cited by E08 and not proved there
-    (assumption)
+  declared_assumptions: []
   source_bottleneck: E08 is a declared mathematical construction that grammar cases do not verify; AdjunctionCochain
     implements only x ↦ (x,0) and first-coordinate projection, and no adjunction is claimed until objects,
     functors, naturality and triangle laws are supplied.
@@ -22,8 +20,9 @@ target:
   - omega_engine_education/documentation/002_oesn/levels/level_08_monadic_adjunction_cochains.md:19-29
   - omega_engine_education/documentation/002_oesn/levels/level_08_monadic_adjunction_cochains.md:40-44
   - omega_engine_education/documentation/002_oesn/levels/README.md:20
+  - dag/derivations/independent/pgw-sn-e08-weighted-l1-duality.md:1-3
   paper_refs: []
-  source_claim_label: CONDITIONAL
+  source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
@@ -35,9 +34,334 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/mssn_sn_pgw_sn_e08_weighted_l1_duality_conditional.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: DualFeasible
+  line: 48
+  signature_excerpt: 'def DualFeasible (D : E → V → K) (w y : E → K) : Prop'
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cost
+  line: 40
+  signature_excerpt: 'def cost (D : E → V → K) (w h : E → K) (x : V → K) : K'
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: dualObj
+  line: 44
+  signature_excerpt: 'def dualObj (h y : E → K) : K'
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: PFeas
+  line: 480
+  signature_excerpt: 'def PFeas (G : I → J → K) (g : I → K) (y : J → K) : Prop'
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: DFeas
+  line: 484
+  signature_excerpt: 'def DFeas (G : I → J → K) (c : J → K) (u : I → K) : Prop'
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cycD
+  line: 905
+  signature_excerpt: 'def cycD : Fin 3 → Fin 3 → ℚ'
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cycW
+  line: 909
+  signature_excerpt: 'def cycW : Fin 3 → ℚ'
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cycH
+  line: 912
+  signature_excerpt: 'def cycH : Fin 3 → ℚ'
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cycX1
+  line: 915
+  signature_excerpt: 'def cycX1 : Fin 3 → ℚ'
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cycX2
+  line: 918
+  signature_excerpt: 'def cycX2 : Fin 3 → ℚ'
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cycY
+  line: 921
+  signature_excerpt: 'def cycY : Fin 3 → ℚ'
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cycResidual
+  line: 927
+  signature_excerpt: 'def cycResidual (x : Fin 3 → ℚ) (e : Fin 3) : ℚ'
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cycXHarm
+  line: 924
+  signature_excerpt: 'def cycXHarm : Fin 3 → ℚ'
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: e08_rational
+  line: 889
+  signature_excerpt: |-
+    theorem e08_rational {V E : Type*} [Fintype V] [Fintype E]
+        (D : E → V → ℚ) (w h : E → ℚ) (hw : ∀ e : E, 0 ≤ w e) :
+        ∃ x : V → ℚ, ∃ y : E → ℚ,
+          DualFeasible D w y ∧ cost D w h x = dualObj h y
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: weighted_l1_strong_duality
+  line: 769
+  signature_excerpt: |-
+    theorem weighted_l1_strong_duality (D : E → V → K) (w h : E → K)
+        (hw : ∀ e : E, 0 ≤ w e) :
+        ∃ x : V → K, ∃ y : E → K,
+          DualFeasible D w y ∧ cost D w h x = dualObj h y
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: lp_strong_duality
+  line: 522
+  signature_excerpt: |-
+    theorem lp_strong_duality (G : I → J → K) (g : I → K) (c : J → K)
+        (hP : ∃ y₀ : J → K, PFeas G g y₀) (hD : ∃ u₀ : I → K, DFeas G c u₀) :
+        ∃ y : J → K, ∃ u : I → K,
+          PFeas G g y ∧ DFeas G c u ∧ ∑ j : J, c j * y j = ∑ i : I, g i * u i
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: farkas
+  line: 216
+  signature_excerpt: |-
+    theorem farkas :
+        ∀ (n m : ℕ) (A : Fin m → Fin n → K) (b : Fin m → K),
+          (∃ x : Fin n → K, ∀ i : Fin m, ∑ j : Fin n, A i j * x j ≤ b i) ∨
+            (∃ u : Fin m → K,
+              (∀ i, 0 ≤ u i) ∧
+              (∀ j : Fin n, ∑ i : Fin m, u i * A i j = 0) ∧
+              (∑ i : Fin m, u i * b i < 0))
+      | 0, m, A, b => by
+          classical
+          by_cases hb : ∀ i : Fin m, 0 ≤ b i
+          · refine Or.inl ⟨Fin.elim0, ?_⟩
+            intro i
+            simpa using hb i
+          · push Not at hb
+            rcases hb with ⟨z, hbz⟩
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: certificate_optimal
+  line: 109
+  signature_excerpt: |-
+    theorem certificate_optimal (D : E → V → K) (w h : E → K) (x : V → K) (y : E → K)
+        (hy : DualFeasible D w y) (h_eq : cost D w h x = dualObj h y) :
+        (∀ x', cost D w h x ≤ cost D w h x') ∧
+          (∀ y', DualFeasible D w y' → dualObj h y' ≤ dualObj h y)
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: cyc_optimum
+  line: 942
+  signature_excerpt: |-
+    theorem cyc_optimum :
+        cost cycD cycW cycH cycX1 = 1 ∧
+          cost cycD cycW cycH cycX2 = 1 ∧
+          dualObj cycH cycY = 1 ∧
+          (∀ x : Fin 3 → ℚ, 1 ≤ cost cycD cycW cycH x)
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: cyc_residuals_differ
+  line: 963
+  signature_excerpt: 'theorem cyc_residuals_differ : cycResidual cycX1 ≠ cycResidual cycX2'
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: cyc_harmonic
+  line: 971
+  signature_excerpt: |-
+    theorem cyc_harmonic :
+        (∀ e : Fin 3, cycResidual cycXHarm e = 1 / 3) ∧
+          (∀ v : Fin 3, ∑ e : Fin 3, cycD e v * cycResidual cycXHarm e = 0) ∧
+          cycResidual cycXHarm ≠ cycResidual cycX1 ∧
+          cycResidual cycXHarm ≠ cycResidual cycX2
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: adjunctionCochain_not_cycD_transpose
+  line: 1031
+  signature_excerpt: |-
+    theorem adjunctionCochain_not_cycD_transpose :
+        (∑ e : Fin 3, cycD e 0 * (∑ v : Fin 3, cycD e v * (![1, 0, 0] : Fin 3 → ℚ) v)) ≠
+          (![1, 0, 0] : Fin 3 → ℚ) 0
+  source: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  source_sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/CampaignSnE08WeightedL1Duality.lean::e08_rational
+  availability: local
+  symbol: e08_rational
+  path: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  declaration_status: declaration_found_not_proof_checked
+  line: 889
+  role: source_lead_only
+- original_ref: lean4/CampaignSnE08WeightedL1Duality.lean::weighted_l1_strong_duality
+  availability: local
+  symbol: weighted_l1_strong_duality
+  path: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  declaration_status: declaration_found_not_proof_checked
+  line: 769
+  role: source_lead_only
+- original_ref: lean4/CampaignSnE08WeightedL1Duality.lean::lp_strong_duality
+  availability: local
+  symbol: lp_strong_duality
+  path: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  declaration_status: declaration_found_not_proof_checked
+  line: 522
+  role: source_lead_only
+- original_ref: lean4/CampaignSnE08WeightedL1Duality.lean::farkas
+  availability: local
+  symbol: farkas
+  path: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  declaration_status: declaration_found_not_proof_checked
+  line: 216
+  role: source_lead_only
+- original_ref: lean4/CampaignSnE08WeightedL1Duality.lean::certificate_optimal
+  availability: local
+  symbol: certificate_optimal
+  path: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  declaration_status: declaration_found_not_proof_checked
+  line: 109
+  role: source_lead_only
+- original_ref: lean4/CampaignSnE08WeightedL1Duality.lean::cyc_optimum
+  availability: local
+  symbol: cyc_optimum
+  path: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  declaration_status: declaration_found_not_proof_checked
+  line: 942
+  role: source_lead_only
+- original_ref: lean4/CampaignSnE08WeightedL1Duality.lean::cyc_residuals_differ
+  availability: local
+  symbol: cyc_residuals_differ
+  path: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  declaration_status: declaration_found_not_proof_checked
+  line: 963
+  role: source_lead_only
+- original_ref: lean4/CampaignSnE08WeightedL1Duality.lean::cyc_harmonic
+  availability: local
+  symbol: cyc_harmonic
+  path: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  declaration_status: declaration_found_not_proof_checked
+  line: 971
+  role: source_lead_only
+- original_ref: lean4/CampaignSnE08WeightedL1Duality.lean::adjunctionCochain_not_cycD_transpose
+  availability: local
+  symbol: adjunctionCochain_not_cycD_transpose
+  path: lean4/CampaignSnE08WeightedL1Duality.lean
+  repository: this_repository
+  sha256: 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff
+  declaration_status: declaration_found_not_proof_checked
+  line: 1031
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -56,9 +380,7 @@ operad_slots:
     mining_status: UNREVIEWED
     carrier: null
     coefficient_ring: null
-    assumptions:
-    - Strong duality for finite feasible bounded linear programs over ℚ, cited by E08 and not proved there
-      (assumption)
+    assumptions: []
     source_pins: []
     public_input: {}
   slot_m2_layer1_forward_morphisms:
@@ -74,13 +396,9 @@ operad_slots:
     mining_status: UNREVIEWED
     certificate_predicates: []
     anchors: []
-    unpaid_imports:
-    - Strong duality for finite feasible bounded linear programs over ℚ, cited by E08 and not proved there
-      (assumption)
+    unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
