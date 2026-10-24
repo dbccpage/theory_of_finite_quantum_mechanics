@@ -4,19 +4,19 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `OPEN`. Evidence grade: **E3**. 
 
 ## Statement
 
-> The sealed candidate space is enumerated to cost two (at most two items, arity at most two), with pruning lemmas certified against the unpruned space: unreferenced fresh data and forms never matter, an instance-only delta changes the target pair's profiles only if an instance mentions a target datum, and a delta holding a uniform-rule item is never a minimum valid response (rule_item_never_minimal). The second derivation's rung one enumerated three-item deltas (min_responses_three) under a node guard, but no k-item delta grammar with pruning lemmas proved beyond cost two exists, and the distance bound of two is not known to be the grammar's (S-4). The education audit lists k-item delta grammars with pruning lemmas as a missing prerequisite of the S(n) bridge.
+> Narrowed boundary, status left OPEN: the four declared Challenge 3 lists copied from deltaU0, deltaU1, deltaBL, and deltaBD each have length 2. Their new-form arities are 1, 1, 2, and 2, and the sum of those arities is 6. The argument lists are \[0\], \[1\], \[0, 1\], and \[0, 0\], and the four lists are pairwise distinct across 6 comparisons. One three-item list has length 3, and 3 \> 2. This census is those four named lists. A k-item grammar for k at least 3, an exhaustive cost-two enumeration, and a response-size bound stay open. Status stays OPEN.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 2
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 8
+- cited Lean declarations covered by a current replay receipt: 8
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Open: the cost-two minimum (CL-3-MIN-TWO) is relative to the sealed grammar and bounds, and nothing here establishes a k-item minimum or a bound on response size.
+The four lists are a copied census of deltaU0, deltaU1, deltaBL, and deltaBD. They are not an exhaustive enumeration of the sealed candidate space, and they do not define a k-item grammar for k at least 3. The cost-two minimum CL-3-MIN-TWO stays relative to the sealed grammar. A bound on response size stays open. Status stays OPEN.
 
 ## Source status
 
@@ -41,6 +41,25 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignPgwKItemDeltaGrammar.lean`
+
+- file: [lean4/CampaignPgwKItemDeltaGrammar.lean](../../../lean4/CampaignPgwKItemDeltaGrammar.lean)
+- sha256 (`bytes`): `ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b`
+- cited in: node.lean, receipt dag/research/campaign_pgw-k-item-delta-grammar_lean_replay.json (CampaignPgwKItemDeltaGrammar), record TFQ-0490
+- replay: `verified`
+  - receipt [dag/research/campaign_pgw-k-item-delta-grammar_lean_replay.json](../../../dag/research/campaign_pgw-k-item-delta-grammar_lean_replay.json) (module `CampaignPgwKItemDeltaGrammar`): recorded sha256 `ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignPgwKItemDeltaGrammar`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `pgwKItem_arities` | yes | yes | yes | propext | `#print axioms pgwKItem_arities` |
+| `pgwKItem_arity_sum` | yes | yes | yes | propext | `#print axioms pgwKItem_arity_sum` |
+| `pgwKItem_lengths` | yes | yes | yes | none | `#print axioms pgwKItem_lengths` |
+| `pgwKItem_pairwise` | yes | yes | yes | none | `#print axioms pgwKItem_pairwise` |
+| `pgwKItem_three_above_two` | yes | yes | yes | none | `#print axioms pgwKItem_three_above_two` |
+| `pgwKItem_three_length` | yes | yes | yes | none | `#print axioms pgwKItem_three_length` |
+- counts toward the grade: yes
 
 ### Lean: `lean4/Imported/Genesis19l57g1/Derivation/Mention.lean`
 
@@ -77,10 +96,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
+### Python: `checks/independent/pgw-k-item-delta-grammar.py`
+
+- file: [checks/independent/pgw-k-item-delta-grammar.py](../../../checks/independent/pgw-k-item-delta-grammar.py)
+- sha256 (`bytes`): `048ddb8b3ae5710effa3e2d9bd5a7a93292dc538985715577e8aa0d6d6c8d3d2`
+- cited in: record TFQ-0490
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/02_genesis/tfq_0490_k_item_delta_grammar.md`
 
 - file: [dag/derivations/02_genesis/tfq_0490_k_item_delta_grammar.md](../../../dag/derivations/02_genesis/tfq_0490_k_item_delta_grammar.md)
-- sha256 (`lf-normalised`): `f9687728365f9265ab6ea21d1d77ad28f27a1f6baa537daedc4edb743aef2868`
+- sha256 (`lf-normalised`): `d0ece8cc3fbdbd34e17356f4e8418b22e29ed73b183a634c7d8824366b6d7b84`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0490
 - counts toward the grade: no

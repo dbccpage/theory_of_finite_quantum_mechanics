@@ -1,26 +1,31 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0042
 authority_effect: None
-collection_status: witness_verified
+collection_status: source_candidates_collected_semantic_mining_open
 target:
   source_statement: ravera_dfm_finite_to_continuum.rs evaluates evaluate_su3_spanning_tree_vs_landau_gribov_control
-    on CarrierGraph::diamond with five explicit block links over Q(i), checks a non-abelian
-    commutator, and dresses every spanning tree, and it counts diagonal Klein-four
-    copies. Lean su3_diagonal_klein_four_landau_gribov_copies and spanning_tree_dfm_eliminates_gribov_copies
-    treat the copy count 4^3=64 and a tree identity for rational, not matrix, link
-    variables. No Python twin of this function was found under 006_finite_qm/python.
+    on CarrierGraph::diamond with five explicit block links over Q(i), checks a non-abelian commutator,
+    and dresses every spanning tree, and it counts diagonal Klein-four copies. Lean su3_diagonal_klein_four_landau_gribov_copies
+    and spanning_tree_dfm_eliminates_gribov_copies treat the copy count 4^3=64 and a tree identity for
+    rational, not matrix, link variables. No Python twin of this function was found under 006_finite_qm/python.
     The module title uses continuum language; that title is not a bridge theorem.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Supply a Python replay or keep the Gribov diamond as Rust plus
-    a Lean rational shadow.
+  source_bottleneck: Supply a Python replay or keep the Gribov diamond as Rust plus a Lean rational shadow.
   source_refs:
   - dag/derivations/17_finite_qcd/tfq_0042_supply_a_python_replay_or_keep_the_gribov_diamond_as_rust_plus.md
+  - dag/derivations/independent/tfq-0042.md
+  - dag/research/campaign_tfq-0042_lean_replay.json
+  - dag/research/campaign_tfq-0042_lean_mutation.json
+  - dag/research/campaign_tfq-0042_independent.json
+  - docs/overclaim/reviews/2026-10-24_campaign-tfq-0042-precommit.md
+  - checks/independent/tfq-0042.py
+  - lean4/CampaignTfq0042FiniteQcd.lean
   paper_refs:
   - dag/derivations/17_finite_qcd/tfq_0042_supply_a_python_replay_or_keep_the_gribov_diamond_as_rust_plus.md
   source_claim_label: OPEN
-  label_rule: Historical status is a source annotation. Check the exact theorem scope
-    and remaining imports before reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/17_finite_qcd/tfq_0042_supply_a_python_replay_or_keep_the_gribov_diamond_as_rust_plus.md
@@ -32,40 +37,318 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/finite_qcd_tfq_0042_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: finiteQmLeanScalarShadow
+  line: 171
+  signature_excerpt: 'def finiteQmLeanScalarShadow : LinkRepresentationDescriptor'
+  source: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: raveraDiamondMatrixControl
+  line: 172
+  signature_excerpt: 'def raveraDiamondMatrixControl : LinkRepresentationDescriptor'
+  source: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: LinkRepresentationDescriptor
+  line: 165
+  signature_excerpt: structure LinkRepresentationDescriptor
+  source: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: evaluateContinuumModuleTitle
+  line: 191
+  signature_excerpt: 'def evaluateContinuumModuleTitle (hasContinuumBridgeProof : Bool) : TitleAuditStatus'
+  source: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: TitleAuditStatus
+  line: 186
+  signature_excerpt: |-
+    inductive TitleAuditStatus
+      | BridgeTheoremProvedByTitle
+      | ModuleTitleNotABridgeTheorem
+      deriving DecidableEq, Repr
+
+    def evaluateContinuumModuleTitle (hasContinuumBridgeProof : Bool) : TitleAuditStatus
+  source: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: diamond_graph_betti_and_spanning_tree_count
+  line: 52
+  signature_excerpt: |-
+    theorem diamond_graph_betti_and_spanning_tree_count :
+        (4 - 1 : Int) = 3 ∧
+        (5 - 4 + 1 : Int) = 2 ∧
+        (5 - (4 - 1) : Int) = 2 ∧
+        (8 : Nat) = 8
+  source: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pythagorean_qi_block_unitarity_and_det_one
+  line: 105
+  signature_excerpt: |-
+    theorem pythagorean_qi_block_unitarity_and_det_one :
+        (3 / 5 : ℚ) ^ 2 + (4 / 5 : ℚ) ^ 2 = 1 ∧
+        (5 / 13 : ℚ) ^ 2 + (12 / 13 : ℚ) ^ 2 = 1 ∧
+        (8 / 17 : ℚ) ^ 2 + (15 / 17 : ℚ) ^ 2 = 1
+  source: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: matrix_spanning_tree_dressing_neutralizes_tree_links
+  line: 136
+  signature_excerpt: |-
+    theorem matrix_spanning_tree_dressing_neutralizes_tree_links :
+        let g1
+  source: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: su3_diagonal_klein_four_landau_gribov_64_copies
+  line: 155
+  signature_excerpt: |-
+    theorem su3_diagonal_klein_four_landau_gribov_64_copies :
+        (1 : Int) * 1 * 1 = 1 ∧
+        (1 : Int) * (-1) * (-1) = 1 ∧
+        (-1 : Int) * 1 * (-1) = 1 ∧
+        (-1 : Int) * (-1) * 1 = 1 ∧
+        (1 + (-1) + (-1) : Int) = -1 ∧
+        (4 : Nat) ^ 3 = 64
+  source: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: lean_finite_qm_rational_shadow_vs_matrix_link_scope_separation
+  line: 177
+  signature_excerpt: |-
+    theorem lean_finite_qm_rational_shadow_vs_matrix_link_scope_separation :
+        finiteQmLeanScalarShadow.matrixDimension = 1 ∧
+        raveraDiamondMatrixControl.matrixDimension = 3 ∧
+        finiteQmLeanScalarShadow.isNonAbelian = false ∧
+        raveraDiamondMatrixControl.isNonAbelian = true ∧
+        finiteQmLeanScalarShadow ≠ raveraDiamondMatrixControl
+  source: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: continuum_module_title_is_not_bridge_theorem_fence
+  line: 200
+  signature_excerpt: |-
+    theorem continuum_module_title_is_not_bridge_theorem_fence :
+        evaluateContinuumModuleTitle false = TitleAuditStatus.ModuleTitleNotABridgeTheorem ∧
+        evaluateContinuumModuleTitle false ≠ TitleAuditStatus.BridgeTheoremProvedByTitle
+  source: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: missing_006_finite_qm_python_twin_and_independent_replay_fence
+  line: 217
+  signature_excerpt: |-
+    theorem missing_006_finite_qm_python_twin_and_independent_replay_fence :
+        repoGribovDiamondPythonStatus.hasTwinUnder006FiniteQmPython = false ∧
+        repoGribovDiamondPythonStatus.hasIndependentCheckerReplay = true
+  source: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: gribov_diamond_control_does_not_derive_continuum_qcd_fence
+  line: 225
+  signature_excerpt: |-
+    theorem gribov_diamond_control_does_not_derive_continuum_qcd_fence :
+        evaluateContinuumModuleTitle false = TitleAuditStatus.ModuleTitleNotABridgeTheorem
+  source: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0042_gribov_diamond_and_title_scope_ledger_fence
+  line: 245
+  signature_excerpt: |-
+    theorem tfq0042_gribov_diamond_and_title_scope_ledger_fence :
+        tfq0042RepoLedger.verifiesDiamond8SpanningTreesAndBetti2 = true ∧
+        tfq0042RepoLedger.verifiesNonAbelianBlockLinkCommutator = true ∧
+        tfq0042RepoLedger.verifiesKleinFour64Copies = true ∧
+        tfq0042RepoLedger.separatesLeanScalarShadowFromMatrixLinks = true ∧
+        tfq0042RepoLedger.suppliesIndependentPythonReplay = true ∧
+        tfq0042RepoLedger.moduleTitleAuthorizesContinuumBridge = false
+  source: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: su3_diagonal_klein_four_landau_gribov_copies
+  line: 773
+  signature_excerpt: |-
+    theorem su3_diagonal_klein_four_landau_gribov_copies :
+        let det3 (d1 d2 d3 : Rat) : Rat
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: spanning_tree_dfm_eliminates_gribov_copies
+  line: 791
+  signature_excerpt: |-
+    theorem spanning_tree_dfm_eliminates_gribov_copies
+        (u01 u12 u02 g1 g2 : Rat)
+        (hu01 : u01 ≠ 0) (hu12 : u12 ≠ 0) (hg1 : g1 ≠ 0) (hg2 : g2 ≠ 0) :
+        let u01_g
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- language: lean4
+- original_ref: lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.diamond_graph_betti_and_spanning_tree_count
+  availability: local
+  symbol: CampaignTfq0042FiniteQcd.diamond_graph_betti_and_spanning_tree_count
   path: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 52
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.su3_block_links_nonabelian_commutator_witness
+  availability: local
   symbol: CampaignTfq0042FiniteQcd.su3_block_links_nonabelian_commutator_witness
-  role: Non-abelian commutator witness for 3x3 block matrices on colors (0,1) vs (1,2)
-- language: lean4
   path: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 90
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.pythagorean_qi_block_unitarity_and_det_one
+  availability: local
+  symbol: CampaignTfq0042FiniteQcd.pythagorean_qi_block_unitarity_and_det_one
+  path: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 105
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.matrix_spanning_tree_dressing_neutralizes_tree_links
+  availability: local
   symbol: CampaignTfq0042FiniteQcd.matrix_spanning_tree_dressing_neutralizes_tree_links
-  role: Matrix spanning-tree gauge dressing neutralizing non-abelian tree links
-- language: lean4
   path: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 136
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.su3_diagonal_klein_four_landau_gribov_64_copies
+  availability: local
+  symbol: CampaignTfq0042FiniteQcd.su3_diagonal_klein_four_landau_gribov_64_copies
+  path: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 155
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.lean_finite_qm_rational_shadow_vs_matrix_link_scope_separation
+  availability: local
   symbol: CampaignTfq0042FiniteQcd.lean_finite_qm_rational_shadow_vs_matrix_link_scope_separation
-  role: Scope separation between FiniteQM.lean 1D rational links and 3x3 Q(i) matrix
-    links
-- language: lean4
   path: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 177
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.continuum_module_title_is_not_bridge_theorem_fence
+  availability: local
   symbol: CampaignTfq0042FiniteQcd.continuum_module_title_is_not_bridge_theorem_fence
-  role: 'Scope fence: ravera_dfm_finite_to_continuum.rs module title is not a bridge
-    theorem'
-- language: lean4
-  path: lean4/FiniteQM.lean
+  path: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 200
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.missing_006_finite_qm_python_twin_and_independent_replay_fence
+  availability: local
+  symbol: CampaignTfq0042FiniteQcd.missing_006_finite_qm_python_twin_and_independent_replay_fence
+  path: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 217
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.gribov_diamond_control_does_not_derive_continuum_qcd_fence
+  availability: local
+  symbol: CampaignTfq0042FiniteQcd.gribov_diamond_control_does_not_derive_continuum_qcd_fence
+  path: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 225
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.tfq0042_gribov_diamond_and_title_scope_ledger_fence
+  availability: local
+  symbol: CampaignTfq0042FiniteQcd.tfq0042_gribov_diamond_and_title_scope_ledger_fence
+  path: lean4/CampaignTfq0042FiniteQcd.lean
+  repository: this_repository
+  sha256: 17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4
+  declaration_status: declaration_found_not_proof_checked
+  line: 245
+  role: source_lead_only
+- original_ref: lean4/FiniteQM.lean::FiniteQM.su3_diagonal_klein_four_landau_gribov_copies
+  availability: local
   symbol: FiniteQM.su3_diagonal_klein_four_landau_gribov_copies
-  role: FiniteQM diagonal Klein-four 4^3=64 Gribov copy theorem
-- language: lean4
   path: lean4/FiniteQM.lean
+  repository: this_repository
+  sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  declaration_status: declaration_found_not_proof_checked
+  line: 773
+  role: source_lead_only
+- original_ref: lean4/FiniteQM.lean::FiniteQM.spanning_tree_dfm_eliminates_gribov_copies
+  availability: local
   symbol: FiniteQM.spanning_tree_dfm_eliminates_gribov_copies
-  role: FiniteQM 1D rational spanning-tree dressing theorem
-- language: python
-  path: checks/independent/tfq-0042.py
-  symbol: run_all_checks
-  role: Independent Python replay of the 5-link Q(i) diamond spanning-tree and Gribov
-    control
+  path: lean4/FiniteQM.lean
+  repository: this_repository
+  sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  declaration_status: declaration_found_not_proof_checked
+  line: 791
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -81,62 +364,33 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: VERIFIED
-    carrier: CarrierGraph::diamond (V=4, E=5, b_1=2, 8 spanning trees) with 3x3 unitary
-      block links over Q(i)
-    coefficient_ring: Q and Q(i)
-    assumptions:
-    - 1D rational tree identity in FiniteQM.lean is separated from 3x3 Q(i) matrix
-      links
-    - Module title ravera_dfm_finite_to_continuum.rs is not a continuum bridge theorem
-    source_pins:
-    - path: dag/derivations/17_finite_qcd/tfq_0042_supply_a_python_replay_or_keep_the_gribov_diamond_as_rust_plus.md
-      sha256: 6432c100e005be761f4a626049bd08fb73378aa84d212b40231c0f74153bc842
-    public_input:
-      node_id: TFQ-0042
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: VERIFIED
-    operations:
-    - mat3Mul
-    - block01Swap
-    - block12Swap
-    - mat2Mul
-    - treeLinkU01
-    - treeLinkU12
-    - evaluateContinuumModuleTitle
-    composition_plan:
-    - Replay the 5 explicit 3x3 Q(i) block links across all 8 spanning trees of the
-      diamond graph in Python
-    - Verify non-abelian block commutator, matrix spanning-tree dressing, and 4^3
-      = 64 Klein-four copies in Lean 4
-    - Enforce scope separation between 1D rational scalar links and 3x3 matrix links
-      and fence off the continuum module title
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: VERIFIED
-    algebraic_relations:
-    - block01Swap * block12Swap != block12Swap * block01Swap
-    - U01 * G1 = I_2 and G1^{-1} * U12 * G2 = I_2
-    - 4^3 = 64 diagonal Klein-four copies with det = 1
-    rejection_predicates:
-    - finiteQmLeanScalarShadow != raveraDiamondMatrixControl
-    - evaluateContinuumModuleTitle false = ModuleTitleNotABridgeTheorem
-    - tfq0042RepoLedger.moduleTitleAuthorizesContinuumBridge = false
-    negative_control_plan:
-    - 6 semantic Lean mutants in dag/research/campaign_tfq-0042_lean_mutation.json
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
   slot_m4_tri_language_witness_anchors:
-    mining_status: VERIFIED
-    certificate_predicates:
-    - su3_block_links_nonabelian_commutator_witness
-    - matrix_spanning_tree_dressing_neutralizes_tree_links
-    - su3_diagonal_klein_four_landau_gribov_64_copies
-    - lean_finite_qm_rational_shadow_vs_matrix_link_scope_separation
-    - continuum_module_title_is_not_bridge_theorem_fence
-    - tfq0042_gribov_diamond_and_title_scope_ledger_fence
-    anchors:
-    - lean4/CampaignTfq0042FiniteQcd.lean
-    - lean4/FiniteQM.lean
-    - checks/independent/tfq-0042.py
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
     unpaid_imports: []
 stage_history: []
-open_obligations: []
-excluded_relation_leads: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads:
+- source: lean4/CampaignTfq0042FiniteQcd.lean
+  name: su3_block_links_nonabelian_commutator_witness
+  reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation

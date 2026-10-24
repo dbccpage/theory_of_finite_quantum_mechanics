@@ -30,7 +30,12 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignPgwKItemDeltaGrammar.lean`](../../../lean4/CampaignPgwKItemDeltaGrammar.lean) four-list census
+- [`lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_arities`](../../../lean4/CampaignPgwKItemDeltaGrammar.lean)
+- [`lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_arity_sum`](../../../lean4/CampaignPgwKItemDeltaGrammar.lean)
+- [`lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_lengths`](../../../lean4/CampaignPgwKItemDeltaGrammar.lean)
+- [`lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_pairwise`](../../../lean4/CampaignPgwKItemDeltaGrammar.lean)
+- [`lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_three_above_two`](../../../lean4/CampaignPgwKItemDeltaGrammar.lean)
+- [`lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_three_length`](../../../lean4/CampaignPgwKItemDeltaGrammar.lean)
 - [`lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_datum`](../../../lean4/Imported/Genesis19l57g1/Derivation/Mention.lean)
 - [`lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean::rule_item_never_minimal`](../../../lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean)
 
@@ -38,7 +43,7 @@ In accordance with strict constructive principles:
 - [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::iter_cost2_deltas`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs)
 
 ### Python Oracles & Numerical Evaluators
-- [`checks/independent/pgw-k-item-delta-grammar.py`](../../../checks/independent/pgw-k-item-delta-grammar.py) four-list census
+- [`checks/independent/pgw-k-item-delta-grammar.py`](../../../checks/independent/pgw-k-item-delta-grammar.py)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_stream/stream.py::iter_k_item_deltas`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_stream/stream.py)
 - [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::iter_cost2_deltas`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py)
 

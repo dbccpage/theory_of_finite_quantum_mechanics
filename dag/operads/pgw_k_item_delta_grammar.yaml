@@ -3,18 +3,18 @@ node_id: PGW-K-ITEM-DELTA-GRAMMAR
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'The sealed candidate space is enumerated to cost two (at most two items, arity at
-    most two), with pruning lemmas certified against the unpruned space: unreferenced fresh data and forms
-    never matter, an instance-only delta changes the target pair''s profiles only if an instance mentions
-    a target datum, and a delta holding a uniform-rule item is never a minimum valid response (rule_item_never_minimal).
-    The second derivation''s rung one enumerated three-item deltas (min_responses_three) under a node
-    guard, but no k-item delta grammar with pruning lemmas proved beyond cost two exists, and the distance
-    bound of two is not known to be the grammar''s (S-4). The education audit lists k-item delta grammars
-    with pruning lemmas as a missing prerequisite of the S(n) bridge.'
+  source_statement: 'Narrowed boundary, status left OPEN: the four declared Challenge 3 lists copied from
+    deltaU0, deltaU1, deltaBL, and deltaBD each have length 2. Their new-form arities are 1, 1, 2, and
+    2, and the sum of those arities is 6. The argument lists are [0], [1], [0, 1], and [0, 0], and the
+    four lists are pairwise distinct across 6 comparisons. One three-item list has length 3, and 3 > 2.
+    This census is those four named lists. A k-item grammar for k at least 3, an exhaustive cost-two enumeration,
+    and a response-size bound stay open. Status stays OPEN.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: 'Open: the cost-two minimum (CL-3-MIN-TWO) is relative to the sealed grammar and
-    bounds, and nothing here establishes a k-item minimum or a bound on response size.'
+  source_bottleneck: The four lists are a copied census of deltaU0, deltaU1, deltaBL, and deltaBD. They
+    are not an exhaustive enumeration of the sealed candidate space, and they do not define a k-item grammar
+    for k at least 3. The cost-two minimum CL-3-MIN-TWO stays relative to the sealed grammar. A bound
+    on response size stays open. Status stays OPEN.
   source_refs:
   - dag/derivations/02_genesis/tfq_0490_k_item_delta_grammar.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1081-1084
@@ -35,6 +35,68 @@ source_provenance:
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates:
 - kind: def
+  name: pgwFormArity
+  line: 21
+  signature_excerpt: |-
+    def pgwFormArity : List PgwStep → Nat
+      | [] => 0
+      | .form a :: _ => a
+      | _ :: rest => pgwFormArity rest
+
+    def pgwAritySum4 : Nat
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pgwDeltaU0
+  line: 13
+  signature_excerpt: 'def pgwDeltaU0 : List PgwStep'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pgwDeltaU1
+  line: 15
+  signature_excerpt: 'def pgwDeltaU1 : List PgwStep'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pgwDeltaBL
+  line: 17
+  signature_excerpt: 'def pgwDeltaBL : List PgwStep'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pgwDeltaBD
+  line: 19
+  signature_excerpt: 'def pgwDeltaBD : List PgwStep'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: PgwStep
+  line: 8
+  signature_excerpt: inductive PgwStep
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pgwAritySum4
+  line: 26
+  signature_excerpt: 'def pgwAritySum4 : Nat'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  status: source_candidate_requires_semantic_review
+- kind: def
   name: dropRules
   line: 49
   signature_excerpt: |-
@@ -51,6 +113,80 @@ operation_candidates:
   source_sha256: 2f5e9cbd5fa01227b953951195d39129ad389ccad6d9098a99ac78920356f467
   status: source_candidate_requires_semantic_review
 relation_candidates:
+- kind: theorem
+  name: pgwKItem_lengths
+  line: 30
+  signature_excerpt: |-
+    theorem pgwKItem_lengths :
+        pgwDeltaU0.length = 2 ∧ pgwDeltaU1.length = 2 ∧
+          pgwDeltaBL.length = 2 ∧ pgwDeltaBD.length = 2
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwKItem_arities
+  line: 35
+  signature_excerpt: |-
+    theorem pgwKItem_arities :
+        pgwFormArity pgwDeltaU0 = 1 ∧ pgwFormArity pgwDeltaU1 = 1 ∧
+          pgwFormArity pgwDeltaBL = 2 ∧ pgwFormArity pgwDeltaBD = 2
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwKItem_arity_sum
+  line: 40
+  signature_excerpt: 'theorem pgwKItem_arity_sum : pgwAritySum4 = 6'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwKItem_pairwise
+  line: 43
+  signature_excerpt: |-
+    theorem pgwKItem_pairwise :
+        pgwDeltaU0 ≠ pgwDeltaU1 ∧ pgwDeltaU0 ≠ pgwDeltaBL ∧ pgwDeltaU0 ≠ pgwDeltaBD ∧
+          pgwDeltaU1 ≠ pgwDeltaBL ∧ pgwDeltaU1 ≠ pgwDeltaBD ∧
+          pgwDeltaBL ≠ pgwDeltaBD
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwKItem_three_length
+  line: 49
+  signature_excerpt: |-
+    theorem pgwKItem_three_length :
+        ([PgwStep.form 1, .inst [0], .inst [1]] : List PgwStep).length = 3
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwKItem_three_above_two
+  line: 53
+  signature_excerpt: |-
+    theorem pgwKItem_three_above_two :
+        ([PgwStep.form 1, .inst [0], .inst [1]] : List PgwStep).length > 2
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: rule_item_never_minimal
   line: 268
@@ -81,6 +217,60 @@ relation_candidates:
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_lengths
+  availability: local
+  symbol: pgwKItem_lengths
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  declaration_status: declaration_found_not_proof_checked
+  line: 30
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_arities
+  availability: local
+  symbol: pgwKItem_arities
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  declaration_status: declaration_found_not_proof_checked
+  line: 35
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_arity_sum
+  availability: local
+  symbol: pgwKItem_arity_sum
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  declaration_status: declaration_found_not_proof_checked
+  line: 40
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_pairwise
+  availability: local
+  symbol: pgwKItem_pairwise
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  declaration_status: declaration_found_not_proof_checked
+  line: 43
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_three_length
+  availability: local
+  symbol: pgwKItem_three_length
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  declaration_status: declaration_found_not_proof_checked
+  line: 49
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_three_above_two
+  availability: local
+  symbol: pgwKItem_three_above_two
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: ec5e9fc278a581722704503dcc453a9421c86e63da5a3fdb90f04de94ccf3e9b
+  declaration_status: declaration_found_not_proof_checked
+  line: 53
+  role: source_lead_only
 - original_ref: lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean::rule_item_never_minimal
   availability: local
   symbol: rule_item_never_minimal
