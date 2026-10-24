@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "1239baeb01d022638c75701a0e9cad4317ac27933ba073aed266eac4e2c6fd71"
+  "sha256_lf": "fc4df97dac1f7ba85937018f66a5fa930ed24b05ae1d883020ffdc7f995d8dd7"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -307,6 +307,11 @@
    "sha256_basis": "bytes",
    "size": 11694
   },
+  "checks/independent/tfq-0376.py": {
+   "sha256": "a19770bdefd5b54943fa9d422fe2c0b04d5b46e4ddab21cece5e16cd7365e21f",
+   "sha256_basis": "bytes",
+   "size": 8989
+  },
   "checks/independent/tfq-0396.py": {
    "sha256": "6d6e92be6e642055941c7828a18305785bda0b7a94f408670a09cf6519633a62",
    "sha256_basis": "bytes",
@@ -476,6 +481,16 @@
    "sha256": "adcbdf082068ffd2da2d6d7ab6f4061cd88c595c048d02b33832132fd3588a62",
    "sha256_basis": "bytes",
    "size": 1027
+  },
+  "code/rust/src/combinatorics/color_constraints.rs": {
+   "sha256": "33c358ffcbd912bf336a460ead8fb1dd06e6d06d6386dcf443a2c50a2767abe8",
+   "sha256_basis": "bytes",
+   "size": 7713
+  },
+  "code/rust/src/combinatorics/enumeration.rs": {
+   "sha256": "7e952dc5fe3b1322f286093c674393735bacdae9c281efc8e687ce5691e5cb8c",
+   "sha256_basis": "bytes",
+   "size": 10788
   },
   "code/rust/src/combinatorics/finite_geometry.rs": {
    "sha256": "ecf112fadfca2d60e93b30ba6ba5160bbbd865e1ec346cb8ae6ed80f8c3d2d28",
@@ -997,6 +1012,11 @@
    "sha256_basis": "bytes",
    "size": 4573
   },
+  "code/rust/src/wdp/finite_cost_report.rs": {
+   "sha256": "0261b67ab671671ba79af5cd9cd2d5854663099dc17c4e5f2509be13e1fbaf4a",
+   "sha256_basis": "bytes",
+   "size": 1972
+  },
   "code/rust/src/wdp/gauge_classification.rs": {
    "sha256": "bc047a1c21f261ec1a8240d4dc42e455608ed060c0a1719a8e37a492d6d51591",
    "sha256_basis": "bytes",
@@ -1052,10 +1072,15 @@
    "sha256_basis": "bytes",
    "size": 6783
   },
+  "code/rust/src/wdp/wdp_lggr_chromatic.rs": {
+   "sha256": "16ab8103ac1f8afa35aa8ca3fa310074356770a7394b9062b72f01e650887b80",
+   "sha256_basis": "bytes",
+   "size": 9170
+  },
   "dag/derivation_dag.json": {
-   "sha256": "1239baeb01d022638c75701a0e9cad4317ac27933ba073aed266eac4e2c6fd71",
+   "sha256": "fc4df97dac1f7ba85937018f66a5fa930ed24b05ae1d883020ffdc7f995d8dd7",
    "sha256_basis": "lf-normalised",
-   "size": 4699706
+   "size": 4701870
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -1143,9 +1168,9 @@
    "size": 6093
   },
   "dag/derivations/01_pregenesis/tfq_0376_justified_lift_checklist.md": {
-   "sha256": "faa1139e0b84bb919e1ebc9f88b296d6c1f6fa5503af51d43cca71488935085e",
+   "sha256": "cf1741f67e53abe4a9fb46b1cb34077cdafc2884ba746089355e0faaac5c71af",
    "sha256_basis": "lf-normalised",
-   "size": 2655
+   "size": 5220
   },
   "dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md": {
    "sha256": "12b8df2a8a5beebd90a38c0cd77b219190e4711fa38464adaf8425f12b18300d",
@@ -7101,6 +7126,11 @@
    "sha256": "03ee3b321f674486d53e17615cf87e647022b85d938817dcb389068b4428893f",
    "sha256_basis": "bytes",
    "size": 14838
+  },
+  "lean4/CampaignTfq0376Pregenesis.lean": {
+   "sha256": "7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3",
+   "sha256_basis": "bytes",
+   "size": 17691
   },
   "lean4/CampaignTransitionProbability.lean": {
    "sha256": "c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42",
@@ -142063,24 +142093,801 @@
    "status": "OPEN"
   },
   {
-   "absent_notes": [
-    "TFQ-0376 lean4: missing declaration obligation: the six section-15 checks are not declarations in the opened portion of Paper.lean",
-    "TFQ-0376 python: missing obligation: a six-check lift record in 000_pre_genesis_to_mssn/code/preservation.py that can stay incomplete when the search budget stops",
-    "TFQ-0376 rust: missing obligation: a lift checklist struct in crate pre_mssn_preservation with an explicit incomplete-search variant"
-   ],
+   "absent_notes": [],
    "dependents": 0,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 0,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 5,
+    "counted_files": 8,
+    "lean_receipt_backed": 14,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 19
    },
    "flags": [],
-   "grade": "E0",
+   "grade": "E3",
    "id": "TFQ-0376",
    "items": [
+    {
+     "cited_in": [
+      "node.lean"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0376Pregenesis",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0376Pregenesis.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_tfq-0376_lean_replay.json#0:CampaignTfq0376Pregenesis",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0376Pregenesis",
+     "command_note": "then, in a scratch file that imports CampaignTfq0376Pregenesis: #print axioms CampaignTfq0376Pregenesis.budget_stop_never_licenses_obstruction_or_minimal_lift",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0376Pregenesis.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0376_lean_replay.json#0:CampaignTfq0376Pregenesis",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0376Pregenesis.budget_stop_never_licenses_obstruction_or_minimal_lift",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0376Pregenesis",
+     "command_note": "then, in a scratch file that imports CampaignTfq0376Pregenesis: #print axioms CampaignTfq0376Pregenesis.exhaustive_vs_budget_stopped_triangle_obstruction",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0376Pregenesis.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0376_lean_replay.json#0:CampaignTfq0376Pregenesis",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0376Pregenesis.exhaustive_vs_budget_stopped_triangle_obstruction",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0376Pregenesis",
+     "command_note": "then, in a scratch file that imports CampaignTfq0376Pregenesis: #print axioms CampaignTfq0376Pregenesis.omitting_any_single_section15_check_blocks_licensing",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0376Pregenesis.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0376_lean_replay.json#0:CampaignTfq0376Pregenesis",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0376Pregenesis.omitting_any_single_section15_check_blocks_licensing",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0376Pregenesis",
+     "command_note": "then, in a scratch file that imports CampaignTfq0376Pregenesis: #print axioms CampaignTfq0376Pregenesis.pregenesis_chain_retraction_and_demand_accounting_witness",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0376Pregenesis.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0376_lean_replay.json#0:CampaignTfq0376Pregenesis",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0376Pregenesis.pregenesis_chain_retraction_and_demand_accounting_witness",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0376Pregenesis",
+     "command_note": "then, in a scratch file that imports CampaignTfq0376Pregenesis: #print axioms CampaignTfq0376Pregenesis.pregenesis_collapsed_barrier_and_refine_separates_witness",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0376Pregenesis.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0376_lean_replay.json#0:CampaignTfq0376Pregenesis",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0376Pregenesis.pregenesis_collapsed_barrier_and_refine_separates_witness",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0376Pregenesis",
+     "command_note": "then, in a scratch file that imports CampaignTfq0376Pregenesis: #print axioms CampaignTfq0376Pregenesis.section15_six_check_slots_and_stages_distinct",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0376Pregenesis.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0376_lean_replay.json#0:CampaignTfq0376Pregenesis",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0376Pregenesis.section15_six_check_slots_and_stages_distinct",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0376Pregenesis",
+     "command_note": "then, in a scratch file that imports CampaignTfq0376Pregenesis: #print axioms CampaignTfq0376Pregenesis.stage_progression_fence_successor_proposed_licensed",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0376Pregenesis.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0376_lean_replay.json#0:CampaignTfq0376Pregenesis",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0376Pregenesis.stage_progression_fence_successor_proposed_licensed",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0376Pregenesis",
+     "command_note": "then, in a scratch file that imports CampaignTfq0376Pregenesis: #print axioms CampaignTfq0376Pregenesis.tfq0376_justified_lift_six_check_scope_certificate",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0376Pregenesis.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0376_lean_replay.json#0:CampaignTfq0376Pregenesis",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0376Pregenesis.tfq0376_justified_lift_six_check_scope_certificate",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0376Pregenesis",
+     "command_note": "then, in a scratch file that imports CampaignTfq0376Pregenesis: #print axioms CampaignTfq0376Pregenesis.tied_minima_plurality_blocks_unique_minimal_extension",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0376Pregenesis.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0376_lean_replay.json#0:CampaignTfq0376Pregenesis",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0376Pregenesis.tied_minima_plurality_blocks_unique_minimal_extension",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0376Pregenesis",
+     "command_note": "then, in a scratch file that imports CampaignTfq0376Pregenesis: #print axioms CampaignTfq0376Pregenesis.uninspected_tail_witness_refutes_budget_stop_claims",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0376Pregenesis.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0376_lean_replay.json#0:CampaignTfq0376Pregenesis",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0376Pregenesis.uninspected_tail_witness_refutes_budget_stop_claims",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean"
+     ],
+     "command": "cd lean4 && lake build ChainRetraction",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/ChainRetraction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/pfp_batch01_lean_replay.json#7:ChainRetraction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": "cd lean4 && lake build ChainRetraction",
+     "command_note": "then, in a scratch file that imports ChainRetraction: #print axioms ChainRetraction.TwoPoints.no_chain_retraction",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/ChainRetraction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pfp_batch01_lean_replay.json#7:ChainRetraction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "ChainRetraction.TwoPoints.no_chain_retraction",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean"
+     ],
+     "command": "cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/Paper.lean",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/Imported/PreGenesisToMssn/Paper.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/lean_replay_campaign_pregenesis.json#4:Imported.PreGenesisToMssn.Paper",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": "cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/Paper.lean",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/Imported/PreGenesisToMssn/Paper.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/lean_replay_campaign_pregenesis.json#4:Imported.PreGenesisToMssn.Paper",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "PreMssn.collapsed_observation_barrier",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": "cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/Paper.lean",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/Imported/PreGenesisToMssn/Paper.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/lean_replay_campaign_pregenesis.json#4:Imported.PreGenesisToMssn.Paper",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "PreMssn.demand_accounting",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": "cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/Paper.lean",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/Imported/PreGenesisToMssn/Paper.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/lean_replay_campaign_pregenesis.json#4:Imported.PreGenesisToMssn.Paper",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "PreMssn.refine_separates",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.rust"
+     ],
+     "command": null,
+     "command_note": "no test is cited for this symbol; its crate is tfqm_combinatorics",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "rust_symbol",
+     "path": "code/rust/src/combinatorics/color_constraints.rs",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": null,
+     "command_note": "no test is cited for this symbol; its crate is tfqm_combinatorics",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "rust_symbol",
+     "path": "code/rust/src/combinatorics/color_constraints.rs",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "minimum_color_violations",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.rust"
+     ],
+     "command": null,
+     "command_note": "no test is cited for this symbol; its crate is tfqm_combinatorics",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "rust_symbol",
+     "path": "code/rust/src/combinatorics/enumeration.rs",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": null,
+     "command_note": "no test is cited for this symbol; its crate is tfqm_combinatorics",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "rust_symbol",
+     "path": "code/rust/src/combinatorics/enumeration.rs",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "CombinatoricsError::violated_invariant",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.rust"
+     ],
+     "command": null,
+     "command_note": "no test is cited for this symbol; its crate is tfqm_wdp",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "rust_symbol",
+     "path": "code/rust/src/wdp/finite_cost_report.rs",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": null,
+     "command_note": "no test is cited for this symbol; its crate is tfqm_wdp",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "rust_symbol",
+     "path": "code/rust/src/wdp/finite_cost_report.rs",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "FiniteCostReport::new",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.rust"
+     ],
+     "command": null,
+     "command_note": "no test is cited for this symbol; its crate is tfqm_wdp",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "rust_symbol",
+     "path": "code/rust/src/wdp/wdp_lggr_chromatic.rs",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": null,
+     "command_note": "no test is cited for this symbol; its crate is tfqm_wdp",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "rust_symbol",
+     "path": "code/rust/src/wdp/wdp_lggr_chromatic.rs",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "triangle_two_color",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-0376"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/tfq-0376.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "run_all_checks",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
     {
      "cited_in": [
       "node.source",
@@ -142106,7 +142913,7 @@
      "where": null
     }
    ],
-   "next_step": "cite at least one in-repo file that bears on the statement",
+   "next_step": "add an in-repo Rust or Python runnable test (5 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-0376"
    ],
@@ -276914,6 +277721,32 @@
    "axioms_itemised": true,
    "axioms_standard": true,
    "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
+   "checked_at": null,
+   "dag_node": null,
+   "decl_count": 10,
+   "exit_code": 0,
+   "id": "dag/research/campaign_tfq-0376_lean_replay.json#0:CampaignTfq0376Pregenesis",
+   "lean_version": null,
+   "mathlib_source_sha": null,
+   "module": "CampaignTfq0376Pregenesis",
+   "path": "lean4/CampaignTfq0376Pregenesis.lean",
+   "receipt_file": "dag/research/campaign_tfq-0376_lean_replay.json",
+   "receipt_file_sha256": "647d053ffb585a0f2ed8a36fee50d7d1f7b561f57d45aa4f0700e69101614fe6",
+   "recorded_sha256": "7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3",
+   "source_unchanged_during_build": null,
+   "toolchain": null
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
     "Quot.sound",
     "propext"
    ],
@@ -287966,10 +288799,10 @@
  ],
  "summary": {
   "by_grade": {
-   "E0": 168,
+   "E0": 167,
    "E1": 224,
    "E2": 42,
-   "E3": 491,
+   "E3": 492,
    "E4": 0
   },
   "by_status": {
@@ -288019,7 +288852,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 514,
+  "receipts_indexed": 515,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
@@ -288239,10 +289072,10 @@
     "E4": 0
    },
    "PREGENESIS": {
-    "E0": 11,
+    "E0": 10,
     "E1": 0,
     "E2": 0,
-    "E3": 20,
+    "E3": 21,
     "E4": 0
    },
    "TENSOR_COMPOSITION": {
@@ -288297,10 +289130,10 @@
     "E4": 0
    },
    "OPEN": {
-    "E0": 33,
+    "E0": 32,
     "E1": 74,
     "E2": 10,
-    "E3": 58,
+    "E3": 59,
     "E4": 0
    },
    "PROVED_LEAN": {

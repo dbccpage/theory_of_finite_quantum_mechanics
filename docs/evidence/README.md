@@ -6,7 +6,7 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
-The DAG has 925 nodes in 36 stages. Evidence grades: E0 168, E1 224, E2 42, E3 491.
+The DAG has 925 nodes in 36 stages. Evidence grades: E0 167, E1 224, E2 42, E3 492.
 
 ### What is proved here, what is imported, what is open
 
@@ -24,7 +24,7 @@ The DAG has 925 nodes in 36 stages. Evidence grades: E0 168, E1 224, E2 42, E3 4
 
 Of the 267 `PROVED_LEAN` nodes, 267 reach grade E3 or E4 (100 percent); 0 do not. The second group is listed in [mismatches](mismatches.md).
 
-Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 491 nodes at E3, 166 have a qualifying review, 36 of those cite in-repo Rust or Python code that is not a test, and 37 have a runnable test but no review.
+Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 492 nodes at E3, 166 have a qualifying review, 36 of those cite in-repo Rust or Python code that is not a test, and 37 have a runnable test but no review.
 
 ### Where the Lean evidence stands
 
@@ -42,15 +42,15 @@ The `lean` fields of nodes cite 1662 distinct Lean declarations that lie in file
 | `IMPORTED_ASSUMPTION` | 7 | 26 | 1 | 36 | 0 | 70 |
 | `ADMITTED_PRIMITIVE` | 0 | 0 | 0 | 3 | 0 | 3 |
 | `SOURCE_RECORD` | 52 | 28 | 0 | 1 | 0 | 81 |
-| `OPEN` | 33 | 74 | 10 | 58 | 0 | 175 |
+| `OPEN` | 32 | 74 | 10 | 59 | 0 | 175 |
 | `REFUTED` | 0 | 4 | 1 | 1 | 0 | 6 |
-| Total | 168 | 224 | 42 | 491 | 0 | 925 |
+| Total | 167 | 224 | 42 | 492 | 0 | 925 |
 
 ### Stage by evidence grade
 
 | Stage | E0 | E1 | E2 | E3 | E4 | Total | `PROVED_LEAN` | Flags |
 |---|---|---|---|---|---|---|---|---|
-| [PREGENESIS](stages/PREGENESIS.md) | 11 | 0 | 0 | 20 | 0 | 31 | 12 | 15 |
+| [PREGENESIS](stages/PREGENESIS.md) | 10 | 0 | 0 | 21 | 0 | 31 | 12 | 15 |
 | [GENESIS](stages/GENESIS.md) | 27 | 2 | 1 | 59 | 0 | 89 | 36 | 12 |
 | [MSSN_SN](stages/MSSN_SN.md) | 14 | 0 | 0 | 14 | 0 | 28 | 12 | 8 |
 | [WDP](stages/WDP.md) | 5 | 0 | 1 | 23 | 0 | 29 | 6 | 9 |

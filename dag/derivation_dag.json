@@ -13945,14 +13945,26 @@
       "source": [
         "dag/derivations/01_pregenesis/tfq_0376_justified_lift_checklist.md"
       ],
-      "lean": [],
-      "rust": [],
+      "lean": [
+        "lean4/CampaignTfq0376Pregenesis.lean",
+        "lean4/Imported/PreGenesisToMssn/Paper.lean",
+        "lean4/ChainRetraction.lean"
+      ],
+      "rust": [
+        "code/rust/src/combinatorics/enumeration.rs",
+        "code/rust/src/combinatorics/color_constraints.rs",
+        "code/rust/src/wdp/wdp_lggr_chromatic.rs",
+        "code/rust/src/wdp/finite_cost_report.rs"
+      ],
       "imported_structure": [],
       "bottleneck": "A necessary or minimal extension still needs the six section-15 checks, and a budget stop remains incomplete search rather than an obstruction result.",
       "tags": [
         "unified-dag",
         "TFQ-0376",
         "pregenesis"
+      ],
+      "python": [
+        "checks/independent/tfq-0376.py::run_all_checks"
       ]
     },
     {
@@ -54797,23 +54809,43 @@
         "TFQ-0376"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/paper_claim_ledger.md"
+        "dag/derivations/01_pregenesis/tfq_0376_justified_lift_checklist.md",
+        "dag/derivations/independent/tfq-0376.md",
+        "dag/research/campaign_tfq-0376_lean_replay.json",
+        "dag/research/campaign_tfq-0376_lean_mutation.json",
+        "dag/research/campaign_tfq-0376_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0376-precommit.md"
       ],
       "id": "TFQ-0376",
       "lean4": [
-        "absent: missing declaration obligation: the six section-15 checks are not declarations in the opened portion of Paper.lean"
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.section15_six_check_slots_and_stages_distinct",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.budget_stop_never_licenses_obstruction_or_minimal_lift",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.uninspected_tail_witness_refutes_budget_stop_claims",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.tied_minima_plurality_blocks_unique_minimal_extension",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.omitting_any_single_section15_check_blocks_licensing",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.stage_progression_fence_successor_proposed_licensed",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.pregenesis_collapsed_barrier_and_refine_separates_witness",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.pregenesis_chain_retraction_and_demand_accounting_witness",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.exhaustive_vs_budget_stopped_triangle_obstruction",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.tfq0376_justified_lift_six_check_scope_certificate",
+        "lean4/Imported/PreGenesisToMssn/Paper.lean::PreMssn.collapsed_observation_barrier",
+        "lean4/Imported/PreGenesisToMssn/Paper.lean::PreMssn.refine_separates",
+        "lean4/Imported/PreGenesisToMssn/Paper.lean::PreMssn.demand_accounting",
+        "lean4/ChainRetraction.lean::ChainRetraction.TwoPoints.no_chain_retraction"
       ],
       "local_id": "A01-018",
       "name": "justified-lift-checklist",
       "obligation": "A necessary or minimal extension still needs the six section-15 checks, and a budget stop remains incomplete search rather than an obstruction result.",
       "parent_id": "TFQ-0375",
       "python": [
-        "absent: missing obligation: a six-check lift record in 000_pre_genesis_to_mssn/code/preservation.py that can stay incomplete when the search budget stops"
+        "checks/independent/tfq-0376.py::run_all_checks"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
-        "absent: missing obligation: a lift checklist struct in crate pre_mssn_preservation with an explicit incomplete-search variant"
+        "code/rust/src/combinatorics/enumeration.rs::CombinatoricsError::violated_invariant",
+        "code/rust/src/combinatorics/color_constraints.rs::minimum_color_violations",
+        "code/rust/src/wdp/wdp_lggr_chromatic.rs::triangle_two_color",
+        "code/rust/src/wdp/finite_cost_report.rs::FiniteCostReport::new"
       ],
       "source_slice": "01",
       "stage": "PREGENESIS",

@@ -123,3 +123,8 @@ One line per target, in order attempted: `<UTC date> | <node id> | <outcome clas
 - **Lean 4 (`lean4/CampaignTfq0199ImplementationSibling.lean`)**: 10 zero-sorry theorems (`L4D`) formalizing the separation between the 4D rational Regge proxy (`exact_regge::action::rational_regge_proxy`) and the 2D `f64` Regge / combinatorial / $\mathbb{F}_2$ holonomy modules (`regge_calculus.rs`, `einstein_hilbert_action.rs`, `discrete_spacetime.rs`, `majorana/holonomy.rs`).
 - **Mutation Gate (`dag/research/campaign_tfq-0199_lean_mutation.json`)**: 6/6 semantic mutations killed.
 - **Independent Checker (`checks/independent/tfq-0199.py`)**: 224 checks passed, 0 failed (`dag/research/campaign_tfq-0199_independent.json`).
+
+### 2026-10-24 — `TFQ-0376` (`PREGENESIS`, Rank 158): `E0 -> E3`
+- **Lean 4 (`lean4/CampaignTfq0376Pregenesis.lean`)**: 10 zero-sorry theorems (`L4D`) formalizing the six Section-15 checklist slots (`Section15CheckSlot`), the three transition stages (`Successor`, `ProposedLift`, `LicensedTransition`), the tied-minima plurality fence, and the budget-stop non-obstruction / non-minimality fence.
+- **Mutation Gate (`dag/research/campaign_tfq-0376_lean_mutation.json`)**: 6/6 semantic mutations killed.
+- **Independent Checker (`checks/independent/tfq-0376.py`)**: 146 checks passed, 0 failed (`dag/research/campaign_tfq-0376_independent.json`).
