@@ -1083,3 +1083,7 @@ lean_lib CampaignTfq0008FiniteDynamics where
 -- Campaign: CQFT-LOCAL-NET-AXIOMS-IMPORT. Not a default target.
 lean_lib CampaignCqftLocalNetAxiomsImport where
   roots := #[`CampaignCqftLocalNetAxiomsImport]
+
+-- Campaign: LQG-EPRL-VERTEX-IMPORT. Not a default target.
+lean_lib CampaignLqgEprlVertexImport where
+  roots := #[`CampaignLqgEprlVertexImport]
