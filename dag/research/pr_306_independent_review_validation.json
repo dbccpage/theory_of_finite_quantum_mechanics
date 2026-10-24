@@ -1,0 +1,157 @@
+{
+  "number": 306,
+  "original_head": "9b4835c5296d064dfd2f2d2bc34145d20ec493ae",
+  "level": "L1",
+  "meaning": "A transcribed ten-row clause table and literal arithmetic. Neither target-contract discharge nor a real spectral theorem is established.",
+  "baseline": {
+    "number": 306,
+    "head": "9b4835c5296d064dfd2f2d2bc34145d20ec493ae",
+    "source": "lean4/CampaignFqGapC500Blocks.lean",
+    "sha256": "c62beca8381b733facbb47a957f171488cdcc26f64ebfb0e92e921916c0bc035",
+    "checks": {
+      "independent": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "checks/independent/fq-gap-c500-original-targets.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.25,
+        "output": "checked 60 claims, failures 0\r\n"
+      },
+      "governance": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\governance\\target\\debug\\governance-check.exe",
+          "--root",
+          "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 1.95,
+        "output": "changed since origin/main (a818cf9e4ffb0a97c2b7dba964c7d7c29e0bfb50): 18 paths\nchecked 2: 0 pass, 0 grandfathered, 0 boilerplate, 2 failed\nFAIL lean4/CampaignFqGapC500Blocks.lean (new or not grandfathered)\n  lean4/CampaignFqGapC500Blocks.lean: [MISSING_COMPANION] expected companion lean4/CampaignFqGapC500Blocks.contract.score.yaml, found none\nFAIL lean4/lakefile.lean (grandfathering lost: bytes changed since the baseline)\n  lean4/lakefile.contract.score.yaml: [BINDING] contract.artifact.sha256: expected 04c4ed79fe95e237f978e443b8fc8cfd0f1b2ae35e03712d81cc02d5c2cb6890, found eb914017ac92a5296d9d4f86d2a0768e7893d428f6a708737179381a20ea8800\n  lean4/lakefile.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L1D\n"
+      },
+      "scope": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/score_scope_contracts.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 4.35,
+        "output": "{\r\n  \"audit\": null,\r\n  \"passed\": false,\r\n  \"summary\": {\r\n    \"sources\": 2,\r\n    \"valid_contracts_and_scores\": 0,\r\n    \"invalid_or_missing\": 2,\r\n    \"invalid_but_grandfathered\": 0,\r\n    \"blocking_errors\": 2,\r\n    \"by_language\": {\r\n      \"Lean 4\": 2\r\n    },\r\n    \"by_preliminary_profile\": {},\r\n    \"completed_scores\": 0,\r\n    \"pinned_boilerplate\": 0,\r\n    \"incomplete_scores\": 2,\r\n    \"generated_governance_twins\": 0,\r\n    \"non_twin_sources\": 2\r\n  },\r\n  \"errors\": [\r\n    {\r\n      \"path\": \"lean4/CampaignFqGapC500Blocks.lean\",\r\n      \"error\": \"missing companion\"\r\n    },\r\n    {\r\n      \"path\": \"lean4/lakefile.lean\",\r\n      \"error\": \"current contract does not bind current source bytes\"\r\n    }\r\n  ],\r\n  \"scope\": \"in-scope sources changed since origin/main (merge base a818cf9e4ffb), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\r\n}\r\n"
+      },
+      "history": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/contract_scores.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 5.71,
+        "output": "{\r\n  \"originals\": null,\r\n  \"combined_files\": 1,\r\n  \"all_passed\": false,\r\n  \"errors\": [\r\n    {\r\n      \"path\": \"lean4/CampaignFqGapC500Blocks.lean\",\r\n      \"error\": \"missing companion\"\r\n    }\r\n  ],\r\n  \"scope\": \"changed files only; the rest of the tree was not read\"\r\n}\r\n"
+      },
+      "overclaim": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/overclaim_scan.py",
+          "--changed-since",
+          "origin/main",
+          "--strict"
+        ],
+        "exit_code": 0,
+        "seconds": 12.02,
+        "output": "overclaim_scan: scope=changes since origin/main (merge base a818cf9e4ffb); HIGH=0 MEDIUM=0 LOW=3\r\n"
+      },
+      "dag": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "dag/validate_derivation_dag.py",
+          "--no-files"
+        ],
+        "exit_code": 1,
+        "seconds": 1.38,
+        "output": "FAIL node CQFT-REEH-SCHLIEDER-THEOREM-IMPORT: unknown keys ['python']\r\nFAIL node CQFT-CAUSAL-FACTORIZATION-IMPORT: unknown keys ['python']\r\nFAIL node ADS-REGGE-AREA-RT-GAP: unknown keys ['python']\r\nnodes=925 routes=934 records=977 failures=3\r\n"
+      },
+      "lean": {
+        "command": [
+          "lake",
+          "build",
+          "CampaignFqGapC500Blocks"
+        ],
+        "exit_code": 0,
+        "seconds": 9.76,
+        "output": "ℹ [2/3] Built CampaignFqGapC500Blocks (1.4s)\ninfo: CampaignFqGapC500Blocks.lean:53:0: 'c500_block_count' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:54:0: 'c500_clause_sum' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:55:0: 'c500_block01_clauses' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:56:0: 'c500_block10_clauses' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:57:0: 'c500_block10_length' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:58:0: 'c500_target_product' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:59:0: 'c500_target_last' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:60:0: 'ising_poly_one' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:61:0: 'ising_poly_neg_one' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:62:0: 'ising_poly_on_square_five' does not depend on any axioms\nBuild completed successfully (3 jobs).\n"
+      }
+    },
+    "source_unchanged": true
+  },
+  "checks": {
+    "independent": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/fq-gap-c500-original-targets.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.19,
+      "output": "checked 60 claims, failures 0\r\n"
+    },
+    "independent_optimized": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/fq-gap-c500-original-targets.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.39,
+      "output": "checked 60 claims, failures 0\r\n"
+    },
+    "lean": {
+      "command": [
+        "lake",
+        "build",
+        "CampaignFqGapC500Blocks"
+      ],
+      "exit_code": 0,
+      "seconds": 9.76,
+      "output": "ℹ [2/3] Built CampaignFqGapC500Blocks (1.4s)\ninfo: CampaignFqGapC500Blocks.lean:53:0: 'c500_block_count' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:54:0: 'c500_clause_sum' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:55:0: 'c500_block01_clauses' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:56:0: 'c500_block10_clauses' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:57:0: 'c500_block10_length' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:58:0: 'c500_target_product' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:59:0: 'c500_target_last' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:60:0: 'ising_poly_one' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:61:0: 'ising_poly_neg_one' does not depend on any axioms\ninfo: CampaignFqGapC500Blocks.lean:62:0: 'ising_poly_on_square_five' does not depend on any axioms\nBuild completed successfully (3 jobs).\n"
+    }
+  },
+  "merge_allowed": false,
+  "policy_before_sha256": "e95d3b68259d663dacd40cf7e1829887e03600c474212aba85cf421a337f662a",
+  "baseline_before_sha256": "0ad6a613e4051803ec423286b62a71b8439299c62ebd0cd4883fbe42210b65c7",
+  "source_sha256": "c62beca8381b733facbb47a957f171488cdcc26f64ebfb0e92e921916c0bc035",
+  "structure_observation": {
+    "source_lines": 62,
+    "theorem_count": 6,
+    "axiom_print_count": 10,
+    "explicit_heartbeat_count": "not measured; no high maintainability/performance grade claimed",
+    "dependency_acyclicity": "Kernel elaboration succeeded for this exact module",
+    "factoring": "Reviewed theorem signatures and helper definitions; scoped bounded-domain development"
+  }
+}
