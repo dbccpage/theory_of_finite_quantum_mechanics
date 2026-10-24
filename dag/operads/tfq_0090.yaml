@@ -1,45 +1,111 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0090
 authority_effect: None
-collection_status: source_candidates_collected_semantic_mining_open
+collection_status: semantic_mining_and_lean4_verification_complete
 target:
   source_statement: 'PO-035 starts from a zero-container complex of comparisons and refuses an ambient
     continuum as a primitive. Its README marks master rows REQUIRES_CORRECTION: the light-cone story still
     owes a scaling gap, and the Regge row still owes a split between cochain curvature and metric deficit.
     What is finite is the comparison network and its holonomy words. What is not discharged is lattice-spacing
     descent and the claim that a hinge deficit equals curvature of a smooth manifold. That identification
-    stays GAP. A finite complex is not quantum gravity.'
-  statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: []
+    stays GAP. A finite complex is not quantum gravity. Narrowed in Lean 4 and an independent Python verifier
+    to three exact algebraic components and scope fences over Q: (1) on the 4-vertex tetrahedral comparison
+    2-complex K_4^(2), exactness d_1(d_0 phi) = 0, gauge invariance d_1(omega + d_0 phi) = d_1(omega),
+    linear amplitude scaling, and the discrete Bianchi identity F012 - F013 + F023 - F123 = 0; (2) the
+    OBL-R03 split between cochain curvature and Regge metric deficit showing that uniform edge-length
+    rescaling leaves equilateral Regge deficits invariant while cochain curvature scales linearly, a flat
+    6-equilateral-triangle hinge admits arbitrary nonzero cochain curvature, a pure-gauge 1-cochain on the
+    equilateral tetrahedron has zero cochain curvature but positive Regge deficit fullTurn / 2 per vertex,
+    and the global Gauss-Bonnet sum 2 * fullTurn != 0 contrasts with the zero Bianchi cycle sum; and (3) the
+    OBL-R01 continuum light-cone scaling and lattice-anisotropy fence showing that ax = c_target * at
+    reproduces any nonzero light-cone speed c_target, varying ax in {1/2, 2/3, 1} flips the causal
+    character of (N_t, N_x) = (2, 3), and (3, 4) vs (5, 0) share Euclidean squared radius 25 while
+    requiring distinct Manhattan step counts 7 != 5.'
+  statement_status: narrowed_finite_counterpart_and_fences_verified_lean4
+  declared_assumptions:
+  - coupling of Regge metric deficit to cochain curvature OBL-R03 (open)
+  - continuum light-cone lattice-spacing scaling law OBL-R01 (open)
   source_bottleneck: 'GAP: OBL-R03 leaves Regge deficit uncoupled from cochain curvature; OBL-R01 leaves
     the continuum scaling gap open.'
   source_refs:
   - dag/derivations/19_finite_qg/tfq_0090_gap_obl_r03_leaves_regge_deficit_uncoupled_from_cochain_curvature_obl_r01_leaves_the.md
+  - dag/derivations/independent/tfq-0090.md
+  - checks/independent/tfq-0090.py
+  - lean4/CampaignTfq0090FiniteQg.lean
+  - dag/research/campaign_tfq-0090_lean_replay.json
+  - dag/research/campaign_tfq-0090_lean_mutation.json
+  - dag/research/campaign_tfq-0090_independent.json
   paper_refs:
   - dag/derivations/19_finite_qg/tfq_0090_gap_obl_r03_leaves_regge_deficit_uncoupled_from_cochain_curvature_obl_r01_leaves_the.md
-  source_claim_label: OPEN
+  source_claim_label: GAP
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/19_finite_qg/tfq_0090_gap_obl_r03_leaves_regge_deficit_uncoupled_from_cochain_curvature_obl_r01_leaves_the.md
-    sha256: b9ad83336a73d3be323dbf5f8ba1876e7f51448df026d2c132452aea3be13486
+    sha256: e72bbcd98978c92d20ec9fe6c1d24905f121d862b94c450faf016e469851bf90
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
   generator_version: 1
-  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
-  path: dag/prompts/finite_qg_tfq_0090_open.yaml
-  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+  dag_source_commit: 635c17ed6
+  path: dag/prompts/finite_qg_tfq_0090_gap.yaml
+  external_repository_commit: 635c17ed6
+operation_candidates:
+- d0
+- d1
+- bianchiCycleSum
+- reggeVertexDeficit
+- equilateralVertexDeficit
+- effectiveLightSpeed
+- discreteMinkowskiInterval
+- manhattanSteps
+- euclideanSqRadius
+relation_candidates:
+- cochain_curvature_of_coboundary_zero
+- cochain_curvature_gauge_invariant
+- cochain_curvature_linear_scaling
+- tetrahedral_bianchi_identity
+- obl_r03_scaling_dichotomy_cochain_vs_regge
+- obl_r03_flat_hinge_with_arbitrary_cochain_curvature
+- obl_r03_zero_cochain_curvature_with_positive_regge_deficit
+- obl_r03_gauss_bonnet_vs_bianchi_sum_contrast
+- obl_r01_any_light_cone_slope_by_spacing_calibration
+- obl_r01_spacing_calibration_injective
+- obl_r01_causal_character_depends_on_uncalibrated_spacing
+- obl_r01_manhattan_vs_euclidean_light_cone_anisotropy
+source_bindings:
+- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.cochain_curvature_of_coboundary_zero
+- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.cochain_curvature_gauge_invariant
+- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.cochain_curvature_linear_scaling
+- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.tetrahedral_bianchi_identity
+- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.obl_r03_scaling_dichotomy_cochain_vs_regge
+- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.obl_r03_flat_hinge_with_arbitrary_cochain_curvature
+- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.obl_r03_zero_cochain_curvature_with_positive_regge_deficit
+- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.obl_r03_gauss_bonnet_vs_bianchi_sum_contrast
+- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.obl_r01_any_light_cone_slope_by_spacing_calibration
+- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.obl_r01_spacing_calibration_injective
+- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.obl_r01_causal_character_depends_on_uncalibrated_spacing
+- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.obl_r01_manhattan_vs_euclidean_light_cone_anisotropy
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  colours:
+  - TetrahedralCochainComplex
+  - ReggeVertexDeficit
+  - DiscreteLightConeCalibration
+  generators:
+  - d0
+  - d1
+  - equilateralVertexDeficit
+  - effectiveLightSpeed
+  - discreteMinkowskiInterval
+  relations:
+  - cochain_curvature_of_coboundary_zero
+  - tetrahedral_bianchi_identity
+  - obl_r03_gauss_bonnet_vs_bianchi_sum_contrast
+  compositions:
+  - cochain_curvature_of_coboundary_zero
+  identities:
+  - cochain_curvature_gauge_invariant
   symmetric_actions: []
   coherence_obligations:
   - identity_operations
@@ -49,32 +115,60 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: []
-    source_pins: []
+    mining_status: VERIFIED
+    carrier: Cochain0 x Cochain1 x Cochain2
+    coefficient_ring: Q
+    assumptions:
+    - coupling of Regge metric deficit to cochain curvature OBL-R03 (open)
+    - continuum light-cone lattice-spacing scaling law OBL-R01 (open)
+    source_pins:
+    - lean4/CampaignTfq0090FiniteQg.lean
     public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: VERIFIED
+    operations:
+    - d0
+    - d1
+    - bianchiCycleSum
+    - reggeVertexDeficit
+    - equilateralVertexDeficit
+    - effectiveLightSpeed
+    - discreteMinkowskiInterval
+    composition_plan:
+    - cochain_curvature_of_coboundary_zero
+    - tetrahedral_bianchi_identity
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: VERIFIED
+    algebraic_relations:
+    - cochain_curvature_of_coboundary_zero
+    - cochain_curvature_gauge_invariant
+    - cochain_curvature_linear_scaling
+    - tetrahedral_bianchi_identity
+    rejection_predicates:
+    - obl_r03_flat_hinge_with_arbitrary_cochain_curvature
+    - obl_r03_zero_cochain_curvature_with_positive_regge_deficit
+    - obl_r01_any_light_cone_slope_by_spacing_calibration
+    - obl_r01_manhattan_vs_euclidean_light_cone_anisotropy
+    negative_control_plan:
+    - 6 one-ingredient Lean 4 semantic mutations killed in dag/research/campaign_tfq-0090_lean_mutation.json
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: []
-stage_history: []
+    mining_status: VERIFIED
+    certificate_predicates:
+    - obl_r03_scaling_dichotomy_cochain_vs_regge
+    - obl_r03_gauss_bonnet_vs_bianchi_sum_contrast
+    - obl_r01_causal_character_depends_on_uncalibrated_spacing
+    - obl_r01_manhattan_vs_euclidean_light_cone_anisotropy
+    anchors:
+    - lean4/CampaignTfq0090FiniteQg.lean
+    - checks/independent/tfq-0090.py
+    - dag/derivations/independent/tfq-0090.md
+    unpaid_imports:
+    - coupling of Regge metric deficit to cochain curvature OBL-R03 (open)
+    - continuum light-cone lattice-spacing scaling law OBL-R01 (open)
+stage_history:
+- stage: campaign_derivation
+  timestamp: '2026-10-24T05:24:00Z'
+  outcome: Narrowed
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+- OBL-R03 (coupling of Regge deficit to cochain curvature) and OBL-R01 (continuum light-cone scaling law) remain open (GAP).
 excluded_relation_leads: []

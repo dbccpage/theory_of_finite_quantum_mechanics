@@ -1,0 +1,56 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "node_id": "TFQ-0090",
+  "lean_file": "lean4/CampaignTfq0090FiniteQg.lean",
+  "sha256": "d4d8c2878dbd4382043b97032c2024a5577e03fc0a115351b7cc175d8f935719",
+  "lean_mutation": {
+    "total": 6,
+    "killed": 6,
+    "survived": 0,
+    "all_killed": true,
+    "mutants": [
+      {
+        "id": "M1_d1_f012_sign_flip",
+        "description": "Mutate d1 face f012 from e01 + e12 - e02 to e01 + e12 + e02, falsifying cochain_curvature_of_coboundary_zero and tetrahedral_bianchi_identity.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\ntmp8jkvkyar.lean:143:32: error: unsolved goals\ncase f012\n\u03c6 : Cochain0\n\u22a2 -(\u03c6.p0 * 2) + \u03c6.p2 * 2 = 0\nTr"
+      },
+      {
+        "id": "M2_bianchi_cycle_sum_sign_flip",
+        "description": "Mutate bianchiCycleSum from F.f012 - F.f013 + F.f023 - F.f123 to F.f012 + F.f013 + F.f023 - F.f123, falsifying tetrahedral_bianchi_identity.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\ntmp2wkhevhf.lean:161:34: error: unsolved goals\n\u03c9 : Cochain1\n\u22a2 \u03c9.e01 * 2 + \u03c9.e13 * 2 - \u03c9.e03 * 2 = 0\n'"
+      },
+      {
+        "id": "M3_equilateral_vertex_deficit_wrong_divisor",
+        "description": "Mutate equilateralVertexDeficit angle divisor from 6 to 4, falsifying obl_r03_flat_hinge_with_arbitrary_cochain_curvature and obl_r03_zero_cochain_curvature_with_positive_regge_deficit.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpqs8rc7v7.lean:192:2: error: unsolved goals\ncase refine_1\nfullTurn k L s q : \u211a\nhL : L \u2260 0\nhs : s \u2260 0\n\u22a2 fullTurn * (6 - k) * 4 = fullTurn * 6 * (4 - k)\nTry this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, conside"
+      },
+      {
+        "id": "M4_effective_light_speed_multiply_instead_of_divide",
+        "description": "Mutate effectiveLightSpeed from ax / at_ to ax * at_, falsifying obl_r01_any_light_cone_slope_by_spacing_calibration.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpxj5b5hiq.lean:264:27: error: unsolved goals\nat_ cTarget : \u211a\nhat : at_ \u2260 0\nhc : cTarget \u2260 0\n\u22a2 at_ ^ 2 = 1\n'CampaignTfq0090FiniteQg.cochain_curvature_of_coboundary_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0090FiniteQg.cochain_curvature_gauge_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTfq0090FiniteQg.cochain_curvature_linear"
+      },
+      {
+        "id": "M5_discrete_minkowski_interval_euclidean_sign",
+        "description": "Mutate discreteMinkowskiInterval from minus (Nx * ax)^2 to plus (Nx * ax)^2, falsifying obl_r01_causal_character_depends_on_uncalibrated_spacing.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpa2ljim84.lean:288:47: error: unsolved goals\n\u22a2 False\n'CampaignTfq0090FiniteQg.cochain_curvature_of_coboundary_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0090FiniteQg.cochain_curvature_gauge_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTfq0090FiniteQg.cochain_curvature_linear_scaling' depends on axioms: [propext, Classical.choi"
+      },
+      {
+        "id": "M6_manhattan_steps_claim_equal_on_pythagorean_triple",
+        "description": "Mutate obl_r01_manhattan_vs_euclidean_light_cone_anisotropy to claim manhattanSteps 3 4 = manhattanSteps 5 0.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpfz0t7ymu.lean:311:2: error: Tactic `decide` proved that the proposition\n  euclideanSqRadius 3 4 = 25 \u2227\n    euclideanSqRadius 5 0 = 25 \u2227\n      euclideanSqRadius 3 4 = euclideanSqRadius 5 0 \u2227\n        manhattanSteps 3 4 = 7 \u2227 manhattanSteps 5 0 = 5 \u2227 manhattanSteps 3 4 = manhattanSteps 5 0\nis false\n'CampaignTfq0090FiniteQg.cochain_curvature_of_coboundary_zero' depends on axioms: [propext,\n Classic"
+      }
+    ]
+  }
+}

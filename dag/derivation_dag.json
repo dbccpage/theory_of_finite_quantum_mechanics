@@ -10506,11 +10506,19 @@
       "stage": "FINITE_QG",
       "status": "OPEN",
       "source_status": "TFQ record_status GAP (source slice 09)",
-      "statement": "PO-035 starts from a zero-container complex of comparisons and refuses an ambient continuum as a primitive. Its README marks master rows REQUIRES_CORRECTION: the light-cone story still owes a scaling gap, and the Regge row still owes a split between cochain curvature and metric deficit. What is finite is the comparison network and its holonomy words. What is not discharged is lattice-spacing descent and the claim that a hinge deficit equals curvature of a smooth manifold. That identification stays GAP. A finite complex is not quantum gravity.",
+      "statement": "PO-035 starts from a zero-container complex of comparisons and refuses an ambient continuum as a primitive. Its README marks master rows REQUIRES_CORRECTION: the light-cone story still owes a scaling gap, and the Regge row still owes a split between cochain curvature and metric deficit. What is finite is the comparison network and its holonomy words. What is not discharged is lattice-spacing descent and the claim that a hinge deficit equals curvature of a smooth manifold. That identification stays GAP. A finite complex is not quantum gravity. Narrowed in Lean 4 and an independent Python verifier to three exact algebraic components and scope fences over Q: (1) on the 4-vertex tetrahedral comparison 2-complex K_4^(2), exactness d_1(d_0 phi) = 0, gauge invariance d_1(omega + d_0 phi) = d_1(omega), linear amplitude scaling, and the discrete Bianchi identity F012 - F013 + F023 - F123 = 0 (cochain_curvature_of_coboundary_zero, cochain_curvature_gauge_invariant, cochain_curvature_linear_scaling, tetrahedral_bianchi_identity); (2) the OBL-R03 split between cochain curvature and Regge metric deficit showing that uniform edge-length rescaling leaves equilateral Regge deficits invariant while cochain curvature scales linearly, a flat 6-equilateral-triangle hinge admits arbitrary nonzero cochain curvature, a pure-gauge 1-cochain on the equilateral tetrahedron has zero cochain curvature but positive Regge deficit fullTurn / 2 per vertex, and the global Gauss-Bonnet sum 2 * fullTurn != 0 contrasts with the zero Bianchi cycle sum (obl_r03_scaling_dichotomy_cochain_vs_regge, obl_r03_flat_hinge_with_arbitrary_cochain_curvature, obl_r03_zero_cochain_curvature_with_positive_regge_deficit, obl_r03_gauss_bonnet_vs_bianchi_sum_contrast); and (3) the OBL-R01 continuum light-cone scaling and lattice-anisotropy fence showing that ax = c_target * at reproduces any nonzero light-cone speed c_target, varying ax in {1/2, 2/3, 1} flips the causal character of (N_t, N_x) = (2, 3), and (3, 4) vs (5, 0) share Euclidean squared radius 25 while requiring distinct Manhattan step counts 7 != 5 (obl_r01_any_light_cone_slope_by_spacing_calibration, obl_r01_spacing_calibration_injective, obl_r01_causal_character_depends_on_uncalibrated_spacing, obl_r01_manhattan_vs_euclidean_light_cone_anisotropy).",
       "source": [
-        "dag/derivations/19_finite_qg/tfq_0090_gap_obl_r03_leaves_regge_deficit_uncoupled_from_cochain_curvature_obl_r01_leaves_the.md"
+        "dag/derivations/19_finite_qg/tfq_0090_gap_obl_r03_leaves_regge_deficit_uncoupled_from_cochain_curvature_obl_r01_leaves_the.md",
+        "dag/derivations/independent/tfq-0090.md",
+        "checks/independent/tfq-0090.py",
+        "lean4/CampaignTfq0090FiniteQg.lean",
+        "dag/research/campaign_tfq-0090_lean_replay.json",
+        "dag/research/campaign_tfq-0090_lean_mutation.json",
+        "dag/research/campaign_tfq-0090_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0090FiniteQg.lean"
+      ],
       "rust": [],
       "imported_structure": [],
       "bottleneck": "GAP: OBL-R03 leaves Regge deficit uncoupled from cochain curvature; OBL-R01 leaves the continuum scaling gap open.",
@@ -44094,24 +44102,30 @@
         "TFQ-0090"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/035_zero_container_relational_spacetime_and_witness_holonomy/README.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/035_zero_container_relational_spacetime_and_witness_holonomy/zero_container_relational_spacetime_and_witness_holonomy.md"
+        "dag/derivations/19_finite_qg/tfq_0090_gap_obl_r03_leaves_regge_deficit_uncoupled_from_cochain_curvature_obl_r01_leaves_the.md",
+        "dag/derivations/independent/tfq-0090.md",
+        "checks/independent/tfq-0090.py",
+        "lean4/CampaignTfq0090FiniteQg.lean",
+        "dag/research/campaign_tfq-0090_lean_replay.json",
+        "dag/research/campaign_tfq-0090_lean_mutation.json",
+        "dag/research/campaign_tfq-0090_independent.json"
       ],
       "id": "TFQ-0090",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignTfq0090FiniteQg.lean"
+      ],
       "local_id": "A09-005",
       "name": "GAP: OBL-R03 leaves Regge deficit uncoupled from cochain curvature; OBL-R01 leaves the",
       "obligation": "GAP: OBL-R03 leaves Regge deficit uncoupled from cochain curvature; OBL-R01 leaves the continuum scaling gap open.",
       "parent_id": "TFQ-0089",
       "python": [
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/035_zero_container_relational_spacetime_and_witness_holonomy/code/regge_relational_obstruction.py",
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/035_zero_container_relational_spacetime_and_witness_holonomy/code/continuum_lorentz_causality.py"
+        "checks/independent/tfq-0090.py"
       ],
       "record_status": "GAP",
       "rust": [],
       "source_slice": "09",
       "stage": "FINITE_QG",
-      "summary": "PO-035 starts from a zero-container complex of comparisons and refuses an ambient continuum as a primitive. Its README marks master rows REQUIRES_CORRECTION: the light-cone story still owes a scaling gap, and the Regge row still owes a split between cochain curvature and metric deficit. What is finite is the comparison network and its holonomy words. What is not discharged is lattice-spacing descent and the claim that a hinge deficit equals curvature of a smooth manifold. That identification stays GAP. A finite complex is not quantum gravity.",
+      "summary": "PO-035 starts from a zero-container complex of comparisons and refuses an ambient continuum as a primitive. Its README marks master rows REQUIRES_CORRECTION: the light-cone story still owes a scaling gap, and the Regge row still owes a split between cochain curvature and metric deficit. What is finite is the comparison network and its holonomy words. What is not discharged is lattice-spacing descent and the claim that a hinge deficit equals curvature of a smooth manifold. That identification stays GAP. A finite complex is not quantum gravity. Narrowed in Lean 4 and an independent Python verifier to three exact algebraic components and scope fences over Q: (1) on the 4-vertex tetrahedral comparison 2-complex K_4^(2), exactness d_1(d_0 phi) = 0, gauge invariance d_1(omega + d_0 phi) = d_1(omega), linear amplitude scaling, and the discrete Bianchi identity F012 - F013 + F023 - F123 = 0 (cochain_curvature_of_coboundary_zero, cochain_curvature_gauge_invariant, cochain_curvature_linear_scaling, tetrahedral_bianchi_identity); (2) the OBL-R03 split between cochain curvature and Regge metric deficit showing that uniform edge-length rescaling leaves equilateral Regge deficits invariant while cochain curvature scales linearly, a flat 6-equilateral-triangle hinge admits arbitrary nonzero cochain curvature, a pure-gauge 1-cochain on the equilateral tetrahedron has zero cochain curvature but positive Regge deficit fullTurn / 2 per vertex, and the global Gauss-Bonnet sum 2 * fullTurn != 0 contrasts with the zero Bianchi cycle sum (obl_r03_scaling_dichotomy_cochain_vs_regge, obl_r03_flat_hinge_with_arbitrary_cochain_curvature, obl_r03_zero_cochain_curvature_with_positive_regge_deficit, obl_r03_gauss_bonnet_vs_bianchi_sum_contrast); and (3) the OBL-R01 continuum light-cone scaling and lattice-anisotropy fence showing that ax = c_target * at reproduces any nonzero light-cone speed c_target, varying ax in {1/2, 2/3, 1} flips the causal character of (N_t, N_x) = (2, 3), and (3, 4) vs (5, 0) share Euclidean squared radius 25 while requiring distinct Manhattan step counts 7 != 5 (obl_r01_any_light_cone_slope_by_spacing_calibration, obl_r01_spacing_calibration_injective, obl_r01_causal_character_depends_on_uncalibrated_spacing, obl_r01_manhattan_vs_euclidean_light_cone_anisotropy).",
       "uuid": "59874bf3-7ed2-5385-bd6d-09d5de83bfd8"
     },
     {
