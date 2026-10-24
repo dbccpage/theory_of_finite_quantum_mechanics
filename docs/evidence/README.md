@@ -6,7 +6,7 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
-The DAG has 925 nodes in 36 stages. Evidence grades: E0 189, E1 243, E2 42, E3 451.
+The DAG has 925 nodes in 36 stages. Evidence grades: E0 188, E1 243, E2 43, E3 451.
 
 ### What is proved here, what is imported, what is open
 
@@ -28,7 +28,7 @@ Grade E4 needs an in-repo runnable test and a recorded review as well as a repla
 
 ### Where the Lean evidence stands
 
-The `lean` fields of nodes cite 1498 distinct Lean declarations that lie in files of this checkout. 1451 of them are in a file whose current sha256 matches a passing replay receipt; 24 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches. The `PROVED_LEAN` nodes cite 1072 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
+The `lean` fields of nodes cite 1501 distinct Lean declarations that lie in files of this checkout. 1451 of them are in a file whose current sha256 matches a passing replay receipt; 27 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches. The `PROVED_LEAN` nodes cite 1072 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
 
 ### Status by evidence grade
 
@@ -39,12 +39,12 @@ The `lean` fields of nodes cite 1498 distinct Lean declarations that lie in file
 | `COMPUTATIONALLY_CHECKED` | 36 | 60 | 20 | 43 | 0 | 159 |
 | `CONDITIONAL` | 12 | 2 | 2 | 22 | 0 | 38 |
 | `DEFINITION` | 21 | 17 | 1 | 53 | 0 | 92 |
-| `IMPORTED_ASSUMPTION` | 11 | 27 | 1 | 31 | 0 | 70 |
+| `IMPORTED_ASSUMPTION` | 10 | 27 | 2 | 31 | 0 | 70 |
 | `ADMITTED_PRIMITIVE` | 0 | 0 | 0 | 3 | 0 | 3 |
 | `SOURCE_RECORD` | 52 | 28 | 0 | 1 | 0 | 81 |
 | `OPEN` | 49 | 92 | 10 | 24 | 0 | 175 |
 | `REFUTED` | 0 | 4 | 1 | 1 | 0 | 6 |
-| Total | 189 | 243 | 42 | 451 | 0 | 925 |
+| Total | 188 | 243 | 43 | 451 | 0 | 925 |
 
 ### Stage by evidence grade
 
@@ -79,7 +79,7 @@ The `lean` fields of nodes cite 1498 distinct Lean declarations that lie in file
 | [MAJORANA](stages/MAJORANA.md) | 0 | 8 | 11 | 27 | 0 | 46 | 5 | 0 |
 | [COMPUTATION](stages/COMPUTATION.md) | 0 | 14 | 4 | 64 | 0 | 82 | 43 | 4 |
 | [CONSTRUCTOR_THEORY](stages/CONSTRUCTOR_THEORY.md) | 10 | 1 | 0 | 4 | 0 | 15 | 3 | 2 |
-| [CAUSAL_QFT](stages/CAUSAL_QFT.md) | 7 | 0 | 0 | 7 | 0 | 14 | 6 | 0 |
+| [CAUSAL_QFT](stages/CAUSAL_QFT.md) | 6 | 0 | 1 | 7 | 0 | 14 | 6 | 0 |
 | [ADS_CFT](stages/ADS_CFT.md) | 9 | 1 | 0 | 3 | 0 | 13 | 3 | 0 |
 | [LOOP_QUANTUM_GRAVITY](stages/LOOP_QUANTUM_GRAVITY.md) | 10 | 2 | 0 | 4 | 0 | 16 | 4 | 0 |
 | [GENESIS_TO_HIGHER](stages/GENESIS_TO_HIGHER.md) | 0 | 12 | 0 | 0 | 0 | 12 | 0 | 0 |
