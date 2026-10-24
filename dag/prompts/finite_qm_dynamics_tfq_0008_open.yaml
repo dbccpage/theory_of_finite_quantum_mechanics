@@ -55,13 +55,13 @@ system_prompt: |
 user_prompt: |
   Current stage: P0_MINE_OPERAD.
   Research target (source claim; verify its scope before reuse):
-  After the finite carrier, the required dynamics are finite: an instrument or measurement update, a path sum on a finite graph, a unitary or Hamiltonian shadow on a finite matrix, and a channel that is either exact or explicitly imported. The derivation note leaves the step from stochastic kernels to completely positive maps as a gap. Python, Rust, and Lean 4 must each state the finite map and the hypothesis it uses. A numerical CPTP check at a fixed tolerance is a diagnostic. It does not authorize the exact channel.
+  Narrowed finite case, status unchanged. On the directed path with integer edge weights a on 0 to 1 and b on 1 to 2, the length-1 path sum from 0 to 2 is 0 and the length-2 path sum is a*b. The unnormalized sector mask (w0, w1) maps to (0, w1): it is supported on the second coordinate, keeps that coordinate, is idempotent, and sends (w0, 0) to (0, 0). For every integer t, the Cayley column squared length (1 - t*t)^2 + (2*t)^2 equals (1 + t*t)^2, while the Euler column squared length 1 + t*t equals 1 if and only if t = 0. At t = 1 the Cayley value is 4. At t = 2 the Euler squared length is 5 and the inflation (1 + 2*2) - 1 is 4, and the Cayley value is 25. The integer matrix with rows (2, 0) and (0, 3) has entrywise distance 1 from the matrix with rows (2, 0) and (0, 2); the latter has both row sums 2, and the former has row sums 2 and 3, so distance 1 does not authorize an exact scaled stochastic kernel. A general instrument, a general finite path sum, a unitary group, the passage from stochastic kernels to completely positive maps, and every continuum generator stay unproved.
 
   Declared assumptions:
 
 
   Source bottleneck:
-  Separate finite instruments, path sums, and channels from any continuum generator.
+  The finite path, sector mask, Cayley-versus-Euler integer shadow, and distance-1 stochastic countermodel are proved. Still open: a general instrument, a general path sum, an exact channel or an explicit CPTP import, Rust and Python witnesses of those general maps, and separation from a continuum generator beyond this integer shadow. A numerical tolerance does not discharge the exact channel. AuthorityEffect remains None.
 
   Open ../operads/tfq_0008.yaml. Review the source-pinned operation and relation candidates.
   Collect useful typed generators, actual relations, composition laws, and remaining obligations.

@@ -11,15 +11,15 @@
 
 ## Statement
 
-Imported structure: a spacetime with a causal order, and a family of unital star-algebras A(O) indexed by regions O with isotony (O1 inside O2 gives A(O1) inside A(O2)) and commutation of A(O1) and A(O2) when O1 and O2 are spacelike separated. The repository has finite strict posets (lean4/CausalOrder.lean) and finite matrix algebras, but no net over regions of a continuum and no Minkowski light cone; DS-QM033-064-074-083-QHELD-CONTINUUM records the light-cone causality as an external L2 lift.
+On the four-point strict order with the ordered relations 0<2, 1<2 and 1<3, the scan of all 64 triples holds, no point is related to itself, there are exactly 3 ordered relations, and exactly 3 of the 6 unordered pairs are spacelike: {0,1}, {0,3} and {2,3}. For the integer matrices A=[[1,2],[3,4]], B=[[5,6],[7,8]], X=[[0,1],[1,0]] and Z=[[1,0],[0,-1]], both (A tensor I)(I tensor B) and (I tensor B)(A tensor I) equal A tensor B, whose sixteen entries sum to 260. The products (X tensor I)(Z tensor I) and (Z tensor I)(X tensor I) differ, their (0,2) entries are -1 and 1, and XZ+ZX is the zero matrix. The determinants are det A = -2, det B = -2, det X = -1 and det Z = -1. A net of unital star-algebras indexed by continuum regions, and a Minkowski light cone, stay imported. This record does not import CausalOrder.lean and does not transport these finite counts to a continuum net.
 
 ## Governing obligation
 
-Held outside the programme by declaration, as recorded for the light cone in the trunk node named in the gap route.
+The counts and products are one supplied four-point order and four supplied integer matrices. They are not a net indexed by continuum regions and not a Minkowski light cone. The Haag-Kastler import and the external light-cone lift named by DS-QM033-064-074-083-QHELD-CONTINUUM stay open. CausalOrder.lean is not a premise of a continuum theorem in this record.
 
 ## Source status
 
-Taken from the cited source as an assumption of this branch; the source's own hypotheses and exact wording are not audited here.
+Finite pair counts and the stated integer-matrix products were checked in Lean 4 on 2026-10-23. The continuum net and the light cone remain an imported assumption; the 1964 source wording is not audited here.
 
 ## What is imported
 
@@ -33,6 +33,8 @@ Declared imported structure:
 ## What is open
 
 - Relation between the observer axiom H1 (edge locality, a locality axiom on a finite edge-indexed projection) and Einstein causality is not established.
+- A net of unital star-algebras indexed by continuum regions remains imported.
+- A Minkowski light cone remains imported, as recorded by DS-QM033-064-074-083-QHELD-CONTINUUM.
 
 ## Connections to this repository
 
@@ -45,10 +47,20 @@ See also: `DS-QM033-064-074-083-QHELD-CONTINUUM`, `L1-OBSERVER-AXIOMS-H1-H5`.
 ## Non-claims
 
 - The locality axiom H1 is not claimed to be Einstein causality.
+- The finite pair counts and matrix products in the statement are not a net on continuum regions and not a Minkowski light cone.
+- CausalOrder.lean is not a premise of a continuum net in this record.
 
 ## Sources
 
 - `external:doi:10.1063/1.1704187`: R. Haag and D. Kastler, "An Algebraic Approach to Quantum Field Theory", J. Math. Phys. 5 (1964) 848-861, doi:10.1063/1.1704187. No arXiv record (1964).
+- Repository: `lean4/CampaignCqftLocalNetAxiomsImport.lean`
+- Repository: `dag/derivations/independent/cqft-local-net-axioms-import.md`
+- Repository: `checks/independent/cqft-local-net-axioms-import.py`
+
+## Lean 4 declarations read
+- `lean4/CampaignCqftLocalNetAxiomsImport.lean::n_poset_pair_counts`
+- `lean4/CampaignCqftLocalNetAxiomsImport.lean::disjoint_site_products`
+- `lean4/CampaignCqftLocalNetAxiomsImport.lean::same_site_and_star`
 
 ## Downstream derivations
 

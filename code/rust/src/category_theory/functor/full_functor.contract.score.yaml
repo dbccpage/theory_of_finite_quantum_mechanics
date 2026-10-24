@@ -3,40 +3,58 @@
   "artifact": "code/rust/src/category_theory/functor/full_functor.rs",
   "assurance": "Coverage baseline only; prior records are retained but not independently promoted.",
   "contract": {
+    "schema_id": "tfqm.source-contract.v1",
+    "contract_id": "full-functor-declared-lifts",
     "artifact": {
-      "language": "Rust",
       "path": "code/rust/src/category_theory/functor/full_functor.rs",
-      "sha256": "896cb9c6caa77db592e38348353a6c179e047b93dd291b8575250e606db60427"
+      "sha256": "bf1d61d4e0087d2875d8482d41b8c40a38b3eb1f49e0bd8743fe44d28cc641e0",
+      "language": "Rust"
     },
-    "authority_effect": "None",
-    "boundaries": [
-      "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
-      "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
-    ],
-    "contract_id": "source-coverage-baseline-v1",
-    "evidence": [
-      {
-        "path": "code/rust/src/category_theory/functor/full_functor.rs",
-        "sha256": "896cb9c6caa77db592e38348353a6c179e047b93dd291b8575250e606db60427"
-      },
-      {
-        "path": "SCORING.md",
-        "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
-      }
-    ],
+    "AuthorityEffect": "None",
+    "purpose": "Record finite supplied target-arrow obligations and candidate lifts, validate internal consistency, and cross-check recorded functor maps without certifying actual fullness.",
     "operations": {
-      "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
-      "source_identity": "The exact source bytes identified by subject and source_sha256."
+      "LabeledMorphism": "Opaque arrow and endpoint labels, with exact tuple identity.",
+      "FullnessWitness": "Declared source preimage and target image.",
+      "constructors_and_builders": "Unchecked candidates; new leaves the reference unset, on_functor starts vacuous, list/note builders retain raw data.",
+      "is_vacuous": "Report whether the supplied obligation list is empty.",
+      "validate_shell": "Nonblank labels/triples, unique obligations, separately consistent source/target endpoints, no dangling images, functional claimed images and complete supplied-list coverage.",
+      "validated": "Consume candidate; return unchanged iff internal validation passes at that call.",
+      "unwitnessed_obligations": "Input-order obligations without an exact declared witness image; no validation is implied.",
+      "multiply_preimages": "Deterministically ordered groups of distinct complete preimage tuples, with identical copies removed.",
+      "validate_against_maps": "Reject malformed raw maps and require each witness's two endpoint images and arrow image to agree.",
+      "validate_against_functor": "Also validate the supplied Functor shell and bind its exact label to functor_ref."
     },
     "owned_invariants": [
-      "The companion identifies one source path and its exact current SHA-256 digest.",
-      "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+      "Successful shell validation covers every supplied obligation and has no witness for an undeclared target triple.",
+      "Each source arrow label has consistent declared endpoints and at most one declared image; each target label has consistent declared endpoints.",
+      "Successful map validation uses unique nonblank raw-map keys and checks all witness images without last-write-wins ambiguity.",
+      "Validation borrows the record; owned admission returns original data. Public mutation invalidates any earlier validation observation.",
+      "Diagnostics do not present repeated copies or cross-Hom collisions as a nonfaithfulness certificate."
     ],
-    "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
-    "role": "source module",
-    "schema_id": "tfqm.source-contract.v1",
-    "source_sha256": "896cb9c6caa77db592e38348353a6c179e047b93dd291b8575250e606db60427",
-    "subject": "code/rust/src/category_theory/functor/full_functor.rs"
+    "boundaries": [
+      "AuthorityEffect None; supplied obligations need not enumerate every target arrow for every source-object pair. No actual fullness, faithfulness, category-law or theorem certificate.",
+      "A missing image can be a failed lift; it does not remove an obligation.",
+      "Maps-only checking does not bind functor_ref. validate_against_functor checks its exact label, still against a mutable shell.",
+      "Duplicate witness copies count once in diagnostics. Distinct arrows from different source Hom-sets colliding do not refute faithfulness.",
+      "Empty maps are empty, not unspecified. Raw maps reject blank fields and duplicate source keys before indexed lookup.",
+      "Default/new are uninitialized; raw Deserialize and public fields remain unchecked/mutable. Legacy JSON becomes vacuous.",
+      "Isolated manifest compiles the full actual category-library snapshot but not its original governance build hook or external optional workspace packages.",
+      "L2D metadata capability, no L4 claim. Explicit maintainer approval permits a baseline floor exception only for these exact source bytes; source-byte changes lose this exception. Twelve selected corrected mutations are not exhaustive mutation coverage; one earlier invalid recipe remains retained."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/full_functor_validation/receipt.json",
+        "sha256": "7d6ac3bdc3bb8a9c1472aaa28bec7d30389f3b42e3fdb8482ebcf05c39632287"
+      },
+      {
+        "path": "evidence/quality/functor_shell_pr/replay.json",
+        "sha256": "1eab8efbade57c218d8639a7d7f0b5df0e9e552f887ac137b706492823d5abb9"
+      },
+      {
+        "path": "evidence/quality/functor_shell_pr/exception_authorization.json",
+        "sha256": "439a5914460391df87d722fffc317d4b7649e3e6250d71afb82a6fb9b2fa1202"
+      }
+    ]
   },
   "contract_history": [
     {
@@ -155,15 +173,135 @@
         "subject": "code/rust/src/category_theory/functor/full_functor.rs"
       },
       "sha256": "3d53831eeda330e0d7f22264e63789f659c852885102fab642d26f9c1ffe2548"
+    },
+    {
+      "sha256": "08c6414534c050b939cdb41379aef2691909a811bccccad814071cbe7aba0399",
+      "bytes": 3748,
+      "record": {
+        "schema_id": "tfqm.source-contract.v1",
+        "contract_id": "full-functor-declared-lifts",
+        "artifact": {
+          "path": "code/rust/src/category_theory/functor/full_functor.rs",
+          "sha256": "bf1d61d4e0087d2875d8482d41b8c40a38b3eb1f49e0bd8743fe44d28cc641e0",
+          "language": "Rust"
+        },
+        "AuthorityEffect": "None",
+        "purpose": "Record finite supplied target-arrow obligations and candidate lifts, validate internal consistency, and cross-check recorded functor maps without certifying actual fullness.",
+        "operations": {
+          "LabeledMorphism": "Opaque arrow and endpoint labels, with exact tuple identity.",
+          "FullnessWitness": "Declared source preimage and target image.",
+          "constructors_and_builders": "Unchecked candidates; new leaves the reference unset, on_functor starts vacuous, list/note builders retain raw data.",
+          "is_vacuous": "Report whether the supplied obligation list is empty.",
+          "validate_shell": "Nonblank labels/triples, unique obligations, separately consistent source/target endpoints, no dangling images, functional claimed images and complete supplied-list coverage.",
+          "validated": "Consume candidate; return unchanged iff internal validation passes at that call.",
+          "unwitnessed_obligations": "Input-order obligations without an exact declared witness image; no validation is implied.",
+          "multiply_preimages": "Deterministically ordered groups of distinct complete preimage tuples, with identical copies removed.",
+          "validate_against_maps": "Reject malformed raw maps and require each witness's two endpoint images and arrow image to agree.",
+          "validate_against_functor": "Also validate the supplied Functor shell and bind its exact label to functor_ref."
+        },
+        "owned_invariants": [
+          "Successful shell validation covers every supplied obligation and has no witness for an undeclared target triple.",
+          "Each source arrow label has consistent declared endpoints and at most one declared image; each target label has consistent declared endpoints.",
+          "Successful map validation uses unique nonblank raw-map keys and checks all witness images without last-write-wins ambiguity.",
+          "Validation borrows the record; owned admission returns original data. Public mutation invalidates any earlier validation observation.",
+          "Diagnostics do not present repeated copies or cross-Hom collisions as a nonfaithfulness certificate."
+        ],
+        "boundaries": [
+          "AuthorityEffect None; supplied obligations need not enumerate every target arrow for every source-object pair. No actual fullness, faithfulness, category-law or theorem certificate.",
+          "A missing image can be a failed lift; it does not remove an obligation.",
+          "Maps-only checking does not bind functor_ref. validate_against_functor checks its exact label, still against a mutable shell.",
+          "Duplicate witness copies count once in diagnostics. Distinct arrows from different source Hom-sets colliding do not refute faithfulness.",
+          "Empty maps are empty, not unspecified. Raw maps reject blank fields and duplicate source keys before indexed lookup.",
+          "Default/new are uninitialized; raw Deserialize and public fields remain unchecked/mutable. Legacy JSON becomes vacuous.",
+          "Isolated manifest compiles the full actual category-library snapshot but not its original governance build hook or external optional workspace packages.",
+          "L2D metadata capability; no L4 claim or baseline exception. Twelve selected corrected mutations are not exhaustive mutation coverage; one earlier invalid recipe remains retained."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/full_functor_validation/receipt.json",
+            "sha256": "7d6ac3bdc3bb8a9c1472aaa28bec7d30389f3b42e3fdb8482ebcf05c39632287"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"contract_id\": \"full-functor-declared-lifts\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/functor/full_functor.rs\",\n    \"sha256\": \"bf1d61d4e0087d2875d8482d41b8c40a38b3eb1f49e0bd8743fe44d28cc641e0\",\n    \"language\": \"Rust\"\n  },\n  \"AuthorityEffect\": \"None\",\n  \"purpose\": \"Record finite supplied target-arrow obligations and candidate lifts, validate internal consistency, and cross-check recorded functor maps without certifying actual fullness.\",\n  \"operations\": {\n    \"LabeledMorphism\": \"Opaque arrow and endpoint labels, with exact tuple identity.\",\n    \"FullnessWitness\": \"Declared source preimage and target image.\",\n    \"constructors_and_builders\": \"Unchecked candidates; new leaves the reference unset, on_functor starts vacuous, list/note builders retain raw data.\",\n    \"is_vacuous\": \"Report whether the supplied obligation list is empty.\",\n    \"validate_shell\": \"Nonblank labels/triples, unique obligations, separately consistent source/target endpoints, no dangling images, functional claimed images and complete supplied-list coverage.\",\n    \"validated\": \"Consume candidate; return unchanged iff internal validation passes at that call.\",\n    \"unwitnessed_obligations\": \"Input-order obligations without an exact declared witness image; no validation is implied.\",\n    \"multiply_preimages\": \"Deterministically ordered groups of distinct complete preimage tuples, with identical copies removed.\",\n    \"validate_against_maps\": \"Reject malformed raw maps and require each witness's two endpoint images and arrow image to agree.\",\n    \"validate_against_functor\": \"Also validate the supplied Functor shell and bind its exact label to functor_ref.\"\n  },\n  \"owned_invariants\": [\n    \"Successful shell validation covers every supplied obligation and has no witness for an undeclared target triple.\",\n    \"Each source arrow label has consistent declared endpoints and at most one declared image; each target label has consistent declared endpoints.\",\n    \"Successful map validation uses unique nonblank raw-map keys and checks all witness images without last-write-wins ambiguity.\",\n    \"Validation borrows the record; owned admission returns original data. Public mutation invalidates any earlier validation observation.\",\n    \"Diagnostics do not present repeated copies or cross-Hom collisions as a nonfaithfulness certificate.\"\n  ],\n  \"boundaries\": [\n    \"AuthorityEffect None; supplied obligations need not enumerate every target arrow for every source-object pair. No actual fullness, faithfulness, category-law or theorem certificate.\",\n    \"A missing image can be a failed lift; it does not remove an obligation.\",\n    \"Maps-only checking does not bind functor_ref. validate_against_functor checks its exact label, still against a mutable shell.\",\n    \"Duplicate witness copies count once in diagnostics. Distinct arrows from different source Hom-sets colliding do not refute faithfulness.\",\n    \"Empty maps are empty, not unspecified. Raw maps reject blank fields and duplicate source keys before indexed lookup.\",\n    \"Default/new are uninitialized; raw Deserialize and public fields remain unchecked/mutable. Legacy JSON becomes vacuous.\",\n    \"Isolated manifest compiles the full actual category-library snapshot but not its original governance build hook or external optional workspace packages.\",\n    \"L2D metadata capability; no L4 claim or baseline exception. Twelve selected corrected mutations are not exhaustive mutation coverage; one earlier invalid recipe remains retained.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/full_functor_validation/receipt.json\",\n      \"sha256\": \"7d6ac3bdc3bb8a9c1472aaa28bec7d30389f3b42e3fdb8482ebcf05c39632287\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/functor/full_functor.contract.score.yaml#full-functor-declared-lifts-contract"
+      ]
+    },
+    {
+      "sha256": "fac9c232771eb85a312cfac0e5e27fa719986a9ef380831362f6841288466e2e",
+      "bytes": 4201,
+      "record": {
+        "schema_id": "tfqm.source-contract.v1",
+        "contract_id": "full-functor-declared-lifts",
+        "artifact": {
+          "path": "code/rust/src/category_theory/functor/full_functor.rs",
+          "sha256": "bf1d61d4e0087d2875d8482d41b8c40a38b3eb1f49e0bd8743fe44d28cc641e0",
+          "language": "Rust"
+        },
+        "AuthorityEffect": "None",
+        "purpose": "Record finite supplied target-arrow obligations and candidate lifts, validate internal consistency, and cross-check recorded functor maps without certifying actual fullness.",
+        "operations": {
+          "LabeledMorphism": "Opaque arrow and endpoint labels, with exact tuple identity.",
+          "FullnessWitness": "Declared source preimage and target image.",
+          "constructors_and_builders": "Unchecked candidates; new leaves the reference unset, on_functor starts vacuous, list/note builders retain raw data.",
+          "is_vacuous": "Report whether the supplied obligation list is empty.",
+          "validate_shell": "Nonblank labels/triples, unique obligations, separately consistent source/target endpoints, no dangling images, functional claimed images and complete supplied-list coverage.",
+          "validated": "Consume candidate; return unchanged iff internal validation passes at that call.",
+          "unwitnessed_obligations": "Input-order obligations without an exact declared witness image; no validation is implied.",
+          "multiply_preimages": "Deterministically ordered groups of distinct complete preimage tuples, with identical copies removed.",
+          "validate_against_maps": "Reject malformed raw maps and require each witness's two endpoint images and arrow image to agree.",
+          "validate_against_functor": "Also validate the supplied Functor shell and bind its exact label to functor_ref."
+        },
+        "owned_invariants": [
+          "Successful shell validation covers every supplied obligation and has no witness for an undeclared target triple.",
+          "Each source arrow label has consistent declared endpoints and at most one declared image; each target label has consistent declared endpoints.",
+          "Successful map validation uses unique nonblank raw-map keys and checks all witness images without last-write-wins ambiguity.",
+          "Validation borrows the record; owned admission returns original data. Public mutation invalidates any earlier validation observation.",
+          "Diagnostics do not present repeated copies or cross-Hom collisions as a nonfaithfulness certificate."
+        ],
+        "boundaries": [
+          "AuthorityEffect None; supplied obligations need not enumerate every target arrow for every source-object pair. No actual fullness, faithfulness, category-law or theorem certificate.",
+          "A missing image can be a failed lift; it does not remove an obligation.",
+          "Maps-only checking does not bind functor_ref. validate_against_functor checks its exact label, still against a mutable shell.",
+          "Duplicate witness copies count once in diagnostics. Distinct arrows from different source Hom-sets colliding do not refute faithfulness.",
+          "Empty maps are empty, not unspecified. Raw maps reject blank fields and duplicate source keys before indexed lookup.",
+          "Default/new are uninitialized; raw Deserialize and public fields remain unchecked/mutable. Legacy JSON becomes vacuous.",
+          "Isolated manifest compiles the full actual category-library snapshot but not its original governance build hook or external optional workspace packages.",
+          "L2D metadata capability, no L4 claim. Explicit maintainer approval permits a baseline floor exception only for these exact source bytes; source-byte changes lose this exception. Twelve selected corrected mutations are not exhaustive mutation coverage; one earlier invalid recipe remains retained."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/full_functor_validation/receipt.json",
+            "sha256": "7d6ac3bdc3bb8a9c1472aaa28bec7d30389f3b42e3fdb8482ebcf05c39632287"
+          },
+          {
+            "path": "evidence/quality/functor_shell_pr/replay.json",
+            "sha256": "1eab8efbade57c218d8639a7d7f0b5df0e9e552f887ac137b706492823d5abb9"
+          },
+          {
+            "path": "evidence/quality/functor_shell_pr/exception_authorization.json",
+            "sha256": "439a5914460391df87d722fffc317d4b7649e3e6250d71afb82a6fb9b2fa1202"
+          }
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"contract_id\": \"full-functor-declared-lifts\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/functor/full_functor.rs\",\n    \"sha256\": \"bf1d61d4e0087d2875d8482d41b8c40a38b3eb1f49e0bd8743fe44d28cc641e0\",\n    \"language\": \"Rust\"\n  },\n  \"AuthorityEffect\": \"None\",\n  \"purpose\": \"Record finite supplied target-arrow obligations and candidate lifts, validate internal consistency, and cross-check recorded functor maps without certifying actual fullness.\",\n  \"operations\": {\n    \"LabeledMorphism\": \"Opaque arrow and endpoint labels, with exact tuple identity.\",\n    \"FullnessWitness\": \"Declared source preimage and target image.\",\n    \"constructors_and_builders\": \"Unchecked candidates; new leaves the reference unset, on_functor starts vacuous, list/note builders retain raw data.\",\n    \"is_vacuous\": \"Report whether the supplied obligation list is empty.\",\n    \"validate_shell\": \"Nonblank labels/triples, unique obligations, separately consistent source/target endpoints, no dangling images, functional claimed images and complete supplied-list coverage.\",\n    \"validated\": \"Consume candidate; return unchanged iff internal validation passes at that call.\",\n    \"unwitnessed_obligations\": \"Input-order obligations without an exact declared witness image; no validation is implied.\",\n    \"multiply_preimages\": \"Deterministically ordered groups of distinct complete preimage tuples, with identical copies removed.\",\n    \"validate_against_maps\": \"Reject malformed raw maps and require each witness's two endpoint images and arrow image to agree.\",\n    \"validate_against_functor\": \"Also validate the supplied Functor shell and bind its exact label to functor_ref.\"\n  },\n  \"owned_invariants\": [\n    \"Successful shell validation covers every supplied obligation and has no witness for an undeclared target triple.\",\n    \"Each source arrow label has consistent declared endpoints and at most one declared image; each target label has consistent declared endpoints.\",\n    \"Successful map validation uses unique nonblank raw-map keys and checks all witness images without last-write-wins ambiguity.\",\n    \"Validation borrows the record; owned admission returns original data. Public mutation invalidates any earlier validation observation.\",\n    \"Diagnostics do not present repeated copies or cross-Hom collisions as a nonfaithfulness certificate.\"\n  ],\n  \"boundaries\": [\n    \"AuthorityEffect None; supplied obligations need not enumerate every target arrow for every source-object pair. No actual fullness, faithfulness, category-law or theorem certificate.\",\n    \"A missing image can be a failed lift; it does not remove an obligation.\",\n    \"Maps-only checking does not bind functor_ref. validate_against_functor checks its exact label, still against a mutable shell.\",\n    \"Duplicate witness copies count once in diagnostics. Distinct arrows from different source Hom-sets colliding do not refute faithfulness.\",\n    \"Empty maps are empty, not unspecified. Raw maps reject blank fields and duplicate source keys before indexed lookup.\",\n    \"Default/new are uninitialized; raw Deserialize and public fields remain unchecked/mutable. Legacy JSON becomes vacuous.\",\n    \"Isolated manifest compiles the full actual category-library snapshot but not its original governance build hook or external optional workspace packages.\",\n    \"L2D metadata capability, no L4 claim. Explicit maintainer approval permits a baseline floor exception only for these exact source bytes; source-byte changes lose this exception. Twelve selected corrected mutations are not exhaustive mutation coverage; one earlier invalid recipe remains retained.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/full_functor_validation/receipt.json\",\n      \"sha256\": \"7d6ac3bdc3bb8a9c1472aaa28bec7d30389f3b42e3fdb8482ebcf05c39632287\"\n    },\n    {\n      \"path\": \"evidence/quality/functor_shell_pr/replay.json\",\n      \"sha256\": \"1eab8efbade57c218d8639a7d7f0b5df0e9e552f887ac137b706492823d5abb9\"\n    },\n    {\n      \"path\": \"evidence/quality/functor_shell_pr/exception_authorization.json\",\n      \"sha256\": \"439a5914460391df87d722fffc317d4b7649e3e6250d71afb82a6fb9b2fa1202\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/functor/full_functor.contract.score.yaml#exact-source-approval-2026-10-23-contract"
+      ]
     }
   ],
-  "current_contract": "3d53831eeda330e0d7f22264e63789f659c852885102fab642d26f9c1ffe2548",
-  "current_scoring": "a3ca2ed1c62ffd8c5a1cc4eb01fc502fdc666404506964c19d4b3dc1f4344ff9",
+  "current_contract": "fac9c232771eb85a312cfac0e5e27fa719986a9ef380831362f6841288466e2e",
+  "current_scoring": "8494aff30545bf862ecc9a8091d75e8baa3880253a112ee7b7fb8968fd324b39",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {
     "code/rust/src/category_theory/functor/full_functor.rs.contract.yaml": "02791d6625f6844dc1fb872ba2bfa4aa954df0aeea11d80c22d1433f5386d69e",
     "code/rust/src/category_theory/functor/full_functor.rs.scoring.yaml": "35b07003ba6362458f7f5accf21dbde47c46b08e4e472e24c7a03219ceb669d8",
-    "code/rust/src/category_theory/functor/full_functor.score.yaml": "2b72b5c8e6f89d4dcb658d9fcb3d91ae90f5927312f797f483770552090c6136"
+    "code/rust/src/category_theory/functor/full_functor.score.yaml": "2b72b5c8e6f89d4dcb658d9fcb3d91ae90f5927312f797f483770552090c6136",
+    "code/rust/src/category_theory/functor/full_functor.contract.score.yaml#exact-source-approval-2026-10-23-contract": "fac9c232771eb85a312cfac0e5e27fa719986a9ef380831362f6841288466e2e",
+    "code/rust/src/category_theory/functor/full_functor.contract.score.yaml#exact-source-approval-2026-10-23-scoring": "8494aff30545bf862ecc9a8091d75e8baa3880253a112ee7b7fb8968fd324b39",
+    "code/rust/src/category_theory/functor/full_functor.contract.score.yaml#full-functor-declared-lifts-contract": "08c6414534c050b939cdb41379aef2691909a811bccccad814071cbe7aba0399",
+    "code/rust/src/category_theory/functor/full_functor.contract.score.yaml#full-functor-declared-lifts-scoring": "a1dddf6231abb161e3648d7798acfae73a3fb0726af9f36c1f5c81a15f19fbf7"
   },
   "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
@@ -514,6 +652,136 @@
         "score_token": null
       },
       "sha256": "a3ca2ed1c62ffd8c5a1cc4eb01fc502fdc666404506964c19d4b3dc1f4344ff9"
+    },
+    {
+      "sha256": "a1dddf6231abb161e3648d7798acfae73a3fb0726af9f36c1f5c81a15f19fbf7",
+      "bytes": 3351,
+      "record": {
+        "schema_version": "2.0.0",
+        "assessment_id": "full-functor-declared-lifts",
+        "assessment_status": "complete",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/functor/full_functor.rs",
+          "sha256": "bf1d61d4e0087d2875d8482d41b8c40a38b3eb1f49e0bd8743fe44d28cc641e0",
+          "language": "Rust"
+        },
+        "profile": "Non-Numeric",
+        "level": "L2",
+        "level_basis": "Mutable finite declaration with supplied-list coverage, consistency, indexed cross-checking and diagnostics; no admitted categories or full-functor certificate.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "D"
+        },
+        "basis": {
+          "G1": "Supplied-list scope, vacuity, serde/default/equality behavior, raw mutable boundary and compatibility limits are explicit.",
+          "G2": "Verbatim label/tuple identity, consistent typing and functionality, strict raw-map cross-checks and deduplicated preimage diagnostics; finite admitted counterexample tests the mathematical ceiling.",
+          "G3": "First-error typed InvalidShape diagnostics; isolated exact-message tests, missing map entries, value mismatches and explicit owned admission. No category or completeness trust is inferred.",
+          "G4": "494 category tests plus four public serde tests pass. All twelve corrected guard mutants fail intended assertions. One invalid original recipe and seven then-unrun cases are retained separately. Original build-hook/workspace integration is not a test claim.",
+          "G5": "Manual review of 23 production functions: factored nonrecursive validation and ordered borrowed indexes. No calibrated AST metrics, work/size budget, allocator proof or performance theorem."
+        },
+        "composite_grade": "D",
+        "score_token": "L2D",
+        "is_complete": true,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-23T20:58:57.157184+00:00",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/full_functor_validation/receipt.json",
+            "sha256": "7d6ac3bdc3bb8a9c1472aaa28bec7d30389f3b42e3fdb8482ebcf05c39632287"
+          }
+        ],
+        "open_higher_grade_findings": [
+          "AuthorityEffect None; supplied obligations need not enumerate every target arrow for every source-object pair. No actual fullness, faithfulness, category-law or theorem certificate.",
+          "A missing image can be a failed lift; it does not remove an obligation.",
+          "Maps-only checking does not bind functor_ref. validate_against_functor checks its exact label, still against a mutable shell.",
+          "Duplicate witness copies count once in diagnostics. Distinct arrows from different source Hom-sets colliding do not refute faithfulness.",
+          "Empty maps are empty, not unspecified. Raw maps reject blank fields and duplicate source keys before indexed lookup.",
+          "Default/new are uninitialized; raw Deserialize and public fields remain unchecked/mutable. Legacy JSON becomes vacuous.",
+          "Isolated manifest compiles the full actual category-library snapshot but not its original governance build hook or external optional workspace packages.",
+          "L2D metadata capability; no L4 claim or baseline exception. Twelve selected corrected mutations are not exhaustive mutation coverage; one earlier invalid recipe remains retained."
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"assessment_id\": \"full-functor-declared-lifts\",\n  \"assessment_status\": \"complete\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/functor/full_functor.rs\",\n    \"sha256\": \"bf1d61d4e0087d2875d8482d41b8c40a38b3eb1f49e0bd8743fe44d28cc641e0\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L2\",\n  \"level_basis\": \"Mutable finite declaration with supplied-list coverage, consistency, indexed cross-checking and diagnostics; no admitted categories or full-functor certificate.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Supplied-list scope, vacuity, serde/default/equality behavior, raw mutable boundary and compatibility limits are explicit.\",\n    \"G2\": \"Verbatim label/tuple identity, consistent typing and functionality, strict raw-map cross-checks and deduplicated preimage diagnostics; finite admitted counterexample tests the mathematical ceiling.\",\n    \"G3\": \"First-error typed InvalidShape diagnostics; isolated exact-message tests, missing map entries, value mismatches and explicit owned admission. No category or completeness trust is inferred.\",\n    \"G4\": \"494 category tests plus four public serde tests pass. All twelve corrected guard mutants fail intended assertions. One invalid original recipe and seven then-unrun cases are retained separately. Original build-hook/workspace integration is not a test claim.\",\n    \"G5\": \"Manual review of 23 production functions: factored nonrecursive validation and ordered borrowed indexes. No calibrated AST metrics, work/size budget, allocator proof or performance theorem.\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L2D\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T20:58:57.157184+00:00\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/full_functor_validation/receipt.json\",\n      \"sha256\": \"7d6ac3bdc3bb8a9c1472aaa28bec7d30389f3b42e3fdb8482ebcf05c39632287\"\n    }\n  ],\n  \"open_higher_grade_findings\": [\n    \"AuthorityEffect None; supplied obligations need not enumerate every target arrow for every source-object pair. No actual fullness, faithfulness, category-law or theorem certificate.\",\n    \"A missing image can be a failed lift; it does not remove an obligation.\",\n    \"Maps-only checking does not bind functor_ref. validate_against_functor checks its exact label, still against a mutable shell.\",\n    \"Duplicate witness copies count once in diagnostics. Distinct arrows from different source Hom-sets colliding do not refute faithfulness.\",\n    \"Empty maps are empty, not unspecified. Raw maps reject blank fields and duplicate source keys before indexed lookup.\",\n    \"Default/new are uninitialized; raw Deserialize and public fields remain unchecked/mutable. Legacy JSON becomes vacuous.\",\n    \"Isolated manifest compiles the full actual category-library snapshot but not its original governance build hook or external optional workspace packages.\",\n    \"L2D metadata capability; no L4 claim or baseline exception. Twelve selected corrected mutations are not exhaustive mutation coverage; one earlier invalid recipe remains retained.\"\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/functor/full_functor.contract.score.yaml#full-functor-declared-lifts-scoring"
+      ]
+    },
+    {
+      "sha256": "8494aff30545bf862ecc9a8091d75e8baa3880253a112ee7b7fb8968fd324b39",
+      "bytes": 3943,
+      "record": {
+        "schema_version": "2.0.0",
+        "assessment_id": "full_functor-exact-source-approved-2026-10-23",
+        "assessment_status": "complete",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/functor/full_functor.rs",
+          "sha256": "bf1d61d4e0087d2875d8482d41b8c40a38b3eb1f49e0bd8743fe44d28cc641e0",
+          "language": "Rust"
+        },
+        "profile": "Non-Numeric",
+        "level": "L2",
+        "level_basis": "Mutable finite declaration with supplied-list coverage, consistency, indexed cross-checking and diagnostics; no admitted categories or full-functor certificate.",
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "D"
+        },
+        "basis": {
+          "G1": "Supplied-list scope, vacuity, serde/default/equality behavior, raw mutable boundary and compatibility limits are explicit.",
+          "G2": "Verbatim label/tuple identity, consistent typing and functionality, strict raw-map cross-checks and deduplicated preimage diagnostics; finite admitted counterexample tests the mathematical ceiling.",
+          "G3": "First-error typed InvalidShape diagnostics; isolated exact-message tests, missing map entries, value mismatches and explicit owned admission. No category or completeness trust is inferred.",
+          "G4": "Combined offline replay passes 494 category-library tests and seven public serde tests. Twelve corrected FullFunctor guard mutations fail their isolated intended tests. One earlier invalid recipe and its unrun cases remain historical records. The original category build hook and optional external workspace packages are not compiled; no exhaustive mutation coverage is claimed.",
+          "G5": "Manual review of 23 production functions: factored nonrecursive validation and ordered borrowed indexes. No calibrated AST metrics, work/size budget, allocator proof or performance theorem."
+        },
+        "composite_grade": "D",
+        "score_token": "L2D",
+        "is_complete": true,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-23T21:43:06.613614+00:00",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/full_functor_validation/receipt.json",
+            "sha256": "7d6ac3bdc3bb8a9c1472aaa28bec7d30389f3b42e3fdb8482ebcf05c39632287"
+          },
+          {
+            "path": "evidence/quality/functor_shell_pr/replay.json",
+            "sha256": "1eab8efbade57c218d8639a7d7f0b5df0e9e552f887ac137b706492823d5abb9"
+          },
+          {
+            "path": "evidence/quality/functor_shell_pr/exception_authorization.json",
+            "sha256": "439a5914460391df87d722fffc317d4b7649e3e6250d71afb82a6fb9b2fa1202"
+          }
+        ],
+        "open_higher_grade_findings": [
+          "AuthorityEffect None; supplied obligations need not enumerate every target arrow for every source-object pair. No actual fullness, faithfulness, category-law or theorem certificate.",
+          "A missing image can be a failed lift; it does not remove an obligation.",
+          "Maps-only checking does not bind functor_ref. validate_against_functor checks its exact label, still against a mutable shell.",
+          "Duplicate witness copies count once in diagnostics. Distinct arrows from different source Hom-sets colliding do not refute faithfulness.",
+          "Empty maps are empty, not unspecified. Raw maps reject blank fields and duplicate source keys before indexed lookup.",
+          "Default/new are uninitialized; raw Deserialize and public fields remain unchecked/mutable. Legacy JSON becomes vacuous.",
+          "Isolated manifest compiles the full actual category-library snapshot but not its original governance build hook or external optional workspace packages.",
+          "L2D metadata capability, no L4 claim. Explicit maintainer approval permits a baseline floor exception only for these exact source bytes; source-byte changes lose this exception. Twelve selected corrected mutations are not exhaustive mutation coverage; one earlier invalid recipe remains retained."
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"assessment_id\": \"full_functor-exact-source-approved-2026-10-23\",\n  \"assessment_status\": \"complete\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/functor/full_functor.rs\",\n    \"sha256\": \"bf1d61d4e0087d2875d8482d41b8c40a38b3eb1f49e0bd8743fe44d28cc641e0\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L2\",\n  \"level_basis\": \"Mutable finite declaration with supplied-list coverage, consistency, indexed cross-checking and diagnostics; no admitted categories or full-functor certificate.\",\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Supplied-list scope, vacuity, serde/default/equality behavior, raw mutable boundary and compatibility limits are explicit.\",\n    \"G2\": \"Verbatim label/tuple identity, consistent typing and functionality, strict raw-map cross-checks and deduplicated preimage diagnostics; finite admitted counterexample tests the mathematical ceiling.\",\n    \"G3\": \"First-error typed InvalidShape diagnostics; isolated exact-message tests, missing map entries, value mismatches and explicit owned admission. No category or completeness trust is inferred.\",\n    \"G4\": \"Combined offline replay passes 494 category-library tests and seven public serde tests. Twelve corrected FullFunctor guard mutations fail their isolated intended tests. One earlier invalid recipe and its unrun cases remain historical records. The original category build hook and optional external workspace packages are not compiled; no exhaustive mutation coverage is claimed.\",\n    \"G5\": \"Manual review of 23 production functions: factored nonrecursive validation and ordered borrowed indexes. No calibrated AST metrics, work/size budget, allocator proof or performance theorem.\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L2D\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T21:43:06.613614+00:00\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/full_functor_validation/receipt.json\",\n      \"sha256\": \"7d6ac3bdc3bb8a9c1472aaa28bec7d30389f3b42e3fdb8482ebcf05c39632287\"\n    },\n    {\n      \"path\": \"evidence/quality/functor_shell_pr/replay.json\",\n      \"sha256\": \"1eab8efbade57c218d8639a7d7f0b5df0e9e552f887ac137b706492823d5abb9\"\n    },\n    {\n      \"path\": \"evidence/quality/functor_shell_pr/exception_authorization.json\",\n      \"sha256\": \"439a5914460391df87d722fffc317d4b7649e3e6250d71afb82a6fb9b2fa1202\"\n    }\n  ],\n  \"open_higher_grade_findings\": [\n    \"AuthorityEffect None; supplied obligations need not enumerate every target arrow for every source-object pair. No actual fullness, faithfulness, category-law or theorem certificate.\",\n    \"A missing image can be a failed lift; it does not remove an obligation.\",\n    \"Maps-only checking does not bind functor_ref. validate_against_functor checks its exact label, still against a mutable shell.\",\n    \"Duplicate witness copies count once in diagnostics. Distinct arrows from different source Hom-sets colliding do not refute faithfulness.\",\n    \"Empty maps are empty, not unspecified. Raw maps reject blank fields and duplicate source keys before indexed lookup.\",\n    \"Default/new are uninitialized; raw Deserialize and public fields remain unchecked/mutable. Legacy JSON becomes vacuous.\",\n    \"Isolated manifest compiles the full actual category-library snapshot but not its original governance build hook or external optional workspace packages.\",\n    \"L2D metadata capability, no L4 claim. Explicit maintainer approval permits a baseline floor exception only for these exact source bytes; source-byte changes lose this exception. Twelve selected corrected mutations are not exhaustive mutation coverage; one earlier invalid recipe remains retained.\"\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/functor/full_functor.contract.score.yaml#exact-source-approval-2026-10-23-scoring"
+      ]
     }
   ]
 }

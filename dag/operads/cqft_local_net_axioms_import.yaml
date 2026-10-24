@@ -3,20 +3,30 @@ node_id: CQFT-LOCAL-NET-AXIOMS-IMPORT
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Imported structure: a spacetime with a causal order, and a family of unital star-algebras
-    A(O) indexed by regions O with isotony (O1 inside O2 gives A(O1) inside A(O2)) and commutation of
-    A(O1) and A(O2) when O1 and O2 are spacelike separated. The repository has finite strict posets (lean4/CausalOrder.lean)
-    and finite matrix algebras, but no net over regions of a continuum and no Minkowski light cone; DS-QM033-064-074-083-QHELD-CONTINUUM
-    records the light-cone causality as an external L2 lift.'
+  source_statement: 'On the four-point strict order with the ordered relations 0<2, 1<2 and 1<3, the scan
+    of all 64 triples holds, no point is related to itself, there are exactly 3 ordered relations, and
+    exactly 3 of the 6 unordered pairs are spacelike: {0,1}, {0,3} and {2,3}. For the integer matrices
+    A=[[1,2],[3,4]], B=[[5,6],[7,8]], X=[[0,1],[1,0]] and Z=[[1,0],[0,-1]], both (A tensor I)(I tensor
+    B) and (I tensor B)(A tensor I) equal A tensor B, whose sixteen entries sum to 260. The products (X
+    tensor I)(Z tensor I) and (Z tensor I)(X tensor I) differ, their (0,2) entries are -1 and 1, and XZ+ZX
+    is the zero matrix. The determinants are det A = -2, det B = -2, det X = -1 and det Z = -1. A net
+    of unital star-algebras indexed by continuum regions, and a Minkowski light cone, stay imported. This
+    record does not import CausalOrder.lean and does not transport these finite counts to a continuum
+    net.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - spacetime with causal order (assumption)
   - net of local algebras with isotony and locality (assumption)
-  source_bottleneck: Held outside the programme by declaration, as recorded for the light cone in the
-    trunk node named in the gap route.
+  source_bottleneck: The counts and products are one supplied four-point order and four supplied integer
+    matrices. They are not a net indexed by continuum regions and not a Minkowski light cone. The Haag-Kastler
+    import and the external light-cone lift named by DS-QM033-064-074-083-QHELD-CONTINUUM stay open. CausalOrder.lean
+    is not a premise of a continuum theorem in this record.
   source_refs:
   - dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md
   - external:doi:10.1063/1.1704187
+  - lean4/CampaignCqftLocalNetAxiomsImport.lean
+  - dag/derivations/independent/cqft-local-net-axioms-import.md
+  - checks/independent/cqft-local-net-axioms-import.py
   paper_refs:
   - dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md
   source_claim_label: IMPORTED_ASSUMPTION
@@ -25,7 +35,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md
-    sha256: 11b16b9b6c47df1fc9978e42b56e6e3b6b939c649b4a8cd5b4fe3bbf40e11fb0
+    sha256: 6386188f7d0c019a214834dcf05f7d45e8be9f5e05d3024e02620f3cdfcf35cd
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -33,9 +43,185 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/causal_qft_cqft_local_net_axioms_import_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: mm4
+  line: 139
+  signature_excerpt: 'def mm4 (p q : M4) : M4'
+  source: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  source_sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: leftEmb
+  line: 161
+  signature_excerpt: 'def leftEmb : M4'
+  source: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  source_sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rightEmb
+  line: 162
+  signature_excerpt: 'def rightEmb : M4'
+  source: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  source_sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: prodAB
+  line: 163
+  signature_excerpt: 'def prodAB : M4'
+  source: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  source_sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sum4
+  line: 157
+  signature_excerpt: 'def sum4 (m : M4) : Int'
+  source: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  source_sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: M4
+  line: 85
+  signature_excerpt: structure M4
+  source: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  source_sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: dot4
+  line: 136
+  signature_excerpt: 'def dot4 (r c : Int × Int × Int × Int) : Int'
+  source: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  source_sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: row
+  line: 122
+  signature_excerpt: |-
+    def row (m : M4) : Nat → Int × Int × Int × Int
+      | 0 => (m.a00, m.a01, m.a02, m.a03)
+      | 1 => (m.a10, m.a11, m.a12, m.a13)
+      | 2 => (m.a20, m.a21, m.a22, m.a23)
+      | 3 => (m.a30, m.a31, m.a32, m.a33)
+      | _ => (0, 0, 0, 0)
+
+    def col (m : M4) : Nat → Int × Int × Int × Int
+      | 0 => (m.a00, m.a10, m.a20, m.a30)
+      | 1 => (m.a01, m.a11, m.a21, m.a31)
+      | 2 => (m.a02, m.a12, m.a22, m.a32)
+      | 3 => (m.a03, m.a13, m.a23, m.a33)
+      | _ => (0, 0, 0, 0)
+
+    def dot4 (r c : Int × Int × Int × Int) : Int
+  source: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  source_sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: col
+  line: 129
+  signature_excerpt: |-
+    def col (m : M4) : Nat → Int × Int × Int × Int
+      | 0 => (m.a00, m.a10, m.a20, m.a30)
+      | 1 => (m.a01, m.a11, m.a21, m.a31)
+      | 2 => (m.a02, m.a12, m.a22, m.a32)
+      | 3 => (m.a03, m.a13, m.a23, m.a33)
+      | _ => (0, 0, 0, 0)
+
+    def dot4 (r c : Int × Int × Int × Int) : Int
+  source: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  source_sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: kron
+  line: 104
+  signature_excerpt: 'def kron (x y : M2) : M4'
+  source: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  source_sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Am
+  line: 82
+  signature_excerpt: 'def Am : M2'
+  source: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  source_sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: I2
+  line: 79
+  signature_excerpt: 'def I2 : M2'
+  source: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  source_sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Bm
+  line: 83
+  signature_excerpt: 'def Bm : M2'
+  source: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  source_sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: M2
+  line: 51
+  signature_excerpt: structure M2
+  source: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  source_sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: disjoint_site_products
+  line: 167
+  signature_excerpt: |-
+    theorem disjoint_site_products :
+        mm4 leftEmb rightEmb = prodAB ∧
+        mm4 rightEmb leftEmb = prodAB ∧
+        sum4 prodAB = 260
+  source: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  source_sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignCqftLocalNetAxiomsImport.lean::n_poset_pair_counts
+  availability: local
+  symbol: n_poset_pair_counts
+  path: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  declaration_status: declaration_found_not_proof_checked
+  line: 43
+  role: source_lead_only
+- original_ref: lean4/CampaignCqftLocalNetAxiomsImport.lean::disjoint_site_products
+  availability: local
+  symbol: disjoint_site_products
+  path: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  declaration_status: declaration_found_not_proof_checked
+  line: 167
+  role: source_lead_only
+- original_ref: lean4/CampaignCqftLocalNetAxiomsImport.lean::same_site_and_star
+  availability: local
+  symbol: same_site_and_star
+  path: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  repository: this_repository
+  sha256: 3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645
+  declaration_status: declaration_found_not_proof_checked
+  line: 173
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -77,10 +263,14 @@ operad_slots:
     - net of local algebras with isotony and locality (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
 - Bind independent certificate predicates and real checker anchors before P1.
-excluded_relation_leads: []
+excluded_relation_leads:
+- source: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  name: n_poset_pair_counts
+  reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation
+- source: lean4/CampaignCqftLocalNetAxiomsImport.lean
+  name: same_site_and_star
+  reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation

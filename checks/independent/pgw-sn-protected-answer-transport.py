@@ -12,9 +12,9 @@ Zero repository imports. Uses only Python's standard library (itertools) to chec
    of commuting vs non-commuting target transitions (n^(n-m) vs n^n - n^(n-m)).
 3. Concrete SnCarrier (5 base presentation shapes + off-image witnesses at stage 6)
    and S6Descent (u(x) = (x, 0) on Z x Z) instantiations and negative controls.
-4. Non-implication fences: failure of conservative extension off im(u), failure of
-   right-inverse / left-Galois adjunction on gapLift : Fin(2) -> Fin(3), and
-   non-resolution of active demands (including activeObstructions(6) = 1).
+4. Non-implication fences: failure of conservative extension off im(u), and failure of
+   a left-Galois adjunction on gapLift : Fin(2) -> Fin(3). The stage-6 obstruction
+   table is proved in Lean by rfl and is not re-asserted from a literal here.
 """
 
 from __future__ import annotations
@@ -238,7 +238,7 @@ def check_sn_carrier_and_s6_descent() -> tuple[int, int]:
 
 
 def check_non_implication_fences() -> int:
-    """Check non-conservative extension, non-Galois adjunction, and demand retention."""
+    """Check non-conservative extension and the absence of a left-Galois adjoint."""
     checks = 0
     # 1. gapLift : Fin(2) -> Fin(3), gapLift(0) = 1, gapLift(1) = 2
     gap_lift = (1, 2)
@@ -258,12 +258,6 @@ def check_non_implication_fences() -> int:
         raise AssertionError("P' failed on im(gap_lift)")
     if all(p_prime(b) for b in (0, 1, 2)):
         raise AssertionError("P' unexpectedly held off im(gap_lift)")
-
-    # 3. Unrelated demand retention and SnCarrier activeObstructions(6) == 1
-    active_obstructions = {0: 0, 1: 1, 2: 1, 3: 1, 4: 0, 5: 1, 6: 1}
-    checks += 1
-    if active_obstructions[6] != 1:
-        raise AssertionError("Expected activeObstructions(6) == 1")
 
     return checks
 
