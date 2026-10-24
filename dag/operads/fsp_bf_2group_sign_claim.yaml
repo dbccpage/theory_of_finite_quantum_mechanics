@@ -8,13 +8,22 @@ target:
     computation or cancellation identity exists in this checkout.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and
-    state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.
+  source_bottleneck: Narrowed algebraic checks only. Explicit low-degree simplicial coboundaries on Fin
+    5 compose to zero and preserve the displayed curvatures under exact shifts. The ZMod 2 product cocycle
+    is not any displayed 2-coboundary, as detected by the explicit three-term functional. Two supplied
+    integer involutions have commutator -I. Crossed-module identity formulas reduce to reflexivity and
+    do not construct an arbitrary crossed module. There is no identification with Wang-Levin braiding,
+    a path integral, or a unique physical cancellation mechanism. Status is unchanged. The original physical
+    or operational bridge remains open.
   source_refs:
   - dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md
   - papers/core/fsp/theory_of_finite_fsp.md
   - papers/core/fsp/the_problem_of_the_fermion_sign.md
   - papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md
+  - dag/derivations/independent/fsp-bf-2group-sign-claim.md
+  - dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json
+  - dag/research/campaign_fsp-bf-2group-sign-claim_lean_mutation.json
+  - dag/research/campaign_fsp-bf-2group-sign-claim_independent.json
   paper_refs:
   - dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md
   source_claim_label: OPEN
@@ -23,7 +32,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md
-    sha256: 57a38f1f8f37be33137d727759ba7de23ea512566bab52c947e8ee22035b75b3
+    sha256: 982c0a385b6f2f612f1eaf56e7c8078f48f8638b2ff4f3b105fd720148fb8795
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -31,9 +40,387 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_bf_2group_sign_claim_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: d1
+  line: 23
+  signature_excerpt: 'def d1 {A : Type*} [AddCommGroup A] (c1 : Fin 5 → Fin 5 → A) (i j k : Fin 5) : A'
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: d0
+  line: 19
+  signature_excerpt: 'def d0 {A : Type*} [AddCommGroup A] (c0 : Fin 5 → A) (i j : Fin 5) : A'
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: d2
+  line: 27
+  signature_excerpt: |-
+    def d2 {A : Type*} [AddCommGroup A] (c2 : Fin 5 → Fin 5 → Fin 5 → A)
+        (i j k l : Fin 5) : A
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: d3
+  line: 32
+  signature_excerpt: |-
+    def d3 {A : Type*} [AddCommGroup A] (c3 : Fin 5 → Fin 5 → Fin 5 → Fin 5 → A)
+        (i j k l m : Fin 5) : A
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: omega3Mat
+  line: 73
+  signature_excerpt: 'def omega3Mat : Matrix (Fin 2) (Fin 2) ℤ'
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: b1Ising
+  line: 93
+  signature_excerpt: 'def b1Ising : Matrix (Fin 2) (Fin 2) ℤ'
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: b2Ising
+  line: 98
+  signature_excerpt: 'def b2Ising : Matrix (Fin 2) (Fin 2) ℤ'
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: wangLevinCommutator
+  line: 103
+  signature_excerpt: 'def wangLevinCommutator : Matrix (Fin 2) (Fin 2) ℤ'
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: groupCoboundary3
+  line: 136
+  signature_excerpt: |-
+    def groupCoboundary3 (a : ZMod 2 → ZMod 2 → ZMod 2 → ZMod 2)
+        (g1 g2 g3 g4 : ZMod 2) : ZMod 2
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: postnikovCup3
+  line: 132
+  signature_excerpt: 'def postnikovCup3 (g1 g2 g3 : ZMod 2) : ZMod 2'
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rp3CyclePairing
+  line: 153
+  signature_excerpt: 'def rp3CyclePairing (c : ZMod 2 → ZMod 2 → ZMod 2 → ZMod 2) : ZMod 2'
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: groupCoboundary2
+  line: 141
+  signature_excerpt: |-
+    def groupCoboundary2 (b : ZMod 2 → ZMod 2 → ZMod 2)
+        (g1 g2 g3 : ZMod 2) : ZMod 2
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: simplicial_coboundary_nilpotence_d1d0_d2d1_d3d2
+  line: 37
+  signature_excerpt: |-
+    theorem simplicial_coboundary_nilpotence_d1d0_d2d1_d3d2 {A : Type*} [AddCommGroup A]
+        (c0 : Fin 5 → A) (c1 : Fin 5 → Fin 5 → A) (c2 : Fin 5 → Fin 5 → Fin 5 → A)
+        (i j k l m : Fin 5) :
+        d1 (d0 c0) i j k = 0 ∧
+        d2 (d1 c1) i j k l = 0 ∧
+        d3 (d2 c2) i j k l m = 0
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: bf_cochain_gauge_invariance
+  line: 49
+  signature_excerpt: |-
+    theorem bf_cochain_gauge_invariance {A : Type*} [AddCommGroup A]
+        (A1 : Fin 5 → Fin 5 → A) (lam : Fin 5 → A)
+        (B2 : Fin 5 → Fin 5 → Fin 5 → A) (eta : Fin 5 → Fin 5 → A)
+        (i j k l : Fin 5) :
+        d1 (fun u v => A1 u v + d0 lam u v) i j k = d1 A1 i j k ∧
+        d2 (fun u v w => B2 u v w + d1 eta u v w) i j k l = d2 B2 i j k l
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: bf_z2_level_hopf_link_sign_and_weight_trichotomy
+  line: 60
+  signature_excerpt: |-
+    theorem bf_z2_level_hopf_link_sign_and_weight_trichotomy (q p lk w_pos w_neg : ℤ) :
+        q * p * (-lk) = -(q * p * lk) ∧
+        (-1 : ℤ) ^ (1 : ℕ) = -1 ∧
+        (w_pos = w_neg → w_pos * 1 + w_neg * (-1) = 0) ∧
+        (w_pos ≠ w_neg → w_pos * 1 + w_neg * (-1) ≠ 0)
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: bf_z3_level_non_involution_and_cos_sum_fence
+  line: 78
+  signature_excerpt: |-
+    theorem bf_z3_level_non_involution_and_cos_sum_fence :
+        omega3Mat ^ 3 = (1 : Matrix (Fin 2) (Fin 2) ℤ) ∧
+        omega3Mat ^ 2 ≠ (1 : Matrix (Fin 2) (Fin 2) ℤ) ∧
+        omega3Mat + omega3Mat ^ 2 = -(1 : Matrix (Fin 2) (Fin 2) ℤ) ∧
+        Matrix.trace (omega3Mat + omega3Mat ^ 2) = -2
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: wang_levin_ising_commutator_negative_trace_and_abelian_commutation
+  line: 107
+  signature_excerpt: |-
+    theorem wang_levin_ising_commutator_negative_trace_and_abelian_commutation
+        (d1_vec d2_vec : Fin 2 → ℤ) :
+        b1Ising * b1Ising = 1 ∧
+        b2Ising * b2Ising = 1 ∧
+        wangLevinCommutator = -(1 : Matrix (Fin 2) (Fin 2) ℤ) ∧
+        Matrix.trace wangLevinCommutator = -2 ∧
+        Matrix.diagonal d1_vec * Matrix.diagonal d2_vec =
+          Matrix.diagonal d2_vec * Matrix.diagonal d1_vec
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: crossed_module_conjugation_peiffer_and_identity
+  line: 125
+  signature_excerpt: |-
+    theorem crossed_module_conjugation_peiffer_and_identity {G : Type*} [Group G]
+        (g h h1 h2 : G) :
+        (fun x : G => x) (g * h * g⁻¹) = g * (fun x : G => x) h * g⁻¹ ∧
+        ((fun x : G => x) h1) * h2 * ((fun x : G => x) h1)⁻¹ = h1 * h2 * h1⁻¹
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: postnikov_cup3_is_3cocycle_on_zmod2
+  line: 146
+  signature_excerpt: |-
+    theorem postnikov_cup3_is_3cocycle_on_zmod2 :
+        (∀ g1 g2 g3 g4 : ZMod 2, groupCoboundary3 postnikovCup3 g1 g2 g3 g4 = 0) ∧
+        postnikovCup3 1 1 1 = 1 ∧
+        postnikovCup3 1 1 1 ≠ 0
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: postnikov_cup3_not_coboundary_in_H3_zmod2
+  line: 157
+  signature_excerpt: |-
+    theorem postnikov_cup3_not_coboundary_in_H3_zmod2 :
+        (∀ b : ZMod 2 → ZMod 2 → ZMod 2, rp3CyclePairing (groupCoboundary2 b) = 0) ∧
+        rp3CyclePairing postnikovCup3 = 1 ∧
+        (∀ b : ZMod 2 → ZMod 2 → ZMod 2, groupCoboundary2 b ≠ postnikovCup3)
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: two_connection_postnikov_3curvature_bianchi
+  line: 170
+  signature_excerpt: |-
+    theorem two_connection_postnikov_3curvature_bianchi (phi : Fin 5 → ZMod 2)
+        (i j k l m : Fin 5) :
+        let g
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: one_form_double_vs_conjugate_two_group_postnikov_cancellation
+  line: 185
+  signature_excerpt: |-
+    theorem one_form_double_vs_conjugate_two_group_postnikov_cancellation
+        (g1 g2 g3 : ZMod 2) (n : ℕ) :
+        postnikovCup3 1 1 1 + 0 = 1 ∧
+        postnikovCup3 g1 g2 g3 - postnikovCup3 g1 g2 g3 = 0 ∧
+        ((-1 : ℤ) ^ n) * ((-1 : ℤ) ^ n) = 1
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: doubled_partition_function_changes_target_model_fence
+  line: 195
+  signature_excerpt: |-
+    theorem doubled_partition_function_changes_target_model_fence :
+        ((2 : ℤ) ≠ (-2 : ℤ) ∧ (2 : ℤ) ^ 2 = (-2 : ℤ) ^ 2) ∧
+        ((1 : ℤ) + (-1 : ℤ) = 0 ∧
+         (1 : ℤ) ^ 2 + (-1 : ℤ) ^ 2 = 2 ∧
+         ((1 : ℤ) + (-1 : ℤ)) ^ 2 ≠ (1 : ℤ) ^ 2 + (-1 : ℤ) ^ 2)
+  source: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  source_sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.simplicial_coboundary_nilpotence_d1d0_d2d1_d3d2
+  availability: local
+  symbol: CampaignFspBf2GroupSignClaim.simplicial_coboundary_nilpotence_d1d0_d2d1_d3d2
+  path: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  declaration_status: declaration_found_not_proof_checked
+  line: 37
+  role: source_lead_only
+- original_ref: lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.bf_cochain_gauge_invariance
+  availability: local
+  symbol: CampaignFspBf2GroupSignClaim.bf_cochain_gauge_invariance
+  path: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  declaration_status: declaration_found_not_proof_checked
+  line: 49
+  role: source_lead_only
+- original_ref: lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.bf_z2_level_hopf_link_sign_and_weight_trichotomy
+  availability: local
+  symbol: CampaignFspBf2GroupSignClaim.bf_z2_level_hopf_link_sign_and_weight_trichotomy
+  path: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  declaration_status: declaration_found_not_proof_checked
+  line: 60
+  role: source_lead_only
+- original_ref: lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.bf_z3_level_non_involution_and_cos_sum_fence
+  availability: local
+  symbol: CampaignFspBf2GroupSignClaim.bf_z3_level_non_involution_and_cos_sum_fence
+  path: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  declaration_status: declaration_found_not_proof_checked
+  line: 78
+  role: source_lead_only
+- original_ref: lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.wang_levin_ising_commutator_negative_trace_and_abelian_commutation
+  availability: local
+  symbol: CampaignFspBf2GroupSignClaim.wang_levin_ising_commutator_negative_trace_and_abelian_commutation
+  path: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  declaration_status: declaration_found_not_proof_checked
+  line: 107
+  role: source_lead_only
+- original_ref: lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.crossed_module_conjugation_peiffer_and_identity
+  availability: local
+  symbol: CampaignFspBf2GroupSignClaim.crossed_module_conjugation_peiffer_and_identity
+  path: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  declaration_status: declaration_found_not_proof_checked
+  line: 125
+  role: source_lead_only
+- original_ref: lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.postnikov_cup3_is_3cocycle_on_zmod2
+  availability: local
+  symbol: CampaignFspBf2GroupSignClaim.postnikov_cup3_is_3cocycle_on_zmod2
+  path: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  declaration_status: declaration_found_not_proof_checked
+  line: 146
+  role: source_lead_only
+- original_ref: lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.postnikov_cup3_not_coboundary_in_H3_zmod2
+  availability: local
+  symbol: CampaignFspBf2GroupSignClaim.postnikov_cup3_not_coboundary_in_H3_zmod2
+  path: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  declaration_status: declaration_found_not_proof_checked
+  line: 157
+  role: source_lead_only
+- original_ref: lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.two_connection_postnikov_3curvature_bianchi
+  availability: local
+  symbol: CampaignFspBf2GroupSignClaim.two_connection_postnikov_3curvature_bianchi
+  path: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  declaration_status: declaration_found_not_proof_checked
+  line: 170
+  role: source_lead_only
+- original_ref: lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.one_form_double_vs_conjugate_two_group_postnikov_cancellation
+  availability: local
+  symbol: CampaignFspBf2GroupSignClaim.one_form_double_vs_conjugate_two_group_postnikov_cancellation
+  path: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  declaration_status: declaration_found_not_proof_checked
+  line: 185
+  role: source_lead_only
+- original_ref: lean4/CampaignFspBf2GroupSignClaim.lean::CampaignFspBf2GroupSignClaim.doubled_partition_function_changes_target_model_fence
+  availability: local
+  symbol: CampaignFspBf2GroupSignClaim.doubled_partition_function_changes_target_model_fence
+  path: lean4/CampaignFspBf2GroupSignClaim.lean
+  repository: this_repository
+  sha256: 2ecf83152cc14542336d294520b8d3e727d8b134273e05fa2421a3d5acd66843
+  declaration_status: declaration_found_not_proof_checked
+  line: 195
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -71,8 +458,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

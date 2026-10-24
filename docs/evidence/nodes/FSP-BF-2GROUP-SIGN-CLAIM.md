@@ -69,7 +69,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md`
 
 - file: [dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md](../../../dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md)
-- sha256 (`lf-normalised`): `2ed355d7c52e7dfd643bd49a79e9cf140110e6ddcf2598529eb28d10fb276279`
+- sha256 (`lf-normalised`): `982c0a385b6f2f612f1eaf56e7c8078f48f8638b2ff4f3b105fd720148fb8795`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1210
 - counts toward the grade: no
@@ -84,7 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_fsp-bf-2group-sign-claim_independent.json`
 
 - file: [dag/research/campaign_fsp-bf-2group-sign-claim_independent.json](../../../dag/research/campaign_fsp-bf-2group-sign-claim_independent.json)
-- sha256 (`lf-normalised`): `948cc9e0747f006b091eb7ea22c17fbec09198f5873694e8105d78f8516996dd`
+- sha256 (`lf-normalised`): `83016be275995520cb1d27baa2f42e7b1257f29b006bbf7230f27662c13aa774`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -1,20 +1,98 @@
 {
-  "schema": "dag.independent_verification_receipt.v1",
-  "node_id": "FSP-BF-2GROUP-SIGN-CLAIM",
-  "claim_id": "TFQ-1210",
-  "stage": "FERMION_SIGN",
-  "checker_path": "checks/independent/fsp-bf-2group-sign-claim.py",
-  "checker_sha256": "139e3950558dc95aa7c912af6241118a26ca40104ae30a9c68412a6a83859582",
-  "derivation_note_path": "dag/derivations/independent/fsp-bf-2group-sign-claim.md",
-  "command": "python -I -X utf8 checks/independent/fsp-bf-2group-sign-claim.py",
-  "exit_code": 0,
-  "stdout": "FSP-BF-2GROUP-SIGN-CLAIM independent check: checks=4444 cochain_bf=1993 braiding_postnikov=2433 fences=18 failures=0",
-  "checks_total": 4444,
-  "failures": 0,
-  "categories": {
-    "simplicial_coboundary_and_bf_gauge": 1993,
-    "braiding_and_postnikov_cohomology": 2433,
-    "doubled_trace_model_change_fences": 18
+  "schema_version": "independent_checker_replay.v1",
+  "AuthorityEffect": "None",
+  "source": "checks/independent/fsp-bf-2group-sign-claim.py",
+  "sha256": "c0a03e743d661992e26804d10d5ffacbe8916fbe80f28c515fd1fdd995e29cfc",
+  "checks": {
+    "normal": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/fsp-bf-2group-sign-claim.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.09,
+      "output": "FSP-BF-2GROUP-SIGN-CLAIM independent check: checks=4444 cochain_bf=1993 braiding_postnikov=2433 fences=18 failures=0\r\n"
+    },
+    "optimized": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/fsp-bf-2group-sign-claim.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.31,
+      "output": "FSP-BF-2GROUP-SIGN-CLAIM independent check: checks=4444 cochain_bf=1993 braiding_postnikov=2433 fences=18 failures=0\r\n"
+    },
+    "quiet_import": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "-c",
+        "import contextlib,importlib.util,io,pathlib,sys; p=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics\\\\checks\\\\independent\\\\fsp-bf-2group-sign-claim.py'); root=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics'); s=importlib.util.spec_from_file_location(\"reviewed_checker\",p); m=importlib.util.module_from_spec(s); out=io.StringIO();\ndef audit(event,args):\n if event==\"open\" and isinstance(args[0],str):\n  q=pathlib.Path(args[0]).resolve()\n  if q.is_relative_to(root) and q!=p and q.suffix!=\".pyc\": raise RuntimeError(\"Import read repository evidence: \"+str(q))\nsys.addaudithook(audit)\nwith contextlib.redirect_stdout(out),contextlib.redirect_stderr(out): s.loader.exec_module(m)\nif out.getvalue(): raise RuntimeError(\"Import executed checker output: \"+out.getvalue())\n"
+      ],
+      "exit_code": 0,
+      "seconds": 0.12,
+      "output": ""
+    },
+    "typing_tool": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--version"
+      ],
+      "exit_code": 0,
+      "seconds": 0.87,
+      "output": "mypy 1.18.2 (compiled: yes)\r\n"
+    },
+    "strict_typing": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--config-file",
+        "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\governance\\target\\pr-review-mypy.ini",
+        "--no-incremental",
+        "--cache-dir",
+        "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\governance\\target\\pr-review-mypy-cache",
+        "--explicit-package-bases",
+        "checks/independent/fsp-bf-2group-sign-claim.py"
+      ],
+      "exit_code": 1,
+      "seconds": 1.97,
+      "output": "checks\\independent\\fsp-bf-2group-sign-claim.py:152: error: Function is missing a type annotation  [no-untyped-def]\r\nchecks\\independent\\fsp-bf-2group-sign-claim.py:168: error: Call to untyped function \"_check_braiding_and_postnikov_cohomology_cases_1\" in typed context  [no-untyped-call]\r\nFound 2 errors in 1 file (checked 1 source file)\r\n"
+    }
   },
-  "verdict": "PASS"
+  "superseded_receipt": {
+    "schema": "dag.independent_verification_receipt.v1",
+    "node_id": "FSP-BF-2GROUP-SIGN-CLAIM",
+    "claim_id": "TFQ-1210",
+    "stage": "FERMION_SIGN",
+    "checker_path": "checks/independent/fsp-bf-2group-sign-claim.py",
+    "checker_sha256": "139e3950558dc95aa7c912af6241118a26ca40104ae30a9c68412a6a83859582",
+    "derivation_note_path": "dag/derivations/independent/fsp-bf-2group-sign-claim.md",
+    "command": "python -I -X utf8 checks/independent/fsp-bf-2group-sign-claim.py",
+    "exit_code": 0,
+    "stdout": "FSP-BF-2GROUP-SIGN-CLAIM independent check: checks=4444 cochain_bf=1993 braiding_postnikov=2433 fences=18 failures=0",
+    "checks_total": 4444,
+    "failures": 0,
+    "categories": {
+      "simplicial_coboundary_and_bf_gauge": 1993,
+      "braiding_and_postnikov_cohomology": 2433,
+      "doubled_trace_model_change_fences": 18
+    },
+    "verdict": "PASS"
+  },
+  "superseded_reason": "Source refactored; finite checks, output and counts unchanged. The previous source binding is historical."
 }

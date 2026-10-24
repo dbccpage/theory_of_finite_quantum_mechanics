@@ -149,11 +149,7 @@ def check_simplicial_coboundary_and_bf_gauge() -> tuple[int, int]:
     return checks, failures
 
 
-def check_braiding_and_postnikov_cohomology() -> tuple[int, int]:
-    checks = 0
-    failures = 0
-
-    # 1. Abelian Z_2 vs Z_3 BF braiding trichotomy (GIN-C19)
+def _check_braiding_and_postnikov_cohomology_cases_1(checks, failures):
     for q in range(-2, 3):
         for p in range(-2, 3):
             for lk in (-2, -1, 0, 1, 2):
@@ -161,6 +157,15 @@ def check_braiding_and_postnikov_cohomology() -> tuple[int, int]:
                     checks += 1
                 else:
                     failures += 1
+    return checks, failures
+
+
+def check_braiding_and_postnikov_cohomology() -> tuple[int, int]:
+    checks = 0
+    failures = 0
+
+    # 1. Abelian Z_2 vs Z_3 BF braiding trichotomy (GIN-C19)
+    checks, failures = _check_braiding_and_postnikov_cohomology_cases_1(checks, failures)
 
     for w_pos in range(-3, 4):
         for w_neg in range(-3, 4):

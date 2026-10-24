@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ paper s13.8.2 table: "positivity and normalized preparation weights are admitted
 
 ## Review
 
-- PFP review: [dag/results/FQ-POSITIVE-WEIGHTS-ADMITTED/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-POSITIVE-WEIGHTS-ADMITTED/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: no.
+- PFP review: [dag/results/FQ-POSITIVE-WEIGHTS-ADMITTED/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-POSITIVE-WEIGHTS-ADMITTED/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: The general two-weight rational convex bound is proved with explicit nonnegativity and score bounds; distinct positive normalized preparations, a signed violation and an unnormalized scaled control are checked.
   - does not support: Derive a preparation measure from native histories with a stated selection principle. Same-carrier examples only show insufficiency of that bare carrier; no stronger impossibility theorem is claimed.
   - next test: Derive a preparation measure from native histories with a stated selection principle. Same-carrier examples only show insufficiency of that bare carrier; no stronger impossibility theorem is claimed.

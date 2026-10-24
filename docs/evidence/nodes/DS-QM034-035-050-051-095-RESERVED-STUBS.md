@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -38,7 +38,7 @@ Finite rational Cayley unitary shadow U=(I-tJ)(I+tJ)^{-1}, exact quadratic norm 
 
 ## Review
 
-- PFP review: [dag/results/DS-QM034-035-050-051-095-RESERVED-STUBS/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM034-035-050-051-095-RESERVED-STUBS/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: no.
+- PFP review: [dag/results/DS-QM034-035-050-051-095-RESERVED-STUBS/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM034-035-050-051-095-RESERVED-STUBS/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: Declared Cayley matrices are orthogonal while Euler expands norm at nonzero t; concrete two-generator Clifford identities are recomputed.
   - does not support: Supply spinor/Dirac carrier, Hamiltonian, dynamics and formal matrix bridges before closing the reserved paper stubs.
   - next test: Supply spinor/Dirac carrier, Hamiltonian, dynamics and formal matrix bridges before closing the reserved paper stubs.
