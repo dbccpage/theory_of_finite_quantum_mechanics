@@ -2,12 +2,12 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 32. Grades: E0 6, E1 25, E3 1. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_CHECKED 18, OPEN 13.
+Nodes: 32. Grades: E0 6, E1 24, E3 2. Statuses: PROVED_LEAN 1, COMPUTATIONALLY_CHECKED 18, OPEN 13.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
 | [TFQ-0011](../nodes/TFQ-0011.md) | `OPEN` | E0 | Finite QCD here means a finite non-abelian gauge datum, a Wilson loop on a finite complex, a beta0-style finite control, and an explicit... | none in this checkout | - |
-| [TFQ-0012](../nodes/TFQ-0012.md) | `OPEN` | E1 | quaternion_gauge_shadow.rs presents Q8 as eight matrices over Q(i), embedded by omega_lie_theory::su2_matrix, and treats that finite subg... | [finite_group.rs](../../../code/rust/src/lie_theory/finite_group.rs) | - |
+| [TFQ-0012](../nodes/TFQ-0012.md) | `OPEN` | E3 | quaternion_gauge_shadow.rs presents Q8 as eight matrices over Q(i), embedded by omega_lie_theory::su2_matrix, and treats that finite subg... | [CampaignTfq0012FiniteQcd.lean](../../../lean4/CampaignTfq0012FiniteQcd.lean): `f001_s000_carrier_coordination_not_color_connection_fence`, `group_like_coproduct_vs_hopf_linearity_fence`, `q8_group_associativity_unit_and_inverses` +7<br>[finite_group.rs](../../../code/rust/src/lie_theory/finite_group.rs)<br>[tfq-0012.py](../../../checks/independent/tfq-0012.py) | receipt_names_uncited_module |
 | [TFQ-0013](../nodes/TFQ-0013.md) | `COMPUTATIONALLY_CHECKED` | E1 | finite_group.rs builds a FiniteGroup from a full multiplication table or from an associative operation, then checks closure, a two-sided... | [finite_group.rs](../../../code/rust/src/lie_theory/finite_group.rs) | computational_no_runnable_test |
 | [TFQ-0014](../nodes/TFQ-0014.md) | `OPEN` | E1 | finite_groupoid_algebra.rs linearizes a ValidatedFiniteGroupoid as convolution over Q(i). The module states that the associated complex C... | [finite_groupoid_algebra.rs](../../../code/rust/src/lie_theory/finite_groupoid_algebra.rs) | - |
 | [TFQ-0015](../nodes/TFQ-0015.md) | `COMPUTATIONALLY_CHECKED` | E0 | hierarchical_nonabelian_dfm_finite_map.md, QM-213, separates an artificial Borel connection from a substantial one on a 4-vertex puncture... | none in this checkout | computational_no_runnable_test |
