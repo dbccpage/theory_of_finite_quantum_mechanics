@@ -8764,7 +8764,7 @@ In M_4(Q(i)), S_F^{-1}(p+q) - S_F^{-1}(p) = qslash, hence S_F(p+q) qslash S_F(p)
 
 Obligation: The identity is checked by exact arithmetic only at p = (5,1,2,-1), q = (2,-1,1,3), m = 2 together with the Clifford relations of the Dirac basis; no Lean witness.
 
-### TFQ-1114 Z_1 = Z_2 counterterm equality under BPHZ subtraction
+### TFQ-1114 One rational vertex contraction, not a counterterm ratio
 
 - UUID: `38f92631-3026-5aba-9ed1-36218a11b18a`
 - Parent: `TFQ-1113`
@@ -8772,9 +8772,9 @@ Obligation: The identity is checked by exact arithmetic only at p = (5,1,2,-1), 
 - DAG node: `DFM-Z1-Z2-COUNTERTERM-FENCE`
 - Paper: [derivation](derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md)
 
-The contraction q_mu I_Lambda^mu = I_Sigma(p) - I_Sigma(p+q) of the one-loop vertex integrand and the resulting counterterm equality Z_1/Z_2 = 1 are not computed by the cited replay.
+For every integer momentum pair and every integer mass, (slash(p+q) - m I) - (slash(p) - m I) = slash(q), where slash(v) = v0 g0 - v1 g1 - v2 g2 - v3 g3 in the stated Dirac representation. At p = (2, 0, 0, 0), q = (1, 0, 0, 1), loop momentum 0 and mass 1, S(p) = (slash(p) + I)/3 and S(p+q) = (slash(p+q) + I)/7 satisfy S(p+q) slash(q) S(p) = S(p) - S(p+q), and the lowered contraction q_mu I_Lambda^mu equals I_Sigma(p) - I_Sigma(p+q). That matrix has diagonal entries 2/7, 2/7, 26/21, 26/21 and off-diagonal entries (0,2)=-2/7, (1,3)=2/7, (2,0)=2/7, (3,1)=-2/7, with indices starting at 0. The counterterm equality Z_1/Z_2 = 1 is not proved.
 
-Obligation: Check the integrand contraction in M_4(Q(i)) at stated loop momenta and keep Z_1 = Z_2 conditional on a declared gauge-invariant subtraction scheme.
+Obligation: The recorded check is this inverse-propagator identity and one rational loop momentum. A gauge-invariant BPHZ subtraction scheme and continuum loop integration stay imported, so Z_1/Z_2 remains conditional.
 
 ### TFQ-1115 Page-Wootters history shift and clock-dressing unitary
 

@@ -1040,6 +1040,10 @@ lean_lib CampaignDfmReggeGravityFence where
 lean_lib CampaignDfmRelationalTimeFence where
   roots := #[`CampaignDfmRelationalTimeFence]
 
+-- Campaign: DFM-Z1-Z2-COUNTERTERM-FENCE. Not a default target.
+lean_lib CampaignDfmZ1Z2CountertermFence where
+  roots := #[`CampaignDfmZ1Z2CountertermFence]
+
 -- Campaign: PGW-SN-E08-WEIGHTED-L1-DUALITY. Not a default target.
 lean_lib CampaignSnE08WeightedL1Duality where
   roots := #[`CampaignSnE08WeightedL1Duality]
