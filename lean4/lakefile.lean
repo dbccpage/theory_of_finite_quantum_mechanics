@@ -1040,6 +1040,10 @@ lean_lib CampaignDfmReggeGravityFence where
 lean_lib CampaignDfmRelationalTimeFence where
   roots := #[`CampaignDfmRelationalTimeFence]
 
+-- Campaign: DFM-Z1-Z2-COUNTERTERM-FENCE. Not a default target.
+lean_lib CampaignDfmZ1Z2CountertermFence where
+  roots := #[`CampaignDfmZ1Z2CountertermFence]
+
 -- Campaign: PGW-SN-E08-WEIGHTED-L1-DUALITY. Not a default target.
 lean_lib CampaignSnE08WeightedL1Duality where
   roots := #[`CampaignSnE08WeightedL1Duality]
@@ -1067,6 +1071,26 @@ lean_lib CampaignAdsCftDualityImport where
 -- Campaign: ADS-HAPPY-TOY-NOT-DUALITY-GAP. Not a default target.
 lean_lib CampaignAdsHappyToyNotDualityGap where
   roots := #[`CampaignAdsHappyToyNotDualityGap]
+
+-- Campaign: FSP-IMAGINARY-MU-REAL-DET. Non-default.
+lean_lib CampaignFspImaginaryMuRealDet where
+  roots := #[`CampaignFspImaginaryMuRealDet]
+
+-- Campaign: TFQ-0008. Not a default target.
+lean_lib CampaignTfq0008FiniteDynamics where
+  roots := #[`CampaignTfq0008FiniteDynamics]
+
+-- Campaign: CQFT-LOCAL-NET-AXIOMS-IMPORT. Not a default target.
+lean_lib CampaignCqftLocalNetAxiomsImport where
+  roots := #[`CampaignCqftLocalNetAxiomsImport]
+
+-- Campaign: LQG-EPRL-VERTEX-IMPORT. Not a default target.
+lean_lib CampaignLqgEprlVertexImport where
+  roots := #[`CampaignLqgEprlVertexImport]
+
+-- Campaign: LQG-CONTINUUM-LIMIT-GAP. Not a default target.
+lean_lib CampaignLqgContinuumLimitGap where
+  roots := #[`CampaignLqgContinuumLimitGap]
 
 -- Campaign: ADS-RT-FORMULA-IMPORT. Not a default target.
 lean_lib CampaignAdsRtFormulaImport where

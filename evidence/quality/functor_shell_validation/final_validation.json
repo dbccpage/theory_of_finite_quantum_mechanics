@@ -1,0 +1,94 @@
+{
+  "AuthorityEffect": "None",
+  "base": "8b387b47e2b6c1919b70b83683593a4aa85ca456",
+  "source": "code/rust/src/category_theory/functor/functor.rs",
+  "source_sha256": "c9649c73f18389af7188f0ca413e65dfe8a5a78de8737ebac3a731ac065ca137",
+  "companion_sha256": "0e1a4f0b45415cf152b654fd7f1d96a87879605029ee0eab624d58e4438a2b26",
+  "steps": [
+    {
+      "argv": [
+        "C:\\Users\\a343o\\.codex\\worktrees\\functor-shell-validation\\theory_of_finite_quantum_mechanics\\.venv-review\\runtime\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 1,\n    \"valid_contracts_and_scores\": 1,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Rust\": 1\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 1\n    },\n    \"completed_scores\": 1,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 1\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since origin/main (merge base 8b387b47e2b6), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\.codex\\worktrees\\functor-shell-validation\\theory_of_finite_quantum_mechanics\\.venv-review\\runtime\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/contract_scores.py",
+        "check",
+        "--changed-since",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"originals\": null,\n  \"combined_files\": 1,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\.codex\\worktrees\\functor-shell-validation\\theory_of_finite_quantum_mechanics\\.venv-review\\runtime\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "origin/main",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "stdout": "overclaim_scan: scope=changes since origin/main (merge base 8b387b47e2b6); HIGH=0 MEDIUM=0 LOW=0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "rustfmt",
+        "--edition",
+        "2021",
+        "--check",
+        "code/rust/src/category_theory/functor/functor.rs"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "core.whitespace=cr-at-eol",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\a343o\\.codex\\worktrees\\functor-shell-validation\\theory_of_finite_quantum_mechanics\\.venv-review\\governance-target\\release\\governance-check.exe",
+        "--root",
+        ".",
+        "check",
+        "--changed-since",
+        "origin/main"
+      ],
+      "exit_code": 1,
+      "stdout": "changed since origin/main (8b387b47e2b6c1919b70b83683593a4aa85ca456): 10 paths\nchecked 1: 0 pass, 0 grandfathered, 0 boilerplate, 1 failed\nFAIL code/rust/src/category_theory/functor/functor.rs (grandfathering lost: bytes changed since the baseline)\n  code/rust/src/category_theory/functor/functor.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L2D\n",
+      "stderr": ""
+    }
+  ],
+  "remaining_failure": "Governance L4 floor rejects honest L2D shell. Automatic approval review rejected the proposed baseline exception; baseline and policy remain byte-identical.",
+  "protected_files_unchanged": true,
+  "historical_records_preserved": true
+}

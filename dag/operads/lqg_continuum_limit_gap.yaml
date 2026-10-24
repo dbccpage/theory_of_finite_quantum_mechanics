@@ -3,15 +3,29 @@ node_id: LQG-CONTINUUM-LIMIT-GAP
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: No source read for this change derives a continuum limit, a semiclassical limit or
-    a physical cosmological constant from the finite recoupling tables of the repository, or from the
-    exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records
-    the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit.
+  source_statement: 'On labels {0, 1, 2} the level-2 admissibility predicate (each label at most 2, the
+    three triangle inequalities, even sum, and sum at most 4) accepts exactly 10 ordered triples: (0,0,0),
+    (0,1,1), (0,2,2), (1,0,1), (1,1,0), (1,1,2), (1,2,1), (2,0,2), (2,1,1), (2,2,0). The witness (0,0,1)
+    is excluded. The same label set has 3^6 = 729 six-tuples and 3^9 = 19683 nine-tuples. In Q(sqrt 2)
+    the quantum dimensions d_0 = 1, d_1 = sqrt(2), d_2 = 1 satisfy d_1^2 - d_0 = d_2 and d_1 d_2 - d_1
+    = 0. The positive rationals 3, 729 and 19683 are pairwise distinct, and 1 is a positive rational distinct
+    from all three, so these finite counts do not select a unique positive rational scale. A continuum
+    limit, a semiclassical limit and a physical cosmological constant stay undischarged. The exact 6j
+    table, the area spectrum and the pentagon identity on all 19683 nine-tuples are not re-checked here.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Recorded as an explicit non-claim.
+  source_bottleneck: The census and the two dimension identities do not discharge a continuum limit, a
+    semiclassical limit, or a physical cosmological constant. No sequence of triangulations and no Einstein
+    equation is constructed. Routes FRO-R-LQG-CONTINUUM-LIMIT-GAP and FRO-R-BACK-LQG-LIMIT-TO-TFQ0105
+    stay GAP_NO_DERIVATION. The broader audit sentence, that no source read for this change derives a
+    limit, is not discharged in full.
   source_refs:
   - dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md
+  - lean4/CampaignLqgContinuumLimitGap.lean
+  - dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json
+  - dag/derivations/independent/lqg-continuum-limit-gap.md
+  - checks/independent/lqg-continuum-limit-gap.py
+  - code/rust/src/general_relativity/spin_foam.rs
   paper_refs:
   - dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md
   source_claim_label: OPEN
@@ -20,7 +34,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md
-    sha256: 53862a7748be87256135a06780a07a1dd8da151f846586638db33d166d935608
+    sha256: ba2bfe51bdbb44d34f6ef39583cc8d5d7a7ba9406979e9723db277c4b67a74b7
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -28,9 +42,133 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/loop_quantum_gravity_lqg_continuum_limit_gap_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: admissibleCount
+  line: 58
+  signature_excerpt: 'def admissibleCount : Nat'
+  source: lean4/CampaignLqgContinuumLimitGap.lean
+  repository: this_repository
+  source_sha256: a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: admissibleRoster
+  line: 55
+  signature_excerpt: 'def admissibleRoster : List (Nat × Nat × Nat)'
+  source: lean4/CampaignLqgContinuumLimitGap.lean
+  repository: this_repository
+  source_sha256: a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: admissible
+  line: 43
+  signature_excerpt: 'def admissible (a b c : Nat) : Bool'
+  source: lean4/CampaignLqgContinuumLimitGap.lean
+  repository: this_repository
+  source_sha256: a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: level2_admissible_count
+  line: 67
+  signature_excerpt: |-
+    theorem level2_admissible_count :
+        admissibleCount = 10 ∧
+          admissibleRoster =
+            [(0, 0, 0), (0, 1, 1), (0, 2, 2),
+             (1, 0, 1), (1, 1, 0), (1, 1, 2), (1, 2, 1),
+             (2, 0, 2), (2, 1, 1), (2, 2, 0)] ∧
+          admissible 0 0 1 = false
+  source: lean4/CampaignLqgContinuumLimitGap.lean
+  repository: this_repository
+  source_sha256: a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: level2_dimension_truncation
+  line: 60
+  signature_excerpt: |-
+    theorem level2_dimension_truncation :
+        Qsqrt2.sub (Qsqrt2.mul Qsqrt2.d1 Qsqrt2.d1) Qsqrt2.d0 = Qsqrt2.d2 ∧
+          Qsqrt2.sub (Qsqrt2.mul Qsqrt2.d1 Qsqrt2.d2) Qsqrt2.d1 = Qsqrt2.zero
+  source: lean4/CampaignLqgContinuumLimitGap.lean
+  repository: this_repository
+  source_sha256: a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: level2_counts_do_not_select_a_scale
+  line: 80
+  signature_excerpt: |-
+    theorem level2_counts_do_not_select_a_scale :
+        (3 : Rat) ≠ 729 ∧ (729 : Rat) ≠ 19683 ∧ (3 : Rat) ≠ 19683
+  source: lean4/CampaignLqgContinuumLimitGap.lean
+  repository: this_repository
+  source_sha256: a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: level2_free_positive_scale
+  line: 84
+  signature_excerpt: |-
+    theorem level2_free_positive_scale :
+        ∃ lam : Rat, 0 < lam ∧ lam ≠ 3 ∧ lam ≠ 729 ∧ lam ≠ 19683 ∧
+          (3 : Nat) ^ 6 = 729 ∧ (3 : Nat) ^ 9 = 19683
+  source: lean4/CampaignLqgContinuumLimitGap.lean
+  repository: this_repository
+  source_sha256: a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_admissible_count
+  availability: local
+  symbol: CampaignLqgContinuumLimitGap.level2_admissible_count
+  path: lean4/CampaignLqgContinuumLimitGap.lean
+  repository: this_repository
+  sha256: a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d
+  declaration_status: declaration_found_not_proof_checked
+  line: 67
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_tuple_census
+  availability: local
+  symbol: CampaignLqgContinuumLimitGap.level2_tuple_census
+  path: lean4/CampaignLqgContinuumLimitGap.lean
+  repository: this_repository
+  sha256: a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d
+  declaration_status: declaration_found_not_proof_checked
+  line: 76
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_dimension_truncation
+  availability: local
+  symbol: CampaignLqgContinuumLimitGap.level2_dimension_truncation
+  path: lean4/CampaignLqgContinuumLimitGap.lean
+  repository: this_repository
+  sha256: a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d
+  declaration_status: declaration_found_not_proof_checked
+  line: 60
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_counts_do_not_select_a_scale
+  availability: local
+  symbol: CampaignLqgContinuumLimitGap.level2_counts_do_not_select_a_scale
+  path: lean4/CampaignLqgContinuumLimitGap.lean
+  repository: this_repository
+  sha256: a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d
+  declaration_status: declaration_found_not_proof_checked
+  line: 80
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_free_positive_scale
+  availability: local
+  symbol: CampaignLqgContinuumLimitGap.level2_free_positive_scale
+  path: lean4/CampaignLqgContinuumLimitGap.lean
+  repository: this_repository
+  sha256: a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d
+  declaration_status: declaration_found_not_proof_checked
+  line: 84
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -68,10 +206,11 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
 - Bind independent certificate predicates and real checker anchors before P1.
-excluded_relation_leads: []
+excluded_relation_leads:
+- source: lean4/CampaignLqgContinuumLimitGap.lean
+  name: level2_tuple_census
+  reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation
