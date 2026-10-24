@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-cdt-foliation-positivity.md`
 
 - file: [dag/derivations/independent/fsp-cdt-foliation-positivity.md](../../../dag/derivations/independent/fsp-cdt-foliation-positivity.md)
-- sha256 (`lf-normalised`): `7b2f4cd137b530ad2c9dab03adef3d042389220c9cfeec5a3cfa06c92f00efa3`
+- sha256 (`lf-normalised`): `122f6019a2f965d75f30adf96ecaade6e7b3b0da935bb9439b3984edd1a096df`
 - cited in: node.source
 - counts toward the grade: yes
 

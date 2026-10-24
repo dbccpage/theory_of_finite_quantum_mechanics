@@ -1,3 +1,5 @@
+Status: AI-drafted, awaiting human review.
+
 # Independent Derivation & Scope Audit: `FSP-CDT-FOLIATION-POSITIVITY` (`TFQ-1215` / `FSP-DERIV-051`)
 
 AuthorityEffect: None.
