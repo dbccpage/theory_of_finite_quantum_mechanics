@@ -1110,3 +1110,6 @@ lean_lib CampaignTfq0006L1ToL2 where
 
 lean_lib CampaignTfq0008FiniteQmDynamics where
   roots := #[`CampaignTfq0008FiniteQmDynamics]
+
+lean_lib CampaignTfq0009FiniteGauge where
+  roots := #[`CampaignTfq0009FiniteGauge]

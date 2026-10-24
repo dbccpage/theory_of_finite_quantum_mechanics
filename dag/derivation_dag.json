@@ -9530,11 +9530,19 @@
       "stage": "FINITE_GAUGE",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 00)",
-      "statement": "A finite gauge step is a cochain of group-valued or Hopf-valued data on a finite complex, together with holonomy around finite loops and a coboundary that plays the role of curvature. omega_holonomy is a zero-float discrete holonomy library and is a control, not this derivation. The three languages must share one finite complex, one coefficient object, and one holonomy identity. U(1) and a non-abelian color shadow fork after this node. Neither fork is continuum Yang-Mills theory.",
+      "statement": "A finite gauge step is a cochain of group-valued or Hopf-valued data on a finite complex, together with holonomy around finite loops and a coboundary that plays the role of curvature. omega_holonomy is a zero-float discrete holonomy library and is a control, not this derivation. The three languages must share one finite complex, one coefficient object, and one holonomy identity. U(1) and a non-abelian color shadow fork after this node. Neither fork is continuum Yang-Mills theory. Narrowed in Lean 4 and an independent Python verifier to four exact finite/algebraic components and non-equivalence fences: (1) shared finite square plaquette boundary exactness (d_1 o d_2 = 0) and adjacent plaquette shared-edge cancellation (chain_boundary_squared_zero_on_plaquette, shared_edge_cancellation_two_plaquettes); (2) abelian cochain connection, coboundary curvature exactness (d_1 o d_0 = 0), gauge invariance, and the discrete Bianchi identity (d_2 o d_1 = 0) on the 6-face, 12-edge 3-cube complex (abelian_cochain_coboundary_squared_zero, abelian_curvature_gauge_invariant, abelian_bianchi_identity_cube); (3) non-abelian 2x2 matrix link holonomy conjugation H(U^g) = g0 H(U) g0^-1, Wilson loop cyclic trace gauge invariance, and the abelian vs. non-abelian SL(2, Z) shear commutator fork (nonabelian_holonomy_conjugation_identity, nonabelian_wilson_loop_trace_gauge_invariant, abelian_vs_nonabelian_fork_commutator_witness); and (4) the no-continuum-Yang-Mills fence separating finite N^E cochain cardinality and metric-free combinatorial curvature from metric-weighted Yang-Mills actions (finite_cochain_cardinality_and_quotient_bound, combinatorial_coboundary_metric_free_vs_yang_mills_action_fence).",
       "source": [
-        "dag/derivations/14_finite_gauge/tfq_0009_finite_gauge_cochain.md"
+        "dag/derivations/14_finite_gauge/tfq_0009_finite_gauge_cochain.md",
+        "dag/derivations/independent/tfq-0009.md",
+        "checks/independent/tfq-0009.py",
+        "lean4/CampaignTfq0009FiniteGauge.lean",
+        "dag/research/campaign_tfq-0009_lean_replay.json",
+        "dag/research/campaign_tfq-0009_lean_mutation.json",
+        "dag/research/campaign_tfq-0009_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0009FiniteGauge.lean"
+      ],
       "rust": [],
       "imported_structure": [],
       "bottleneck": "Define connection, holonomy, and curvature on a finite complex before any continuum gauge theory.",
@@ -26564,9 +26572,6 @@
       "see_also": [
         "FQ-GAP-STONE-CONTINUOUS-TIME",
         "FQ-GAP-CONTINUUM-HILBERT-LIFT"
-      ],
-      "python": [
-        "checks/independent/cqft-reeh-schlieder-theorem-import.py"
       ]
     },
     {
@@ -26668,9 +26673,6 @@
       ],
       "see_also": [
         "CQFT-FINITE-STRICT-POSET-SPACELIKE"
-      ],
-      "python": [
-        "checks/independent/cqft-causal-factorization-import.py"
       ]
     },
     {
@@ -27174,9 +27176,6 @@
       "see_also": [
         "TFQ-0084",
         "TFQ-0100"
-      ],
-      "python": [
-        "checks/independent/ads-regge-area-rt-gap.py"
       ]
     },
     {
@@ -41181,19 +41180,31 @@
       "existing_derivation_dag_ids": [
         "TFQ-0009"
       ],
-      "f004_refs": [],
+      "f004_refs": [
+        "dag/derivations/14_finite_gauge/tfq_0009_finite_gauge_cochain.md",
+        "dag/derivations/independent/tfq-0009.md",
+        "checks/independent/tfq-0009.py",
+        "lean4/CampaignTfq0009FiniteGauge.lean",
+        "dag/research/campaign_tfq-0009_lean_replay.json",
+        "dag/research/campaign_tfq-0009_lean_mutation.json",
+        "dag/research/campaign_tfq-0009_independent.json"
+      ],
       "id": "TFQ-0009",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignTfq0009FiniteGauge.lean"
+      ],
       "local_id": "FINITE_GAUGE",
       "name": "Finite gauge cochain",
       "obligation": "Define connection, holonomy, and curvature on a finite complex before any continuum gauge theory.",
       "parent_id": "TFQ-0008",
-      "python": [],
+      "python": [
+        "checks/independent/tfq-0009.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "00",
       "stage": "FINITE_GAUGE",
-      "summary": "A finite gauge step is a cochain of group-valued or Hopf-valued data on a finite complex, together with holonomy around finite loops and a coboundary that plays the role of curvature. omega_holonomy is a zero-float discrete holonomy library and is a control, not this derivation. The three languages must share one finite complex, one coefficient object, and one holonomy identity. U(1) and a non-abelian color shadow fork after this node. Neither fork is continuum Yang-Mills theory.",
+      "summary": "A finite gauge step is a cochain of group-valued or Hopf-valued data on a finite complex, together with holonomy around finite loops and a coboundary that plays the role of curvature. omega_holonomy is a zero-float discrete holonomy library and is a control, not this derivation. The three languages must share one finite complex, one coefficient object, and one holonomy identity. U(1) and a non-abelian color shadow fork after this node. Neither fork is continuum Yang-Mills theory. Narrowed in Lean 4 and an independent Python verifier to four exact finite/algebraic components and non-equivalence fences: (1) shared finite square plaquette boundary exactness (d_1 o d_2 = 0) and adjacent plaquette shared-edge cancellation (chain_boundary_squared_zero_on_plaquette, shared_edge_cancellation_two_plaquettes); (2) abelian cochain connection, coboundary curvature exactness (d_1 o d_0 = 0), gauge invariance, and the discrete Bianchi identity (d_2 o d_1 = 0) on the 6-face, 12-edge 3-cube complex (abelian_cochain_coboundary_squared_zero, abelian_curvature_gauge_invariant, abelian_bianchi_identity_cube); (3) non-abelian 2x2 matrix link holonomy conjugation H(U^g) = g0 H(U) g0^-1, Wilson loop cyclic trace gauge invariance, and the abelian vs. non-abelian SL(2, Z) shear commutator fork (nonabelian_holonomy_conjugation_identity, nonabelian_wilson_loop_trace_gauge_invariant, abelian_vs_nonabelian_fork_commutator_witness); and (4) the no-continuum-Yang-Mills fence separating finite N^E cochain cardinality and metric-free combinatorial curvature from metric-weighted Yang-Mills actions (finite_cochain_cardinality_and_quotient_bound, combinatorial_coboundary_metric_free_vs_yang_mills_action_fence).",
       "uuid": "f5035e38-3362-5fdc-8586-8d2caabbba12"
     },
     {
