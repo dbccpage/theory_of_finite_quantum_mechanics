@@ -8,10 +8,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Driver B, a lift that needs a new sealed Event kind, is retained as OPEN (AE-DRIVER-B-OPEN) and is successor research S3. The Alpha harness has exactly the six sealed Event kinds (Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll, Impose), and append_sealed_event refuses a seventh constructor (SeventhEventError), so no lift beyond the six kinds can be admitted through the slice.
+Narrowed boundary, status left OPEN. The sealed derivation Event has the six constructor names Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll, and Impose. That name list has length 6 and no duplicates. Every event's constructor name is in the list, each of the six names is the name of an event, and the name Seventh is outside the list. Every event's constructor name differs from Seventh.
 
 ### Governing Obligation
-Specify a lift that needs a seventh sealed Event kind, the seal amendment it requires and its replay law, or show that every lift in scope factors through the six kinds.
+Specify a lift that needs a seventh sealed Event kind, the seal amendment it requires and its replay law, or show that every lift in scope factors through the six kinds. A harness refusal stays a harness guard.
 
 ---
 
@@ -23,19 +23,25 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> Open; the refusal of a seventh constructor is a harness guard, not a theorem that six kinds suffice, and amending the seal is the author's act.
+> These facts are the six constructor names of the sealed derivation Event. They are not a harness refusal and not a theorem that six kinds suffice for every lift. Status stays OPEN.
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `missing obligation: no Lean statement about a seventh sealed Event kind`
+- [`lean4/CampaignPgwDriverBSeventhEvent.lean::pgwDrvB_kindName_mem`](../../../lean4/CampaignPgwDriverBSeventhEvent.lean)
+- [`lean4/CampaignPgwDriverBSeventhEvent.lean::pgwDrvB_kind_count`](../../../lean4/CampaignPgwDriverBSeventhEvent.lean)
+- [`lean4/CampaignPgwDriverBSeventhEvent.lean::pgwDrvB_kind_nodup`](../../../lean4/CampaignPgwDriverBSeventhEvent.lean)
+- [`lean4/CampaignPgwDriverBSeventhEvent.lean::pgwDrvB_names_realized`](../../../lean4/CampaignPgwDriverBSeventhEvent.lean)
+- [`lean4/CampaignPgwDriverBSeventhEvent.lean::pgwDrvB_no_seventh_name`](../../../lean4/CampaignPgwDriverBSeventhEvent.lean)
+- [`lean4/CampaignPgwDriverBSeventhEvent.lean::pgwDrvB_seventh_outside`](../../../lean4/CampaignPgwDriverBSeventhEvent.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/event.rs::Event`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/event.rs)
 
 ### Python Oracles & Numerical Evaluators
+- [`checks/independent/pgw-driver-b-seventh-event.py::main`](../../../checks/independent/pgw-driver-b-seventh-event.py)
 - [`github:dbccpage/19L57G1@85a83ae7c/research/alpha_engine/harness.py::append_sealed_event`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/harness.py)
 
 ---
@@ -52,3 +58,5 @@ In accordance with strict constructive principles:
   - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:70-71`
   - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:176`
   - `github:dbccpage/19L57G1@85a83ae7c/docs/ALPHA_HANDOFF.md:179-192`
+  - `dag/derivations/independent/pgw-driver-b-seventh-event.md:5`
+  - `dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json:6`

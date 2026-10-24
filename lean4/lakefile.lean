@@ -1207,3 +1207,7 @@ lean_lib CampaignTfq0199ImplementationSibling where
 
 lean_lib CampaignTfq0376Pregenesis where
   roots := #[`CampaignTfq0376Pregenesis]
+
+-- Campaign: PGW-DRIVER-B-SEVENTH-EVENT. Not a default target.
+lean_lib CampaignPgwDriverBSeventhEvent where
+  roots := #[`CampaignPgwDriverBSeventhEvent]

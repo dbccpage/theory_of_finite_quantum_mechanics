@@ -6467,14 +6467,41 @@
       "parent_id": "TFQ-0486",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "Driver B, a lift that needs a new sealed Event kind, is retained as OPEN (AE-DRIVER-B-OPEN) and is successor research S3. The Alpha harness has exactly the six sealed Event kinds (Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll, Impose), and append_sealed_event refuses a seventh constructor (SeventhEventError), so no lift beyond the six kinds can be admitted through the slice.",
-      "obligation": "Specify a lift that needs a seventh sealed Event kind, the seal amendment it requires and its replay law, or show that every lift in scope factors through the six kinds.",
+      "summary": "Narrowed boundary, status left OPEN. The sealed derivation Event has the six constructor names Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll, and Impose. That name list has length 6 and no duplicates. Every event's constructor name is in the list, each of the six names is the name of an event, and the name Seventh is outside the list. Every event's constructor name differs from Seventh.",
+      "obligation": "Specify a lift that needs a seventh sealed Event kind, the seal amendment it requires and its replay law, or show that every lift in scope factors through the six kinds. A harness refusal stays a harness guard.",
       "imports": [],
-      "fence": "Open; the refusal of a seventh constructor is a harness guard, not a theorem that six kinds suffice, and amending the seal is the author's act.",
+      "fence": "These facts are the six constructor names of the sealed derivation Event. They are not a harness refusal and not a theorem that six kinds suffice for every lift. Status stays OPEN.",
       "witnesses": {
         "lean": [
           {
-            "absent": "no Lean statement about a seventh sealed Event kind"
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "pgwDrvB_kind_count"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "pgwDrvB_kind_nodup"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "pgwDrvB_kindName_mem"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "pgwDrvB_names_realized"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "pgwDrvB_seventh_outside"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "pgwDrvB_no_seventh_name"
           }
         ],
         "rust": [
@@ -6489,6 +6516,11 @@
             "root": "github19l",
             "path": "research/alpha_engine/harness.py",
             "symbol": "append_sealed_event"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-driver-b-seventh-event.py",
+            "symbol": "main"
           }
         ]
       },
@@ -6510,6 +6542,16 @@
           "path": "docs/ALPHA_HANDOFF.md",
           "lines": "179-192",
           "quote": "`append_sealed_event` refuses a seventh constructor"
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-driver-b-seventh-event.md",
+          "lines": "5"
+        },
+        {
+          "root": "local",
+          "path": "dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json",
+          "lines": "6"
         }
       ],
       "coda_atlas_ids": [],

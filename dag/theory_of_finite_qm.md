@@ -2533,9 +2533,9 @@ Obligation: Compute the stream challenge at four items with targets searched aft
 - Parent: `TFQ-0486`
 - Status: `OPEN_OBLIGATION`
 
-Driver B, a lift that needs a new sealed Event kind, is retained as OPEN (AE-DRIVER-B-OPEN) and is successor research S3. The Alpha harness has exactly the six sealed Event kinds (Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll, Impose), and append_sealed_event refuses a seventh constructor (SeventhEventError), so no lift beyond the six kinds can be admitted through the slice.
+Narrowed boundary, status left OPEN. The sealed derivation Event has the six constructor names Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll, and Impose. That name list has length 6 and no duplicates. Every event's constructor name is in the list, each of the six names is the name of an event, and the name Seventh is outside the list. Every event's constructor name differs from Seventh.
 
-Obligation: Specify a lift that needs a seventh sealed Event kind, the seal amendment it requires and its replay law, or show that every lift in scope factors through the six kinds.
+Obligation: Specify a lift that needs a seventh sealed Event kind, the seal amendment it requires and its replay law, or show that every lift in scope factors through the six kinds. A harness refusal stays a harness guard.
 
 ### TFQ-0504 endogenous-demand-ob1
 
