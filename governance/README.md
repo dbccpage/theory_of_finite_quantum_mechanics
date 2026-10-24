@@ -25,7 +25,7 @@ remains L1D, and grade E or incomplete assessments still fail. The five-test
 `replica_hierarchy_validation.py` harness uses the existing regression-test
 exception at L2D. Substantive runtime and proof modules retain the L4D floor;
 neither exception adds a baseline entry. See the
-[repair assessment](../docs/evidence/governance-blocker-assessment.md).
+[repair assessment](../docs/overclaim/reviews/2026-10-23_governance-blocker-repair.md).
 
 **Pinned boilerplate.** The build hook [`hook/build.rs`](hook/build.rs) (two comment lines and a `main` that calls the macro) is copied byte for byte into every workspace package. Its SHA-256 is pinned in `policy.json`, and only identical copies are exempt from needing a companion. The code it calls is scored with the governance crate.
 
@@ -77,7 +77,7 @@ The JSON Schema of a companion, with the extra rules the checker enforces, is [`
 
 ## Running `governance-check`
 
-The `code/rust` workspace resolves only with a local `[patch]` for the optional external omega crates (`code/rust/.cargo/config.toml.example`). With that in place:
+The `code/rust` workspace resolves with a local `[patch]` for its native omega providers (`code/rust/.cargo/config.toml.example`). Run Cargo from `code/rust` so it discovers that configuration; see [the workspace instructions](../code/rust/README.md). With that in place:
 
 ```
 cd code/rust && cargo run -p governance --bin governance-check -- check

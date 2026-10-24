@@ -116,7 +116,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_ads-cft-duality-import_lean_replay.json`
 
 - file: [dag/research/campaign_ads-cft-duality-import_lean_replay.json](../../../dag/research/campaign_ads-cft-duality-import_lean_replay.json)
-- sha256 (`lf-normalised`): `c8a0a148be6249f82f663bc1973d72f7184f39d0d9091f125d60530ed360af95`
+- sha256 (`lf-normalised`): `3157ebe67622099618fc61ab436b7823b556de12534642d80e9446d76f8b6415`
 - cited in: node.source
 - counts toward the grade: yes
 

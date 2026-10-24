@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 13. Grades: E0 8, E1 1, E3 4. Statuses: PROVED_LEAN 3, IMPORTED_ASSUMPTION 2, SOURCE_RECORD 6, OPEN 2.
+Nodes: 13. Grades: E0 7, E1 1, E3 5. Statuses: PROVED_LEAN 3, IMPORTED_ASSUMPTION 2, SOURCE_RECORD 6, OPEN 2.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -18,5 +18,5 @@ Nodes: 13. Grades: E0 8, E1 1, E3 4. Statuses: PROVED_LEAN 3, IMPORTED_ASSUMPTIO
 | [ADS-HAPPY-ENTROPY-MINCUT-TARGET](../nodes/ADS-HAPPY-ENTROPY-MINCUT-TARGET.md) | `PROVED_LEAN` | E3 | Finite statement, checked in Lean 4 for a hand-encoded model. Contract six copies of the six-leg perfect tensor on the {5,4} pentagon til... | [FrontierHappyMincut.lean](../../../lean4/FrontierHappyMincut.lean): `boundary_stabilizer_commutes_and_full_rank_20`, `happy_patch_380_intervals_entropy_vs_mincut`<br>[frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json) | - |
 | [ADS-LOGICAL-RECONSTRUCTION-TARGET](../nodes/ADS-LOGICAL-RECONSTRUCTION-TARGET.md) | `PROVED_LEAN` | E3 | Formalized finite statement. For the \[\[5,1,3\]\] code, each of the ten 3-qubit subsets T of physical qubits supports a representative of ea... | [FrontierLogicalReconstruction.lean](../../../lean4/FrontierLogicalReconstruction.lean): `every_triple_reconstructs_all_three_logical_classes`, `no_pair_supports_any_nontrivial_logical_class`, `two_qubit_erasure_detectable_all_105`<br>[H036ThreeQubitCodeSyndromeRecovery.lean](../../../lean4/H036ThreeQubitCodeSyndromeRecovery.lean)<br>[frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json) | - |
 | [ADS-REGGE-AREA-RT-GAP](../nodes/ADS-REGGE-AREA-RT-GAP.md) | `OPEN` | E0 | Open question: whether the exact rational Regge proxy of TFQ-0100 (squared hinge areas weighted by a holonomy defect, which is not the Ei... | none in this checkout | - |
-| [ADS-HAPPY-TOY-NOT-DUALITY-GAP](../nodes/ADS-HAPPY-TOY-NOT-DUALITY-GAP.md) | `OPEN` | E0 | No source read for this change derives AdS/CFT, or its entropy formula, from a finite stabilizer-code tensor network. The HaPPY codes are... | none in this checkout | - |
+| [ADS-HAPPY-TOY-NOT-DUALITY-GAP](../nodes/ADS-HAPPY-TOY-NOT-DUALITY-GAP.md) | `OPEN` | E3 | No source read for this change derives AdS/CFT, or its continuum entropy formula, from a finite stabilizer-code tensor network. The HaPPY... | [CampaignAdsHappyToyNotDualityGap.lean](../../../lean4/CampaignAdsHappyToyNotDualityGap.lean): `cftRenyiFactor_one`, `cftRenyiFactor_strict_anti`, `cftRenyiFactor_sub_half` +12<br>[ads-happy-toy-not-duality-gap.py](../../../checks/independent/ads-happy-toy-not-duality-gap.py)<br>[ads-happy-toy-not-duality-gap.md](../../../dag/derivations/independent/ads-happy-toy-not-duality-gap.md)<br>[campaign_ads-happy-toy-not-duality-gap_independent.json](../../../dag/research/campaign_ads-happy-toy-not-duality-gap_independent.json)<br>+2 more file(s) | - |
 
