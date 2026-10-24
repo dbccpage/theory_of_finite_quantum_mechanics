@@ -1,0 +1,157 @@
+{
+  "number": 293,
+  "original_head": "792fdf2d66015416c3b3b7e5e0282bf3c044b526",
+  "level": "L2",
+  "meaning": "The Fin 5 norm table and product examples are exhaustive for that carrier. They do not select a coefficient field or derive a general finite-field circle formula.",
+  "baseline": {
+    "number": 293,
+    "head": "792fdf2d66015416c3b3b7e5e0282bf3c044b526",
+    "source": "lean4/CampaignL1U1SelectorFiniteField.lean",
+    "sha256": "c6923e5a0caf8b78f30dd401f71c13cdb1c9001a75c7a7d30096e3b3965ecbf3",
+    "checks": {
+      "independent": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "checks/independent/l1-u1-selector-other-segment.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.18,
+        "output": "checked 18 claims, failures 0\r\n"
+      },
+      "governance": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\governance\\target\\debug\\governance-check.exe",
+          "--root",
+          "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 5.0,
+        "output": "changed since origin/main (85cc76d0df01bcd7433a626ba75c38ccc19dd2d7): 15 paths\nchecked 2: 0 pass, 0 grandfathered, 0 boilerplate, 2 failed\nFAIL lean4/CampaignL1U1SelectorFiniteField.lean (new or not grandfathered)\n  lean4/CampaignL1U1SelectorFiniteField.lean: [MISSING_COMPANION] expected companion lean4/CampaignL1U1SelectorFiniteField.contract.score.yaml, found none\nFAIL lean4/lakefile.lean (grandfathering lost: bytes changed since the baseline)\n  lean4/lakefile.contract.score.yaml: [BINDING] contract.artifact.sha256: expected d3216e30cbddfb047f1be8d4bd05107a129b5dd762e479eb9a4389e7dce2942f, found eb914017ac92a5296d9d4f86d2a0768e7893d428f6a708737179381a20ea8800\n  lean4/lakefile.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L1D\n"
+      },
+      "scope": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/score_scope_contracts.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 7.02,
+        "output": "{\r\n  \"audit\": null,\r\n  \"passed\": false,\r\n  \"summary\": {\r\n    \"sources\": 2,\r\n    \"valid_contracts_and_scores\": 0,\r\n    \"invalid_or_missing\": 2,\r\n    \"invalid_but_grandfathered\": 0,\r\n    \"blocking_errors\": 2,\r\n    \"by_language\": {\r\n      \"Lean 4\": 2\r\n    },\r\n    \"by_preliminary_profile\": {},\r\n    \"completed_scores\": 0,\r\n    \"pinned_boilerplate\": 0,\r\n    \"incomplete_scores\": 2,\r\n    \"generated_governance_twins\": 0,\r\n    \"non_twin_sources\": 2\r\n  },\r\n  \"errors\": [\r\n    {\r\n      \"path\": \"lean4/CampaignL1U1SelectorFiniteField.lean\",\r\n      \"error\": \"missing companion\"\r\n    },\r\n    {\r\n      \"path\": \"lean4/lakefile.lean\",\r\n      \"error\": \"current contract does not bind current source bytes\"\r\n    }\r\n  ],\r\n  \"scope\": \"in-scope sources changed since origin/main (merge base 85cc76d0df01), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\r\n}\r\n"
+      },
+      "history": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/contract_scores.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 5.39,
+        "output": "{\r\n  \"originals\": null,\r\n  \"combined_files\": 1,\r\n  \"all_passed\": false,\r\n  \"errors\": [\r\n    {\r\n      \"path\": \"lean4/CampaignL1U1SelectorFiniteField.lean\",\r\n      \"error\": \"missing companion\"\r\n    }\r\n  ],\r\n  \"scope\": \"changed files only; the rest of the tree was not read\"\r\n}\r\n"
+      },
+      "overclaim": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/overclaim_scan.py",
+          "--changed-since",
+          "origin/main",
+          "--strict"
+        ],
+        "exit_code": 0,
+        "seconds": 13.41,
+        "output": "overclaim_scan: scope=changes since origin/main (merge base 85cc76d0df01); HIGH=0 MEDIUM=0 LOW=3\r\n"
+      },
+      "dag": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "dag/validate_derivation_dag.py",
+          "--no-files"
+        ],
+        "exit_code": 1,
+        "seconds": 1.28,
+        "output": "FAIL node CQFT-REEH-SCHLIEDER-THEOREM-IMPORT: unknown keys ['python']\r\nFAIL node CQFT-CAUSAL-FACTORIZATION-IMPORT: unknown keys ['python']\r\nFAIL node ADS-REGGE-AREA-RT-GAP: unknown keys ['python']\r\nnodes=925 routes=934 records=977 failures=3\r\n"
+      },
+      "lean": {
+        "command": [
+          "lake",
+          "build",
+          "CampaignL1U1SelectorFiniteField"
+        ],
+        "exit_code": 0,
+        "seconds": 9.28,
+        "output": "ℹ [2/3] Built CampaignL1U1SelectorFiniteField (1.2s)\ninfo: CampaignL1U1SelectorFiniteField.lean:60:0: 'circle_iff' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:61:0: 'circle_count' does not depend on any axioms\ninfo: CampaignL1U1SelectorFiniteField.lean:62:0: 'four_eq_pred_five' does not depend on any axioms\ninfo: CampaignL1U1SelectorFiniteField.lean:63:0: 'six_eq_succ_five' does not depend on any axioms\ninfo: CampaignL1U1SelectorFiniteField.lean:64:0: 'four_ne_six' does not depend on any axioms\ninfo: CampaignL1U1SelectorFiniteField.lean:65:0: 'four_plus_one_eq_zero' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:66:0: 'gen_square' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:67:0: 'gen_square_ne_one' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:68:0: 'gen_cube' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:69:0: 'gen_fourth' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:70:0: 'off_circle_one_one' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:71:0: 'one_one_norm' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:72:0: 'two_ne_one' does not depend on any axioms\ninfo: CampaignL1U1SelectorFiniteField.lean:73:0: 'isotropic_nonzero' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:74:0: 'isotropic_norm_zero' depends on axioms: [propext]\nBuild completed successfully (3 jobs).\n"
+      }
+    },
+    "source_unchanged": true
+  },
+  "checks": {
+    "independent": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/l1-u1-selector-other-segment.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.43,
+      "output": "checked 18 claims, failures 0\r\n"
+    },
+    "independent_optimized": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/l1-u1-selector-other-segment.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.1,
+      "output": "checked 18 claims, failures 0\r\n"
+    },
+    "lean": {
+      "command": [
+        "lake",
+        "build",
+        "CampaignL1U1SelectorFiniteField"
+      ],
+      "exit_code": 0,
+      "seconds": 9.28,
+      "output": "ℹ [2/3] Built CampaignL1U1SelectorFiniteField (1.2s)\ninfo: CampaignL1U1SelectorFiniteField.lean:60:0: 'circle_iff' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:61:0: 'circle_count' does not depend on any axioms\ninfo: CampaignL1U1SelectorFiniteField.lean:62:0: 'four_eq_pred_five' does not depend on any axioms\ninfo: CampaignL1U1SelectorFiniteField.lean:63:0: 'six_eq_succ_five' does not depend on any axioms\ninfo: CampaignL1U1SelectorFiniteField.lean:64:0: 'four_ne_six' does not depend on any axioms\ninfo: CampaignL1U1SelectorFiniteField.lean:65:0: 'four_plus_one_eq_zero' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:66:0: 'gen_square' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:67:0: 'gen_square_ne_one' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:68:0: 'gen_cube' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:69:0: 'gen_fourth' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:70:0: 'off_circle_one_one' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:71:0: 'one_one_norm' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:72:0: 'two_ne_one' does not depend on any axioms\ninfo: CampaignL1U1SelectorFiniteField.lean:73:0: 'isotropic_nonzero' depends on axioms: [propext]\ninfo: CampaignL1U1SelectorFiniteField.lean:74:0: 'isotropic_norm_zero' depends on axioms: [propext]\nBuild completed successfully (3 jobs).\n"
+    }
+  },
+  "merge_allowed": false,
+  "policy_before_sha256": "e95d3b68259d663dacd40cf7e1829887e03600c474212aba85cf421a337f662a",
+  "baseline_before_sha256": "0ad6a613e4051803ec423286b62a71b8439299c62ebd0cd4883fbe42210b65c7",
+  "source_sha256": "c6923e5a0caf8b78f30dd401f71c13cdb1c9001a75c7a7d30096e3b3965ecbf3",
+  "structure_observation": {
+    "source_lines": 74,
+    "theorem_count": 12,
+    "axiom_print_count": 15,
+    "explicit_heartbeat_count": "not measured; no high maintainability/performance grade claimed",
+    "dependency_acyclicity": "Kernel elaboration succeeded for this exact module",
+    "factoring": "Reviewed theorem signatures and helper definitions; scoped bounded-domain development"
+  }
+}
