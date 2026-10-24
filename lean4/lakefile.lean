@@ -1060,7 +1060,6 @@ lean_lib CampaignFspQcdChemicalPotentialDet where
 lean_lib CampaignFspLatticeWessZuminoSusy where
   roots := #[`CampaignFspLatticeWessZuminoSusy]
 
-
 -- Campaign: FSP-IMAGINARY-MU-REAL-DET. Non-default.
 lean_lib CampaignFspImaginaryMuRealDet where
   roots := #[`CampaignFspImaginaryMuRealDet]
