@@ -1,454 +1,107 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0008
 authority_effect: None
-collection_status: source_candidates_collected_semantic_mining_open
+collection_status: semantic_mining_and_lean4_verification_complete
 target:
-  source_statement: 'Narrowed finite case, status unchanged. On the directed path with integer edge weights
-    a on 0 to 1 and b on 1 to 2, the length-1 path sum from 0 to 2 is 0 and the length-2 path sum is a*b.
-    The unnormalized sector mask (w0, w1) maps to (0, w1): it is supported on the second coordinate, keeps
-    that coordinate, is idempotent, and sends (w0, 0) to (0, 0). For every integer t, the Cayley column
-    squared length (1 - t*t)^2 + (2*t)^2 equals (1 + t*t)^2, while the Euler column squared length 1 +
-    t*t equals 1 if and only if t = 0. At t = 1 the Cayley value is 4. At t = 2 the Euler squared length
-    is 5 and the inflation (1 + 2*2) - 1 is 4, and the Cayley value is 25. The integer matrix with rows
-    (2, 0) and (0, 3) has entrywise distance 1 from the matrix with rows (2, 0) and (0, 2); the latter
-    has both row sums 2, and the former has row sums 2 and 3, so distance 1 does not authorize an exact
-    scaled stochastic kernel. A general instrument, a general finite path sum, a unitary group, the passage
-    from stochastic kernels to completely positive maps, and every continuum generator stay unproved.'
-  statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: []
-  source_bottleneck: 'The finite path, sector mask, Cayley-versus-Euler integer shadow, and distance-1
-    stochastic countermodel are proved. Still open: a general instrument, a general path sum, an exact
-    channel or an explicit CPTP import, Rust and Python witnesses of those general maps, and separation
-    from a continuum generator beyond this integer shadow. A numerical tolerance does not discharge the
-    exact channel. AuthorityEffect remains None.'
+  source_statement: 'After the finite carrier, the required dynamics are finite: an instrument or
+    measurement update, a path sum on a finite graph, a unitary or Hamiltonian shadow on a finite matrix,
+    and a channel that is either exact or explicitly imported. The derivation note leaves the step from
+    stochastic kernels to completely positive maps as a gap. Python, Rust, and Lean 4 must each state the
+    finite map and the hypothesis it uses. A numerical CPTP check at a fixed tolerance is a diagnostic.
+    It does not authorize the exact channel. Narrowed in Lean 4 and an independent Python verifier to
+    three exact rational components and non-equivalence fences over Q: (1) finite projective measurement
+    instruments (outcome projections proj0, proj1 and projective dephasingChannel) trace additivity and
+    idempotence, plus 2-branch finite diamond graph path-sum destructive/constructive interference
+    (finite_instrument_trace_preservation_and_idempotence, diamond_path_sum_interference_identities);
+    (2) rational Cayley unitary norm conservation (1 - t^2)^2 + (2t)^2 = (1 + t^2)^2 vs. first-order
+    Euler generator norm inflation (1 + t^2) - 1 = t^2 > 0 (and 4 at t = 2), plus replay of the
+    FINITE_QM_DYNAMICS C_4 cochain syndromes; and (3) the stochastic-to-CP gap witness (2x2 matrix
+    transpose preserves trace, determinant, and diagonal stochastic states yet yields negative determinant
+    -1 and negative quadratic form -2 on the 2-qubit Bell partial transpose swap block), the numerical
+    CPTP tolerance false-green fences for trace drift 1 + eps / 2 and negative Choi eigenvalue -eps / 2,
+    and the exact rational 2-Kraus bit-flip channel trace identity.'
+  statement_status: narrowed_finite_counterpart_and_fences_verified_lean4
+  declared_assumptions:
+  - step from stochastic kernels to completely positive maps (open gap)
+  - continuum time-evolution generator (excluded)
+  source_bottleneck: 'Separate finite instruments, path sums, and channels from any continuum generator.'
   source_refs:
   - dag/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md
+  - dag/derivations/independent/tfq-0008.md
+  - checks/independent/tfq-0008.py
+  - lean4/CampaignTfq0008FiniteQmDynamics.lean
+  - dag/research/campaign_tfq-0008_lean_replay.json
+  - dag/research/campaign_tfq-0008_lean_mutation.json
+  - dag/research/campaign_tfq-0008_independent.json
   paper_refs:
   - dag/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md
-  source_claim_label: OPEN
+  source_claim_label: OPEN_OBLIGATION
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md
-    sha256: 8c5906174ed802ea3ebff0d8cee1f3760096430e557d6f0d873aedaf0c51c8b1
+    sha256: 5557175251242b3a060aac651fb7d6d2311a18f674df112dffed7d97de0f1486
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
   generator_version: 1
-  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  dag_source_commit: 1a5ae4872
   path: dag/prompts/finite_qm_dynamics_tfq_0008_open.yaml
-  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+  external_repository_commit: 1a5ae4872
 operation_candidates:
-- kind: def
-  name: sumLen1
-  line: 23
-  signature_excerpt: |-
-    def sumLen1 : List Edge → Int
-      | [] => 0
-      | e :: rest => addIf (e.src == 0 && e.dst == 2) (sumLen1 rest) e.w
-
-    def sumLen2From (e1 : Edge) : List Edge → Int
-      | [] => 0
-      | e2 :: rest =>
-          addIf (e1.src == 0 && e1.dst == e2.src && e2.dst == 2)
-            (sumLen2From e1 rest) (e1.w * e2.w)
-
-    def sumLen2 : List Edge → List Edge → Int
-      | [], _ => 0
-      | e1 :: rest, es => sumLen2From e1 es + sumLen2 rest es
-
-    def pathGraph (a b : Int) : List Edge
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: pathGraph
-  line: 37
-  signature_excerpt: 'def pathGraph (a b : Int) : List Edge'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-- kind: structure
-  name: Edge
-  line: 15
-  signature_excerpt: structure Edge
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: addIf
-  line: 20
-  signature_excerpt: 'def addIf (cond : Bool) (acc w : Int) : Int'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: sumLen2
-  line: 33
-  signature_excerpt: |-
-    def sumLen2 : List Edge → List Edge → Int
-      | [], _ => 0
-      | e1 :: rest, es => sumLen2From e1 es + sumLen2 rest es
-
-    def pathGraph (a b : Int) : List Edge
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: sumLen2From
-  line: 27
-  signature_excerpt: |-
-    def sumLen2From (e1 : Edge) : List Edge → Int
-      | [] => 0
-      | e2 :: rest =>
-          addIf (e1.src == 0 && e1.dst == e2.src && e2.dst == 2)
-            (sumLen2From e1 rest) (e1.w * e2.w)
-
-    def sumLen2 : List Edge → List Edge → Int
-      | [], _ => 0
-      | e1 :: rest, es => sumLen2From e1 es + sumLen2 rest es
-
-    def pathGraph (a b : Int) : List Edge
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: mask
-  line: 45
-  signature_excerpt: |-
-    def mask : Int → Int → Int × Int
-      | _w0, w1 => (0, w1)
-
-    theorem mask_support (w0 w1 : Int) : (mask w0 w1).1 = 0
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: cayleyColSq
-  line: 57
-  signature_excerpt: 'def cayleyColSq (t : Int) : Int'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: eulerColSq
-  line: 60
-  signature_excerpt: 'def eulerColSq (t : Int) : Int'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: entryDist
-  line: 103
-  signature_excerpt: 'def entryDist (A B : M2) : Nat'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: nearby
-  line: 109
-  signature_excerpt: 'def nearby : M2'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: scaledId
-  line: 107
-  signature_excerpt: 'def scaledId : M2'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: row0
-  line: 97
-  signature_excerpt: 'def row0 (M : M2) : Int'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: row1
-  line: 99
-  signature_excerpt: 'def row1 (M : M2) : Int'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-- kind: structure
-  name: M2
-  line: 91
-  signature_excerpt: structure M2
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: absDiff
-  line: 101
-  signature_excerpt: 'def absDiff (x y : Int) : Nat'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
+- mat2QTrace
+- mat2QDet
+- proj0
+- proj1
+- dephasingChannel
+- bitFlipConj
+- diamondPathAmplitude
+- eulerNormSq
+- mat2QTranspose
+- mat2QQuadForm
+- withinTolerance
 relation_candidates:
-- kind: theorem
-  name: path_len1_zero
-  line: 39
-  signature_excerpt: 'theorem path_len1_zero (a b : Int) : sumLen1 (pathGraph a b) = 0'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
-    proof.
-- kind: theorem
-  name: path_len2_product
-  line: 42
-  signature_excerpt: 'theorem path_len2_product (a b : Int) : sumLen2 (pathGraph a b) (pathGraph a b)
-    = a * b'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
-    proof.
-- kind: theorem
-  name: mask_support
-  line: 48
-  signature_excerpt: 'theorem mask_support (w0 w1 : Int) : (mask w0 w1).1 = 0'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
-    proof.
-- kind: theorem
-  name: mask_keeps_sector
-  line: 50
-  signature_excerpt: 'theorem mask_keeps_sector (w0 w1 : Int) : (mask w0 w1).2 = w1'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
-    proof.
-- kind: theorem
-  name: mask_idempotent
-  line: 52
-  signature_excerpt: |-
-    theorem mask_idempotent (w0 w1 : Int) :
-        mask (mask w0 w1).1 (mask w0 w1).2 = mask w0 w1
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
-    proof.
-- kind: theorem
-  name: mask_zero_mass
-  line: 55
-  signature_excerpt: 'theorem mask_zero_mass (w0 : Int) : mask w0 0 = (0, 0)'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
-    proof.
-- kind: theorem
-  name: cayley_norm
-  line: 62
-  signature_excerpt: |-
-    theorem cayley_norm (t : Int) :
-        cayleyColSq t = (1 + t * t) * (1 + t * t)
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
-    proof.
-- kind: theorem
-  name: euler_unit_iff
-  line: 67
-  signature_excerpt: 'theorem euler_unit_iff (t : Int) : eulerColSq t = 1 ↔ t = 0'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
-    proof.
-- kind: theorem
-  name: cayley_at_1
-  line: 79
-  signature_excerpt: 'theorem cayley_at_1 : cayleyColSq 1 = 4'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
-    proof.
-- kind: theorem
-  name: euler_inflation_at_2
-  line: 83
-  signature_excerpt: 'theorem euler_inflation_at_2 : eulerColSq 2 - 1 = 4 ∧ eulerColSq 2 = 5'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
-    proof.
-- kind: theorem
-  name: cayley_at_2
-  line: 87
-  signature_excerpt: 'theorem cayley_at_2 : cayleyColSq 2 = 25 ∧ (1 + 2 * 2) * (1 + 2 * 2) = 25'
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
-    proof.
-- kind: theorem
-  name: tolerance_not_exact
-  line: 111
-  signature_excerpt: |-
-    theorem tolerance_not_exact :
-        entryDist nearby scaledId = 1 ∧
-        row0 scaledId = 2 ∧ row1 scaledId = 2 ∧
-        row0 nearby = 2 ∧ row1 nearby = 3 ∧
-        row0 nearby ≠ row1 nearby
-  source: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  source_sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
-    proof.
+- finite_instrument_trace_preservation_and_idempotence
+- diamond_path_sum_interference_identities
+- cayley_unitary_norm_conservation_exact
+- euler_first_order_generator_norm_inflation_fence
+- fq_dynamics_cochain_syndromes_and_shadow_replay
+- transpose_map_preserves_trace_det_and_diagonal_states
+- stochastic_to_cp_gap_partial_transpose_bell_witness
+- numerical_cptp_tolerance_false_green_trace_drift_fence
+- numerical_cptp_tolerance_false_green_negative_choi_eigenvalue_fence
+- exact_kraus_bit_flip_channel_trace_identity
 source_bindings:
-- original_ref: lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.path_len1_zero
-  availability: local
-  symbol: CampaignTfq0008FiniteDynamics.path_len1_zero
-  path: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  declaration_status: declaration_found_not_proof_checked
-  line: 39
-  role: source_lead_only
-- original_ref: lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.path_len2_product
-  availability: local
-  symbol: CampaignTfq0008FiniteDynamics.path_len2_product
-  path: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  declaration_status: declaration_found_not_proof_checked
-  line: 42
-  role: source_lead_only
-- original_ref: lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_support
-  availability: local
-  symbol: CampaignTfq0008FiniteDynamics.mask_support
-  path: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  declaration_status: declaration_found_not_proof_checked
-  line: 48
-  role: source_lead_only
-- original_ref: lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_keeps_sector
-  availability: local
-  symbol: CampaignTfq0008FiniteDynamics.mask_keeps_sector
-  path: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  declaration_status: declaration_found_not_proof_checked
-  line: 50
-  role: source_lead_only
-- original_ref: lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_idempotent
-  availability: local
-  symbol: CampaignTfq0008FiniteDynamics.mask_idempotent
-  path: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  declaration_status: declaration_found_not_proof_checked
-  line: 52
-  role: source_lead_only
-- original_ref: lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.mask_zero_mass
-  availability: local
-  symbol: CampaignTfq0008FiniteDynamics.mask_zero_mass
-  path: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  declaration_status: declaration_found_not_proof_checked
-  line: 55
-  role: source_lead_only
-- original_ref: lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_norm
-  availability: local
-  symbol: CampaignTfq0008FiniteDynamics.cayley_norm
-  path: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  declaration_status: declaration_found_not_proof_checked
-  line: 62
-  role: source_lead_only
-- original_ref: lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.euler_unit_iff
-  availability: local
-  symbol: CampaignTfq0008FiniteDynamics.euler_unit_iff
-  path: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  declaration_status: declaration_found_not_proof_checked
-  line: 67
-  role: source_lead_only
-- original_ref: lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_1
-  availability: local
-  symbol: CampaignTfq0008FiniteDynamics.cayley_at_1
-  path: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  declaration_status: declaration_found_not_proof_checked
-  line: 79
-  role: source_lead_only
-- original_ref: lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.euler_inflation_at_2
-  availability: local
-  symbol: CampaignTfq0008FiniteDynamics.euler_inflation_at_2
-  path: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  declaration_status: declaration_found_not_proof_checked
-  line: 83
-  role: source_lead_only
-- original_ref: lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_2
-  availability: local
-  symbol: CampaignTfq0008FiniteDynamics.cayley_at_2
-  path: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  declaration_status: declaration_found_not_proof_checked
-  line: 87
-  role: source_lead_only
-- original_ref: lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.tolerance_not_exact
-  availability: local
-  symbol: CampaignTfq0008FiniteDynamics.tolerance_not_exact
-  path: lean4/CampaignTfq0008FiniteDynamics.lean
-  repository: this_repository
-  sha256: 2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c
-  declaration_status: declaration_found_not_proof_checked
-  line: 111
-  role: source_lead_only
+- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.finite_instrument_trace_preservation_and_idempotence
+- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.diamond_path_sum_interference_identities
+- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.cayley_unitary_norm_conservation_exact
+- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.euler_first_order_generator_norm_inflation_fence
+- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.fq_dynamics_cochain_syndromes_and_shadow_replay
+- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.transpose_map_preserves_trace_det_and_diagonal_states
+- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.stochastic_to_cp_gap_partial_transpose_bell_witness
+- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.numerical_cptp_tolerance_false_green_trace_drift_fence
+- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.numerical_cptp_tolerance_false_green_negative_choi_eigenvalue_fence
+- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.exact_kraus_bit_flip_channel_trace_identity
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  colours:
+  - Mat2Q
+  - DiamondPathAmplitude
+  - ToleranceDiagnostic
+  generators:
+  - dephasingChannel
+  - diamondPathAmplitude
+  - eulerNormSq
+  - mat2QTranspose
+  - withinTolerance
+  relations:
+  - finite_instrument_trace_preservation_and_idempotence
+  - cayley_unitary_norm_conservation_exact
+  - stochastic_to_cp_gap_partial_transpose_bell_witness
+  compositions:
+  - finite_instrument_trace_preservation_and_idempotence
+  identities:
+  - exact_kraus_bit_flip_channel_trace_identity
   symmetric_actions: []
   coherence_obligations:
   - identity_operations
@@ -458,30 +111,54 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: []
-    source_pins: []
+    mining_status: VERIFIED
+    carrier: Mat2Q x Q
+    coefficient_ring: Q
+    assumptions:
+    - step from stochastic kernels to completely positive maps remains open
+    source_pins:
+    - lean4/CampaignTfq0008FiniteQmDynamics.lean
     public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: VERIFIED
+    operations:
+    - dephasingChannel
+    - bitFlipConj
+    - diamondPathAmplitude
+    - mat2QTranspose
+    composition_plan:
+    - finite_instrument_trace_preservation_and_idempotence
+    - exact_kraus_bit_flip_channel_trace_identity
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: VERIFIED
+    algebraic_relations:
+    - finite_instrument_trace_preservation_and_idempotence
+    - diamond_path_sum_interference_identities
+    - cayley_unitary_norm_conservation_exact
+    - exact_kraus_bit_flip_channel_trace_identity
+    rejection_predicates:
+    - euler_first_order_generator_norm_inflation_fence
+    - stochastic_to_cp_gap_partial_transpose_bell_witness
+    - numerical_cptp_tolerance_false_green_trace_drift_fence
+    - numerical_cptp_tolerance_false_green_negative_choi_eigenvalue_fence
+    negative_control_plan:
+    - 6 one-ingredient Lean 4 semantic mutations killed in dag/research/campaign_tfq-0008_lean_mutation.json
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: []
-stage_history: []
+    mining_status: VERIFIED
+    certificate_predicates:
+    - cayley_unitary_norm_conservation_exact
+    - stochastic_to_cp_gap_partial_transpose_bell_witness
+    - numerical_cptp_tolerance_false_green_trace_drift_fence
+    anchors:
+    - lean4/CampaignTfq0008FiniteQmDynamics.lean
+    - checks/independent/tfq-0008.py
+    - dag/derivations/independent/tfq-0008.md
+    unpaid_imports:
+    - step from stochastic kernels to completely positive maps (open gap)
+stage_history:
+- stage: campaign_derivation
+  timestamp: '2026-10-24T14:21:00Z'
+  outcome: Narrowed
 open_obligations:
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+- Step from stochastic kernels to completely positive maps remains an explicit gap; continuum generators are excluded.
 excluded_relation_leads: []

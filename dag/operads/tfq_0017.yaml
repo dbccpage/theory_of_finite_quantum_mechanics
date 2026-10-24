@@ -1,53 +1,105 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0017
 authority_effect: None
-collection_status: source_candidates_collected_semantic_mining_open
+collection_status: semantic_mining_and_lean4_verification_complete
 target:
-  source_statement: quaternion_gauge_shadow.rs says each listed Q8 element lies in SU(2) by the special-unitary
-    check, and it says explicitly that Q8 is a finite subgroup of SU(2), not SU(2) itself. su2.rs holds
-    quaternions, the adjoint cover, spinor norms, and binary polyhedral groups. Those constructions give
-    a finite non-abelian shadow with a two-dimensional carrier. They do not provide the three diagonal
-    color labels used by the weighted Gell-Mann family. Promoting Q8 flux operators to a stand-in for
-    su(3)_c would skip the separate generator control. The obligation is to keep this SU(2) shadow on
-    the gauge side of the cut.
-  statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: []
-  source_bottleneck: Do not promote the SU(2) quaternion shadow to su(3)_c.
+  source_statement: 'quaternion_gauge_shadow.rs says each listed Q8 element lies in SU(2) by the
+    special-unitary check, and it says explicitly that Q8 is a finite subgroup of SU(2), not SU(2)
+    itself. su2.rs holds quaternions, the adjoint cover, spinor norms, and binary polyhedral groups.
+    Those constructions give a finite non-abelian shadow with a two-dimensional carrier. They do not
+    provide the three diagonal color labels used by the weighted Gell-Mann family. Promoting Q8 flux
+    operators to a stand-in for su(3)_c would skip the separate generator control. The obligation is to
+    keep this SU(2) shadow on the gauge side of the cut. Narrowed in Lean 4 and an independent Python
+    verifier to three exact rational components and non-promotion fences: (1) Euler four-square
+    quaternion spinor norm multiplicativity, Q8 proper subgroup of SU(2) witnessed by Pythagorean unit
+    quaternion (3/5, 4/5, 0, 0), and the 2-to-1 adjoint double cover SU(2) -> SO(3)
+    (quat_norm_multiplicative_four_square_identity, q8_proper_subgroup_of_su2_pythagorean_witness,
+    su2_adjoint_cover_two_to_one_kernel); (2) binary polyhedral subgroup orders (|Q8|=8, |2T|=24,
+    |2O|=48, |2I|=120) on a 2D carrier vs. 3-color Gell-Mann diagonal generators lambda3 = (1, -1, 0)
+    and tilde_lambda8 = (1, 1, -2) (binary_polyhedral_orders_and_2d_carrier,
+    su2_cartan_rank_one_vs_su3_gell_mann_cartan_rank_two_fence,
+    gell_mann_diagonal_orthogonality_and_three_color_separation); and (3) non-promotion fences showing
+    that no 2D su(2) Cartan scalar multiple matches (1, 1) in tilde_lambda8, that su(2) has vanishing
+    symmetric d_abc symbol whereas tilde_lambda8^2 = 2*I3 - tilde_lambda8 has non-zero d_888, that Q8
+    elements have finite order 4, and that tfq0017RepoLedger keeps the SU(2) shadow on the gauge side.'
+  statement_status: narrowed_finite_counterpart_and_fences_verified_lean4
+  declared_assumptions:
+  - su(3)_c three-color Gell-Mann generator control (separate from SU(2) quaternion shadow)
+  source_bottleneck: 'Do not promote the SU(2) quaternion shadow to su(3)_c.'
   source_refs:
   - dag/derivations/17_finite_qcd/tfq_0017_do_not_promote_the_su_2_quaternion_shadow_to_su_3_c.md
+  - dag/derivations/independent/tfq-0017.md
+  - checks/independent/tfq-0017.py
+  - lean4/CampaignTfq0017FiniteQcd.lean
+  - dag/research/campaign_tfq-0017_lean_replay.json
+  - dag/research/campaign_tfq-0017_lean_mutation.json
+  - dag/research/campaign_tfq-0017_independent.json
   paper_refs:
   - dag/derivations/17_finite_qcd/tfq_0017_do_not_promote_the_su_2_quaternion_shadow_to_su_3_c.md
-  source_claim_label: OPEN
+  source_claim_label: OPEN_OBLIGATION
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/17_finite_qcd/tfq_0017_do_not_promote_the_su_2_quaternion_shadow_to_su_3_c.md
-    sha256: 301736aa76b66f04359e531d480ebb6e5186915dcef1fcb6b8488c3452561433
+    sha256: 95c8eb059590a1493b0c91f376aca829f3cc127433e33c7e9d44c355e6bc9294
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
   generator_version: 1
-  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  dag_source_commit: ec02761ce
   path: dag/prompts/finite_qcd_tfq_0017_open.yaml
-  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+  external_repository_commit: ec02761ce
+operation_candidates:
+- quatMul
+- quatConj
+- quatNeg
+- quatNormSq
+- quatAdjoint
+- su2FiniteSubgroupOrder
+- diag3Trace
+- diag3Inner
+- diag3Sq
+relation_candidates:
+- quat_norm_multiplicative_four_square_identity
+- q8_proper_subgroup_of_su2_pythagorean_witness
+- su2_adjoint_cover_two_to_one_kernel
+- binary_polyhedral_orders_and_2d_carrier
+- su2_cartan_rank_one_vs_su3_gell_mann_cartan_rank_two_fence
+- gell_mann_diagonal_orthogonality_and_three_color_separation
+- su2_cartan_cannot_span_gell_mann_lambda8_fence
+- su2_zero_d_symbol_vs_su3_lambda8_square_fence
+- q8_finite_order_four_vs_continuous_lie_generator_fence
+- tfq0017_su2_shadow_kept_on_gauge_side_scope_ledger_fence
 source_bindings:
-- original_ref: code/rust/src/lie_theory/su2.rs
-  availability: local
-  symbol: null
-  path: code/rust/src/lie_theory/su2.rs
-  repository: this_repository
-  sha256: 2d2d83ee41ed0217af8cf6d72b48ba1c58d64250abba5009b0bc1b9b45f21dd0
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
+- lean4/CampaignTfq0017FiniteQcd.lean::CampaignTfq0017FiniteQcd.quat_norm_multiplicative_four_square_identity
+- lean4/CampaignTfq0017FiniteQcd.lean::CampaignTfq0017FiniteQcd.q8_proper_subgroup_of_su2_pythagorean_witness
+- lean4/CampaignTfq0017FiniteQcd.lean::CampaignTfq0017FiniteQcd.su2_adjoint_cover_two_to_one_kernel
+- lean4/CampaignTfq0017FiniteQcd.lean::CampaignTfq0017FiniteQcd.binary_polyhedral_orders_and_2d_carrier
+- lean4/CampaignTfq0017FiniteQcd.lean::CampaignTfq0017FiniteQcd.su2_cartan_rank_one_vs_su3_gell_mann_cartan_rank_two_fence
+- lean4/CampaignTfq0017FiniteQcd.lean::CampaignTfq0017FiniteQcd.gell_mann_diagonal_orthogonality_and_three_color_separation
+- lean4/CampaignTfq0017FiniteQcd.lean::CampaignTfq0017FiniteQcd.su2_cartan_cannot_span_gell_mann_lambda8_fence
+- lean4/CampaignTfq0017FiniteQcd.lean::CampaignTfq0017FiniteQcd.su2_zero_d_symbol_vs_su3_lambda8_square_fence
+- lean4/CampaignTfq0017FiniteQcd.lean::CampaignTfq0017FiniteQcd.q8_finite_order_four_vs_continuous_lie_generator_fence
+- lean4/CampaignTfq0017FiniteQcd.lean::CampaignTfq0017FiniteQcd.tfq0017_su2_shadow_kept_on_gauge_side_scope_ledger_fence
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  colours:
+  - QuatQ
+  - Diag3Q
+  - Tfq0017ScopeLedger
+  generators:
+  - quatMul
+  - quatNormSq
+  - quatAdjoint
+  - diag3Inner
+  relations:
+  - quat_norm_multiplicative_four_square_identity
+  - su2_adjoint_cover_two_to_one_kernel
+  - gell_mann_diagonal_orthogonality_and_three_color_separation
+  compositions:
+  - quat_norm_multiplicative_four_square_identity
+  identities:
+  - su2_adjoint_cover_two_to_one_kernel
   symmetric_actions: []
   coherence_obligations:
   - identity_operations
@@ -57,32 +109,56 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: []
-    source_pins: []
+    mining_status: VERIFIED
+    carrier: QuatQ x Diag3Q x Tfq0017ScopeLedger
+    coefficient_ring: Q
+    assumptions:
+    - su(3)_c three-color Gell-Mann generator control remains separate from the 2D SU(2) shadow
+    source_pins:
+    - lean4/CampaignTfq0017FiniteQcd.lean
     public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: VERIFIED
+    operations:
+    - quatMul
+    - quatNormSq
+    - quatAdjoint
+    - diag3Inner
+    - diag3Sq
+    composition_plan:
+    - quat_norm_multiplicative_four_square_identity
+    - su2_adjoint_cover_two_to_one_kernel
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: VERIFIED
+    algebraic_relations:
+    - quat_norm_multiplicative_four_square_identity
+    - su2_adjoint_cover_two_to_one_kernel
+    - binary_polyhedral_orders_and_2d_carrier
+    - gell_mann_diagonal_orthogonality_and_three_color_separation
+    rejection_predicates:
+    - q8_proper_subgroup_of_su2_pythagorean_witness
+    - su2_cartan_rank_one_vs_su3_gell_mann_cartan_rank_two_fence
+    - su2_cartan_cannot_span_gell_mann_lambda8_fence
+    - su2_zero_d_symbol_vs_su3_lambda8_square_fence
+    - tfq0017_su2_shadow_kept_on_gauge_side_scope_ledger_fence
+    negative_control_plan:
+    - 6 one-ingredient Lean 4 semantic mutations killed in dag/research/campaign_tfq-0017_lean_mutation.json
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: []
-stage_history: []
+    mining_status: VERIFIED
+    certificate_predicates:
+    - quat_norm_multiplicative_four_square_identity
+    - gell_mann_diagonal_orthogonality_and_three_color_separation
+    - tfq0017_su2_shadow_kept_on_gauge_side_scope_ledger_fence
+    anchors:
+    - lean4/CampaignTfq0017FiniteQcd.lean
+    - checks/independent/tfq-0017.py
+    - dag/derivations/independent/tfq-0017.md
+    unpaid_imports:
+    - su(3)_c three-color Gell-Mann generator control (separate from SU(2) quaternion shadow)
+stage_history:
+- stage: campaign_derivation
+  timestamp: '2026-10-24T15:05:00Z'
+  outcome: Narrowed
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+- Keep the 2D SU(2) quaternion and binary polyhedral shadow on the gauge side of the cut, separate from 3-color su(3)_c generator control.
 excluded_relation_leads: []

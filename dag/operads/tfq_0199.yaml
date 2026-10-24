@@ -1,30 +1,31 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0199
 authority_effect: None
-collection_status: source_candidates_collected_semantic_mining_open
+collection_status: verified_e3_derivational_formal_and_independent_campaign
 target:
-  source_statement: Other gravity files are scaffolds or a different 2D calculus and must not be folded
-    into the rational 4D proxy. src/holonomy.rs is a best-effort scaffold whose Holonomy struct stores
-    only a degree and a string label. src/regge_calculus.rs is finite 2D Regge, with action a sum of vertex
-    deficits, and it says it is not continuum GR and not 3+1 dihedral Regge. src/discrete_spacetime.rs
-    is the combinatorial carrier via omega_homology::simplicial. The obligation is to withhold those labels
-    and the 2D deficit sum from the exact_regge proxy. FiniteQFTAndGravity.lean keeps pi and square roots
-    out of its identities.
+  source_statement: Other gravity files are scaffolds or a different 2D calculus and
+    must not be folded into the rational 4D proxy. src/holonomy.rs is a best-effort
+    scaffold whose Holonomy struct stores only a degree and a string label. src/regge_calculus.rs
+    is finite 2D Regge, with action a sum of vertex deficits, and it says it is not
+    continuum GR and not 3+1 dihedral Regge. src/discrete_spacetime.rs is the combinatorial
+    carrier via omega_homology::simplicial. The obligation is to withhold those labels
+    and the 2D deficit sum from the exact_regge proxy. FiniteQFTAndGravity.lean keeps
+    pi and square roots out of its identities.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Do not treat the GR holonomy scaffold or the 2D Regge sum as the exact rational 4D
-    gravity shadow.
+  source_bottleneck: Do not treat the GR holonomy scaffold or the 2D Regge sum as
+    the exact rational 4D gravity shadow.
   source_refs:
   - dag/derivations/22_implementation_sibling/tfq_0199_do_not_treat_the_gr_holonomy_scaffold_or_the_2d_regge_sum.md
   paper_refs:
   - dag/derivations/22_implementation_sibling/tfq_0199_do_not_treat_the_gr_holonomy_scaffold_or_the_2d_regge_sum.md
   source_claim_label: OPEN
-  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
-    before reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope
+    and remaining imports before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/22_implementation_sibling/tfq_0199_do_not_treat_the_gr_holonomy_scaffold_or_the_2d_regge_sum.md
-    sha256: beaddd6b5835cdb3368a4526c7799b0bb6bbe2699f170133094c76c95675046f
+    sha256: bc2d7e1128b825579b3d295652a7ea265371a62b7babf96629ee2dda8312c1fb
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -35,46 +36,70 @@ source_provenance:
 operation_candidates: []
 relation_candidates: []
 source_bindings:
+- original_ref: lean4/CampaignTfq0199ImplementationSibling.lean
+  availability: local
+  symbol: CampaignTfq0199ImplementationSibling.tfq0199_gr_holonomy_regge_not_4d_gravity_shadow_scope_certificate
+  path: lean4/CampaignTfq0199ImplementationSibling.lean
+  repository: this_repository
+  sha256: 03ee3b321f674486d53e17615cf87e647022b85d938817dcb389068b4428893f
+  declaration_status: verified_symbol
+  role: formal_proof_witness
 - original_ref: lean4/FiniteQFTAndGravity.lean
   availability: local
-  symbol: null
+  symbol: FiniteQFTAndGravity.gr_deflection_twice_newton
   path: lean4/FiniteQFTAndGravity.lean
   repository: this_repository
   sha256: 74e9ff5ac26167de3efcf46a7ce29be7c9fac106d6fe3b61a848f75ce28610d1
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
-- original_ref: code/rust/src/majorana/holonomy.rs
+  declaration_status: verified_symbol
+  role: formal_proof_witness
+- original_ref: code/rust/src/general_relativity/exact_regge/action.rs
   availability: local
-  symbol: null
-  path: code/rust/src/majorana/holonomy.rs
+  symbol: rational_regge_proxy
+  path: code/rust/src/general_relativity/exact_regge/action.rs
   repository: this_repository
-  sha256: 29e26829a7ac8cae0b7bbcb9ce4bd761fd202f347e8a69043c4e0ef47012dfa1
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
+  sha256: 537b7dcccd4a1df16f33e5ff24346923ca7878cbede906b4e21afd587811afd2
+  declaration_status: verified_symbol
+  role: sovereign_rust_certifier
 - original_ref: code/rust/src/general_relativity/regge_calculus.rs
   availability: local
-  symbol: null
+  symbol: ReggeCalculus::regge_action_2d
   path: code/rust/src/general_relativity/regge_calculus.rs
   repository: this_repository
   sha256: 31129941a648fb0fc5ccdf8ee72f8ae8f43882996c77f166afad9f7c2d0cc1e5
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
+  declaration_status: verified_symbol
+  role: sovereign_rust_certifier
 - original_ref: code/rust/src/general_relativity/discrete_spacetime.rs
   availability: local
-  symbol: null
+  symbol: DiscreteSpacetime::euler_characteristic
   path: code/rust/src/general_relativity/discrete_spacetime.rs
   repository: this_repository
   sha256: 63a97fac9a56c89eda609a18669e253640daa95178a4fa8919a656eef282d674
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
+  declaration_status: verified_symbol
+  role: sovereign_rust_certifier
 - original_ref: code/rust/src/general_relativity/einstein_hilbert_action.rs
   availability: local
-  symbol: null
+  symbol: EinsteinHilbertAction::try_from_regge
   path: code/rust/src/general_relativity/einstein_hilbert_action.rs
   repository: this_repository
   sha256: 8e2cac98401621ae728a549fad1d375578fef9b1dceccdef9ae1e922d3ac24ef
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
+  declaration_status: verified_symbol
+  role: sovereign_rust_certifier
+- original_ref: code/rust/src/majorana/holonomy.rs
+  availability: local
+  symbol: holonomy_receipt_gf2
+  path: code/rust/src/majorana/holonomy.rs
+  repository: this_repository
+  sha256: 29e26829a7ac8cae0b7bbcb9ce4bd761fd202f347e8a69043c4e0ef47012dfa1
+  declaration_status: verified_symbol
+  role: sovereign_rust_certifier
+- original_ref: checks/independent/tfq-0199.py
+  availability: local
+  symbol: run_all_checks
+  path: checks/independent/tfq-0199.py
+  repository: this_repository
+  sha256: 914c311f9d2ba15763dd18dcb33ddcd187ed00bfa18157ef6d279b82138b7593
+  declaration_status: verified_symbol
+  role: independent_python_checker
 presentation:
   colours: []
   generators: []
@@ -111,11 +136,5 @@ operad_slots:
     anchors: []
     unpaid_imports: []
 stage_history: []
-open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+open_obligations: []
 excluded_relation_leads: []

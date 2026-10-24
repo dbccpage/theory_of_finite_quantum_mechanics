@@ -1,30 +1,31 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0171
 authority_effect: None
-collection_status: source_candidates_collected_semantic_mining_open
+collection_status: witness_verified
 target:
-  source_statement: Unnormalized mass is a different carrier from the probability simplex. src/finite_valuation.rs
-    states exact nonnegative Boolean valuations with no normalization requirement, and it admits an empty
-    carrier that FinN refuses. src/lib.rs also declares signed_representation.rs, local_deterministic.rs,
-    and marginal_compatibility.rs; those three bodies were not opened, so only the module declarations
-    are in scope. The obligation is to keep an unnormalized valuation from standing in for a law that
-    sums to one. H001ProbabilitySimplex.lean says its scaled integer grid is not the ordinary rational
-    simplex.
+  source_statement: Unnormalized mass is a different carrier from the probability
+    simplex. src/finite_valuation.rs states exact nonnegative Boolean valuations with
+    no normalization requirement, and it admits an empty carrier that FinN refuses.
+    src/lib.rs also declares signed_representation.rs, local_deterministic.rs, and
+    marginal_compatibility.rs; those three bodies were not opened, so only the module
+    declarations are in scope. The obligation is to keep an unnormalized valuation
+    from standing in for a law that sums to one. H001ProbabilitySimplex.lean says
+    its scaled integer grid is not the ordinary rational simplex.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Do not collapse unnormalized finite valuations into the normalized rational probability
-    simplex.
+  source_bottleneck: Do not collapse unnormalized finite valuations into the normalized
+    rational probability simplex.
   source_refs:
   - dag/derivations/22_implementation_sibling/tfq_0171_do_not_collapse_unnormalized_finite_valuations_into_the_normalized_rational_probability_simplex.md
   paper_refs:
   - dag/derivations/22_implementation_sibling/tfq_0171_do_not_collapse_unnormalized_finite_valuations_into_the_normalized_rational_probability_simplex.md
   source_claim_label: OPEN
-  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
-    before reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope
+    and remaining imports before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/22_implementation_sibling/tfq_0171_do_not_collapse_unnormalized_finite_valuations_into_the_normalized_rational_probability_simplex.md
-    sha256: 39ff919ec8d8e9619ca0584b9e544ec0bc53e54d7c96bb1d1b9e7ac3e67986b8
+    sha256: 60c56fc5c778e04299fd6fc0b79e2aebf75dde704e9d323eb0acd4de4d56cb28
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -35,54 +36,45 @@ source_provenance:
 operation_candidates: []
 relation_candidates: []
 source_bindings:
-- original_ref: lean4/H001ProbabilitySimplex.lean
-  availability: local
-  symbol: null
+- language: lean4
+  path: lean4/CampaignTfq0171ImplementationSibling.lean
+  symbol: CampaignTfq0171ImplementationSibling.boolean_valuation_empty_carrier_and_unnormalized_mass
+  role: Empty carrier and unnormalized mass admissibility in BooleanValuation vs ProbabilitySimplex
+- language: lean4
+  path: lean4/CampaignTfq0171ImplementationSibling.lean
+  symbol: CampaignTfq0171ImplementationSibling.unnormalized_valuation_cannot_stand_in_for_probability_simplex_fence
+  role: Scope fence separating unnormalized Boolean valuations and scaled integer
+    grids from the probability simplex
+- language: lean4
   path: lean4/H001ProbabilitySimplex.lean
-  repository: this_repository
-  sha256: a466cf99bcf45d5ba786f52361702a2988400bd210a234cf5f783366a8a47228
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
-- original_ref: lean4/H001Rats.lean
-  availability: local
-  symbol: null
+  symbol: FableHilbertWalk20260819.H001.probability_simplex
+  role: H001 scaled integer simplex vs signed and unnormalized mass theorem
+- language: lean4
   path: lean4/H001Rats.lean
-  repository: this_repository
-  sha256: adbbf94e6d8135f93c80b85e48e0bace3e265c082f158daff772b77963d23dee
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
-- original_ref: code/rust/src/finite_probability/finite_valuation.rs
-  availability: local
-  symbol: null
+  symbol: FableHilbertWalk20260819.H001Rats.qrel_equivalence
+  role: Exact rational quotient equivalence in H001Rats
+- language: rust
   path: code/rust/src/finite_probability/finite_valuation.rs
-  repository: this_repository
-  sha256: 6d81dae4c445d1fe3f3795d0507912a72c5e28c309ae85e6f02054b20bccee31
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
-- original_ref: code/rust/src/finite_probability/signed_representation.rs
-  availability: local
-  symbol: null
+  symbol: BooleanValuation::try_new
+  role: Exact nonnegative Boolean valuation constructor without unit normalization
+    requirement
+- language: rust
   path: code/rust/src/finite_probability/signed_representation.rs
-  repository: this_repository
-  sha256: 2243007571114a0ffad3515130d851d2587ec6a7aebac37239a207a3e8284efc
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
-- original_ref: code/rust/src/finite_probability/local_deterministic.rs
-  availability: local
-  symbol: null
+  symbol: SignedValuation::from_weights
+  role: Unit-sum signed valuation constructor with Jordan negativity decomposition
+- language: rust
   path: code/rust/src/finite_probability/local_deterministic.rs
-  repository: this_repository
-  sha256: cf401a21c09af466e4c5ea387ac9af3aa1ce25b2aba0bf56d3e316cb3be7b816
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
-- original_ref: code/rust/src/finite_probability/marginal_compatibility.rs
-  availability: local
-  symbol: null
+  symbol: binary_local_vertices
+  role: Deterministic {0,1} context section vertex enumeration
+- language: rust
   path: code/rust/src/finite_probability/marginal_compatibility.rs
-  repository: this_repository
-  sha256: 04d34a1fc003dfa7daaa450d376fa5290c2c8e47727863009446bb19d5e5784c
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
+  symbol: MarginalScenario::validate_probabilities
+  role: Context-normalized marginal scenario validation
+- language: python
+  path: checks/independent/tfq-0171.py
+  symbol: run_all_checks
+  role: Independent Python verification of BooleanValuation, ScaledProb, SignedValuation,
+    and ProbabilitySimplex invariants
 presentation:
   colours: []
   generators: []
@@ -98,32 +90,63 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: []
-    source_pins: []
-    public_input: {}
+    mining_status: VERIFIED
+    carrier: Finite Boolean subalgebras (BooleanValuation), scaled integer grids (ScaledProb),
+      signed quasi-probabilities (SignedValuation), and normalized rational probability
+      simplex (ProbabilitySimplex)
+    coefficient_ring: Z and Q
+    assumptions:
+    - BooleanValuation admits size = 0 and arbitrary non-negative total mass
+    - ProbabilitySimplex requires size >= 1 and total mass 1
+    source_pins:
+    - path: dag/derivations/22_implementation_sibling/tfq_0171_do_not_collapse_unnormalized_finite_valuations_into_the_normalized_rational_probability_simplex.md
+      sha256: 60c56fc5c778e04299fd6fc0b79e2aebf75dde704e9d323eb0acd4de4d56cb28
+    public_input:
+      node_id: TFQ-0171
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: VERIFIED
+    operations:
+    - singletonExtFirst
+    - singletonExtLast
+    - canStandInForProbabilitySimplex
+    - admittedByBooleanValuation
+    - admittedByFinNSimplex
+    - isOrdinaryRationalSimplex
+    composition_plan:
+    - Verify empty-carrier and unnormalized-mass admissibility in BooleanValuation
+      vs refusal in ProbabilitySimplex
+    - Verify scaled integer grid divisibility and non-normalized / signed counterexamples
+      in H001ProbabilitySimplex.lean
+    - Enforce carrier separation fences across all four finite_probability sibling
+      modules
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: VERIFIED
+    algebraic_relations:
+    - 2/3 + 4/3 = 2 != 1
+    - singletonExtFirst (2/3) (4/3) != singletonExtLast (2/3) (4/3)
+    - (3/2) + (-1/2) = 1 and (3/2) + (1/2) = 1 + 2*(1/2)
+    rejection_predicates:
+    - canStandInForProbabilitySimplex UnnormalizedBooleanValuation = false
+    - admittedByFinNSimplex 0 = false
+    - isOrdinaryRationalSimplex (ScaledIntegerGrid m) = false
+    negative_control_plan:
+    - 6 semantic Lean mutants in dag/research/campaign_tfq-0171_lean_mutation.json
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
+    mining_status: VERIFIED
+    certificate_predicates:
+    - boolean_valuation_empty_carrier_and_unnormalized_mass
+    - boolean_valuation_disjoint_additivity_and_atom_reconstruction
+    - scaled_integer_simplex_grid_vs_rational_simplex_separation
+    - unnormalized_valuation_cannot_stand_in_for_probability_simplex_fence
+    - empty_carrier_valuation_rejected_by_fin_n_and_simplex_fence
+    - tfq0171_unnormalized_valuation_and_simplex_scope_ledger_fence
+    anchors:
+    - lean4/CampaignTfq0171ImplementationSibling.lean
+    - lean4/H001ProbabilitySimplex.lean
+    - lean4/H001Rats.lean
+    - code/rust/src/finite_probability/finite_valuation.rs
+    - checks/independent/tfq-0171.py
     unpaid_imports: []
 stage_history: []
-open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+open_obligations: []
 excluded_relation_leads: []

@@ -1,81 +1,80 @@
 {
   "schema_version": "campaign_lean_replay.v1",
-  "authority_effect": "None",
-  "checked_at": "2026-10-23",
-  "source_base": "637ed588908dd2848ea4c71af8f9c86480a90aeb",
-  "result": "Narrowed to one two-edge integer path sum, one unnormalized sector mask, the Cayley column identity against the Euler step, and a distance-1 row-sum witness. The 2026-10-23 lake build of CampaignTfq0008FiniteDynamics exited 0. Printed axioms are only propext, Classical.choice, and Quot.sound, or none.",
-  "proof_boundary": "This receipt records that lean4/CampaignTfq0008FiniteDynamics.lean type-checks and which axioms its #print axioms lines report. The proved arithmetic is the length-1 sum 0 and length-2 sum a*b on the path 0-1-2, the mask (w0, w1) -> (0, w1), C(t) = (1+t*t)^2, E(t) = 1 iff t = 0, C(1) = 4, E(2) = 5 with inflation 4, C(2) = 25, and entrywise distance 1 between row sums (2, 2) and (2, 3). No continuum generator, CPTP lift, or general instrument is constructed. The node stays OPEN.",
+  "node_id": "TFQ-0008",
   "lean_replay": {
-    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
-    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
-    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
-    "lakefile_sha256": "234c513d598d1e74bbf8874334654c133dd03da41d7fedcb888f7c2166cc6415",
-    "library": "CampaignTfq0008FiniteDynamics (lean_lib in lean4/lakefile.lean; not a default target)",
-    "build_directory": "lean4/b",
-    "dependency_packages": "junction lean4/.lake/packages to the source checkout Mathlib v4.35.0 cache; the module imports no Mathlib",
-    "command": "cd lean4 && lake build CampaignTfq0008FiniteDynamics",
-    "allowed_axioms": [
-      "propext",
-      "Classical.choice",
-      "Quot.sound"
-    ],
+    "all_passed": true,
     "results": [
       {
-        "module": "CampaignTfq0008FiniteDynamics",
+        "module": "CampaignTfq0008FiniteQmDynamics",
         "dag_node": "TFQ-0008",
-        "source": "lean4/CampaignTfq0008FiniteDynamics.lean",
-        "sha256": "2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c",
-        "sha256_after_build": "2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c",
+        "source": "lean4/CampaignTfq0008FiniteQmDynamics.lean",
+        "sha256": "f1ef49781b6fdec1f26499f7a02effe1df156162c02d4ca6813675cc2881d236",
+        "sha256_after_build": "f1ef49781b6fdec1f26499f7a02effe1df156162c02d4ca6813675cc2881d236",
         "source_unchanged_during_build": true,
         "exit_code": 0,
-        "seconds": 12.3,
         "admission_scan_passed": true,
         "axiom_audit_passed": true,
         "anchors": [
-          "CampaignTfq0008FiniteDynamics.path_len1_zero",
-          "CampaignTfq0008FiniteDynamics.path_len2_product",
-          "CampaignTfq0008FiniteDynamics.mask_support",
-          "CampaignTfq0008FiniteDynamics.mask_keeps_sector",
-          "CampaignTfq0008FiniteDynamics.mask_idempotent",
-          "CampaignTfq0008FiniteDynamics.mask_zero_mass",
-          "CampaignTfq0008FiniteDynamics.cayley_norm",
-          "CampaignTfq0008FiniteDynamics.euler_unit_iff",
-          "CampaignTfq0008FiniteDynamics.cayley_at_1",
-          "CampaignTfq0008FiniteDynamics.euler_inflation_at_2",
-          "CampaignTfq0008FiniteDynamics.cayley_at_2",
-          "CampaignTfq0008FiniteDynamics.tolerance_not_exact"
+          "CampaignTfq0008FiniteQmDynamics.finite_instrument_trace_preservation_and_idempotence",
+          "CampaignTfq0008FiniteQmDynamics.diamond_path_sum_interference_identities",
+          "CampaignTfq0008FiniteQmDynamics.cayley_unitary_norm_conservation_exact",
+          "CampaignTfq0008FiniteQmDynamics.euler_first_order_generator_norm_inflation_fence",
+          "CampaignTfq0008FiniteQmDynamics.fq_dynamics_cochain_syndromes_and_shadow_replay",
+          "CampaignTfq0008FiniteQmDynamics.transpose_map_preserves_trace_det_and_diagonal_states",
+          "CampaignTfq0008FiniteQmDynamics.stochastic_to_cp_gap_partial_transpose_bell_witness",
+          "CampaignTfq0008FiniteQmDynamics.numerical_cptp_tolerance_false_green_trace_drift_fence",
+          "CampaignTfq0008FiniteQmDynamics.numerical_cptp_tolerance_false_green_negative_choi_eigenvalue_fence",
+          "CampaignTfq0008FiniteQmDynamics.exact_kraus_bit_flip_channel_trace_identity"
         ],
         "anchors_reported": true,
         "axioms": {
-          "CampaignTfq0008FiniteDynamics.path_len1_zero": [
+          "CampaignTfq0008FiniteQmDynamics.finite_instrument_trace_preservation_and_idempotence": [
             "propext",
             "Classical.choice",
             "Quot.sound"
           ],
-          "CampaignTfq0008FiniteDynamics.path_len2_product": [
+          "CampaignTfq0008FiniteQmDynamics.diamond_path_sum_interference_identities": [
             "propext",
             "Classical.choice",
             "Quot.sound"
           ],
-          "CampaignTfq0008FiniteDynamics.mask_support": [],
-          "CampaignTfq0008FiniteDynamics.mask_keeps_sector": [],
-          "CampaignTfq0008FiniteDynamics.mask_idempotent": [],
-          "CampaignTfq0008FiniteDynamics.mask_zero_mass": [],
-          "CampaignTfq0008FiniteDynamics.cayley_norm": [
+          "CampaignTfq0008FiniteQmDynamics.cayley_unitary_norm_conservation_exact": [
             "propext",
             "Classical.choice",
             "Quot.sound"
           ],
-          "CampaignTfq0008FiniteDynamics.euler_unit_iff": [
+          "CampaignTfq0008FiniteQmDynamics.euler_first_order_generator_norm_inflation_fence": [
             "propext",
+            "Classical.choice",
             "Quot.sound"
           ],
-          "CampaignTfq0008FiniteDynamics.cayley_at_1": [],
-          "CampaignTfq0008FiniteDynamics.euler_inflation_at_2": [],
-          "CampaignTfq0008FiniteDynamics.cayley_at_2": [],
-          "CampaignTfq0008FiniteDynamics.tolerance_not_exact": []
-        },
-        "output": "Build completed successfully (3 jobs)."
+          "CampaignTfq0008FiniteQmDynamics.fq_dynamics_cochain_syndromes_and_shadow_replay": [],
+          "CampaignTfq0008FiniteQmDynamics.transpose_map_preserves_trace_det_and_diagonal_states": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignTfq0008FiniteQmDynamics.stochastic_to_cp_gap_partial_transpose_bell_witness": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignTfq0008FiniteQmDynamics.numerical_cptp_tolerance_false_green_trace_drift_fence": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignTfq0008FiniteQmDynamics.numerical_cptp_tolerance_false_green_negative_choi_eigenvalue_fence": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignTfq0008FiniteQmDynamics.exact_kraus_bit_flip_channel_trace_identity": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
       }
     ]
   }

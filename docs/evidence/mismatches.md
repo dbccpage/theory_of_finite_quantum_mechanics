@@ -9,7 +9,7 @@ Part of the [evidence map](README.md). AuthorityEffect: None. Generated; every f
 | `receipt_not_current`: A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit | 35 |
 | `computational_no_runnable_test`: COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited | 126 |
 | `proved_prose_no_in_repo_document`: PROVED_PROSE with no in-repo source document cited | 12 |
-| `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 54 |
+| `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 53 |
 | `receipt_names_uncited_module`: A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) | 27 |
 
 ## `proved_lean_below_e3` (0)
@@ -218,7 +218,7 @@ PROVED_PROSE with no in-repo source document cited. Ordered by downstream nodes,
 | [PGW-SN-E20-OBSERVER-COMPLETION](nodes/PGW-SN-E20-OBSERVER-COMPLETION.md) | MSSN_SN | `PROVED_PROSE` | E0 | 0 | no in-repo non-generated document among the counted sources |
 | [PGW-SN-E21-REPAIR-RANK](nodes/PGW-SN-E21-REPAIR-RANK.md) | MSSN_SN | `PROVED_PROSE` | E0 | 0 | no in-repo non-generated document among the counted sources |
 
-## `broken_reference` (54)
+## `broken_reference` (53)
 
 A cited in-repo path or symbol cannot be found in this checkout. Ordered by downstream nodes, most first.
 
@@ -275,7 +275,6 @@ A cited in-repo path or symbol cannot be found in this checkout. Ordered by down
 | [TFQ-0163](nodes/TFQ-0163.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/interference.py |
 | [TFQ-0165](nodes/TFQ-0165.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/tower_topological_completion.py |
 | [TFQ-0182](nodes/TFQ-0182.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 0 | path not found: code/python/src/majorana/majorana/core/gf2_diagnostic.py |
-| [TFQ-0183](nodes/TFQ-0183.md) | IMPLEMENTATION_SIBLING | `OPEN` | E1 | 0 | path not found: code/python/src/majorana/majorana/carriers/tetron_carrier.py |
 | [TFQ-0289](nodes/TFQ-0289.md) | FINITE_HILBERT | `SOURCE_RECORD` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 | [TFQ-0316](nodes/TFQ-0316.md) | FINITE_HILBERT | `SOURCE_RECORD` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 

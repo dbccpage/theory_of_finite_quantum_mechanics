@@ -1,0 +1,56 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "node_id": "TFQ-0011",
+  "lean_file": "lean4/CampaignTfq0011FiniteQcd.lean",
+  "sha256": "06a4d41d42e28da3886868943ab03ad5f3098f97a117c48d1c11a3b5c60c02ec",
+  "lean_mutation": {
+    "total": 6,
+    "killed": 6,
+    "survived": 0,
+    "all_killed": true,
+    "mutants": [
+      {
+        "id": "M1_casimir_fund_drop_minus_one",
+        "description": "Mutate casimirFund from (nc^2 - 1)/(2*nc) to (nc^2)/(2*nc), falsifying su3_color_casimir_and_fierz_channel_identities.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpfj6atlk1.lean:70:75: error: unsolved goals\n\u22a2 False\n'CampaignTfq0011FiniteQcd.su3_color_casimir_and_fierz_channel_identities' depends on axioms: [propext,\n sorryAx,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0011FiniteQcd.wilson_plaquette_creutz_ratio_area_vs_perimeter_and_3x3_betti' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0011FiniteQcd.qcd_beta0_asymptotic_free"
+      },
+      {
+        "id": "M2_qcd_beta0_plus_instead_of_minus",
+        "description": "Mutate qcdBeta0 from 11 - (2/3)*nf to 11 + (2/3)*nf, falsifying qcd_beta0_asymptotic_freedom_window_and_beta1_banks_zaks.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpj7v1yom0.lean:104:23: error: unsolved goals\nnf : \u211a\n\u22a2 False\ntmpj7v1yom0.lean:104:36: error: unsolved goals\nnf : \u211a\n\u22a2 False\ntmpj7v1yom0.lean:104:62: error: unsolved goals\nnf : \u211a\n\u22a2 False\ntmpj7v1yom0.lean:105:30: error: linarith failed to find a contradiction\ncase mp\nnf : \u211a\nh : 11 + 2 / 3 * nf > 0\na\u271d : 33 / 2 \u2264 nf\n\u22a2 False\nfailed\ntmpj7v1yom0.lean:105:30: error: linarith failed to find a contradiction"
+      },
+      {
+        "id": "M3_naive_dirac_doubler_drop_minus_one",
+        "description": "Mutate naiveDiracDoublerCount from 2^d - 1 to 2^d, falsifying naive_lattice_dirac_doubling_obstruction_and_wilson_lift.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpif_d6gym.lean:123:25: error: Application type mismatch: The argument\n  rfl\nhas type\n  ?m.81 = ?m.81\nbut is expected to have type\n  2 ^ 4 = 15\nin the application\n  And.intro rfl\n'CampaignTfq0011FiniteQcd.su3_color_casimir_and_fierz_channel_identities' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0011FiniteQcd.wilson_plaquette_creutz_ratio_area_vs_perimeter_and_3x3_bet"
+      },
+      {
+        "id": "M4_float_benchmark_authorize_true",
+        "description": "Mutate authorizesFiniteStatement FloatBenchmark from false to true, falsifying exact_rational_certificate_vs_float_benchmark_epistemic_separation_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpmgwkdh9m.lean:163:2: error: Tactic `decide` proved that the proposition\n  authorizesFiniteStatement ArtifactArithmeticKind.ExactRationalCertificate = true \u2227\n    authorizesFiniteStatement ArtifactArithmeticKind.FloatBenchmark = false \u2227\n      authorizesFiniteStatement ArtifactArithmeticKind.ExactRationalCertificate \u2260\n        authorizesFiniteStatement ArtifactArithmeticKind.FloatBenchmark\nis false"
+      },
+      {
+        "id": "M5_confinement_relation_claim_identified",
+        "description": "Mutate evaluateFiniteWilsonBeta0ConfinementRelation to IdentifiedWithFiniteControl, falsifying finite_wilson_beta0_control_not_continuum_confinement_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpq5ehuq_u.lean:182:2: error: Tactic `decide` proved that the proposition\n  evaluateFiniteWilsonBeta0ConfinementRelation = ContinuumConfinementStatus.ExplicitFiniteToContinuumGap \u2227\n    evaluateFiniteWilsonBeta0ConfinementRelation \u2260 ContinuumConfinementStatus.IdentifiedWithFiniteControl\nis false\n'CampaignTfq0011FiniteQcd.su3_color_casimir_and_fierz_channel_identities' depends on axioms: [propext,\n"
+      },
+      {
+        "id": "M6_repo_ledger_claim_float_authorizes",
+        "description": "Mutate tfq0011RepoLedger floatBenchmarkAuthorizesFiniteStatement from false to true, falsifying tfq0011_finite_qcd_shadow_scope_ledger_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp0du6_za1.lean:242:2: error: Tactic `decide` proved that the proposition\n  tfq0011RepoLedger.hasFiniteColorCasimirAndWilsonControl = true \u2227\n    tfq0011RepoLedger.hasBeta0RationalControl = true \u2227\n      tfq0011RepoLedger.recordsDiracDoublingAsObstruction = true \u2227\n        tfq0011RepoLedger.separatesExactRationalFromFloat = true \u2227\n          tfq0011RepoLedger.floatBenchmarkAuthorizesFiniteStatement ="
+      }
+    ]
+  }
+}

@@ -1,52 +1,109 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0044
 authority_effect: None
-collection_status: source_candidates_collected_semantic_mining_open
+collection_status: semantic_mining_and_lean4_verification_complete
 target:
-  source_statement: anyon_model.rs wraps a ribbon category after braided validation and a dimension check.
+  source_statement: 'anyon_model.rs wraps a ribbon category after braided validation and a dimension check.
     Its SU(2)_k constructor uses the shared Racah gauge in omega_fusion_categories::su2_level, with a
     bounded pentagon and hexagon replay. That file warns the gauge is generally not orthonormal, so the
     F matrices must not be advertised as unitary in the ordinary inner product. Labels a=0..k are twice
     a spin, which is an SU(2) level family. There is no su3_level.rs beside su2_level.rs. An SU(2)_k anyon
-    model is not the three-color matrix algebra, and its quantum dimensions are not C_F or C_A.
-  statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: []
+    model is not the three-color matrix algebra, and its quantum dimensions are not C_F or C_A. Narrowed
+    in Lean 4, Rust (su2_level.rs), and an independent Python verifier to three exact finite/algebraic
+    components and non-equivalence fences: (1) SU(2)_k (k = 1..6) simple-object counts k + 1, cyclotomic
+    root orders 8*(k + 2), central charges 3k/(k + 2), and level-3 Fibonacci subring fusion 2 tensor 2 =
+    0 oplus 2 (su2_level_rank_and_root_order_bounds, su2_level_central_charge_and_level3_fibonacci_subring);
+    (2) exact Q(phi) (phi^2 = 1 + phi) verification that the level-3 q-Racah associator F^[2,2,2,2] is
+    not Euclidean orthonormal (F^T F != I) while satisfying weighted metric unitarity F^T G F = G with
+    G = diag(phi, 1 + phi) and det(F) = -1 (qphi_golden_ratio_identities,
+    racah_level3_fibonacci_f_matrix_not_euclidean_orthonormal,
+    racah_level3_fibonacci_f_matrix_weighted_metric_unitarity); and (3) non-equivalence fences separating
+    SU(2)_k quantum dimensions and rank-1 self-dual labels from SU(3)_c Casimirs (C_F = 4/3, C_A = 3),
+    SU(3)_k rank-2 Dynkin weights (count (k + 1)(k + 2)/2 > k + 1), and absent su3_level.rs
+    (su2_level_quantum_dimensions_not_su3_casimirs_fence,
+    su2_weight_lattice_rank1_not_su3_rank2_color_fusion_fence,
+    su2_vs_su3_level_simple_object_count_separation, su2_level_budget_and_field_refusal_predicates,
+    tfq0044_su2_level_scope_ledger_fence).'
+  statement_status: narrowed_finite_counterpart_and_fences_verified_lean4
+  declared_assumptions:
+  - SU(3)_k fusion category implementation su3_level.rs (absent, left open)
   source_bottleneck: Do not treat SU(2)_k as a color fusion category; su3_level.rs is absent.
   source_refs:
   - dag/derivations/18_finite_topological/tfq_0044_do_not_treat_su_2_k_as_a_color_fusion_category_su3_level_rs_is_absent.md
+  - dag/derivations/independent/tfq-0044.md
+  - checks/independent/tfq-0044.py
+  - lean4/CampaignTfq0044FiniteTopological.lean
+  - code/rust/src/fusion_categories/su2_level.rs
+  - dag/research/campaign_tfq-0044_lean_replay.json
+  - dag/research/campaign_tfq-0044_lean_mutation.json
+  - dag/research/campaign_tfq-0044_independent.json
   paper_refs:
   - dag/derivations/18_finite_topological/tfq_0044_do_not_treat_su_2_k_as_a_color_fusion_category_su3_level_rs_is_absent.md
-  source_claim_label: OPEN
+  source_claim_label: OPEN_OBLIGATION
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/18_finite_topological/tfq_0044_do_not_treat_su_2_k_as_a_color_fusion_category_su3_level_rs_is_absent.md
-    sha256: 2cfdc8ab453656f2d06b4097477e310f40908bb5493a2dfab7c2788d25e626d2
+    sha256: b824c3aec4d1006557ccf719ec949d0cc9cda5ed4938582ce0d01469fc602b58
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
   generator_version: 1
-  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  dag_source_commit: 6fb951667
   path: dag/prompts/finite_topological_tfq_0044_open.yaml
-  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+  external_repository_commit: 6fb951667
+operation_candidates:
+- su2LevelRank
+- su2RootOrder
+- su2CentralCharge
+- su2Admissible
+- qphiMul
+- su3LevelRank
+relation_candidates:
+- su2_level_rank_and_root_order_bounds
+- su2_level_central_charge_and_level3_fibonacci_subring
+- qphi_golden_ratio_identities
+- racah_level3_fibonacci_f_matrix_not_euclidean_orthonormal
+- racah_level3_fibonacci_f_matrix_weighted_metric_unitarity
+- su2_level_quantum_dimensions_not_su3_casimirs_fence
+- su2_weight_lattice_rank1_not_su3_rank2_color_fusion_fence
+- su2_vs_su3_level_simple_object_count_separation
+- su2_level_budget_and_field_refusal_predicates
+- tfq0044_su2_level_scope_ledger_fence
 source_bindings:
-- original_ref: code/rust/src/fusion_categories/su2_level.rs
-  availability: local
-  symbol: null
-  path: code/rust/src/fusion_categories/su2_level.rs
-  repository: this_repository
-  sha256: af787b188a128945bf2d980113d492a725b0771548f96c71e1d61e23c17f00e8
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
+- lean4/CampaignTfq0044FiniteTopological.lean::CampaignTfq0044FiniteTopological.su2_level_rank_and_root_order_bounds
+- lean4/CampaignTfq0044FiniteTopological.lean::CampaignTfq0044FiniteTopological.su2_level_central_charge_and_level3_fibonacci_subring
+- lean4/CampaignTfq0044FiniteTopological.lean::CampaignTfq0044FiniteTopological.qphi_golden_ratio_identities
+- lean4/CampaignTfq0044FiniteTopological.lean::CampaignTfq0044FiniteTopological.racah_level3_fibonacci_f_matrix_not_euclidean_orthonormal
+- lean4/CampaignTfq0044FiniteTopological.lean::CampaignTfq0044FiniteTopological.racah_level3_fibonacci_f_matrix_weighted_metric_unitarity
+- lean4/CampaignTfq0044FiniteTopological.lean::CampaignTfq0044FiniteTopological.su2_level_quantum_dimensions_not_su3_casimirs_fence
+- lean4/CampaignTfq0044FiniteTopological.lean::CampaignTfq0044FiniteTopological.su2_weight_lattice_rank1_not_su3_rank2_color_fusion_fence
+- lean4/CampaignTfq0044FiniteTopological.lean::CampaignTfq0044FiniteTopological.su2_vs_su3_level_simple_object_count_separation
+- lean4/CampaignTfq0044FiniteTopological.lean::CampaignTfq0044FiniteTopological.su2_level_budget_and_field_refusal_predicates
+- lean4/CampaignTfq0044FiniteTopological.lean::CampaignTfq0044FiniteTopological.tfq0044_su2_level_scope_ledger_fence
+- code/rust/src/fusion_categories/su2_level.rs::su2_level
+- code/rust/src/fusion_categories/su2_level.rs::associator_metrics
+- code/rust/src/fusion_categories/su2_level.rs::level_three_has_actual_fibonacci_subcategory_and_nonorthonormal_gauge
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  colours:
+  - Rat
+  - QPhi
+  - Tfq0044ScopeLedger
+  generators:
+  - su2LevelRank
+  - su2RootOrder
+  - su2CentralCharge
+  - qphiMul
+  - su3LevelRank
+  relations:
+  - racah_level3_fibonacci_f_matrix_not_euclidean_orthonormal
+  - racah_level3_fibonacci_f_matrix_weighted_metric_unitarity
+  - su2_vs_su3_level_simple_object_count_separation
+  compositions:
+  - racah_level3_fibonacci_f_matrix_weighted_metric_unitarity
+  identities:
+  - qphi_golden_ratio_identities
   symmetric_actions: []
   coherence_obligations:
   - identity_operations
@@ -56,32 +113,59 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: []
-    source_pins: []
+    mining_status: VERIFIED
+    carrier: QPhi^2 and SU(2)_k label set 0..k
+    coefficient_ring: Q(phi)
+    assumptions:
+    - su3_level.rs is absent and SU(2)_k is not a three-color fusion category
+    source_pins:
+    - lean4/CampaignTfq0044FiniteTopological.lean
+    - code/rust/src/fusion_categories/su2_level.rs
     public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: VERIFIED
+    operations:
+    - su2LevelRank
+    - su2RootOrder
+    - su2CentralCharge
+    - qphiMul
+    - su3LevelRank
+    composition_plan:
+    - racah_level3_fibonacci_f_matrix_weighted_metric_unitarity
+    - su2_vs_su3_level_simple_object_count_separation
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: VERIFIED
+    algebraic_relations:
+    - su2_level_rank_and_root_order_bounds
+    - su2_level_central_charge_and_level3_fibonacci_subring
+    - qphi_golden_ratio_identities
+    - racah_level3_fibonacci_f_matrix_weighted_metric_unitarity
+    - su2_vs_su3_level_simple_object_count_separation
+    rejection_predicates:
+    - racah_level3_fibonacci_f_matrix_not_euclidean_orthonormal
+    - su2_level_quantum_dimensions_not_su3_casimirs_fence
+    - su2_weight_lattice_rank1_not_su3_rank2_color_fusion_fence
+    - su2_level_budget_and_field_refusal_predicates
+    - tfq0044_su2_level_scope_ledger_fence
+    negative_control_plan:
+    - 6 one-ingredient Lean 4 semantic mutations killed in dag/research/campaign_tfq-0044_lean_mutation.json
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: []
-stage_history: []
+    mining_status: VERIFIED
+    certificate_predicates:
+    - racah_level3_fibonacci_f_matrix_weighted_metric_unitarity
+    - su2_level_quantum_dimensions_not_su3_casimirs_fence
+    - tfq0044_su2_level_scope_ledger_fence
+    anchors:
+    - lean4/CampaignTfq0044FiniteTopological.lean
+    - code/rust/src/fusion_categories/su2_level.rs
+    - checks/independent/tfq-0044.py
+    - dag/derivations/independent/tfq-0044.md
+    unpaid_imports:
+    - su3_level.rs (absent)
+stage_history:
+- stage: campaign_derivation
+  timestamp: '2026-10-24T16:00:00Z'
+  outcome: Narrowed
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+- Keep SU(3)_k fusion category open while su3_level.rs is absent.
 excluded_relation_leads: []

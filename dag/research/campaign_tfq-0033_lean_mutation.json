@@ -1,0 +1,56 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "node_id": "TFQ-0033",
+  "lean_file": "lean4/CampaignTfq0033FiniteQcd.lean",
+  "sha256": "f25cf13aab578e1c67f1436aeb5bbf7a5efc0985e2da24f1415ac979b0ea464b",
+  "lean_mutation": {
+    "total": 6,
+    "killed": 6,
+    "survived": 0,
+    "all_killed": true,
+    "mutants": [
+      {
+        "id": "M1_c2_antitriplet_zero_instead_of_four_thirds",
+        "description": "Mutate c2Antitriplet from 4 / 3 to 0, falsifying su3_qq_diquark_casimir_channels and diquark_to_qqbar_singlet_half_strength_rule.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpp4e24u2l.lean:76:10: error: unsolved goals\n\u22a2 False\ntmpp4e24u2l.lean:76:47: error: unsolved goals\n\u22a2 False\ntmpp4e24u2l.lean:83:20: error: unsolved goals\n\u22a2 False\ntmpp4e24u2l.lean:181:60: error: unsolved goals\n\u22a2 False\ntmpp4e24u2l.lean:199:43: error: unsolved goals\n\u22a2 False\n'CampaignTfq0033FiniteQcd.su3_qq_diquark_casimir_channels' depends on axioms: [propext,\n sorryAx,\n Classical.choice,\n Quot.sound"
+      },
+      {
+        "id": "M2_c2_sextet_four_thirds_instead_of_ten_thirds",
+        "description": "Mutate c2Sextet from 10 / 3 to 4 / 3, falsifying su3_qq_diquark_casimir_channels.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpoiona3_c.lean:76:23: error: unsolved goals\n\u22a2 False\ntmpoiona3_c.lean:76:47: error: unsolved goals\n\u22a2 False\n'CampaignTfq0033FiniteQcd.su3_qq_diquark_casimir_channels' depends on axioms: [propext,\n sorryAx,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0033FiniteQcd.diquark_to_qqbar_singlet_half_strength_rule' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignTfq0033FiniteQcd.su3_"
+      },
+      {
+        "id": "M3_eps3_flip_012_sign",
+        "description": "Mutate eps3 (0, 1, 2) from 1 to -1, falsifying levi_civita_3d_antisymmetry_and_six_nonzero_permutations.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp2ep82jc6.lean:119:2: error: Tactic `decide` proved that the proposition\n  (\u2200 (i j k : Fin 3), eps3 j i k = -eps3 i j k) \u2227\n    (\u2200 (i j k : Fin 3), eps3 i k j = -eps3 i j k) \u2227\n      (\u2200 (i k : Fin 3), eps3 i i k = 0) \u2227 (\u2200 (i j : Fin 3), eps3 i j i = 0) \u2227 \u2200 (i j : Fin 3), eps3 i j j = 0\nis false\n'CampaignTfq0033FiniteQcd.su3_qq_diquark_casimir_channels' depends on axioms: [propext, Classical.choice"
+      },
+      {
+        "id": "M4_baryon_epsilon_contract_plus_instead_of_minus",
+        "description": "Mutate baryonEpsilonContract to add u 0 * v 2 * w 1 instead of subtracting, falsifying three_index_epsilon_contraction_equals_det3 and baryon_contraction_vanishes_on_identical_color_states.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\ntmpqo3dvcey.lean:160:10: error: unsolved goals\nu v w : Fin 3 \u2192 \u211a\n\u22a2 u 0 * v 1 * w 2 + u 0 * v 2 * w 1 "
+      },
+      {
+        "id": "M5_exterior_color_dim_constant_one",
+        "description": "Mutate exteriorColorDim from Nat.choose 3 k to 1, falsifying two_index_diquark_not_three_index_baryon_singlet_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmparb4plqv.lean:186:22: warning: Variable name `k` is not explicitly referenced.\n\nHint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:\n  [apply] _k\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`\ntmparb4plqv.lean:199:13: error: Tactic `decide` proved that the proposition\n "
+      },
+      {
+        "id": "M6_repo_ledger_claim_diquark_is_singlet",
+        "description": "Mutate tfq0033RepoLedger diquarkIsColorSinglet from false to true, falsifying tfq0033_baryon_contraction_scope_ledger_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpixt4rff8.lean:220:2: error: Tactic `decide` proved that the proposition\n  tfq0033RepoLedger.hasDiquarkCasimirRationals = true \u2227\n    tfq0033RepoLedger.hasExplicitEpsilon3ContractionInLean = true \u2227\n      tfq0033RepoLedger.hasEpsilon3InQcdControlRs = false \u2227 tfq0033RepoLedger.diquarkIsColorSinglet = false\nis false\n'CampaignTfq0033FiniteQcd.su3_qq_diquark_casimir_channels' depends on axioms: [prope"
+      }
+    ]
+  }
+}

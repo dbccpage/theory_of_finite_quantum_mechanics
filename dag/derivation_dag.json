@@ -9468,11 +9468,19 @@
       "stage": "L1_TO_L2",
       "status": "OPEN",
       "source_status": "TFQ record_status GAP (source slice 00)",
-      "statement": "The pass from L1 weights to a finite Hilbert carrier imports structure the finite papers do not derive: a square-root field, a complex field, U(1) phases, an inner product, orthogonal additivity, Haar-independent phases, and linear isometric dynamics. QM_020 states that it does not derive quantum mechanics. QM_122 recovers matrices over the Gaussian integers and leaves ordinary matrix algebras over the complex numbers unrecovered. Python, Rust, and Lean 4 must name each import and keep it imported. A finite matrix calculation is not a discharge of the import list.",
+      "statement": "The pass from L1 weights to a finite Hilbert carrier imports structure the finite papers do not derive: a square-root field, a complex field, U(1) phases, an inner product, orthogonal additivity, Haar-independent phases, and linear isometric dynamics. QM_020 states that it does not derive quantum mechanics. QM_122 recovers matrices over the Gaussian integers and leaves ordinary matrix algebras over the complex numbers unrecovered. Python, Rust, and Lean 4 must name each import and keep it imported. A finite matrix calculation is not a discharge of the import list. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-discharge fences: (1) Gaussian-integer 2x2 matrix algebra recovery (QM_122 Pauli involutions and commutator sigmaX * sigmaY = i * sigmaZ, norm multiplicativity) and QM_122 / QM_020 C_4 cochain syndromes (gauss_int_norm_multiplicative, qm122_pauli_gaussian_integer_commutators_and_squares, qm122_and_qm020_cochain_syndrome_and_shadow_replay); (2) non-recovery of the square-root field ((2p + 1)^2 != 2q^2), complex division (unnormalized Hadamard squares to 2 * sigmaI != sigmaI with 2 * sigmaI non-invertible in M_2(Z[i])), and continuous U(1) phases (only 4 units in Z[i] vs. Pythagorean (3/5, 4/5) in Q[i]) (import_fence_sqrt_two_parity_obstruction, import_fence_gaussian_integers_not_a_field_hadamard_unnormalized, import_fence_gaussian_units_vs_u1_phases); and (3) L1 norm violation of the Jordan-von Neumann parallelogram law (8 != 4), orthogonal-additivity cross-term and sign-phase averaging, L1 stochastic vs. L2 isometric norm contraction, and the 7-field HilbertLiftImportLedger truth-table fence (import_fence_l1_norm_fails_parallelogram_law, import_fence_orthogonal_additivity_and_phase_averaging, import_fence_l1_stochastic_not_l2_isometry, seven_hilbert_lift_imports_audit_fence).",
       "source": [
-        "dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md"
+        "dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md",
+        "dag/derivations/independent/tfq-0006.md",
+        "checks/independent/tfq-0006.py",
+        "lean4/CampaignTfq0006L1ToL2.lean",
+        "dag/research/campaign_tfq-0006_lean_replay.json",
+        "dag/research/campaign_tfq-0006_lean_mutation.json",
+        "dag/research/campaign_tfq-0006_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0006L1ToL2.lean"
+      ],
       "rust": [],
       "imported_structure": [],
       "bottleneck": "List each imported structure the finite Hilbert lift still requires, and do not discharge them by naming quantum mechanics.",
@@ -9507,9 +9515,15 @@
       "stage": "FINITE_QM_DYNAMICS",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 00)",
-      "statement": "Narrowed finite case, status unchanged. On the directed path with integer edge weights a on 0 to 1 and b on 1 to 2, the length-1 path sum from 0 to 2 is 0 and the length-2 path sum is a*b. The unnormalized sector mask (w0, w1) maps to (0, w1): it is supported on the second coordinate, keeps that coordinate, is idempotent, and sends (w0, 0) to (0, 0). For every integer t, the Cayley column squared length (1 - t*t)^2 + (2*t)^2 equals (1 + t*t)^2, while the Euler column squared length 1 + t*t equals 1 if and only if t = 0. At t = 1 the Cayley value is 4. At t = 2 the Euler squared length is 5 and the inflation (1 + 2*2) - 1 is 4, and the Cayley value is 25. The integer matrix with rows (2, 0) and (0, 3) has entrywise distance 1 from the matrix with rows (2, 0) and (0, 2); the latter has both row sums 2, and the former has row sums 2 and 3, so distance 1 does not authorize an exact scaled stochastic kernel. A general instrument, a general finite path sum, a unitary group, the passage from stochastic kernels to completely positive maps, and every continuum generator stay unproved.",
+      "statement": "After the finite carrier, the required dynamics are finite: an instrument or measurement update, a path sum on a finite graph, a unitary or Hamiltonian shadow on a finite matrix, and a channel that is either exact or explicitly imported. The derivation note leaves the step from stochastic kernels to completely positive maps as a gap. Python, Rust, and Lean 4 must each state the finite map and the hypothesis it uses. A numerical CPTP check at a fixed tolerance is a diagnostic. It does not authorize the exact channel. Narrowed in Lean 4 and an independent Python verifier to three exact rational components and non-equivalence fences over Q: (1) finite projective measurement instruments (outcome projections proj0, proj1 and projective dephasingChannel) trace additivity and idempotence, plus 2-branch finite diamond graph path-sum destructive/constructive interference (finite_instrument_trace_preservation_and_idempotence, diamond_path_sum_interference_identities); (2) rational Cayley unitary norm conservation (1 - t^2)^2 + (2t)^2 = (1 + t^2)^2 vs. first-order Euler generator norm inflation (1 + t^2) - 1 = t^2 > 0 (and 4 at t = 2), plus replay of the FINITE_QM_DYNAMICS C_4 cochain syndromes (cayley_unitary_norm_conservation_exact, euler_first_order_generator_norm_inflation_fence, fq_dynamics_cochain_syndromes_and_shadow_replay); and (3) the stochastic-to-CP gap witness (2x2 matrix transpose preserves trace, determinant, and diagonal stochastic states yet yields negative determinant -1 and negative quadratic form -2 on the 2-qubit Bell partial transpose swap block), the numerical CPTP tolerance false-green fences for trace drift 1 + eps / 2 and negative Choi eigenvalue -eps / 2, and the exact rational 2-Kraus bit-flip channel trace identity (transpose_map_preserves_trace_det_and_diagonal_states, stochastic_to_cp_gap_partial_transpose_bell_witness, numerical_cptp_tolerance_false_green_trace_drift_fence, numerical_cptp_tolerance_false_green_negative_choi_eigenvalue_fence, exact_kraus_bit_flip_channel_trace_identity).",
       "source": [
-        "dag/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md"
+        "dag/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md",
+        "dag/derivations/independent/tfq-0008.md",
+        "checks/independent/tfq-0008.py",
+        "lean4/CampaignTfq0008FiniteQmDynamics.lean",
+        "dag/research/campaign_tfq-0008_lean_replay.json",
+        "dag/research/campaign_tfq-0008_lean_mutation.json",
+        "dag/research/campaign_tfq-0008_independent.json"
       ],
       "lean": [
         "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.path_len1_zero",
@@ -9523,11 +9537,12 @@
         "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_1",
         "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.euler_inflation_at_2",
         "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_2",
-        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.tolerance_not_exact"
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.tolerance_not_exact",
+        "lean4/CampaignTfq0008FiniteQmDynamics.lean"
       ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "The finite path, sector mask, Cayley-versus-Euler integer shadow, and distance-1 stochastic countermodel are proved. Still open: a general instrument, a general path sum, an exact channel or an explicit CPTP import, Rust and Python witnesses of those general maps, and separation from a continuum generator beyond this integer shadow. A numerical tolerance does not discharge the exact channel. AuthorityEffect remains None.",
+      "bottleneck": "Separate finite instruments, path sums, and channels from any continuum generator.",
       "tags": [
         "unified-dag",
         "TFQ-0008",
@@ -9539,11 +9554,19 @@
       "stage": "FINITE_GAUGE",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 00)",
-      "statement": "A finite gauge step is a cochain of group-valued or Hopf-valued data on a finite complex, together with holonomy around finite loops and a coboundary that plays the role of curvature. omega_holonomy is a zero-float discrete holonomy library and is a control, not this derivation. The three languages must share one finite complex, one coefficient object, and one holonomy identity. U(1) and a non-abelian color shadow fork after this node. Neither fork is continuum Yang-Mills theory.",
+      "statement": "A finite gauge step is a cochain of group-valued or Hopf-valued data on a finite complex, together with holonomy around finite loops and a coboundary that plays the role of curvature. omega_holonomy is a zero-float discrete holonomy library and is a control, not this derivation. The three languages must share one finite complex, one coefficient object, and one holonomy identity. U(1) and a non-abelian color shadow fork after this node. Neither fork is continuum Yang-Mills theory. Narrowed in Lean 4 and an independent Python verifier to four exact finite/algebraic components and non-equivalence fences: (1) shared finite square plaquette boundary exactness (d_1 o d_2 = 0) and adjacent plaquette shared-edge cancellation (chain_boundary_squared_zero_on_plaquette, shared_edge_cancellation_two_plaquettes); (2) abelian cochain connection, coboundary curvature exactness (d_1 o d_0 = 0), gauge invariance, and the discrete Bianchi identity (d_2 o d_1 = 0) on the 6-face, 12-edge 3-cube complex (abelian_cochain_coboundary_squared_zero, abelian_curvature_gauge_invariant, abelian_bianchi_identity_cube); (3) non-abelian 2x2 matrix link holonomy conjugation H(U^g) = g0 H(U) g0^-1, Wilson loop cyclic trace gauge invariance, and the abelian vs. non-abelian SL(2, Z) shear commutator fork (nonabelian_holonomy_conjugation_identity, nonabelian_wilson_loop_trace_gauge_invariant, abelian_vs_nonabelian_fork_commutator_witness); and (4) the no-continuum-Yang-Mills fence separating finite N^E cochain cardinality and metric-free combinatorial curvature from metric-weighted Yang-Mills actions (finite_cochain_cardinality_and_quotient_bound, combinatorial_coboundary_metric_free_vs_yang_mills_action_fence).",
       "source": [
-        "dag/derivations/14_finite_gauge/tfq_0009_finite_gauge_cochain.md"
+        "dag/derivations/14_finite_gauge/tfq_0009_finite_gauge_cochain.md",
+        "dag/derivations/independent/tfq-0009.md",
+        "checks/independent/tfq-0009.py",
+        "lean4/CampaignTfq0009FiniteGauge.lean",
+        "dag/research/campaign_tfq-0009_lean_replay.json",
+        "dag/research/campaign_tfq-0009_lean_mutation.json",
+        "dag/research/campaign_tfq-0009_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0009FiniteGauge.lean"
+      ],
       "rust": [],
       "imported_structure": [],
       "bottleneck": "Define connection, holonomy, and curvature on a finite complex before any continuum gauge theory.",
@@ -9560,9 +9583,34 @@
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 00)",
       "statement": "Finite QED here means charged finite transport, a finite Dirac or Clifford shadow, interaction vertices on a finite complex, and finite maps that mirror vacuum polarization, a Lamb shift datum, and an electroweak mixing control. Files under omega_quantum_physics and the finite-QM research notes are computational controls of those maps. The three languages must state the finite identity each control checks. F002 is an interface inventory. Naming a continuum limit on that floor does not derive continuum QED.",
       "source": [
-        "dag/derivations/15_finite_qed/tfq_0010_finite_qed_and_electroweak_shadow.md"
+        "dag/derivations/15_finite_qed/tfq_0010_finite_qed_and_electroweak_shadow.md",
+        "dag/derivations/independent/tfq-0010.md",
+        "dag/research/campaign_tfq-0010_lean_replay.json",
+        "dag/research/campaign_tfq-0010_lean_mutation.json",
+        "dag/research/campaign_tfq-0010_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0010-precommit.md",
+        "checks/independent/tfq-0010.py",
+        "lean4/CampaignTfq0010FiniteQed.lean"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.discrete_ward_identity_and_coboundary_gauge_coupling_invariance",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.charged_gaussian_rational_link_transport_and_vertex_covariant_difference",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.finite_clifford_car_nilpotency_and_occupation_number_projector",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.dirac_coulomb_n2_fine_structure_darwin_and_spin_orbit_degeneracy",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.qed_one_loop_vacuum_polarization_and_lamb_shift_contact_datum",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.weinberg_electroweak_projectors_and_custodial_rho_identity",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.gell_mann_nishijima_and_anomaly_cancellation_at_nc3_vs_nc1",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.f002_interface_inventory_does_not_derive_continuum_qed_fence",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.finite_qed_computational_controls_scope_separation_fence",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.tfq0010_finite_qed_and_electroweak_shadow_ledger_fence",
+        "lean4/FiniteQM.lean::FiniteQM.weinberg_projectors_complete_orthogonal_idempotent",
+        "lean4/FiniteQM.lean::FiniteQM.ew_custodial_rho_eq_one",
+        "lean4/FiniteQM.lean::FiniteQM.sm_gell_mann_nishijima_charge_identities",
+        "lean4/FiniteQM.lean::FiniteQM.sm_all_four_anomalies_cancel_at_nc3_and_fail_at_nc1",
+        "lean4/FiniteQM.lean::FiniteQM.car_clifford_nilpotency_and_occupation_projector",
+        "lean4/FiniteQM.lean::FiniteQM.dirac_coulomb_fine_structure_n2_and_darwin_spin_orbit_degeneracy",
+        "lean4/FiniteQM.lean::FiniteQM.qed_one_loop_lamb_shift_contact_and_bethe_lifting"
+      ],
       "rust": [],
       "imported_structure": [],
       "bottleneck": "Carry finite charged transport, vertices, and Ward shadows without calling the result continuum QED.",
@@ -9579,9 +9627,35 @@
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 00)",
       "statement": "Finite QCD here means a finite non-abelian gauge datum, a Wilson loop on a finite complex, a beta0-style finite control, and an explicit gap where confinement in a continuum theory is not identified with that control. Lattice Dirac doubling is an obstruction to record, not a nuisance to hide. Python, Rust, and Lean 4 must separate an exact rational certificate from a float benchmark. A float benchmark cannot authorize the finite statement. Continuum QCD remains an open interface on F002.",
       "source": [
-        "dag/derivations/17_finite_qcd/tfq_0011_finite_qcd_shadow.md"
+        "dag/derivations/17_finite_qcd/tfq_0011_finite_qcd_shadow.md",
+        "dag/derivations/independent/tfq-0011.md",
+        "dag/research/campaign_tfq-0011_lean_replay.json",
+        "dag/research/campaign_tfq-0011_lean_mutation.json",
+        "dag/research/campaign_tfq-0011_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0011-precommit.md",
+        "checks/independent/tfq-0011.py",
+        "lean4/CampaignTfq0011FiniteQcd.lean"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.su3_color_casimir_and_fierz_channel_identities",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.wilson_plaquette_creutz_ratio_area_vs_perimeter_and_3x3_betti",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.qcd_beta0_asymptotic_freedom_window_and_beta1_banks_zaks",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.naive_lattice_dirac_doubling_obstruction_and_wilson_lift",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.nonabelian_su3_klein_four_gribov_copies_and_spanning_tree_gauge",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.exact_rational_certificate_vs_float_benchmark_epistemic_separation_fence",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.finite_wilson_beta0_control_not_continuum_confinement_fence",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.lattice_dirac_doubling_recorded_as_explicit_obstruction_fence",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.f002_continuum_qcd_remains_open_interface_fence",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.tfq0011_finite_qcd_shadow_scope_ledger_fence",
+        "lean4/FiniteQM.lean::FiniteQM.su3_casimir_and_channel_identities",
+        "lean4/FiniteQM.lean::FiniteQM.su3_fierz_diagonal_and_offdiagonal_identities",
+        "lean4/FiniteQM.lean::FiniteQM.qcd_beta0_asymptotic_freedom_window",
+        "lean4/FiniteQM.lean::FiniteQM.qcd_beta1_and_banks_zaks_fixed_point",
+        "lean4/FiniteQM.lean::FiniteQM.wilson_creutz_ratio_area_vs_perimeter",
+        "lean4/FiniteQM.lean::FiniteQM.wilson_lattice_3x3_dfm_betti_identity",
+        "lean4/FiniteQM.lean::FiniteQM.su3_diagonal_klein_four_landau_gribov_copies",
+        "lean4/FiniteQM.lean::FiniteQM.spanning_tree_dfm_eliminates_gribov_copies"
+      ],
       "rust": [],
       "imported_structure": [],
       "bottleneck": "Carry a finite color, Wilson, and beta0 control without calling it continuum confinement.",
@@ -9597,14 +9671,20 @@
       "stage": "FINITE_QCD",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 08)",
-      "statement": "quaternion_gauge_shadow.rs presents Q8 as eight matrices over Q(i), embedded by omega_lie_theory::su2_matrix, and treats that finite subgroup of SU(2) as a non-abelian gauge shadow. finite_group.rs can hold a Cayley table for the same shadow, but the table is not an SU(3) color connection. A file search under omega_lie_theory/src and omega_quantum_physics/src found no Hopf-algebra module, so Hopf gauge data remains an open obligation next to this shadow. AuthorityEffect on the quaternion module is None. F001.S000 coordinates finite carriers and does not supply color links.",
+      "statement": "quaternion_gauge_shadow.rs presents Q8 as eight matrices over Q(i), embedded by omega_lie_theory::su2_matrix, and treats that finite subgroup of SU(2) as a non-abelian gauge shadow. finite_group.rs can hold a Cayley table for the same shadow, but the table is not an SU(3) color connection. A file search under omega_lie_theory/src and omega_quantum_physics/src found no Hopf-algebra module, so Hopf gauge data remains an open obligation next to this shadow. AuthorityEffect on the quaternion module is None. F001.S000 coordinates finite carriers and does not supply color links. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) Q8 quaternion group Cayley table associativity, two-sided identity/inverses, Hamilton relations i^2 = j^2 = k^2 = ijk = -1, non-commutativity ij = k != -k = ji, and the Q8 class equation 1 + 1 + 2 + 2 + 2 = 8 with irrep degree sum 1^2 + 1^2 + 1^2 + 1^2 + 2^2 = 8 (q8_group_associativity_unit_and_inverses, q8_nonabelian_hamilton_relations_and_class_equation); (2) faithful 2x2 Gaussian-integer SU(2) matrix embedding q8ToMat2GI homomorphism, injectivity, unit determinant 1 + 0i, and conjugation-invariant character trace in {-2, 0, 2} (q8_mat2gi_embedding_homomorphism, q8_mat2gi_embedding_injective_and_unit_det, q8_plaquette_holonomy_conjugation_and_trace_invariance, q8_wilson_plaquette_character_discrete_spectrum_fence); and (3) non-equivalence fences against SU(3) color connections (fundamental dimension 2 != 3, Lie algebra dimension 3 != 8, Lagrange center obstruction 8 % 3 != 0, max irrep degree 2 < 3) and unbuilt Hopf gauge modules (q8_su2_vs_su3_color_dimension_and_center_fence, q8_irrep_max_degree_two_no_color_triplet_fence, group_like_coproduct_vs_hopf_linearity_fence, f001_s000_carrier_coordination_not_color_connection_fence).",
       "source": [
-        "dag/derivations/17_finite_qcd/tfq_0012_locate_a_hopf_gauge_file_or_keep_the_gauge_datum_as_the.md"
+        "dag/derivations/17_finite_qcd/tfq_0012_locate_a_hopf_gauge_file_or_keep_the_gauge_datum_as_the.md",
+        "dag/derivations/independent/tfq-0012.md",
+        "checks/independent/tfq-0012.py",
+        "lean4/CampaignTfq0012FiniteQcd.lean",
+        "dag/research/campaign_tfq-0012_lean_replay.json",
+        "dag/research/campaign_tfq-0012_lean_mutation.json",
+        "dag/research/campaign_tfq-0012_independent.json"
       ],
-      "lean": [],
-      "rust": [
-        "code/rust/src/lie_theory/finite_group.rs"
+      "lean": [
+        "lean4/CampaignTfq0012FiniteQcd.lean"
       ],
+      "rust": [],
       "imported_structure": [],
       "bottleneck": "Locate a Hopf gauge file or keep the gauge datum as the Q8 shadow plus Cayley tables.",
       "tags": [
@@ -9639,14 +9719,20 @@
       "stage": "FINITE_QCD",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 08)",
-      "statement": "finite_groupoid_algebra.rs linearizes a ValidatedFiniteGroupoid as convolution over Q(i). The module states that the associated complex C*-algebra is a mathematical extension, not a native finite computation. gauge_cochain_complex.rs is a different object: an exact complex on packets in M_2(Q(i)), with d0 sending anti-Hermitian generators to commutators on effects and states. Neither file is a Hopf gauge theory, and neither file stores SU(3) link variables. The obligation is to keep the groupoid convolution and the qubit packet complex from being cited as the color connection used later in the QCD control.",
+      "statement": "finite_groupoid_algebra.rs linearizes a ValidatedFiniteGroupoid as convolution over Q(i). The module states that the associated complex C*-algebra is a mathematical extension, not a native finite computation. gauge_cochain_complex.rs is a different object: an exact complex on packets in M_2(Q(i)), with d0 sending anti-Hermitian generators to commutators on effects and states. Neither file is a Hopf gauge theory, and neither file stores SU(3) link variables. The obligation is to keep the groupoid convolution and the qubit packet complex from being cited as the color connection used later in the QCD control. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) 2-object pair groupoid convolution associativity, two-sided unit e00 + e11, orthogonal object idempotents e00 * e11 = 0, and the (2p+1)^2 != 2q^2 parity obstruction for the C*-norm sqrt(2) completion (pair_groupoid_convolution_associative, pair_groupoid_unit_and_orthogonal_object_idempotents, groupoid_cstar_norm_requires_sqrt_extension_fence); (2) M_2(Z[i]) qubit packet commutator coboundary d0(Omega)(X) = [Omega, X] tracelessness, scalar kernel, Leibniz derivation rule, and Jacobi identity (packet_d0_commutator_trace_zero, packet_d0_scalar_kernel_and_leibniz_derivation, packet_d0_jacobi_identity); and (3) non-equivalence fences separating groupoid convolution and the M_2 packet complex from each other (I2 * I2 = I2 != 0 = [I2, I2]), from Hopf gauge modules, and from SU(3) color links (matrix entries 4 != 9, Lie dimension 3 != 8, fundamental Casimir 3/4 != 4/3, and Lie derivation vs. multiplicative link law) (groupoid_convolution_vs_packet_d0_distinct_objects_fence, m2_packet_vs_su3_color_dimension_and_casimir_fence, neither_module_is_hopf_or_su3_scope_ledger_fence, commutator_derivation_breaks_grouplike_multiplicativity_fence).",
       "source": [
-        "dag/derivations/17_finite_qcd/tfq_0014_do_not_cite_the_m_2_packet_complex_or_the_groupoid_algebra_as.md"
+        "dag/derivations/17_finite_qcd/tfq_0014_do_not_cite_the_m_2_packet_complex_or_the_groupoid_algebra_as.md",
+        "dag/derivations/independent/tfq-0014.md",
+        "checks/independent/tfq-0014.py",
+        "lean4/CampaignTfq0014FiniteQcd.lean",
+        "dag/research/campaign_tfq-0014_lean_replay.json",
+        "dag/research/campaign_tfq-0014_lean_mutation.json",
+        "dag/research/campaign_tfq-0014_independent.json"
       ],
-      "lean": [],
-      "rust": [
-        "code/rust/src/lie_theory/finite_groupoid_algebra.rs"
+      "lean": [
+        "lean4/CampaignTfq0014FiniteQcd.lean"
       ],
+      "rust": [],
       "imported_structure": [],
       "bottleneck": "Do not cite the M_2 packet complex or the groupoid algebra as the color connection.",
       "tags": [
@@ -9710,14 +9796,20 @@
       "stage": "FINITE_QCD",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 08)",
-      "statement": "quaternion_gauge_shadow.rs says each listed Q8 element lies in SU(2) by the special-unitary check, and it says explicitly that Q8 is a finite subgroup of SU(2), not SU(2) itself. su2.rs holds quaternions, the adjoint cover, spinor norms, and binary polyhedral groups. Those constructions give a finite non-abelian shadow with a two-dimensional carrier. They do not provide the three diagonal color labels used by the weighted Gell-Mann family. Promoting Q8 flux operators to a stand-in for su(3)_c would skip the separate generator control. The obligation is to keep this SU(2) shadow on the gauge side of the cut.",
+      "statement": "quaternion_gauge_shadow.rs says each listed Q8 element lies in SU(2) by the special-unitary check, and it says explicitly that Q8 is a finite subgroup of SU(2), not SU(2) itself. su2.rs holds quaternions, the adjoint cover, spinor norms, and binary polyhedral groups. Those constructions give a finite non-abelian shadow with a two-dimensional carrier. They do not provide the three diagonal color labels used by the weighted Gell-Mann family. Promoting Q8 flux operators to a stand-in for su(3)_c would skip the separate generator control. The obligation is to keep this SU(2) shadow on the gauge side of the cut. Narrowed in Lean 4 and an independent Python verifier to three exact rational components and non-promotion fences: (1) Euler four-square quaternion spinor norm multiplicativity, Q8 proper subgroup of SU(2) witnessed by Pythagorean unit quaternion (3/5, 4/5, 0, 0), and the 2-to-1 adjoint double cover SU(2) -> SO(3) (quat_norm_multiplicative_four_square_identity, q8_proper_subgroup_of_su2_pythagorean_witness, su2_adjoint_cover_two_to_one_kernel); (2) binary polyhedral subgroup orders (|Q8|=8, |2T|=24, |2O|=48, |2I|=120) on a 2D carrier vs. 3-color Gell-Mann diagonal generators lambda3 = (1, -1, 0) and tilde_lambda8 = (1, 1, -2) (binary_polyhedral_orders_and_2d_carrier, su2_cartan_rank_one_vs_su3_gell_mann_cartan_rank_two_fence, gell_mann_diagonal_orthogonality_and_three_color_separation); and (3) non-promotion fences showing that no 2D su(2) Cartan scalar multiple matches (1, 1) in tilde_lambda8, that su(2) has vanishing symmetric d_abc symbol whereas tilde_lambda8^2 = 2*I3 - tilde_lambda8 has non-zero d_888, that Q8 elements have finite order 4, and that tfq0017RepoLedger keeps the SU(2) shadow on the gauge side (su2_cartan_cannot_span_gell_mann_lambda8_fence, su2_zero_d_symbol_vs_su3_lambda8_square_fence, q8_finite_order_four_vs_continuous_lie_generator_fence, tfq0017_su2_shadow_kept_on_gauge_side_scope_ledger_fence).",
       "source": [
-        "dag/derivations/17_finite_qcd/tfq_0017_do_not_promote_the_su_2_quaternion_shadow_to_su_3_c.md"
+        "dag/derivations/17_finite_qcd/tfq_0017_do_not_promote_the_su_2_quaternion_shadow_to_su_3_c.md",
+        "dag/derivations/independent/tfq-0017.md",
+        "checks/independent/tfq-0017.py",
+        "lean4/CampaignTfq0017FiniteQcd.lean",
+        "dag/research/campaign_tfq-0017_lean_replay.json",
+        "dag/research/campaign_tfq-0017_lean_mutation.json",
+        "dag/research/campaign_tfq-0017_independent.json"
       ],
-      "lean": [],
-      "rust": [
-        "code/rust/src/lie_theory/su2.rs"
+      "lean": [
+        "lean4/CampaignTfq0017FiniteQcd.lean"
       ],
+      "rust": [],
       "imported_structure": [],
       "bottleneck": "Do not promote the SU(2) quaternion shadow to su(3)_c.",
       "tags": [
@@ -9903,11 +9995,19 @@
       "stage": "FINITE_QCD",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 08)",
-      "statement": "lattice_dirac_doubling.rs declares a Euclidean Clifford family, a period N at least 3, and a rational Wilson coefficient r. The naive operator is the symmetric difference with gamma_mu, and its symbol i sum gamma_mu sin k_mu vanishes at corners k in {0, pi}^d. For even N and periodic boundaries, naive_species_count is 2^d before spin multiplicity. The file states that these counts are computed on declared lattices and that no continuum limit is taken. Carrier dimension above 128 is refused. No matching Python use case was found under 006_finite_qm/python, and FiniteQM.lean has no lattice Dirac theorem.",
+      "statement": "lattice_dirac_doubling.rs declares a Euclidean Clifford family, a period N at least 3, and a rational Wilson coefficient r. The naive operator is the symmetric difference with gamma_mu, and its symbol i sum gamma_mu sin k_mu vanishes at corners k in {0, pi}^d. For even N and periodic boundaries, naive_species_count is 2^d before spin multiplicity. The file states that these counts are computed on declared lattices and that no continuum limit is taken. Carrier dimension above 128 is refused. No matching Python use case was found under 006_finite_qm/python, and FiniteQM.lean has no lattice Dirac theorem. Narrowed in Lean 4 and an independent Python verifier to four exact finite/algebraic components and non-equivalence fences: (1) Euclidean Clifford algebra generators gamma1, gamma2, gamma5 over Z[i] satisfying gamma_a^2 = I_2 and {gamma_a, gamma_b} = 0 (euclidean_clifford_anticommutator_relations); (2) 1D symmetric difference zero-velocity modes at k in {0, pi}, even-vs-odd period periodicity on an N-cycle, and 2^d naive species count (2, 4, 8, 16 for d = 1..4) on even-N periodic lattices (naive_symmetric_difference_vanishes_at_zero_and_pi_modes, even_vs_odd_period_pi_mode_periodicity, naive_species_count_values_1d_to_4d); (3) rational Wilson corner mass shift m + 2*r*c lifting all c >= 1 doubler corners for r > 0 and the MAX_CARRIER_DIMENSION = 128 admission guard (wilson_term_lifts_nonzero_pi_corners, wilson_critical_mass_selects_corner_shell, carrier_dimension_admission_guard_128); and (4) explicit chiral symmetry breaking {w I_2, gamma5} != 0 for w != 0 and no-continuum-limit scope fences (wilson_scalar_mass_breaks_gamma5_anticommutativity_fence, finite_brillouin_grid_cardinality_fence, tfq0026_tri_language_replay_scope_ledger_fence).",
       "source": [
-        "dag/derivations/17_finite_qcd/tfq_0026_add_python_and_lean_replays_of_the_declared_doubling_count_or_leave.md"
+        "dag/derivations/17_finite_qcd/tfq_0026_add_python_and_lean_replays_of_the_declared_doubling_count_or_leave.md",
+        "dag/derivations/independent/tfq-0026.md",
+        "checks/independent/tfq-0026.py",
+        "lean4/CampaignTfq0026FiniteQcd.lean",
+        "dag/research/campaign_tfq-0026_lean_replay.json",
+        "dag/research/campaign_tfq-0026_lean_mutation.json",
+        "dag/research/campaign_tfq-0026_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0026FiniteQcd.lean"
+      ],
       "rust": [],
       "imported_structure": [],
       "bottleneck": "Add Python and Lean replays of the declared doubling count, or leave the obstruction as Rust-only.",
@@ -9922,11 +10022,19 @@
       "stage": "FINITE_QCD",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 08)",
-      "statement": "wilson_species_count in the same file counts corners where the rational expression mass + 2*r*(number of pi components) is zero, with no trigonometric approximation. The header states that the Wilson term vanishes only at k=0 and anticommutes with no chirality matrix gamma_*. zero_mode_count is the kernel dimension s*N^d minus exact rank over Q(i) for a dense operator that must fit under MAX_CARRIER_DIMENSION. Even-N antiperiodic twists return zero species. IntegralRefinementC3C6.lean covers charge doubling on a three-cycle refined to six vertices. That file is not a stand-in for this lattice Dirac obstruction.",
+      "statement": "wilson_species_count in the same file counts corners where the rational expression mass + 2*r*(number of pi components) is zero, with no trigonometric approximation. The header states that the Wilson term vanishes only at k=0 and anticommutes with no chirality matrix gamma_*. zero_mode_count is the kernel dimension s*N^d minus exact rank over Q(i) for a dense operator that must fit under MAX_CARRIER_DIMENSION. Even-N antiperiodic twists return zero species. IntegralRefinementC3C6.lean covers charge doubling on a three-cycle refined to six vertices. That file is not a stand-in for this lattice Dirac obstruction. Narrowed in Lean 4 and an independent Python verifier to four exact finite/algebraic components and non-equivalence fences: (1) exact rational wilsonSpeciesCount4D selecting binomial shells 1, 4, 6, 4, 1 at m = -2*r*c with zero trigonometric approximation, and Wilson shift 2*r*c vanishing at r > 0 iff c = 0 (wilson_species_count_shell_selection, wilson_term_vanishes_only_at_origin_corner); (2) non-anticommutation of any non-zero scalar Wilson term w * I_2 with gamma1, gamma2, and gamma5 over Z[i] (wilson_scalar_term_anticommutes_with_no_gamma_generator); (3) dense operator kernel dimension zero_mode_count = s*N^d - rank under MAX_CARRIER_DIMENSION = 128 and zero corner species for even-N antiperiodic twists (zero_mode_count_rank_nullity_formula, antiperiodic_twist_excludes_zero_and_pi_corners, even_n_periodic_vs_antiperiodic_species_contrast, max_carrier_dimension_128_dense_operator_fence); and (4) non-equivalence fence separating IntegralRefinementC3C6.lean (1D C3 -> C6 scalar Z-cochain charge refinement) from the 2^d lattice Dirac doubling obstruction (c3_to_c6_naive_duplication_vs_block_last_refinement, c3_c6_charge_refinement_not_lattice_dirac_obstruction_fence, tfq0027_scope_and_citation_fence).",
       "source": [
-        "dag/derivations/17_finite_qcd/tfq_0027_do_not_cite_the_three_cycle_charge_doubling_file_as_the_lattice_dirac_obstruction.md"
+        "dag/derivations/17_finite_qcd/tfq_0027_do_not_cite_the_three_cycle_charge_doubling_file_as_the_lattice_dirac_obstruction.md",
+        "dag/derivations/independent/tfq-0027.md",
+        "checks/independent/tfq-0027.py",
+        "lean4/CampaignTfq0027FiniteQcd.lean",
+        "lean4/IntegralRefinementC3C6.lean",
+        "dag/research/campaign_tfq-0027_lean_replay.json",
+        "dag/research/campaign_tfq-0027_lean_mutation.json",
+        "dag/research/campaign_tfq-0027_independent.json"
       ],
       "lean": [
+        "lean4/CampaignTfq0027FiniteQcd.lean",
         "lean4/IntegralRefinementC3C6.lean"
       ],
       "rust": [],
@@ -10025,11 +10133,19 @@
       "stage": "FINITE_QCD",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 08)",
-      "statement": "The meson-side output of QM-221 is the pair of channel coefficients -4/3 and +1/6 on a quark-antiquark color decomposition. The Rust fields singlet_channel_casimir and octet_channel_potential_factor store those rationals. There is no finite Hilbert space of spatial meson orbitals, no relative wavefunction, and no mass operator in qcd_beta0_wilson_confinement_control.rs. Calling the attractive sign a meson composite would add structure the control does not build. The obligation is a separate finite composite, with a declared carrier and a color contraction, before a meson label is used as more than a channel name.",
+      "statement": "The meson-side output of QM-221 is the pair of channel coefficients -4/3 and +1/6 on a quark-antiquark color decomposition. The Rust fields singlet_channel_casimir and octet_channel_potential_factor store those rationals. There is no finite Hilbert space of spatial meson orbitals, no relative wavefunction, and no mass operator in qcd_beta0_wilson_confinement_control.rs. Calling the attractive sign a meson composite would add structure the control does not build. The obligation is a separate finite composite, with a declared carrier and a color contraction, before a meson label is used as more than a channel name. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) exact rational SU(N)/SU(3) quark-antiquark channel Casimir factors (-4/3 singlet and +1/6 octet), 3 x 3 = 1 + 8 dimension decomposition, weighted trace cancellation 1*(-4/3) + 8*(1/6) = 0, and SU(2) vs. SU(3) channel contrast (suN_qqbar_casimir_channel_formulas, su3_qqbar_dimension_and_weighted_trace_sum_zero, singlet_attractive_vs_octet_repulsive_sign_dichotomy, su2_vs_su3_qqbar_casimir_channel_contrast); (2) explicit 3x3 color-trace contraction qqbarColorTrace and singlet/octet projectors singletProj, octetProj with idempotence, tracelessness, and orthogonality (color_contraction_projector_idempotence_and_orthogonality); and (3) declared finite 36 * L^d meson composite carrier accounting and fences showing that channel Casimir rationals do not supply a spatial orbital wavefunction, radial mass operator, or spin-hyperfine splitting (finite_meson_composite_carrier_dimension, meson_mass_operator_requires_spatial_kinetic_and_potential_terms_fence, channel_casimir_ratio_not_spatial_wavefunction_fence, pseudoscalar_vs_vector_hyperfine_splitting_requires_spin_operator_fence, tfq0032_meson_channel_scope_ledger_fence).",
       "source": [
-        "dag/derivations/17_finite_qcd/tfq_0032_build_a_finite_meson_carrier_or_keep_meson_language_at_the_channel_name.md"
+        "dag/derivations/17_finite_qcd/tfq_0032_build_a_finite_meson_carrier_or_keep_meson_language_at_the_channel_name.md",
+        "dag/derivations/independent/tfq-0032.md",
+        "checks/independent/tfq-0032.py",
+        "lean4/CampaignTfq0032FiniteQcd.lean",
+        "lean4/FiniteQM.lean",
+        "dag/research/campaign_tfq-0032_lean_replay.json",
+        "dag/research/campaign_tfq-0032_lean_mutation.json",
+        "dag/research/campaign_tfq-0032_independent.json"
       ],
       "lean": [
+        "lean4/CampaignTfq0032FiniteQcd.lean",
         "lean4/FiniteQM.lean"
       ],
       "rust": [],
@@ -10046,11 +10162,19 @@
       "stage": "FINITE_QCD",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 08)",
-      "statement": "The antitriplet factor -2/3 is a two-index diquark channel, stored as antitriplet_diquark_casimir. A baryon color singlet would need a third tensor factor and an alternating contraction on three color indices. No such epsilon contraction is defined in the QCD control, in su_n.rs, or in the weighted generator list. The sextet factor +1/3 is likewise a two-quark channel. The obligation is to build that three-factor contraction explicitly, or to keep baryon language off this node. The diquark signs are a computational control of Casimir arithmetic only.",
+      "statement": "The antitriplet factor -2/3 is a two-index diquark channel, stored as antitriplet_diquark_casimir. A baryon color singlet would need a third tensor factor and an alternating contraction on three color indices. No such epsilon contraction is defined in the QCD control, in su_n.rs, or in the weighted generator list. The sextet factor +1/3 is likewise a two-quark channel. The obligation is to build that three-factor contraction explicitly, or to keep baryon language off this node. The diquark signs are a computational control of Casimir arithmetic only. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) two-quark SU(3) diquark Casimir arithmetic (-2/3 antitriplet and +1/3 sextet), 3 x 3 = 3 + 6 dimension decomposition, weighted trace cancellation 3*(-2/3) + 6*(1/3) = 0, half-strength rule -2/3 = (1/2)*(-4/3), and 3-quark 27 = 1 + 8 + 8 + 10 decomposition (su3_qq_diquark_casimir_channels, diquark_to_qqbar_singlet_half_strength_rule, su3_three_quark_dimension_decomposition); (2) explicit 3-index Levi-Civita tensor eps3 and alternating baryon color-singlet contraction baryonEpsilonContract u v w = det3Color u v w with norm 6, 2-index delta contraction, and Pauli color exclusion (levi_civita_3d_antisymmetry_and_six_nonzero_permutations, levi_civita_contracted_square_and_norm_six, three_index_epsilon_contraction_equals_det3, baryon_contraction_vanishes_on_identical_color_states); and (3) pairwise baryon singlet Casimir sum 3*(-2/3) = -2 and non-equivalence fences separating 2-index diquarks (dim 3, C_2 = 4/3 != 0) from 3-index baryon singlets (dim 1, C_2 = 0) (baryon_singlet_total_pairwise_casimir_equals_minus_two, two_index_diquark_not_three_index_baryon_singlet_fence, tfq0033_baryon_contraction_scope_ledger_fence).",
       "source": [
-        "dag/derivations/17_finite_qcd/tfq_0033_construct_an_explicit_three_index_color_contraction_before_using_a_baryon_singlet_label.md"
+        "dag/derivations/17_finite_qcd/tfq_0033_construct_an_explicit_three_index_color_contraction_before_using_a_baryon_singlet_label.md",
+        "dag/derivations/independent/tfq-0033.md",
+        "checks/independent/tfq-0033.py",
+        "lean4/CampaignTfq0033FiniteQcd.lean",
+        "lean4/FiniteQM.lean",
+        "dag/research/campaign_tfq-0033_lean_replay.json",
+        "dag/research/campaign_tfq-0033_lean_mutation.json",
+        "dag/research/campaign_tfq-0033_independent.json"
       ],
       "lean": [
+        "lean4/CampaignTfq0033FiniteQcd.lean",
         "lean4/FiniteQM.lean"
       ],
       "rust": [],
@@ -10154,10 +10278,27 @@
       "source_status": "TFQ record_status GAP (source slice 08)",
       "statement": "Two readings of the K5 torsion must stay apart. The opening of pauli_spin_statistics_graph_finite_map.md states rank_Q of the square boundary as 7 and the rational 2-complex Betti number as 14. The Rust test and the Lean literals use rational Betti number 6 and F2 Betti number 7, hence torsion rank 1. Lean also says whether the exchange loop represents that torsion class is not established. A Python comment in analyze_conf2_graph speaks as if the torsion forces the exchange loop to have order 2. The rank mismatch and the representative question are an open gap beside the certificate.",
       "source": [
-        "dag/derivations/17_finite_qcd/tfq_0038_reconcile_the_map_s_k5_ranks_with_the_rust_certificate_and_leave_the.md"
+        "dag/derivations/17_finite_qcd/tfq_0038_reconcile_the_map_s_k5_ranks_with_the_rust_certificate_and_leave_the.md",
+        "dag/derivations/independent/tfq-0038.md",
+        "dag/research/campaign_tfq-0038_lean_replay.json",
+        "dag/research/campaign_tfq-0038_lean_mutation.json",
+        "dag/research/campaign_tfq-0038_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0038-precommit.md",
+        "checks/independent/tfq-0038.py",
+        "lean4/CampaignTfq0038FiniteQcd.lean"
       ],
       "lean": [
-        "lean4/FiniteQM.lean"
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.conf2_graph_1skeleton_betti_numbers_p3_y_c4_k4_k5",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.conf2_c4_and_k4_2complex_rational_betti_numbers",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.k5_map_prose_reading_rank7_betti14_vs_certificate_reading_rank15_betti6",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.universal_coefficient_torsion_rank_identity",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.abelian_1d_character_collapse_boson_fermion",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.non_zero_torsion_rank_does_not_identify_specific_loop_representative",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.exchange_loop_representative_question_remains_open_fence",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.python_comment_order_two_claim_exceeds_certificate_fence",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.k5_rank_mismatch_recorded_beside_certificate_fence",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.tfq0038_k5_torsion_and_exchange_loop_scope_ledger_fence",
+        "lean4/FiniteQM.lean::FiniteQM.graph_conf2_exchange_betti_and_character_collapse"
       ],
       "rust": [],
       "imported_structure": [],
@@ -10173,11 +10314,19 @@
       "stage": "FINITE_QCD",
       "status": "OPEN",
       "source_status": "TFQ record_status GAP (source slice 08)",
-      "statement": "The F002 floor states its own ceiling. The S000 book README calls the continuum volume an interface inventory and not a continuum derivation. F002.S001 remains the open bridge: shelf.yaml has an empty book list, README.md keeps GAP-F002-S001-001 open, and named_adjoining.yaml parks a Pontryagin dual of declared free Z without admitting a bridge theorem. None of the finite QCD controls, the Dirac doubling counts, or the topological anyon models close that shelf. The gap to continuum QCD stays open. This node does not say that continuum QCD has been derived.",
+      "statement": "The F002 floor states its own ceiling. The S000 book README calls the continuum volume an interface inventory and not a continuum derivation. F002.S001 remains the open bridge: shelf.yaml has an empty book list, README.md keeps GAP-F002-S001-001 open, and named_adjoining.yaml parks a Pontryagin dual of declared free Z without admitting a bridge theorem. None of the finite QCD controls, the Dirac doubling counts, or the topological anyon models close that shelf. The gap to continuum QCD stays open. This node does not say that continuum QCD has been derived. Narrowed in Lean 4, Rust, and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) exact rational summary of finite QCD controls (beta_0 = 7, strong-coupling tension 17/18, 16 torus corners with 15 lifted doublers) and finite cyclic character cardinality L^d vs parked Pontryagin dual Hom(Z, U(1)) (finite_qcd_control_exact_rational_summary, finite_cyclic_dual_order_equals_lattice_period); (2) F002.S001 open bridge audit (bookCount = 0, GAP-F002-S001-001 open, Pontryagin dual parked without bridge theorem) and proof that finite controls do not derive continuum QCD while F002.S001 is open (f002_s001_empty_book_list_and_open_bridge_gap, pontryagin_dual_of_free_z_requires_unpaid_continuum_circle_fence, finite_qcd_controls_do_not_discharge_continuum_qcd_exit_fence); and (3) explicit breakdown and non-equivalence fences for beta_0, strong-coupling tension at beta >= 18, Wilson corner counts, and topological anyon catalog models (one_loop_beta0_polynomial_not_nonperturbative_continuum_mass_gap_fence, strong_coupling_plaquette_ratio_breaks_down_in_weak_coupling_continuum_limit_fence, wilson_torus_doubler_count_not_continuum_chiral_fermion_measure_fence, topological_anyon_catalog_not_continuum_su3_confining_vacuum_fence, tfq0039_f002_s001_open_bridge_scope_ledger_fence).",
       "source": [
-        "dag/derivations/17_finite_qcd/tfq_0039_cite_f002_s001_as_an_open_bridge_and_do_not_convert_the_finite.md"
+        "dag/derivations/17_finite_qcd/tfq_0039_cite_f002_s001_as_an_open_bridge_and_do_not_convert_the_finite.md",
+        "dag/derivations/independent/tfq-0039.md",
+        "checks/independent/tfq-0039.py",
+        "lean4/CampaignTfq0039FiniteQcd.lean",
+        "dag/research/campaign_tfq-0039_lean_replay.json",
+        "dag/research/campaign_tfq-0039_lean_mutation.json",
+        "dag/research/campaign_tfq-0039_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0039FiniteQcd.lean"
+      ],
       "rust": [],
       "imported_structure": [],
       "bottleneck": "Cite F002.S001 as an open bridge and do not convert the finite controls into a continuum exit.",
@@ -10194,11 +10343,38 @@
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 08)",
       "statement": "The tri-language obligation is uneven. Rust, Python, and Lean agree on the rational QM-221 matrix, beta0, beta1, and Creutz identities, with Lean covering scalar Fierz identities rather than the 81-entry loop. QM-213 has Rust and Python but no Lean twin in FiniteQM.lean. Lattice Dirac doubling has Rust only. The Gribov diamond has Rust and a Lean rational shadow, and no Python twin was found under the finite_qm use cases. Hopf gauge data, su3_level.rs, and a three-quark color contraction are absent. F002.S001 stays an open bridge. A float print cannot authorize any exact identity listed here.",
       "source": [
-        "dag/derivations/17_finite_qcd/tfq_0040_close_the_missing_python_or_lean_twins_before_treating_a_control_as.md"
+        "dag/derivations/17_finite_qcd/tfq_0040_close_the_missing_python_or_lean_twins_before_treating_a_control_as.md",
+        "dag/derivations/independent/tfq-0040.md",
+        "dag/research/campaign_tfq-0040_lean_replay.json",
+        "dag/research/campaign_tfq-0040_lean_mutation.json",
+        "dag/research/campaign_tfq-0040_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0040-precommit.md",
+        "checks/independent/tfq-0040.py",
+        "lean4/CampaignTfq0040FiniteQcd.lean"
       ],
       "lean": [
-        "lean4/FiniteQM.lean",
-        "lean4/FiniteQFTAndGravity.lean"
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.qm221_casimir_fierz_scalar_and_81_entry_dimension_identities",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.qm213_borel_punctured_diamond_artificial_vs_substantial_holonomy",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.levi_civita_three_quark_color_singlet_contraction",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.abj_and_gmo_color_octet_decuplet_identities",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.gribov_diamond_klein_four_and_lattice_dirac_doubling_controls",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.tri_language_coverage_gate_requires_all_three_twins_fence",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.absent_hopf_su3_level_and_baryon_contraction_recorded_fence",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.f002_s001_remains_open_bridge_fence",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.float_print_cannot_authorize_exact_identity_fence",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.tfq0040_tri_language_audit_and_f002_s001_scope_ledger_fence",
+        "lean4/FiniteQM.lean::FiniteQM.su3_casimir_and_channel_identities",
+        "lean4/FiniteQM.lean::FiniteQM.su3_fierz_diagonal_and_offdiagonal_identities",
+        "lean4/FiniteQM.lean::FiniteQM.qcd_beta0_asymptotic_freedom_window",
+        "lean4/FiniteQM.lean::FiniteQM.qcd_beta1_and_banks_zaks_fixed_point",
+        "lean4/FiniteQM.lean::FiniteQM.wilson_creutz_ratio_area_vs_perimeter",
+        "lean4/FiniteQM.lean::FiniteQM.su3_diagonal_klein_four_landau_gribov_copies",
+        "lean4/FiniteQM.lean::FiniteQM.spanning_tree_dfm_eliminates_gribov_copies",
+        "lean4/FiniteQFTAndGravity.lean::FiniteQFTAndGravity.abj_factor_closed",
+        "lean4/FiniteQFTAndGravity.lean::FiniteQFTAndGravity.abj_factor_values",
+        "lean4/FiniteQFTAndGravity.lean::FiniteQFTAndGravity.abj_rate_ratio",
+        "lean4/FiniteQFTAndGravity.lean::FiniteQFTAndGravity.gmo_octet",
+        "lean4/FiniteQFTAndGravity.lean::FiniteQFTAndGravity.gmo_decuplet_equal_spacing"
       ],
       "rust": [],
       "imported_structure": [],
@@ -10235,10 +10411,28 @@
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 08)",
       "statement": "ravera_dfm_finite_to_continuum.rs evaluates evaluate_su3_spanning_tree_vs_landau_gribov_control on CarrierGraph::diamond with five explicit block links over Q(i), checks a non-abelian commutator, and dresses every spanning tree, and it counts diagonal Klein-four copies. Lean su3_diagonal_klein_four_landau_gribov_copies and spanning_tree_dfm_eliminates_gribov_copies treat the copy count 4^3=64 and a tree identity for rational, not matrix, link variables. No Python twin of this function was found under 006_finite_qm/python. The module title uses continuum language; that title is not a bridge theorem.",
       "source": [
-        "dag/derivations/17_finite_qcd/tfq_0042_supply_a_python_replay_or_keep_the_gribov_diamond_as_rust_plus.md"
+        "dag/derivations/17_finite_qcd/tfq_0042_supply_a_python_replay_or_keep_the_gribov_diamond_as_rust_plus.md",
+        "dag/derivations/independent/tfq-0042.md",
+        "dag/research/campaign_tfq-0042_lean_replay.json",
+        "dag/research/campaign_tfq-0042_lean_mutation.json",
+        "dag/research/campaign_tfq-0042_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0042-precommit.md",
+        "checks/independent/tfq-0042.py",
+        "lean4/CampaignTfq0042FiniteQcd.lean"
       ],
       "lean": [
-        "lean4/FiniteQM.lean"
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.diamond_graph_betti_and_spanning_tree_count",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.su3_block_links_nonabelian_commutator_witness",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.pythagorean_qi_block_unitarity_and_det_one",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.matrix_spanning_tree_dressing_neutralizes_tree_links",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.su3_diagonal_klein_four_landau_gribov_64_copies",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.lean_finite_qm_rational_shadow_vs_matrix_link_scope_separation",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.continuum_module_title_is_not_bridge_theorem_fence",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.missing_006_finite_qm_python_twin_and_independent_replay_fence",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.gribov_diamond_control_does_not_derive_continuum_qcd_fence",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.tfq0042_gribov_diamond_and_title_scope_ledger_fence",
+        "lean4/FiniteQM.lean::FiniteQM.su3_diagonal_klein_four_landau_gribov_copies",
+        "lean4/FiniteQM.lean::FiniteQM.spanning_tree_dfm_eliminates_gribov_copies"
       ],
       "rust": [],
       "imported_structure": [],
@@ -10276,11 +10470,20 @@
       "stage": "FINITE_TOPOLOGICAL",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 08)",
-      "statement": "anyon_model.rs wraps a ribbon category after braided validation and a dimension check. Its SU(2)_k constructor uses the shared Racah gauge in omega_fusion_categories::su2_level, with a bounded pentagon and hexagon replay. That file warns the gauge is generally not orthonormal, so the F matrices must not be advertised as unitary in the ordinary inner product. Labels a=0..k are twice a spin, which is an SU(2) level family. There is no su3_level.rs beside su2_level.rs. An SU(2)_k anyon model is not the three-color matrix algebra, and its quantum dimensions are not C_F or C_A.",
+      "statement": "anyon_model.rs wraps a ribbon category after braided validation and a dimension check. Its SU(2)_k constructor uses the shared Racah gauge in omega_fusion_categories::su2_level, with a bounded pentagon and hexagon replay. That file warns the gauge is generally not orthonormal, so the F matrices must not be advertised as unitary in the ordinary inner product. Labels a=0..k are twice a spin, which is an SU(2) level family. There is no su3_level.rs beside su2_level.rs. An SU(2)_k anyon model is not the three-color matrix algebra, and its quantum dimensions are not C_F or C_A. Narrowed in Lean 4, Rust (su2_level.rs), and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) SU(2)_k (k = 1..6) simple-object counts k + 1, cyclotomic root orders 8*(k + 2), central charges 3k/(k + 2), and level-3 Fibonacci subring fusion 2 tensor 2 = 0 oplus 2 (su2_level_rank_and_root_order_bounds, su2_level_central_charge_and_level3_fibonacci_subring); (2) exact Q(phi) (phi^2 = 1 + phi) verification that the level-3 q-Racah associator F^[2,2,2,2] is not Euclidean orthonormal (F^T F != I) while satisfying weighted metric unitarity F^T G F = G with G = diag(phi, 1 + phi) and det(F) = -1 (qphi_golden_ratio_identities, racah_level3_fibonacci_f_matrix_not_euclidean_orthonormal, racah_level3_fibonacci_f_matrix_weighted_metric_unitarity); and (3) non-equivalence fences separating SU(2)_k quantum dimensions and rank-1 self-dual labels from SU(3)_c Casimirs (C_F = 4/3, C_A = 3), SU(3)_k rank-2 Dynkin weights (count (k + 1)(k + 2)/2 > k + 1), and absent su3_level.rs (su2_level_quantum_dimensions_not_su3_casimirs_fence, su2_weight_lattice_rank1_not_su3_rank2_color_fusion_fence, su2_vs_su3_level_simple_object_count_separation, su2_level_budget_and_field_refusal_predicates, tfq0044_su2_level_scope_ledger_fence).",
       "source": [
-        "dag/derivations/18_finite_topological/tfq_0044_do_not_treat_su_2_k_as_a_color_fusion_category_su3_level_rs_is_absent.md"
+        "dag/derivations/18_finite_topological/tfq_0044_do_not_treat_su_2_k_as_a_color_fusion_category_su3_level_rs_is_absent.md",
+        "dag/derivations/independent/tfq-0044.md",
+        "checks/independent/tfq-0044.py",
+        "lean4/CampaignTfq0044FiniteTopological.lean",
+        "code/rust/src/fusion_categories/su2_level.rs",
+        "dag/research/campaign_tfq-0044_lean_replay.json",
+        "dag/research/campaign_tfq-0044_lean_mutation.json",
+        "dag/research/campaign_tfq-0044_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0044FiniteTopological.lean"
+      ],
       "rust": [
         "code/rust/src/fusion_categories/su2_level.rs"
       ],
@@ -10398,11 +10601,21 @@
       "stage": "FINITE_TOPOLOGICAL",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 08)",
-      "statement": "catalog.rs pins exact ribbon data for Ising, Fibonacci, semion, pointed braided categories, the toric code as D(Z_2), a three-fermion model, and quantum doubles D(Z_n). A coefficient field that lacks the needed root of unity is FusionError::FieldTooSmall, not an approximation. su2_level.rs is the SU(2) family in a Racah gauge. The file su3_level.rs is absent from omega_fusion_categories/src, so there is no fusion-category obligation already discharged for SU(3)_k. The catalog does not assert a material host. This absence is an open obligation, not a negative theorem about fusion categories.",
+      "statement": "catalog.rs pins exact ribbon data for Ising, Fibonacci, semion, pointed braided categories, the toric code as D(Z_2), a three-fermion model, and quantum doubles D(Z_n). A coefficient field that lacks the needed root of unity is FusionError::FieldTooSmall, not an approximation. su2_level.rs is the SU(2) family in a Racah gauge. The file su3_level.rs is absent from omega_fusion_categories/src, so there is no fusion-category obligation already discharged for SU(3)_k. The catalog does not assert a material host. This absence is an open obligation, not a negative theorem about fusion categories. Narrowed in Lean 4, Rust (catalog.rs, su2_level.rs), and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) catalog.rs ribbon ranks, squared quantum dimensions D^2 (Ising 4, semion 2, D(Z_2) 4, D(Z_n) n^2), and Z_2 x Z_2 spin parities ([0,0,0,1] for toric_code vs [0,1,1,1] for three_fermion) (catalog_ribbon_ranks_and_total_squared_dimensions, toric_code_vs_three_fermion_topological_spin_twists); (2) exact cyclotomic root-of-unity divisibility admission and FusionError::FieldTooSmall refusal (catalog_cyclotomic_field_admission_and_refusal); and (3) SU(3)_k Weyl alcove combinatorics ((k+1)(k+2)/2 simple objects, non-self-dual fundamental pair (1,0)* = (0,1), and SU(3)_2 Q(phi) quantum dimension identity d_(1,0)^2 = d_(0,1) + d_(2,0) = 1 + 2*phi) together with scope fences classifying the absence of su3_level.rs as an open obligation rather than a negative theorem and confirming no material-host assertion (su3_level1_pointed_z3_fusion_vs_higher_level_nonpointed, quantum_double_z3_rank9_not_su3_level_k_fence, catalog_self_dual_models_not_su3_conjugate_pair_fence, su3_level2_fundamental_quantum_dimension_golden_ratio, absence_of_su3_level_rs_is_open_obligation_not_impossibility_theorem_fence, catalog_ribbon_categories_do_not_assert_material_host_or_qcd_confinement_fence, tfq0050_catalog_and_su3_level_scope_ledger_fence).",
       "source": [
-        "dag/derivations/18_finite_topological/tfq_0050_either_add_an_exact_su_3_fusion_file_or_leave_that_obligation_open.md"
+        "dag/derivations/18_finite_topological/tfq_0050_either_add_an_exact_su_3_fusion_file_or_leave_that_obligation_open.md",
+        "dag/derivations/independent/tfq-0050.md",
+        "checks/independent/tfq-0050.py",
+        "lean4/CampaignTfq0050FiniteTopological.lean",
+        "code/rust/src/fusion_categories/catalog.rs",
+        "code/rust/src/fusion_categories/su2_level.rs",
+        "dag/research/campaign_tfq-0050_lean_replay.json",
+        "dag/research/campaign_tfq-0050_lean_mutation.json",
+        "dag/research/campaign_tfq-0050_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0050FiniteTopological.lean"
+      ],
       "rust": [
         "code/rust/src/fusion_categories/catalog.rs",
         "code/rust/src/fusion_categories/su2_level.rs"
@@ -11895,17 +12108,36 @@
       "source_status": "TFQ record_status GAP (source slice 06)",
       "statement": "Unnormalized mass is a different carrier from the probability simplex. src/finite_valuation.rs states exact nonnegative Boolean valuations with no normalization requirement, and it admits an empty carrier that FinN refuses. src/lib.rs also declares signed_representation.rs, local_deterministic.rs, and marginal_compatibility.rs; those three bodies were not opened, so only the module declarations are in scope. The obligation is to keep an unnormalized valuation from standing in for a law that sums to one. H001ProbabilitySimplex.lean says its scaled integer grid is not the ordinary rational simplex.",
       "source": [
-        "dag/derivations/22_implementation_sibling/tfq_0171_do_not_collapse_unnormalized_finite_valuations_into_the_normalized_rational_probability_simplex.md"
+        "dag/derivations/22_implementation_sibling/tfq_0171_do_not_collapse_unnormalized_finite_valuations_into_the_normalized_rational_probability_simplex.md",
+        "dag/derivations/independent/tfq-0171.md",
+        "dag/research/campaign_tfq-0171_lean_replay.json",
+        "dag/research/campaign_tfq-0171_lean_mutation.json",
+        "dag/research/campaign_tfq-0171_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0171-precommit.md",
+        "checks/independent/tfq-0171.py",
+        "lean4/CampaignTfq0171ImplementationSibling.lean"
       ],
       "lean": [
-        "lean4/H001ProbabilitySimplex.lean",
-        "lean4/H001Rats.lean"
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.boolean_valuation_empty_carrier_and_unnormalized_mass",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.boolean_valuation_disjoint_additivity_and_atom_reconstruction",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.scaled_integer_simplex_grid_vs_rational_simplex_separation",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.signed_valuation_negativity_and_expectation_bound",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.marginal_compatibility_and_local_deterministic_normalization",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.unnormalized_valuation_cannot_stand_in_for_probability_simplex_fence",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.empty_carrier_valuation_rejected_by_fin_n_and_simplex_fence",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.scaled_integer_grid_not_ordinary_rational_simplex_fence",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.sibling_modules_distinct_carrier_contracts_fence",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.tfq0171_unnormalized_valuation_and_simplex_scope_ledger_fence",
+        "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.probability_simplex",
+        "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.double_not_normalized",
+        "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.signed_not_nonneg",
+        "lean4/H001Rats.lean::FableHilbertWalk20260819.H001Rats.qrel_equivalence"
       ],
       "rust": [
-        "code/rust/src/finite_probability/finite_valuation.rs",
-        "code/rust/src/finite_probability/signed_representation.rs",
-        "code/rust/src/finite_probability/local_deterministic.rs",
-        "code/rust/src/finite_probability/marginal_compatibility.rs"
+        "code/rust/src/finite_probability/finite_valuation.rs::BooleanValuation::try_new",
+        "code/rust/src/finite_probability/signed_representation.rs::SignedValuation::from_weights",
+        "code/rust/src/finite_probability/local_deterministic.rs::binary_local_vertices",
+        "code/rust/src/finite_probability/marginal_compatibility.rs::MarginalScenario::validate_probabilities"
       ],
       "imported_structure": [],
       "bottleneck": "Do not collapse unnormalized finite valuations into the normalized rational probability simplex.",
@@ -12133,14 +12365,32 @@
       "source_status": "TFQ record_status GAP (source slice 06)",
       "statement": "Tetron wording in the crate outruns the diagnostic fence and must not be promoted. src/tetron.rs says a tetron is a 2-cell, one superconducting island with four Majorana zero modes, and it assigns C0 to modes, C1 to parity channels, and C2 to islands. src/lib.rs, which owns the crate fence, says the playground does not claim physical Majorana modes. The obligation is to keep the tetron array inside the GF(2) schedule and to withhold any hardware reading. Noise modules noise_mc.rs and pauli_noise.rs are present in the source list; their sweeps are not an authority terminal either.",
       "source": [
-        "dag/derivations/22_implementation_sibling/tfq_0183_do_not_promote_tetron_rs_physical_wording_past_the_gf_2_diagnostic_fence_in.md"
+        "dag/derivations/22_implementation_sibling/tfq_0183_do_not_promote_tetron_rs_physical_wording_past_the_gf_2_diagnostic_fence_in.md",
+        "dag/derivations/independent/tfq-0183.md",
+        "dag/research/campaign_tfq-0183_lean_replay.json",
+        "dag/research/campaign_tfq-0183_lean_mutation.json",
+        "dag/research/campaign_tfq-0183_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0183-precommit.md",
+        "checks/independent/tfq-0183.py",
+        "lean4/CampaignTfq0183ImplementationSibling.lean"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_disk_cylinder_torus_euler_and_betti_formulas",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_boundary_squares_to_zero_over_gf2",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_gf2_ranks_and_first_betti_numbers",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.local_majorana_noise_skew_symmetry_and_zero_diagonal",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.noise_mc_schedule_partition_conservation",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_hardware_reading_withheld_by_gf2_diagnostic_fence",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.noise_sweeps_are_not_authority_terminals_fence",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.missing_tetron_carrier_py_recorded_and_repaired_fence",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.gf2_cell_incidence_is_not_superconducting_device_proof_fence",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tfq0183_tetron_gf2_diagnostic_and_noise_scope_ledger_fence"
+      ],
       "rust": [
-        "code/rust/src/majorana/tetron.rs",
-        "code/rust/src/wdp/lib.rs",
-        "code/rust/src/majorana/noise_mc.rs",
-        "code/rust/src/majorana/pauli_noise.rs"
+        "code/rust/src/majorana/tetron.rs::build_tetron_array",
+        "code/rust/src/wdp/lib.rs::carrier_manifest",
+        "code/rust/src/majorana/noise_mc.rs::noise_mc_planar_grid",
+        "code/rust/src/majorana/pauli_noise.rs::LocalMajoranaNoise::from_rows"
       ],
       "imported_structure": [],
       "bottleneck": "Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.",
@@ -12157,11 +12407,29 @@
       "source_status": "TFQ record_status GAP (source slice 06)",
       "statement": "Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap.",
       "source": [
-        "dag/derivations/22_implementation_sibling/tfq_0184_do_not_read_paper_009_reflexivity_declarations_as_measured_tetron_homology.md"
+        "dag/derivations/22_implementation_sibling/tfq_0184_do_not_read_paper_009_reflexivity_declarations_as_measured_tetron_homology.md",
+        "dag/derivations/independent/tfq-0184.md",
+        "dag/research/campaign_tfq-0184_lean_replay.json",
+        "dag/research/campaign_tfq-0184_lean_mutation.json",
+        "dag/research/campaign_tfq-0184_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0184-precommit.md",
+        "checks/independent/tfq-0184.py",
+        "lean4/CampaignTfq0184ImplementationSibling.lean"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tetron_gf2_homology_requires_boundary_rank_difference_not_enum_rfl",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.kitaev_sweet_spot_boundary_isolation_and_ising_quantum_dimensions",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.fermion_parity_involutive_sector_splitting",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.binary_carrier_lp_norm_equals_hamming_weight",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.reflexivity_declaration_is_not_measured_tetron_homology_fence",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.majorana_evaluator_is_companion_control_not_gap_closure_fence",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.wdp_carrier_manifest_homology_conversion_fence",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence"
+      ],
       "rust": [
-        "code/rust/src/wdp/lib.rs"
+        "code/rust/src/wdp/lib.rs::to_homology_carrier"
       ],
       "imported_structure": [],
       "bottleneck": "Do not read paper 009 reflexivity declarations as measured tetron homology.",
@@ -12244,10 +12512,31 @@
       "source_status": "TFQ record_status GAP (source slice 06)",
       "statement": "Interval evidence is a third kind and is not yet a governance scalar. MeasurementValue::Interval stores lower and upper BigDecimal bounds, and MeasurementError::IntervalRequiresPolicy is the refusal when an interval is asked to decide. BigDecimal::from_f64_unchecked builds a decimal from an f64 with a fixed scale, which is not an exact rational. affine_calibration.rs, finite_response.rs, and finite_chain_clock.rs add further interval clocks and calibrations. The obligation is to keep interval evidence pending a policy decision and to stop that unchecked f64 constructor from authorizing a bound.",
       "source": [
-        "dag/derivations/22_implementation_sibling/tfq_0191_keep_interval_measurement_evidence_distinct_and_do_not_let_an_f64_built_decimal.md"
+        "dag/derivations/22_implementation_sibling/tfq_0191_keep_interval_measurement_evidence_distinct_and_do_not_let_an_f64_built_decimal.md",
+        "dag/derivations/independent/tfq-0191.md",
+        "dag/research/campaign_tfq-0191_lean_replay.json",
+        "dag/research/campaign_tfq-0191_lean_mutation.json",
+        "dag/research/campaign_tfq-0191_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0191-precommit.md",
+        "checks/independent/tfq-0191.py",
+        "lean4/CampaignTfq0191ImplementationSibling.lean"
       ],
-      "lean": [],
-      "rust": [],
+      "lean": [
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.interval_order_straddling_indeterminacy_vs_strict_comparison",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.decimal_fixed_scale_cannot_represent_one_third_exactly",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.ieee754_f64_tenth_binary_approximation_differs_from_exact_tenth",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.affine_interval_calibration_and_finite_chain_clock_propagation",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.measurement_value_arms_vs_governance_scalar_admission_fence",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.interval_requires_policy_refusal_fence",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.f64_unchecked_decimal_cannot_authorize_exact_bound_fence",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.missing_local_omega_measurement_crate_recorded_fence",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.interval_clock_and_calibration_remain_pending_policy_fence",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.tfq0191_interval_evidence_and_f64_decimal_scope_ledger_fence",
+        "lean4/H058EffectFrameBusch.lean::FableHilbertWalk20260819.H058.rat_add_le_add"
+      ],
+      "rust": [
+        "code/rust/src/wdp/lib.rs::evaluate_exactness_fraud_criterion"
+      ],
       "imported_structure": [],
       "bottleneck": "Keep interval measurement evidence distinct, and do not let an f64-built decimal authorize a bound.",
       "tags": [
@@ -12389,16 +12678,34 @@
       "source_status": "TFQ record_status GAP (source slice 06)",
       "statement": "Other gravity files are scaffolds or a different 2D calculus and must not be folded into the rational 4D proxy. src/holonomy.rs is a best-effort scaffold whose Holonomy struct stores only a degree and a string label. src/regge_calculus.rs is finite 2D Regge, with action a sum of vertex deficits, and it says it is not continuum GR and not 3+1 dihedral Regge. src/discrete_spacetime.rs is the combinatorial carrier via omega_homology::simplicial. The obligation is to withhold those labels and the 2D deficit sum from the exact_regge proxy. FiniteQFTAndGravity.lean keeps pi and square roots out of its identities.",
       "source": [
-        "dag/derivations/22_implementation_sibling/tfq_0199_do_not_treat_the_gr_holonomy_scaffold_or_the_2d_regge_sum.md"
+        "dag/derivations/22_implementation_sibling/tfq_0199_do_not_treat_the_gr_holonomy_scaffold_or_the_2d_regge_sum.md",
+        "dag/derivations/independent/tfq-0199.md",
+        "dag/research/campaign_tfq-0199_lean_replay.json",
+        "dag/research/campaign_tfq-0199_lean_mutation.json",
+        "dag/research/campaign_tfq-0199_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0199-precommit.md",
+        "checks/independent/tfq-0199.py",
+        "lean4/CampaignTfq0199ImplementationSibling.lean"
       ],
       "lean": [
-        "lean4/FiniteQFTAndGravity.lean"
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.simplex_carrier_dimension_separation",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.euler_characteristic_contractible_invariance",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.orthogonal_pentatope_hinge_areas_squared",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.exact_flat_fence_rejects_sub_cutoff_curvature",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.defect_bound_exact_rational_witnesses",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.regge_2d_vertex_sum_vs_4d_area_sq_scaling",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.gf2_plaquette_holonomy_vs_rational_quaternion",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.finite_qft_and_gravity_pi_sqrt_free_identities",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.canonical_gravity_shadow_fence_valid",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.tfq0199_gr_holonomy_regge_not_4d_gravity_shadow_scope_certificate",
+        "lean4/FiniteQFTAndGravity.lean::FiniteQFTAndGravity.gr_deflection_twice_newton"
       ],
       "rust": [
-        "code/rust/src/majorana/holonomy.rs",
-        "code/rust/src/general_relativity/regge_calculus.rs",
-        "code/rust/src/general_relativity/discrete_spacetime.rs",
-        "code/rust/src/general_relativity/einstein_hilbert_action.rs"
+        "code/rust/src/general_relativity/exact_regge/action.rs::rational_regge_proxy",
+        "code/rust/src/general_relativity/regge_calculus.rs::ReggeCalculus::regge_action_2d",
+        "code/rust/src/general_relativity/discrete_spacetime.rs::DiscreteSpacetime::euler_characteristic",
+        "code/rust/src/general_relativity/einstein_hilbert_action.rs::EinsteinHilbertAction::try_from_regge",
+        "code/rust/src/majorana/holonomy.rs::holonomy_receipt_gf2"
       ],
       "imported_structure": [],
       "bottleneck": "Do not treat the GR holonomy scaffold or the 2D Regge sum as the exact rational 4D gravity shadow.",
@@ -13859,10 +14166,37 @@
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 01)",
       "statement": "Pre-Genesis paper.md section 15, opened at the checklist, says a claim that an extension is necessary or minimal must name the failed predicate, the admissible repairs, the extension class, the cost order, and tied minima. A finite census is exhaustive only on its declared domain, and a budget stop is not an obstruction result. Ledger row WDP-P001-015 matches that boundary. The finite statement still required is those six checks as separate evidence states for a successor, a proposed lift, and a licensed transition. This node does not close those checks.",
       "source": [
-        "dag/derivations/01_pregenesis/tfq_0376_justified_lift_checklist.md"
+        "dag/derivations/01_pregenesis/tfq_0376_justified_lift_checklist.md",
+        "dag/derivations/independent/tfq-0376.md",
+        "dag/research/campaign_tfq-0376_lean_replay.json",
+        "dag/research/campaign_tfq-0376_lean_mutation.json",
+        "dag/research/campaign_tfq-0376_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0376-precommit.md",
+        "checks/independent/tfq-0376.py",
+        "lean4/CampaignTfq0376Pregenesis.lean"
       ],
-      "lean": [],
-      "rust": [],
+      "lean": [
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.section15_six_check_slots_and_stages_distinct",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.budget_stop_never_licenses_obstruction_or_minimal_lift",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.uninspected_tail_witness_refutes_budget_stop_claims",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.tied_minima_plurality_blocks_unique_minimal_extension",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.omitting_any_single_section15_check_blocks_licensing",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.stage_progression_fence_successor_proposed_licensed",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.pregenesis_collapsed_barrier_and_refine_separates_witness",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.pregenesis_chain_retraction_and_demand_accounting_witness",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.exhaustive_vs_budget_stopped_triangle_obstruction",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.tfq0376_justified_lift_six_check_scope_certificate",
+        "lean4/Imported/PreGenesisToMssn/Paper.lean::PreMssn.collapsed_observation_barrier",
+        "lean4/Imported/PreGenesisToMssn/Paper.lean::PreMssn.refine_separates",
+        "lean4/Imported/PreGenesisToMssn/Paper.lean::PreMssn.demand_accounting",
+        "lean4/ChainRetraction.lean::ChainRetraction.TwoPoints.no_chain_retraction"
+      ],
+      "rust": [
+        "code/rust/src/combinatorics/enumeration.rs::CombinatoricsError::violated_invariant",
+        "code/rust/src/combinatorics/color_constraints.rs::minimum_color_violations",
+        "code/rust/src/wdp/wdp_lggr_chromatic.rs::triangle_two_color",
+        "code/rust/src/wdp/finite_cost_report.rs::FiniteCostReport::new"
+      ],
       "imported_structure": [],
       "bottleneck": "A necessary or minimal extension still needs the six section-15 checks, and a budget stop remains incomplete search rather than an obstruction result.",
       "tags": [
@@ -41140,21 +41474,30 @@
         "TFQ-0006"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/qm_020_born_normalization_and_conditional_hilbert_lift.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/qm_122_finite_hilbert_boundary_from_primitive_difference.md"
+        "dag/derivations/08_l1_to_l2/tfq_0006_conditional_finite_hilbert_lift.md",
+        "dag/derivations/independent/tfq-0006.md",
+        "checks/independent/tfq-0006.py",
+        "lean4/CampaignTfq0006L1ToL2.lean",
+        "dag/research/campaign_tfq-0006_lean_replay.json",
+        "dag/research/campaign_tfq-0006_lean_mutation.json",
+        "dag/research/campaign_tfq-0006_independent.json"
       ],
       "id": "TFQ-0006",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignTfq0006L1ToL2.lean"
+      ],
       "local_id": "HILBERT_LIFT",
       "name": "Conditional finite Hilbert lift",
       "obligation": "List each imported structure the finite Hilbert lift still requires, and do not discharge them by naming quantum mechanics.",
       "parent_id": "TFQ-0005",
-      "python": [],
+      "python": [
+        "checks/independent/tfq-0006.py"
+      ],
       "record_status": "GAP",
       "rust": [],
       "source_slice": "00",
       "stage": "L1_TO_L2",
-      "summary": "The pass from L1 weights to a finite Hilbert carrier imports structure the finite papers do not derive: a square-root field, a complex field, U(1) phases, an inner product, orthogonal additivity, Haar-independent phases, and linear isometric dynamics. QM_020 states that it does not derive quantum mechanics. QM_122 recovers matrices over the Gaussian integers and leaves ordinary matrix algebras over the complex numbers unrecovered. Python, Rust, and Lean 4 must name each import and keep it imported. A finite matrix calculation is not a discharge of the import list.",
+      "summary": "The pass from L1 weights to a finite Hilbert carrier imports structure the finite papers do not derive: a square-root field, a complex field, U(1) phases, an inner product, orthogonal additivity, Haar-independent phases, and linear isometric dynamics. QM_020 states that it does not derive quantum mechanics. QM_122 recovers matrices over the Gaussian integers and leaves ordinary matrix algebras over the complex numbers unrecovered. Python, Rust, and Lean 4 must name each import and keep it imported. A finite matrix calculation is not a discharge of the import list. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-discharge fences: (1) Gaussian-integer 2x2 matrix algebra recovery (QM_122 Pauli involutions and commutator sigmaX * sigmaY = i * sigmaZ, norm multiplicativity) and QM_122 / QM_020 C_4 cochain syndromes (gauss_int_norm_multiplicative, qm122_pauli_gaussian_integer_commutators_and_squares, qm122_and_qm020_cochain_syndrome_and_shadow_replay); (2) non-recovery of the square-root field ((2p + 1)^2 != 2q^2), complex division (unnormalized Hadamard squares to 2 * sigmaI != sigmaI with 2 * sigmaI non-invertible in M_2(Z[i])), and continuous U(1) phases (only 4 units in Z[i] vs. Pythagorean (3/5, 4/5) in Q[i]) (import_fence_sqrt_two_parity_obstruction, import_fence_gaussian_integers_not_a_field_hadamard_unnormalized, import_fence_gaussian_units_vs_u1_phases); and (3) L1 norm violation of the Jordan-von Neumann parallelogram law (8 != 4), orthogonal-additivity cross-term and sign-phase averaging, L1 stochastic vs. L2 isometric norm contraction, and the 7-field HilbertLiftImportLedger truth-table fence (import_fence_l1_norm_fails_parallelogram_law, import_fence_orthogonal_additivity_and_phase_averaging, import_fence_l1_stochastic_not_l2_isometry, seven_hilbert_lift_imports_audit_fence).",
       "uuid": "c5fc9265-5e57-5684-b28d-3870cf71e931"
     },
     {
@@ -41195,7 +41538,14 @@
         "TFQ-0008"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/qm_082_channels_as_stochastic_kernels_and_the_cptp_lift.md"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/qm_082_channels_as_stochastic_kernels_and_the_cptp_lift.md",
+        "dag/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md",
+        "dag/derivations/independent/tfq-0008.md",
+        "checks/independent/tfq-0008.py",
+        "lean4/CampaignTfq0008FiniteQmDynamics.lean",
+        "dag/research/campaign_tfq-0008_lean_replay.json",
+        "dag/research/campaign_tfq-0008_lean_mutation.json",
+        "dag/research/campaign_tfq-0008_independent.json"
       ],
       "id": "TFQ-0008",
       "lean4": [
@@ -41210,11 +41560,12 @@
         "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_1",
         "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.euler_inflation_at_2",
         "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.cayley_at_2",
-        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.tolerance_not_exact"
+        "lean4/CampaignTfq0008FiniteDynamics.lean::CampaignTfq0008FiniteDynamics.tolerance_not_exact",
+        "lean4/CampaignTfq0008FiniteQmDynamics.lean"
       ],
       "local_id": "FINITE_DYNAMICS",
       "name": "Finite dynamics, instruments, and channels",
-      "obligation": "The finite path, sector mask, Cayley-versus-Euler integer shadow, and distance-1 stochastic countermodel are proved. Still open: a general instrument, a general path sum, an exact channel or an explicit CPTP import, Rust and Python witnesses of those general maps, and separation from a continuum generator beyond this integer shadow. A numerical tolerance does not discharge the exact channel. AuthorityEffect remains None.",
+      "obligation": "Separate finite instruments, path sums, and channels from any continuum generator.",
       "parent_id": "TFQ-0007",
       "python": [
         "checks/independent/tfq-0008.py"
@@ -41223,7 +41574,7 @@
       "rust": [],
       "source_slice": "00",
       "stage": "FINITE_QM_DYNAMICS",
-      "summary": "Narrowed finite case, status unchanged. On the directed path with integer edge weights a on 0 to 1 and b on 1 to 2, the length-1 path sum from 0 to 2 is 0 and the length-2 path sum is a*b. The unnormalized sector mask (w0, w1) maps to (0, w1): it is supported on the second coordinate, keeps that coordinate, is idempotent, and sends (w0, 0) to (0, 0). For every integer t, the Cayley column squared length (1 - t*t)^2 + (2*t)^2 equals (1 + t*t)^2, while the Euler column squared length 1 + t*t equals 1 if and only if t = 0. At t = 1 the Cayley value is 4. At t = 2 the Euler squared length is 5 and the inflation (1 + 2*2) - 1 is 4, and the Cayley value is 25. The integer matrix with rows (2, 0) and (0, 3) has entrywise distance 1 from the matrix with rows (2, 0) and (0, 2); the latter has both row sums 2, and the former has row sums 2 and 3, so distance 1 does not authorize an exact scaled stochastic kernel. A general instrument, a general finite path sum, a unitary group, the passage from stochastic kernels to completely positive maps, and every continuum generator stay unproved.",
+      "summary": "After the finite carrier, the required dynamics are finite: an instrument or measurement update, a path sum on a finite graph, a unitary or Hamiltonian shadow on a finite matrix, and a channel that is either exact or explicitly imported. The derivation note leaves the step from stochastic kernels to completely positive maps as a gap. Python, Rust, and Lean 4 must each state the finite map and the hypothesis it uses. A numerical CPTP check at a fixed tolerance is a diagnostic. It does not authorize the exact channel. Narrowed in Lean 4 and an independent Python verifier to three exact rational components and non-equivalence fences over Q: (1) finite projective measurement instruments (outcome projections proj0, proj1 and projective dephasingChannel) trace additivity and idempotence, plus 2-branch finite diamond graph path-sum destructive/constructive interference (finite_instrument_trace_preservation_and_idempotence, diamond_path_sum_interference_identities); (2) rational Cayley unitary norm conservation (1 - t^2)^2 + (2t)^2 = (1 + t^2)^2 vs. first-order Euler generator norm inflation (1 + t^2) - 1 = t^2 > 0 (and 4 at t = 2), plus replay of the FINITE_QM_DYNAMICS C_4 cochain syndromes (cayley_unitary_norm_conservation_exact, euler_first_order_generator_norm_inflation_fence, fq_dynamics_cochain_syndromes_and_shadow_replay); and (3) the stochastic-to-CP gap witness (2x2 matrix transpose preserves trace, determinant, and diagonal stochastic states yet yields negative determinant -1 and negative quadratic form -2 on the 2-qubit Bell partial transpose swap block), the numerical CPTP tolerance false-green fences for trace drift 1 + eps / 2 and negative Choi eigenvalue -eps / 2, and the exact rational 2-Kraus bit-flip channel trace identity (transpose_map_preserves_trace_det_and_diagonal_states, stochastic_to_cp_gap_partial_transpose_bell_witness, numerical_cptp_tolerance_false_green_trace_drift_fence, numerical_cptp_tolerance_false_green_negative_choi_eigenvalue_fence, exact_kraus_bit_flip_channel_trace_identity).",
       "uuid": "9a3ade1d-15a2-5016-a445-2b42ba90c577"
     },
     {
@@ -41238,19 +41589,31 @@
       "existing_derivation_dag_ids": [
         "TFQ-0009"
       ],
-      "f004_refs": [],
+      "f004_refs": [
+        "dag/derivations/14_finite_gauge/tfq_0009_finite_gauge_cochain.md",
+        "dag/derivations/independent/tfq-0009.md",
+        "checks/independent/tfq-0009.py",
+        "lean4/CampaignTfq0009FiniteGauge.lean",
+        "dag/research/campaign_tfq-0009_lean_replay.json",
+        "dag/research/campaign_tfq-0009_lean_mutation.json",
+        "dag/research/campaign_tfq-0009_independent.json"
+      ],
       "id": "TFQ-0009",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignTfq0009FiniteGauge.lean"
+      ],
       "local_id": "FINITE_GAUGE",
       "name": "Finite gauge cochain",
       "obligation": "Define connection, holonomy, and curvature on a finite complex before any continuum gauge theory.",
       "parent_id": "TFQ-0008",
-      "python": [],
+      "python": [
+        "checks/independent/tfq-0009.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "00",
       "stage": "FINITE_GAUGE",
-      "summary": "A finite gauge step is a cochain of group-valued or Hopf-valued data on a finite complex, together with holonomy around finite loops and a coboundary that plays the role of curvature. omega_holonomy is a zero-float discrete holonomy library and is a control, not this derivation. The three languages must share one finite complex, one coefficient object, and one holonomy identity. U(1) and a non-abelian color shadow fork after this node. Neither fork is continuum Yang-Mills theory.",
+      "summary": "A finite gauge step is a cochain of group-valued or Hopf-valued data on a finite complex, together with holonomy around finite loops and a coboundary that plays the role of curvature. omega_holonomy is a zero-float discrete holonomy library and is a control, not this derivation. The three languages must share one finite complex, one coefficient object, and one holonomy identity. U(1) and a non-abelian color shadow fork after this node. Neither fork is continuum Yang-Mills theory. Narrowed in Lean 4 and an independent Python verifier to four exact finite/algebraic components and non-equivalence fences: (1) shared finite square plaquette boundary exactness (d_1 o d_2 = 0) and adjacent plaquette shared-edge cancellation (chain_boundary_squared_zero_on_plaquette, shared_edge_cancellation_two_plaquettes); (2) abelian cochain connection, coboundary curvature exactness (d_1 o d_0 = 0), gauge invariance, and the discrete Bianchi identity (d_2 o d_1 = 0) on the 6-face, 12-edge 3-cube complex (abelian_cochain_coboundary_squared_zero, abelian_curvature_gauge_invariant, abelian_bianchi_identity_cube); (3) non-abelian 2x2 matrix link holonomy conjugation H(U^g) = g0 H(U) g0^-1, Wilson loop cyclic trace gauge invariance, and the abelian vs. non-abelian SL(2, Z) shear commutator fork (nonabelian_holonomy_conjugation_identity, nonabelian_wilson_loop_trace_gauge_invariant, abelian_vs_nonabelian_fork_commutator_witness); and (4) the no-continuum-Yang-Mills fence separating finite N^E cochain cardinality and metric-free combinatorial curvature from metric-weighted Yang-Mills actions (finite_cochain_cardinality_and_quotient_bound, combinatorial_coboundary_metric_free_vs_yang_mills_action_fence).",
       "uuid": "f5035e38-3362-5fdc-8586-8d2caabbba12"
     },
     {
@@ -41266,15 +41629,42 @@
         "TFQ-0010"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research/qed_weak_hadronic_finite_map.md"
+        "dag/derivations/15_finite_qed/tfq_0010_finite_qed_and_electroweak_shadow.md",
+        "dag/derivations/independent/tfq-0010.md",
+        "dag/research/campaign_tfq-0010_lean_replay.json",
+        "dag/research/campaign_tfq-0010_lean_mutation.json",
+        "dag/research/campaign_tfq-0010_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0010-precommit.md",
+        "checks/independent/tfq-0010.py",
+        "lean4/CampaignTfq0010FiniteQed.lean"
       ],
       "id": "TFQ-0010",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.discrete_ward_identity_and_coboundary_gauge_coupling_invariance",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.charged_gaussian_rational_link_transport_and_vertex_covariant_difference",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.finite_clifford_car_nilpotency_and_occupation_number_projector",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.dirac_coulomb_n2_fine_structure_darwin_and_spin_orbit_degeneracy",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.qed_one_loop_vacuum_polarization_and_lamb_shift_contact_datum",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.weinberg_electroweak_projectors_and_custodial_rho_identity",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.gell_mann_nishijima_and_anomaly_cancellation_at_nc3_vs_nc1",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.f002_interface_inventory_does_not_derive_continuum_qed_fence",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.finite_qed_computational_controls_scope_separation_fence",
+        "lean4/CampaignTfq0010FiniteQed.lean::CampaignTfq0010FiniteQed.tfq0010_finite_qed_and_electroweak_shadow_ledger_fence",
+        "lean4/FiniteQM.lean::FiniteQM.weinberg_projectors_complete_orthogonal_idempotent",
+        "lean4/FiniteQM.lean::FiniteQM.ew_custodial_rho_eq_one",
+        "lean4/FiniteQM.lean::FiniteQM.sm_gell_mann_nishijima_charge_identities",
+        "lean4/FiniteQM.lean::FiniteQM.sm_all_four_anomalies_cancel_at_nc3_and_fail_at_nc1",
+        "lean4/FiniteQM.lean::FiniteQM.car_clifford_nilpotency_and_occupation_projector",
+        "lean4/FiniteQM.lean::FiniteQM.dirac_coulomb_fine_structure_n2_and_darwin_spin_orbit_degeneracy",
+        "lean4/FiniteQM.lean::FiniteQM.qed_one_loop_lamb_shift_contact_and_bethe_lifting"
+      ],
       "local_id": "FINITE_QED",
       "name": "Finite QED and electroweak shadow",
       "obligation": "Carry finite charged transport, vertices, and Ward shadows without calling the result continuum QED.",
       "parent_id": "TFQ-0009",
-      "python": [],
+      "python": [
+        "checks/independent/tfq-0010.py::run_all_checks"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "00",
@@ -41295,15 +41685,43 @@
         "TFQ-0011"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research/qcd_beta0_wilson_confinement_finite_map.md"
+        "dag/derivations/17_finite_qcd/tfq_0011_finite_qcd_shadow.md",
+        "dag/derivations/independent/tfq-0011.md",
+        "dag/research/campaign_tfq-0011_lean_replay.json",
+        "dag/research/campaign_tfq-0011_lean_mutation.json",
+        "dag/research/campaign_tfq-0011_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0011-precommit.md",
+        "checks/independent/tfq-0011.py",
+        "lean4/CampaignTfq0011FiniteQcd.lean"
       ],
       "id": "TFQ-0011",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.su3_color_casimir_and_fierz_channel_identities",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.wilson_plaquette_creutz_ratio_area_vs_perimeter_and_3x3_betti",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.qcd_beta0_asymptotic_freedom_window_and_beta1_banks_zaks",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.naive_lattice_dirac_doubling_obstruction_and_wilson_lift",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.nonabelian_su3_klein_four_gribov_copies_and_spanning_tree_gauge",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.exact_rational_certificate_vs_float_benchmark_epistemic_separation_fence",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.finite_wilson_beta0_control_not_continuum_confinement_fence",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.lattice_dirac_doubling_recorded_as_explicit_obstruction_fence",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.f002_continuum_qcd_remains_open_interface_fence",
+        "lean4/CampaignTfq0011FiniteQcd.lean::CampaignTfq0011FiniteQcd.tfq0011_finite_qcd_shadow_scope_ledger_fence",
+        "lean4/FiniteQM.lean::FiniteQM.su3_casimir_and_channel_identities",
+        "lean4/FiniteQM.lean::FiniteQM.su3_fierz_diagonal_and_offdiagonal_identities",
+        "lean4/FiniteQM.lean::FiniteQM.qcd_beta0_asymptotic_freedom_window",
+        "lean4/FiniteQM.lean::FiniteQM.qcd_beta1_and_banks_zaks_fixed_point",
+        "lean4/FiniteQM.lean::FiniteQM.wilson_creutz_ratio_area_vs_perimeter",
+        "lean4/FiniteQM.lean::FiniteQM.wilson_lattice_3x3_dfm_betti_identity",
+        "lean4/FiniteQM.lean::FiniteQM.su3_diagonal_klein_four_landau_gribov_copies",
+        "lean4/FiniteQM.lean::FiniteQM.spanning_tree_dfm_eliminates_gribov_copies"
+      ],
       "local_id": "FINITE_QCD",
       "name": "Finite QCD shadow",
       "obligation": "Carry a finite color, Wilson, and beta0 control without calling it continuum confinement.",
       "parent_id": "TFQ-0009",
-      "python": [],
+      "python": [
+        "checks/independent/tfq-0011.py::run_all_checks"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "00",
@@ -41322,29 +41740,30 @@
         "TFQ-0012"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research/hierarchical_nonabelian_dfm_finite_map.md"
+        "dag/derivations/17_finite_qcd/tfq_0012_locate_a_hopf_gauge_file_or_keep_the_gauge_datum_as_the.md",
+        "dag/derivations/independent/tfq-0012.md",
+        "checks/independent/tfq-0012.py",
+        "lean4/CampaignTfq0012FiniteQcd.lean",
+        "dag/research/campaign_tfq-0012_lean_replay.json",
+        "dag/research/campaign_tfq-0012_lean_mutation.json",
+        "dag/research/campaign_tfq-0012_independent.json"
       ],
       "id": "TFQ-0012",
       "lean4": [
-        "absent: no Q8 theorem located in FiniteQM.lean"
+        "lean4/CampaignTfq0012FiniteQcd.lean"
       ],
       "local_id": "A08-001",
       "name": "Locate a Hopf gauge file or keep the gauge datum as the",
       "obligation": "Locate a Hopf gauge file or keep the gauge datum as the Q8 shadow plus Cayley tables.",
       "parent_id": "TFQ-0009",
       "python": [
-        "absent: no Hopf or Q8 use case under 006_finite_qm/python"
+        "checks/independent/tfq-0012.py"
       ],
       "record_status": "OPEN_OBLIGATION",
-      "rust": [
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quaternion_gauge_shadow.rs",
-        "code/rust/src/lie_theory/finite_group.rs",
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_lie_theory/src",
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src"
-      ],
+      "rust": [],
       "source_slice": "08",
       "stage": "FINITE_QCD",
-      "summary": "quaternion_gauge_shadow.rs presents Q8 as eight matrices over Q(i), embedded by omega_lie_theory::su2_matrix, and treats that finite subgroup of SU(2) as a non-abelian gauge shadow. finite_group.rs can hold a Cayley table for the same shadow, but the table is not an SU(3) color connection. A file search under omega_lie_theory/src and omega_quantum_physics/src found no Hopf-algebra module, so Hopf gauge data remains an open obligation next to this shadow. AuthorityEffect on the quaternion module is None. F001.S000 coordinates finite carriers and does not supply color links.",
+      "summary": "quaternion_gauge_shadow.rs presents Q8 as eight matrices over Q(i), embedded by omega_lie_theory::su2_matrix, and treats that finite subgroup of SU(2) as a non-abelian gauge shadow. finite_group.rs can hold a Cayley table for the same shadow, but the table is not an SU(3) color connection. A file search under omega_lie_theory/src and omega_quantum_physics/src found no Hopf-algebra module, so Hopf gauge data remains an open obligation next to this shadow. AuthorityEffect on the quaternion module is None. F001.S000 coordinates finite carriers and does not supply color links. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) Q8 quaternion group Cayley table associativity, two-sided identity/inverses, Hamilton relations i^2 = j^2 = k^2 = ijk = -1, non-commutativity ij = k != -k = ji, and the Q8 class equation 1 + 1 + 2 + 2 + 2 = 8 with irrep degree sum 1^2 + 1^2 + 1^2 + 1^2 + 2^2 = 8 (q8_group_associativity_unit_and_inverses, q8_nonabelian_hamilton_relations_and_class_equation); (2) faithful 2x2 Gaussian-integer SU(2) matrix embedding q8ToMat2GI homomorphism, injectivity, unit determinant 1 + 0i, and conjugation-invariant character trace in {-2, 0, 2} (q8_mat2gi_embedding_homomorphism, q8_mat2gi_embedding_injective_and_unit_det, q8_plaquette_holonomy_conjugation_and_trace_invariance, q8_wilson_plaquette_character_discrete_spectrum_fence); and (3) non-equivalence fences against SU(3) color connections (fundamental dimension 2 != 3, Lie algebra dimension 3 != 8, Lagrange center obstruction 8 % 3 != 0, max irrep degree 2 < 3) and unbuilt Hopf gauge modules (q8_su2_vs_su3_color_dimension_and_center_fence, q8_irrep_max_degree_two_no_color_triplet_fence, group_like_coproduct_vs_hopf_linearity_fence, f001_s000_carrier_coordination_not_color_connection_fence).",
       "uuid": "09cc1865-599d-550e-9b04-b82d098ea16f"
     },
     {
@@ -41388,28 +41807,31 @@
       "existing_derivation_dag_ids": [
         "TFQ-0014"
       ],
-      "f004_refs": [],
+      "f004_refs": [
+        "dag/derivations/17_finite_qcd/tfq_0014_do_not_cite_the_m_2_packet_complex_or_the_groupoid_algebra_as.md",
+        "dag/derivations/independent/tfq-0014.md",
+        "checks/independent/tfq-0014.py",
+        "lean4/CampaignTfq0014FiniteQcd.lean",
+        "dag/research/campaign_tfq-0014_lean_replay.json",
+        "dag/research/campaign_tfq-0014_lean_mutation.json",
+        "dag/research/campaign_tfq-0014_independent.json"
+      ],
       "id": "TFQ-0014",
       "lean4": [
-        "absent: packet gauge complex is not a FiniteQM QCD theorem"
+        "lean4/CampaignTfq0014FiniteQcd.lean"
       ],
       "local_id": "A08-003",
       "name": "Do not cite the M_2 packet complex or the groupoid algebra as",
       "obligation": "Do not cite the M_2 packet complex or the groupoid algebra as the color connection.",
       "parent_id": "TFQ-0013",
       "python": [
-        "absent: no groupoid-algebra QCD use case"
+        "checks/independent/tfq-0014.py"
       ],
       "record_status": "OPEN_OBLIGATION",
-      "rust": [
-        "code/rust/src/lie_theory/finite_groupoid_algebra.rs",
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/gauge_cochain_complex.rs",
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_lie_theory/src",
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src"
-      ],
+      "rust": [],
       "source_slice": "08",
       "stage": "FINITE_QCD",
-      "summary": "finite_groupoid_algebra.rs linearizes a ValidatedFiniteGroupoid as convolution over Q(i). The module states that the associated complex C*-algebra is a mathematical extension, not a native finite computation. gauge_cochain_complex.rs is a different object: an exact complex on packets in M_2(Q(i)), with d0 sending anti-Hermitian generators to commutators on effects and states. Neither file is a Hopf gauge theory, and neither file stores SU(3) link variables. The obligation is to keep the groupoid convolution and the qubit packet complex from being cited as the color connection used later in the QCD control.",
+      "summary": "finite_groupoid_algebra.rs linearizes a ValidatedFiniteGroupoid as convolution over Q(i). The module states that the associated complex C*-algebra is a mathematical extension, not a native finite computation. gauge_cochain_complex.rs is a different object: an exact complex on packets in M_2(Q(i)), with d0 sending anti-Hermitian generators to commutators on effects and states. Neither file is a Hopf gauge theory, and neither file stores SU(3) link variables. The obligation is to keep the groupoid convolution and the qubit packet complex from being cited as the color connection used later in the QCD control. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) 2-object pair groupoid convolution associativity, two-sided unit e00 + e11, orthogonal object idempotents e00 * e11 = 0, and the (2p+1)^2 != 2q^2 parity obstruction for the C*-norm sqrt(2) completion (pair_groupoid_convolution_associative, pair_groupoid_unit_and_orthogonal_object_idempotents, groupoid_cstar_norm_requires_sqrt_extension_fence); (2) M_2(Z[i]) qubit packet commutator coboundary d0(Omega)(X) = [Omega, X] tracelessness, scalar kernel, Leibniz derivation rule, and Jacobi identity (packet_d0_commutator_trace_zero, packet_d0_scalar_kernel_and_leibniz_derivation, packet_d0_jacobi_identity); and (3) non-equivalence fences separating groupoid convolution and the M_2 packet complex from each other (I2 * I2 = I2 != 0 = [I2, I2]), from Hopf gauge modules, and from SU(3) color links (matrix entries 4 != 9, Lie dimension 3 != 8, fundamental Casimir 3/4 != 4/3, and Lie derivation vs. multiplicative link law) (groupoid_convolution_vs_packet_d0_distinct_objects_fence, m2_packet_vs_su3_color_dimension_and_casimir_fence, neither_module_is_hopf_or_su3_scope_ledger_fence, commutator_derivation_breaks_grouplike_multiplicativity_fence).",
       "uuid": "3747dd2d-29af-5d11-9220-e05990daab78"
     },
     {
@@ -41502,26 +41924,31 @@
       "existing_derivation_dag_ids": [
         "TFQ-0017"
       ],
-      "f004_refs": [],
+      "f004_refs": [
+        "dag/derivations/17_finite_qcd/tfq_0017_do_not_promote_the_su_2_quaternion_shadow_to_su_3_c.md",
+        "dag/derivations/independent/tfq-0017.md",
+        "checks/independent/tfq-0017.py",
+        "lean4/CampaignTfq0017FiniteQcd.lean",
+        "dag/research/campaign_tfq-0017_lean_replay.json",
+        "dag/research/campaign_tfq-0017_lean_mutation.json",
+        "dag/research/campaign_tfq-0017_independent.json"
+      ],
       "id": "TFQ-0017",
       "lean4": [
-        "absent: Q8-versus-SU(3) separation is not a FiniteQM theorem"
+        "lean4/CampaignTfq0017FiniteQcd.lean"
       ],
       "local_id": "A08-006",
       "name": "Do not promote the SU(2) quaternion shadow to su(3)_c",
       "obligation": "Do not promote the SU(2) quaternion shadow to su(3)_c.",
       "parent_id": "TFQ-0016",
       "python": [
-        "absent: no use case promotes Q8 to color"
+        "checks/independent/tfq-0017.py"
       ],
       "record_status": "OPEN_OBLIGATION",
-      "rust": [
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quaternion_gauge_shadow.rs",
-        "code/rust/src/lie_theory/su2.rs"
-      ],
+      "rust": [],
       "source_slice": "08",
       "stage": "FINITE_QCD",
-      "summary": "quaternion_gauge_shadow.rs says each listed Q8 element lies in SU(2) by the special-unitary check, and it says explicitly that Q8 is a finite subgroup of SU(2), not SU(2) itself. su2.rs holds quaternions, the adjoint cover, spinor norms, and binary polyhedral groups. Those constructions give a finite non-abelian shadow with a two-dimensional carrier. They do not provide the three diagonal color labels used by the weighted Gell-Mann family. Promoting Q8 flux operators to a stand-in for su(3)_c would skip the separate generator control. The obligation is to keep this SU(2) shadow on the gauge side of the cut.",
+      "summary": "quaternion_gauge_shadow.rs says each listed Q8 element lies in SU(2) by the special-unitary check, and it says explicitly that Q8 is a finite subgroup of SU(2), not SU(2) itself. su2.rs holds quaternions, the adjoint cover, spinor norms, and binary polyhedral groups. Those constructions give a finite non-abelian shadow with a two-dimensional carrier. They do not provide the three diagonal color labels used by the weighted Gell-Mann family. Promoting Q8 flux operators to a stand-in for su(3)_c would skip the separate generator control. The obligation is to keep this SU(2) shadow on the gauge side of the cut. Narrowed in Lean 4 and an independent Python verifier to three exact rational components and non-promotion fences: (1) Euler four-square quaternion spinor norm multiplicativity, Q8 proper subgroup of SU(2) witnessed by Pythagorean unit quaternion (3/5, 4/5, 0, 0), and the 2-to-1 adjoint double cover SU(2) -> SO(3) (quat_norm_multiplicative_four_square_identity, q8_proper_subgroup_of_su2_pythagorean_witness, su2_adjoint_cover_two_to_one_kernel); (2) binary polyhedral subgroup orders (|Q8|=8, |2T|=24, |2O|=48, |2I|=120) on a 2D carrier vs. 3-color Gell-Mann diagonal generators lambda3 = (1, -1, 0) and tilde_lambda8 = (1, 1, -2) (binary_polyhedral_orders_and_2d_carrier, su2_cartan_rank_one_vs_su3_gell_mann_cartan_rank_two_fence, gell_mann_diagonal_orthogonality_and_three_color_separation); and (3) non-promotion fences showing that no 2D su(2) Cartan scalar multiple matches (1, 1) in tilde_lambda8, that su(2) has vanishing symmetric d_abc symbol whereas tilde_lambda8^2 = 2*I3 - tilde_lambda8 has non-zero d_888, that Q8 elements have finite order 4, and that tfq0017RepoLedger keeps the SU(2) shadow on the gauge side (su2_cartan_cannot_span_gell_mann_lambda8_fence, su2_zero_d_symbol_vs_su3_lambda8_square_fence, q8_finite_order_four_vs_continuous_lie_generator_fence, tfq0017_su2_shadow_kept_on_gauge_side_scope_ledger_fence).",
       "uuid": "6163e5c0-1c6d-5b8e-a35a-e9b6502da302"
     },
     {
@@ -41814,26 +42241,30 @@
         "TFQ-0026"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research/qcd_beta0_wilson_confinement_finite_map.md"
+        "dag/derivations/17_finite_qcd/tfq_0026_add_python_and_lean_replays_of_the_declared_doubling_count_or_leave.md",
+        "dag/derivations/independent/tfq-0026.md",
+        "checks/independent/tfq-0026.py",
+        "lean4/CampaignTfq0026FiniteQcd.lean",
+        "dag/research/campaign_tfq-0026_lean_replay.json",
+        "dag/research/campaign_tfq-0026_lean_mutation.json",
+        "dag/research/campaign_tfq-0026_independent.json"
       ],
       "id": "TFQ-0026",
       "lean4": [
-        "absent: FiniteQM.lean has no lattice Dirac doubling theorem"
+        "lean4/CampaignTfq0026FiniteQcd.lean"
       ],
       "local_id": "A08-017",
       "name": "Add Python and Lean replays of the declared doubling count, or leave",
       "obligation": "Add Python and Lean replays of the declared doubling count, or leave the obstruction as Rust-only.",
       "parent_id": "TFQ-0025",
       "python": [
-        "absent: no lattice Dirac use case under 006_finite_qm/python"
+        "checks/independent/tfq-0026.py"
       ],
       "record_status": "OPEN_OBLIGATION",
-      "rust": [
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/lattice_dirac_doubling.rs"
-      ],
+      "rust": [],
       "source_slice": "08",
       "stage": "FINITE_QCD",
-      "summary": "lattice_dirac_doubling.rs declares a Euclidean Clifford family, a period N at least 3, and a rational Wilson coefficient r. The naive operator is the symmetric difference with gamma_mu, and its symbol i sum gamma_mu sin k_mu vanishes at corners k in {0, pi}^d. For even N and periodic boundaries, naive_species_count is 2^d before spin multiplicity. The file states that these counts are computed on declared lattices and that no continuum limit is taken. Carrier dimension above 128 is refused. No matching Python use case was found under 006_finite_qm/python, and FiniteQM.lean has no lattice Dirac theorem.",
+      "summary": "lattice_dirac_doubling.rs declares a Euclidean Clifford family, a period N at least 3, and a rational Wilson coefficient r. The naive operator is the symmetric difference with gamma_mu, and its symbol i sum gamma_mu sin k_mu vanishes at corners k in {0, pi}^d. For even N and periodic boundaries, naive_species_count is 2^d before spin multiplicity. The file states that these counts are computed on declared lattices and that no continuum limit is taken. Carrier dimension above 128 is refused. No matching Python use case was found under 006_finite_qm/python, and FiniteQM.lean has no lattice Dirac theorem. Narrowed in Lean 4 and an independent Python verifier to four exact finite/algebraic components and non-equivalence fences: (1) Euclidean Clifford algebra generators gamma1, gamma2, gamma5 over Z[i] satisfying gamma_a^2 = I_2 and {gamma_a, gamma_b} = 0 (euclidean_clifford_anticommutator_relations); (2) 1D symmetric difference zero-velocity modes at k in {0, pi}, even-vs-odd period periodicity on an N-cycle, and 2^d naive species count (2, 4, 8, 16 for d = 1..4) on even-N periodic lattices (naive_symmetric_difference_vanishes_at_zero_and_pi_modes, even_vs_odd_period_pi_mode_periodicity, naive_species_count_values_1d_to_4d); (3) rational Wilson corner mass shift m + 2*r*c lifting all c >= 1 doubler corners for r > 0 and the MAX_CARRIER_DIMENSION = 128 admission guard (wilson_term_lifts_nonzero_pi_corners, wilson_critical_mass_selects_corner_shell, carrier_dimension_admission_guard_128); and (4) explicit chiral symmetry breaking {w I_2, gamma5} != 0 for w != 0 and no-continuum-limit scope fences (wilson_scalar_mass_breaks_gamma5_anticommutativity_fence, finite_brillouin_grid_cardinality_fence, tfq0026_tri_language_replay_scope_ledger_fence).",
       "uuid": "03e30d86-3d2e-5196-9cae-e241acf96041"
     },
     {
@@ -41846,9 +42277,19 @@
       "existing_derivation_dag_ids": [
         "TFQ-0027"
       ],
-      "f004_refs": [],
+      "f004_refs": [
+        "dag/derivations/17_finite_qcd/tfq_0027_do_not_cite_the_three_cycle_charge_doubling_file_as_the_lattice_dirac_obstruction.md",
+        "dag/derivations/independent/tfq-0027.md",
+        "checks/independent/tfq-0027.py",
+        "lean4/CampaignTfq0027FiniteQcd.lean",
+        "lean4/IntegralRefinementC3C6.lean",
+        "dag/research/campaign_tfq-0027_lean_replay.json",
+        "dag/research/campaign_tfq-0027_lean_mutation.json",
+        "dag/research/campaign_tfq-0027_independent.json"
+      ],
       "id": "TFQ-0027",
       "lean4": [
+        "lean4/CampaignTfq0027FiniteQcd.lean",
         "lean4/IntegralRefinementC3C6.lean"
       ],
       "local_id": "A08-018",
@@ -41856,15 +42297,13 @@
       "obligation": "Do not cite the three-cycle charge-doubling file as the lattice Dirac obstruction.",
       "parent_id": "TFQ-0026",
       "python": [
-        "absent: wilson_species_count has no Python twin in finite_qm"
+        "checks/independent/tfq-0027.py"
       ],
       "record_status": "OPEN_OBLIGATION",
-      "rust": [
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/lattice_dirac_doubling.rs"
-      ],
+      "rust": [],
       "source_slice": "08",
       "stage": "FINITE_QCD",
-      "summary": "wilson_species_count in the same file counts corners where the rational expression mass + 2*r*(number of pi components) is zero, with no trigonometric approximation. The header states that the Wilson term vanishes only at k=0 and anticommutes with no chirality matrix gamma_*. zero_mode_count is the kernel dimension s*N^d minus exact rank over Q(i) for a dense operator that must fit under MAX_CARRIER_DIMENSION. Even-N antiperiodic twists return zero species. IntegralRefinementC3C6.lean covers charge doubling on a three-cycle refined to six vertices. That file is not a stand-in for this lattice Dirac obstruction.",
+      "summary": "wilson_species_count in the same file counts corners where the rational expression mass + 2*r*(number of pi components) is zero, with no trigonometric approximation. The header states that the Wilson term vanishes only at k=0 and anticommutes with no chirality matrix gamma_*. zero_mode_count is the kernel dimension s*N^d minus exact rank over Q(i) for a dense operator that must fit under MAX_CARRIER_DIMENSION. Even-N antiperiodic twists return zero species. IntegralRefinementC3C6.lean covers charge doubling on a three-cycle refined to six vertices. That file is not a stand-in for this lattice Dirac obstruction. Narrowed in Lean 4 and an independent Python verifier to four exact finite/algebraic components and non-equivalence fences: (1) exact rational wilsonSpeciesCount4D selecting binomial shells 1, 4, 6, 4, 1 at m = -2*r*c with zero trigonometric approximation, and Wilson shift 2*r*c vanishing at r > 0 iff c = 0 (wilson_species_count_shell_selection, wilson_term_vanishes_only_at_origin_corner); (2) non-anticommutation of any non-zero scalar Wilson term w * I_2 with gamma1, gamma2, and gamma5 over Z[i] (wilson_scalar_term_anticommutes_with_no_gamma_generator); (3) dense operator kernel dimension zero_mode_count = s*N^d - rank under MAX_CARRIER_DIMENSION = 128 and zero corner species for even-N antiperiodic twists (zero_mode_count_rank_nullity_formula, antiperiodic_twist_excludes_zero_and_pi_corners, even_n_periodic_vs_antiperiodic_species_contrast, max_carrier_dimension_128_dense_operator_fence); and (4) non-equivalence fence separating IntegralRefinementC3C6.lean (1D C3 -> C6 scalar Z-cochain charge refinement) from the 2^d lattice Dirac doubling obstruction (c3_to_c6_naive_duplication_vs_block_last_refinement, c3_c6_charge_refinement_not_lattice_dirac_obstruction_fence, tfq0027_scope_and_citation_fence).",
       "uuid": "10ab5fdb-fa38-5177-aed5-d92ace696890"
     },
     {
@@ -42019,10 +42458,18 @@
         "TFQ-0032"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research/qcd_beta0_wilson_confinement_finite_map.md"
+        "dag/derivations/17_finite_qcd/tfq_0032_build_a_finite_meson_carrier_or_keep_meson_language_at_the_channel_name.md",
+        "dag/derivations/independent/tfq-0032.md",
+        "checks/independent/tfq-0032.py",
+        "lean4/CampaignTfq0032FiniteQcd.lean",
+        "lean4/FiniteQM.lean",
+        "dag/research/campaign_tfq-0032_lean_replay.json",
+        "dag/research/campaign_tfq-0032_lean_mutation.json",
+        "dag/research/campaign_tfq-0032_independent.json"
       ],
       "id": "TFQ-0032",
       "lean4": [
+        "lean4/CampaignTfq0032FiniteQcd.lean",
         "lean4/FiniteQM.lean"
       ],
       "local_id": "A08-023",
@@ -42030,15 +42477,13 @@
       "obligation": "Build a finite meson carrier or keep meson language at the channel-name layer.",
       "parent_id": "TFQ-0031",
       "python": [
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/qcd_beta0_wilson_confinement_control.py"
+        "checks/independent/tfq-0032.py"
       ],
       "record_status": "OPEN_OBLIGATION",
-      "rust": [
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/qcd_beta0_wilson_confinement_control.rs"
-      ],
+      "rust": [],
       "source_slice": "08",
       "stage": "FINITE_QCD",
-      "summary": "The meson-side output of QM-221 is the pair of channel coefficients -4/3 and +1/6 on a quark-antiquark color decomposition. The Rust fields singlet_channel_casimir and octet_channel_potential_factor store those rationals. There is no finite Hilbert space of spatial meson orbitals, no relative wavefunction, and no mass operator in qcd_beta0_wilson_confinement_control.rs. Calling the attractive sign a meson composite would add structure the control does not build. The obligation is a separate finite composite, with a declared carrier and a color contraction, before a meson label is used as more than a channel name.",
+      "summary": "The meson-side output of QM-221 is the pair of channel coefficients -4/3 and +1/6 on a quark-antiquark color decomposition. The Rust fields singlet_channel_casimir and octet_channel_potential_factor store those rationals. There is no finite Hilbert space of spatial meson orbitals, no relative wavefunction, and no mass operator in qcd_beta0_wilson_confinement_control.rs. Calling the attractive sign a meson composite would add structure the control does not build. The obligation is a separate finite composite, with a declared carrier and a color contraction, before a meson label is used as more than a channel name. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) exact rational SU(N)/SU(3) quark-antiquark channel Casimir factors (-4/3 singlet and +1/6 octet), 3 x 3 = 1 + 8 dimension decomposition, weighted trace cancellation 1*(-4/3) + 8*(1/6) = 0, and SU(2) vs. SU(3) channel contrast (suN_qqbar_casimir_channel_formulas, su3_qqbar_dimension_and_weighted_trace_sum_zero, singlet_attractive_vs_octet_repulsive_sign_dichotomy, su2_vs_su3_qqbar_casimir_channel_contrast); (2) explicit 3x3 color-trace contraction qqbarColorTrace and singlet/octet projectors singletProj, octetProj with idempotence, tracelessness, and orthogonality (color_contraction_projector_idempotence_and_orthogonality); and (3) declared finite 36 * L^d meson composite carrier accounting and fences showing that channel Casimir rationals do not supply a spatial orbital wavefunction, radial mass operator, or spin-hyperfine splitting (finite_meson_composite_carrier_dimension, meson_mass_operator_requires_spatial_kinetic_and_potential_terms_fence, channel_casimir_ratio_not_spatial_wavefunction_fence, pseudoscalar_vs_vector_hyperfine_splitting_requires_spin_operator_fence, tfq0032_meson_channel_scope_ledger_fence).",
       "uuid": "dd735c2e-a167-589b-8a15-8e705cc21d6f"
     },
     {
@@ -42054,10 +42499,18 @@
         "TFQ-0033"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research/qcd_beta0_wilson_confinement_finite_map.md"
+        "dag/derivations/17_finite_qcd/tfq_0033_construct_an_explicit_three_index_color_contraction_before_using_a_baryon_singlet_label.md",
+        "dag/derivations/independent/tfq-0033.md",
+        "checks/independent/tfq-0033.py",
+        "lean4/CampaignTfq0033FiniteQcd.lean",
+        "lean4/FiniteQM.lean",
+        "dag/research/campaign_tfq-0033_lean_replay.json",
+        "dag/research/campaign_tfq-0033_lean_mutation.json",
+        "dag/research/campaign_tfq-0033_independent.json"
       ],
       "id": "TFQ-0033",
       "lean4": [
+        "lean4/CampaignTfq0033FiniteQcd.lean",
         "lean4/FiniteQM.lean"
       ],
       "local_id": "A08-024",
@@ -42065,16 +42518,13 @@
       "obligation": "Construct an explicit three-index color contraction before using a baryon singlet label.",
       "parent_id": "TFQ-0032",
       "python": [
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/qcd_beta0_wilson_confinement_control.py"
+        "checks/independent/tfq-0033.py"
       ],
       "record_status": "OPEN_OBLIGATION",
-      "rust": [
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/qcd_beta0_wilson_confinement_control.rs",
-        "absent: no epsilon_ijk three-quark color wavefunction in qcd_beta0_wilson_confinement_control.rs"
-      ],
+      "rust": [],
       "source_slice": "08",
       "stage": "FINITE_QCD",
-      "summary": "The antitriplet factor -2/3 is a two-index diquark channel, stored as antitriplet_diquark_casimir. A baryon color singlet would need a third tensor factor and an alternating contraction on three color indices. No such epsilon contraction is defined in the QCD control, in su_n.rs, or in the weighted generator list. The sextet factor +1/3 is likewise a two-quark channel. The obligation is to build that three-factor contraction explicitly, or to keep baryon language off this node. The diquark signs are a computational control of Casimir arithmetic only.",
+      "summary": "The antitriplet factor -2/3 is a two-index diquark channel, stored as antitriplet_diquark_casimir. A baryon color singlet would need a third tensor factor and an alternating contraction on three color indices. No such epsilon contraction is defined in the QCD control, in su_n.rs, or in the weighted generator list. The sextet factor +1/3 is likewise a two-quark channel. The obligation is to build that three-factor contraction explicitly, or to keep baryon language off this node. The diquark signs are a computational control of Casimir arithmetic only. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) two-quark SU(3) diquark Casimir arithmetic (-2/3 antitriplet and +1/3 sextet), 3 x 3 = 3 + 6 dimension decomposition, weighted trace cancellation 3*(-2/3) + 6*(1/3) = 0, half-strength rule -2/3 = (1/2)*(-4/3), and 3-quark 27 = 1 + 8 + 8 + 10 decomposition (su3_qq_diquark_casimir_channels, diquark_to_qqbar_singlet_half_strength_rule, su3_three_quark_dimension_decomposition); (2) explicit 3-index Levi-Civita tensor eps3 and alternating baryon color-singlet contraction baryonEpsilonContract u v w = det3Color u v w with norm 6, 2-index delta contraction, and Pauli color exclusion (levi_civita_3d_antisymmetry_and_six_nonzero_permutations, levi_civita_contracted_square_and_norm_six, three_index_epsilon_contraction_equals_det3, baryon_contraction_vanishes_on_identical_color_states); and (3) pairwise baryon singlet Casimir sum 3*(-2/3) = -2 and non-equivalence fences separating 2-index diquarks (dim 3, C_2 = 4/3 != 0) from 3-index baryon singlets (dim 1, C_2 = 0) (baryon_singlet_total_pairwise_casimir_equals_minus_two, two_index_diquark_not_three_index_baryon_singlet_fence, tfq0033_baryon_contraction_scope_ledger_fence).",
       "uuid": "8bea1efd-e8a2-507e-9b08-0a7689213a25"
     },
     {
@@ -42230,18 +42680,35 @@
         "TFQ-0038"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research/pauli_spin_statistics_graph_finite_map.md"
+        "dag/derivations/17_finite_qcd/tfq_0038_reconcile_the_map_s_k5_ranks_with_the_rust_certificate_and_leave_the.md",
+        "dag/derivations/independent/tfq-0038.md",
+        "dag/research/campaign_tfq-0038_lean_replay.json",
+        "dag/research/campaign_tfq-0038_lean_mutation.json",
+        "dag/research/campaign_tfq-0038_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0038-precommit.md",
+        "checks/independent/tfq-0038.py",
+        "lean4/CampaignTfq0038FiniteQcd.lean"
       ],
       "id": "TFQ-0038",
       "lean4": [
-        "lean4/FiniteQM.lean"
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.conf2_graph_1skeleton_betti_numbers_p3_y_c4_k4_k5",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.conf2_c4_and_k4_2complex_rational_betti_numbers",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.k5_map_prose_reading_rank7_betti14_vs_certificate_reading_rank15_betti6",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.universal_coefficient_torsion_rank_identity",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.abelian_1d_character_collapse_boson_fermion",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.non_zero_torsion_rank_does_not_identify_specific_loop_representative",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.exchange_loop_representative_question_remains_open_fence",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.python_comment_order_two_claim_exceeds_certificate_fence",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.k5_rank_mismatch_recorded_beside_certificate_fence",
+        "lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.tfq0038_k5_torsion_and_exchange_loop_scope_ledger_fence",
+        "lean4/FiniteQM.lean::FiniteQM.graph_conf2_exchange_betti_and_character_collapse"
       ],
       "local_id": "A08-029",
       "name": "Reconcile the map's K5 ranks with the Rust certificate and leave the",
       "obligation": "Reconcile the map's K5 ranks with the Rust certificate and leave the exchange-loop representative unresolved.",
       "parent_id": "TFQ-0037",
       "python": [
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/pauli_spin_statistics_graph_control.py"
+        "checks/independent/tfq-0038.py::run_all_checks"
       ],
       "record_status": "GAP",
       "rust": [
@@ -42265,23 +42732,30 @@
         "TFQ-0039"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research/qcd_beta0_wilson_confinement_finite_map.md",
-        "omega_engine_atlas/coda_atlas/F002_continuum/S001_continuum_finite_shadow_bridge/README.md",
-        "omega_engine_atlas/coda_atlas/F002_continuum/S001_continuum_finite_shadow_bridge/named_adjoining.yaml",
-        "omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory/book/README.md"
+        "dag/derivations/17_finite_qcd/tfq_0039_cite_f002_s001_as_an_open_bridge_and_do_not_convert_the_finite.md",
+        "dag/derivations/independent/tfq-0039.md",
+        "checks/independent/tfq-0039.py",
+        "lean4/CampaignTfq0039FiniteQcd.lean",
+        "dag/research/campaign_tfq-0039_lean_replay.json",
+        "dag/research/campaign_tfq-0039_lean_mutation.json",
+        "dag/research/campaign_tfq-0039_independent.json"
       ],
       "id": "TFQ-0039",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignTfq0039FiniteQcd.lean"
+      ],
       "local_id": "A08-039",
       "name": "Cite F002.S001 as an open bridge and do not convert the finite",
       "obligation": "Cite F002.S001 as an open bridge and do not convert the finite controls into a continuum exit.",
       "parent_id": "TFQ-0031",
-      "python": [],
+      "python": [
+        "checks/independent/tfq-0039.py"
+      ],
       "record_status": "GAP",
       "rust": [],
       "source_slice": "08",
       "stage": "FINITE_QCD",
-      "summary": "The F002 floor states its own ceiling. The S000 book README calls the continuum volume an interface inventory and not a continuum derivation. F002.S001 remains the open bridge: shelf.yaml has an empty book list, README.md keeps GAP-F002-S001-001 open, and named_adjoining.yaml parks a Pontryagin dual of declared free Z without admitting a bridge theorem. None of the finite QCD controls, the Dirac doubling counts, or the topological anyon models close that shelf. The gap to continuum QCD stays open. This node does not say that continuum QCD has been derived.",
+      "summary": "The F002 floor states its own ceiling. The S000 book README calls the continuum volume an interface inventory and not a continuum derivation. F002.S001 remains the open bridge: shelf.yaml has an empty book list, README.md keeps GAP-F002-S001-001 open, and named_adjoining.yaml parks a Pontryagin dual of declared free Z without admitting a bridge theorem. None of the finite QCD controls, the Dirac doubling counts, or the topological anyon models close that shelf. The gap to continuum QCD stays open. This node does not say that continuum QCD has been derived. Narrowed in Lean 4, Rust, and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) exact rational summary of finite QCD controls (beta_0 = 7, strong-coupling tension 17/18, 16 torus corners with 15 lifted doublers) and finite cyclic character cardinality L^d vs parked Pontryagin dual Hom(Z, U(1)) (finite_qcd_control_exact_rational_summary, finite_cyclic_dual_order_equals_lattice_period); (2) F002.S001 open bridge audit (bookCount = 0, GAP-F002-S001-001 open, Pontryagin dual parked without bridge theorem) and proof that finite controls do not derive continuum QCD while F002.S001 is open (f002_s001_empty_book_list_and_open_bridge_gap, pontryagin_dual_of_free_z_requires_unpaid_continuum_circle_fence, finite_qcd_controls_do_not_discharge_continuum_qcd_exit_fence); and (3) explicit breakdown and non-equivalence fences for beta_0, strong-coupling tension at beta >= 18, Wilson corner counts, and topological anyon catalog models (one_loop_beta0_polynomial_not_nonperturbative_continuum_mass_gap_fence, strong_coupling_plaquette_ratio_breaks_down_in_weak_coupling_continuum_limit_fence, wilson_torus_doubler_count_not_continuum_chiral_fermion_measure_fence, topological_anyon_catalog_not_continuum_su3_confining_vacuum_fence, tfq0039_f002_s001_open_bridge_scope_ledger_fence).",
       "uuid": "fd1411cd-6429-55ee-af4f-a2d34df10758"
     },
     {
@@ -42307,25 +42781,46 @@
         "TFQ-0040"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research/qcd_beta0_wilson_confinement_finite_map.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research/hierarchical_nonabelian_dfm_finite_map.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research/pauli_spin_statistics_graph_finite_map.md",
-        "omega_engine_atlas/coda_atlas/F002_continuum/S001_continuum_finite_shadow_bridge/README.md"
+        "dag/derivations/17_finite_qcd/tfq_0040_close_the_missing_python_or_lean_twins_before_treating_a_control_as.md",
+        "dag/derivations/independent/tfq-0040.md",
+        "dag/research/campaign_tfq-0040_lean_replay.json",
+        "dag/research/campaign_tfq-0040_lean_mutation.json",
+        "dag/research/campaign_tfq-0040_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0040-precommit.md",
+        "checks/independent/tfq-0040.py",
+        "lean4/CampaignTfq0040FiniteQcd.lean"
       ],
       "id": "TFQ-0040",
       "lean4": [
-        "lean4/FiniteQM.lean",
-        "lean4/FiniteQFTAndGravity.lean"
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.qm221_casimir_fierz_scalar_and_81_entry_dimension_identities",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.qm213_borel_punctured_diamond_artificial_vs_substantial_holonomy",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.levi_civita_three_quark_color_singlet_contraction",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.abj_and_gmo_color_octet_decuplet_identities",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.gribov_diamond_klein_four_and_lattice_dirac_doubling_controls",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.tri_language_coverage_gate_requires_all_three_twins_fence",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.absent_hopf_su3_level_and_baryon_contraction_recorded_fence",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.f002_s001_remains_open_bridge_fence",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.float_print_cannot_authorize_exact_identity_fence",
+        "lean4/CampaignTfq0040FiniteQcd.lean::CampaignTfq0040FiniteQcd.tfq0040_tri_language_audit_and_f002_s001_scope_ledger_fence",
+        "lean4/FiniteQM.lean::FiniteQM.su3_casimir_and_channel_identities",
+        "lean4/FiniteQM.lean::FiniteQM.su3_fierz_diagonal_and_offdiagonal_identities",
+        "lean4/FiniteQM.lean::FiniteQM.qcd_beta0_asymptotic_freedom_window",
+        "lean4/FiniteQM.lean::FiniteQM.qcd_beta1_and_banks_zaks_fixed_point",
+        "lean4/FiniteQM.lean::FiniteQM.wilson_creutz_ratio_area_vs_perimeter",
+        "lean4/FiniteQM.lean::FiniteQM.su3_diagonal_klein_four_landau_gribov_copies",
+        "lean4/FiniteQM.lean::FiniteQM.spanning_tree_dfm_eliminates_gribov_copies",
+        "lean4/FiniteQFTAndGravity.lean::FiniteQFTAndGravity.abj_factor_closed",
+        "lean4/FiniteQFTAndGravity.lean::FiniteQFTAndGravity.abj_factor_values",
+        "lean4/FiniteQFTAndGravity.lean::FiniteQFTAndGravity.abj_rate_ratio",
+        "lean4/FiniteQFTAndGravity.lean::FiniteQFTAndGravity.gmo_octet",
+        "lean4/FiniteQFTAndGravity.lean::FiniteQFTAndGravity.gmo_decuplet_equal_spacing"
       ],
       "local_id": "A08-040",
       "name": "Close the missing Python or Lean twins before treating a control as",
       "obligation": "Close the missing Python or Lean twins before treating a control as tri-language, and keep F002.S001 open.",
       "parent_id": "TFQ-0039",
       "python": [
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/qcd_beta0_wilson_confinement_control.py",
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/nonabelian_dfm_control.py",
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/pauli_spin_statistics_graph_control.py",
-        "absent: lattice Dirac, Gribov diamond, and three-quark contraction have no located Python twins"
+        "checks/independent/tfq-0040.py::run_all_checks"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
@@ -42386,18 +42881,36 @@
         "TFQ-0042"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research/qcd_beta0_wilson_confinement_finite_map.md"
+        "dag/derivations/17_finite_qcd/tfq_0042_supply_a_python_replay_or_keep_the_gribov_diamond_as_rust_plus.md",
+        "dag/derivations/independent/tfq-0042.md",
+        "dag/research/campaign_tfq-0042_lean_replay.json",
+        "dag/research/campaign_tfq-0042_lean_mutation.json",
+        "dag/research/campaign_tfq-0042_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0042-precommit.md",
+        "checks/independent/tfq-0042.py",
+        "lean4/CampaignTfq0042FiniteQcd.lean"
       ],
       "id": "TFQ-0042",
       "lean4": [
-        "lean4/FiniteQM.lean"
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.diamond_graph_betti_and_spanning_tree_count",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.su3_block_links_nonabelian_commutator_witness",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.pythagorean_qi_block_unitarity_and_det_one",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.matrix_spanning_tree_dressing_neutralizes_tree_links",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.su3_diagonal_klein_four_landau_gribov_64_copies",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.lean_finite_qm_rational_shadow_vs_matrix_link_scope_separation",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.continuum_module_title_is_not_bridge_theorem_fence",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.missing_006_finite_qm_python_twin_and_independent_replay_fence",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.gribov_diamond_control_does_not_derive_continuum_qcd_fence",
+        "lean4/CampaignTfq0042FiniteQcd.lean::CampaignTfq0042FiniteQcd.tfq0042_gribov_diamond_and_title_scope_ledger_fence",
+        "lean4/FiniteQM.lean::FiniteQM.su3_diagonal_klein_four_landau_gribov_copies",
+        "lean4/FiniteQM.lean::FiniteQM.spanning_tree_dfm_eliminates_gribov_copies"
       ],
       "local_id": "A08-016",
       "name": "Supply a Python replay or keep the Gribov diamond as Rust plus",
       "obligation": "Supply a Python replay or keep the Gribov diamond as Rust plus a Lean rational shadow.",
       "parent_id": "TFQ-0023",
       "python": [
-        "absent: evaluate_su3_spanning_tree_vs_landau_gribov_control has no Python twin under 006_finite_qm/python"
+        "checks/independent/tfq-0042.py::run_all_checks"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
@@ -42451,27 +42964,34 @@
       "existing_derivation_dag_ids": [
         "TFQ-0044"
       ],
-      "f004_refs": [],
+      "f004_refs": [
+        "dag/derivations/18_finite_topological/tfq_0044_do_not_treat_su_2_k_as_a_color_fusion_category_su3_level_rs_is_absent.md",
+        "dag/derivations/independent/tfq-0044.md",
+        "checks/independent/tfq-0044.py",
+        "lean4/CampaignTfq0044FiniteTopological.lean",
+        "code/rust/src/fusion_categories/su2_level.rs",
+        "dag/research/campaign_tfq-0044_lean_replay.json",
+        "dag/research/campaign_tfq-0044_lean_mutation.json",
+        "dag/research/campaign_tfq-0044_independent.json"
+      ],
       "id": "TFQ-0044",
       "lean4": [
-        "absent: Racah SU(2)_k replay is not in FiniteQM.lean"
+        "lean4/CampaignTfq0044FiniteTopological.lean"
       ],
       "local_id": "A08-031",
       "name": "Do not treat SU(2)_k as a color fusion category; su3_level.rs is absent",
       "obligation": "Do not treat SU(2)_k as a color fusion category; su3_level.rs is absent.",
       "parent_id": "TFQ-0043",
       "python": [
-        "absent: SU(2)_k has no finite_qm QCD wrapper"
+        "checks/independent/tfq-0044.py"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/anyon_model.rs",
-        "code/rust/src/fusion_categories/su2_level.rs",
-        "absent: omega_engine/crates_rs/omega_fusion_categories/src/su3_level.rs"
+        "code/rust/src/fusion_categories/su2_level.rs"
       ],
       "source_slice": "08",
       "stage": "FINITE_TOPOLOGICAL",
-      "summary": "anyon_model.rs wraps a ribbon category after braided validation and a dimension check. Its SU(2)_k constructor uses the shared Racah gauge in omega_fusion_categories::su2_level, with a bounded pentagon and hexagon replay. That file warns the gauge is generally not orthonormal, so the F matrices must not be advertised as unitary in the ordinary inner product. Labels a=0..k are twice a spin, which is an SU(2) level family. There is no su3_level.rs beside su2_level.rs. An SU(2)_k anyon model is not the three-color matrix algebra, and its quantum dimensions are not C_F or C_A.",
+      "summary": "anyon_model.rs wraps a ribbon category after braided validation and a dimension check. Its SU(2)_k constructor uses the shared Racah gauge in omega_fusion_categories::su2_level, with a bounded pentagon and hexagon replay. That file warns the gauge is generally not orthonormal, so the F matrices must not be advertised as unitary in the ordinary inner product. Labels a=0..k are twice a spin, which is an SU(2) level family. There is no su3_level.rs beside su2_level.rs. An SU(2)_k anyon model is not the three-color matrix algebra, and its quantum dimensions are not C_F or C_A. Narrowed in Lean 4, Rust (su2_level.rs), and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) SU(2)_k (k = 1..6) simple-object counts k + 1, cyclotomic root orders 8*(k + 2), central charges 3k/(k + 2), and level-3 Fibonacci subring fusion 2 tensor 2 = 0 oplus 2 (su2_level_rank_and_root_order_bounds, su2_level_central_charge_and_level3_fibonacci_subring); (2) exact Q(phi) (phi^2 = 1 + phi) verification that the level-3 q-Racah associator F^[2,2,2,2] is not Euclidean orthonormal (F^T F != I) while satisfying weighted metric unitarity F^T G F = G with G = diag(phi, 1 + phi) and det(F) = -1 (qphi_golden_ratio_identities, racah_level3_fibonacci_f_matrix_not_euclidean_orthonormal, racah_level3_fibonacci_f_matrix_weighted_metric_unitarity); and (3) non-equivalence fences separating SU(2)_k quantum dimensions and rank-1 self-dual labels from SU(3)_c Casimirs (C_F = 4/3, C_A = 3), SU(3)_k rank-2 Dynkin weights (count (k + 1)(k + 2)/2 > k + 1), and absent su3_level.rs (su2_level_quantum_dimensions_not_su3_casimirs_fence, su2_weight_lattice_rank1_not_su3_rank2_color_fusion_fence, su2_vs_su3_level_simple_object_count_separation, su2_level_budget_and_field_refusal_predicates, tfq0044_su2_level_scope_ledger_fence).",
       "uuid": "a224cd40-6e40-5b75-838c-95df3bd7e101"
     },
     {
@@ -42642,27 +43162,36 @@
       "existing_derivation_dag_ids": [
         "TFQ-0050"
       ],
-      "f004_refs": [],
+      "f004_refs": [
+        "dag/derivations/18_finite_topological/tfq_0050_either_add_an_exact_su_3_fusion_file_or_leave_that_obligation_open.md",
+        "dag/derivations/independent/tfq-0050.md",
+        "checks/independent/tfq-0050.py",
+        "lean4/CampaignTfq0050FiniteTopological.lean",
+        "code/rust/src/fusion_categories/catalog.rs",
+        "code/rust/src/fusion_categories/su2_level.rs",
+        "dag/research/campaign_tfq-0050_lean_replay.json",
+        "dag/research/campaign_tfq-0050_lean_mutation.json",
+        "dag/research/campaign_tfq-0050_independent.json"
+      ],
       "id": "TFQ-0050",
       "lean4": [
-        "absent: no Lean SU(3)_k fusion file was located"
+        "lean4/CampaignTfq0050FiniteTopological.lean"
       ],
       "local_id": "A08-037",
       "name": "Either add an exact SU(3) fusion file or leave that obligation open",
       "obligation": "Either add an exact SU(3) fusion file or leave that obligation open.",
       "parent_id": "TFQ-0049",
       "python": [
-        "absent: catalog models have no QCD use case"
+        "checks/independent/tfq-0050.py"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
         "code/rust/src/fusion_categories/catalog.rs",
-        "code/rust/src/fusion_categories/su2_level.rs",
-        "absent: omega_engine/crates_rs/omega_fusion_categories/src/su3_level.rs"
+        "code/rust/src/fusion_categories/su2_level.rs"
       ],
       "source_slice": "08",
       "stage": "FINITE_TOPOLOGICAL",
-      "summary": "catalog.rs pins exact ribbon data for Ising, Fibonacci, semion, pointed braided categories, the toric code as D(Z_2), a three-fermion model, and quantum doubles D(Z_n). A coefficient field that lacks the needed root of unity is FusionError::FieldTooSmall, not an approximation. su2_level.rs is the SU(2) family in a Racah gauge. The file su3_level.rs is absent from omega_fusion_categories/src, so there is no fusion-category obligation already discharged for SU(3)_k. The catalog does not assert a material host. This absence is an open obligation, not a negative theorem about fusion categories.",
+      "summary": "catalog.rs pins exact ribbon data for Ising, Fibonacci, semion, pointed braided categories, the toric code as D(Z_2), a three-fermion model, and quantum doubles D(Z_n). A coefficient field that lacks the needed root of unity is FusionError::FieldTooSmall, not an approximation. su2_level.rs is the SU(2) family in a Racah gauge. The file su3_level.rs is absent from omega_fusion_categories/src, so there is no fusion-category obligation already discharged for SU(3)_k. The catalog does not assert a material host. This absence is an open obligation, not a negative theorem about fusion categories. Narrowed in Lean 4, Rust (catalog.rs, su2_level.rs), and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) catalog.rs ribbon ranks, squared quantum dimensions D^2 (Ising 4, semion 2, D(Z_2) 4, D(Z_n) n^2), and Z_2 x Z_2 spin parities ([0,0,0,1] for toric_code vs [0,1,1,1] for three_fermion) (catalog_ribbon_ranks_and_total_squared_dimensions, toric_code_vs_three_fermion_topological_spin_twists); (2) exact cyclotomic root-of-unity divisibility admission and FusionError::FieldTooSmall refusal (catalog_cyclotomic_field_admission_and_refusal); and (3) SU(3)_k Weyl alcove combinatorics ((k+1)(k+2)/2 simple objects, non-self-dual fundamental pair (1,0)* = (0,1), and SU(3)_2 Q(phi) quantum dimension identity d_(1,0)^2 = d_(0,1) + d_(2,0) = 1 + 2*phi) together with scope fences classifying the absence of su3_level.rs as an open obligation rather than a negative theorem and confirming no material-host assertion (su3_level1_pointed_z3_fusion_vs_higher_level_nonpointed, quantum_double_z3_rank9_not_su3_level_k_fence, catalog_self_dual_models_not_su3_conjugate_pair_fence, su3_level2_fundamental_quantum_dimension_golden_ratio, absence_of_su3_level_rs_is_open_obligation_not_impossibility_theorem_fence, catalog_ribbon_categories_do_not_assert_material_host_or_qcd_confinement_fence, tfq0050_catalog_and_su3_level_scope_ledger_fence).",
       "uuid": "63c6efed-2e38-5a2c-a9d0-91e003055f72"
     },
     {
@@ -47098,25 +47627,46 @@
       "existing_derivation_dag_ids": [
         "TFQ-0171"
       ],
-      "f004_refs": [],
+      "f004_refs": [
+        "dag/derivations/22_implementation_sibling/tfq_0171_do_not_collapse_unnormalized_finite_valuations_into_the_normalized_rational_probability_simplex.md",
+        "dag/derivations/independent/tfq-0171.md",
+        "dag/research/campaign_tfq-0171_lean_replay.json",
+        "dag/research/campaign_tfq-0171_lean_mutation.json",
+        "dag/research/campaign_tfq-0171_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0171-precommit.md",
+        "checks/independent/tfq-0171.py",
+        "lean4/CampaignTfq0171ImplementationSibling.lean"
+      ],
       "id": "TFQ-0171",
       "lean4": [
-        "lean4/H001ProbabilitySimplex.lean",
-        "lean4/H001Rats.lean"
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.boolean_valuation_empty_carrier_and_unnormalized_mass",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.boolean_valuation_disjoint_additivity_and_atom_reconstruction",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.scaled_integer_simplex_grid_vs_rational_simplex_separation",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.signed_valuation_negativity_and_expectation_bound",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.marginal_compatibility_and_local_deterministic_normalization",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.unnormalized_valuation_cannot_stand_in_for_probability_simplex_fence",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.empty_carrier_valuation_rejected_by_fin_n_and_simplex_fence",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.scaled_integer_grid_not_ordinary_rational_simplex_fence",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.sibling_modules_distinct_carrier_contracts_fence",
+        "lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.tfq0171_unnormalized_valuation_and_simplex_scope_ledger_fence",
+        "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.probability_simplex",
+        "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.double_not_normalized",
+        "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.signed_not_nonneg",
+        "lean4/H001Rats.lean::FableHilbertWalk20260819.H001Rats.qrel_equivalence"
       ],
       "local_id": "A06-006",
       "name": "Do not collapse unnormalized finite valuations into the normalized rational probability simplex",
       "obligation": "Do not collapse unnormalized finite valuations into the normalized rational probability simplex.",
       "parent_id": "TFQ-0167",
       "python": [
-        "absent: not located"
+        "checks/independent/tfq-0171.py::run_all_checks"
       ],
       "record_status": "GAP",
       "rust": [
-        "code/rust/src/finite_probability/finite_valuation.rs",
-        "code/rust/src/finite_probability/signed_representation.rs",
-        "code/rust/src/finite_probability/local_deterministic.rs",
-        "code/rust/src/finite_probability/marginal_compatibility.rs"
+        "code/rust/src/finite_probability/finite_valuation.rs::BooleanValuation::try_new",
+        "code/rust/src/finite_probability/signed_representation.rs::SignedValuation::from_weights",
+        "code/rust/src/finite_probability/local_deterministic.rs::binary_local_vertices",
+        "code/rust/src/finite_probability/marginal_compatibility.rs::MarginalScenario::validate_probabilities"
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",
@@ -47515,26 +48065,42 @@
         "TFQ-0183"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/README.md"
+        "dag/derivations/22_implementation_sibling/tfq_0183_do_not_promote_tetron_rs_physical_wording_past_the_gf_2_diagnostic_fence_in.md",
+        "dag/derivations/independent/tfq-0183.md",
+        "dag/research/campaign_tfq-0183_lean_replay.json",
+        "dag/research/campaign_tfq-0183_lean_mutation.json",
+        "dag/research/campaign_tfq-0183_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0183-precommit.md",
+        "checks/independent/tfq-0183.py",
+        "lean4/CampaignTfq0183ImplementationSibling.lean"
       ],
       "id": "TFQ-0183",
       "lean4": [
-        "absent: not located"
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_disk_cylinder_torus_euler_and_betti_formulas",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_boundary_squares_to_zero_over_gf2",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_gf2_ranks_and_first_betti_numbers",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.local_majorana_noise_skew_symmetry_and_zero_diagonal",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.noise_mc_schedule_partition_conservation",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_hardware_reading_withheld_by_gf2_diagnostic_fence",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.noise_sweeps_are_not_authority_terminals_fence",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.missing_tetron_carrier_py_recorded_and_repaired_fence",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.gf2_cell_incidence_is_not_superconducting_device_proof_fence",
+        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tfq0183_tetron_gf2_diagnostic_and_noise_scope_ledger_fence"
       ],
       "local_id": "A06-018",
       "name": "Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in",
       "obligation": "Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.",
       "parent_id": "TFQ-0181",
       "python": [
-        "code/python/src/majorana/majorana/carriers/tetron_carrier.py",
-        "code/python/src/majorana/majorana_noise_sweep.py"
+        "code/python/src/majorana/majorana_noise_sweep.py::DeterministicRationalNoiseGenerator",
+        "checks/independent/tfq-0183.py::run_all_checks"
       ],
       "record_status": "GAP",
       "rust": [
-        "code/rust/src/majorana/tetron.rs",
-        "code/rust/src/wdp/lib.rs",
-        "code/rust/src/majorana/noise_mc.rs",
-        "code/rust/src/majorana/pauli_noise.rs"
+        "code/rust/src/majorana/tetron.rs::build_tetron_array",
+        "code/rust/src/wdp/lib.rs::carrier_manifest",
+        "code/rust/src/majorana/noise_mc.rs::noise_mc_planar_grid",
+        "code/rust/src/majorana/pauli_noise.rs::LocalMajoranaNoise::from_rows"
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",
@@ -47552,23 +48118,40 @@
         "TFQ-0184"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/README.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/README.md"
+        "dag/derivations/22_implementation_sibling/tfq_0184_do_not_read_paper_009_reflexivity_declarations_as_measured_tetron_homology.md",
+        "dag/derivations/independent/tfq-0184.md",
+        "dag/research/campaign_tfq-0184_lean_replay.json",
+        "dag/research/campaign_tfq-0184_lean_mutation.json",
+        "dag/research/campaign_tfq-0184_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0184-precommit.md",
+        "checks/independent/tfq-0184.py",
+        "lean4/CampaignTfq0184ImplementationSibling.lean"
       ],
       "id": "TFQ-0184",
       "lean4": [
-        "absent: not located"
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tetron_gf2_homology_requires_boundary_rank_difference_not_enum_rfl",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.kitaev_sweet_spot_boundary_isolation_and_ising_quantum_dimensions",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.fermion_parity_involutive_sector_splitting",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.binary_carrier_lp_norm_equals_hamming_weight",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.reflexivity_declaration_is_not_measured_tetron_homology_fence",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.majorana_evaluator_is_companion_control_not_gap_closure_fence",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.wdp_carrier_manifest_homology_conversion_fence",
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence"
       ],
       "local_id": "A06-019",
       "name": "Do not read paper 009 reflexivity declarations as measured tetron homology",
       "obligation": "Do not read paper 009 reflexivity declarations as measured tetron homology.",
       "parent_id": "TFQ-0181",
       "python": [
-        "code/python/src/majorana/majorana_evaluator.py"
+        "code/python/src/majorana/majorana_evaluator.py::KitaevSweetSpotChain",
+        "code/python/src/majorana/majorana_evaluator.py::IsingFusionAlgebra",
+        "checks/independent/tfq-0184.py::run_all_checks"
       ],
       "record_status": "GAP",
       "rust": [
-        "code/rust/src/wdp/lib.rs"
+        "code/rust/src/wdp/lib.rs::to_homology_carrier"
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",
@@ -47793,24 +48376,40 @@
       "existing_derivation_dag_ids": [
         "TFQ-0191"
       ],
-      "f004_refs": [],
+      "f004_refs": [
+        "dag/derivations/22_implementation_sibling/tfq_0191_keep_interval_measurement_evidence_distinct_and_do_not_let_an_f64_built_decimal.md",
+        "dag/derivations/independent/tfq-0191.md",
+        "dag/research/campaign_tfq-0191_lean_replay.json",
+        "dag/research/campaign_tfq-0191_lean_mutation.json",
+        "dag/research/campaign_tfq-0191_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0191-precommit.md",
+        "checks/independent/tfq-0191.py",
+        "lean4/CampaignTfq0191ImplementationSibling.lean"
+      ],
       "id": "TFQ-0191",
       "lean4": [
-        "absent: not located"
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.interval_order_straddling_indeterminacy_vs_strict_comparison",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.decimal_fixed_scale_cannot_represent_one_third_exactly",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.ieee754_f64_tenth_binary_approximation_differs_from_exact_tenth",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.affine_interval_calibration_and_finite_chain_clock_propagation",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.measurement_value_arms_vs_governance_scalar_admission_fence",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.interval_requires_policy_refusal_fence",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.f64_unchecked_decimal_cannot_authorize_exact_bound_fence",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.missing_local_omega_measurement_crate_recorded_fence",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.interval_clock_and_calibration_remain_pending_policy_fence",
+        "lean4/CampaignTfq0191ImplementationSibling.lean::CampaignTfq0191ImplementationSibling.tfq0191_interval_evidence_and_f64_decimal_scope_ledger_fence",
+        "lean4/H058EffectFrameBusch.lean::FableHilbertWalk20260819.H058.rat_add_le_add"
       ],
       "local_id": "A06-026",
       "name": "Keep interval measurement evidence distinct, and do not let an f64-built decimal",
       "obligation": "Keep interval measurement evidence distinct, and do not let an f64-built decimal authorize a bound.",
       "parent_id": "TFQ-0189",
       "python": [
-        "absent: not located"
+        "checks/independent/tfq-0191.py::run_all_checks"
       ],
       "record_status": "GAP",
       "rust": [
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/measurement_kernel.rs",
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/affine_calibration.rs",
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/finite_response.rs",
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/finite_chain_clock.rs"
+        "code/rust/src/wdp/lib.rs::evaluate_exactness_fraud_criterion"
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",
@@ -48069,24 +48668,44 @@
       "existing_derivation_dag_ids": [
         "TFQ-0199"
       ],
-      "f004_refs": [],
+      "f004_refs": [
+        "dag/derivations/22_implementation_sibling/tfq_0199_do_not_treat_the_gr_holonomy_scaffold_or_the_2d_regge_sum.md",
+        "dag/derivations/independent/tfq-0199.md",
+        "dag/research/campaign_tfq-0199_lean_replay.json",
+        "dag/research/campaign_tfq-0199_lean_mutation.json",
+        "dag/research/campaign_tfq-0199_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0199-precommit.md",
+        "checks/independent/tfq-0199.py",
+        "lean4/CampaignTfq0199ImplementationSibling.lean"
+      ],
       "id": "TFQ-0199",
       "lean4": [
-        "lean4/FiniteQFTAndGravity.lean"
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.simplex_carrier_dimension_separation",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.euler_characteristic_contractible_invariance",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.orthogonal_pentatope_hinge_areas_squared",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.exact_flat_fence_rejects_sub_cutoff_curvature",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.defect_bound_exact_rational_witnesses",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.regge_2d_vertex_sum_vs_4d_area_sq_scaling",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.gf2_plaquette_holonomy_vs_rational_quaternion",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.finite_qft_and_gravity_pi_sqrt_free_identities",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.canonical_gravity_shadow_fence_valid",
+        "lean4/CampaignTfq0199ImplementationSibling.lean::CampaignTfq0199ImplementationSibling.tfq0199_gr_holonomy_regge_not_4d_gravity_shadow_scope_certificate",
+        "lean4/FiniteQFTAndGravity.lean::FiniteQFTAndGravity.gr_deflection_twice_newton"
       ],
       "local_id": "A06-034",
       "name": "Do not treat the GR holonomy scaffold or the 2D Regge sum",
       "obligation": "Do not treat the GR holonomy scaffold or the 2D Regge sum as the exact rational 4D gravity shadow.",
       "parent_id": "TFQ-0197",
       "python": [
-        "absent: not located"
+        "checks/independent/tfq-0199.py::run_all_checks"
       ],
       "record_status": "GAP",
       "rust": [
-        "code/rust/src/majorana/holonomy.rs",
-        "code/rust/src/general_relativity/regge_calculus.rs",
-        "code/rust/src/general_relativity/discrete_spacetime.rs",
-        "code/rust/src/general_relativity/einstein_hilbert_action.rs"
+        "code/rust/src/general_relativity/exact_regge/action.rs::rational_regge_proxy",
+        "code/rust/src/general_relativity/regge_calculus.rs::ReggeCalculus::regge_action_2d",
+        "code/rust/src/general_relativity/discrete_spacetime.rs::DiscreteSpacetime::euler_characteristic",
+        "code/rust/src/general_relativity/einstein_hilbert_action.rs::EinsteinHilbertAction::try_from_regge",
+        "code/rust/src/majorana/holonomy.rs::holonomy_receipt_gf2"
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",
@@ -54522,23 +55141,45 @@
         "TFQ-0376"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/paper_claim_ledger.md"
+        "dag/derivations/01_pregenesis/tfq_0376_justified_lift_checklist.md",
+        "dag/derivations/independent/tfq-0376.md",
+        "dag/research/campaign_tfq-0376_lean_replay.json",
+        "dag/research/campaign_tfq-0376_lean_mutation.json",
+        "dag/research/campaign_tfq-0376_independent.json",
+        "docs/overclaim/reviews/2026-10-24_campaign-tfq-0376-precommit.md",
+        "checks/independent/tfq-0376.py",
+        "lean4/CampaignTfq0376Pregenesis.lean"
       ],
       "id": "TFQ-0376",
       "lean4": [
-        "absent: missing declaration obligation: the six section-15 checks are not declarations in the opened portion of Paper.lean"
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.section15_six_check_slots_and_stages_distinct",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.budget_stop_never_licenses_obstruction_or_minimal_lift",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.uninspected_tail_witness_refutes_budget_stop_claims",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.tied_minima_plurality_blocks_unique_minimal_extension",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.omitting_any_single_section15_check_blocks_licensing",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.stage_progression_fence_successor_proposed_licensed",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.pregenesis_collapsed_barrier_and_refine_separates_witness",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.pregenesis_chain_retraction_and_demand_accounting_witness",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.exhaustive_vs_budget_stopped_triangle_obstruction",
+        "lean4/CampaignTfq0376Pregenesis.lean::CampaignTfq0376Pregenesis.tfq0376_justified_lift_six_check_scope_certificate",
+        "lean4/Imported/PreGenesisToMssn/Paper.lean::PreMssn.collapsed_observation_barrier",
+        "lean4/Imported/PreGenesisToMssn/Paper.lean::PreMssn.refine_separates",
+        "lean4/Imported/PreGenesisToMssn/Paper.lean::PreMssn.demand_accounting",
+        "lean4/ChainRetraction.lean::ChainRetraction.TwoPoints.no_chain_retraction"
       ],
       "local_id": "A01-018",
       "name": "justified-lift-checklist",
       "obligation": "A necessary or minimal extension still needs the six section-15 checks, and a budget stop remains incomplete search rather than an obstruction result.",
       "parent_id": "TFQ-0375",
       "python": [
-        "absent: missing obligation: a six-check lift record in 000_pre_genesis_to_mssn/code/preservation.py that can stay incomplete when the search budget stops"
+        "checks/independent/tfq-0376.py::run_all_checks"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
-        "absent: missing obligation: a lift checklist struct in crate pre_mssn_preservation with an explicit incomplete-search variant"
+        "code/rust/src/combinatorics/enumeration.rs::CombinatoricsError::violated_invariant",
+        "code/rust/src/combinatorics/color_constraints.rs::minimum_color_violations",
+        "code/rust/src/wdp/wdp_lggr_chromatic.rs::triangle_two_color",
+        "code/rust/src/wdp/finite_cost_report.rs::FiniteCostReport::new"
       ],
       "source_slice": "01",
       "stage": "PREGENESIS",

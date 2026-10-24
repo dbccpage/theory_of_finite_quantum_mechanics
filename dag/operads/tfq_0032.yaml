@@ -1,53 +1,111 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0032
 authority_effect: None
-collection_status: source_candidates_collected_semantic_mining_open
+collection_status: semantic_mining_and_lean4_verification_complete
 target:
-  source_statement: The meson-side output of QM-221 is the pair of channel coefficients -4/3 and +1/6
+  source_statement: 'The meson-side output of QM-221 is the pair of channel coefficients -4/3 and +1/6
     on a quark-antiquark color decomposition. The Rust fields singlet_channel_casimir and octet_channel_potential_factor
     store those rationals. There is no finite Hilbert space of spatial meson orbitals, no relative wavefunction,
     and no mass operator in qcd_beta0_wilson_confinement_control.rs. Calling the attractive sign a meson
     composite would add structure the control does not build. The obligation is a separate finite composite,
     with a declared carrier and a color contraction, before a meson label is used as more than a channel
-    name.
-  statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: []
+    name. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components
+    and non-equivalence fences: (1) exact rational SU(N)/SU(3) quark-antiquark channel Casimir factors
+    (-4/3 singlet and +1/6 octet), 3 x 3 = 1 + 8 dimension decomposition, weighted trace cancellation
+    1*(-4/3) + 8*(1/6) = 0, and SU(2) vs. SU(3) channel contrast (suN_qqbar_casimir_channel_formulas,
+    su3_qqbar_dimension_and_weighted_trace_sum_zero,
+    singlet_attractive_vs_octet_repulsive_sign_dichotomy, su2_vs_su3_qqbar_casimir_channel_contrast);
+    (2) explicit 3x3 color-trace contraction qqbarColorTrace and singlet/octet projectors singletProj,
+    octetProj with idempotence, tracelessness, and orthogonality
+    (color_contraction_projector_idempotence_and_orthogonality); and (3) declared finite 36 * L^d meson
+    composite carrier accounting and fences showing that channel Casimir rationals do not supply a
+    spatial orbital wavefunction, radial mass operator, or spin-hyperfine splitting
+    (finite_meson_composite_carrier_dimension,
+    meson_mass_operator_requires_spatial_kinetic_and_potential_terms_fence,
+    channel_casimir_ratio_not_spatial_wavefunction_fence,
+    pseudoscalar_vs_vector_hyperfine_splitting_requires_spin_operator_fence,
+    tfq0032_meson_channel_scope_ledger_fence).'
+  statement_status: narrowed_finite_counterpart_and_fences_verified_lean4
+  declared_assumptions:
+  - continuum bound-state Bethe-Salpeter / QCD Hamiltonian (excluded)
   source_bottleneck: Build a finite meson carrier or keep meson language at the channel-name layer.
   source_refs:
   - dag/derivations/17_finite_qcd/tfq_0032_build_a_finite_meson_carrier_or_keep_meson_language_at_the_channel_name.md
+  - dag/derivations/independent/tfq-0032.md
+  - checks/independent/tfq-0032.py
+  - lean4/CampaignTfq0032FiniteQcd.lean
+  - lean4/FiniteQM.lean
+  - dag/research/campaign_tfq-0032_lean_replay.json
+  - dag/research/campaign_tfq-0032_lean_mutation.json
+  - dag/research/campaign_tfq-0032_independent.json
   paper_refs:
   - dag/derivations/17_finite_qcd/tfq_0032_build_a_finite_meson_carrier_or_keep_meson_language_at_the_channel_name.md
-  source_claim_label: OPEN
+  source_claim_label: OPEN_OBLIGATION
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/17_finite_qcd/tfq_0032_build_a_finite_meson_carrier_or_keep_meson_language_at_the_channel_name.md
-    sha256: 430c8e365277980610c445335d11ed482821b299009841a5a2db3b0c2af077f2
+    sha256: de8448266628b5b11609d354bc87620426329ab31e7a3841e861aae82ef6149d
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
   generator_version: 1
-  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  dag_source_commit: 6fb951667
   path: dag/prompts/finite_qcd_tfq_0032_open.yaml
-  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+  external_repository_commit: 6fb951667
+operation_candidates:
+- suNFundCasimir
+- suNAdjCasimir
+- singletChannelFactor
+- adjointChannelFactor
+- qqbarColorTrace
+- singletProj
+- octetProj
+- mesonCarrierDim
+- mesonRadialHamDet
+- hyperfineMesonMass
+relation_candidates:
+- suN_qqbar_casimir_channel_formulas
+- su3_qqbar_dimension_and_weighted_trace_sum_zero
+- singlet_attractive_vs_octet_repulsive_sign_dichotomy
+- su2_vs_su3_qqbar_casimir_channel_contrast
+- color_contraction_projector_idempotence_and_orthogonality
+- finite_meson_composite_carrier_dimension
+- meson_mass_operator_requires_spatial_kinetic_and_potential_terms_fence
+- channel_casimir_ratio_not_spatial_wavefunction_fence
+- pseudoscalar_vs_vector_hyperfine_splitting_requires_spin_operator_fence
+- tfq0032_meson_channel_scope_ledger_fence
 source_bindings:
-- original_ref: lean4/FiniteQM.lean
-  availability: local
-  symbol: null
-  path: lean4/FiniteQM.lean
-  repository: this_repository
-  sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
-  declaration_status: file_only_no_symbol
-  role: source_lead_only
+- lean4/CampaignTfq0032FiniteQcd.lean::CampaignTfq0032FiniteQcd.suN_qqbar_casimir_channel_formulas
+- lean4/CampaignTfq0032FiniteQcd.lean::CampaignTfq0032FiniteQcd.su3_qqbar_dimension_and_weighted_trace_sum_zero
+- lean4/CampaignTfq0032FiniteQcd.lean::CampaignTfq0032FiniteQcd.singlet_attractive_vs_octet_repulsive_sign_dichotomy
+- lean4/CampaignTfq0032FiniteQcd.lean::CampaignTfq0032FiniteQcd.su2_vs_su3_qqbar_casimir_channel_contrast
+- lean4/CampaignTfq0032FiniteQcd.lean::CampaignTfq0032FiniteQcd.color_contraction_projector_idempotence_and_orthogonality
+- lean4/CampaignTfq0032FiniteQcd.lean::CampaignTfq0032FiniteQcd.finite_meson_composite_carrier_dimension
+- lean4/CampaignTfq0032FiniteQcd.lean::CampaignTfq0032FiniteQcd.meson_mass_operator_requires_spatial_kinetic_and_potential_terms_fence
+- lean4/CampaignTfq0032FiniteQcd.lean::CampaignTfq0032FiniteQcd.channel_casimir_ratio_not_spatial_wavefunction_fence
+- lean4/CampaignTfq0032FiniteQcd.lean::CampaignTfq0032FiniteQcd.pseudoscalar_vs_vector_hyperfine_splitting_requires_spin_operator_fence
+- lean4/CampaignTfq0032FiniteQcd.lean::CampaignTfq0032FiniteQcd.tfq0032_meson_channel_scope_ledger_fence
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  colours:
+  - Rat
+  - Mat3Q
+  - Tfq0032ScopeLedger
+  generators:
+  - singletChannelFactor
+  - adjointChannelFactor
+  - singletProj
+  - octetProj
+  - mesonCarrierDim
+  relations:
+  - suN_qqbar_casimir_channel_formulas
+  - su3_qqbar_dimension_and_weighted_trace_sum_zero
+  - color_contraction_projector_idempotence_and_orthogonality
+  compositions:
+  - color_contraction_projector_idempotence_and_orthogonality
+  identities:
+  - su3_qqbar_dimension_and_weighted_trace_sum_zero
   symmetric_actions: []
   coherence_obligations:
   - identity_operations
@@ -57,32 +115,57 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: []
-    source_pins: []
+    mining_status: VERIFIED
+    carrier: Mat3Q x Nat
+    coefficient_ring: Q
+    assumptions:
+    - spatial meson orbital wavefunctions and mass operators are not present in qcd_beta0_wilson_confinement_control.rs
+    source_pins:
+    - lean4/CampaignTfq0032FiniteQcd.lean
     public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: VERIFIED
+    operations:
+    - singletChannelFactor
+    - adjointChannelFactor
+    - qqbarColorTrace
+    - singletProj
+    - octetProj
+    composition_plan:
+    - suN_qqbar_casimir_channel_formulas
+    - color_contraction_projector_idempotence_and_orthogonality
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: VERIFIED
+    algebraic_relations:
+    - suN_qqbar_casimir_channel_formulas
+    - su3_qqbar_dimension_and_weighted_trace_sum_zero
+    - singlet_attractive_vs_octet_repulsive_sign_dichotomy
+    - su2_vs_su3_qqbar_casimir_channel_contrast
+    - color_contraction_projector_idempotence_and_orthogonality
+    - finite_meson_composite_carrier_dimension
+    rejection_predicates:
+    - meson_mass_operator_requires_spatial_kinetic_and_potential_terms_fence
+    - channel_casimir_ratio_not_spatial_wavefunction_fence
+    - pseudoscalar_vs_vector_hyperfine_splitting_requires_spin_operator_fence
+    - tfq0032_meson_channel_scope_ledger_fence
+    negative_control_plan:
+    - 6 one-ingredient Lean 4 semantic mutations killed in dag/research/campaign_tfq-0032_lean_mutation.json
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: []
-stage_history: []
+    mining_status: VERIFIED
+    certificate_predicates:
+    - suN_qqbar_casimir_channel_formulas
+    - color_contraction_projector_idempotence_and_orthogonality
+    - tfq0032_meson_channel_scope_ledger_fence
+    anchors:
+    - lean4/CampaignTfq0032FiniteQcd.lean
+    - checks/independent/tfq-0032.py
+    - dag/derivations/independent/tfq-0032.md
+    unpaid_imports:
+    - continuum bound-state Bethe-Salpeter / QCD Hamiltonian (excluded)
+stage_history:
+- stage: campaign_derivation
+  timestamp: '2026-10-24T15:35:00Z'
+  outcome: Narrowed
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+- Spatial meson orbital wavefunctions and bound-state mass operators remain outside the Casimir channel control.
 excluded_relation_leads: []

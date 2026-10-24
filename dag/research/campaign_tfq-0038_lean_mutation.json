@@ -1,0 +1,56 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "node_id": "TFQ-0038",
+  "lean_file": "lean4/CampaignTfq0038FiniteQcd.lean",
+  "sha256": "9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385",
+  "lean_mutation": {
+    "total": 6,
+    "killed": 6,
+    "survived": 0,
+    "all_killed": true,
+    "mutants": [
+      {
+        "id": "M1_graph_betti1_drop_plus_one",
+        "description": "Mutate graphBetti1 from e - v + 1 to e - v, falsifying conf2_graph_1skeleton_betti_numbers_p3_y_c4_k4_k5.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp8k29dri2.lean:58:26: error: unsolved goals\n\u22a2 False\ntmp8k29dri2.lean:67:32: error: unsolved goals\n\u22a2 False\n'CampaignTfq0038FiniteQcd.conf2_graph_1skeleton_betti_numbers_p3_y_c4_k4_k5' depends on axioms: [propext, sorryAx]\n'CampaignTfq0038FiniteQcd.conf2_c4_and_k4_2complex_rational_betti_numbers' depends on axioms: [propext, sorryAx]\n'CampaignTfq0038FiniteQcd.k5_map_prose_reading_rank7_betti14_vs_"
+      },
+      {
+        "id": "M2_k5_map_reading_conflate_with_15",
+        "description": "Mutate k5MapProseReading from <21, 7, 6> to <21, 15, 14>, falsifying k5_map_prose_reading_rank7_betti14_vs_certificate_reading_rank15_betti6.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpsvndbemr.lean:99:87: error: unsolved goals\n\u22a2 False\n'CampaignTfq0038FiniteQcd.conf2_graph_1skeleton_betti_numbers_p3_y_c4_k4_k5' depends on axioms: [propext]\n'CampaignTfq0038FiniteQcd.conf2_c4_and_k4_2complex_rational_betti_numbers' depends on axioms: [propext]\n'CampaignTfq0038FiniteQcd.k5_map_prose_reading_rank7_betti14_vs_certificate_reading_rank15_betti6' depends on axioms: [propext,\n sorryAx"
+      },
+      {
+        "id": "M3_sample_free_cycle_zero_free_part",
+        "description": "Mutate sampleFreeCycle from <1, 0> to <0, 1>, falsifying non_zero_torsion_rank_does_not_identify_specific_loop_representative.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpi2kg743s.lean:147:2: error: Tactic `decide` proved that the proposition\n  isOrderTwoTorsionClass sampleTorsionGenerator = true \u2227\n    isOrderTwoTorsionClass sampleFreeCycle = false \u2227\n      isOrderTwoTorsionClass sampleTrivialCycle = false \u2227 sampleTorsionGenerator \u2260 sampleFreeCycle\nis false\n'CampaignTfq0038FiniteQcd.conf2_graph_1skeleton_betti_numbers_p3_y_c4_k4_k5' depends on axioms: [propext]\n'"
+      },
+      {
+        "id": "M4_exchange_loop_claim_established",
+        "description": "Mutate k5ExchangeLoopRepresentativeStatus to EstablishedOrderTwoTorsionGenerator, falsifying exchange_loop_representative_question_remains_open_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpb301pm82.lean:164:2: error: Tactic `decide` proved that the proposition\n  k5ExchangeLoopRepresentativeStatus = ExchangeLoopStatus.UnresolvedOpenGap \u2227\n    k5ExchangeLoopRepresentativeStatus \u2260 ExchangeLoopStatus.EstablishedOrderTwoTorsionGenerator\nis false\n'CampaignTfq0038FiniteQcd.conf2_graph_1skeleton_betti_numbers_p3_y_c4_k4_k5' depends on axioms: [propext]\n'CampaignTfq0038FiniteQcd.conf2_c4_a"
+      },
+      {
+        "id": "M5_python_comment_claim_authorized",
+        "description": "Mutate analyzeConf2GraphCommentVerdict to AuthorizedByTorsionRankAlone, falsifying python_comment_order_two_claim_exceeds_certificate_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpfs0wzqaf.lean:181:2: error: Tactic `decide` proved that the proposition\n  analyzeConf2GraphCommentVerdict = CommentAuditVerdict.ExceedsCertificateScope \u2227\n    analyzeConf2GraphCommentVerdict \u2260 CommentAuditVerdict.AuthorizedByTorsionRankAlone\nis false\n'CampaignTfq0038FiniteQcd.conf2_graph_1skeleton_betti_numbers_p3_y_c4_k4_k5' depends on axioms: [propext]\n'CampaignTfq0038FiniteQcd.conf2_c4_and_k4"
+      },
+      {
+        "id": "M6_repo_ledger_claim_exchange_loop_proved",
+        "description": "Mutate tfq0038RepoLedger claimsExchangeLoopProvedTorsionGenerator from false to true, falsifying tfq0038_k5_torsion_and_exchange_loop_scope_ledger_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp13tq16j4.lean:224:2: error: Tactic `decide` proved that the proposition\n  tfq0038RepoLedger.keepsTwoK5RankReadingsApart = true \u2227\n    tfq0038RepoLedger.reconcilesRankFormulaAccounting = true \u2227\n      tfq0038RepoLedger.leavesExchangeLoopRepresentativeUnresolved = true \u2227\n        tfq0038RepoLedger.rejectsPythonCommentOrderTwoOverclaim = true \u2227\n          tfq0038RepoLedger.conflatesRank7WithRank15 = f"
+      }
+    ]
+  }
+}

@@ -1,20 +1,43 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0039
 authority_effect: None
-collection_status: source_candidates_collected_semantic_mining_open
+collection_status: semantic_mining_and_lean4_verification_complete
 target:
   source_statement: 'The F002 floor states its own ceiling. The S000 book README calls the continuum volume
     an interface inventory and not a continuum derivation. F002.S001 remains the open bridge: shelf.yaml
     has an empty book list, README.md keeps GAP-F002-S001-001 open, and named_adjoining.yaml parks a Pontryagin
     dual of declared free Z without admitting a bridge theorem. None of the finite QCD controls, the Dirac
     doubling counts, or the topological anyon models close that shelf. The gap to continuum QCD stays
-    open. This node does not say that continuum QCD has been derived.'
-  statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: []
+    open. This node does not say that continuum QCD has been derived. Narrowed in Lean 4, Rust, and an
+    independent Python verifier to three exact finite/algebraic components and non-equivalence fences:
+    (1) exact rational summary of finite QCD controls (beta_0 = 7, strong-coupling tension 17/18, 16 torus
+    corners with 15 lifted doublers) and finite cyclic character cardinality L^d vs parked Pontryagin
+    dual Hom(Z, U(1)) (finite_qcd_control_exact_rational_summary,
+    finite_cyclic_dual_order_equals_lattice_period); (2) F002.S001 open bridge audit (bookCount = 0,
+    GAP-F002-S001-001 open, Pontryagin dual parked without bridge theorem) and proof that finite controls
+    do not derive continuum QCD while F002.S001 is open (f002_s001_empty_book_list_and_open_bridge_gap,
+    pontryagin_dual_of_free_z_requires_unpaid_continuum_circle_fence,
+    finite_qcd_controls_do_not_discharge_continuum_qcd_exit_fence); and (3) explicit breakdown and
+    non-equivalence fences for beta_0, strong-coupling tension at beta >= 18, Wilson corner counts, and
+    topological anyon catalog models (one_loop_beta0_polynomial_not_nonperturbative_continuum_mass_gap_fence,
+    strong_coupling_plaquette_ratio_breaks_down_in_weak_coupling_continuum_limit_fence,
+    wilson_torus_doubler_count_not_continuum_chiral_fermion_measure_fence,
+    topological_anyon_catalog_not_continuum_su3_confining_vacuum_fence,
+    tfq0039_f002_s001_open_bridge_scope_ledger_fence).'
+  statement_status: narrowed_finite_counterpart_and_fences_verified_lean4
+  declared_assumptions:
+  - continuum QCD bridge F002.S001 and Pontryagin dual of free Z (left open)
   source_bottleneck: Cite F002.S001 as an open bridge and do not convert the finite controls into a continuum
     exit.
   source_refs:
   - dag/derivations/17_finite_qcd/tfq_0039_cite_f002_s001_as_an_open_bridge_and_do_not_convert_the_finite.md
+  - dag/derivations/independent/tfq-0039.md
+  - checks/independent/tfq-0039.py
+  - lean4/CampaignTfq0039FiniteQcd.lean
+  - code/rust/src/qm/qcd_beta0_wilson_confinement_control.rs
+  - dag/research/campaign_tfq-0039_lean_replay.json
+  - dag/research/campaign_tfq-0039_lean_mutation.json
+  - dag/research/campaign_tfq-0039_independent.json
   paper_refs:
   - dag/derivations/17_finite_qcd/tfq_0039_cite_f002_s001_as_an_open_bridge_and_do_not_convert_the_finite.md
   source_claim_label: OPEN
@@ -23,23 +46,64 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/17_finite_qcd/tfq_0039_cite_f002_s001_as_an_open_bridge_and_do_not_convert_the_finite.md
-    sha256: c33778f29d11fd3ea7fc0ee1c4c4a6666e067f802feaed1a2d8c35349d78a79e
+    sha256: 860dc133c7167655bdd64566ef446d70554998ad30c992806a724725b378b537
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
   generator_version: 1
-  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  dag_source_commit: 6fb951667
   path: dag/prompts/finite_qcd_tfq_0039_open.yaml
-  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+  external_repository_commit: 6fb951667
+operation_candidates:
+- qcdBeta0Times16Pi2
+- strongCouplingTension
+- freeTorusDoublerCount
+- wilsonLiftedDoublerCount
+- finiteCyclicCharacterCount
+- continuumQcdDerived
+relation_candidates:
+- finite_qcd_control_exact_rational_summary
+- finite_cyclic_dual_order_equals_lattice_period
+- f002_s001_empty_book_list_and_open_bridge_gap
+- pontryagin_dual_of_free_z_requires_unpaid_continuum_circle_fence
+- finite_qcd_controls_do_not_discharge_continuum_qcd_exit_fence
+- one_loop_beta0_polynomial_not_nonperturbative_continuum_mass_gap_fence
+- strong_coupling_plaquette_ratio_breaks_down_in_weak_coupling_continuum_limit_fence
+- wilson_torus_doubler_count_not_continuum_chiral_fermion_measure_fence
+- topological_anyon_catalog_not_continuum_su3_confining_vacuum_fence
+- tfq0039_f002_s001_open_bridge_scope_ledger_fence
+source_bindings:
+- lean4/CampaignTfq0039FiniteQcd.lean::CampaignTfq0039FiniteQcd.finite_qcd_control_exact_rational_summary
+- lean4/CampaignTfq0039FiniteQcd.lean::CampaignTfq0039FiniteQcd.finite_cyclic_dual_order_equals_lattice_period
+- lean4/CampaignTfq0039FiniteQcd.lean::CampaignTfq0039FiniteQcd.f002_s001_empty_book_list_and_open_bridge_gap
+- lean4/CampaignTfq0039FiniteQcd.lean::CampaignTfq0039FiniteQcd.pontryagin_dual_of_free_z_requires_unpaid_continuum_circle_fence
+- lean4/CampaignTfq0039FiniteQcd.lean::CampaignTfq0039FiniteQcd.finite_qcd_controls_do_not_discharge_continuum_qcd_exit_fence
+- lean4/CampaignTfq0039FiniteQcd.lean::CampaignTfq0039FiniteQcd.one_loop_beta0_polynomial_not_nonperturbative_continuum_mass_gap_fence
+- lean4/CampaignTfq0039FiniteQcd.lean::CampaignTfq0039FiniteQcd.strong_coupling_plaquette_ratio_breaks_down_in_weak_coupling_continuum_limit_fence
+- lean4/CampaignTfq0039FiniteQcd.lean::CampaignTfq0039FiniteQcd.wilson_torus_doubler_count_not_continuum_chiral_fermion_measure_fence
+- lean4/CampaignTfq0039FiniteQcd.lean::CampaignTfq0039FiniteQcd.topological_anyon_catalog_not_continuum_su3_confining_vacuum_fence
+- lean4/CampaignTfq0039FiniteQcd.lean::CampaignTfq0039FiniteQcd.tfq0039_f002_s001_open_bridge_scope_ledger_fence
+- code/rust/src/qm/qcd_beta0_wilson_confinement_control.rs::verify_qcd_beta0_wilson_confinement_control
+- code/rust/src/qm/qcd_beta0_wilson_confinement_control.rs::checks_qcd_beta0_and_wilson_doubling_resolution
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  colours:
+  - Rat
+  - ShelfInventoryRecord
+  - FiniteToContinuumQcdBridgeState
+  - Tfq0039ScopeLedger
+  generators:
+  - qcdBeta0Times16Pi2
+  - strongCouplingTension
+  - freeTorusDoublerCount
+  - continuumQcdDerived
+  relations:
+  - finite_qcd_control_exact_rational_summary
+  - f002_s001_empty_book_list_and_open_bridge_gap
+  - finite_qcd_controls_do_not_discharge_continuum_qcd_exit_fence
+  compositions:
+  - finite_qcd_controls_do_not_discharge_continuum_qcd_exit_fence
+  identities:
+  - finite_qcd_control_exact_rational_summary
   symmetric_actions: []
   coherence_obligations:
   - identity_operations
@@ -49,32 +113,58 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: []
-    source_pins: []
+    mining_status: VERIFIED
+    carrier: FiniteToContinuumQcdBridgeState and Q
+    coefficient_ring: Q
+    assumptions:
+    - F002.S001 remains an open bridge with GAP-F002-S001-001 open
+    source_pins:
+    - lean4/CampaignTfq0039FiniteQcd.lean
+    - code/rust/src/qm/qcd_beta0_wilson_confinement_control.rs
     public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: VERIFIED
+    operations:
+    - qcdBeta0Times16Pi2
+    - strongCouplingTension
+    - freeTorusDoublerCount
+    - continuumQcdDerived
+    composition_plan:
+    - finite_qcd_control_exact_rational_summary
+    - finite_qcd_controls_do_not_discharge_continuum_qcd_exit_fence
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: VERIFIED
+    algebraic_relations:
+    - finite_qcd_control_exact_rational_summary
+    - finite_cyclic_dual_order_equals_lattice_period
+    - f002_s001_empty_book_list_and_open_bridge_gap
+    rejection_predicates:
+    - pontryagin_dual_of_free_z_requires_unpaid_continuum_circle_fence
+    - finite_qcd_controls_do_not_discharge_continuum_qcd_exit_fence
+    - one_loop_beta0_polynomial_not_nonperturbative_continuum_mass_gap_fence
+    - strong_coupling_plaquette_ratio_breaks_down_in_weak_coupling_continuum_limit_fence
+    - wilson_torus_doubler_count_not_continuum_chiral_fermion_measure_fence
+    - topological_anyon_catalog_not_continuum_su3_confining_vacuum_fence
+    - tfq0039_f002_s001_open_bridge_scope_ledger_fence
+    negative_control_plan:
+    - 6 one-ingredient Lean 4 semantic mutations killed in dag/research/campaign_tfq-0039_lean_mutation.json
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: []
-stage_history: []
+    mining_status: VERIFIED
+    certificate_predicates:
+    - finite_qcd_controls_do_not_discharge_continuum_qcd_exit_fence
+    - strong_coupling_plaquette_ratio_breaks_down_in_weak_coupling_continuum_limit_fence
+    - tfq0039_f002_s001_open_bridge_scope_ledger_fence
+    anchors:
+    - lean4/CampaignTfq0039FiniteQcd.lean
+    - code/rust/src/qm/qcd_beta0_wilson_confinement_control.rs
+    - checks/independent/tfq-0039.py
+    - dag/derivations/independent/tfq-0039.md
+    unpaid_imports:
+    - F002.S001 bridge and Pontryagin dual of free Z (open)
+stage_history:
+- stage: campaign_derivation
+  timestamp: '2026-10-24T16:10:00Z'
+  outcome: Narrowed
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+- Keep F002.S001 and continuum QCD open.
 excluded_relation_leads: []

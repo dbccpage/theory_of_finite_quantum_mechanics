@@ -25,11 +25,20 @@ In accordance with strict constructive principles:
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
-### Lean 4 Formalization
-*Formalization active. Proof obligations tracked under zero-sorry regime.*
+### Lean 4 Formalization (`lean4/CampaignTfq0009FiniteGauge.lean`)
+- `CampaignTfq0009FiniteGauge.chain_boundary_squared_zero_on_plaquette`: Proves that the 0-chain boundary of the 1-chain square plaquette boundary vanishes at every vertex (`∂₁ ∘ ∂₂ = 0`).
+- `CampaignTfq0009FiniteGauge.shared_edge_cancellation_two_plaquettes`: Proves that combining two adjacent square plaquettes with equal orientation cancels their oppositely oriented shared interior edge.
+- `CampaignTfq0009FiniteGauge.abelian_cochain_coboundary_squared_zero`: Proves that the plaquette coboundary `d₁` of a pure-gauge 0-cochain coboundary `d₀ λ` vanishes identically (`d₁ ∘ d₀ = 0`).
+- `CampaignTfq0009FiniteGauge.abelian_curvature_gauge_invariant`: Proves that abelian plaquette curvature `d₁ A` is strictly invariant under any vertex gauge transformation `A ↦ A + d₀ λ`.
+- `CampaignTfq0009FiniteGauge.abelian_bianchi_identity_cube`: Proves the discrete abelian Bianchi identity (`d₂ ∘ d₁ = 0`) on the 6-face, 12-edge 3-cube complex.
+- `CampaignTfq0009FiniteGauge.nonabelian_holonomy_conjugation_identity`: Proves the telescoping non-abelian plaquette holonomy conjugation identity `H(U^g) = g₀ H(U) g₀⁻¹` around the 4-edge square loop.
+- `CampaignTfq0009FiniteGauge.nonabelian_wilson_loop_trace_gauge_invariant`: Proves cyclic trace invariance and Wilson loop trace gauge invariance `tr(g₀ H g₀⁻¹) = tr(H)`.
+- `CampaignTfq0009FiniteGauge.abelian_vs_nonabelian_fork_commutator_witness`: Exhibits the fork between commutative abelian link addition and non-commutative `SL(2, ℤ)` shear links with non-central basepointed holonomy conjugation.
+- `CampaignTfq0009FiniteGauge.finite_cochain_cardinality_and_quotient_bound`: Evaluates the finite cardinality `N^E` of `ℤ/Nℤ` 1-cochains on an `E`-edge complex (`2^4 = 16`, `8^4 = 4096`).
+- `CampaignTfq0009FiniteGauge.combinatorial_coboundary_metric_free_vs_yang_mills_action_fence`: Proves that the combinatorial curvature coboundary `d₁ A` is metric-free whereas the Yang-Mills plaquette action `w * (d₁ A)²` depends on an unimported metric coupling `w = 1 / g²`.
 
-### Sovereign Rust Certifiers
-*Computational witness tracked under `theory_of_finite_qm` crate.*
+### Independent Python Verification (`checks/independent/tfq-0009.py`)
+- Executes `6263` exact integer and rational checks across plaquette boundary exactness, abelian coboundary and 3-cube Bianchi identities, `SL(2, ℤ)` non-abelian holonomy conjugation and Wilson loop trace invariance, and the Yang-Mills metric-coupling fence (`0` failures).
 
 ---
 

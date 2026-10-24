@@ -1,0 +1,56 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "node_id": "TFQ-0191",
+  "lean_file": "lean4/CampaignTfq0191ImplementationSibling.lean",
+  "sha256": "16031395c99467c30f27fc3109028e3bc5cfae250391d98b861a9ec2c8873e82",
+  "lean_mutation": {
+    "total": 6,
+    "killed": 6,
+    "survived": 0,
+    "all_killed": true,
+    "mutants": [
+      {
+        "id": "M1_interval_admitted_as_governance_scalar",
+        "description": "Mutate toGovernanceScalarWithoutPolicy Interval to AdmittedGovernanceScalar, falsifying measurement_value_arms_vs_governance_scalar_admission_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpdlzthilu.lean:117:2: error: Tactic `decide` proved that the proposition\n  toGovernanceScalarWithoutPolicy MeasurementValueKind.ExactRational =\n      GovernanceScalarConversion.AdmittedGovernanceScalar \u2227\n    toGovernanceScalarWithoutPolicy MeasurementValueKind.Integer = GovernanceScalarConversion.AdmittedGovernanceScalar \u2227\n      toGovernanceScalarWithoutPolicy MeasurementValueKind.Interval =\n   "
+      },
+      {
+        "id": "M2_interval_decide_without_policy",
+        "description": "Mutate decideIntervalComparison to always return DecidedScalar, falsifying interval_requires_policy_refusal_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp9f4l3_d7.lean:139:2: error: Tactic `decide` proved that the proposition\n  decideIntervalComparison false = IntervalDecisionOutcome.RefusedIntervalRequiresPolicy \u2227\n    decideIntervalComparison false \u2260 IntervalDecisionOutcome.DecidedScalar\nis false\n'CampaignTfq0191ImplementationSibling.interval_order_straddling_indeterminacy_vs_strict_comparison' depends on axioms: [propext,\n Classical.choice,\n Q"
+      },
+      {
+        "id": "M3_f64_unchecked_authorize_bound",
+        "description": "Mutate authorizesGovernanceBound BigDecimalFromF64Unchecked from false to true, falsifying f64_unchecked_decimal_cannot_authorize_exact_bound_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpxpeb7c1x.lean:156:2: error: Tactic `decide` proved that the proposition\n  authorizesGovernanceBound DecimalBoundConstructor.ExactRationalPair = true \u2227\n    authorizesGovernanceBound DecimalBoundConstructor.BigDecimalFromF64Unchecked = false\nis false\n'CampaignTfq0191ImplementationSibling.interval_order_straddling_indeterminacy_vs_strict_comparison' depends on axioms: [propext,\n Classical.choice,\n"
+      },
+      {
+        "id": "M4_status_claim_local_omega_measurement_present",
+        "description": "Mutate repoTfq0191Status from <false, true, true> to <true, true, true>, falsifying missing_local_omega_measurement_crate_recorded_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp1glxx2dq.lean:174:2: error: Tactic `decide` proved that the proposition\n  repoTfq0191Status.localOmegaMeasurementCratePresent = false \u2227\n    repoTfq0191Status.leanIntervalAndFloatFencePresent = true \u2227 repoTfq0191Status.independentCheckerPresent = true\nis false\n'CampaignTfq0191ImplementationSibling.interval_order_straddling_indeterminacy_vs_strict_comparison' depends on axioms: [propext,\n Classic"
+      },
+      {
+        "id": "M5_affine_calibration_claim_governance_scalar_authorized",
+        "description": "Mutate affineCalibrationStatus to GovernanceScalarAuthorized, falsifying interval_clock_and_calibration_remain_pending_policy_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpm0qqay0i.lean:193:2: error: Tactic `decide` proved that the proposition\n  affineCalibrationStatus = IntervalModuleOutputStatus.IntervalPendingPolicy \u2227\n    finiteResponseStatus = IntervalModuleOutputStatus.IntervalPendingPolicy \u2227\n      finiteChainClockStatus = IntervalModuleOutputStatus.IntervalPendingPolicy \u2227\n        affineCalibrationStatus \u2260 IntervalModuleOutputStatus.GovernanceScalarAuthorize"
+      },
+      {
+        "id": "M6_repo_ledger_allow_f64_decimal_bound",
+        "description": "Mutate tfq0191RepoLedger allowsF64DecimalToAuthorizeBound from false to true, falsifying tfq0191_interval_evidence_and_f64_decimal_scope_ledger_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpmh59qlv5.lean:218:2: error: Tactic `decide` proved that the proposition\n  tfq0191RepoLedger.keepsIntervalEvidenceDistinct = true \u2227\n    tfq0191RepoLedger.enforcesIntervalRequiresPolicyRefusal = true \u2227\n      tfq0191RepoLedger.blocksFromF64UncheckedBoundAuthority = true \u2227\n        tfq0191RepoLedger.keepsCalibrationAndClocksPendingPolicy = true \u2227\n          tfq0191RepoLedger.treatsIntervalAsGovernanc"
+      }
+    ]
+  }
+}

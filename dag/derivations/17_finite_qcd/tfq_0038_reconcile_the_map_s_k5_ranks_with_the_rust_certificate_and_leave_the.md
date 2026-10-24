@@ -18,21 +18,31 @@ Reconcile the map's K5 ranks with the Rust certificate and leave the exchange-lo
 ## 2. Derivation Context & Mathematical Grounding
 
 In accordance with strict constructive principles:
-- **Zero Floating-Point Cheating**: All quantities must be evaluated using exact integer combinatorial logic, discrete fractions, or exact field extensions (e.g. cyclotomic / Gaussian integer arithmetic).
-- **Explicit Valuation**: No continuum limits, Hilbert topologies, or measure spaces may be assumed prior to their explicit constructive descent.
+- **Two `Conf_2(K_5)` Boundary Rank Readings Kept Apart**: On $\mathrm{Conf}_2(K_5)$ ($V = 10, E = 30, b_1^{(1)} = 21$, with $15$ disjoint-edge commuting squares), the $30 \times 15$ disjoint-edge square boundary matrix has exact rational rank $15$ (and $\mathbb{F}_2$ rank $14$), giving the Rust test and `FiniteQM.lean` certificate reading (`graph_conf2_exchange_betti_and_character_collapse`) $b_1^{(2)}(\mathbb{Q}) = 21 - 15 = 6$, $b_1^{(2)}(\mathbb{F}_2) = 21 - 14 = 7$, and torsion rank $7 - 6 = 1$. By contrast, the opening prose of `pauli_spin_statistics_graph_finite_map.md` states $\mathrm{rank}_{\mathbb{Q}} = 7$ and $b_1^{(2)}(\mathbb{Q}) = 21 - 7 = 14$. The two readings differ by $\Delta \mathrm{rank}_{\mathbb{Q}} = 8$ and must be recorded side by side without conflation.
+- **Unresolved Exchange-Loop Representative**: Even when $\dim_{\mathbb{F}_2} \mathrm{Tors}(H_1) = 1$ (as in $H_1 \cong \mathbb{Z}^6 \oplus \mathbb{Z}_2$), a specific geometric exchange loop $\gamma_{\mathrm{exch}}$ is not forced by the torsion rank alone to have order $2$; the Python comment in `analyze_conf2_graph` exceeds the certificate scope, and the representative question remains an open gap.
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/FiniteQM.lean`](../../lean4/)
+- `lean4/CampaignTfq0038FiniteQcd.lean`:
+  - `CampaignTfq0038FiniteQcd.conf2_graph_1skeleton_betti_numbers_p3_y_c4_k4_k5`
+  - `CampaignTfq0038FiniteQcd.conf2_c4_and_k4_2complex_rational_betti_numbers`
+  - `CampaignTfq0038FiniteQcd.k5_map_prose_reading_rank7_betti14_vs_certificate_reading_rank15_betti6`
+  - `CampaignTfq0038FiniteQcd.universal_coefficient_torsion_rank_identity`
+  - `CampaignTfq0038FiniteQcd.abelian_1d_character_collapse_boson_fermion`
+  - `CampaignTfq0038FiniteQcd.non_zero_torsion_rank_does_not_identify_specific_loop_representative`
+  - `CampaignTfq0038FiniteQcd.exchange_loop_representative_question_remains_open_fence`
+  - `CampaignTfq0038FiniteQcd.python_comment_order_two_claim_exceeds_certificate_fence`
+  - `CampaignTfq0038FiniteQcd.k5_rank_mismatch_recorded_beside_certificate_fence`
+  - `CampaignTfq0038FiniteQcd.tfq0038_k5_torsion_and_exchange_loop_scope_ledger_fence`
+- `lean4/FiniteQM.lean`:
+  - `FiniteQM.graph_conf2_exchange_betti_and_character_collapse`
 
-### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/pauli_spin_statistics_graph.rs`](../../code/rust/src/)
-
-### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/pauli_spin_statistics_graph_control.py`](../../code/python/)
+### Independent Python Verification
+- `checks/independent/tfq-0038.py`:
+  - `run_all_checks`
 
 ---
 
@@ -46,4 +56,6 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
+  - `lean4/FiniteQM.lean`
+  - `lean4/CampaignTfq0038FiniteQcd.lean`
+  - `checks/independent/tfq-0038.py`

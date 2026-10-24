@@ -1135,3 +1135,75 @@ lean_lib CampaignTfq0123ContinuumInterface where
 -- Campaign: PG-WDP-GENESIS-BRIDGE-OBLIGATIONS. Not a default target.
 lean_lib CampaignPgwWdpBridgeObligations where
   roots := #[`CampaignPgwWdpBridgeObligations]
+
+lean_lib CampaignTfq0006L1ToL2 where
+  roots := #[`CampaignTfq0006L1ToL2]
+
+lean_lib CampaignTfq0008FiniteQmDynamics where
+  roots := #[`CampaignTfq0008FiniteQmDynamics]
+
+lean_lib CampaignTfq0009FiniteGauge where
+  roots := #[`CampaignTfq0009FiniteGauge]
+
+lean_lib CampaignTfq0010FiniteQed where
+  roots := #[`CampaignTfq0010FiniteQed]
+
+lean_lib CampaignTfq0011FiniteQcd where
+  roots := #[`CampaignTfq0011FiniteQcd]
+
+lean_lib CampaignTfq0012FiniteQcd where
+  roots := #[`CampaignTfq0012FiniteQcd]
+
+lean_lib CampaignTfq0014FiniteQcd where
+  roots := #[`CampaignTfq0014FiniteQcd]
+
+lean_lib CampaignTfq0017FiniteQcd where
+  roots := #[`CampaignTfq0017FiniteQcd]
+
+lean_lib CampaignTfq0026FiniteQcd where
+  roots := #[`CampaignTfq0026FiniteQcd]
+
+lean_lib CampaignTfq0027FiniteQcd where
+  roots := #[`CampaignTfq0027FiniteQcd]
+
+lean_lib CampaignTfq0032FiniteQcd where
+  roots := #[`CampaignTfq0032FiniteQcd]
+
+lean_lib CampaignTfq0033FiniteQcd where
+  roots := #[`CampaignTfq0033FiniteQcd]
+
+lean_lib CampaignTfq0038FiniteQcd where
+  roots := #[`CampaignTfq0038FiniteQcd]
+
+lean_lib CampaignTfq0039FiniteQcd where
+  roots := #[`CampaignTfq0039FiniteQcd]
+
+lean_lib CampaignTfq0040FiniteQcd where
+  roots := #[`CampaignTfq0040FiniteQcd]
+
+lean_lib CampaignTfq0042FiniteQcd where
+  roots := #[`CampaignTfq0042FiniteQcd]
+
+lean_lib CampaignTfq0044FiniteTopological where
+  roots := #[`CampaignTfq0044FiniteTopological]
+
+lean_lib CampaignTfq0050FiniteTopological where
+  roots := #[`CampaignTfq0050FiniteTopological]
+
+lean_lib CampaignTfq0171ImplementationSibling where
+  roots := #[`CampaignTfq0171ImplementationSibling]
+
+lean_lib CampaignTfq0183ImplementationSibling where
+  roots := #[`CampaignTfq0183ImplementationSibling]
+
+lean_lib CampaignTfq0184ImplementationSibling where
+  roots := #[`CampaignTfq0184ImplementationSibling]
+
+lean_lib CampaignTfq0191ImplementationSibling where
+  roots := #[`CampaignTfq0191ImplementationSibling]
+
+lean_lib CampaignTfq0199ImplementationSibling where
+  roots := #[`CampaignTfq0199ImplementationSibling]
+
+lean_lib CampaignTfq0376Pregenesis where
+  roots := #[`CampaignTfq0376Pregenesis]

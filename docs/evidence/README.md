@@ -6,7 +6,7 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
-The DAG has 925 nodes in 36 stages. Evidence grades: E0 172, E1 237, E2 41, E3 475.
+The DAG has 925 nodes in 36 stages. Evidence grades: E0 164, E1 222, E2 41, E3 498.
 
 ### What is proved here, what is imported, what is open
 
@@ -24,11 +24,11 @@ The DAG has 925 nodes in 36 stages. Evidence grades: E0 172, E1 237, E2 41, E3 4
 
 Of the 267 `PROVED_LEAN` nodes, 267 reach grade E3 or E4 (100 percent); 0 do not. The second group is listed in [mismatches](mismatches.md).
 
-Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 475 nodes at E3, 166 have a qualifying review, 36 of those cite in-repo Rust or Python code that is not a test, and 37 have a runnable test but no review.
+Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 498 nodes at E3, 166 have a qualifying review, 36 of those cite in-repo Rust or Python code that is not a test, and 37 have a runnable test but no review.
 
 ### Where the Lean evidence stands
 
-The `lean` fields of nodes cite 1706 distinct Lean declarations that lie in files of this checkout. 1659 of them are in a file whose current sha256 matches a passing replay receipt; 24 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches. The `PROVED_LEAN` nodes cite 1081 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
+The `lean` fields of nodes cite 1856 distinct Lean declarations that lie in files of this checkout. 1793 of them are in a file whose current sha256 matches a passing replay receipt; 40 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches. The `PROVED_LEAN` nodes cite 1081 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
 
 ### Status by evidence grade
 
@@ -42,20 +42,20 @@ The `lean` fields of nodes cite 1706 distinct Lean declarations that lie in file
 | `IMPORTED_ASSUMPTION` | 5 | 24 | 1 | 40 | 0 | 70 |
 | `ADMITTED_PRIMITIVE` | 0 | 0 | 0 | 3 | 0 | 3 |
 | `SOURCE_RECORD` | 52 | 28 | 0 | 1 | 0 | 81 |
-| `OPEN` | 39 | 89 | 9 | 38 | 0 | 175 |
+| `OPEN` | 31 | 74 | 9 | 61 | 0 | 175 |
 | `REFUTED` | 0 | 4 | 1 | 1 | 0 | 6 |
-| Total | 172 | 237 | 41 | 475 | 0 | 925 |
+| Total | 164 | 222 | 41 | 498 | 0 | 925 |
 
 ### Stage by evidence grade
 
 | Stage | E0 | E1 | E2 | E3 | E4 | Total | `PROVED_LEAN` | Flags |
 |---|---|---|---|---|---|---|---|---|
-| [PREGENESIS](stages/PREGENESIS.md) | 11 | 0 | 0 | 20 | 0 | 31 | 12 | 15 |
+| [PREGENESIS](stages/PREGENESIS.md) | 10 | 0 | 0 | 21 | 0 | 31 | 12 | 15 |
 | [GENESIS](stages/GENESIS.md) | 27 | 2 | 1 | 59 | 0 | 89 | 36 | 12 |
 | [MSSN_SN](stages/MSSN_SN.md) | 14 | 0 | 0 | 14 | 0 | 28 | 12 | 8 |
 | [WDP](stages/WDP.md) | 5 | 0 | 1 | 23 | 0 | 29 | 6 | 9 |
 | [L1_EMERGENCE](stages/L1_EMERGENCE.md) | 0 | 0 | 0 | 9 | 0 | 9 | 5 | 0 |
-| [L1_TO_L2](stages/L1_TO_L2.md) | 11 | 0 | 0 | 37 | 0 | 48 | 16 | 5 |
+| [L1_TO_L2](stages/L1_TO_L2.md) | 10 | 0 | 0 | 38 | 0 | 48 | 16 | 5 |
 | [FINITE_QM_CORE](stages/FINITE_QM_CORE.md) | 1 | 0 | 0 | 32 | 0 | 33 | 18 | 32 |
 | [FINITE_QM_DYNAMICS](stages/FINITE_QM_DYNAMICS.md) | 2 | 0 | 0 | 20 | 0 | 22 | 5 | 15 |
 | [FINITE_QM_STRUCTURE](stages/FINITE_QM_STRUCTURE.md) | 0 | 0 | 0 | 44 | 0 | 44 | 30 | 12 |
@@ -67,14 +67,14 @@ The `lean` fields of nodes cite 1706 distinct Lean declarations that lie in file
 | [FINITE_OBSTRUCTION](stages/FINITE_OBSTRUCTION.md) | 4 | 5 | 0 | 0 | 0 | 9 | 0 | 1 |
 | [AUTHORIZATION](stages/AUTHORIZATION.md) | 8 | 0 | 0 | 0 | 0 | 8 | 0 | 0 |
 | [FINITE_HILBERT](stages/FINITE_HILBERT.md) | 3 | 5 | 0 | 0 | 0 | 8 | 0 | 4 |
-| [FINITE_GAUGE](stages/FINITE_GAUGE.md) | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
-| [FINITE_QED](stages/FINITE_QED.md) | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
-| [FINITE_QCD](stages/FINITE_QCD.md) | 6 | 25 | 0 | 1 | 0 | 32 | 1 | 18 |
-| [FINITE_TOPOLOGICAL](stages/FINITE_TOPOLOGICAL.md) | 2 | 7 | 0 | 0 | 0 | 9 | 0 | 7 |
+| [FINITE_GAUGE](stages/FINITE_GAUGE.md) | 0 | 0 | 0 | 1 | 0 | 1 | 0 | 0 |
+| [FINITE_QED](stages/FINITE_QED.md) | 0 | 0 | 0 | 1 | 0 | 1 | 0 | 0 |
+| [FINITE_QCD](stages/FINITE_QCD.md) | 3 | 16 | 0 | 13 | 0 | 32 | 1 | 18 |
+| [FINITE_TOPOLOGICAL](stages/FINITE_TOPOLOGICAL.md) | 2 | 5 | 0 | 2 | 0 | 9 | 0 | 7 |
 | [FINITE_QG](stages/FINITE_QG.md) | 7 | 5 | 0 | 3 | 0 | 15 | 0 | 0 |
 | [CONTINUUM_INTERFACE](stages/CONTINUUM_INTERFACE.md) | 5 | 0 | 0 | 4 | 0 | 9 | 0 | 0 |
 | [IMPLEMENTATION_CORE](stages/IMPLEMENTATION_CORE.md) | 25 | 16 | 0 | 0 | 0 | 41 | 0 | 68 |
-| [IMPLEMENTATION_SIBLING](stages/IMPLEMENTATION_SIBLING.md) | 2 | 24 | 0 | 0 | 0 | 26 | 0 | 24 |
+| [IMPLEMENTATION_SIBLING](stages/IMPLEMENTATION_SIBLING.md) | 1 | 20 | 0 | 5 | 0 | 26 | 0 | 23 |
 | [ENGINE_CUSTODY](stages/ENGINE_CUSTODY.md) | 8 | 26 | 0 | 0 | 0 | 34 | 0 | 9 |
 | [MAJORANA](stages/MAJORANA.md) | 0 | 8 | 11 | 27 | 0 | 46 | 5 | 0 |
 | [COMPUTATION](stages/COMPUTATION.md) | 0 | 14 | 4 | 64 | 0 | 82 | 43 | 4 |
@@ -101,9 +101,9 @@ Counting rules:
 - A replay receipt that names a node (`dag_node`) contributes its Lean module and its anchor declarations as evidence for that node. When the node's own fields do not cite that module, the node is flagged `receipt_names_uncited_module`.
 - Grades are independent of status. A node whose status is `OPEN`, `CONDITIONAL` or `DEFINITION` can reach E3 because a Lean module attached to it compiles; the grade then says only that the attached module was replayed, not that it establishes the statement. The node page and the review record say what the module supports.
 - Derivation papers written by the syncs, and the generated JSONL and Markdown views, are listed and not counted: they restate the DAG and do not bear on a claim.
-- A symbol "exists" under the validator's leaf rule: the last name component occurs in the cited file. Counted symbols whose leaf occurs but for which no declaration form (`theorem`, `def`, `fn`, `struct`, ...) matched: 2. E3 additionally requires a declaration form or a listing in the receipt.
+- A symbol "exists" under the validator's leaf rule: the last name component occurs in the cited file. Counted symbols whose leaf occurs but for which no declaration form (`theorem`, `def`, `fn`, `struct`, ...) matched: 7. E3 additionally requires a declaration form or a listing in the receipt.
 - Paths that begin with `omega_engine` or `.claude` name sibling trees that are not in this repository. They are recorded as `external_unresolved`: neither confirmed nor refuted here.
-- Lean receipts are the files in `dag/research/` whose Lean results carry a module name and a sha256. A receipt covers a Lean file, not a single declaration, unless the receipt itemises the declaration's axioms. 1613 of the 1659 receipt-backed declarations are itemised; the others rest on the module-level audit. A cited symbol is matched to a receipt name only if the receipt name equals it or ends in a dot followed by it; when more than one receipt name matches, the match is recorded as ambiguous and no axiom list is copied (0 declarations).
+- Lean receipts are the files in `dag/research/` whose Lean results carry a module name and a sha256. A receipt covers a Lean file, not a single declaration, unless the receipt itemises the declaration's axioms. 1725 of the 1793 receipt-backed declarations are itemised; the others rest on the module-level audit. A cited symbol is matched to a receipt name only if the receipt name equals it or ends in a dot followed by it; when more than one receipt name matches, the match is recorded as ambiguous and no axiom list is copied (0 declarations).
 - File sha256 values are over the file bytes for `.lean`, `.rs`, `.py` and `.toml` files (their line endings are pinned in `.gitattributes`) and over the LF-normalised text for other files.
 
 ## Verify it yourself
@@ -152,7 +152,7 @@ and run `lake env lean Check.lean`. The expected output lists only `propext`, `C
 
 ## Where status and evidence disagree
 
-254 flags on 191 nodes. They are reported here and the DAG statuses are not changed. The full list, with one line per flag, is in [mismatches](mismatches.md).
+253 flags on 190 nodes. They are reported here and the DAG statuses are not changed. The full list, with one line per flag, is in [mismatches](mismatches.md).
 
 | Flag | Count | Meaning |
 |---|---|---|
@@ -161,7 +161,7 @@ and run `lake env lean Check.lean`. The expected output lists only `propext`, `C
 | `receipt_not_current` | 35 | A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit |
 | `computational_no_runnable_test` | 126 | COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited |
 | `proved_prose_no_in_repo_document` | 12 | PROVED_PROSE with no in-repo source document cited |
-| `broken_reference` | 54 | A cited in-repo path or symbol cannot be found in this checkout |
+| `broken_reference` | 53 | A cited in-repo path or symbol cannot be found in this checkout |
 | `receipt_names_uncited_module` | 27 | A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) |
 
 The ten flags on `PROVED_LEAN` nodes with the most downstream nodes:

@@ -1,7 +1,7 @@
 # [TFQ-0184] Do not read paper 009 reflexivity declarations as measured tetron homology
 
-> **Stage**: `IMPLEMENTATION_SIBLING` | **Status**: `GAP`  
-> **UUID**: `7e0a95bd-f3d3-5e79-b862-6b33a4eab241`  
+> **Stage**: `IMPLEMENTATION_SIBLING` | **Status**: `OPEN_OBLIGATION`  
+> **UUID**: `2e873733-5133-5d75-9759-7b5e3584f9e2`  
 > **Parent Derivation**: [TFQ-0181](tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md)
 
 ---
@@ -18,21 +18,37 @@ Do not read paper 009 reflexivity declarations as measured tetron homology.
 ## 2. Derivation Context & Mathematical Grounding
 
 In accordance with strict constructive principles:
-- **Zero Floating-Point Cheating**: All quantities must be evaluated using exact integer combinatorial logic, discrete fractions, or exact field extensions (e.g. cyclotomic / Gaussian integer arithmetic).
-- **Explicit Valuation**: No continuum limits, Hilbert topologies, or measure spaces may be assumed prior to their explicit constructive descent.
+- **Syntactic Reflexivity vs Actual Elimination & Homology Computation**: `Nat.le_refl (n*n*n)` is a tautological inequality $n^3 \le n^3$, whereas actual $n \times n$ Gaussian elimination row-operation counts follow $\sum_{k=1}^{n-1} k^2 = \frac{(n-1)n(2n-1)}{6} < \frac{n^3}{3}$; similarly, enum `rfl` declarations do not compute $\dim H_1 = (|C_1| - \operatorname{rank}_{\mathbb{F}_2}(d_1)) - \operatorname{rank}_{\mathbb{F}_2}(d_0)$ and are not measured tetron homology.
+- **Companion Control Scope of `majorana_evaluator.py`**: `code/python/src/majorana/majorana_evaluator.py` re-exports finite algebraic companion controls (`F2CochainComplex`, `build_tetron_carrier`, `verify_norm_equivalence`, `KitaevSweetSpotChain`, `IsingFusionAlgebra`, `ParityAlgebraModel`) under `AuthorityEffect: None`, while the `F004` Majorana realization-packet gap remains open and separate from noise sweeps.
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: not located`](../../lean4/)
+- `lean4/CampaignTfq0184ImplementationSibling.lean`:
+  - `CampaignTfq0184ImplementationSibling.gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound`
+  - `CampaignTfq0184ImplementationSibling.tetron_gf2_homology_requires_boundary_rank_difference_not_enum_rfl`
+  - `CampaignTfq0184ImplementationSibling.kitaev_sweet_spot_boundary_isolation_and_ising_quantum_dimensions`
+  - `CampaignTfq0184ImplementationSibling.fermion_parity_involutive_sector_splitting`
+  - `CampaignTfq0184ImplementationSibling.binary_carrier_lp_norm_equals_hamming_weight`
+  - `CampaignTfq0184ImplementationSibling.reflexivity_declaration_is_not_measured_tetron_homology_fence`
+  - `CampaignTfq0184ImplementationSibling.f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence`
+  - `CampaignTfq0184ImplementationSibling.majorana_evaluator_is_companion_control_not_gap_closure_fence`
+  - `CampaignTfq0184ImplementationSibling.wdp_carrier_manifest_homology_conversion_fence`
+  - `CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
+- `code/rust/src/wdp/lib.rs`:
+  - `to_homology_carrier`
 
 ### Python Oracles & Numerical Evaluators
-- [`code/python/src/majorana/majorana_evaluator.py`](../../code/python/)
+- `code/python/src/majorana/majorana_evaluator.py`:
+  - `KitaevSweetSpotChain`
+  - `IsingFusionAlgebra`
+  - `ParityAlgebraModel`
+- `checks/independent/tfq-0184.py`:
+  - `run_all_checks`
 
 ---
 
@@ -46,4 +62,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
+  - `lean4/CampaignTfq0184ImplementationSibling.lean`
+  - `code/rust/src/wdp/lib.rs`
+  - `code/python/src/majorana/majorana_evaluator.py`
+  - `checks/independent/tfq-0184.py`

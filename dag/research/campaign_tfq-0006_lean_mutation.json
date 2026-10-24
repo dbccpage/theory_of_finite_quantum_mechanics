@@ -1,0 +1,56 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "node_id": "TFQ-0006",
+  "lean_file": "lean4/CampaignTfq0006L1ToL2.lean",
+  "sha256": "3ad56ac5794c83c7dff9128db0356ab5ca69cfff1738d3cfff481f826b9359ce",
+  "lean_mutation": {
+    "total": 6,
+    "killed": 6,
+    "survived": 0,
+    "all_killed": true,
+    "mutants": [
+      {
+        "id": "M1_gi_mul_real_part_plus_instead_of_minus",
+        "description": "Mutate giMul real part from z.re * w.re - z.im * w.im to z.re * w.re + z.im * w.im, falsifying gauss_int_norm_multiplicative and qm122_pauli_gaussian_integer_commutators_and_squares.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\ntmpdac67qpd.lean:76:54: error: unsolved goals\nz w : GaussInt\n\u22a2 z.re * w.re * z.im * w.im * 4 + z.re ^"
+      },
+      {
+        "id": "M2_gi_norm_sq_sub_instead_of_add",
+        "description": "Mutate giNormSq from z.re ^ 2 + z.im ^ 2 to z.re ^ 2 - z.im ^ 2, falsifying import_fence_gaussian_units_vs_u1_phases.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "Try this:\n  [apply] ring_nf\n  \n  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.\n    \n  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.\ntmp0eitu0xv.lean:76:54: error: unsolved goals\nz w : GaussInt\n\u22a2 -(z.re * w.re * z.im * w.im * 4) + z.r"
+      },
+      {
+        "id": "M3_hadamard_gi_bottom_right_plus_one",
+        "description": "Mutate hadamardGI bottom-right entry from \u27e8-1, 0\u27e9 to \u27e81, 0\u27e9, falsifying import_fence_gaussian_integers_not_a_field_hadamard_unnormalized.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp1k_n_8_1.lean:162:13: error: Tactic `decide` proved that the proposition\n  mat2GIMul hadamardGI hadamardGI = mat2GIScale { re := 2, im := 0 } sigmaI\nis false\n'CampaignTfq0006L1ToL2.gauss_int_norm_multiplicative' depends on axioms: [propext, Quot.sound]\n'CampaignTfq0006L1ToL2.qm122_pauli_gaussian_integer_commutators_and_squares' does not depend on any axioms\n'CampaignTfq0006L1ToL2.qm122_and_qm02"
+      },
+      {
+        "id": "M4_l1_norm_sq2_use_l2_sum_of_squares",
+        "description": "Mutate l1NormSq2 from (|u1| + |u2|) ^ 2 to u1 ^ 2 + u2 ^ 2, falsifying import_fence_l1_norm_fails_parallelogram_law.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp2l3y6bal.lean:203:45: error: unsolved goals\n\u22a2 False\n'CampaignTfq0006L1ToL2.gauss_int_norm_multiplicative' depends on axioms: [propext, Quot.sound]\n'CampaignTfq0006L1ToL2.qm122_pauli_gaussian_integer_commutators_and_squares' does not depend on any axioms\n'CampaignTfq0006L1ToL2.qm122_and_qm020_cochain_syndrome_and_shadow_replay' does not depend on any axioms\n'CampaignTfq0006L1ToL2.import_fence_sq"
+      },
+      {
+        "id": "M5_l2_norm_sq2_subtract_squares",
+        "description": "Mutate l2NormSq2 from u1 ^ 2 + u2 ^ 2 to u1 ^ 2 - u2 ^ 2, falsifying import_fence_l1_stochastic_not_l2_isometry.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmppxfxd2r8.lean:227:49: error: unsolved goals\n\u22a2 False\n'CampaignTfq0006L1ToL2.gauss_int_norm_multiplicative' depends on axioms: [propext, Quot.sound]\n'CampaignTfq0006L1ToL2.qm122_pauli_gaussian_integer_commutators_and_squares' does not depend on any axioms\n'CampaignTfq0006L1ToL2.qm122_and_qm020_cochain_syndrome_and_shadow_replay' does not depend on any axioms\n'CampaignTfq0006L1ToL2.import_fence_sq"
+      },
+      {
+        "id": "M6_finite_carrier_ledger_claim_sqrt_discharged",
+        "description": "Mutate finiteCarrierLedger sqrtField from false to true, falsifying seven_hilbert_lift_imports_audit_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpa4f8uvgj.lean:269:93: error: Tactic `decide` proved that the proposition\n  unpaidImportCount finiteCarrierLedger = 7 \u2227\n    (unpaidImportCount\n          { sqrtField := false, complexField := false, u1Phases := false, innerProduct := false,\n            orthogonalAdditivity := false, haarIndependentPhases := false, linearIsometricDynamics := false } =\n        0 \u2194\n      { sqrtField := false, comple"
+      }
+    ]
+  }
+}

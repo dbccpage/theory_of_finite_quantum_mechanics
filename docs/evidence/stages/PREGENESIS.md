@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 31. Grades: E0 11, E3 20. Statuses: PROVED_LEAN 12, CONDITIONAL 2, DEFINITION 8, ADMITTED_PRIMITIVE 1, SOURCE_RECORD 5, OPEN 3.
+Nodes: 31. Grades: E0 10, E3 21. Statuses: PROVED_LEAN 12, CONDITIONAL 2, DEFINITION 8, ADMITTED_PRIMITIVE 1, SOURCE_RECORD 5, OPEN 3.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -23,7 +23,7 @@ Nodes: 31. Grades: E0 11, E3 20. Statuses: PROVED_LEAN 12, CONDITIONAL 2, DEFINI
 | [TFQ-0364](../nodes/TFQ-0364.md) | `SOURCE_RECORD` | E0 | Historical ledger row WDP-P000-002 records three Pre-Genesis runs as illustrations of semantic and state errors, with no model identity a... | none in this checkout | - |
 | [TFQ-0368](../nodes/TFQ-0368.md) | `SOURCE_RECORD` | E0 | Pre-Genesis paper.md section 6, which was opened, separates S(n), alphabet size k, grammar profile p, atlas target MSS-m, homology degree... | none in this checkout | - |
 | [TFQ-0374](../nodes/TFQ-0374.md) | `OPEN` | E0 | Ledger row WDP-P001-009 says language restriction, partial word recovery, and total erasure have different types, with no Ext calculation... | none in this checkout | - |
-| [TFQ-0376](../nodes/TFQ-0376.md) | `OPEN` | E0 | Pre-Genesis paper.md section 15, opened at the checklist, says a claim that an extension is necessary or minimal must name the failed pre... | none in this checkout | - |
+| [TFQ-0376](../nodes/TFQ-0376.md) | `OPEN` | E3 | Pre-Genesis paper.md section 15, opened at the checklist, says a claim that an extension is necessary or minimal must name the failed pre... | [CampaignTfq0376Pregenesis.lean](../../../lean4/CampaignTfq0376Pregenesis.lean): `budget_stop_never_licenses_obstruction_or_minimal_lift`, `exhaustive_vs_budget_stopped_triangle_obstruction`, `omitting_any_single_section15_check_blocks_licensing` +7<br>[ChainRetraction.lean](../../../lean4/ChainRetraction.lean): `no_chain_retraction`<br>[Paper.lean](../../../lean4/Imported/PreGenesisToMssn/Paper.lean): `collapsed_observation_barrier`, `demand_accounting`, `refine_separates`<br>[color_constraints.rs](../../../code/rust/src/combinatorics/color_constraints.rs): `minimum_color_violations`<br>+9 more file(s) | - |
 | [TFQ-0419](../nodes/TFQ-0419.md) | `SOURCE_RECORD` | E0 | The replies to the fixed Prompt 11 give at least two admissible continuations of \<\>: Trial 1 proposed no successor (quiescence) and Trial... | none in this checkout | - |
 | [TFQ-0420](../nodes/TFQ-0420.md) | `SOURCE_RECORD` | E0 | To tell 'the inscription remains' from 'a second occurrence has been produced', a regime needs at least two stages or positions, an ident... | none in this checkout | - |
 | [TFQ-0429](../nodes/TFQ-0429.md) | `SOURCE_RECORD` | E3 | For Prompt 15 the full replay offered four extensions that would separate \<a\> from \<ab\> (declarative distinctness, conditional deletion,... | [Paper000.lean](../../../lean4/Imported/Genesis19l57g1/Paper000.lean): `form_then_instance_separates`, `single_admission_does_not_separate` | - |

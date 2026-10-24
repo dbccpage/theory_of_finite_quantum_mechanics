@@ -1,0 +1,56 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "node_id": "TFQ-0042",
+  "lean_file": "lean4/CampaignTfq0042FiniteQcd.lean",
+  "sha256": "17bcabade444e0b5624ece6f0960e9d789842118cb331cf3e11e2d5b48c243e4",
+  "lean_mutation": {
+    "total": 6,
+    "killed": 6,
+    "survived": 0,
+    "all_killed": true,
+    "mutants": [
+      {
+        "id": "M1_block01_swap_make_identity",
+        "description": "Mutate block01Swap to identity, falsifying su3_block_links_nonabelian_commutator_witness.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmphkl4qb6v.lean:94:10: error: unsolved goals\n\u22a2 False\ntmphkl4qb6v.lean:93:73: error: unsolved goals\nh : mat3Mul block01Swap block12Swap = mat3Mul block12Swap block01Swap\nh02 : True\n\u22a2 False\n'CampaignTfq0042FiniteQcd.diamond_graph_betti_and_spanning_tree_count' depends on axioms: [propext]\n'CampaignTfq0042FiniteQcd.su3_block_links_nonabelian_commutator_witness' depends on axioms: [propext,\n sorryAx,"
+      },
+      {
+        "id": "M2_tree_link_u01_inv_corrupt",
+        "description": "Mutate treeLinkU01Inv from <1, -1, -1, 2> to <1, 1, -1, 2>, falsifying matrix_spanning_tree_dressing_neutralizes_tree_links.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmprxe0jt10.lean:144:2: error: unsolved goals\ncase refine_1.a01\n\u22a2 False\n\ncase refine_1.a11\n\u22a2 False\ntmprxe0jt10.lean:145:2: error: unsolved goals\ncase refine_2.a01\n\u22a2 False\n\ncase refine_2.a11\n\u22a2 False\n'CampaignTfq0042FiniteQcd.diamond_graph_betti_and_spanning_tree_count' depends on axioms: [propext]\n'CampaignTfq0042FiniteQcd.su3_block_links_nonabelian_commutator_witness' depends on axioms: [propext,\n"
+      },
+      {
+        "id": "M3_scalar_shadow_conflate_with_matrix",
+        "description": "Mutate finiteQmLeanScalarShadow from <1, false, false> to <3, true, true>, falsifying lean_finite_qm_rational_shadow_vs_matrix_link_scope_separation.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmpgaxil3gq.lean:183:2: error: Tactic `decide` proved that the proposition\n  finiteQmLeanScalarShadow.matrixDimension = 1 \u2227\n    raveraDiamondMatrixControl.matrixDimension = 3 \u2227\n      finiteQmLeanScalarShadow.isNonAbelian = false \u2227\n        raveraDiamondMatrixControl.isNonAbelian = true \u2227 finiteQmLeanScalarShadow \u2260 raveraDiamondMatrixControl\nis false\n'CampaignTfq0042FiniteQcd.diamond_graph_betti_and"
+      },
+      {
+        "id": "M4_continuum_title_claim_bridge_theorem",
+        "description": "Mutate evaluateContinuumModuleTitle to always return BridgeTheoremProvedByTitle, falsifying continuum_module_title_is_not_bridge_theorem_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp3vo5tkgt.lean:203:2: error: Tactic `decide` proved that the proposition\n  evaluateContinuumModuleTitle false = TitleAuditStatus.ModuleTitleNotABridgeTheorem \u2227\n    evaluateContinuumModuleTitle false \u2260 TitleAuditStatus.BridgeTheoremProvedByTitle\nis false\ntmp3vo5tkgt.lean:227:2: error: Tactic `decide` proved that the proposition\n  evaluateContinuumModuleTitle false = TitleAuditStatus.ModuleTitleNo"
+      },
+      {
+        "id": "M5_python_status_claim_006_twin_present",
+        "description": "Mutate repoGribovDiamondPythonStatus from <false, true> to <true, true>, falsifying missing_006_finite_qm_python_twin_and_independent_replay_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmp5qkb25qf.lean:220:2: error: Tactic `decide` proved that the proposition\n  repoGribovDiamondPythonStatus.hasTwinUnder006FiniteQmPython = false \u2227\n    repoGribovDiamondPythonStatus.hasIndependentCheckerReplay = true\nis false\n'CampaignTfq0042FiniteQcd.diamond_graph_betti_and_spanning_tree_count' depends on axioms: [propext]\n'CampaignTfq0042FiniteQcd.su3_block_links_nonabelian_commutator_witness' de"
+      },
+      {
+        "id": "M6_repo_ledger_claim_title_authorizes_bridge",
+        "description": "Mutate tfq0042RepoLedger moduleTitleAuthorizesContinuumBridge from false to true, falsifying tfq0042_gribov_diamond_and_title_scope_ledger_fence.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "tmprru62ih3.lean:252:2: error: Tactic `decide` proved that the proposition\n  tfq0042RepoLedger.verifiesDiamond8SpanningTreesAndBetti2 = true \u2227\n    tfq0042RepoLedger.verifiesNonAbelianBlockLinkCommutator = true \u2227\n      tfq0042RepoLedger.verifiesKleinFour64Copies = true \u2227\n        tfq0042RepoLedger.separatesLeanScalarShadowFromMatrixLinks = true \u2227\n          tfq0042RepoLedger.suppliesIndependentPython"
+      }
+    ]
+  }
+}
