@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 16. Grades: E0 10, E1 2, E3 4. Statuses: PROVED_LEAN 4, IMPORTED_ASSUMPTION 3, SOURCE_RECORD 8, OPEN 1.
+Nodes: 16. Grades: E0 9, E1 2, E3 5. Statuses: PROVED_LEAN 4, IMPORTED_ASSUMPTION 3, SOURCE_RECORD 8, OPEN 1.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -21,5 +21,5 @@ Nodes: 16. Grades: E0 10, E1 2, E3 4. Statuses: PROVED_LEAN 4, IMPORTED_ASSUMPTI
 | [LQG-EPRL-2007-SOURCE](../nodes/LQG-EPRL-2007-SOURCE.md) | `SOURCE_RECORD` | E0 | Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Sections II-IV eqs. (12)-(30) pp. 3-10) define a four-simplex spin-foam vertex... | none in this checkout | - |
 | [LQG-SPINFOAM-REVIEW-SOURCE](../nodes/LQG-SPINFOAM-REVIEW-SOURCE.md) | `SOURCE_RECORD` | E0 | Perez (2013, arXiv:1205.2019, Living Rev. Relativity 16, 3) surveys canonical LQG and Plebanski BF constraints (Part II), 4D BF theory an... | none in this checkout | - |
 | [LQG-EPRL-VERTEX-IMPORT](../nodes/LQG-EPRL-VERTEX-IMPORT.md) | `IMPORTED_ASSUMPTION` | E0 | Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Section III eqs. (18)-(22), (27)-(30) p... | none in this checkout | - |
-| [LQG-CONTINUUM-LIMIT-GAP](../nodes/LQG-CONTINUUM-LIMIT-GAP.md) | `OPEN` | E0 | No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recou... | none in this checkout | - |
+| [LQG-CONTINUUM-LIMIT-GAP](../nodes/LQG-CONTINUUM-LIMIT-GAP.md) | `OPEN` | E3 | On labels {0, 1, 2} the level-2 admissibility predicate (each label at most 2, the three triangle inequalities, even sum, and sum at most... | [CampaignLqgContinuumLimitGap.lean](../../../lean4/CampaignLqgContinuumLimitGap.lean): `level2_admissible_count`, `level2_counts_do_not_select_a_scale`, `level2_dimension_truncation` +2<br>[spin_foam.rs](../../../code/rust/src/general_relativity/spin_foam.rs)<br>[lqg-continuum-limit-gap.py](../../../checks/independent/lqg-continuum-limit-gap.py)<br>[lqg-continuum-limit-gap.md](../../../dag/derivations/independent/lqg-continuum-limit-gap.md)<br>+1 more file(s) | - |
 

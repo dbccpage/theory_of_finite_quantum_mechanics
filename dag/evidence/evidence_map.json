@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "a40fe8829d80ecf494b2bfa2fefc84e6f5c764b26c828ca9c4099901a8baaef1"
+  "sha256_lf": "26e15f3acadbfcdeb3ec87a1c87cbe4609233d6e76bc045ee5d3e94df4bb1c6a"
  },
  "files": {
   "checks/independent/dfm-bphz-continuum-fence.py": {
@@ -81,6 +81,11 @@
    "sha256": "9641eb17d294a9160f69dc02f2102c18780b6ade7867246aa98da1072f4029d2",
    "sha256_basis": "bytes",
    "size": 11096
+  },
+  "checks/independent/lqg-continuum-limit-gap.py": {
+   "sha256": "7a81f17c2b4c021a84348b6eaa13951a111920f338fb3ffabcdf962f5433f52a",
+   "sha256_basis": "bytes",
+   "size": 3255
   },
   "checks/independent/pgw-context-decision-procedure.py": {
    "sha256": "5330a7fb0d052d5438055f0ed034e7d2f82872d9845558a3ed09e325d9b020fa",
@@ -853,9 +858,9 @@
    "size": 6783
   },
   "dag/derivation_dag.json": {
-   "sha256": "a40fe8829d80ecf494b2bfa2fefc84e6f5c764b26c828ca9c4099901a8baaef1",
+   "sha256": "26e15f3acadbfcdeb3ec87a1c87cbe4609233d6e76bc045ee5d3e94df4bb1c6a",
    "sha256_basis": "lf-normalised",
-   "size": 4555675
+   "size": 4557600
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -5513,9 +5518,9 @@
    "size": 3404
   },
   "dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md": {
-   "sha256": "53862a7748be87256135a06780a07a1dd8da151f846586638db33d166d935608",
+   "sha256": "ba2bfe51bdbb44d34f6ef39583cc8d5d7a7ba9406979e9723db277c4b67a74b7",
    "sha256_basis": "lf-normalised",
-   "size": 2029
+   "size": 3886
   },
   "dag/derivations/34_genesis_to_higher/tfq_2400_gth_shadow.md": {
    "sha256": "34cc81312b95c41aab6c6f9ca4febc37e15d735b80ef2845026563be91ebd78e",
@@ -5872,6 +5877,11 @@
    "sha256_basis": "lf-normalised",
    "size": 10040
   },
+  "dag/derivations/independent/lqg-continuum-limit-gap.md": {
+   "sha256": "838971aee13396e955879ac3c0820840c4546365d5da622375f7193dc2a9ca16",
+   "sha256_basis": "lf-normalised",
+   "size": 3022
+  },
   "dag/derivations/independent/pg-gen-no-return.md": {
    "sha256": "05df9c79673528ca235e6777b70ff7f571a3be2e52d02f281ef5b04592593f60",
    "sha256_basis": "lf-normalised",
@@ -5921,6 +5931,11 @@
    "sha256": "973cb66334355e84819efd6735cec8b7d1ff36fa5c1466b4e319be76cae1a179",
    "sha256_basis": "lf-normalised",
    "size": 116977
+  },
+  "dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json": {
+   "sha256": "1b9cfaf12cd195764cd17567b71c47010ae2ba2273cd361c9323c8326eb86239",
+   "sha256_basis": "lf-normalised",
+   "size": 4579
   },
   "dag/research/electroweak_dfm_weinberg_finite_map.md": {
    "sha256": "9085e0b276afee079a11b980fc73e2c76a57d7d9b9d70fe29f97a0bd6f0b7fee",
@@ -5973,9 +5988,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "sha256": "41a1c2698d6fb25ec1865893ce73e6efd9a8445a4499aa453393576e30cbfaf2",
    "sha256_basis": "lf-normalised",
-   "size": 163302
+   "size": 164160
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -6341,6 +6356,11 @@
    "sha256": "da60dc53b31b15c067760c1fdbb9b771cb15d18bd350536c1cdbcd0047e9c86e",
    "sha256_basis": "bytes",
    "size": 26120
+  },
+  "lean4/CampaignLqgContinuumLimitGap.lean": {
+   "sha256": "a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d",
+   "sha256_basis": "bytes",
+   "size": 3254
   },
   "lean4/CampaignPgwPresentationLift.lean": {
    "sha256": "034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074",
@@ -245957,17 +245977,267 @@
    "absent_notes": [],
    "dependents": 3,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 0,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 2,
+    "counted_files": 5,
+    "lean_receipt_backed": 5,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 5
    },
    "flags": [],
-   "grade": "E0",
+   "grade": "E3",
    "id": "LQG-CONTINUUM-LIMIT-GAP",
    "items": [
+    {
+     "cited_in": [
+      "node.source",
+      "receipt dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json (CampaignLqgContinuumLimitGap)"
+     ],
+     "command": "cd lean4 && lake build CampaignLqgContinuumLimitGap",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignLqgContinuumLimitGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json#0:CampaignLqgContinuumLimitGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json (CampaignLqgContinuumLimitGap)"
+     ],
+     "command": "cd lean4 && lake build CampaignLqgContinuumLimitGap",
+     "command_note": "then, in a scratch file that imports CampaignLqgContinuumLimitGap: #print axioms CampaignLqgContinuumLimitGap.level2_admissible_count",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignLqgContinuumLimitGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json#0:CampaignLqgContinuumLimitGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignLqgContinuumLimitGap.level2_admissible_count",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json (CampaignLqgContinuumLimitGap)"
+     ],
+     "command": "cd lean4 && lake build CampaignLqgContinuumLimitGap",
+     "command_note": "then, in a scratch file that imports CampaignLqgContinuumLimitGap: #print axioms CampaignLqgContinuumLimitGap.level2_counts_do_not_select_a_scale",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignLqgContinuumLimitGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json#0:CampaignLqgContinuumLimitGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignLqgContinuumLimitGap.level2_counts_do_not_select_a_scale",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json (CampaignLqgContinuumLimitGap)"
+     ],
+     "command": "cd lean4 && lake build CampaignLqgContinuumLimitGap",
+     "command_note": "then, in a scratch file that imports CampaignLqgContinuumLimitGap: #print axioms CampaignLqgContinuumLimitGap.level2_dimension_truncation",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignLqgContinuumLimitGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json#0:CampaignLqgContinuumLimitGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignLqgContinuumLimitGap.level2_dimension_truncation",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json (CampaignLqgContinuumLimitGap)"
+     ],
+     "command": "cd lean4 && lake build CampaignLqgContinuumLimitGap",
+     "command_note": "then, in a scratch file that imports CampaignLqgContinuumLimitGap: #print axioms CampaignLqgContinuumLimitGap.level2_free_positive_scale",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignLqgContinuumLimitGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json#0:CampaignLqgContinuumLimitGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignLqgContinuumLimitGap.level2_free_positive_scale",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json (CampaignLqgContinuumLimitGap)"
+     ],
+     "command": "cd lean4 && lake build CampaignLqgContinuumLimitGap",
+     "command_note": "then, in a scratch file that imports CampaignLqgContinuumLimitGap: #print axioms CampaignLqgContinuumLimitGap.level2_tuple_census",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignLqgContinuumLimitGap.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json#0:CampaignLqgContinuumLimitGap",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignLqgContinuumLimitGap.level2_tuple_census",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": "no test is cited for this symbol; its crate is tfqm_general_relativity",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "rust_symbol",
+     "path": "code/rust/src/general_relativity/spin_foam.rs",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/lqg-continuum-limit-gap.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
     {
      "cited_in": [
       "node.source",
@@ -245991,9 +246261,55 @@
      "symbol_declared": null,
      "symbol_exists": null,
      "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/derivations/independent/lqg-continuum-limit-gap.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
     }
    ],
-   "next_step": "cite at least one in-repo file that bears on the statement",
+   "next_step": "add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-2315"
    ],
@@ -253050,6 +253366,32 @@
    "receipt_file_sha256": "973cb66334355e84819efd6735cec8b7d1ff36fa5c1466b4e319be76cae1a179",
    "recorded_sha256": "c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42",
    "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
+   "checked_at": "2026-10-24",
+   "dag_node": "LQG-CONTINUUM-LIMIT-GAP",
+   "decl_count": 5,
+   "exit_code": 0,
+   "id": "dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json#0:CampaignLqgContinuumLimitGap",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignLqgContinuumLimitGap",
+   "path": "lean4/CampaignLqgContinuumLimitGap.lean",
+   "receipt_file": "dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json",
+   "receipt_file_sha256": "1b9cfaf12cd195764cd17567b71c47010ae2ba2273cd361c9323c8326eb86239",
+   "recorded_sha256": "a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d",
+   "source_unchanged_during_build": null,
    "toolchain": "4.35.0"
   },
   {
@@ -263415,7 +263757,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "41a1c2698d6fb25ec1865893ce73e6efd9a8445a4499aa453393576e30cbfaf2",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263441,7 +263783,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "41a1c2698d6fb25ec1865893ce73e6efd9a8445a4499aa453393576e30cbfaf2",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263467,7 +263809,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "41a1c2698d6fb25ec1865893ce73e6efd9a8445a4499aa453393576e30cbfaf2",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263493,7 +263835,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "41a1c2698d6fb25ec1865893ce73e6efd9a8445a4499aa453393576e30cbfaf2",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263519,7 +263861,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "41a1c2698d6fb25ec1865893ce73e6efd9a8445a4499aa453393576e30cbfaf2",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263545,7 +263887,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "41a1c2698d6fb25ec1865893ce73e6efd9a8445a4499aa453393576e30cbfaf2",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263571,7 +263913,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "41a1c2698d6fb25ec1865893ce73e6efd9a8445a4499aa453393576e30cbfaf2",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263597,7 +263939,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "41a1c2698d6fb25ec1865893ce73e6efd9a8445a4499aa453393576e30cbfaf2",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263623,7 +263965,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "41a1c2698d6fb25ec1865893ce73e6efd9a8445a4499aa453393576e30cbfaf2",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263649,7 +263991,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "41a1c2698d6fb25ec1865893ce73e6efd9a8445a4499aa453393576e30cbfaf2",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263675,7 +264017,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "41a1c2698d6fb25ec1865893ce73e6efd9a8445a4499aa453393576e30cbfaf2",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263701,7 +264043,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "41a1c2698d6fb25ec1865893ce73e6efd9a8445a4499aa453393576e30cbfaf2",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263727,7 +264069,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "41a1c2698d6fb25ec1865893ce73e6efd9a8445a4499aa453393576e30cbfaf2",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263753,7 +264095,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "41a1c2698d6fb25ec1865893ce73e6efd9a8445a4499aa453393576e30cbfaf2",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -263779,7 +264121,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "71396a1121545ecd3deda39ce1c095546903946c4af3f9b5f66a9444550fd9fd",
+   "receipt_file_sha256": "41a1c2698d6fb25ec1865893ce73e6efd9a8445a4499aa453393576e30cbfaf2",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -264368,10 +264710,10 @@
  ],
  "summary": {
   "by_grade": {
-   "E0": 189,
+   "E0": 188,
    "E1": 243,
    "E2": 42,
-   "E3": 451,
+   "E3": 452,
    "E4": 0
   },
   "by_status": {
@@ -264391,16 +264733,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 36,
   "e3_nodes_with_test_but_no_review": 37,
   "lean_declarations_in_repo": {
-   "distinct": 1498,
+   "distinct": 1503,
    "no_receipt": 24,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 1451,
-   "replay_verified_and_declaration_itemised": 1405,
+   "replay_verified": 1456,
+   "replay_verified_and_declaration_itemised": 1410,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 1807
+   "present": 1812
   },
   "mismatch_nodes": 191,
   "mismatches_by_kind": {
@@ -264421,7 +264763,7 @@
    "total": 266,
    "with_in_repo_lean": 266
   },
-  "receipts_indexed": 474,
+  "receipts_indexed": 475,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 9,
@@ -264606,10 +264948,10 @@
     "E4": 0
    },
    "LOOP_QUANTUM_GRAVITY": {
-    "E0": 10,
+    "E0": 9,
     "E1": 2,
     "E2": 0,
-    "E3": 4,
+    "E3": 5,
     "E4": 0
    },
    "MAJORANA": {
@@ -264699,10 +265041,10 @@
     "E4": 0
    },
    "OPEN": {
-    "E0": 49,
+    "E0": 48,
     "E1": 92,
     "E2": 10,
-    "E3": 24,
+    "E3": 25,
     "E4": 0
    },
    "PROVED_LEAN": {
