@@ -6,7 +6,7 @@ Disjoint standard-library-only arithmetic checker verifying:
    multiplicativity of Gaussian norm) and QM_122 / QM_020 C_4 cochain syndromes (qm122_qm020=410).
 2. Non-recovery of square-root field (odd/even parity obstruction to sqrt(2) in Q), non-invertibility
    of 2*I in M_2(Z[i]) for unnormalized Hadamard, and 4 discrete Z[i] units vs. rational/continuous
-   U(1) phases (field_phase_fences=340).
+   U(1) phases (field_phase_fences=532).
 3. L1 norm failure of the Jordan-von Neumann parallelogram law (8 != 4), orthogonal additivity cross-term
    and opposite-sign phase averaging, L1 stochastic vs. L2 unitary norm contraction, and the 2^7 = 128
    combinations of the 7-field HilbertLiftImportLedger (hilbert_lift_fences=326).
@@ -18,9 +18,10 @@ from __future__ import annotations
 
 import itertools
 from fractions import Fraction
+from typing import TypeAlias
 
-type GI = tuple[int, int]
-type Mat2GI = tuple[GI, GI, GI, GI]
+GI: TypeAlias = tuple[int, int]
+Mat2GI: TypeAlias = tuple[GI, GI, GI, GI]
 
 
 def gi_add(z: GI, w: GI) -> GI:

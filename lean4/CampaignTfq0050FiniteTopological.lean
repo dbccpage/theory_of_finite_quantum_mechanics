@@ -40,7 +40,7 @@ absence is an open obligation, not a negative theorem about fusion categories.")
      fundamental weight `(1, 0)* = (0, 1) ≠ (1, 0)`
      (`catalog_self_dual_models_not_su3_conjugate_pair_fence`).
    - Proves the `SU(3)_2` fundamental quantum dimension identity `(d_{(1,0)})^2 = d_{(0,1)} + d_{(2,0)}`
-     in `ℚ(φ)` (`d_{(1,0)} = φ + 1`, `d_{(2,0)} = φ`)
+     in `ℚ(φ)` (`d_{(1,0)} = d_{(0,1)} = φ`, `d_{(2,0)} = 1`)
      (`su3_level2_fundamental_quantum_dimension_golden_ratio`).
    - Proves that the absence of `su3_level.rs` is classified as `OpenImplementationObligation`
      rather than `DischargedInRepo` or `NegativeImpossibilityTheorem`, and that the

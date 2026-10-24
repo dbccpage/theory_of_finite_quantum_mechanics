@@ -314,7 +314,7 @@ def shearLower : Mat2Int := ⟨1, 0, 1, 1⟩
 abelian link composition is commutative (`a0 + a1 = a1 + a0`), whereas non-abelian
 2×2 matrix link composition is non-commutative (`shearUpper * shearLower ≠ shearLower * shearUpper`)
 and basepointed holonomy is not invariant under non-central conjugation (`g₀ * H * g₀⁻¹ ≠ H`),
-even though the Wilson loop trace remains invariant (`3 = 3`). -/
+even though the Wilson loop trace remains invariant (`2 = 2`). -/
 theorem abelian_vs_nonabelian_fork_commutator_witness :
     (∀ a0 a1 : Int, a0 + a1 = a1 + a0) ∧
     mat2Mul shearUpper shearLower ≠ mat2Mul shearLower shearUpper ∧

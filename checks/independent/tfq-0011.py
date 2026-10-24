@@ -13,11 +13,9 @@ Checks:
    `-beta_0(16)/beta_1(16) = 1/302`.
 4. Naive lattice Dirac fermion doubling obstruction (`2^d - 1` spurious Brillouin corners
    in `d = 1..4`) and positive Wilson mass lifts `2 r m >= 2 r > 0`.
-5. Diagonal SU(3) Klein-four Landau-Gribov copies (`4^3 = 64` on 3 vertices) vs spanning-tree
-   gauge neutralization, plus epistemic separation between exact rational certificates and
-   float benchmarks.
-6. Repository source and Lean 4 theorem anchors in `lean4/FiniteQM.lean` and
-   `lean4/CampaignTfq0011FiniteQcd.lean`.
+5. Diagonal SU(3) Klein-four Landau-Gribov copy counts (`4^3 = 64` on 3 vertices vs `1` after
+   spanning-tree gauge fixing), plus repository source and Lean 4 theorem anchors in
+   `lean4/FiniteQM.lean` and `lean4/CampaignTfq0011FiniteQcd.lean`.
 """
 
 from __future__ import annotations

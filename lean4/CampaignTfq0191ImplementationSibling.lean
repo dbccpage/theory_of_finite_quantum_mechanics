@@ -22,7 +22,7 @@ rational bounds:
    `333333 / 1000000 = 1 / 3 - 1 / 3000000 ≠ 1 / 3`.
 3. `ieee754_f64_tenth_binary_approximation_differs_from_exact_tenth`:
    The IEEE-754 binary64 significand `3602879701896397 / 2^55` for `0.1` differs from `1 / 10`
-   by the exact positive rational `1 / 360287970189639680 ≠ 0`.
+   by the exact positive rational `1 / 180143985094819840 ≠ 0`.
 4. `affine_interval_calibration_and_finite_chain_clock_propagation`:
    Under an affine calibration `y = a * x + b` (`a ≥ 0`) on `[l, u]`, the calibrated interval
    width is `(a * u + b) - (a * l + b) = a * (u - l)`, and across `k` ticks of a finite chain

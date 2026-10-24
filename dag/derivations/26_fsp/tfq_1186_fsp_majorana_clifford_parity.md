@@ -14,7 +14,7 @@
 For N CAR modes, gamma_{2j-1} = c_j + c_j^dagger and gamma_{2j} = -i(c_j - c_j^dagger) are self-adjoint with {gamma_a, gamma_b} = 2 delta_ab, generate the Clifford algebra on 2N generators, and P = prod_j (-i gamma_{2j-1} gamma_{2j}) is the fermion parity (-1)^N_op.
 
 ### Governing Obligation
-Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra.
+Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra. CampaignMajoranaCliffordParity supplies CAR-conditional self-adjointness, anticommutators, equality of generated complex subalgebras, occupation projections, the signed local parity identity and ordered parity action on supplied common occupation eigenvectors. A formal one-mode positive trace-one density matrix need not commute with parity. The all-mode abstract Clifford identification, source CAR/Fock refinement and occupation-basis completeness remain outside these witnesses; no physical superselection law is inferred.
 
 ### Witness Audit
 Cited MajoranaGinCore.lean::majorana_clifford_anticommutation does not exist; MajoranaGinCore (a copy of FermionGinCore) holds an integer pair-cancellation lemma, Kitaev-chain bond-list membership lemmas and routing rfl facts, none about Clifford relations. The JSONL sign convention (i gamma gamma) differs from the standard -i gamma_{2j-1} gamma_{2j} = 1 - 2n_j.
@@ -29,19 +29,26 @@ Cited MajoranaGinCore.lean::majorana_clifford_anticommutation does not exist; Ma
 
 ### See Also
 - `DS-QM212-MAJORANA-PROBLEM`
+- `dag/derivations/independent/fsp-majorana-clifford-parity.md`
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.gamma_star`
+- `lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.gamma_ac`
+- `lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.generated_algebra`
+- `lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.occupation_sq`
+- `lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.localParity_pair`
+- `lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.parity_action`
+- `lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.parity_superselection_not_forced`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/fsp-majorana-clifford-parity.py`
 
 ### Cited by the source, not in this checkout
 - `external:omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/ising_majorana_braiding.py::MajoranaOperatorSet (cited by the source; the local file code/python/src/fsp/ising_majorana_braiding.py has no such symbol)`

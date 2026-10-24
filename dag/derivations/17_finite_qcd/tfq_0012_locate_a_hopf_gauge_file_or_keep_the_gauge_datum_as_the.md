@@ -31,8 +31,8 @@ In accordance with strict constructive principles:
 - `CampaignTfq0012FiniteQcd.q8_mat2gi_embedding_homomorphism`: Proves that the `su2_matrix` embedding `q8ToMat2GI : Q8Elem → Mat2GI` over `ℤ[i]` is an exact multiplicative homomorphism across all `64` pairs.
 - `CampaignTfq0012FiniteQcd.q8_mat2gi_embedding_injective_and_unit_det`: Proves that `q8ToMat2GI` is injective and every embedded matrix has unit Gaussian determinant `1 + 0i`.
 - `CampaignTfq0012FiniteQcd.q8_plaquette_holonomy_conjugation_and_trace_invariance`: Proves conjugation invariance of the embedded `SU(2)` character trace across all `64` pairs `(g, h) ∈ Q_8 × Q_8`.
-- `CampaignTfq0012FiniteQcd.q8_su2_vs_su3_color_dimension_and_center_fence`: Proves the `SU(2)` vs. `SU(3)` fundamental dimension (`2 ≠ 3`), Lie algebra dimension (`3 ≠ 8`), and Lagrange center divisibility obstruction (`8 % 3 = 2 ≠ 0`).
-- `CampaignTfq0012FiniteQcd.q8_irrep_max_degree_two_no_color_triplet_fence`: Proves that all irreducible representations of `Q_8` have degree `≤ 2`, excluding an irreducible 3D `SU(3)` color triplet.
+- `CampaignTfq0012FiniteQcd.q8_su2_vs_su3_color_dimension_and_center_fence`: Proves the `SU(2)` vs. `SU(3)` fundamental dimension (`2 ≠ 3`), Lie algebra dimension (`3 ≠ 8`), and center orders (`2 ≠ 3`) and `8 % 3 = 2 ≠ 0`.
+- `CampaignTfq0012FiniteQcd.q8_irrep_max_degree_two_no_color_triplet_fence`: Proves that the five `Q_8` irreducible character degrees `(1, 1, 1, 1, 2)` satisfy `1² + 1² + 1² + 1² + 2² = 8` with maximum degree `2 < 3` (and `3² > 8`).
 - `CampaignTfq0012FiniteQcd.group_like_coproduct_vs_hopf_linearity_fence`: Distinguishes group-like Cayley table elements from general Hopf algebra superpositions.
 - `CampaignTfq0012FiniteQcd.f001_s000_carrier_coordination_not_color_connection_fence`: Audits `tfq0012RepoLedger` (`hasQ8MatrixShadow = true`, `hasCayleyTable = true`, `hasHopfGaugeModule = false`, `hasSu3ColorConnection = false`).
 - `CampaignTfq0012FiniteQcd.q8_wilson_plaquette_character_discrete_spectrum_fence`: Proves that the `Q_8` Wilson character trace takes values exclusively in `{-2, 0, 2}`.

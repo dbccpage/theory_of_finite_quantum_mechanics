@@ -94,12 +94,12 @@ theorem local_majorana_noise_skew_symmetry_and_zero_diagonal (k x y : ℚ) :
 /-- Theorem 5 (Noise Monte Carlo Schedule Partition Conservation):
 For any non-negative counts `(c_exact, c_closed, c_open)` summing to `trials > 0`, the rational
 fractions `c_exact / trials + c_closed / trials + c_open / trials` sum to `1`. -/
-theorem noise_mc_schedule_partition_conservation (c_exact c_closed c_open : ℚ) :
-    let trials := c_exact + c_closed + c_open
-    trials = c_exact + c_closed + c_open ∧
-    (12 + 5 + 3 : Nat) = 20 ∧
+theorem noise_mc_schedule_partition_conservation (c_exact c_closed c_open : ℚ)
+    (h : c_exact + c_closed + c_open ≠ 0) :
+    c_exact / (c_exact + c_closed + c_open) + c_closed / (c_exact + c_closed + c_open) +
+      c_open / (c_exact + c_closed + c_open) = 1 ∧
     (12 / 20 : ℚ) + 5 / 20 + 3 / 20 = 1 := by
-  refine ⟨rfl, by norm_num, by norm_num⟩
+  refine ⟨by rw [← add_div, ← add_div, div_self h], by norm_num⟩
 
 /-- Scope classification of `tetron.rs` physical wording under the `GF(2)` crate fence. -/
 inductive TetronClaimScope

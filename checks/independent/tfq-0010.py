@@ -3,19 +3,17 @@
 
 Checks:
 1. Discrete Ward identity `<J, A + d0 alpha> = <J, A> + <d0* J, alpha>` on a 3-vertex
-   triangle complex across 729 combinations of currents, link fields, and gauge potentials,
+   triangle complex across 2187 combinations of currents, link fields, and gauge potentials,
    plus non-conserved current coboundary defects.
 2. Charged Gaussian-rational `Q(i)` link transport (`|U|^2 = 1`) and vertex rephasing
    covariance (`|g_b (psi_b - U_{ab} psi_a)|^2 = |psi_b - U_{ab} psi_a|^2`) across
    Pythagorean phases `(1,0), (0,1), (3/5, 4/5), (5/13, 12/13), (8/17, 15/17)`.
-3. Finite Clifford/CAR creation-annihilation algebra (`c^2 = 0, (c†)^2 = 0, {c, c†} = I_2`)
-   and occupation number projector (`N^2 = N, Tr(N) = 1, det(N) = 0`).
-4. Exact rational Dirac-Coulomb `n=2` fine-structure, Darwin (`-8/128`), and spin-orbit
+3. Exact rational Dirac-Coulomb `n=2` fine-structure, Darwin (`-8/128`), and spin-orbit
    (`+8/384` vs `-4/384`) degeneracy (`5/128` for `j=1/2` vs `1/128` for `j=3/2`), plus
    1-loop QED self-energy (`5/6`), Uehling vacuum polarization (`-1/5`), magnetic moment
    splitting (`1/8`), total contact coefficient (`91/120`), and Bethe-lifted bracket (`232711/30000 > 7`).
-5. Exact rational Weinberg electroweak mixing projectors (`sin^2 theta_W + cos^2 theta_W = 1`,
-   `Pi_gamma + Pi_Z = I_2`, `Pi_gamma Pi_Z = 0`, `M_neutral^2 Pi_gamma = 0`, custodial `rho = 1`),
+4. Exact rational Weinberg electroweak mixing identities (`sin^2 theta_W + cos^2 theta_W = 1`,
+   `Pi_gamma + Pi_Z = 1`, `Pi_gamma Pi_Z = 0`, custodial `rho = 1`),
    Gell-Mann--Nishijima charge identities, and anomaly cancellation at `N_c = 3` vs failure at `N_c != 3`.
 6. Repository source and Lean 4 theorem anchors in `lean4/FiniteQM.lean` and
    `lean4/CampaignTfq0010FiniteQed.lean`.

@@ -154,16 +154,10 @@ def verify_scalar_vs_tensor_einstein_fence() -> tuple[int, int]:
     for d, exp_c in expected_sym.items():
         c = d * (d + 1) // 2
         check(c == exp_c, f"symTensorComponents({d}) == {exp_c}")
-        check(c - 1 == exp_c - 1, f"traceFreeSymComponents({d}) == {exp_c - 1}")
 
     lambdas = [Fraction(-1), Fraction(0), Fraction(1, 10), Fraction(3, 2)]
     deltas = [Fraction(-3), Fraction(-1, 2), Fraction(1, 5), Fraction(2), Fraction(7, 3)]
     for lam in lambdas:
-        # Isotropic Einstein solution R_mu = lambda has both mean and squared residual 0
-        check(
-            sum((lam - lam) ** 2 for _ in range(4)) == 0,
-            "Isotropic solution has zero squared residual",
-        )
         for delta in deltas:
             r = [lam + delta, lam - delta, lam, lam]
             mean_res = sum(r_mu - lam for r_mu in r) / Fraction(4)

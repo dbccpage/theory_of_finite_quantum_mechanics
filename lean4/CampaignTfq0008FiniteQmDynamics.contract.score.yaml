@@ -1,38 +1,176 @@
-schema_version: lean_contract_score.v1
-lean_file: lean4/CampaignTfq0008FiniteQmDynamics.lean
-module: CampaignTfq0008FiniteQmDynamics
-dag_node: TFQ-0008
-claim_class: L4D
-theorems:
-  - name: CampaignTfq0008FiniteQmDynamics.finite_instrument_trace_preservation_and_idempotence
-    role: Proves outcome projection trace additivity and idempotence of the projective measurement instrument dephasingChannel on 2x2 rational matrices.
-  - name: CampaignTfq0008FiniteQmDynamics.diamond_path_sum_interference_identities
-    role: Proves destructive cancellation and constructive 4*a^2 amplification for 2-branch finite diamond graph path sums without a continuum path integral.
-  - name: CampaignTfq0008FiniteQmDynamics.cayley_unitary_norm_conservation_exact
-    role: Proves exact norm conservation (1 - t^2)^2 + (2t)^2 = (1 + t^2)^2 for the rational Cayley unitary transform.
-  - name: CampaignTfq0008FiniteQmDynamics.euler_first_order_generator_norm_inflation_fence
-    role: Proves that the first-order Euler generator step inflates squared norm by t^2 > 0 for all t != 0 and by 4 at t = 2.
-  - name: CampaignTfq0008FiniteQmDynamics.fq_dynamics_cochain_syndromes_and_shadow_replay
-    role: Replays the exact C_4 cochain holonomies, shadow invariants, and countermodel defects for FQ-DISCRETE-DYNAMICS-DICHOTOMY, FQ-GAP-REAL-EMBEDDING-CHOICE, and DS-CONTINUOUS-TIME-EXP-GENERATOR.
-  - name: CampaignTfq0008FiniteQmDynamics.transpose_map_preserves_trace_det_and_diagonal_states
-    role: Proves that 2x2 matrix transpose preserves trace, determinant, and diagonal stochastic states.
-  - name: CampaignTfq0008FiniteQmDynamics.stochastic_to_cp_gap_partial_transpose_bell_witness
-    role: Proves that under partial transpose on the 2-qubit unnormalized Bell state, the off-diagonal swap block has determinant -1 < 0 and quadratic form -2 < 0 on (1, -1), witnessing the gap between stochastic/positive maps and completely positive maps.
-  - name: CampaignTfq0008FiniteQmDynamics.numerical_cptp_tolerance_false_green_trace_drift_fence
-    role: Proves that for any positive tolerance eps > 0, a trace-drifting factor 1 + eps / 2 passes |residual| <= eps while violating exact unit trace.
-  - name: CampaignTfq0008FiniteQmDynamics.numerical_cptp_tolerance_false_green_negative_choi_eigenvalue_fence
-    role: Proves that for any positive tolerance eps > 0, a negative Choi eigenvalue -eps / 2 passes |residual| <= eps while violating complete positivity (-eps / 2 < 0).
-  - name: CampaignTfq0008FiniteQmDynamics.exact_kraus_bit_flip_channel_trace_identity
-    role: Proves exact zero-residual trace preservation for the 2-Kraus rational bit-flip channel.
-premises:
-  - name: Mat2Q
-    role: 2x2 rational matrix carrier for finite instruments and channels.
-  - name: dephasingChannel
-    role: Projective diagonal measurement instrument channel on Mat2Q.
-  - name: diamondPathAmplitude
-    role: 2-branch finite graph path-sum amplitude.
-  - name: withinTolerance
-    role: Diagnostic tolerance predicate |residual| <= eps contrasting numerical CPTP checks with exact algebraic channels.
-fences:
-  - id: TFQ-0008-STOCHASTIC-TO-CP-AND-TOLERANCE-FENCE
-    description: Positivity on diagonal stochastic kernels does not imply complete positivity, and numerical CPTP checks at a fixed tolerance eps > 0 do not authorize an exact quantum channel or a continuum generator.
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "lean4/CampaignTfq0008FiniteQmDynamics.lean",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/CampaignTfq0008FiniteQmDynamics.lean",
+      "sha256": "f1ef49781b6fdec1f26499f7a02effe1df156162c02d4ca6813675cc2881d236"
+    },
+    "boundaries": [
+      "Scope restricted to the declared finite algebraic and combinatorial counterparts for TFQ-0008; continuum or unbuilt obligations remain fenced."
+    ],
+    "contract_id": "merge-tfq-0008-registration",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_tfq-0008_lean_replay.json",
+        "sha256": "87166c2dd788fb957f68c2956f0f7f9942eca2d8650765e8f77d828cc405468d"
+      },
+      {
+        "path": "dag/research/campaign_tfq-0008_lean_mutation.json",
+        "sha256": "ec6ee58bd596ff3d459a3a6aab4fc8461126cd6c068560c7ff6af360b8cc3812"
+      },
+      {
+        "path": "dag/research/campaign_tfq-0008_independent.json",
+        "sha256": "93673c551d1f3331804403ab45d5a43b76b7c07fddc0b9a081213f047688025e"
+      },
+      {
+        "path": "docs/overclaim/reviews/2026-10-24_campaign-tfq-0008-precommit.md",
+        "sha256": "653b4d055f429a241f2bf45b42f598fa666a4179a47c824d9fb8f6b097563e9a"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+      }
+    ],
+    "owned_invariants": [
+      "All exported theorems in CampaignTfq0008FiniteQmDynamics compile under Lean 4 without sorry or custom axioms.",
+      "6/6 semantic mutations in CampaignTfq0008FiniteQmDynamics are killed by Lake and paired with independent Python verification for TFQ-0008."
+    ],
+    "purpose": "Recorded finite counterparts, exact algebraic identities, and scope fences for TFQ-0008 (CampaignTfq0008FiniteQmDynamics).",
+    "schema_id": "tfqm.source-contract.v1"
+  },
+  "current_contract": "0d762b0f1b23880891ffdee63a598afbfefbb452f63943b41a006c3bedc817a5",
+  "current_scoring": "296dd1a8fb4e7c235a96890125711071e1aa5d8066ce402ec9a2f66a41a21c28",
+  "contract_history": [
+    {
+      "sha256": "0d762b0f1b23880891ffdee63a598afbfefbb452f63943b41a006c3bedc817a5",
+      "bytes": 1717,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignTfq0008FiniteQmDynamics.lean",
+          "sha256": "f1ef49781b6fdec1f26499f7a02effe1df156162c02d4ca6813675cc2881d236"
+        },
+        "boundaries": [
+          "Scope restricted to the declared finite algebraic and combinatorial counterparts for TFQ-0008; continuum or unbuilt obligations remain fenced."
+        ],
+        "contract_id": "merge-tfq-0008-registration",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_tfq-0008_lean_replay.json",
+            "sha256": "87166c2dd788fb957f68c2956f0f7f9942eca2d8650765e8f77d828cc405468d"
+          },
+          {
+            "path": "dag/research/campaign_tfq-0008_lean_mutation.json",
+            "sha256": "ec6ee58bd596ff3d459a3a6aab4fc8461126cd6c068560c7ff6af360b8cc3812"
+          },
+          {
+            "path": "dag/research/campaign_tfq-0008_independent.json",
+            "sha256": "93673c551d1f3331804403ab45d5a43b76b7c07fddc0b9a081213f047688025e"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-24_campaign-tfq-0008-precommit.md",
+            "sha256": "653b4d055f429a241f2bf45b42f598fa666a4179a47c824d9fb8f6b097563e9a"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "owned_invariants": [
+          "All exported theorems in CampaignTfq0008FiniteQmDynamics compile under Lean 4 without sorry or custom axioms.",
+          "6/6 semantic mutations in CampaignTfq0008FiniteQmDynamics are killed by Lake and paired with independent Python verification for TFQ-0008."
+        ],
+        "purpose": "Recorded finite counterparts, exact algebraic identities, and scope fences for TFQ-0008 (CampaignTfq0008FiniteQmDynamics).",
+        "schema_id": "tfqm.source-contract.v1"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignTfq0008FiniteQmDynamics.lean\",\n    \"sha256\": \"f1ef49781b6fdec1f26499f7a02effe1df156162c02d4ca6813675cc2881d236\"\n  },\n  \"boundaries\": [\n    \"Scope restricted to the declared finite algebraic and combinatorial counterparts for TFQ-0008; continuum or unbuilt obligations remain fenced.\"\n  ],\n  \"contract_id\": \"merge-tfq-0008-registration\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_tfq-0008_lean_replay.json\",\n      \"sha256\": \"87166c2dd788fb957f68c2956f0f7f9942eca2d8650765e8f77d828cc405468d\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-0008_lean_mutation.json\",\n      \"sha256\": \"ec6ee58bd596ff3d459a3a6aab4fc8461126cd6c068560c7ff6af360b8cc3812\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-0008_independent.json\",\n      \"sha256\": \"93673c551d1f3331804403ab45d5a43b76b7c07fddc0b9a081213f047688025e\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-tfq-0008-precommit.md\",\n      \"sha256\": \"653b4d055f429a241f2bf45b42f598fa666a4179a47c824d9fb8f6b097563e9a\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"All exported theorems in CampaignTfq0008FiniteQmDynamics compile under Lean 4 without sorry or custom axioms.\",\n    \"6/6 semantic mutations in CampaignTfq0008FiniteQmDynamics are killed by Lake and paired with independent Python verification for TFQ-0008.\"\n  ],\n  \"purpose\": \"Recorded finite counterparts, exact algebraic identities, and scope fences for TFQ-0008 (CampaignTfq0008FiniteQmDynamics).\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "original_paths": [
+        "#merge-tfq-0008-registration"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "296dd1a8fb4e7c235a96890125711071e1aa5d8066ce402ec9a2f66a41a21c28",
+      "bytes": 2715,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignTfq0008FiniteQmDynamics.lean",
+          "sha256": "f1ef49781b6fdec1f26499f7a02effe1df156162c02d4ca6813675cc2881d236"
+        },
+        "assessment_id": "merge-tfq-0008-registration",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "The recorded identities, the ulp-absorption mismatch, the binary64 split, and the 11-simplex counts are the stated bounds. An 11D supergravity triangulation stays open.",
+          "G2": "The existing replay receipt records a passing build of CampaignTfq0008FiniteQmDynamics. This merge did not run a new Lake build.",
+          "G3": "The finite fences stay separate from an 11D supergravity triangulation and from a continuum limit.",
+          "G4": "The recorded mutation receipt is 6 of 6. The Nat monotonicity loop, the duplicated addition-associativity product, the 2n!=1 loop, the 11-2==9 literal, and the r+(-r)==0 loops were removed from the independent checker, and that checker was rerun at this merge.",
+          "G5": "Adds the non-default CampaignTfq0008FiniteQmDynamics registration. This merge did not run a new Lake build."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-24T15:03:26.714841+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_tfq-0008_lean_replay.json",
+            "sha256": "87166c2dd788fb957f68c2956f0f7f9942eca2d8650765e8f77d828cc405468d"
+          },
+          {
+            "path": "dag/research/campaign_tfq-0008_lean_mutation.json",
+            "sha256": "ec6ee58bd596ff3d459a3a6aab4fc8461126cd6c068560c7ff6af360b8cc3812"
+          },
+          {
+            "path": "dag/research/campaign_tfq-0008_independent.json",
+            "sha256": "93673c551d1f3331804403ab45d5a43b76b7c07fddc0b9a081213f047688025e"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-24_campaign-tfq-0008-precommit.md",
+            "sha256": "653b4d055f429a241f2bf45b42f598fa666a4179a47c824d9fb8f6b097563e9a"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Recorded finite counterparts, exact algebraic identities, and scope fences for TFQ-0008 in CampaignTfq0008FiniteQmDynamics.",
+        "open_higher_grade_findings": [
+          "Full open/continuum obligations beyond the finite scope of TFQ-0008 remain fenced."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D",
+        "support_exception": false
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignTfq0008FiniteQmDynamics.lean\",\n    \"sha256\": \"f1ef49781b6fdec1f26499f7a02effe1df156162c02d4ca6813675cc2881d236\"\n  },\n  \"assessment_id\": \"merge-tfq-0008-registration\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"The recorded identities, the ulp-absorption mismatch, the binary64 split, and the 11-simplex counts are the stated bounds. An 11D supergravity triangulation stays open.\",\n    \"G2\": \"The existing replay receipt records a passing build of CampaignTfq0008FiniteQmDynamics. This merge did not run a new Lake build.\",\n    \"G3\": \"The finite fences stay separate from an 11D supergravity triangulation and from a continuum limit.\",\n    \"G4\": \"The recorded mutation receipt is 6 of 6. The Nat monotonicity loop, the duplicated addition-associativity product, the 2n!=1 loop, the 11-2==9 literal, and the r+(-r)==0 loops were removed from the independent checker, and that checker was rerun at this merge.\",\n    \"G5\": \"Adds the non-default CampaignTfq0008FiniteQmDynamics registration. This merge did not run a new Lake build.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T15:03:26.714841+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_tfq-0008_lean_replay.json\",\n      \"sha256\": \"87166c2dd788fb957f68c2956f0f7f9942eca2d8650765e8f77d828cc405468d\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-0008_lean_mutation.json\",\n      \"sha256\": \"ec6ee58bd596ff3d459a3a6aab4fc8461126cd6c068560c7ff6af360b8cc3812\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-0008_independent.json\",\n      \"sha256\": \"93673c551d1f3331804403ab45d5a43b76b7c07fddc0b9a081213f047688025e\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-tfq-0008-precommit.md\",\n      \"sha256\": \"653b4d055f429a241f2bf45b42f598fa666a4179a47c824d9fb8f6b097563e9a\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Recorded finite counterparts, exact algebraic identities, and scope fences for TFQ-0008 in CampaignTfq0008FiniteQmDynamics.\",\n  \"open_higher_grade_findings\": [\n    \"Full open/continuum obligations beyond the finite scope of TFQ-0008 remain fenced.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "original_paths": [
+        "#merge-tfq-0008-scoring"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "#merge-tfq-0008-registration": "0d762b0f1b23880891ffdee63a598afbfefbb452f63943b41a006c3bedc817a5",
+    "#merge-tfq-0008-scoring": "296dd1a8fb4e7c235a96890125711071e1aa5d8066ce402ec9a2f66a41a21c28"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Format repair of the recorded L4D assessment into the binding contract-score document. No grade was raised."
+}

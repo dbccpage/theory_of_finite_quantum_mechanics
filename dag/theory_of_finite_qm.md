@@ -2999,7 +2999,7 @@ Obligation: Show that retractionDownMap n accepts exactly the images of sectionL
 - Parent: `TFQ-0518`
 - Status: `OPEN_OBLIGATION`
 
-S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).
+S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, when A, B, and Q are finite and u is injective, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).
 
 Obligation: For each protected answer F supply F′ with F′∘u = F (such as retractionTransport r F d under OldImageLaw u r), and for each future admitted event supply and check the commuting transition square before claiming that the lift preserves that answer or operation.
 
@@ -8764,7 +8764,7 @@ In M_4(Q(i)), S_F^{-1}(p+q) - S_F^{-1}(p) = qslash, hence S_F(p+q) qslash S_F(p)
 
 Obligation: The identity is checked by exact arithmetic only at p = (5,1,2,-1), q = (2,-1,1,3), m = 2 together with the Clifford relations of the Dirac basis; no Lean witness.
 
-### TFQ-1114 Z_1 = Z_2 counterterm equality under BPHZ subtraction
+### TFQ-1114 One rational vertex contraction, not a counterterm ratio
 
 - UUID: `38f92631-3026-5aba-9ed1-36218a11b18a`
 - Parent: `TFQ-1113`
@@ -8772,9 +8772,9 @@ Obligation: The identity is checked by exact arithmetic only at p = (5,1,2,-1), 
 - DAG node: `DFM-Z1-Z2-COUNTERTERM-FENCE`
 - Paper: [derivation](derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md)
 
-The contraction q_mu I_Lambda^mu = I_Sigma(p) - I_Sigma(p+q) of the one-loop vertex integrand and the resulting counterterm equality Z_1/Z_2 = 1 are not computed by the cited replay.
+For every integer momentum pair and every integer mass, (slash(p+q) - m I) - (slash(p) - m I) = slash(q), where slash(v) = v0 g0 - v1 g1 - v2 g2 - v3 g3 in the stated Dirac representation. At p = (2, 0, 0, 0), q = (1, 0, 0, 1), loop momentum 0 and mass 1, S(p) = (slash(p) + I)/3 and S(p+q) = (slash(p+q) + I)/7 satisfy S(p+q) slash(q) S(p) = S(p) - S(p+q), and the lowered contraction q_mu I_Lambda^mu equals I_Sigma(p) - I_Sigma(p+q). That matrix has diagonal entries 2/7, 2/7, 26/21, 26/21 and off-diagonal entries (0,2)=-2/7, (1,3)=2/7, (2,0)=2/7, (3,1)=-2/7, with indices starting at 0. The counterterm equality Z_1/Z_2 = 1 is not proved.
 
-Obligation: Check the integrand contraction in M_4(Q(i)) at stated loop momenta and keep Z_1 = Z_2 conditional on a declared gauge-invariant subtraction scheme.
+Obligation: The recorded check is this inverse-propagator identity and one rational loop momentum. A gauge-invariant BPHZ subtraction scheme and continuum loop integration stay imported, so Z_1/Z_2 remains conditional.
 
 ### TFQ-1115 Page-Wootters history shift and clock-dressing unitary
 
@@ -9942,7 +9942,7 @@ Obligation: The general Jordan-Wigner bijection c_j = (prod_{k<j} -sigma^z_k) si
 
 For N CAR modes, gamma_{2j-1} = c_j + c_j^dagger and gamma_{2j} = -i(c_j - c_j^dagger) are self-adjoint with {gamma_a, gamma_b} = 2 delta_ab, generate the Clifford algebra on 2N generators, and P = prod_j (-i gamma_{2j-1} gamma_{2j}) is the fermion parity (-1)^N_op.
 
-Obligation: Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra.
+Obligation: Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra. CampaignMajoranaCliffordParity supplies CAR-conditional self-adjointness, anticommutators, equality of generated complex subalgebras, occupation projections, the signed local parity identity and ordered parity action on supplied common occupation eigenvectors. A formal one-mode positive trace-one density matrix need not commute with parity. The all-mode abstract Clifford identification, source CAR/Fock refinement and occupation-basis completeness remain outside these witnesses; no physical superselection law is inferred.
 
 ### TFQ-1187 CAR kinematics do not select a fermionic Hamiltonian
 
@@ -10146,7 +10146,7 @@ Obligation: State the canonical-ensemble center projection as an identity on a d
 
 At mu = i mu_I with real mu_I, gamma5 D(i mu_I) gamma5 = D(i mu_I)^dagger, so det D(i mu_I) is real; nonnegativity needs two degenerate flavors (or a staggered operator m + K with K anti-Hermitian, m > 0), and Z(mu_I) has Roberge-Weiss periodicity 2 pi T / 3.
 
-Obligation: Analytic continuation from imaginary to real mu is an extrapolation, not a sign-free route to real mu; not established in this checkout.
+Obligation: Analytic continuation from imaginary to real mu is an extrapolation, not a sign-free route to real mu; not established in this checkout. CampaignFspImaginaryMuRealDet covers arbitrary finite bipartite transport blocks at unit fugacity: staggered adjoint symmetry, determinant reality, two-flavor nonnegativity and positive-mass staggered positivity. Its centerSum_periodic concerns a declared finite center-orbit sum only; it supplies no QCD measure, spin-taste reconstruction, phase transition or analytic-continuation theorem. The full node remains imported.
 
 ### TFQ-1204 Lattice Wess-Zumino supercharge algebra
 
@@ -12206,9 +12206,9 @@ Obligation: Record only. The checkout holds no copy of the 1964 print article; t
 - DAG node: `CQFT-LOCAL-NET-AXIOMS-IMPORT`
 - Paper: [derivation](derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md)
 
-Imported structure: a spacetime with a causal order, and a family of unital star-algebras A(O) indexed by regions O with isotony (O1 inside O2 gives A(O1) inside A(O2)) and commutation of A(O1) and A(O2) when O1 and O2 are spacelike separated. The repository has finite strict posets (lean4/CausalOrder.lean) and finite matrix algebras, but no net over regions of a continuum and no Minkowski light cone; DS-QM033-064-074-083-QHELD-CONTINUUM records the light-cone causality as an external L2 lift.
+On the four-point strict order with the ordered relations 0<2, 1<2 and 1<3, the scan of all 64 triples holds, no point is related to itself, there are exactly 3 ordered relations, and exactly 3 of the 6 unordered pairs are spacelike: {0,1}, {0,3} and {2,3}. For the integer matrices A=[[1,2],[3,4]], B=[[5,6],[7,8]], X=[[0,1],[1,0]] and Z=[[1,0],[0,-1]], both (A tensor I)(I tensor B) and (I tensor B)(A tensor I) equal A tensor B, whose sixteen entries sum to 260. The products (X tensor I)(Z tensor I) and (Z tensor I)(X tensor I) differ, their (0,2) entries are -1 and 1, and XZ+ZX is the zero matrix. The determinants are det A = -2, det B = -2, det X = -1 and det Z = -1. A net of unital star-algebras indexed by continuum regions, and a Minkowski light cone, stay imported. This record does not import CausalOrder.lean and does not transport these finite counts to a continuum net.
 
-Obligation: Held outside the programme by declaration, as recorded for the light cone in the trunk node named in the gap route.
+Obligation: The counts and products are one supplied four-point order and four supplied integer matrices. They are not a net indexed by continuum regions and not a Minkowski light cone. The Haag-Kastler import and the external light-cone lift named by DS-QM033-064-074-083-QHELD-CONTINUUM stay open. CausalOrder.lean is not a premise of a continuum theorem in this record.
 
 ### TFQ-2104 Finite target: isotony and locality for a net on a finite poset
 
@@ -12666,9 +12666,9 @@ Obligation: Record only.
 - DAG node: `LQG-EPRL-VERTEX-IMPORT`
 - Paper: [derivation](derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md)
 
-Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Section III eqs. (18)-(22), (27)-(30) pp. 6-9 and Section IV eqs. (24)-(25) p. 8) and Freidel and Krasnov (2008, arXiv:0708.1595, Section II.C Lemmas 2.1-2.4 pp. 10-12 and Section V eqs. (80)-(91) pp. 24-27): for a four-simplex with ten triangle spins k_ab and five tetrahedral SU(2) intertwiners i_a, the Euclidean EPRL vertex amplitude embeds each SU(2) representation k into Spin(4) = SU(2)_+ x SU(2)_- at j^+- = |1 +- gamma| k / 2 (so k = j^+ + j^- for 0 < gamma < 1 and k = j^+ - j^- for gamma > 1, eqs. (18)-(20)) and contracts the resulting boosters with the Spin(4) 15j symbol (eqs. (29)-(30)), while the Lorentzian vertex embeds k into the SL(2,C) unitary principal series at (n, rho) = (2k, 2 gamma k) in EPRL's integer-n convention (eq. (24) p. 8, often written (j, gamma j) when indexing by half-integer spin j = n/2 = k). It requires continuum Lie-group representations, the boundary Hilbert space of spin networks and sums over spins whose convergence and continuum limit are open research questions. The repository has finite cyclotomic amplitudes (TFQ-0198) that it refuses to identify with a continuum spin foam.
+For rational gamma and rational k, the imported Euclidean labels are j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2. When 0 < gamma < 1 they equal (1 + gamma) k / 2 and (1 - gamma) k / 2, their sum is k, and their difference is gamma k. When gamma > 1 they equal (1 + gamma) k / 2 and (gamma - 1) k / 2, their difference is k, and their sum is gamma k. At gamma = 1/2 and k = 2 the labels are 3/2 and 1/2, the sum is 2, and the difference is 1, which is not 2. At gamma = 3 and k = 2 the labels are 4 and 2, the difference is 2, and the sum is 6, which is not 2. At gamma = 1 and k = 2 the labels are 2 and 0, and both the sum and the difference equal 2. The imported Lorentzian pair is (n, rho) = (2 k, 2 gamma k), with rho = gamma n = 2 gamma (n / 2). At gamma = 1/2 and k = 2 this pair is (4, 2), the index j = n / 2 equals 2, and gamma j equals 1, so rho = 2 gamma j rather than gamma j. The number of unordered pairs among five indices is 10. A Spin(4) 15j contraction, booster factors, a continuum Lie-group representation, a spin-network boundary space, a sum over spins, a continuum limit, a semiclassical limit, and a cosmological constant stay imported and are not constructed. The finite cyclotomic amplitudes named by TFQ-0198 are not identified with an EPRL-FK vertex.
 
-Obligation: The repository's fences refuse the identification; no source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.
+Obligation: The checked identities are rational arithmetic for the imported labels j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2, the pair (n, rho) = (2 k, 2 gamma k), and the count of 10 unordered pairs among five indices. They are not a Spin(4) 15j symbol, not a booster contraction, and not a continuum, semiclassical, or cosmological-constant limit. No source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.
 
 ### TFQ-2315 Gap: no route from finite recoupling to a continuum or semiclassical limit
 

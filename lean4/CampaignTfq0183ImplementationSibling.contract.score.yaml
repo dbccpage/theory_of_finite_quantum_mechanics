@@ -1,36 +1,176 @@
-schema_version: lean_contract_score_v1
-lean_file: lean4/CampaignTfq0183ImplementationSibling.lean
-module: CampaignTfq0183ImplementationSibling
-sha256: b298ffe0b797e4bbfecbdb633eb15176608a876384de84a91d6841da4dc03bf5
-level_target: L4D
-honesty_level: L4D
-admission_gate:
-  sorry_count: 0
-  admit_count: 0
-  axiom_count: 0
-  unsafe_count: 0
-  implemented_by_count: 0
-  extern_count: 0
-  passed: true
-score:
-  total: 96
-  breakdown:
-    admission: 25
-    nontriviality: 24
-    hypothesis_inhabitation: 24
-    scope_honesty: 23
-anchors:
-  - CampaignTfq0183ImplementationSibling.tetron_disk_cylinder_torus_euler_and_betti_formulas
-  - CampaignTfq0183ImplementationSibling.tetron_boundary_squares_to_zero_over_gf2
-  - CampaignTfq0183ImplementationSibling.tetron_gf2_ranks_and_first_betti_numbers
-  - CampaignTfq0183ImplementationSibling.local_majorana_noise_skew_symmetry_and_zero_diagonal
-  - CampaignTfq0183ImplementationSibling.noise_mc_schedule_partition_conservation
-  - CampaignTfq0183ImplementationSibling.tetron_hardware_reading_withheld_by_gf2_diagnostic_fence
-  - CampaignTfq0183ImplementationSibling.noise_sweeps_are_not_authority_terminals_fence
-  - CampaignTfq0183ImplementationSibling.missing_tetron_carrier_py_recorded_and_repaired_fence
-  - CampaignTfq0183ImplementationSibling.gf2_cell_incidence_is_not_superconducting_device_proof_fence
-  - CampaignTfq0183ImplementationSibling.tfq0183_tetron_gf2_diagnostic_and_noise_scope_ledger_fence
-scope_fence: >-
-  Formalizes the finite GF(2) cellular homology of build_tetron_array (tetron.rs) and the
-  rational skew-symmetric and schedule-partition invariants of pauli_noise.rs and noise_mc.rs,
-  while withholding physical Majorana or hardware readings past the GF(2) diagnostic fence.
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "lean4/CampaignTfq0183ImplementationSibling.lean",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+      "sha256": "5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262"
+    },
+    "boundaries": [
+      "Scope restricted to the declared finite algebraic and combinatorial counterparts for TFQ-0183; continuum or unbuilt obligations remain fenced."
+    ],
+    "contract_id": "merge-tfq-0183-registration",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_tfq-0183_lean_replay.json",
+        "sha256": "80574b576264330bb6f15660a561ba9bb871e9f4008da721776eeb3bd1df53ea"
+      },
+      {
+        "path": "dag/research/campaign_tfq-0183_lean_mutation.json",
+        "sha256": "fbff9e0f8edebfd5d456cb358e67264bb680a69e625a67f50eef0e899575c8c8"
+      },
+      {
+        "path": "dag/research/campaign_tfq-0183_independent.json",
+        "sha256": "fc9cd7ae7764ba008184bac08a838988b99df54392b35d5b929787a64522bb5e"
+      },
+      {
+        "path": "docs/overclaim/reviews/2026-10-24_campaign-tfq-0183-precommit.md",
+        "sha256": "54e2b146b86ec4d0b7663712b4fc4b63970f6a9ae755f8e8485c31fd49759eac"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+      }
+    ],
+    "owned_invariants": [
+      "All exported theorems in CampaignTfq0183ImplementationSibling compile under Lean 4 without sorry or custom axioms.",
+      "6/6 semantic mutations in CampaignTfq0183ImplementationSibling are killed by Lake and paired with independent Python verification for TFQ-0183."
+    ],
+    "purpose": "Recorded finite counterparts, exact algebraic identities, and scope fences for TFQ-0183 (CampaignTfq0183ImplementationSibling).",
+    "schema_id": "tfqm.source-contract.v1"
+  },
+  "current_contract": "97c880d0ab39e0b9278e659d341789e6bb90f51c485f07e5b1d84dde87c6f1c1",
+  "current_scoring": "ead7f5febb214c06d0f59a26a09a3049f03fdbdcfa6bbd0b8f174a05676ff51a",
+  "contract_history": [
+    {
+      "sha256": "97c880d0ab39e0b9278e659d341789e6bb90f51c485f07e5b1d84dde87c6f1c1",
+      "bytes": 1737,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+          "sha256": "5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262"
+        },
+        "boundaries": [
+          "Scope restricted to the declared finite algebraic and combinatorial counterparts for TFQ-0183; continuum or unbuilt obligations remain fenced."
+        ],
+        "contract_id": "merge-tfq-0183-registration",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_tfq-0183_lean_replay.json",
+            "sha256": "80574b576264330bb6f15660a561ba9bb871e9f4008da721776eeb3bd1df53ea"
+          },
+          {
+            "path": "dag/research/campaign_tfq-0183_lean_mutation.json",
+            "sha256": "fbff9e0f8edebfd5d456cb358e67264bb680a69e625a67f50eef0e899575c8c8"
+          },
+          {
+            "path": "dag/research/campaign_tfq-0183_independent.json",
+            "sha256": "fc9cd7ae7764ba008184bac08a838988b99df54392b35d5b929787a64522bb5e"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-24_campaign-tfq-0183-precommit.md",
+            "sha256": "54e2b146b86ec4d0b7663712b4fc4b63970f6a9ae755f8e8485c31fd49759eac"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "owned_invariants": [
+          "All exported theorems in CampaignTfq0183ImplementationSibling compile under Lean 4 without sorry or custom axioms.",
+          "6/6 semantic mutations in CampaignTfq0183ImplementationSibling are killed by Lake and paired with independent Python verification for TFQ-0183."
+        ],
+        "purpose": "Recorded finite counterparts, exact algebraic identities, and scope fences for TFQ-0183 (CampaignTfq0183ImplementationSibling).",
+        "schema_id": "tfqm.source-contract.v1"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignTfq0183ImplementationSibling.lean\",\n    \"sha256\": \"5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262\"\n  },\n  \"boundaries\": [\n    \"Scope restricted to the declared finite algebraic and combinatorial counterparts for TFQ-0183; continuum or unbuilt obligations remain fenced.\"\n  ],\n  \"contract_id\": \"merge-tfq-0183-registration\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_tfq-0183_lean_replay.json\",\n      \"sha256\": \"80574b576264330bb6f15660a561ba9bb871e9f4008da721776eeb3bd1df53ea\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-0183_lean_mutation.json\",\n      \"sha256\": \"fbff9e0f8edebfd5d456cb358e67264bb680a69e625a67f50eef0e899575c8c8\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-0183_independent.json\",\n      \"sha256\": \"fc9cd7ae7764ba008184bac08a838988b99df54392b35d5b929787a64522bb5e\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-tfq-0183-precommit.md\",\n      \"sha256\": \"54e2b146b86ec4d0b7663712b4fc4b63970f6a9ae755f8e8485c31fd49759eac\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"All exported theorems in CampaignTfq0183ImplementationSibling compile under Lean 4 without sorry or custom axioms.\",\n    \"6/6 semantic mutations in CampaignTfq0183ImplementationSibling are killed by Lake and paired with independent Python verification for TFQ-0183.\"\n  ],\n  \"purpose\": \"Recorded finite counterparts, exact algebraic identities, and scope fences for TFQ-0183 (CampaignTfq0183ImplementationSibling).\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "original_paths": [
+        "#merge-tfq-0183-registration"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "ead7f5febb214c06d0f59a26a09a3049f03fdbdcfa6bbd0b8f174a05676ff51a",
+      "bytes": 2735,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+          "sha256": "5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262"
+        },
+        "assessment_id": "merge-tfq-0183-registration",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "The recorded identities, the ulp-absorption mismatch, the binary64 split, and the 11-simplex counts are the stated bounds. An 11D supergravity triangulation stays open.",
+          "G2": "The existing replay receipt records a passing build of CampaignTfq0183ImplementationSibling. This merge did not run a new Lake build.",
+          "G3": "The finite fences stay separate from an 11D supergravity triangulation and from a continuum limit.",
+          "G4": "The recorded mutation receipt is 6 of 6. The Nat monotonicity loop, the duplicated addition-associativity product, the 2n!=1 loop, the 11-2==9 literal, and the r+(-r)==0 loops were removed from the independent checker, and that checker was rerun at this merge.",
+          "G5": "Adds the non-default CampaignTfq0183ImplementationSibling registration. This merge did not run a new Lake build."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-24T15:03:26.714841+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_tfq-0183_lean_replay.json",
+            "sha256": "80574b576264330bb6f15660a561ba9bb871e9f4008da721776eeb3bd1df53ea"
+          },
+          {
+            "path": "dag/research/campaign_tfq-0183_lean_mutation.json",
+            "sha256": "fbff9e0f8edebfd5d456cb358e67264bb680a69e625a67f50eef0e899575c8c8"
+          },
+          {
+            "path": "dag/research/campaign_tfq-0183_independent.json",
+            "sha256": "fc9cd7ae7764ba008184bac08a838988b99df54392b35d5b929787a64522bb5e"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-24_campaign-tfq-0183-precommit.md",
+            "sha256": "54e2b146b86ec4d0b7663712b4fc4b63970f6a9ae755f8e8485c31fd49759eac"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Recorded finite counterparts, exact algebraic identities, and scope fences for TFQ-0183 in CampaignTfq0183ImplementationSibling.",
+        "open_higher_grade_findings": [
+          "Full open/continuum obligations beyond the finite scope of TFQ-0183 remain fenced."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D",
+        "support_exception": false
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignTfq0183ImplementationSibling.lean\",\n    \"sha256\": \"5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262\"\n  },\n  \"assessment_id\": \"merge-tfq-0183-registration\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"The recorded identities, the ulp-absorption mismatch, the binary64 split, and the 11-simplex counts are the stated bounds. An 11D supergravity triangulation stays open.\",\n    \"G2\": \"The existing replay receipt records a passing build of CampaignTfq0183ImplementationSibling. This merge did not run a new Lake build.\",\n    \"G3\": \"The finite fences stay separate from an 11D supergravity triangulation and from a continuum limit.\",\n    \"G4\": \"The recorded mutation receipt is 6 of 6. The Nat monotonicity loop, the duplicated addition-associativity product, the 2n!=1 loop, the 11-2==9 literal, and the r+(-r)==0 loops were removed from the independent checker, and that checker was rerun at this merge.\",\n    \"G5\": \"Adds the non-default CampaignTfq0183ImplementationSibling registration. This merge did not run a new Lake build.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T15:03:26.714841+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_tfq-0183_lean_replay.json\",\n      \"sha256\": \"80574b576264330bb6f15660a561ba9bb871e9f4008da721776eeb3bd1df53ea\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-0183_lean_mutation.json\",\n      \"sha256\": \"fbff9e0f8edebfd5d456cb358e67264bb680a69e625a67f50eef0e899575c8c8\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-0183_independent.json\",\n      \"sha256\": \"fc9cd7ae7764ba008184bac08a838988b99df54392b35d5b929787a64522bb5e\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-tfq-0183-precommit.md\",\n      \"sha256\": \"54e2b146b86ec4d0b7663712b4fc4b63970f6a9ae755f8e8485c31fd49759eac\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Recorded finite counterparts, exact algebraic identities, and scope fences for TFQ-0183 in CampaignTfq0183ImplementationSibling.\",\n  \"open_higher_grade_findings\": [\n    \"Full open/continuum obligations beyond the finite scope of TFQ-0183 remain fenced.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "original_paths": [
+        "#merge-tfq-0183-scoring"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "#merge-tfq-0183-registration": "97c880d0ab39e0b9278e659d341789e6bb90f51c485f07e5b1d84dde87c6f1c1",
+    "#merge-tfq-0183-scoring": "ead7f5febb214c06d0f59a26a09a3049f03fdbdcfa6bbd0b8f174a05676ff51a"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Format repair of the recorded L4D assessment into the binding contract-score document. No grade was raised."
+}

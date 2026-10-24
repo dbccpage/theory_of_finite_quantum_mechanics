@@ -1,0 +1,63 @@
+{
+  "schema_version": "tfqm.contract-validation.v1",
+  "AuthorityEffect": "None",
+  "evaluated_at": "2026-10-24T03:03:39.154545+00:00",
+  "source_revision": "fd4f38e95de1135aa7c5b6988f3cd02549bb0f6e",
+  "comparison_base": "637ed588908dd2848ea4c71af8f9c86480a90aeb",
+  "artifacts": [
+    {
+      "path": "lean4/CampaignCqftLocalNetAxiomsImport.lean",
+      "sha256": "3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645"
+    },
+    {
+      "path": "lean4/lakefile.lean",
+      "sha256": "9aeb755f9cf461a23c7fc5753d334358c0dea1696c2989f2b414a8ced4f8a6ce"
+    },
+    {
+      "path": "checks/independent/cqft-local-net-axioms-import.py",
+      "sha256": "dfb013648776b7adad411c5a10779b82086a053aa9351434bdeb37b62fbd5ff4"
+    }
+  ],
+  "toolchain": {
+    "lean_version": "4.35.0",
+    "lean_commit": "eb6cafb7290e8bd5f2937522d8d804f58f02bafc",
+    "python_version": "3.14.4"
+  },
+  "checks": [
+    {
+      "check": "Direct Lean elaboration of lean4/CampaignCqftLocalNetAxiomsImport.lean",
+      "exit_code": 0,
+      "axioms": {
+        "CampaignCqftLocalNetAxiomsImport.n_poset_pair_counts": [],
+        "CampaignCqftLocalNetAxiomsImport.disjoint_site_products": [],
+        "CampaignCqftLocalNetAxiomsImport.same_site_and_star": []
+      }
+    },
+    {
+      "check": "Direct Lean elaboration of lean4/lakefile.lean with the official libLake_shared.so plugin loaded",
+      "exit_code": 0
+    },
+    {
+      "check": "Exact-byte comparison of Lake registry against comparison_base",
+      "result": "Only the appended non-default CampaignCqftLocalNetAxiomsImport registration differs; all earlier registrations and default targets preserved."
+    },
+    {
+      "command": ".venv/bin/python -I -X utf8 checks/independent/cqft-local-net-axioms-import.py",
+      "exit_code": 0,
+      "result": "Three ordered relations, three spacelike pairs, disjoint products A tensor B with entry sum 260, same-site entries -1 and 1, determinants -2, -2, -1, -1; unit and transpose checks pass."
+    },
+    {
+      "check": "Exact-byte comparison with existing campaign Lake build receipt",
+      "receipt": {
+        "path": "dag/research/campaign_cqft-local-net-axioms-import_lean_replay.json",
+        "sha256": "be1dd6d0345773a9685dda43c0098e5ea4d6f8da823a47dd6e373b3d33e7237a"
+      },
+      "result": "Both module and registry hashes match the historical successful Lake build receipt."
+    }
+  ],
+  "limitations": [
+    "No fresh full Lake/Mathlib workspace build; direct Lean elaboration and the unchanged historical Lake build receipt support this assessment.",
+    "Only the stated closed finite instances are proved. No continuum net, light cone, generalized matrix API or production L4 capability is claimed.",
+    "No mutation campaign or independent human mathematical review is claimed."
+  ]
+}

@@ -6,17 +6,14 @@ Verifies with Python Fractions and exact integer arithmetic (no Lean dependency)
    gauge invariance d_1(omega + d_0 phi) = d_1(omega), linearity d_1(c * omega) = c * d_1(omega),
    and discrete Bianchi identity F012 - F013 + F023 - F123 = 0.
 2. OBL-R03 split between cochain curvature and Regge metric deficit:
-   - Scale invariance of Regge vertex deficit under uniform edge-length rescaling L -> s * L
-     versus linear scaling of cochain curvature under omega -> s * omega.
-   - Bidirectional uncoupling: flat 6-equilateral-triangle hinge (deficit = 0) with arbitrary
-     nonzero cochain curvature q != 0, and pure-gauge 1-cochain (d_1(d_0 phi) = 0) on the
-     4-vertex equilateral tetrahedron with strictly positive Regge deficit fullTurn / 2 per vertex
-     and global Gauss-Bonnet sum 2 * fullTurn != 0 vs. Bianchi cycle sum 0.
-3. OBL-R01 continuum light-cone scaling gap and lattice-spacing underdetermination fence:
-   - Bijective calibration of effective light speed ax / at to any nonzero target c_target.
+   - Flat 6-equilateral-triangle hinge (deficit = 0) with arbitrary nonzero cochain curvature q != 0.
+   - Tetrahedral k=3 vertex deficit fullTurn / 2 and Gauss-Bonnet sum 2 * fullTurn.
+   The Lean module keeps the edge-length rescaling theorem. This script does not recheck a cancelled ratio.
+3. OBL-R01 lattice-spacing fence:
    - Reversal of causal character (timelike > 0, null = 0, spacelike < 0) of a fixed combinatorial
-     displacement (N_t, N_x) = (2, 3) under uncalibrated spacing choices ax in {1/2, 2/3, 1}.
-   - Manhattan (l_1) vs. Euclidean (l_2^2) light-cone anisotropy across Pythagorean triples.
+     displacement (N_t, N_x) = (2, 3) under spacing choices ax in {1/2, 2/3, 1}.
+   - Manhattan (l_1) vs. Euclidean (l_2^2) mismatch across Pythagorean triples.
+   The Lean module keeps the spacing-calibration theorems. This script does not recheck ax / at division.
 """
 
 from __future__ import annotations
@@ -107,9 +104,6 @@ def main() -> int:
 
     # 2. OBL-R03 split between cochain curvature and Regge metric deficit
     turns = [Fraction(1, 1), Fraction(2, 1), Fraction(44, 7), Fraction(360, 1)]
-    scales = [Fraction(1, 3), Fraction(1, 2), Fraction(2, 1), Fraction(5, 2)]
-    lengths = [Fraction(1, 2), Fraction(1, 1), Fraction(3, 1)]
-    ks = [Fraction(3, 1), Fraction(4, 1), Fraction(5, 1), Fraction(6, 1)]
 
     for ft in turns:
         # Flat 6-equilateral-triangle hinge has 0 Regge deficit while single-edge cochain has curvature q != 0
@@ -139,33 +133,6 @@ def main() -> int:
             "obl_r03",
             "Gauss-Bonnet sum on tetrahedron equals 2 * fullTurn != 0",
         )
-
-        # Scale invariance of Regge deficit under L -> s * L vs linear scaling of cochain curvature
-        for k, L, s in itertools.product(ks, lengths, scales):
-            scaled_angle_sum = k * (((s * L) / (Fraction(6, 1) * (s * L))) * ft)
-            check(
-                regge_vertex_deficit(ft, scaled_angle_sum) == equilateral_vertex_deficit(ft, k),
-                "obl_r03",
-                "Regge deficit scale invariant under L -> s * L",
-            )
-
-    # 3. OBL-R01 continuum light-cone scaling gap and lattice-spacing fence
-    at_vals = [Fraction(1, 4), Fraction(1, 2), Fraction(1, 1), Fraction(3, 2)]
-    c_targets = [Fraction(1, 10), Fraction(1, 2), Fraction(1, 1), Fraction(3, 1), Fraction(10, 1)]
-    for at_ in at_vals:
-        for ct in c_targets:
-            ax = ct * at_
-            check(
-                ax / at_ == ct and ax != Fraction(0),
-                "obl_r01",
-                "any target light-cone speed reproduced by ax = c_target * at",
-            )
-        for ax1, ax2 in itertools.combinations(c_targets, 2):
-            check(
-                ax1 / at_ != ax2 / at_,
-                "obl_r01",
-                "distinct spatial spacings give distinct light-cone slopes",
-            )
 
     # Causal character reversal on (N_t, N_x) = (2, 3) under ax in {1/2, 2/3, 1}
     def minkowski_interval(c: Fraction, at_: Fraction, ax: Fraction, nt: int, nx: int) -> Fraction:

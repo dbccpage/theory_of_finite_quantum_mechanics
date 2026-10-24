@@ -1,59 +1,176 @@
-schema: "omega.lean.contract_score.v1"
-lean_file: "lean4/CampaignTfq0376Pregenesis.lean"
-module: "CampaignTfq0376Pregenesis"
-node_id: "TFQ-0376"
-stage: "PREGENESIS"
-score_level: "L4D"
-authority_effect: "None"
-theorems:
-  - name: "CampaignTfq0376Pregenesis.section15_six_check_slots_and_stages_distinct"
-    role: "domain_theorem"
-  - name: "CampaignTfq0376Pregenesis.budget_stop_never_licenses_obstruction_or_minimal_lift"
-    role: "negative_control"
-  - name: "CampaignTfq0376Pregenesis.uninspected_tail_witness_refutes_budget_stop_claims"
-    role: "negative_control"
-  - name: "CampaignTfq0376Pregenesis.tied_minima_plurality_blocks_unique_minimal_extension"
-    role: "negative_control"
-  - name: "CampaignTfq0376Pregenesis.omitting_any_single_section15_check_blocks_licensing"
-    role: "domain_theorem"
-  - name: "CampaignTfq0376Pregenesis.stage_progression_fence_successor_proposed_licensed"
-    role: "domain_theorem"
-  - name: "CampaignTfq0376Pregenesis.pregenesis_collapsed_barrier_and_refine_separates_witness"
-    role: "domain_theorem"
-  - name: "CampaignTfq0376Pregenesis.pregenesis_chain_retraction_and_demand_accounting_witness"
-    role: "domain_theorem"
-  - name: "CampaignTfq0376Pregenesis.exhaustive_vs_budget_stopped_triangle_obstruction"
-    role: "domain_theorem"
-  - name: "CampaignTfq0376Pregenesis.tfq0376_justified_lift_six_check_scope_certificate"
-    role: "scope_certificate"
-mutations:
-  - id: "M1_conflate_successor_and_licensed_transition"
-    target_theorem: "CampaignTfq0376Pregenesis.section15_six_check_slots_and_stages_distinct"
-    original: "TransitionStage.Successor ≠ TransitionStage.LicensedTransition"
-    mutant: "TransitionStage.Successor = TransitionStage.LicensedTransition"
-    expected_kill: true
-  - id: "M2_allow_budget_stop_to_close_six_checks"
-    target_theorem: "CampaignTfq0376Pregenesis.budget_stop_never_licenses_obstruction_or_minimal_lift"
-    original: "allSixChecksClosed r = false"
-    mutant: "allSixChecksClosed r = true"
-    expected_kill: true
-  - id: "M3_claim_uninspected_tail_cannot_beat_prefix_min"
-    target_theorem: "CampaignTfq0376Pregenesis.uninspected_tail_witness_refutes_budget_stop_claims"
-    original: "candidateCost ⟨3, by decide⟩ = 1"
-    mutant: "candidateCost ⟨3, by decide⟩ = 5"
-    expected_kill: true
-  - id: "M4_license_unique_minimal_extension_under_four_tied_minima"
-    target_theorem: "CampaignTfq0376Pregenesis.tied_minima_plurality_blocks_unique_minimal_extension"
-    original: "uniqueMinimalExtensionLicensed tiedFourMinimaRecord = false"
-    mutant: "uniqueMinimalExtensionLicensed tiedFourMinimaRecord = true"
-    expected_kill: true
-  - id: "M5_promote_proposed_lift_without_cost_or_exhaustive_census"
-    target_theorem: "CampaignTfq0376Pregenesis.stage_progression_fence_successor_proposed_licensed"
-    original: "allSixChecksClosed proposedLiftOnlyRecord = false"
-    mutant: "allSixChecksClosed proposedLiftOnlyRecord = true"
-    expected_kill: true
-  - id: "M6_certify_obstruction_on_budget_stopped_census"
-    target_theorem: "CampaignTfq0376Pregenesis.exhaustive_vs_budget_stopped_triangle_obstruction"
-    original: "censusState := SearchCensusState.BudgetStoppedIncomplete 8 7 } = false"
-    mutant: "censusState := SearchCensusState.BudgetStoppedIncomplete 8 7 } = true"
-    expected_kill: true
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "lean4/CampaignTfq0376Pregenesis.lean",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/CampaignTfq0376Pregenesis.lean",
+      "sha256": "7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3"
+    },
+    "boundaries": [
+      "Scope restricted to the declared finite algebraic and combinatorial counterparts for TFQ-0376; continuum or unbuilt obligations remain fenced."
+    ],
+    "contract_id": "merge-tfq-0376-registration",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_tfq-0376_lean_replay.json",
+        "sha256": "647d053ffb585a0f2ed8a36fee50d7d1f7b561f57d45aa4f0700e69101614fe6"
+      },
+      {
+        "path": "dag/research/campaign_tfq-0376_lean_mutation.json",
+        "sha256": "cb051eb748db4cee59c84631359ccdce65ae92400edea4f119014eb07f7c4486"
+      },
+      {
+        "path": "dag/research/campaign_tfq-0376_independent.json",
+        "sha256": "ef13a5c8a2bb2aa49b1a0f79fbe59f64cfdb9e521a8da80f748a5d0411aa431d"
+      },
+      {
+        "path": "docs/overclaim/reviews/2026-10-24_campaign-tfq-0376-precommit.md",
+        "sha256": "7fb4e456d89af9e0a4a8fbe4c30a051be90b07c4f8030425f1909486a3f43988"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+      }
+    ],
+    "owned_invariants": [
+      "All exported theorems in CampaignTfq0376Pregenesis compile under Lean 4 without sorry or custom axioms.",
+      "6/6 semantic mutations in CampaignTfq0376Pregenesis are killed by Lake and paired with independent Python verification for TFQ-0376."
+    ],
+    "purpose": "Recorded finite counterparts, exact algebraic identities, and scope fences for TFQ-0376 (CampaignTfq0376Pregenesis).",
+    "schema_id": "tfqm.source-contract.v1"
+  },
+  "current_contract": "beeb17ce05d620d153c73111c765d357d2f34df01c8e4d6fcffa48f54cf59cfd",
+  "current_scoring": "8586707568a5d0fc9aa03bc5b915b86215a8fa83c65d4bc9a488a72ec6897fe2",
+  "contract_history": [
+    {
+      "sha256": "beeb17ce05d620d153c73111c765d357d2f34df01c8e4d6fcffa48f54cf59cfd",
+      "bytes": 1693,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignTfq0376Pregenesis.lean",
+          "sha256": "7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3"
+        },
+        "boundaries": [
+          "Scope restricted to the declared finite algebraic and combinatorial counterparts for TFQ-0376; continuum or unbuilt obligations remain fenced."
+        ],
+        "contract_id": "merge-tfq-0376-registration",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_tfq-0376_lean_replay.json",
+            "sha256": "647d053ffb585a0f2ed8a36fee50d7d1f7b561f57d45aa4f0700e69101614fe6"
+          },
+          {
+            "path": "dag/research/campaign_tfq-0376_lean_mutation.json",
+            "sha256": "cb051eb748db4cee59c84631359ccdce65ae92400edea4f119014eb07f7c4486"
+          },
+          {
+            "path": "dag/research/campaign_tfq-0376_independent.json",
+            "sha256": "ef13a5c8a2bb2aa49b1a0f79fbe59f64cfdb9e521a8da80f748a5d0411aa431d"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-24_campaign-tfq-0376-precommit.md",
+            "sha256": "7fb4e456d89af9e0a4a8fbe4c30a051be90b07c4f8030425f1909486a3f43988"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "owned_invariants": [
+          "All exported theorems in CampaignTfq0376Pregenesis compile under Lean 4 without sorry or custom axioms.",
+          "6/6 semantic mutations in CampaignTfq0376Pregenesis are killed by Lake and paired with independent Python verification for TFQ-0376."
+        ],
+        "purpose": "Recorded finite counterparts, exact algebraic identities, and scope fences for TFQ-0376 (CampaignTfq0376Pregenesis).",
+        "schema_id": "tfqm.source-contract.v1"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignTfq0376Pregenesis.lean\",\n    \"sha256\": \"7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3\"\n  },\n  \"boundaries\": [\n    \"Scope restricted to the declared finite algebraic and combinatorial counterparts for TFQ-0376; continuum or unbuilt obligations remain fenced.\"\n  ],\n  \"contract_id\": \"merge-tfq-0376-registration\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_tfq-0376_lean_replay.json\",\n      \"sha256\": \"647d053ffb585a0f2ed8a36fee50d7d1f7b561f57d45aa4f0700e69101614fe6\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-0376_lean_mutation.json\",\n      \"sha256\": \"cb051eb748db4cee59c84631359ccdce65ae92400edea4f119014eb07f7c4486\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-0376_independent.json\",\n      \"sha256\": \"ef13a5c8a2bb2aa49b1a0f79fbe59f64cfdb9e521a8da80f748a5d0411aa431d\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-tfq-0376-precommit.md\",\n      \"sha256\": \"7fb4e456d89af9e0a4a8fbe4c30a051be90b07c4f8030425f1909486a3f43988\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"All exported theorems in CampaignTfq0376Pregenesis compile under Lean 4 without sorry or custom axioms.\",\n    \"6/6 semantic mutations in CampaignTfq0376Pregenesis are killed by Lake and paired with independent Python verification for TFQ-0376.\"\n  ],\n  \"purpose\": \"Recorded finite counterparts, exact algebraic identities, and scope fences for TFQ-0376 (CampaignTfq0376Pregenesis).\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "original_paths": [
+        "#merge-tfq-0376-registration"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "8586707568a5d0fc9aa03bc5b915b86215a8fa83c65d4bc9a488a72ec6897fe2",
+      "bytes": 2691,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignTfq0376Pregenesis.lean",
+          "sha256": "7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3"
+        },
+        "assessment_id": "merge-tfq-0376-registration",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "The recorded identities, the ulp-absorption mismatch, the binary64 split, and the 11-simplex counts are the stated bounds. An 11D supergravity triangulation stays open.",
+          "G2": "The existing replay receipt records a passing build of CampaignTfq0376Pregenesis. This merge did not run a new Lake build.",
+          "G3": "The finite fences stay separate from an 11D supergravity triangulation and from a continuum limit.",
+          "G4": "The recorded mutation receipt is 6 of 6. The Nat monotonicity loop, the duplicated addition-associativity product, the 2n!=1 loop, the 11-2==9 literal, and the r+(-r)==0 loops were removed from the independent checker, and that checker was rerun at this merge.",
+          "G5": "Adds the non-default CampaignTfq0376Pregenesis registration. This merge did not run a new Lake build."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-24T15:03:26.714841+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_tfq-0376_lean_replay.json",
+            "sha256": "647d053ffb585a0f2ed8a36fee50d7d1f7b561f57d45aa4f0700e69101614fe6"
+          },
+          {
+            "path": "dag/research/campaign_tfq-0376_lean_mutation.json",
+            "sha256": "cb051eb748db4cee59c84631359ccdce65ae92400edea4f119014eb07f7c4486"
+          },
+          {
+            "path": "dag/research/campaign_tfq-0376_independent.json",
+            "sha256": "ef13a5c8a2bb2aa49b1a0f79fbe59f64cfdb9e521a8da80f748a5d0411aa431d"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-24_campaign-tfq-0376-precommit.md",
+            "sha256": "7fb4e456d89af9e0a4a8fbe4c30a051be90b07c4f8030425f1909486a3f43988"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Recorded finite counterparts, exact algebraic identities, and scope fences for TFQ-0376 in CampaignTfq0376Pregenesis.",
+        "open_higher_grade_findings": [
+          "Full open/continuum obligations beyond the finite scope of TFQ-0376 remain fenced."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D",
+        "support_exception": false
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignTfq0376Pregenesis.lean\",\n    \"sha256\": \"7397817958d32ba30778a03315745130474e19cae4228c2abc286e0abcdd47d3\"\n  },\n  \"assessment_id\": \"merge-tfq-0376-registration\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"The recorded identities, the ulp-absorption mismatch, the binary64 split, and the 11-simplex counts are the stated bounds. An 11D supergravity triangulation stays open.\",\n    \"G2\": \"The existing replay receipt records a passing build of CampaignTfq0376Pregenesis. This merge did not run a new Lake build.\",\n    \"G3\": \"The finite fences stay separate from an 11D supergravity triangulation and from a continuum limit.\",\n    \"G4\": \"The recorded mutation receipt is 6 of 6. The Nat monotonicity loop, the duplicated addition-associativity product, the 2n!=1 loop, the 11-2==9 literal, and the r+(-r)==0 loops were removed from the independent checker, and that checker was rerun at this merge.\",\n    \"G5\": \"Adds the non-default CampaignTfq0376Pregenesis registration. This merge did not run a new Lake build.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T15:03:26.714841+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_tfq-0376_lean_replay.json\",\n      \"sha256\": \"647d053ffb585a0f2ed8a36fee50d7d1f7b561f57d45aa4f0700e69101614fe6\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-0376_lean_mutation.json\",\n      \"sha256\": \"cb051eb748db4cee59c84631359ccdce65ae92400edea4f119014eb07f7c4486\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-0376_independent.json\",\n      \"sha256\": \"ef13a5c8a2bb2aa49b1a0f79fbe59f64cfdb9e521a8da80f748a5d0411aa431d\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-tfq-0376-precommit.md\",\n      \"sha256\": \"7fb4e456d89af9e0a4a8fbe4c30a051be90b07c4f8030425f1909486a3f43988\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Recorded finite counterparts, exact algebraic identities, and scope fences for TFQ-0376 in CampaignTfq0376Pregenesis.\",\n  \"open_higher_grade_findings\": [\n    \"Full open/continuum obligations beyond the finite scope of TFQ-0376 remain fenced.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "original_paths": [
+        "#merge-tfq-0376-scoring"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "#merge-tfq-0376-registration": "beeb17ce05d620d153c73111c765d357d2f34df01c8e4d6fcffa48f54cf59cfd",
+    "#merge-tfq-0376-scoring": "8586707568a5d0fc9aa03bc5b915b86215a8fa83c65d4bc9a488a72ec6897fe2"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Format repair of the recorded L4D assessment into the binding contract-score document. No grade was raised."
+}

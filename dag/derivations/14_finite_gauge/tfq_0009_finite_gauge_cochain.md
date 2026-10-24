@@ -38,7 +38,7 @@ In accordance with strict constructive principles:
 - `CampaignTfq0009FiniteGauge.combinatorial_coboundary_metric_free_vs_yang_mills_action_fence`: Proves that the combinatorial curvature coboundary `d₁ A` is metric-free whereas the Yang-Mills plaquette action `w * (d₁ A)²` depends on an unimported metric coupling `w = 1 / g²`.
 
 ### Independent Python Verification (`checks/independent/tfq-0009.py`)
-- Executes `6246` exact integer and rational checks across plaquette boundary exactness, abelian coboundary and 3-cube Bianchi identities, `SL(2, ℤ)` non-abelian holonomy conjugation and Wilson loop trace invariance, and the Yang-Mills metric-coupling fence (`0` failures).
+- Executes `6263` exact integer and rational checks across plaquette boundary exactness, abelian coboundary and 3-cube Bianchi identities, `SL(2, ℤ)` non-abelian holonomy conjugation and Wilson loop trace invariance, and the Yang-Mills metric-coupling fence (`0` failures).
 
 ---
 

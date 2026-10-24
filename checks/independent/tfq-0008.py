@@ -18,8 +18,9 @@ from __future__ import annotations
 
 import itertools
 from fractions import Fraction
+from typing import TypeAlias
 
-type Mat2Q = tuple[Fraction, Fraction, Fraction, Fraction]
+Mat2Q: TypeAlias = tuple[Fraction, Fraction, Fraction, Fraction]
 
 
 def mat2_trace(m: Mat2Q) -> Fraction:

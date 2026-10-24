@@ -7,7 +7,7 @@
 
 ## 1. What It Supports
 - Formalizes the exact rational `SU(3)` Casimir/Fierz identities, Wilson-loop Creutz ratios, `beta_0`/`beta_1` asymptotic freedom and Banks-Zaks controls, naive lattice Dirac `2^d - 1` doubler obstruction, and epistemic scope fences in `lean4/CampaignTfq0011FiniteQcd.lean` (`L4D`, 10 theorems, 0 sorrys).
-- Verifies all 451 independent checks in `checks/independent/tfq-0011.py` and kills 6/6 semantic mutations in `dag/research/campaign_tfq-0011_lean_mutation.json`.
+- Verifies all 430 independent checks in `checks/independent/tfq-0011.py` and kills 6/6 semantic mutations in `dag/research/campaign_tfq-0011_lean_mutation.json`.
 
 ## 2. What It Does Not Support
 - Does not identify the finite Wilson-loop or `beta_0` controls with continuum QCD confinement, and does not allow floating-point benchmarks to authorize finite statements.

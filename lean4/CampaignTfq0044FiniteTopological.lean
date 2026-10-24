@@ -31,7 +31,7 @@ its quantum dimensions are not C_F or C_A."):
      (`racah_level3_fibonacci_f_matrix_not_euclidean_orthonormal`).
    - Proves exact weighted metric unitarity `F^T G F = G` (`w_0 F_{00}^2 + w_2 F_{20}^2 = w_0`,
      `w_0 F_{00} F_{02} + w_2 F_{20} F_{22} = 0`, `w_0 F_{02}^2 + w_2 F_{22}^2 = w_2`)
-     and `det(F) = -φ⁻¹` (`racah_level3_fibonacci_f_matrix_weighted_metric_unitarity`).
+     and `det(F) = -1` (`racah_level3_fibonacci_f_matrix_weighted_metric_unitarity`).
 3. **Why `SU(2)_k` Is Not `SU(3)_c` or a Color Fusion Category (Non-Equivalence Fences)**:
    - Proves `SU(3)_c` quadratic Casimirs `C_F = 4/3` and `C_A = 3` are not `SU(2)_k`
      quantum dimensions (`su2_level_quantum_dimensions_not_su3_casimirs_fence`).

@@ -7,7 +7,7 @@
 
 ## 1. What It Supports
 - Formalizes the exact finite identities for discrete Ward coboundary invariance, Gaussian-rational `Q(i)` charged link transport, 2x2 Clifford/CAR occupation projectors, rational Dirac-Coulomb `n=2` fine structure, 1-loop QED Lamb shift contact datum (`91/120`), and Weinberg electroweak mixing/anomaly controls in `lean4/CampaignTfq0010FiniteQed.lean` (`L4D`, 10 theorems, 0 sorrys).
-- Verifies all 3345 independent checks in `checks/independent/tfq-0010.py` and kills 6/6 semantic mutations in `dag/research/campaign_tfq-0010_lean_mutation.json`.
+- Verifies all 4625 independent checks in `checks/independent/tfq-0010.py` and kills 6/6 semantic mutations in `dag/research/campaign_tfq-0010_lean_mutation.json`.
 
 ## 2. What It Does Not Support
 - Does not claim a derivation of continuum QED or continuum electroweak theory from the finite controls or from the `F002` interface inventory.

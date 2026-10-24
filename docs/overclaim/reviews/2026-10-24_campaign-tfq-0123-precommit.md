@@ -15,11 +15,11 @@
   - `dyadic_triple_exact_coincidence`, `gap_f002_s000_002_float_absorption_breaks_associativity`, and `gap_f002_s000_002_nat_not_divisible_carrier_mismatch` formalize the `GAP-F002-S000-002` carrier mismatch between $\mathbb{N}$ and floating/dyadic arithmetic.
   - `simplex_11d_combinatorial_skeleton_counts`, `simplex_11d_hinge_codimension_and_euler_characteristic`, `transport_loss_ledger_discards_frame_rotation_fence`, and `scalar_loss_ledger_underdetermines_11d_ricci_fence` formalize the `GAP-F002-S000-001` 11D supergravity triangulation and smooth-frame/Einstein fences.
 - **Independent Verification (`checks/independent/tfq-0123.py`)**:
-  - Runs 820 checks (`nat_cell=512`, `carrier_fence=215`, `sugra_fence=93`, `failures=0`).
+  - Runs 133 checks (`nat_cell=81`, `carrier_fence=34`, `sugra_fence=18`, `failures=0`). Loss monotonicity, the repeated addition-associativity product, the natural-number addition product on dyadic scales, the loop `n + n != 1` for `n` in `0..175`, the literal `11 - 2 == 9`, and the cancelled rational loops are not rechecked.
 
 ## 2. Claim Hygiene Summary
 
 1. **What it supports**: Supports exact verification of `NatTransportCell` monoid laws and the explicit `GAP-F002-S000-002` (carrier mismatch) and `GAP-F002-S000-001` (11D supergravity triangulation and smooth-frame/Einstein) scope fences.
 2. **What it does not support**: Does not support carrier equivalence between $\mathbb{N}$ and floats, an 11D supergravity triangulation, smooth-frame transport, a continuum limit, or the Einstein equations.
-3. **Narrowest defensible claim**: Within `CampaignTfq0123ContinuumInterface.lean` (`L4D`, 10 theorems, 0 sorrys) and `checks/independent/tfq-0123.py` (820 checks, 0 failures), the `Nat` loss-ledger monoid is verified while `GAP-F002-S000-002` and `GAP-F002-S000-001` remain open.
+3. **Narrowest defensible claim**: Within `CampaignTfq0123ContinuumInterface.lean` (`L4D`, 10 theorems, 0 sorrys) and `checks/independent/tfq-0123.py` (133 checks, 0 failures), the recorded finite fences hold while `GAP-F002-S000-002` and `GAP-F002-S000-001` remain open. The independent checker does not recheck loss monotonicity or the removed tautological loops.
 4. **Next test needed**: Return to the highest-ranked unclaimed finite nodes in `dag/pfp/campaign/derivation_queue.json`.

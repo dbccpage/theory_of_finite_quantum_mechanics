@@ -44,7 +44,7 @@ In accordance with strict constructive principles:
 
 ## 4. Downstream Derivations (Outgoing DAG Links)
 
-- [TFQ-0015](tfq_0015_su3_color_representation_and_casimir_control.md)
+- [TFQ-0015](tfq_0015_do_not_promote_the_weighted_gell_mann_norms_to_a_closed_su_3_c_lie.md)
 
 ---
 

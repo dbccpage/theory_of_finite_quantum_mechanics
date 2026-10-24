@@ -11,15 +11,15 @@
 
 ## Statement
 
-Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Section III eqs. (18)-(22), (27)-(30) pp. 6-9 and Section IV eqs. (24)-(25) p. 8) and Freidel and Krasnov (2008, arXiv:0708.1595, Section II.C Lemmas 2.1-2.4 pp. 10-12 and Section V eqs. (80)-(91) pp. 24-27): for a four-simplex with ten triangle spins k_ab and five tetrahedral SU(2) intertwiners i_a, the Euclidean EPRL vertex amplitude embeds each SU(2) representation k into Spin(4) = SU(2)_+ x SU(2)_- at j^+- = |1 +- gamma| k / 2 (so k = j^+ + j^- for 0 < gamma < 1 and k = j^+ - j^- for gamma > 1, eqs. (18)-(20)) and contracts the resulting boosters with the Spin(4) 15j symbol (eqs. (29)-(30)), while the Lorentzian vertex embeds k into the SL(2,C) unitary principal series at (n, rho) = (2k, 2 gamma k) in EPRL's integer-n convention (eq. (24) p. 8, often written (j, gamma j) when indexing by half-integer spin j = n/2 = k). It requires continuum Lie-group representations, the boundary Hilbert space of spin networks and sums over spins whose convergence and continuum limit are open research questions. The repository has finite cyclotomic amplitudes (TFQ-0198) that it refuses to identify with a continuum spin foam.
+For rational gamma and rational k, the imported Euclidean labels are j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2. When 0 < gamma < 1 they equal (1 + gamma) k / 2 and (1 - gamma) k / 2, their sum is k, and their difference is gamma k. When gamma > 1 they equal (1 + gamma) k / 2 and (gamma - 1) k / 2, their difference is k, and their sum is gamma k. At gamma = 1/2 and k = 2 the labels are 3/2 and 1/2, the sum is 2, and the difference is 1, which is not 2. At gamma = 3 and k = 2 the labels are 4 and 2, the difference is 2, and the sum is 6, which is not 2. At gamma = 1 and k = 2 the labels are 2 and 0, and both the sum and the difference equal 2. The imported Lorentzian pair is (n, rho) = (2 k, 2 gamma k), with rho = gamma n = 2 gamma (n / 2). At gamma = 1/2 and k = 2 this pair is (4, 2), the index j = n / 2 equals 2, and gamma j equals 1, so rho = 2 gamma j rather than gamma j. The number of unordered pairs among five indices is 10. A Spin(4) 15j contraction, booster factors, a continuum Lie-group representation, a spin-network boundary space, a sum over spins, a continuum limit, a semiclassical limit, and a cosmological constant stay imported and are not constructed. The finite cyclotomic amplitudes named by TFQ-0198 are not identified with an EPRL-FK vertex.
 
 ## Governing obligation
 
-The repository's fences refuse the identification; no source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.
+The checked identities are rational arithmetic for the imported labels j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2, the pair (n, rho) = (2 k, 2 gamma k), and the count of 10 unordered pairs among five indices. They are not a Spin(4) 15j symbol, not a booster contraction, and not a continuum, semiclassical, or cosmological-constant limit. No source maps the finite cyclotomic amplitudes to the EPRL-FK amplitude.
 
 ## Source status
 
-Audited against the full texts of arXiv:0711.0146 (Sections III-IV eqs. (18)-(30) pp. 6-9), arXiv:0708.1595 (Sections II.C, V) and arXiv:1205.2019 (Part III) on 2026-10-22; taken as an imported assumption of this branch.
+Rational Euclidean and Lorentzian label identities were checked in Lean 4 on 2026-10-24. The EPRL-FK vertex, the 15j contraction, and any continuum or semiclassical limit remain an imported assumption. The 2008 embedding formulas were audited on 2026-10-22.
 
 ## What is imported
 
@@ -31,7 +31,10 @@ Declared imported structure:
 
 ## What is open
 
-- Every continuum input.
+- A Spin(4) 15j contraction and the booster factors remain imported.
+- A continuum Lie-group representation, a spin-network boundary space, and a sum over spins remain imported.
+- A continuum limit, a semiclassical limit, and a cosmological constant are not constructed from these rational labels.
+- The finite cyclotomic amplitudes named by TFQ-0198 are not identified with an EPRL-FK vertex.
 
 ## Connections to this repository
 
@@ -41,13 +44,26 @@ See also: `TFQ-0198`, `TFQ-0105`.
 
 ## Non-claims
 
+- The rational label arithmetic is not an EPRL-FK vertex amplitude.
 - The finite amplitudes of the repository are not claimed to be EPRL amplitudes.
+- No continuum limit, semiclassical limit, or cosmological constant is read off these labels.
 
 ## Sources
 
 - `external:arXiv:0711.0146`: J. Engle, E. Livine, R. Pereira and C. Rovelli, "LQG vertex with finite Immirzi parameter", arXiv:0711.0146 (2007); Nucl. Phys. B 799 (2008) 136-149.
 - `external:arXiv:0708.1595`: L. Freidel and K. Krasnov, "A New Spin Foam Model for 4d Gravity", arXiv:0708.1595 (2007); Class. Quantum Grav. 25 (2008) 125018.
 - `external:arXiv:1205.2019`: A. Perez, "The Spin Foam Approach to Quantum Gravity", arXiv:1205.2019 (2012); Living Rev. Relativity 16 (2013) 3, doi:10.12942/lrr-2013-3.
+- Repository: `lean4/CampaignLqgEprlVertexImport.lean`
+- Repository: `dag/derivations/independent/lqg-eprl-vertex-import.md`
+- Repository: `checks/independent/lqg-eprl-vertex-import.py`
+
+## Lean 4 declarations read
+- `lean4/CampaignLqgEprlVertexImport.lean::euclidean_below`
+- `lean4/CampaignLqgEprlVertexImport.lean::euclidean_above`
+- `lean4/CampaignLqgEprlVertexImport.lean::recorded_euclidean_points`
+- `lean4/CampaignLqgEprlVertexImport.lean::lorentzian_embedding`
+- `lean4/CampaignLqgEprlVertexImport.lean::lorentzian_half_two`
+- `lean4/CampaignLqgEprlVertexImport.lean::five_tetrahedron_pairs`
 
 ## Downstream derivations
 
