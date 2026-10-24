@@ -1,6 +1,6 @@
 # PGW-IDENTITY-CONVENTION-UNDECIDABLE
 
-Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `CONDITIONAL`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `CONDITIONAL`. Evidence gr
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 6
+- cited Lean, Rust or Python symbols found in their in-repo files: 23
+- cited Lean declarations covered by a current replay receipt: 22
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Records that the answer is relative to the convention; it does not choose one, and the three replies are behaviour of one unrecorded model, not evidence for either convention.
+Records that the answer is relative to the convention; it does not choose one, and the three replies are behaviour of one unrecorded model, not evidence for either convention. Narrowed in lean4/CampaignPgwIdentityConventionUndecidable.lean and checks/independent/pgw-identity-convention-undecidable.py: models observation-family regimes PreGenesisRegime alpha beta with supplyInscription preserving obs (O_1 = O_0) and enlarging presented.card by +1, links obsProfile equality to PreMssn.Observation.SameProfile and genesisUnaryProfile equality to GenesisComputation.Collapsed, checks the Prompt 12 branch split (false with delta = 0 under opaqueConv vs true with delta = +1 under exactInscription, and undecidableWithoutConvention false true when no convention is declared), establishes agreement on profile-injective regimes, and keeps the host-declared identity convention as an explicit import (status remains CONDITIONAL).
 
 ## Source status
 
@@ -42,13 +42,87 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/CampaignPgwIdentityConventionUndecidable.lean`
+
+- file: [lean4/CampaignPgwIdentityConventionUndecidable.lean](../../../lean4/CampaignPgwIdentityConventionUndecidable.lean)
+- sha256 (`bytes`): `cf0d8767ca75f8f8f96c9fb81293d8e57d534fb99fe9bbc425e7da6ba3b801c4`
+- cited in: node.lean, receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (CampaignPgwIdentityConventionUndecidable), record TFQ-0423
+- replay: `verified`
+  - receipt [dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json](../../../dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json) (module `CampaignPgwIdentityConventionUndecidable`): recorded sha256 `cf0d8767ca75f8f8f96c9fb81293d8e57d534fb99fe9bbc425e7da6ba3b801c4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignPgwIdentityConventionUndecidable`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.conventions_agree_iff_fresh_profile` | yes | yes | yes | module-level | `#print axioms CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.conventions_agree_iff_fresh_profile` |
+| `CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.genesisUnaryProfile_eq_iff_collapsed` | yes | yes | yes | module-level | `#print axioms CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.genesisUnaryProfile_eq_iff_collapsed` |
+| `CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.injective_obsProfile_implies_conventions_coincide` | yes | yes | yes | module-level | `#print axioms CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.injective_obsProfile_implies_conventions_coincide` |
+| `CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.no_convention_free_evaluator_fence` | yes | yes | yes | module-level | `#print axioms CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.no_convention_free_evaluator_fence` |
+| `CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.obsProfile_eq_iff_sameProfile_and_empty_obs_collapse` | yes | yes | yes | module-level | `#print axioms CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.obsProfile_eq_iff_sameProfile_and_empty_obs_collapse` |
+| `CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.opaque_stateCount_le_exact_stateCount` | yes | yes | yes | module-level | `#print axioms CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.opaque_stateCount_le_exact_stateCount` |
+| `CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.stateCount_supply_markA_delta_zero_vs_one` | yes | yes | yes | module-level | `#print axioms CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.stateCount_supply_markA_delta_zero_vs_one` |
+| `CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.supplyInscription_preserves_obs_and_enlarges_presentation` | yes | yes | yes | module-level | `#print axioms CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.supplyInscription_preserves_obs_and_enlarges_presentation` |
+| `CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.supply_markA_after_ground_branch_divergence` | yes | yes | yes | module-level | `#print axioms CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.supply_markA_after_ground_branch_divergence` |
+| `CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.trial_votes_do_not_determine_convention_fence` | yes | yes | yes | module-level | `#print axioms CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.trial_votes_do_not_determine_convention_fence` |
+| `CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.unformed_vs_firstSeparation_regime_convention_bridge` | yes | yes | yes | module-level | `#print axioms CampaignPgwIdentityConventionUndecidable.CampaignPgwIdentityConventionUndecidable.unformed_vs_firstSeparation_regime_convention_bridge` |
+| `CampaignPgwIdentityConventionUndecidable.conventions_agree_iff_fresh_profile` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwIdentityConventionUndecidable.conventions_agree_iff_fresh_profile` |
+| `CampaignPgwIdentityConventionUndecidable.genesisUnaryProfile_eq_iff_collapsed` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwIdentityConventionUndecidable.genesisUnaryProfile_eq_iff_collapsed` |
+| `CampaignPgwIdentityConventionUndecidable.injective_obsProfile_implies_conventions_coincide` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwIdentityConventionUndecidable.injective_obsProfile_implies_conventions_coincide` |
+| `CampaignPgwIdentityConventionUndecidable.no_convention_free_evaluator_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwIdentityConventionUndecidable.no_convention_free_evaluator_fence` |
+| `CampaignPgwIdentityConventionUndecidable.obsProfile_eq_iff_sameProfile_and_empty_obs_collapse` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwIdentityConventionUndecidable.obsProfile_eq_iff_sameProfile_and_empty_obs_collapse` |
+| `CampaignPgwIdentityConventionUndecidable.opaque_stateCount_le_exact_stateCount` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwIdentityConventionUndecidable.opaque_stateCount_le_exact_stateCount` |
+| `CampaignPgwIdentityConventionUndecidable.stateCount_supply_markA_delta_zero_vs_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwIdentityConventionUndecidable.stateCount_supply_markA_delta_zero_vs_one` |
+| `CampaignPgwIdentityConventionUndecidable.supplyInscription_preserves_obs_and_enlarges_presentation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwIdentityConventionUndecidable.supplyInscription_preserves_obs_and_enlarges_presentation` |
+| `CampaignPgwIdentityConventionUndecidable.supply_markA_after_ground_branch_divergence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwIdentityConventionUndecidable.supply_markA_after_ground_branch_divergence` |
+| `CampaignPgwIdentityConventionUndecidable.trial_votes_do_not_determine_convention_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwIdentityConventionUndecidable.trial_votes_do_not_determine_convention_fence` |
+| `CampaignPgwIdentityConventionUndecidable.unformed_vs_firstSeparation_regime_convention_bridge` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwIdentityConventionUndecidable.unformed_vs_firstSeparation_regime_convention_bridge` |
+- counts toward the grade: yes
+
+### Python: `checks/independent/pgw-identity-convention-undecidable.py`
+
+- file: [checks/independent/pgw-identity-convention-undecidable.py](../../../checks/independent/pgw-identity-convention-undecidable.py)
+- sha256 (`bytes`): `b66edcfb325bbf2dbe067be1a5b94ab367810e3788f9d8c7244841ed4a347428`
+- cited in: record TFQ-0423
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `main` (python_symbol) | yes | yes | yes | - | - |
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md](../../../dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md)
-- sha256 (`lf-normalised`): `2400d95576a16f2deb78da2aa917ae5bbf0049d2822e54c608f76578e1bb356b`
+- sha256 (`lf-normalised`): `9c27c623d546afa80883805d8fc99a5516cad6648914599002bcf28283fed0b4`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0423
 - counts toward the grade: no
+
+### Documents and data: `dag/derivations/independent/pgw-identity-convention-undecidable.md`
+
+- file: [dag/derivations/independent/pgw-identity-convention-undecidable.md](../../../dag/derivations/independent/pgw-identity-convention-undecidable.md)
+- sha256 (`lf-normalised`): `185357e31f74d422d773240720a6b8191360e1495f0a18ce2aa170e7f30a0f3b`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/campaign_pgw-identity-convention-undecidable_independent.json`
+
+- file: [dag/research/campaign_pgw-identity-convention-undecidable_independent.json](../../../dag/research/campaign_pgw-identity-convention-undecidable_independent.json)
+- sha256 (`lf-normalised`): `ac89924d9263e3000e29e9c18a122eddc388d944a1a21e19b3559a48154fc365`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/campaign_pgw-identity-convention-undecidable_lean_mutation.json`
+
+- file: [dag/research/campaign_pgw-identity-convention-undecidable_lean_mutation.json](../../../dag/research/campaign_pgw-identity-convention-undecidable_lean_mutation.json)
+- sha256 (`lf-normalised`): `f864dad6da3e8714cff0753b0f477067dbc6a81565d54ec4ff89e34dcc1ce13c`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json`
+
+- file: [dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json](../../../dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json)
+- sha256 (`lf-normalised`): `6682d4211fd70cf4a7ba6c5068c7f235bc8b1190438fb217b94f46c1af173146`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `omega_engine_education/documentation/000_oepregen/02_trial_record.md`
 
@@ -73,8 +147,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0423 lean4: no Lean statement of the opaque and exact-inscription identity conventions
-- TFQ-0423 python: no Python switch between identity conventions
 - TFQ-0423 rust: no Rust switch between identity conventions
 
 ## Routes
