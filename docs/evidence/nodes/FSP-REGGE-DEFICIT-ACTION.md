@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13). Narrowed in lean4/CampaignFspReggeDeficitAction.lean and checks/independent/fsp-regge-deficit-action.py to: (1) Heron / Cayley-Menger squared triangle area heronAreaSq from squared edge lengths and the exact hinge classes of orthogonal_pentatope (6 right-triangle hinges with A_h^2 = 1/4 and 4 equilateral hinges with A_h^2 = 3/4, summing to 9/2); (2) hinge deficit flatness criterion, reggeAction bilinearity, and non-negativity on positive deficits vs sign indefiniteness under mixed-sign saddle deficits; (3) boundary of 5-simplex (partial Delta^5) face counts (6, 15, 20, 15, 6), Euler characteristic chi = 2, and incidence 6*10 = 20*3 = 60; (4) cyclic holonomy telescoping (f1-f0)+(f2-f1)+(f3-f2)+(f0-f3) = 0 for the discrete first Bianchi identity (derived by ring identity rather than assumed) and Schlaefli variational reduction; (5) exact rational refinement bound predicate defectBoundHolds matching code/rust/src/general_relativity/exact_regge/action.rs; and (6) explicit GIN-C13 scope fences for fermion-sign independence, Lorentzian half-turn phase sign reversal, and Nat vs signed Q deficit cancellation.
+Narrowed algebraic checks only. The declared rational Heron polynomial is symmetric and has the displayed evaluations; a supplied rational dot product is bilinear and an additive four-step telescoping sum is zero. Schlaefli cancellation is an explicit hypothesis, not derived geometry. The face vector and its interpretation as a sphere are supplied. No edge-length geometry, noncommutative Bianchi identity, continuum refinement theorem or actual Lorentzian exponential is constructed. The -I matrix and w-w identity do not identify a gravitational phase or resolve fermion signs. Status is unchanged. The original physical or operational bridge remains open.
 
 ## Source status
 
@@ -45,10 +45,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignFspReggeDeficitAction.lean`
 
 - file: [lean4/CampaignFspReggeDeficitAction.lean](../../../lean4/CampaignFspReggeDeficitAction.lean)
-- sha256 (`bytes`): `1f079a25e093328e86b1d1fdbb5849495e6d6987884b53fcc3c0aaeea2b36944`
-- cited in: node.lean, receipt dag/research/campaign_fsp-regge-deficit-action_lean_replay.json (CampaignFspReggeDeficitAction), record TFQ-1212
+- sha256 (`bytes`): `37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e`
+- cited in: node.lean, record TFQ-1212
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-regge-deficit-action_lean_replay.json](../../../dag/research/campaign_fsp-regge-deficit-action_lean_replay.json) (module `CampaignFspReggeDeficitAction`): recorded sha256 `1f079a25e093328e86b1d1fdbb5849495e6d6987884b53fcc3c0aaeea2b36944` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_fsp-regge-deficit-action_lean_replay.json](../../../dag/research/campaign_fsp-regge-deficit-action_lean_replay.json) (module `CampaignFspReggeDeficitAction`): recorded sha256 `37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e` matches the current file; exit code 0; Lean None; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignFspReggeDeficitAction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-regge-deficit-action.md`
 
 - file: [dag/derivations/independent/fsp-regge-deficit-action.md](../../../dag/derivations/independent/fsp-regge-deficit-action.md)
-- sha256 (`lf-normalised`): `ee4f7bf8bbd95b6615cf0a1572faac936185e235c32c8697418549fd7cae0a1e`
+- sha256 (`lf-normalised`): `e8fda0d8fdd12038635d238f713e3c679c654f5187592980593cbfcae36bb704`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -97,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_fsp-regge-deficit-action_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-regge-deficit-action_lean_replay.json](../../../dag/research/campaign_fsp-regge-deficit-action_lean_replay.json)
-- sha256 (`lf-normalised`): `3fbde5ed23ddd2333f22fbf4ac23a706d70cbaa5642322af551cc4db0f30cceb`
+- sha256 (`lf-normalised`): `6a40012e5319cb3f5e047652effd7b0c48e7526f575e5e8c8470901b2e99c159`
 - cited in: node.source
 - counts toward the grade: yes
 

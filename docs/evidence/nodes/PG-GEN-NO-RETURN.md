@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 24
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -36,7 +36,7 @@ Rounds / no-return / cumulative element count (Genesis §8-§9)
 
 ## Review
 
-- PFP review: [dag/results/PG-GEN-NO-RETURN/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/PG-GEN-NO-RETURN/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/PG-GEN-NO-RETURN/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/PG-GEN-NO-RETURN/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `reviewed_with_targeted_native_integration`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Actual guarded regime traces, duplicate/no-op controls and two-switch mode cycles are retained; conditional count no-return/cycle lemmas are kernel checked.
   - does not support: Prove the complete array-to-source Regime interpreter refinement and that every real source regime change strictly raises the source potential. A count comparison alone is not that refinement.
   - next test: Prove the complete array-to-source Regime interpreter refinement and that every real source regime change strictly raises the source potential. A count comparison alone is not that refinement.

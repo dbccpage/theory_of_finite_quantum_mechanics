@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -36,7 +36,7 @@ WDP-CH04-D02 definition; diagnostic classes ExactClass / ClosedResidual / Active
 
 ## Review
 
-- PFP review: [dag/results/L1-WDP-WINDOW-PHI1-GAMMA2/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-WDP-WINDOW-PHI1-GAMMA2/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: yes.
+- PFP review: [dag/results/L1-WDP-WINDOW-PHI1-GAMMA2/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-WDP-WINDOW-PHI1-GAMMA2/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: no.
   - narrowest claim: Actual flatness refusal, weighted quotient residual and Gamma2/Phi1 with explicit zero-denominator handling; generic kernel identities and refusal control.
   - does not support: Provide arbitrary typed cochain-window validation and norm choices and prove refinement to the production Phi1/Gamma2 contract. No probability or sector weight follows.
   - next test: Provide arbitrary typed cochain-window validation and norm choices and prove refinement to the production Phi1/Gamma2 contract. No probability or sector weight follows.

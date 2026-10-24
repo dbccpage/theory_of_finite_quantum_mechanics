@@ -1,99 +1,180 @@
 {
   "schema_version": "campaign_lean_replay.v1",
   "authority_effect": "None",
-  "checked_at": "2026-10-24",
-  "source_base": "1fa451fe1",
-  "result": "Lean module CampaignFspReggeDeficitAction compiles under Lean 4.35.0 with pinned Mathlib, built through lake from the CampaignFspReggeDeficitAction library registered in lean4/lakefile.lean; every printed axiom list is a subset of propext, Classical.choice and Quot.sound.",
-  "proof_boundary": "This receipt records that lean4/CampaignFspReggeDeficitAction.lean type-checks and which axioms its #print axioms lines report. It establishes Heron/Cayley-Menger squared triangle areas on orthogonal_pentatope, Regge action bilinearity, S^4 face counts and Euler characteristic chi = 2, cyclic holonomy telescoping, Schlaefli variational reduction, the action.rs rational refinement bound predicate, and GIN-C13 fermion-sign / Lorentzian-phase scope fences.",
-  "lean_replay": {
-    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
-    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
-    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
-    "lakefile_sha256": "8985543211c9d4c7435f98e78c39d19635438e316175a8769c9904ae18caabb5",
-    "library": "CampaignFspReggeDeficitAction (lean_lib in lean4/lakefile.lean; not a default target)",
-    "build_directory": "lean4/b",
-    "dependency_packages": "lean4/.lake/packages Mathlib v4.35.0 cache",
-    "command": "cd lean4 && lake build CampaignFspReggeDeficitAction",
-    "allowed_axioms": [
-      "propext",
-      "Classical.choice",
-      "Quot.sound"
-    ],
-    "results": [
-      {
-        "module": "CampaignFspReggeDeficitAction",
-        "dag_node": "FSP-REGGE-DEFICIT-ACTION",
-        "source": "lean4/CampaignFspReggeDeficitAction.lean",
-        "sha256": "1f079a25e093328e86b1d1fdbb5849495e6d6987884b53fcc3c0aaeea2b36944",
-        "sha256_after_build": "1f079a25e093328e86b1d1fdbb5849495e6d6987884b53fcc3c0aaeea2b36944",
-        "source_unchanged_during_build": true,
-        "exit_code": 0,
-        "admission_scan_passed": true,
-        "axiom_audit_passed": true,
-        "anchors": [
-          "CampaignFspReggeDeficitAction.heronAreaSq_symmetric_and_orthogonal_pentatope_hinges",
-          "CampaignFspReggeDeficitAction.hingeDeficit_flat_sum_zero_and_reggeAction_bilinear",
-          "CampaignFspReggeDeficitAction.reggeAction_positive_vs_mixed_deficit_sign",
-          "CampaignFspReggeDeficitAction.s4_boundary_delta5_face_counts_and_euler_characteristic",
-          "CampaignFspReggeDeficitAction.discrete_bianchi_cyclic_holonomy_telescoping",
-          "CampaignFspReggeDeficitAction.schlaefli_variation_reduces_regge_variation_to_area_term",
-          "CampaignFspReggeDeficitAction.defectBoundHolds_exact_rust_witnesses_and_zero_scale_limit",
-          "CampaignFspReggeDeficitAction.regge_action_independent_of_fermion_occupation_fence",
-          "CampaignFspReggeDeficitAction.euclidean_vs_lorentzian_regge_phase_fence",
-          "CampaignFspReggeDeficitAction.flat_vertex_sum_vs_signed_cancellation_fence"
+  "checked_at": "2026-10-24T22:52:38.147513+00:00",
+  "lean_toolchain": "leanprover/lean4:v4.35.0",
+  "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+  "proof_boundary": "The declared rational Heron polynomial is symmetric and has the displayed evaluations; a supplied rational dot product is bilinear and an additive four-step telescoping sum is zero. Schlaefli cancellation is an explicit hypothesis, not derived geometry. The face vector and its interpretation as a sphere are supplied. No edge-length geometry, noncommutative Bianchi identity, continuum refinement theorem or actual Lorentzian exponential is constructed. The -I matrix and w-w identity do not identify a gravitational phase or resolve fermion signs.",
+  "results": [
+    {
+      "module": "CampaignFspReggeDeficitAction",
+      "source": "lean4/CampaignFspReggeDeficitAction.lean",
+      "sha256": "37bbdca7459fc734d959bd223bdd3655f253e32800e9d50712c37c3241c6d91e",
+      "exit_code": 0,
+      "axioms": {
+        "CampaignFspReggeDeficitAction.heronAreaSq_symmetric_and_orthogonal_pentatope_hinges": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
         ],
-        "anchors_reported": true,
-        "axioms": {
-          "CampaignFspReggeDeficitAction.heronAreaSq_symmetric_and_orthogonal_pentatope_hinges": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
+        "CampaignFspReggeDeficitAction.hingeDeficit_flat_sum_zero_and_reggeAction_bilinear": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CampaignFspReggeDeficitAction.reggeAction_positive_vs_mixed_deficit_sign": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CampaignFspReggeDeficitAction.s4_boundary_delta5_face_counts_and_euler_characteristic": [
+          "propext"
+        ],
+        "CampaignFspReggeDeficitAction.discrete_bianchi_cyclic_holonomy_telescoping": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CampaignFspReggeDeficitAction.schlaefli_variation_reduces_regge_variation_to_area_term": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CampaignFspReggeDeficitAction.defectBoundHolds_exact_rust_witnesses_and_zero_scale_limit": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CampaignFspReggeDeficitAction.regge_action_independent_of_fermion_occupation_fence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CampaignFspReggeDeficitAction.euclidean_vs_lorentzian_regge_phase_fence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "CampaignFspReggeDeficitAction.flat_vertex_sum_vs_signed_cancellation_fence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "anchors": [
+        "CampaignFspReggeDeficitAction.heronAreaSq_symmetric_and_orthogonal_pentatope_hinges",
+        "CampaignFspReggeDeficitAction.hingeDeficit_flat_sum_zero_and_reggeAction_bilinear",
+        "CampaignFspReggeDeficitAction.reggeAction_positive_vs_mixed_deficit_sign",
+        "CampaignFspReggeDeficitAction.s4_boundary_delta5_face_counts_and_euler_characteristic",
+        "CampaignFspReggeDeficitAction.discrete_bianchi_cyclic_holonomy_telescoping",
+        "CampaignFspReggeDeficitAction.schlaefli_variation_reduces_regge_variation_to_area_term",
+        "CampaignFspReggeDeficitAction.defectBoundHolds_exact_rust_witnesses_and_zero_scale_limit",
+        "CampaignFspReggeDeficitAction.regge_action_independent_of_fermion_occupation_fence",
+        "CampaignFspReggeDeficitAction.euclidean_vs_lorentzian_regge_phase_fence",
+        "CampaignFspReggeDeficitAction.flat_vertex_sum_vs_signed_cancellation_fence"
+      ],
+      "axiom_audit_passed": true,
+      "output": "⚠ [3138/3139] Built CampaignFspReggeDeficitAction (38s)\nwarning: CampaignFspReggeDeficitAction.lean: imports `Mathlib.Algebra.BigOperators.Fin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspReggeDeficitAction.lean: imports `Mathlib.Data.Matrix.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspReggeDeficitAction.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspReggeDeficitAction.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignFspReggeDeficitAction.lean:168:0: 'CampaignFspReggeDeficitAction.heronAreaSq_symmetric_and_orthogonal_pentatope_hinges' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspReggeDeficitAction.lean:169:0: 'CampaignFspReggeDeficitAction.hingeDeficit_flat_sum_zero_and_reggeAction_bilinear' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspReggeDeficitAction.lean:170:0: 'CampaignFspReggeDeficitAction.reggeAction_positive_vs_mixed_deficit_sign' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspReggeDeficitAction.lean:171:0: 'CampaignFspReggeDeficitAction.s4_boundary_delta5_face_counts_and_euler_characteristic' depends on axioms: [propext]\ninfo: CampaignFspReggeDeficitAction.lean:172:0: 'CampaignFspReggeDeficitAction.discrete_bianchi_cyclic_holonomy_telescoping' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspReggeDeficitAction.lean:173:0: 'CampaignFspReggeDeficitAction.schlaefli_variation_reduces_regge_variation_to_area_term' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspReggeDeficitAction.lean:174:0: 'CampaignFspReggeDeficitAction.defectBoundHolds_exact_rust_witnesses_and_zero_scale_limit' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspReggeDeficitAction.lean:175:0: 'CampaignFspReggeDeficitAction.regge_action_independent_of_fermion_occupation_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspReggeDeficitAction.lean:176:0: 'CampaignFspReggeDeficitAction.euclidean_vs_lorentzian_regge_phase_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspReggeDeficitAction.lean:177:0: 'CampaignFspReggeDeficitAction.flat_vertex_sum_vs_signed_cancellation_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\nBuild completed successfully (3139 jobs).\n"
+    }
+  ],
+  "superseded_receipt": {
+    "schema_version": "campaign_lean_replay.v1",
+    "authority_effect": "None",
+    "checked_at": "2026-10-24",
+    "source_base": "1fa451fe1",
+    "result": "Lean module CampaignFspReggeDeficitAction compiles under Lean 4.35.0 with pinned Mathlib, built through lake from the CampaignFspReggeDeficitAction library registered in lean4/lakefile.lean; every printed axiom list is a subset of propext, Classical.choice and Quot.sound.",
+    "proof_boundary": "This receipt records that lean4/CampaignFspReggeDeficitAction.lean type-checks and which axioms its #print axioms lines report. It establishes Heron/Cayley-Menger squared triangle areas on orthogonal_pentatope, Regge action bilinearity, S^4 face counts and Euler characteristic chi = 2, cyclic holonomy telescoping, Schlaefli variational reduction, the action.rs rational refinement bound predicate, and GIN-C13 fermion-sign / Lorentzian-phase scope fences.",
+    "lean_replay": {
+      "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+      "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "lakefile_sha256": "8985543211c9d4c7435f98e78c39d19635438e316175a8769c9904ae18caabb5",
+      "library": "CampaignFspReggeDeficitAction (lean_lib in lean4/lakefile.lean; not a default target)",
+      "build_directory": "lean4/b",
+      "dependency_packages": "lean4/.lake/packages Mathlib v4.35.0 cache",
+      "command": "cd lean4 && lake build CampaignFspReggeDeficitAction",
+      "allowed_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "results": [
+        {
+          "module": "CampaignFspReggeDeficitAction",
+          "dag_node": "FSP-REGGE-DEFICIT-ACTION",
+          "source": "lean4/CampaignFspReggeDeficitAction.lean",
+          "sha256": "1f079a25e093328e86b1d1fdbb5849495e6d6987884b53fcc3c0aaeea2b36944",
+          "sha256_after_build": "1f079a25e093328e86b1d1fdbb5849495e6d6987884b53fcc3c0aaeea2b36944",
+          "source_unchanged_during_build": true,
+          "exit_code": 0,
+          "admission_scan_passed": true,
+          "axiom_audit_passed": true,
+          "anchors": [
+            "CampaignFspReggeDeficitAction.heronAreaSq_symmetric_and_orthogonal_pentatope_hinges",
+            "CampaignFspReggeDeficitAction.hingeDeficit_flat_sum_zero_and_reggeAction_bilinear",
+            "CampaignFspReggeDeficitAction.reggeAction_positive_vs_mixed_deficit_sign",
+            "CampaignFspReggeDeficitAction.s4_boundary_delta5_face_counts_and_euler_characteristic",
+            "CampaignFspReggeDeficitAction.discrete_bianchi_cyclic_holonomy_telescoping",
+            "CampaignFspReggeDeficitAction.schlaefli_variation_reduces_regge_variation_to_area_term",
+            "CampaignFspReggeDeficitAction.defectBoundHolds_exact_rust_witnesses_and_zero_scale_limit",
+            "CampaignFspReggeDeficitAction.regge_action_independent_of_fermion_occupation_fence",
+            "CampaignFspReggeDeficitAction.euclidean_vs_lorentzian_regge_phase_fence",
+            "CampaignFspReggeDeficitAction.flat_vertex_sum_vs_signed_cancellation_fence"
           ],
-          "CampaignFspReggeDeficitAction.hingeDeficit_flat_sum_zero_and_reggeAction_bilinear": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspReggeDeficitAction.reggeAction_positive_vs_mixed_deficit_sign": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspReggeDeficitAction.s4_boundary_delta5_face_counts_and_euler_characteristic": [
-            "propext"
-          ],
-          "CampaignFspReggeDeficitAction.discrete_bianchi_cyclic_holonomy_telescoping": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspReggeDeficitAction.schlaefli_variation_reduces_regge_variation_to_area_term": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspReggeDeficitAction.defectBoundHolds_exact_rust_witnesses_and_zero_scale_limit": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspReggeDeficitAction.regge_action_independent_of_fermion_occupation_fence": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspReggeDeficitAction.euclidean_vs_lorentzian_regge_phase_fence": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ],
-          "CampaignFspReggeDeficitAction.flat_vertex_sum_vs_signed_cancellation_fence": [
-            "Classical.choice",
-            "Quot.sound",
-            "propext"
-          ]
+          "anchors_reported": true,
+          "axioms": {
+            "CampaignFspReggeDeficitAction.heronAreaSq_symmetric_and_orthogonal_pentatope_hinges": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspReggeDeficitAction.hingeDeficit_flat_sum_zero_and_reggeAction_bilinear": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspReggeDeficitAction.reggeAction_positive_vs_mixed_deficit_sign": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspReggeDeficitAction.s4_boundary_delta5_face_counts_and_euler_characteristic": [
+              "propext"
+            ],
+            "CampaignFspReggeDeficitAction.discrete_bianchi_cyclic_holonomy_telescoping": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspReggeDeficitAction.schlaefli_variation_reduces_regge_variation_to_area_term": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspReggeDeficitAction.defectBoundHolds_exact_rust_witnesses_and_zero_scale_limit": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspReggeDeficitAction.regge_action_independent_of_fermion_occupation_fence": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspReggeDeficitAction.euclidean_vs_lorentzian_regge_phase_fence": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignFspReggeDeficitAction.flat_vertex_sum_vs_signed_cancellation_fence": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ]
+          }
         }
-      }
-    ]
-  }
+      ]
+    }
+  },
+  "superseded_reason": "Interpretation overclaims and missing source axiom lines corrected; former source hash and receipt retained for history only."
 }

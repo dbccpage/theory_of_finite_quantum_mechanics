@@ -1481,7 +1481,7 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "COMPUTATIONALLY_CHECKED",
-      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi\u00b7psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
+      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
       "obligation": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "imported_structure": [
         "continuous time and Stone generator",
@@ -5156,7 +5156,7 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here.",
-      "obligation": "Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13). Narrowed in lean4/CampaignFspReggeDeficitAction.lean and checks/independent/fsp-regge-deficit-action.py to: (1) Heron / Cayley-Menger squared triangle area heronAreaSq from squared edge lengths and the exact hinge classes of orthogonal_pentatope (6 right-triangle hinges with A_h^2 = 1/4 and 4 equilateral hinges with A_h^2 = 3/4, summing to 9/2); (2) hinge deficit flatness criterion, reggeAction bilinearity, and non-negativity on positive deficits vs sign indefiniteness under mixed-sign saddle deficits; (3) boundary of 5-simplex (partial Delta^5) face counts (6, 15, 20, 15, 6), Euler characteristic chi = 2, and incidence 6*10 = 20*3 = 60; (4) cyclic holonomy telescoping (f1-f0)+(f2-f1)+(f3-f2)+(f0-f3) = 0 for the discrete first Bianchi identity (derived by ring identity rather than assumed) and Schlaefli variational reduction; (5) exact rational refinement bound predicate defectBoundHolds matching code/rust/src/general_relativity/exact_regge/action.rs; and (6) explicit GIN-C13 scope fences for fermion-sign independence, Lorentzian half-turn phase sign reversal, and Nat vs signed Q deficit cancellation.",
+      "obligation": "Narrowed algebraic checks only. The declared rational Heron polynomial is symmetric and has the displayed evaluations; a supplied rational dot product is bilinear and an additive four-step telescoping sum is zero. Schlaefli cancellation is an explicit hypothesis, not derived geometry. The face vector and its interpretation as a sphere are supplied. No edge-length geometry, noncommutative Bianchi identity, continuum refinement theorem or actual Lorentzian exponential is constructed. The -I matrix and w-w identity do not identify a gravitational phase or resolve fermion signs. Status is unchanged. The original physical or operational bridge remains open.",
       "imported_structure": [
         "Regge calculus (Regge 1961; Cheeger-Mueller-Schrader convergence)"
       ],
@@ -9960,10 +9960,10 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "cited; local formalization open",
       "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
-      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice\u2082 for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
       "imported_structure": [
         "Rice theorem (Rice 1953)",
-        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice\u2082"
+        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
       ],
       "parent_nodes": [
         "AUTH-G5B-CARRIER-ADMISSION-GATE"
@@ -9973,7 +9973,7 @@
       "rust": [],
       "python": [],
       "external_witnesses": [
-        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice\u2082 (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
+        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
         "external:Mathlib/Computability/Halting.lean::ComputablePred.halting_problem (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
       ],
       "sources": [
@@ -9981,7 +9981,7 @@
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:305-315",
         "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:331-344"
       ],
-      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice\u2082 and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
+      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice₂ and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
       "see_also": [
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
@@ -9998,7 +9998,7 @@
       "status": "OPEN",
       "source_claimed_status": "open",
       "statement": "For an admitted program carrier and a nontrivial extensional property, a total computable sound and complete authorizer would decide that property; the lift is a stated target in the source and has no local theorem.",
-      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice\u2082 and halting_problem.",
+      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
       "imported_structure": [
         "admitted program carrier",
         "nontrivial extensional property"

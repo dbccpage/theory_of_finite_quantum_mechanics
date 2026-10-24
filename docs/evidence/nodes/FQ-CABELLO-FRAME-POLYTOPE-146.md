@@ -36,7 +36,7 @@ paper s11.5: exact enumeration and exact characteristic-polynomial certificates 
 
 ## Review
 
-- PFP review: [dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Independently exhaustive exact basis computations and every actual finite matrix witness, with a separate literal integer-list kernel certificate; the general real-polytope completeness bridge remains open.
   - does not support: A formal Lean theorem identifying the entire real polytope vertex set, a general real spectral/PSD transport theorem, or positivity from finite frame additivity.
   - next test: Review basis coverage, source geometry, generated-data translation and the exact strict/non-strict spectral tests before promoting any broader claim.
