@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 18
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ genesis_qm_realification_bridge: 'declarations of complex structure, not a theor
 
 ## Review
 
-- PFP review: [dag/results/L1-WDP-REALIFICATION-J/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/L1-WDP-REALIFICATION-J/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: no.
+- PFP review: [dag/results/L1-WDP-REALIFICATION-J/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/L1-WDP-REALIFICATION-J/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: yes.
   - narrowest claim: Complex matrices here are the declared pair model (P, Q) with the hand-written product. R(A) = \[\[P,-Q\],\[Q,P\]\] is an injective ring-linear multiplicative embedding of these into real matrices with J_m R(A) = R(A) J_n and Tr R(A) = 2 Re Tr A, and its image is exactly the real matrices that intertwine the DECLARED J (block coordinate order); the same J^2 = -1 identity holds for other matrices (kernel instance, bounded census), so the choice of J remains an input.
   - does not support: Any selection of J or of the complex field (J is a declaration; a second square root of -I exists in the kernel instance and the census exhibits many more); the identification of the pair model CMat with Mathlib complex matrices (no anchor shows CMat is an associative ring or equals Matrix m n Complex); the block-ordering convention (all real coordinates before all imaginary ones) is part of the definition: the interleaved ordering gives a different J and a different matrix; states sigma = R(rho)/2, positivity as a theorem (native instances only), effects, instruments / Kraus intertwining (Theorem 3), the balanced tensor lift, or any operational or physical reading; infinite dimensions; the claim that every real channel is a realified complex one (it is not).
   - next test: Prove in the kernel that R preserves and reflects positivity for Hermitian A, i.e. A is positive semidefinite iff the real quadratic form of R(A) is nonnegative, and that sigma = R(rho)/2 has real trace 1 exactly when Tr rho = 1; the native psd rows are the instances to match.

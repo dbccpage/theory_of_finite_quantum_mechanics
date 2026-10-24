@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 28
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ O3 and O6 MECHANIZED in Second/Rename.lean and DerivationDagQMClosure.lean (pg_g
 
 ## Review
 
-- PFP review: [dag/results/PG-GEN-REWRITING-COMMUTATION/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/PG-GEN-REWRITING-COMMUTATION/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `reviewed_with_targeted_native_integration`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/PG-GEN-REWRITING-COMMUTATION/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/PG-GEN-REWRITING-COMMUTATION/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Full six-permutation merge squares and legality invariance are exact; general injective merge rewriting and map composition are kernel checked.
   - does not support: Prove source Step/ReachNoRemove and cost-potential transports for all term writings and the multi-step obstruction persistence theorem. Do not promote a finite permutation test into that source-wide result.
   - next test: Prove source Step/ReachNoRemove and cost-potential transports for all term writings and the multi-step obstruction persistence theorem. Do not promote a finite permutation test into that source-wide result.

@@ -8,14 +8,23 @@ target:
     bordism group, eta invariant or sign obstruction exists in this checkout.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Relate the anomaly invariant to the sign of a declared finite representation and
-    rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature
-    are class specific.
+  source_bottleneck: Narrowed algebraic checks only. The integer spectral-sign function is odd; the declared
+    2x2 block has determinant m^2-s; two four-entry sign sums are 2 and -2. The exact supplied ZMod 2
+    formula is a3*arf+w1*sigmaDiv16, not n1+arf*c2+n2*w2. The Ward lemma concerns two nonnegative integer
+    weights under the supplied equation w0+w1=-(w0+w1); it does not derive that equation from an anomaly
+    or quantify over a configuration involution. P*H*P=2*D and equality of H/D traces/determinants do
+    not assert trace preservation for P*H*P. Arithmetic in ZMod 16 computes no Pin bordism group. No manifold,
+    AHSS, mapping-torus Dirac construction, anomaly classification, or bulk-boundary no-go theorem is
+    formalized. Status is unchanged. The original physical or operational bridge remains open.
   source_refs:
   - dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md
   - papers/core/fsp/theory_of_finite_fsp.md
   - papers/core/fsp/the_problem_of_the_fermion_sign.md
   - papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md
+  - dag/derivations/independent/fsp-cobordism-intrinsic-sign.md
+  - dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json
+  - dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_mutation.json
+  - dag/research/campaign_fsp-cobordism-intrinsic-sign_independent.json
   paper_refs:
   - dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md
   source_claim_label: OPEN
@@ -24,7 +33,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md
-    sha256: d815b611a72cffeb553d0280b69ab0409c48f5864f5102a995065c9f60b9b6c3
+    sha256: 9b0deccbbc95fb3ad2004a9f7c44279ce249dcbbe83e0c3180bdc232cd080e8a
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -32,9 +41,314 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_cobordism_intrinsic_sign_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: spectralSign
+  line: 20
+  signature_excerpt: 'def spectralSign (lam : ℤ) : ℤ'
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: diracMappingBlock
+  line: 46
+  signature_excerpt: 'def diracMappingBlock (m s : ℤ) : Matrix (Fin 2) (Fin 2) ℤ'
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: arfGaussianSum
+  line: 67
+  signature_excerpt: 'def arfGaussianSum (q : Fin 2 → Fin 2 → ℕ) : ℤ'
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: arf0Form
+  line: 61
+  signature_excerpt: 'def arf0Form (x y : Fin 2) : ℕ'
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: arf1Form
+  line: 64
+  signature_excerpt: 'def arf1Form (x y : Fin 2) : ℕ'
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: nu5Pairing
+  line: 78
+  signature_excerpt: 'def nu5Pairing (a3 arf w1 sigmaDiv16 : ZMod 2) : ZMod 2'
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: offDiagSignedMat
+  line: 119
+  signature_excerpt: 'def offDiagSignedMat : Matrix (Fin 2) (Fin 2) ℤ'
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: diagNonnegMat
+  line: 124
+  signature_excerpt: 'def diagNonnegMat : Matrix (Fin 2) (Fin 2) ℤ'
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: hadamardBasisMat
+  line: 129
+  signature_excerpt: 'def hadamardBasisMat : Matrix (Fin 2) (Fin 2) ℤ'
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: spectralSign_odd_and_symmetric_pair_zero
+  line: 24
+  signature_excerpt: |-
+    theorem spectralSign_odd_and_symmetric_pair_zero (lam : ℤ) :
+        spectralSign (-lam) = -spectralSign lam ∧
+        spectralSign lam + spectralSign (-lam) = 0
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: single_eigenvalue_crossing_eta_jump_by_two
+  line: 31
+  signature_excerpt: |-
+    theorem single_eigenvalue_crossing_eta_jump_by_two (lam : ℤ) (hpos : 0 < lam) (k : ℕ) :
+        spectralSign lam = 1 ∧
+        spectralSign (-lam) = -1 ∧
+        spectralSign lam - spectralSign (-lam) = 2 ∧
+        (-1 : ℤ) ^ (k + 1) = -((-1 : ℤ) ^ k)
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: mapping_torus_fermion_det_sign_reversal
+  line: 51
+  signature_excerpt: |-
+    theorem mapping_torus_fermion_det_sign_reversal (m s : ℤ) :
+        Matrix.det (diracMappingBlock m s) = m ^ 2 - s ∧
+        Matrix.det (diracMappingBlock 0 (-1)) = 1 ∧
+        Matrix.det (diracMappingBlock 0 1) = -1 ∧
+        Matrix.det (diracMappingBlock 0 (-1)) + Matrix.det (diracMappingBlock 0 1) = 0
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: arf_gaussian_sign_sum_dichotomy
+  line: 71
+  signature_excerpt: |-
+    theorem arf_gaussian_sign_sum_dichotomy :
+        arfGaussianSum arf0Form = 2 ∧
+        arfGaussianSum arf1Form = -2 ∧
+        arfGaussianSum arf0Form + arfGaussianSum arf1Form = 0
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ahss_5d_spin_cobordism_pairing_sectors
+  line: 82
+  signature_excerpt: |-
+    theorem ahss_5d_spin_cobordism_pairing_sectors (a3 arf w1 sigmaDiv16 : ZMod 2) :
+        nu5Pairing a3 0 w1 0 = 0 ∧
+        nu5Pairing 0 arf 1 1 = 1 ∧
+        nu5Pairing 1 1 0 sigmaDiv16 = 1 ∧
+        (1 : ZMod 2) ≠ 0
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: anomaly_odd_ward_identity_rules_out_positive_weights_in_class
+  line: 93
+  signature_excerpt: |-
+    theorem anomaly_odd_ward_identity_rules_out_positive_weights_in_class
+        (w0 w1 : ℤ) (hw0 : 0 ≤ w0) (hw1 : 0 ≤ w1) :
+        (w0 + w1 = -(w0 + w1) → w0 = 0 ∧ w1 = 0) ∧
+        (0 < w0 + w1 → w0 + w1 ≠ -(w0 + w1))
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: five_d_bulk_inflow_cancels_boundary_anomaly_sign
+  line: 104
+  signature_excerpt: |-
+    theorem five_d_bulk_inflow_cancels_boundary_anomaly_sign (nu5 : ZMod 2) :
+        nu5 + (-nu5) = 0 ∧
+        ((-1 : ℤ) ^ nu5.val) * ((-1 : ℤ) ^ nu5.val) = 1
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pin_minus_z16_order_sixteen_fence
+  line: 111
+  signature_excerpt: |-
+    theorem pin_minus_z16_order_sixteen_fence :
+        (1 : ZMod 16) ≠ 0 ∧
+        (2 : ZMod 16) * (1 : ZMod 16) ≠ 0 ∧
+        (8 : ZMod 16) * (1 : ZMod 16) ≠ 0 ∧
+        (16 : ZMod 16) * (1 : ZMod 16) = 0
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: basis_change_removes_sign_outside_constrained_class_fence
+  line: 134
+  signature_excerpt: |-
+    theorem basis_change_removes_sign_outside_constrained_class_fence :
+        offDiagSignedMat 0 1 = -1 ∧
+        Matrix.trace offDiagSignedMat = Matrix.trace diagNonnegMat ∧
+        Matrix.det offDiagSignedMat = Matrix.det diagNonnegMat ∧
+        hadamardBasisMat * offDiagSignedMat * hadamardBasisMat =
+          (2 : ℤ) • diagNonnegMat
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: thermal_orientation_weight_asymmetry_fence
+  line: 144
+  signature_excerpt: |-
+    theorem thermal_orientation_weight_asymmetry_fence (w_pos w_neg : ℤ) :
+        (w_pos = w_neg → w_pos - w_neg = 0) ∧
+        (w_pos ≠ w_neg → w_pos - w_neg ≠ 0)
+  source: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  source_sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.spectralSign_odd_and_symmetric_pair_zero
+  availability: local
+  symbol: CampaignFspCobordismIntrinsicSign.spectralSign_odd_and_symmetric_pair_zero
+  path: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  declaration_status: declaration_found_not_proof_checked
+  line: 24
+  role: source_lead_only
+- original_ref: lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.single_eigenvalue_crossing_eta_jump_by_two
+  availability: local
+  symbol: CampaignFspCobordismIntrinsicSign.single_eigenvalue_crossing_eta_jump_by_two
+  path: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  declaration_status: declaration_found_not_proof_checked
+  line: 31
+  role: source_lead_only
+- original_ref: lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.mapping_torus_fermion_det_sign_reversal
+  availability: local
+  symbol: CampaignFspCobordismIntrinsicSign.mapping_torus_fermion_det_sign_reversal
+  path: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  declaration_status: declaration_found_not_proof_checked
+  line: 51
+  role: source_lead_only
+- original_ref: lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.arf_gaussian_sign_sum_dichotomy
+  availability: local
+  symbol: CampaignFspCobordismIntrinsicSign.arf_gaussian_sign_sum_dichotomy
+  path: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  declaration_status: declaration_found_not_proof_checked
+  line: 71
+  role: source_lead_only
+- original_ref: lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.ahss_5d_spin_cobordism_pairing_sectors
+  availability: local
+  symbol: CampaignFspCobordismIntrinsicSign.ahss_5d_spin_cobordism_pairing_sectors
+  path: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  declaration_status: declaration_found_not_proof_checked
+  line: 82
+  role: source_lead_only
+- original_ref: lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.anomaly_odd_ward_identity_rules_out_positive_weights_in_class
+  availability: local
+  symbol: CampaignFspCobordismIntrinsicSign.anomaly_odd_ward_identity_rules_out_positive_weights_in_class
+  path: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  declaration_status: declaration_found_not_proof_checked
+  line: 93
+  role: source_lead_only
+- original_ref: lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.five_d_bulk_inflow_cancels_boundary_anomaly_sign
+  availability: local
+  symbol: CampaignFspCobordismIntrinsicSign.five_d_bulk_inflow_cancels_boundary_anomaly_sign
+  path: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  declaration_status: declaration_found_not_proof_checked
+  line: 104
+  role: source_lead_only
+- original_ref: lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.pin_minus_z16_order_sixteen_fence
+  availability: local
+  symbol: CampaignFspCobordismIntrinsicSign.pin_minus_z16_order_sixteen_fence
+  path: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  declaration_status: declaration_found_not_proof_checked
+  line: 111
+  role: source_lead_only
+- original_ref: lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.basis_change_removes_sign_outside_constrained_class_fence
+  availability: local
+  symbol: CampaignFspCobordismIntrinsicSign.basis_change_removes_sign_outside_constrained_class_fence
+  path: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  declaration_status: declaration_found_not_proof_checked
+  line: 134
+  role: source_lead_only
+- original_ref: lean4/CampaignFspCobordismIntrinsicSign.lean::CampaignFspCobordismIntrinsicSign.thermal_orientation_weight_asymmetry_fence
+  availability: local
+  symbol: CampaignFspCobordismIntrinsicSign.thermal_orientation_weight_asymmetry_fence
+  path: lean4/CampaignFspCobordismIntrinsicSign.lean
+  repository: this_repository
+  sha256: be8a115911db61211f437136c8db75dfcfa0262af23ff050a890ddc4f644dfc8
+  declaration_status: declaration_found_not_proof_checked
+  line: 144
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -72,8 +386,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md`
 
 - file: [dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md](../../../dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md)
-- sha256 (`lf-normalised`): `05dea286393b8e86770ef9a8209182d1ea77d765c04549a2a57b6baf5084c5a1`
+- sha256 (`lf-normalised`): `9b0deccbbc95fb3ad2004a9f7c44279ce249dcbbe83e0c3180bdc232cd080e8a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1211
 - counts toward the grade: no

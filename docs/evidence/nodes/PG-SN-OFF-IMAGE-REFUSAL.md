@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 21
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ MECHANIZED in SnOffImage.lean (off-image non-descent and section-image character
 
 ## Review
 
-- PFP review: [dag/results/PG-SN-OFF-IMAGE-REFUSAL/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-SN-OFF-IMAGE-REFUSAL/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/PG-SN-OFF-IMAGE-REFUSAL/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-SN-OFF-IMAGE-REFUSAL/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: For a restatement over an arbitrary glyph alphabet of the pinned S(n) section and retraction (five base shapes at a given stage), the retraction refuses exactly the presentations that are not section images at that stage, and the restated pair is a section/retraction pair (law and soundness) in the abstract sense, where refusal is the failure of the round trip s(r(p)) = p; this rests on the soundness of the specific retraction (accepted_only_from_section), because the old-image law alone is satisfied by a retraction that refuses nothing.
   - does not support: The claim that this closes the domain-restriction half of ledger row WDP-P001-019 (a ledger interpretation, not examined); the external prompt file fable_theorems_2026-10-17/05_sn_off_image_refusal.md named in the DAG source list, which was not read; off-image refusal for sections other than the five base shapes (nested lift, retraction or refusal terms as base members are outside the model); any cardinality claim about Carrier n or the declared table (node PG-SN-CARRIER); unrestricted old-image recovery (ledger row WDP-P001-019 stays a negative boundary for the unrestricted interface); the 36-glyph source alphabet beyond the generic statement, and alphabets above three glyphs in the native universes; wire parsing of the source grammar; decidability beyond this syntactic model (the source itself says the image condition is not a general computability theorem); the circular reading in which off-image is defined as failure of the round trip; any physical interpretation.
   - next test: With the bridge sn_is_section_retraction proved, extend the refusal characterisation to a grammar that admits nested lift, retraction and refusal terms as base members: add them to Base, restate sectionLift and retr on the enlarged type, and decide whether accepted_only_from_section and sectionLift injectivity still hold or whether a new off-image class appears.

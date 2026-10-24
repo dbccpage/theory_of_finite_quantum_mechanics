@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -38,7 +38,7 @@ paper s13.8.2: exact SOS certificates -2sqrt2 I \<= B_CHSH \<= 2sqrt2 I and atta
 
 ## Review
 
-- PFP review: [dag/results/FQ-TSIRELSON-SOS-Q-SQRT2/reviews/20261019_structure_audit/review_result.json](../../../dag/results/FQ-TSIRELSON-SOS-Q-SQRT2/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/FQ-TSIRELSON-SOS-Q-SQRT2/reviews/20261019_structure_audit/review_result.json](../../../dag/results/FQ-TSIRELSON-SOS-Q-SQRT2/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Two exact Q(sqrt2) SOS matrix certificates and Bell-density expectation2sqrt2 are reproduced independently. general rational four-coordinate scaled SOS inequalities and attainment ratio are kernel checked for this fixed operator.
   - does not support: Formalize the concrete Q(sqrt2)-matrix to real quadratic-form transport before claiming a full Lean operator certificate; arbitrary observables, tensor selection and quantum probability are not derived.
   - next test: Formalize the concrete Q(sqrt2)-matrix to real quadratic-form transport before claiming a full Lean operator certificate; arbitrary observables, tensor selection and quantum probability are not derived.
