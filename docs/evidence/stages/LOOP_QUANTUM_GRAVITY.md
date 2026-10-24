@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 16. Grades: E0 10, E1 2, E3 4. Statuses: PROVED_LEAN 4, IMPORTED_ASSUMPTION 3, SOURCE_RECORD 8, OPEN 1.
+Nodes: 16. Grades: E0 9, E1 2, E3 5. Statuses: PROVED_LEAN 4, IMPORTED_ASSUMPTION 3, SOURCE_RECORD 8, OPEN 1.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -20,6 +20,6 @@ Nodes: 16. Grades: E0 10, E1 2, E3 4. Statuses: PROVED_LEAN 4, IMPORTED_ASSUMPTI
 | [LQG-TV-LEVEL2-PENTAGON-TARGET](../nodes/LQG-TV-LEVEL2-PENTAGON-TARGET.md) | `PROVED_LEAN` | E3 | Finite statement, checked in Lean 4 for a transcribed table. At q = exp(i pi/4) with spin labels 0, 1/2, 1 (twice-spin 0, 1, 2), the norm... | [FrontierTvLevel2Pentagon.lean](../../../lean4/FrontierTvLevel2Pentagon.lean): `isingF_nonzero_count_36`, `level2_orthogonality_all_admissible`, `level2_quantum_dimensions_and_truncation` +1<br>[H023DiscreteSpinfoamAmplitudes.lean](../../../lean4/H023DiscreteSpinfoamAmplitudes.lean)<br>[H024FourSimplexSpinfoamS4.lean](../../../lean4/H024FourSimplexSpinfoamS4.lean)<br>[spin_foam.rs](../../../code/rust/src/general_relativity/spin_foam.rs)<br>+2 more file(s) | - |
 | [LQG-EPRL-2007-SOURCE](../nodes/LQG-EPRL-2007-SOURCE.md) | `SOURCE_RECORD` | E0 | Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Sections II-IV eqs. (12)-(30) pp. 3-10) define a four-simplex spin-foam vertex... | none in this checkout | - |
 | [LQG-SPINFOAM-REVIEW-SOURCE](../nodes/LQG-SPINFOAM-REVIEW-SOURCE.md) | `SOURCE_RECORD` | E0 | Perez (2013, arXiv:1205.2019, Living Rev. Relativity 16, 3) surveys canonical LQG and Plebanski BF constraints (Part II), 4D BF theory an... | none in this checkout | - |
-| [LQG-EPRL-VERTEX-IMPORT](../nodes/LQG-EPRL-VERTEX-IMPORT.md) | `IMPORTED_ASSUMPTION` | E0 | Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Section III eqs. (18)-(22), (27)-(30) p... | none in this checkout | - |
+| [LQG-EPRL-VERTEX-IMPORT](../nodes/LQG-EPRL-VERTEX-IMPORT.md) | `IMPORTED_ASSUMPTION` | E3 | For rational gamma and rational k, the imported Euclidean labels are j+ = \|1 + gamma\| k / 2 and j- = \|1 - gamma\| k / 2. When 0 \< gamma \<... | [CampaignLqgEprlVertexImport.lean](../../../lean4/CampaignLqgEprlVertexImport.lean): `euclidean_above`, `euclidean_below`, `five_tetrahedron_pairs` +9<br>[lqg-eprl-vertex-import.py](../../../checks/independent/lqg-eprl-vertex-import.py)<br>[lqg-eprl-vertex-import.md](../../../dag/derivations/independent/lqg-eprl-vertex-import.md) | - |
 | [LQG-CONTINUUM-LIMIT-GAP](../nodes/LQG-CONTINUUM-LIMIT-GAP.md) | `OPEN` | E0 | No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recou... | none in this checkout | - |
 

@@ -1043,3 +1043,7 @@ lean_lib CampaignDfmRelationalTimeFence where
 -- Campaign: FSP-IMAGINARY-MU-REAL-DET. Non-default.
 lean_lib CampaignFspImaginaryMuRealDet where
   roots := #[`CampaignFspImaginaryMuRealDet]
+
+-- Campaign: LQG-EPRL-VERTEX-IMPORT. Not a default target.
+lean_lib CampaignLqgEprlVertexImport where
+  roots := #[`CampaignLqgEprlVertexImport]
