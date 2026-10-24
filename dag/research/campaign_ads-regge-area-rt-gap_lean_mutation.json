@@ -1,0 +1,65 @@
+{
+  "schema": "dag.lean_mutation_receipt.v1",
+  "node_id": "ADS-REGGE-AREA-RT-GAP",
+  "claim_id": "TFQ-2211",
+  "file": "lean4/CampaignAdsReggeAreaRtGap.lean",
+  "mutants_total": 6,
+  "mutants_killed": 6,
+  "all_killed": true,
+  "results": [
+    {
+      "id": "M1_pentatope_hinge_count_10_to_12",
+      "target": "def pentatopeHingeCount : Nat := 10",
+      "replacement": "def pentatopeHingeCount : Nat := 12",
+      "expected_failing_theorem": "simplicial_regge_vs_happy_network_carrier_counts",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmp1ga3ujrt.lean:97:2: error: Tactic `decide` proved that the proposition\n  pentatopeRightHingeCount + pentatopeEquilateralHingeCount = pentatopeHingeCount \u2227\n    pentatopeVertexCount + pentatopeHingeCount = pentatopeEdgeCount + pentatopeFacetCount \u2227\n      s4CubeBoundaryPentatopeCount = 240 \u2227\n        happyInternalBondCount + happy"
+    },
+    {
+      "id": "M2_mincut_count_1_50_to_40",
+      "target": "countIntervalsWithMincut 1 = 50",
+      "replacement": "countIntervalsWithMincut 1 = 40",
+      "expected_failing_theorem": "happy_mincut_value_distribution_380",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmp7rcdryuc.lean:121:2: error: Tactic `decide` proved that the proposition\n  countIntervalsWithMincut 1 = 40 \u2227\n    countIntervalsWithMincut 2 = 90 \u2227\n      countIntervalsWithMincut 3 = 110 \u2227\n        countIntervalsWithMincut 4 = 100 \u2227\n          countIntervalsWithMincut 5 = 30 \u2227\n            countIntervalsWithMincut 1 + countInterval"
+    },
+    {
+      "id": "M3_equilateral_hinge_area_sq_3_4_to_1_4",
+      "target": "def equilateralHingeAreaSq : \u211a := 3 / 4",
+      "replacement": "def equilateralHingeAreaSq : \u211a := 1 / 4",
+      "expected_failing_theorem": "no_uniform_hinge_to_bond_unit_dictionary",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmppk2yjvmg.lean:142:4: error: linarith failed to find a contradiction\ncase refine_1\nalpha : \u211a\nh1 h2 : alpha * (1 / 4) = 1\n\u22a2 False\nfailed\nC:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmppk2yjvmg.lean:144:2: error: unsolved goals\ncase refine_3\n\u22a2 False\nC:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mec"
+    },
+    {
+      "id": "M4_sq_area_subdivision_sum_exp_2_to_1",
+      "target": "m * (A / m) ^ 2",
+      "replacement": "m * (A / m) ^ 1",
+      "expected_failing_theorem": "sq_area_subdivision_scales_inv_m",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmp6n3fj0h_.lean:176:44: error: unsolved goals\nA m : \u211a\nhm : m \u2260 0\n\u22a2 m * A = A ^ 2\nC:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmp6n3fj0h_.lean:182:59: error: unsolved goals\nA m : \u211a\nhm : m \u2260 0\n\u22a2 A * m * (A - 1) = A ^ 2 * (m - 1)\nC:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmp6n3fj0"
+    },
+    {
+      "id": "M5_regge_wdw_flat_defect_0_to_1",
+      "target": "evaluateH_Wdw \u27e8[0, 0, 0, 0]\u27e9 = 0",
+      "replacement": "evaluateH_Wdw \u27e8[0, 0, 0, 0]\u27e9 = 1",
+      "expected_failing_theorem": "regge_wdw_flat_vs_curved_dichotomy",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmpoarzfhel.lean:234:4: error: Type mismatch\n  flat_vertex_wdw_closure { incidentBoneDeficits := [0, 0, 0, 0] } fun d hd =>\n    Eq.mp\n      (Eq.trans List.mem_cons._simp_1\n        (Eq.trans\n          (congrArg (Or (d = 0))\n            (Eq.trans List.mem_cons._simp_1\n              (Eq.trans\n                (congrArg (Or (d = 0))\n "
+    },
+    {
+      "id": "M6_uniform_defect_regge_action_mul_to_add",
+      "target": "def uniformDefectReggeAction (totalAreaSq kappa : \u211a) : \u211a :=\n  totalAreaSq * kappa",
+      "replacement": "def uniformDefectReggeAction (totalAreaSq kappa : \u211a) : \u211a :=\n  totalAreaSq + kappa",
+      "expected_failing_theorem": "regge_action_linear_in_holonomy_defect",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmpo8u8vlrp.lean:249:2: error: unsolved goals\ncase refine_1\nk1 k2 : \u211a\n\u22a2 False\nC:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmpo8u8vlrp.lean:251:2: error: unsolved goals\ncase refine_2\nk1 k2 : \u211a\n\u22a2 False\nC:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmpo8u8vlrp.lean:253:2: error: unsolv"
+    }
+  ]
+}
