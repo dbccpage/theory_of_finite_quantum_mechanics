@@ -1,0 +1,157 @@
+{
+  "number": 281,
+  "original_head": "e0dded2a1a24bd8fdb0bb1425e18c190bd749ba3",
+  "level": "L3",
+  "meaning": "General group plaquette conjugation and rational beta/Creutz identities; the supplied color formulas and monomials are inputs. No gauge complex, continuum QCD, confinement, or lattice-count construction is supplied.",
+  "baseline": {
+    "number": 281,
+    "head": "e0dded2a1a24bd8fdb0bb1425e18c190bd749ba3",
+    "source": "lean4/CampaignTfq0011FiniteQcd.lean",
+    "sha256": "6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f",
+    "checks": {
+      "independent": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "checks/independent/tfq-0011.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.52,
+        "output": "tfq-0011 independent check: 86 checks, 0 failures\r\n"
+      },
+      "governance": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\governance\\target\\debug\\governance-check.exe",
+          "--root",
+          "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 7.29,
+        "output": "changed since origin/main (f6d4a58aa3efdb953088a1bc5b1cb33efc8a0d98): 26 paths\nchecked 2: 0 pass, 0 grandfathered, 0 boilerplate, 2 failed\nFAIL lean4/CampaignTfq0011FiniteQcd.lean (new or not grandfathered)\n  lean4/CampaignTfq0011FiniteQcd.lean: [MISSING_COMPANION] expected companion lean4/CampaignTfq0011FiniteQcd.contract.score.yaml, found none\nFAIL lean4/lakefile.lean (grandfathering lost: bytes changed since the baseline)\n  lean4/lakefile.contract.score.yaml: [BINDING] contract.artifact.sha256: expected 4caa4925c2142921b242338d8324d6611debd5b022a2647cf0750ea8847745f4, found bfbfe9007d07b162e08c46e35fa49fd74ea8655ee4f5017c834a89e830b08019\n  lean4/lakefile.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L1D\n"
+      },
+      "scope": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/score_scope_contracts.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 8.42,
+        "output": "{\r\n  \"audit\": null,\r\n  \"passed\": false,\r\n  \"summary\": {\r\n    \"sources\": 2,\r\n    \"valid_contracts_and_scores\": 0,\r\n    \"invalid_or_missing\": 2,\r\n    \"invalid_but_grandfathered\": 0,\r\n    \"blocking_errors\": 2,\r\n    \"by_language\": {\r\n      \"Lean 4\": 2\r\n    },\r\n    \"by_preliminary_profile\": {},\r\n    \"completed_scores\": 0,\r\n    \"pinned_boilerplate\": 0,\r\n    \"incomplete_scores\": 2,\r\n    \"generated_governance_twins\": 0,\r\n    \"non_twin_sources\": 2\r\n  },\r\n  \"errors\": [\r\n    {\r\n      \"path\": \"lean4/CampaignTfq0011FiniteQcd.lean\",\r\n      \"error\": \"missing companion\"\r\n    },\r\n    {\r\n      \"path\": \"lean4/lakefile.lean\",\r\n      \"error\": \"current contract does not bind current source bytes\"\r\n    }\r\n  ],\r\n  \"scope\": \"in-scope sources changed since origin/main (merge base f6d4a58aa3ef), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\r\n}\r\n"
+      },
+      "history": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/contract_scores.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 6.9,
+        "output": "{\r\n  \"originals\": null,\r\n  \"combined_files\": 1,\r\n  \"all_passed\": false,\r\n  \"errors\": [\r\n    {\r\n      \"path\": \"lean4/CampaignTfq0011FiniteQcd.lean\",\r\n      \"error\": \"missing companion\"\r\n    }\r\n  ],\r\n  \"scope\": \"changed files only; the rest of the tree was not read\"\r\n}\r\n"
+      },
+      "overclaim": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/overclaim_scan.py",
+          "--changed-since",
+          "origin/main",
+          "--strict"
+        ],
+        "exit_code": 0,
+        "seconds": 26.33,
+        "output": "overclaim_scan: scope=changes since origin/main (merge base f6d4a58aa3ef); HIGH=0 MEDIUM=0 LOW=3\r\n"
+      },
+      "dag": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "dag/validate_derivation_dag.py",
+          "--no-files"
+        ],
+        "exit_code": 1,
+        "seconds": 1.9,
+        "output": "FAIL node CQFT-REEH-SCHLIEDER-THEOREM-IMPORT: unknown keys ['python']\r\nFAIL node CQFT-CAUSAL-FACTORIZATION-IMPORT: unknown keys ['python']\r\nFAIL node ADS-REGGE-AREA-RT-GAP: unknown keys ['python']\r\nnodes=925 routes=934 records=977 failures=3\r\n"
+      },
+      "lean": {
+        "command": [
+          "lake",
+          "build",
+          "CampaignTfq0011FiniteQcd"
+        ],
+        "exit_code": 0,
+        "seconds": 60.35,
+        "output": "⚠ [1527/1528] Built CampaignTfq0011FiniteQcd (27s)\nwarning: CampaignTfq0011FiniteQcd.lean: imports `Mathlib.Tactic.Group` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignTfq0011FiniteQcd.lean: imports `Mathlib.Tactic.IntervalCases` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignTfq0011FiniteQcd.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignTfq0011FiniteQcd.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignTfq0011FiniteQcd.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignTfq0011FiniteQcd.lean: imports `Mathlib.Tactic.Zify` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignTfq0011FiniteQcd.lean: imports `Mathlib.GroupTheory.Perm.Fin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignTfq0011FiniteQcd.lean:165:0: 'CampaignTfq0011FiniteQcd.plaquette_gauge' depends on axioms: [propext]\ninfo: CampaignTfq0011FiniteQcd.lean:166:0: 'CampaignTfq0011FiniteQcd.s3_swaps_do_not_commute' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:167:0: 'CampaignTfq0011FiniteQcd.s3_two_swap_product_ne_one' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:168:0: 'CampaignTfq0011FiniteQcd.su3_channel_values' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:169:0: 'CampaignTfq0011FiniteQcd.gluon_split_and_one_flavor' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:170:0: 'CampaignTfq0011FiniteQcd.beta0_values' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:171:0: 'CampaignTfq0011FiniteQcd.beta0_window' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:172:0: 'CampaignTfq0011FiniteQcd.beta0_nat_through_16' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:173:0: 'CampaignTfq0011FiniteQcd.beta0_17_negative' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:174:0: 'CampaignTfq0011FiniteQcd.beta1_su3' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:175:0: 'CampaignTfq0011FiniteQcd.beta1_values' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:176:0: 'CampaignTfq0011FiniteQcd.banks_zaks_ratio_nf16' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:177:0: 'CampaignTfq0011FiniteQcd.area_exponent' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:178:0: 'CampaignTfq0011FiniteQcd.perim_exponent' depends on axioms: [propext, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:179:0: 'CampaignTfq0011FiniteQcd.creutz_area' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:180:0: 'CampaignTfq0011FiniteQcd.creutz_perim' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:181:0: 'CampaignTfq0011FiniteQcd.creutz_one_ninth' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:182:0: 'CampaignTfq0011FiniteQcd.declared_lattice_counts' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (1528 jobs).\n"
+      }
+    },
+    "source_unchanged": true
+  },
+  "checks": {
+    "independent": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/tfq-0011.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.49,
+      "output": "tfq-0011 independent check: 86 checks, 0 failures\r\n"
+    },
+    "independent_optimized": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/tfq-0011.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.66,
+      "output": "tfq-0011 independent check: 86 checks, 0 failures\r\n"
+    },
+    "lean": {
+      "command": [
+        "lake",
+        "build",
+        "CampaignTfq0011FiniteQcd"
+      ],
+      "exit_code": 0,
+      "seconds": 60.35,
+      "output": "⚠ [1527/1528] Built CampaignTfq0011FiniteQcd (27s)\nwarning: CampaignTfq0011FiniteQcd.lean: imports `Mathlib.Tactic.Group` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignTfq0011FiniteQcd.lean: imports `Mathlib.Tactic.IntervalCases` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignTfq0011FiniteQcd.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignTfq0011FiniteQcd.lean: imports `Mathlib.Tactic.NormNum` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignTfq0011FiniteQcd.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignTfq0011FiniteQcd.lean: imports `Mathlib.Tactic.Zify` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignTfq0011FiniteQcd.lean: imports `Mathlib.GroupTheory.Perm.Fin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignTfq0011FiniteQcd.lean:165:0: 'CampaignTfq0011FiniteQcd.plaquette_gauge' depends on axioms: [propext]\ninfo: CampaignTfq0011FiniteQcd.lean:166:0: 'CampaignTfq0011FiniteQcd.s3_swaps_do_not_commute' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:167:0: 'CampaignTfq0011FiniteQcd.s3_two_swap_product_ne_one' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:168:0: 'CampaignTfq0011FiniteQcd.su3_channel_values' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:169:0: 'CampaignTfq0011FiniteQcd.gluon_split_and_one_flavor' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:170:0: 'CampaignTfq0011FiniteQcd.beta0_values' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:171:0: 'CampaignTfq0011FiniteQcd.beta0_window' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:172:0: 'CampaignTfq0011FiniteQcd.beta0_nat_through_16' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:173:0: 'CampaignTfq0011FiniteQcd.beta0_17_negative' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:174:0: 'CampaignTfq0011FiniteQcd.beta1_su3' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:175:0: 'CampaignTfq0011FiniteQcd.beta1_values' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:176:0: 'CampaignTfq0011FiniteQcd.banks_zaks_ratio_nf16' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:177:0: 'CampaignTfq0011FiniteQcd.area_exponent' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:178:0: 'CampaignTfq0011FiniteQcd.perim_exponent' depends on axioms: [propext, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:179:0: 'CampaignTfq0011FiniteQcd.creutz_area' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:180:0: 'CampaignTfq0011FiniteQcd.creutz_perim' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:181:0: 'CampaignTfq0011FiniteQcd.creutz_one_ninth' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignTfq0011FiniteQcd.lean:182:0: 'CampaignTfq0011FiniteQcd.declared_lattice_counts' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (1528 jobs).\n"
+    }
+  },
+  "merge_allowed": false,
+  "policy_before_sha256": "0a6300f3b8c8d2bcdcd965dec26621e4795a8e077bbdcb65f67032f38d41db42",
+  "baseline_before_sha256": "0ad6a613e4051803ec423286b62a71b8439299c62ebd0cd4883fbe42210b65c7",
+  "source_sha256": "6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f",
+  "structure_observation": {
+    "source_lines": 184,
+    "theorem_count": 18,
+    "axiom_print_count": 18,
+    "explicit_heartbeat_count": "not measured; no high maintainability/performance grade claimed",
+    "dependency_acyclicity": "Kernel elaboration succeeded for this exact module",
+    "factoring": "Reviewed theorem signatures and helper definitions; scoped bounded-domain development"
+  }
+}
