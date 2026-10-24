@@ -1,0 +1,65 @@
+{
+  "schema": "dag.lean_mutation_receipt.v1",
+  "node_id": "CQFT-CAUSAL-FACTORIZATION-IMPORT",
+  "claim_id": "TFQ-2109",
+  "file": "lean4/CampaignCqftCausalFactorizationImport.lean",
+  "mutants_total": 6,
+  "mutants_killed": 6,
+  "all_killed": true,
+  "results": [
+    {
+      "id": "M1_bogoliubovV_inv_removed",
+      "target": "def bogoliubovV {A G : Type*} [Add A] [Group G] (S : A \u2192 G) (g h : A) : G :=\n  (S g)\u207b\u00b9 * S (g + h)",
+      "replacement": "def bogoliubovV {A G : Type*} [Add A] [Group G] (S : A \u2192 G) (g h : A) : G :=\n  S g * S (g + h)",
+      "expected_failing_theorem": "bogoliubovV_zero",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmpkxcxd4sc.lean:74:16: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern\n  ?a\u207b\u00b9 * ?a\nin the target expression\n  S g * S g = 1\n\nA : Type u_1\nG : Type u_2\ninst\u271d\u00b9 : AddZeroClass A\ninst\u271d : Group G\nS : A \u2192 G\ng : A\n\u22a2 S g * S g = 1\nC:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmpkxcxd4sc."
+    },
+    {
+      "id": "M2_c2_asymmetry_spacelike_true_to_false",
+      "target": "allSpacelikeBetween C2 [d1] [d2] = true",
+      "replacement": "allSpacelikeBetween C2 [d1] [d2] = false",
+      "expected_failing_theorem": "c2_epstein_glaser_separation_asymmetry",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmpurzgbuls.lean:132:2: error: Tactic `decide` proved that the proposition\n  allSpacelikeBetween C2 [d1] [d2] = false \u2227\n    noInCausalPast C2 [d1] [d2] = true \u2227\n      noInCausalPast C2 [d2] [d1] = true \u2227\n        noInCausalPast C2 [d1, d2, d3] [d0] = true \u2227\n          allSpacelikeBetween C2 [d1, d2, d3] [d0] = false \u2227 noInCausalPas"
+    },
+    {
+      "id": "M3_posetN_extN1_swap_broken",
+      "target": "def extN1 : List (Fin 4) := [n0, n1, n3, n2]",
+      "replacement": "def extN1 : List (Fin 4) := [n2, n0, n1, n3]",
+      "expected_failing_theorem": "posetN_exact_five_linear_extensions",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmp39ev12k7.lean:165:2: error: Tactic `decide` proved that the proposition\n  (List.filter (isLinearExtension posetN) allPerms4).length = 5 \u2227\n    extN0 \u2208 List.filter (isLinearExtension posetN) allPerms4 \u2227\n      extN1 \u2208 List.filter (isLinearExtension posetN) allPerms4 \u2227\n        extN2 \u2208 List.filter (isLinearExtension posetN) allPerm"
+    },
+    {
+      "id": "M4_posetN_extN4_swap_broken",
+      "target": "def extN4 : List (Fin 4) := [n1, n3, n0, n2]",
+      "replacement": "def extN4 : List (Fin 4) := [n1, n2, n0, n3]",
+      "expected_failing_theorem": "posetN_all_five_extensions_swap_connected",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmpifc2rk_y.lean:165:2: error: Tactic `decide` proved that the proposition\n  (List.filter (isLinearExtension posetN) allPerms4).length = 5 \u2227\n    extN0 \u2208 List.filter (isLinearExtension posetN) allPerms4 \u2227\n      extN1 \u2208 List.filter (isLinearExtension posetN) allPerms4 \u2227\n        extN2 \u2208 List.filter (isLinearExtension posetN) allPerm"
+    },
+    {
+      "id": "M5_egCountertermDim4D_div24_to_div12",
+      "target": "(omega + 1) * (omega + 2) * (omega + 3) * (omega + 4) / 24",
+      "replacement": "(omega + 1) * (omega + 2) * (omega + 3) * (omega + 4) / 12",
+      "expected_failing_theorem": "coincident_diagonal_not_spacelike_and_counterterm_dim",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmpftwbn6ve.lean:258:46: error: Tactic `decide` proved that the proposition\n  egCountertermDim4D 0 = 1\nis false\nC:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmpftwbn6ve.lean:258:57: error: Tactic `decide` proved that the proposition\n  egCountertermDim4D 1 = 5\nis false\nC:\\Users\\a343o\\source\\repos\\theory_of_"
+    },
+    {
+      "id": "M6_twoPointKernel_counterterm_plus_to_minus",
+      "target": "if x = y then T1 x * T1 x + c else T1 x * T1 y",
+      "replacement": "if x = y then T1 x * T1 x - c else T1 x * T1 y",
+      "expected_failing_theorem": "diagonal_counterterm_preserves_off_diagonal_factorization",
+      "exit_code": 1,
+      "killed": true,
+      "diagnostic_excerpt": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\tmppcdyrxbw.lean:272:4: error: omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  a - b \u2265 1\nwhere\n a := c1\n b := c2\n'CampaignCqftCausalFactorizationImport.bogoliubovV_zero' does not depend on any axioms\n'CampaignCqftCausalFactorizationImport.bogoliubovV_cocycle_telescoping' does not depend on "
+    }
+  ]
+}
