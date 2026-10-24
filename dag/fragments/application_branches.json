@@ -4020,12 +4020,27 @@
       "source": [
         "dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md"
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md",
+        "dag/derivations/independent/fsp-hinge-lineon-sign-claim.md",
+        "dag/research/campaign_fsp-hinge-lineon-sign-claim_lean_replay.json",
+        "dag/research/campaign_fsp-hinge-lineon-sign-claim_lean_mutation.json",
+        "dag/research/campaign_fsp-hinge-lineon-sign-claim_independent.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.open_chain_nearest_neighbor_order_preserved",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.open_chain_jordan_wigner_nearest_neighbor_pass_count_zero",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.open_chain_closed_worldline_identity_permutation_sign_one",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.periodic_ring_cyclic_winding_even_particle_negative_sign_fence",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.tjunction_intersecting_hinge_exchange_negative_sign_fence",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.corner_lineon_turn_leaves_residual_hinge_defect_fence",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.su2_pauli_group_commutator_is_neg_identity",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.nonabelian_2gauge_hinge_trace_and_defect_mass_fence",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.signed_partition_sum_cancellation_on_intersecting_hinges",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.gin_c24_hinge_lineon_sign_claim_remains_open_fence"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading.",
+      "bottleneck": "Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading. Narrowed in lean4/CampaignFspHingeLineonSignClaim.lean and checks/independent/fsp-hinge-lineon-sign-claim.py while keeping status OPEN to: (1) on an isolated 1D open chain, non-colliding and non-crossing nearest-neighbor steps strictly preserve site ordering x1 < x2, pass over (i+1) - i - 1 = 0 intermediate Jordan-Wigner sites (sign +1), and induce the identity permutation on closed loops (sign +1); (2) on a periodic 1D hinge ring, cyclic winding of N = 2 fermions induces Equiv.swap 0 1 with negative sign (-1)^(2-1) = -1; (3) on two intersecting 1D hinges meeting at a 4-vertex T-junction, two hardcore fermions exchange positions in 6 non-colliding steps with odd permutation sign -1; (4) turning a 1D lineon around a 90-degree hinge corner leaves a weight-2 orthogonal vertex defect and drops the foliated categorical projection trace from +4 to -2 < 0; and (5) non-abelian 2-gauge sheet holonomy generators J = [[0,1],[-1,0]] and D = [[1,0],[0,-1]] have group commutator J D (-J) D = -I_2 with negative trace Tr(-I_2) = -2 < 0 and defect mass Phi_1 = 2 > 0 (GIN-C24).",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -10125,7 +10140,7 @@
       ],
       "output": "FSP-HINGE-LINEON-SIGN-CLAIM",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading.",
+      "mechanism": "Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading. Narrowed in lean4/CampaignFspHingeLineonSignClaim.lean and checks/independent/fsp-hinge-lineon-sign-claim.py while keeping status OPEN to: (1) on an isolated 1D open chain, non-colliding and non-crossing nearest-neighbor steps strictly preserve site ordering x1 < x2, pass over (i+1) - i - 1 = 0 intermediate Jordan-Wigner sites (sign +1), and induce the identity permutation on closed loops (sign +1); (2) on a periodic 1D hinge ring, cyclic winding of N = 2 fermions induces Equiv.swap 0 1 with negative sign (-1)^(2-1) = -1; (3) on two intersecting 1D hinges meeting at a 4-vertex T-junction, two hardcore fermions exchange positions in 6 non-colliding steps with odd permutation sign -1; (4) turning a 1D lineon around a 90-degree hinge corner leaves a weight-2 orthogonal vertex defect and drops the foliated categorical projection trace from +4 to -2 < 0; and (5) non-abelian 2-gauge sheet holonomy generators J = [[0,1],[-1,0]] and D = [[1,0],[0,-1]] have group commutator J D (-J) D = -I_2 with negative trace Tr(-I_2) = -2 < 0 and defect mass Phi_1 = 2 > 0 (GIN-C24).",
       "source": [
         "dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -16416,7 +16431,7 @@
       "parent_id": "TFQ-1218",
       "record_status": "OPEN_OBLIGATION",
       "summary": "Claimed: lineons confined to 1D hinge lines cannot exchange without collision, so their worldlines carry no nontrivial permutations and foliated fracton models are sign free; no model, path expansion or sign computation exists in this checkout.",
-      "obligation": "Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading.",
+      "obligation": "Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading. Narrowed in lean4/CampaignFspHingeLineonSignClaim.lean and checks/independent/fsp-hinge-lineon-sign-claim.py while keeping status OPEN to: (1) on an isolated 1D open chain, non-colliding and non-crossing nearest-neighbor steps strictly preserve site ordering x1 < x2, pass over (i+1) - i - 1 = 0 intermediate Jordan-Wigner sites (sign +1), and induce the identity permutation on closed loops (sign +1); (2) on a periodic 1D hinge ring, cyclic winding of N = 2 fermions induces Equiv.swap 0 1 with negative sign (-1)^(2-1) = -1; (3) on two intersecting 1D hinges meeting at a 4-vertex T-junction, two hardcore fermions exchange positions in 6 non-colliding steps with odd permutation sign -1; (4) turning a 1D lineon around a 90-degree hinge corner leaves a weight-2 orthogonal vertex defect and drops the foliated categorical projection trace from +4 to -2 < 0; and (5) non-abelian 2-gauge sheet holonomy generators J = [[0,1],[-1,0]] and D = [[1,0],[0,-1]] have group commutator J D (-J) D = -I_2 with negative trace Tr(-I_2) = -2 < 0 and defect mass Phi_1 = 2 > 0 (GIN-C24).",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "FSP-HINGE-LINEON-SIGN-CLAIM"
@@ -16425,12 +16440,30 @@
       "coda_atlas_paths": [],
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md",
-        "papers/core/fsp/theory_of_finite_fsp.md:762-775",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:34-34"
+        "papers/core/fsp/theory_of_finite_fsp.md:762-774",
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:34",
+        "dag/derivations/independent/fsp-hinge-lineon-sign-claim.md",
+        "dag/research/campaign_fsp-hinge-lineon-sign-claim_lean_replay.json",
+        "dag/research/campaign_fsp-hinge-lineon-sign-claim_lean_mutation.json",
+        "dag/research/campaign_fsp-hinge-lineon-sign-claim_independent.json"
       ],
-      "python": [],
+      "python": [
+        "code/python/src/fsp/foliated_fracton_2gauge_defects.py::FoliatedFractonEngine",
+        "checks/independent/fsp-hinge-lineon-sign-claim.py::main"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.open_chain_nearest_neighbor_order_preserved",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.open_chain_jordan_wigner_nearest_neighbor_pass_count_zero",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.open_chain_closed_worldline_identity_permutation_sign_one",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.periodic_ring_cyclic_winding_even_particle_negative_sign_fence",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.tjunction_intersecting_hinge_exchange_negative_sign_fence",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.corner_lineon_turn_leaves_residual_hinge_defect_fence",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.su2_pauli_group_commutator_is_neg_identity",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.nonabelian_2gauge_hinge_trace_and_defect_mass_fence",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.signed_partition_sum_cancellation_on_intersecting_hinges",
+        "lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.gin_c24_hinge_lineon_sign_claim_remains_open_fence"
+      ]
     },
     {
       "id": "TFQ-1220",

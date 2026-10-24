@@ -14,10 +14,10 @@
 Claimed: lineons confined to 1D hinge lines cannot exchange without collision, so their worldlines carry no nontrivial permutations and foliated fracton models are sign free; no model, path expansion or sign computation exists in this checkout.
 
 ### Governing Obligation
-Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading.
+Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading. Narrowed in lean4/CampaignFspHingeLineonSignClaim.lean and checks/independent/fsp-hinge-lineon-sign-claim.py while keeping status OPEN to: (1) on an isolated 1D open chain, non-colliding and non-crossing nearest-neighbor steps strictly preserve site ordering x1 < x2, pass over (i+1) - i - 1 = 0 intermediate Jordan-Wigner sites (sign +1), and induce the identity permutation on closed loops (sign +1); (2) on a periodic 1D hinge ring, cyclic winding of N = 2 fermions induces Equiv.swap 0 1 with negative sign (-1)^(2-1) = -1; (3) on two intersecting 1D hinges meeting at a 4-vertex T-junction, two hardcore fermions exchange positions in 6 non-colliding steps with odd permutation sign -1; (4) turning a 1D lineon around a 90-degree hinge corner leaves a weight-2 orthogonal vertex defect and drops the foliated categorical projection trace from +4 to -2 < 0; and (5) non-abelian 2-gauge sheet holonomy generators J = [[0,1],[-1,0]] and D = [[1,0],[0,-1]] have group commutator J D (-J) D = -I_2 with negative trace Tr(-I_2) = -2 < 0 and defect mass Phi_1 = 2 > 0 (GIN-C24).
 
 ### Witness Audit
-Cited FoliatedFracton2Gauge.lean::hinge_lineon_fermion_sign_elimination does not exist; abelian_hinge_defect_mass_zero and nonabelian_hinge_defect_mass_two are rfl on a defined trace table, and corner_lineon_obstruction_persists is decide on a constant. test_hinge_sign_elimination is absent from foliated_fracton_2gauge_defects.py.
+Replaced missing FoliatedFracton2Gauge.lean::hinge_lineon_sign_free_worldlines and rfl constant fixtures with lean4/CampaignFspHingeLineonSignClaim.lean (10 theorems, 0 sorrys, 6/6 mutants killed), code/python/src/fsp/foliated_fracton_2gauge_defects.py::FoliatedFractonEngine, and checks/independent/fsp-hinge-lineon-sign-claim.py (1992 exact Fock/worldline and 2-gauge holonomy checks, 0 failures).
 
 ---
 
@@ -28,13 +28,23 @@ Cited FoliatedFracton2Gauge.lean::hinge_lineon_fermion_sign_elimination does not
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.open_chain_nearest_neighbor_order_preserved`
+- `lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.open_chain_jordan_wigner_nearest_neighbor_pass_count_zero`
+- `lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.open_chain_closed_worldline_identity_permutation_sign_one`
+- `lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.periodic_ring_cyclic_winding_even_particle_negative_sign_fence`
+- `lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.tjunction_intersecting_hinge_exchange_negative_sign_fence`
+- `lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.corner_lineon_turn_leaves_residual_hinge_defect_fence`
+- `lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.su2_pauli_group_commutator_is_neg_identity`
+- `lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.nonabelian_2gauge_hinge_trace_and_defect_mass_fence`
+- `lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.signed_partition_sum_cancellation_on_intersecting_hinges`
+- `lean4/CampaignFspHingeLineonSignClaim.lean::CampaignFspHingeLineonSignClaim.gin_c24_hinge_lineon_sign_claim_remains_open_fence`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `code/python/src/fsp/foliated_fracton_2gauge_defects.py::FoliatedFractonEngine`
+- `checks/independent/fsp-hinge-lineon-sign-claim.py::main`
 
 ### Cited by the source, not in this checkout
 - `external:omega_majorana::lggr::hinge_lineon_sign_elimination (cited by the source, not in this checkout)`
@@ -50,5 +60,9 @@ Cited FoliatedFracton2Gauge.lean::hinge_lineon_fermion_sign_elimination does not
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `papers/core/fsp/theory_of_finite_fsp.md:762-775`
-  - `papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:34-34`
+  - `papers/core/fsp/theory_of_finite_fsp.md:762-774`
+  - `papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:34`
+  - `dag/derivations/independent/fsp-hinge-lineon-sign-claim.md`
+  - `dag/research/campaign_fsp-hinge-lineon-sign-claim_lean_replay.json`
+  - `dag/research/campaign_fsp-hinge-lineon-sign-claim_lean_mutation.json`
+  - `dag/research/campaign_fsp-hinge-lineon-sign-claim_independent.json`
