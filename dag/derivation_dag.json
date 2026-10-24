@@ -10058,6 +10058,7 @@
         "dag/derivations/17_finite_qcd/tfq_0033_construct_an_explicit_three_index_color_contraction_before_using_a_baryon_singlet_label.md"
       ],
       "lean": [
+        "lean4/CampaignTfq0033FiniteQcd.lean",
         "lean4/FiniteQM.lean"
       ],
       "rust": [],
@@ -42043,10 +42044,18 @@
         "TFQ-0033"
       ],
       "f004_refs": [
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/research/qcd_beta0_wilson_confinement_finite_map.md"
+        "dag/derivations/17_finite_qcd/tfq_0033_construct_an_explicit_three_index_color_contraction_before_using_a_baryon_singlet_label.md",
+        "dag/derivations/independent/tfq-0033.md",
+        "checks/independent/tfq-0033.py",
+        "lean4/CampaignTfq0033FiniteQcd.lean",
+        "lean4/FiniteQM.lean",
+        "dag/research/campaign_tfq-0033_lean_replay.json",
+        "dag/research/campaign_tfq-0033_lean_mutation.json",
+        "dag/research/campaign_tfq-0033_independent.json"
       ],
       "id": "TFQ-0033",
       "lean4": [
+        "lean4/CampaignTfq0033FiniteQcd.lean",
         "lean4/FiniteQM.lean"
       ],
       "local_id": "A08-024",
@@ -42054,16 +42063,13 @@
       "obligation": "Construct an explicit three-index color contraction before using a baryon singlet label.",
       "parent_id": "TFQ-0032",
       "python": [
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/qcd_beta0_wilson_confinement_control.py"
+        "checks/independent/tfq-0033.py"
       ],
       "record_status": "OPEN_OBLIGATION",
-      "rust": [
-        "absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/qcd_beta0_wilson_confinement_control.rs",
-        "absent: no epsilon_ijk three-quark color wavefunction in qcd_beta0_wilson_confinement_control.rs"
-      ],
+      "rust": [],
       "source_slice": "08",
       "stage": "FINITE_QCD",
-      "summary": "The antitriplet factor -2/3 is a two-index diquark channel, stored as antitriplet_diquark_casimir. A baryon color singlet would need a third tensor factor and an alternating contraction on three color indices. No such epsilon contraction is defined in the QCD control, in su_n.rs, or in the weighted generator list. The sextet factor +1/3 is likewise a two-quark channel. The obligation is to build that three-factor contraction explicitly, or to keep baryon language off this node. The diquark signs are a computational control of Casimir arithmetic only.",
+      "summary": "The antitriplet factor -2/3 is a two-index diquark channel, stored as antitriplet_diquark_casimir. A baryon color singlet would need a third tensor factor and an alternating contraction on three color indices. No such epsilon contraction is defined in the QCD control, in su_n.rs, or in the weighted generator list. The sextet factor +1/3 is likewise a two-quark channel. The obligation is to build that three-factor contraction explicitly, or to keep baryon language off this node. The diquark signs are a computational control of Casimir arithmetic only. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) two-quark SU(3) diquark Casimir arithmetic (-2/3 antitriplet and +1/3 sextet), 3 x 3 = 3 + 6 dimension decomposition, weighted trace cancellation 3*(-2/3) + 6*(1/3) = 0, half-strength rule -2/3 = (1/2)*(-4/3), and 3-quark 27 = 1 + 8 + 8 + 10 decomposition (su3_qq_diquark_casimir_channels, diquark_to_qqbar_singlet_half_strength_rule, su3_three_quark_dimension_decomposition); (2) explicit 3-index Levi-Civita tensor eps3 and alternating baryon color-singlet contraction baryonEpsilonContract u v w = det3Color u v w with norm 6, 2-index delta contraction, and Pauli color exclusion (levi_civita_3d_antisymmetry_and_six_nonzero_permutations, levi_civita_contracted_square_and_norm_six, three_index_epsilon_contraction_equals_det3, baryon_contraction_vanishes_on_identical_color_states); and (3) pairwise baryon singlet Casimir sum 3*(-2/3) = -2 and non-equivalence fences separating 2-index diquarks (dim 3, C_2 = 4/3 != 0) from 3-index baryon singlets (dim 1, C_2 = 0) (baryon_singlet_total_pairwise_casimir_equals_minus_two, two_index_diquark_not_three_index_baryon_singlet_fence, tfq0033_baryon_contraction_scope_ledger_fence).",
       "uuid": "8bea1efd-e8a2-507e-9b08-0a7689213a25"
     },
     {
