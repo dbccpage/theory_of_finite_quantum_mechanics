@@ -129,3 +129,4 @@ One line per target, in order attempted: `<UTC date> | <node id> | <outcome clas
 - **Lean 4 (`lean4/CampaignTfq0376Pregenesis.lean`)**: 10 zero-sorry theorems (`L4D`) formalizing the six Section-15 checklist slots (`Section15CheckSlot`), the three transition stages (`Successor`, `ProposedLift`, `LicensedTransition`), the tied-minima plurality fence, and the budget-stop non-obstruction / non-minimality fence.
 - **Mutation Gate (`dag/research/campaign_tfq-0376_lean_mutation.json`)**: 6/6 semantic mutations killed.
 - **Independent Checker (`checks/independent/tfq-0376.py`)**: 146 checks passed, 0 failed (`dag/research/campaign_tfq-0376_independent.json`).
+2026-10-24 | PGW-PYTHON-LEAN-CARRIER-BRIDGE | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/320 | Sealed reading L replays to R2L and reading F replays to R2F; a Python-to-Lean refinement stays open.
