@@ -1079,3 +1079,7 @@ lean_lib CampaignFspImaginaryMuRealDet where
 -- Campaign: TFQ-0008. Not a default target.
 lean_lib CampaignTfq0008FiniteDynamics where
   roots := #[`CampaignTfq0008FiniteDynamics]
+
+-- Campaign: CQFT-LOCAL-NET-AXIOMS-IMPORT. Not a default target.
+lean_lib CampaignCqftLocalNetAxiomsImport where
+  roots := #[`CampaignCqftLocalNetAxiomsImport]

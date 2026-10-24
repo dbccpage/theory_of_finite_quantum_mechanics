@@ -26398,19 +26398,26 @@
       "id": "CQFT-LOCAL-NET-AXIOMS-IMPORT",
       "stage": "CAUSAL_QFT",
       "status": "IMPORTED_ASSUMPTION",
-      "source_status": "Taken from the cited source as an assumption of this branch; the source's own hypotheses and exact wording are not audited here.",
-      "statement": "Imported structure: a spacetime with a causal order, and a family of unital star-algebras A(O) indexed by regions O with isotony (O1 inside O2 gives A(O1) inside A(O2)) and commutation of A(O1) and A(O2) when O1 and O2 are spacelike separated. The repository has finite strict posets (lean4/CausalOrder.lean) and finite matrix algebras, but no net over regions of a continuum and no Minkowski light cone; DS-QM033-064-074-083-QHELD-CONTINUUM records the light-cone causality as an external L2 lift.",
+      "source_status": "Finite pair counts and the stated integer-matrix products were checked in Lean 4 on 2026-10-23. The continuum net and the light cone remain an imported assumption; the 1964 source wording is not audited here.",
+      "statement": "On the four-point strict order with the ordered relations 0<2, 1<2 and 1<3, the scan of all 64 triples holds, no point is related to itself, there are exactly 3 ordered relations, and exactly 3 of the 6 unordered pairs are spacelike: {0,1}, {0,3} and {2,3}. For the integer matrices A=[[1,2],[3,4]], B=[[5,6],[7,8]], X=[[0,1],[1,0]] and Z=[[1,0],[0,-1]], both (A tensor I)(I tensor B) and (I tensor B)(A tensor I) equal A tensor B, whose sixteen entries sum to 260. The products (X tensor I)(Z tensor I) and (Z tensor I)(X tensor I) differ, their (0,2) entries are -1 and 1, and XZ+ZX is the zero matrix. The determinants are det A = -2, det B = -2, det X = -1 and det Z = -1. A net of unital star-algebras indexed by continuum regions, and a Minkowski light cone, stay imported. This record does not import CausalOrder.lean and does not transport these finite counts to a continuum net.",
       "source": [
         "dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md",
-        "external:doi:10.1063/1.1704187"
+        "external:doi:10.1063/1.1704187",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean",
+        "dag/derivations/independent/cqft-local-net-axioms-import.md",
+        "checks/independent/cqft-local-net-axioms-import.py"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::n_poset_pair_counts",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::disjoint_site_products",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::same_site_and_star"
+      ],
       "rust": [],
       "imported_structure": [
         "spacetime with causal order (assumption)",
         "net of local algebras with isotony and locality (assumption)"
       ],
-      "bottleneck": "Held outside the programme by declaration, as recorded for the light cone in the trunk node named in the gap route.",
+      "bottleneck": "The counts and products are one supplied four-point order and four supplied integer matrices. They are not a net indexed by continuum regions and not a Minkowski light cone. The Haag-Kastler import and the external light-cone lift named by DS-QM033-064-074-083-QHELD-CONTINUUM stay open. CausalOrder.lean is not a premise of a continuum theorem in this record.",
       "tags": [
         "frontier-branch",
         "frontier:causal_qft",
@@ -70742,17 +70749,23 @@
         "dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md"
       ],
       "id": "TFQ-2103",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::n_poset_pair_counts",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::disjoint_site_products",
+        "lean4/CampaignCqftLocalNetAxiomsImport.lean::same_site_and_star"
+      ],
       "local_id": "CQFT-LOCAL-NET-AXIOMS-IMPORT",
       "name": "Imported: a causal spacetime with a net of local algebras",
-      "obligation": "Held outside the programme by declaration, as recorded for the light cone in the trunk node named in the gap route.",
+      "obligation": "The counts and products are one supplied four-point order and four supplied integer matrices. They are not a net indexed by continuum regions and not a Minkowski light cone. The Haag-Kastler import and the external light-cone lift named by DS-QM033-064-074-083-QHELD-CONTINUUM stay open. CausalOrder.lean is not a premise of a continuum theorem in this record.",
       "parent_id": "TFQ-2102",
-      "python": [],
+      "python": [
+        "checks/independent/cqft-local-net-axioms-import.py"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "frontier_branches",
       "stage": "CAUSAL_QFT",
-      "summary": "Imported structure: a spacetime with a causal order, and a family of unital star-algebras A(O) indexed by regions O with isotony (O1 inside O2 gives A(O1) inside A(O2)) and commutation of A(O1) and A(O2) when O1 and O2 are spacelike separated. The repository has finite strict posets (lean4/CausalOrder.lean) and finite matrix algebras, but no net over regions of a continuum and no Minkowski light cone; DS-QM033-064-074-083-QHELD-CONTINUUM records the light-cone causality as an external L2 lift.",
+      "summary": "On the four-point strict order with the ordered relations 0<2, 1<2 and 1<3, the scan of all 64 triples holds, no point is related to itself, there are exactly 3 ordered relations, and exactly 3 of the 6 unordered pairs are spacelike: {0,1}, {0,3} and {2,3}. For the integer matrices A=[[1,2],[3,4]], B=[[5,6],[7,8]], X=[[0,1],[1,0]] and Z=[[1,0],[0,-1]], both (A tensor I)(I tensor B) and (I tensor B)(A tensor I) equal A tensor B, whose sixteen entries sum to 260. The products (X tensor I)(Z tensor I) and (Z tensor I)(X tensor I) differ, their (0,2) entries are -1 and 1, and XZ+ZX is the zero matrix. The determinants are det A = -2, det B = -2, det X = -1 and det Z = -1. A net of unital star-algebras indexed by continuum regions, and a Minkowski light cone, stay imported. This record does not import CausalOrder.lean and does not transport these finite counts to a continuum net.",
       "uuid": "ead8c2b9-1331-590e-bfcb-5bf3cf5440f7"
     },
     {
