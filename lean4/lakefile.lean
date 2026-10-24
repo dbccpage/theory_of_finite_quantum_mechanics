@@ -1131,3 +1131,7 @@ lean_lib CampaignTfq0119ContinuumInterface where
 -- Campaign: TFQ-0123. Not a default target.
 lean_lib CampaignTfq0123ContinuumInterface where
   roots := #[`CampaignTfq0123ContinuumInterface]
+
+-- Campaign: FQ-GAP-C500-ORIGINAL-TARGETS. Not a default target.
+lean_lib CampaignFqGapC500Blocks where
+  roots := #[`CampaignFqGapC500Blocks]
