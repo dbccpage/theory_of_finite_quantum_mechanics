@@ -36,7 +36,7 @@ QM206-C1 4-vertex plaquette cochain exactness d1(d0 f)=0, QM206-C3 coboundary ho
 
 ## Review
 
-- PFP review: [dag/results/DS-QM206-BOUNDARY-SYNTHESIS/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM206-BOUNDARY-SYNTHESIS/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/DS-QM206-BOUNDARY-SYNTHESIS/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM206-BOUNDARY-SYNTHESIS/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Actual C4 image/kernel and all composition controls are exact; additive homomorphism, collision and missed-arrow statements are kernel checked.
   - does not support: Define the intended GTOC/Hilb categories and actual descent functor, prove its properties and discharge the QM205 pointer-basis stub. The toy map is not that functor.
   - next test: Define the intended GTOC/Hilb categories and actual descent functor, prove its properties and discharge the QM205 pointer-basis stub. The toy map is not that functor.

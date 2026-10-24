@@ -38,7 +38,7 @@ Unmet after the PFP review: Prove the full path-enumeration/matrix-power bridge 
 
 ## Review
 
-- PFP review: [dag/results/DS-QM030-GRADED-PATHSUM/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM030-GRADED-PATHSUM/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/DS-QM030-GRADED-PATHSUM/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM030-GRADED-PATHSUM/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact two-state path enumeration, matrix powers and graded composition agree on retained lengths, including zero.
   - does not support: Prove the full path-enumeration/matrix-power bridge and transport to a selected physical dynamics; a weighted graph and chosen grading are inputs.
   - next test: Prove the full path-enumeration/matrix-power bridge and transport to a selected physical dynamics; a weighted graph and chosen grading are inputs.

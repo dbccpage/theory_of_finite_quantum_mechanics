@@ -1,53 +1,43 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "lean4/CampaignPgwIdentityConventionUndecidable.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
   "contract": {
     "AuthorityEffect": "None",
     "artifact": {
       "language": "Lean 4",
       "path": "lean4/CampaignPgwIdentityConventionUndecidable.lean",
-      "sha256": "cf0d8767ca75f8f8f96c9fb81293d8e57d534fb99fe9bbc425e7da6ba3b801c4"
+      "sha256": "a3bb1c027c2e3421e71fa2dbb67bca6a1d60e9c33dfdcb181d07bfd157b4bc09"
     },
     "boundaries": [
-      "Does not derive or choose the identity convention (opaque vs exact-inscription) from unannotated prompts or model trial replies; the convention remains a host-supplied import."
+      "AuthorityEffect: None. Original campaign target remains open or imported.",
+      "Capability is assessed from delivered code. This artifact is below the substantive L4 floor."
     ],
-    "contract_id": "campaign-pgw-identity-convention-undecidable-registration",
-    "evidence": [
-      {
-        "path": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json",
-        "sha256": "6682d4211fd70cf4a7ba6c5068c7f235bc8b1190438fb217b94f46c1af173146"
-      },
-      {
-        "path": "dag/research/campaign_pgw-identity-convention-undecidable_lean_mutation.json",
-        "sha256": "f864dad6da3e8714cff0753b0f477067dbc6a81565d54ec4ff89e34dcc1ce13c"
-      },
-      {
-        "path": "dag/research/campaign_pgw-identity-convention-undecidable_independent.json",
-        "sha256": "ac89924d9263e3000e29e9c18a122eddc388d944a1a21e19b3559a48154fc365"
-      },
-      {
-        "path": "docs/overclaim/reviews/2026-10-24_campaign-pgw-identity-convention-undecidable-precommit.md",
-        "sha256": "2efa2046ba64453c02bb0ad104cee82b91b5def3ab0b5724fc3d24270298b43e"
-      },
-      {
-        "path": "SCORING.md",
-        "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
-      }
-    ],
+    "contract_urn": "urn:tfqm:independent-pr-review:CampaignPgwIdentityConventionUndecidable",
     "owned_invariants": [
-      "All 11 exported theorems in CampaignPgwIdentityConventionUndecidable compile under Lean 4 without sorry or custom axioms.",
-      "6/6 semantic mutations in CampaignPgwIdentityConventionUndecidable are killed by Lake and paired with 9023 independent Python checks."
+      "Finite presentation sets and supplied observation lists define two explicit identity conventions. Supply preserves the observation list; profile equality matches SameProfile; profile-image cardinality is bounded by presentation cardinality; injective profiles make the conventions agree; unary-profile equality matches the imported Collapsed predicate. A closed fixture distinguishes the two conventions, so one Boolean evaluator cannot agree with both everywhere. This is model ambiguity, not a computability-theoretic undecidability theorem. The absent-convention query returns its tagged result even when its branch values agree. The trial-convention list is supplied data, not a checked transcription of trial files. The independent observation-family sweep uses carrier sizes 1 through 3, despite its introductory mention of 4; size 4 belongs to the separate unary-regime sweep."
     ],
-    "purpose": "Formalizes observation-family Pre-Genesis regimes, supply preservation of O_1 = O_0, equivalence with PreMssn.Observation.SameProfile and GenesisComputation.Collapsed, the Prompt 12 opaque vs exact-inscription branch divergence, agreement on profile-injective regimes, and convention-free evaluator no-go fences for PGW-IDENTITY-CONVENTION-UNDECIDABLE (TFQ-0423).",
-    "schema_id": "tfqm.source-contract.v1"
+    "symbols": [
+      "supplyInscription_preserves_obs_and_enlarges_presentation",
+      "obsProfile_eq_iff_sameProfile_and_empty_obs_collapse",
+      "supply_markA_after_ground_branch_divergence",
+      "stateCount_supply_markA_delta_zero_vs_one",
+      "opaque_stateCount_le_exact_stateCount",
+      "conventions_agree_iff_fresh_profile",
+      "injective_obsProfile_implies_conventions_coincide",
+      "genesisUnaryProfile_eq_iff_collapsed",
+      "unformed_vs_firstSeparation_regime_convention_bridge",
+      "no_convention_free_evaluator_fence",
+      "trial_votes_do_not_determine_convention_fence"
+    ]
   },
-  "current_contract": "c38fb9970fbbeed27a778b894a8fdb7b7970cc9b17f471de84c2ff42a6f073ed",
-  "current_scoring": "6e4777349de46ade8dd34e699c3d125b000032fdd16e2b219f20317e3ab4a49d",
   "contract_history": [
     {
-      "sha256": "c38fb9970fbbeed27a778b894a8fdb7b7970cc9b17f471de84c2ff42a6f073ed",
       "bytes": 2145,
+      "original_paths": [
+        "#campaign-pgw-identity-convention-undecidable-registration"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignPgwIdentityConventionUndecidable.lean\",\n    \"sha256\": \"cf0d8767ca75f8f8f96c9fb81293d8e57d534fb99fe9bbc425e7da6ba3b801c4\"\n  },\n  \"boundaries\": [\n    \"Does not derive or choose the identity convention (opaque vs exact-inscription) from unannotated prompts or model trial replies; the convention remains a host-supplied import.\"\n  ],\n  \"contract_id\": \"campaign-pgw-identity-convention-undecidable-registration\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json\",\n      \"sha256\": \"6682d4211fd70cf4a7ba6c5068c7f235bc8b1190438fb217b94f46c1af173146\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-identity-convention-undecidable_lean_mutation.json\",\n      \"sha256\": \"f864dad6da3e8714cff0753b0f477067dbc6a81565d54ec4ff89e34dcc1ce13c\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-identity-convention-undecidable_independent.json\",\n      \"sha256\": \"ac89924d9263e3000e29e9c18a122eddc388d944a1a21e19b3559a48154fc365\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-pgw-identity-convention-undecidable-precommit.md\",\n      \"sha256\": \"2efa2046ba64453c02bb0ad104cee82b91b5def3ab0b5724fc3d24270298b43e\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"All 11 exported theorems in CampaignPgwIdentityConventionUndecidable compile under Lean 4 without sorry or custom axioms.\",\n    \"6/6 semantic mutations in CampaignPgwIdentityConventionUndecidable are killed by Lake and paired with 9023 independent Python checks.\"\n  ],\n  \"purpose\": \"Formalizes observation-family Pre-Genesis regimes, supply preservation of O_1 = O_0, equivalence with PreMssn.Observation.SameProfile and GenesisComputation.Collapsed, the Prompt 12 opaque vs exact-inscription branch divergence, agreement on profile-injective regimes, and convention-free evaluator no-go fences for PGW-IDENTITY-CONVENTION-UNDECIDABLE (TFQ-0423).\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
@@ -88,16 +78,61 @@
         "purpose": "Formalizes observation-family Pre-Genesis regimes, supply preservation of O_1 = O_0, equivalence with PreMssn.Observation.SameProfile and GenesisComputation.Collapsed, the Prompt 12 opaque vs exact-inscription branch divergence, agreement on profile-injective regimes, and convention-free evaluator no-go fences for PGW-IDENTITY-CONVENTION-UNDECIDABLE (TFQ-0423).",
         "schema_id": "tfqm.source-contract.v1"
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignPgwIdentityConventionUndecidable.lean\",\n    \"sha256\": \"cf0d8767ca75f8f8f96c9fb81293d8e57d534fb99fe9bbc425e7da6ba3b801c4\"\n  },\n  \"boundaries\": [\n    \"Does not derive or choose the identity convention (opaque vs exact-inscription) from unannotated prompts or model trial replies; the convention remains a host-supplied import.\"\n  ],\n  \"contract_id\": \"campaign-pgw-identity-convention-undecidable-registration\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json\",\n      \"sha256\": \"6682d4211fd70cf4a7ba6c5068c7f235bc8b1190438fb217b94f46c1af173146\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-identity-convention-undecidable_lean_mutation.json\",\n      \"sha256\": \"f864dad6da3e8714cff0753b0f477067dbc6a81565d54ec4ff89e34dcc1ce13c\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-identity-convention-undecidable_independent.json\",\n      \"sha256\": \"ac89924d9263e3000e29e9c18a122eddc388d944a1a21e19b3559a48154fc365\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-pgw-identity-convention-undecidable-precommit.md\",\n      \"sha256\": \"2efa2046ba64453c02bb0ad104cee82b91b5def3ab0b5724fc3d24270298b43e\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"All 11 exported theorems in CampaignPgwIdentityConventionUndecidable compile under Lean 4 without sorry or custom axioms.\",\n    \"6/6 semantic mutations in CampaignPgwIdentityConventionUndecidable are killed by Lake and paired with 9023 independent Python checks.\"\n  ],\n  \"purpose\": \"Formalizes observation-family Pre-Genesis regimes, supply preservation of O_1 = O_0, equivalence with PreMssn.Observation.SameProfile and GenesisComputation.Collapsed, the Prompt 12 opaque vs exact-inscription branch divergence, agreement on profile-injective regimes, and convention-free evaluator no-go fences for PGW-IDENTITY-CONVENTION-UNDECIDABLE (TFQ-0423).\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "sha256": "c38fb9970fbbeed27a778b894a8fdb7b7970cc9b17f471de84c2ff42a6f073ed"
+    },
+    {
+      "bytes": 2030,
       "original_paths": [
-        "#campaign-pgw-identity-convention-undecidable-registration"
-      ]
+        "lean4/CampaignPgwIdentityConventionUndecidable.contract.score.yaml#independent-pr-review-2026-10-24"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignPgwIdentityConventionUndecidable.lean\",\n    \"sha256\": \"a3bb1c027c2e3421e71fa2dbb67bca6a1d60e9c33dfdcb181d07bfd157b4bc09\"\n  },\n  \"boundaries\": [\n    \"AuthorityEffect: None. Original campaign target remains open or imported.\",\n    \"Capability is assessed from delivered code. This artifact is below the substantive L4 floor.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:independent-pr-review:CampaignPgwIdentityConventionUndecidable\",\n  \"owned_invariants\": [\n    \"Finite presentation sets and supplied observation lists define two explicit identity conventions. Supply preserves the observation list; profile equality matches SameProfile; profile-image cardinality is bounded by presentation cardinality; injective profiles make the conventions agree; unary-profile equality matches the imported Collapsed predicate. A closed fixture distinguishes the two conventions, so one Boolean evaluator cannot agree with both everywhere. This is model ambiguity, not a computability-theoretic undecidability theorem. The absent-convention query returns its tagged result even when its branch values agree. The trial-convention list is supplied data, not a checked transcription of trial files. The independent observation-family sweep uses carrier sizes 1 through 3, despite its introductory mention of 4; size 4 belongs to the separate unary-regime sweep.\"\n  ],\n  \"symbols\": [\n    \"supplyInscription_preserves_obs_and_enlarges_presentation\",\n    \"obsProfile_eq_iff_sameProfile_and_empty_obs_collapse\",\n    \"supply_markA_after_ground_branch_divergence\",\n    \"stateCount_supply_markA_delta_zero_vs_one\",\n    \"opaque_stateCount_le_exact_stateCount\",\n    \"conventions_agree_iff_fresh_profile\",\n    \"injective_obsProfile_implies_conventions_coincide\",\n    \"genesisUnaryProfile_eq_iff_collapsed\",\n    \"unformed_vs_firstSeparation_regime_convention_bridge\",\n    \"no_convention_free_evaluator_fence\",\n    \"trial_votes_do_not_determine_convention_fence\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignPgwIdentityConventionUndecidable.lean",
+          "sha256": "a3bb1c027c2e3421e71fa2dbb67bca6a1d60e9c33dfdcb181d07bfd157b4bc09"
+        },
+        "boundaries": [
+          "AuthorityEffect: None. Original campaign target remains open or imported.",
+          "Capability is assessed from delivered code. This artifact is below the substantive L4 floor."
+        ],
+        "contract_urn": "urn:tfqm:independent-pr-review:CampaignPgwIdentityConventionUndecidable",
+        "owned_invariants": [
+          "Finite presentation sets and supplied observation lists define two explicit identity conventions. Supply preserves the observation list; profile equality matches SameProfile; profile-image cardinality is bounded by presentation cardinality; injective profiles make the conventions agree; unary-profile equality matches the imported Collapsed predicate. A closed fixture distinguishes the two conventions, so one Boolean evaluator cannot agree with both everywhere. This is model ambiguity, not a computability-theoretic undecidability theorem. The absent-convention query returns its tagged result even when its branch values agree. The trial-convention list is supplied data, not a checked transcription of trial files. The independent observation-family sweep uses carrier sizes 1 through 3, despite its introductory mention of 4; size 4 belongs to the separate unary-regime sweep."
+        ],
+        "symbols": [
+          "supplyInscription_preserves_obs_and_enlarges_presentation",
+          "obsProfile_eq_iff_sameProfile_and_empty_obs_collapse",
+          "supply_markA_after_ground_branch_divergence",
+          "stateCount_supply_markA_delta_zero_vs_one",
+          "opaque_stateCount_le_exact_stateCount",
+          "conventions_agree_iff_fresh_profile",
+          "injective_obsProfile_implies_conventions_coincide",
+          "genesisUnaryProfile_eq_iff_collapsed",
+          "unformed_vs_firstSeparation_regime_convention_bridge",
+          "no_convention_free_evaluator_fence",
+          "trial_votes_do_not_determine_convention_fence"
+        ]
+      },
+      "sha256": "452e29d99b8980b1b26fa2844e4407f967d7ad91721ca0c47252aff2997498da"
     }
   ],
+  "current_contract": "452e29d99b8980b1b26fa2844e4407f967d7ad91721ca0c47252aff2997498da",
+  "current_scoring": "9de904b60b884057f9ba81dc74abe6a03af401eb0ee83f981a543941cb916625",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "#campaign-pgw-identity-convention-undecidable-registration": "c38fb9970fbbeed27a778b894a8fdb7b7970cc9b17f471de84c2ff42a6f073ed",
+    "#campaign-pgw-identity-convention-undecidable-scoring": "6e4777349de46ade8dd34e699c3d125b000032fdd16e2b219f20317e3ab4a49d"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "6e4777349de46ade8dd34e699c3d125b000032fdd16e2b219f20317e3ab4a49d",
       "bytes": 2876,
+      "original_paths": [
+        "#campaign-pgw-identity-convention-undecidable-scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignPgwIdentityConventionUndecidable.lean\",\n    \"sha256\": \"cf0d8767ca75f8f8f96c9fb81293d8e57d534fb99fe9bbc425e7da6ba3b801c4\"\n  },\n  \"assessment_id\": \"campaign-pgw-identity-convention-undecidable-registration\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Formalizes observation-family Pre-Genesis regimes, supply preservation of O_1 = O_0, equivalence with PreMssn.Observation.SameProfile and GenesisComputation.Collapsed, Prompt 12 opaque vs exact-inscription branch divergence, and agreement on profile-injective regimes.\",\n    \"G2\": \"Replay receipt records a passing Lake build of CampaignPgwIdentityConventionUndecidable under Lean 4.35.0 with zero sorry and standard axioms only.\",\n    \"G3\": \"Explicitly fences convention-free boolean evaluators and the Prompt 12 trial record split while keeping the node at CONDITIONAL.\",\n    \"G4\": \"6/6 semantic mutations killed by Lake and paired with 9023 exact-arithmetic independent Python checks.\",\n    \"G5\": \"Registered as non-default lean_lib CampaignPgwIdentityConventionUndecidable in lean4/lakefile.lean.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T21:15:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json\",\n      \"sha256\": \"6682d4211fd70cf4a7ba6c5068c7f235bc8b1190438fb217b94f46c1af173146\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-identity-convention-undecidable_lean_mutation.json\",\n      \"sha256\": \"f864dad6da3e8714cff0753b0f477067dbc6a81565d54ec4ff89e34dcc1ce13c\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-identity-convention-undecidable_independent.json\",\n      \"sha256\": \"ac89924d9263e3000e29e9c18a122eddc388d944a1a21e19b3559a48154fc365\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-pgw-identity-convention-undecidable-precommit.md\",\n      \"sha256\": \"2efa2046ba64453c02bb0ad104cee82b91b5def3ab0b5724fc3d24270298b43e\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Formalizes observation-family and Genesis unary-profile convention branching and scope fences for PGW-IDENTITY-CONVENTION-UNDECIDABLE.\",\n  \"open_higher_grade_findings\": [\n    \"Selection of an identity convention remains an external host declaration rather than a theorem of the regime.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
@@ -161,16 +196,72 @@
         "score_token": "L4D",
         "support_exception": false
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignPgwIdentityConventionUndecidable.lean\",\n    \"sha256\": \"cf0d8767ca75f8f8f96c9fb81293d8e57d534fb99fe9bbc425e7da6ba3b801c4\"\n  },\n  \"assessment_id\": \"campaign-pgw-identity-convention-undecidable-registration\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Formalizes observation-family Pre-Genesis regimes, supply preservation of O_1 = O_0, equivalence with PreMssn.Observation.SameProfile and GenesisComputation.Collapsed, Prompt 12 opaque vs exact-inscription branch divergence, and agreement on profile-injective regimes.\",\n    \"G2\": \"Replay receipt records a passing Lake build of CampaignPgwIdentityConventionUndecidable under Lean 4.35.0 with zero sorry and standard axioms only.\",\n    \"G3\": \"Explicitly fences convention-free boolean evaluators and the Prompt 12 trial record split while keeping the node at CONDITIONAL.\",\n    \"G4\": \"6/6 semantic mutations killed by Lake and paired with 9023 exact-arithmetic independent Python checks.\",\n    \"G5\": \"Registered as non-default lean_lib CampaignPgwIdentityConventionUndecidable in lean4/lakefile.lean.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T21:15:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json\",\n      \"sha256\": \"6682d4211fd70cf4a7ba6c5068c7f235bc8b1190438fb217b94f46c1af173146\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-identity-convention-undecidable_lean_mutation.json\",\n      \"sha256\": \"f864dad6da3e8714cff0753b0f477067dbc6a81565d54ec4ff89e34dcc1ce13c\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-identity-convention-undecidable_independent.json\",\n      \"sha256\": \"ac89924d9263e3000e29e9c18a122eddc388d944a1a21e19b3559a48154fc365\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-pgw-identity-convention-undecidable-precommit.md\",\n      \"sha256\": \"2efa2046ba64453c02bb0ad104cee82b91b5def3ab0b5724fc3d24270298b43e\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Formalizes observation-family and Genesis unary-profile convention branching and scope fences for PGW-IDENTITY-CONVENTION-UNDECIDABLE.\",\n  \"open_higher_grade_findings\": [\n    \"Selection of an identity convention remains an external host declaration rather than a theorem of the regime.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "sha256": "6e4777349de46ade8dd34e699c3d125b000032fdd16e2b219f20317e3ab4a49d"
+    },
+    {
+      "bytes": 3540,
       "original_paths": [
-        "#campaign-pgw-identity-convention-undecidable-scoring"
-      ]
+        "lean4/CampaignPgwIdentityConventionUndecidable.contract.score.yaml#independent-pr-review-2026-10-24"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignPgwIdentityConventionUndecidable.lean\",\n    \"sha256\": \"a3bb1c027c2e3421e71fa2dbb67bca6a1d60e9c33dfdcb181d07bfd157b4bc09\"\n  },\n  \"assessment_id\": \"independent-pr-review-2026-10-24\",\n  \"basis\": {\n    \"G1\": \"Declaration types were read against the narrowed review; physical identifications and larger target claims are explicitly excluded.\",\n    \"G2\": \"Exact formal arithmetic over the stated carriers; supplied tables/formulas remain supplied. See per-declaration types and independent replay.\",\n    \"G3\": \"Kernel elaboration and axiom output, with only the three admitted standard axioms. No added sorry/admit/axiom/native_decide/unsafe is permitted.\",\n    \"G4\": \"Fresh module and independent-check outputs are bound in the cited receipt. No new mutation campaign was run; zero new mutants, detection ratio null. Legacy six-kill summaries lack full diagnostic attribution and are not a current independent mutation certificate.\",\n    \"G5\": \"Manual structural review: this is a table, elementary model, or bounded-domain algebra library, not a checked production certificate/admission lifecycle. No claim to A/B maintainability metrics is made.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T22:31:04.304246+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr_321_independent_review_validation.json\",\n      \"sha256\": \"1ba699efb973be580633fc3a161869654db117e1d799403562fce0d29dbf0dca\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_pr-321-independent.md\",\n      \"sha256\": \"ed918e0c079b6fc1845a61ef734b5d31875a8914d700f7d7578496ce953c00ea\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"Finite presentation sets and supplied observation lists define two explicit identity conventions. Supply preserves the observation list; profile equality matches SameProfile; profile-image cardinality is bounded by presentation cardinality; injective profiles make the conventions agree; unary-profile equality matches the imported Collapsed predicate. A closed fixture distinguishes the two conventions, so one Boolean evaluator cannot agree with both everywhere. This is model ambiguity, not a computability-theoretic undecidability theorem. The absent-convention query returns its tagged result even when its branch values agree. The trial-convention list is supplied data, not a checked transcription of trial files. The independent observation-family sweep uses carrier sizes 1 through 3, despite its introductory mention of 4; size 4 belongs to the separate unary-regime sweep. SCORING section 2: literal tables/elementary examples and bounded domain theorem developments do not acquire production architecture from their subject or theorem count.\",\n  \"mutation_accounting\": {\n    \"detection_fraction\": null,\n    \"equivalent\": 0,\n    \"generated\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 0,\n    \"killed\": 0,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\",\n  \"supersedes_assessment_reason\": \"Prior L4 claims and any copied supergravity assessment text are withdrawn. Prior records remain in history; the current level follows the concrete delivered abstraction.\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignPgwIdentityConventionUndecidable.lean",
+          "sha256": "a3bb1c027c2e3421e71fa2dbb67bca6a1d60e9c33dfdcb181d07bfd157b4bc09"
+        },
+        "assessment_id": "independent-pr-review-2026-10-24",
+        "basis": {
+          "G1": "Declaration types were read against the narrowed review; physical identifications and larger target claims are explicitly excluded.",
+          "G2": "Exact formal arithmetic over the stated carriers; supplied tables/formulas remain supplied. See per-declaration types and independent replay.",
+          "G3": "Kernel elaboration and axiom output, with only the three admitted standard axioms. No added sorry/admit/axiom/native_decide/unsafe is permitted.",
+          "G4": "Fresh module and independent-check outputs are bound in the cited receipt. No new mutation campaign was run; zero new mutants, detection ratio null. Legacy six-kill summaries lack full diagnostic attribution and are not a current independent mutation certificate.",
+          "G5": "Manual structural review: this is a table, elementary model, or bounded-domain algebra library, not a checked production certificate/admission lifecycle. No claim to A/B maintainability metrics is made."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-24T22:31:04.304246+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/pr_321_independent_review_validation.json",
+            "sha256": "1ba699efb973be580633fc3a161869654db117e1d799403562fce0d29dbf0dca"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-24_pr-321-independent.md",
+            "sha256": "ed918e0c079b6fc1845a61ef734b5d31875a8914d700f7d7578496ce953c00ea"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Finite presentation sets and supplied observation lists define two explicit identity conventions. Supply preserves the observation list; profile equality matches SameProfile; profile-image cardinality is bounded by presentation cardinality; injective profiles make the conventions agree; unary-profile equality matches the imported Collapsed predicate. A closed fixture distinguishes the two conventions, so one Boolean evaluator cannot agree with both everywhere. This is model ambiguity, not a computability-theoretic undecidability theorem. The absent-convention query returns its tagged result even when its branch values agree. The trial-convention list is supplied data, not a checked transcription of trial files. The independent observation-family sweep uses carrier sizes 1 through 3, despite its introductory mention of 4; size 4 belongs to the separate unary-regime sweep. SCORING section 2: literal tables/elementary examples and bounded domain theorem developments do not acquire production architecture from their subject or theorem count.",
+        "mutation_accounting": {
+          "detection_fraction": null,
+          "equivalent": 0,
+          "generated": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 0,
+          "survived": 0,
+          "unrun": 0
+        },
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3D",
+        "supersedes_assessment_reason": "Prior L4 claims and any copied supergravity assessment text are withdrawn. Prior records remain in history; the current level follows the concrete delivered abstraction."
+      },
+      "sha256": "9de904b60b884057f9ba81dc74abe6a03af401eb0ee83f981a543941cb916625"
     }
-  ],
-  "legacy_paths": {
-    "#campaign-pgw-identity-convention-undecidable-registration": "c38fb9970fbbeed27a778b894a8fdb7b7970cc9b17f471de84c2ff42a6f073ed",
-    "#campaign-pgw-identity-convention-undecidable-scoring": "6e4777349de46ade8dd34e699c3d125b000032fdd16e2b219f20317e3ab4a49d"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Recorded L4D assessment in binding contract-score document."
+  ]
 }

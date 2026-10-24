@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 1
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -38,7 +38,7 @@ Overlaps FQ-GAP-U1-CIRCLE (other fragment); here it is the 062/207 ledger statem
 
 ## Review
 
-- PFP review: [dag/results/DS-QM062-U1-RESIDUES-IMPORT/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM062-U1-RESIDUES-IMPORT/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM062-U1-RESIDUES-IMPORT/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM062-U1-RESIDUES-IMPORT/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: no.
   - narrowest claim: Actual J powers show order-four periodicity on retained indices; modulo-four aliasing is kernel checked for every natural k.
   - does not support: Supply continuity/topology, local tomography and a real exclusion/selection theorem if a full U(1) carrier is wanted. No finite-order exclusion follows from unbounded multiples.
   - next test: Supply continuity/topology, local tomography and a real exclusion/selection theorem if a full U(1) carrier is wanted. No finite-order exclusion follows from unbounded multiples.

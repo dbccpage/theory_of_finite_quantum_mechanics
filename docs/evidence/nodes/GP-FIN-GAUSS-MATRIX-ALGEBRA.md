@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -37,7 +37,7 @@ Lean-compiled; axioms propext, Quot.sound
 
 ## Review
 
-- PFP review: [dag/results/GP-FIN-GAUSS-MATRIX-ALGEBRA/reviews/20261019_structure_audit/review_result.json](../../../dag/results/GP-FIN-GAUSS-MATRIX-ALGEBRA/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/GP-FIN-GAUSS-MATRIX-ALGEBRA/reviews/20261019_structure_audit/review_result.json](../../../dag/results/GP-FIN-GAUSS-MATRIX-ALGEBRA/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Finite Gauss-integer matrix recovery, uniqueness, composition and adjoint laws are rechecked generally on the source finite enumeration interface; exact native 2x2 examples independently verify the concrete laws.
   - does not support: Gaussian coefficients, linearity, finite enumeration and pairing remain assumptions. M_n(Z\[i\]) supplies neither M_n(C), spectral completeness, CPTP, unique tensor nor continuous time.
   - next test: Gaussian coefficients, linearity, finite enumeration and pairing remain assumptions. M_n(Z\[i\]) supplies neither M_n(C), spectral completeness, CPTP, unique tensor nor continuous time.
