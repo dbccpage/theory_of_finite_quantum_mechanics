@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -41,7 +41,7 @@ The 20261019 scope audit remains a determinant obstruction on a supplied rationa
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: no.
+- PFP review: [dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: On the admitted 2x2 rational coefficient host every simple tensor has zero coefficient determinant; \[\[1,0\],\[0,1\]\] has determinant one and is not simple. Native norm multiplication is checked on retained inputs.
   - does not support: Formalize state/effect cones, covariance requirements, their min/max comparison and any uniqueness theorem; general tensor selection remains an import.
   - next test: Formalize state/effect cones, covariance requirements, their min/max comparison and any uniqueness theorem; general tensor selection remains an import.
@@ -152,7 +152,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/tensor_countermodel_validation.json`
 
 - file: [dag/research/tensor_countermodel_validation.json](../../../dag/research/tensor_countermodel_validation.json)
-- sha256 (`lf-normalised`): `e7faba511562e874acfe210845908642ac555f534bd9b85e5e9f5c8621bfa55a`
+- sha256 (`lf-normalised`): `40b9327d40e94317e2b8a4c302de00dba3533ee9e940c2968c79bceec2168ea5`
 - cited in: node.source
 - counts toward the grade: yes
 

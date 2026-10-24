@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 18
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ Theorem 5 / WDP-P001-007, -008 proved
 
 ## Review
 
-- PFP review: [dag/results/PG-FREE-MONOID-NONISO/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-FREE-MONOID-NONISO/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/PG-FREE-MONOID-NONISO/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-FREE-MONOID-NONISO/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: A monoid isomorphism between free monoids on any two alphabets induces a bijection of the alphabets, so free monoids on finite alphabets of different sizes are not isomorphic and discrete categories with different finite object counts are not equivalent; a bare bijection of the underlying sets does exist for sizes at least one, so a numeral or alphabet re-presentation cannot be an isomorphism of the free-monoid (word concatenation) structure or of the discrete-category structure; other structures are not addressed.
   - does not support: Any structure on numerals or alphabets other than the free-monoid multiplication or the discrete category (a numeral or alphabet re-presentation may still be a non-isomorphic map, a set bijection, or an isomorphism of some other structure; no other structure, such as free commutative monoids, is examined); language restriction, partial recovery and total erasure (separate ledger row WDP-P001-009); infinite alphabets beyond the general Lean statement; the native homomorphism search covers short generator images only and is an instance, not the general theorem.
   - next test: Decide which numeral or alphabet re-presentations ARE structure-preserving: classify the monoid homomorphisms between free monoids on different alphabet sizes that are injective (codes) or onto (decoders), and prove which of them preserve atoms, as the next step beyond the isomorphism obstruction proved here.

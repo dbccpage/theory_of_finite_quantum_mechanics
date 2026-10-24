@@ -69,7 +69,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/pgw-identity-convention-undecidable.py`
 
 - file: [checks/independent/pgw-identity-convention-undecidable.py](../../../checks/independent/pgw-identity-convention-undecidable.py)
-- sha256 (`bytes`): `b66edcfb325bbf2dbe067be1a5b94ab367810e3788f9d8c7244841ed4a347428`
+- sha256 (`bytes`): `591f390e40003fda6bb640a6b81d924c34f0ab6877e6b0405005c81637fe3437`
 - cited in: record TFQ-0423
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -95,7 +95,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_pgw-identity-convention-undecidable_independent.json`
 
 - file: [dag/research/campaign_pgw-identity-convention-undecidable_independent.json](../../../dag/research/campaign_pgw-identity-convention-undecidable_independent.json)
-- sha256 (`lf-normalised`): `ac89924d9263e3000e29e9c18a122eddc388d944a1a21e19b3559a48154fc365`
+- sha256 (`lf-normalised`): `300a968fb9c23f40b638c8fd9e02647e36b604242c3966b775a1c27d62b846c0`
 - cited in: node.source
 - counts toward the grade: yes
 

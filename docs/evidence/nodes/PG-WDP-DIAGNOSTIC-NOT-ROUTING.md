@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 36
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ WDP-CH04-N01 NONCLAIM; GTLA rules 4 and 6
 
 ## Review
 
-- PFP review: [dag/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: no.
+- PFP review: [dag/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: yes.
   - narrowest claim: Over hand-transcribed source tables, the diagnostic class, routing terminal, residual class and authority tag are different finite axes and nothing forces the partial class-to-terminal composite the source declares (the exact class is unrouted); a diagnostic value is at most a necessary eligibility gate for sealing a certificate, never authority. The source code itself names the exact class ExactRepair and tags ClosedResidual as StabilizedSurvivor, contrary to ledger N01.
   - does not support: That any policy from diagnostic classes to terminals is the correct one or is forced; WDP-CH04-O01, which stays conditional; any identification of terminal_status::ResidualClass (Exact, ClosedSurvivor, Open, Refused) with the diagnostic class (the unrelated omega_homology ResidualClass with values ExactRepair, StabilizedSurvivor, OpenObstruction has the three values of the diagnostic class and is not modelled); that the Rust class name ExactRepair and the ledger name ExactClass denote different things (the Lean exactRepairAllowed is the same predicate as certEligible, so the clause "ExactClass is not ExactRepair" has no anchor of its own); a route for the exact class (the source declares none); budget, rule or lift availability as routing inputs (none exist in the source routing code); evidence about the source from the leaves that are definitional in the model (authority counts, AuthTag); any physical or interpretive claim.
   - next test: Enumerate the 7 total extensions of the declared partial policy (the 7 choices of terminal for ExactClass) and decide for each whether it is compatible with (a) certificate eligibility being exact-class-only, (b) the 4-element image of terminal_from_fiber, (c) Certified requiring an authority-bearing terminal; then state the surviving extension(s) as the policy O01 must declare.

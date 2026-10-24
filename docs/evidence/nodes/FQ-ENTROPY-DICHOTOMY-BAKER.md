@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 6
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ C750 algebraic purity dichotomy (entropy_zero_iff_pure and Renyi-2 purity defici
 
 ## Review
 
-- PFP review: [dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-ENTROPY-DICHOTOMY-BAKER/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Literal general-dimension source entropy signatures with explicit Baker hypothesis, plus five exact rational series computations with an explicit analytic remainder argument.
   - does not support: An unconditional proof of Baker or transcendence from a native flag, base-two entropy claims, or a kernel-verified finite-tail array transport.
   - next test: Recompute each rational series/tail/width and challenge both units and hypothesis promotion.

@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -37,7 +37,7 @@ OPEN gap GAP-F001-S000-002 (continuum interface)
 
 ## Review
 
-- PFP review: [dag/results/GP-IMPORT-CONTINUUM-HILBERT/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-CONTINUUM-HILBERT/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: no.
+- PFP review: [dag/results/GP-IMPORT-CONTINUUM-HILBERT/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-CONTINUUM-HILBERT/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Exact truncation coordinates, norm, positive tail and successive difference controls; general finite recurrence identity and positivity interface in Lean.
   - does not support: Construct and verify the topology, Cauchy completion and infinite-dimensional Hilbert carrier. No finite truncation settles those imports.
   - next test: Construct and verify the topology, Cauchy completion and infinite-dimensional Hilbert carrier. No finite truncation settles those imports.

@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 13
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ MECHANIZED in ListedHistorySummary.lean (choice-free listed-history report crite
 
 ## Review
 
-- PFP review: [dag/results/PG-PREGEN-CONSTRUCTIVE-SUMMARY/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-PREGEN-CONSTRUCTIVE-SUMMARY/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/PG-PREGEN-CONSTRUCTIVE-SUMMARY/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-PREGEN-CONSTRUCTIVE-SUMMARY/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Over an explicit listing with decidable report equality, first-match reconstruction returns every listed answer iff the answer is constant on the listed report fibers, with no axiom in the kernel for the seven general theorems (relative to the supplied DecidableEq instance on reports); off the listing it refuses unreported values and can be wrong on unlisted histories; verified exhaustively on 11 non-degenerate small tuples.
   - does not support: Report types without decidable equality (only the classical instance is covered, its proof term uses Classical.choice, and necessity of choice there is not shown); infinite or unlisted populations beyond the explicit complete-listing hypothesis; the unconditional factorization for an arbitrary history type (node PG-HISTORY-REPORT-CRITERION); the external ListedHistorySummary.lean (not in this repository); any probability, measurement or physical reading of reports.
   - next test: Decide whether the listed criterion survives a report type without decidable equality by a choice-free substitute for the first-match search, or show that the Classical.propDecidable instance is unavoidable there (a choice-free model or an independence argument).

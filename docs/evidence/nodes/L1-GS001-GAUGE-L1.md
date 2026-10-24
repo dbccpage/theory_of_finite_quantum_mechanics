@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ Tier-1 direction independence (Lemma 4.1), gauge proportionality (Corollary 2), 
 
 ## Review
 
-- PFP review: [dag/results/L1-GS001-GAUGE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-GS001-GAUGE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/L1-GS001-GAUGE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-GS001-GAUGE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: All eight signed-permutation gauge values, swap anisotropy, and equal-length direction countercontrol; exact sign/swap laws in Lean.
   - does not support: Establish the actual maximal bounded-linear symmetry and faithful edge-additive hypotheses; do not infer them from an eight-element test.
   - next test: Establish the actual maximal bounded-linear symmetry and faithful edge-additive hypotheses; do not infer them from an eight-element test.

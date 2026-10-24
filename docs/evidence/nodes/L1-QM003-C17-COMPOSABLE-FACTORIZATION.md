@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ QM_003 C17 diagonal composable factorization and off-diagonal coherence boundary
 
 ## Review
 
-- PFP review: [dag/results/L1-QM003-C17-COMPOSABLE-FACTORIZATION/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM003-C17-COMPOSABLE-FACTORIZATION/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/L1-QM003-C17-COMPOSABLE-FACTORIZATION/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM003-C17-COMPOSABLE-FACTORIZATION/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Exact stochastic composition/action equality and diagonal density presentation, plus scalar matrix multiplication identities and the Hadamard defect in Lean.
   - does not support: Prove source residual-density factorization on its full carrier and channel class. The source diagonal multiplication anchor alone does not prove it.
   - next test: Prove source residual-density factorization on its full carrier and channel class. The source diagonal multiplication anchor alone does not prove it.

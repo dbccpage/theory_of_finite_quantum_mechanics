@@ -3,7 +3,7 @@
 AuthorityEffect: None. No repository imports.
 
 Verifies:
-1. Observation-family Pre-Genesis regimes over token sets of size n in {1, 2, 3, 4},
+1. Observation-family Pre-Genesis regimes over token sets of size n in {1, 2, 3},
    non-empty presented subsets P, and observation families O of k in {0, 1, 2} boolean
    predicates:
    - Supplying x not in P preserves O_1 = O_0 and enlarges |P| by +1.
@@ -79,6 +79,66 @@ def state_count_under(
     raise ValueError(f"Unknown convention: {convention}")
 
 
+def _verify_observation_family_regimes_cases_1_cases_2(checks, failures, inj_all, n, obs_fam, presented):
+    for x in range(n):
+        for y in range(n):
+            eq_prof = obs_profile(obs_fam, x) == obs_profile(obs_fam, y)
+            eq_same = same_profile(obs_fam, x, y)
+            if eq_prof == eq_same and (len(obs_fam) > 0 or eq_prof is True):
+                checks += 1
+            else:
+                failures += 1
+
+        # Check supply and branch agreement on x
+        supplied = presented | {x}
+        if x not in presented:
+            if len(supplied) == len(presented) + 1:
+                checks += 1
+            else:
+                failures += 1
+            b_op = is_new_state_under("opaque", presented, obs_fam, x)
+            b_ex = is_new_state_under("exact", presented, obs_fam, x)
+            fresh_prof = obs_profile(obs_fam, x) not in {
+                obs_profile(obs_fam, p) for p in presented
+            }
+            if b_ex is True and (b_op == b_ex) == fresh_prof:
+                checks += 1
+            else:
+                failures += 1
+        if inj_all:
+            if is_new_state_under("opaque", presented, obs_fam, x) == is_new_state_under(
+                "exact", presented, obs_fam, x
+            ):
+                checks += 1
+            else:
+                failures += 1
+    return checks, failures
+
+
+def _verify_observation_family_regimes_cases_1(checks, failures, n, obs_families, presented):
+    for obs_fam in obs_families:
+        # Check state_count_under inequality
+        c_op = state_count_under("opaque", presented, obs_fam)
+        c_ex = state_count_under("exact", presented, obs_fam)
+        if 1 <= c_op <= c_ex:
+            checks += 1
+        else:
+            failures += 1
+
+        # Check injective profile condition on the full token carrier
+        full_profiles = [obs_profile(obs_fam, x) for x in range(n)]
+        inj_all = len(set(full_profiles)) == n
+        if inj_all:
+            if c_op == c_ex:
+                checks += 1
+            else:
+                failures += 1
+
+        # Check pairwise profile vs SameProfile
+        checks, failures = _verify_observation_family_regimes_cases_1_cases_2(checks, failures, inj_all, n, obs_fam, presented)
+    return checks, failures
+
+
 def verify_observation_family_regimes() -> tuple[int, int]:
     checks = 0
     failures = 0
@@ -119,57 +179,7 @@ def verify_observation_family_regimes() -> tuple[int, int]:
         for r_size in range(1, n + 1):
             for p_tuple in combinations(range(n), r_size):
                 presented = frozenset(p_tuple)
-                for obs_fam in obs_families:
-                    # Check state_count_under inequality
-                    c_op = state_count_under("opaque", presented, obs_fam)
-                    c_ex = state_count_under("exact", presented, obs_fam)
-                    if 1 <= c_op <= c_ex:
-                        checks += 1
-                    else:
-                        failures += 1
-
-                    # Check injective profile condition on the full token carrier
-                    full_profiles = [obs_profile(obs_fam, x) for x in range(n)]
-                    inj_all = len(set(full_profiles)) == n
-                    if inj_all:
-                        if c_op == c_ex:
-                            checks += 1
-                        else:
-                            failures += 1
-
-                    # Check pairwise profile vs SameProfile
-                    for x in range(n):
-                        for y in range(n):
-                            eq_prof = obs_profile(obs_fam, x) == obs_profile(obs_fam, y)
-                            eq_same = same_profile(obs_fam, x, y)
-                            if eq_prof == eq_same and (len(obs_fam) > 0 or eq_prof is True):
-                                checks += 1
-                            else:
-                                failures += 1
-
-                        # Check supply and branch agreement on x
-                        supplied = presented | {x}
-                        if x not in presented:
-                            if len(supplied) == len(presented) + 1:
-                                checks += 1
-                            else:
-                                failures += 1
-                            b_op = is_new_state_under("opaque", presented, obs_fam, x)
-                            b_ex = is_new_state_under("exact", presented, obs_fam, x)
-                            fresh_prof = obs_profile(obs_fam, x) not in {
-                                obs_profile(obs_fam, p) for p in presented
-                            }
-                            if b_ex is True and (b_op == b_ex) == fresh_prof:
-                                checks += 1
-                            else:
-                                failures += 1
-                        if inj_all:
-                            if is_new_state_under("opaque", presented, obs_fam, x) == is_new_state_under(
-                                "exact", presented, obs_fam, x
-                            ):
-                                checks += 1
-                            else:
-                                failures += 1
+                checks, failures = _verify_observation_family_regimes_cases_1(checks, failures, n, obs_families, presented)
 
     return checks, failures
 

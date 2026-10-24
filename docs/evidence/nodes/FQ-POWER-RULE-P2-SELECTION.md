@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -37,7 +37,7 @@ paper s11.6 (proof in supplement s11.58); rational controls in Rust
 
 ## Review
 
-- PFP review: [dag/results/FQ-POWER-RULE-P2-SELECTION/reviews/20261019_structure_audit/review_result.json](../../../dag/results/FQ-POWER-RULE-P2-SELECTION/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/FQ-POWER-RULE-P2-SELECTION/reviews/20261019_structure_audit/review_result.json](../../../dag/results/FQ-POWER-RULE-P2-SELECTION/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: The real power equation (3/5)^p+(4/5)^p=1 iff p=2 is kernel checked. Integer p=1..8 reproduce actual shared-ray context weights; mixed-sign p=1 supplies a retained counterexample to unrestricted Sorkin vanishing.
   - does not support: The power-law family, real exponentiation and the real orthonormal contexts are admitted; formal transport of the concrete context normalization to the Real.rpow equation remains a separate bridge. No unrestricted readout uniqueness or Gleason theorem follows.
   - next test: The power-law family, real exponentiation and the real orthonormal contexts are admitted; formal transport of the concrete context normalization to the Real.rpow equation remains a separate bridge. No unrestricted readout uniqueness or Gleason theorem follows.

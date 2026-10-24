@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 16
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ Proposition 4 / WDP-P001-005: typed old-image recovery implies injectivity of th
 
 ## Review
 
-- PFP review: [dag/results/PG-OLD-IMAGE-INJECTIVE/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-OLD-IMAGE-INJECTIVE/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/PG-OLD-IMAGE-INJECTIVE/reviews/20261021_batch01b_audit/delivery_review_result.json](../../../dag/results/PG-OLD-IMAGE-INJECTIVE/reviews/20261021_batch01b_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: A recovery r : B -\> A + Unit obeying r(u a) = inl a exists exactly when u is injective. For an injective lift it is determined only on the image: there are (\|A\|+1)^(\|B\|-\|A\|) of them, exactly one of which refuses every off-image point; when \|A\| \>= 1 and \|B\| \> \|A\| the others accept some off-image point as an old term, and for \|B\| = \|A\| or \|A\| = 0 the recovery is unique. The law fixes neither observations nor obstruction predicates (persistence through the identity lift only).
   - does not support: Off-image rejection as a property of the S(n) retraction (that is PG-SN-OFF-IMAGE-REFUSAL, which needs an added soundness hypothesis on r); the pinned SnCarrier lift and retraction; any definition of obstruction repair beyond persistence of a Boolean predicate through a lift (the source repair_not_implied instance uses the constant-true predicate and defines no repair); sets with more than four elements in the native census (the Lean count law_card is general for finite types); infinite types for the count; any physical or categorical reading.
   - next test: Define repair of an obstruction for a lift (a witness-count or chain criterion on the lifted pair) and decide for the identity embedding and for a non-identity injective lift whether the old obstruction count strictly drops, replacing the constant-predicate instance of repair_not_implied by a statement with a stated repair criterion.
