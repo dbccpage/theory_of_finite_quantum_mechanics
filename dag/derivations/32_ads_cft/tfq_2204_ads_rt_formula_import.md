@@ -11,15 +11,15 @@
 
 ## Statement
 
-Imported formula, as the source states it at leading order in Newton's constant: S(A) = Area(minimal surface anchored on the boundary of A) / (4 G). It presupposes the von Neumann entropy of a boundary reduced state on a continuum Hilbert space and the area of a surface in a bulk geometry. The repository has an exact von Neumann entropy dichotomy for algebraic spectra and an exact rational Regge area proxy that is not the Einstein-Hilbert action; neither is a minimal-surface area in a bulk geometry.
+Imported formula, as the source states it at leading order in Newton's constant: S(A) = Area(minimal surface anchored on the boundary of A) / (4 G). It presupposes the von Neumann entropy of a boundary reduced state on a continuum Hilbert space and the area of a surface in a bulk geometry. The repository has an exact von Neumann entropy dichotomy for algebraic spectra and an exact rational Regge area proxy that is not the Einstein-Hilbert action; neither is a minimal-surface area in a bulk geometry. Narrowed in Lean 4 and an independent Python verifier to three exact finite/rational algebraic shadows and scope fences: (1) over Q, substituting the regulated AdS_3 geodesic length 2 R_AdS * logFactor into rtLeadingEntropy(area, G_N) = area / (4 G_N) reproduces the 2D CFT Calabrese-Cardy coefficient (c / 3) * logFactor under the Brown-Henneaux relation c = 3 R_AdS / (2 G_N^(3)) and eliminates both bulk couplings in S_A / c = logFactor / 3, while submodular surface pasting yields Strong Subadditivity S(ABC) + S(B) <= S(AB) + S(BC) and all 380 proper contiguous boundary intervals of the 20-qubit 6-pentagon HaPPY patch satisfy complement symmetry A <-> A^c; (2) under BakerCitedInput (EntropyDichotomy.lean), no mixed algebraic spectrum can have natural-log von Neumann entropy equal to a rational RT ratio area / (4 G_N), equality holds at G_N > 0 iff the state is pure and area = 0, and stabilizer bit counts require dividing by log 2; and (3) on the orthogonal_pentatope chart of TFQ-0100, the 6 right-triangle hinges have Cayley-Menger squared area 1/4 and the 4 equilateral-triangle hinges have squared area 3/4 (total 9/2) with no rational linear area A in Q satisfying A^2 = 3/4, the flat-chart Regge proxy (kappa = 0) vanishes identically whereas all 380 HaPPY intervals satisfy 1 <= S(A) <= mincut(A), and under length rescaling L -> lam * L the Regge proxy scales as lam^4 against lam^2 for 2-surface area and lam^0 for bond counts.
 
 ## Governing obligation
 
-No source supplies a dictionary from the repository's finite areas to the surface areas of the formula.
+No source supplies a dictionary from the repository's finite areas to the surface areas of the formula; under BakerCitedInput mixed algebraic spectra have transcendental natural-log entropy, and the TFQ-0100 rational Regge proxy scales as lam^4 and vanishes on flat charts.
 
 ## Source status
 
-Audited against arXiv:hep-th/0603001 Section 1 eq. (1.5) p. 2 on 2026-10-22; taken as an imported assumption of this branch.
+Audited against arXiv:hep-th/0603001 Section 1 eq. (1.5) p. 2, Section 2 eqs. (2.1), (2.5)-(2.6) p. 3, and Section 3.1 eq. (3.2) p. 4 on 2026-10-24; narrowed to exact rational Ryu-Takayanagi / Brown-Henneaux coupling elimination, cut-pasting Strong Subadditivity, 380-interval HaPPY complement symmetry, BakerCitedInput entropy dichotomy fences, and TFQ-0100 rational Regge proxy non-equivalence fences in Lean 4 and an independent Python verifier while keeping the continuum formula as an imported assumption.
 
 ## What is imported
 
@@ -46,6 +46,29 @@ See also: `FQ-ENTROPY-DICHOTOMY-BAKER`, `TFQ-0100`.
 ## Sources
 
 - `external:arXiv:hep-th/0603001`: S. Ryu and T. Takayanagi, "Holographic Derivation of Entanglement Entropy from AdS/CFT", arXiv:hep-th/0603001 (2006); Phys. Rev. Lett. 96 (2006) 181602.
+- Repository: `dag/derivations/independent/ads-rt-formula-import.md`
+- Repository: `checks/independent/ads-rt-formula-import.py`
+- Repository: `dag/research/campaign_ads-rt-formula-import_lean_replay.json`
+- Repository: `dag/research/campaign_ads-rt-formula-import_lean_mutation.json`
+- Repository: `dag/research/campaign_ads-rt-formula-import_independent.json`
+
+## Lean 4 declarations read
+- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.rt_ads3_reproduces_calabrese_cardy`
+- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.rt_over_brown_henneaux_eliminates_couplings`
+- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.rtLeadingEntropy_linear_in_area`
+- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.cut_pasting_strong_subadditivity_from_submodularity`
+- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.happy_mincut_and_entropy_complement_symmetry_all_380`
+- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.rtLeadingEntropy_realCast_isAlgebraic`
+- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.no_rational_rt_area_for_mixed_algebraic_spectrum`
+- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.rational_rt_match_iff_pure_and_zero_area`
+- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.stabilizer_bits_to_nats_transcendental_conversion`
+- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.orthogonal_pentatope_hinge_areas_sq`
+- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.nat_dvd_three_of_sq_mul_four_eq_three_mul_sq`
+- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.no_rational_linear_area_for_equilateral_pentatope_hinge`
+- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.reggeProxy_zero_on_flat_chart`
+- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.happy_all_380_intervals_pos_entropy_and_mincut`
+- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.cayleyMengerTriangleAreaSq_homogeneous_deg4_in_length`
+- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.no_scale_invariant_regge_to_rt_dictionary`
 
 ## Downstream derivations
 

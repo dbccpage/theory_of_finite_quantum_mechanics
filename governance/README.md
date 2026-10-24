@@ -90,7 +90,8 @@ cargo build --locked --release --manifest-path governance/Cargo.toml
 governance/target/release/governance-check --root . check --changed-since origin/main
 ```
 
-This validates the governance crate, not the optional external workspace crates.
+This validates the governance crate. Full Rust workspace validation also needs
+the configured native providers and the workspace checks above.
 
 | Command | Purpose |
 |---|---|

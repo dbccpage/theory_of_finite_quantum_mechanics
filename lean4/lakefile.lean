@@ -1067,3 +1067,7 @@ lean_lib CampaignAdsCftDualityImport where
 -- Campaign: ADS-HAPPY-TOY-NOT-DUALITY-GAP. Not a default target.
 lean_lib CampaignAdsHappyToyNotDualityGap where
   roots := #[`CampaignAdsHappyToyNotDualityGap]
+
+-- Campaign: ADS-RT-FORMULA-IMPORT. Not a default target.
+lean_lib CampaignAdsRtFormulaImport where
+  roots := #[`CampaignAdsRtFormulaImport]

@@ -1,22 +1,43 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: ADS-RT-FORMULA-IMPORT
 authority_effect: None
-collection_status: source_candidates_collected_semantic_mining_open
+collection_status: semantic_mining_and_lean4_verification_complete
 target:
   source_statement: 'Imported formula, as the source states it at leading order in Newton''s constant:
     S(A) = Area(minimal surface anchored on the boundary of A) / (4 G). It presupposes the von Neumann
     entropy of a boundary reduced state on a continuum Hilbert space and the area of a surface in a bulk
     geometry. The repository has an exact von Neumann entropy dichotomy for algebraic spectra and an exact
     rational Regge area proxy that is not the Einstein-Hilbert action; neither is a minimal-surface area
-    in a bulk geometry.'
-  statement_status: source_claim_to_scope_check_not_accepted_result
+    in a bulk geometry. Narrowed in Lean 4 and an independent Python verifier to three exact algebraic
+    shadows and scope fences: (1) over Q, substituting the regulated AdS_3 geodesic length 2 R_AdS * logFactor
+    into rtLeadingEntropy(area, G_N) = area / (4 G_N) reproduces the 2D CFT Calabrese-Cardy coefficient
+    (c / 3) * logFactor under the Brown-Henneaux relation c = 3 R_AdS / (2 G_N^(3)) and eliminates both
+    bulk couplings in S_A / c = logFactor / 3, while submodular surface pasting yields Strong Subadditivity
+    S(ABC) + S(B) <= S(AB) + S(BC) and all 380 proper contiguous boundary intervals of the 20-qubit 6-pentagon
+    HaPPY patch satisfy complement symmetry A <-> A^c; (2) under BakerCitedInput (EntropyDichotomy.lean),
+    no mixed algebraic spectrum can have natural-log von Neumann entropy equal to a rational RT ratio
+    area / (4 G_N), equality holds at G_N > 0 iff the state is pure and area = 0, and stabilizer bit counts
+    require dividing by log 2; and (3) on the orthogonal_pentatope chart of TFQ-0100, the 6 right-triangle
+    hinges have Cayley-Menger squared area 1/4 and the 4 equilateral-triangle hinges have squared area 3/4
+    (total 9/2) with no rational linear area A in Q satisfying A^2 = 3/4, the flat-chart Regge proxy (kappa = 0)
+    vanishes identically whereas all 380 HaPPY intervals satisfy 1 <= S(A) <= mincut(A), and under length
+    rescaling L -> lam * L the Regge proxy scales as lam^4 against lam^2 for 2-surface area and lam^0 for
+    bond counts.'
+  statement_status: narrowed_algebraic_shadows_and_scope_fences_verified_lean4
   declared_assumptions:
   - von Neumann entropy of boundary regions on a continuum Hilbert space (assumption)
   - bulk geometry with minimal surfaces (assumption)
   source_bottleneck: No source supplies a dictionary from the repository's finite areas to the surface
-    areas of the formula.
+    areas of the formula; continuum minimal-surface areas and continuum boundary von Neumann entropies
+    remain imported assumptions.
   source_refs:
   - dag/derivations/32_ads_cft/tfq_2204_ads_rt_formula_import.md
+  - dag/derivations/independent/ads-rt-formula-import.md
+  - checks/independent/ads-rt-formula-import.py
+  - lean4/CampaignAdsRtFormulaImport.lean
+  - dag/research/campaign_ads-rt-formula-import_lean_replay.json
+  - dag/research/campaign_ads-rt-formula-import_lean_mutation.json
+  - dag/research/campaign_ads-rt-formula-import_independent.json
   - external:arXiv:hep-th/0603001
   paper_refs:
   - dag/derivations/32_ads_cft/tfq_2204_ads_rt_formula_import.md
@@ -33,17 +54,61 @@ source_provenance:
   generator_version: 1
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/ads_cft_ads_rt_formula_import_imported_assumption.yaml
-  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348883ed7f34b208
+operation_candidates:
+- rtLeadingEntropy
+- brownHenneauxCentralCharge
+- ads3GeodesicLength
+- calabreseCardyCoefficient
+- cayleyMengerTriangleAreaSq
+- rationalReggeAction
+relation_candidates:
+- rt_ads3_reproduces_calabrese_cardy
+- rt_over_brown_henneaux_eliminates_couplings
+- cut_pasting_strong_subadditivity_from_submodularity
+- happy_mincut_and_entropy_complement_symmetry_all_380
+- no_rational_rt_area_for_mixed_algebraic_spectrum
+- rational_rt_match_iff_pure_and_zero_area
+- no_rational_linear_area_for_equilateral_pentatope_hinge
+- no_scale_invariant_regge_to_rt_dictionary
+source_bindings:
+- lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.rt_ads3_reproduces_calabrese_cardy
+- lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.rt_over_brown_henneaux_eliminates_couplings
+- lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.rtLeadingEntropy_linear_in_area
+- lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.cut_pasting_strong_subadditivity_from_submodularity
+- lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.happy_mincut_and_entropy_complement_symmetry_all_380
+- lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.rtLeadingEntropy_realCast_isAlgebraic
+- lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.no_rational_rt_area_for_mixed_algebraic_spectrum
+- lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.rational_rt_match_iff_pure_and_zero_area
+- lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.stabilizer_bits_to_nats_transcendental_conversion
+- lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.orthogonal_pentatope_hinge_areas_sq
+- lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.nat_dvd_three_of_sq_mul_four_eq_three_mul_sq
+- lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.no_rational_linear_area_for_equilateral_pentatope_hinge
+- lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.reggeProxy_zero_on_flat_chart
+- lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.happy_all_380_intervals_pos_entropy_and_mincut
+- lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.cayleyMengerTriangleAreaSq_homogeneous_deg4_in_length
+- lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.no_scale_invariant_regge_to_rt_dictionary
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
-  symmetric_actions: []
+  colours:
+  - RatArea
+  - AlgebraicEntropySpectrum
+  - SimplicialHingeSqArea
+  generators:
+  - rtLeadingEntropy
+  - brownHenneauxCentralCharge
+  - cayleyMengerTriangleAreaSq
+  - rationalReggeAction
+  relations:
+  - rt_ads3_reproduces_calabrese_cardy
+  - no_rational_rt_area_for_mixed_algebraic_spectrum
+  - no_rational_linear_area_for_equilateral_pentatope_hinge
+  - no_scale_invariant_regge_to_rt_dictionary
+  compositions:
+  - rtLeadingEntropy_after_ads3GeodesicLength
+  identities:
+  - stabilizer_bits_to_nats_transcendental_conversion
+  symmetric_actions:
+  - happy_mincut_and_entropy_complement_symmetry_all_380
   coherence_obligations:
   - identity_operations
   - unit_laws
@@ -52,36 +117,57 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
+    mining_status: VERIFIED
+    carrier: Rat x AlgebraicSpectrum x HaPPYPatch20
+    coefficient_ring: Q
     assumptions:
     - von Neumann entropy of boundary regions on a continuum Hilbert space (assumption)
     - bulk geometry with minimal surfaces (assumption)
-    source_pins: []
+    source_pins:
+    - lean4/CampaignAdsRtFormulaImport.lean
+    - lean4/EntropyDichotomy.lean
+    - lean4/FrontierHappyMincut.lean
     public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: VERIFIED
+    operations:
+    - rtLeadingEntropy
+    - brownHenneauxCentralCharge
+    - ads3GeodesicLength
+    - cayleyMengerTriangleAreaSq
+    - rationalReggeAction
+    composition_plan:
+    - rt_ads3_reproduces_calabrese_cardy
+    - rt_over_brown_henneaux_eliminates_couplings
+    - cut_pasting_strong_subadditivity_from_submodularity
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: VERIFIED
+    algebraic_relations:
+    - rational_rt_match_iff_pure_and_zero_area
+    - cayleyMengerTriangleAreaSq_homogeneous_deg4_in_length
+    rejection_predicates:
+    - no_rational_rt_area_for_mixed_algebraic_spectrum
+    - no_rational_linear_area_for_equilateral_pentatope_hinge
+    - no_scale_invariant_regge_to_rt_dictionary
+    negative_control_plan:
+    - 6 one-ingredient Lean 4 semantic mutations killed in dag/research/campaign_ads-rt-formula-import_lean_mutation.json
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
+    mining_status: VERIFIED
+    certificate_predicates:
+    - orthogonal_pentatope_hinge_areas_sq
+    - happy_mincut_and_entropy_complement_symmetry_all_380
+    - happy_all_380_intervals_pos_entropy_and_mincut
+    anchors:
+    - lean4/CampaignAdsRtFormulaImport.lean
+    - checks/independent/ads-rt-formula-import.py
+    - dag/derivations/independent/ads-rt-formula-import.md
     unpaid_imports:
     - von Neumann entropy of boundary regions on a continuum Hilbert space (assumption)
     - bulk geometry with minimal surfaces (assumption)
-stage_history: []
+stage_history:
+- stage: campaign_derivation
+  timestamp: '2026-10-24T04:18:00Z'
+  outcome: Narrowed
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+- Continuum minimal-surface area dictionary and continuum boundary von Neumann entropy remain imported assumptions.
 excluded_relation_leads: []
