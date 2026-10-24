@@ -1056,4 +1056,8 @@ lean_lib CampaignFspSu2AdjointRealDet where
 lean_lib CampaignFspQcdChemicalPotentialDet where
   roots := #[`CampaignFspQcdChemicalPotentialDet]
 
+-- Campaign: FSP-LATTICE-WESS-ZUMINO-SUSY. Not a default target.
+lean_lib CampaignFspLatticeWessZuminoSusy where
+  roots := #[`CampaignFspLatticeWessZuminoSusy]
+
 

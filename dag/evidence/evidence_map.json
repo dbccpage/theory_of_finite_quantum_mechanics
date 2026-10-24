@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "4ed7425aff1366a418af3c7680c4f252ad275935c81c273018c57019edde3e3f"
+  "sha256_lf": "869efd4848d08eb0a0dbe0b7b8119b4668250bc9bac7d1e6a0187455aa12aa99"
  },
  "files": {
   "checks/independent/dfm-bphz-continuum-fence.py": {
@@ -66,6 +66,11 @@
    "sha256": "2a2ad3b9fde58a676054711f0c64c387fab7018ae75754be59cadc668e28aecc",
    "sha256_basis": "bytes",
    "size": 14312
+  },
+  "checks/independent/fsp-lattice-wess-zumino-susy.py": {
+   "sha256": "ce644eca4c637c8210f4770bc9cae339c1bbdd14bd87edd11a34204951408da4",
+   "sha256_basis": "bytes",
+   "size": 11649
   },
   "checks/independent/fsp-qcd-chemical-potential-det.py": {
    "sha256": "17f0f67942ac258c9a36f504a0848e6097cd8a6ecd3f7cb62c0af0555f2d51da",
@@ -153,9 +158,9 @@
    "size": 17150
   },
   "code/python/src/fsp/kitaev_honeycomb_bisimulation_bridge.py": {
-   "sha256": "9de3640bb867bd5db29bfa56b6361d27cb25f09f87bddcc4920e9c86f44afaa6",
+   "sha256": "4f456e3c84932d96d4188a5871c50cf9ae07c8c19163eece6bb4c9ef0c5f6f4b",
    "sha256_basis": "bytes",
-   "size": 9702
+   "size": 9939
   },
   "code/python/src/general_relativity/causal_set.py": {
    "sha256": "fe0391e534586e7ef4b5856b1c9f9fa190a19f55fdd368e36d85950ef1af92fb",
@@ -868,9 +873,9 @@
    "size": 7760
   },
   "dag/derivation_dag.json": {
-   "sha256": "4ed7425aff1366a418af3c7680c4f252ad275935c81c273018c57019edde3e3f",
+   "sha256": "869efd4848d08eb0a0dbe0b7b8119b4668250bc9bac7d1e6a0187455aa12aa99",
    "sha256_basis": "lf-normalised",
-   "size": 4571953
+   "size": 4579820
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -4483,9 +4488,9 @@
    "size": 1973
   },
   "dag/derivations/26_fsp/tfq_1204_fsp_lattice_wess_zumino_susy.md": {
-   "sha256": "26128185073ec74dd7ba16e105409150f4fd36fcafc71fa42894e92413f2adbd",
+   "sha256": "48bde3ecd3c7dfe1a191920a7164c42fb07a792a1ee09a7c5d99d0eb99e07194",
    "sha256_basis": "lf-normalised",
-   "size": 2028
+   "size": 5403
   },
   "dag/derivations/26_fsp/tfq_1205_fsp_nicolai_map_claim.md": {
    "sha256": "132c0bb4954d244d541da9c50b8beee93008501f450a82abb484fb38a167cecf",
@@ -5807,6 +5812,11 @@
    "sha256_basis": "lf-normalised",
    "size": 13593
   },
+  "dag/derivations/independent/fsp-lattice-wess-zumino-susy.md": {
+   "sha256": "c74791f2124ec0a5b81f1398b50544076794c201fcc2da025861a6240cd9b780",
+   "sha256_basis": "lf-normalised",
+   "size": 7467
+  },
   "dag/derivations/independent/fsp-qcd-chemical-potential-det.md": {
    "sha256": "5069031e4fc0ac18fd3b688861fec1781bc4de2efccbb7b6d9f17d9857f05c49",
    "sha256_basis": "lf-normalised",
@@ -6008,7 +6018,7 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "847fd9a10ea4abddb7c18d0fd41a8924b14e0a515a8441fb240b9c37d92a4741",
+   "sha256": "658325a9e967d2af07a7d881a91eb188e12809ebd08a1db72f556e52fbcdd54d",
    "sha256_basis": "lf-normalised",
    "size": 166832
   },
@@ -6316,6 +6326,11 @@
    "sha256": "608565f816ae84218d3f193f21e7f98e45c0479092d42c1dbe079908c625cc9c",
    "sha256_basis": "bytes",
    "size": 9643
+  },
+  "lean4/CampaignFspLatticeWessZuminoSusy.lean": {
+   "sha256": "66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090",
+   "sha256_basis": "bytes",
+   "size": 20630
   },
   "lean4/CampaignFspQcdChemicalPotentialDet.lean": {
    "sha256": "cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb",
@@ -199837,17 +199852,1033 @@
    "absent_notes": [],
    "dependents": 16,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 1,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 4,
+    "lean_receipt_backed": 26,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 27
    },
    "flags": [],
-   "grade": "E1",
+   "grade": "E3",
    "id": "FSP-LATTICE-WESS-ZUMINO-SUSY",
    "items": [
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.bosonBlock_quadForm_eq_sum_sq",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.bosonBlock_quadForm_eq_sum_sq",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.bosonBlock_quadForm_nonneg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.bosonBlock_quadForm_nonneg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.boson_eq_fermion_trace",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.boson_eq_fermion_trace",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.boson_partner_ne_zero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.boson_partner_ne_zero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.boson_to_fermion_eigenstate",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.boson_to_fermion_eigenstate",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.brokenSupercharge_sq_ne_zero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.brokenSupercharge_sq_ne_zero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.fermionBlock_quadForm_nonneg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.fermionBlock_quadForm_nonneg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.fermionParity_sq",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.fermionParity_sq",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.fermion_to_boson_eigenstate",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.fermion_to_boson_eigenstate",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.hermSupercharge1_hermitian",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.hermSupercharge1_hermitian",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.hermSupercharge1_sq",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.hermSupercharge1_sq",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.hermSupercharge2_hermitian",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.hermSupercharge2_hermitian",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.hermSupercharge2_sq",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.hermSupercharge2_sq",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.hermSupercharge_anticomm",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.hermSupercharge_anticomm",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.leibnizCubicDefect3_witness",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.leibnizCubicDefect3_witness",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.superchargeAdj_anticommutes_parity",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.superchargeAdj_anticommutes_parity",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.superchargeAdj_commutes_susyHamiltonian",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.superchargeAdj_commutes_susyHamiltonian",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.superchargeAdj_sq_zero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.superchargeAdj_sq_zero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.supercharge_anticommutes_parity",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.supercharge_anticommutes_parity",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.supercharge_commutes_susyHamiltonian",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.supercharge_commutes_susyHamiltonian",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.supercharge_sq_zero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.supercharge_sq_zero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.supertrace_susyHamiltonian_eq_zero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.supertrace_susyHamiltonian_eq_zero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.susyHamiltonian_commutes_parity",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.susyHamiltonian_commutes_parity",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.susyHamiltonian_eq_fromBlocks",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.susyHamiltonian_eq_fromBlocks",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.wz2SiteBlock_boson_eq_fermion",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.wz2SiteBlock_boson_eq_fermion",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json (CampaignFspLatticeWessZuminoSusy)",
+      "record TFQ-1204"
+     ],
+     "command": "cd lean4 && lake build CampaignFspLatticeWessZuminoSusy",
+     "command_note": "then, in a scratch file that imports CampaignFspLatticeWessZuminoSusy: #print axioms CampaignFspLatticeWessZuminoSusy.wz2SiteBlock_det",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFspLatticeWessZuminoSusy.wz2SiteBlock_det",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "record TFQ-1204"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/fsp-lattice-wess-zumino-susy.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "main",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
     {
      "cited_in": [
       "node.source",
@@ -199886,6 +200917,29 @@
      "file_exists": true,
      "generated": false,
      "kind": "paper",
+     "path": "dag/derivations/independent/fsp-lattice-wess-zumino-susy.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
      "path": "papers/core/fsp/theory_of_finite_fsp.md",
      "receipts": [],
      "replay": "n/a",
@@ -199896,7 +200950,7 @@
      "where": null
     }
    ],
-   "next_step": "cite a Lean, Rust or Python symbol that exists in an in-repo file",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-1204"
    ],
@@ -255383,6 +256437,32 @@
    ],
    "built_successfully": null,
    "checked_at": "2026-10-23",
+   "dag_node": "FSP-LATTICE-WESS-ZUMINO-SUSY",
+   "decl_count": 26,
+   "exit_code": 0,
+   "id": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json#0:CampaignFspLatticeWessZuminoSusy",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignFspLatticeWessZuminoSusy",
+   "path": "lean4/CampaignFspLatticeWessZuminoSusy.lean",
+   "receipt_file": "dag/research/campaign_fsp-lattice-wess-zumino-susy_lean_replay.json",
+   "receipt_file_sha256": "1eea58a062762599eb7e2c8175118873b13d562c4eaa6cbf88227bf6dec6781e",
+   "recorded_sha256": "66e430ef4fb48d2fdcd5e41f12d06351c9880793a607f9472d67d89567b9e090",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": null,
+   "checked_at": "2026-10-23",
    "dag_node": "FSP-QCD-CHEMICAL-POTENTIAL-DET",
    "decl_count": 17,
    "exit_code": 0,
@@ -265942,7 +267022,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "847fd9a10ea4abddb7c18d0fd41a8924b14e0a515a8441fb240b9c37d92a4741",
+   "receipt_file_sha256": "658325a9e967d2af07a7d881a91eb188e12809ebd08a1db72f556e52fbcdd54d",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -265968,7 +267048,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "847fd9a10ea4abddb7c18d0fd41a8924b14e0a515a8441fb240b9c37d92a4741",
+   "receipt_file_sha256": "658325a9e967d2af07a7d881a91eb188e12809ebd08a1db72f556e52fbcdd54d",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -265994,7 +267074,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "847fd9a10ea4abddb7c18d0fd41a8924b14e0a515a8441fb240b9c37d92a4741",
+   "receipt_file_sha256": "658325a9e967d2af07a7d881a91eb188e12809ebd08a1db72f556e52fbcdd54d",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -266020,7 +267100,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "847fd9a10ea4abddb7c18d0fd41a8924b14e0a515a8441fb240b9c37d92a4741",
+   "receipt_file_sha256": "658325a9e967d2af07a7d881a91eb188e12809ebd08a1db72f556e52fbcdd54d",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -266046,7 +267126,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "847fd9a10ea4abddb7c18d0fd41a8924b14e0a515a8441fb240b9c37d92a4741",
+   "receipt_file_sha256": "658325a9e967d2af07a7d881a91eb188e12809ebd08a1db72f556e52fbcdd54d",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -266072,7 +267152,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "847fd9a10ea4abddb7c18d0fd41a8924b14e0a515a8441fb240b9c37d92a4741",
+   "receipt_file_sha256": "658325a9e967d2af07a7d881a91eb188e12809ebd08a1db72f556e52fbcdd54d",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -266098,7 +267178,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "847fd9a10ea4abddb7c18d0fd41a8924b14e0a515a8441fb240b9c37d92a4741",
+   "receipt_file_sha256": "658325a9e967d2af07a7d881a91eb188e12809ebd08a1db72f556e52fbcdd54d",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -266124,7 +267204,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "847fd9a10ea4abddb7c18d0fd41a8924b14e0a515a8441fb240b9c37d92a4741",
+   "receipt_file_sha256": "658325a9e967d2af07a7d881a91eb188e12809ebd08a1db72f556e52fbcdd54d",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -266150,7 +267230,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "847fd9a10ea4abddb7c18d0fd41a8924b14e0a515a8441fb240b9c37d92a4741",
+   "receipt_file_sha256": "658325a9e967d2af07a7d881a91eb188e12809ebd08a1db72f556e52fbcdd54d",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -266176,7 +267256,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "847fd9a10ea4abddb7c18d0fd41a8924b14e0a515a8441fb240b9c37d92a4741",
+   "receipt_file_sha256": "658325a9e967d2af07a7d881a91eb188e12809ebd08a1db72f556e52fbcdd54d",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -266202,7 +267282,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "847fd9a10ea4abddb7c18d0fd41a8924b14e0a515a8441fb240b9c37d92a4741",
+   "receipt_file_sha256": "658325a9e967d2af07a7d881a91eb188e12809ebd08a1db72f556e52fbcdd54d",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -266228,7 +267308,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "847fd9a10ea4abddb7c18d0fd41a8924b14e0a515a8441fb240b9c37d92a4741",
+   "receipt_file_sha256": "658325a9e967d2af07a7d881a91eb188e12809ebd08a1db72f556e52fbcdd54d",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -266254,7 +267334,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "847fd9a10ea4abddb7c18d0fd41a8924b14e0a515a8441fb240b9c37d92a4741",
+   "receipt_file_sha256": "658325a9e967d2af07a7d881a91eb188e12809ebd08a1db72f556e52fbcdd54d",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -266280,7 +267360,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "847fd9a10ea4abddb7c18d0fd41a8924b14e0a515a8441fb240b9c37d92a4741",
+   "receipt_file_sha256": "658325a9e967d2af07a7d881a91eb188e12809ebd08a1db72f556e52fbcdd54d",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -266306,7 +267386,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "847fd9a10ea4abddb7c18d0fd41a8924b14e0a515a8441fb240b9c37d92a4741",
+   "receipt_file_sha256": "658325a9e967d2af07a7d881a91eb188e12809ebd08a1db72f556e52fbcdd54d",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -266896,9 +267976,9 @@
  "summary": {
   "by_grade": {
    "E0": 187,
-   "E1": 242,
+   "E1": 241,
    "E2": 42,
-   "E3": 454,
+   "E3": 455,
    "E4": 0
   },
   "by_status": {
@@ -266918,16 +267998,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 36,
   "e3_nodes_with_test_but_no_review": 37,
   "lean_declarations_in_repo": {
-   "distinct": 1548,
+   "distinct": 1574,
    "no_receipt": 24,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 1501,
-   "replay_verified_and_declaration_itemised": 1455,
+   "replay_verified": 1527,
+   "replay_verified_and_declaration_itemised": 1481,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 1857
+   "present": 1883
   },
   "mismatch_nodes": 191,
   "mismatches_by_kind": {
@@ -266948,7 +268028,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 477,
+  "receipts_indexed": 478,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 9,
@@ -267008,9 +268088,9 @@
    },
    "FERMION_SIGN": {
     "E0": 0,
-    "E1": 22,
+    "E1": 21,
     "E2": 7,
-    "E3": 12,
+    "E3": 13,
     "E4": 0
    },
    "FINITE_GAUGE": {
@@ -267227,9 +268307,9 @@
    },
    "OPEN": {
     "E0": 48,
-    "E1": 92,
+    "E1": 91,
     "E2": 10,
-    "E3": 25,
+    "E3": 26,
     "E4": 0
    },
    "PROVED_LEAN": {
