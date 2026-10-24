@@ -1091,3 +1091,7 @@ lean_lib CampaignLqgEprlVertexImport where
 -- Campaign: LQG-CONTINUUM-LIMIT-GAP. Not a default target.
 lean_lib CampaignLqgContinuumLimitGap where
   roots := #[`CampaignLqgContinuumLimitGap]
+
+-- Campaign: ADS-RT-FORMULA-IMPORT. Not a default target.
+lean_lib CampaignAdsRtFormulaImport where
+  roots := #[`CampaignAdsRtFormulaImport]

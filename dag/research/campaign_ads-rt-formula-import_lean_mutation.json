@@ -1,0 +1,64 @@
+{
+  "schema_id": "tfqm.lean_mutation_receipt.v1",
+  "AuthorityEffect": "None",
+  "node_id": "ADS-RT-FORMULA-IMPORT",
+  "record_id": "TFQ-2204",
+  "module": "CampaignAdsRtFormulaImport",
+  "file": "lean4/CampaignAdsRtFormulaImport.lean",
+  "sha256": "748e566374c61a2d8204736a7b4623e2e47431ade57911e783c3081448fb90ec",
+  "total_mutations": 6,
+  "killed_mutations": 6,
+  "survived_mutations": 0,
+  "all_killed": true,
+  "mutations": [
+    {
+      "mutation_id": "mut_1_rt_denominator_4_to_2",
+      "description": "Mutate rtLeadingEntropy denominator from 4 * gN to 2 * gN",
+      "target": "def rtLeadingEntropy (area gN : \u211a) : \u211a :=\n  area / (4 * gN)",
+      "replacement": "def rtLeadingEntropy (area gN : \u211a) : \u211a :=\n  area / (2 * gN)",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "mutation_id": "mut_2_brown_henneaux_3_to_2",
+      "description": "Mutate brownHenneauxCentralCharge numerator from 3 * rAds to 2 * rAds",
+      "target": "def brownHenneauxCentralCharge (rAds gN3 : \u211a) : \u211a :=\n  (3 * rAds) / (2 * gN3)",
+      "replacement": "def brownHenneauxCentralCharge (rAds gN3 : \u211a) : \u211a :=\n  (2 * rAds) / (2 * gN3)",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "mutation_id": "mut_3_drop_pure_hypothesis_in_no_rational_rt",
+      "description": "Mutate rational_rt_match_iff_pure_and_zero_area from area = 0 to area = 1",
+      "target": "entropy s = ((rtLeadingEntropy area gN : \u211a) : \u211d) \u2194 Pure s \u2227 area = 0 := by",
+      "replacement": "entropy s = ((rtLeadingEntropy area gN : \u211a) : \u211d) \u2194 Pure s \u2227 area = 1 := by",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "mutation_id": "mut_4_cayley_menger_divisor_16_to_8",
+      "description": "Mutate cayleyMengerTriangleAreaSq divisor from 16 to 8",
+      "target": "(2 * (s01 * s02 + s01 * s12 + s02 * s12) - (s01 ^ 2 + s02 ^ 2 + s12 ^ 2)) / 16",
+      "replacement": "(2 * (s01 * s02 + s01 * s12 + s02 * s12) - (s01 ^ 2 + s02 ^ 2 + s12 ^ 2)) / 8",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "mutation_id": "mut_5_equilateral_hinge_sq_area_3_4_to_1_4",
+      "description": "Mutate orthogonal_pentatope_hinge_areas_sq equilateral area from 3 / 4 to 1 / 4",
+      "target": "cayleyMengerTriangleAreaSq 2 2 2 = 3 / 4 \u2227",
+      "replacement": "cayleyMengerTriangleAreaSq 2 2 2 = 1 / 4 \u2227",
+      "exit_code": 1,
+      "killed": true
+    },
+    {
+      "mutation_id": "mut_6_regge_scaling_deg4_to_deg2",
+      "description": "Mutate cayleyMengerTriangleAreaSq_homogeneous_deg4_in_length from lam ^ 4 to lam ^ 2",
+      "target": "lam ^ 4 * cayleyMengerTriangleAreaSq s01 s02 s12 := by",
+      "replacement": "lam ^ 2 * cayleyMengerTriangleAreaSq s01 s02 s12 := by",
+      "exit_code": 1,
+      "killed": true
+    }
+  ],
+  "timestamp_utc": "2026-10-24T04:25:40.143600+00:00"
+}
