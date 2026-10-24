@@ -1052,6 +1052,10 @@ lean_lib CampaignSnProtectedAnswerTransport where
 lean_lib CampaignFspSu2AdjointRealDet where
   roots := #[`CampaignFspSu2AdjointRealDet]
 
+-- Campaign: FSP-QCD-CHEMICAL-POTENTIAL-DET. Not a default target.
+lean_lib CampaignFspQcdChemicalPotentialDet where
+  roots := #[`CampaignFspQcdChemicalPotentialDet]
+
 -- Campaign: FSP-IMAGINARY-MU-REAL-DET. Non-default.
 lean_lib CampaignFspImaginaryMuRealDet where
   roots := #[`CampaignFspImaginaryMuRealDet]
