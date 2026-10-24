@@ -5552,12 +5552,42 @@
       "parent_id": "TFQ-0488",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "The sealed candidate space is enumerated to cost two (at most two items, arity at most two), with pruning lemmas certified against the unpruned space: unreferenced fresh data and forms never matter, an instance-only delta changes the target pair's profiles only if an instance mentions a target datum, and a delta holding a uniform-rule item is never a minimum valid response (rule_item_never_minimal). The second derivation's rung one enumerated three-item deltas (min_responses_three) under a node guard, but no k-item delta grammar with pruning lemmas proved beyond cost two exists, and the distance bound of two is not known to be the grammar's (S-4). The education audit lists k-item delta grammars with pruning lemmas as a missing prerequisite of the S(n) bridge.",
-      "obligation": "Define the k-item delta grammar for k ≥ 3, state and prove the pruning lemmas it relies on, and certify the pruned enumeration against the unpruned space at each declared k before using any k-item minimum.",
+      "summary": "Narrowed boundary, status left OPEN: the four declared Challenge 3 lists copied from deltaU0, deltaU1, deltaBL, and deltaBD each have length 2. Their new-form arities are 1, 1, 2, and 2, and the sum of those arities is 6. The argument lists are [0], [1], [0, 1], and [0, 0], and the four lists are pairwise distinct across 6 comparisons. One three-item list has length 3, and 3 > 2. This census is those four named lists. A k-item grammar for k at least 3, an exhaustive cost-two enumeration, and a response-size bound stay open. Status stays OPEN.",
+      "obligation": "Keep the four-list census separate from a k-item grammar. Defining that grammar for k at least 3, with the pruning lemmas it relies on, and certifying a pruned enumeration against the unpruned space stay open.",
       "imports": [],
-      "fence": "Open: the cost-two minimum (CL-3-MIN-TWO) is relative to the sealed grammar and bounds, and nothing here establishes a k-item minimum or a bound on response size.",
+      "fence": "The four lists are a copied census of deltaU0, deltaU1, deltaBL, and deltaBD. They are not an exhaustive enumeration of the sealed candidate space, and they do not define a k-item grammar for k at least 3. The cost-two minimum CL-3-MIN-TWO stays relative to the sealed grammar. A bound on response size stays open. Status stays OPEN.",
       "witnesses": {
         "lean": [
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "pgwKItem_lengths"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "pgwKItem_arities"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "pgwKItem_arity_sum"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "pgwKItem_pairwise"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "pgwKItem_three_length"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "pgwKItem_three_above_two"
+          },
           {
             "root": "local",
             "path": "lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean",
@@ -5586,6 +5616,10 @@
             "root": "github19l",
             "path": "research/second_stream/stream.py",
             "symbol": "iter_k_item_deltas"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-k-item-delta-grammar.py"
           }
         ]
       },

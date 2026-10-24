@@ -129,3 +129,4 @@ One line per target, in order attempted: `<UTC date> | <node id> | <outcome clas
 - **Lean 4 (`lean4/CampaignTfq0376Pregenesis.lean`)**: 10 zero-sorry theorems (`L4D`) formalizing the six Section-15 checklist slots (`Section15CheckSlot`), the three transition stages (`Successor`, `ProposedLift`, `LicensedTransition`), the tied-minima plurality fence, and the budget-stop non-obstruction / non-minimality fence.
 - **Mutation Gate (`dag/research/campaign_tfq-0376_lean_mutation.json`)**: 6/6 semantic mutations killed.
 - **Independent Checker (`checks/independent/tfq-0376.py`)**: 146 checks passed, 0 failed (`dag/research/campaign_tfq-0376_independent.json`).
+2026-10-24 | PGW-K-ITEM-DELTA-GRAMMAR | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/313 | The four copied Challenge 3 lists each have length 2, new-form arities 1, 1, 2, and 2 sum to 6, and one three-item list has length 3; status stays OPEN

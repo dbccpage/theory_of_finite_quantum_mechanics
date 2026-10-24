@@ -8,10 +8,10 @@
 
 ## 1. Abstract & Formal Statement
 
-The sealed candidate space is enumerated to cost two (at most two items, arity at most two), with pruning lemmas certified against the unpruned space: unreferenced fresh data and forms never matter, an instance-only delta changes the target pair's profiles only if an instance mentions a target datum, and a delta holding a uniform-rule item is never a minimum valid response (rule_item_never_minimal). The second derivation's rung one enumerated three-item deltas (min_responses_three) under a node guard, but no k-item delta grammar with pruning lemmas proved beyond cost two exists, and the distance bound of two is not known to be the grammar's (S-4). The education audit lists k-item delta grammars with pruning lemmas as a missing prerequisite of the S(n) bridge.
+Narrowed boundary, status left OPEN: the four declared Challenge 3 lists copied from deltaU0, deltaU1, deltaBL, and deltaBD each have length 2. Their new-form arities are 1, 1, 2, and 2, and the sum of those arities is 6. The argument lists are [0], [1], [0, 1], and [0, 0], and the four lists are pairwise distinct across 6 comparisons. One three-item list has length 3, and 3 > 2. This census is those four named lists. A k-item grammar for k at least 3, an exhaustive cost-two enumeration, and a response-size bound stay open. Status stays OPEN.
 
 ### Governing Obligation
-Define the k-item delta grammar for k ≥ 3, state and prove the pruning lemmas it relies on, and certify the pruned enumeration against the unpruned space at each declared k before using any k-item minimum.
+Keep the four-list census separate from a k-item grammar. Defining that grammar for k at least 3, with the pruning lemmas it relies on, and certifying a pruned enumeration against the unpruned space stay open.
 
 ---
 
@@ -23,13 +23,14 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> Open: the cost-two minimum (CL-3-MIN-TWO) is relative to the sealed grammar and bounds, and nothing here establishes a k-item minimum or a bound on response size.
+> The four lists are a copied census of deltaU0, deltaU1, deltaBL, and deltaBD. They are not an exhaustive enumeration of the sealed candidate space, and they do not define a k-item grammar for k at least 3. The cost-two minimum CL-3-MIN-TWO stays relative to the sealed grammar. A bound on response size stays open. Status stays OPEN.
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`lean4/CampaignPgwKItemDeltaGrammar.lean`](../../../lean4/CampaignPgwKItemDeltaGrammar.lean) four-list census
 - [`lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_datum`](../../../lean4/Imported/Genesis19l57g1/Derivation/Mention.lean)
 - [`lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean::rule_item_never_minimal`](../../../lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean)
 
@@ -37,6 +38,7 @@ In accordance with strict constructive principles:
 - [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::iter_cost2_deltas`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs)
 
 ### Python Oracles & Numerical Evaluators
+- [`checks/independent/pgw-k-item-delta-grammar.py`](../../../checks/independent/pgw-k-item-delta-grammar.py) four-list census
 - [`github:dbccpage/19L57G1@85a83ae7c/research/second_stream/stream.py::iter_k_item_deltas`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_stream/stream.py)
 - [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::iter_cost2_deltas`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py)
 

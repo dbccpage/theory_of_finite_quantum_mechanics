@@ -16346,14 +16346,22 @@
       "stage": "GENESIS",
       "status": "OPEN",
       "source_status": "continuation.txt §13 Responses in Lean (S-4); genesis_source.txt §8.3 pruning lemmas; education archive §6 item 3",
-      "statement": "The sealed candidate space is enumerated to cost two (at most two items, arity at most two), with pruning lemmas certified against the unpruned space: unreferenced fresh data and forms never matter, an instance-only delta changes the target pair's profiles only if an instance mentions a target datum, and a delta holding a uniform-rule item is never a minimum valid response (rule_item_never_minimal). The second derivation's rung one enumerated three-item deltas (min_responses_three) under a node guard, but no k-item delta grammar with pruning lemmas proved beyond cost two exists, and the distance bound of two is not known to be the grammar's (S-4). The education audit lists k-item delta grammars with pruning lemmas as a missing prerequisite of the S(n) bridge.",
+      "statement": "Narrowed boundary, status left OPEN: the four declared Challenge 3 lists copied from deltaU0, deltaU1, deltaBL, and deltaBD each have length 2. Their new-form arities are 1, 1, 2, and 2, and the sum of those arities is 6. The argument lists are [0], [1], [0, 1], and [0, 0], and the four lists are pairwise distinct across 6 comparisons. One three-item list has length 3, and 3 > 2. This census is those four named lists. A k-item grammar for k at least 3, an exhaustive cost-two enumeration, and a response-size bound stay open. Status stays OPEN.",
       "source": [
         "dag/derivations/02_genesis/tfq_0490_k_item_delta_grammar.md",
+        "dag/research/campaign_pgw-k-item-delta-grammar_lean_replay.json",
+        "dag/derivations/independent/pgw-k-item-delta-grammar.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1081-1084",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:414-433",
         "omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md:1101"
       ],
       "lean": [
+        "lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_lengths",
+        "lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_arities",
+        "lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_arity_sum",
+        "lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_pairwise",
+        "lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_three_length",
+        "lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_three_above_two",
         "lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean::rule_item_never_minimal",
         "lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_datum"
       ],
@@ -16361,7 +16369,7 @@
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::iter_cost2_deltas"
       ],
       "imported_structure": [],
-      "bottleneck": "Open: the cost-two minimum (CL-3-MIN-TWO) is relative to the sealed grammar and bounds, and nothing here establishes a k-item minimum or a bound on response size.",
+      "bottleneck": "The four lists are a copied census of deltaU0, deltaU1, deltaBL, and deltaBD. They are not an exhaustive enumeration of the sealed candidate space, and they do not define a k-item grammar for k at least 3. The cost-two minimum CL-3-MIN-TWO stays relative to the sealed grammar. A bound on response size stays open. Status stays OPEN.",
       "tags": [
         "pregenesis-to-wdp",
         "TFQ-0490",
@@ -60274,20 +60282,29 @@
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
+        "dag/derivations/independent/pgw-k-item-delta-grammar.md",
+        "dag/research/campaign_pgw-k-item-delta-grammar_lean_replay.json"
       ],
       "id": "TFQ-0490",
       "lean4": [
+        "lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_lengths",
+        "lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_arities",
+        "lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_arity_sum",
+        "lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_pairwise",
+        "lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_three_length",
+        "lean4/CampaignPgwKItemDeltaGrammar.lean::pgwKItem_three_above_two",
         "lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean::rule_item_never_minimal",
         "lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_datum"
       ],
       "local_id": "PGW-K-ITEM-DELTA-GRAMMAR",
       "name": "k-item-delta-grammar",
-      "obligation": "Define the k-item delta grammar for k ≥ 3, state and prove the pruning lemmas it relies on, and certify the pruned enumeration against the unpruned space at each declared k before using any k-item minimum.",
+      "obligation": "Keep the four-list census separate from a k-item grammar. Defining that grammar for k at least 3, with the pruning lemmas it relies on, and certifying a pruned enumeration against the unpruned space stay open.",
       "parent_id": "TFQ-0488",
       "python": [
         "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::iter_cost2_deltas",
-        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_stream/stream.py::iter_k_item_deltas"
+        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_stream/stream.py::iter_k_item_deltas",
+        "checks/independent/pgw-k-item-delta-grammar.py"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
@@ -60295,7 +60312,7 @@
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
-      "summary": "The sealed candidate space is enumerated to cost two (at most two items, arity at most two), with pruning lemmas certified against the unpruned space: unreferenced fresh data and forms never matter, an instance-only delta changes the target pair's profiles only if an instance mentions a target datum, and a delta holding a uniform-rule item is never a minimum valid response (rule_item_never_minimal). The second derivation's rung one enumerated three-item deltas (min_responses_three) under a node guard, but no k-item delta grammar with pruning lemmas proved beyond cost two exists, and the distance bound of two is not known to be the grammar's (S-4). The education audit lists k-item delta grammars with pruning lemmas as a missing prerequisite of the S(n) bridge.",
+      "summary": "Narrowed boundary, status left OPEN: the four declared Challenge 3 lists copied from deltaU0, deltaU1, deltaBL, and deltaBD each have length 2. Their new-form arities are 1, 1, 2, and 2, and the sum of those arities is 6. The argument lists are [0], [1], [0, 1], and [0, 0], and the four lists are pairwise distinct across 6 comparisons. One three-item list has length 3, and 3 > 2. This census is those four named lists. A k-item grammar for k at least 3, an exhaustive cost-two enumeration, and a response-size bound stay open. Status stays OPEN.",
       "uuid": "c06b7aeb-a75f-538e-ad42-b19e32eb4eee"
     },
     {
