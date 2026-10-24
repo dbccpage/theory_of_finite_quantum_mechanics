@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 15
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -39,7 +39,7 @@ Sector-form selection kernel-checked in dag/results/L1-IMP-HILBERT-INNER-PRODUCT
 
 ## Review
 
-- PFP review: [dag/results/L1-IMP-HILBERT-INNER-PRODUCT/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-IMP-HILBERT-INNER-PRODUCT/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [dag/results/L1-IMP-HILBERT-INNER-PRODUCT/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-IMP-HILBERT-INNER-PRODUCT/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: no.
   - narrowest claim: Exact three Gram pairings/norms and anisotropy controls, with general weighted difference and concrete nonuniqueness in Lean.
   - does not support: Prove positive-definite inner-product instances and source-carrier refinement, then justify any physical selection. The inner product remains admitted structure.
   - next test: Prove positive-definite inner-product instances and source-carrier refinement, then justify any physical selection. The inner product remains admitted structure.

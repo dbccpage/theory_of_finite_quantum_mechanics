@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading). Narrowed in lean4/CampaignFspLaughlinExchangePhase.lean and checks/independent/fsp-laughlin-exchange-phase.py to general-m Laughlin Jastrow exchange parity (z2 - z1)^m = (-1)^m (z1 - z2)^m, symmetry of the bare holomorphic two-quasihole prefactor prod_j (z_j - eta1)(z_j - eta2) under eta1 \<-\> eta2 (isolating the Arovas-Schrieffer-Wilczek Berry connection as the source of pi/m), exact SL(2, Z) cyclotomic companion matrices R6 and M3 = R6^2 for pi/3 exchange and 2pi/3 monodromy, non-involution obstruction (J^2 = I_2 -\> J != M3, R6), general-m monodromy residue 2 % m = 2 != 0 (m \>= 3) and odd-m coprimality gcd(2, 2k+1) = 1, and non-cancellation under unequal quasihole/quasielectron weights w_qh != w_qe.
+Narrowed algebraic checks only. Jastrow exchange identities hold in commutative rings. A supplied 2x2 integer companion matrix and its square satisfy cyclotomic identities and fail involution tests. The quasihole polynomial is symmetric. The matrix model is not identified with a physical Berry holonomy, and symmetry alone does not derive a Berry phase or its physical origin. Status is unchanged. The original physical or operational bridge remains open.
 
 ## Source status
 
@@ -45,30 +45,30 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignFspLaughlinExchangePhase.lean`
 
 - file: [lean4/CampaignFspLaughlinExchangePhase.lean](../../../lean4/CampaignFspLaughlinExchangePhase.lean)
-- sha256 (`bytes`): `79a064642d7c0e9484c97c6c5d5625a0668124c6abb508b75bb74993f5889d31`
-- cited in: node.lean, receipt dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json (CampaignFspLaughlinExchangePhase), record TFQ-1208
+- sha256 (`bytes`): `ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f`
+- cited in: node.lean, record TFQ-1208
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json](../../../dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json) (module `CampaignFspLaughlinExchangePhase`): recorded sha256 `79a064642d7c0e9484c97c6c5d5625a0668124c6abb508b75bb74993f5889d31` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json](../../../dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json) (module `CampaignFspLaughlinExchangePhase`): recorded sha256 `ce6c4862a88bb315a12e5e3865898dafb56986b59cb303839b9ec35dc55f467f` matches the current file; exit code 0; Lean None; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignFspLaughlinExchangePhase`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignFspLaughlinExchangePhase.abelian_anyon_modular_s_exponent_and_z3_character_sum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLaughlinExchangePhase.abelian_anyon_modular_s_exponent_and_z3_character_sum` |
-| `CampaignFspLaughlinExchangePhase.general_m_monodromy_residue_and_odd_coprime` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLaughlinExchangePhase.general_m_monodromy_residue_and_odd_coprime` |
-| `CampaignFspLaughlinExchangePhase.laughlin_m3_exchange_companion_cyclotomic_relations` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLaughlinExchangePhase.laughlin_m3_exchange_companion_cyclotomic_relations` |
-| `CampaignFspLaughlinExchangePhase.laughlin_m3_monodromy_cyclotomic_and_non_involution` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLaughlinExchangePhase.laughlin_m3_monodromy_cyclotomic_and_non_involution` |
-| `CampaignFspLaughlinExchangePhase.laughlin_odd_m_fermionic_and_even_m_bosonic` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLaughlinExchangePhase.laughlin_odd_m_fermionic_and_even_m_bosonic` |
-| `CampaignFspLaughlinExchangePhase.laughlin_quasihole_holomorphic_polynomial_symmetric_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLaughlinExchangePhase.laughlin_quasihole_holomorphic_polynomial_symmetric_fence` |
-| `CampaignFspLaughlinExchangePhase.laughlin_three_body_vandermonde_transposition_flips_sign_for_odd_m` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLaughlinExchangePhase.laughlin_three_body_vandermonde_transposition_flips_sign_for_odd_m` |
-| `CampaignFspLaughlinExchangePhase.laughlin_two_body_jastrow_exchange_parity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLaughlinExchangePhase.laughlin_two_body_jastrow_exchange_parity` |
-| `CampaignFspLaughlinExchangePhase.no_z2_involution_matches_m3_monodromy_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLaughlinExchangePhase.no_z2_involution_matches_m3_monodromy_fence` |
-| `CampaignFspLaughlinExchangePhase.unequal_quasihole_quasielectron_weights_prevent_z3_cancellation_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLaughlinExchangePhase.unequal_quasihole_quasielectron_weights_prevent_z3_cancellation_fence` |
+| `CampaignFspLaughlinExchangePhase.abelian_anyon_modular_s_exponent_and_z3_character_sum` | yes | yes | yes | module-level | `#print axioms CampaignFspLaughlinExchangePhase.abelian_anyon_modular_s_exponent_and_z3_character_sum` |
+| `CampaignFspLaughlinExchangePhase.general_m_monodromy_residue_and_odd_coprime` | yes | yes | yes | module-level | `#print axioms CampaignFspLaughlinExchangePhase.general_m_monodromy_residue_and_odd_coprime` |
+| `CampaignFspLaughlinExchangePhase.laughlin_m3_exchange_companion_cyclotomic_relations` | yes | yes | yes | module-level | `#print axioms CampaignFspLaughlinExchangePhase.laughlin_m3_exchange_companion_cyclotomic_relations` |
+| `CampaignFspLaughlinExchangePhase.laughlin_m3_monodromy_cyclotomic_and_non_involution` | yes | yes | yes | module-level | `#print axioms CampaignFspLaughlinExchangePhase.laughlin_m3_monodromy_cyclotomic_and_non_involution` |
+| `CampaignFspLaughlinExchangePhase.laughlin_odd_m_fermionic_and_even_m_bosonic` | yes | yes | yes | module-level | `#print axioms CampaignFspLaughlinExchangePhase.laughlin_odd_m_fermionic_and_even_m_bosonic` |
+| `CampaignFspLaughlinExchangePhase.laughlin_quasihole_holomorphic_polynomial_symmetric_fence` | yes | yes | yes | module-level | `#print axioms CampaignFspLaughlinExchangePhase.laughlin_quasihole_holomorphic_polynomial_symmetric_fence` |
+| `CampaignFspLaughlinExchangePhase.laughlin_three_body_vandermonde_transposition_flips_sign_for_odd_m` | yes | yes | yes | module-level | `#print axioms CampaignFspLaughlinExchangePhase.laughlin_three_body_vandermonde_transposition_flips_sign_for_odd_m` |
+| `CampaignFspLaughlinExchangePhase.laughlin_two_body_jastrow_exchange_parity` | yes | yes | yes | module-level | `#print axioms CampaignFspLaughlinExchangePhase.laughlin_two_body_jastrow_exchange_parity` |
+| `CampaignFspLaughlinExchangePhase.no_z2_involution_matches_m3_monodromy_fence` | yes | yes | yes | module-level | `#print axioms CampaignFspLaughlinExchangePhase.no_z2_involution_matches_m3_monodromy_fence` |
+| `CampaignFspLaughlinExchangePhase.unequal_quasihole_quasielectron_weights_prevent_z3_cancellation_fence` | yes | yes | yes | module-level | `#print axioms CampaignFspLaughlinExchangePhase.unequal_quasihole_quasielectron_weights_prevent_z3_cancellation_fence` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md`
 
 - file: [dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md](../../../dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md)
-- sha256 (`lf-normalised`): `d8cd69846201d1f791c6241cf43955e776648cc78947c70cb4ec4de3c679408f`
+- sha256 (`lf-normalised`): `6afc89dd294fb1a3b6abeb899c494cc6985ba4e721d560a8c32c9b6312704317`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1208
 - counts toward the grade: no
@@ -76,14 +76,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-laughlin-exchange-phase.md`
 
 - file: [dag/derivations/independent/fsp-laughlin-exchange-phase.md](../../../dag/derivations/independent/fsp-laughlin-exchange-phase.md)
-- sha256 (`lf-normalised`): `70764771e1a60085e6d7198f871962f8e1c68233ca5f5eb47aa7c9bc9583dd2b`
+- sha256 (`lf-normalised`): `bfdf79d1fa7b27ba4bbd143ec5078469b9c54a0c5c097165f4b84342b0855780`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_fsp-laughlin-exchange-phase_independent.json`
 
 - file: [dag/research/campaign_fsp-laughlin-exchange-phase_independent.json](../../../dag/research/campaign_fsp-laughlin-exchange-phase_independent.json)
-- sha256 (`lf-normalised`): `8650174cf312b9753e879ed9dd871411bdf6c846852d31d8a8095323555267c4`
+- sha256 (`lf-normalised`): `89cb50b7afc65e71e1126afadeae8842dc57796d17318954bb2c662b3578be14`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -97,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json](../../../dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json)
-- sha256 (`lf-normalised`): `a343bd48c9616fcca1057a93c7fcdd8bef507deb2da9935c3b2069e80074cee6`
+- sha256 (`lf-normalised`): `d7952b06f1b4fb2c67ffdc869ab06debbfaa4de2468198f3129cff71a42f9188`
 - cited in: node.source
 - counts toward the grade: yes
 

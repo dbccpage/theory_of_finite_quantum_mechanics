@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 18
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -36,7 +36,7 @@ inert, opaque inscription; no object-language meaning (Pre-Genesis paper §1 tab
 
 ## Review
 
-- PFP review: [dag/results/PG-INERT-DIAMOND/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-INERT-DIAMOND/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: yes.
+- PFP review: [dag/results/PG-INERT-DIAMOND/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-INERT-DIAMOND/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `DEFINITION`; qualifies for E4: no.
   - narrowest claim: In a three-event admission model where supply is the identity by stipulation: in the unrooted replay a mention of \<\> (or any token) is invisible to every function of the admitted state; in the rooted replay the first supply of \<\> is an admission precondition and only later supplies are inert; the model predicate HasCoproduct is independent of inscribing \<\> (the identification Real_0 = Difference join Structure is not modelled), and coproduct without inscription occurs only in the unrooted model; inertness is the model rule rather than a consequence of the spelling; verified exhaustively for all traces of length \<= 5.
   - does not support: The identification Real_0 = Difference joined with Structure (it is not modelled; only a stand-in predicate is shown independent of the inscription); the remaining three events of the six-operation alphabet (instance, rule, imposition) and their refusal rules; the Rust partial admission rules beyond the three-event fragment; any claim that supply is inert independently of the stipulated step rule; inertness of the FIRST supply in the rooted replay; any physical or interpretive reading of \<\>.
   - next test: Extend the finite model to the remaining three events of the six-operation alphabet (admit instance, admit rule, impose) with the refusal rules of admission.rs, and prove that supply stays inert and that no supply history forces a coproduct structure on the admitted state.

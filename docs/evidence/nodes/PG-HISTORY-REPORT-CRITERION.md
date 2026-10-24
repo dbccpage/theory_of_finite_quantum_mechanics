@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 16
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -36,7 +36,7 @@ Theorem 2 - history report criterion (Lean: history_report_criterion, history_fa
 
 ## Review
 
-- PFP review: [dag/results/PG-HISTORY-REPORT-CRITERION/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-HISTORY-REPORT-CRITERION/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/PG-HISTORY-REPORT-CRITERION/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-HISTORY-REPORT-CRITERION/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: For arbitrary types, an answer factors through the report image iff it is constant on report fibers, uniquely on the image; the direction constancy =\> factoring is proved from a selector of fiber representatives (a hypothesis, axiom-free) and, for an arbitrary report, with Classical.choice; necessity of a selector or of choice is not shown; verified exhaustively on 16 small function-space triples.
   - does not support: Necessity of a selector or of Classical.choice for the direction constancy =\> factoring (this node establishes no independence or unprovability result; the selector is a hypothesis, not a construction); the constructive listed-history reconstruction (node PG-PREGEN-CONSTRUCTIVE-SUMMARY); any structure on H, V or S, probability, measurement or physical interpretation of reports.
   - next test: Decide whether constancy on fibers =\> factoring through the image is provable without Classical.choice for an arbitrary history type (prove it, or give a choice-free model in which a fiber-constant question fails to factor), beyond the selector hypothesis proved here and the listed-history version of node 166.

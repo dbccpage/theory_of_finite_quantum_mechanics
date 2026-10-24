@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -37,7 +37,7 @@ Unmet after the PFP review: Formalize all matrix/Kraus/tensor positivity transpo
 
 ## Review
 
-- PFP review: [dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact Kraus completeness, channel outputs, stochastic kernel and same-diagonal distinct-output controls are retained; scalar Cayley and population conservation are kernel checked.
   - does not support: Formalize all matrix/Kraus/tensor positivity transports and physical channel admission. Basis-relative stochastic shadows do not select a unique quantum channel.
   - next test: Formalize all matrix/Kraus/tensor positivity transports and physical channel admission. Basis-relative stochastic shadows do not select a unique quantum channel.

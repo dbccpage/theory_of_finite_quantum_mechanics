@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -38,7 +38,7 @@ Finite sign-group phase-averaging cross-term cancellation mechanized in Derivati
 
 ## Review
 
-- PFP review: [dag/results/L1-QM020-THM5-PHASE-AVERAGED-SHADOW/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM020-THM5-PHASE-AVERAGED-SHADOW/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/L1-QM020-THM5-PHASE-AVERAGED-SHADOW/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM020-THM5-PHASE-AVERAGED-SHADOW/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Complete3-sector phase-conjugation mean, diagonal map and64 exact scalar readouts, with scalar cross cancellation in Lean.
   - does not support: Supply Haar measure, independence and Hilbert/source refinement. A finite polynomial-moment identity is not a continuum integration construction.
   - next test: Supply Haar measure, independence and Hilbert/source refinement. A finite polynomial-moment identity is not a continuum integration construction.
