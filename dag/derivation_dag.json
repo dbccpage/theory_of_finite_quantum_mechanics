@@ -2277,10 +2277,13 @@
       "stage": "WDP",
       "status": "OPEN",
       "source_status": "GEN-WDP-O01..O05 five-obligation Genesis-to-WDP bridge gate, GEN-WDP-46/70 observer completion dimension decomposition, GEN-WDP-42/45 two-event causal diamond price-curl flatness vs assertion-fee curl, and GEN-WDP-68 rational scalar norm obstruction mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm",
-      "statement": "Five open bridge obligations (register rows GEN-WDP-O01..O05): O01 carrier/signature/law/challenge-generation floor; O02 source transition/admission systems to the WDP bridge by preservation/reflection maps; O03 dynamic carrier transport and higher fillers; O04 effect/probability, scalar and Hilbert choices; O05 governance refinement. Scoped control items are done; the end-to-end claims are not. Lean establishes only ledger bookkeeping (end-to-end defined as all five discharged) and three side facts (five-flag Boolean AND, symmetrised adjacency forgets orientation, no p^2 = 2 q^2); no obligation is discharged, dischargeable or refuted.",
+      "statement": "Five open bridge obligations (register rows GEN-WDP-O01..O05): O01 carrier/signature/law/challenge-generation floor; O02 source transition/admission systems to the WDP bridge by preservation/reflection maps; O03 dynamic carrier transport and higher fillers; O04 effect/probability, scalar and Hilbert choices; O05 governance refinement. Narrowed finite case, status left OPEN: on any finite window, symmetrised adjacency is false at a pair exactly when both directed adjacencies are false; on two vertices that symmetrisation is not a directed-step certificate, since edge01 and edge10 differ as directed steps and both have pair-defect true at (0,1); the identity on adjacency is a directed-step certificate on every finite window; and no positive integers p, q satisfy p * p = 2 * q * q, with the numerical case 1 * 1 = 1 and 2 * 1 * 1 = 2. O01, O03, O04, O05, and the existence of an O02 map from a source admission system stay open.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md:87-91",
-        "omega_engine_atlas/coda_atlas/F004_papers/plans/goal_dag.jsonl"
+        "omega_engine_atlas/coda_atlas/F004_papers/plans/goal_dag.jsonl",
+        "dag/derivations/independent/pg-wdp-genesis-bridge-obligations.md",
+        "checks/independent/pg-wdp-genesis-bridge-obligations.py",
+        "lean4/CampaignPgwWdpBridgeObligations.lean"
       ],
       "lean": [
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.genesis_to_wdp_bridge_preserves_and_reflects",
@@ -2288,7 +2291,16 @@
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o03_o05_coherence_readout_and_standing_separation",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl"
+        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl",
+        "lean4/CampaignPgwWdpBridgeObligations.lean::CampaignPgwWdpBridgeObligations.pairDefect_false_iff",
+        "lean4/CampaignPgwWdpBridgeObligations.lean::CampaignPgwWdpBridgeObligations.idAdj_is_certificate",
+        "lean4/CampaignPgwWdpBridgeObligations.lean::CampaignPgwWdpBridgeObligations.some_certificate_exists",
+        "lean4/CampaignPgwWdpBridgeObligations.lean::CampaignPgwWdpBridgeObligations.witness_orientation_swap",
+        "lean4/CampaignPgwWdpBridgeObligations.lean::CampaignPgwWdpBridgeObligations.pairDefect_not_directed_step_certificate",
+        "lean4/CampaignPgwWdpBridgeObligations.lean::CampaignPgwWdpBridgeObligations.no_sq_eq_two_sq",
+        "lean4/CampaignPgwWdpBridgeObligations.lean::CampaignPgwWdpBridgeObligations.one_sq_ne_two",
+        "lean4/CampaignPgwWdpBridgeObligations.lean::CampaignPgwWdpBridgeObligations.no_sq_at_one",
+        "lean4/CampaignPgwWdpBridgeObligations.lean::CampaignPgwWdpBridgeObligations.one_sq_values"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_wdp_obligations_and_growth_witness",
@@ -2299,7 +2311,7 @@
         "sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "O01..O05 remain open in the register; the Lean module is definitional bookkeeping and the PROVED_LEAN label does not extend to any obligation.",
+      "bottleneck": "O01..O05 remain open in the register. CampaignPgwWdpBridgeObligations records the symmetrised-adjacency candidate only: it is not a directed-step certificate, while the identity on adjacency is one, so O02 is not refuted. The integer relation p * p = 2 * q * q has no positive solution and is not the O04 scalar or Hilbert choice. No source admission system is given a preservation map.",
       "tags": [
         "gen-wdp-o01",
         "gen-wdp-o02"
@@ -2315,7 +2327,7 @@
         "does_not_support": "That any of O01..O05 is discharged, dischargeable or refutable; the truth of any end-to-end bridge claim; any independent semantics of \"end-to-end\" beyond the definitional conjunction; that the register status of O01..O05 is control-only: the register labels each OPEN, and Open/ControlOnly/Discharged and the all-ControlOnly vector 11111 are this node's reading of the node statement (scoped controls done, end-to-end not); that no_sq_eq_two_sq bears on O04; the programme order as a logical dependency; Hilbert, Born, scalar or governance choices; any physical or institutional interpretation.",
         "next_test": "For O02, the only concrete candidate map in hand is the symmetrised adjacency of a finite window: choose an orientation-sensitive source transition system on FiniteGenesisWindow and prove or refute that wdpPairDefect is a preservation-and-reflection morphism for it (pairDefect_forgets_orientation already refutes it for orientation-sensitive transitions); record the outcome as the first falsifier on the O02 row.",
         "scope_effect": "status_lowered",
-        "reason": "The cited Lean witnesses are fixed-number arithmetic and unconnected Boolean flags; the new kernel content is definitional ledger bookkeeping and three side facts, and no obligation O01-O05 is discharged, dischargeable or refuted.",
+        "reason": "The campaign module adds a finite directed-step reading of the symmetrised-adjacency candidate and the integer descent for p * p = 2 * q * q. O01-O05 stay open; status stays OPEN.",
         "prior_status": "PROVED_LEAN",
         "prior_statement": "Five open bridge obligations: O01 carrier/signature/law/challenge-generation floor; O02 source transition/admission systems to the WDP bridge by preservation/reflection maps; O03 dynamic carrier transport and higher fillers; O04 effect/probability, scalar and Hilbert choices; O05 governance refinement. Scoped CONTROL items are done; the end-to-end claims are not.",
         "prior_bottleneck": "None (finite-window Genesis-to-WDP bridge obligations O01..O05, observer completion dimension decomposition, causal diamond price curl, and rational scalar norm obstruction mechanized in pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl, pg_wdp_genesis_bridge_o03_o05_coherence_readout_and_standing_separation, and genesis_to_wdp_bridge_preserves_and_reflects).",

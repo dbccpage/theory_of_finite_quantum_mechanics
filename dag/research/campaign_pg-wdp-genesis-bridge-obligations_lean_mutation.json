@@ -1,0 +1,61 @@
+{
+  "schema_version": "campaign_lean_mutation.v1",
+  "node_id": "PG-WDP-GENESIS-BRIDGE-OBLIGATIONS",
+  "lean_file": "lean4/CampaignPgwWdpBridgeObligations.lean",
+  "sha256": "8d3358fa30d4b9a910101b4e49d925725239f47ecce5dec3f8de1ab238b6d026",
+  "command": "elan run leanprover/lean4:v4.35.0 lean <temporary copy>",
+  "unmutated_exit_code": 0,
+  "lake_build_ran": false,
+  "lean_mutation": {
+    "total": 3,
+    "killed": 3,
+    "survived": 0,
+    "all_killed": true,
+    "mutants": [
+      {
+        "id": "M1_pair_defect_and",
+        "description": "Replace the symmetrised disjunction with a conjunction.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "WdpBridgeObligations.pairDefect_false_iff' depends on axioms: [propext, sorryAx] 'CampaignPgwWdpBridgeObligations.idAdj_is_certificate' does not depend on any axioms 'CampaignPgwWdpBridgeObligations.some_certificate_exists' does not depend "
+      },
+      {
+        "id": "M2_id_adj_false",
+        "description": "Make the identity adjacency return false.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "CampaignPgwWdpBridgeObligations.pairDefect_false_iff' depends on axioms: [propext] 'CampaignPgwWdpBridgeObligations.idAdj_is_certificate' depends on axioms: [propext, sorryAx] 'CampaignPgwWdpBridgeObligations.some_certificate_exists' depend"
+      },
+      {
+        "id": "M3_square_equation_flipped",
+        "description": "Flip the squared descent inequality to an equation.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "ype   ∀ (p : Nat), p * p ≠ 2 * (1 * 1) 'CampaignPgwWdpBridgeObligations.pairDefect_false_iff' depends on axioms: [propext] 'CampaignPgwWdpBridgeObligations.idAdj_is_certificate' does not depend on any axioms 'CampaignPgwWdpBridgeObligations"
+      }
+    ]
+  },
+  "checker_mutation": {
+    "script": "checks/independent/pg-wdp-genesis-bridge-obligations.py",
+    "script_sha256": "2f064918320e3bf12e04d3702d29335b693d89183030474ab9365f3dd93c632a",
+    "total": 2,
+    "killed": 2,
+    "survived": 0,
+    "mutants": [
+      {
+        "id": "P1_pair_defect_and",
+        "description": "Replace pair_defect's disjunction with a conjunction.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "FAIL pairDefect edge01 (0,1) is true FAIL pairDefect edge10 (0,1) is true FAIL pairDefect is not the directed step checked 16 claims, failures 3"
+      },
+      {
+        "id": "P2_search_accepts_square",
+        "description": "Accept p*p = q*q inside the descent search.",
+        "killed": true,
+        "exit_code": 1,
+        "error_excerpt": "FAIL no solutions for q=1..200, found [(1, 1), (2, 2), (3, 3)] checked 16 claims, failures 1"
+      }
+    ]
+  }
+}
