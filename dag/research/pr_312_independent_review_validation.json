@@ -1,0 +1,242 @@
+{
+  "number": 312,
+  "original_head": "2845b1de9d7a2e5b37e990abf5b18aeaad3ef33d",
+  "level": "L3",
+  "meaning": "Explicit integer matrices obey Clifford identities; one anticommutation hypothesis gives bond factorization; a six-factor commutative-ring flux is gauge invariant; a product of all supplied involutions squared equals one; and a 4x4 skew matrix has determinant equal to the squared explicit Pfaffian polynomial. No cellular surface incidence map is built, so the product-square lemma is not a theorem about all plaquettes on closed tori. The independent diagonal parity matrix is not identified with the supplied Majorana gauge operator. No physical Hilbert-space projection or thermal partition function is constructed.",
+  "baseline": {
+    "number": 312,
+    "head": "2845b1de9d7a2e5b37e990abf5b18aeaad3ef33d",
+    "source": "lean4/CampaignFspKitaevHoneycombSolution.lean",
+    "sha256": "def191c845e345ab0745b9f3c769de207113b8826417a55adc54223fca4aa78a",
+    "checks": {
+      "independent": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "checks/independent/fsp-kitaev-honeycomb-solution.py"
+        ],
+        "exit_code": 0,
+        "seconds": 0.17,
+        "output": "PASS fsp-kitaev-honeycomb-solution: checks=1676 site_bond=34 plaquette_pfaffian=1582 fences=60 failures=0\r\n"
+      },
+      "governance": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\governance\\target\\debug\\governance-check.exe",
+          "--root",
+          "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 1,
+        "seconds": 32.71,
+        "output": "changed since origin/main (1fa451fe1eac640d84f0c34ba88a71dcdd32dfb6): 26 paths\nchecked 8252: 71 pass, 8160 grandfathered, 20 boilerplate, 1 failed\nFAIL lean4/CampaignSnE08WeightedL1Duality.lean (new or not grandfathered)\n  lean4/CampaignSnE08WeightedL1Duality.contract.score.yaml: [BINDING] contract.artifact.sha256: expected f35d7b06b68886a27305b2120f72b1336115f3bcdb587ce5ba50827131e8c687, found 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff\n"
+      },
+      "scope": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/score_scope_contracts.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 0,
+        "seconds": 6.93,
+        "output": "{\r\n  \"audit\": null,\r\n  \"passed\": true,\r\n  \"summary\": {\r\n    \"sources\": 2,\r\n    \"valid_contracts_and_scores\": 2,\r\n    \"invalid_or_missing\": 0,\r\n    \"invalid_but_grandfathered\": 0,\r\n    \"blocking_errors\": 0,\r\n    \"by_language\": {\r\n      \"Lean 4\": 2\r\n    },\r\n    \"by_preliminary_profile\": {\r\n      \"Non-Numeric\": 1,\r\n      \"Symbolic/Formal\": 1\r\n    },\r\n    \"completed_scores\": 2,\r\n    \"pinned_boilerplate\": 0,\r\n    \"incomplete_scores\": 0,\r\n    \"generated_governance_twins\": 0,\r\n    \"non_twin_sources\": 2\r\n  },\r\n  \"errors\": [],\r\n  \"scope\": \"in-scope sources changed since origin/main (merge base 1fa451fe1eac), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\r\n}\r\n"
+      },
+      "history": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/contract_scores.py",
+          "check",
+          "--changed-since",
+          "origin/main"
+        ],
+        "exit_code": 0,
+        "seconds": 7.38,
+        "output": "{\r\n  \"originals\": null,\r\n  \"combined_files\": 2,\r\n  \"all_passed\": true,\r\n  \"errors\": [],\r\n  \"scope\": \"changed files only; the rest of the tree was not read\"\r\n}\r\n"
+      },
+      "overclaim": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "scripts/overclaim_scan.py",
+          "--changed-since",
+          "origin/main",
+          "--strict"
+        ],
+        "exit_code": 0,
+        "seconds": 11.71,
+        "output": "overclaim_scan: scope=changes since origin/main (merge base 1fa451fe1eac); HIGH=0 MEDIUM=1 LOW=0\r\n"
+      },
+      "dag": {
+        "command": [
+          "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-X",
+          "utf8",
+          "dag/validate_derivation_dag.py",
+          "--no-files"
+        ],
+        "exit_code": 0,
+        "seconds": 2.02,
+        "output": "nodes=925 routes=934 records=977 failures=0\r\n"
+      },
+      "lean": {
+        "command": [
+          "lake",
+          "build",
+          "CampaignFspKitaevHoneycombSolution"
+        ],
+        "exit_code": 0,
+        "seconds": 42.85,
+        "output": "⚠ [3137/3138] Built CampaignFspKitaevHoneycombSolution (24s)\nwarning: CampaignFspKitaevHoneycombSolution.lean: imports `Mathlib.Data.Matrix.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspKitaevHoneycombSolution.lean: imports `Mathlib.LinearAlgebra.Matrix.Determinant.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspKitaevHoneycombSolution.lean: imports `Mathlib.LinearAlgebra.Matrix.Trace` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspKitaevHoneycombSolution.lean: imports `Mathlib.Data.Fintype.BigOperators` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspKitaevHoneycombSolution.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignFspKitaevHoneycombSolution.lean:293:0: 'CampaignFspKitaevHoneycombSolution.majorana_site_clifford_relations' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspKitaevHoneycombSolution.lean:294:0: 'CampaignFspKitaevHoneycombSolution.kitaev_spin_operators_pauli_algebra_and_gauge_commutation' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspKitaevHoneycombSolution.lean:295:0: 'CampaignFspKitaevHoneycombSolution.abstract_bond_spin_product_factorization' depends on axioms: [propext]\ninfo: CampaignFspKitaevHoneycombSolution.lean:296:0: 'CampaignFspKitaevHoneycombSolution.plaquette_flux_local_z2_gauge_invariance' depends on axioms: [propext]\ninfo: CampaignFspKitaevHoneycombSolution.lean:297:0: 'CampaignFspKitaevHoneycombSolution.hexPlaquetteFlux_sq_eq_one' depends on axioms: [propext]\ninfo: CampaignFspKitaevHoneycombSolution.lean:298:0: 'CampaignFspKitaevHoneycombSolution.single_link_flip_inverts_two_incident_plaquettes' depends on axioms: [propext,\n Quot.sound]\ninfo: CampaignFspKitaevHoneycombSolution.lean:299:0: 'CampaignFspKitaevHoneycombSolution.closed_surface_total_plaquette_flux_eq_one' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspKitaevHoneycombSolution.lean:300:0: 'CampaignFspKitaevHoneycombSolution.quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspKitaevHoneycombSolution.lean:301:0: 'CampaignFspKitaevHoneycombSolution.unprojected_majorana_fock_overcounts_physical_spin_space_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspKitaevHoneycombSolution.lean:302:0: 'CampaignFspKitaevHoneycombSolution.link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspKitaevHoneycombSolution.lean:303:0: 'CampaignFspKitaevHoneycombSolution.physical_parity_projection_excludes_mismatched_sector_states_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\nBuild completed successfully (3138 jobs).\n"
+      }
+    },
+    "source_unchanged": true
+  },
+  "checks": {
+    "lean": {
+      "command": [
+        "lake",
+        "build",
+        "CampaignFspKitaevHoneycombSolution"
+      ],
+      "exit_code": 0,
+      "seconds": 55.8,
+      "output": "⚠ [3137/3138] Built CampaignFspKitaevHoneycombSolution (41s)\nwarning: CampaignFspKitaevHoneycombSolution.lean: imports `Mathlib.Data.Matrix.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspKitaevHoneycombSolution.lean: imports `Mathlib.LinearAlgebra.Matrix.Determinant.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspKitaevHoneycombSolution.lean: imports `Mathlib.LinearAlgebra.Matrix.Trace` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspKitaevHoneycombSolution.lean: imports `Mathlib.Data.Fintype.BigOperators` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFspKitaevHoneycombSolution.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignFspKitaevHoneycombSolution.lean:237:0: 'CampaignFspKitaevHoneycombSolution.majorana_site_clifford_relations' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspKitaevHoneycombSolution.lean:238:0: 'CampaignFspKitaevHoneycombSolution.kitaev_spin_operators_pauli_algebra_and_gauge_commutation' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspKitaevHoneycombSolution.lean:239:0: 'CampaignFspKitaevHoneycombSolution.abstract_bond_spin_product_factorization' depends on axioms: [propext]\ninfo: CampaignFspKitaevHoneycombSolution.lean:240:0: 'CampaignFspKitaevHoneycombSolution.plaquette_flux_local_z2_gauge_invariance' depends on axioms: [propext]\ninfo: CampaignFspKitaevHoneycombSolution.lean:241:0: 'CampaignFspKitaevHoneycombSolution.hexPlaquetteFlux_sq_eq_one' depends on axioms: [propext]\ninfo: CampaignFspKitaevHoneycombSolution.lean:242:0: 'CampaignFspKitaevHoneycombSolution.single_link_flip_inverts_two_incident_plaquettes' depends on axioms: [propext,\n Quot.sound]\ninfo: CampaignFspKitaevHoneycombSolution.lean:243:0: 'CampaignFspKitaevHoneycombSolution.closed_surface_total_plaquette_flux_eq_one' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspKitaevHoneycombSolution.lean:244:0: 'CampaignFspKitaevHoneycombSolution.quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspKitaevHoneycombSolution.lean:245:0: 'CampaignFspKitaevHoneycombSolution.unprojected_majorana_fock_overcounts_physical_spin_space_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspKitaevHoneycombSolution.lean:246:0: 'CampaignFspKitaevHoneycombSolution.link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignFspKitaevHoneycombSolution.lean:247:0: 'CampaignFspKitaevHoneycombSolution.physical_parity_projection_excludes_mismatched_sector_states_fence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\nBuild completed successfully (3138 jobs).\n"
+    },
+    "sync_pfp_results": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pfp_results.py"
+      ],
+      "exit_code": 1,
+      "seconds": 0.22,
+      "output": "Traceback (most recent call last):\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_pfp_results.py\", line 247, in <module>\r\n    raise SystemExit(main())\r\n                     ~~~~^^\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_pfp_results.py\", line 237, in main\r\n    for path, expected in generated_files(ROOT).items():\r\n                          ~~~~~~~~~~~~~~~^^^^^^\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_pfp_results.py\", line 194, in generated_files\r\n    errors = apply_decisions(root, dag, decisions)\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_pfp_results.py\", line 154, in apply_decisions\r\n    obj = review_digest(root, entry, boilerplate)\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_pfp_results.py\", line 101, in review_digest\r\n    data = path.read_bytes()\r\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\pathlib\\__init__.py\", line 777, in read_bytes\r\n    with self.open(mode='rb', buffering=0) as f:\r\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\pathlib\\__init__.py\", line 771, in open\r\n    return io.open(self, mode, buffering, encoding, errors, newline)\r\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics\\\\dag\\\\results\\\\DS-CONTINUOUS-TIME-EXP-GENERATOR\\\\reviews\\\\20261019_structure_audit\\\\review_result.json'\r\n"
+    },
+    "sync_unified_dag": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py"
+      ],
+      "exit_code": 1,
+      "seconds": 0.54,
+      "output": "Traceback (most recent call last):\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_unified_dag.py\", line 648, in <module>\r\n    raise SystemExit(main())\r\n                     ~~~~^^\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_unified_dag.py\", line 449, in main\r\n    for path, expected in generated_files(ROOT).items():\r\n                          ~~~~~~~~~~~~~~~^^^^^^\r\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\sync_unified_dag.py\", line 378, in generated_files\r\n    raise ValueError('unified DAG fragment invalid:\\n  ' + '\\n  '.join(errors))\r\nValueError: unified DAG fragment invalid:\r\n  COMP-C1a: reference does not resolve: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean:24-70\r\n  COMP-C2e: reference does not resolve: dag/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:24-100\r\n"
+    },
+    "sync_application_branches": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_application_branches.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.28,
+      "output": "stale=derivation_dag.json,theory_of_finite_qm.jsonl,theory_of_finite_qm.md\r\n"
+    },
+    "sync_pregenesis_to_wdp": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pregenesis_to_wdp.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.78,
+      "output": "stale=dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md,dag/derivation_dag.json,dag/theory_of_finite_qm.jsonl,dag/theory_of_finite_qm.md\r\n"
+    },
+    "sync_frontier_branches": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_frontier_branches.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.42,
+      "output": "stale=dag/derivation_dag.json\r\n"
+    },
+    "sync_genesis_to_higher": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_genesis_to_higher.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.32,
+      "output": "genesis-to-higher synchronized\r\n"
+    },
+    "sync_foc035_observer_presheaf": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_foc035_observer_presheaf.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.38,
+      "output": "foc035 observer presheaf synchronized\r\n"
+    },
+    "independent": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/fsp-kitaev-honeycomb-solution.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.12,
+      "output": "PASS fsp-kitaev-honeycomb-solution: checks=1676 site_bond=34 plaquette_pfaffian=1582 fences=60 failures=0\r\n"
+    },
+    "independent_optimized": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/fsp-kitaev-honeycomb-solution.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.23,
+      "output": "PASS fsp-kitaev-honeycomb-solution: checks=1676 site_bond=34 plaquette_pfaffian=1582 fences=60 failures=0\r\n"
+    }
+  },
+  "merge_allowed": false,
+  "policy_before_sha256": "4d001dddf6a4a98cc8c2200e883925e4a51b8ed9d5d197fcdbb6920d92260c4b",
+  "baseline_before_sha256": "0ad6a613e4051803ec423286b62a71b8439299c62ebd0cd4883fbe42210b65c7",
+  "source_sha256": "b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52",
+  "axiom_audit_passed": true,
+  "structure_observation": {
+    "source_lines": 249,
+    "theorem_count": 11,
+    "axiom_print_count": 11,
+    "explicit_heartbeat_count": "not measured; no high maintainability/performance grade claimed",
+    "dependency_acyclicity": "Kernel elaboration succeeded for this exact module",
+    "factoring": "Reviewed theorem signatures and helper definitions; scoped bounded-domain development"
+  }
+}

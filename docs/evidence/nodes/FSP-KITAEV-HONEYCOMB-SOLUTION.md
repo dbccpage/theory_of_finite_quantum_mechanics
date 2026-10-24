@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit. Narrowed in lean4/CampaignFspKitaevHoneycombSolution.lean and checks/independent/fsp-kitaev-honeycomb-solution.py to the single-site 4x4 Majorana Clifford and Pauli spin algebra, bond spin-product factorization (bj cj)(bk ck) = -(bj bk)(cj ck), hexagonal plaquette local Z2 gauge invariance, closed-surface even vortex parity prod_p W_p = 1, quadratic matter skew-symmetry det(A(u)) = Pf_4(A(u))^2, and explicit fences for 4^N = 2^N * 2^N gauge redundancy, link-flip Pfaffian sign reversal Pf(A(-u_e)) = -Pf(A(u_e)), and physical parity projection filtering (1 + P_matter * P_gauge).
+Narrowed algebraic checks only. Explicit integer matrices obey Clifford identities; one anticommutation hypothesis gives bond factorization; a six-factor commutative-ring flux is gauge invariant; a product of all supplied involutions squared equals one; and a 4x4 skew matrix has determinant equal to the squared explicit Pfaffian polynomial. No cellular surface incidence map is built, so the product-square lemma is not a theorem about all plaquettes on closed tori. The independent diagonal parity matrix is not identified with the supplied Majorana gauge operator. No physical Hilbert-space projection or thermal partition function is constructed. Status is unchanged. The original physical or operational bridge remains open.
 
 ## Source status
 
@@ -45,25 +45,25 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignFspKitaevHoneycombSolution.lean`
 
 - file: [lean4/CampaignFspKitaevHoneycombSolution.lean](../../../lean4/CampaignFspKitaevHoneycombSolution.lean)
-- sha256 (`bytes`): `def191c845e345ab0745b9f3c769de207113b8826417a55adc54223fca4aa78a`
-- cited in: node.lean, receipt dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json (CampaignFspKitaevHoneycombSolution), record TFQ-1207
+- sha256 (`bytes`): `b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52`
+- cited in: node.lean, record TFQ-1207
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json](../../../dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json) (module `CampaignFspKitaevHoneycombSolution`): recorded sha256 `def191c845e345ab0745b9f3c769de207113b8826417a55adc54223fca4aa78a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json](../../../dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json) (module `CampaignFspKitaevHoneycombSolution`): recorded sha256 `b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52` matches the current file; exit code 0; Lean None; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignFspKitaevHoneycombSolution`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignFspKitaevHoneycombSolution.abstract_bond_spin_product_factorization` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.abstract_bond_spin_product_factorization` |
-| `CampaignFspKitaevHoneycombSolution.closed_surface_total_plaquette_flux_eq_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.closed_surface_total_plaquette_flux_eq_one` |
-| `CampaignFspKitaevHoneycombSolution.hexPlaquetteFlux_sq_eq_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.hexPlaquetteFlux_sq_eq_one` |
-| `CampaignFspKitaevHoneycombSolution.kitaev_spin_operators_pauli_algebra_and_gauge_commutation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.kitaev_spin_operators_pauli_algebra_and_gauge_commutation` |
-| `CampaignFspKitaevHoneycombSolution.link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence` |
-| `CampaignFspKitaevHoneycombSolution.majorana_site_clifford_relations` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.majorana_site_clifford_relations` |
-| `CampaignFspKitaevHoneycombSolution.physical_parity_projection_excludes_mismatched_sector_states_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.physical_parity_projection_excludes_mismatched_sector_states_fence` |
-| `CampaignFspKitaevHoneycombSolution.plaquette_flux_local_z2_gauge_invariance` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.plaquette_flux_local_z2_gauge_invariance` |
-| `CampaignFspKitaevHoneycombSolution.quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det` |
-| `CampaignFspKitaevHoneycombSolution.single_link_flip_inverts_two_incident_plaquettes` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.single_link_flip_inverts_two_incident_plaquettes` |
-| `CampaignFspKitaevHoneycombSolution.unprojected_majorana_fock_overcounts_physical_spin_space_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspKitaevHoneycombSolution.unprojected_majorana_fock_overcounts_physical_spin_space_fence` |
+| `CampaignFspKitaevHoneycombSolution.abstract_bond_spin_product_factorization` | yes | yes | yes | module-level | `#print axioms CampaignFspKitaevHoneycombSolution.abstract_bond_spin_product_factorization` |
+| `CampaignFspKitaevHoneycombSolution.closed_surface_total_plaquette_flux_eq_one` | yes | yes | yes | module-level | `#print axioms CampaignFspKitaevHoneycombSolution.closed_surface_total_plaquette_flux_eq_one` |
+| `CampaignFspKitaevHoneycombSolution.hexPlaquetteFlux_sq_eq_one` | yes | yes | yes | module-level | `#print axioms CampaignFspKitaevHoneycombSolution.hexPlaquetteFlux_sq_eq_one` |
+| `CampaignFspKitaevHoneycombSolution.kitaev_spin_operators_pauli_algebra_and_gauge_commutation` | yes | yes | yes | module-level | `#print axioms CampaignFspKitaevHoneycombSolution.kitaev_spin_operators_pauli_algebra_and_gauge_commutation` |
+| `CampaignFspKitaevHoneycombSolution.link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence` | yes | yes | yes | module-level | `#print axioms CampaignFspKitaevHoneycombSolution.link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence` |
+| `CampaignFspKitaevHoneycombSolution.majorana_site_clifford_relations` | yes | yes | yes | module-level | `#print axioms CampaignFspKitaevHoneycombSolution.majorana_site_clifford_relations` |
+| `CampaignFspKitaevHoneycombSolution.physical_parity_projection_excludes_mismatched_sector_states_fence` | yes | yes | yes | module-level | `#print axioms CampaignFspKitaevHoneycombSolution.physical_parity_projection_excludes_mismatched_sector_states_fence` |
+| `CampaignFspKitaevHoneycombSolution.plaquette_flux_local_z2_gauge_invariance` | yes | yes | yes | module-level | `#print axioms CampaignFspKitaevHoneycombSolution.plaquette_flux_local_z2_gauge_invariance` |
+| `CampaignFspKitaevHoneycombSolution.quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det` | yes | yes | yes | module-level | `#print axioms CampaignFspKitaevHoneycombSolution.quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det` |
+| `CampaignFspKitaevHoneycombSolution.single_link_flip_inverts_two_incident_plaquettes` | yes | yes | yes | module-level | `#print axioms CampaignFspKitaevHoneycombSolution.single_link_flip_inverts_two_incident_plaquettes` |
+| `CampaignFspKitaevHoneycombSolution.unprojected_majorana_fock_overcounts_physical_spin_space_fence` | yes | yes | yes | module-level | `#print axioms CampaignFspKitaevHoneycombSolution.unprojected_majorana_fock_overcounts_physical_spin_space_fence` |
 - counts toward the grade: yes
 
 ### Python: `code/python/src/fsp/kitaev_honeycomb_bisimulation_bridge.py`
@@ -96,7 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-kitaev-honeycomb-solution.md`
 
 - file: [dag/derivations/independent/fsp-kitaev-honeycomb-solution.md](../../../dag/derivations/independent/fsp-kitaev-honeycomb-solution.md)
-- sha256 (`lf-normalised`): `51571f5975294e4d4640495652f137c8917afa5833280e1b0eae71092b3000a3`
+- sha256 (`lf-normalised`): `ea360507fd4b16d04383aca06eef0db0c708e005c6d58f6637171da4ca7d5d84`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -117,7 +117,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json](../../../dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json)
-- sha256 (`lf-normalised`): `dbf34fcab7ef807219cb9b053615ff662bbb19217775abea7b9ba9a7ec0c9928`
+- sha256 (`lf-normalised`): `2a75eafbeded976e16ce3d08f0647a760ccae75dc349afc82d479fa8bc53152c`
 - cited in: node.source
 - counts toward the grade: yes
 

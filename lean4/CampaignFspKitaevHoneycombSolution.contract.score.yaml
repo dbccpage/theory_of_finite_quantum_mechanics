@@ -1,53 +1,43 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "lean4/CampaignFspKitaevHoneycombSolution.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
   "contract": {
     "AuthorityEffect": "None",
     "artifact": {
       "language": "Lean 4",
       "path": "lean4/CampaignFspKitaevHoneycombSolution.lean",
-      "sha256": "def191c845e345ab0745b9f3c769de207113b8826417a55adc54223fca4aa78a"
+      "sha256": "b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52"
     },
     "boundaries": [
-      "Does not claim sign-free Monte Carlo sampling of the full thermal spin partition function across all flux sectors without explicit gauge projection."
+      "AuthorityEffect: None. Original campaign target remains open or imported.",
+      "Capability is assessed from delivered code. This artifact is below the substantive L4 floor."
     ],
-    "contract_id": "campaign-fsp-kitaev-honeycomb-solution-registration",
-    "evidence": [
-      {
-        "path": "dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json",
-        "sha256": "dbf34fcab7ef807219cb9b053615ff662bbb19217775abea7b9ba9a7ec0c9928"
-      },
-      {
-        "path": "dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_mutation.json",
-        "sha256": "7f151adca99357ff2f55d2cf1c01371a6197ebfea67912940d852a38d57552ff"
-      },
-      {
-        "path": "dag/research/campaign_fsp-kitaev-honeycomb-solution_independent.json",
-        "sha256": "df17b0c448f81f04a69b8524774196ad7e62ea852131076143190bf3dd54d5af"
-      },
-      {
-        "path": "docs/overclaim/reviews/2026-10-24_campaign-fsp-kitaev-honeycomb-solution-precommit.md",
-        "sha256": "58abf829a1bf32301cda4aeb547757d6994ed9c082443a10e20a3f9f1efcf3f5"
-      },
-      {
-        "path": "SCORING.md",
-        "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
-      }
-    ],
+    "contract_urn": "urn:tfqm:independent-pr-review:CampaignFspKitaevHoneycombSolution",
     "owned_invariants": [
-      "All 11 exported theorems in CampaignFspKitaevHoneycombSolution compile under Lean 4 without sorry or custom axioms.",
-      "6/6 semantic mutations in CampaignFspKitaevHoneycombSolution are killed by Lake and paired with 1676 independent Python checks."
+      "Explicit integer matrices obey Clifford identities; one anticommutation hypothesis gives bond factorization; a six-factor commutative-ring flux is gauge invariant; a product of all supplied involutions squared equals one; and a 4x4 skew matrix has determinant equal to the squared explicit Pfaffian polynomial. No cellular surface incidence map is built, so the product-square lemma is not a theorem about all plaquettes on closed tori. The independent diagonal parity matrix is not identified with the supplied Majorana gauge operator. No physical Hilbert-space projection or thermal partition function is constructed."
     ],
-    "purpose": "Formalizes single-site four-Majorana Clifford/Pauli operators, bond spin factorization, hexagonal plaquette Z2 gauge invariance, closed-surface vortex parity, quadratic matter Pfaffian-squared determinants, and gauge-projection/flux-sector fences for FSP-KITAEV-HONEYCOMB-SOLUTION (TFQ-1207).",
-    "schema_id": "tfqm.source-contract.v1"
+    "symbols": [
+      "majorana_site_clifford_relations",
+      "kitaev_spin_operators_pauli_algebra_and_gauge_commutation",
+      "abstract_bond_spin_product_factorization",
+      "plaquette_flux_local_z2_gauge_invariance",
+      "hexPlaquetteFlux_sq_eq_one",
+      "single_link_flip_inverts_two_incident_plaquettes",
+      "closed_surface_total_plaquette_flux_eq_one",
+      "quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det",
+      "unprojected_majorana_fock_overcounts_physical_spin_space_fence",
+      "link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence",
+      "physical_parity_projection_excludes_mismatched_sector_states_fence"
+    ]
   },
-  "current_contract": "12d3797a576615f3d9c9ad78c27cf6e0f5144553fd4942dbbaf3f24fbc1d4f10",
-  "current_scoring": "5002bdcde5e107e21b2de00428541c58950dac011810ad1e9dfccf0b7244516a",
   "contract_history": [
     {
-      "sha256": "12d3797a576615f3d9c9ad78c27cf6e0f5144553fd4942dbbaf3f24fbc1d4f10",
       "bytes": 1999,
+      "original_paths": [
+        "#campaign-fsp-kitaev-honeycomb-solution-registration"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspKitaevHoneycombSolution.lean\",\n    \"sha256\": \"def191c845e345ab0745b9f3c769de207113b8826417a55adc54223fca4aa78a\"\n  },\n  \"boundaries\": [\n    \"Does not claim sign-free Monte Carlo sampling of the full thermal spin partition function across all flux sectors without explicit gauge projection.\"\n  ],\n  \"contract_id\": \"campaign-fsp-kitaev-honeycomb-solution-registration\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json\",\n      \"sha256\": \"dbf34fcab7ef807219cb9b053615ff662bbb19217775abea7b9ba9a7ec0c9928\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_mutation.json\",\n      \"sha256\": \"7f151adca99357ff2f55d2cf1c01371a6197ebfea67912940d852a38d57552ff\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_independent.json\",\n      \"sha256\": \"df17b0c448f81f04a69b8524774196ad7e62ea852131076143190bf3dd54d5af\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-fsp-kitaev-honeycomb-solution-precommit.md\",\n      \"sha256\": \"58abf829a1bf32301cda4aeb547757d6994ed9c082443a10e20a3f9f1efcf3f5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"All 11 exported theorems in CampaignFspKitaevHoneycombSolution compile under Lean 4 without sorry or custom axioms.\",\n    \"6/6 semantic mutations in CampaignFspKitaevHoneycombSolution are killed by Lake and paired with 1676 independent Python checks.\"\n  ],\n  \"purpose\": \"Formalizes single-site four-Majorana Clifford/Pauli operators, bond spin factorization, hexagonal plaquette Z2 gauge invariance, closed-surface vortex parity, quadratic matter Pfaffian-squared determinants, and gauge-projection/flux-sector fences for FSP-KITAEV-HONEYCOMB-SOLUTION (TFQ-1207).\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
@@ -88,16 +78,61 @@
         "purpose": "Formalizes single-site four-Majorana Clifford/Pauli operators, bond spin factorization, hexagonal plaquette Z2 gauge invariance, closed-surface vortex parity, quadratic matter Pfaffian-squared determinants, and gauge-projection/flux-sector fences for FSP-KITAEV-HONEYCOMB-SOLUTION (TFQ-1207).",
         "schema_id": "tfqm.source-contract.v1"
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspKitaevHoneycombSolution.lean\",\n    \"sha256\": \"def191c845e345ab0745b9f3c769de207113b8826417a55adc54223fca4aa78a\"\n  },\n  \"boundaries\": [\n    \"Does not claim sign-free Monte Carlo sampling of the full thermal spin partition function across all flux sectors without explicit gauge projection.\"\n  ],\n  \"contract_id\": \"campaign-fsp-kitaev-honeycomb-solution-registration\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json\",\n      \"sha256\": \"dbf34fcab7ef807219cb9b053615ff662bbb19217775abea7b9ba9a7ec0c9928\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_mutation.json\",\n      \"sha256\": \"7f151adca99357ff2f55d2cf1c01371a6197ebfea67912940d852a38d57552ff\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_independent.json\",\n      \"sha256\": \"df17b0c448f81f04a69b8524774196ad7e62ea852131076143190bf3dd54d5af\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-fsp-kitaev-honeycomb-solution-precommit.md\",\n      \"sha256\": \"58abf829a1bf32301cda4aeb547757d6994ed9c082443a10e20a3f9f1efcf3f5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"All 11 exported theorems in CampaignFspKitaevHoneycombSolution compile under Lean 4 without sorry or custom axioms.\",\n    \"6/6 semantic mutations in CampaignFspKitaevHoneycombSolution are killed by Lake and paired with 1676 independent Python checks.\"\n  ],\n  \"purpose\": \"Formalizes single-site four-Majorana Clifford/Pauli operators, bond spin factorization, hexagonal plaquette Z2 gauge invariance, closed-surface vortex parity, quadratic matter Pfaffian-squared determinants, and gauge-projection/flux-sector fences for FSP-KITAEV-HONEYCOMB-SOLUTION (TFQ-1207).\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "sha256": "12d3797a576615f3d9c9ad78c27cf6e0f5144553fd4942dbbaf3f24fbc1d4f10"
+    },
+    {
+      "bytes": 1814,
       "original_paths": [
-        "#campaign-fsp-kitaev-honeycomb-solution-registration"
-      ]
+        "lean4/CampaignFspKitaevHoneycombSolution.contract.score.yaml#independent-pr-review-2026-10-24"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspKitaevHoneycombSolution.lean\",\n    \"sha256\": \"b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52\"\n  },\n  \"boundaries\": [\n    \"AuthorityEffect: None. Original campaign target remains open or imported.\",\n    \"Capability is assessed from delivered code. This artifact is below the substantive L4 floor.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:independent-pr-review:CampaignFspKitaevHoneycombSolution\",\n  \"owned_invariants\": [\n    \"Explicit integer matrices obey Clifford identities; one anticommutation hypothesis gives bond factorization; a six-factor commutative-ring flux is gauge invariant; a product of all supplied involutions squared equals one; and a 4x4 skew matrix has determinant equal to the squared explicit Pfaffian polynomial. No cellular surface incidence map is built, so the product-square lemma is not a theorem about all plaquettes on closed tori. The independent diagonal parity matrix is not identified with the supplied Majorana gauge operator. No physical Hilbert-space projection or thermal partition function is constructed.\"\n  ],\n  \"symbols\": [\n    \"majorana_site_clifford_relations\",\n    \"kitaev_spin_operators_pauli_algebra_and_gauge_commutation\",\n    \"abstract_bond_spin_product_factorization\",\n    \"plaquette_flux_local_z2_gauge_invariance\",\n    \"hexPlaquetteFlux_sq_eq_one\",\n    \"single_link_flip_inverts_two_incident_plaquettes\",\n    \"closed_surface_total_plaquette_flux_eq_one\",\n    \"quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det\",\n    \"unprojected_majorana_fock_overcounts_physical_spin_space_fence\",\n    \"link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence\",\n    \"physical_parity_projection_excludes_mismatched_sector_states_fence\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignFspKitaevHoneycombSolution.lean",
+          "sha256": "b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52"
+        },
+        "boundaries": [
+          "AuthorityEffect: None. Original campaign target remains open or imported.",
+          "Capability is assessed from delivered code. This artifact is below the substantive L4 floor."
+        ],
+        "contract_urn": "urn:tfqm:independent-pr-review:CampaignFspKitaevHoneycombSolution",
+        "owned_invariants": [
+          "Explicit integer matrices obey Clifford identities; one anticommutation hypothesis gives bond factorization; a six-factor commutative-ring flux is gauge invariant; a product of all supplied involutions squared equals one; and a 4x4 skew matrix has determinant equal to the squared explicit Pfaffian polynomial. No cellular surface incidence map is built, so the product-square lemma is not a theorem about all plaquettes on closed tori. The independent diagonal parity matrix is not identified with the supplied Majorana gauge operator. No physical Hilbert-space projection or thermal partition function is constructed."
+        ],
+        "symbols": [
+          "majorana_site_clifford_relations",
+          "kitaev_spin_operators_pauli_algebra_and_gauge_commutation",
+          "abstract_bond_spin_product_factorization",
+          "plaquette_flux_local_z2_gauge_invariance",
+          "hexPlaquetteFlux_sq_eq_one",
+          "single_link_flip_inverts_two_incident_plaquettes",
+          "closed_surface_total_plaquette_flux_eq_one",
+          "quadratic_matter_matrix_skew_symmetric_and_pfaffian_sq_eq_det",
+          "unprojected_majorana_fock_overcounts_physical_spin_space_fence",
+          "link_flip_flips_matter_pfaffian_sign_while_det_stays_positive_fence",
+          "physical_parity_projection_excludes_mismatched_sector_states_fence"
+        ]
+      },
+      "sha256": "00767e9b9343625b2886523f3b0b13599be78b4630d8478d5202c0b355f68705"
     }
   ],
+  "current_contract": "00767e9b9343625b2886523f3b0b13599be78b4630d8478d5202c0b355f68705",
+  "current_scoring": "34bf4e9955df4218e5f62fca424b166a213df62084378406e940134b9dfb503d",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "#campaign-fsp-kitaev-honeycomb-solution-registration": "12d3797a576615f3d9c9ad78c27cf6e0f5144553fd4942dbbaf3f24fbc1d4f10",
+    "#campaign-fsp-kitaev-honeycomb-solution-scoring": "5002bdcde5e107e21b2de00428541c58950dac011810ad1e9dfccf0b7244516a"
+  },
+  "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "sha256": "5002bdcde5e107e21b2de00428541c58950dac011810ad1e9dfccf0b7244516a",
       "bytes": 2952,
+      "original_paths": [
+        "#campaign-fsp-kitaev-honeycomb-solution-scoring"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspKitaevHoneycombSolution.lean\",\n    \"sha256\": \"def191c845e345ab0745b9f3c769de207113b8826417a55adc54223fca4aa78a\"\n  },\n  \"assessment_id\": \"campaign-fsp-kitaev-honeycomb-solution-registration\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"The recorded identities, the ulp-absorption mismatch, the binary64 split, and the 11-simplex counts are the stated bounds. An 11D supergravity triangulation stays open.\",\n    \"G2\": \"The existing replay receipt records a passing build of CampaignFspKitaevHoneycombSolution. This merge did not run a new Lake build.\",\n    \"G3\": \"The finite fences stay separate from an 11D supergravity triangulation and from a continuum limit.\",\n    \"G4\": \"The recorded mutation receipt is 6 of 6. The Nat monotonicity loop, the duplicated addition-associativity product, the 2n!=1 loop, the 11-2==9 literal, and the r+(-r)==0 loops were removed from the independent checker, and that checker was rerun at this merge.\",\n    \"G5\": \"Adds the non-default CampaignFspKitaevHoneycombSolution registration. This merge did not run a new Lake build.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T15:03:26.714841+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json\",\n      \"sha256\": \"dbf34fcab7ef807219cb9b053615ff662bbb19217775abea7b9ba9a7ec0c9928\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_mutation.json\",\n      \"sha256\": \"7f151adca99357ff2f55d2cf1c01371a6197ebfea67912940d852a38d57552ff\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_independent.json\",\n      \"sha256\": \"df17b0c448f81f04a69b8524774196ad7e62ea852131076143190bf3dd54d5af\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-fsp-kitaev-honeycomb-solution-precommit.md\",\n      \"sha256\": \"58abf829a1bf32301cda4aeb547757d6994ed9c082443a10e20a3f9f1efcf3f5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Formalizes finite four-Majorana Clifford/Pauli spin algebra, bond factorization, plaquette Z2 gauge invariance, Pfaffian-squared determinants, and gauge-projection/Pfaffian sign fences for FSP-KITAEV-HONEYCOMB-SOLUTION.\",\n  \"open_higher_grade_findings\": [\n    \"Full multi-sector thermal partition-function sampling and dynamical Berry-phase integration remain fenced.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
@@ -161,16 +196,79 @@
         "score_token": "L4D",
         "support_exception": false
       },
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspKitaevHoneycombSolution.lean\",\n    \"sha256\": \"def191c845e345ab0745b9f3c769de207113b8826417a55adc54223fca4aa78a\"\n  },\n  \"assessment_id\": \"campaign-fsp-kitaev-honeycomb-solution-registration\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"The recorded identities, the ulp-absorption mismatch, the binary64 split, and the 11-simplex counts are the stated bounds. An 11D supergravity triangulation stays open.\",\n    \"G2\": \"The existing replay receipt records a passing build of CampaignFspKitaevHoneycombSolution. This merge did not run a new Lake build.\",\n    \"G3\": \"The finite fences stay separate from an 11D supergravity triangulation and from a continuum limit.\",\n    \"G4\": \"The recorded mutation receipt is 6 of 6. The Nat monotonicity loop, the duplicated addition-associativity product, the 2n!=1 loop, the 11-2==9 literal, and the r+(-r)==0 loops were removed from the independent checker, and that checker was rerun at this merge.\",\n    \"G5\": \"Adds the non-default CampaignFspKitaevHoneycombSolution registration. This merge did not run a new Lake build.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T15:03:26.714841+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json\",\n      \"sha256\": \"dbf34fcab7ef807219cb9b053615ff662bbb19217775abea7b9ba9a7ec0c9928\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_mutation.json\",\n      \"sha256\": \"7f151adca99357ff2f55d2cf1c01371a6197ebfea67912940d852a38d57552ff\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_independent.json\",\n      \"sha256\": \"df17b0c448f81f04a69b8524774196ad7e62ea852131076143190bf3dd54d5af\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-fsp-kitaev-honeycomb-solution-precommit.md\",\n      \"sha256\": \"58abf829a1bf32301cda4aeb547757d6994ed9c082443a10e20a3f9f1efcf3f5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Formalizes finite four-Majorana Clifford/Pauli spin algebra, bond factorization, plaquette Z2 gauge invariance, Pfaffian-squared determinants, and gauge-projection/Pfaffian sign fences for FSP-KITAEV-HONEYCOMB-SOLUTION.\",\n  \"open_higher_grade_findings\": [\n    \"Full multi-sector thermal partition-function sampling and dynamical Berry-phase integration remain fenced.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "sha256": "5002bdcde5e107e21b2de00428541c58950dac011810ad1e9dfccf0b7244516a"
+    },
+    {
+      "bytes": 4292,
       "original_paths": [
-        "#campaign-fsp-kitaev-honeycomb-solution-scoring"
-      ]
+        "lean4/CampaignFspKitaevHoneycombSolution.contract.score.yaml#independent-pr-review-2026-10-24"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspKitaevHoneycombSolution.lean\",\n    \"sha256\": \"b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52\"\n  },\n  \"assessment_id\": \"independent-pr-review-2026-10-24\",\n  \"basis\": {\n    \"G1\": \"Declaration types were read against the narrowed review; physical identifications and larger target claims are explicitly excluded.\",\n    \"G2\": \"Exact formal arithmetic over the stated carriers; supplied tables/formulas remain supplied. See per-declaration types and independent replay.\",\n    \"G3\": \"Kernel elaboration and axiom output, with only the three admitted standard axioms. No added sorry/admit/axiom/native_decide/unsafe is permitted.\",\n    \"G4\": \"Fresh module and independent-check outputs are bound in the cited receipt. No new mutation campaign was run; zero new mutants, detection ratio null. Legacy six-kill summaries lack full diagnostic attribution and are not a current independent mutation certificate.\",\n    \"G5\": \"Manual structural review: this is a table, elementary model, or bounded-domain algebra library, not a checked production certificate/admission lifecycle. No claim to A/B maintainability metrics is made.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T21:58:32.857633+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr_312_independent_review_validation.json\",\n      \"sha256\": \"ab2ab2b5db821820e89336b07535400d78285d99918a32b78de15f599fe49cfb\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_pr-312-independent.md\",\n      \"sha256\": \"92dbea4ae335e35bdb1fe0c92e4c7cd09d6a0a8803f345f9d2f3ff03b5884e7b\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"Explicit integer matrices obey Clifford identities; one anticommutation hypothesis gives bond factorization; a six-factor commutative-ring flux is gauge invariant; a product of all supplied involutions squared equals one; and a 4x4 skew matrix has determinant equal to the squared explicit Pfaffian polynomial. No cellular surface incidence map is built, so the product-square lemma is not a theorem about all plaquettes on closed tori. The independent diagonal parity matrix is not identified with the supplied Majorana gauge operator. No physical Hilbert-space projection or thermal partition function is constructed. SCORING section 2: literal tables/elementary examples and bounded domain theorem developments do not acquire production architecture from their subject or theorem count.\",\n  \"mutation_accounting\": {\n    \"detection_fraction\": null,\n    \"equivalent\": 0,\n    \"generated\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 0,\n    \"killed\": 0,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"prior_claim_mapping_failure\": {\n    \"disposition\": \"Former advertised physical/operational identifications exceeded the submitted declaration types; current prose has been narrowed. Earlier L4 records are retained as rejected historical assessments.\",\n    \"gate\": \"G1\",\n    \"grade\": \"E\",\n    \"source_sha256\": \"def191c845e345ab0745b9f3c769de207113b8826417a55adc54223fca4aa78a\",\n    \"witness\": \"Explicit integer matrices obey Clifford identities; one anticommutation hypothesis gives bond factorization; a six-factor commutative-ring flux is gauge invariant; a product of all supplied involutions squared equals one; and a 4x4 skew matrix has determinant equal to the squared explicit Pfaffian polynomial. No cellular surface incidence map is built, so the product-square lemma is not a theorem about all plaquettes on closed tori. The independent diagonal parity matrix is not identified with the supplied Majorana gauge operator. No physical Hilbert-space projection or thermal partition function is constructed.\"\n  },\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\",\n  \"supersedes_assessment_reason\": \"Prior L4 claims and any copied supergravity assessment text are withdrawn. Prior records remain in history; the current level follows the concrete delivered abstraction.\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignFspKitaevHoneycombSolution.lean",
+          "sha256": "b73b461fe2757d85dcdb6efb82fbd0e30aa98b76d3e0ed9425d67abce8508b52"
+        },
+        "assessment_id": "independent-pr-review-2026-10-24",
+        "basis": {
+          "G1": "Declaration types were read against the narrowed review; physical identifications and larger target claims are explicitly excluded.",
+          "G2": "Exact formal arithmetic over the stated carriers; supplied tables/formulas remain supplied. See per-declaration types and independent replay.",
+          "G3": "Kernel elaboration and axiom output, with only the three admitted standard axioms. No added sorry/admit/axiom/native_decide/unsafe is permitted.",
+          "G4": "Fresh module and independent-check outputs are bound in the cited receipt. No new mutation campaign was run; zero new mutants, detection ratio null. Legacy six-kill summaries lack full diagnostic attribution and are not a current independent mutation certificate.",
+          "G5": "Manual structural review: this is a table, elementary model, or bounded-domain algebra library, not a checked production certificate/admission lifecycle. No claim to A/B maintainability metrics is made."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-24T21:58:32.857633+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/pr_312_independent_review_validation.json",
+            "sha256": "ab2ab2b5db821820e89336b07535400d78285d99918a32b78de15f599fe49cfb"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-24_pr-312-independent.md",
+            "sha256": "92dbea4ae335e35bdb1fe0c92e4c7cd09d6a0a8803f345f9d2f3ff03b5884e7b"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Explicit integer matrices obey Clifford identities; one anticommutation hypothesis gives bond factorization; a six-factor commutative-ring flux is gauge invariant; a product of all supplied involutions squared equals one; and a 4x4 skew matrix has determinant equal to the squared explicit Pfaffian polynomial. No cellular surface incidence map is built, so the product-square lemma is not a theorem about all plaquettes on closed tori. The independent diagonal parity matrix is not identified with the supplied Majorana gauge operator. No physical Hilbert-space projection or thermal partition function is constructed. SCORING section 2: literal tables/elementary examples and bounded domain theorem developments do not acquire production architecture from their subject or theorem count.",
+        "mutation_accounting": {
+          "detection_fraction": null,
+          "equivalent": 0,
+          "generated": 0,
+          "inconclusive": 0,
+          "invalid": 0,
+          "killed": 0,
+          "survived": 0,
+          "unrun": 0
+        },
+        "prior_claim_mapping_failure": {
+          "disposition": "Former advertised physical/operational identifications exceeded the submitted declaration types; current prose has been narrowed. Earlier L4 records are retained as rejected historical assessments.",
+          "gate": "G1",
+          "grade": "E",
+          "source_sha256": "def191c845e345ab0745b9f3c769de207113b8826417a55adc54223fca4aa78a",
+          "witness": "Explicit integer matrices obey Clifford identities; one anticommutation hypothesis gives bond factorization; a six-factor commutative-ring flux is gauge invariant; a product of all supplied involutions squared equals one; and a 4x4 skew matrix has determinant equal to the squared explicit Pfaffian polynomial. No cellular surface incidence map is built, so the product-square lemma is not a theorem about all plaquettes on closed tori. The independent diagonal parity matrix is not identified with the supplied Majorana gauge operator. No physical Hilbert-space projection or thermal partition function is constructed."
+        },
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3D",
+        "supersedes_assessment_reason": "Prior L4 claims and any copied supergravity assessment text are withdrawn. Prior records remain in history; the current level follows the concrete delivered abstraction."
+      },
+      "sha256": "34bf4e9955df4218e5f62fca424b166a213df62084378406e940134b9dfb503d"
     }
-  ],
-  "legacy_paths": {
-    "#campaign-fsp-kitaev-honeycomb-solution-registration": "12d3797a576615f3d9c9ad78c27cf6e0f5144553fd4942dbbaf3f24fbc1d4f10",
-    "#campaign-fsp-kitaev-honeycomb-solution-scoring": "5002bdcde5e107e21b2de00428541c58950dac011810ad1e9dfccf0b7244516a"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Recorded L4D assessment in binding contract-score document."
+  ]
 }
