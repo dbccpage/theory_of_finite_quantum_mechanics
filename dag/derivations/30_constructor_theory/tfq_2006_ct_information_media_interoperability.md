@@ -15,7 +15,7 @@ Imported principle (Deutsch-Marletto Principle III): the composite of two inform
 
 ## Governing obligation
 
-The interoperability principle (Principle III, Section 6 p. 12) constrains composite information variables to include S1 x S2 in the source's framework. It is not shown to select the Hilbert tensor product, local tomography or any positive cone, so it does not discharge FQ-GAP-TENSOR-UNIQUENESS.
+Narrowed algebraic checks only. Modular-addition maps have explicit inverses; finite-set cardinalities multiply; supplied integer CNOT/Bell/partial-transpose models obey the displayed polynomial identities. ZMod 0 is infinite, so the arbitrary-n theorem is algebraic rather than an exclusively finite-carrier theorem. The dimension functions are declared formulas, not constructed state spaces; normalized and unnormalized dimensions must not be conflated. The integer quadratic-form example does not construct two full physical cone theories satisfying all constructor axioms. Status is unchanged. The original physical or operational bridge remains open.
 
 ## Source status
 
@@ -35,7 +35,7 @@ Declared imported structure:
 
 ## Connections to this repository
 
-- Route `FRO-R-CT-INFORMATION-MEDIA-INTEROPERABILITY` (`CONDITIONAL_ON_IMPORT`) from `CT-DEUTSCH-MARLETTO-2015-SOURCE`: The postulates are the import; the link to the source record is reading order.
+- Route `FRO-R-CT-INFORMATION-MEDIA-INTEROPERABILITY` (`CONDITIONAL_ON_IMPORT`) from `CT-DEUTSCH-MARLETTO-2015-SOURCE`: Narrowed algebraic checks only. Modular-addition maps have explicit inverses; finite-set cardinalities multiply; supplied integer CNOT/Bell/partial-transpose models obey the displayed polynomial identities. ZMod 0 is infinite, so the arbitrary-n theorem is algebraic rather than an exclusively finite-carrier theorem. The dimension functions are declared formulas, not constructed state spaces; normalized and unnormalized dimensions must not be conflated. The integer quadratic-form example does not construct two full physical cone theories satisfying all constructor axioms. Status is unchanged. The original physical or operational bridge remains open.
 - Route `FRO-R-BACK-CT-INTEROP-TO-TENSOR` (`GAP_NO_DERIVATION`) from this node into `FQ-GAP-TENSOR-UNIQUENESS`: No source derives the quantum tensor composition, local tomography or the PSD cone from the interoperability principle. Recorded as a gap; the constructor-theoretic route is not compared with the operational route of TENSOR-TOMOGRAPHIC-COORDINATES.
 - The trunk node FQ-GAP-TENSOR-UNIQUENESS asks which operational assumptions single out quantum composition. No source read for this change derives that from the interoperability principle (gap route recorded).
 

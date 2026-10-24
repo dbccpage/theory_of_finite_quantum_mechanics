@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-The interoperability principle (Principle III, Section 6 p. 12) constrains composite information variables to include S1 x S2 in the source's framework. It is not shown to select the Hilbert tensor product, local tomography or any positive cone, so it does not discharge FQ-GAP-TENSOR-UNIQUENESS.
+Narrowed algebraic checks only. Modular-addition maps have explicit inverses; finite-set cardinalities multiply; supplied integer CNOT/Bell/partial-transpose models obey the displayed polynomial identities. ZMod 0 is infinite, so the arbitrary-n theorem is algebraic rather than an exclusively finite-carrier theorem. The dimension functions are declared formulas, not constructed state spaces; normalized and unnormalized dimensions must not be conflated. The integer quadratic-form example does not construct two full physical cone theories satisfying all constructor axioms. Status is unchanged. The original physical or operational bridge remains open.
 
 ## Source status
 
@@ -45,15 +45,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignCtInformationMediaInteroperability.lean`
 
 - file: [lean4/CampaignCtInformationMediaInteroperability.lean](../../../lean4/CampaignCtInformationMediaInteroperability.lean)
-- sha256 (`bytes`): `11e7a1d0827da9e9beb44a0e9cafffc811ad9b2a3b0ff310d56807dc9e74e2d8`
-- cited in: node.lean, node.source, receipt dag/research/campaign_ct-information-media-interoperability_lean_replay.json (CampaignCtInformationMediaInteroperability), record TFQ-2006
+- sha256 (`bytes`): `4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4`
+- cited in: node.lean, node.source, record TFQ-2006
 - replay: `verified`
-  - receipt [dag/research/campaign_ct-information-media-interoperability_lean_replay.json](../../../dag/research/campaign_ct-information-media-interoperability_lean_replay.json) (module `CampaignCtInformationMediaInteroperability`): recorded sha256 `11e7a1d0827da9e9beb44a0e9cafffc811ad9b2a3b0ff310d56807dc9e74e2d8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_ct-information-media-interoperability_lean_replay.json](../../../dag/research/campaign_ct-information-media-interoperability_lean_replay.json) (module `CampaignCtInformationMediaInteroperability`): recorded sha256 `4f150b51c5e3dba2813c52d547e9b5dbff1420a6477ab31bc3bfab3498d258d4` matches the current file; exit code 0; Lean None; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignCtInformationMediaInteroperability`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignCtInformationMediaInteroperability.clonable_computation_implies_distinguishable` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtInformationMediaInteroperability.clonable_computation_implies_distinguishable` |
+| `CampaignCtInformationMediaInteroperability.clonable_computation_implies_distinguishable` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignCtInformationMediaInteroperability.clonable_computation_implies_distinguishable` |
 | `CampaignCtInformationMediaInteroperability.cnotClone_bijective_and_clones_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtInformationMediaInteroperability.cnotClone_bijective_and_clones_zero` |
 | `CampaignCtInformationMediaInteroperability.cnotClone_zmod2_involutive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtInformationMediaInteroperability.cnotClone_zmod2_involutive` |
 | `CampaignCtInformationMediaInteroperability.composite_state_space_dimension_trichotomy_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtInformationMediaInteroperability.composite_state_space_dimension_trichotomy_fence` |
@@ -61,9 +61,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignCtInformationMediaInteroperability.principle_III_composite_cloning_and_cardinality` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtInformationMediaInteroperability.principle_III_composite_cloning_and_cardinality` |
 | `CampaignCtInformationMediaInteroperability.psd_vs_pt_cone_bell_witness_separation_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtInformationMediaInteroperability.psd_vs_pt_cone_bell_witness_separation_fence` |
 | `CampaignCtInformationMediaInteroperability.psd_vs_pt_cone_classical_interoperability_agreement_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtInformationMediaInteroperability.psd_vs_pt_cone_classical_interoperability_agreement_fence` |
-| `CampaignCtInformationMediaInteroperability.real_vs_complex_bilinear_tomography_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtInformationMediaInteroperability.real_vs_complex_bilinear_tomography_fence` |
+| `CampaignCtInformationMediaInteroperability.real_vs_complex_bilinear_tomography_fence` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignCtInformationMediaInteroperability.real_vs_complex_bilinear_tomography_fence` |
 | `CampaignCtInformationMediaInteroperability.singleton_not_computation_variable_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtInformationMediaInteroperability.singleton_not_computation_variable_fence` |
-| `CampaignCtInformationMediaInteroperability.unitary_cnot_clones_computational_basis_not_superposition_fence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtInformationMediaInteroperability.unitary_cnot_clones_computational_basis_not_superposition_fence` |
+| `CampaignCtInformationMediaInteroperability.unitary_cnot_clones_computational_basis_not_superposition_fence` | yes | yes | yes | propext | `#print axioms CampaignCtInformationMediaInteroperability.unitary_cnot_clones_computational_basis_not_superposition_fence` |
 - counts toward the grade: yes
 
 ### Python: `checks/independent/ct-information-media-interoperability.py`
@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md`
 
 - file: [dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md](../../../dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md)
-- sha256 (`lf-normalised`): `ceddb627077cbdcb831ad48f761e5f0878898aaa6a3238f1680c835bc489025a`
+- sha256 (`lf-normalised`): `19ad3faea28577b5036c239408c353887c964612eae08be008e6dd0bfb9b1730`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2006
 - counts toward the grade: no
@@ -84,7 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/ct-information-media-interoperability.md`
 
 - file: [dag/derivations/independent/ct-information-media-interoperability.md](../../../dag/derivations/independent/ct-information-media-interoperability.md)
-- sha256 (`lf-normalised`): `d6e9f1e703c81c187ca0aa50be0079c0b2558b54215e18c6f4bd602984915c20`
+- sha256 (`lf-normalised`): `91ae84e81859f3184c6450c50e1e911de48fe51c7728850ad39e7d42058c3403`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -105,7 +105,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_ct-information-media-interoperability_lean_replay.json`
 
 - file: [dag/research/campaign_ct-information-media-interoperability_lean_replay.json](../../../dag/research/campaign_ct-information-media-interoperability_lean_replay.json)
-- sha256 (`lf-normalised`): `19b0c4e89c67aa9f5e52895b46cca609b8c3e41b88368c4079739a193ebd20ad`
+- sha256 (`lf-normalised`): `24bd829695eb15c664a97ecf4ae61100d91ba81a3041f532c68afc78d47422f1`
 - cited in: node.source
 - counts toward the grade: yes
 

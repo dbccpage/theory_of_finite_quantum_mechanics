@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -36,7 +36,7 @@ Thm 6 Part 1 PROVEN / SCOPE FENCE; finite_qm audit: cited Lean declaration 'was 
 
 ## Review
 
-- PFP review: [dag/results/L1-QM020-THM6-P1-SCOPE-FENCE/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM020-THM6-P1-SCOPE-FENCE/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/L1-QM020-THM6-P1-SCOPE-FENCE/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM020-THM6-P1-SCOPE-FENCE/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Two exact positive normalized atom maps and additive cell controls, with a concrete disagreement and normalization identity in Lean.
   - does not support: Specify and prove additional frame/affinity/phase hypotheses for uniqueness. Finite cell additivity alone is insufficient.
   - next test: Specify and prove additional frame/affinity/phase hypotheses for uniqueness. Finite cell additivity alone is insufficient.
