@@ -2493,9 +2493,9 @@ Obligation: Prove a floor for the declared-input count, or exhibit a reduction b
 - Parent: `TFQ-0486`
 - Status: `OPEN_OBLIGATION`
 
-No refinement proof joins any Python computation to any Lean statement. The sealed Lean is a token-erased abstraction connected to the sealed Python by executable checks only (CL-TOKEN-ERASURE); the Alpha harness's Lean is about harness datatypes, python_driver_refinement is NOT_PROVED and it does not model the new license binding (D4); attempt two's Lean speaks of every history of sealed events and switch markers, and that each edge of a Python run is such a history is read, not proved. Rung two track one's represented state is not bridged to the sealed regime (L-1, which needs an amendment of the seal that is the author's act), and the reading regimes differ: R2L and R2F in Lean, the sealed genesis histories that stop before the requirement in Python.
+Narrowed boundary, status left OPEN. The sealed reading-L history has length 7 and replays from genesis to regime R2L. The sealed reading-F history has length 8 and replays from genesis to regime R2F. R2L has data count 2 and requirement list (0, 1). R2F has data count 3 and requirement list (1, 2). Both regimes have empty form, instance, and rule lists. R2L is not R2F, and the two replay results are not equal.
 
-Obligation: Prove a refinement from each cited Python computation to its Lean statement (run edges as sealed histories, harness driver to harness Lean), or keep every joined claim marked as executable-check evidence only.
+Obligation: Keep these two replay results separate from a refinement. A refinement from each cited Python computation to its Lean statement stays open.
 
 ### TFQ-0500 isomorphism-soundness-in-lean
 
