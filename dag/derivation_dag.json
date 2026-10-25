@@ -13875,14 +13875,26 @@
       "stage": "FINITE_OBSTRUCTION",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 02)",
-      "statement": "F000 floor.yaml admits finite sets, typed distinction steps, combinatorial coboundaries, and finite witness functionals, with AuthorityEffect None. Shelf F000.S000 and book EA:000.000.000 chapter 01 pin sealed-derivation-v1 (3100c4e) as a mechanical receipt. The book README states this volume is not a completed Genesis-to-FOC derivation. proposed_gaps.yaml row S000-GAP-GENESIS-TO-PD, prior id GAP-F000-S000-001, still asks for a certified term map into the PrimitiveDifference carrier or the candidate Lean mirror. A green Lake build is not correspondence.",
+      "statement": "F000 floor.yaml admits finite sets, typed distinction steps, combinatorial coboundaries, and finite witness functionals, with AuthorityEffect None. Shelf F000.S000 and book EA:000.000.000 chapter 01 pin sealed-derivation-v1 (3100c4e) as a mechanical receipt. The book README states this volume is not a completed Genesis-to-FOC derivation. proposed_gaps.yaml row S000-GAP-GENESIS-TO-PD, prior id GAP-F000-S000-001, still asks for a certified term map into the PrimitiveDifference carrier or the candidate Lean mirror. A green Lake build is not correspondence. Narrowed in Lean 4 to a two-mark carrier and a separate seven-nibble receipt. The four functions from Fin 2 to Fin 2 are stored as map00, map01, map10 and map11. Each has self-coboundary 0 at both marks. Their coboundaries on the ordered pair (0, 1) are 0, 1, 1 and 0. The receipt with nibbles 3, 1, 0, 0, 12, 4, 14 and green bit true stores the prefix 3100c4e named above. Pairing that one receipt with each of the four map indices gives four records. Those four records are pairwise distinct, and the green bit stays true on each. Pairing 0 and pairing 1 keep one receipt and carry edge coboundaries 0 and 1. This finite model keeps the receipt and the carrier unjoined: the green bit does not select the edge coboundary. The certified term map from sealed-derivation-v1, the absent atlas modules, and row S000-GAP-GENESIS-TO-PD stay open. AuthorityEffect is None.",
       "source": [
         "dag/derivations/03_finite_obstruction/tfq_0319_supply_a_certified_term_map_from_sealed_derivation_v1_into_the_primitivedifference_carrier_or.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::sealed_nibble_count",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::sealed_nibbles_match",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::all_self_coboundaries_zero",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::edge_coboundaries",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::images_are_the_four",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::images_pairwise_distinct",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::every_value_pair_is_listed",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::pairing_keeps_sealed",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::pairing_indices",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::pairing_distinct",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::green_receipt_two_edge_values"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Supply a certified term map from sealed-derivation-v1 into the PrimitiveDifference carrier, or keep the Genesis receipt and the finite carrier unjoined.",
+      "bottleneck": "The certified term map from sealed-derivation-v1 into the PrimitiveDifference carrier remains unsupplied. Four pairings of one seven-nibble receipt with map indices on a two-mark carrier are a finite unjoined model. S000-GAP-GENESIS-TO-PD and the absent atlas modules stay open.",
       "tags": [
         "unified-dag",
         "TFQ-0319",
@@ -53239,20 +53251,30 @@
       "f004_refs": [],
       "id": "TFQ-0319",
       "lean4": [
-        "absent: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/B001_raw_distinction.lean"
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::sealed_nibble_count",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::sealed_nibbles_match",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::all_self_coboundaries_zero",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::edge_coboundaries",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::images_are_the_four",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::images_pairwise_distinct",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::every_value_pair_is_listed",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::pairing_keeps_sealed",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::pairing_indices",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::pairing_distinct",
+        "lean4/CampaignTfq0319UnjoinedReceipt.lean::green_receipt_two_edge_values"
       ],
       "local_id": "A02-001",
       "name": "Supply a certified term map from sealed-derivation-v1 into the PrimitiveDifference carrier, or",
-      "obligation": "Supply a certified term map from sealed-derivation-v1 into the PrimitiveDifference carrier, or keep the Genesis receipt and the finite carrier unjoined.",
+      "obligation": "The certified term map from sealed-derivation-v1 into the PrimitiveDifference carrier remains unsupplied. Four pairings of one seven-nibble receipt with map indices on a two-mark carrier are a finite unjoined model. S000-GAP-GENESIS-TO-PD and the absent atlas modules stay open.",
       "parent_id": "TFQ-0002",
       "python": [
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/src/s000_consolidation.py"
+        "checks/independent/tfq-0319.py"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "02",
       "stage": "FINITE_OBSTRUCTION",
-      "summary": "F000 floor.yaml admits finite sets, typed distinction steps, combinatorial coboundaries, and finite witness functionals, with AuthorityEffect None. Shelf F000.S000 and book EA:000.000.000 chapter 01 pin sealed-derivation-v1 (3100c4e) as a mechanical receipt. The book README states this volume is not a completed Genesis-to-FOC derivation. proposed_gaps.yaml row S000-GAP-GENESIS-TO-PD, prior id GAP-F000-S000-001, still asks for a certified term map into the PrimitiveDifference carrier or the candidate Lean mirror. A green Lake build is not correspondence.",
+      "summary": "F000 floor.yaml admits finite sets, typed distinction steps, combinatorial coboundaries, and finite witness functionals, with AuthorityEffect None. Shelf F000.S000 and book EA:000.000.000 chapter 01 pin sealed-derivation-v1 (3100c4e) as a mechanical receipt. The book README states this volume is not a completed Genesis-to-FOC derivation. proposed_gaps.yaml row S000-GAP-GENESIS-TO-PD, prior id GAP-F000-S000-001, still asks for a certified term map into the PrimitiveDifference carrier or the candidate Lean mirror. A green Lake build is not correspondence. Narrowed in Lean 4 to a two-mark carrier and a separate seven-nibble receipt. The four functions from Fin 2 to Fin 2 are stored as map00, map01, map10 and map11. Each has self-coboundary 0 at both marks. Their coboundaries on the ordered pair (0, 1) are 0, 1, 1 and 0. The receipt with nibbles 3, 1, 0, 0, 12, 4, 14 and green bit true stores the prefix 3100c4e named above. Pairing that one receipt with each of the four map indices gives four records. Those four records are pairwise distinct, and the green bit stays true on each. Pairing 0 and pairing 1 keep one receipt and carry edge coboundaries 0 and 1. This finite model keeps the receipt and the carrier unjoined: the green bit does not select the edge coboundary. The certified term map from sealed-derivation-v1, the absent atlas modules, and row S000-GAP-GENESIS-TO-PD stay open. AuthorityEffect is None.",
       "uuid": "c34f2334-02b2-58fa-a470-5ff473e457ac"
     },
     {
