@@ -1,0 +1,70 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:23:08.638560+00:00",
+  "review_base": "cfd9beb0b771df6e809f6e44e3a8c32835760bea",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: MUB-PRIME-POWER-CONSTRUCTION — Narrowed: dimension 2 has three mutually unbiased bases; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignMubPrimePowerConstruction.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignMubPrimePowerConstruction",
+        "dag_node": "MUB-PRIME-POWER-CONSTRUCTION",
+        "source": "lean4/CampaignMubPrimePowerConstruction.lean",
+        "sha256": "9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec",
+        "sha256_after_build": "9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "i_squared",
+          "squared_norms",
+          "self_inner",
+          "basis_orthogonal",
+          "cross_unbiased",
+          "char_values",
+          "char_of_double"
+        ],
+        "axioms": {
+          "i_squared": [],
+          "squared_norms": [],
+          "self_inner": [],
+          "basis_orthogonal": [],
+          "cross_unbiased": [],
+          "char_values": [],
+          "char_of_double": []
+        },
+        "output": "'i_squared' does not depend on any axioms\n'squared_norms' does not depend on any axioms\n'self_inner' does not depend on any axioms\n'basis_orthogonal' does not depend on any axioms\n'cross_unbiased' does not depend on any axioms\n'char_values' does not depend on any axioms\n'char_of_double' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/mub-prime-power-construction.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.013,
+    "output": "checked 34 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/359/lakefile-reviewed-172308249841.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 0.384,
+    "output": ""
+  }
+}

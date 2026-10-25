@@ -1271,3 +1271,7 @@ lean_lib CampaignPgwWdpBridgeOngoing where
 -- Campaign: PGW-WDP-HANDOFF-TO-L1. Not a default target.
 lean_lib CampaignPgwWdpHandoffToL1 where
   roots := #[`CampaignPgwWdpHandoffToL1]
+
+-- Campaign: MUB-PRIME-POWER-CONSTRUCTION. Not a default target.
+lean_lib CampaignMubPrimePowerConstruction where
+  roots := #[`CampaignMubPrimePowerConstruction]

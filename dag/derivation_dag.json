@@ -18495,16 +18495,26 @@
       "id": "MUB-PRIME-POWER-CONSTRUCTION",
       "stage": "MUTUALLY_UNBIASED_BASES",
       "status": "OPEN",
-      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
-      "statement": "Construct and verify a complete d+1 MUB family for the stated prime-power carrier, explicitly handling finite-field arithmetic, character sums and normalization.",
+      "source_status": "Dimension-2 Gaussian-integer bases Z, X and Y; the two-element character sends 1+1 to 1. Larger prime powers stay open.",
+      "statement": "Narrowed boundary, status left OPEN. In dimension 2, the three bases Z = ((1, 0), (0, 1)), X = ((1, 1), (1, -1)) and Y = ((1, i), (1, -i)) are unnormalized Gaussian-integer representatives of mutually unbiased bases of C^2 after normalization. Their squared norms are 1, 1, 2, 2, 2 and 2. Distinct vectors inside one basis have inner product 0. For every vector from one basis and every vector from another, twice the squared modulus of the inner product equals the product of the squared norms. The square of i is -1. The additive character of the two-element field sends 0 to 1 and 1 to -1, and it sends 1+1 to 1.",
       "source": [
         "dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md",
-        "papers/core/mub6/README.md"
+        "papers/core/mub6/README.md",
+        "dag/derivations/independent/mub-prime-power-construction.md",
+        "dag/research/campaign_mub-prime-power-construction_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMubPrimePowerConstruction.lean::i_squared",
+        "lean4/CampaignMubPrimePowerConstruction.lean::squared_norms",
+        "lean4/CampaignMubPrimePowerConstruction.lean::self_inner",
+        "lean4/CampaignMubPrimePowerConstruction.lean::basis_orthogonal",
+        "lean4/CampaignMubPrimePowerConstruction.lean::cross_unbiased",
+        "lean4/CampaignMubPrimePowerConstruction.lean::char_values",
+        "lean4/CampaignMubPrimePowerConstruction.lean::char_of_double"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Provide the construction and all pairwise trace identities for the admitted dimension; do not infer a dimension-six family from smaller dimensions.",
+      "bottleneck": "This is the dimension-2 characteristic-two family only. It does not construct a complete family for any larger prime power, does not treat odd characteristic, does not run a general character sum, and does not infer a dimension-six family from this carrier.",
       "tags": [
         "application-branch",
         "TFQ-0403"
@@ -63012,20 +63022,32 @@
       ],
       "f004_refs": [
         "dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md",
-        "papers/core/mub6/README.md"
+        "papers/core/mub6/README.md",
+        "dag/derivations/independent/mub-prime-power-construction.md",
+        "dag/research/campaign_mub-prime-power-construction_lean_replay.json"
       ],
       "id": "TFQ-0403",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignMubPrimePowerConstruction.lean::i_squared",
+        "lean4/CampaignMubPrimePowerConstruction.lean::squared_norms",
+        "lean4/CampaignMubPrimePowerConstruction.lean::self_inner",
+        "lean4/CampaignMubPrimePowerConstruction.lean::basis_orthogonal",
+        "lean4/CampaignMubPrimePowerConstruction.lean::cross_unbiased",
+        "lean4/CampaignMubPrimePowerConstruction.lean::char_values",
+        "lean4/CampaignMubPrimePowerConstruction.lean::char_of_double"
+      ],
       "local_id": "MUB-PRIME-POWER-CONSTRUCTION",
       "name": "Prime-power MUB construction and exact field obligations",
-      "obligation": "Provide the construction and all pairwise trace identities for the admitted dimension; do not infer a dimension-six family from smaller dimensions.",
+      "obligation": "This is the dimension-2 characteristic-two family only. It does not construct a complete family for any larger prime power, does not treat odd characteristic, does not run a general character sum, and does not infer a dimension-six family from this carrier.",
       "parent_id": "TFQ-0402",
-      "python": [],
+      "python": [
+        "checks/independent/mub-prime-power-construction.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "MUTUALLY_UNBIASED_BASES",
-      "summary": "Construct and verify a complete d+1 MUB family for the stated prime-power carrier, explicitly handling finite-field arithmetic, character sums and normalization.",
+      "summary": "Narrowed boundary, status left OPEN. In dimension 2, the three bases Z = ((1, 0), (0, 1)), X = ((1, 1), (1, -1)) and Y = ((1, i), (1, -i)) are unnormalized Gaussian-integer representatives of mutually unbiased bases of C^2 after normalization. Their squared norms are 1, 1, 2, 2, 2 and 2. Distinct vectors inside one basis have inner product 0. For every vector from one basis and every vector from another, twice the squared modulus of the inner product equals the product of the squared norms. The square of i is -1. The additive character of the two-element field sends 0 to 1 and 1 to -1, and it sends 1+1 to 1.",
       "uuid": "b1cd2642-4f5d-5264-a58f-a17a68f2f5de"
     },
     {

@@ -2,12 +2,12 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 67. Grades: E1 30, E2 3, E3 34. Statuses: PROVED_LEAN 32, PROVED_PROSE 2, COMPUTATIONALLY_CHECKED 3, CONDITIONAL 1, DEFINITION 2, IMPORTED_ASSUMPTION 4, OPEN 22, REFUTED 1.
+Nodes: 67. Grades: E1 29, E2 3, E3 35. Statuses: PROVED_LEAN 32, PROVED_PROSE 2, COMPUTATIONALLY_CHECKED 3, CONDITIONAL 1, DEFINITION 2, IMPORTED_ASSUMPTION 4, OPEN 22, REFUTED 1.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
 | [MUB-EXACT-PROJECTORS](../nodes/MUB-EXACT-PROJECTORS.md) | `DEFINITION` | E1 | On a supplied finite-dimensional Hilbert carrier, a MUB family consists of rank-one orthogonal projector resolutions with cross-basis tra... | [README.md](../../../papers/core/mub6/README.md) | - |
-| [MUB-PRIME-POWER-CONSTRUCTION](../nodes/MUB-PRIME-POWER-CONSTRUCTION.md) | `OPEN` | E1 | Construct and verify a complete d+1 MUB family for the stated prime-power carrier, explicitly handling finite-field arithmetic, character... | [README.md](../../../papers/core/mub6/README.md) | - |
+| [MUB-PRIME-POWER-CONSTRUCTION](../nodes/MUB-PRIME-POWER-CONSTRUCTION.md) | `OPEN` | E3 | Narrowed boundary, status left OPEN. In dimension 2, the three bases Z = ((1, 0), (0, 1)), X = ((1, 1), (1, -1)) and Y = ((1, i), (1, -i)... | [CampaignMubPrimePowerConstruction.lean](../../../lean4/CampaignMubPrimePowerConstruction.lean): `basis_orthogonal`, `char_of_double`, `char_values` +4<br>[mub-prime-power-construction.py](../../../checks/independent/mub-prime-power-construction.py)<br>[mub-prime-power-construction.md](../../../dag/derivations/independent/mub-prime-power-construction.md)<br>[campaign_mub-prime-power-construction_lean_replay.json](../../../dag/research/campaign_mub-prime-power-construction_lean_replay.json)<br>+1 more file(s) | - |
 | [MUB-TOMOGRAPHY-INVERSION](../nodes/MUB-TOMOGRAPHY-INVERSION.md) | `PROVED_PROSE` | E1 | Given d+1 MUB projector resolutions on a d-dimensional complex Hilbert carrier and trace-one rho, the probabilities p_bj=tr(rho P_bj) rec... | [README.md](../../../papers/core/mub6/README.md) | - |
 | [MUB6-GLOBAL-OBLIGATIONS](../nodes/MUB6-GLOBAL-OBLIGATIONS.md) | `OPEN` | E1 | Separate exact stated-region exclusions and conditional reductions from a global dimension-six existence or maximality theorem; the packa... | [README.md](../../../papers/core/mub6/README.md)<br>[mub6_gap_registry.json](../../../papers/core/mub6/research/mub6_gap_registry.json) | - |
 | [MUB6-QUHEX-TENSOR-CARRIER](../nodes/MUB6-QUHEX-TENSOR-CARRIER.md) | `DEFINITION` | E1 | Fix the identification C^6 = C^2 tensor C^3 with product basis \|j,k\> = \|j\> tensor \|k\> for j in {0,1} and k in {0,1,2}; this is a declared... | [theory_of_finite_mub6.jsonl](../../../papers/core/mub6/theory_of_finite_mub6.jsonl)<br>[theory_of_finite_mub6.md](../../../papers/core/mub6/theory_of_finite_mub6.md) | - |
