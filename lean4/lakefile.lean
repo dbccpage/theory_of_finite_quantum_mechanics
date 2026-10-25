@@ -1311,3 +1311,7 @@ lean_lib CampaignCompC2Step3NotWordStep where
 -- Campaign: COMP-C6-TM0-OUTPUT-FORM-OPEN. Not a default target.
 lean_lib CampaignCompC6Tm0OutputFormOpen where
   roots := #[`CampaignCompC6Tm0OutputFormOpen]
+
+-- Campaign: COMP-C7-FIXED-TARGET-OPEN. Not a default target.
+lean_lib CampaignCompC7FixedTargetOpen where
+  roots := #[`CampaignCompC7FixedTargetOpen]

@@ -1,4 +1,4 @@
-# [TFQ-1311] Reach to a fixed target word is undecidable
+# [TFQ-1311] Two erasing steps reach one fixed word
 
 > **Stage**: `COMPUTATION` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `COMP-C7-FIXED-TARGET-OPEN`  
 > **UUID**: `edd36104-a1d7-5deb-86a2-dc9f4a06fc18`  
@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-Adding erasing rules so that every halting word reduces to one fixed word should make Reach to that fixed word undecidable; this is not proved here.
+Erasing the block [1] from the word [1, 0] by one hole replacement yields the fixed word [0]. Erasing the block [2] from the word [2, 0] by one hole replacement yields the same fixed word [0].
 
 ### Governing Obligation
-Prove Reach R0 prime (startWord x) target iff (univFun x).Dom for the extended rule set R0 prime.
+Still open: Reach of the extended rule set R0 prime from startWord x to one fixed target word exactly when univFun x is defined.
 
 ### Witness Audit
-Only normal-form reachability is proved undecidable (COMP-C7b).
+CampaignCompC7FixedTargetOpen records two erasures, of [1, 0] and of [2, 0], to the fixed word [0]. It does not treat the extended rule set R0 prime.
 
 ---
 
@@ -31,7 +31,8 @@ Only normal-form reachability is proved undecidable (COMP-C7b).
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignCompC7FixedTargetOpen.lean::eraseOneToFixed`
+- `lean4/CampaignCompC7FixedTargetOpen.lean::eraseTwoToFixed`
 
 ### Rust Certifiers
 - *none*
