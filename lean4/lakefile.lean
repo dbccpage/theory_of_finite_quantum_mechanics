@@ -1315,3 +1315,7 @@ lean_lib CampaignCompC6Tm0OutputFormOpen where
 -- Campaign: COMP-C7-FIXED-TARGET-OPEN. Not a default target.
 lean_lib CampaignCompC7FixedTargetOpen where
   roots := #[`CampaignCompC7FixedTargetOpen]
+
+-- Campaign: COMP-C8-MINIMALITY-FENCE. Not a default target.
+lean_lib CampaignCompC8MinimalityFence where
+  roots := #[`CampaignCompC8MinimalityFence]

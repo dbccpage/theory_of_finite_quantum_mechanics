@@ -156,3 +156,4 @@ One line per target, in order attempted: `<UTC date> | <node id> | <outcome clas
 2026-10-25 | COMP-C2-STEP3-NOT-WORD-STEP | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/367 | Three concrete one-hole list moves and merge01; a Genesis Step3 encoding stays open.
 2026-10-25 | COMP-C6-TM0-OUTPUT-FORM-OPEN | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/368 | One blank-cell writer stores v and evalConst returns v; the M0 tape form stays open.
 2026-10-25 | COMP-C7-FIXED-TARGET-OPEN | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/369 | Two erasures send [1, 0] and [2, 0] to [0]; Reach for R0 prime stays open.
+2026-10-25 | COMP-C8-MINIMALITY-FENCE | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/370 | One two-mark word followed by one blank cell; machine simulation stays open.
