@@ -1331,3 +1331,7 @@ lean_lib CampaignAuthfCarrierAdmissionGate where
 -- Campaign: FQ-GAP-STONE-CONTINUOUS-TIME. Not a default target.
 lean_lib CampaignFqGapStoneContinuousTime where
   roots := #[`CampaignFqGapStoneContinuousTime]
+
+-- Campaign: COMP-C3-NO-FIXED-BOUND. Not a default target.
+lean_lib CampaignCompC3NoFixedBound where
+  roots := #[`CampaignCompC3NoFixedBound]

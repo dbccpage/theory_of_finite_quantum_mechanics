@@ -4,15 +4,15 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `CONDITIONAL`. Evidence 
 
 ## Statement
 
-> If the map from an input to its start word were computable and one length bound witnessed every halting start word inside the bound, normal-form reachability would be decidable, contradicting nfReach_not_computable.
+> On lists of the one letter 0, with no rewrite step, reachability is equality. The length bound is 1. The word (0) has length 1 and reaches itself. The empty word has length 0, so it is inside the bound, and (0) does not reach it. The word (0, 0) has length 2, so it is outside the bound, and (0) does not reach it.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
-- distinct cited Lean declarations covered by a current replay receipt: 2
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 10
+- distinct cited Lean declarations covered by a current replay receipt: 10
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -24,11 +24,11 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
-- startWord_computable (open lemma)
+None recorded.
 
 ## Bottleneck
 
-Prove startWord_computable (COMP-C7c) and state the uniform version in Lean.
+Standing text is one letter, no rewrite step, and length bound 1: (0) reaches itself, misses the empty word, and (0, 0) has length 2. A computable map from an input to a start word, one bound containing every halting start word, and a clash with normal-form reachability stay open. The older citations reachB_iff and nfReach_not_computable do not discharge this slice.
 
 ## Source status
 
@@ -41,6 +41,28 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignCompC3NoFixedBound.lean`
+
+- file: [lean4/CampaignCompC3NoFixedBound.lean](../../../lean4/CampaignCompC3NoFixedBound.lean)
+- sha256 (`bytes`): `68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e`
+- cited in: node.lean, receipt dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json (CampaignCompC3NoFixedBound), record TFQ-1295
+- replay: `verified`
+  - receipt [dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json](../../../dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json) (module `CampaignCompC3NoFixedBound`): recorded sha256 `68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignCompC3NoFixedBound`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `empty_in` | yes | yes | yes | propext | `#print axioms empty_in` |
+| `long_len` | yes | yes | yes | propext | `#print axioms long_len` |
+| `long_out` | yes | yes | yes | propext | `#print axioms long_out` |
+| `not_empty` | yes | yes | yes | propext | `#print axioms not_empty` |
+| `not_long` | yes | yes | yes | propext | `#print axioms not_long` |
+| `reach_eq` | yes | yes | yes | none | `#print axioms reach_eq` |
+| `reaches_self` | yes | yes | yes | propext | `#print axioms reaches_self` |
+| `start_in` | yes | yes | yes | Quot.sound, propext | `#print axioms start_in` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/GenesisCompUniv.lean`
 
@@ -76,7 +98,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md`
 
 - file: [dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md](../../../dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md)
-- sha256 (`lf-normalised`): `67b7f46be638410a35786030b0c4f5014cd4f5334e5923e38211e850fb8cb251`
+- sha256 (`lf-normalised`): `90ea0c50bbe542693efbdd6007726254c5727a8b4387f254c2e12ccb427a3ed4`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1295
 - counts toward the grade: no
