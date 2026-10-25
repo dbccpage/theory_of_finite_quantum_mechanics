@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignPgwWdpHandoffToL1.lean](../../../lean4/CampaignPgwWdpHandoffToL1.lean)
 - sha256 (`bytes`): `76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85`
-- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json (CampaignPgwWdpHandoffToL1), record TFQ-0558
+- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json (CampaignPgwWdpHandoffToL1), receipt dag/research/pr_358_review_replay.json (CampaignPgwWdpHandoffToL1), record TFQ-0558
 - replay: `verified`
   - receipt [dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json](../../../dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json) (module `CampaignPgwWdpHandoffToL1`): recorded sha256 `76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_358_review_replay.json](../../../dag/research/pr_358_review_replay.json) (module `CampaignPgwWdpHandoffToL1`): recorded sha256 `76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignPgwWdpHandoffToL1`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
