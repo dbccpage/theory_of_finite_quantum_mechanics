@@ -5569,10 +5569,10 @@
       "parent_id": "TFQ-0488",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "The sealed candidate space is enumerated to cost two (at most two items, arity at most two), with pruning lemmas certified against the unpruned space: unreferenced fresh data and forms never matter, an instance-only delta changes the target pair's profiles only if an instance mentions a target datum, and a delta holding a uniform-rule item is never a minimum valid response (rule_item_never_minimal). The second derivation's rung one enumerated three-item deltas (min_responses_three) under a node guard, but no k-item delta grammar with pruning lemmas proved beyond cost two exists, and the distance bound of two is not known to be the grammar's (S-4). The education audit lists k-item delta grammars with pruning lemmas as a missing prerequisite of the S(n) bridge.",
-      "obligation": "Define the k-item delta grammar for k ≥ 3, state and prove the pruning lemmas it relies on, and certify the pruned enumeration against the unpruned space at each declared k before using any k-item minimum.",
+      "summary": "The sealed candidate space is enumerated to cost two (at most two items, arity at most two), with pruning lemmas certified against the unpruned space: unreferenced fresh data and forms never matter, an instance-only delta changes the target pair's profiles only if an instance mentions a target datum, and a delta holding a uniform-rule item is never a minimum valid response (rule_item_never_minimal). The second derivation's rung one enumerated three-item deltas (min_responses_three) under a node guard, but no k-item delta grammar with pruning lemmas proved beyond cost two exists, and the distance bound of two is not known to be the grammar's (S-4). The education audit lists k-item delta grammars with pruning lemmas as a missing prerequisite of the S(n) bridge. Narrowed in Lean 4 to one empty base with two data and arity one. Over a 10-atom universe, the well-formed admissions of one item are a fresh datum and one unary form, and the well-formed admissions of two items are datum-then-datum, datum-then-form, form-then-datum, form-then-form, form-then-rule, form-then-instance of argument 0, and form-then-instance of argument 1. That census has 9 well-formed deltas, and 7 of them leave the two target profile bits equal. The two form-then-instance deltas leave those bits unequal. The form-then-rule delta sets both bits true. Extending the argument-0 instance by the uniform rule makes a 3-item delta whose bits are equal, while the 2-item prefix has unequal bits. A fresh datum, then a form, then an instance of argument 2, keeps both target bits false and records that fresh argument. Arity two, a grammar for 3 or more items, and the sealed cost-two minimum on the full unpruned space stay open. The mention file and the rule-bridge file are not rechecked. AuthorityEffect is None.",
+      "obligation": "Define the k-item delta grammar for k ≥ 3, state and prove the pruning lemmas it relies on, and certify the pruned enumeration against the unpruned space at each declared k before using any k-item minimum. This file checks one empty base with two data and arity one: 9 well-formed deltas of at most two items, 2 of them with unequal target bits. The 3-item rule extension equalizes those bits, and an instance of argument 2 keeps them false. Arity two, a grammar for 3 or more items, and the sealed cost-two minimum stay open.",
       "imports": [],
-      "fence": "Open: the cost-two minimum (CL-3-MIN-TWO) is relative to the sealed grammar and bounds, and nothing here establishes a k-item minimum or a bound on response size.",
+      "fence": "Open: the cost-two minimum (CL-3-MIN-TWO) is relative to the sealed grammar and bounds, and nothing here establishes a k-item minimum or a bound on response size. This file checks one empty base with two data and arity one: 9 well-formed deltas of at most two items, 2 of them with unequal target bits. The 3-item rule extension equalizes those bits, and an instance of argument 2 keeps them false. Arity two, a grammar for 3 or more items, and the sealed cost-two minimum stay open.",
       "witnesses": {
         "lean": [
           {
@@ -5584,6 +5584,71 @@
             "root": "local",
             "path": "lean4/Imported/Genesis19l57g1/Derivation/Mention.lean",
             "symbol": "collapsed_fresh_datum"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "well_formed_singles_are"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "well_formed_pairs_are"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "no_single_item_separates"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "separating_pairs_are_two"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "ten_atoms"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "one_hundred_pairs"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "nine_well_formed"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "seven_leave_bits_equal"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "fresh_datum_pairs_do_not_separate"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "form_rule_both_true"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "rule_extension_equalizes"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "rule_extension_is_longer"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "off_target_instance_keeps_bits"
           }
         ],
         "rust": [
@@ -5603,6 +5668,10 @@
             "root": "github19l",
             "path": "research/second_stream/stream.py",
             "symbol": "iter_k_item_deltas"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-k-item-delta-grammar.py"
           }
         ]
       },

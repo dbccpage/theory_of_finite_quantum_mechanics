@@ -1235,3 +1235,7 @@ lean_lib CampaignTfq0374ThreeRecoveryContracts where
 -- Campaign: TFQ-0385. Not a default target.
 lean_lib CampaignTfq0385RuleErasesSeparation where
   roots := #[`CampaignTfq0385RuleErasesSeparation]
+
+-- Campaign: PGW-K-ITEM-DELTA-GRAMMAR. Not a default target.
+lean_lib CampaignPgwKItemDeltaGrammar where
+  roots := #[`CampaignPgwKItemDeltaGrammar]
