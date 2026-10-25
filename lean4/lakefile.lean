@@ -1275,3 +1275,7 @@ lean_lib CampaignPgwWdpHandoffToL1 where
 -- Campaign: MUB-PRIME-POWER-CONSTRUCTION. Not a default target.
 lean_lib CampaignMubPrimePowerConstruction where
   roots := #[`CampaignMubPrimePowerConstruction]
+
+-- Campaign: MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE. Not a default target.
+lean_lib CampaignMajOpenLindbladTransferEnvelope where
+  roots := #[`CampaignMajOpenLindbladTransferEnvelope]
