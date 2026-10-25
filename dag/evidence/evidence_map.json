@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "1e209acf5236fc42c55809ab518e2f32b74103ed7bab988a290b33435a7dd14b"
+  "sha256_lf": "108cbbdd028efad07f3a13064c15726f17b5e392f49d66500f5aa2202124863b"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -186,6 +186,11 @@
    "sha256": "bd381422744d65b117272aa3b35091b72028741249e15953a163510af796e1bd",
    "sha256_basis": "bytes",
    "size": 2369
+  },
+  "checks/independent/ops-axis3-relabeling.py": {
+   "sha256": "7fd8f8fb6db09ed3556b917be4f557b5c32635d24c8a226dfc3e4c6ee7e7989d",
+   "sha256_basis": "bytes",
+   "size": 1525
   },
   "checks/independent/pg-wdp-genesis-bridge-obligations.py": {
    "sha256": "2f064918320e3bf12e04d3702d29335b693d89183030474ab9365f3dd93c632a",
@@ -1223,9 +1228,9 @@
    "size": 9170
   },
   "dag/derivation_dag.json": {
-   "sha256": "1e209acf5236fc42c55809ab518e2f32b74103ed7bab988a290b33435a7dd14b",
+   "sha256": "108cbbdd028efad07f3a13064c15726f17b5e392f49d66500f5aa2202124863b",
    "sha256_basis": "lf-normalised",
-   "size": 4802094
+   "size": 4802101
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -6078,9 +6083,9 @@
    "size": 2775
   },
   "dag/derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md": {
-   "sha256": "2c33c8f28221341f65382b0f8acfd2f75591d14e01d45aca7cbbc4236e1c94f7",
+   "sha256": "fc04dfd320fd0fa0770aab53b3b6c42810df2716d29f1b6bc34e26da43088877",
    "sha256_basis": "lf-normalised",
-   "size": 3058
+   "size": 3200
   },
   "dag/derivations/35_foc035_observer_presheaf/tfq_2527_ops_regress_corollary.md": {
    "sha256": "a6e6b18d8fb9d50e84cecc91aa1a63c81deb1c07a69edc9d61812eb0569ca3cf",
@@ -6336,6 +6341,11 @@
    "sha256": "d46d92da346abb519fd4cc96602f6f624bb0d1bf616963f4973a6208e5050064",
    "sha256_basis": "lf-normalised",
    "size": 2356
+  },
+  "dag/derivations/independent/ops-axis3-relabeling.md": {
+   "sha256": "1d83b99807ba29206c0565c6041fb5b88ec1c3592fb9ec810d42859f0c725090",
+   "sha256_basis": "lf-normalised",
+   "size": 1645
   },
   "dag/derivations/independent/pg-gen-no-return.md": {
    "sha256": "05df9c79673528ca235e6777b70ff7f571a3be2e52d02f281ef5b04592593f60",
@@ -6896,6 +6906,11 @@
    "sha256": "924d70ee83a46e14f69abab050d621fb2a576b10e6437b3b6765a964f4cca204",
    "sha256_basis": "lf-normalised",
    "size": 6428
+  },
+  "dag/research/campaign_ops-axis3-relabeling_lean_replay.json": {
+   "sha256": "40edc4f8045dd6c792b19e06213edfc4d889dede96e5cc7fa35551e3817960fa",
+   "sha256_basis": "lf-normalised",
+   "size": 2926
   },
   "dag/research/campaign_pg-gen-no-return_lean_replay.json": {
    "sha256": "2ddc715fc06459db703f8915efe2811ce41330f0781671673fd6ad7b1222c012",
@@ -7863,9 +7878,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "sha256": "c8ffcaa20525dc0056c93684ef73aa6b17b88df93b4f256e8fd3fe018164e4e8",
    "sha256_basis": "lf-normalised",
-   "size": 217808
+   "size": 219569
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -8431,6 +8446,11 @@
    "sha256": "9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec",
    "sha256_basis": "bytes",
    "size": 2308
+  },
+  "lean4/CampaignOpsAxis3Relabeling.lean": {
+   "sha256": "12ec56e7053207be28507d9f1b78b6a17cb124bd99e0b54a1371c79c5d0bada4",
+   "sha256_basis": "bytes",
+   "size": 1028
   },
   "lean4/CampaignPgwContextFidelity.lean": {
    "sha256": "a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643",
@@ -304872,17 +304892,174 @@
    "absent_notes": [],
    "dependents": 3,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 2,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 6,
+    "lean_receipt_backed": 3,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 3
    },
    "flags": [],
-   "grade": "E1",
+   "grade": "E3",
    "id": "OPS-AXIS3-RELABELING",
    "items": [
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.source",
+      "receipt dag/research/campaign_ops-axis3-relabeling_lean_replay.json (CampaignOpsAxis3Relabeling)"
+     ],
+     "command": "cd lean4 && lake build CampaignOpsAxis3Relabeling",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignOpsAxis3Relabeling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_ops-axis3-relabeling_lean_replay.json#0:CampaignOpsAxis3Relabeling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": "exportVerdictRelabel",
+     "cited_in": [
+      "receipt dag/research/campaign_ops-axis3-relabeling_lean_replay.json (CampaignOpsAxis3Relabeling)"
+     ],
+     "command": "cd lean4 && lake build CampaignOpsAxis3Relabeling",
+     "command_note": "then, in a scratch file that imports CampaignOpsAxis3Relabeling: #print axioms exportVerdictRelabel",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignOpsAxis3Relabeling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ops-axis3-relabeling_lean_replay.json#0:CampaignOpsAxis3Relabeling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "exportVerdictRelabel",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "lengthMapInvariant",
+     "cited_in": [
+      "receipt dag/research/campaign_ops-axis3-relabeling_lean_replay.json (CampaignOpsAxis3Relabeling)"
+     ],
+     "command": "cd lean4 && lake build CampaignOpsAxis3Relabeling",
+     "command_note": "then, in a scratch file that imports CampaignOpsAxis3Relabeling: #print axioms lengthMapInvariant",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignOpsAxis3Relabeling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ops-axis3-relabeling_lean_replay.json#0:CampaignOpsAxis3Relabeling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "lengthMapInvariant",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "lengthVerdictRelabel",
+     "cited_in": [
+      "receipt dag/research/campaign_ops-axis3-relabeling_lean_replay.json (CampaignOpsAxis3Relabeling)"
+     ],
+     "command": "cd lean4 && lake build CampaignOpsAxis3Relabeling",
+     "command_note": "then, in a scratch file that imports CampaignOpsAxis3Relabeling: #print axioms lengthVerdictRelabel",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignOpsAxis3Relabeling.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ops-axis3-relabeling_lean_replay.json#0:CampaignOpsAxis3Relabeling",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "lengthVerdictRelabel",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/ops-axis3-relabeling.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
     {
      "canonical_symbol": null,
      "cited_in": [
@@ -304900,6 +305077,54 @@
      "generated": true,
      "kind": "paper",
      "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/derivations/independent/ops-axis3-relabeling.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/research/campaign_ops-axis3-relabeling_lean_replay.json",
      "receipts": [],
      "replay": "n/a",
      "resolution": "present",
@@ -304957,7 +305182,7 @@
      "where": "3.1"
     }
    ],
-   "next_step": "cite a Lean, Rust or Python symbol that exists in an in-repo file",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-2526"
    ],
@@ -306969,6 +307194,30 @@
    "receipt_file": "dag/research/campaign_mub-prime-power-construction_lean_replay.json",
    "receipt_file_sha256": "924d70ee83a46e14f69abab050d621fb2a576b10e6437b3b6765a964f4cca204",
    "recorded_sha256": "9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": null,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "propext"
+   ],
+   "built_successfully": true,
+   "checked_at": "2026-10-25",
+   "dag_node": "OPS-AXIS3-RELABELING",
+   "decl_count": 3,
+   "exit_code": 0,
+   "id": "dag/research/campaign_ops-axis3-relabeling_lean_replay.json#0:CampaignOpsAxis3Relabeling",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignOpsAxis3Relabeling",
+   "path": "lean4/CampaignOpsAxis3Relabeling.lean",
+   "receipt_file": "dag/research/campaign_ops-axis3-relabeling_lean_replay.json",
+   "receipt_file_sha256": "40edc4f8045dd6c792b19e06213edfc4d889dede96e5cc7fa35551e3817960fa",
+   "recorded_sha256": "12ec56e7053207be28507d9f1b78b6a17cb124bd99e0b54a1371c79c5d0bada4",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
   },
@@ -319349,7 +319598,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "c8ffcaa20525dc0056c93684ef73aa6b17b88df93b4f256e8fd3fe018164e4e8",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319375,7 +319624,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "c8ffcaa20525dc0056c93684ef73aa6b17b88df93b4f256e8fd3fe018164e4e8",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319401,7 +319650,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "c8ffcaa20525dc0056c93684ef73aa6b17b88df93b4f256e8fd3fe018164e4e8",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319427,7 +319676,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "c8ffcaa20525dc0056c93684ef73aa6b17b88df93b4f256e8fd3fe018164e4e8",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319453,7 +319702,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "c8ffcaa20525dc0056c93684ef73aa6b17b88df93b4f256e8fd3fe018164e4e8",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319479,7 +319728,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "c8ffcaa20525dc0056c93684ef73aa6b17b88df93b4f256e8fd3fe018164e4e8",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319505,7 +319754,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "c8ffcaa20525dc0056c93684ef73aa6b17b88df93b4f256e8fd3fe018164e4e8",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319531,7 +319780,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "c8ffcaa20525dc0056c93684ef73aa6b17b88df93b4f256e8fd3fe018164e4e8",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319557,7 +319806,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "c8ffcaa20525dc0056c93684ef73aa6b17b88df93b4f256e8fd3fe018164e4e8",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319583,7 +319832,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "c8ffcaa20525dc0056c93684ef73aa6b17b88df93b4f256e8fd3fe018164e4e8",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319609,7 +319858,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "c8ffcaa20525dc0056c93684ef73aa6b17b88df93b4f256e8fd3fe018164e4e8",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319635,7 +319884,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "c8ffcaa20525dc0056c93684ef73aa6b17b88df93b4f256e8fd3fe018164e4e8",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319661,7 +319910,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "c8ffcaa20525dc0056c93684ef73aa6b17b88df93b4f256e8fd3fe018164e4e8",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319687,7 +319936,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "c8ffcaa20525dc0056c93684ef73aa6b17b88df93b4f256e8fd3fe018164e4e8",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319713,7 +319962,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "c8ffcaa20525dc0056c93684ef73aa6b17b88df93b4f256e8fd3fe018164e4e8",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -320315,9 +320564,9 @@
  "summary": {
   "by_grade": {
    "E0": 154,
-   "E1": 212,
+   "E1": 211,
    "E2": 38,
-   "E3": 521,
+   "E3": 522,
    "E4": 0
   },
   "by_status": {
@@ -320367,7 +320616,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 585,
+  "receipts_indexed": 586,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
@@ -320581,9 +320830,9 @@
    },
    "OBSERVER_PRESHEAF": {
     "E0": 0,
-    "E1": 25,
+    "E1": 24,
     "E2": 6,
-    "E3": 2,
+    "E3": 3,
     "E4": 0
    },
    "PREGENESIS": {
@@ -320625,9 +320874,9 @@
    },
    "CONDITIONAL": {
     "E0": 11,
-    "E1": 2,
+    "E1": 1,
     "E2": 2,
-    "E3": 22,
+    "E3": 23,
     "E4": 0
    },
    "DEFINITION": {
