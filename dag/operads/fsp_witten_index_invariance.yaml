@@ -5,8 +5,7 @@ collection_status: source_candidates_collected_semantic_mining_open
 target:
   source_statement: For every natural-number energy list P, every integer weight function w with w(0)=1,
     and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by
-    P and f zeros followed by P equals b-f. It is independent of w. A zero difference does not imply absence
-    of zero modes.
+    P and f zeros followed by P equals b-f. It is independent of w.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - exact supercharge with H = {Q, Q^dagger} on a finite graded space (assumption)
@@ -32,7 +31,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md
-    sha256: 01887dc485888298c0014de9a212192dc2f4b2fa04dd3a7f2ff2d89efb1c3d29
+    sha256: 6646669abdb4ad61c5599986765bd28d887c5d8b4632e48af328e1a0f80a99c2
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -85,18 +84,6 @@ relation_candidates:
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
-- kind: theorem
-  name: zero_index_with_ground_modes
-  line: 36
-  signature_excerpt: |-
-    theorem zero_index_with_ground_modes (w : Nat → Int) (_h : w 0 = 1) :
-        traceWeight w [0] - traceWeight w [0] = 0 ∧ (1 : Nat) + 1 > 0
-  source: lean4/CampaignWittenPairing.lean
-  repository: this_repository
-  source_sha256: daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1
-  status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
-    proof.
 source_bindings:
 - original_ref: lean4/CampaignWittenPairing.lean::CampaignWittenPairing.paired_trace
   availability: local
@@ -115,15 +102,6 @@ source_bindings:
   sha256: daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1
   declaration_status: declaration_found_not_proof_checked
   line: 29
-  role: source_lead_only
-- original_ref: lean4/CampaignWittenPairing.lean::CampaignWittenPairing.zero_index_with_ground_modes
-  availability: local
-  symbol: CampaignWittenPairing.zero_index_with_ground_modes
-  path: lean4/CampaignWittenPairing.lean
-  repository: this_repository
-  sha256: daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1
-  declaration_status: declaration_found_not_proof_checked
-  line: 36
   role: source_lead_only
 presentation:
   colours: []

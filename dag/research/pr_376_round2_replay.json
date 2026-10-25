@@ -5,7 +5,7 @@
   "reviewed_pr": 376,
   "reviewed_head": "f4a3ade8331bee58c584896105b18502331b97b8",
   "source_state": "Integrated repairs; source SHA-256 is authoritative.",
-  "proof_boundary": "Scoped claims only. Named hypotheses and broader obligations remain explicit; no original broad target closure is inferred.",
+  "proof_boundary": "Scoped claims only. Named hypotheses and broader obligations remain explicit; no original broad target closure is inferred. The zero_index_with_ground_modes statement has no explicit list-membership or count proposition and is not counted as node-level evidence; zero-mode occupancy in fifteen constructed examples is checked independently.",
   "lean_replay": {
     "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
     "mathlib_source_sha": null,
@@ -83,15 +83,17 @@
   },
   "independent_check": {
     "command": [
-      "/workspace/.cloud-setup/venv/bin/python",
+      "/workspace/review-round2/independent-venv/bin/python",
       "-I",
       "-X",
       "utf8",
       "checks/independent/fsp-witten-index-invariance.py"
     ],
     "exit_code": 0,
-    "seconds": 0.36,
-    "output": "80 independently constructed spectral pairs: symbolic polynomial and four exact weights pass; zero index can coexist with ground modes\n"
+    "seconds": 0.316,
+    "output": "80 independently constructed spectral pairs: symbolic polynomial and four exact weights pass; 15 zero-index pairs have explicitly counted ground modes\n",
+    "source": "checks/independent/fsp-witten-index-invariance.py",
+    "sha256": "e61e0ba0575adfe8eeb6ee651d947c1dc1cfe0428a841d33351bd6beb78a0d20"
   },
   "axiom_audit": {
     "command": [
@@ -111,5 +113,17 @@
   "scratch_package": {
     "lakefile": "name = \"review_core\"\nversion = \"0.1.0\"\n\n[[lean_lib]]\nname = \"CampaignFqGapContinuumHilbertLift\"\n\n[[lean_lib]]\nname = \"CampaignWittenPairing\"\n\n[[lean_lib]]\nname = \"CampaignPgwWdpPhiWellDefinedL1Duality\"\n\n[[lean_lib]]\nname = \"CampaignKitaevSectorBlock\"\n\n[[lean_lib]]\nname = \"CampaignLaughlinRootAmbiguity\"\n\n[[lean_lib]]\nname = \"CampaignReportFiberDescent\"\n\n[[lean_lib]]\nname = \"CampaignInformationProductBoundary\"\n\n[[lean_lib]]\nname = \"CampaignMajLegacyCarrierRetraction\"\n\n[[lean_lib]]\nname = \"CampaignCompC3NoFixedBound\"\n\n[[lean_lib]]\nname = \"CampaignOpsObserverDeclarationRefusal\"\n",
     "lean_toolchain": "leanprover/lean4:v4.35.0\n"
+  },
+  "superseded_independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/fsp-witten-index-invariance.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.36,
+    "output": "80 independently constructed spectral pairs: symbolic polynomial and four exact weights pass; zero index can coexist with ground modes\n"
   }
 }

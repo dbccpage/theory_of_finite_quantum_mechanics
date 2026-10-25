@@ -4,7 +4,7 @@
   "checked_at": "2026-10-25T18:56:17.877532+00:00",
   "source_base": "c50dc1b472596d1b5934408b00b9fbb72db91345",
   "result": "Narrowed; original node status retained. For every natural-number energy list P, every integer weight function w with w(0)=1, and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by P and f zeros followed by P equals b-f. It is independent of w. A zero difference does not imply absence of zero modes.",
-  "proof_boundary": "Pairing is supplied by the shared spectral list; this does not derive that pairing from an arbitrary supercharge, spectral decomposition on a Hilbert space, the analytic exponential trace, or the ground-energy theorem. The full imported Witten-index statement remains open here.",
+  "proof_boundary": "Pairing is supplied by the shared spectral list; this does not derive that pairing from an arbitrary supercharge, spectral decomposition on a Hilbert space, the analytic exponential trace, or the ground-energy theorem. The full imported Witten-index statement remains open here. The zero_index_with_ground_modes statement has no explicit list-membership or count proposition and is not counted as node-level evidence; zero-mode occupancy in fifteen constructed examples is checked independently.",
   "lean_replay": {
     "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
     "mathlib_source_sha": null,
@@ -83,15 +83,17 @@
   },
   "independent_check": {
     "command": [
-      "/workspace/.cloud-setup/venv/bin/python",
+      "/workspace/review-round2/independent-venv/bin/python",
       "-I",
       "-X",
       "utf8",
       "checks/independent/fsp-witten-index-invariance.py"
     ],
     "exit_code": 0,
-    "seconds": 0.367,
-    "output": "80 independently constructed spectral pairs: symbolic polynomial and four exact weights pass; zero index can coexist with ground modes\n"
+    "seconds": 0.316,
+    "output": "80 independently constructed spectral pairs: symbolic polynomial and four exact weights pass; 15 zero-index pairs have explicitly counted ground modes\n",
+    "source": "checks/independent/fsp-witten-index-invariance.py",
+    "sha256": "e61e0ba0575adfe8eeb6ee651d947c1dc1cfe0428a841d33351bd6beb78a0d20"
   },
   "lake_configuration": {
     "command": [
@@ -127,5 +129,17 @@
         "sha256": "daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1"
       }
     }
+  },
+  "superseded_independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/fsp-witten-index-invariance.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.367,
+    "output": "80 independently constructed spectral pairs: symbolic polynomial and four exact weights pass; zero index can coexist with ground modes\n"
   }
 }

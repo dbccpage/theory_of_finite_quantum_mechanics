@@ -4961,7 +4961,7 @@
       "stage": "FERMION_SIGN",
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "For every natural-number energy list P, every integer weight function w with w(0)=1, and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by P and f zeros followed by P equals b-f. It is independent of w. A zero difference does not imply absence of zero modes.",
+      "statement": "For every natural-number energy list P, every integer weight function w with w(0)=1, and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by P and f zeros followed by P equals b-f. It is independent of w.",
       "obligation": "Pairing is supplied by the shared spectral list; this does not derive that pairing from an arbitrary supercharge, spectral decomposition on a Hilbert space, the analytic exponential trace, or the ground-energy theorem. The full imported Witten-index statement remains open here. Original target retained as an obligation: On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr[(-1)^F exp(-beta H)] = n_B(E=0) - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0. Prior boundary: Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself.",
       "imported_structure": [
         "exact supercharge with H = {Q, Q^dagger} on a finite graded space (assumption)"
@@ -4972,8 +4972,7 @@
       "parent_record": "TFQ-1204",
       "lean": [
         "lean4/CampaignWittenPairing.lean::CampaignWittenPairing.paired_trace",
-        "lean4/CampaignWittenPairing.lean::CampaignWittenPairing.weight_independent",
-        "lean4/CampaignWittenPairing.lean::CampaignWittenPairing.zero_index_with_ground_modes"
+        "lean4/CampaignWittenPairing.lean::CampaignWittenPairing.weight_independent"
       ],
       "rust": [],
       "python": [
@@ -4988,7 +4987,7 @@
         "dag/derivations/independent/fsp-witten-index-invariance.md",
         "dag/research/campaign_fsp-witten-index-invariance_lean_replay.json"
       ],
-      "audit": "Cited NonAbelianGaugeSigns.lean::witten_index_beta_independence does not exist. regge_wdw_core.lean::witten_index_beta_invariant is rfl on WittenIndexTemperatureInvariancePredicate idx idx (idx = idx), a placeholder in an unbuilt file. evaluate_witten_index is absent from cdt_susy_witten_evaluator.py. Campaign result: For every natural-number energy list P, every integer weight function w with w(0)=1, and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by P and f zeros followed by P equals b-f. It is independent of w. A zero difference does not imply absence of zero modes. Pairing is supplied by the shared spectral list; this does not derive that pairing from an arbitrary supercharge, spectral decomposition on a Hilbert space, the analytic exponential trace, or the ground-energy theorem. The full imported Witten-index statement remains open here.",
+      "audit": "Cited NonAbelianGaugeSigns.lean::witten_index_beta_independence does not exist. regge_wdw_core.lean::witten_index_beta_invariant is rfl on WittenIndexTemperatureInvariancePredicate idx idx (idx = idx), a placeholder in an unbuilt file. evaluate_witten_index is absent from cdt_susy_witten_evaluator.py. Campaign result: For every natural-number energy list P, every integer weight function w with w(0)=1, and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by P and f zeros followed by P equals b-f. It is independent of w. Pairing is supplied by the shared spectral list; this does not derive that pairing from an arbitrary supercharge, spectral decomposition on a Hilbert space, the analytic exponential trace, or the ground-energy theorem. The full imported Witten-index statement remains open here. The separate zero_index_with_ground_modes declaration states equal traces of the literal list [0] and the numeric fact 1+1>0; it has no explicit zero-mode membership or count proposition. It is not a witness for the node-level claim. The independent checker separately verifies zero-energy occupancy for fifteen constructed equal-multiplicity pairs.",
       "see_also": [],
       "uses": []
     },
@@ -8868,7 +8867,7 @@
       "sources": [
         "dag/research/genesis_to_universal_computation.md:129-134",
         "lean4/GenesisCompUniv.lean:329-339",
-        "lean4/CampaignCompC7EncodedInstanceReduction.lean:11-15"
+        "lean4/CampaignCompC7EncodedInstanceReduction.lean:13-17"
       ],
       "audit": "encoded_instance_reduction has the same type as reach_problem_not_computable. Each takes a Primcodable instance on Sym G1 (TM1to0.Λ' M1) and Computable startWord, and the conclusion is that the word predicate for Rules M0 is not ComputablePred. Printed axioms are propext, Classical.choice, and Quot.sound. The antecedent is a hypothesis of that implication. Review retains CONDITIONAL status because the named operational antecedents have not been constructed; the replay certifies the implication only.",
       "see_also": [],
@@ -9494,7 +9493,7 @@
       "sources": [
         "dag/research/quantum_computation_self_obstruction.md:123-136",
         "dag/research/quantum_computation_self_obstruction_axioms.txt:51-55",
-        "lean4/CampaignQcvConditionalViabilityCertificate.lean:7-33"
+        "lean4/CampaignQcvConditionalViabilityCertificate.lean:9-35"
       ],
       "audit": "viability_nonneg_initial is conditional_viability with nonnegative initial backlog q0. viability_explicit_level applies conditional_viability_explicit after that backlog predicate holds, when max(C,1)*p(0) <= 1/2. Printed axioms are propext, Classical.choice, and Quot.sound. A negative initial backlog is outside the narrowed statement. Review retains CONDITIONAL status because the named operational antecedents have not been constructed; the replay certifies the implication only.",
       "see_also": [

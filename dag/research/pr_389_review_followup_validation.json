@@ -1,0 +1,49 @@
+{
+  "authority_effect": "None",
+  "requirements": "checks/independent/requirements.txt",
+  "requirements_sha256": "3dc06693fb678beb224adbdbf692df6cdff85a8b83623e28d32964be41998f61",
+  "python_version": "Python 3.12.14",
+  "sympy_version": "1.14.0",
+  "fresh_environment_checks": {
+    "376": {
+      "command": [
+        "/workspace/review-round2/independent-venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/fsp-witten-index-invariance.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.316,
+      "output": "80 independently constructed spectral pairs: symbolic polynomial and four exact weights pass; 15 zero-index pairs have explicitly counted ground modes\n"
+    },
+    "378": {
+      "command": [
+        "/workspace/review-round2/independent-venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/fsp-kitaev-honeycomb-solution.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.269,
+      "output": "Exact 4x4 flux/hopping matrices: involutions, commutator, complementary projectors and both sector blocks pass; i*Z*Y=X\n"
+    },
+    "379": {
+      "command": [
+        "/workspace/review-round2/independent-venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/fsp-laughlin-exchange-phase.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.023,
+      "output": "99 denominators: exactly two exchange residues for each specified monodromy; m=3 roots 1 and 4 differ by pi. No Berry phase calculated.\n"
+    }
+  },
+  "witten_checker": "checks/independent/fsp-witten-index-invariance.py",
+  "witten_checker_sha256": "e61e0ba0575adfe8eeb6ee651d947c1dc1cfe0428a841d33351bd6beb78a0d20",
+  "proof_sources_unchanged": true,
+  "formal_boundary": "The node cites paired_trace and weight_independent for the general cancellation statement. zero_index_with_ground_modes is only literal trace cancellation plus a numeric positivity fact; no Lean list-membership/count theorem is claimed."
+}

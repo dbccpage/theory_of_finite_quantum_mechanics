@@ -28,3 +28,5 @@ The maintainer explicitly approved the nine exact proof-source exceptions with t
 All fourteen campaign modules passed Lean, Python and axiom checks, plus a joint import. The two Mathlib-dependent modules were built from pinned sources. No complete-repository build is claimed.
 
 Validation: 214 regression tests passed on the initial combined tree; the one stale-receipt failure was repaired and passed on rerun, along with 36 evidence tests. One test requiring an external checkout was skipped. All fourteen final proof modules passed exact-source Lean and Python replay, the axiom allowlist, and joint import. DAG synchronization, invariants, view/fact/evidence regeneration, contract history and source binding checks, and strict overclaim scanning pass.
+
+The subsequent five review findings are addressed in `docs/overclaim/reviews/2026-10-25_pr-389-followup.md`: declared independent-check dependencies tested in a new environment, a nonvacuous Witten example audit, explicit separation of that audit from Lean occupancy claims, and repaired source citation ranges. All approved Lean hashes remain unchanged.

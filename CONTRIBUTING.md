@@ -29,7 +29,7 @@ The rule applies to code added or changed from now on. It does not rescore exist
 
 ## Setup
 
-- Python 3.11 or later. Install the libraries the tools use: `pip install pyyaml sympy`. Add `pytest` to run the test suites and `anthropic` only if you will use the Anthropic tiers of the ladder.
+- Python 3.11 or later. Install the DAG tooling with `pip install pyyaml` and the declared independent-check dependency with `pip install -r checks/independent/requirements.txt`. Add `pytest` to run the test suites and `anthropic` only if you will use the Anthropic tiers of the ladder.
 - Run every repository script as `python -I -X utf8 path/to/script.py` from the repository root. The `-I` flag keeps stray files in the working directory from being imported.
 - Lean 4.35.0 (through [elan](https://github.com/leanprover/elan)) and Mathlib `v4.35.0` are needed **only** for Lean work. The pins are in [`lean4/lean-toolchain`](lean4/lean-toolchain) and [`lean4/lake-manifest.json`](lean4/lake-manifest.json). A full Lean build is large; download the Mathlib cache with `lake exe cache get`.
 - Rust (stable, with Cargo) is needed only to run the Rust certifiers in [`code/rust/`](code/rust).

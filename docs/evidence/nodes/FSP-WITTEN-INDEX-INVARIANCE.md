@@ -4,7 +4,7 @@ Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `IMPORTED_ASSUMPTION`.
 
 ## Statement
 
-> For every natural-number energy list P, every integer weight function w with w(0)=1, and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by P and f zeros followed by P equals b-f. It is independent of w. A zero difference does not imply absence of zero modes.
+> For every natural-number energy list P, every integer weight function w with w(0)=1, and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by P and f zeros followed by P equals b-f. It is independent of w.
 
 ## Grade
 
@@ -75,14 +75,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/fsp-witten-index-invariance.py`
 
 - file: [checks/independent/fsp-witten-index-invariance.py](../../../checks/independent/fsp-witten-index-invariance.py)
-- sha256 (`bytes`): `33c31e7167369fd4697e6ac76578892f89613dc1bd079bdfa1eb0506a94ba525`
+- sha256 (`bytes`): `e61e0ba0575adfe8eeb6ee651d947c1dc1cfe0428a841d33351bd6beb78a0d20`
 - cited in: record TFQ-1206
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md`
 
 - file: [dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md](../../../dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md)
-- sha256 (`lf-normalised`): `01887dc485888298c0014de9a212192dc2f4b2fa04dd3a7f2ff2d89efb1c3d29`
+- sha256 (`lf-normalised`): `6646669abdb4ad61c5599986765bd28d887c5d8b4632e48af328e1a0f80a99c2`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1206
 - counts toward the grade: no
@@ -90,14 +90,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-witten-index-invariance.md`
 
 - file: [dag/derivations/independent/fsp-witten-index-invariance.md](../../../dag/derivations/independent/fsp-witten-index-invariance.md)
-- sha256 (`lf-normalised`): `993057e8e1992e120457c71c2004479bf138b0386aa31b0da6556d705e4caa66`
+- sha256 (`lf-normalised`): `2024509e60844c5b63874ccc544256ea8a69196c73210409c3295673c09d50db`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_fsp-witten-index-invariance_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-witten-index-invariance_lean_replay.json](../../../dag/research/campaign_fsp-witten-index-invariance_lean_replay.json)
-- sha256 (`lf-normalised`): `79ef4b7b3ba597f317654475ea6ef94f6c30de184b3d4312dd763c7fca7a13ce`
+- sha256 (`lf-normalised`): `c18f5022854d4da4dea1081c2563bc97fbce4e28b7fb77c4b57e06348a77c4ca`
 - cited in: node.source
 - counts toward the grade: yes
 

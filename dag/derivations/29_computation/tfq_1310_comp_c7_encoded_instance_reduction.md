@@ -56,4 +56,4 @@ encoded_instance_reduction has the same type as reach_problem_not_computable. Ea
 - **Cited Sources**:
   - `dag/research/genesis_to_universal_computation.md:129-134`
   - `lean4/GenesisCompUniv.lean:329-339`
-  - `lean4/CampaignCompC7EncodedInstanceReduction.lean:11-15`
+  - `lean4/CampaignCompC7EncodedInstanceReduction.lean:13-17`

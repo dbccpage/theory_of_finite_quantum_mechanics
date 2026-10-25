@@ -74,4 +74,4 @@ viability_nonneg_initial is conditional_viability with nonnegative initial backl
 - **Cited Sources**:
   - `dag/research/quantum_computation_self_obstruction.md:123-136`
   - `dag/research/quantum_computation_self_obstruction_axioms.txt:51-55`
-  - `lean4/CampaignQcvConditionalViabilityCertificate.lean:7-33`
+  - `lean4/CampaignQcvConditionalViabilityCertificate.lean:9-35`

@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1310_comp_c7_encoded_instance_reduction.md`
 
 - file: [dag/derivations/29_computation/tfq_1310_comp_c7_encoded_instance_reduction.md](../../../dag/derivations/29_computation/tfq_1310_comp_c7_encoded_instance_reduction.md)
-- sha256 (`lf-normalised`): `b4aba7c23326b8286fac35d2290f9d7562dd28746b3f80450a4e53b6424967bb`
+- sha256 (`lf-normalised`): `e9f288a62b698c152078c71a80dba5f2ed6a787279ca39d929f62cc58b8363b1`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1310
 - counts toward the grade: no
