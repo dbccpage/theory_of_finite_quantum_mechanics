@@ -20,7 +20,7 @@
     ]
   },
   "current_contract": "74085ae7f92d03ce497beb1cdbc7b2ab5f593a402871e9570088fb61e85be3ef",
-  "current_scoring": "5e5d8bdb8c089fac0116fa05affacd39138f0bb7e2febdac1cd27b8a7eb781e2",
+  "current_scoring": "c9e5fcde0413efb4b49e3a07d6a729457232b575d0714294924a054737ea1c6d",
   "contract_history": [
     {
       "sha256": "74085ae7f92d03ce497beb1cdbc7b2ab5f593a402871e9570088fb61e85be3ef",
@@ -100,6 +100,66 @@
         }
       },
       "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/tfq-0084.py\",\n    \"sha256\": \"15589fa6f13dbc0258cfcdb65c4bb5cf2d1d28b747c89c0a0f2e4fd61d015f9f\"\n  },\n  \"assessment_id\": \"independent-checker-review-2026-10-24\",\n  \"basis\": {\n    \"G1\": \"Finite scope explicitly separated from the formal theorem and original scientific target.\",\n    \"G2\": \"Integer and Fraction operations with exact finite generated inputs; no float-derived Fraction or arbitrary user input is part of this CLI.\",\n    \"G3\": \"No network or shell execution in the inspected checker; explicit comparisons work with optimization enabled. Internal helpers are not a public validated-data API.\",\n    \"G4\": \"Fresh normal and optimized stdout and case counts exactly match the original-head independent replay. No independent mutation certificate is claimed.\",\n    \"G5\": \"Measured per-function complexity, nesting, strict mypy 1.18.2 and quiet import are in the source-bound receipt. Any failing typing/import or E-range metric retains E.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T23:18:21.454971+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr_308_python_checker_review.json\",\n      \"sha256\": \"9852097ab65c2ce58e1cee266d2deb28837674a857639ebe6332d40eb3f919da\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Standalone bounded exact checking algorithm; no production architecture or admission lifecycle.\",\n  \"mutation_accounting\": {\n    \"detection_fraction\": null,\n    \"generated\": 0,\n    \"killed\": 0\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "original_paths": [
+        "checks/independent/tfq-0084.py#assessment"
+      ]
+    },
+    {
+      "sha256": "c9e5fcde0413efb4b49e3a07d6a729457232b575d0714294924a054737ea1c6d",
+      "bytes": 2122,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "checks/independent/tfq-0084.py",
+          "sha256": "15589fa6f13dbc0258cfcdb65c4bb5cf2d1d28b747c89c0a0f2e4fd61d015f9f",
+          "language": "Python"
+        },
+        "AuthorityEffect": "None",
+        "assessment_id": "independent-checker-review-2026-10-24",
+        "profile": "Exact",
+        "level": "L2",
+        "level_basis": "Standalone bounded exact checking algorithm; no production architecture or admission lifecycle.",
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "basis": {
+          "G1": "Finite scope explicitly separated from the formal theorem and original scientific target.",
+          "G2": "Integer and Fraction operations with exact finite generated inputs; no float-derived Fraction or arbitrary user input is part of this CLI.",
+          "G3": "No network or shell execution in the inspected checker; explicit comparisons work with optimization enabled. Internal helpers are not a public validated-data API.",
+          "G4": "Fresh normal and optimized stdout and case counts exactly match the original-head independent replay. No independent mutation certificate is claimed.",
+          "G5": "Measured per-function complexity, nesting, strict mypy 1.18.2 and quiet import are in the source-bound receipt. Actual E-range metrics retain E. Typing diagnostics remain visible as an audit deficit; missing annotations alone do not demonstrate an E-level counterexample (SCORING section 1.4)."
+        },
+        "composite_grade": "D",
+        "score_token": "L2D",
+        "is_complete": true,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-25T01:13:47.161714+00:00",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "evidence": [
+          {
+            "path": "dag/research/pr_308_python_checker_review.json",
+            "sha256": "546e57bbeca0231b7c4504f8f5dfb2019b01011761b982c50a118d2d16977a84"
+          }
+        ],
+        "mutation_accounting": {
+          "generated": 0,
+          "killed": 0,
+          "survived": 0,
+          "equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "detection_fraction": null
+        }
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/tfq-0084.py\",\n    \"sha256\": \"15589fa6f13dbc0258cfcdb65c4bb5cf2d1d28b747c89c0a0f2e4fd61d015f9f\"\n  },\n  \"assessment_id\": \"independent-checker-review-2026-10-24\",\n  \"basis\": {\n    \"G1\": \"Finite scope explicitly separated from the formal theorem and original scientific target.\",\n    \"G2\": \"Integer and Fraction operations with exact finite generated inputs; no float-derived Fraction or arbitrary user input is part of this CLI.\",\n    \"G3\": \"No network or shell execution in the inspected checker; explicit comparisons work with optimization enabled. Internal helpers are not a public validated-data API.\",\n    \"G4\": \"Fresh normal and optimized stdout and case counts exactly match the original-head independent replay. No independent mutation certificate is claimed.\",\n    \"G5\": \"Measured per-function complexity, nesting, strict mypy 1.18.2 and quiet import are in the source-bound receipt. Actual E-range metrics retain E. Typing diagnostics remain visible as an audit deficit; missing annotations alone do not demonstrate an E-level counterexample (SCORING section 1.4).\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-25T01:13:47.161714+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr_308_python_checker_review.json\",\n      \"sha256\": \"546e57bbeca0231b7c4504f8f5dfb2019b01011761b982c50a118d2d16977a84\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Standalone bounded exact checking algorithm; no production architecture or admission lifecycle.\",\n  \"mutation_accounting\": {\n    \"detection_fraction\": null,\n    \"equivalent\": 0,\n    \"generated\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 0,\n    \"killed\": 0,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
       "original_paths": [
         "checks/independent/tfq-0084.py#assessment"
       ]

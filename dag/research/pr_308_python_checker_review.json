@@ -26,9 +26,15 @@
       "nesting": "AST control constructs; module executable statements additionally measured as one function"
     }
   },
+  "previous_receipt": {
+    "prior_logical_path": "dag/research/pr_308_python_checker_review.json",
+    "sha256": "9852097ab65c2ce58e1cee266d2deb28837674a857639ebe6332d40eb3f919da",
+    "retained_at": "dag/research/pr_308_python_checker_prior_9852097ab65c2ce5.json"
+  },
   "source_changed": false,
   "comparison_and_iteration_AST_multisets_unchanged": true,
   "rejected_import_harness_attempt": null,
+  "superseded_typing_calibration": null,
   "checks": {
     "normal": {
       "command": [
@@ -39,7 +45,7 @@
         "checks/independent/tfq-0084.py"
       ],
       "exit_code": 0,
-      "seconds": 0.26,
+      "seconds": 0.28,
       "output": "checked 23 claims, failures 0\r\n"
     },
     "optimized": {
@@ -52,7 +58,7 @@
         "checks/independent/tfq-0084.py"
       ],
       "exit_code": 0,
-      "seconds": 0.6,
+      "seconds": 0.52,
       "output": "checked 23 claims, failures 0\r\n"
     },
     "quiet_import": {
@@ -66,7 +72,7 @@
         "import contextlib,importlib.util,io,pathlib,sys; p=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics\\\\checks\\\\independent\\\\tfq-0084.py'); root=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics'); s=importlib.util.spec_from_file_location(\"reviewed_checker\",p); m=importlib.util.module_from_spec(s); out=io.StringIO();\ndef audit(event,args):\n if event==\"open\" and isinstance(args[0],str):\n  q=pathlib.Path(args[0]).resolve()\n  if q.is_relative_to(root) and q!=p and q.suffix!=\".pyc\": raise RuntimeError(\"Import read repository evidence: \"+str(q))\nsys.addaudithook(audit)\nwith contextlib.redirect_stdout(out),contextlib.redirect_stderr(out): s.loader.exec_module(m)\nif out.getvalue(): raise RuntimeError(\"Import executed checker output: \"+out.getvalue())\n"
       ],
       "exit_code": 0,
-      "seconds": 0.1,
+      "seconds": 0.35,
       "output": ""
     },
     "typing_tool": {
@@ -78,7 +84,7 @@
         "--version"
       ],
       "exit_code": 0,
-      "seconds": 0.5,
+      "seconds": 0.78,
       "output": "mypy 1.18.2 (compiled: yes)\r\n"
     },
     "strict_typing": {
@@ -96,17 +102,23 @@
         "checks/independent/tfq-0084.py"
       ],
       "exit_code": 0,
-      "seconds": 1.32,
+      "seconds": 2.01,
       "output": "Success: no issues found in 1 source file\r\n"
     }
   },
   "score_token": "L2D",
+  "typing_diagnostics_classification": "Any missing typing mechanism is retained as a D-level audit deficit under SCORING section 1.4; no runtime E is inferred merely from missing annotations. Actual E-range structural metrics retain E.",
   "contract_boundary": "Closed exact finite check program; internal helpers accept only the internally generated carriers. No general public input admission or physical theorem is claimed.",
   "typing_configuration": "[mypy]\nstrict = True\npython_version = 3.14\n",
   "structural_change": "None",
   "mutation_accounting": {
     "generated": 0,
     "killed": 0,
+    "survived": 0,
+    "equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
     "detection_fraction": null
   },
   "acceptance": "Blocked below L4; failed checks remain failures."
