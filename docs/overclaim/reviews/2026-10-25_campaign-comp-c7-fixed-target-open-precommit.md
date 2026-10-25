@@ -10,6 +10,7 @@ Corrections to the PR's own text:
 - None. The standing statement is the two erasures to `[0]`. The bottleneck keeps Reach for R0 prime open.
 
 ## Per-node table
+
 | Node | Declarations that discharge it | Verdict | Reason |
 |---|---|---|---|
 | COMP-C7-FIXED-TARGET-OPEN | `eraseOneToFixed`, `eraseTwoToFixed` in `lean4/CampaignCompC7FixedTargetOpen.lean` | FULL for the standing statement | Each sentence is the type of one declaration. Status stays OPEN. Reach of R0 prime from `startWord x` to a fixed target is not a theorem. |
@@ -22,6 +23,7 @@ Atomic claims:
 Not discharged: Reach of the extended rule set R0 prime from `startWord x` to one fixed target word exactly when `univFun x` is defined. That remains the bottleneck. The node was not given PROVED_LEAN.
 
 ## Numbers recomputed
+
 | Where | Claimed | Recomputed (method) | Match |
 |---|---|---|---|
 | Standing statement and independent check | `[1, 0]` erases `[1]` to `[0]`; `[2, 0]` erases `[2]` to `[0]`; both results are `[0]` | `python -I -X utf8 checks/independent/comp-c7-fixed-target-open.py` printed `failures=0` | match |

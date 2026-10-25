@@ -1,0 +1,60 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:34:44.080202+00:00",
+  "review_base": "96d408ea4145c33b2ac3d1603f0ac0e811e5ac17",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: COMP-C7-FIXED-TARGET-OPEN — Narrowed: two erasures reach [0]; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignCompC7FixedTargetOpen.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignCompC7FixedTargetOpen",
+        "dag_node": "COMP-C7-FIXED-TARGET-OPEN",
+        "source": "lean4/CampaignCompC7FixedTargetOpen.lean",
+        "sha256": "fdf8c22aad238c9fc90ae8988290b8d214e29ceaf050e6246f5c8f49265a5347",
+        "sha256_after_build": "fdf8c22aad238c9fc90ae8988290b8d214e29ceaf050e6246f5c8f49265a5347",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "eraseOneToFixed",
+          "eraseTwoToFixed"
+        ],
+        "axioms": {
+          "eraseOneToFixed": [],
+          "eraseTwoToFixed": []
+        },
+        "output": "'eraseOneToFixed' does not depend on any axioms\n'eraseTwoToFixed' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/comp-c7-fixed-target-open.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.012,
+    "output": "checked [1, 0] erases [1] to [0]; [2, 0] erases [2] to [0]; both results are [0]\nfailures=0\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/369/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.136,
+    "output": ""
+  }
+}
