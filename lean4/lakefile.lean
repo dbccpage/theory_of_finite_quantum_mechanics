@@ -1331,3 +1331,7 @@ lean_lib CampaignAuthfCarrierAdmissionGate where
 -- Campaign: FQ-GAP-STONE-CONTINUOUS-TIME. Not a default target.
 lean_lib CampaignFqGapStoneContinuousTime where
   roots := #[`CampaignFqGapStoneContinuousTime]
+
+-- Campaign: QCV-CONDITIONAL-VIABILITY-CERTIFICATE. Not a default target.
+lean_lib CampaignQcvConditionalViabilityCertificate where
+  roots := #[`CampaignQcvConditionalViabilityCertificate]
