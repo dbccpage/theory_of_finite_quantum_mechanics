@@ -1481,7 +1481,7 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "COMPUTATIONALLY_CHECKED",
-      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
+      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi\u00b7psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
       "obligation": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "imported_structure": [
         "continuous time and Stone generator",
@@ -4597,7 +4597,7 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "Adding S_theta = i theta Q_top with real lattice charge Q_top multiplies the Boltzmann weight by exp(-i theta Q_top), which is nonreal unless theta Q_top lies in pi Z for every configuration, so positive-weight importance sampling is lost for generic theta != 0.",
-      "obligation": "Severity of the resulting sign problem is phenomenology from the literature; the checkout has no theta-term model.",
+      "obligation": "Severity of the resulting sign problem is phenomenology from the literature; the checkout has no theta-term model. Narrowed in lean4/CampaignFspThetaTermComplexWeight.lean and checks/independent/fsp-theta-term-complex-weight.py while keeping status IMPORTED_ASSUMPTION to: (1) integer lattice chiral index Q_top = n_+ - n_- CP antisymmetry Q_top(n_-, n_+) = -Q_top(n_+, n_-) and Q_top(n, n) = 0; (2) rational vacuum angle theta = (p/q) pi divisibility criterion theta Q_top in pi Z iff q | p Q_top, CP-conjugate pair sine cancellation leaving 2 w cos(theta Q_top), and negative paired real weight 2 w c < 0 whenever w > 0 and c < 0; (3) at theta = pi, real parity character sigma_pi(Q) = (-1)^Q homomorphism sigma_pi(Q_1 + Q_2) = sigma_pi(Q_1) sigma_pi(Q_2), two-sector partition sum cancellation Z(pi) = w_0 - w_1 < Z_pq = w_0 + w_1, action-gap weight separation, and CP-symmetric 3-sector instanton susceptibility second moment sum_Q Q^2 w_Q = 2 w_1 > 0; and (4) explicit GIN-C9 scope fences for the historical Nat arithmetic inequality w_0 != w_0 + delta_S and against extrapolating finite phase algebra to continuum theta-vacuum phenomenology.",
       "imported_structure": [
         "lattice topological charge Q_top and theta vacuum term (standard)"
       ],
@@ -4605,17 +4605,35 @@
         "FSP-U1-WILSON-ACTION"
       ],
       "parent_record": "TFQ-1196",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.lattice_chiral_index_cp_antisymmetry",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.rational_pi_theta_real_weight_iff_divisible",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.cp_conjugate_pair_cancels_imaginary_boltzmann_phase",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.cp_conjugate_pair_negative_real_weight_at_obtuse_phase",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.theta_pi_alternating_sector_sign_homomorphism",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.two_sector_theta_pi_partition_cancellation_and_average_sign",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.su2_vortex_action_gap_sector_weight_ordering",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.topological_susceptibility_second_moment_positivity",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.gin_c9_su2_action_gap_fixture_scope_fence",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.theta_term_phenomenology_scope_fence"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "code/python/src/fsp/cdt_topological_charge_evaluator.py::CdtTopologicalChargeEvaluator",
+        "checks/independent/fsp-theta-term-complex-weight.py::main"
+      ],
       "external_witnesses": [
         "external:omega_quantum_physics::meron_source_field::topological_charge_action (cited by the source, not in this checkout)"
       ],
       "sources": [
         "papers/core/fsp/theory_of_finite_fsp.md:474-486",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md:448-468"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md:448-468",
+        "dag/derivations/independent/fsp-theta-term-complex-weight.md",
+        "dag/research/campaign_fsp-theta-term-complex-weight_lean_replay.json",
+        "dag/research/campaign_fsp-theta-term-complex-weight_lean_mutation.json",
+        "dag/research/campaign_fsp-theta-term-complex-weight_independent.json"
       ],
-      "audit": "Cited NonAbelianGaugeSigns.lean::topological_theta_sign_defect does not exist. The SU(2) theta = pi fixture lemmas (su2_action_gap_forces_weight_inequality: w0 != w0 + delta_S for delta_S > 0) are Nat arithmetic; ledger GIN-C9 withdraws their physical reading. The local evaluate_topological_charge symbol is absent from cdt_topological_charge_evaluator.py.",
+      "audit": "Replaced missing NonAbelianGaugeSigns.lean::topological_theta_sign_defect and GIN-C9 Nat arithmetic fixture reading with lean4/CampaignFspThetaTermComplexWeight.lean (10 theorems, 0 sorrys, 6/6 mutants killed), code/python/src/fsp/cdt_topological_charge_evaluator.py::CdtTopologicalChargeEvaluator, and checks/independent/fsp-theta-term-complex-weight.py (2058 exact chiral-index, rational-pi phase, CP-pair, theta=pi parity, and GIN-C9 scope fence checks, 0 failures).",
       "see_also": [],
       "uses": []
     },
@@ -9944,10 +9962,10 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "cited; local formalization open",
       "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
-      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice\u2082 for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
       "imported_structure": [
         "Rice theorem (Rice 1953)",
-        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
+        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice\u2082"
       ],
       "parent_nodes": [
         "AUTH-G5B-CARRIER-ADMISSION-GATE"
@@ -9957,7 +9975,7 @@
       "rust": [],
       "python": [],
       "external_witnesses": [
-        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
+        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice\u2082 (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
         "external:Mathlib/Computability/Halting.lean::ComputablePred.halting_problem (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
       ],
       "sources": [
@@ -9965,7 +9983,7 @@
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:305-315",
         "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:331-344"
       ],
-      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice₂ and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
+      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice\u2082 and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
       "see_also": [
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
@@ -9982,7 +10000,7 @@
       "status": "OPEN",
       "source_claimed_status": "open",
       "statement": "For an admitted program carrier and a nontrivial extensional property, a total computable sound and complete authorizer would decide that property; the lift is a stated target in the source and has no local theorem.",
-      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
+      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice\u2082 and halting_problem.",
       "imported_structure": [
         "admitted program carrier",
         "nontrivial extensional property"

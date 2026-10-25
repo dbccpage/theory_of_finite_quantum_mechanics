@@ -49,7 +49,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.lean, node.source, receipt dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json (CampaignLqgContinuumLimitGap)
 - replay: `verified`
   - receipt [dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json](../../../dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json) (module `CampaignLqgContinuumLimitGap`): recorded sha256 `a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignLqgContinuumLimitGap`
+- check: `cd lean4 && lake build   # the library that contains lean4/CampaignLqgContinuumLimitGap.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|

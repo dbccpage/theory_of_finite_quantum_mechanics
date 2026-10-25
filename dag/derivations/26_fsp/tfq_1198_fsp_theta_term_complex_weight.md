@@ -14,10 +14,10 @@
 Adding S_theta = i theta Q_top with real lattice charge Q_top multiplies the Boltzmann weight by exp(-i theta Q_top), which is nonreal unless theta Q_top lies in pi Z for every configuration, so positive-weight importance sampling is lost for generic theta != 0.
 
 ### Governing Obligation
-Severity of the resulting sign problem is phenomenology from the literature; the checkout has no theta-term model.
+Severity of the resulting sign problem is phenomenology from the literature; the checkout has no theta-term model. Narrowed in lean4/CampaignFspThetaTermComplexWeight.lean and checks/independent/fsp-theta-term-complex-weight.py while keeping status IMPORTED_ASSUMPTION to: (1) integer lattice chiral index Q_top = n_+ - n_- CP antisymmetry Q_top(n_-, n_+) = -Q_top(n_+, n_-) and Q_top(n, n) = 0; (2) rational vacuum angle theta = (p/q) pi divisibility criterion theta Q_top in pi Z iff q | p Q_top, CP-conjugate pair sine cancellation leaving 2 w cos(theta Q_top), and negative paired real weight 2 w c < 0 whenever w > 0 and c < 0; (3) at theta = pi, real parity character sigma_pi(Q) = (-1)^Q homomorphism sigma_pi(Q_1 + Q_2) = sigma_pi(Q_1) sigma_pi(Q_2), two-sector partition sum cancellation Z(pi) = w_0 - w_1 < Z_pq = w_0 + w_1, action-gap weight separation, and CP-symmetric 3-sector instanton susceptibility second moment sum_Q Q^2 w_Q = 2 w_1 > 0; and (4) explicit GIN-C9 scope fences for the historical Nat arithmetic inequality w_0 != w_0 + delta_S and against extrapolating finite phase algebra to continuum theta-vacuum phenomenology.
 
 ### Witness Audit
-Cited NonAbelianGaugeSigns.lean::topological_theta_sign_defect does not exist. The SU(2) theta = pi fixture lemmas (su2_action_gap_forces_weight_inequality: w0 != w0 + delta_S for delta_S > 0) are Nat arithmetic; ledger GIN-C9 withdraws their physical reading. The local evaluate_topological_charge symbol is absent from cdt_topological_charge_evaluator.py.
+Replaced missing NonAbelianGaugeSigns.lean::topological_theta_sign_defect and GIN-C9 Nat arithmetic fixture reading with lean4/CampaignFspThetaTermComplexWeight.lean (10 theorems, 0 sorrys, 6/6 mutants killed), code/python/src/fsp/cdt_topological_charge_evaluator.py::CdtTopologicalChargeEvaluator, and checks/independent/fsp-theta-term-complex-weight.py (2058 exact chiral-index, rational-pi phase, CP-pair, theta=pi parity, and GIN-C9 scope fence checks, 0 failures).
 
 ---
 
@@ -31,13 +31,23 @@ Cited NonAbelianGaugeSigns.lean::topological_theta_sign_defect does not exist. T
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.lattice_chiral_index_cp_antisymmetry`
+- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.rational_pi_theta_real_weight_iff_divisible`
+- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.cp_conjugate_pair_cancels_imaginary_boltzmann_phase`
+- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.cp_conjugate_pair_negative_real_weight_at_obtuse_phase`
+- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.theta_pi_alternating_sector_sign_homomorphism`
+- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.two_sector_theta_pi_partition_cancellation_and_average_sign`
+- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.su2_vortex_action_gap_sector_weight_ordering`
+- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.topological_susceptibility_second_moment_positivity`
+- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.gin_c9_su2_action_gap_fixture_scope_fence`
+- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.theta_term_phenomenology_scope_fence`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `code/python/src/fsp/cdt_topological_charge_evaluator.py::CdtTopologicalChargeEvaluator`
+- `checks/independent/fsp-theta-term-complex-weight.py::main`
 
 ### Cited by the source, not in this checkout
 - `external:omega_quantum_physics::meron_source_field::topological_charge_action (cited by the source, not in this checkout)`
@@ -55,3 +65,7 @@ Cited NonAbelianGaugeSigns.lean::topological_theta_sign_defect does not exist. T
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:474-486`
   - `papers/core/fsp/the_problem_of_the_fermion_sign.md:448-468`
+  - `dag/derivations/independent/fsp-theta-term-complex-weight.md`
+  - `dag/research/campaign_fsp-theta-term-complex-weight_lean_replay.json`
+  - `dag/research/campaign_fsp-theta-term-complex-weight_lean_mutation.json`
+  - `dag/research/campaign_fsp-theta-term-complex-weight_independent.json`

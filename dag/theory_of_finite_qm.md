@@ -10086,7 +10086,7 @@ Obligation: A single-flavor det D_W can be negative; the JSONL claim that det D_
 
 Adding S_theta = i theta Q_top with real lattice charge Q_top multiplies the Boltzmann weight by exp(-i theta Q_top), which is nonreal unless theta Q_top lies in pi Z for every configuration, so positive-weight importance sampling is lost for generic theta != 0.
 
-Obligation: Severity of the resulting sign problem is phenomenology from the literature; the checkout has no theta-term model.
+Obligation: Severity of the resulting sign problem is phenomenology from the literature; the checkout has no theta-term model. Narrowed in lean4/CampaignFspThetaTermComplexWeight.lean and checks/independent/fsp-theta-term-complex-weight.py while keeping status IMPORTED_ASSUMPTION to: (1) integer lattice chiral index Q_top = n_+ - n_- CP antisymmetry Q_top(n_-, n_+) = -Q_top(n_+, n_-) and Q_top(n, n) = 0; (2) rational vacuum angle theta = (p/q) pi divisibility criterion theta Q_top in pi Z iff q | p Q_top, CP-conjugate pair sine cancellation leaving 2 w cos(theta Q_top), and negative paired real weight 2 w c < 0 whenever w > 0 and c < 0; (3) at theta = pi, real parity character sigma_pi(Q) = (-1)^Q homomorphism sigma_pi(Q_1 + Q_2) = sigma_pi(Q_1) sigma_pi(Q_2), two-sector partition sum cancellation Z(pi) = w_0 - w_1 < Z_pq = w_0 + w_1, action-gap weight separation, and CP-symmetric 3-sector instanton susceptibility second moment sum_Q Q^2 w_Q = 2 w_1 > 0; and (4) explicit GIN-C9 scope fences for the historical Nat arithmetic inequality w_0 != w_0 + delta_S and against extrapolating finite phase algebra to continuum theta-vacuum phenomenology.
 
 ### TFQ-1199 Callan-Harvey anomaly inflow on a finite slab lattice
 
