@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignCompC6Tm0OutputFormOpen.lean](../../../lean4/CampaignCompC6Tm0OutputFormOpen.lean)
 - sha256 (`bytes`): `a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1`
-- cited in: node.lean, receipt dag/research/campaign_comp-c6-tm0-output-form-open_lean_replay.json (CampaignCompC6Tm0OutputFormOpen), record TFQ-1307
+- cited in: node.lean, receipt dag/research/campaign_comp-c6-tm0-output-form-open_lean_replay.json (CampaignCompC6Tm0OutputFormOpen), receipt dag/research/pr_368_review_replay.json (CampaignCompC6Tm0OutputFormOpen), record TFQ-1307
 - replay: `verified`
   - receipt [dag/research/campaign_comp-c6-tm0-output-form-open_lean_replay.json](../../../dag/research/campaign_comp-c6-tm0-output-form-open_lean_replay.json) (module `CampaignCompC6Tm0OutputFormOpen`): recorded sha256 `a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_368_review_replay.json](../../../dag/research/pr_368_review_replay.json) (module `CampaignCompC6Tm0OutputFormOpen`): recorded sha256 `a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignCompC6Tm0OutputFormOpen`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

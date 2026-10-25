@@ -10,6 +10,7 @@ Corrections to the PR's own text:
 - None. The standing statement is the blank-cell writer and `evalConst`. The bottleneck keeps the Mathlib TM0 output form open.
 
 ## Per-node table
+
 | Node | Declarations that discharge it | Verdict | Reason |
 |---|---|---|---|
 | COMP-C6-TM0-OUTPUT-FORM-OPEN | `writeHaltFromBlank`, `evalConstReturns`, `constAgrees` in `lean4/CampaignCompC6Tm0OutputFormOpen.lean` | FULL for the standing statement | Each atomic sentence is the type of one of those declarations. Status stays OPEN. Membership of `v` in `Code.eval c n` tied to the tape of `M0` is not a theorem. |
@@ -23,6 +24,7 @@ Atomic claims:
 Not discharged: a natural number `v` lies in `Code.eval c n` exactly when `M0` halts from `initCfg0` with the encoded `v` on its output tape. That remains the bottleneck. The node was not given PROVED_LEAN.
 
 ## Numbers recomputed
+
 | Where | Claimed | Recomputed (method) | Match |
 |---|---|---|---|
 | Blank cell and independent check | blank value 0; for `v` in 0..4 the writer halts with value `v`; for `n` in 0..3, `evalConst(v, n)` equals that value | `python -I -X utf8 checks/independent/comp-c6-tm0-output-form-open.py` printed `failures=0` | match |
