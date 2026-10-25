@@ -3,18 +3,27 @@ node_id: FSP-WITTEN-INDEX-INVARIANCE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q,
-    Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr[(-1)^F exp(-beta H)] = n_B(E=0)
-    - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0.
+  source_statement: For every natural-number energy list P, every integer weight function w with w(0)=1,
+    and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by
+    P and f zeros followed by P equals b-f. It is independent of w. A zero difference does not imply absence
+    of zero modes.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - exact supercharge with H = {Q, Q^dagger} on a finite graded space (assumption)
-  source_bottleneck: Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040
-    leaves open, and gives no sign-free sampling of Z itself.
+  source_bottleneck: 'Pairing is supplied by the shared spectral list; this does not derive that pairing
+    from an arbitrary supercharge, spectral decomposition on a Hilbert space, the analytic exponential
+    trace, or the ground-energy theorem. The full imported Witten-index statement remains open here. Original
+    target retained as an obligation: On a finite-dimensional graded Hilbert space with an exact supercharge
+    Q and H = {Q, Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr[(-1)^F exp(-beta
+    H)] = n_B(E=0) - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0. Prior boundary:
+    Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves
+    open, and gives no sign-free sampling of Z itself.'
   source_refs:
   - dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md
   - papers/core/fsp/theory_of_finite_fsp.md
   - papers/core/fsp/lean4/regge_wdw_core.lean
+  - dag/derivations/independent/fsp-witten-index-invariance.md
+  - dag/research/campaign_fsp-witten-index-invariance_lean_replay.json
   paper_refs:
   - dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md
   source_claim_label: IMPORTED_ASSUMPTION
@@ -23,7 +32,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md
-    sha256: 54273d765a2628858ea35b8fc7b8e06622eb5c378adbd9fca4e2aace933bc243
+    sha256: 01887dc485888298c0014de9a212192dc2f4b2fa04dd3a7f2ff2d89efb1c3d29
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -31,9 +40,91 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_witten_index_invariance_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: traceWeight
+  line: 4
+  signature_excerpt: |-
+    def traceWeight (w : Nat → Int) : List Nat → Int
+      | [] => 0
+      | e :: es => w e + traceWeight w es
+
+    theorem trace_append (w : Nat → Int) (xs ys : List Nat) :
+        traceWeight w (xs ++ ys) = traceWeight w xs + traceWeight w ys
+  source: lean4/CampaignWittenPairing.lean
+  repository: this_repository
+  source_sha256: daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: paired_trace
+  line: 21
+  signature_excerpt: |-
+    theorem paired_trace (w : Nat → Int) (h : w 0 = 1)
+        (paired : List Nat) (bosonicZero fermionicZero : Nat) :
+        traceWeight w (List.replicate bosonicZero 0 ++ paired) -
+          traceWeight w (List.replicate fermionicZero 0 ++ paired) =
+            (bosonicZero : Int) - (fermionicZero : Int)
+  source: lean4/CampaignWittenPairing.lean
+  repository: this_repository
+  source_sha256: daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: weight_independent
+  line: 29
+  signature_excerpt: |-
+    theorem weight_independent (w v : Nat → Int) (hw : w 0 = 1) (hv : v 0 = 1)
+        (paired : List Nat) (b f : Nat) :
+        traceWeight w (List.replicate b 0 ++ paired) - traceWeight w (List.replicate f 0 ++ paired) =
+        traceWeight v (List.replicate b 0 ++ paired) - traceWeight v (List.replicate f 0 ++ paired)
+  source: lean4/CampaignWittenPairing.lean
+  repository: this_repository
+  source_sha256: daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: zero_index_with_ground_modes
+  line: 36
+  signature_excerpt: |-
+    theorem zero_index_with_ground_modes (w : Nat → Int) (_h : w 0 = 1) :
+        traceWeight w [0] - traceWeight w [0] = 0 ∧ (1 : Nat) + 1 > 0
+  source: lean4/CampaignWittenPairing.lean
+  repository: this_repository
+  source_sha256: daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignWittenPairing.lean::CampaignWittenPairing.paired_trace
+  availability: local
+  symbol: CampaignWittenPairing.paired_trace
+  path: lean4/CampaignWittenPairing.lean
+  repository: this_repository
+  sha256: daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1
+  declaration_status: declaration_found_not_proof_checked
+  line: 21
+  role: source_lead_only
+- original_ref: lean4/CampaignWittenPairing.lean::CampaignWittenPairing.weight_independent
+  availability: local
+  symbol: CampaignWittenPairing.weight_independent
+  path: lean4/CampaignWittenPairing.lean
+  repository: this_repository
+  sha256: daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1
+  declaration_status: declaration_found_not_proof_checked
+  line: 29
+  role: source_lead_only
+- original_ref: lean4/CampaignWittenPairing.lean::CampaignWittenPairing.zero_index_with_ground_modes
+  availability: local
+  symbol: CampaignWittenPairing.zero_index_with_ground_modes
+  path: lean4/CampaignWittenPairing.lean
+  repository: this_repository
+  sha256: daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1
+  declaration_status: declaration_found_not_proof_checked
+  line: 36
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -73,8 +164,6 @@ operad_slots:
     - exact supercharge with H = {Q, Q^dagger} on a finite graded space (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
