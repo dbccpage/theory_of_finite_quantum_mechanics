@@ -130,3 +130,4 @@ One line per target, in order attempted: `<UTC date> | <node id> | <outcome clas
 - **Mutation Gate (`dag/research/campaign_tfq-0376_lean_mutation.json`)**: 6/6 semantic mutations killed.
 - **Independent Checker (`checks/independent/tfq-0376.py`)**: 146 checks passed, 0 failed (`dag/research/campaign_tfq-0376_independent.json`).
 2026-10-24 | PGW-PYTHON-LEAN-CARRIER-BRIDGE | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/320 | Sealed reading L replays to R2L and reading F replays to R2F; a Python-to-Lean refinement stays open.
+2026-10-25 | FQ-GAP-U1-CIRCLE | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/366 | For integers, 5*(a*a-b*b)=3*(d*d) and a*a+b*b=d*d hold only at 0,0,0; 5*a*a=4*b*b holds only at b=0; 3*3+4*4=5*5; the circle group and n mapped to u^n stay open.
