@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 5
+- cited Lean declaration references covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignFspWilsonDiracGamma5.euclideanClifford4` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspWilsonDiracGamma5.euclideanClifford4` |
 | `CampaignFspWilsonDiracGamma5.two_flavor_det_eq_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspWilsonDiracGamma5.two_flavor_det_eq_sq` |
 | `CampaignFspWilsonDiracGamma5.two_flavor_det_real_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspWilsonDiracGamma5.two_flavor_det_real_nonneg` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md`

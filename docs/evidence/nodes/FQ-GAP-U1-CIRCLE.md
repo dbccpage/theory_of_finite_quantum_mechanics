@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 10
 - cited Lean, Rust or Python symbols found in their in-repo files: 10
-- cited Lean declarations covered by a current replay receipt: 4
+- cited Lean declaration references covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -85,6 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
 | `QuantumMechanics.DerivationDagQMClosure.fq_gap_u1_circle_pythagorean_half_exponent_obstruction` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_gap_u1_circle_pythagorean_half_exponent_obstruction` |
 | `QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/U1CauchyCircleCompletion.lean`
@@ -100,6 +101,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `U1Fable.CauchyCircleCompletion.RegPhaseSeq.add_assoc_equiv` | yes | no | no | - | `#print axioms U1Fable.CauchyCircleCompletion.RegPhaseSeq.add_assoc_equiv` |
 | `U1Fable.CauchyCircleCompletion.quad_half_angle_squares_to_u345` | yes | no | no | - | `#print axioms U1Fable.CauchyCircleCompletion.quad_half_angle_squares_to_u345` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/U1CayleyProjectiveCircle.lean`
@@ -115,6 +117,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `U1Fable.CayleyProjectiveCircle.homCayley_projMul` | yes | yes | yes | - | `#print axioms U1Fable.CayleyProjectiveCircle.homCayley_projMul` |
 | `U1Fable.CayleyProjectiveCircle.homCayley_surjective` | yes | yes | yes | - | `#print axioms U1Fable.CayleyProjectiveCircle.homCayley_surjective` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/U1ChebyshevCauchyBridge.lean`
@@ -131,6 +134,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `U1Fable.ChebyshevCauchyBridge.HermitianMat2Qi.pureProjector_born_pairing` | yes | no | no | - | `#print axioms U1Fable.ChebyshevCauchyBridge.HermitianMat2Qi.pureProjector_born_pairing` |
 | `U1Fable.ChebyshevCauchyBridge.circleRatPow_eq_chebyshev` | yes | no | no | - | `#print axioms U1Fable.ChebyshevCauchyBridge.circleRatPow_eq_chebyshev` |
 | `U1Fable.ChebyshevCauchyBridge.taylor_circle_norm_defect_identity` | yes | no | no | - | `#print axioms U1Fable.ChebyshevCauchyBridge.taylor_circle_norm_defect_identity` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/U1CyclotomicTorsionTower.lean`
@@ -145,6 +149,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `U1Fable.CyclotomicTorsionTower.ratPhaseQuot_divisible` | yes | no | no | - | `#print axioms U1Fable.CyclotomicTorsionTower.ratPhaseQuot_divisible` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/U1PhaseSynthesis.lean`
@@ -161,6 +166,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `U1Fable.PhaseSynthesis.chebyshev_taylor_and_hermitian_qi_bridge` | yes | yes | yes | - | `#print axioms U1Fable.PhaseSynthesis.chebyshev_taylor_and_hermitian_qi_bridge` |
 | `U1Fable.PhaseSynthesis.iterated_quadratic_tower_and_cayley_stone_bridge` | yes | yes | yes | - | `#print axioms U1Fable.PhaseSynthesis.iterated_quadratic_tower_and_cayley_stone_bridge` |
 | `U1Fable.PhaseSynthesis.u1_phase_completion_synthesis` | yes | no | no | - | `#print axioms U1Fable.PhaseSynthesis.u1_phase_completion_synthesis` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/U1PowerMapInjectivity.lean`
@@ -175,6 +181,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `U1Fable.PowerMapInjectivity.u345_infinite_order` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms U1Fable.PowerMapInjectivity.u345_infinite_order` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/U1PythagoreanObstruction.lean`
@@ -189,6 +196,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `U1Fable.PythagoreanObstruction.no_rational_one_param_group_through_u345` | yes | no | no | - | `#print axioms U1Fable.PythagoreanObstruction.no_rational_one_param_group_through_u345` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/U1QuadraticTowerAndCayleyStone.lean`
@@ -206,6 +214,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_preserves_born_trace` | yes | yes | yes | - | `#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_preserves_born_trace` |
 | `U1Fable.QuadraticTowerAndCayleyStone.chebT2Pow_succ` | yes | no | no | - | `#print axioms U1Fable.QuadraticTowerAndCayleyStone.chebT2Pow_succ` |
 | `U1Fable.QuadraticTowerAndCayleyStone.u345_k2_double_angle_recovery` | yes | no | no | - | `#print axioms U1Fable.QuadraticTowerAndCayleyStone.u345_k2_double_angle_recovery` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`

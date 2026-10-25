@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 8
 - cited Lean, Rust or Python symbols found in their in-repo files: 18
-- cited Lean declarations covered by a current replay receipt: 18
+- cited Lean declaration references covered by a current replay receipt: 18
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 1
@@ -68,6 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `ChainRetraction.cannot_kill` | yes | yes | yes | none | `#print axioms ChainRetraction.cannot_kill` |
 | `ChainRetraction.kernel_trivial` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ChainRetraction.kernel_trivial` |
 | `ChainRetraction.no_retraction_of_killed` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ChainRetraction.no_retraction_of_killed` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
@@ -82,6 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteCochain.lean`
@@ -106,6 +108,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `induced_homology_injective` | yes | yes | yes | Quot.sound, propext | `#print axioms induced_homology_injective` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/PreGenesisToMssn/Paper.lean`
@@ -120,6 +123,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `chain_retraction_cannot_kill` | yes | yes | yes | none | `#print axioms chain_retraction_cannot_kill` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/SnMssn/Paper001.lean`
@@ -136,6 +140,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `homology_injective_of_chain_retraction` | yes | yes | yes | none | `#print axioms homology_injective_of_chain_retraction` |
 | `triangle_retraction_impossible` | yes | yes | yes | none | `#print axioms triangle_retraction_impossible` |
 | `two_point_retraction_impossible` | yes | yes | yes | Quot.sound, propext | `#print axioms two_point_retraction_impossible` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/homology/simplicial.rs`

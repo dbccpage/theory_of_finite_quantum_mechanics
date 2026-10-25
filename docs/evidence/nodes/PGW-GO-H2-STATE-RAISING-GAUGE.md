@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 5
+- cited Lean declaration references covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `Same3.around` | yes | yes | yes | Quot.sound, propext | `#print axioms Same3.around` |
 | `same3_nothing_iff` | yes | yes | yes | Quot.sound, propext | `#print axioms same3_nothing_iff` |
 | `step_of_same3_fails` | yes | yes | yes | Quot.sound, propext | `#print axioms step_of_same3_fails` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/GenesisOngoingCore/Twentythird/Raise.lean`
@@ -71,6 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `excess_raise` | yes | yes | yes | Quot.sound, propext | `#print axioms excess_raise` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/GenesisOngoingCore/Twentythird/Same.lean`
@@ -85,6 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `gen3_iff_same3` | yes | yes | yes | Quot.sound, propext | `#print axioms gen3_iff_same3` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0484_go_h2_state_raising_gauge.md`

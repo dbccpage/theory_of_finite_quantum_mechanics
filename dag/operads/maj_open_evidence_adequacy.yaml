@@ -3,14 +3,20 @@ node_id: MAJ-OPEN-EVIDENCE-ADEQUACY
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Whether a declared laboratory protocol's measurement map M separates topological zero
-    modes from trivial Andreev bound states, i.e. whether rho_topo - rho_ABS lies outside ker M.
+  source_statement: Narrowed boundary, status left OPEN. For the integer readings topo = (1, 0) and andreev
+    = (1, 1), the difference is (0, -1). The first-coordinate map sends that difference to 0 and sends
+    both readings to 1. The second-coordinate map sends the difference to -1, the topo reading to 0, and
+    the andreev reading to 1, and those second coordinates differ.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Requires a declared device model and measurement map; none is supplied.
+  source_bottleneck: No laboratory protocol, device model, density operator, or measurement map from a
+    physical apparatus is supplied. These two coordinate maps are not that protocol. Whether any declared
+    laboratory map separates topological zero modes from Andreev bound states stays open.
   source_refs:
   - dag/derivations/28_majorana/tfq_1182_maj_open_evidence_adequacy.md
   - papers/core/majorana/the_majorana_problem.md
+  - dag/derivations/independent/maj-open-evidence-adequacy.md
+  - dag/research/campaign_maj-open-evidence-adequacy_lean_replay.json
   paper_refs:
   - dag/derivations/28_majorana/tfq_1182_maj_open_evidence_adequacy.md
   source_claim_label: OPEN
@@ -19,7 +25,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/28_majorana/tfq_1182_maj_open_evidence_adequacy.md
-    sha256: e4fa5519837d11dbe19d2f1e2dd499d479c9f79157e681bb08542d054604d66f
+    sha256: fa767c974693eb47dc5dfe0c17b7f5d66bc6741068d8cc76daf811168083c071
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -27,9 +33,111 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/majorana_maj_open_evidence_adequacy_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: readingDiff
+  line: 12
+  signature_excerpt: 'def readingDiff : Int × Int'
+  source: lean4/CampaignMajOpenEvidenceAdequacy.lean
+  repository: this_repository
+  source_sha256: 81a40a01895906d43d21209fc70e5b9b2b5de09f8420670a14a11543d615c8a4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: firstCoord
+  line: 14
+  signature_excerpt: 'def firstCoord (v : Int × Int) : Int'
+  source: lean4/CampaignMajOpenEvidenceAdequacy.lean
+  repository: this_repository
+  source_sha256: 81a40a01895906d43d21209fc70e5b9b2b5de09f8420670a14a11543d615c8a4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: topo
+  line: 8
+  signature_excerpt: 'def topo : Int × Int'
+  source: lean4/CampaignMajOpenEvidenceAdequacy.lean
+  repository: this_repository
+  source_sha256: 81a40a01895906d43d21209fc70e5b9b2b5de09f8420670a14a11543d615c8a4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: andreev
+  line: 10
+  signature_excerpt: 'def andreev : Int × Int'
+  source: lean4/CampaignMajOpenEvidenceAdequacy.lean
+  repository: this_repository
+  source_sha256: 81a40a01895906d43d21209fc70e5b9b2b5de09f8420670a14a11543d615c8a4
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: secondCoord
+  line: 16
+  signature_excerpt: 'def secondCoord (v : Int × Int) : Int'
+  source: lean4/CampaignMajOpenEvidenceAdequacy.lean
+  repository: this_repository
+  source_sha256: 81a40a01895906d43d21209fc70e5b9b2b5de09f8420670a14a11543d615c8a4
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: diff_is_zero_neg_one
+  line: 18
+  signature_excerpt: 'theorem diff_is_zero_neg_one : readingDiff = (0, -1)'
+  source: lean4/CampaignMajOpenEvidenceAdequacy.lean
+  repository: this_repository
+  source_sha256: 81a40a01895906d43d21209fc70e5b9b2b5de09f8420670a14a11543d615c8a4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: first_coord_kernel
+  line: 21
+  signature_excerpt: |-
+    theorem first_coord_kernel :
+        firstCoord readingDiff = 0 ∧ firstCoord topo = 1 ∧ firstCoord andreev = 1
+  source: lean4/CampaignMajOpenEvidenceAdequacy.lean
+  repository: this_repository
+  source_sha256: 81a40a01895906d43d21209fc70e5b9b2b5de09f8420670a14a11543d615c8a4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: second_coord_separates
+  line: 25
+  signature_excerpt: |-
+    theorem second_coord_separates :
+        secondCoord readingDiff = -1 ∧ secondCoord topo = 0 ∧ secondCoord andreev = 1 ∧
+          secondCoord topo ≠ secondCoord andreev
+  source: lean4/CampaignMajOpenEvidenceAdequacy.lean
+  repository: this_repository
+  source_sha256: 81a40a01895906d43d21209fc70e5b9b2b5de09f8420670a14a11543d615c8a4
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignMajOpenEvidenceAdequacy.lean::diff_is_zero_neg_one
+  availability: local
+  symbol: diff_is_zero_neg_one
+  path: lean4/CampaignMajOpenEvidenceAdequacy.lean
+  repository: this_repository
+  sha256: 81a40a01895906d43d21209fc70e5b9b2b5de09f8420670a14a11543d615c8a4
+  declaration_status: declaration_found_not_proof_checked
+  line: 18
+  role: source_lead_only
+- original_ref: lean4/CampaignMajOpenEvidenceAdequacy.lean::first_coord_kernel
+  availability: local
+  symbol: first_coord_kernel
+  path: lean4/CampaignMajOpenEvidenceAdequacy.lean
+  repository: this_repository
+  sha256: 81a40a01895906d43d21209fc70e5b9b2b5de09f8420670a14a11543d615c8a4
+  declaration_status: declaration_found_not_proof_checked
+  line: 21
+  role: source_lead_only
+- original_ref: lean4/CampaignMajOpenEvidenceAdequacy.lean::second_coord_separates
+  availability: local
+  symbol: second_coord_separates
+  path: lean4/CampaignMajOpenEvidenceAdequacy.lean
+  repository: this_repository
+  sha256: 81a40a01895906d43d21209fc70e5b9b2b5de09f8420670a14a11543d615c8a4
+  declaration_status: declaration_found_not_proof_checked
+  line: 25
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -67,8 +175,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

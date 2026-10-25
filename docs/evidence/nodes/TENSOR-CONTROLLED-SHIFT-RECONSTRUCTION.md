@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 7
 - cited Lean, Rust or Python symbols found in their in-repo files: 6
-- cited Lean declarations covered by a current replay receipt: 6
+- cited Lean declaration references covered by a current replay receipt: 6
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -62,6 +62,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `quantum_state_cone` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms quantum_state_cone` |
 | `unit_test_is_trace` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms unit_test_is_trace` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/TensorOperationalCone.lean`
@@ -78,6 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `controlled_shift_selects_positive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms controlled_shift_selects_positive` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/TensorReachability.lean`
@@ -95,6 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `exists_schmidt_coefficients` | yes | yes | yes | module-level | `#print axioms exists_schmidt_coefficients` |
 | `schmidt_reachability` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms schmidt_reachability` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/TensorSchmidt.lean`
@@ -111,6 +114,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `exists_schmidt_bases` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms exists_schmidt_bases` |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/qm/tensor_composition.py`

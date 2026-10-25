@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 1
+- cited Lean declaration references covered by a current replay receipt: 1
 - counted in-repo runnable tests: 2
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -54,6 +54,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `local_green_not_global_red` | yes | yes | yes | none | `#print axioms local_green_not_global_red` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/majorana/lggr.rs`
@@ -67,6 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `detect_lggr` (rust_symbol) | yes | yes | yes | - | - |
 | `exact_syndrome_is_not_lggr` (rust_test) | yes | yes | yes | - | `cd code/rust && cargo test -p tfqm_majorana exact_syndrome_is_not_lggr` |
 | `torus_logical_is_lggr` (rust_test) | yes | yes | yes | - | `cd code/rust && cargo test -p tfqm_majorana torus_logical_is_lggr` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1146_maj_lggr_torus_instance.md`

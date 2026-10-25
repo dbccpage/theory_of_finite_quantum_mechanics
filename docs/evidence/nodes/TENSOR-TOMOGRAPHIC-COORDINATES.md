@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 9
-- cited Lean declarations covered by a current replay receipt: 9
+- cited Lean declaration references covered by a current replay receipt: 9
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -59,6 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `unit_test_is_trace` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms unit_test_is_trace` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/TensorCoordinates.lean`
@@ -80,6 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `tomographicEquiv_prepare` | yes | yes | yes | module-level | `#print axioms tomographicEquiv_prepare` |
 | `tomographicEquiv_test` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms tomographicEquiv_test` |
 | `tomographicEquiv_unique` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms tomographicEquiv_unique` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/TensorTomography.lean`
@@ -97,6 +99,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `pairing_nondegenerate` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms pairing_nondegenerate` |
 | `product_span` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms product_span` |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/qm/tensor_composition.py`

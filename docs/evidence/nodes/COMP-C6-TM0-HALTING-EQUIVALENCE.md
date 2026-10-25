@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 5
+- cited Lean declaration references covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -60,6 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `halts_iff_eval_dom` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms halts_iff_eval_dom` |
 | `initCfg0` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms initCfg0` |
 | `trCfg_init_gen` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms trCfg_init_gen` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1305_comp_c6_tm0_halting_equivalence.md`

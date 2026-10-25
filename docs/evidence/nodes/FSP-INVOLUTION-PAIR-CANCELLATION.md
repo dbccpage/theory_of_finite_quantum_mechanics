@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 6
-- cited Lean declarations covered by a current replay receipt: 5
+- cited Lean declaration references covered by a current replay receipt: 5
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -54,6 +54,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `bipartite_pair_exact_cancellation` | yes | yes | yes | propext | `#print axioms bipartite_pair_exact_cancellation` |
+
 - counts toward the grade: yes
 
 ### Lean: `papers/core/fsp/lean4/MeronCharacter.lean`
@@ -69,6 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `observable_doublet_counterexample` | yes | yes | yes | none | `#print axioms observable_doublet_counterexample` |
 | `unequal_three_term_cancellation` | yes | yes | yes | none | `#print axioms unequal_three_term_cancellation` |
+
 - counts toward the grade: yes
 
 ### Lean: `papers/core/fsp/lean4/MeronClusterInvolution.lean`
@@ -84,6 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `fixed_point_contradiction` | yes | yes | yes | none | `#print axioms fixed_point_contradiction` |
 | `meron_pair_exact_cancellation` | yes | yes | yes | propext | `#print axioms meron_pair_exact_cancellation` |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/tests/fsp/test_normal_form_laws.py`
@@ -96,6 +99,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `test_near_equal_or_zero_total_does_not_imply_equal_weight_pairing` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/fsp/test_normal_form_laws.py::test_near_equal_or_zero_total_does_not_imply_equal_weight_pairing` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1193_fsp_involution_pair_cancellation.md`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 6
-- cited Lean declarations covered by a current replay receipt: 5
+- cited Lean declaration references covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -59,6 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `multiterminal_crosstalk_channels_pos` | yes | yes | yes | Quot.sound, propext | `#print axioms multiterminal_crosstalk_channels_pos` |
 | `multiterminal_pareto_defect_pos` | yes | yes | yes | Quot.sound, propext | `#print axioms multiterminal_pareto_defect_pos` |
 | `multiterminal_transfer_defect_pos` | yes | yes | yes | none | `#print axioms multiterminal_transfer_defect_pos` |
+
 - counts toward the grade: yes
 
 ### Python: `papers/core/majorana/code/majorana_evaluator.py`
@@ -70,6 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `ContinuumCrossJunctionFemModel` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1179_maj_open_multiterminal_envelope.md`

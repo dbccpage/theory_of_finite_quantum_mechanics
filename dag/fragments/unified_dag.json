@@ -3963,22 +3963,30 @@
       "stage": "MAJORANA",
       "status": "OPEN",
       "source_claimed_status": "OPEN",
-      "statement": "Whether a declared laboratory protocol's measurement map M separates topological zero modes from trivial Andreev bound states, i.e. whether rho_topo - rho_ABS lies outside ker M.",
-      "obligation": "Requires a declared device model and measurement map; none is supplied.",
+      "statement": "Narrowed boundary, status left OPEN. For the integer readings topo = (1, 0) and andreev = (1, 1), the difference is (0, -1). The first-coordinate map sends that difference to 0 and sends both readings to 1. The second-coordinate map sends the difference to -1, the topo reading to 0, and the andreev reading to 1, and those second coordinates differ.",
+      "obligation": "No laboratory protocol, device model, density operator, or measurement map from a physical apparatus is supplied. These two coordinate maps are not that protocol. Whether any declared laboratory map separates topological zero modes from Andreev bound states stays open.",
       "imported_structure": [],
       "parent_nodes": [
         "MAJ-DETECTOR-INADEQUATE"
       ],
       "parent_record": "TFQ-1163",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMajOpenEvidenceAdequacy.lean::diff_is_zero_neg_one",
+        "lean4/CampaignMajOpenEvidenceAdequacy.lean::first_coord_kernel",
+        "lean4/CampaignMajOpenEvidenceAdequacy.lean::second_coord_separates"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/maj-open-evidence-adequacy.py"
+      ],
       "external_witnesses": [],
       "sources": [
         "papers/core/majorana/the_majorana_problem.md:367-367",
-        "papers/core/majorana/the_majorana_problem.md:128-139"
+        "papers/core/majorana/the_majorana_problem.md:128-139",
+        "dag/derivations/independent/maj-open-evidence-adequacy.md",
+        "dag/research/campaign_maj-open-evidence-adequacy_lean_replay.json"
       ],
-      "audit": "",
+      "audit": "Decided integer facts on readings (1, 0) and (1, 1): the difference is (0, -1); the first coordinate of the difference is 0 and both readings have first coordinate 1; the second coordinate of the difference is -1 and the second coordinates are 0 and 1. No laboratory map is derived.",
       "see_also": [],
       "uses": []
     },

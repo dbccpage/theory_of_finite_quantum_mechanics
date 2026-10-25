@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 3
+- cited Lean declaration references covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -56,6 +56,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `compression_preserves_partition` | yes | yes | yes | Quot.sound, propext | `#print axioms compression_preserves_partition` |
 | `meron_orbit_cancels` | yes | yes | yes | Quot.sound, propext | `#print axioms meron_orbit_cancels` |
 | `zero_meron_orbit_positive` | yes | yes | yes | Quot.sound, propext | `#print axioms zero_meron_orbit_positive` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_0407_fsp_meron_character_cancellation.md`

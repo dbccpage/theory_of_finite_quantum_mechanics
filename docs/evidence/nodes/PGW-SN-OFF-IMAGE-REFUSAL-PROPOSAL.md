@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 1
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 5
+- cited Lean declaration references covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `nonDescent_iff_off_image` | yes | yes | yes | Quot.sound, propext | `#print axioms nonDescent_iff_off_image` |
 | `retraction_stage_strict` | yes | yes | yes | Quot.sound, propext | `#print axioms retraction_stage_strict` |
 | `sectionLift_injective` | yes | yes | yes | propext | `#print axioms sectionLift_injective` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 6
-- cited Lean declarations covered by a current replay receipt: 6
+- cited Lean declaration references covered by a current replay receipt: 6
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -60,6 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `component_counts` | yes | yes | yes | propext | `#print axioms component_counts` |
 | `cotree_sums` | yes | yes | yes | propext | `#print axioms cotree_sums` |
 | `three_bit_masks_are_listed` | yes | yes | yes | propext | `#print axioms three_bit_masks_are_listed` |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/dfm-symanzik-qed-ae-fence.py`

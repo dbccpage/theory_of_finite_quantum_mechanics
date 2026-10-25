@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 7
-- cited Lean declarations covered by a current replay receipt: 7
+- cited Lean declaration references covered by a current replay receipt: 7
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 1
@@ -72,6 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `FrontierMyrheimMeyer.grid_values_2_to_6_and_c2_agreement` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FrontierMyrheimMeyer.grid_values_2_to_6_and_c2_agreement` |
 | `FrontierMyrheimMeyer.hasse_links_and_mobius_recursions_C1_C2` | yes | yes | yes | propext | `#print axioms FrontierMyrheimMeyer.hasse_links_and_mobius_recursions_C1_C2` |
 | `FrontierMyrheimMeyer.myrheim_meyer_nearest_dimension_checks` | yes | yes | yes | none | `#print axioms FrontierMyrheimMeyer.myrheim_meyer_nearest_dimension_checks` |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/general_relativity/causal_set.py`

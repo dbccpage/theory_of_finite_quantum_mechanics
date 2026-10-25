@@ -448,3 +448,23 @@ def test_external_paths_are_never_called_present():
                 assert not it["file_exists"] and not it["counts"]
             if it["resolution"] == "present":
                 assert (ROOT / it["path"]).exists()
+
+
+def test_all_replay_states_are_reported_in_the_evidence_summary():
+    import copy
+    import render_evidence as render
+
+    doc = copy.deepcopy(document())
+    counts = doc["summary"]["lean_declarations_in_repo"]
+    assert counts["distinct"] == sum(counts[k] for k in
+        ("replay_verified", "replay_stale", "replay_failed", "no_receipt"))
+    # Exercise the failure bucket even when a checkout has no failed receipt.
+    counts["replay_failed"] = 7
+    text = render.readme_page(doc, doc["nodes"])
+    assert "7 are in files whose current-hash receipt failed the build or axiom audit" in text
+
+
+def test_generated_symbol_tables_have_a_blank_line_before_the_grade_list():
+    for rel, text in outputs().items():
+        if rel.endswith(".md"):
+            assert not re.search(r"^\|.*\|\n- counts toward the grade:", text, re.M), rel

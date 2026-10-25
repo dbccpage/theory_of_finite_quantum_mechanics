@@ -1279,3 +1279,7 @@ lean_lib CampaignMubPrimePowerConstruction where
 -- Campaign: MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE. Not a default target.
 lean_lib CampaignMajOpenLindbladTransferEnvelope where
   roots := #[`CampaignMajOpenLindbladTransferEnvelope]
+
+-- Campaign: MAJ-OPEN-EVIDENCE-ADEQUACY. Not a default target.
+lean_lib CampaignMajOpenEvidenceAdequacy where
+  roots := #[`CampaignMajOpenEvidenceAdequacy]

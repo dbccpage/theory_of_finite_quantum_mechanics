@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 15
-- cited Lean declarations covered by a current replay receipt: 15
+- cited Lean declaration references covered by a current replay receipt: 15
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -68,6 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignAdsHappyToyNotDualityGap.recorded_happy_tiling_hilbert_codimensions` | yes | yes | yes | propext | `#print axioms CampaignAdsHappyToyNotDualityGap.recorded_happy_tiling_hilbert_codimensions` |
 | `CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_formula` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_formula` |
 | `CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_pos_of_gt_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_pos_of_gt_one` |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/ads-happy-toy-not-duality-gap.py`

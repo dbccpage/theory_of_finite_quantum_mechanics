@@ -12,7 +12,7 @@ Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declaration references covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -52,6 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `verify_pillar1_abelian_tree_dfm_and_symanzik_u` (python_symbol) | yes | yes | yes | - | - |
 | `verify_pillar3_symanzik_two_forest_and_bphz` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1103_dfm_tree_change_glz_symanzik_u.md`

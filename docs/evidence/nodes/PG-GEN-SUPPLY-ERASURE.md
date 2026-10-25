@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 28
-- cited Lean declarations covered by a current replay receipt: 28
+- cited Lean declaration references covered by a current replay receipt: 28
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -82,6 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignGenesisReplayRefinement.source_supply_erasure` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.source_supply_erasure` |
 | `CampaignGenesisReplayRefinement.source_supply_no_op` | yes | yes | yes | propext | `#print axioms CampaignGenesisReplayRefinement.source_supply_no_op` |
 | `CampaignGenesisReplayRefinement.token_array_replay` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.token_array_replay` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/Genesis19l57g1/Derivation/Erasure.lean`
@@ -107,6 +108,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `GenesisPrimitives.SupplyErasure.replayE_filter_supply` | yes | yes | yes | propext | `#print axioms GenesisPrimitives.SupplyErasure.replayE_filter_supply` |
 | `GenesisPrimitives.SupplyErasure.replayE_supply_only` | yes | yes | yes | propext | `#print axioms GenesisPrimitives.SupplyErasure.replayE_supply_only` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`

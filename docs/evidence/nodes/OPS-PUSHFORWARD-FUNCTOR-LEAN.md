@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 4
+- cited Lean declaration references covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -59,6 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `LggrFiniteResults.push_comp` | yes | yes | yes | Quot.sound, propext | `#print axioms LggrFiniteResults.push_comp` |
 | `LggrFiniteResults.push_id` | yes | yes | yes | Quot.sound, propext | `#print axioms LggrFiniteResults.push_id` |
 | `LggrFiniteResults.weightAt_push` | yes | yes | yes | propext | `#print axioms LggrFiniteResults.weightAt_push` |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/foc035_observer_presheaf.py`

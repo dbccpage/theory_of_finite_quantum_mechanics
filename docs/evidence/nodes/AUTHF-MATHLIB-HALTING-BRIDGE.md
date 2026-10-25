@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 4
+- cited Lean declaration references covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `AuthorizationIncompleteness.MathlibBridge.halting_has_no_computable_decider` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AuthorizationIncompleteness.MathlibBridge.halting_has_no_computable_decider` |
 | `AuthorizationIncompleteness.MathlibBridge.halting_transport_instance` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AuthorizationIncompleteness.MathlibBridge.halting_transport_instance` |
 | `AuthorizationIncompleteness.MathlibBridge.no_computable_authorizer_of_computable_reduction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AuthorizationIncompleteness.MathlibBridge.no_computable_authorizer_of_computable_reduction` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1348_authf_mathlib_halting_bridge.md`

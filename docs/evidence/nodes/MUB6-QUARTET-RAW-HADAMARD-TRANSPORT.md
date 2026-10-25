@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 3
+- cited Lean declaration references covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -54,6 +54,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `hasRawQuartet_iff_of_monomialEquivalent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms hasRawQuartet_iff_of_monomialEquivalent` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/MubQuartetTransportBridge.lean`
@@ -69,6 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `exists_quartet_iff_exists_rawQuartet` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms exists_quartet_iff_exists_rawQuartet` |
 | `no_quartet_of_concrete_representatives` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms no_quartet_of_concrete_representatives` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/25_mub/tfq_1225_mub6_quartet_raw_hadamard_transport.md`

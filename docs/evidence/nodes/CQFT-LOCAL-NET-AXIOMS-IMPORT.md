@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 6
-- cited Lean declarations covered by a current replay receipt: 6
+- cited Lean declaration references covered by a current replay receipt: 6
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -60,6 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `disjoint_site_products` | yes | yes | yes | none | `#print axioms disjoint_site_products` |
 | `n_poset_pair_counts` | yes | yes | yes | none | `#print axioms n_poset_pair_counts` |
 | `same_site_and_star` | yes | yes | yes | none | `#print axioms same_site_and_star` |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/cqft-local-net-axioms-import.py`

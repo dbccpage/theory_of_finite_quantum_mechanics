@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 6
-- cited Lean declarations covered by a current replay receipt: 2
+- cited Lean declaration references covered by a current replay receipt: 2
 - counted in-repo runnable tests: 3
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -55,6 +55,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `toric_distance_3x4` | yes | yes | yes | none | `#print axioms toric_distance_3x4` |
 | `torus_3x4_additive_weight` | yes | yes | yes | none | `#print axioms torus_3x4_additive_weight` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/majorana/tetron.rs`
@@ -67,6 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `logical_generators_are_closed` (rust_test) | yes | yes | yes | - | `cd code/rust && cargo test -p tfqm_majorana logical_generators_are_closed` |
 | `logical_generators_have_the_expected_weight` (rust_test) | yes | yes | yes | - | `cd code/rust && cargo test -p tfqm_majorana logical_generators_have_the_expected_weight` |
+
 - counts toward the grade: yes
 
 ### Python: `papers/core/majorana/code/majorana_evaluator.py`
@@ -78,6 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `compute_coset_weight` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py`
@@ -90,6 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `test_torus_per_class_minimum_weights` (python_test) | yes | yes | yes | - | `python -m pytest papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_torus_per_class_minimum_weights` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1155_maj_torus_3x4_coset_weights.md`

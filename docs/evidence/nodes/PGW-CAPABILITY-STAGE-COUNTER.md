@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 1
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 2
+- cited Lean declaration references covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -55,6 +55,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `ereplay_elems_lt_of_ne` | yes | yes | yes | Quot.sound, propext | `#print axioms ereplay_elems_lt_of_ne` |
 | `estep_elems_lt_of_ne` | yes | yes | yes | Quot.sound, propext | `#print axioms estep_elems_lt_of_ne` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0491_capability_stage_counter.md`

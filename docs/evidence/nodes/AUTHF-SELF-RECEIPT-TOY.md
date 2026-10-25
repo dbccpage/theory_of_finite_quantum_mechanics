@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 3
+- cited Lean declaration references covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -56,6 +56,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `AuthorizationIncompleteness.complete_receipt_decides_toy_contract` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.complete_receipt_decides_toy_contract` |
 | `AuthorizationIncompleteness.self_receipt_blocks_authorization` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.self_receipt_blocks_authorization` |
 | `AuthorizationIncompleteness.self_receipt_splits_validity` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.self_receipt_splits_validity` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1346_authf_self_receipt_toy.md`

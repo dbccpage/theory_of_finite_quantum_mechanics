@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 16
-- cited Lean declarations covered by a current replay receipt: 16
+- cited Lean declaration references covered by a current replay receipt: 16
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -70,6 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignGenesisProcessComparison.source_advance_matches` | yes | yes | yes | propext | `#print axioms CampaignGenesisProcessComparison.source_advance_matches` |
 | `CampaignGenesisProcessComparison.source_run_matches` | yes | yes | yes | propext | `#print axioms CampaignGenesisProcessComparison.source_run_matches` |
 | `CampaignGenesisProcessComparison.source_supply_self_loop` | yes | yes | yes | propext | `#print axioms CampaignGenesisProcessComparison.source_supply_self_loop` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/Genesis19l57g1/Derivation/Initiality.lean`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 1
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 3
+- cited Lean declaration references covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -56,6 +56,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `AuthorizationIncompleteness.TerminalAuthorizationBoundary.boolTerminalize` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TerminalAuthorizationBoundary.boolTerminalize` |
 | `AuthorizationIncompleteness.TerminalAuthorizationBoundary.boolValidity` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TerminalAuthorizationBoundary.boolValidity` |
 | `AuthorizationIncompleteness.TerminalAuthorizationBoundary.finite_closed_terminalizer_remains_possible` | yes | yes | yes | propext | `#print axioms AuthorizationIncompleteness.TerminalAuthorizationBoundary.finite_closed_terminalizer_remains_possible` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1351_authf_terminal_bool_fixture.md`

@@ -12,7 +12,7 @@ Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 0
+- cited Lean declaration references covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 3
 - recorded statement-match reviews that qualify: 0
@@ -52,6 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `bound_dense` (rust_symbol) | yes | yes | yes | - | - |
 | `verify_l1_defect_receipt` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/sheaf_theory/empirical_presheaf/model.rs`
@@ -63,6 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `verify_noncontextual_fraction` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/foc035_observer_presheaf.py`

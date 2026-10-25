@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 15
-- cited Lean declarations covered by a current replay receipt: 15
+- cited Lean declaration references covered by a current replay receipt: 15
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -68,6 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignFspHubbardProtected.witness_triangle_d_down_neg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.witness_triangle_d_down_neg` |
 | `CampaignFspHubbardProtected.witness_triangle_d_up_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.witness_triangle_d_up_pos` |
 | `CampaignFspHubbardProtected.witness_triangle_weight_neg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.witness_triangle_weight_neg` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_0408_fsp_hubbard_protected_representations.md`

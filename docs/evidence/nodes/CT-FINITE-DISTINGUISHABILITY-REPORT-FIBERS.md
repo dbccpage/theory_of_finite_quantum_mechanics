@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 5
+- cited Lean declaration references covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -60,6 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `FrontierDistinguishability.fiberConstant_indicator_of_disjoint_image` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FrontierDistinguishability.fiberConstant_indicator_of_disjoint_image` |
 | `FrontierDistinguishability.separatedByTask_iff_disjoint_image` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FrontierDistinguishability.separatedByTask_iff_disjoint_image` |
 | `FrontierDistinguishability.separatedByTask_imp_disjoint_image` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FrontierDistinguishability.separatedByTask_imp_disjoint_image` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2004_ct_finite_distinguishability_report_fibers.md`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 19
-- cited Lean declarations covered by a current replay receipt: 19
+- cited Lean declaration references covered by a current replay receipt: 19
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -72,6 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `outer_misses_star` | yes | yes | yes | none | `#print axioms outer_misses_star` |
 | `witness_star_agrees` | yes | yes | yes | propext | `#print axioms witness_star_agrees` |
 | `witness_two_ne_five` | yes | yes | yes | Quot.sound, propext | `#print axioms witness_two_ne_five` |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/dfm-continuum-interface.py`

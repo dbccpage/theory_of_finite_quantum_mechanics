@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 17
-- cited Lean declarations covered by a current replay receipt: 17
+- cited Lean declaration references covered by a current replay receipt: 17
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -71,6 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignCtMediatorEntanglement.schmidtRank_le_one_preserved` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.schmidtRank_le_one_preserved` |
 | `CampaignCtMediatorEntanglement.schmidtRank_local_le` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.schmidtRank_local_le` |
 | `CampaignCtMediatorEntanglement.schmidtRank_not_reachable` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.schmidtRank_not_reachable` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2013_ct_local_mediator_entanglement_import.md`
