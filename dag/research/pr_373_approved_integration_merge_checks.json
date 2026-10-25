@@ -1,0 +1,172 @@
+{
+  "authority_effect": "None",
+  "reviewed_prs": 30,
+  "approved_finite_proof_pins": 31,
+  "global_l4_floor_unchanged": true,
+  "original_30_pins_unchanged": true,
+  "validation_runs": [
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "seconds": 21.421,
+      "output": "README facts written\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--run",
+        "approved additional PR 373 pin",
+        "--reason",
+        "Apply exactly one newly authorized source pin; preserve prior 30 pins, honest scores and all statuses."
+      ],
+      "exit_code": 0,
+      "seconds": 0.096,
+      "output": "receipts current\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/evidence/build_evidence.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "seconds": 6.221,
+      "output": "evidence map written: 925 nodes, grades {'E0': 154, 'E1': 212, 'E2': 38, 'E3': 521, 'E4': 0}, 253 flags\n"
+    },
+    {
+      "command": [
+        "governance/target/release/governance-check",
+        "--root",
+        ".",
+        "check",
+        "--changed-since",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "seconds": 1.781,
+      "output": "changed since origin/main (7fa69d621c27bed7045d0b7fe34bbb1d34b27248): 1337 paths\nchecked 8282: 102 pass, 8160 grandfathered, 20 boilerplate, 0 failed\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "seconds": 3.547,
+      "output": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 34,\n    \"valid_contracts_and_scores\": 34,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 32,\n      \"Rust\": 2\n    },\n    \"by_preliminary_profile\": {\n      \"Exact\": 30,\n      \"Non-Numeric\": 3,\n      \"Symbolic/Formal\": 1\n    },\n    \"completed_scores\": 34,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 34\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since origin/main (merge base 7fa69d621c27), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/contract_scores.py",
+        "check",
+        "--changed-since",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "seconds": 4.009,
+      "output": "{\n  \"originals\": null,\n  \"combined_files\": 67,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/validate_derivation_dag.py",
+        "--no-files"
+      ],
+      "exit_code": 0,
+      "seconds": 1.096,
+      "output": "nodes=925 routes=934 records=977 failures=0\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 21.558,
+      "output": "README facts current\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/evidence/build_evidence.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 6.296,
+      "output": "evidence map current\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.091,
+      "output": "receipts current\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "origin/main",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "seconds": 6.368,
+      "output": "overclaim_scan: scope=changes since origin/main (merge base 7fa69d621c27); HIGH=0 MEDIUM=0 LOW=10\n"
+    }
+  ],
+  "combined_python_tests": {
+    "passed": 87,
+    "log": "dag/research/pr_373_integration_merge_checks.json"
+  },
+  "rust_policy_tests": {
+    "passed": 66,
+    "ignored_doc_tests": 1,
+    "log": "dag/research/approved_finite_proof_policy_validation.json",
+    "source_unchanged_since_tested": true
+  },
+  "github_prs_merged": false
+}

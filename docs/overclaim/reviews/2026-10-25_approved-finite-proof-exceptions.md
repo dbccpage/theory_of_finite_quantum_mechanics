@@ -25,3 +25,19 @@ bytes. Its proof and independent Python replays passed before this policy-only
 change; their exact source hashes are checked again against the approved pins.
 Hosted CI, PR-description publication, and merging still require GitHub API
 network access and the repository's normal pull-request flow.
+
+
+## Additional PR #373 authorization
+
+After the initial approval, PR #373 was reviewed and repaired. Its global Lean
+names collided with the reviewed U1-circle module; the Stone declarations now
+use their own namespace, DAG references are updated, and a joint import passed.
+The standalone Lean proof, independent Python check and combined 87 Python tests
+passed. All 30 reviewed PRs retain their exact source hashes and narrowed node
+statements. The user explicitly approved this one additional exact pin, recorded
+in `dag/research/approved_pr_373_finite_proof_exception_2026_10_25.json`.
+
+The resulting policy has 31 finite-proof pins, with the initial 30 unchanged.
+The new proof remains L3D and its node remains CONDITIONAL. The global L4/D floor
+is unchanged. The full natural-number descent theorem is kernel checked; the
+Python window is a bounded audit, and no continuous-time Stone result follows.
