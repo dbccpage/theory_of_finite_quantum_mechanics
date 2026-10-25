@@ -1,0 +1,113 @@
+{
+  "path": "checks/independent/fq-gap-c500-original-targets.py",
+  "original_sha256": "af669be15640326d11e64ffe7bf7fa2fed2e08964d7398a2f460e21e8e504aff",
+  "sha256": "95eeb78403e80e94edb733ce28df122bfbb9f38654b00c96b2c68655188a2c03",
+  "original_metrics": {
+    "ccn": 30,
+    "cognitive": 34,
+    "nesting": 6,
+    "functions": 2,
+    "lines": 104,
+    "tools": {
+      "radon": "6.0.1",
+      "cognitive-complexity": "1.3.0",
+      "nesting": "AST control constructs; module executable statements additionally measured as one function"
+    }
+  },
+  "current_metrics": {
+    "ccn": 30,
+    "cognitive": 34,
+    "nesting": 6,
+    "functions": 3,
+    "lines": 86,
+    "tools": {
+      "radon": "6.0.1",
+      "cognitive-complexity": "1.3.0",
+      "nesting": "AST control constructs; module executable statements additionally measured as one function"
+    }
+  },
+  "source_changed": true,
+  "comparison_and_iteration_AST_multisets_unchanged": true,
+  "rejected_import_harness_attempt": null,
+  "checks": {
+    "normal": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/fq-gap-c500-original-targets.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.09,
+      "output": "checked 60 claims, failures 0\r\n"
+    },
+    "optimized": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/fq-gap-c500-original-targets.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.17,
+      "output": "checked 60 claims, failures 0\r\n"
+    },
+    "quiet_import": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "-c",
+        "import contextlib,importlib.util,io,pathlib,sys; p=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics\\\\checks\\\\independent\\\\fq-gap-c500-original-targets.py'); root=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics'); s=importlib.util.spec_from_file_location(\"reviewed_checker\",p); m=importlib.util.module_from_spec(s); out=io.StringIO();\ndef audit(event,args):\n if event==\"open\" and isinstance(args[0],str):\n  q=pathlib.Path(args[0]).resolve()\n  if q.is_relative_to(root) and q!=p and q.suffix!=\".pyc\": raise RuntimeError(\"Import read repository evidence: \"+str(q))\nsys.addaudithook(audit)\nwith contextlib.redirect_stdout(out),contextlib.redirect_stderr(out): s.loader.exec_module(m)\nif out.getvalue(): raise RuntimeError(\"Import executed checker output: \"+out.getvalue())\n"
+      ],
+      "exit_code": 0,
+      "seconds": 0.09,
+      "output": ""
+    },
+    "typing_tool": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--version"
+      ],
+      "exit_code": 0,
+      "seconds": 0.3,
+      "output": "mypy 1.18.2 (compiled: yes)\r\n"
+    },
+    "strict_typing": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--config-file",
+        "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\governance\\target\\pr-review-mypy.ini",
+        "--no-incremental",
+        "--cache-dir",
+        "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\governance\\target\\pr-review-mypy-cache",
+        "--explicit-package-bases",
+        "checks/independent/fq-gap-c500-original-targets.py"
+      ],
+      "exit_code": 1,
+      "seconds": 1.2,
+      "output": "checks\\independent\\fq-gap-c500-original-targets.py:9: error: Function is missing a type annotation  [no-untyped-def]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:16: error: Function is missing a type annotation  [no-untyped-def]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:19: error: Function is missing a return type annotation  [no-untyped-def]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:19: note: Use \"-> None\" if function does not return a value\r\nchecks\\independent\\fq-gap-c500-original-targets.py:27: error: Need type annotation for \"chunk\" (hint: \"chunk: list[<type>] = ...\")  [var-annotated]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:35: error: Need type annotation for \"lists\"  [var-annotated]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:60: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:61: error: Incompatible types in assignment (expression has type \"str\", variable has type \"list[str]\")  [assignment]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:63: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:64: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:65: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:66: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:67: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:68: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:69: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:70: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:71: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:72: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:73: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:73: error: Call to untyped function \"poly\" in typed context  [no-untyped-call]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:74: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:74: error: Call to untyped function \"poly\" in typed context  [no-untyped-call]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:75: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:82: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\fq-gap-c500-original-targets.py:86: error: Call to untyped function \"main\" in typed context  [no-untyped-call]\r\nFound 24 errors in 1 file (checked 1 source file)\r\n"
+    }
+  },
+  "score_token": "L2E",
+  "contract_boundary": "Closed exact finite check program; internal helpers accept only the internally generated carriers. No general public input admission or physical theorem is claimed.",
+  "typing_configuration": "[mypy]\nstrict = True\npython_version = 3.14\n",
+  "structural_change": "Separate finite case loops into private helpers while preserving every original check and exact stdout; no new scientific evidence is inferred.",
+  "mutation_accounting": {
+    "generated": 0,
+    "killed": 0,
+    "detection_fraction": null
+  },
+  "acceptance": "Blocked below L4; failed checks remain failures."
+}
