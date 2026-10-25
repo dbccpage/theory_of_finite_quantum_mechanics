@@ -33,7 +33,7 @@ There are 10 atoms and 100 ordered pairs. Replaying each one from the base leave
 
 No other single item or ordered pair in the ten-atom universe is admitted. No single item separates. Exactly 2 pairs separate: form then argument 0, and form then argument 1. The other 7 well-formed deltas leave the target bits equal.
 
-The three deltas that admit a fresh datum are datum-datum, datum-form and form-datum. Each ends with data count greater than 2, and none separates.
+The three two-item deltas that admit a fresh datum are datum-datum, datum-form and form-datum. Each ends with data count greater than 2, and none separates.
 
 Form then the uniform rule on form 0 sets both target bits on form 0 to true, so it does not separate.
 

@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignPgwKItemDeltaGrammar.lean](../../../lean4/CampaignPgwKItemDeltaGrammar.lean)
 - sha256 (`bytes`): `9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670`
-- cited in: node.lean, receipt dag/research/campaign_pgw-k-item-delta-grammar_lean_replay.json (CampaignPgwKItemDeltaGrammar), record TFQ-0490
+- cited in: node.lean, receipt dag/research/campaign_pgw-k-item-delta-grammar_lean_replay.json (CampaignPgwKItemDeltaGrammar), receipt dag/research/pr_350_review_replay.json (CampaignPgwKItemDeltaGrammar), record TFQ-0490
 - replay: `verified`
   - receipt [dag/research/campaign_pgw-k-item-delta-grammar_lean_replay.json](../../../dag/research/campaign_pgw-k-item-delta-grammar_lean_replay.json) (module `CampaignPgwKItemDeltaGrammar`): recorded sha256 `9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/pr_350_review_replay.json](../../../dag/research/pr_350_review_replay.json) (module `CampaignPgwKItemDeltaGrammar`): recorded sha256 `9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignPgwKItemDeltaGrammar`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
