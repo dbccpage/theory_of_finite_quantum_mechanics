@@ -10,9 +10,9 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade:
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 8
+- counted in-repo evidence files: 9
 - cited Lean, Rust or Python symbols found in their in-repo files: 26
-- cited Lean declarations covered by a current replay receipt: 22
+- distinct cited Lean declarations covered by a current replay receipt: 22
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 1
@@ -20,7 +20,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-- `broken_reference`: path not found: dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md. A cited in-repo path or symbol cannot be found in this checkout.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -59,6 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteWignerKernel.lean`
@@ -77,6 +78,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `WignerFable.Kernel.expansion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Kernel.expansion` |
 | `WignerFable.Kernel.tp` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Kernel.tp` |
 | `WignerFable.Kernel.tp_eq_born` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Kernel.tp_eq_born` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteWignerSimilarity.lean`
@@ -98,6 +100,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `WignerFable.Similarity.permMatrix_unitary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.permMatrix_unitary` |
 | `WignerFable.Similarity.three_not_sum_two_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.three_not_sum_two_sq` |
 | `WignerFable.Similarity.tpPreserving_iff_born` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.tpPreserving_iff_born` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteWignerTheorem.lean`
@@ -118,6 +121,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `WignerFable.Theorem.sgn_consistent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.sgn_consistent` |
 | `WignerFable.Theorem.similarity_bijective` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.similarity_bijective` |
 | `WignerFable.Theorem.tpPreserving_of_similarity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.tpPreserving_of_similarity` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/GaussRatAutomorphisms.lean`
@@ -132,6 +136,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `WignerFable.GaussRatAut.ringHom_eq_id_or_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.GaussRatAut.ringHom_eq_id_or_star` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/H003ReversibilityGate.lean`
@@ -166,6 +171,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `reconstruct` (rust_symbol) | yes | yes | yes | - | - |
 | `similarity_certificate` (rust_symbol) | yes | yes | yes | - | - |
 | `unitary_normalisation` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/finite_report_dynamics.rs`
@@ -192,10 +198,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ### Documents and data: `dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md`
 
-- file: `dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md](../../../dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md)
+- sha256 (`lf-normalised`): `8b5050fbb9f1e046b3f6fbde489956734d5e6d4b5f1ef936ad56cdd6abf82a49`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md`
 

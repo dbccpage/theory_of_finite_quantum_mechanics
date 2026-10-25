@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 16
-- cited Lean declarations covered by a current replay receipt: 7
+- distinct cited Lean declarations covered by a current replay receipt: 7
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -60,6 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `split_st` | yes | yes | yes | propext | `#print axioms split_st` |
 | `step_bwd` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms step_bwd` |
 | `step_fwd` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms step_fwd` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/wdp/genesis_tm.rs`
@@ -75,6 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `encode` (rust_symbol) | yes | yes | yes | - | - |
 | `rules_of` (rust_symbol) | yes | yes | yes | - | - |
 | `tm_step` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/qm/genesis_tm.py`
@@ -89,6 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `encode` (python_symbol) | yes | yes | yes | - | - |
 | `rules_for` (python_symbol) | yes | yes | yes | - | - |
 | `run_checked` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1299_comp_c5_tm0_step_simulation.md`

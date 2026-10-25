@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 28
-- cited Lean declarations covered by a current replay receipt: 28
+- distinct cited Lean declarations covered by a current replay receipt: 28
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -81,6 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignDfmBphzContinuumFence.sixSum_is_reduction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.sixSum_is_reduction` |
 | `CampaignDfmBphzContinuumFence.threeSum_eq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.threeSum_eq` |
 | `CampaignDfmBphzContinuumFence.witness_half_third` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.witness_half_third` |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/dfm-bphz-continuum-fence.py`

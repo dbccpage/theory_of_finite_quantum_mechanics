@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 4
+- distinct cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `effect_cone_eq_positive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms effect_cone_eq_positive` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/TensorEffectOrder.lean`
@@ -74,6 +75,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `positive_iff_pairing` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms positive_iff_pairing` |
 | `positive_ray_binary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms positive_ray_binary` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/TensorMeasurements.lean`
@@ -89,6 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `operational_effect_cone` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms operational_effect_cone` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md`

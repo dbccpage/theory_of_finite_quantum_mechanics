@@ -1,0 +1,66 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:14:31.381961+00:00",
+  "review_base": "664876546e635ea396912cef72d273b8e07d82fd",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: PGW-RUNS-PAST-DECLARED-BOUNDS — Narrowed: five records on the declared bound line; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignPgwRunsPastDeclaredBounds.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignPgwRunsPastDeclaredBounds",
+        "dag_node": "PGW-RUNS-PAST-DECLARED-BOUNDS",
+        "source": "lean4/CampaignPgwRunsPastDeclaredBounds.lean",
+        "sha256": "a8ca3ae2ff2c74e52d4ebdfbc8d625d47beb643a6fc0c6d0ace2cb589fd0b574",
+        "sha256_after_build": "a8ca3ae2ff2c74e52d4ebdfbc8d625d47beb643a6fc0c6d0ace2cb589fd0b574",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "pgwBoundOnLine",
+          "pgwBoundRoundPast",
+          "pgwBoundNodePast",
+          "pgwBoundDataFour",
+          "pgwBoundItemPast"
+        ],
+        "axioms": {
+          "pgwBoundOnLine": [],
+          "pgwBoundRoundPast": [],
+          "pgwBoundNodePast": [],
+          "pgwBoundDataFour": [],
+          "pgwBoundItemPast": []
+        },
+        "output": "'pgwBoundOnLine' does not depend on any axioms\n'pgwBoundRoundPast' does not depend on any axioms\n'pgwBoundNodePast' does not depend on any axioms\n'pgwBoundDataFour' does not depend on any axioms\n'pgwBoundItemPast' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/pgw-runs-past-declared-bounds.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.012,
+    "output": "checked 11 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/353/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.306,
+    "output": ""
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:29:30.815056+00:00",
+  "review_base": "80f043000176fceb95e1a9a2371a80d448a13566",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED — Narrowed: pairs (2, 0) and (0, 2); status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignL1ResidualSectorWeights.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignL1ResidualSectorWeights",
+        "dag_node": "L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED",
+        "source": "lean4/CampaignL1ResidualSectorWeights.lean",
+        "sha256": "f8b91f84cece66dcdc6e9423159d31ec17230dbf931a7117e2cb31c073b5275e",
+        "sha256_after_build": "f8b91f84cece66dcdc6e9423159d31ec17230dbf931a7117e2cb31c073b5275e",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "holonomy_two_not_divisible",
+          "same_phi1",
+          "weights_differ",
+          "holonomy_four_divisible"
+        ],
+        "axioms": {
+          "holonomy_two_not_divisible": [
+            "Quot.sound",
+            "propext"
+          ],
+          "same_phi1": [],
+          "weights_differ": [],
+          "holonomy_four_divisible": []
+        },
+        "output": "'same_phi1' does not depend on any axioms\n'weights_differ' does not depend on any axioms\n'holonomy_two_not_divisible' depends on axioms: [propext, Quot.sound]\n'holonomy_four_divisible' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/l1-residual-sector-weights-declared.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.012,
+    "output": "checked 8 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/364/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.148,
+    "output": ""
+  }
+}

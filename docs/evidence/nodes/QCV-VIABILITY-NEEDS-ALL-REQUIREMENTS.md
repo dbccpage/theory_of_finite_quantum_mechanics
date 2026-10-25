@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 7
-- cited Lean declarations covered by a current replay receipt: 5
+- distinct cited Lean declarations covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `not_viable_dexp_profile` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms not_viable_dexp_profile` |
 | `not_viable_unit_gain` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms not_viable_unit_gain` |
 | `not_viable_without_supply` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms not_viable_without_supply` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/campaigns/qc_self_obstruction.rs`
@@ -69,6 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `viability_report` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/qm/qc_self_obstruction.py`
@@ -80,6 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `viability_report` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1325_qcv_viability_needs_all_requirements.md`

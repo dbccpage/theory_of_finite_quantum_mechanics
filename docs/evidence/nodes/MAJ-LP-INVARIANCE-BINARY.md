@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 1
+- distinct cited Lean declarations covered by a current replay receipt: 1
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -54,6 +54,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `f2_weight_l1_l2_coincide` | yes | yes | yes | module-level | `#print axioms f2_weight_l1_l2_coincide` |
+
 - counts toward the grade: yes
 
 ### Python: `papers/core/majorana/code/majorana_evaluator.py`
@@ -65,6 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `verify_norm_equivalence` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py`
@@ -77,6 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `test_norm_equivalence_on_binary_vectors` (python_test) | yes | yes | yes | - | `python -m pytest papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_norm_equivalence_on_binary_vectors` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1161_maj_lp_invariance_binary.md`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 1
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 2
+- distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -55,6 +55,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `closure_charge_le_opnorm_mul_phi` | yes | yes | yes | module-level | `#print axioms closure_charge_le_opnorm_mul_phi` |
 | `closure_ratio_signature` | yes | yes | yes | module-level | `#print axioms closure_ratio_signature` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs`

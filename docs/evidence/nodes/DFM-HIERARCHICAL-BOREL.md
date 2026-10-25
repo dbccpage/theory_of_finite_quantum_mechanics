@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 42
-- cited Lean declarations covered by a current replay receipt: 42
+- distinct cited Lean declarations covered by a current replay receipt: 21
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -96,6 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `two_stage_factorization` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms two_stage_factorization` |
 | `u_N_eq_conjugate` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms u_N_eq_conjugate` |
 | `unipotent_subgroup_normal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms unipotent_subgroup_normal` |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/dfm-hierarchical-borel.py`

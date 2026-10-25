@@ -12,7 +12,7 @@ Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 0
+- distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -53,6 +53,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `check_packet` (python_symbol) | yes | yes | yes | - | - |
 | `invoke_replay_packet` (python_symbol) | yes | yes | yes | - | - |
 | `transition_evaluation` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/tests/test_auth_incompleteness_replay_packet.py`
@@ -65,6 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `test_case_01_good_packet_verifies` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_auth_incompleteness_replay_packet.py::test_case_01_good_packet_verifies` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1361_authf_replay_packet_python.md`

@@ -3,13 +3,14 @@ node_id: COMP-C8-MINIMALITY-FENCE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Two separated marks code the words of any finite alphabet and a blank is a third symbol,
-    but the composite machine M0 is not minimal and no smallest general-purpose machine is claimed; small-machine
-    records are literature only.
+  source_statement: Mark A is the number 1, mark B is the number 2, and the blank is the number 0. The
+    word mark A then mark B, followed by one blank cell, equals the list whose entries are 1, then 2,
+    then 0. The blank differs from mark A, and the blank differs from mark B.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: State and prove in Lean the simulation of a machine over the coded alphabet by a
-    machine over the two marks and a blank before any minimality statement.
+  source_bottleneck: Simulation of a machine over a coded alphabet by a machine over the two marks and
+    a blank stays open, and it is required before any minimality sentence. A sentence that composite machine
+    M0 is not a smallest general-purpose machine stays open. Small-machine records stay literature only.
   source_refs:
   - dag/derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md
   - dag/research/genesis_to_universal_computation.md
@@ -21,7 +22,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md
-    sha256: edba962298bb562d50a8cd46a844ad8666afb1a081a160e280d29abcd8bede3a
+    sha256: a6d0ff20bccfdfffc0080748db3d390ae5f5238a7b2f46e1262429e1e996bbf4
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -29,9 +30,81 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/computation_comp_c8_minimality_fence_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: markA
+  line: 11
+  signature_excerpt: 'def markA : Nat'
+  source: lean4/CampaignCompC8MinimalityFence.lean
+  repository: this_repository
+  source_sha256: 2fa4a9bed26ae6cb06d9f38f747e7e981f0266722c68c8e1d6ccb3fb37bf770d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: markB
+  line: 12
+  signature_excerpt: 'def markB : Nat'
+  source: lean4/CampaignCompC8MinimalityFence.lean
+  repository: this_repository
+  source_sha256: 2fa4a9bed26ae6cb06d9f38f747e7e981f0266722c68c8e1d6ccb3fb37bf770d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: blank
+  line: 13
+  signature_excerpt: 'def blank : Nat'
+  source: lean4/CampaignCompC8MinimalityFence.lean
+  repository: this_repository
+  source_sha256: 2fa4a9bed26ae6cb06d9f38f747e7e981f0266722c68c8e1d6ccb3fb37bf770d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: appendBlank
+  line: 15
+  signature_excerpt: 'def appendBlank (word : List Nat) : List Nat'
+  source: lean4/CampaignCompC8MinimalityFence.lean
+  repository: this_repository
+  source_sha256: 2fa4a9bed26ae6cb06d9f38f747e7e981f0266722c68c8e1d6ccb3fb37bf770d
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: oneWordThenBlank
+  line: 17
+  signature_excerpt: |-
+    theorem oneWordThenBlank :
+        markA = 1 ∧ markB = 2 ∧ blank = 0 ∧ appendBlank [markA, markB] = [1, 2, 0]
+  source: lean4/CampaignCompC8MinimalityFence.lean
+  repository: this_repository
+  source_sha256: 2fa4a9bed26ae6cb06d9f38f747e7e981f0266722c68c8e1d6ccb3fb37bf770d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: blankDiffersFromMarks
+  line: 21
+  signature_excerpt: 'theorem blankDiffersFromMarks : blank ≠ markA ∧ blank ≠ markB'
+  source: lean4/CampaignCompC8MinimalityFence.lean
+  repository: this_repository
+  source_sha256: 2fa4a9bed26ae6cb06d9f38f747e7e981f0266722c68c8e1d6ccb3fb37bf770d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignCompC8MinimalityFence.lean::oneWordThenBlank
+  availability: local
+  symbol: oneWordThenBlank
+  path: lean4/CampaignCompC8MinimalityFence.lean
+  repository: this_repository
+  sha256: 2fa4a9bed26ae6cb06d9f38f747e7e981f0266722c68c8e1d6ccb3fb37bf770d
+  declaration_status: declaration_found_not_proof_checked
+  line: 17
+  role: source_lead_only
+- original_ref: lean4/CampaignCompC8MinimalityFence.lean::blankDiffersFromMarks
+  availability: local
+  symbol: blankDiffersFromMarks
+  path: lean4/CampaignCompC8MinimalityFence.lean
+  repository: this_repository
+  sha256: 2fa4a9bed26ae6cb06d9f38f747e7e981f0266722c68c8e1d6ccb3fb37bf770d
+  declaration_status: declaration_found_not_proof_checked
+  line: 21
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -69,8 +142,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

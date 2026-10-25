@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 4
+- distinct cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 1
@@ -59,6 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `FrontierTvLevel2Pentagon.level2_orthogonality_all_admissible` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FrontierTvLevel2Pentagon.level2_orthogonality_all_admissible` |
 | `FrontierTvLevel2Pentagon.level2_quantum_dimensions_and_truncation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FrontierTvLevel2Pentagon.level2_quantum_dimensions_and_truncation` |
 | `FrontierTvLevel2Pentagon.level2_quantum_pentagon_identity_all_19683` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FrontierTvLevel2Pentagon.level2_quantum_pentagon_identity_all_19683` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/H023DiscreteSpinfoamAmplitudes.lean`

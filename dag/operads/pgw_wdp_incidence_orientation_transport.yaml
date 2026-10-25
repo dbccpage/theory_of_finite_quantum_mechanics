@@ -3,24 +3,27 @@ node_id: PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: GenesisIncidence.lean reads the declared incidence complex on vertices 0, 1, 2 with
-    signed boundary maps on the edge basis (01, 02, 12), the admitted face 012 entering as the column
-    (1, −1, 1), and establishes that the boundary of that face has zero boundary (boundary_boundary_filled).
-    The WDP window instead uses coboundaries with the simplicial edge order (01, 12, 02), d₀f = (f₁ −
-    f₀, f₂ − f₁, f₂ − f₀) and d₁x = x₀₁ + x₁₂ − x₀₂ (Obstruction.lean), while the cyclic presentation
-    (01, 12, 20) negates the reversed component. The monograph states that every window quantity is invariant
-    once the cochain is transported with its edges, but no declared map takes the GenesisIncidence chains,
-    with their edge order and boundary convention, to the WDP cochain window.
+  source_statement: Narrowed in Lean 4 to one triangle. Incidence edges (01, 02, 12) reorder to (01, 12,
+    02) by sending (a, b, c) to (a, c, b). The face column (1, -1, 1) becomes (1, 1, -1), and the incidence
+    boundary of that column is (0, 0, 0). Dot products with the incidence columns, read in the order 01,
+    12, 02, equal the coboundary (f1 - f0, f2 - f1, f2 - f0). The evaluation x01 + x12 - x02 vanishes
+    on every such coboundary, agrees with the cyclic sum that stores edge 20 as the negation of edge 02,
+    and sends (1, 1, 0) to 2. The unit-weight residual of (1, 1, 0) equals 2 at vertex values (0, 1, 0)
+    and is at least 2 for every integer vertex triple. A transport for every window quantity, a derivation
+    of the WDP window from Genesis admission, and the external orientation test stay open.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Neither file states the transport; boundary_boundary_filled is a chain-level fact
-    in the incidence edge order, the incidence construction (TFQ-0460) does not derive the WDP window
-    from Genesis admission (TFQ-0344), and the orientation test in Python stays inside the WDP convention.
+  source_bottleneck: Open. One triangle is transported. The reorder, the transpose identity, the sign
+    for edge 20, the charge 2, and the residual lower bound 2 are checked. A transport for every window
+    quantity, a derivation of the WDP window from Genesis admission, and the external orientation test
+    stay open.
   source_refs:
   - dag/derivations/06_wdp/tfq_0543_wdp_incidence_orientation_transport.md
   - lean4/Imported/OeWdp/GenesisIncidence.lean:19-23
   - lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean:291-293
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:1478-1483
+  - dag/derivations/independent/pgw-wdp-incidence-orientation-transport.md:5
+  - dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json:6
   paper_refs: []
   source_claim_label: OPEN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -42,6 +45,62 @@ operation_candidates:
   source: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean
   repository: this_repository
   source_sha256: bef8623978d7c0735b4a02db686664b03b61e18bba0e5ef6bcce81ff4234dd0a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: dot3
+  line: 65
+  signature_excerpt: 'def dot3 (u v : Int × Int × Int) : Int'
+  source: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  source_sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: incBoundary
+  line: 58
+  signature_excerpt: 'def incBoundary (x01 x02 x12 : Int) : Int × Int × Int'
+  source: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  source_sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: wdpD0
+  line: 69
+  signature_excerpt: 'def wdpD0 (f0 f1 f2 : Int) : Int × Int × Int'
+  source: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  source_sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: reorderToWdp
+  line: 62
+  signature_excerpt: 'def reorderToWdp (a01 a02 a12 : Int) : Int × Int × Int'
+  source: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  source_sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: wdpD1
+  line: 73
+  signature_excerpt: 'def wdpD1 (x01 x12 x02 : Int) : Int'
+  source: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  source_sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: residual
+  line: 126
+  signature_excerpt: 'def residual (f0 f1 f2 : Int) : Int'
+  source: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  source_sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: iabs
+  line: 10
+  signature_excerpt: 'def iabs (n : Int) : Int'
+  source: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  source_sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
   status: source_candidate_requires_semantic_review
 - kind: def
   name: d1
@@ -77,6 +136,99 @@ operation_candidates:
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
+  name: transport_matches_transpose
+  line: 85
+  signature_excerpt: |-
+    theorem transport_matches_transpose (f0 f1 f2 : Int) :
+        (dot3 (incBoundary 1 0 0) (f0, f1, f2),
+          dot3 (incBoundary 0 0 1) (f0, f1, f2),
+          dot3 (incBoundary 0 1 0) (f0, f1, f2))
+          = wdpD0 f0 f1 f2
+  source: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  source_sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: face_reorders
+  line: 105
+  signature_excerpt: |-
+    theorem face_reorders :
+        reorderToWdp 1 (-1) 1 = (1, 1, -1)
+  source: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  source_sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: incidence_face_boundary_zero
+  line: 109
+  signature_excerpt: |-
+    theorem incidence_face_boundary_zero :
+        incBoundary 1 (-1) 1 = (0, 0, 0)
+  source: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  source_sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: wdp_d1_d0
+  line: 113
+  signature_excerpt: |-
+    theorem wdp_d1_d0 (f0 f1 f2 : Int) :
+        wdpD1 (f1 - f0) (f2 - f1) (f2 - f0) = 0
+  source: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  source_sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: reverse_edge_20
+  line: 118
+  signature_excerpt: |-
+    theorem reverse_edge_20 (x01 x12 x02 : Int) :
+        x01 + x12 + (-x02) = wdpD1 x01 x12 x02
+  source: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  source_sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: defect_charge
+  line: 123
+  signature_excerpt: 'theorem defect_charge : wdpD1 1 1 0 = 2'
+  source: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  source_sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: residual_at_repair
+  line: 133
+  signature_excerpt: 'theorem residual_at_repair : residual 0 1 0 = 2'
+  source: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  source_sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: residual_at_least_two
+  line: 137
+  signature_excerpt: 'theorem residual_at_least_two (f0 f1 f2 : Int) : 2 ≤ residual f0 f1 f2'
+  source: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  source_sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
   name: boundary_boundary_filled
   line: 107
   signature_excerpt: 'theorem boundary_boundary_filled (w : Int) : d1 (d2 w).x (d2 w).y (d2 w).z = zero'
@@ -87,6 +239,78 @@ relation_candidates:
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
+- original_ref: lean4/CampaignPgwWdpIncidenceTransport.lean::transport_matches_transpose
+  availability: local
+  symbol: transport_matches_transpose
+  path: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  declaration_status: declaration_found_not_proof_checked
+  line: 85
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpIncidenceTransport.lean::face_reorders
+  availability: local
+  symbol: face_reorders
+  path: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  declaration_status: declaration_found_not_proof_checked
+  line: 105
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpIncidenceTransport.lean::incidence_face_boundary_zero
+  availability: local
+  symbol: incidence_face_boundary_zero
+  path: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  declaration_status: declaration_found_not_proof_checked
+  line: 109
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpIncidenceTransport.lean::wdp_d1_d0
+  availability: local
+  symbol: wdp_d1_d0
+  path: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  declaration_status: declaration_found_not_proof_checked
+  line: 113
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpIncidenceTransport.lean::reverse_edge_20
+  availability: local
+  symbol: reverse_edge_20
+  path: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  declaration_status: declaration_found_not_proof_checked
+  line: 118
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpIncidenceTransport.lean::defect_charge
+  availability: local
+  symbol: defect_charge
+  path: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  declaration_status: declaration_found_not_proof_checked
+  line: 123
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpIncidenceTransport.lean::residual_at_repair
+  availability: local
+  symbol: residual_at_repair
+  path: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  declaration_status: declaration_found_not_proof_checked
+  line: 133
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpIncidenceTransport.lean::residual_at_least_two
+  availability: local
+  symbol: residual_at_least_two
+  path: lean4/CampaignPgwWdpIncidenceTransport.lean
+  repository: this_repository
+  sha256: d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf
+  declaration_status: declaration_found_not_proof_checked
+  line: 137
+  role: source_lead_only
 - original_ref: lean4/Imported/OeWdp/GenesisIncidence.lean::boundary_boundary_filled
   availability: local
   symbol: boundary_boundary_filled

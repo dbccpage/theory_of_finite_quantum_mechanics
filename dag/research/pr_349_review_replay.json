@@ -1,0 +1,72 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:10:44.156494+00:00",
+  "review_base": "94211290abe5f62a71bcaac719dbb10153382acc",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: TFQ-0385 — Narrowed: a uniform rule drops the class count from 2 to 1; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignTfq0385RuleErasesSeparation.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignTfq0385RuleErasesSeparation",
+        "dag_node": "TFQ-0385",
+        "source": "lean4/CampaignTfq0385RuleErasesSeparation.lean",
+        "sha256": "bb89512422e6d34ddfd19b01653c76325c46211bd98ced9b1898d59b6800eb12",
+        "sha256_after_build": "bb89512422e6d34ddfd19b01653c76325c46211bd98ced9b1898d59b6800eb12",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignTfq0385RuleErasesSeparation.two_data",
+          "CampaignTfq0385RuleErasesSeparation.marked_separates",
+          "CampaignTfq0385RuleErasesSeparation.rule_collapses",
+          "CampaignTfq0385RuleErasesSeparation.uniform_rule_erases_separation"
+        ],
+        "axioms": {
+          "CampaignTfq0385RuleErasesSeparation.two_data": [
+            "propext"
+          ],
+          "CampaignTfq0385RuleErasesSeparation.marked_separates": [
+            "propext"
+          ],
+          "CampaignTfq0385RuleErasesSeparation.rule_collapses": [
+            "propext"
+          ],
+          "CampaignTfq0385RuleErasesSeparation.uniform_rule_erases_separation": [
+            "propext"
+          ]
+        },
+        "output": "'CampaignTfq0385RuleErasesSeparation.two_data' depends on axioms: [propext]\n'CampaignTfq0385RuleErasesSeparation.marked_separates' depends on axioms: [propext]\n'CampaignTfq0385RuleErasesSeparation.rule_collapses' depends on axioms: [propext]\n'CampaignTfq0385RuleErasesSeparation.uniform_rule_erases_separation' depends on axioms: [propext]\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/tfq-0385.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.013,
+    "output": "checked 15 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/349/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.251,
+    "output": ""
+  }
+}

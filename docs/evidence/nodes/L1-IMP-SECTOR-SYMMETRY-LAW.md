@@ -10,9 +10,9 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 8
+- counted in-repo evidence files: 10
 - cited Lean, Rust or Python symbols found in their in-repo files: 91
-- cited Lean declarations covered by a current replay receipt: 89
+- distinct cited Lean declarations covered by a current replay receipt: 89
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -20,8 +20,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-- `broken_reference`: path not found: dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md. A cited in-repo path or symbol cannot be found in this checkout.
-- `broken_reference`: path not found: dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md. A cited in-repo path or symbol cannot be found in this checkout.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -135,6 +134,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignL1SectorSymmetry.unif12_qf` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignL1SectorSymmetry.unif12_qf` |
 | `CampaignL1SectorSymmetry.unif12_transpose` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignL1SectorSymmetry.unif12_transpose` |
 | `CampaignL1SectorSymmetry.unique_up_to_scale` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignL1SectorSymmetry.unique_up_to_scale` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/H006PermutationUnitary.lean`
@@ -149,6 +149,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `FableHilbertWalk20260819.H006.permutation_isometry` | yes | yes | yes | Quot.sound, propext | `#print axioms FableHilbertWalk20260819.H006.permutation_isometry` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/SectorFormHermitian.lean`
@@ -164,6 +165,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `InnerProductFable.HermitianSectorForm.Generated` | yes | yes | yes | module-level | `#print axioms InnerProductFable.HermitianSectorForm.Generated` |
 | `InnerProductFable.HermitianSectorForm.Invariant` | yes | yes | yes | module-level | `#print axioms InnerProductFable.HermitianSectorForm.Invariant` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/SectorFormUniqueness.lean`
@@ -182,6 +184,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `InnerProductFable.SectorForm.TransitiveOn` | yes | yes | yes | module-level | `#print axioms InnerProductFable.SectorForm.TransitiveOn` |
 | `InnerProductFable.SectorForm.diag_const_of_transitive` | yes | yes | yes | module-level | `#print axioms InnerProductFable.SectorForm.diag_const_of_transitive` |
 | `InnerProductFable.SectorForm.invariant_of_generated` | yes | yes | yes | module-level | `#print axioms InnerProductFable.SectorForm.invariant_of_generated` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/inner_product_uniqueness.rs`
@@ -194,6 +197,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `generated_transitivity_certificate` (rust_symbol) | yes | yes | yes | - | - |
 | `invariance_certificate` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/l1-imp-sector-symmetry-law.py`
@@ -227,17 +231,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ### Documents and data: `dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md`
 
-- file: `dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md](../../../dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md)
+- sha256 (`lf-normalised`): `f01c5d2da545bc6ad4951e385352cf309587c3540bbfd691fecf7192550beba4`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ### Documents and data: `dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md`
 
-- file: `dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md](../../../dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md)
+- sha256 (`lf-normalised`): `cc48bb4ba0e11dcfb32347c3e852fc453509ebda36518d3f8976b5bf808804bc`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ## Routes
 

@@ -1,0 +1,62 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:26:15.817696+00:00",
+  "review_base": "40dad20c0de81c32305289be9589281a0f9bd0eb",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: MAJ-OPEN-EVIDENCE-ADEQUACY — Narrowed: two integer coordinate maps; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignMajOpenEvidenceAdequacy.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignMajOpenEvidenceAdequacy",
+        "dag_node": "MAJ-OPEN-EVIDENCE-ADEQUACY",
+        "source": "lean4/CampaignMajOpenEvidenceAdequacy.lean",
+        "sha256": "81a40a01895906d43d21209fc70e5b9b2b5de09f8420670a14a11543d615c8a4",
+        "sha256_after_build": "81a40a01895906d43d21209fc70e5b9b2b5de09f8420670a14a11543d615c8a4",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "diff_is_zero_neg_one",
+          "first_coord_kernel",
+          "second_coord_separates"
+        ],
+        "axioms": {
+          "diff_is_zero_neg_one": [],
+          "first_coord_kernel": [],
+          "second_coord_separates": []
+        },
+        "output": "'diff_is_zero_neg_one' does not depend on any axioms\n'first_coord_kernel' does not depend on any axioms\n'second_coord_separates' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/maj-open-evidence-adequacy.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.012,
+    "output": "checked 10 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/361/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.233,
+    "output": ""
+  }
+}

@@ -3,20 +3,24 @@ node_id: PGW-ISOMORPHISM-SOUNDNESS-IN-LEAN
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'CL-ISO-SOUND, soundness of the implemented isomorphism key, is a finite computation
-    only: the Python key procedure''s classes are cross-checked against a brute-force minimum over bijections,
-    and the Lean side is unresolved (D3: no Lean evidence). Attempt two leaves 482 regimes above the brute-force
-    limit of the key cross-check (H-4), and attempt one''s check of the Python orbit against the Lean
-    orbit (G-9) is not done.'
+  source_statement: Narrowed in Lean 4 to colorings of two data. A coloring is a pair of bits. The swap
+    exchanges the two bits and is an involution. The serialization reads a bit as 0 or 1. The key is the
+    lexicographic minimum of a coloring and its swap. The four keys are (0, 0), (0, 1), (0, 1), and (1,
+    1). Equal keys hold exactly when one coloring is the other or its swap. Two colorings share the key
+    (0, 1). The two constant colorings are fixed by the swap and have different keys.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
   source_bottleneck: Open; the run trees are quotiented by the implemented isomorphism, whose soundness
-    is computational at the regimes cross-checked.
+    is computational at the regimes cross-checked. Narrowed in Lean 4 to colorings of two data, where
+    equal keys hold exactly when one coloring is the other or its swap. The implemented key, the regimes
+    past the brute-force limit, and the orbit comparison stay open.
   source_refs:
   - dag/derivations/02_genesis/tfq_0500_isomorphism_soundness_in_lean.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:60
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:379
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1045-1059
+  - dag/derivations/independent/pgw-isomorphism-soundness-in-lean.md:5
+  - dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json:6
   paper_refs: []
   source_claim_label: OPEN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -30,9 +34,197 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_isomorphism_soundness_in_lean_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: abbrev
+  name: PgwIsoColor
+  line: 8
+  signature_excerpt: abbrev PgwIsoColor
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pgwIsoSwap
+  line: 10
+  signature_excerpt: 'def pgwIsoSwap (c : PgwIsoColor) : PgwIsoColor'
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pgwIsoKey
+  line: 16
+  signature_excerpt: 'def pgwIsoKey (c : PgwIsoColor) : Nat × Nat'
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pgwIsoSer
+  line: 14
+  signature_excerpt: 'def pgwIsoSer (c : PgwIsoColor) : Nat × Nat'
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pgwIsoBit
+  line: 12
+  signature_excerpt: 'def pgwIsoBit (b : Bool) : Nat'
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: pgwIsoSwapInvolutive
+  line: 27
+  signature_excerpt: 'theorem pgwIsoSwapInvolutive (c : PgwIsoColor) : pgwIsoSwap (pgwIsoSwap c) = c'
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwIsoKeysOfFour
+  line: 31
+  signature_excerpt: |-
+    theorem pgwIsoKeysOfFour :
+        pgwIsoKey (false, false) = (0, 0) ∧
+        pgwIsoKey (false, true) = (0, 1) ∧
+        pgwIsoKey (true, false) = (0, 1) ∧
+        pgwIsoKey (true, true) = (1, 1)
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwIsoKeySwap
+  line: 38
+  signature_excerpt: 'theorem pgwIsoKeySwap (c : PgwIsoColor) : pgwIsoKey (pgwIsoSwap c) = pgwIsoKey c'
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwIsoKeyIff
+  line: 42
+  signature_excerpt: |-
+    theorem pgwIsoKeyIff (c d : PgwIsoColor) :
+        pgwIsoKey c = pgwIsoKey d ↔ (c = d ∨ pgwIsoSwap c = d)
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwIsoConstants
+  line: 48
+  signature_excerpt: |-
+    theorem pgwIsoConstants :
+        pgwIsoSwap (false, false) = (false, false) ∧
+        pgwIsoSwap (true, true) = (true, true) ∧
+        pgwIsoKey (false, false) ≠ pgwIsoKey (true, true)
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwIsoFour
+  line: 54
+  signature_excerpt: 'theorem pgwIsoFour : pgwIsoUniverse.length = 4'
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwIsoMixed
+  line: 57
+  signature_excerpt: |-
+    theorem pgwIsoMixed :
+        (pgwIsoUniverse.filter fun c => decide (pgwIsoKey c = (0, 1))).length = 2
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
 source_bindings:
+- original_ref: lean4/CampaignPgwIsomorphismSoundnessInLean.lean::pgwIsoSwapInvolutive
+  availability: local
+  symbol: pgwIsoSwapInvolutive
+  path: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  declaration_status: declaration_found_not_proof_checked
+  line: 27
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwIsomorphismSoundnessInLean.lean::pgwIsoKeysOfFour
+  availability: local
+  symbol: pgwIsoKeysOfFour
+  path: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  declaration_status: declaration_found_not_proof_checked
+  line: 31
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwIsomorphismSoundnessInLean.lean::pgwIsoKeySwap
+  availability: local
+  symbol: pgwIsoKeySwap
+  path: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  declaration_status: declaration_found_not_proof_checked
+  line: 38
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwIsomorphismSoundnessInLean.lean::pgwIsoKeyIff
+  availability: local
+  symbol: pgwIsoKeyIff
+  path: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  declaration_status: declaration_found_not_proof_checked
+  line: 42
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwIsomorphismSoundnessInLean.lean::pgwIsoConstants
+  availability: local
+  symbol: pgwIsoConstants
+  path: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  declaration_status: declaration_found_not_proof_checked
+  line: 48
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwIsomorphismSoundnessInLean.lean::pgwIsoFour
+  availability: local
+  symbol: pgwIsoFour
+  path: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  declaration_status: declaration_found_not_proof_checked
+  line: 54
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwIsomorphismSoundnessInLean.lean::pgwIsoMixed
+  availability: local
+  symbol: pgwIsoMixed
+  path: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  sha256: 0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0
+  declaration_status: declaration_found_not_proof_checked
+  line: 57
+  role: source_lead_only
 - original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::canonical_bruteforce
   availability: external
   symbol: canonical_bruteforce
@@ -78,8 +270,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

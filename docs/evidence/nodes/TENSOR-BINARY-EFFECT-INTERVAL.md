@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 8
-- cited Lean declarations covered by a current replay receipt: 8
+- distinct cited Lean declarations covered by a current replay receipt: 8
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -59,6 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `binary_iff_bounds` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms binary_iff_bounds` |
 | `binary_iff_interval` | yes | yes | yes | module-level | `#print axioms binary_iff_interval` |
 | `binary_iff_normalized` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms binary_iff_normalized` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/TensorMeasurements.lean`
@@ -78,6 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `effectRepresentation_product` | yes | yes | yes | module-level | `#print axioms effectRepresentation_product` |
 | `effectRepresentation_unit` | yes | yes | yes | module-level | `#print axioms effectRepresentation_unit` |
 | `validEffect_iff_binary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms validEffect_iff_binary` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 21
-- cited Lean declarations covered by a current replay receipt: 9
+- distinct cited Lean declarations covered by a current replay receipt: 9
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -62,6 +62,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `super_bound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms super_bound` |
 | `super_diverges` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms super_diverges` |
 | `threshold_trichotomy` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms threshold_trichotomy` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/campaigns/qc_self_obstruction.rs`
@@ -78,6 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `first_level_above` (rust_symbol) | yes | yes | yes | - | - |
 | `first_level_below` (rust_symbol) | yes | yes | yes | - | - |
 | `half_bound_holds` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/qm/qc_self_obstruction.py`
@@ -94,6 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `first_level_above` (python_symbol) | yes | yes | yes | - | - |
 | `first_level_below` (python_symbol) | yes | yes | yes | - | - |
 | `half_bound_holds` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1319_qcv_concatenation_threshold_dichotomy.md`

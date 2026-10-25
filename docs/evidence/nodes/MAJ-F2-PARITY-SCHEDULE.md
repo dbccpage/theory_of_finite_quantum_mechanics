@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 6
-- cited Lean declarations covered by a current replay receipt: 3
+- distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -56,6 +56,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `F2CochainComplex` | yes | yes | yes | none | `#print axioms F2CochainComplex` |
 | `F2Map` | yes | yes | yes | none | `#print axioms F2Map` |
 | `F2Vec.add` | yes | yes | yes | none | `#print axioms F2Vec.add` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/majorana/complexes.rs`
@@ -67,6 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `ChainComplexGf2` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `papers/core/majorana/code/majorana_evaluator.py`
@@ -79,6 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `F2CochainComplex` (python_symbol) | yes | yes | yes | - | - |
 | `GF2Matrix` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1138_maj_f2_parity_schedule.md`

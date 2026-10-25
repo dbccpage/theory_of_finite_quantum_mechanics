@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 18
-- cited Lean declarations covered by a current replay receipt: 18
+- distinct cited Lean declarations covered by a current replay receipt: 18
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm062_u1_selector_layers_and_ring_iso` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm062_u1_selector_layers_and_ring_iso` |
 | `QuantumMechanics.DerivationDagQMClosure.l1_observer_h1_h5_cochain_flatness_and_wdp_window_mass_realification` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_observer_h1_h5_cochain_flatness_and_wdp_window_mass_realification` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/RealificationJ.lean`
@@ -87,6 +88,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `RealificationJ.other_square_root_instance` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms RealificationJ.other_square_root_instance` |
 | `RealificationJ.trace_R` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms RealificationJ.trace_R` |
 | `RealificationJ.trace_not_twice_complex_trace` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms RealificationJ.trace_not_twice_complex_trace` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs`

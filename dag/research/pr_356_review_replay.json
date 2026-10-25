@@ -1,0 +1,95 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:17:20.413008+00:00",
+  "review_base": "687017b7eba032923c740cefbc8a66c6af749b6f",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT — Narrowed: one triangle incidence reorder; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignPgwWdpIncidenceTransport.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignPgwWdpIncidenceTransport",
+        "dag_node": "PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT",
+        "source": "lean4/CampaignPgwWdpIncidenceTransport.lean",
+        "sha256": "d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf",
+        "sha256_after_build": "d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "transport_matches_transpose",
+          "wdp_d1_d0",
+          "reverse_edge_20",
+          "pairing_is_two",
+          "residual_at_least_two",
+          "column_01",
+          "column_02",
+          "column_12",
+          "face_reorders",
+          "incidence_face_boundary_zero",
+          "defect_charge",
+          "residual_at_repair"
+        ],
+        "axioms": {
+          "transport_matches_transpose": [
+            "Quot.sound",
+            "propext"
+          ],
+          "wdp_d1_d0": [
+            "Quot.sound",
+            "propext"
+          ],
+          "reverse_edge_20": [
+            "Quot.sound",
+            "propext"
+          ],
+          "pairing_is_two": [
+            "Quot.sound",
+            "propext"
+          ],
+          "residual_at_least_two": [
+            "Quot.sound",
+            "propext"
+          ],
+          "column_01": [],
+          "column_02": [],
+          "column_12": [],
+          "face_reorders": [],
+          "incidence_face_boundary_zero": [],
+          "defect_charge": [],
+          "residual_at_repair": []
+        },
+        "output": "'column_01' does not depend on any axioms\n'column_02' does not depend on any axioms\n'column_12' does not depend on any axioms\n'transport_matches_transpose' depends on axioms: [propext, Quot.sound]\n'face_reorders' does not depend on any axioms\n'incidence_face_boundary_zero' does not depend on any axioms\n'wdp_d1_d0' depends on axioms: [propext, Quot.sound]\n'reverse_edge_20' depends on axioms: [propext, Quot.sound]\n'defect_charge' does not depend on any axioms\n'pairing_is_two' depends on axioms: [propext, Quot.sound]\n'residual_at_repair' does not depend on any axioms\n'residual_at_least_two' depends on axioms: [propext, Quot.sound]\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/pgw-wdp-incidence-orientation-transport.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.014,
+    "output": "checked 3654 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/356/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.221,
+    "output": ""
+  }
+}

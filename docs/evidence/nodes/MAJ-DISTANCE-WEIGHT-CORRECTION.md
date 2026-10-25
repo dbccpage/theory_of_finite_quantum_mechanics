@@ -12,7 +12,7 @@ Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 0
+- distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -52,6 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `assert_repair_capacity_invariant` (rust_symbol) | yes | yes | yes | - | - |
 | `repair_capacity_from_distance` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1148_maj_distance_weight_correction.md`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 18
-- cited Lean declarations covered by a current replay receipt: 17
+- distinct cited Lean declarations covered by a current replay receipt: 17
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -70,6 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_half` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_half` |
 | `CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_two` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_two` |
 | `CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_gamma5_intertwine` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_gamma5_intertwine` |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/fsp-qcd-chemical-potential-det.py`
@@ -81,6 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `main` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1201_fsp_qcd_chemical_potential_det.md`

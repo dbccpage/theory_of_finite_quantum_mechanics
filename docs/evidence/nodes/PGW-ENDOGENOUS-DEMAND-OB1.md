@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 17
-- cited Lean declarations covered by a current replay receipt: 17
+- distinct cited Lean declarations covered by a current replay receipt: 17
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -71,6 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignGenesisDemandPolicy.seek_is_recorded_source_step` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.seek_is_recorded_source_step` |
 | `CampaignGenesisDemandPolicy.seek_preserves_observations` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.seek_preserves_observations` |
 | `CampaignGenesisDemandPolicy.seek_preserves_policy` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.seek_preserves_policy` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs`

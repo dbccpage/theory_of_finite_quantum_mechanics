@@ -63,11 +63,12 @@ $$\text{Level: L3}, \quad \text{Gates: } [\text{G1: A}, \text{G2: A}, \text{G3: 
 This preserves the refusal to certify without evidence while avoiding a false claim that the code has already been demonstrated defective. Furthermore, **a known Grade E finding remains visible when other gates are unassessed**. Missing evidence cannot conceal an established failure.
 
 ### 1.5 Repository Acceptance Floor
-This repository accepts a source or formal artifact only with a **completed** score at capability level **L4 or L5** and composite grade **D or better**:
+The default acceptance rule for a governed source or formal artifact requires a **completed** score at capability level **L4 or L5** and composite grade **D or better**:
 
 $$\text{accepted} \iff \text{complete} \wedge \text{Level} \ge \mathbf{L4} \wedge \text{Grade} \ge \mathbf{D}$$
 
-- `L4D`, `L4C` and `L5A+` are accepted. `L4E` and `L5E` (a demonstrated defect) are rejected, and so is every score at `L1`, `L2` or `L3`, for example `L3A`.
+- Under the default rule, `L4D`, `L4C` and `L5A+` are accepted. `L4E` and `L5E` (a demonstrated defect) are rejected, and so is every score at `L1`, `L2` or `L3`, for example `L3A`.
+- Explicitly reviewed support exceptions in `governance/policy.json` may retain L1–L3 scores only for their exact source path and SHA-256, with every gate complete and grade D or better. On 2026-10-25 the maintainer authorized 31 `finite_proof_example` pins for the reviewed campaign modules. Scores and node statuses are not promoted; changing a source invalidates its exception. The default L4/D floor still applies to every unlisted source.
 - An incomplete assessment (an unassessed gate, `composite_grade: null`, `score_token: null`) is rejected, whatever its known ceiling.
 - `requested_target: L4E or higher` in older records means "any L4 score". It is superseded by this floor and earns no acceptance.
 - The floor applies to every new or changed source. A source listed in `governance/baseline.json` with unchanged bytes is grandfathered; changing it removes the exemption. The floor, the source populations and the baseline are machine-readable in `governance/policy.json` and `governance/baseline.json` and are enforced by `governance-check` and by every workspace `build.rs` (see `governance/README.md`).

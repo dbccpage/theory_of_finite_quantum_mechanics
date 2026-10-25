@@ -1,19 +1,35 @@
 Status: AI-drafted, awaiting human review.
 
-Node `GTH-SHADOW`, record TFQ-2400, parent record TFQ-0481 (`PGW-GO-ADMISSION-GATE`).
+# GTH-SHADOW
 
-No construction turns PGW-GO-ADMISSION-GATE into a finite semi-simplicial set or a finite globular set. That gate keeps a two-valued admission record with a reached result: reaching leaves not-admitted, and admission is not one of the four kinds of change. A finite semi-simplicial set of dimension at most N is finite sets X_0, ..., X_N and face maps d_i from X_n to X_{n-1} such that d_i composed with d_j equals d_{j-1} composed with d_i whenever i < j. It carries no degeneracy maps. A finite globular set is finite sets with source and target maps s, t from X_{n+1} to X_n such that s composed with s equals s composed with t, and t composed with t equals t composed with s. Neither family is defined from the admission record.
+Node status stays OPEN. This note records one triangle and one reach map.
 
-The route `GTH-R-GTH-SHADOW` takes that gate as input and has status `GAP_NO_DERIVATION`. See also `PG-GEN-REGIME-EVENTS` and `PGW-ADMISSION-BEFORE-DISTINCTION`. Those nodes are not inputs of the route.
+## The triangle
+
+The three edges are the pairs (0, 1), (0, 2) and (1, 2). The source of a pair is its first entry. The target is its second entry.
+
+- The target of (0, 2) is 2, and the target of (1, 2) is 2.
+- The target of (0, 1) is 1, and the source of (1, 2) is 1.
+- The source of (0, 1) is 0, and the source of (0, 2) is 0.
+
+These are the three face identities for this one triangle. There is no degeneracy map.
+
+## The reach map
+
+The reach map sends 0 to 0 and 1 to 0. The pair of those values is (0, 0). That pair differs from the edge (0, 1).
+
+## Two parallel edges
+
+Label two edges 0 and 1. The source map sends both to 0. The target map sends both to 1. The two source values agree, and the two target values agree.
 
 ## What is proved
 
-Nothing in Lean.
+The three face identities, the two reach values, the inequality of (0, 0) with (0, 1), and the agreement of the two source values and of the two target values. The campaign module CampaignGthShadow decides those evaluations. This node's lean list stays empty, because this stage rejects a Lean citation on the node.
 
 ## What is assumed
 
-The admission gate is the existing node `PGW-GO-ADMISSION-GATE`: a two-valued record kept with a reached result. The definitions of a finite semi-simplicial set and of a finite globular set are the usual finite ones, stated above, and are not claimed as constructions from that gate.
+Natural-number arithmetic, pair projection, and the listed constants. The two-valued admission record is the background of the reach map, which sends both values to 0. AuthorityEffect is None.
 
 ## What is open
 
-A construction of either finite structure from the admission record. Any later use of degeneracies, which this note does not include.
+A construction that turns the admission gate into a finite semi-simplicial set or a finite globular set. Every complex other than this triangle and this pair of edges. Degeneracy maps. The four kinds of change. Path components, a fundamental groupoid, and horn fillers.

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 2
+- distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `FrontierHappyMincut.boundary_stabilizer_commutes_and_full_rank_20` | yes | yes | yes | propext | `#print axioms FrontierHappyMincut.boundary_stabilizer_commutes_and_full_rank_20` |
 | `FrontierHappyMincut.happy_patch_380_intervals_entropy_vs_mincut` | yes | yes | yes | propext | `#print axioms FrontierHappyMincut.happy_patch_380_intervals_entropy_vs_mincut` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2209_ads_happy_entropy_mincut_target.md`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 14
-- cited Lean declarations covered by a current replay receipt: 14
+- distinct cited Lean declarations covered by a current replay receipt: 14
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/H008PhaseBlindPresentation.lean`
@@ -71,6 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `phase_blind_presentation` | yes | yes | yes | propext | `#print axioms phase_blind_presentation` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/H010InterferenceNonDescent.lean`
@@ -86,6 +88,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `mix_separates` | yes | yes | yes | none | `#print axioms mix_separates` |
 | `no_descent_through_fiber` | yes | yes | yes | Quot.sound | `#print axioms no_descent_through_fiber` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/PhaseBlindFiber.lean`
@@ -109,6 +112,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `PhaseBlindFiber.w_I_mul` | yes | yes | yes | Quot.sound, propext | `#print axioms PhaseBlindFiber.w_I_mul` |
 | `PhaseBlindFiber.w_eq_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms PhaseBlindFiber.w_eq_zero` |
 | `PhaseBlindFiber.witness_readouts` | yes | yes | yes | none | `#print axioms PhaseBlindFiber.witness_readouts` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs`

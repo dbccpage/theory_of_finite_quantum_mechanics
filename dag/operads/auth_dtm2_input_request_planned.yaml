@@ -3,13 +3,16 @@ node_id: AUTH-DTM2-INPUT-REQUEST-PLANNED
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: The update packet plans a request code made of a fuel token, a machine-code length,
-    one machine segment and an input word, whose code-level evaluator decodes the request and calls the
-    bounded evaluator on the declared initial input, with seven named target theorems.
+  source_statement: On one closed request the header tag is 1, the fuel token is 2, the machine-code length
+    is 1, the machine segment is the list 7, and the input word is the list 3, 4. Concatenating the header,
+    the fuel, the length, the segment and the input word yields the list 1, 2, 1, 7, 3, 4. The list 0,
+    2, 1, 7, 3, 4 begins with 0, and 0 differs from the header tag.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Write the module and prove the request round trip and the result-level agreement;
-    configuration snapshots and step-by-step trace agreement remain separate obligations.
+  source_bottleneck: An encoder and decoder for a request other than this closed list, the remaining named
+    targets in the update packet, and result-level agreement with a bounded evaluator stay open. Configuration
+    snapshots and step-by-step trace agreement stay open. No custody reading and no authorization reading
+    are in this record.
   source_refs:
   - dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md
   - papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_update_packet.md
@@ -22,7 +25,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md
-    sha256: 8f0d253d4630ee216dff1d24abc9d5b118740c81b6cbd8ece037e029d4b68f4f
+    sha256: 3cb9b84df8a6d64d49eda6344d7a29b7c93f18f661f385bf9dd22077baf16266
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -30,9 +33,101 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/computation_auth_dtm2_input_request_planned_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: header
+  line: 11
+  signature_excerpt: 'def header : Nat'
+  source: lean4/CampaignAuthDtm2InputRequestPlanned.lean
+  repository: this_repository
+  source_sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: fuel
+  line: 12
+  signature_excerpt: 'def fuel : Nat'
+  source: lean4/CampaignAuthDtm2InputRequestPlanned.lean
+  repository: this_repository
+  source_sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: machineLength
+  line: 13
+  signature_excerpt: 'def machineLength : Nat'
+  source: lean4/CampaignAuthDtm2InputRequestPlanned.lean
+  repository: this_repository
+  source_sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: machineSegment
+  line: 14
+  signature_excerpt: 'def machineSegment : List Nat'
+  source: lean4/CampaignAuthDtm2InputRequestPlanned.lean
+  repository: this_repository
+  source_sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: inputWord
+  line: 15
+  signature_excerpt: 'def inputWord : List Nat'
+  source: lean4/CampaignAuthDtm2InputRequestPlanned.lean
+  repository: this_repository
+  source_sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: encodeRequest
+  line: 17
+  signature_excerpt: 'def encodeRequest : List Nat'
+  source: lean4/CampaignAuthDtm2InputRequestPlanned.lean
+  repository: this_repository
+  source_sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: oneRequestEncoding
+  line: 20
+  signature_excerpt: |-
+    theorem oneRequestEncoding :
+        header = 1 ∧ fuel = 2 ∧ machineLength = 1 ∧
+          machineSegment = [7] ∧ inputWord = [3, 4] ∧
+          encodeRequest = [1, 2, 1, 7, 3, 4]
+  source: lean4/CampaignAuthDtm2InputRequestPlanned.lean
+  repository: this_repository
+  source_sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: zeroHeadDiffersFromHeader
+  line: 26
+  signature_excerpt: |-
+    theorem zeroHeadDiffersFromHeader :
+        [0, 2, 1, 7, 3, 4].head? = some 0 ∧ header = 1 ∧ some 0 ≠ some header
+  source: lean4/CampaignAuthDtm2InputRequestPlanned.lean
+  repository: this_repository
+  source_sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignAuthDtm2InputRequestPlanned.lean::oneRequestEncoding
+  availability: local
+  symbol: oneRequestEncoding
+  path: lean4/CampaignAuthDtm2InputRequestPlanned.lean
+  repository: this_repository
+  sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
+  declaration_status: declaration_found_not_proof_checked
+  line: 20
+  role: source_lead_only
+- original_ref: lean4/CampaignAuthDtm2InputRequestPlanned.lean::zeroHeadDiffersFromHeader
+  availability: local
+  symbol: zeroHeadDiffersFromHeader
+  path: lean4/CampaignAuthDtm2InputRequestPlanned.lean
+  repository: this_repository
+  sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
+  declaration_status: declaration_found_not_proof_checked
+  line: 26
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -70,8 +165,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

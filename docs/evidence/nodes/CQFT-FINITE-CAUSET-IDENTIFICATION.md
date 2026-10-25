@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 1
-- cited Lean declarations covered by a current replay receipt: 1
+- distinct cited Lean declarations covered by a current replay receipt: 1
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -54,6 +54,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `FiniteStrictPoset` | yes | yes | yes | none | `#print axioms FiniteStrictPoset` |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/general_relativity/causal_set.py`

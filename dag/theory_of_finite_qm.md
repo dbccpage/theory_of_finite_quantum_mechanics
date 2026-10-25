@@ -127,9 +127,9 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0050` | `FINITE_TOPOLOGICAL` | `OPEN_OBLIGATION` | `TFQ-0050` (OPEN) | - |
 | `TFQ-0051` | `FINITE_TOPOLOGICAL` | `COMPUTATIONAL_CONTROL` | `TFQ-0051` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-0052` | `FINITE_GAUGE` | `COMPUTATIONAL_CONTROL` | `FQ-DISCRETE-DYNAMICS-DICHOTOMY` (PROVED_LEAN), `L1-CHAIN-D1D0-AXIOM` (ADMITTED_PRIMITIVE), `DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO` (PROVED_LEAN) | `FQ-DISCRETE-DYNAMICS-DICHOTOMY`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-CHAIN-D1D0-AXIOM`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO`: scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0053` | `FINITE_GAUGE` | `COMPUTATIONAL_CONTROL` | `FQ-U1-TRANSPORT-N-TORSION` (PROVED_LEAN), `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `FQ-U1-TRANSPORT-N-TORSION`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0054` | `FINITE_GAUGE` | `COMPUTATIONAL_CONTROL` | `FQ-U1-TRANSPORT-N-TORSION` (PROVED_LEAN), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `FQ-U1-TRANSPORT-N-TORSION`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0055` | `FINITE_GAUGE` | `GAP` | `FQ-GAP-U1-CIRCLE` (CONDITIONAL), `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / consistent; `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0053` | `FINITE_GAUGE` | `COMPUTATIONAL_CONTROL` | `FQ-U1-TRANSPORT-N-TORSION` (PROVED_LEAN), `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `FQ-U1-TRANSPORT-N-TORSION`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0054` | `FINITE_GAUGE` | `COMPUTATIONAL_CONTROL` | `FQ-U1-TRANSPORT-N-TORSION` (PROVED_LEAN), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `FQ-U1-TRANSPORT-N-TORSION`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0055` | `FINITE_GAUGE` | `GAP` | `FQ-GAP-U1-CIRCLE` (CONDITIONAL), `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0056` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0057` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN), `FQ-U1-TRANSPORT-N-TORSION` (PROVED_LEAN) | `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-U1-TRANSPORT-N-TORSION`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0058` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
@@ -157,7 +157,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0080` | `FINITE_ELECTROWEAK` | `OPEN_OBLIGATION` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0081` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0082` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0083` | `FINITE_ELECTROWEAK` | `GAP` | `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL), `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED), `FQ-GAP-STONE-CONTINUOUS-TIME` (CONDITIONAL), `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-GAP-STONE-CONTINUOUS-TIME`: scoped_result_or_obstruction_reviewed / consistent; `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0083` | `FINITE_ELECTROWEAK` | `GAP` | `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL), `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED), `FQ-GAP-STONE-CONTINUOUS-TIME` (CONDITIONAL), `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-GAP-STONE-CONTINUOUS-TIME`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0084` | `FINITE_QG` | `OPEN_OBLIGATION` | `TFQ-0084` (OPEN) | - |
 | `TFQ-0085` | `CONTINUUM_INTERFACE` | `GAP` | `TFQ-0085` (OPEN) | - |
 | `TFQ-0086` | `FINITE_QG` | `FINITE_ADMITTED` | `PG-ROOT-DIFF-STRUCTURE` (ADMITTED_PRIMITIVE), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `PG-ROOT-DIFF-STRUCTURE`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_result_or_obstruction_reviewed / consistent |
@@ -320,14 +320,14 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0243` | `FINITE_QM_DYNAMICS` | `SOURCE_RECORD` | `DS-QM032-FINITE-FEYNMAN-SHADOW` (COMPUTATIONALLY_CHECKED), `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED) | `DS-QM032-FINITE-FEYNMAN-SHADOW`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`: scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0244` | `FINITE_QM_DYNAMICS` | `SOURCE_RECORD` | `DS-QM033-SCHRODINGER-DISCRETE-COCHAIN` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0245` | `FINITE_QM_DYNAMICS` | `OPEN_OBLIGATION` | `DS-QM034-035-050-051-095-RESERVED-STUBS` (CONDITIONAL), `FQ-DISCRETE-DYNAMICS-DICHOTOMY` (PROVED_LEAN) | `DS-QM034-035-050-051-095-RESERVED-STUBS`: scoped_result_or_obstruction_reviewed / consistent; `FQ-DISCRETE-DYNAMICS-DICHOTOMY`: scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0246` | `FINITE_QM_DYNAMICS` | `OPEN_OBLIGATION` | `DS-QM034-035-050-051-095-RESERVED-STUBS` (CONDITIONAL), `FQ-GAP-STONE-CONTINUOUS-TIME` (CONDITIONAL), `FQ-DISCRETE-TIME-STONE-AMBIGUITY` (PROVED_LEAN) | `DS-QM034-035-050-051-095-RESERVED-STUBS`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-STONE-CONTINUOUS-TIME`: scoped_result_or_obstruction_reviewed / consistent; `FQ-DISCRETE-TIME-STONE-AMBIGUITY`: scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0246` | `FINITE_QM_DYNAMICS` | `OPEN_OBLIGATION` | `DS-QM034-035-050-051-095-RESERVED-STUBS` (CONDITIONAL), `FQ-GAP-STONE-CONTINUOUS-TIME` (CONDITIONAL), `FQ-DISCRETE-TIME-STONE-AMBIGUITY` (PROVED_LEAN) | `DS-QM034-035-050-051-095-RESERVED-STUBS`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-STONE-CONTINUOUS-TIME`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-DISCRETE-TIME-STONE-AMBIGUITY`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0247` | `FINITE_QM_DYNAMICS` | `SOURCE_RECORD` | `DS-QM041-HEISENBERG-PICTURE-FINITE` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0248` | `FINITE_QM_DYNAMICS` | `SOURCE_RECORD` | `DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT` (IMPORTED_ASSUMPTION), `DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY` (PROVED_LEAN) | `DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0249` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0250` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM120-MERMIN-PERES-F2-OBSTRUCTION` (PROVED_LEAN), `FQ-CONTEXTUALITY-CECH-F2` (PROVED_LEAN) | `DS-QM120-MERMIN-PERES-F2-OBSTRUCTION`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-CONTEXTUALITY-CECH-F2`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0251` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM060-SUPERPOSITION-QUOTIENT-FIBER` (PROVED_LEAN), `FQ-PHASE-FIBER-QUOTIENT` (PROVED_LEAN) | `DS-QM060-SUPERPOSITION-QUOTIENT-FIBER`: scoped_result_or_obstruction_reviewed / consistent; `FQ-PHASE-FIBER-QUOTIENT`: scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0252` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE` (PROVED_LEAN), `DS-QM061-BUILDABILITY-SET-S` (COMPUTATIONALLY_CHECKED), `FQ-INTERFERENCE-NONDESCENT` (PROVED_LEAN) | `DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM061-BUILDABILITY-SET-S`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-INTERFERENCE-NONDESCENT`: scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0253` | `FINITE_QM_STRUCTURE` | `OPEN_OBLIGATION` | `DS-QM062-U1-SELECTOR-LAYERS` (COMPUTATIONALLY_CHECKED), `DS-QM062-U1-RESIDUES-IMPORT` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `DS-QM062-U1-SELECTOR-LAYERS`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM062-U1-RESIDUES-IMPORT`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0253` | `FINITE_QM_STRUCTURE` | `OPEN_OBLIGATION` | `DS-QM062-U1-SELECTOR-LAYERS` (COMPUTATIONALLY_CHECKED), `DS-QM062-U1-RESIDUES-IMPORT` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `DS-QM062-U1-SELECTOR-LAYERS`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM062-U1-RESIDUES-IMPORT`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0254` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM063-HOLONOMY-COHERENT-INTENSITY` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0255` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM064-074-083-ANNEX-REDIRECT-ROWS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0256` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM070-PRODUCT-NONFACTORIZATION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
@@ -368,7 +368,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0291` | `L1_TO_L2` | `OPEN_OBLIGATION` | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT` (PROVED_LEAN), `L1-QM020-THM2B-MINKOWSKI` (IMPORTED_ASSUMPTION) | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-QM020-THM2B-MINKOWSKI`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0292` | `L1_TO_L2` | `GAP` | `L1-IMP-SQRT-FIELD` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0293` | `L1_TO_L2` | `GAP` | `L1-IMP-COMPLEX-FIELD` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0294` | `L1_TO_L2` | `GAP` | `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0294` | `L1_TO_L2` | `GAP` | `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0295` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_LEAN), `FQ-BORN-NORMALIZATION-REDUNDANCY` (PROVED_LEAN) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent; `FQ-BORN-NORMALIZATION-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0296` | `L1_TO_L2` | `GAP` | `L1-IMP-HILBERT-INNER-PRODUCT` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0297` | `FINITE_HILBERT` | `OPEN_OBLIGATION` | `TFQ-0297` (OPEN) | - |
@@ -481,7 +481,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1007` | `FINITE_QM_CORE` | `PROVED_LEAN` | `FQ-PRIMDIFF-QUOTIENT-KERNEL` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1008` | `FINITE_QM_CORE` | `IMPORTED_ASSUMPTION` | `FQ-POSITIVE-WEIGHTS-ADMITTED` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1009` | `FINITE_QM_CORE` | `IMPORTED_ASSUMPTION` | `FQ-DECLARED-QUANTUM-INTERFACE` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-1010` | `FINITE_QM_CORE` | `CONDITIONAL` | `FQ-PRIM-TO-QM-SELECTION-OPEN` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-1010` | `FINITE_QM_CORE` | `CONDITIONAL` | `FQ-PRIM-TO-QM-SELECTION-OPEN` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1011` | `FINITE_QM_CORE` | `PROVED_LEAN` | `FQ-SORKIN-READOUT-CLASS-QM208` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1012` | `FINITE_QM_CORE` | `PROVED_LEAN` | `FQ-POWER-RULE-P2-SELECTION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1013` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `FQ-FIVE-IMPORT-PROXY-SEPARATION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
@@ -1360,9 +1360,9 @@ Obligation: Free monoids on finite alphabets of different sizes are not isomorph
 - Atlas paths:
   - `omega_engine_atlas/coda_atlas/F000_finite/floor.yaml`
 
-Ledger row WDP-P001-009 says language restriction, partial word recovery, and total erasure have different types, with no Ext calculation. Pre-Genesis paper.md section 11.2 is the heading. Opened preservation.py defines recover_word, erase_word, and decimal_decode as separate functions, which does not by itself record that they differ on a new letter. The finite statement still required is a single finite witness, one new letter, on which the three contracts disagree, kept distinct from free-monoid size. WordRecovery.lean is listed in the package and was not opened, so its declarations stay unchecked here.
+Ledger row WDP-P001-009 says language restriction, partial word recovery, and total erasure have different types, with no Ext calculation. Pre-Genesis paper.md section 11.2 is the heading. Opened preservation.py defines recover_word, erase_word, and decimal_decode as separate functions, which does not by itself record that they differ on a new letter. The finite statement still required is a single finite witness, one new letter, on which the three contracts disagree, kept distinct from free-monoid size. WordRecovery.lean is listed in the package and was not opened, so its declarations stay unchecked here. Narrowed in Lean 4 to one old letter a and one new letter fresh. The witness word is [a, fresh], and it contains fresh once. Language restriction of the sample [[a, fresh], [a]] returns [[a]], a list of words. Partial recovery of the witness returns none, an optional word. Total erasure of the witness returns [a], a word. On the old word [a], recovery returns the word and erasure returns the word. Recovery of the witness is not the erased word, and erasure is not the witness word. The witness word is absent from the restricted sample. No Ext group is defined in this file. Free-monoid size is not restated. The atlas files preservation.py and WordRecovery.lean stay unchecked. AuthorityEffect is None.
 
-Obligation: Language restriction, partial word recovery, and total erasure are three different types, witnessed on one new letter, with no Ext calculation.
+Obligation: The atlas files preservation.py and WordRecovery.lean stay unchecked. The finite witness in this file is the word [a, fresh]: restriction returns [[a]], recovery returns none, and erasure returns [a]. No Ext group is defined here, and free-monoid size is not restated.
 
 ### TFQ-0375 chain-retraction-old-class
 
@@ -1549,7 +1549,7 @@ Obligation: Reject any auditor that certifies the adopted state from a view π u
 - Parent: `TFQ-0426`
 - Status: `OPEN_OBLIGATION`
 
-A trace that starts from a declared context s′ and takes steps valid relative to s′ need not be valid relative to the actual replayed state s ≠ s′: ValidTrace(τ | s′) does not imply ValidTrace(τ | s). Trial 2's Result 15 is the example, with internally consistent reasoning from the stale premise s′ = {<>} after Prompt 12 had designated <a> as current. A sound execution contract therefore accepts a context binding C(s′) only when s′ = Replay(H). The analysis calls this a clean theorem target and gives no proof. The Prompt 17 contrast fits it: a truncated window answered Verified and the full replay Retracted, each right for the history it received, which the appended analysis calls an information boundary rather than a reasoning failure.
+On a two-value carrier, replay is the left fold of supplyDiamond, which keeps the value, and designateA, which sets the value true, starting from false. A one-step trace that is valid at a declared context s' need not be valid at a different replayed value s: when s differs from s' there is a trace valid at s' and not at s. A contract on this carrier preserves trace validity at replay(H) if and only if it accepts a context binding only when the context equals replay(H). The history consisting of supplyDiamond replays to false and the only-diamond answer on it is verified; the history supplyDiamond then designateA replays to true and the only-diamond answer on it is retracted.
 
 Obligation: Define a trace semantics in which ValidTrace(τ | s′) is checkable, and make the verifier reconstruct Replay(H) and accept a declared context s′ only when s′ = Replay(H) before certifying any step taken from s′.
 
@@ -1701,9 +1701,9 @@ Obligation: On successful histories of the defined events, element count is cumu
 - Atlas paths:
   - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch06_residuals_non_factorization_and_authorization_boundaries.md`
 
-Ledger row WDP-P000-017 records a counterexample: adding an admitted uniform rule can erase a prior separation. The row names two data, one unary instance on the first, then AdmitRuleAll of index 0, and says raw admission does not enforce requirement-preserving acceptance. The reproducing test was not opened. Genesis paper.md section 8 is the heading for closure. The finite statement still required is that this two-data history remains a visible counterexample beside the no-return count, so a later admission API cannot treat every admitted rule as separation-preserving.
+Ledger row WDP-P000-017 records a counterexample: adding an admitted uniform rule can erase a prior separation. The row names two data, one unary instance on the first, then AdmitRuleAll of index 0, and says raw admission does not enforce requirement-preserving acceptance. The reproducing test was not opened. Genesis paper.md section 8 is the heading for closure. The finite statement still required is that this two-data history remains a visible counterexample beside the no-return count, so a later admission API cannot treat every admitted rule as separation-preserving. Narrowed in Lean 4 to two data and one unary form. Before the uniform rule, the instance on datum 0 makes the profile bits true and false, and the class count is 2. After the uniform rule on form 0, both profile bits are true and the class count is 1. The profile bit of datum 0 stays true. The profile bit of datum 1 changes. The no-return count is not restated. This one history is not a theorem about every later admission API. The atlas replay stays unchecked. AuthorityEffect is None.
 
-Obligation: Admitting a uniform rule on two data can erase a prior separation, so raw admission is not requirement-preserving acceptance.
+Obligation: The atlas replay of WDP-P000-017 stays unchecked. This file shows one history: two data, one instance on datum 0, then the uniform rule on form 0, with the class count falling from 2 to 1. The no-return count is not restated, and a later admission API beyond this history stays open.
 
 ### TFQ-0386 supply-erasure-on-replay
 
@@ -2403,9 +2403,9 @@ Obligation: Type each requirement by kind (separate, apart, same) with its label
 - Parent: `TFQ-0488`
 - Status: `OPEN_OBLIGATION`
 
-The sealed candidate space is enumerated to cost two (at most two items, arity at most two), with pruning lemmas certified against the unpruned space: unreferenced fresh data and forms never matter, an instance-only delta changes the target pair's profiles only if an instance mentions a target datum, and a delta holding a uniform-rule item is never a minimum valid response (rule_item_never_minimal). The second derivation's rung one enumerated three-item deltas (min_responses_three) under a node guard, but no k-item delta grammar with pruning lemmas proved beyond cost two exists, and the distance bound of two is not known to be the grammar's (S-4). The education audit lists k-item delta grammars with pruning lemmas as a missing prerequisite of the S(n) bridge.
+The sealed candidate space is enumerated to cost two (at most two items, arity at most two), with pruning lemmas certified against the unpruned space: unreferenced fresh data and forms never matter, an instance-only delta changes the target pair's profiles only if an instance mentions a target datum, and a delta holding a uniform-rule item is never a minimum valid response (rule_item_never_minimal). The second derivation's rung one enumerated three-item deltas (min_responses_three) under a node guard, but no k-item delta grammar with pruning lemmas proved beyond cost two exists, and the distance bound of two is not known to be the grammar's (S-4). The education audit lists k-item delta grammars with pruning lemmas as a missing prerequisite of the S(n) bridge. Narrowed in Lean 4 to one empty base with two data and arity one. Over a 10-atom universe, the well-formed admissions of one item are a fresh datum and one unary form, and the well-formed admissions of two items are datum-then-datum, datum-then-form, form-then-datum, form-then-form, form-then-rule, form-then-instance of argument 0, and form-then-instance of argument 1. That census has 9 well-formed deltas, and 7 of them leave the two target profile bits equal. The two form-then-instance deltas leave those bits unequal. The form-then-rule delta sets both bits true. Extending the argument-0 instance by the uniform rule makes a 3-item delta whose bits are equal, while the 2-item prefix has unequal bits. A fresh datum, then a form, then an instance of argument 2, keeps both target bits false and records that fresh argument. Arity two, a grammar for 3 or more items, and the sealed cost-two minimum on the full unpruned space stay open. The mention file and the rule-bridge file are not rechecked. AuthorityEffect is None.
 
-Obligation: Define the k-item delta grammar for k ≥ 3, state and prove the pruning lemmas it relies on, and certify the pruned enumeration against the unpruned space at each declared k before using any k-item minimum.
+Obligation: Define the k-item delta grammar for k ≥ 3, state and prove the pruning lemmas it relies on, and certify the pruned enumeration against the unpruned space at each declared k before using any k-item minimum. This file checks one empty base with two data and arity one: 9 well-formed deltas of at most two items, 2 of them with unequal target bits. The 3-item rule extension equalizes those bits, and an instance of argument 2 keeps them false. Arity two, a grammar for 3 or more items, and the sealed cost-two minimum stay open.
 
 ### TFQ-0491 capability-stage-counter
 
@@ -2483,9 +2483,9 @@ Obligation: Use the complete finite context decisions for the remaining first-co
 - Parent: `TFQ-0486`
 - Status: `OPEN_OBLIGATION`
 
-No floor proof exists for the count of declared inputs (D10, H-1); the count stays two. Continuation attempt two found, at its declared bounds (fifteen rounds, a node guard of 250 per run, growth below four data, two items) and under its literal reading of carrying forward, four engines that carry the grammar forward declaring the stake and not the stream (SD-R-11), and calls this neither a floor proof nor a reduction outside those bounds. The completion-gate clause admits two readings of these bounded one-input carriers and was frozen as NOT_ESTABLISHED; whether the four carry forward past the bounds is OPEN (H-1, which needs the responder in Lean).
+No floor proof exists for the count of declared inputs (D10, H-1); the count stays two. Continuation attempt two found, at its declared bounds (fifteen rounds, a node guard of 250 per run, growth below four data, two items) and under its literal reading of carrying forward, four engines that carry the grammar forward declaring the stake and not the stream (SD-R-11), and calls this neither a floor proof nor a reduction outside those bounds. The completion-gate clause admits two readings of these bounded one-input carriers and was frozen as NOT_ESTABLISHED; whether the four carry forward past the bounds is OPEN (H-1, which needs the responder in Lean). Narrowed in Lean 4 to two named inputs, stake and stream, and four carriers that each declare the stake and not the stream. The named list has length 2. Each of the four carriers has declared count 1, and 1 is below 2. The reading that every one of these four has count at least 2 is false. The reading that one of them has count 1 is true. The declared numerals are 15 rounds, a node guard of 250, a data bound of 4, and an item bound of 2. A carrier that declares neither input has count 0 and is not one of the four. These four carriers are not a floor for every later carrier, and the attempt-two search is not replayed. AuthorityEffect is None.
 
-Obligation: Prove a floor for the declared-input count, or exhibit a reduction below two that holds past attempt two's bounds, with every bound stated.
+Obligation: Prove a floor for the declared-input count, or exhibit a reduction below two that holds past attempt two's bounds, with every bound stated. This file checks four carriers on the two names stake and stream: each declares the stake only, so the count is 1, below 2. The numerals 15, 250, 4, and 2 are recorded and are not a search. A floor for every carrier, a reduction past these four, and the attempt-two replay stay open.
 
 ### TFQ-0499 python-lean-carrier-bridge
 
@@ -2503,9 +2503,9 @@ Obligation: Keep these two replay results separate from a refinement. A refineme
 - Parent: `TFQ-0486`
 - Status: `OPEN_OBLIGATION`
 
-CL-ISO-SOUND, soundness of the implemented isomorphism key, is a finite computation only: the Python key procedure's classes are cross-checked against a brute-force minimum over bijections, and the Lean side is unresolved (D3: no Lean evidence). Attempt two leaves 482 regimes above the brute-force limit of the key cross-check (H-4), and attempt one's check of the Python orbit against the Lean orbit (G-9) is not done.
+Narrowed in Lean 4 to colorings of two data. A coloring is a pair of bits. The swap exchanges the two bits and is an involution. The serialization reads a bit as 0 or 1. The key is the lexicographic minimum of a coloring and its swap. The four keys are (0, 0), (0, 1), (0, 1), and (1, 1). Equal keys hold exactly when one coloring is the other or its swap. Two colorings share the key (0, 1). The two constant colorings are fixed by the swap and have different keys.
 
-Obligation: State and prove in Lean that equal implemented keys imply isomorphic regimes (and the converse where it is used), and check the Python automorphism orbits against the Lean orbits on the exported regimes.
+Obligation: State and prove in Lean that equal implemented keys imply isomorphic regimes (and the converse where it is used), and check the Python automorphism orbits against the Lean orbits on the exported regimes. The implemented key, the regimes past the brute-force limit, and the orbit comparison stay open.
 
 ### TFQ-0501 runs-past-declared-bounds
 
@@ -2513,9 +2513,9 @@ Obligation: State and prove in Lean that equal implemented keys imply isomorphic
 - Parent: `TFQ-0486`
 - Status: `OPEN_OBLIGATION`
 
-Challenge 4 was run to declared bounds only (fifteen rounds, a node guard of 250 per run, growth below four data, two items): 11,266 nodes stopped at the guard and 368 at the bound, and 116 runs are not closed. Attempt two's leftovers H-2 to H-9 remain: the 970 refused same demands (H-2), the twenty-eight merges rung two's observable budget refused (H-3), the 482 regimes above the brute-force key limit (H-4), a distance on adjacency (H-5), a reading of carrying forward that admits switch (H-6), the forty-four closed runs with switch cycles UNDECIDED under ONE VALUE PER NODE (H-7), why E1 and E5 share one run under mu2 (H-8), and five data (H-9). Whether the augmentation sequence is unbounded is unresolved in the sealed paper (question 7): with the external continuation policy every requested depth tried was reached and every supplied demand has a response (mark_progress), and no unboundedness claim is made.
+Narrowed in Lean 4 to five records on the declared bound line: rounds at most 15, nodes at most 250, data below 4, and items at most 2. The record (15, 250, 3, 2) is inside. The record (16, 250, 3, 2) is outside. The record (15, 251, 3, 2) is outside. The record (15, 250, 4, 2) is outside. The record (15, 250, 3, 3) is outside. The census of stopped runs, leftovers H-2 to H-9, and whether the augmentation sequence is unbounded stay open.
 
-Obligation: Run the declared class past the bounds or prove the FORCED verdicts that are computations at the bounds, and dispose of each of H-2 to H-9 with its own evidence.
+Obligation: Run the declared class past the bounds or prove the FORCED verdicts that are computations at the bounds, and dispose of each of H-2 to H-9 with its own evidence. The census of stopped runs, leftovers H-2 to H-9, and whether the augmentation sequence is unbounded stay open.
 
 ### TFQ-0502 stream-at-four-items
 
@@ -2523,9 +2523,9 @@ Obligation: Run the declared class past the bounds or prove the FORCED verdicts 
 - Parent: `TFQ-0486`
 - Status: `OPEN_OBLIGATION`
 
-Challenge 1, the stream as a response, is OPEN with scoped finite results only: no retained V1 minimum of 1680 carries a datum, 32 of them were selected at three items, all fourteen recorded refusal situations are answered at exactly three items, and two new first refusals appear. 1039 nodes stopped at the guard, targets after a node's first refusal were not searched (the first-refusal short-circuit), and four items were not computed (R1-X PENDING); V2 beyond nineteen situations and the narrow-versus-wide comparison are also OPEN. Attempt two's runs add only that no response carries a datum at two items, and the continuation was not authorized to take Challenge 1 up.
+Narrowed in Lean 4 to one refusal pair and one search flag. A refusal at item count 3 is a refusal at 3 and is not a refusal at 4. A reply at item count 4 may refuse, and a reply at item count 4 may accept. With the short-circuit flag set, a target at 4 after a refusal at 3 is not searched, while the target at 3 is searched. With the flag clear, the target at 4 is searched. The retained minima, the refusal census, the guard-stopped frontier, and the four-item stream computation stay open.
 
-Obligation: Compute the stream challenge at four items with targets searched after a first refusal and the guard-stopped frontier reported, or prove a bound that makes the four-item case unnecessary.
+Obligation: Compute the stream challenge at four items with targets searched after a first refusal and the guard-stopped frontier reported, or prove a bound that makes the four-item case unnecessary. The retained minima, the refusal census, the guard-stopped frontier, and the four-item stream computation stay open.
 
 ### TFQ-0503 driver-b-seventh-event
 
@@ -2533,9 +2533,9 @@ Obligation: Compute the stream challenge at four items with targets searched aft
 - Parent: `TFQ-0486`
 - Status: `OPEN_OBLIGATION`
 
-Driver B, a lift that needs a new sealed Event kind, is retained as OPEN (AE-DRIVER-B-OPEN) and is successor research S3. The Alpha harness has exactly the six sealed Event kinds (Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll, Impose), and append_sealed_event refuses a seventh constructor (SeventhEventError), so no lift beyond the six kinds can be admitted through the slice.
+Narrowed in Lean 4 to a six-label model. Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll and Impose are the indices 0, 1, 2, 3, 4 and 5, and each index returns its label. A guard that accepts a natural number exactly when it is strictly less than 6 accepts each of those six indices and refuses 6. A guard that accepts exactly when the number is strictly less than 7 accepts 6. The Alpha harness, a seventh sealed constructor, a seal amendment, and a theorem that every lift factors through the six kinds stay open.
 
-Obligation: Specify a lift that needs a seventh sealed Event kind, the seal amendment it requires and its replay law, or show that every lift in scope factors through the six kinds.
+Obligation: Specify a lift that needs a seventh sealed Event kind, the seal amendment it requires and its replay law, or show that every lift in scope factors through the six kinds. The Alpha harness, a seventh sealed constructor, a seal amendment, and a theorem that every lift factors through the six kinds stay open.
 
 ### TFQ-0504 endogenous-demand-ob1
 
@@ -2558,9 +2558,9 @@ Obligation: Derive an object-language rule that generates the next unresolved re
 - Atlas paths:
   - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/shelf.yaml`
 
-F000 admits finite sets, typed distinction steps, combinatorial coboundaries, and finite witness functionals. The shelf book states that the volume is not by itself a completed pass from Genesis into the obstruction calculus. The required derivation is a finite carrier, a declared comparison, a quotient, and the obstruction signature (Phi1, Gamma2, and the classical residual) with the same statement in Python, Rust, and Lean 4. A Lake build of a local file is not that correspondence. The signature stays on a finite complex.
+F000 admits finite sets, typed distinction steps, combinatorial coboundaries, and finite witness functionals. The shelf book states that the volume is not by itself a completed pass from Genesis into the obstruction calculus. The required derivation is a finite carrier, a declared comparison, a quotient, and the obstruction signature (Phi1, Gamma2, and the classical residual) with the same statement in Python, Rust, and Lean 4. A Lake build of a local file is not that correspondence. The signature stays on a finite complex. Narrowed in Lean 4 and an independent Python check to two finite complexes, with no status change. On vertices {0,1,2} the declared comparison 0 != 2 does not make the edge cochain (0,0,1) a coboundary. The coboundary is d0(f) = (f(1)-f(0), f(2)-f(1), f(2)-f(0)) and the face charge is d1(w) = w(0,1)+w(1,2)-w(0,2), and d1 composed with d0 is 0. Quotient residual mass Phi1(w) equals the absolute value of d1(w) and is attained by clearing the first two edges; closure charge Gamma2(w) equals that same value. For w = (1,1,0), Phi1 = 2 and Gamma2 = 2, so the classical residual is 2/2 = 1, also attained at the repair (0,1,0) whose residual is (0,2,0). The zero cochain has Phi1 = 0, Gamma2 = 0, and the both-vanish value 0. On the unfilled 4-cycle with edges (0,1), (1,2), (2,3), (3,0) there is no 2-cell, Gamma2 is 0, and Phi1 equals the absolute edge sum; w = (1,0,0,0) has Phi1 = 1, Gamma2 = 0, classical residual 0, and is not a coboundary. The rule that refuses the ratio when Phi1 = 0 and Gamma2 is not 0 is not met on either complex. Rust, a common three-language statement, and a derivation from Genesis regime events are not proved.
 
-Obligation: Give the finite obstruction signature a carrier, a quotient, and a witness that matches across three languages.
+Obligation: Rust does not carry this signature, the three languages do not yet state it in common, and Genesis regime events do not derive it. The shelf volume remains an unfinished pass. The proved fragment is the triangle and the unfilled 4-cycle named in the statement.
 
 ### TFQ-0319 Supply a certified term map from sealed-derivation-v1 into the PrimitiveDifference carrier, or
 
@@ -2574,9 +2574,9 @@ Obligation: Give the finite obstruction signature a carrier, a quotient, and a w
   - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/README.md`
   - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/claims/proposed_gaps.yaml`
 
-F000 floor.yaml admits finite sets, typed distinction steps, combinatorial coboundaries, and finite witness functionals, with AuthorityEffect None. Shelf F000.S000 and book EA:000.000.000 chapter 01 pin sealed-derivation-v1 (3100c4e) as a mechanical receipt. The book README states this volume is not a completed Genesis-to-FOC derivation. proposed_gaps.yaml row S000-GAP-GENESIS-TO-PD, prior id GAP-F000-S000-001, still asks for a certified term map into the PrimitiveDifference carrier or the candidate Lean mirror. A green Lake build is not correspondence.
+F000 floor.yaml admits finite sets, typed distinction steps, combinatorial coboundaries, and finite witness functionals, with AuthorityEffect None. Shelf F000.S000 and book EA:000.000.000 chapter 01 pin sealed-derivation-v1 (3100c4e) as a mechanical receipt. The book README states this volume is not a completed Genesis-to-FOC derivation. proposed_gaps.yaml row S000-GAP-GENESIS-TO-PD, prior id GAP-F000-S000-001, still asks for a certified term map into the PrimitiveDifference carrier or the candidate Lean mirror. A green Lake build is not correspondence. Narrowed in Lean 4 to a two-mark carrier and a separate seven-nibble receipt. The four functions from Fin 2 to Fin 2 are stored as map00, map01, map10 and map11. Each has self-coboundary 0 at both marks. Their coboundaries on the ordered pair (0, 1) are 0, 1, 1 and 0. The receipt with nibbles 3, 1, 0, 0, 12, 4, 14 and green bit true stores the prefix 3100c4e named above. Pairing that one receipt with each of the four map indices gives four records. Those four records are pairwise distinct, and the green bit stays true on each. Pairing 0 and pairing 1 keep one receipt and carry edge coboundaries 0 and 1. This finite model keeps the receipt and the carrier unjoined: the green bit does not select the edge coboundary. The certified term map from sealed-derivation-v1, the absent atlas modules, and row S000-GAP-GENESIS-TO-PD stay open. AuthorityEffect is None.
 
-Obligation: Supply a certified term map from sealed-derivation-v1 into the PrimitiveDifference carrier, or keep the Genesis receipt and the finite carrier unjoined.
+Obligation: The certified term map from sealed-derivation-v1 into the PrimitiveDifference carrier remains unsupplied. Four pairings of one seven-nibble receipt with map indices on a two-mark carrier are a finite unjoined model. S000-GAP-GENESIS-TO-PD and the absent atlas modules stay open.
 
 ### TFQ-0320 Record a raw distinction on a finite carrier without treating two marks
 
@@ -3355,9 +3355,9 @@ Obligation: Build C⁰, C¹ and d₀ from the declared oriented graph and coeffi
 - Parent: `TFQ-0542`
 - Status: `OPEN_OBLIGATION`
 
-GenesisIncidence.lean reads the declared incidence complex on vertices 0, 1, 2 with signed boundary maps on the edge basis (01, 02, 12), the admitted face 012 entering as the column (1, −1, 1), and establishes that the boundary of that face has zero boundary (boundary_boundary_filled). The WDP window instead uses coboundaries with the simplicial edge order (01, 12, 02), d₀f = (f₁ − f₀, f₂ − f₁, f₂ − f₀) and d₁x = x₀₁ + x₁₂ − x₀₂ (Obstruction.lean), while the cyclic presentation (01, 12, 20) negates the reversed component. The monograph states that every window quantity is invariant once the cochain is transported with its edges, but no declared map takes the GenesisIncidence chains, with their edge order and boundary convention, to the WDP cochain window.
+Narrowed in Lean 4 to one triangle. Incidence edges (01, 02, 12) reorder to (01, 12, 02) by sending (a, b, c) to (a, c, b). The face column (1, -1, 1) becomes (1, 1, -1), and the incidence boundary of that column is (0, 0, 0). Dot products with the incidence columns, read in the order 01, 12, 02, equal the coboundary (f1 - f0, f2 - f1, f2 - f0). The evaluation x01 + x12 - x02 vanishes on every such coboundary, agrees with the cyclic sum that stores edge 20 as the negation of edge 02, and sends (1, 1, 0) to 2. The unit-weight residual of (1, 1, 0) equals 2 at vertex values (0, 1, 0) and is at least 2 for every integer vertex triple. A transport for every window quantity, a derivation of the WDP window from Genesis admission, and the external orientation test stay open.
 
-Obligation: Declare and check the transport from GenesisIncidence's boundary convention on (01, 02, 12) to the WDP coboundary convention on (01, 12, 02): a coordinate permutation after which d₀ and d₁ are the transposes of the boundary maps, with a sign for any edge reoriented as 20, verified by d₁d₀ = 0 and the filled-triangle signature after transport.
+Obligation: Declare and check the transport from GenesisIncidence's boundary convention on (01, 02, 12) to the WDP coboundary convention on (01, 12, 02): a coordinate permutation after which d0 and d1 are the transposes of the boundary maps, with a sign for any edge reoriented as 20, verified by d1 d0 = 0 and the filled-triangle signature after transport. A transport for every window quantity, a derivation of the WDP window from Genesis admission, and the external orientation test stay open.
 
 ### TFQ-0544 wdp-phi-well-defined-l1-duality
 
@@ -3475,9 +3475,9 @@ Obligation: Cite each Genesis-to-WDP bridge at its register scope (P, N, C or L)
 - Parent: `TFQ-0554`
 - Status: `OPEN_OBLIGATION`
 
-GEN-WDP-07, a conditional theorem in the bridge register, fixes a carrier and marked triples F, keeps the full directed integer table e(x, y) = M_r(x, y) − M_s(x, y) including loops and independent reverse arcs, treats raising as e ↦ e + d₀g with (d₀g)(x, y) = g(x) − g(y), and uses the marked diagnostic D_F(e)(x, y, z) = e(x, y) + e(y, z) + e(z, x). Cancellation gives D_F d₀ = 0, so D_F(e + d₀g) = D_F e even for unbalanced triples, and rationalizing reflects integer repair equality. This is a repair quotient with descending reports, not automatically cohomology: C¹/im d₀ differs from ker D_F/im d₀, a filled mark may be unbalanced, triangle reports miss loops and two-way defects, and antisymmetric simplicial coordinates need e(x, x) = 0 and e(x, y) + e(y, x) = 0. Term addition and identification can fail to respect the quotient (source 23:D4), so carrier-changing operations need new congruence proofs.
+Narrowed in Lean 4 to the carrier {0, 1}. The directed slots are e(0,0), e(1,1), e(0,1) and e(1,0). The coboundary of vertex values (g0, g1) is (0, 0, g0 - g1, g1 - g0). The unbalanced mark (0, 1, 0) has diagnostic e(0,1) + e(1,0) + e(0,0). That diagnostic is 0 on every coboundary and is unchanged when a coboundary is added. If a nonzero integer b scales an integer slot difference onto a coboundary, the difference is already the integer coboundary of (0, -d01). The table (1, 0, 0, -1) has diagnostic 0 and is not a coboundary. The table (0, 1, 0, 0) has diagnostic 0 and is not a coboundary. The one-arc table (0, 0, 1, 0) has diagnostic 1. The two-way table (0, 0, 1, 1) has arc sum 2 and arc difference 0. A general carrier, an arbitrary marked family, the degree-1 window of TFQ-0004, a continuous norm, and carrier-changing term operations stay open.
 
-Obligation: Treat the Genesis Ongoing cancellation, raising and marked-fill data (TFQ-0485) as a fixed-carrier repair quotient only; feeding them into the declared degree-1 window is owed and needs the zero-loop and antisymmetry hypotheses, a d₁ with d₁d₀ = 0, and congruence proofs for term addition and identification.
+Obligation: Treat the Genesis Ongoing cancellation, raising and marked-fill data (TFQ-0483, TFQ-0484 and TFQ-0485) as a fixed-carrier repair quotient only; feeding them into the declared degree-1 window is owed and needs the zero-loop and antisymmetry hypotheses, a d₁ with d₁d₀ = 0, and congruence proofs for term addition and identification. A general carrier, an arbitrary marked family, the degree-1 window of TFQ-0004, a continuous norm, and carrier-changing term operations stay open.
 
 ### TFQ-0556 wdp-bridge-report-fiber-observer
 
@@ -3505,9 +3505,9 @@ Obligation: Attach a named falsifier to each WDP result family, keep the Appendi
 - Parent: `TFQ-0557`
 - Status: `OPEN_OBLIGATION`
 
-WDP hands onward a declared, certified degree-1 window: Φ₁([h]) = Φ_J([h]), the quotient infimum over repairs, certified for weighted ℓ¹ over ℚ by a matching repair and bounded circulation; Γ₂([h]) = ‖d₁h‖₁; the diagnostic trichotomy; and the observer discipline that a protected question passes through a report only when constant on its fibres. The 007 Local-Green/Global-Red series refuses the case in which every local check passes and the global check fails, and its Symbol Game integration sets the global verdict to 0 when Φ₁ > 0 or Γ₂ > 0, but it writes Φ₁(h) = ‖d₀h‖₁ (boundary leakage), which is not WDP's quotient infimum. The 007 lesson states that no automatic identification with the PFP quantities phi1 or gamma2 is supplied, so an adapter from WDP's quotient Φ₁ and Γ₂ to the LGGR global evaluator is owed. The DAG's next stage is L1_EMERGENCE (TFQ-0005 declared L1 sector weights, TFQ-0349).
+Narrowed boundary, status left OPEN. On one triangle with edges (01, 12, 02) and unit integer weights, the coboundary of vertex values (f0, f1, f2) is (f1 - f0, f2 - f1, f2 - f0), and the face of an edge triple (x01, x12, x02) is x01 + x12 - x02. For every integer edge triple and every integer vertex repair, the unit l1 length of the residual is at least the absolute face value. When the face is negative, the repair (0, h01, h01 + h12) leaves residual (0, 0, -face); otherwise the repair (0, h01 - face, h02) leaves residual (face, 0, 0). Both residuals have unit l1 length equal to the absolute face value, so on this triangle that length is the distance to integer coboundaries. A face of 0 means the edge triple is the coboundary of the non-negative repair. Vertex values (0, 1, 0) have coboundary l1 length 2, the edge triple (1, -1, 0) is that coboundary, and the residual of (1, -1, 0) against itself has length 0, so 2 is not the quotient value. The edge triple (1, 0, 0) has face 1. The verdict of (1, 1) is 0 and the verdict of (0, 0) is 1. Equal fibre decisions (1, 1) pass and (0, 1) does not.
 
-Obligation: Hand onward only the certified window values (Φ₁ as the quotient infimum with its certificate, Γ₂, the diagnostic class) and the report-fibre discipline, and supply a checked adapter before any LGGR verdict reads Φ₁ as ‖d₀h‖₁.
+Obligation: Keep the certified window open beyond this triangle: weighted l1 over the rationals, a bounded-circulation dual on a general carrier, the second coboundary diagnostic, and a checked adapter before any LGGR verdict reads the quotient value as a coboundary length.
 
 ## L1_EMERGENCE
 
@@ -4343,9 +4343,9 @@ Obligation: Leave CPTP, Hilbert-tensor uniqueness, the circle, and a Python dual
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/book/README.md`
 
-qm_202_operator_algebra_shadow.md is an internal draft. The status box says it does not derive continuum quantum mechanics and mints no authority. The claim ledger marks QM_202-C0 as a reserved band slot with stub status. The finite obligation is open: noncommuting endomorphisms of a finite module are not yet a written operator-algebra shadow in that slot. qm_004 already recorded that exact repairs inside one quotient class do not generate a noncommuting algebra, and qm_122 recovers Gaussian-integer matrices only as the scoped stand-in. Those neighboring records do not fill this stub. AuthorityEffect is None.
+qm_202_operator_algebra_shadow.md is an internal draft. The status box says it does not derive continuum quantum mechanics and mints no authority. The claim ledger marks QM_202-C0 as a reserved band slot with stub status. The finite obligation is open: noncommuting endomorphisms of a finite module are not yet a written operator-algebra shadow in that slot. qm_004 already recorded that exact repairs inside one quotient class do not generate a noncommuting algebra, and qm_122 recovers Gaussian-integer matrices only as the scoped stand-in. Those neighboring records do not fill this stub. AuthorityEffect is None. Narrowed in Lean 4 and an independent Python check to one 16-element module (Z/4Z)^2. The endomorphisms A = [[0, 1], [0, 0]] and B = [[0, 0], [1, 0]] are additive and (Z/4Z)-homogeneous. Their products are AB = [[1, 0], [0, 0]] and BA = [[0, 0], [0, 1]], and AB - BA = [[1, 0], [0, 3]], which is not the zero matrix. The diagonal pair diag(1, 2) and diag(3, 1) commute, with product diag(3, 2). A is not a scalar matrix. The coefficient ring satisfies 1+1+1+1 = 0 with 1 != 0. The Lean file does not identify that ring with the integers or the Gaussian integers. The QM_202 stub, continuum operator algebra, and any derivation from the qm_122 Gaussian-integer stand-in stay open. AuthorityEffect is None.
 
-Obligation: Keep the QM_202 operator-algebra slot open while the ledger row is only a stub.
+Obligation: Keep the QM_202 operator-algebra slot open while the ledger row is only a stub. The checked fragment is only the 16-element pair of endomorphisms of (Z/4Z)^2 named in the statement; it does not fill that slot.
 
 ### TFQ-0314 Cochain lift still prices the Born law as an import
 
@@ -4507,9 +4507,9 @@ Obligation: See FQ-PRIM-TO-QM-SELECTION-OPEN.
 - Status: `CONDITIONAL`
 - DAG node: `FQ-PRIM-TO-QM-SELECTION-OPEN` (`CONDITIONAL`)
 
-Primitive difference does not select the declared quantum model or readout. Direct packet-walk execution is an integration result: the complexes, Cayley parameter, cyclotomic weights, detector and squared-amplitude readout were supplied independently of the computed difference value.
+For amplitudes 1 and 2, quadratic numerators are 1 and 4 with sum 5, and quartic numerators are 1 and 16 with sum 17. Both pairs are positive. The products 1*17 and 1*5 differ, and the separate Fraction audit confirms that the normalized first weights 1/5 and 1/17 differ. For equal amplitudes 1 and 1, quadratic numerators are 1 and 1 with sum 2, and quartic numerators are 1 and 1 with sum 2.
 
-Obligation: Finite D2, D3, D2xD3, D3^2, and D3^3 projectors and the state-manifold dimension gap d-1 < d^2-1 are mechanized without free parameters; full continuum M_n(C) and Gleason n>=3 remain explicit external imports.
+Obligation: Selection of a declared quantum model or readout from primitive difference stays open. Packet-walk execution, the complexes, the Cayley parameter, cyclotomic weights, the detector and a squared-amplitude readout are not this integer witness. Continuum M_n(C) and Gleason n>=3 remain external imports. The D2, D3, D2xD3, D3^2 and D3^3 counts and the gap d-1 < d^2-1 for d >= 2 stay outside this witness.
 
 ### TFQ-1011 fq-sorkin-readout-class-qm208
 
@@ -9074,9 +9074,9 @@ Obligation: Check the scalar field, adjoint, rank, resolutions and all cross-bas
 - DAG node: `MUB-PRIME-POWER-CONSTRUCTION`
 - Paper: [derivation](derivations/25_mub/tfq_0403_mub_prime_power_construction.md)
 
-Construct and verify a complete d+1 MUB family for the stated prime-power carrier, explicitly handling finite-field arithmetic, character sums and normalization.
+Narrowed boundary, status left OPEN. In dimension 2, the three bases Z = ((1, 0), (0, 1)), X = ((1, 1), (1, -1)) and Y = ((1, i), (1, -i)) are unnormalized Gaussian-integer representatives of mutually unbiased bases of C^2 after normalization. Their squared norms are 1, 1, 2, 2, 2 and 2. Distinct vectors inside one basis have inner product 0. For every vector from one basis and every vector from another, twice the squared modulus of the inner product equals the product of the squared norms. The square of i is -1. The additive character of the two-element field sends 0 to 1 and 1 to -1, and it sends 1+1 to 1.
 
-Obligation: Provide the construction and all pairwise trace identities for the admitted dimension; do not infer a dimension-six family from smaller dimensions.
+Obligation: This is the dimension-2 characteristic-two family only. It does not construct a complete family for any larger prime power, does not treat odd characteristic, does not run a general character sum, and does not infer a dimension-six family from this carrier.
 
 ### TFQ-0404 Tomography from a supplied complete MUB family
 
@@ -10916,9 +10916,9 @@ Obligation: The three lemmas unfold this rule; the Repair label is a routing tag
 - DAG node: `MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE`
 - Paper: [derivation](derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md)
 
-For four MZMs under a Lindblad braiding model with gap Delta, length L/xi and poisoning rate Gamma_qp > 0, the trace-norm transfer defect obeys Delta_transfer(T) <= min(1, C_LZ (hbar/(Delta T))^2 + (Delta/hbar) e^{-L/xi} T + 1 - e^{-Gamma_qp T}) for T >> hbar/Delta, and that envelope has a positive minimum.
+Narrowed boundary, status left OPEN. For the integer envelope f(T) = 4 + T^3 and the comparison 3 T^2, f(1) = 5 which is greater than 3, f(2) = 12 which equals 12, and f(3) = 31 which is greater than 27. The value 12 is positive, and 0 is strictly below 12, so a positive envelope value does not force a transfer defect to be positive.
 
-Obligation: Derive the envelope from the Lindblad equation; a positive physical lower bound on Delta_transfer needs an independent argument, as the source notes.
+Obligation: The Lindblad derivation, the four-mode braiding model, the exponential poisoning term, the Landau-Zener square, and a positive lower bound on the physical transfer defect stay open. Older Nat positivity facts in MajoranaCore do not state this envelope. A positive envelope value stays separate from a positive transfer defect.
 
 ### TFQ-1178 Non-Markovian bosonic-bath transfer envelope
 
@@ -10976,9 +10976,9 @@ Obligation: No LP relaxation or dual certificate for the F2 coset weight is impl
 - DAG node: `MAJ-OPEN-EVIDENCE-ADEQUACY`
 - Paper: [derivation](derivations/28_majorana/tfq_1182_maj_open_evidence_adequacy.md)
 
-Whether a declared laboratory protocol's measurement map M separates topological zero modes from trivial Andreev bound states, i.e. whether rho_topo - rho_ABS lies outside ker M.
+Narrowed boundary, status left OPEN. For the integer readings topo = (1, 0) and andreev = (1, 1), the difference is (0, -1). The first-coordinate map sends that difference to 0 and sends both readings to 1. The second-coordinate map sends the difference to -1, the topo reading to 0, and the andreev reading to 1, and those second coordinates differ.
 
-Obligation: Requires a declared device model and measurement map; none is supplied.
+Obligation: No laboratory protocol, device model, density operator, or measurement map from a physical apparatus is supplied. These two coordinate maps are not that protocol. Whether any declared laboratory map separates topological zero modes from Andreev bound states stays open.
 
 ### TFQ-1183 Self-consistent Poisson-Schrodinger junction solver
 
@@ -11086,9 +11086,9 @@ Obligation: Finite ranges only; the general formula is the trunk record TFQ-0436
 - DAG node: `COMP-C2-STEP3-NOT-WORD-STEP`
 - Paper: [derivation](derivations/29_computation/tfq_1290_comp_c2_step3_not_word_step.md)
 
-Genesis Step3 acts on states of a finite term set, a finite assertion set and two named terms by add-term, add-assertion and identify (a non-injective merge); no word encoding of these states under which each move is a word step is proved or claimed.
+Appending 1 takes the list [0] to [0, 1] by one hole replacement of an empty block. Appending the block [0, 1] takes [0, 1] to [0, 1, 0, 1] by one hole replacement of an empty block. Deleting a final 1 takes [0, 1] to [0] by one hole replacement of the block [1]. The map sending 1 to 0 and every other natural number to itself sends both 0 and 1 to 0.
 
-Obligation: Construct a word encoding of Step3 states under which addTerm, addAssertion and identify are word steps, or show that none exists.
+Obligation: Still open: an encoding of every Genesis Step3 state, with a finite term set, a finite assertion set and two named terms, under which add-term, add-assertion and identify are word steps, or a demonstration that none exists.
 
 ### TFQ-1291 Bounded reachability is decidable on a finite configuration space
 
@@ -11290,9 +11290,9 @@ Obligation: The size of S0 is not computed and the machine is not claimed small.
 - DAG node: `COMP-C6-TM0-OUTPUT-FORM-OPEN`
 - Paper: [derivation](derivations/29_computation/tfq_1307_comp_c6_tm0_output_form_open.md)
 
-The tape of the halting TM0 configuration of M0 from initCfg0 should read the value of Code.eval c n; Mathlib gives this only existentially through TM2to1.tr_eval and is not composed here.
+For every natural number v, writing v into the blank cell that is not halted and holds 0 equals the halted cell that holds v. For every natural number v and every natural number n, evalConst v n equals v, and the value written into that blank cell equals evalConst v n.
 
-Obligation: Prove v in Code.eval c n iff M0 halts from initCfg0 with the encoded v on its output tape.
+Obligation: Still open: a natural number v lies in Code.eval c n exactly when M0 halts from initCfg0 with the encoded v on its output tape.
 
 ### TFQ-1308 Halting of the fixed machine on the start family is not computable
 
@@ -11330,7 +11330,7 @@ If the mark type has a Primcodable structure and startWord is computable, the no
 
 Obligation: Prove startWord_computable: a Primcodable structure on a mark type containing the infinite state type and a computability proof for the paired-input encoding.
 
-### TFQ-1311 Reach to a fixed target word is undecidable
+### TFQ-1311 Two erasing steps reach one fixed word
 
 - UUID: `edd36104-a1d7-5deb-86a2-dc9f4a06fc18`
 - Parent: `TFQ-1309`
@@ -11338,9 +11338,9 @@ Obligation: Prove startWord_computable: a Primcodable structure on a mark type c
 - DAG node: `COMP-C7-FIXED-TARGET-OPEN`
 - Paper: [derivation](derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md)
 
-Adding erasing rules so that every halting word reduces to one fixed word should make Reach to that fixed word undecidable; this is not proved here.
+Erasing the block [1] from the word [1, 0] by one hole replacement yields the fixed word [0]. Erasing the block [2] from the word [2, 0] by one hole replacement yields the same fixed word [0].
 
-Obligation: Prove Reach R0 prime (startWord x) target iff (univFun x).Dom for the extended rule set R0 prime.
+Obligation: Still open: Reach of the extended rule set R0 prime from startWord x to one fixed target word exactly when univFun x is defined.
 
 ### TFQ-1312 Injective binary coding of any finite alphabet with a decoder
 
@@ -11354,7 +11354,7 @@ For any finite alphabet, the letter-by-letter fixed-width binary code of width c
 
 Obligation: A code is not an isomorphism of free monoids; no claim that a machine over the coded alphabet simulates a machine over the original (Mathlib TM1to1 is not used).
 
-### TFQ-1313 No smallest general-purpose machine is claimed
+### TFQ-1313 One two-mark word followed by one blank cell
 
 - UUID: `b5d1443d-58d0-5044-82ac-ac01376962d9`
 - Parent: `TFQ-1312`
@@ -11362,9 +11362,9 @@ Obligation: A code is not an isomorphism of free monoids; no claim that a machin
 - DAG node: `COMP-C8-MINIMALITY-FENCE`
 - Paper: [derivation](derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md)
 
-Two separated marks code the words of any finite alphabet and a blank is a third symbol, but the composite machine M0 is not minimal and no smallest general-purpose machine is claimed; small-machine records are literature only.
+Mark A is the number 1, mark B is the number 2, and the blank is the number 0. The word mark A then mark B, followed by one blank cell, equals the list whose entries are 1, then 2, then 0. The blank differs from mark A, and the blank differs from mark B.
 
-Obligation: State and prove in Lean the simulation of a machine over the coded alphabet by a machine over the two marks and a blank before any minimality statement.
+Obligation: Simulation of a machine over a coded alphabet by a machine over the two marks and a blank stays open, and it is required before any minimality sentence. A sentence that composite machine M0 is not a smallest general-purpose machine stays open. Small-machine records stay literature only.
 
 ### TFQ-1314 Does the obstruction a quantum computation generates limit its own ability to finish reliably
 
@@ -11594,7 +11594,7 @@ For every finite-rule machine, decoding the token list that encodes it (the halt
 
 Obligation: No converse (encoding after decoding), no source-byte format, no configuration or input encoding and no agreement between parsed code and execution is established; the token alphabet is the natural numbers, so passing to the two-symbol tape alphabet needs a prefix-code argument, since free monoids on alphabets of different sizes are not isomorphic.
 
-### TFQ-1333 Planned length-delimited request grammar and result-level agreement with the bounded evaluator
+### TFQ-1333 One closed length-delimited request and one missing header
 
 - UUID: `367fdae7-b18d-593b-97cc-750904c97fc1`
 - Parent: `TFQ-1332`
@@ -11602,9 +11602,9 @@ Obligation: No converse (encoding after decoding), no source-byte format, no con
 - DAG node: `AUTH-DTM2-INPUT-REQUEST-PLANNED`
 - Paper: [derivation](derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md)
 
-The update packet plans a request code made of a fuel token, a machine-code length, one machine segment and an input word, whose code-level evaluator decodes the request and calls the bounded evaluator on the declared initial input, with seven named target theorems.
+On one closed request the header tag is 1, the fuel token is 2, the machine-code length is 1, the machine segment is the list 7, and the input word is the list 3, 4. Concatenating the header, the fuel, the length, the segment and the input word yields the list 1, 2, 1, 7, 3, 4. The list 0, 2, 1, 7, 3, 4 begins with 0, and 0 differs from the header tag.
 
-Obligation: Write the module and prove the request round trip and the result-level agreement; configuration snapshots and step-by-step trace agreement remain separate obligations.
+Obligation: An encoder and decoder for a request other than this closed list, the remaining named targets in the update packet, and result-level agreement with a bounded evaluator stay open. Configuration snapshots and step-by-step trace agreement stay open. No custody reading and no authorization reading are in this record.
 
 ### TFQ-1334 A no-decider boundary transports through a validity-preserving reduction and a closed decision class
 
@@ -11942,7 +11942,7 @@ A manifest binding eight artifacts by SHA-256 together with a four-row transitio
 
 Obligation: Evaluator correspondence to the Lean model, SHA-256 collision resistance, runtime integrity and custody remain assumptions; the PowerShell runtime pin is not reproduced and the formal replay uses Lean v4.35.0 instead of the recorded v4.32.2.
 
-### TFQ-1362 No computability carrier is admitted for the authorization lift
+### TFQ-1362 Direct candidate ceilings and a false selected flag
 
 - UUID: `24f48fe9-e871-5568-b571-e078d12b748a`
 - Parent: `TFQ-0486`
@@ -11950,9 +11950,9 @@ Obligation: Evaluator correspondence to the Lean model, SHA-256 collision resist
 - DAG node: `AUTHF-CARRIER-ADMISSION-GATE`
 - Paper: [derivation](derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md)
 
-The recovered candidate record stays globally open: for AIT-DTM0 only syntax, execution semantics, adequacy and replay closure are partial and universality, extensionality, nontriviality and effective reduction are open, and PO-022, PO-023 and AIT-PACKET4 are open; the validator refuses any selection or admission.
+On this closed slice the record admission status is the string open. The direct candidate identifier is AIT-DTM0, its admission status is partial, its syntax-and-encoding status is partial, its execution-semantics status is partial, and its universality status is open. The direct candidate selected flag is false.
 
-Obligation: A carrier with syntax, execution, simulation, an extensional property with encoded witnesses, an effective reduction and a replay boundary must be frozen before any Rice-style claim.
+Obligation: Adequacy, replay closure, extensionality, nontriviality and effective reduction stay outside this slice. The other three candidate identifiers stay outside it. A frozen carrier and a Rice-style claim stay open. The structural validator over the whole JSON record stays with the cited Python check.
 
 ### TFQ-1363 Rice, Goedel and the LLM corollary are not formalized in the recovered files
 
@@ -12692,9 +12692,9 @@ Obligation: Recorded as an explicit non-claim.
 - DAG node: `GTH-SHADOW`
 - Paper: [derivation](derivations/34_genesis_to_higher/tfq_2400_gth_shadow.md)
 
-No construction turns PGW-GO-ADMISSION-GATE into a finite semi-simplicial set or a finite globular set. That gate keeps a two-valued admission record with a reached result: reaching leaves not-admitted, and admission is not one of the four kinds of change. A finite semi-simplicial set of dimension at most N is finite sets X_0, ..., X_N and face maps d_i from X_n to X_{n-1} such that d_i composed with d_j equals d_{j-1} composed with d_i whenever i < j. It carries no degeneracy maps. A finite globular set is finite sets with source and target maps s, t from X_{n+1} to X_n such that s composed with s equals s composed with t, and t composed with t equals t composed with s. Neither family is defined from the admission record.
+Narrowed boundary, status left OPEN. On the triangle with vertices 0, 1 and 2, the edges are (0, 1), (0, 2) and (1, 2). The target of (0, 2) equals the target of (1, 2), the target of (0, 1) equals the source of (1, 2), and the source of (0, 1) equals the source of (0, 2). The reach map sends 0 and 1 to 0, and the pair (0, 0) differs from the edge (0, 1). For two edges labeled 0 and 1, the source map sends both to 0 and the target map sends both to 1, so the two source values agree and the two target values agree.
 
-Obligation: Missing parent construction: PGW-GO-ADMISSION-GATE is a two-valued admission record, and no source builds a finite semi-simplicial set or a finite globular set from it.
+Obligation: No construction turns the admission gate into a finite semi-simplicial set or a finite globular set. The two-valued record's four kinds of change, degeneracy maps, and every complex other than this triangle and this pair of edges stay open. The node lean list stays empty because this stage rejects a Lean citation.
 
 ### TFQ-2401 Truncation: components, finite fundamental groupoid, finite n-type presentation
 
@@ -12776,9 +12776,9 @@ Obligation: The assumption is an (infinity,1)-category (inner horn fillers). It 
 - DAG node: `GTH-LANG-CORE`
 - Paper: [derivation](derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md)
 
-The priced admission language is not defined. The reading intended for its primitives, which this node does not derive, is: a two-valued admission record kept with a reached result (PGW-GO-ADMISSION-GATE); a regime as a tuple of admitted data, forms, instances, rules and requirements, with state change only through an admission event or impose, and with supply external (PG-GEN-REGIME-EVENTS); and the two boxed laws that S(n+1) may contain only structure forced by an unresolved obstruction at S(n), and that a realization has no authority to extend S(n) (PGW-SN-TWO-BOXED-LAWS). No syntax, no typing judgement and no deep embedding is given. Alphabet declarations of the MSS-N grammar are not a primitive derived from those three nodes.
+Narrowed boundary, status left OPEN. One regime carrier has data 1 and forms, instances, rules and requirements all 0, and the sum of those five slots is 1. The same carrier with its rule slot set to 1 differs from it, and that rule slot is 1. The reach map sends 0 and 1 to 0.
 
-Obligation: No syntax, typing judgement or deep embedding. MSS-N alphabet declarations are not a derived primitive. The infinite imports are not inputs of the route into this node.
+Obligation: No syntax, typing judgement or deep embedding of a priced admission language is defined. The two boxed laws, the MSS-N alphabet, and every regime other than this one carrier stay open. The node lean list stays empty because this stage rejects a Lean citation.
 
 ### TFQ-2408 Reflection of the language
 

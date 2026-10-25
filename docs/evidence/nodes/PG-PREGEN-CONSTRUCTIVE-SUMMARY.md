@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 13
-- cited Lean declarations covered by a current replay receipt: 13
+- distinct cited Lean declarations covered by a current replay receipt: 13
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -59,6 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `PreMssnListed.fiberConstant_of_recon` | yes | yes | yes | none | `#print axioms PreMssnListed.fiberConstant_of_recon` |
 | `PreMssnListed.listed_history_report_criterion` | yes | yes | yes | none | `#print axioms PreMssnListed.listed_history_report_criterion` |
 | `PreMssnListed.recon_of_fiberConstant` | yes | yes | yes | none | `#print axioms PreMssnListed.recon_of_fiberConstant` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/PregenConstructive.lean`
@@ -82,6 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `PregenConstructive.recon_of_fiberConstant` | yes | yes | yes | none | `#print axioms PregenConstructive.recon_of_fiberConstant` |
 | `PregenConstructive.recon_unique` | yes | yes | yes | none | `#print axioms PregenConstructive.recon_unique` |
 | `PregenConstructive.recon_wrong_off_list` | yes | yes | yes | none | `#print axioms PregenConstructive.recon_wrong_off_list` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`

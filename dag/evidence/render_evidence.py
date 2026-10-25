@@ -111,7 +111,7 @@ def node_page(row: dict, node: dict, document: dict, rows_by_id: dict) -> str:
             "The grade rates the evidence this checkout holds; it is separate from the status.", "",
             f"- counted in-repo evidence files: {row['facts']['counted_files']}",
             f"- cited Lean, Rust or Python symbols found in their in-repo files: {row['facts']['symbols_found']}",
-            f"- cited Lean declarations covered by a current replay receipt: {row['facts']['lean_receipt_backed']}",
+            f"- distinct cited Lean declarations covered by a current replay receipt: {row['facts']['lean_receipt_backed']}",
             f"- counted in-repo runnable tests: {row['facts']['runnable_tests']}",
             f"- counted in-repo Rust or Python files that are not tests: {row['facts']['cited_code_files_not_tests']}",
             f"- recorded statement-match reviews that qualify: {row['facts']['qualifying_reviews']}",
@@ -207,6 +207,7 @@ def node_page(row: dict, node: dict, document: dict, rows_by_id: dict) -> str:
                 kind = "" if group == 0 else f" ({m['kind']})"
                 out.append(f"| `{cell(m['symbol'])}`{kind} | {yes_no(m['counts'])} | {yes_no(m['symbol_exists'])} | "
                            f"{yes_no(m['symbol_declared'])} | {cell(audited)} | {('`' + cell(check) + '`') if check not in ('-', None) else '-'} |")
+            out.append("")
         elif first["resolution"] == "present" and group in (1, 2) and first["command_note"]:
             out.append(f"- note: {first['command_note']}")
         out.append(f"- counts toward the grade: {yes_no(any(m['counts'] for m in members))}")
@@ -334,7 +335,8 @@ def readme_page(document: dict, rows: list[dict]) -> str:
             f"The `lean` fields of nodes cite {lean_decl['distinct']} distinct Lean declarations that lie in files of this checkout. "
             f"{lean_decl['replay_verified']} of them are in a file whose current sha256 matches a passing replay receipt; "
             f"{lean_decl['no_receipt']} are in files with no receipt in `dag/research/`; "
-            f"{lean_decl['replay_stale']} are in files whose receipt no longer matches. "
+            f"{lean_decl['replay_stale']} are in files whose receipt no longer matches; "
+            f"{lean_decl['replay_failed']} are in files whose current-hash receipt failed the build or axiom audit. "
             f"The `PROVED_LEAN` nodes cite {sum(pl_refs.values())} Lean references; "
             f"{pl_refs.get('external_unresolved', 0) + pl_refs.get('missing', 0)} "
             f"({(pl_refs.get('external_unresolved', 0) + pl_refs.get('missing', 0)) * 100 // max(sum(pl_refs.values()), 1)} percent) "

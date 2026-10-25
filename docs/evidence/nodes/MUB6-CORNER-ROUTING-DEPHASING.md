@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 2
+- distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -55,6 +55,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `corner_routing_classification` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms corner_routing_classification` |
 | `dephase_and_route_corner` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms dephase_and_route_corner` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/25_mub/tfq_1266_mub6_corner_routing_dephasing.md`

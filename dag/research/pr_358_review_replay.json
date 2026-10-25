@@ -1,0 +1,123 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:19:13.306872+00:00",
+  "review_base": "9f11c633202fa3a274591b3b99dd3836fb0ef204",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: PGW-WDP-HANDOFF-TO-L1 — Narrowed: one triangle separates coboundary length 2 from quotient 0; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignPgwWdpHandoffToL1.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignPgwWdpHandoffToL1",
+        "dag_node": "PGW-WDP-HANDOFF-TO-L1",
+        "source": "lean4/CampaignPgwWdpHandoffToL1.lean",
+        "sha256": "76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85",
+        "sha256_after_build": "76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "face_of_coboundary",
+          "l1_ge_face",
+          "distance_at_least",
+          "repair_residual_neg",
+          "repair_residual_nonneg",
+          "meet_neg",
+          "meet_nonneg",
+          "face_zero_is_coboundary",
+          "d0_components",
+          "leakage_of_repair_vertex",
+          "coboundary_of_repair_vertex",
+          "quotient_of_that_coboundary",
+          "leakage_is_not_quotient",
+          "face_of_obstruction",
+          "obstructed_verdict",
+          "closed_verdict",
+          "equal_report_passes",
+          "unequal_report_fails",
+          "repair_picks_neg",
+          "repair_picks_nonneg"
+        ],
+        "axioms": {
+          "face_of_coboundary": [
+            "Quot.sound",
+            "propext"
+          ],
+          "l1_ge_face": [
+            "Quot.sound",
+            "propext"
+          ],
+          "distance_at_least": [
+            "Quot.sound",
+            "propext"
+          ],
+          "repair_residual_neg": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "repair_residual_nonneg": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "meet_neg": [
+            "Quot.sound",
+            "propext"
+          ],
+          "meet_nonneg": [
+            "Quot.sound",
+            "propext"
+          ],
+          "face_zero_is_coboundary": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "d0_components": [],
+          "leakage_of_repair_vertex": [],
+          "coboundary_of_repair_vertex": [],
+          "quotient_of_that_coboundary": [],
+          "leakage_is_not_quotient": [],
+          "face_of_obstruction": [],
+          "obstructed_verdict": [],
+          "closed_verdict": [],
+          "equal_report_passes": [],
+          "unequal_report_fails": [],
+          "repair_picks_neg": [],
+          "repair_picks_nonneg": []
+        },
+        "output": "'d0_components' does not depend on any axioms\n'face_of_coboundary' depends on axioms: [propext, Quot.sound]\n'l1_ge_face' depends on axioms: [propext, Quot.sound]\n'distance_at_least' depends on axioms: [propext, Quot.sound]\n'repair_residual_neg' depends on axioms: [propext, Classical.choice, Quot.sound]\n'repair_residual_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]\n'meet_neg' depends on axioms: [propext, Quot.sound]\n'meet_nonneg' depends on axioms: [propext, Quot.sound]\n'leakage_of_repair_vertex' does not depend on any axioms\n'coboundary_of_repair_vertex' does not depend on any axioms\n'quotient_of_that_coboundary' does not depend on any axioms\n'leakage_is_not_quotient' does not depend on any axioms\n'face_of_obstruction' does not depend on any axioms\n'obstructed_verdict' does not depend on any axioms\n'closed_verdict' does not depend on any axioms\n'face_zero_is_coboundary' depends on axioms: [propext, Classical.choice, Quot.sound]\n'equal_report_passes' does not depend on any axioms\n'unequal_report_fails' does not depend on any axioms\n'repair_picks_neg' does not depend on any axioms\n'repair_picks_nonneg' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/pgw-wdp-handoff-to-l1.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.021,
+    "output": "checked 16778 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/358/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.153,
+    "output": ""
+  }
+}

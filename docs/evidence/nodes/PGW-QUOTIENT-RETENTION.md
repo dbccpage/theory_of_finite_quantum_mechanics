@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 1
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 4
+- distinct cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `collapseMap_injective_iff_reverse_refinement` | yes | yes | yes | Quot.sound, propext | `#print axioms collapseMap_injective_iff_reverse_refinement` |
 | `collapseMap_surjective` | yes | yes | yes | Quot.sound | `#print axioms collapseMap_surjective` |
 | `failed_identification_retains_two_classes` | yes | yes | yes | Quot.sound, propext | `#print axioms failed_identification_retains_two_classes` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0457_quotient_retention.md`

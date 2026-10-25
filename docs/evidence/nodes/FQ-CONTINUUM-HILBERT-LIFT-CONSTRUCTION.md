@@ -10,9 +10,9 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `PROVED_LEAN`. Evi
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 8
+- counted in-repo evidence files: 12
 - cited Lean, Rust or Python symbols found in their in-repo files: 13
-- cited Lean declarations covered by a current replay receipt: 9
+- distinct cited Lean declarations covered by a current replay receipt: 9
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -20,10 +20,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-- `broken_reference`: path not found: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md. A cited in-repo path or symbol cannot be found in this checkout.
-- `broken_reference`: path not found: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md. A cited in-repo path or symbol cannot be found in this checkout.
-- `broken_reference`: path not found: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md. A cited in-repo path or symbol cannot be found in this checkout.
-- `broken_reference`: path not found: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md. A cited in-repo path or symbol cannot be found in this checkout.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -58,6 +55,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `HilbertLift.controlled_completion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.controlled_completion` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/HilbertLiftComplexCarrier.lean`
@@ -72,6 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `HilbertLift.controlled_completion_complex` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.controlled_completion_complex` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/HilbertLiftFiniteTower.lean`
@@ -86,6 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `HilbertLift.exhaustion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.exhaustion` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/HilbertLiftIntrinsicUniformity.lean`
@@ -101,6 +101,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `HilbertLift.intrinsic_completion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.intrinsic_completion` |
 | `HilbertLift.uniformity_eq_iInf_sqdist` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.uniformity_eq_iInf_sqdist` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/HilbertLiftL2Model.lean`
@@ -115,6 +116,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `HilbertLift.l2_model_summary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.l2_model_summary` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/HilbertLiftOperators.lean`
@@ -130,6 +132,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `HilbertLift.no_continuous_extension_coordSum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.no_continuous_extension_coordSum` |
 | `HilbertLift.operator_lift_summary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.operator_lift_summary` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/HilbertLiftRationalUniformity.lean`
@@ -144,6 +147,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `HilbertLift.harmonic_separates_uniformities` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms HilbertLift.harmonic_separates_uniformities` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/hilbert_lift_completion.rs`
@@ -158,6 +162,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `coord_sum_gap` (rust_symbol) | yes | yes | yes | - | - |
 | `modulus_holds` (rust_symbol) | yes | yes | yes | - | - |
 | `shift_is_isometric` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md`
@@ -170,31 +175,31 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ### Documents and data: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md`
 
-- file: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md](../../../dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md)
+- sha256 (`lf-normalised`): `390ac197881587f3b39d397e87249de26383e82baae3cbf87beeb993b062c6f2`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ### Documents and data: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md`
 
-- file: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md](../../../dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md)
+- sha256 (`lf-normalised`): `ffcc6ba2caff7e2cb72d94a279ed2341f33c0f8e736e15ddc77e34d60d745817`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ### Documents and data: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md`
 
-- file: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md](../../../dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md)
+- sha256 (`lf-normalised`): `1876e42480bee8ab05e517f2ddd069134ac4f05b76ba898cc112cf52e990bdaa`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ### Documents and data: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md`
 
-- file: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md](../../../dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md)
+- sha256 (`lf-normalised`): `68b445d35bae477cb9a9429171d3ad2c9c56ecffd7279ddddba70f02500c72c9`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ## Routes
 

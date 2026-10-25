@@ -1,0 +1,65 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:23:47.714113+00:00",
+  "review_base": "7fa69d621c27bed7045d0b7fe34bbb1d34b27248",
+  "proof_boundary": "Two closed Lean histories replay to distinct regimes. No Python-to-Lean refinement is established. The L2D capability assessment and OPEN node status are retained.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "LEAN_PATH=/workspace/pr-review/lean-cache lean CampaignPgwPythonLeanCarrierBridge.lean",
+    "cwd": "lean4",
+    "dependency_replay": {
+      "source": "lean4/Imported/Genesis19l57g1/SecondRun/Kernel.lean",
+      "sha256": "c88243985ee7dc438aa644b70a3259fd192647a25ee9ce4f3699ab44c130b1b4",
+      "exit_code": 0,
+      "output": ""
+    },
+    "results": [
+      {
+        "module": "CampaignPgwPythonLeanCarrierBridge",
+        "dag_node": "PGW-PYTHON-LEAN-CARRIER-BRIDGE",
+        "source": "lean4/CampaignPgwPythonLeanCarrierBridge.lean",
+        "sha256": "096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3",
+        "sha256_after_build": "096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "built_successfully": true,
+        "axiom_audit_passed": true,
+        "admission_scan_passed": true,
+        "anchors": [
+          "pgwHistoryL_replays",
+          "pgwHistoryF_replays",
+          "pgwReplay_ne",
+          "pgwR2L_ne_R2F",
+          "pgwData_counts",
+          "pgwReqs",
+          "pgwEmpty_carriers",
+          "pgwHistory_lengths"
+        ],
+        "axioms": {
+          "pgwHistoryL_replays": [
+            "propext"
+          ],
+          "pgwHistoryF_replays": [
+            "propext"
+          ],
+          "pgwReplay_ne": [
+            "propext"
+          ],
+          "pgwR2L_ne_R2F": [],
+          "pgwData_counts": [],
+          "pgwReqs": [],
+          "pgwEmpty_carriers": [],
+          "pgwHistory_lengths": []
+        },
+        "output": "'pgwHistoryL_replays' depends on axioms: [propext]\n'pgwHistoryF_replays' depends on axioms: [propext]\n'pgwR2L_ne_R2F' does not depend on any axioms\n'pgwReplay_ne' depends on axioms: [propext]\n'pgwData_counts' does not depend on any axioms\n'pgwReqs' does not depend on any axioms\n'pgwEmpty_carriers' does not depend on any axioms\n'pgwHistory_lengths' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": "python -I -X utf8 checks/independent/pgw-python-lean-carrier-bridge.py",
+    "exit_code": 0,
+    "output": "checked 26 claims, failures 0\n"
+  }
+}

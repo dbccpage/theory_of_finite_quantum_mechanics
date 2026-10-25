@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 7
-- cited Lean declarations covered by a current replay receipt: 5
+- distinct cited Lean declarations covered by a current replay receipt: 5
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -59,6 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `Reach.of_map` | yes | yes | yes | Quot.sound, propext | `#print axioms Reach.of_map` |
 | `Step.exists_of_map` | yes | yes | yes | Quot.sound, propext | `#print axioms Step.exists_of_map` |
 | `Step.map` | yes | yes | yes | propext | `#print axioms Step.map` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/wdp/genesis_tm.rs`
@@ -72,6 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `letter_map_commutes_with_steps` (rust_test) | yes | yes | yes | - | `cd code/rust && cargo test -p tfqm_wdp letter_map_commutes_with_steps` |
 | `map_marks` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1287_comp_c2_letter_rename_commutes.md`

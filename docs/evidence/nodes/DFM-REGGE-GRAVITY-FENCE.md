@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 8
-- cited Lean declarations covered by a current replay receipt: 8
+- distinct cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -64,6 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `cosine_sum_ne_block_trace` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms cosine_sum_ne_block_trace` |
 | `lengths_345` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms lengths_345` |
 | `numerator_sum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms numerator_sum` |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/dfm-regge-gravity-fence.py`

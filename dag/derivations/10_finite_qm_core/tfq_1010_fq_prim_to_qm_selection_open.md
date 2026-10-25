@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Primitive difference does not select the declared quantum model or readout. Direct packet-walk execution is an integration result: the complexes, Cayley parameter, cyclotomic weights, detector and squared-amplitude readout were supplied independently of the computed difference value.
+For amplitudes 1 and 2, quadratic numerators are 1 and 4 with sum 5, and quartic numerators are 1 and 16 with sum 17. Both pairs are positive. The products 1*17 and 1*5 differ, and the separate Fraction audit confirms that the normalized first weights 1/5 and 1/17 differ. For equal amplitudes 1 and 1, quadratic numerators are 1 and 1 with sum 2, and quartic numerators are 1 and 1 with sum 2.
 
 ### Governing Obligation
-Finite D2, D3, D2xD3, D3^2, and D3^3 projectors and the state-manifold dimension gap d-1 < d^2-1 are mechanized without free parameters; full continuum M_n(C) and Gleason n>=3 remain explicit external imports.
+Selection of a declared quantum model or readout from primitive difference stays open. Packet-walk execution, the complexes, the Cayley parameter, cyclotomic weights, the detector and a squared-amplitude readout are not this integer witness. Continuum M_n(C) and Gleason n>=3 remain external imports. The D2, D3, D2xD3, D3^2 and D3^3 counts and the gap d-1 < d^2-1 for d >= 2 stay outside this witness.
 
 ### Source Status
 7-stage finite relational operad chain (D2, D3, D2xD3, D3^2, D3^3) and d-dimensional diagonal vs rebit vs qubit state-parameter gap (d-1 < d^2-1) mechanized in CoupledRelationalProjectors.lean and DerivationDagQMClosure.lean; continuum Hilbert/Gleason imports remain external
@@ -33,6 +33,10 @@ Finite D2, D3, D2xD3, D3^2, and D3^3 projectors and the state-manifold dimension
 - `lean4/CoupledRelationalProjectors.lean::QuantumMechanics.CoupledRelationalProjectors.coupled_bipartite_and_tripartite_relational_master_certificate`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_prim_to_qm_selection_finite_quotient_vs_continuum_gap`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure`
+- `lean4/CampaignFqPrimToQmSelection.lean::quad_weights`
+- `lean4/CampaignFqPrimToQmSelection.lean::quart_weights`
+- `lean4/CampaignFqPrimToQmSelection.lean::normalized_first_weights_differ`
+- `lean4/CampaignFqPrimToQmSelection.lean::symmetric_agreement`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs::readout_quadratic`
@@ -55,3 +59,4 @@ Finite D2, D3, D2xD3, D3^2, and D3^3 projectors and the state-manifold dimension
   - `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:105`
   - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:367`
   - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332`
+  - `checks/independent/fq-prim-to-qm-selection-open.py`

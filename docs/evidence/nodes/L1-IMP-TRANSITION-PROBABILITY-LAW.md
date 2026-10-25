@@ -10,9 +10,9 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 8
+- counted in-repo evidence files: 10
 - cited Lean, Rust or Python symbols found in their in-repo files: 88
-- cited Lean declarations covered by a current replay receipt: 85
+- distinct cited Lean declarations covered by a current replay receipt: 85
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -20,8 +20,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-- `broken_reference`: path not found: dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md. A cited in-repo path or symbol cannot be found in this checkout.
-- `broken_reference`: path not found: dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md. A cited in-repo path or symbol cannot be found in this checkout.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -136,6 +135,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignTransitionProbability.witnessA_ne` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignTransitionProbability.witnessA_ne` |
 | `CampaignTransitionProbability.witnessB` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignTransitionProbability.witnessB` |
 | `CampaignTransitionProbability.witnessB_ne` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignTransitionProbability.witnessB_ne` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteWignerKernel.lean`
@@ -151,6 +151,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `WignerFable.Kernel.tp` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Kernel.tp` |
 | `WignerFable.Kernel.tp_eq_born` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Kernel.tp_eq_born` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteWignerSimilarity.lean`
@@ -165,6 +166,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `WignerFable.Similarity.tpPreserving_iff_born` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.tpPreserving_iff_born` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteWignerTheorem.lean`
@@ -180,6 +182,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `WignerFable.Theorem.TpPreserving` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.TpPreserving` |
 | `WignerFable.Theorem.tpPreserving_of_similarity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.tpPreserving_of_similarity` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/finite_wigner.rs`
@@ -193,6 +196,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `born_transition` (rust_symbol) | yes | yes | yes | - | - |
 | `transition_probability` (rust_symbol) | yes | yes | yes | - | - |
 | `verify_induced` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/l1-imp-transition-probability-law.py`
@@ -226,17 +230,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ### Documents and data: `dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md`
 
-- file: `dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md](../../../dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md)
+- sha256 (`lf-normalised`): `8b5050fbb9f1e046b3f6fbde489956734d5e6d4b5f1ef936ad56cdd6abf82a49`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ### Documents and data: `dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md`
 
-- file: `dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md](../../../dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md)
+- sha256 (`lf-normalised`): `c47b6d96998dcd53375828e9925862b63fcd37b84f6f12f13ac5960bf4a47629`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ## Routes
 

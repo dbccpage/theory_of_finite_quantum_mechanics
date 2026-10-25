@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 8
 - cited Lean, Rust or Python symbols found in their in-repo files: 33
-- cited Lean declarations covered by a current replay receipt: 33
+- distinct cited Lean declarations covered by a current replay receipt: 33
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -68,6 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `twist_trace` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms twist_trace` |
 | `twisted_local` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms twisted_local` |
 | `twisted_self_dual` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms twisted_self_dual` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/TensorCountermodelEmbeddings.lean`
@@ -82,6 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `cone_separations_all_dimensions` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms cone_separations_all_dimensions` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/TensorCountermodelWitnesses.lean`
@@ -106,6 +108,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `sep_fails_controlled_shift` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms sep_fails_controlled_shift` |
 | `twisted_fails_ordinary_calibration` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms twisted_fails_ordinary_calibration` |
 | `twisted_same_classical_table` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms twisted_same_classical_table` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/TensorHiddenCoordinates.lean`
@@ -125,6 +128,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `hidden_normalized_states` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms hidden_normalized_states` |
 | `independent_probabilities` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms independent_probabilities` |
 | `no_local_tomography` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms no_local_tomography` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/TensorPartialTranspose.lean`
@@ -142,6 +146,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `gamma` | yes | yes | yes | module-level | `#print axioms gamma` |
 | `gamma_conjMap_product` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms gamma_conjMap_product` |
 | `pairing_gamma_gamma` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms pairing_gamma_gamma` |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/qm/tensor_composition.py`
@@ -170,7 +175,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/tensor_countermodel_validation.json`
 
 - file: [dag/research/tensor_countermodel_validation.json](../../../dag/research/tensor_countermodel_validation.json)
-- sha256 (`lf-normalised`): `0a784b5ad046123a77edda2ef9b75af9ba168feecc12b3d54fe45707a52e2d67`
+- sha256 (`lf-normalised`): `90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba`
 - cited in: node.source
 - counts toward the grade: yes
 

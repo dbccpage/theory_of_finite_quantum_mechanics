@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 3
+- distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `allCtxs` | yes | yes | yes | none | `#print axioms allCtxs` |
 | `genesis_context_count_n2_a3` | yes | yes | yes | none | `#print axioms genesis_context_count_n2_a3` |
 | `genesis_one_hole_count_n2_a3` | yes | yes | yes | none | `#print axioms genesis_one_hole_count_n2_a3` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/wdp/genesis_tm.rs`
@@ -69,6 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `context_count_formula_and_one_hole_splits` (rust_test) | yes | yes | yes | - | `cd code/rust && cargo test -p tfqm_wdp context_count_formula_and_one_hole_splits` |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/qm/genesis_tm.py`
@@ -80,6 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `context_counts` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1289_comp_c2_context_counts_checked.md`

@@ -26,10 +26,11 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/quantum_mechanics/FiniteQM.lean`](../../code/lean4/)
+- `lean4/CampaignTfq0313OperatorAlgebraShadow.lean` records one narrowed fragment: two additive, homogeneous endomorphisms of the 16-element module (Z/4Z)^2, with products AB = [[1, 0], [0, 0]], BA = [[0, 0], [0, 1]], and AB − BA = [[1, 0], [0, 3]]. The node stays OPEN.
+- `lean4/FiniteQM.lean` is a neighboring finite-QM file and is not the witness for this slot.
 
 ### Sovereign Rust Certifiers
-*Computational witness tracked under `theory_of_finite_qm` crate.*
+No Rust witness of this signature is cited. A crate placeholder is not a check of these matrices.
 
 ---
 

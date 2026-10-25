@@ -3,25 +3,25 @@ node_id: PGW-RUNS-PAST-DECLARED-BOUNDS
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Challenge 4 was run to declared bounds only (fifteen rounds, a node guard of 250
-    per run, growth below four data, two items): 11,266 nodes stopped at the guard and 368 at the bound,
-    and 116 runs are not closed. Attempt two''s leftovers H-2 to H-9 remain: the 970 refused same demands
-    (H-2), the twenty-eight merges rung two''s observable budget refused (H-3), the 482 regimes above
-    the brute-force key limit (H-4), a distance on adjacency (H-5), a reading of carrying forward that
-    admits switch (H-6), the forty-four closed runs with switch cycles UNDECIDED under ONE VALUE PER NODE
-    (H-7), why E1 and E5 share one run under mu2 (H-8), and five data (H-9). Whether the augmentation
-    sequence is unbounded is unresolved in the sealed paper (question 7): with the external continuation
-    policy every requested depth tried was reached and every supplied demand has a response (mark_progress),
-    and no unboundedness claim is made.'
+  source_statement: 'Narrowed in Lean 4 to five records on the declared bound line: rounds at most 15,
+    nodes at most 250, data below 4, and items at most 2. The record (15, 250, 3, 2) is inside. The record
+    (16, 250, 3, 2) is outside. The record (15, 251, 3, 2) is outside. The record (15, 250, 4, 2) is outside.
+    The record (15, 250, 3, 3) is outside. The census of stopped runs, leftovers H-2 to H-9, and whether
+    the augmentation sequence is unbounded stay open.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Open; every FORCED verdict other than the element count, irreversibility and two-ness
-    over the LIVE members is a computation at the declared bounds.
+  source_bottleneck: 'Open; every FORCED verdict other than the element count, irreversibility and two-ness
+    over the LIVE members is a computation at the declared bounds. Narrowed in Lean 4 to five records
+    on that line: (15, 250, 3, 2) is inside, and one extra round, one extra node, data 4, or three items
+    is outside. The census of stopped runs, leftovers H-2 to H-9, and whether the augmentation sequence
+    is unbounded stay open.'
   source_refs:
   - dag/derivations/02_genesis/tfq_0501_runs_past_declared_bounds.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1039-1044
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1045-1053
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:599-606
+  - dag/derivations/independent/pgw-runs-past-declared-bounds.md:5
+  - dag/research/campaign_pgw-runs-past-declared-bounds_lean_replay.json:6
   paper_refs: []
   source_claim_label: OPEN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -35,8 +35,66 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_runs_past_declared_bounds_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
+operation_candidates:
+- kind: def
+  name: pgwBoundInside
+  line: 8
+  signature_excerpt: 'def pgwBoundInside (rounds nodes data items : Nat) : Bool'
+  source: lean4/CampaignPgwRunsPastDeclaredBounds.lean
+  repository: this_repository
+  source_sha256: a8ca3ae2ff2c74e52d4ebdfbc8d625d47beb643a6fc0c6d0ace2cb589fd0b574
+  status: source_candidate_requires_semantic_review
 relation_candidates:
+- kind: theorem
+  name: pgwBoundOnLine
+  line: 11
+  signature_excerpt: 'theorem pgwBoundOnLine : pgwBoundInside 15 250 3 2 = true'
+  source: lean4/CampaignPgwRunsPastDeclaredBounds.lean
+  repository: this_repository
+  source_sha256: a8ca3ae2ff2c74e52d4ebdfbc8d625d47beb643a6fc0c6d0ace2cb589fd0b574
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwBoundRoundPast
+  line: 14
+  signature_excerpt: 'theorem pgwBoundRoundPast : pgwBoundInside 16 250 3 2 = false'
+  source: lean4/CampaignPgwRunsPastDeclaredBounds.lean
+  repository: this_repository
+  source_sha256: a8ca3ae2ff2c74e52d4ebdfbc8d625d47beb643a6fc0c6d0ace2cb589fd0b574
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwBoundNodePast
+  line: 17
+  signature_excerpt: 'theorem pgwBoundNodePast : pgwBoundInside 15 251 3 2 = false'
+  source: lean4/CampaignPgwRunsPastDeclaredBounds.lean
+  repository: this_repository
+  source_sha256: a8ca3ae2ff2c74e52d4ebdfbc8d625d47beb643a6fc0c6d0ace2cb589fd0b574
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwBoundDataFour
+  line: 20
+  signature_excerpt: 'theorem pgwBoundDataFour : pgwBoundInside 15 250 4 2 = false'
+  source: lean4/CampaignPgwRunsPastDeclaredBounds.lean
+  repository: this_repository
+  source_sha256: a8ca3ae2ff2c74e52d4ebdfbc8d625d47beb643a6fc0c6d0ace2cb589fd0b574
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwBoundItemPast
+  line: 23
+  signature_excerpt: 'theorem pgwBoundItemPast : pgwBoundInside 15 250 3 3 = false'
+  source: lean4/CampaignPgwRunsPastDeclaredBounds.lean
+  repository: this_repository
+  source_sha256: a8ca3ae2ff2c74e52d4ebdfbc8d625d47beb643a6fc0c6d0ace2cb589fd0b574
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: mark_progress
   line: 84
@@ -52,6 +110,51 @@ relation_candidates:
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
+- original_ref: lean4/CampaignPgwRunsPastDeclaredBounds.lean::pgwBoundOnLine
+  availability: local
+  symbol: pgwBoundOnLine
+  path: lean4/CampaignPgwRunsPastDeclaredBounds.lean
+  repository: this_repository
+  sha256: a8ca3ae2ff2c74e52d4ebdfbc8d625d47beb643a6fc0c6d0ace2cb589fd0b574
+  declaration_status: declaration_found_not_proof_checked
+  line: 11
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwRunsPastDeclaredBounds.lean::pgwBoundRoundPast
+  availability: local
+  symbol: pgwBoundRoundPast
+  path: lean4/CampaignPgwRunsPastDeclaredBounds.lean
+  repository: this_repository
+  sha256: a8ca3ae2ff2c74e52d4ebdfbc8d625d47beb643a6fc0c6d0ace2cb589fd0b574
+  declaration_status: declaration_found_not_proof_checked
+  line: 14
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwRunsPastDeclaredBounds.lean::pgwBoundNodePast
+  availability: local
+  symbol: pgwBoundNodePast
+  path: lean4/CampaignPgwRunsPastDeclaredBounds.lean
+  repository: this_repository
+  sha256: a8ca3ae2ff2c74e52d4ebdfbc8d625d47beb643a6fc0c6d0ace2cb589fd0b574
+  declaration_status: declaration_found_not_proof_checked
+  line: 17
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwRunsPastDeclaredBounds.lean::pgwBoundDataFour
+  availability: local
+  symbol: pgwBoundDataFour
+  path: lean4/CampaignPgwRunsPastDeclaredBounds.lean
+  repository: this_repository
+  sha256: a8ca3ae2ff2c74e52d4ebdfbc8d625d47beb643a6fc0c6d0ace2cb589fd0b574
+  declaration_status: declaration_found_not_proof_checked
+  line: 20
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwRunsPastDeclaredBounds.lean::pgwBoundItemPast
+  availability: local
+  symbol: pgwBoundItemPast
+  path: lean4/CampaignPgwRunsPastDeclaredBounds.lean
+  repository: this_repository
+  sha256: a8ca3ae2ff2c74e52d4ebdfbc8d625d47beb643a6fc0c6d0ace2cb589fd0b574
+  declaration_status: declaration_found_not_proof_checked
+  line: 23
+  role: source_lead_only
 - original_ref: lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::mark_progress
   availability: local
   symbol: mark_progress

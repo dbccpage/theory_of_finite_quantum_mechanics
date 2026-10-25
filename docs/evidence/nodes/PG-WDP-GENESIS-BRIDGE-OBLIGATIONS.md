@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 8
 - cited Lean, Rust or Python symbols found in their in-repo files: 33
-- cited Lean declarations covered by a current replay receipt: 32
+- distinct cited Lean declarations covered by a current replay receipt: 32
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 4
 - recorded statement-match reviews that qualify: 0
@@ -65,6 +65,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignPgwWdpBridgeObligations.pairDefect_not_directed_step_certificate` | yes | yes | yes | propext | `#print axioms CampaignPgwWdpBridgeObligations.pairDefect_not_directed_step_certificate` |
 | `CampaignPgwWdpBridgeObligations.some_certificate_exists` | yes | yes | yes | none | `#print axioms CampaignPgwWdpBridgeObligations.some_certificate_exists` |
 | `CampaignPgwWdpBridgeObligations.witness_orientation_swap` | yes | yes | yes | propext | `#print axioms CampaignPgwWdpBridgeObligations.witness_orientation_swap` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
@@ -83,6 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `QuantumMechanics.DerivationDagQMClosure.genesis_to_wdp_bridge_preserves_and_reflects` | yes | yes | yes | module-level | `#print axioms QuantumMechanics.DerivationDagQMClosure.genesis_to_wdp_bridge_preserves_and_reflects` |
 | `QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl` | yes | yes | yes | module-level | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl` |
 | `QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o03_o05_coherence_readout_and_standing_separation` | yes | yes | yes | module-level | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o03_o05_coherence_readout_and_standing_separation` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/WdpBridgeObligations.lean`
@@ -114,6 +116,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `WdpBridgeObligations.raise_completes` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpBridgeObligations.raise_completes` |
 | `WdpBridgeObligations.raise_preserves_endToEnd` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpBridgeObligations.raise_preserves_endToEnd` |
 | `WdpBridgeObligations.update_sharp` | yes | yes | yes | propext | `#print axioms WdpBridgeObligations.update_sharp` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/wdp/examples/genesis_construction.rs`
@@ -155,6 +158,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/pg-wdp-genesis-bridge-obligations.py`
