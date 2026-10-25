@@ -6465,14 +6465,46 @@
       "parent_id": "TFQ-0486",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "Challenge 1, the stream as a response, is OPEN with scoped finite results only: no retained V1 minimum of 1680 carries a datum, 32 of them were selected at three items, all fourteen recorded refusal situations are answered at exactly three items, and two new first refusals appear. 1039 nodes stopped at the guard, targets after a node's first refusal were not searched (the first-refusal short-circuit), and four items were not computed (R1-X PENDING); V2 beyond nineteen situations and the narrow-versus-wide comparison are also OPEN. Attempt two's runs add only that no response carries a datum at two items, and the continuation was not authorized to take Challenge 1 up.",
-      "obligation": "Compute the stream challenge at four items with targets searched after a first refusal and the guard-stopped frontier reported, or prove a bound that makes the four-item case unnecessary.",
+      "summary": "Narrowed in Lean 4 to one refusal pair and one search flag. A refusal at item count 3 is a refusal at 3 and is not a refusal at 4. A reply at item count 4 may refuse, and a reply at item count 4 may accept. With the short-circuit flag set, a target at 4 after a refusal at 3 is not searched, while the target at 3 is searched. With the flag clear, the target at 4 is searched. The retained minima, the refusal census, the guard-stopped frontier, and the four-item stream computation stay open.",
+      "obligation": "Compute the stream challenge at four items with targets searched after a first refusal and the guard-stopped frontier reported, or prove a bound that makes the four-item case unnecessary. The retained minima, the refusal census, the guard-stopped frontier, and the four-item stream computation stay open.",
       "imports": [],
-      "fence": "Open; the three-item answers hold at the computed scope only, and a refusal at three items is not a refusal at four.",
+      "fence": "Open; the three-item answers hold at the computed scope only, and a refusal at three items is not a refusal at four. Narrowed in Lean 4 to one reply at item count 3, two replies at item count 4, and one short-circuit flag. The retained minima, the refusal census, the guard-stopped frontier, and the four-item stream computation stay open.",
       "witnesses": {
         "lean": [
           {
-            "absent": "no Lean statement of the stream challenge"
+            "root": "local",
+            "path": "lean4/CampaignPgwStreamAtFourItems.lean",
+            "symbol": "pgwStreamAtThree"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwStreamAtFourItems.lean",
+            "symbol": "pgwStreamThreeNotFour"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwStreamAtFourItems.lean",
+            "symbol": "pgwStreamFourRefuses"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwStreamAtFourItems.lean",
+            "symbol": "pgwStreamFourAccepts"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwStreamAtFourItems.lean",
+            "symbol": "pgwStreamShortCircuitSkipsFour"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwStreamAtFourItems.lean",
+            "symbol": "pgwStreamOpenSearchReachesFour"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwStreamAtFourItems.lean",
+            "symbol": "pgwStreamShortCircuitKeepsThree"
           }
         ],
         "rust": [
@@ -6485,6 +6517,11 @@
             "root": "github19l",
             "path": "research/second_stream/stream.py",
             "symbol": "build_stream_tree"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-stream-at-four-items.py",
+            "symbol": "main"
           }
         ]
       },
@@ -6500,6 +6537,18 @@
           "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt",
           "lines": "1067-1070",
           "quote": "1039 guard-stopped nodes, the first-refusal short-circuit, the four-item bound"
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-stream-at-four-items.md",
+          "lines": "5",
+          "quote": "Node status stays OPEN. This note records one refusal pair and one search flag."
+        },
+        {
+          "root": "local",
+          "path": "dag/research/campaign_pgw-stream-at-four-items_lean_replay.json",
+          "lines": "6",
+          "quote": "The 2026-10-25 lake build of CampaignPgwStreamAtFourItems exited 0."
         }
       ],
       "coda_atlas_ids": [],
