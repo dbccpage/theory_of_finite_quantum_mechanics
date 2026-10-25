@@ -4,15 +4,15 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 ## Statement
 
-> Complex numbers as a complete field. On the finite report host only Z\[i\] (Gaussian integers) is available: 1+i has no inverse, and a self-adjoint Gauss-integer matrix need not have a Gauss-integer eigenvalue.
+> For a Gaussian integer a+bi, the product (1+i)*(a+bi) equals (a-b)+(a+b)i and differs from the real unit, and (a+bi)*(1+i) differs from the real unit. The matrix with entries 0, 1, 1, 1 in row-major order has each diagonal entry equal to its own conjugate and each off-diagonal entry equal to the conjugate of the other, and it sends a column (x, y) to (y, x+y). When (x, y) differs from the zero column, (y, x+y) differs from lam*(x, y) for each Gaussian integer lam.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 3
-- distinct cited Lean declarations covered by a current replay receipt: 2
+- counted in-repo evidence files: 1
+- cited Lean, Rust or Python symbols found in their in-repo files: 10
+- distinct cited Lean declarations covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-No derivation of a field with completion from primitive difference; discrete substitute is the cyclotomic ring Z\[zeta_n\].
+A complete complex field, a spectral theorem for a general self-adjoint Gauss-integer matrix, and a derivation of completion from primitive difference stay imported. The cyclotomic ring Z\[zeta_n\] stays a recorded discrete substitute.
 
 ## Source status
 
@@ -36,7 +36,7 @@ imported / lost on this host (GaussInt is not a field); conditional selection of
 
 ## Review
 
-- PFP review: [dag/results/GP-IMPORT-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/results/GP-IMPORT-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Exact reciprocals/units and a no-integer-root obstruction control; generally no integer inverse to1+i and no integer square2 in Lean.
   - does not support: Complete complex field, spectral theorem and completeness remain imports. The computed finite polynomial samples do not prove a full spectral theorem.
   - next test: Complete complex field, spectral theorem and completeness remain imports. The computed finite polynomial samples do not prove a full spectral theorem.
@@ -45,47 +45,27 @@ imported / lost on this host (GaussInt is not a field); conditional selection of
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/DerivationDagQMClosure.lean`
+### Lean: `lean4/CampaignGpImportComplexField.lean`
 
-- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
-- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
-- cited in: node.lean, record TFQ-1029
+- file: [lean4/CampaignGpImportComplexField.lean](../../../lean4/CampaignGpImportComplexField.lean)
+- sha256 (`bytes`): `c090c3aa370fd870e88362aa4cd9f27302b427773acf8bf97c2a2f936929c5a6`
+- cited in: node.lean, receipt dag/research/campaign_gp-import-complex-field_lean_replay.json (CampaignGpImportComplexField), record TFQ-1029
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build DerivationDagQMClosure`
+  - receipt [dag/research/campaign_gp-import-complex-field_lean_replay.json](../../../dag/research/campaign_gp-import-complex-field_lean_replay.json) (module `CampaignGpImportComplexField`): recorded sha256 `c090c3aa370fd870e88362aa4cd9f27302b427773acf8bf97c2a2f936929c5a6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignGpImportComplexField`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/H017Extras.lean`
-
-- file: [lean4/H017Extras.lean](../../../lean4/H017Extras.lean)
-- sha256 (`bytes`): `5ca59147d0613750ef3870907d1b4ac0318c22cf6b85f608a2a09fbfb62637bf`
-- cited in: node.lean, record TFQ-1029
-- replay: `none`
-- check: `cd lean4 && lake build H017Extras`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `remaining_extras_for_ordinary_mnC` | yes | yes | yes | - | `#print axioms remaining_extras_for_ordinary_mnC` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/H017ExtrasDropone.lean`
-
-- file: [lean4/H017ExtrasDropone.lean](../../../lean4/H017ExtrasDropone.lean)
-- sha256 (`bytes`): `919ca08a830f788648e81faf36c5008a51b7a027cd84edd3b2cfca3b63dace7e`
-- cited in: node.lean, record TFQ-1029
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H017ExtrasDropone`): recorded sha256 `919ca08a830f788648e81faf36c5008a51b7a027cd84edd3b2cfca3b63dace7e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H017ExtrasDropone`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `drop_one_count` | yes | yes | yes | Quot.sound, propext | `#print axioms drop_one_count` |
+| `CampaignGpImportComplexField.fib_conjugate_transpose` | yes | yes | yes | none | `#print axioms CampaignGpImportComplexField.fib_conjugate_transpose` |
+| `CampaignGpImportComplexField.fib_mulVec` | yes | yes | yes | propext | `#print axioms CampaignGpImportComplexField.fib_mulVec` |
+| `CampaignGpImportComplexField.fib_no_gauss_eigenpair` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGpImportComplexField.fib_no_gauss_eigenpair` |
+| `CampaignGpImportComplexField.onePlusI_mul_coords` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGpImportComplexField.onePlusI_mul_coords` |
+| `CampaignGpImportComplexField.onePlusI_not_unit` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGpImportComplexField.onePlusI_not_unit` |
+| `fib_conjugate_transpose` | yes | yes | yes | none | `#print axioms fib_conjugate_transpose` |
+| `fib_mulVec` | yes | yes | yes | propext | `#print axioms fib_mulVec` |
+| `fib_no_gauss_eigenpair` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms fib_no_gauss_eigenpair` |
+| `onePlusI_mul_coords` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms onePlusI_mul_coords` |
+| `onePlusI_not_unit` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms onePlusI_not_unit` |
 
 - counts toward the grade: yes
 
@@ -99,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1029_gp_import_complex_field.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1029_gp_import_complex_field.md](../../../dag/derivations/08_l1_to_l2/tfq_1029_gp_import_complex_field.md)
-- sha256 (`lf-normalised`): `6e6c16d6c4f5dce8b806c7aa7b60354b1b6cd461d3d43bea9a46e75f72a47308`
+- sha256 (`lf-normalised`): `cad8ae4b9e638b34cdc8389bf18657a124408d1bb09f672b6a9117431f63eacc`
 - generated view: listed, not counted
 - cited in: record TFQ-1029
 - counts toward the grade: no
