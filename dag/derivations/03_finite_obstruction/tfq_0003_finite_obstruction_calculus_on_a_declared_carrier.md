@@ -8,10 +8,12 @@
 
 ## 1. Abstract & Formal Statement
 
-F000 admits finite sets, typed distinction steps, combinatorial coboundaries, and finite witness functionals. The shelf book states that the volume is not by itself a completed pass from Genesis into the obstruction calculus. The required derivation is a finite carrier, a declared comparison, a quotient, and the obstruction signature (Phi1, Gamma2, and the classical residual) with the same statement in Python, Rust, and Lean 4. A Lake build of a local file is not that correspondence. The signature stays on a finite complex.
+On one declared carrier, the integer 1-cochains (z0, z1, z2) of the 3-cycle, comparison by those integer entries, and coboundary (d0 h) = (h1 - h0, h2 - h1, h0 - h2): for every cochain c and every vertex cochain h, the holonomy of c - d0 h equals the holonomy of c, where holonomy is the sum of the three entries. A cochain is a coboundary if and only if its holonomy is 0. Two cochains lie in the same coboundary coset if and only if their holonomies agree. Phi1(c), the absolute value of the holonomy, lower-bounds the unweighted L1 norm of every cochain in the class and is attained by the classical residual (holonomy, 0, 0) and by (0, holonomy, 0). If the holonomy is not 0, those two residuals differ. Gamma2 in this finite case is that holonomy, and the coboundary gauge leaves it unchanged. For the cochain (1, -2, 4) the holonomy is 3, Phi1 is 3, and the unweighted L1 norm is 7, so that cochain is not a Phi1 minimizer.
+
+The shelf obligation that remains open is the original one: F000 admits finite sets, typed distinction steps, combinatorial coboundaries, and finite witness functionals, and the shelf book states that the volume is not by itself a completed pass from Genesis into the obstruction calculus. A witness with the same statement in Python, Rust, and Lean 4 is not supplied here. A Lake build of the Lean module is not that correspondence.
 
 ### Governing Obligation
-Give the finite obstruction signature a carrier, a quotient, and a witness that matches across three languages.
+Still open: one witness of this signature stated the same way in Python, Rust, and Lean 4. This module is only the Lean side of one unweighted 3-cycle, and a Lake build of it is not that correspondence. The shelf reading that the F000 volume is not by itself a completed pass from Genesis into the obstruction calculus is not a theorem of this note. Weighted edge masses, any complex other than this 3-cycle, and any Gamma2 other than the holonomy, including a sum of squares of weights, remain open.
 
 ---
 
