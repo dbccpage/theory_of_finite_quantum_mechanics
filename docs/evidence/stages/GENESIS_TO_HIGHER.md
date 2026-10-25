@@ -2,11 +2,11 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 12. Grades: E1 12. Statuses: PROVED_PROSE 1, IMPORTED_ASSUMPTION 3, OPEN 8.
+Nodes: 12. Grades: E1 11, E3 1. Statuses: PROVED_PROSE 1, IMPORTED_ASSUMPTION 3, OPEN 8.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
-| [GTH-SHADOW](../nodes/GTH-SHADOW.md) | `OPEN` | E1 | No construction turns PGW-GO-ADMISSION-GATE into a finite semi-simplicial set or a finite globular set. That gate keeps a two-valued admi... | [gth_shadow.md](../../../dag/derivations/independent/gth_shadow.md) | - |
+| [GTH-SHADOW](../nodes/GTH-SHADOW.md) | `OPEN` | E3 | Narrowed boundary, status left OPEN. On the triangle with vertices 0, 1 and 2, the edges are (0, 1), (0, 2) and (1, 2). The target of (0,... | [CampaignGthShadow.lean](../../../lean4/CampaignGthShadow.lean): `face_id_01`, `face_id_02`, `face_id_12` +3<br>[gth-shadow.py](../../../checks/independent/gth-shadow.py)<br>[gth-shadow.md](../../../dag/derivations/independent/gth-shadow.md)<br>[gth_shadow.md](../../../dag/derivations/independent/gth_shadow.md)<br>+1 more file(s) | - |
 | [GTH-TRUNC](../nodes/GTH-TRUNC.md) | `OPEN` | E1 | Let a finite shadow be a finite semi-simplicial set or a finite globular set as in GTH-SHADOW. Its set of path components, pi_0, is the q... | [gth_trunc.md](../../../dag/derivations/independent/gth_trunc.md) | - |
 | [GTH-HORNS](../nodes/GTH-HORNS.md) | `OPEN` | E1 | The horn Lambda^k\[n\] is the union of all faces of the standard n-simplex except the face opposite vertex k. The horn is inner when 0 \< k... | [gth_horns.md](../../../dag/derivations/independent/gth_horns.md) | - |
 | [GTH-HOTT-MODEL](../nodes/GTH-HOTT-MODEL.md) | `OPEN` | E1 | No deep embedding of a dependent type theory, and no finite model of such a theory, is constructed. The fragment in view has identity typ... | [gth_hott_model.md](../../../dag/derivations/independent/gth_hott_model.md) | - |
