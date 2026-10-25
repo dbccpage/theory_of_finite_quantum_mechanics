@@ -1355,3 +1355,7 @@ lean_lib CampaignLaughlinRootAmbiguity where
 -- Campaign: PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER. Not a default target.
 lean_lib CampaignReportFiberDescent where
   roots := #[`CampaignReportFiberDescent]
+
+-- Campaign: CT-INFORMATION-MEDIA-INTEROPERABILITY. Not a default target.
+lean_lib CampaignInformationProductBoundary where
+  roots := #[`CampaignInformationProductBoundary]

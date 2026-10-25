@@ -166,3 +166,4 @@ One line per target, in order attempted: `<UTC date> | <node id> | <outcome clas
 2026-10-25 | FSP-KITAEV-HONEYCOMB-SOLUTION | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/378 | commuting gauge-controlled hopping sectors; original broader obligations remain open.
 2026-10-25 | FSP-LAUGHLIN-EXCHANGE-PHASE | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/379 | exchange-root ambiguity from monodromy; original broader obligations remain open.
 2026-10-25 | PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/380 | unique decoder on the actual report image; original broader obligations remain open.
+2026-10-25 | CT-INFORMATION-MEDIA-INTEROPERABILITY | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/381 | product cloning and the joint-permutation gap; original broader obligations remain open.
