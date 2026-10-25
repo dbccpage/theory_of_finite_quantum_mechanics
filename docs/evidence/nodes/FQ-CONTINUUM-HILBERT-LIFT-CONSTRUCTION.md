@@ -10,7 +10,7 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `PROVED_LEAN`. Evi
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 8
+- counted in-repo evidence files: 12
 - cited Lean, Rust or Python symbols found in their in-repo files: 13
 - cited Lean declarations covered by a current replay receipt: 9
 - counted in-repo runnable tests: 0
@@ -20,10 +20,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-- `broken_reference`: path not found: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md. A cited in-repo path or symbol cannot be found in this checkout.
-- `broken_reference`: path not found: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md. A cited in-repo path or symbol cannot be found in this checkout.
-- `broken_reference`: path not found: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md. A cited in-repo path or symbol cannot be found in this checkout.
-- `broken_reference`: path not found: dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md. A cited in-repo path or symbol cannot be found in this checkout.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -170,31 +167,31 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ### Documents and data: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md`
 
-- file: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md](../../../dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md)
+- sha256 (`lf-normalised`): `390ac197881587f3b39d397e87249de26383e82baae3cbf87beeb993b062c6f2`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ### Documents and data: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md`
 
-- file: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md](../../../dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md)
+- sha256 (`lf-normalised`): `ffcc6ba2caff7e2cb72d94a279ed2341f33c0f8e736e15ddc77e34d60d745817`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ### Documents and data: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md`
 
-- file: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md](../../../dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md)
+- sha256 (`lf-normalised`): `1876e42480bee8ab05e517f2ddd069134ac4f05b76ba898cc112cf52e990bdaa`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ### Documents and data: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md`
 
-- file: `dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md](../../../dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md)
+- sha256 (`lf-normalised`): `68b445d35bae477cb9a9429171d3ad2c9c56ecffd7279ddddba70f02500c72c9`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ## Routes
 
