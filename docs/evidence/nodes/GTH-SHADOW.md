@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignGthShadow.lean](../../../lean4/CampaignGthShadow.lean)
 - sha256 (`bytes`): `be8ca950fdb9a59cdef48afeecf2caa751ce2959f8a09d0d757bc63098093d74`
-- cited in: node.source, receipt dag/research/campaign_gth-shadow_lean_replay.json (CampaignGthShadow)
+- cited in: node.source, receipt dag/research/campaign_gth-shadow_lean_replay.json (CampaignGthShadow), receipt dag/research/pr_362_review_replay.json (CampaignGthShadow)
 - replay: `verified`
   - receipt [dag/research/campaign_gth-shadow_lean_replay.json](../../../dag/research/campaign_gth-shadow_lean_replay.json) (module `CampaignGthShadow`): recorded sha256 `be8ca950fdb9a59cdef48afeecf2caa751ce2959f8a09d0d757bc63098093d74` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_362_review_replay.json](../../../dag/research/pr_362_review_replay.json) (module `CampaignGthShadow`): recorded sha256 `be8ca950fdb9a59cdef48afeecf2caa751ce2959f8a09d0d757bc63098093d74` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignGthShadow`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
