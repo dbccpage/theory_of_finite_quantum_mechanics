@@ -153,7 +153,7 @@ pub struct PinnedBoilerplate {
 pub struct SupportException {
     /// Exact source digest admitted by the review.
     pub sha256: String,
-    /// One of build_registration, regression_test, or source_archive.
+    /// One of build_registration, regression_test, source_archive, or finite_proof_example.
     pub category: String,
     /// User authorization and artifact-specific rationale.
     pub reason: String,
@@ -265,8 +265,14 @@ fn support_exception(path: &str, value: &Value) -> Result<SupportException, Poli
     if !is_sha256(sha256) || reason.trim().is_empty() {
         return Err(field("support_exceptions[]", "a valid source digest and nonempty review reason"));
     }
-    if !matches!(category, "build_registration" | "regression_test" | "source_archive") {
-        return Err(field("support_exceptions.category", "build_registration, regression_test or source_archive"));
+    if !matches!(category, "build_registration" | "regression_test" | "source_archive" | "finite_proof_example") {
+        return Err(field("support_exceptions.category", "build_registration, regression_test, source_archive or finite_proof_example"));
+    }
+    if category == "finite_proof_example" {
+        let lean_name = path.strip_prefix("lean4/").unwrap_or("");
+        if !lean_name.starts_with("Campaign") || !lean_name.ends_with(".lean") || lean_name.contains('/') {
+            return Err(field("support_exceptions.path", "a single lean4/Campaign*.lean module for finite_proof_example"));
+        }
     }
     Ok(SupportException { sha256: sha256.into(), category: category.into(), reason: reason.into() })
 }
@@ -731,6 +737,21 @@ pub(crate) mod tests {
             pin[key] = Value::String(bad.into());
             value["support_exceptions"] = serde_json::json!({"code/test.py": pin});
             assert!(Policy::from_json(&value.to_string()).is_err(), "{key}");
+        }
+    }
+
+    #[test]
+    fn finite_proof_examples_require_an_exact_campaign_module_pin() {
+        let mut value: Value = serde_json::from_str(POLICY).unwrap();
+        let pin = serde_json::json!({"sha256": "a".repeat(64), "category": "finite_proof_example", "reason": "reviewed finite example"});
+        value["support_exceptions"] = serde_json::json!({"lean4/CampaignFixture.lean": pin});
+        let policy = Policy::from_json(&value.to_string()).unwrap();
+        assert_eq!(policy.floor_for("lean4/CampaignFixture.lean", &"a".repeat(64)).min_level, Level::L1);
+        assert_eq!(policy.floor_for("lean4/CampaignFixture.lean", &"b".repeat(64)), policy.floor);
+        assert_eq!(policy.floor_for("lean4/CampaignOther.lean", &"a".repeat(64)), policy.floor);
+        for path in ["code/runtime.rs", "lean4/Runtime.lean", "lean4/CampaignNested/X.lean", "lean4/Campaign*.lean"] {
+            value["support_exceptions"] = serde_json::json!({path: pin});
+            assert!(Policy::from_json(&value.to_string()).is_err(), "{path}");
         }
     }
 

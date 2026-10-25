@@ -33,9 +33,9 @@ A node becomes `PROVED_LEAN` only if a declaration states its **full** statement
 
 ## Contract and score
 
-Every code addition or change needs a `*.contract.score.yaml` companion (see the acceptance rule in `CONTRIBUTING.md`). At this time code is accepted only at capability level L4 or higher with composite grade D or better. A grade of E stays on the record when other gates are unassessed, and a grade of E or a null composite is not accepted. Write "no code in this change" if that is so.
+Every code addition or change needs a `*.contract.score.yaml` companion (see the acceptance rule in `CONTRIBUTING.md`). Governed code requires L4 or higher and grade D or better, or an explicitly authorized exact-source support exception with a completed score and grade D or better. State the exception category and source digest when one applies; do not inflate the score. A grade of E stays on the record when other gates are unassessed, and a grade of E or a null composite is not accepted. Write "no code in this change" if that is so.
 
-Contract file(s): …; score token: L?G (≥ L4, grade ≥ D)
+Contract file(s): …; score token: L?G (default ≥ L4, grade ≥ D); approved exception category and exact source digest, if applicable: …
 
 ## Axioms
 
@@ -74,6 +74,6 @@ What this change does not establish. For a narrowed or reduced result, the part 
 - [ ] Added Lean contains no `sorry`, `admit`, `axiom`, `native_decide` or `unsafe`.
 - [ ] Every number in prose is recomputed by something in this pull request.
 - [ ] No key, token or `.env` content is committed or pasted.
-- [ ] Every source file I added or changed has its contract companion, bound to the submitted bytes, with a completed score at L4 or higher and grade D or higher, or this change contains no code.
+- [ ] Every source file I added or changed has its contract companion, bound to the submitted bytes, with a completed score meeting L4/D or an explicitly authorized exact-source support exception, or this change contains no code.
 - [ ] I state which parts, if any, were drafted by a model, and I have read them.
 - [ ] I changed only the files this pull request is about.

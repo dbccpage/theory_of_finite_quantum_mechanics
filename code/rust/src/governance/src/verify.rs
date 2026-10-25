@@ -462,23 +462,25 @@ mod tests {
     }
     #[test]
     fn support_pin_never_accepts_incomplete_or_grade_e() {
-        let sha = "a".repeat(64);
-        let mut policy = policy();
-        policy.support_exceptions.insert(PATH.into(), crate::policy::SupportException {
-            sha256: sha.clone(), category: "regression_test".into(), reason: "reviewed test".into(),
-        });
-        let source = source(&sha);
-        let baseline = Baseline::default();
-        let ctx = Context { policy: &policy, baseline: &baseline, source: &source };
-        let good = companion(PATH, &sha, score(PATH, &sha, "L2", [Some("D"); 5], Some("D"), Some("L2D"), true));
-        let d = ContractDescriptor::parse(&source.companion, &good).unwrap();
-        assert_eq!(FloorVerifier.verify(&ctx, &d), Ok(()));
-        let bad = companion(PATH, &sha, score(PATH, &sha, "L2", [Some("E"); 5], Some("E"), Some("L2E"), true));
-        let d = ContractDescriptor::parse(&source.companion, &bad).unwrap();
-        assert!(matches!(FloorVerifier.verify(&ctx, &d), Err(Violation::Floor { .. })));
-        let bad = companion(PATH, &sha, score(PATH, &sha, "L2", [None; 5], None, None, false));
-        let d = ContractDescriptor::parse(&source.companion, &bad).unwrap();
-        assert!(matches!(FloorVerifier.verify(&ctx, &d), Err(Violation::Completeness { .. })));
+        for category in ["regression_test", "finite_proof_example"] {
+            let sha = "a".repeat(64);
+            let mut policy = policy();
+            policy.support_exceptions.insert(PATH.into(), crate::policy::SupportException {
+                sha256: sha.clone(), category: category.into(), reason: "reviewed test".into(),
+            });
+            let source = source(&sha);
+            let baseline = Baseline::default();
+            let ctx = Context { policy: &policy, baseline: &baseline, source: &source };
+            let good = companion(PATH, &sha, score(PATH, &sha, "L2", [Some("D"); 5], Some("D"), Some("L2D"), true));
+            let d = ContractDescriptor::parse(&source.companion, &good).unwrap();
+            assert_eq!(FloorVerifier.verify(&ctx, &d), Ok(()));
+            let bad = companion(PATH, &sha, score(PATH, &sha, "L2", [Some("E"); 5], Some("E"), Some("L2E"), true));
+            let d = ContractDescriptor::parse(&source.companion, &bad).unwrap();
+            assert!(matches!(FloorVerifier.verify(&ctx, &d), Err(Violation::Floor { .. })));
+            let bad = companion(PATH, &sha, score(PATH, &sha, "L2", [None; 5], None, None, false));
+            let d = ContractDescriptor::parse(&source.companion, &bad).unwrap();
+            assert!(matches!(FloorVerifier.verify(&ctx, &d), Err(Violation::Completeness { .. })));
+        }
     }
 
 }
