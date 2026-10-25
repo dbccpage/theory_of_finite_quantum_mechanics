@@ -3,14 +3,19 @@ node_id: MAJ-LEGACY-CARRIER-RETRACTION
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Given the recorded measurement that legacy tetron_carrier.py had dim H1 = 0 at T =
-    1..4, every closed residual on it was Exact, so its results support no statement about logical sectors
-    and are superseded by the tetron-array family.
+  source_statement: For every natural number t, a 1-cochain is a function from Fin t to Bool. The coboundary
+    d0 is the identity on those functions, and d1 sends each of them to the zero function Fin 1 to Bool.
+    For every vertex function a, d1(d0(a)) equals that zero function. Every 1-cochain is a cocycle and
+    is exact. A closed residual is a cocycle that is not exact, so no 1-cochain is a closed residual.
+    In particular this holds for t = 1, t = 2, t = 3 and t = 4.
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions:
-  - recorded legacy measurement dim H1 = 0 at T = 1..4 (change log v0.2.0)
-  source_bottleneck: The legacy carrier and its dim H1 = 0 computation are not in this checkout; the hypothesis
-    is a change-log record.
+  declared_assumptions: []
+  source_bottleneck: 'Standing text is the identity coboundary on functions Fin t to Bool: d1 after d0
+    is the zero function on one coordinate, every 1-cochain is exact, and none is a closed residual, including
+    the sizes t = 1, 2, 3 and 4. The recorded measurement that tetron_carrier.py had dim H1 = 0 at those
+    sizes is not in this checkout. A logical-sector reading of that missing file, and a comparison with
+    the tetron-array family, stay open. The older citation legacy_carrier_obstruction assumes trivial
+    first cohomology and does not discharge this slice.'
   source_refs:
   - dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md
   - papers/core/majorana/the_majorana_problem.md
@@ -24,7 +29,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md
-    sha256: 64067f987ec2d28011a6979b1ef6622a80e7247dd0c87d93417cf83d922998b9
+    sha256: 511ae36994c3360403f44b89da360ad628f0f479c6fcce702aee0a0241eb9d62
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -33,6 +38,62 @@ source_provenance:
   path: dag/prompts/majorana_maj_legacy_carrier_retraction_conditional.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates:
+- kind: abbrev
+  name: V
+  line: 5
+  signature_excerpt: 'abbrev V (t : Nat)'
+  source: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  source_sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: d0
+  line: 9
+  signature_excerpt: 'def d0 {t : Nat} (a : V t) : V t'
+  source: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  source_sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: d1
+  line: 11
+  signature_excerpt: 'def d1 {t : Nat} (_w : V t) : V 1'
+  source: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  source_sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: zero1
+  line: 7
+  signature_excerpt: 'def zero1 : V 1'
+  source: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  source_sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isCocycle
+  line: 16
+  signature_excerpt: 'def isCocycle {t : Nat} (w : V t) : Prop'
+  source: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  source_sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isExact
+  line: 13
+  signature_excerpt: 'def isExact {t : Nat} (w : V t) : Prop'
+  source: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  source_sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isClosed
+  line: 19
+  signature_excerpt: 'def isClosed {t : Nat} (w : V t) : Prop'
+  source: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  source_sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  status: source_candidate_requires_semantic_review
 - kind: structure
   name: F2CochainComplex
   line: 41
@@ -109,6 +170,71 @@ operation_candidates:
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
+  name: d0_id
+  line: 22
+  signature_excerpt: 'theorem d0_id {t : Nat} (a : V t) : d0 a = a'
+  source: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  source_sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: nilpotent
+  line: 24
+  signature_excerpt: 'theorem nilpotent {t : Nat} (a : V t) : d1 (d0 a) = zero1'
+  source: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  source_sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: all_cocycle
+  line: 26
+  signature_excerpt: 'theorem all_cocycle {t : Nat} (w : V t) : isCocycle w'
+  source: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  source_sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: all_exact
+  line: 28
+  signature_excerpt: 'theorem all_exact {t : Nat} (w : V t) : isExact w'
+  source: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  source_sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: no_closed
+  line: 31
+  signature_excerpt: 'theorem no_closed {t : Nat} (w : V t) : ¬ isClosed w'
+  source: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  source_sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: window_no_closed
+  line: 35
+  signature_excerpt: |-
+    theorem window_no_closed :
+        (∀ w : V 1, ¬ isClosed w) ∧
+        (∀ w : V 2, ¬ isClosed w) ∧
+        (∀ w : V 3, ¬ isClosed w) ∧
+        (∀ w : V 4, ¬ isClosed w)
+  source: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  source_sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
   name: legacy_carrier_obstruction
   line: 260
   signature_excerpt: |-
@@ -122,6 +248,60 @@ relation_candidates:
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
+- original_ref: lean4/CampaignMajLegacyCarrierRetraction.lean::d0_id
+  availability: local
+  symbol: d0_id
+  path: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  declaration_status: declaration_found_not_proof_checked
+  line: 22
+  role: source_lead_only
+- original_ref: lean4/CampaignMajLegacyCarrierRetraction.lean::nilpotent
+  availability: local
+  symbol: nilpotent
+  path: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  declaration_status: declaration_found_not_proof_checked
+  line: 24
+  role: source_lead_only
+- original_ref: lean4/CampaignMajLegacyCarrierRetraction.lean::all_cocycle
+  availability: local
+  symbol: all_cocycle
+  path: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  declaration_status: declaration_found_not_proof_checked
+  line: 26
+  role: source_lead_only
+- original_ref: lean4/CampaignMajLegacyCarrierRetraction.lean::all_exact
+  availability: local
+  symbol: all_exact
+  path: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  declaration_status: declaration_found_not_proof_checked
+  line: 28
+  role: source_lead_only
+- original_ref: lean4/CampaignMajLegacyCarrierRetraction.lean::no_closed
+  availability: local
+  symbol: no_closed
+  path: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  declaration_status: declaration_found_not_proof_checked
+  line: 31
+  role: source_lead_only
+- original_ref: lean4/CampaignMajLegacyCarrierRetraction.lean::window_no_closed
+  availability: local
+  symbol: window_no_closed
+  path: lean4/CampaignMajLegacyCarrierRetraction.lean
+  repository: this_repository
+  sha256: 36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9
+  declaration_status: declaration_found_not_proof_checked
+  line: 35
+  role: source_lead_only
 - original_ref: papers/core/majorana/lean4/MajoranaCore.lean::legacy_carrier_obstruction
   availability: local
   symbol: legacy_carrier_obstruction
@@ -149,8 +329,7 @@ operad_slots:
     mining_status: UNREVIEWED
     carrier: null
     coefficient_ring: null
-    assumptions:
-    - recorded legacy measurement dim H1 = 0 at T = 1..4 (change log v0.2.0)
+    assumptions: []
     source_pins: []
     public_input: {}
   slot_m2_layer1_forward_morphisms:
@@ -166,8 +345,7 @@ operad_slots:
     mining_status: UNREVIEWED
     certificate_predicates: []
     anchors: []
-    unpaid_imports:
-    - recorded legacy measurement dim H1 = 0 at T = 1..4 (change log v0.2.0)
+    unpaid_imports: []
 stage_history: []
 open_obligations:
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.

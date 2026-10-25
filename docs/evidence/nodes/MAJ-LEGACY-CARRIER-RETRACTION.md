@@ -4,15 +4,15 @@ Stage: [MAJORANA](../stages/MAJORANA.md). Status: `CONDITIONAL`. Evidence grade:
 
 ## Statement
 
-> Given the recorded measurement that legacy tetron_carrier.py had dim H1 = 0 at T = 1..4, every closed residual on it was Exact, so its results support no statement about logical sectors and are superseded by the tetron-array family.
+> For every natural number t, a 1-cochain is a function from Fin t to Bool. The coboundary d0 is the identity on those functions, and d1 sends each of them to the zero function Fin 1 to Bool. For every vertex function a, d1(d0(a)) equals that zero function. Every 1-cochain is a cocycle and is exact. A closed residual is a cocycle that is not exact, so no 1-cochain is a closed residual. In particular this holds for t = 1, t = 2, t = 3 and t = 4.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 6
-- cited Lean, Rust or Python symbols found in their in-repo files: 3
-- distinct cited Lean declarations covered by a current replay receipt: 1
+- counted in-repo evidence files: 7
+- cited Lean, Rust or Python symbols found in their in-repo files: 9
+- distinct cited Lean declarations covered by a current replay receipt: 7
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -24,11 +24,11 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
-- recorded legacy measurement dim H1 = 0 at T = 1..4 (change log v0.2.0)
+None recorded.
 
 ## Bottleneck
 
-The legacy carrier and its dim H1 = 0 computation are not in this checkout; the hypothesis is a change-log record.
+Standing text is the identity coboundary on functions Fin t to Bool: d1 after d0 is the zero function on one coordinate, every 1-cochain is exact, and none is a closed residual, including the sizes t = 1, 2, 3 and 4. The recorded measurement that tetron_carrier.py had dim H1 = 0 at those sizes is not in this checkout. A logical-sector reading of that missing file, and a comparison with the tetron-array family, stay open. The older citation legacy_carrier_obstruction assumes trivial first cohomology and does not discharge this slice.
 
 ## Source status
 
@@ -41,6 +41,26 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignMajLegacyCarrierRetraction.lean`
+
+- file: [lean4/CampaignMajLegacyCarrierRetraction.lean](../../../lean4/CampaignMajLegacyCarrierRetraction.lean)
+- sha256 (`bytes`): `36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9`
+- cited in: node.lean, receipt dag/research/campaign_maj-legacy-carrier-retraction_lean_replay.json (CampaignMajLegacyCarrierRetraction), record TFQ-1154
+- replay: `verified`
+  - receipt [dag/research/campaign_maj-legacy-carrier-retraction_lean_replay.json](../../../dag/research/campaign_maj-legacy-carrier-retraction_lean_replay.json) (module `CampaignMajLegacyCarrierRetraction`): recorded sha256 `36efdd4ee153a69c519b7e42ec12364ce21dff737faf0d5545b11efcf3eb76d9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignMajLegacyCarrierRetraction`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `all_cocycle` | yes | yes | yes | none | `#print axioms all_cocycle` |
+| `all_exact` | yes | yes | yes | none | `#print axioms all_exact` |
+| `d0_id` | yes | yes | yes | none | `#print axioms d0_id` |
+| `nilpotent` | yes | yes | yes | none | `#print axioms nilpotent` |
+| `no_closed` | yes | yes | yes | none | `#print axioms no_closed` |
+| `window_no_closed` | yes | yes | yes | none | `#print axioms window_no_closed` |
+
+- counts toward the grade: yes
 
 ### Lean: `papers/core/majorana/lean4/MajoranaCore.lean`
 
@@ -85,7 +105,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md`
 
 - file: [dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md](../../../dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md)
-- sha256 (`lf-normalised`): `64067f987ec2d28011a6979b1ef6622a80e7247dd0c87d93417cf83d922998b9`
+- sha256 (`lf-normalised`): `511ae36994c3360403f44b89da360ad628f0f479c6fcce702aee0a0241eb9d62`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1154
 - counts toward the grade: no
