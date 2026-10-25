@@ -1335,3 +1335,7 @@ lean_lib CampaignFqGapStoneContinuousTime where
 -- Campaign: FQ-GAP-CONTINUUM-HILBERT-LIFT. Not a default target.
 lean_lib CampaignFqGapContinuumHilbertLift where
   roots := #[`CampaignFqGapContinuumHilbertLift]
+
+-- Campaign: FSP-WITTEN-INDEX-INVARIANCE. Not a default target.
+lean_lib CampaignWittenPairing where
+  roots := #[`CampaignWittenPairing]

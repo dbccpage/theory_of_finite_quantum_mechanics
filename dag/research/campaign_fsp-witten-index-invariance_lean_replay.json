@@ -1,0 +1,131 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T18:56:17.877532+00:00",
+  "source_base": "c50dc1b472596d1b5934408b00b9fbb72db91345",
+  "result": "Narrowed; original node status retained. For every natural-number energy list P, every integer weight function w with w(0)=1, and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by P and f zeros followed by P equals b-f. It is independent of w. A zero difference does not imply absence of zero modes.",
+  "proof_boundary": "Pairing is supplied by the shared spectral list; this does not derive that pairing from an arbitrary supercharge, spectral decomposition on a Hilbert space, the analytic exponential trace, or the ground-energy theorem. The full imported Witten-index statement remains open here.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "mathlib_note": "Only Std is imported. Lake built an exact source copy in a minimal scratch package with no Mathlib dependency; the full repository Mathlib workspace was not built.",
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/next-five/fsp-witten-index-invariance/lake",
+    "results": [
+      {
+        "module": "CampaignWittenPairing",
+        "dag_node": "FSP-WITTEN-INDEX-INVARIANCE",
+        "source": "lean4/CampaignWittenPairing.lean",
+        "sha256": "daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1",
+        "sha256_after_build": "daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignWittenPairing.trace_append",
+          "CampaignWittenPairing.trace_zero_modes",
+          "CampaignWittenPairing.paired_trace",
+          "CampaignWittenPairing.weight_independent",
+          "CampaignWittenPairing.zero_index_with_ground_modes",
+          "CampaignWittenPairing.traceWeight"
+        ],
+        "axioms": {
+          "CampaignWittenPairing.trace_append": [
+            "propext"
+          ],
+          "CampaignWittenPairing.trace_zero_modes": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignWittenPairing.paired_trace": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignWittenPairing.weight_independent": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignWittenPairing.zero_index_with_ground_modes": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignWittenPairing.traceWeight": []
+        },
+        "output": "'CampaignWittenPairing.traceWeight' does not depend on any axioms\n'CampaignWittenPairing.trace_append' depends on axioms: [propext]\n'CampaignWittenPairing.trace_zero_modes' depends on axioms: [propext, Quot.sound]\n'CampaignWittenPairing.paired_trace' depends on axioms: [propext, Quot.sound]\n'CampaignWittenPairing.weight_independent' depends on axioms: [propext, Quot.sound]\n'CampaignWittenPairing.zero_index_with_ground_modes' depends on axioms: [propext, Quot.sound]\n"
+      }
+    ]
+  },
+  "standalone_lean": {
+    "command": [
+      "lean",
+      "lean4/CampaignWittenPairing.lean"
+    ],
+    "exit_code": 0,
+    "seconds": 0.399,
+    "output": "'CampaignWittenPairing.paired_trace' depends on axioms: [propext, Quot.sound]\n'CampaignWittenPairing.weight_independent' depends on axioms: [propext, Quot.sound]\n'CampaignWittenPairing.zero_index_with_ground_modes' depends on axioms: [propext, Quot.sound]\n"
+  },
+  "lake_build": {
+    "command": [
+      "lake",
+      "build",
+      "CampaignWittenPairing"
+    ],
+    "exit_code": 0,
+    "seconds": 0.443,
+    "output": "ℹ [2/3] Built CampaignWittenPairing (374ms)\ninfo: CampaignWittenPairing.lean:40:0: 'CampaignWittenPairing.paired_trace' depends on axioms: [propext, Quot.sound]\ninfo: CampaignWittenPairing.lean:41:0: 'CampaignWittenPairing.weight_independent' depends on axioms: [propext, Quot.sound]\ninfo: CampaignWittenPairing.lean:42:0: 'CampaignWittenPairing.zero_index_with_ground_modes' depends on axioms: [propext, Quot.sound]\nBuild completed successfully (3 jobs).\ninfo: campaign_replay: no previous manifest, creating one from scratch\ninfo: toolchain not updated; already up-to-date\n"
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/fsp-witten-index-invariance.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.367,
+    "output": "80 independently constructed spectral pairs: symbolic polynomial and four exact weights pass; zero index can coexist with ground modes\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/next-five/fsp-witten-index-invariance/lakefile-registered.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 4.052,
+    "output": ""
+  },
+  "axiom_audit": {
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/next-five/fsp-witten-index-invariance/lake",
+    "input_path": "Audit.lean",
+    "input_contents": "import CampaignWittenPairing\n#print axioms CampaignWittenPairing.traceWeight\n#print axioms CampaignWittenPairing.trace_append\n#print axioms CampaignWittenPairing.trace_zero_modes\n#print axioms CampaignWittenPairing.paired_trace\n#print axioms CampaignWittenPairing.weight_independent\n#print axioms CampaignWittenPairing.zero_index_with_ground_modes\n",
+    "input_sha256": "33b5d3a0c0a72ac20ee6cbf31641249b5da27329f1cba86412b855c2ca7adf35",
+    "module_source_sha256": "daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1",
+    "exit_code": 0,
+    "output": "'CampaignWittenPairing.traceWeight' does not depend on any axioms\n'CampaignWittenPairing.trace_append' depends on axioms: [propext]\n'CampaignWittenPairing.trace_zero_modes' depends on axioms: [propext, Quot.sound]\n'CampaignWittenPairing.paired_trace' depends on axioms: [propext, Quot.sound]\n'CampaignWittenPairing.weight_independent' depends on axioms: [propext, Quot.sound]\n'CampaignWittenPairing.zero_index_with_ground_modes' depends on axioms: [propext, Quot.sound]\n",
+    "scratch_package": {
+      "lakefile.toml": "name = \"campaign_replay\"\nversion = \"0.1.0\"\n[[lean_lib]]\nname = \"CampaignWittenPairing\"\n",
+      "lean-toolchain": "leanprover/lean4:v4.35.0\n",
+      "module_copy": {
+        "from": "lean4/CampaignWittenPairing.lean",
+        "to": "CampaignWittenPairing.lean",
+        "sha256": "daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1"
+      }
+    }
+  }
+}

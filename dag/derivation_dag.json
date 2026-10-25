@@ -22037,18 +22037,24 @@
       "stage": "FERMION_SIGN",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-042 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION",
-      "statement": "On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr[(-1)^F exp(-beta H)] = n_B(E=0) - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0.",
+      "statement": "For every natural-number energy list P, every integer weight function w with w(0)=1, and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by P and f zeros followed by P equals b-f. It is independent of w. A zero difference does not imply absence of zero modes.",
       "source": [
         "dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
-        "papers/core/fsp/lean4/regge_wdw_core.lean"
+        "papers/core/fsp/lean4/regge_wdw_core.lean",
+        "dag/derivations/independent/fsp-witten-index-invariance.md",
+        "dag/research/campaign_fsp-witten-index-invariance_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignWittenPairing.lean::CampaignWittenPairing.paired_trace",
+        "lean4/CampaignWittenPairing.lean::CampaignWittenPairing.weight_independent",
+        "lean4/CampaignWittenPairing.lean::CampaignWittenPairing.zero_index_with_ground_modes"
+      ],
       "rust": [],
       "imported_structure": [
         "exact supercharge with H = {Q, Q^dagger} on a finite graded space (assumption)"
       ],
-      "bottleneck": "Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself.",
+      "bottleneck": "Pairing is supplied by the shared spectral list; this does not derive that pairing from an arbitrary supercharge, spectral decomposition on a Hilbert space, the analytic exponential trace, or the ground-energy theorem. The full imported Witten-index statement remains open here. Original target retained as an obligation: On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr[(-1)^F exp(-beta H)] = n_B(E=0) - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0. Prior boundary: Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -37861,7 +37867,7 @@
       ],
       "output": "FSP-WITTEN-INDEX-INVARIANCE",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself.",
+      "mechanism": "Pairing is supplied by the shared spectral list; this does not derive that pairing from an arbitrary supercharge, spectral decomposition on a Hilbert space, the analytic exponential trace, or the ground-energy theorem. The full imported Witten-index statement remains open here. Original target retained as an obligation: On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr[(-1)^F exp(-beta H)] = n_B(E=0) - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0. Prior boundary: Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself.",
       "source": [
         "dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -66775,20 +66781,28 @@
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md",
         "papers/core/fsp/theory_of_finite_fsp.md:584-597",
-        "papers/core/fsp/lean4/regge_wdw_core.lean:796-800"
+        "papers/core/fsp/lean4/regge_wdw_core.lean:796-800",
+        "dag/derivations/independent/fsp-witten-index-invariance.md",
+        "dag/research/campaign_fsp-witten-index-invariance_lean_replay.json"
       ],
       "id": "TFQ-1206",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignWittenPairing.lean::CampaignWittenPairing.paired_trace",
+        "lean4/CampaignWittenPairing.lean::CampaignWittenPairing.weight_independent",
+        "lean4/CampaignWittenPairing.lean::CampaignWittenPairing.zero_index_with_ground_modes"
+      ],
       "local_id": "FSP-WITTEN-INDEX-INVARIANCE",
       "name": "Witten index beta-independence under exact supersymmetry",
-      "obligation": "Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself.",
+      "obligation": "Pairing is supplied by the shared spectral list; this does not derive that pairing from an arbitrary supercharge, spectral decomposition on a Hilbert space, the analytic exponential trace, or the ground-energy theorem. The full imported Witten-index statement remains open here. Original target retained as an obligation: On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr[(-1)^F exp(-beta H)] = n_B(E=0) - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0. Prior boundary: Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself.",
       "parent_id": "TFQ-1204",
-      "python": [],
+      "python": [
+        "checks/independent/fsp-witten-index-invariance.py"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "FERMION_SIGN",
-      "summary": "On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr[(-1)^F exp(-beta H)] = n_B(E=0) - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0.",
+      "summary": "For every natural-number energy list P, every integer weight function w with w(0)=1, and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by P and f zeros followed by P equals b-f. It is independent of w. A zero difference does not imply absence of zero modes.",
       "uuid": "6b030748-aab4-5762-b416-56e467a2b4a1"
     },
     {
