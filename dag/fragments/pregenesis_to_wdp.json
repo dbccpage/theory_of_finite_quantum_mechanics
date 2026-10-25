@@ -10630,14 +10630,69 @@
       "prerequisites": [
         "TFQ-0485"
       ],
-      "summary": "GEN-WDP-07, a conditional theorem in the bridge register, fixes a carrier and marked triples F, keeps the full directed integer table e(x, y) = M_r(x, y) − M_s(x, y) including loops and independent reverse arcs, treats raising as e ↦ e + d₀g with (d₀g)(x, y) = g(x) − g(y), and uses the marked diagnostic D_F(e)(x, y, z) = e(x, y) + e(y, z) + e(z, x). Cancellation gives D_F d₀ = 0, so D_F(e + d₀g) = D_F e even for unbalanced triples, and rationalizing reflects integer repair equality. This is a repair quotient with descending reports, not automatically cohomology: C¹/im d₀ differs from ker D_F/im d₀, a filled mark may be unbalanced, triangle reports miss loops and two-way defects, and antisymmetric simplicial coordinates need e(x, x) = 0 and e(x, y) + e(y, x) = 0. Term addition and identification can fail to respect the quotient (source 23:D4), so carrier-changing operations need new congruence proofs.",
-      "obligation": "Treat the Genesis Ongoing cancellation, raising and marked-fill data (TFQ-0485) as a fixed-carrier repair quotient only; feeding them into the declared degree-1 window is owed and needs the zero-loop and antisymmetry hypotheses, a d₁ with d₁d₀ = 0, and congruence proofs for term addition and identification.",
+      "summary": "Narrowed in Lean 4 to the carrier {0, 1}. The directed slots are e(0,0), e(1,1), e(0,1) and e(1,0). The coboundary of vertex values (g0, g1) is (0, 0, g0 - g1, g1 - g0). The unbalanced mark (0, 1, 0) has diagnostic e(0,1) + e(1,0) + e(0,0). That diagnostic is 0 on every coboundary and is unchanged when a coboundary is added. If a nonzero integer b scales an integer slot difference onto a coboundary, the difference is already the integer coboundary of (0, -d01). The table (1, 0, 0, -1) has diagnostic 0 and is not a coboundary. The table (0, 1, 0, 0) has diagnostic 0 and is not a coboundary. The one-arc table (0, 0, 1, 0) has diagnostic 1. The two-way table (0, 0, 1, 1) has arc sum 2 and arc difference 0. A general carrier, an arbitrary marked family, the degree-1 window of TFQ-0004, a continuous norm, and carrier-changing term operations stay open.",
+      "obligation": "Treat the Genesis Ongoing cancellation, raising and marked-fill data (TFQ-0485) as a fixed-carrier repair quotient only; feeding them into the declared degree-1 window is owed and needs the zero-loop and antisymmetry hypotheses, a d₁ with d₁d₀ = 0, and congruence proofs for term addition and identification. A general carrier, an arbitrary marked family, the degree-1 window of TFQ-0004, a continuous norm, and carrier-changing term operations stay open.",
       "imports": [
         "Fixed carrier and declared marked triples F from the chosen Genesis Ongoing source contexts (assumption)"
       ],
-      "fence": "Proposed, not derived: the bridge does not produce the window of TFQ-0004 from Genesis admission (TFQ-0344), integer change costs are not identified with a continuous norm, and dynamic carrier changes belong to GEN-WDP-O02 and O03.",
+      "fence": "Open. One two-vertex carrier is checked. The coboundary cancellation, the denominator reflection, the two kernel witnesses, the one-arc diagnostic, and the two-way sum are checked. A general carrier, an arbitrary marked family, the window of TFQ-0004, a continuous norm, and carrier-changing term operations stay open.",
       "witnesses": {
         "lean": [
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "cob_slots"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "diag_on_coboundary"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "diag_after_repair"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "denominator_clears"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "compensated_loop_closed"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "compensated_loop_not_coboundary"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "silent_loop_closed"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "silent_loop_not_coboundary"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "one_arc_diagnostic"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "two_way_sum"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "two_way_difference"
+          },
           {
             "root": "local",
             "path": "lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean",
@@ -10653,7 +10708,9 @@
         ],
         "python": [
           {
-            "absent": "GEN-WDP-07 carries a written proof and the native omega_wdp adapter; no Python binding"
+            "root": "local",
+            "path": "checks/independent/pgw-wdp-bridge-ongoing-to-window.py",
+            "symbol": "main"
           }
         ]
       },
@@ -10675,6 +10732,18 @@
           "path": "omega_engine_education/documentation/006_oewdp/levels/level_22_genesis_to_wdp_bridges.md",
           "lines": "116-137",
           "quote": "Carrier-changing operations need new congruence proofs."
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-wdp-bridge-ongoing-to-window.md",
+          "lines": "5",
+          "quote": "Node status stays OPEN. This note records the carrier {0, 1}."
+        },
+        {
+          "root": "local",
+          "path": "dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json",
+          "lines": "6",
+          "quote": "The 2026-10-25 lake build of CampaignPgwWdpBridgeOngoing exited 0."
         }
       ],
       "coda_atlas_ids": [],

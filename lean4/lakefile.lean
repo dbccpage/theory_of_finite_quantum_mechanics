@@ -1263,3 +1263,7 @@ lean_lib CampaignPgwDriverBSeventhEvent where
 -- Campaign: PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT. Not a default target.
 lean_lib CampaignPgwWdpIncidenceTransport where
   roots := #[`CampaignPgwWdpIncidenceTransport]
+
+-- Campaign: PGW-WDP-BRIDGE-ONGOING-TO-WINDOW. Not a default target.
+lean_lib CampaignPgwWdpBridgeOngoing where
+  roots := #[`CampaignPgwWdpBridgeOngoing]
