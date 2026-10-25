@@ -14,7 +14,7 @@ For arbitrary types, cloners on admitted blank slices compose to a cloner on the
 
 ## What is assumed
 
-The types, maps and algebraic models named above are declared. Lean uses only its standard core axioms; exact audit arithmetic uses integers, rational numbers and symbolic polynomials. AuthorityEffect: None.
+The types, maps and algebraic models named above are declared. Lean uses only its standard core axioms. The independent audit enumerates bit permutations and integer-valued Cartesian-product cloning examples. AuthorityEffect: None.
 
 ## What is open
 

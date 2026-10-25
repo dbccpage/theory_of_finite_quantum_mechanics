@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/ct-information-media-interoperability.md`
 
 - file: [dag/derivations/independent/ct-information-media-interoperability.md](../../../dag/derivations/independent/ct-information-media-interoperability.md)
-- sha256 (`lf-normalised`): `3f7ca0e3239e5f9f03ee517bf3e1f6bab50db4c0a7263f91b0cec3fc73c6187a`
+- sha256 (`lf-normalised`): `70ca57ba6ff044bc594ad5e1590a5fd2c6e4a0abc80416055b46f7bfb4409d9a`
 - cited in: node.source
 - counts toward the grade: yes
 
