@@ -1359,3 +1359,7 @@ lean_lib CampaignReportFiberDescent where
 -- Campaign: CT-INFORMATION-MEDIA-INTEROPERABILITY. Not a default target.
 lean_lib CampaignInformationProductBoundary where
   roots := #[`CampaignInformationProductBoundary]
+
+-- Campaign: MAJ-LEGACY-CARRIER-RETRACTION. Not a default target.
+lean_lib CampaignMajLegacyCarrierRetraction where
+  roots := #[`CampaignMajLegacyCarrierRetraction]

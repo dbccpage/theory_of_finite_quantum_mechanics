@@ -2248,7 +2248,7 @@
       "stage": "MAJORANA",
       "status": "CONDITIONAL",
       "source_status": "papers/core/majorana/the_majorana_problem.md record MAJ-C13 claims PROVED_LEAN; audited status CONDITIONAL",
-      "statement": "Given the recorded measurement that legacy tetron_carrier.py had dim H1 = 0 at T = 1..4, every closed residual on it was Exact, so its results support no statement about logical sectors and are superseded by the tetron-array family.",
+      "statement": "For every natural number t, a 1-cochain is a function from Fin t to Bool. The coboundary d0 is the identity on those functions, and d1 sends each of them to the zero function Fin 1 to Bool. For every vertex function a, d1(d0(a)) equals that zero function. Every 1-cochain is a cocycle and is exact. A closed residual is a cocycle that is not exact, so no 1-cochain is a closed residual. In particular this holds for t = 1, t = 2, t = 3 and t = 4.",
       "source": [
         "dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md",
         "papers/core/majorana/the_majorana_problem.md",
@@ -2256,13 +2256,17 @@
         "papers/core/majorana/the_majorana_problem_claim_ledger.md"
       ],
       "lean": [
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::d0_id",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::nilpotent",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::all_cocycle",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::all_exact",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::no_closed",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::window_no_closed",
         "papers/core/majorana/lean4/MajoranaCore.lean::legacy_carrier_obstruction"
       ],
       "rust": [],
-      "imported_structure": [
-        "recorded legacy measurement dim H1 = 0 at T = 1..4 (change log v0.2.0)"
-      ],
-      "bottleneck": "The legacy carrier and its dim H1 = 0 computation are not in this checkout; the hypothesis is a change-log record.",
+      "imported_structure": [],
+      "bottleneck": "Standing text is the identity coboundary on functions Fin t to Bool: d1 after d0 is the zero function on one coordinate, every 1-cochain is exact, and none is a closed residual, including the sizes t = 1, 2, 3 and 4. The recorded measurement that tetron_carrier.py had dim H1 = 0 at those sizes is not in this checkout. A logical-sector reading of that missing file, and a comparison with the tetron-array family, stay open. The older citation legacy_carrier_obstruction assumes trivial first cohomology and does not discharge this slice.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -9269,7 +9273,7 @@
       ],
       "output": "MAJ-LEGACY-CARRIER-RETRACTION",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "The legacy carrier and its dim H1 = 0 computation are not in this checkout; the hypothesis is a change-log record.",
+      "mechanism": "Standing text is the identity coboundary on functions Fin t to Bool: d1 after d0 is the zero function on one coordinate, every 1-cochain is exact, and none is a closed residual, including the sizes t = 1, 2, 3 and 4. The recorded measurement that tetron_carrier.py had dim H1 = 0 at those sizes is not in this checkout. A logical-sector reading of that missing file, and a comparison with the tetron-array family, stay open. The older citation legacy_carrier_obstruction assumes trivial first cohomology and does not discharge this slice.",
       "source": [
         "dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md",
         "papers/core/majorana/the_majorana_problem.md",
@@ -14577,8 +14581,8 @@
       "stage": "MAJORANA",
       "parent_id": "TFQ-1153",
       "record_status": "CONDITIONAL",
-      "summary": "Given the recorded measurement that legacy tetron_carrier.py had dim H1 = 0 at T = 1..4, every closed residual on it was Exact, so its results support no statement about logical sectors and are superseded by the tetron-array family.",
-      "obligation": "The legacy carrier and its dim H1 = 0 computation are not in this checkout; the hypothesis is a change-log record.",
+      "summary": "For every natural number t, a 1-cochain is a function from Fin t to Bool. The coboundary d0 is the identity on those functions, and d1 sends each of them to the zero function Fin 1 to Bool. For every vertex function a, d1(d0(a)) equals that zero function. Every 1-cochain is a cocycle and is exact. A closed residual is a cocycle that is not exact, so no 1-cochain is a closed residual. In particular this holds for t = 1, t = 2, t = 3 and t = 4.",
+      "obligation": "Standing text is the identity coboundary on functions Fin t to Bool: d1 after d0 is the zero function on one coordinate, every 1-cochain is exact, and none is a closed residual, including the sizes t = 1, 2, 3 and 4. The recorded measurement that tetron_carrier.py had dim H1 = 0 at those sizes is not in this checkout. A logical-sector reading of that missing file, and a comparison with the tetron-array family, stay open. The older citation legacy_carrier_obstruction assumes trivial first cohomology and does not discharge this slice.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "MAJ-LEGACY-CARRIER-RETRACTION"
@@ -14597,6 +14601,12 @@
       ],
       "rust": [],
       "lean4": [
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::d0_id",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::nilpotent",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::all_cocycle",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::all_exact",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::no_closed",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::window_no_closed",
         "papers/core/majorana/lean4/MajoranaCore.lean::legacy_carrier_obstruction"
       ]
     },
