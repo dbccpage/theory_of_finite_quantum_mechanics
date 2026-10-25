@@ -1259,3 +1259,7 @@ lean_lib CampaignPgwStreamAtFourItems where
 -- Campaign: PGW-DRIVER-B-SEVENTH-EVENT. Not a default target.
 lean_lib CampaignPgwDriverBSeventhEvent where
   roots := #[`CampaignPgwDriverBSeventhEvent]
+
+-- Campaign: PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT. Not a default target.
+lean_lib CampaignPgwWdpIncidenceTransport where
+  roots := #[`CampaignPgwWdpIncidenceTransport]
