@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 17
-- cited Lean declarations covered by a current replay receipt: 16
+- distinct cited Lean declarations covered by a current replay receipt: 16
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -69,6 +69,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_conj` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_conj` |
 | `CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_im_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_im_zero` |
 | `CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_intertwined` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_intertwined` |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/fsp-su2-adjoint-real-det.py`
@@ -80,6 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `main` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1200_fsp_su2_adjoint_real_det.md`

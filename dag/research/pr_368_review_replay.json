@@ -1,0 +1,62 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:33:41.931626+00:00",
+  "review_base": "91845d81d8b81ac26b2ce49d1c247c3274264bc0",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: COMP-C6-TM0-OUTPUT-FORM-OPEN — Narrowed: one blank cell writes v; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignCompC6Tm0OutputFormOpen.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignCompC6Tm0OutputFormOpen",
+        "dag_node": "COMP-C6-TM0-OUTPUT-FORM-OPEN",
+        "source": "lean4/CampaignCompC6Tm0OutputFormOpen.lean",
+        "sha256": "a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1",
+        "sha256_after_build": "a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "writeHaltFromBlank",
+          "evalConstReturns",
+          "constAgrees"
+        ],
+        "axioms": {
+          "writeHaltFromBlank": [],
+          "evalConstReturns": [],
+          "constAgrees": []
+        },
+        "output": "'writeHaltFromBlank' does not depend on any axioms\n'evalConstReturns' does not depend on any axioms\n'constAgrees' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/comp-c6-tm0-output-form-open.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.012,
+    "output": "checked writeHalt of v in 0..4 from a blank cell halts with value v; evalConst(v, n) equals that value for n in 0..3\nfailures=0\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/368/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.303,
+    "output": ""
+  }
+}

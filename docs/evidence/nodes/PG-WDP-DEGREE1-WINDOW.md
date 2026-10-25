@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 21
-- cited Lean declarations covered by a current replay receipt: 21
+- distinct cited Lean declarations covered by a current replay receipt: 21
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean`
@@ -73,6 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `Repair` | yes | yes | yes | none | `#print axioms Repair` |
 | `kappa` | yes | yes | yes | none | `#print axioms kappa` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/WdpDegree1Window.lean`
@@ -104,6 +106,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `WdpDegree1Window.tri_phi` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpDegree1Window.tri_phi` |
 | `WdpDegree1Window.weak_duality` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpDegree1Window.weak_duality` |
 | `WdpDegree1Window.wl1_definite` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpDegree1Window.wl1_definite` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/wdp/obstruction.rs`

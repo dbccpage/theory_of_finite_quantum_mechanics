@@ -12,7 +12,7 @@ Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 0
+- distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 2
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -52,6 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `test_sector_restriction_and_refusals` (rust_test) | yes | yes | yes | - | `cd code/rust && cargo test -p tfqm_majorana test_sector_restriction_and_refusals` |
+
 - counts toward the grade: yes
 
 ### Python: `papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py`
@@ -64,6 +65,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `test_parity_observable_algebra_and_sector_splitting` (python_test) | yes | yes | yes | - | `python -m pytest papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_parity_observable_algebra_and_sector_splitting` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1174_maj_parity_sector_split_exact.md`

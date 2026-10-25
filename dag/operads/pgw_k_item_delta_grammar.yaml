@@ -10,11 +10,24 @@ target:
     The second derivation''s rung one enumerated three-item deltas (min_responses_three) under a node
     guard, but no k-item delta grammar with pruning lemmas proved beyond cost two exists, and the distance
     bound of two is not known to be the grammar''s (S-4). The education audit lists k-item delta grammars
-    with pruning lemmas as a missing prerequisite of the S(n) bridge.'
+    with pruning lemmas as a missing prerequisite of the S(n) bridge. Narrowed in Lean 4 to one empty
+    base with two data and arity one. Over a 10-atom universe, the well-formed admissions of one item
+    are a fresh datum and one unary form, and the well-formed admissions of two items are datum-then-datum,
+    datum-then-form, form-then-datum, form-then-form, form-then-rule, form-then-instance of argument 0,
+    and form-then-instance of argument 1. That census has 9 well-formed deltas, and 7 of them leave the
+    two target profile bits equal. The two form-then-instance deltas leave those bits unequal. The form-then-rule
+    delta sets both bits true. Extending the argument-0 instance by the uniform rule makes a 3-item delta
+    whose bits are equal, while the 2-item prefix has unequal bits. A fresh datum, then a form, then an
+    instance of argument 2, keeps both target bits false and records that fresh argument. Arity two, a
+    grammar for 3 or more items, and the sealed cost-two minimum on the full unpruned space stay open.
+    The mention file and the rule-bridge file are not rechecked. AuthorityEffect is None.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
   source_bottleneck: 'Open: the cost-two minimum (CL-3-MIN-TWO) is relative to the sealed grammar and
-    bounds, and nothing here establishes a k-item minimum or a bound on response size.'
+    bounds, and nothing here establishes a k-item minimum or a bound on response size. This file checks
+    one empty base with two data and arity one: 9 well-formed deltas of at most two items, 2 of them with
+    unequal target bits. The 3-item rule extension equalizes those bits, and an instance of argument 2
+    keeps them false. Arity two, a grammar for 3 or more items, and the sealed cost-two minimum stay open.'
   source_refs:
   - dag/derivations/02_genesis/tfq_0490_k_item_delta_grammar.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1081-1084
@@ -50,6 +63,133 @@ operation_candidates:
   repository: this_repository
   source_sha256: 2f5e9cbd5fa01227b953951195d39129ad389ccad6d9098a99ac78920356f467
   status: source_candidate_requires_semantic_review
+- kind: def
+  name: wellFormedSingles
+  line: 123
+  signature_excerpt: 'def wellFormedSingles : List Atom'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Atom
+  line: 17
+  signature_excerpt: inductive Atom
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: step
+  line: 45
+  signature_excerpt: |-
+    def step (s : State) : Atom → Option State
+      | .datum => some { s with dataCount
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: base
+  line: 42
+  signature_excerpt: 'def base : State'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: State
+  line: 35
+  signature_excerpt: structure State
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Inst
+  line: 30
+  signature_excerpt: structure Inst
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Arg
+  line: 11
+  signature_excerpt: inductive Arg
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: wellFormedPairs
+  line: 126
+  signature_excerpt: 'def wellFormedPairs : List (Atom × Atom)'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: run2
+  line: 105
+  signature_excerpt: 'def run2 (a b : Atom) : Option State'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: separatingSingles
+  line: 129
+  signature_excerpt: 'def separatingSingles : List Atom'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: separatesOf
+  line: 101
+  signature_excerpt: |-
+    def separatesOf : Option State → Bool
+      | none => false
+      | some s => separates s
+
+    def run2 (a b : Atom) : Option State
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: separates
+  line: 97
+  signature_excerpt: 'def separates (s : State) : Bool'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: profileAt
+  line: 90
+  signature_excerpt: 'def profileAt (s : State) (form : Nat) (a : Arg) : Bool'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: separatingPairs
+  line: 132
+  signature_excerpt: 'def separatingPairs : List (Atom × Atom)'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ruleBits
+  line: 135
+  signature_excerpt: 'def ruleBits : Bool × Bool × Bool'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
   name: rule_item_never_minimal
@@ -80,6 +220,165 @@ relation_candidates:
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
+- kind: theorem
+  name: well_formed_singles_are
+  line: 156
+  signature_excerpt: |-
+    theorem well_formed_singles_are :
+        wellFormedSingles = [.datum, .form1]
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: well_formed_pairs_are
+  line: 160
+  signature_excerpt: |-
+    theorem well_formed_pairs_are :
+        wellFormedPairs = [
+          (.datum, .datum),
+          (.datum, .form1),
+          (.form1, .datum),
+          (.form1, .form1),
+          (.form1, .rule0),
+          (.form1, .i0t0),
+          (.form1, .i0t1)
+        ]
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: no_single_item_separates
+  line: 172
+  signature_excerpt: 'theorem no_single_item_separates : separatingSingles = []'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: separating_pairs_are_two
+  line: 175
+  signature_excerpt: |-
+    theorem separating_pairs_are_two :
+        separatingPairs = [(.form1, .i0t0), (.form1, .i0t1)]
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ten_atoms
+  line: 179
+  signature_excerpt: 'theorem ten_atoms : atoms.length = 10'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: one_hundred_pairs
+  line: 182
+  signature_excerpt: 'theorem one_hundred_pairs : pairs.length = 100'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: nine_well_formed
+  line: 185
+  signature_excerpt: |-
+    theorem nine_well_formed :
+        wellFormedSingles.length + wellFormedPairs.length = 9
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: seven_leave_bits_equal
+  line: 189
+  signature_excerpt: |-
+    theorem seven_leave_bits_equal :
+        (wellFormedSingles.length + wellFormedPairs.length) - separatingPairs.length = 7
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: fresh_datum_pairs_do_not_separate
+  line: 193
+  signature_excerpt: |-
+    theorem fresh_datum_pairs_do_not_separate :
+        separatesOf (run2 .datum .datum) = false ∧
+        separatesOf (run2 .datum .form1) = false ∧
+        separatesOf (run2 .form1 .datum) = false
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: form_rule_both_true
+  line: 199
+  signature_excerpt: 'theorem form_rule_both_true : ruleBits = (true, true, false)'
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: rule_extension_equalizes
+  line: 202
+  signature_excerpt: |-
+    theorem rule_extension_equalizes :
+        extBits = (true, false, true, true, true, false)
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: rule_extension_is_longer
+  line: 206
+  signature_excerpt: |-
+    theorem rule_extension_is_longer :
+        [Atom.form1, Atom.i0t0].length = 2 ∧
+        [Atom.form1, Atom.i0t0, Atom.rule0].length = 3
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: off_target_instance_keeps_bits
+  line: 211
+  signature_excerpt: |-
+    theorem off_target_instance_keeps_bits :
+        offBits = (true, false, false, false)
+  source: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  source_sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean::rule_item_never_minimal
   availability: local
@@ -98,6 +397,123 @@ source_bindings:
   sha256: 73f4b5ee8c91290124be0c39541217256f2ec47e26d23b887fa40f8ba9b97f38
   declaration_status: declaration_found_not_proof_checked
   line: 133
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::well_formed_singles_are
+  availability: local
+  symbol: well_formed_singles_are
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  declaration_status: declaration_found_not_proof_checked
+  line: 156
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::well_formed_pairs_are
+  availability: local
+  symbol: well_formed_pairs_are
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  declaration_status: declaration_found_not_proof_checked
+  line: 160
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::no_single_item_separates
+  availability: local
+  symbol: no_single_item_separates
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  declaration_status: declaration_found_not_proof_checked
+  line: 172
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::separating_pairs_are_two
+  availability: local
+  symbol: separating_pairs_are_two
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  declaration_status: declaration_found_not_proof_checked
+  line: 175
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::ten_atoms
+  availability: local
+  symbol: ten_atoms
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  declaration_status: declaration_found_not_proof_checked
+  line: 179
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::one_hundred_pairs
+  availability: local
+  symbol: one_hundred_pairs
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  declaration_status: declaration_found_not_proof_checked
+  line: 182
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::nine_well_formed
+  availability: local
+  symbol: nine_well_formed
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  declaration_status: declaration_found_not_proof_checked
+  line: 185
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::seven_leave_bits_equal
+  availability: local
+  symbol: seven_leave_bits_equal
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  declaration_status: declaration_found_not_proof_checked
+  line: 189
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::fresh_datum_pairs_do_not_separate
+  availability: local
+  symbol: fresh_datum_pairs_do_not_separate
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  declaration_status: declaration_found_not_proof_checked
+  line: 193
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::form_rule_both_true
+  availability: local
+  symbol: form_rule_both_true
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  declaration_status: declaration_found_not_proof_checked
+  line: 199
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::rule_extension_equalizes
+  availability: local
+  symbol: rule_extension_equalizes
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  declaration_status: declaration_found_not_proof_checked
+  line: 202
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::rule_extension_is_longer
+  availability: local
+  symbol: rule_extension_is_longer
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  declaration_status: declaration_found_not_proof_checked
+  line: 206
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwKItemDeltaGrammar.lean::off_target_instance_keeps_bits
+  availability: local
+  symbol: off_target_instance_keeps_bits
+  path: lean4/CampaignPgwKItemDeltaGrammar.lean
+  repository: this_repository
+  sha256: 9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670
+  declaration_status: declaration_found_not_proof_checked
+  line: 211
   role: source_lead_only
 - original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::iter_cost2_deltas
   availability: external

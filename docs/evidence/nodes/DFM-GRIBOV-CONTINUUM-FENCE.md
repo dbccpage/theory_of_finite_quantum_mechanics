@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 10
-- cited Lean declarations covered by a current replay receipt: 10
+- distinct cited Lean declarations covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -64,6 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `h23_square` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms h23_square` |
 | `omega1_square_and_det` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms omega1_square_and_det` |
 | `trace_pair` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms trace_pair` |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/dfm-gribov-continuum-fence.py`

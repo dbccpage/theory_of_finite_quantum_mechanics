@@ -12,7 +12,7 @@ Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 0
+- distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -53,6 +53,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `Topology` (rust_symbol) | yes | yes | yes | - | - |
 | `build_tetron_array` (rust_symbol) | yes | yes | yes | - | - |
 | `logical_class_representative` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `papers/core/majorana/code/majorana_evaluator.py`
@@ -65,6 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `build_tetron_carrier` (python_symbol) | yes | yes | yes | - | - |
 | `logical_representative` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1151_maj_tetron_array_carrier.md`

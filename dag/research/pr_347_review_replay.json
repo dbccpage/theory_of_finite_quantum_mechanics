@@ -1,0 +1,100 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:08:48.760660+00:00",
+  "review_base": "0528f3633970021fd724e2e70e588eed9dc20297",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: TFQ-0319 — Narrowed: one green receipt pairs with two edge coboundaries; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignTfq0319UnjoinedReceipt.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignTfq0319UnjoinedReceipt",
+        "dag_node": "TFQ-0319",
+        "source": "lean4/CampaignTfq0319UnjoinedReceipt.lean",
+        "sha256": "4f8200380d75a91f36babc8a768321f01acebc07e57f1f9de10563885f799953",
+        "sha256_after_build": "4f8200380d75a91f36babc8a768321f01acebc07e57f1f9de10563885f799953",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignTfq0319UnjoinedReceipt.sealed_nibble_count",
+          "CampaignTfq0319UnjoinedReceipt.sealed_nibbles_match",
+          "CampaignTfq0319UnjoinedReceipt.all_self_coboundaries_zero",
+          "CampaignTfq0319UnjoinedReceipt.edge_coboundaries",
+          "CampaignTfq0319UnjoinedReceipt.images_are_the_four",
+          "CampaignTfq0319UnjoinedReceipt.images_pairwise_distinct",
+          "CampaignTfq0319UnjoinedReceipt.every_value_pair_is_listed",
+          "CampaignTfq0319UnjoinedReceipt.pairing_keeps_sealed",
+          "CampaignTfq0319UnjoinedReceipt.pairing_indices",
+          "CampaignTfq0319UnjoinedReceipt.pairing_distinct",
+          "CampaignTfq0319UnjoinedReceipt.green_receipt_two_edge_values"
+        ],
+        "axioms": {
+          "CampaignTfq0319UnjoinedReceipt.sealed_nibble_count": [
+            "propext"
+          ],
+          "CampaignTfq0319UnjoinedReceipt.sealed_nibbles_match": [
+            "propext"
+          ],
+          "CampaignTfq0319UnjoinedReceipt.all_self_coboundaries_zero": [
+            "propext"
+          ],
+          "CampaignTfq0319UnjoinedReceipt.edge_coboundaries": [
+            "propext"
+          ],
+          "CampaignTfq0319UnjoinedReceipt.images_are_the_four": [
+            "propext"
+          ],
+          "CampaignTfq0319UnjoinedReceipt.images_pairwise_distinct": [
+            "propext"
+          ],
+          "CampaignTfq0319UnjoinedReceipt.every_value_pair_is_listed": [
+            "propext"
+          ],
+          "CampaignTfq0319UnjoinedReceipt.pairing_keeps_sealed": [
+            "propext"
+          ],
+          "CampaignTfq0319UnjoinedReceipt.pairing_indices": [
+            "propext"
+          ],
+          "CampaignTfq0319UnjoinedReceipt.pairing_distinct": [
+            "propext"
+          ],
+          "CampaignTfq0319UnjoinedReceipt.green_receipt_two_edge_values": [
+            "propext"
+          ]
+        },
+        "output": "'CampaignTfq0319UnjoinedReceipt.sealed_nibble_count' depends on axioms: [propext]\n'CampaignTfq0319UnjoinedReceipt.sealed_nibbles_match' depends on axioms: [propext]\n'CampaignTfq0319UnjoinedReceipt.all_self_coboundaries_zero' depends on axioms: [propext]\n'CampaignTfq0319UnjoinedReceipt.edge_coboundaries' depends on axioms: [propext]\n'CampaignTfq0319UnjoinedReceipt.images_are_the_four' depends on axioms: [propext]\n'CampaignTfq0319UnjoinedReceipt.images_pairwise_distinct' depends on axioms: [propext]\n'CampaignTfq0319UnjoinedReceipt.every_value_pair_is_listed' depends on axioms: [propext]\n'CampaignTfq0319UnjoinedReceipt.pairing_keeps_sealed' depends on axioms: [propext]\n'CampaignTfq0319UnjoinedReceipt.pairing_indices' depends on axioms: [propext]\n'CampaignTfq0319UnjoinedReceipt.pairing_distinct' depends on axioms: [propext]\n'CampaignTfq0319UnjoinedReceipt.green_receipt_two_edge_values' depends on axioms: [propext]\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/tfq-0319.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.013,
+    "output": "checked 58 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/347/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.22,
+    "output": ""
+  }
+}

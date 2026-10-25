@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-Whether a declared laboratory protocol's measurement map M separates topological zero modes from trivial Andreev bound states, i.e. whether rho_topo - rho_ABS lies outside ker M.
+Narrowed boundary, status left OPEN. For the integer readings topo = (1, 0) and andreev = (1, 1), the difference is (0, -1). The first-coordinate map sends that difference to 0 and sends both readings to 1. The second-coordinate map sends the difference to -1, the topo reading to 0, and the andreev reading to 1, and those second coordinates differ.
 
 ### Governing Obligation
-Requires a declared device model and measurement map; none is supplied.
+No laboratory protocol, device model, density operator, or measurement map from a physical apparatus is supplied. These two coordinate maps are not that protocol. Whether any declared laboratory map separates topological zero modes from Andreev bound states stays open.
 
 ### Witness Audit
-No audit note.
+Decided integer facts on readings (1, 0) and (1, 1): the difference is (0, -1); the first coordinate of the difference is 0 and both readings have first coordinate 1; the second coordinate of the difference is -1 and the second coordinates are 0 and 1. No laboratory map is derived.
 
 ---
 
@@ -28,13 +28,15 @@ No audit note.
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignMajOpenEvidenceAdequacy.lean::diff_is_zero_neg_one`
+- `lean4/CampaignMajOpenEvidenceAdequacy.lean::first_coord_kernel`
+- `lean4/CampaignMajOpenEvidenceAdequacy.lean::second_coord_separates`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/maj-open-evidence-adequacy.py`
 
 ### Cited by the source, not in this checkout
 - *none*
@@ -52,3 +54,5 @@ No audit note.
 - **Cited Sources**:
   - `papers/core/majorana/the_majorana_problem.md:367-367`
   - `papers/core/majorana/the_majorana_problem.md:128-139`
+  - `dag/derivations/independent/maj-open-evidence-adequacy.md`
+  - `dag/research/campaign_maj-open-evidence-adequacy_lean_replay.json`

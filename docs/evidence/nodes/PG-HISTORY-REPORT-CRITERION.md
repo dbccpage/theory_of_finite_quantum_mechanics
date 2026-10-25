@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 16
-- cited Lean declarations covered by a current replay receipt: 16
+- distinct cited Lean declarations covered by a current replay receipt: 16
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/HistoryReport.lean`
@@ -79,6 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `HistoryReport.not_factors_of_split` | yes | yes | yes | none | `#print axioms HistoryReport.not_factors_of_split` |
 | `HistoryReport.off_image_not_unique` | yes | yes | yes | none | `#print axioms HistoryReport.off_image_not_unique` |
 | `HistoryReport.selector_exists` | yes | yes | yes | Classical.choice | `#print axioms HistoryReport.selector_exists` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/PreGenesisToMssn/Paper.lean`
@@ -94,6 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `history_factor_unique` | yes | yes | yes | Quot.sound | `#print axioms history_factor_unique` |
 | `history_report_criterion` | yes | yes | yes | Classical.choice | `#print axioms history_report_criterion` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/SnMssn/Paper001.lean`
@@ -109,6 +112,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `descent_unique` | yes | yes | yes | none | `#print axioms descent_unique` |
 | `exists_descent_of_constant` | yes | yes | yes | Classical.choice | `#print axioms exists_descent_of_constant` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/Descent.lean`
@@ -123,6 +127,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `function_descends_iff_fiber_constant` | yes | yes | yes | Classical.choice | `#print axioms function_descends_iff_fiber_constant` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean`
@@ -137,6 +142,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `factorization_iff_fiber_constancy` | yes | yes | yes | Classical.choice | `#print axioms factorization_iff_fiber_constancy` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_category_theory/src/finite_report_query.rs`

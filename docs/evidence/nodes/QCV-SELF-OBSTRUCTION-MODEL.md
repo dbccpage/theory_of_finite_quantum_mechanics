@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 7
-- cited Lean declarations covered by a current replay receipt: 3
+- distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `pairCount` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms pairCount` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/QcRepairQueue.lean`
@@ -72,6 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `backlog` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms backlog` |
 | `drift` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms drift` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/campaigns/qc_self_obstruction.rs`
@@ -84,6 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `backlog` (rust_symbol) | yes | yes | yes | - | - |
 | `pair_count` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/qm/qc_self_obstruction.py`
@@ -96,12 +99,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `backlog` (python_symbol) | yes | yes | yes | - | - |
 | `pair_count` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivation_dag.json`
 
 - file: [dag/derivation_dag.json](../../../dag/derivation_dag.json)
-- sha256 (`lf-normalised`): `e37554bbf79bb919c7f36968f7b7bee5564e7822c463695662fdf7772d479cf3`
+- sha256 (`lf-normalised`): `34dee10da57cd3542d35c64dfbe21c62f0b28953d4fd184866784f5526449d12`
 - generated view: listed, not counted
 - cited in: node.source
 - counts toward the grade: no

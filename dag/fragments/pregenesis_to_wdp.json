@@ -661,14 +661,26 @@
       "parent_id": "TFQ-0426",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "A trace that starts from a declared context s′ and takes steps valid relative to s′ need not be valid relative to the actual replayed state s ≠ s′: ValidTrace(τ | s′) does not imply ValidTrace(τ | s). Trial 2's Result 15 is the example, with internally consistent reasoning from the stale premise s′ = {<>} after Prompt 12 had designated <a> as current. A sound execution contract therefore accepts a context binding C(s′) only when s′ = Replay(H). The analysis calls this a clean theorem target and gives no proof. The Prompt 17 contrast fits it: a truncated window answered Verified and the full replay Retracted, each right for the history it received, which the appended analysis calls an information boundary rather than a reasoning failure.",
+      "summary": "On a two-value carrier, replay is the left fold of supplyDiamond, which keeps the value, and designateA, which sets the value true, starting from false. A one-step trace that is valid at a declared context s' need not be valid at a different replayed value s: when s differs from s' there is a trace valid at s' and not at s. A contract on this carrier preserves trace validity at replay(H) if and only if it accepts a context binding only when the context equals replay(H). The history consisting of supplyDiamond replays to false and the only-diamond answer on it is verified; the history supplyDiamond then designateA replays to true and the only-diamond answer on it is retracted.",
       "obligation": "Define a trace semantics in which ValidTrace(τ | s′) is checkable, and make the verifier reconstruct Replay(H) and accept a declared context s′ only when s′ = Replay(H) before certifying any step taken from s′.",
       "imports": [],
-      "fence": "A target statement and verifier requirement with no proof and no declared trace semantics; the replay certifiers listed check a claimed Genesis regime against its event history and do not define ValidTrace.",
+      "fence": "The two-value carrier is not the sealed Genesis event grammar, and ValidTrace here is not the Rust certifies predicate. Trial 2 Result 15, Prompt 12, and the Prompt 17 window are not instantiated. A general trace semantics for arbitrary regimes stays open.",
       "witnesses": {
         "lean": [
           {
-            "absent": "no Lean definition of ValidTrace or of the context-fidelity non-implication; Represented.replay_deterministic in 000_genesis_19l57g1/lean4/Derivation/Represented.lean shows only that replay is a function of the history"
+            "root": "local",
+            "path": "lean4/CampaignPgwContextFidelity.lean",
+            "symbol": "stale_not_transferred"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwContextFidelity.lean",
+            "symbol": "sound_iff_only_replay"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwContextFidelity.lean",
+            "symbol": "answers_follow_received_history"
           }
         ],
         "rust": [
@@ -679,6 +691,11 @@
           }
         ],
         "python": [
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-context-fidelity.py",
+            "symbol": "main"
+          },
           {
             "root": "symbol_game",
             "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py",
@@ -5552,10 +5569,10 @@
       "parent_id": "TFQ-0488",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "The sealed candidate space is enumerated to cost two (at most two items, arity at most two), with pruning lemmas certified against the unpruned space: unreferenced fresh data and forms never matter, an instance-only delta changes the target pair's profiles only if an instance mentions a target datum, and a delta holding a uniform-rule item is never a minimum valid response (rule_item_never_minimal). The second derivation's rung one enumerated three-item deltas (min_responses_three) under a node guard, but no k-item delta grammar with pruning lemmas proved beyond cost two exists, and the distance bound of two is not known to be the grammar's (S-4). The education audit lists k-item delta grammars with pruning lemmas as a missing prerequisite of the S(n) bridge.",
-      "obligation": "Define the k-item delta grammar for k ≥ 3, state and prove the pruning lemmas it relies on, and certify the pruned enumeration against the unpruned space at each declared k before using any k-item minimum.",
+      "summary": "The sealed candidate space is enumerated to cost two (at most two items, arity at most two), with pruning lemmas certified against the unpruned space: unreferenced fresh data and forms never matter, an instance-only delta changes the target pair's profiles only if an instance mentions a target datum, and a delta holding a uniform-rule item is never a minimum valid response (rule_item_never_minimal). The second derivation's rung one enumerated three-item deltas (min_responses_three) under a node guard, but no k-item delta grammar with pruning lemmas proved beyond cost two exists, and the distance bound of two is not known to be the grammar's (S-4). The education audit lists k-item delta grammars with pruning lemmas as a missing prerequisite of the S(n) bridge. Narrowed in Lean 4 to one empty base with two data and arity one. Over a 10-atom universe, the well-formed admissions of one item are a fresh datum and one unary form, and the well-formed admissions of two items are datum-then-datum, datum-then-form, form-then-datum, form-then-form, form-then-rule, form-then-instance of argument 0, and form-then-instance of argument 1. That census has 9 well-formed deltas, and 7 of them leave the two target profile bits equal. The two form-then-instance deltas leave those bits unequal. The form-then-rule delta sets both bits true. Extending the argument-0 instance by the uniform rule makes a 3-item delta whose bits are equal, while the 2-item prefix has unequal bits. A fresh datum, then a form, then an instance of argument 2, keeps both target bits false and records that fresh argument. Arity two, a grammar for 3 or more items, and the sealed cost-two minimum on the full unpruned space stay open. The mention file and the rule-bridge file are not rechecked. AuthorityEffect is None.",
+      "obligation": "Define the k-item delta grammar for k ≥ 3, state and prove the pruning lemmas it relies on, and certify the pruned enumeration against the unpruned space at each declared k before using any k-item minimum. This file checks one empty base with two data and arity one: 9 well-formed deltas of at most two items, 2 of them with unequal target bits. The 3-item rule extension equalizes those bits, and an instance of argument 2 keeps them false. Arity two, a grammar for 3 or more items, and the sealed cost-two minimum stay open.",
       "imports": [],
-      "fence": "Open: the cost-two minimum (CL-3-MIN-TWO) is relative to the sealed grammar and bounds, and nothing here establishes a k-item minimum or a bound on response size.",
+      "fence": "Open: the cost-two minimum (CL-3-MIN-TWO) is relative to the sealed grammar and bounds, and nothing here establishes a k-item minimum or a bound on response size. This file checks one empty base with two data and arity one: 9 well-formed deltas of at most two items, 2 of them with unequal target bits. The 3-item rule extension equalizes those bits, and an instance of argument 2 keeps them false. Arity two, a grammar for 3 or more items, and the sealed cost-two minimum stay open.",
       "witnesses": {
         "lean": [
           {
@@ -5567,6 +5584,71 @@
             "root": "local",
             "path": "lean4/Imported/Genesis19l57g1/Derivation/Mention.lean",
             "symbol": "collapsed_fresh_datum"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "well_formed_singles_are"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "well_formed_pairs_are"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "no_single_item_separates"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "separating_pairs_are_two"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "ten_atoms"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "one_hundred_pairs"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "nine_well_formed"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "seven_leave_bits_equal"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "fresh_datum_pairs_do_not_separate"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "form_rule_both_true"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "rule_extension_equalizes"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "rule_extension_is_longer"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwKItemDeltaGrammar.lean",
+            "symbol": "off_target_instance_keeps_bits"
           }
         ],
         "rust": [
@@ -5586,6 +5668,10 @@
             "root": "github19l",
             "path": "research/second_stream/stream.py",
             "symbol": "iter_k_item_deltas"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-k-item-delta-grammar.py"
           }
         ]
       },
@@ -6165,14 +6251,51 @@
       "parent_id": "TFQ-0486",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "No floor proof exists for the count of declared inputs (D10, H-1); the count stays two. Continuation attempt two found, at its declared bounds (fifteen rounds, a node guard of 250 per run, growth below four data, two items) and under its literal reading of carrying forward, four engines that carry the grammar forward declaring the stake and not the stream (SD-R-11), and calls this neither a floor proof nor a reduction outside those bounds. The completion-gate clause admits two readings of these bounded one-input carriers and was frozen as NOT_ESTABLISHED; whether the four carry forward past the bounds is OPEN (H-1, which needs the responder in Lean).",
-      "obligation": "Prove a floor for the declared-input count, or exhibit a reduction below two that holds past attempt two's bounds, with every bound stated.",
+      "summary": "No floor proof exists for the count of declared inputs (D10, H-1); the count stays two. Continuation attempt two found, at its declared bounds (fifteen rounds, a node guard of 250 per run, growth below four data, two items) and under its literal reading of carrying forward, four engines that carry the grammar forward declaring the stake and not the stream (SD-R-11), and calls this neither a floor proof nor a reduction outside those bounds. The completion-gate clause admits two readings of these bounded one-input carriers and was frozen as NOT_ESTABLISHED; whether the four carry forward past the bounds is OPEN (H-1, which needs the responder in Lean). Narrowed in Lean 4 to two named inputs, stake and stream, and four carriers that each declare the stake and not the stream. The named list has length 2. Each of the four carriers has declared count 1, and 1 is below 2. The reading that every one of these four has count at least 2 is false. The reading that one of them has count 1 is true. The declared numerals are 15 rounds, a node guard of 250, a data bound of 4, and an item bound of 2. A carrier that declares neither input has count 0 and is not one of the four. These four carriers are not a floor for every later carrier, and the attempt-two search is not replayed. AuthorityEffect is None.",
+      "obligation": "Prove a floor for the declared-input count, or exhibit a reduction below two that holds past attempt two's bounds, with every bound stated. This file checks four carriers on the two names stake and stream: each declares the stake only, so the count is 1, below 2. The numerals 15, 250, 4, and 2 are recorded and are not a search. A floor for every carrier, a reduction past these four, and the attempt-two replay stay open.",
       "imports": [],
-      "fence": "Open; the bounded one-input carriers are a computation at declared bounds, and the clause's other reading was left to the author, who approved the freeze without a separate ruling.",
+      "fence": "Open; the bounded one-input carriers are a computation at declared bounds, and the clause's other reading was left to the author, who approved the freeze without a separate ruling. This file checks four carriers on the two names stake and stream: each declares the stake only, so the count is 1, below 2. The numerals 15, 250, 4, and 2 are recorded and are not a search. A floor for every carrier, a reduction past these four, and the attempt-two replay stay open.",
       "witnesses": {
         "lean": [
           {
-            "absent": "no Lean statement of a declared-input floor"
+            "root": "local",
+            "path": "lean4/CampaignPgwDeclaredInputFloor.lean",
+            "symbol": "vocabulary_is_two"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDeclaredInputFloor.lean",
+            "symbol": "four_engines"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDeclaredInputFloor.lean",
+            "symbol": "each_declares_stake_not_stream"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDeclaredInputFloor.lean",
+            "symbol": "each_count_is_one"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDeclaredInputFloor.lean",
+            "symbol": "one_below_two"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDeclaredInputFloor.lean",
+            "symbol": "readings_disagree"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDeclaredInputFloor.lean",
+            "symbol": "declared_bounds"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDeclaredInputFloor.lean",
+            "symbol": "empty_carrier_is_not_among_the_four"
           }
         ],
         "rust": [
@@ -6185,6 +6308,10 @@
             "root": "github19l",
             "path": "research/second_run/fwd_runs.py",
             "symbol": "carries_forward"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-declared-input-floor.py"
           }
         ]
       },
@@ -6341,14 +6468,46 @@
       "parent_id": "TFQ-0486",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "CL-ISO-SOUND, soundness of the implemented isomorphism key, is a finite computation only: the Python key procedure's classes are cross-checked against a brute-force minimum over bijections, and the Lean side is unresolved (D3: no Lean evidence). Attempt two leaves 482 regimes above the brute-force limit of the key cross-check (H-4), and attempt one's check of the Python orbit against the Lean orbit (G-9) is not done.",
-      "obligation": "State and prove in Lean that equal implemented keys imply isomorphic regimes (and the converse where it is used), and check the Python automorphism orbits against the Lean orbits on the exported regimes.",
+      "summary": "Narrowed in Lean 4 to colorings of two data. A coloring is a pair of bits. The swap exchanges the two bits and is an involution. The serialization reads a bit as 0 or 1. The key is the lexicographic minimum of a coloring and its swap. The four keys are (0, 0), (0, 1), (0, 1), and (1, 1). Equal keys hold exactly when one coloring is the other or its swap. Two colorings share the key (0, 1). The two constant colorings are fixed by the swap and have different keys.",
+      "obligation": "State and prove in Lean that equal implemented keys imply isomorphic regimes (and the converse where it is used), and check the Python automorphism orbits against the Lean orbits on the exported regimes. The implemented key, the regimes past the brute-force limit, and the orbit comparison stay open.",
       "imports": [],
-      "fence": "Open; the run trees are quotiented by the implemented isomorphism, whose soundness is computational at the regimes cross-checked.",
+      "fence": "Open; the run trees are quotiented by the implemented isomorphism, whose soundness is computational at the regimes cross-checked. Narrowed in Lean 4 to colorings of two data, where equal keys hold exactly when one coloring is the other or its swap. The implemented key, the regimes past the brute-force limit, and the orbit comparison stay open.",
       "witnesses": {
         "lean": [
           {
-            "absent": "CL-ISO-SOUND has no Lean evidence (D3)"
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIsoSwapInvolutive"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIsoKeysOfFour"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIsoKeySwap"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIsoKeyIff"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIsoConstants"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIsoFour"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIsoMixed"
           }
         ],
         "rust": [
@@ -6363,6 +6522,11 @@
             "root": "symbol_game",
             "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py",
             "symbol": "canonical_bruteforce"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-isomorphism-soundness-in-lean.py",
+            "symbol": "main"
           }
         ]
       },
@@ -6384,6 +6548,18 @@
           "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt",
           "lines": "1045-1059",
           "quote": "the 482 regimes above the brute-force limit of the key cross-check (H-4)"
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-isomorphism-soundness-in-lean.md",
+          "lines": "5",
+          "quote": "Node status stays OPEN. This note records the two-data coloring key."
+        },
+        {
+          "root": "local",
+          "path": "dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json",
+          "lines": "6",
+          "quote": "The 2026-10-25 lake build of CampaignPgwIsomorphismSoundnessInLean exited 0."
         }
       ],
       "coda_atlas_ids": [],
@@ -6403,12 +6579,37 @@
       "parent_id": "TFQ-0486",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "Challenge 4 was run to declared bounds only (fifteen rounds, a node guard of 250 per run, growth below four data, two items): 11,266 nodes stopped at the guard and 368 at the bound, and 116 runs are not closed. Attempt two's leftovers H-2 to H-9 remain: the 970 refused same demands (H-2), the twenty-eight merges rung two's observable budget refused (H-3), the 482 regimes above the brute-force key limit (H-4), a distance on adjacency (H-5), a reading of carrying forward that admits switch (H-6), the forty-four closed runs with switch cycles UNDECIDED under ONE VALUE PER NODE (H-7), why E1 and E5 share one run under mu2 (H-8), and five data (H-9). Whether the augmentation sequence is unbounded is unresolved in the sealed paper (question 7): with the external continuation policy every requested depth tried was reached and every supplied demand has a response (mark_progress), and no unboundedness claim is made.",
-      "obligation": "Run the declared class past the bounds or prove the FORCED verdicts that are computations at the bounds, and dispose of each of H-2 to H-9 with its own evidence.",
+      "summary": "Narrowed in Lean 4 to five records on the declared bound line: rounds at most 15, nodes at most 250, data below 4, and items at most 2. The record (15, 250, 3, 2) is inside. The record (16, 250, 3, 2) is outside. The record (15, 251, 3, 2) is outside. The record (15, 250, 4, 2) is outside. The record (15, 250, 3, 3) is outside. The census of stopped runs, leftovers H-2 to H-9, and whether the augmentation sequence is unbounded stay open.",
+      "obligation": "Run the declared class past the bounds or prove the FORCED verdicts that are computations at the bounds, and dispose of each of H-2 to H-9 with its own evidence. The census of stopped runs, leftovers H-2 to H-9, and whether the augmentation sequence is unbounded stay open.",
       "imports": [],
-      "fence": "Open; every FORCED verdict other than the element count, irreversibility and two-ness over the LIVE members is a computation at the declared bounds.",
+      "fence": "Open; every FORCED verdict other than the element count, irreversibility and two-ness over the LIVE members is a computation at the declared bounds. Narrowed in Lean 4 to five records on that line: (15, 250, 3, 2) is inside, and one extra round, one extra node, data 4, or three items is outside. The census of stopped runs, leftovers H-2 to H-9, and whether the augmentation sequence is unbounded stay open.",
       "witnesses": {
         "lean": [
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwRunsPastDeclaredBounds.lean",
+            "symbol": "pgwBoundOnLine"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwRunsPastDeclaredBounds.lean",
+            "symbol": "pgwBoundRoundPast"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwRunsPastDeclaredBounds.lean",
+            "symbol": "pgwBoundNodePast"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwRunsPastDeclaredBounds.lean",
+            "symbol": "pgwBoundDataFour"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwRunsPastDeclaredBounds.lean",
+            "symbol": "pgwBoundItemPast"
+          },
           {
             "root": "local",
             "path": "lean4/Imported/Genesis19l57g1/Derivation/Progress.lean",
@@ -6425,6 +6626,11 @@
             "root": "github19l",
             "path": "research/second_run/fwd_runs.py",
             "symbol": "frontier"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-runs-past-declared-bounds.py",
+            "symbol": "main"
           }
         ]
       },
@@ -6446,6 +6652,18 @@
           "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt",
           "lines": "599-606",
           "quote": "Whether the sequence is unbounded is **[unresolved]**: no unboundedness claim is made."
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-runs-past-declared-bounds.md",
+          "lines": "5",
+          "quote": "Node status stays OPEN. This note records five records on the declared bound line."
+        },
+        {
+          "root": "local",
+          "path": "dag/research/campaign_pgw-runs-past-declared-bounds_lean_replay.json",
+          "lines": "6",
+          "quote": "The 2026-10-25 lake build of CampaignPgwRunsPastDeclaredBounds exited 0."
         }
       ],
       "coda_atlas_ids": [],
@@ -6465,14 +6683,46 @@
       "parent_id": "TFQ-0486",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "Challenge 1, the stream as a response, is OPEN with scoped finite results only: no retained V1 minimum of 1680 carries a datum, 32 of them were selected at three items, all fourteen recorded refusal situations are answered at exactly three items, and two new first refusals appear. 1039 nodes stopped at the guard, targets after a node's first refusal were not searched (the first-refusal short-circuit), and four items were not computed (R1-X PENDING); V2 beyond nineteen situations and the narrow-versus-wide comparison are also OPEN. Attempt two's runs add only that no response carries a datum at two items, and the continuation was not authorized to take Challenge 1 up.",
-      "obligation": "Compute the stream challenge at four items with targets searched after a first refusal and the guard-stopped frontier reported, or prove a bound that makes the four-item case unnecessary.",
+      "summary": "Narrowed in Lean 4 to one refusal pair and one search flag. A refusal at item count 3 is a refusal at 3 and is not a refusal at 4. A reply at item count 4 may refuse, and a reply at item count 4 may accept. With the short-circuit flag set, a target at 4 after a refusal at 3 is not searched, while the target at 3 is searched. With the flag clear, the target at 4 is searched. The retained minima, the refusal census, the guard-stopped frontier, and the four-item stream computation stay open.",
+      "obligation": "Compute the stream challenge at four items with targets searched after a first refusal and the guard-stopped frontier reported, or prove a bound that makes the four-item case unnecessary. The retained minima, the refusal census, the guard-stopped frontier, and the four-item stream computation stay open.",
       "imports": [],
-      "fence": "Open; the three-item answers hold at the computed scope only, and a refusal at three items is not a refusal at four.",
+      "fence": "Open; the three-item answers hold at the computed scope only, and a refusal at three items is not a refusal at four. Narrowed in Lean 4 to one reply at item count 3, two replies at item count 4, and one short-circuit flag. The retained minima, the refusal census, the guard-stopped frontier, and the four-item stream computation stay open.",
       "witnesses": {
         "lean": [
           {
-            "absent": "no Lean statement of the stream challenge"
+            "root": "local",
+            "path": "lean4/CampaignPgwStreamAtFourItems.lean",
+            "symbol": "pgwStreamAtThree"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwStreamAtFourItems.lean",
+            "symbol": "pgwStreamThreeNotFour"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwStreamAtFourItems.lean",
+            "symbol": "pgwStreamFourRefuses"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwStreamAtFourItems.lean",
+            "symbol": "pgwStreamFourAccepts"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwStreamAtFourItems.lean",
+            "symbol": "pgwStreamShortCircuitSkipsFour"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwStreamAtFourItems.lean",
+            "symbol": "pgwStreamOpenSearchReachesFour"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwStreamAtFourItems.lean",
+            "symbol": "pgwStreamShortCircuitKeepsThree"
           }
         ],
         "rust": [
@@ -6485,6 +6735,11 @@
             "root": "github19l",
             "path": "research/second_stream/stream.py",
             "symbol": "build_stream_tree"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-stream-at-four-items.py",
+            "symbol": "main"
           }
         ]
       },
@@ -6500,6 +6755,18 @@
           "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt",
           "lines": "1067-1070",
           "quote": "1039 guard-stopped nodes, the first-refusal short-circuit, the four-item bound"
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-stream-at-four-items.md",
+          "lines": "5",
+          "quote": "Node status stays OPEN. This note records one refusal pair and one search flag."
+        },
+        {
+          "root": "local",
+          "path": "dag/research/campaign_pgw-stream-at-four-items_lean_replay.json",
+          "lines": "6",
+          "quote": "The 2026-10-25 lake build of CampaignPgwStreamAtFourItems exited 0."
         }
       ],
       "coda_atlas_ids": [],
@@ -6519,14 +6786,71 @@
       "parent_id": "TFQ-0486",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "Driver B, a lift that needs a new sealed Event kind, is retained as OPEN (AE-DRIVER-B-OPEN) and is successor research S3. The Alpha harness has exactly the six sealed Event kinds (Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll, Impose), and append_sealed_event refuses a seventh constructor (SeventhEventError), so no lift beyond the six kinds can be admitted through the slice.",
-      "obligation": "Specify a lift that needs a seventh sealed Event kind, the seal amendment it requires and its replay law, or show that every lift in scope factors through the six kinds.",
+      "summary": "Narrowed in Lean 4 to a six-label model. Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll and Impose are the indices 0, 1, 2, 3, 4 and 5, and each index returns its label. A guard that accepts a natural number exactly when it is strictly less than 6 accepts each of those six indices and refuses 6. A guard that accepts exactly when the number is strictly less than 7 accepts 6. The Alpha harness, a seventh sealed constructor, a seal amendment, and a theorem that every lift factors through the six kinds stay open.",
+      "obligation": "Specify a lift that needs a seventh sealed Event kind, the seal amendment it requires and its replay law, or show that every lift in scope factors through the six kinds. The Alpha harness, a seventh sealed constructor, a seal amendment, and a theorem that every lift factors through the six kinds stay open.",
       "imports": [],
-      "fence": "Open; the refusal of a seventh constructor is a harness guard, not a theorem that six kinds suffice, and amending the seal is the author's act.",
+      "fence": "Open. The refusal of label 6 is the bound k < 6 in this model, not a theorem that six kinds suffice, and the bound k < 7 accepts 6. The Alpha harness, SeventhEventError, a seal amendment, and a factorization of every lift through the six kinds stay open.",
       "witnesses": {
         "lean": [
           {
-            "absent": "no Lean statement about a seventh sealed Event kind"
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "sealedIndex_supply"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "sealedIndex_admitDatum"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "sealedIndex_admitForm"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "sealedIndex_admitInst"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "sealedIndex_admitRuleAll"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "sealedIndex_impose"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "ofIndex_roundtrip"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "index_roundtrip"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "six_labels_admitted"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "seventh_label_refused"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "amended_bound_accepts_seventh"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "seventh_label_not_a_sealed_index"
           }
         ],
         "rust": [
@@ -6541,6 +6865,11 @@
             "root": "github19l",
             "path": "research/alpha_engine/harness.py",
             "symbol": "append_sealed_event"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-driver-b-seventh-event.py",
+            "symbol": "main"
           }
         ]
       },
@@ -6562,6 +6891,18 @@
           "path": "docs/ALPHA_HANDOFF.md",
           "lines": "179-192",
           "quote": "`append_sealed_event` refuses a seventh constructor"
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-driver-b-seventh-event.md",
+          "lines": "5",
+          "quote": "Node status stays OPEN. This note records one six-label model."
+        },
+        {
+          "root": "local",
+          "path": "dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json",
+          "lines": "6",
+          "quote": "The 2026-10-25 lake build of CampaignPgwDriverBSeventhEvent exited 0."
         }
       ],
       "coda_atlas_ids": [],
@@ -9362,12 +9703,52 @@
       "prerequisites": [
         "TFQ-0460"
       ],
-      "summary": "GenesisIncidence.lean reads the declared incidence complex on vertices 0, 1, 2 with signed boundary maps on the edge basis (01, 02, 12), the admitted face 012 entering as the column (1, −1, 1), and establishes that the boundary of that face has zero boundary (boundary_boundary_filled). The WDP window instead uses coboundaries with the simplicial edge order (01, 12, 02), d₀f = (f₁ − f₀, f₂ − f₁, f₂ − f₀) and d₁x = x₀₁ + x₁₂ − x₀₂ (Obstruction.lean), while the cyclic presentation (01, 12, 20) negates the reversed component. The monograph states that every window quantity is invariant once the cochain is transported with its edges, but no declared map takes the GenesisIncidence chains, with their edge order and boundary convention, to the WDP cochain window.",
-      "obligation": "Declare and check the transport from GenesisIncidence's boundary convention on (01, 02, 12) to the WDP coboundary convention on (01, 12, 02): a coordinate permutation after which d₀ and d₁ are the transposes of the boundary maps, with a sign for any edge reoriented as 20, verified by d₁d₀ = 0 and the filled-triangle signature after transport.",
+      "summary": "Narrowed in Lean 4 to one triangle. Incidence edges (01, 02, 12) reorder to (01, 12, 02) by sending (a, b, c) to (a, c, b). The face column (1, -1, 1) becomes (1, 1, -1), and the incidence boundary of that column is (0, 0, 0). Dot products with the incidence columns, read in the order 01, 12, 02, equal the coboundary (f1 - f0, f2 - f1, f2 - f0). The evaluation x01 + x12 - x02 vanishes on every such coboundary, agrees with the cyclic sum that stores edge 20 as the negation of edge 02, and sends (1, 1, 0) to 2. The unit-weight residual of (1, 1, 0) equals 2 at vertex values (0, 1, 0) and is at least 2 for every integer vertex triple. A transport for every window quantity, a derivation of the WDP window from Genesis admission, and the external orientation test stay open.",
+      "obligation": "Declare and check the transport from GenesisIncidence's boundary convention on (01, 02, 12) to the WDP coboundary convention on (01, 12, 02): a coordinate permutation after which d0 and d1 are the transposes of the boundary maps, with a sign for any edge reoriented as 20, verified by d1 d0 = 0 and the filled-triangle signature after transport. A transport for every window quantity, a derivation of the WDP window from Genesis admission, and the external orientation test stay open.",
       "imports": [],
-      "fence": "Neither file states the transport; boundary_boundary_filled is a chain-level fact in the incidence edge order, the incidence construction (TFQ-0460) does not derive the WDP window from Genesis admission (TFQ-0344), and the orientation test in Python stays inside the WDP convention.",
+      "fence": "Open. One triangle is transported. The reorder, the transpose identity, the sign for edge 20, the charge 2, and the residual lower bound 2 are checked. A transport for every window quantity, a derivation of the WDP window from Genesis admission, and the external orientation test stay open.",
       "witnesses": {
         "lean": [
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpIncidenceTransport.lean",
+            "symbol": "transport_matches_transpose"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpIncidenceTransport.lean",
+            "symbol": "face_reorders"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpIncidenceTransport.lean",
+            "symbol": "incidence_face_boundary_zero"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpIncidenceTransport.lean",
+            "symbol": "wdp_d1_d0"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpIncidenceTransport.lean",
+            "symbol": "reverse_edge_20"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpIncidenceTransport.lean",
+            "symbol": "defect_charge"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpIncidenceTransport.lean",
+            "symbol": "residual_at_repair"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpIncidenceTransport.lean",
+            "symbol": "residual_at_least_two"
+          },
           {
             "root": "local",
             "path": "lean4/Imported/OeWdp/GenesisIncidence.lean",
@@ -9389,6 +9770,11 @@
             "root": "symbol_game",
             "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_obstruction.py",
             "symbol": "test_reversed_edge_orientation_changes_signs_not_the_signature"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-wdp-incidence-orientation-transport.py",
+            "symbol": "main"
           }
         ]
       },
@@ -9410,6 +9796,18 @@
           "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md",
           "lines": "1478-1483",
           "quote": "Every quantity below is invariant under reorientation once the cochain is transported with its edges."
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-wdp-incidence-orientation-transport.md",
+          "lines": "5",
+          "quote": "Node status stays OPEN. This note records one triangle."
+        },
+        {
+          "root": "local",
+          "path": "dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json",
+          "lines": "6",
+          "quote": "The 2026-10-25 lake build of CampaignPgwWdpIncidenceTransport exited 0."
         }
       ],
       "coda_atlas_ids": [],
@@ -9432,15 +9830,50 @@
         "TFQ-0538",
         "TFQ-0522"
       ],
-      "summary": "WDP-CH04-P01: Φ_J([δ]) = inf_f J(δ − d₀f) is independent of the representative, because δ' = δ + d₀g turns the infimum into one over h = f − g, a bijection of C⁰. WDP-CH04-P02 (conditional): when the repair space is finite-dimensional over ℝ or ℂ and J is a norm, the infimum is attained after quotienting ker d₀; the hypotheses cannot be dropped silently for seminorms or infinite carriers. WDP-CH04-C01 (conditional): with positive weights w, Φ_{1,w}([δ]) = max{⟨y, δ⟩ : d₀*y = 0, |y_e| ≤ w_e}, an imported finite-dimensional convex-duality result (REF-MATH-005, Rockafellar, Convex Analysis) specialized to the declared weighted graph complex. In code, finite_quotient_l1 minimizes over an explicit candidate list, and exact_quotient_l1 solves the weighted ℓ¹ programme over Fraction and reports a value only after an independent certificate check.",
+      "summary": "On integer triples, the triangle coboundary is d0(f0, f1, f2) = (f1 - f0, f2 - f1, f2 - f0). For all integer vertex triples f and g, d0(f0 + g0, f1 + g1, f2 + g2) equals the componentwise sum of d0(f) and d0(g), and (delta + d0(g)) - d0(f + g) equals delta - d0(f). The sum of absolute residual entries is unchanged by that shift. For delta = (1, 1, 0), every integer repair has absolute residual sum at least 2, and the repair (0, 1, 0) has absolute residual sum 2. For every integer vertex triple g, delta + d0(g) has absolute residual sum at least 2 at every integer repair, and the repair (g0, 1 + g1, g2) has absolute residual sum 2.",
       "obligation": "Return the same Φ_J for every representative of a class, report attainment only under the finite-dimensional norm hypothesis, and treat weighted-ℓ¹ strong duality as imported, accepting an instance only with a matching repair and bounded circulation.",
       "imports": [
         "Finite-dimensional convex (linear-programming) strong duality, REF-MATH-005 Rockafellar Convex Analysis, specialized to the declared weighted graph complex (assumption)",
         "Attainment hypothesis: repair space finite-dimensional over R or C and J a norm, not a seminorm (assumption)"
       ],
-      "fence": "Representative independence is unconditional; the weak direction of the duality is not imported (WDP-CH04-P07, TFQ-0348, Lean dual_certificate_lower_bound), and C01 is not shown for arbitrary coefficient spaces.",
+      "fence": "Standing text is the integer triangle coboundary: linearity, residual identity under a vertex shift, and absolute residual sum 2 for delta = (1, 1, 0) and for each integer coboundary shift of that one triple. Representative independence for a general cost, attainment on a real or complex repair space, weighted duality on an arbitrary complex, rational repairs, and a general coefficient field stay open. The weak direction of the duality is not imported (WDP-CH04-P07, TFQ-0348, Lean dual_certificate_lower_bound), and C01 is not shown for arbitrary coefficient spaces.",
       "witnesses": {
         "lean": [
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean",
+            "symbol": "d0_linear"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean",
+            "symbol": "residual_shift"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean",
+            "symbol": "absSum_shift"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean",
+            "symbol": "absSum_ge_two"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean",
+            "symbol": "absSum_attained"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean",
+            "symbol": "shifted_ge"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean",
+            "symbol": "shifted_attained"
+          },
           {
             "root": "local",
             "path": "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean",
@@ -10232,14 +10665,69 @@
       "prerequisites": [
         "TFQ-0485"
       ],
-      "summary": "GEN-WDP-07, a conditional theorem in the bridge register, fixes a carrier and marked triples F, keeps the full directed integer table e(x, y) = M_r(x, y) − M_s(x, y) including loops and independent reverse arcs, treats raising as e ↦ e + d₀g with (d₀g)(x, y) = g(x) − g(y), and uses the marked diagnostic D_F(e)(x, y, z) = e(x, y) + e(y, z) + e(z, x). Cancellation gives D_F d₀ = 0, so D_F(e + d₀g) = D_F e even for unbalanced triples, and rationalizing reflects integer repair equality. This is a repair quotient with descending reports, not automatically cohomology: C¹/im d₀ differs from ker D_F/im d₀, a filled mark may be unbalanced, triangle reports miss loops and two-way defects, and antisymmetric simplicial coordinates need e(x, x) = 0 and e(x, y) + e(y, x) = 0. Term addition and identification can fail to respect the quotient (source 23:D4), so carrier-changing operations need new congruence proofs.",
-      "obligation": "Treat the Genesis Ongoing cancellation, raising and marked-fill data (TFQ-0485) as a fixed-carrier repair quotient only; feeding them into the declared degree-1 window is owed and needs the zero-loop and antisymmetry hypotheses, a d₁ with d₁d₀ = 0, and congruence proofs for term addition and identification.",
+      "summary": "Narrowed in Lean 4 to the carrier {0, 1}. The directed slots are e(0,0), e(1,1), e(0,1) and e(1,0). The coboundary of vertex values (g0, g1) is (0, 0, g0 - g1, g1 - g0). The unbalanced mark (0, 1, 0) has diagnostic e(0,1) + e(1,0) + e(0,0). That diagnostic is 0 on every coboundary and is unchanged when a coboundary is added. If a nonzero integer b scales an integer slot difference onto a coboundary, the difference is already the integer coboundary of (0, -d01). The table (1, 0, 0, -1) has diagnostic 0 and is not a coboundary. The table (0, 1, 0, 0) has diagnostic 0 and is not a coboundary. The one-arc table (0, 0, 1, 0) has diagnostic 1. The two-way table (0, 0, 1, 1) has arc sum 2 and arc difference 0. A general carrier, an arbitrary marked family, the degree-1 window of TFQ-0004, a continuous norm, and carrier-changing term operations stay open.",
+      "obligation": "Treat the Genesis Ongoing cancellation, raising and marked-fill data (TFQ-0483, TFQ-0484 and TFQ-0485) as a fixed-carrier repair quotient only; feeding them into the declared degree-1 window is owed and needs the zero-loop and antisymmetry hypotheses, a d₁ with d₁d₀ = 0, and congruence proofs for term addition and identification. A general carrier, an arbitrary marked family, the degree-1 window of TFQ-0004, a continuous norm, and carrier-changing term operations stay open.",
       "imports": [
         "Fixed carrier and declared marked triples F from the chosen Genesis Ongoing source contexts (assumption)"
       ],
-      "fence": "Proposed, not derived: the bridge does not produce the window of TFQ-0004 from Genesis admission (TFQ-0344), integer change costs are not identified with a continuous norm, and dynamic carrier changes belong to GEN-WDP-O02 and O03.",
+      "fence": "Open. One two-vertex carrier is checked. The coboundary cancellation, the denominator reflection, the two kernel witnesses, the one-arc diagnostic, and the two-way sum are checked. A general carrier, an arbitrary marked family, the window of TFQ-0004, a continuous norm, and carrier-changing term operations stay open.",
       "witnesses": {
         "lean": [
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "cob_slots"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "diag_on_coboundary"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "diag_after_repair"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "denominator_clears"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "compensated_loop_closed"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "compensated_loop_not_coboundary"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "silent_loop_closed"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "silent_loop_not_coboundary"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "one_arc_diagnostic"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "two_way_sum"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+            "symbol": "two_way_difference"
+          },
           {
             "root": "local",
             "path": "lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean",
@@ -10255,7 +10743,9 @@
         ],
         "python": [
           {
-            "absent": "GEN-WDP-07 carries a written proof and the native omega_wdp adapter; no Python binding"
+            "root": "local",
+            "path": "checks/independent/pgw-wdp-bridge-ongoing-to-window.py",
+            "symbol": "main"
           }
         ]
       },
@@ -10277,6 +10767,18 @@
           "path": "omega_engine_education/documentation/006_oewdp/levels/level_22_genesis_to_wdp_bridges.md",
           "lines": "116-137",
           "quote": "Carrier-changing operations need new congruence proofs."
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-wdp-bridge-ongoing-to-window.md",
+          "lines": "5",
+          "quote": "Node status stays OPEN. This note records the carrier {0, 1}."
+        },
+        {
+          "root": "local",
+          "path": "dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json",
+          "lines": "6",
+          "quote": "The 2026-10-25 lake build of CampaignPgwWdpBridgeOngoing exited 0."
         }
       ],
       "coda_atlas_ids": [],
@@ -10428,14 +10930,71 @@
       "parent_id": "TFQ-0557",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "WDP hands onward a declared, certified degree-1 window: Φ₁([h]) = Φ_J([h]), the quotient infimum over repairs, certified for weighted ℓ¹ over ℚ by a matching repair and bounded circulation; Γ₂([h]) = ‖d₁h‖₁; the diagnostic trichotomy; and the observer discipline that a protected question passes through a report only when constant on its fibres. The 007 Local-Green/Global-Red series refuses the case in which every local check passes and the global check fails, and its Symbol Game integration sets the global verdict to 0 when Φ₁ > 0 or Γ₂ > 0, but it writes Φ₁(h) = ‖d₀h‖₁ (boundary leakage), which is not WDP's quotient infimum. The 007 lesson states that no automatic identification with the PFP quantities phi1 or gamma2 is supplied, so an adapter from WDP's quotient Φ₁ and Γ₂ to the LGGR global evaluator is owed. The DAG's next stage is L1_EMERGENCE (TFQ-0005 declared L1 sector weights, TFQ-0349).",
-      "obligation": "Hand onward only the certified window values (Φ₁ as the quotient infimum with its certificate, Γ₂, the diagnostic class) and the report-fibre discipline, and supply a checked adapter before any LGGR verdict reads Φ₁ as ‖d₀h‖₁.",
+      "summary": "Narrowed boundary, status left OPEN. On one triangle with edges (01, 12, 02) and unit integer weights, the coboundary of vertex values (f0, f1, f2) is (f1 - f0, f2 - f1, f2 - f0), and the face of an edge triple (x01, x12, x02) is x01 + x12 - x02. For every integer edge triple and every integer vertex repair, the unit l1 length of the residual is at least the absolute face value. When the face is negative, the repair (0, h01, h01 + h12) leaves residual (0, 0, -face); otherwise the repair (0, h01 - face, h02) leaves residual (face, 0, 0). Both residuals have unit l1 length equal to the absolute face value, so on this triangle that length is the distance to integer coboundaries. A face of 0 means the edge triple is the coboundary of the non-negative repair. Vertex values (0, 1, 0) have coboundary l1 length 2, the edge triple (1, -1, 0) is that coboundary, and the residual of (1, -1, 0) against itself has length 0, so 2 is not the quotient value. The edge triple (1, 0, 0) has face 1. The verdict of (1, 1) is 0 and the verdict of (0, 0) is 1. Equal fibre decisions (1, 1) pass and (0, 1) does not.",
+      "obligation": "Keep the certified window open beyond this triangle: weighted l1 over the rationals, a bounded-circulation dual on a general carrier, the second coboundary diagnostic, and a checked adapter before any LGGR verdict reads the quotient value as a coboundary length.",
       "imports": [],
-      "fence": "Terminal for the WDP stage: it does not identify WDP's Φ₁ with 007's ‖d₀h‖₁ (the LGGR crate's register_stabilized_family consumes verified quotient Φ₁ evidence for ClosedResidual families only), does not make Φ₁ or Γ₂ sector weights or a quantum state (TFQ-0004), and does not derive the L1 stage.",
+      "fence": "Terminal for the WDP stage on the original window. This triangle case does not identify WDP's quotient value with 007's coboundary length (the LGGR crate's register_stabilized_family consumes verified quotient evidence for ClosedResidual families only), does not make the two window quantities sector weights or a quantum state (TFQ-0004), and does not derive the L1 stage. The weighted certificate over the rationals, the bounded-circulation dual on a general carrier, the LGGR adapter, sector weights, general complexes, and the full diagnostic trichotomy stay open. A face of 0 is an integer coboundary on this triangle only.",
       "witnesses": {
         "lean": [
           {
-            "absent": "no Lean statement of an adapter from the WDP quotient Phi1 to the LGGR evaluator defect"
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpHandoffToL1.lean",
+            "symbol": "distance_at_least"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpHandoffToL1.lean",
+            "symbol": "repair_residual_neg"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpHandoffToL1.lean",
+            "symbol": "repair_residual_nonneg"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpHandoffToL1.lean",
+            "symbol": "meet_neg"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpHandoffToL1.lean",
+            "symbol": "meet_nonneg"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpHandoffToL1.lean",
+            "symbol": "face_zero_is_coboundary"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpHandoffToL1.lean",
+            "symbol": "leakage_is_not_quotient"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpHandoffToL1.lean",
+            "symbol": "face_of_obstruction"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpHandoffToL1.lean",
+            "symbol": "obstructed_verdict"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpHandoffToL1.lean",
+            "symbol": "closed_verdict"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpHandoffToL1.lean",
+            "symbol": "equal_report_passes"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpHandoffToL1.lean",
+            "symbol": "unequal_report_fails"
           }
         ],
         "rust": [
@@ -10450,6 +11009,11 @@
             "root": "symbol_game",
             "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py",
             "symbol": "obstruction_signature"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-wdp-handoff-to-l1.py",
+            "symbol": "main"
           }
         ]
       },
@@ -10471,6 +11035,18 @@
           "path": "omega_engine_education/documentation/007_oelggr/curriculum/1000_local_green_global_red_foundations/concepts/lesson_1000_01_local_green_global_red_foundations.md",
           "lines": "116-120",
           "quote": "No automatic identification with the PFP quantities `phi1` or `gamma2`"
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-wdp-handoff-to-l1.md",
+          "lines": "5",
+          "quote": "Node status stays OPEN. This note records one triangle."
+        },
+        {
+          "root": "local",
+          "path": "dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json",
+          "lines": "6",
+          "quote": "The 2026-10-25 lake build of CampaignPgwWdpHandoffToL1 exited 0."
         }
       ],
       "coda_atlas_ids": [],

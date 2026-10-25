@@ -1,0 +1,68 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:28:28.088257+00:00",
+  "review_base": "7fa69d621c27bed7045d0b7fe34bbb1d34b27248",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: GTH-LANG-CORE — Narrowed: one five-slot regime carrier; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignGthLangCore.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignGthLangCore",
+        "dag_node": "GTH-LANG-CORE",
+        "source": "lean4/CampaignGthLangCore.lean",
+        "sha256": "57cb0bcf3599400870ca47f0e0f11c87f3dabe90f04752f964f0ee0f591eef5f",
+        "sha256_after_build": "57cb0bcf3599400870ca47f0e0f11c87f3dabe90f04752f964f0ee0f591eef5f",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "carrier_slots",
+          "carrier_sum",
+          "withRule_differs",
+          "withRule_slots",
+          "reach_collapses"
+        ],
+        "axioms": {
+          "carrier_slots": [],
+          "carrier_sum": [],
+          "withRule_differs": [],
+          "withRule_slots": [],
+          "reach_collapses": []
+        },
+        "output": "'carrier_slots' does not depend on any axioms\n'carrier_sum' does not depend on any axioms\n'withRule_differs' does not depend on any axioms\n'withRule_slots' does not depend on any axioms\n'reach_collapses' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/gth-lang-core.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.012,
+    "output": "checked 15 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/363/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.156,
+    "output": ""
+  },
+  "reviewed_head": "653334564662faba59a877ceaad66bfe026fd910",
+  "execution_metadata": "Historical commands and absolute paths from this managed environment; not a portable checkout recipe. Run python -I -X utf8 checks/independent/gth-lang-core.py and lean lean4/CampaignGthLangCore.lean from the repository root; translate Lake config to a user-selected temporary TOML path."
+}

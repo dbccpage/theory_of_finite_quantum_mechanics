@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 26
-- cited Lean declarations covered by a current replay receipt: 26
+- distinct cited Lean declarations covered by a current replay receipt: 22
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -80,6 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `unit_normalized_covariance` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms unit_normalized_covariance` |
 | `unnormalized_covariance` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms unnormalized_covariance` |
 | `witness_three_fifths` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms witness_three_fifths` |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/dfm-electroweak-continuum-fence.py`

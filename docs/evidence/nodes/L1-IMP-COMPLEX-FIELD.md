@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 8
 - cited Lean, Rust or Python symbols found in their in-repo files: 10
-- cited Lean declarations covered by a current replay receipt: 10
+- distinct cited Lean declarations covered by a current replay receipt: 10
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 1
@@ -66,6 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `ComplexFieldSelection.quaternion_refuted` | yes | yes | yes | Quot.sound, propext | `#print axioms ComplexFieldSelection.quaternion_refuted` |
 | `ComplexFieldSelection.rho_same_product_statistics` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldSelection.rho_same_product_statistics` |
 | `ComplexFieldSelection.rho_states` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldSelection.rho_states` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
@@ -81,6 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries` |
 | `QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/H007Complexification.lean`
@@ -95,6 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `gi_not_embedded` | yes | yes | yes | propext | `#print axioms gi_not_embedded` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/OperationalFieldSelection.lean`
@@ -109,6 +112,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `OperationalFieldSelection.selected_parameter` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms OperationalFieldSelection.selected_parameter` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/finite_probability/complex_selection.rs`

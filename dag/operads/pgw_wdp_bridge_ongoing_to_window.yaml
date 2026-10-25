@@ -3,27 +3,29 @@ node_id: PGW-WDP-BRIDGE-ONGOING-TO-WINDOW
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'GEN-WDP-07, a conditional theorem in the bridge register, fixes a carrier and marked
-    triples F, keeps the full directed integer table e(x, y) = M_r(x, y) − M_s(x, y) including loops and
-    independent reverse arcs, treats raising as e ↦ e + d₀g with (d₀g)(x, y) = g(x) − g(y), and uses the
-    marked diagnostic D_F(e)(x, y, z) = e(x, y) + e(y, z) + e(z, x). Cancellation gives D_F d₀ = 0, so
-    D_F(e + d₀g) = D_F e even for unbalanced triples, and rationalizing reflects integer repair equality.
-    This is a repair quotient with descending reports, not automatically cohomology: C¹/im d₀ differs
-    from ker D_F/im d₀, a filled mark may be unbalanced, triangle reports miss loops and two-way defects,
-    and antisymmetric simplicial coordinates need e(x, x) = 0 and e(x, y) + e(y, x) = 0. Term addition
-    and identification can fail to respect the quotient (source 23:D4), so carrier-changing operations
-    need new congruence proofs.'
+  source_statement: Narrowed in Lean 4 to the carrier {0, 1}. The directed slots are e(0,0), e(1,1), e(0,1)
+    and e(1,0). The coboundary of vertex values (g0, g1) is (0, 0, g0 - g1, g1 - g0). The unbalanced mark
+    (0, 1, 0) has diagnostic e(0,1) + e(1,0) + e(0,0). That diagnostic is 0 on every coboundary and is
+    unchanged when a coboundary is added. If a nonzero integer b scales an integer slot difference onto
+    a coboundary, the difference is already the integer coboundary of (0, -d01). The table (1, 0, 0, -1)
+    has diagnostic 0 and is not a coboundary. The table (0, 1, 0, 0) has diagnostic 0 and is not a coboundary.
+    The one-arc table (0, 0, 1, 0) has diagnostic 1. The two-way table (0, 0, 1, 1) has arc sum 2 and
+    arc difference 0. A general carrier, an arbitrary marked family, the degree-1 window of TFQ-0004,
+    a continuous norm, and carrier-changing term operations stay open.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - Fixed carrier and declared marked triples F from the chosen Genesis Ongoing source contexts (assumption)
-  source_bottleneck: 'Proposed, not derived: the bridge does not produce the window of TFQ-0004 from Genesis
-    admission (TFQ-0344), integer change costs are not identified with a continuous norm, and dynamic
-    carrier changes belong to GEN-WDP-O02 and O03.'
+  source_bottleneck: Open. One two-vertex carrier is checked. The coboundary cancellation, the denominator
+    reflection, the two kernel witnesses, the one-arc diagnostic, and the two-way sum are checked. A general
+    carrier, an arbitrary marked family, the window of TFQ-0004, a continuous norm, and carrier-changing
+    term operations stay open.
   source_refs:
   - dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md:147-170
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_ongoing_fixed_carrier_bridge.md:26-36
   - omega_engine_education/documentation/006_oewdp/levels/level_22_genesis_to_wdp_bridges.md:116-137
+  - dag/derivations/independent/pgw-wdp-bridge-ongoing-to-window.md:5
+  - dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json:6
   paper_refs: []
   source_claim_label: OPEN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -38,6 +40,22 @@ source_provenance:
   path: dag/prompts/wdp_pgw_wdp_bridge_ongoing_to_window_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates:
+- kind: def
+  name: cob
+  line: 9
+  signature_excerpt: 'def cob (g0 g1 : Int) : Int × Int × Int × Int'
+  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: diag
+  line: 13
+  signature_excerpt: 'def diag (e00 e01 e10 : Int) : Int'
+  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  status: source_candidate_requires_semantic_review
 - kind: abbrev
   name: Table
   line: 23
@@ -64,6 +82,137 @@ operation_candidates:
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
+  name: cob_slots
+  line: 16
+  signature_excerpt: |-
+    theorem cob_slots (g0 g1 : Int) :
+        (cob g0 g1).1 = 0 ∧
+          (cob g0 g1).2.1 = 0 ∧
+            (cob g0 g1).2.2.1 = g0 - g1 ∧
+              (cob g0 g1).2.2.2 = g1 - g0
+  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: diag_on_coboundary
+  line: 24
+  signature_excerpt: |-
+    theorem diag_on_coboundary (g0 g1 : Int) :
+        diag 0 (g0 - g1) (g1 - g0) = 0
+  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: diag_after_repair
+  line: 29
+  signature_excerpt: |-
+    theorem diag_after_repair (e00 e01 e10 g0 g1 : Int) :
+        diag (e00 + 0) (e01 + (g0 - g1)) (e10 + (g1 - g0)) = diag e00 e01 e10
+  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: denominator_clears
+  line: 34
+  signature_excerpt: |-
+    theorem denominator_clears
+        (b d00 d11 d01 d10 n0 n1 : Int)
+        (hb : b ≠ 0)
+        (h00 : b * d00 = 0)
+        (h11 : b * d11 = 0)
+        (h01 : b * d01 = n0 - n1)
+        (h10 : b * d10 = n1 - n0) :
+        (d00, d11, d01, d10) = cob 0 (-d01)
+  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: compensated_loop_closed
+  line: 61
+  signature_excerpt: 'theorem compensated_loop_closed : diag 1 0 (-1) = 0'
+  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: compensated_loop_not_coboundary
+  line: 64
+  signature_excerpt: |-
+    theorem compensated_loop_not_coboundary (g0 g1 : Int) :
+        (cob g0 g1).1 ≠ 1
+  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: silent_loop_closed
+  line: 69
+  signature_excerpt: 'theorem silent_loop_closed : diag 0 0 0 = 0'
+  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: silent_loop_not_coboundary
+  line: 72
+  signature_excerpt: |-
+    theorem silent_loop_not_coboundary (g0 g1 : Int) :
+        (cob g0 g1).2.1 ≠ 1
+  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: one_arc_diagnostic
+  line: 77
+  signature_excerpt: 'theorem one_arc_diagnostic : diag 0 1 0 = 1'
+  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: two_way_sum
+  line: 80
+  signature_excerpt: 'theorem two_way_sum : (1 : Int) + 1 = 2'
+  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: two_way_difference
+  line: 83
+  signature_excerpt: 'theorem two_way_difference : (1 : Int) - 1 = 0'
+  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
   name: normal_preserves_round_sums
   line: 62
   signature_excerpt: |-
@@ -77,6 +226,105 @@ relation_candidates:
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
+- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::cob_slots
+  availability: local
+  symbol: cob_slots
+  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  declaration_status: declaration_found_not_proof_checked
+  line: 16
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::diag_on_coboundary
+  availability: local
+  symbol: diag_on_coboundary
+  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  declaration_status: declaration_found_not_proof_checked
+  line: 24
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::diag_after_repair
+  availability: local
+  symbol: diag_after_repair
+  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  declaration_status: declaration_found_not_proof_checked
+  line: 29
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::denominator_clears
+  availability: local
+  symbol: denominator_clears
+  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  declaration_status: declaration_found_not_proof_checked
+  line: 34
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::compensated_loop_closed
+  availability: local
+  symbol: compensated_loop_closed
+  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  declaration_status: declaration_found_not_proof_checked
+  line: 61
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::compensated_loop_not_coboundary
+  availability: local
+  symbol: compensated_loop_not_coboundary
+  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  declaration_status: declaration_found_not_proof_checked
+  line: 64
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::silent_loop_closed
+  availability: local
+  symbol: silent_loop_closed
+  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  declaration_status: declaration_found_not_proof_checked
+  line: 69
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::silent_loop_not_coboundary
+  availability: local
+  symbol: silent_loop_not_coboundary
+  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  declaration_status: declaration_found_not_proof_checked
+  line: 72
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::one_arc_diagnostic
+  availability: local
+  symbol: one_arc_diagnostic
+  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  declaration_status: declaration_found_not_proof_checked
+  line: 77
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::two_way_sum
+  availability: local
+  symbol: two_way_sum
+  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  declaration_status: declaration_found_not_proof_checked
+  line: 80
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::two_way_difference
+  availability: local
+  symbol: two_way_difference
+  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  repository: this_repository
+  sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
+  declaration_status: declaration_found_not_proof_checked
+  line: 83
+  role: source_lead_only
 - original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean::normal_preserves_round_sums
   availability: local
   symbol: normal_preserves_round_sums

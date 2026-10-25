@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 11
-- cited Lean declarations covered by a current replay receipt: 11
+- distinct cited Lean declarations covered by a current replay receipt: 11
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -64,6 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `spacelike_irrefl` | yes | yes | yes | none | `#print axioms spacelike_irrefl` |
 | `spacelike_not_transitive` | yes | yes | yes | none | `#print axioms spacelike_not_transitive` |
 | `spacelike_symm` | yes | yes | yes | none | `#print axioms spacelike_symm` |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/general_relativity/causal_set.py`

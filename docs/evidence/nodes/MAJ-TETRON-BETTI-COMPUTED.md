@@ -12,7 +12,7 @@ Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 0
+- distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 4
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -54,6 +54,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `dim_h1_agrees_with_the_euler_characteristic` (rust_test) | yes | yes | yes | - | `cd code/rust && cargo test -p tfqm_majorana dim_h1_agrees_with_the_euler_characteristic` |
 | `dim_h1_is_the_topologys_betti_number` (rust_test) | yes | yes | yes | - | `cd code/rust && cargo test -p tfqm_majorana dim_h1_is_the_topologys_betti_number` |
 | `tetron_lattice_scaling_benchmark_up_to_8x8` (rust_test) | yes | yes | yes | - | `cd code/rust && cargo test -p tfqm_majorana tetron_lattice_scaling_benchmark_up_to_8x8` |
+
 - counts toward the grade: yes
 
 ### Python: `papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py`
@@ -66,6 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `test_tetron_homology_dimensions` (python_test) | yes | yes | yes | - | `python -m pytest papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_tetron_homology_dimensions` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `code/rust/src/majorana/fixtures/tetron_lattice_scaling.json`

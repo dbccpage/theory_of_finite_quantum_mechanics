@@ -1,22 +1,22 @@
 # COMP-C7-FIXED-TARGET-OPEN
 
-Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `OPEN`. Evidence grade: **E1**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Adding erasing rules so that every halting word reduces to one fixed word should make Reach to that fixed word undecidable; this is not proved here.
+> Erasing the block \[1\] from the word \[1, 0\] by one hole replacement yields the fixed word \[0\]. Erasing the block \[2\] from the word \[2, 0\] by one hole replacement yields the same fixed word \[0\].
 
 ## Grade
 
-Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 2
+- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite a Lean, Rust or Python symbol that exists in an in-repo file
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Prove Reach R0 prime (startWord x) target iff (univFun x).Dom for the extended rule set R0 prime.
+Still open: Reach of the extended rule set R0 prime from startWord x to one fixed target word exactly when univFun x is defined.
 
 ## Source status
 
@@ -42,10 +42,27 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/CampaignCompC7FixedTargetOpen.lean`
+
+- file: [lean4/CampaignCompC7FixedTargetOpen.lean](../../../lean4/CampaignCompC7FixedTargetOpen.lean)
+- sha256 (`bytes`): `fdf8c22aad238c9fc90ae8988290b8d214e29ceaf050e6246f5c8f49265a5347`
+- cited in: node.lean, receipt dag/research/campaign_comp-c7-fixed-target-open_lean_replay.json (CampaignCompC7FixedTargetOpen), receipt dag/research/pr_369_review_replay.json (CampaignCompC7FixedTargetOpen), record TFQ-1311
+- replay: `verified`
+  - receipt [dag/research/campaign_comp-c7-fixed-target-open_lean_replay.json](../../../dag/research/campaign_comp-c7-fixed-target-open_lean_replay.json) (module `CampaignCompC7FixedTargetOpen`): recorded sha256 `fdf8c22aad238c9fc90ae8988290b8d214e29ceaf050e6246f5c8f49265a5347` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_369_review_replay.json](../../../dag/research/pr_369_review_replay.json) (module `CampaignCompC7FixedTargetOpen`): recorded sha256 `fdf8c22aad238c9fc90ae8988290b8d214e29ceaf050e6246f5c8f49265a5347` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignCompC7FixedTargetOpen`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `eraseOneToFixed` | yes | yes | yes | none | `#print axioms eraseOneToFixed` |
+| `eraseTwoToFixed` | yes | yes | yes | none | `#print axioms eraseTwoToFixed` |
+
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md`
 
 - file: [dag/derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md](../../../dag/derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md)
-- sha256 (`lf-normalised`): `fc33c155c99849527d36c734ca3553fb02187c4c333a639f752db35dc2fc2bcb`
+- sha256 (`lf-normalised`): `d6bbc8073f84166f8078de1298aee81a316080c63492f4c3ecb0cd7990db16d3`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1311
 - counts toward the grade: no

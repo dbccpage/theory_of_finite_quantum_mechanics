@@ -1,4 +1,4 @@
-# [TFQ-1333] Planned length-delimited request grammar and result-level agreement with the bounded evaluator
+# [TFQ-1333] One closed length-delimited request and one missing header
 
 > **Stage**: `COMPUTATION` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `AUTH-DTM2-INPUT-REQUEST-PLANNED`  
 > **UUID**: `367fdae7-b18d-593b-97cc-750904c97fc1`  
@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-The update packet plans a request code made of a fuel token, a machine-code length, one machine segment and an input word, whose code-level evaluator decodes the request and calls the bounded evaluator on the declared initial input, with seven named target theorems.
+On one closed request the header tag is 1, the fuel token is 2, the machine-code length is 1, the machine segment is the list 7, and the input word is the list 3, 4. Concatenating the header, the fuel, the length, the segment and the input word yields the list 1, 2, 1, 7, 3, 4. The list 0, 2, 1, 7, 3, 4 begins with 0, and 0 differs from the header tag.
 
 ### Governing Obligation
-Write the module and prove the request round trip and the result-level agreement; configuration snapshots and step-by-step trace agreement remain separate obligations.
+An encoder and decoder for a request other than this closed list, the remaining named targets in the update packet, and result-level agreement with a bounded evaluator stay open. Configuration snapshots and step-by-step trace agreement stay open. No custody reading and no authorization reading are in this record.
 
 ### Witness Audit
-The module named in the packet is absent from the source formal folder; the packet and dialogue are producer-side, and the dialogue records its own finding DTM2-R3 as rebutted and rejected.
+The campaign module records one closed request list 1, 2, 1, 7, 3, 4 and one list that begins with 0 rather than the header tag. A bounded evaluator and the remaining packet targets stay open.
 
 ---
 
@@ -32,7 +32,8 @@ The module named in the packet is absent from the source formal folder; the pack
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignAuthDtm2InputRequestPlanned.lean::oneRequestEncoding`
+- `lean4/CampaignAuthDtm2InputRequestPlanned.lean::zeroHeadDiffersFromHeader`
 
 ### Rust Certifiers
 - *none*

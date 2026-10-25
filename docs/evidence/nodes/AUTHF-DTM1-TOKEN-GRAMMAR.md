@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 7
-- cited Lean declarations covered by a current replay receipt: 5
+- distinct cited Lean declarations covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.encodeMachine` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.encodeMachine` |
 | `AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.encodeRule` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.encodeRule` |
 | `AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.encodeRules` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.encodeRules` |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/qm/auth_incompleteness/finite_models.py`
@@ -70,6 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `decode_machine` (python_symbol) | yes | yes | yes | - | - |
 | `encode_machine` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1343_authf_dtm1_token_grammar.md`

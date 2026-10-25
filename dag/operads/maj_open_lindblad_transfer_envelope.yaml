@@ -3,20 +3,22 @@ node_id: MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: For four MZMs under a Lindblad braiding model with gap Delta, length L/xi and poisoning
-    rate Gamma_qp > 0, the trace-norm transfer defect obeys Delta_transfer(T) <= min(1, C_LZ (hbar/(Delta
-    T))^2 + (Delta/hbar) e^{-L/xi} T + 1 - e^{-Gamma_qp T}) for T >> hbar/Delta, and that envelope has
-    a positive minimum.
+  source_statement: Narrowed boundary, status left OPEN. For the integer envelope f(T) = 4 + T^3 and the
+    comparison 3 T^2, f(1) = 5 which is greater than 3, f(2) = 12 which equals 12, and f(3) = 31 which
+    is greater than 27. The value 12 is positive, and 0 is strictly below 12, so a positive envelope value
+    does not force a transfer defect to be positive.
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions:
-  - Lindblad master equation with poisoning and dephasing channels
-  - Landau-Zener leakage asymptotics
-  source_bottleneck: Derive the envelope from the Lindblad equation; a positive physical lower bound on
-    Delta_transfer needs an independent argument, as the source notes.
+  declared_assumptions: []
+  source_bottleneck: The Lindblad derivation, the four-mode braiding model, the exponential poisoning
+    term, the Landau-Zener square, and a positive lower bound on the physical transfer defect stay open.
+    Older Nat positivity facts in MajoranaCore do not state this envelope. A positive envelope value stays
+    separate from a positive transfer defect.
   source_refs:
   - dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md
   - papers/core/majorana/the_majorana_problem.md
   - papers/core/majorana/the_majorana_problem_claim_ledger.md
+  - dag/derivations/independent/maj-open-lindblad-transfer-envelope.md
+  - dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json
   paper_refs:
   - dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md
   source_claim_label: OPEN
@@ -25,7 +27,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md
-    sha256: 53cb3ef57709000ab50b2af9f649db908622311f0a3e76d042fb184bdac507f5
+    sha256: 2b9116f9a4c03618fc7b165fcc9cacd802f6c43536198eaf61b538af2debd6a8
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -34,89 +36,118 @@ source_provenance:
   path: dag/prompts/majorana_maj_open_lindblad_transfer_envelope_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates:
-- kind: structure
-  name: OpenSystemTransferBound
-  line: 296
-  signature_excerpt: structure OpenSystemTransferBound
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+- kind: def
+  name: f
+  line: 8
+  signature_excerpt: 'def f (T : Nat) : Nat'
+  source: lean4/CampaignMajOpenLindbladTransferEnvelope.lean
   repository: this_repository
-  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  source_sha256: 0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: comparison
+  line: 10
+  signature_excerpt: 'def comparison (T : Nat) : Nat'
+  source: lean4/CampaignMajOpenLindbladTransferEnvelope.lean
+  repository: this_repository
+  source_sha256: 0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
-  name: transfer_defect_lower_bound_pos
-  line: 305
-  signature_excerpt: |-
-    theorem transfer_defect_lower_bound_pos (B : OpenSystemTransferBound) :
-        B.gamma_qp * B.braid_time > 0
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+  name: envelope_at_one
+  line: 12
+  signature_excerpt: 'theorem envelope_at_one : f 1 = 5 ∧ comparison 1 = 3 ∧ f 1 > comparison 1'
+  source: lean4/CampaignMajOpenLindbladTransferEnvelope.lean
   repository: this_repository
-  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  source_sha256: 0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
-  name: transfer_pareto_defect_pos
-  line: 309
-  signature_excerpt: |-
-    theorem transfer_pareto_defect_pos (gamma_qp drag c_lz : Nat)
-        (h_gamma : gamma_qp > 0) (h_drag : drag > 0) (h_lz : c_lz > 0) :
-        gamma_qp + drag + c_lz > 0
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+  name: envelope_at_two
+  line: 15
+  signature_excerpt: 'theorem envelope_at_two : f 2 = 12 ∧ comparison 2 = 12 ∧ f 2 = comparison 2'
+  source: lean4/CampaignMajOpenLindbladTransferEnvelope.lean
   repository: this_repository
-  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  source_sha256: 0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
-  name: transfer_gap_strictly_positive
-  line: 314
-  signature_excerpt: |-
-    theorem transfer_gap_strictly_positive (gamma_qp : Nat) (T : Nat)
-        (h_gamma : gamma_qp > 0) (h_T : T > 0) :
-        gamma_qp * T > 0
-  source: papers/core/majorana/lean4/MajoranaCore.lean
+  name: envelope_at_three
+  line: 18
+  signature_excerpt: 'theorem envelope_at_three : f 3 = 31 ∧ comparison 3 = 27 ∧ f 3 > comparison 3'
+  source: lean4/CampaignMajOpenLindbladTransferEnvelope.lean
   repository: this_repository
-  source_sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  source_sha256: 0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: envelope_positive
+  line: 21
+  signature_excerpt: 'theorem envelope_positive : f 2 = 12 ∧ 12 > 0'
+  source: lean4/CampaignMajOpenLindbladTransferEnvelope.lean
+  repository: this_repository
+  source_sha256: 0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: defect_zero_below_envelope
+  line: 24
+  signature_excerpt: 'theorem defect_zero_below_envelope : (0 : Nat) < f 2'
+  source: lean4/CampaignMajOpenLindbladTransferEnvelope.lean
+  repository: this_repository
+  source_sha256: 0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::OpenSystemTransferBound
+- original_ref: lean4/CampaignMajOpenLindbladTransferEnvelope.lean::envelope_at_one
   availability: local
-  symbol: OpenSystemTransferBound
-  path: papers/core/majorana/lean4/MajoranaCore.lean
+  symbol: envelope_at_one
+  path: lean4/CampaignMajOpenLindbladTransferEnvelope.lean
   repository: this_repository
-  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  sha256: 0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e
   declaration_status: declaration_found_not_proof_checked
-  line: 296
+  line: 12
   role: source_lead_only
-- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::transfer_defect_lower_bound_pos
+- original_ref: lean4/CampaignMajOpenLindbladTransferEnvelope.lean::envelope_at_two
   availability: local
-  symbol: transfer_defect_lower_bound_pos
-  path: papers/core/majorana/lean4/MajoranaCore.lean
+  symbol: envelope_at_two
+  path: lean4/CampaignMajOpenLindbladTransferEnvelope.lean
   repository: this_repository
-  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  sha256: 0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e
   declaration_status: declaration_found_not_proof_checked
-  line: 305
+  line: 15
   role: source_lead_only
-- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::transfer_pareto_defect_pos
+- original_ref: lean4/CampaignMajOpenLindbladTransferEnvelope.lean::envelope_at_three
   availability: local
-  symbol: transfer_pareto_defect_pos
-  path: papers/core/majorana/lean4/MajoranaCore.lean
+  symbol: envelope_at_three
+  path: lean4/CampaignMajOpenLindbladTransferEnvelope.lean
   repository: this_repository
-  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  sha256: 0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e
   declaration_status: declaration_found_not_proof_checked
-  line: 309
+  line: 18
   role: source_lead_only
-- original_ref: papers/core/majorana/lean4/MajoranaCore.lean::transfer_gap_strictly_positive
+- original_ref: lean4/CampaignMajOpenLindbladTransferEnvelope.lean::envelope_positive
   availability: local
-  symbol: transfer_gap_strictly_positive
-  path: papers/core/majorana/lean4/MajoranaCore.lean
+  symbol: envelope_positive
+  path: lean4/CampaignMajOpenLindbladTransferEnvelope.lean
   repository: this_repository
-  sha256: 10e0d2ffb73e63771564891d2ced8c72798f1c36c9adb82afdd574d86ad0d071
+  sha256: 0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e
   declaration_status: declaration_found_not_proof_checked
-  line: 314
+  line: 21
+  role: source_lead_only
+- original_ref: lean4/CampaignMajOpenLindbladTransferEnvelope.lean::defect_zero_below_envelope
+  availability: local
+  symbol: defect_zero_below_envelope
+  path: lean4/CampaignMajOpenLindbladTransferEnvelope.lean
+  repository: this_repository
+  sha256: 0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e
+  declaration_status: declaration_found_not_proof_checked
+  line: 24
   role: source_lead_only
 presentation:
   colours: []
@@ -136,9 +167,7 @@ operad_slots:
     mining_status: UNREVIEWED
     carrier: null
     coefficient_ring: null
-    assumptions:
-    - Lindblad master equation with poisoning and dephasing channels
-    - Landau-Zener leakage asymptotics
+    assumptions: []
     source_pins: []
     public_input: {}
   slot_m2_layer1_forward_morphisms:
@@ -154,9 +183,7 @@ operad_slots:
     mining_status: UNREVIEWED
     certificate_predicates: []
     anchors: []
-    unpaid_imports:
-    - Lindblad master equation with poisoning and dephasing channels
-    - Landau-Zener leakage asymptotics
+    unpaid_imports: []
 stage_history: []
 open_obligations:
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.

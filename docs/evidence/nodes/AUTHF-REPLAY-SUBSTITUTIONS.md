@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 1
 - cited Lean, Rust or Python symbols found in their in-repo files: 6
-- cited Lean declarations covered by a current replay receipt: 6
+- distinct cited Lean declarations covered by a current replay receipt: 6
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -59,6 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `AuthorizationIncompleteness.ReplayPacketBindingModels.replay_rejects_payload_substitution` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.ReplayPacketBindingModels.replay_rejects_payload_substitution` |
 | `AuthorizationIncompleteness.ReplayPacketBindingModels.schema_version_substitution_is_binding_rejected` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.ReplayPacketBindingModels.schema_version_substitution_is_binding_rejected` |
 | `AuthorizationIncompleteness.ReplayPacketBindingModels.self_pass_cannot_authorize_invalid_content` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.ReplayPacketBindingModels.self_pass_cannot_authorize_invalid_content` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1357_authf_replay_substitutions.md`

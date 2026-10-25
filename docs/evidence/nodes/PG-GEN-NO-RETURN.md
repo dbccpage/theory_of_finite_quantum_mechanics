@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 24
-- cited Lean declarations covered by a current replay receipt: 24
+- distinct cited Lean declarations covered by a current replay receipt: 24
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -77,6 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignGenesisNoReturn.source_array` | yes | yes | yes | propext | `#print axioms CampaignGenesisNoReturn.source_array` |
 | `CampaignGenesisNoReturn.strict_potential` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.strict_potential` |
 | `CampaignGenesisNoReturn.two_switches_return` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.two_switches_return` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/Genesis19l57g1/SecondRun/Run.lean`
@@ -93,6 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `cycle_regime_const` | yes | yes | yes | Quot.sound, propext | `#print axioms cycle_regime_const` |
 | `ereplay_elems_lt_of_ne` | yes | yes | yes | Quot.sound, propext | `#print axioms ereplay_elems_lt_of_ne` |
 | `no_return` | yes | yes | yes | Quot.sound, propext | `#print axioms no_return` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`

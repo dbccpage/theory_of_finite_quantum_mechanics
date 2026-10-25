@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 13
-- cited Lean declarations covered by a current replay receipt: 13
+- distinct cited Lean declarations covered by a current replay receipt: 13
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 1
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/Symmetry.lean`
@@ -71,6 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `no_fully_invariant_point` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms no_fully_invariant_point` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/WdpProtectedQuestions.lean`
@@ -95,6 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `WdpProtectedQuestions.one_point_empty_selects` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpProtectedQuestions.one_point_empty_selects` |
 | `WdpProtectedQuestions.selecting_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpProtectedQuestions.selecting_iff` |
 | `WdpProtectedQuestions.selecting_iff_nonempty` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpProtectedQuestions.selecting_iff_nonempty` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/operad_theory/kernel/observer.rs`

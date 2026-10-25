@@ -12,7 +12,7 @@ Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 7
-- cited Lean declarations covered by a current replay receipt: 0
+- distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 3
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -55,6 +55,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `integral_complete` | yes | yes | yes | - | `#print axioms integral_complete` |
 | `integral_idempotent` | yes | yes | yes | - | `#print axioms integral_idempotent` |
 | `integral_sound` | yes | yes | yes | - | `#print axioms integral_sound` |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/fsp/bqnf_sign_evaluator.py`
@@ -66,6 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `normalize_cochain` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/tests/fsp/test_normal_form_laws.py`
@@ -79,6 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `test_l1_section_is_not_l1_minimizer_and_exact_distance_is` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/fsp/test_normal_form_laws.py::test_l1_section_is_not_l1_minimizer_and_exact_distance_is` |
 | `test_rational_completeness_against_independent_annihilator` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/fsp/test_normal_form_laws.py::test_rational_completeness_against_independent_annihilator` |
 | `test_rational_section_soundness_idempotence_and_gauge_invariance` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/fsp/test_normal_form_laws.py::test_rational_section_soundness_idempotence_and_gauge_invariance` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1195_fsp_rational_quotient_normal_form.md`

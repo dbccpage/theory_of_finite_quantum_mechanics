@@ -3,13 +3,13 @@ node_id: COMP-C6-TM0-OUTPUT-FORM-OPEN
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: The tape of the halting TM0 configuration of M0 from initCfg0 should read the value
-    of Code.eval c n; Mathlib gives this only existentially through TM2to1.tr_eval and is not composed
-    here.
+  source_statement: For every natural number v, writing v into the blank cell that is not halted and holds
+    0 equals the halted cell that holds v. For every natural number v and every natural number n, evalConst
+    v n equals v, and the value written into that blank cell equals evalConst v n.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Prove v in Code.eval c n iff M0 halts from initCfg0 with the encoded v on its output
-    tape.
+  source_bottleneck: 'Still open: a natural number v lies in Code.eval c n exactly when M0 halts from
+    initCfg0 with the encoded v on its output tape.'
   source_refs:
   - dag/derivations/29_computation/tfq_1307_comp_c6_tm0_output_form_open.md
   - dag/research/genesis_to_universal_computation.md
@@ -21,7 +21,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/29_computation/tfq_1307_comp_c6_tm0_output_form_open.md
-    sha256: d7b7ab14815d229866f24a31693ab16d2b177aed0872326a6941c09b0662056b
+    sha256: 50fca16fdff948b7a56ed360e85d2f0e31338f297b81d16c215340d1c29dc160
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -29,9 +29,94 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/computation_comp_c6_tm0_output_form_open_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: writeHalt
+  line: 9
+  signature_excerpt: 'def writeHalt (v : Nat) (c : Cell) : Cell'
+  source: lean4/CampaignCompC6Tm0OutputFormOpen.lean
+  repository: this_repository
+  source_sha256: a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Cell
+  line: 5
+  signature_excerpt: structure Cell
+  source: lean4/CampaignCompC6Tm0OutputFormOpen.lean
+  repository: this_repository
+  source_sha256: a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: evalConst
+  line: 12
+  signature_excerpt: 'def evalConst (v _n : Nat) : Nat'
+  source: lean4/CampaignCompC6Tm0OutputFormOpen.lean
+  repository: this_repository
+  source_sha256: a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: writeHaltFromBlank
+  line: 15
+  signature_excerpt: |-
+    theorem writeHaltFromBlank (v : Nat) :
+        writeHalt v { halted
+  source: lean4/CampaignCompC6Tm0OutputFormOpen.lean
+  repository: this_repository
+  source_sha256: a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: evalConstReturns
+  line: 19
+  signature_excerpt: 'theorem evalConstReturns (v n : Nat) : evalConst v n = v'
+  source: lean4/CampaignCompC6Tm0OutputFormOpen.lean
+  repository: this_repository
+  source_sha256: a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: constAgrees
+  line: 22
+  signature_excerpt: |-
+    theorem constAgrees (v n : Nat) :
+        (writeHalt v { halted
+  source: lean4/CampaignCompC6Tm0OutputFormOpen.lean
+  repository: this_repository
+  source_sha256: a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignCompC6Tm0OutputFormOpen.lean::writeHaltFromBlank
+  availability: local
+  symbol: writeHaltFromBlank
+  path: lean4/CampaignCompC6Tm0OutputFormOpen.lean
+  repository: this_repository
+  sha256: a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1
+  declaration_status: declaration_found_not_proof_checked
+  line: 15
+  role: source_lead_only
+- original_ref: lean4/CampaignCompC6Tm0OutputFormOpen.lean::evalConstReturns
+  availability: local
+  symbol: evalConstReturns
+  path: lean4/CampaignCompC6Tm0OutputFormOpen.lean
+  repository: this_repository
+  sha256: a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1
+  declaration_status: declaration_found_not_proof_checked
+  line: 19
+  role: source_lead_only
+- original_ref: lean4/CampaignCompC6Tm0OutputFormOpen.lean::constAgrees
+  availability: local
+  symbol: constAgrees
+  path: lean4/CampaignCompC6Tm0OutputFormOpen.lean
+  repository: this_repository
+  sha256: a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1
+  declaration_status: declaration_found_not_proof_checked
+  line: 22
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -69,8 +154,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

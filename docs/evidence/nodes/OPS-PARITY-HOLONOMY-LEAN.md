@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 2
+- distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `LggrFiniteResults.no_joint_measure_when_holonomy_one` | yes | yes | yes | Quot.sound, propext | `#print axioms LggrFiniteResults.no_joint_measure_when_holonomy_one` |
 | `LggrFiniteResults.section_exists_iff_holonomy_zero` | yes | yes | yes | Quot.sound, propext | `#print axioms LggrFiniteResults.section_exists_iff_holonomy_zero` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md`

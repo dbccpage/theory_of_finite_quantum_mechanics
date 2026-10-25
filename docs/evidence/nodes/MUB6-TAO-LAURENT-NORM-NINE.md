@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 3
+- distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -55,6 +55,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `balanced_mask_count` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms balanced_mask_count` |
 | `tao_all_balanced_masks` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms tao_all_balanced_masks` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/MubTaoLaurent.lean`
@@ -69,6 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `tao_all_balanced_laurent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms tao_all_balanced_laurent` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/25_mub/tfq_1253_mub6_tao_laurent_norm_nine.md`

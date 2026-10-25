@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 25
-- cited Lean declarations covered by a current replay receipt: 23
+- distinct cited Lean declarations covered by a current replay receipt: 14
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -76,6 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `farkas` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms farkas` |
 | `lp_strong_duality` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms lp_strong_duality` |
 | `weighted_l1_strong_duality` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms weighted_l1_strong_duality` |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/pgw-sn-e08-weighted-l1-duality.py`
@@ -88,6 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `solve_dual` (python_symbol) | yes | yes | yes | - | - |
 | `solve_primal` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md`

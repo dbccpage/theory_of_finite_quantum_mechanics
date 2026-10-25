@@ -8,16 +8,17 @@
 
 ## Statement and derivation
 
-The target is a parameterized construction at d=p^n, not a list of numerical
-matrices. State the finite field, additive character, Weyl relations, commuting
-classes and exact scalar field, then derive each projector resolution and every
-cross-class trace pairing. Characteristic two must have its own valid construction
-and phase convention rather than silently dividing by two.
+Narrowed boundary, status left OPEN. In dimension 2, the bases
+Z = ((1, 0), (0, 1)), X = ((1, 1), (1, -1)) and Y = ((1, i), (1, -i))
+are unnormalized Gaussian-integer representatives of mutually unbiased bases of C^2 after normalization. Squared norms are 1, 1, 2, 2, 2 and 2.
+Vectors in one basis have inner product 0. For a vector from one basis and a vector from
+another, twice the squared modulus of the inner product equals the product of the squared
+norms. The square of i is -1. The additive character of the two-element field sends 0 to 1
+and 1 to -1, and it sends 1+1 to 1.
 
-Existing dimension-three and dimension-four source records are starting witnesses,
-not a mechanized theorem for every prime power. Record their hypotheses and replay
-their exact certificates before generalization. A composite dimension outside the
-proved construction stays outside its conclusion.
+The original target remains a parameterized construction at d=p^n. Characteristic two is
+recorded here by the Pauli bases above, without dividing by two. Odd characteristic, every
+larger prime power, and dimension six stay outside this conclusion.
 
 ## Evidence and next obligation
 

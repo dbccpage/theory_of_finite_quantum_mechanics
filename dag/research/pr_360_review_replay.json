@@ -1,0 +1,66 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:25:13.112448+00:00",
+  "review_base": "da7e22869e5d5255aaed1375109282f1763facd7",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE — Narrowed: integer envelope at T = 1, 2 and 3; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignMajOpenLindbladTransferEnvelope.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignMajOpenLindbladTransferEnvelope",
+        "dag_node": "MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE",
+        "source": "lean4/CampaignMajOpenLindbladTransferEnvelope.lean",
+        "sha256": "0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e",
+        "sha256_after_build": "0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "envelope_at_one",
+          "envelope_at_two",
+          "envelope_at_three",
+          "envelope_positive",
+          "defect_zero_below_envelope"
+        ],
+        "axioms": {
+          "envelope_at_one": [],
+          "envelope_at_two": [],
+          "envelope_at_three": [],
+          "envelope_positive": [],
+          "defect_zero_below_envelope": []
+        },
+        "output": "'envelope_at_one' does not depend on any axioms\n'envelope_at_two' does not depend on any axioms\n'envelope_at_three' does not depend on any axioms\n'envelope_positive' does not depend on any axioms\n'defect_zero_below_envelope' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/maj-open-lindblad-transfer-envelope.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.012,
+    "output": "checked 19 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/360/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.219,
+    "output": ""
+  }
+}

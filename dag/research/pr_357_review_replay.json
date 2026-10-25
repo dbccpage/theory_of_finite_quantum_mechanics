@@ -1,0 +1,93 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:18:16.443824+00:00",
+  "review_base": "a26d3ea9c1a4306daabfe05498c45742bf912926",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: PGW-WDP-BRIDGE-ONGOING-TO-WINDOW — Narrowed: two-vertex unbalanced mark; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignPgwWdpBridgeOngoing.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignPgwWdpBridgeOngoing",
+        "dag_node": "PGW-WDP-BRIDGE-ONGOING-TO-WINDOW",
+        "source": "lean4/CampaignPgwWdpBridgeOngoing.lean",
+        "sha256": "70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a",
+        "sha256_after_build": "70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "diag_on_coboundary",
+          "diag_after_repair",
+          "denominator_clears",
+          "compensated_loop_not_coboundary",
+          "silent_loop_not_coboundary",
+          "cob_slots",
+          "compensated_loop_closed",
+          "silent_loop_closed",
+          "one_arc_diagnostic",
+          "two_way_sum",
+          "two_way_difference"
+        ],
+        "axioms": {
+          "diag_on_coboundary": [
+            "Quot.sound",
+            "propext"
+          ],
+          "diag_after_repair": [
+            "Quot.sound",
+            "propext"
+          ],
+          "denominator_clears": [
+            "Quot.sound",
+            "propext"
+          ],
+          "compensated_loop_not_coboundary": [
+            "Quot.sound",
+            "propext"
+          ],
+          "silent_loop_not_coboundary": [
+            "Quot.sound",
+            "propext"
+          ],
+          "cob_slots": [],
+          "compensated_loop_closed": [],
+          "silent_loop_closed": [],
+          "one_arc_diagnostic": [],
+          "two_way_sum": [],
+          "two_way_difference": []
+        },
+        "output": "'cob_slots' does not depend on any axioms\n'diag_on_coboundary' depends on axioms: [propext, Quot.sound]\n'diag_after_repair' depends on axioms: [propext, Quot.sound]\n'denominator_clears' depends on axioms: [propext, Quot.sound]\n'compensated_loop_closed' does not depend on any axioms\n'compensated_loop_not_coboundary' depends on axioms: [propext, Quot.sound]\n'silent_loop_closed' does not depend on any axioms\n'silent_loop_not_coboundary' depends on axioms: [propext, Quot.sound]\n'one_arc_diagnostic' does not depend on any axioms\n'two_way_sum' does not depend on any axioms\n'two_way_difference' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/pgw-wdp-bridge-ongoing-to-window.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.018,
+    "output": "checked 10456 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/357/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.226,
+    "output": ""
+  }
+}

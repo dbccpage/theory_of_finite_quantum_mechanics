@@ -55,13 +55,13 @@ system_prompt: |
 user_prompt: |
   Current stage: P0_MINE_OPERAD.
   Research target (source claim; verify its scope before reuse):
-  Ledger row WDP-P000-017 records a counterexample: adding an admitted uniform rule can erase a prior separation. The row names two data, one unary instance on the first, then AdmitRuleAll of index 0, and says raw admission does not enforce requirement-preserving acceptance. The reproducing test was not opened. Genesis paper.md section 8 is the heading for closure. The finite statement still required is that this two-data history remains a visible counterexample beside the no-return count, so a later admission API cannot treat every admitted rule as separation-preserving.
+  Ledger row WDP-P000-017 records a counterexample: adding an admitted uniform rule can erase a prior separation. The row names two data, one unary instance on the first, then AdmitRuleAll of index 0, and says raw admission does not enforce requirement-preserving acceptance. The reproducing test was not opened. Genesis paper.md section 8 is the heading for closure. The finite statement still required is that this two-data history remains a visible counterexample beside the no-return count, so a later admission API cannot treat every admitted rule as separation-preserving. Narrowed in Lean 4 to two data and one unary form. Before the uniform rule, the instance on datum 0 makes the profile bits true and false, and the class count is 2. After the uniform rule on form 0, both profile bits are true and the class count is 1. The profile bit of datum 0 stays true. The profile bit of datum 1 changes. The no-return count is not restated. This one history is not a theorem about every later admission API. The atlas replay stays unchecked. AuthorityEffect is None.
 
   Declared assumptions:
 
 
   Source bottleneck:
-  Admitting a uniform rule on two data can erase a prior separation, so raw admission is not requirement-preserving acceptance.
+  The atlas replay of WDP-P000-017 stays unchecked. This file shows one history: two data, one instance on datum 0, then the uniform rule on form 0, with the class count falling from 2 to 1. The no-return count is not restated, and a later admission API beyond this history stays open.
 
   Open ../operads/tfq_0385.yaml. Review the source-pinned operation and relation candidates.
   Collect useful typed generators, actual relations, composition laws, and remaining obligations.

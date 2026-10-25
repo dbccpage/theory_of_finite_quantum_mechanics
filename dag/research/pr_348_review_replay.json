@@ -1,0 +1,68 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:09:47.610839+00:00",
+  "review_base": "1b88a9f4170288955a5fcc8d303146b54afc111e",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: TFQ-0374 — Narrowed: restriction, recovery, and erasure disagree on [a, fresh]; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignTfq0374ThreeRecoveryContracts.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignTfq0374ThreeRecoveryContracts",
+        "dag_node": "TFQ-0374",
+        "source": "lean4/CampaignTfq0374ThreeRecoveryContracts.lean",
+        "sha256": "1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea",
+        "sha256_after_build": "1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignTfq0374ThreeRecoveryContracts.three_contracts_differ_on_a_new_letter",
+          "CampaignTfq0374ThreeRecoveryContracts.letters_are_old_or_fresh",
+          "CampaignTfq0374ThreeRecoveryContracts.fresh_is_not_old",
+          "CampaignTfq0374ThreeRecoveryContracts.witness_uses_one_fresh",
+          "CampaignTfq0374ThreeRecoveryContracts.old_word_agrees"
+        ],
+        "axioms": {
+          "CampaignTfq0374ThreeRecoveryContracts.three_contracts_differ_on_a_new_letter": [
+            "propext"
+          ],
+          "CampaignTfq0374ThreeRecoveryContracts.letters_are_old_or_fresh": [],
+          "CampaignTfq0374ThreeRecoveryContracts.fresh_is_not_old": [],
+          "CampaignTfq0374ThreeRecoveryContracts.witness_uses_one_fresh": [],
+          "CampaignTfq0374ThreeRecoveryContracts.old_word_agrees": []
+        },
+        "output": "'CampaignTfq0374ThreeRecoveryContracts.letters_are_old_or_fresh' does not depend on any axioms\n'CampaignTfq0374ThreeRecoveryContracts.fresh_is_not_old' does not depend on any axioms\n'CampaignTfq0374ThreeRecoveryContracts.witness_uses_one_fresh' does not depend on any axioms\n'CampaignTfq0374ThreeRecoveryContracts.old_word_agrees' does not depend on any axioms\n'CampaignTfq0374ThreeRecoveryContracts.three_contracts_differ_on_a_new_letter' depends on axioms: [propext]\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/tfq-0374.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.013,
+    "output": "checked 24 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/348/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.291,
+    "output": ""
+  }
+}

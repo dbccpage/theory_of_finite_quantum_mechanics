@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 2
+- distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `FrontierPrAllowedRegion.allowed_and_forbidden_witnesses_with_6j_squares` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FrontierPrAllowedRegion.allowed_and_forbidden_witnesses_with_6j_squares` |
 | `FrontierPrAllowedRegion.ponzano_regge_allowed_forbidden_classification_le8` | yes | yes | yes | none | `#print axioms FrontierPrAllowedRegion.ponzano_regge_allowed_forbidden_classification_le8` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/ReggePachnerWdw.lean`

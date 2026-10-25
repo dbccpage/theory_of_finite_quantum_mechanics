@@ -1,0 +1,68 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:27:25.282892+00:00",
+  "review_base": "d3a20c01a0ebcd1fea5a685d6e60d0ebde2d9b23",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: GTH-SHADOW — Narrowed: one triangle and one reach map; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignGthShadow.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignGthShadow",
+        "dag_node": "GTH-SHADOW",
+        "source": "lean4/CampaignGthShadow.lean",
+        "sha256": "be8ca950fdb9a59cdef48afeecf2caa751ce2959f8a09d0d757bc63098093d74",
+        "sha256_after_build": "be8ca950fdb9a59cdef48afeecf2caa751ce2959f8a09d0d757bc63098093d74",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "face_id_01",
+          "face_id_02",
+          "face_id_12",
+          "reach_collapses",
+          "reach_pair_differs",
+          "parallel_edges"
+        ],
+        "axioms": {
+          "face_id_01": [],
+          "face_id_02": [],
+          "face_id_12": [],
+          "reach_collapses": [],
+          "reach_pair_differs": [],
+          "parallel_edges": []
+        },
+        "output": "'face_id_01' does not depend on any axioms\n'face_id_02' does not depend on any axioms\n'face_id_12' does not depend on any axioms\n'reach_collapses' does not depend on any axioms\n'reach_pair_differs' does not depend on any axioms\n'parallel_edges' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/gth-shadow.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.012,
+    "output": "checked 19 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/362/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.244,
+    "output": ""
+  }
+}

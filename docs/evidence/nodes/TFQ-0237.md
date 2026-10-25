@@ -12,7 +12,7 @@ Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 0
 - cited Lean, Rust or Python symbols found in their in-repo files: 0
-- cited Lean declarations covered by a current replay receipt: 0
+- distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0

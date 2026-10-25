@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 6
-- cited Lean declarations covered by a current replay receipt: 6
+- distinct cited Lean declarations covered by a current replay receipt: 6
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -68,6 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `normal_sound` | yes | yes | yes | none | `#print axioms normal_sound` |
 | `numChord_identity` | yes | yes | yes | Quot.sound, propext | `#print axioms numChord_identity` |
 | `same_class_iff` | yes | yes | yes | Quot.sound, propext | `#print axioms same_class_iff` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md`

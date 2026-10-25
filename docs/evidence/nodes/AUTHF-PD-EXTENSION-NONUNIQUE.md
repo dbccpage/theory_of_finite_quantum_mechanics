@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 4
+- distinct cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `AuthorizationIncompleteness.PrimitiveDifferenceModels.primitive_interface_has_distinct_authorization_extensions` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.PrimitiveDifferenceModels.primitive_interface_has_distinct_authorization_extensions` |
 | `AuthorizationIncompleteness.PrimitiveDifferenceModels.same_primitive_extensions_split_policy` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.PrimitiveDifferenceModels.same_primitive_extensions_split_policy` |
 | `AuthorizationIncompleteness.PrimitiveDifferenceModels.same_primitive_extensions_split_validity` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.PrimitiveDifferenceModels.same_primitive_extensions_split_validity` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1359_authf_pd_extension_nonunique.md`

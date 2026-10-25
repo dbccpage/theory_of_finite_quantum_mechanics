@@ -4,7 +4,7 @@ AuthorityEffect: None.
 
 ## Scope
 
-PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY against origin/main at 7fa69d621c27bed7045d0b7fe34bbb1d34b27248. Campaign class Narrowed. Status stays CONDITIONAL. No other node is given a verdict.
+PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY against origin/main at c50dc1b472596d1b5934408b00b9fbb72db91345. Campaign class Narrowed. Status stays CONDITIONAL. No other node is given a verdict.
 
 ## Method
 

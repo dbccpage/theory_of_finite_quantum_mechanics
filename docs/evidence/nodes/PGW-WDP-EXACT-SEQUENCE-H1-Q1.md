@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 1
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 3
+- distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -56,6 +56,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `kappa_exact_sequence` | yes | yes | yes | none | `#print axioms kappa_exact_sequence` |
 | `kappa_mk` | yes | yes | yes | none | `#print axioms kappa_mk` |
 | `kappa_well_defined` | yes | yes | yes | none | `#print axioms kappa_well_defined` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md`

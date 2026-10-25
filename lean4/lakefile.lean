@@ -1212,6 +1212,126 @@ lean_lib CampaignTfq0376Pregenesis where
 lean_lib CampaignPgwPythonLeanCarrierBridge where
   roots := #[`CampaignPgwPythonLeanCarrierBridge]
 
+-- Campaign: PGW-CONTEXT-FIDELITY. Not a default target.
+lean_lib CampaignPgwContextFidelity where
+  roots := #[`CampaignPgwContextFidelity]
+
+-- Campaign: TFQ-0003. Not a default target.
+lean_lib CampaignTfq0003FiniteObstruction where
+  roots := #[`CampaignTfq0003FiniteObstruction]
+
+-- Campaign: TFQ-0313. Not a default target.
+lean_lib CampaignTfq0313OperatorAlgebraShadow where
+  roots := #[`CampaignTfq0313OperatorAlgebraShadow]
+
+-- Campaign: TFQ-0319. Not a default target.
+lean_lib CampaignTfq0319UnjoinedReceipt where
+  roots := #[`CampaignTfq0319UnjoinedReceipt]
+
+-- Campaign: TFQ-0374. Not a default target.
+lean_lib CampaignTfq0374ThreeRecoveryContracts where
+  roots := #[`CampaignTfq0374ThreeRecoveryContracts]
+
+-- Campaign: TFQ-0385. Not a default target.
+lean_lib CampaignTfq0385RuleErasesSeparation where
+  roots := #[`CampaignTfq0385RuleErasesSeparation]
+
+-- Campaign: PGW-K-ITEM-DELTA-GRAMMAR. Not a default target.
+lean_lib CampaignPgwKItemDeltaGrammar where
+  roots := #[`CampaignPgwKItemDeltaGrammar]
+
+-- Campaign: PGW-DECLARED-INPUT-FLOOR. Not a default target.
+lean_lib CampaignPgwDeclaredInputFloor where
+  roots := #[`CampaignPgwDeclaredInputFloor]
+
+-- Campaign: PGW-ISOMORPHISM-SOUNDNESS-IN-LEAN. Not a default target.
+lean_lib CampaignPgwIsomorphismSoundnessInLean where
+  roots := #[`CampaignPgwIsomorphismSoundnessInLean]
+
+-- Campaign: PGW-RUNS-PAST-DECLARED-BOUNDS. Not a default target.
+lean_lib CampaignPgwRunsPastDeclaredBounds where
+  roots := #[`CampaignPgwRunsPastDeclaredBounds]
+
+-- Campaign: PGW-STREAM-AT-FOUR-ITEMS. Not a default target.
+lean_lib CampaignPgwStreamAtFourItems where
+  roots := #[`CampaignPgwStreamAtFourItems]
+
+-- Campaign: PGW-DRIVER-B-SEVENTH-EVENT. Not a default target.
+lean_lib CampaignPgwDriverBSeventhEvent where
+  roots := #[`CampaignPgwDriverBSeventhEvent]
+
+-- Campaign: PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT. Not a default target.
+lean_lib CampaignPgwWdpIncidenceTransport where
+  roots := #[`CampaignPgwWdpIncidenceTransport]
+
+-- Campaign: PGW-WDP-BRIDGE-ONGOING-TO-WINDOW. Not a default target.
+lean_lib CampaignPgwWdpBridgeOngoing where
+  roots := #[`CampaignPgwWdpBridgeOngoing]
+
+-- Campaign: PGW-WDP-HANDOFF-TO-L1. Not a default target.
+lean_lib CampaignPgwWdpHandoffToL1 where
+  roots := #[`CampaignPgwWdpHandoffToL1]
+
+-- Campaign: MUB-PRIME-POWER-CONSTRUCTION. Not a default target.
+lean_lib CampaignMubPrimePowerConstruction where
+  roots := #[`CampaignMubPrimePowerConstruction]
+
+-- Campaign: MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE. Not a default target.
+lean_lib CampaignMajOpenLindbladTransferEnvelope where
+  roots := #[`CampaignMajOpenLindbladTransferEnvelope]
+
+-- Campaign: MAJ-OPEN-EVIDENCE-ADEQUACY. Not a default target.
+lean_lib CampaignMajOpenEvidenceAdequacy where
+  roots := #[`CampaignMajOpenEvidenceAdequacy]
+
+-- Campaign: GTH-SHADOW. Not a default target.
+lean_lib CampaignGthShadow where
+  roots := #[`CampaignGthShadow]
+
+-- Campaign: GTH-LANG-CORE. Not a default target.
+lean_lib CampaignGthLangCore where
+  roots := #[`CampaignGthLangCore]
+
+-- Campaign: L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED. Not a default target.
+lean_lib CampaignL1ResidualSectorWeights where
+  roots := #[`CampaignL1ResidualSectorWeights]
+
+-- Campaign: FQ-PRIM-TO-QM-SELECTION-OPEN. Not a default target.
+lean_lib CampaignFqPrimToQmSelection where
+  roots := #[`CampaignFqPrimToQmSelection]
+
+-- Campaign: FQ-GAP-U1-CIRCLE. Not a default target.
+lean_lib CampaignFqGapU1Circle where
+  roots := #[`CampaignFqGapU1Circle]
+
+-- Campaign: COMP-C2-STEP3-NOT-WORD-STEP. Not a default target.
+lean_lib CampaignCompC2Step3NotWordStep where
+  roots := #[`CampaignCompC2Step3NotWordStep]
+
+-- Campaign: COMP-C6-TM0-OUTPUT-FORM-OPEN. Not a default target.
+lean_lib CampaignCompC6Tm0OutputFormOpen where
+  roots := #[`CampaignCompC6Tm0OutputFormOpen]
+
+-- Campaign: COMP-C7-FIXED-TARGET-OPEN. Not a default target.
+lean_lib CampaignCompC7FixedTargetOpen where
+  roots := #[`CampaignCompC7FixedTargetOpen]
+
+-- Campaign: COMP-C8-MINIMALITY-FENCE. Not a default target.
+lean_lib CampaignCompC8MinimalityFence where
+  roots := #[`CampaignCompC8MinimalityFence]
+
+-- Campaign: AUTH-DTM2-INPUT-REQUEST-PLANNED. Not a default target.
+lean_lib CampaignAuthDtm2InputRequestPlanned where
+  roots := #[`CampaignAuthDtm2InputRequestPlanned]
+
+-- Campaign: AUTHF-CARRIER-ADMISSION-GATE. Not a default target.
+lean_lib CampaignAuthfCarrierAdmissionGate where
+  roots := #[`CampaignAuthfCarrierAdmissionGate]
+
+-- Campaign: FQ-GAP-STONE-CONTINUOUS-TIME. Not a default target.
+lean_lib CampaignFqGapStoneContinuousTime where
+  roots := #[`CampaignFqGapStoneContinuousTime]
+
 -- Campaign: PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY. Not a default target.
 lean_lib CampaignPgwWdpPhiWellDefinedL1Duality where
   roots := #[`CampaignPgwWdpPhiWellDefinedL1Duality]

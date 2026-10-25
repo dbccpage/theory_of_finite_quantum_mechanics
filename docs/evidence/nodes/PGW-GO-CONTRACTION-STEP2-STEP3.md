@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 4
+- distinct cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -55,6 +55,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `Reach3.carries` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Reach3.carries` |
 | `Step3.carries` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Step3.carries` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/GenesisOngoing/Third/Step.lean`
@@ -70,6 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `Reach2.toReach3` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Reach2.toReach3` |
 | `Step2.toStep3` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Step2.toStep3` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0478_go_contraction_step2_step3.md`

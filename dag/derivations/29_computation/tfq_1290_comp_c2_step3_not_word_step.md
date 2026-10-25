@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-Genesis Step3 acts on states of a finite term set, a finite assertion set and two named terms by add-term, add-assertion and identify (a non-injective merge); no word encoding of these states under which each move is a word step is proved or claimed.
+Appending 1 takes the list [0] to [0, 1] by one hole replacement of an empty block. Appending the block [0, 1] takes [0, 1] to [0, 1, 0, 1] by one hole replacement of an empty block. Deleting a final 1 takes [0, 1] to [0] by one hole replacement of the block [1]. The map sending 1 to 0 and every other natural number to itself sends both 0 and 1 to 0.
 
 ### Governing Obligation
-Construct a word encoding of Step3 states under which addTerm, addAssertion and identify are word steps, or show that none exists.
+Still open: an encoding of every Genesis Step3 state, with a finite term set, a finite assertion set and two named terms, under which add-term, add-assertion and identify are word steps, or a demonstration that none exists.
 
 ### Witness Audit
-The staged Rename.lean defines rename on St and establishes Step3.rename and Reach3.rename; nothing in this chain relates St to words, so the correspondence is recorded as the exact place where Genesis Step is narrower and different.
+CampaignCompC2Step3NotWordStep records three concrete one-hole list moves and the map merge01. It does not encode the staged Step3 relation on term sets, assertion sets and two named terms.
 
 ---
 
@@ -34,7 +34,11 @@ The staged Rename.lean defines rename on St and establishes Step3.rename and Rea
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignCompC2Step3NotWordStep.lean::addTermWordStep`
+- `lean4/CampaignCompC2Step3NotWordStep.lean::addAssertionWordStep`
+- `lean4/CampaignCompC2Step3NotWordStep.lean::identifyWordStep`
+- `lean4/CampaignCompC2Step3NotWordStep.lean::merge01SendsBothToZero`
+- `lean4/CampaignCompC2Step3NotWordStep.lean::merge01FixesOther`
 
 ### Rust Certifiers
 - *none*

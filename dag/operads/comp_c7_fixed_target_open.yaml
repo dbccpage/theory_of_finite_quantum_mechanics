@@ -3,12 +3,13 @@ node_id: COMP-C7-FIXED-TARGET-OPEN
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Adding erasing rules so that every halting word reduces to one fixed word should make
-    Reach to that fixed word undecidable; this is not proved here.
+  source_statement: Erasing the block [1] from the word [1, 0] by one hole replacement yields the fixed
+    word [0]. Erasing the block [2] from the word [2, 0] by one hole replacement yields the same fixed
+    word [0].
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Prove Reach R0 prime (startWord x) target iff (univFun x).Dom for the extended rule
-    set R0 prime.
+  source_bottleneck: 'Still open: Reach of the extended rule set R0 prime from startWord x to one fixed
+    target word exactly when univFun x is defined.'
   source_refs:
   - dag/derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md
   - dag/research/genesis_to_universal_computation.md
@@ -20,7 +21,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md
-    sha256: fc33c155c99849527d36c734ca3553fb02187c4c333a639f752db35dc2fc2bcb
+    sha256: d6bbc8073f84166f8078de1298aee81a316080c63492f4c3ecb0cd7990db16d3
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -28,9 +29,67 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/computation_comp_c7_fixed_target_open_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: applies
+  line: 9
+  signature_excerpt: 'def applies (rule : HoleRule) (left right word result : List Nat) : Prop'
+  source: lean4/CampaignCompC7FixedTargetOpen.lean
+  repository: this_repository
+  source_sha256: fdf8c22aad238c9fc90ae8988290b8d214e29ceaf050e6246f5c8f49265a5347
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: HoleRule
+  line: 5
+  signature_excerpt: structure HoleRule
+  source: lean4/CampaignCompC7FixedTargetOpen.lean
+  repository: this_repository
+  source_sha256: fdf8c22aad238c9fc90ae8988290b8d214e29ceaf050e6246f5c8f49265a5347
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: eraseOneToFixed
+  line: 12
+  signature_excerpt: |-
+    theorem eraseOneToFixed :
+        applies (HoleRule.mk [1] []) [] [0] [1, 0] [0]
+  source: lean4/CampaignCompC7FixedTargetOpen.lean
+  repository: this_repository
+  source_sha256: fdf8c22aad238c9fc90ae8988290b8d214e29ceaf050e6246f5c8f49265a5347
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: eraseTwoToFixed
+  line: 16
+  signature_excerpt: |-
+    theorem eraseTwoToFixed :
+        applies (HoleRule.mk [2] []) [] [0] [2, 0] [0]
+  source: lean4/CampaignCompC7FixedTargetOpen.lean
+  repository: this_repository
+  source_sha256: fdf8c22aad238c9fc90ae8988290b8d214e29ceaf050e6246f5c8f49265a5347
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignCompC7FixedTargetOpen.lean::eraseOneToFixed
+  availability: local
+  symbol: eraseOneToFixed
+  path: lean4/CampaignCompC7FixedTargetOpen.lean
+  repository: this_repository
+  sha256: fdf8c22aad238c9fc90ae8988290b8d214e29ceaf050e6246f5c8f49265a5347
+  declaration_status: declaration_found_not_proof_checked
+  line: 12
+  role: source_lead_only
+- original_ref: lean4/CampaignCompC7FixedTargetOpen.lean::eraseTwoToFixed
+  availability: local
+  symbol: eraseTwoToFixed
+  path: lean4/CampaignCompC7FixedTargetOpen.lean
+  repository: this_repository
+  sha256: fdf8c22aad238c9fc90ae8988290b8d214e29ceaf050e6246f5c8f49265a5347
+  declaration_status: declaration_found_not_proof_checked
+  line: 16
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -68,8 +127,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

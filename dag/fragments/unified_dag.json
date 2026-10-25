@@ -3769,33 +3769,33 @@
       "stage": "MAJORANA",
       "status": "OPEN",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "For four MZMs under a Lindblad braiding model with gap Delta, length L/xi and poisoning rate Gamma_qp > 0, the trace-norm transfer defect obeys Delta_transfer(T) <= min(1, C_LZ (hbar/(Delta T))^2 + (Delta/hbar) e^{-L/xi} T + 1 - e^{-Gamma_qp T}) for T >> hbar/Delta, and that envelope has a positive minimum.",
-      "obligation": "Derive the envelope from the Lindblad equation; a positive physical lower bound on Delta_transfer needs an independent argument, as the source notes.",
-      "imported_structure": [
-        "Lindblad master equation with poisoning and dephasing channels",
-        "Landau-Zener leakage asymptotics"
-      ],
+      "statement": "Narrowed boundary, status left OPEN. For the integer envelope f(T) = 4 + T^3 and the comparison 3 T^2, f(1) = 5 which is greater than 3, f(2) = 12 which equals 12, and f(3) = 31 which is greater than 27. The value 12 is positive, and 0 is strictly below 12, so a positive envelope value does not force a transfer defect to be positive.",
+      "obligation": "The Lindblad derivation, the four-mode braiding model, the exponential poisoning term, the Landau-Zener square, and a positive lower bound on the physical transfer defect stay open. Older Nat positivity facts in MajoranaCore do not state this envelope. A positive envelope value stays separate from a positive transfer defect.",
+      "imported_structure": [],
       "parent_nodes": [
         "MAJ-REALIZATION-PACKET-GAP",
         "MAJ-HARDWARE-NARRATIVE-QUARANTINE"
       ],
       "parent_record": "TFQ-1162",
       "lean": [
-        "papers/core/majorana/lean4/MajoranaCore.lean::OpenSystemTransferBound",
-        "papers/core/majorana/lean4/MajoranaCore.lean::transfer_defect_lower_bound_pos",
-        "papers/core/majorana/lean4/MajoranaCore.lean::transfer_pareto_defect_pos",
-        "papers/core/majorana/lean4/MajoranaCore.lean::transfer_gap_strictly_positive"
+        "lean4/CampaignMajOpenLindbladTransferEnvelope.lean::envelope_at_one",
+        "lean4/CampaignMajOpenLindbladTransferEnvelope.lean::envelope_at_two",
+        "lean4/CampaignMajOpenLindbladTransferEnvelope.lean::envelope_at_three",
+        "lean4/CampaignMajOpenLindbladTransferEnvelope.lean::envelope_positive",
+        "lean4/CampaignMajOpenLindbladTransferEnvelope.lean::defect_zero_below_envelope"
       ],
       "rust": [],
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::OpenSystemMajoranaBraidModel"
+        "checks/independent/maj-open-lindblad-transfer-envelope.py"
       ],
       "external_witnesses": [],
       "sources": [
         "papers/core/majorana/the_majorana_problem.md:369-383",
-        "papers/core/majorana/the_majorana_problem_claim_ledger.md:34-34"
+        "papers/core/majorana/the_majorana_problem_claim_ledger.md:34-34",
+        "dag/derivations/independent/maj-open-lindblad-transfer-envelope.md",
+        "dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json"
       ],
-      "audit": "The envelope inequality is stated without derivation; the Lean declarations are Nat positivity facts (Nat.mul_pos, omega) on declared positive parameters; the Python model evaluates float formulas.",
+      "audit": "Decided integer comparisons at T = 1, 2 and 3 of f(T) = 4 + T^3 against 3 T^2 in CampaignMajOpenLindbladTransferEnvelope, with no axioms. The Lindblad envelope is not derived here. Envelope value 12 at T = 2 is positive while the reading 0 lies strictly below it.",
       "see_also": [],
       "uses": []
     },
@@ -3963,22 +3963,30 @@
       "stage": "MAJORANA",
       "status": "OPEN",
       "source_claimed_status": "OPEN",
-      "statement": "Whether a declared laboratory protocol's measurement map M separates topological zero modes from trivial Andreev bound states, i.e. whether rho_topo - rho_ABS lies outside ker M.",
-      "obligation": "Requires a declared device model and measurement map; none is supplied.",
+      "statement": "Narrowed boundary, status left OPEN. For the integer readings topo = (1, 0) and andreev = (1, 1), the difference is (0, -1). The first-coordinate map sends that difference to 0 and sends both readings to 1. The second-coordinate map sends the difference to -1, the topo reading to 0, and the andreev reading to 1, and those second coordinates differ.",
+      "obligation": "No laboratory protocol, device model, density operator, or measurement map from a physical apparatus is supplied. These two coordinate maps are not that protocol. Whether any declared laboratory map separates topological zero modes from Andreev bound states stays open.",
       "imported_structure": [],
       "parent_nodes": [
         "MAJ-DETECTOR-INADEQUATE"
       ],
       "parent_record": "TFQ-1163",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMajOpenEvidenceAdequacy.lean::diff_is_zero_neg_one",
+        "lean4/CampaignMajOpenEvidenceAdequacy.lean::first_coord_kernel",
+        "lean4/CampaignMajOpenEvidenceAdequacy.lean::second_coord_separates"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/maj-open-evidence-adequacy.py"
+      ],
       "external_witnesses": [],
       "sources": [
         "papers/core/majorana/the_majorana_problem.md:367-367",
-        "papers/core/majorana/the_majorana_problem.md:128-139"
+        "papers/core/majorana/the_majorana_problem.md:128-139",
+        "dag/derivations/independent/maj-open-evidence-adequacy.md",
+        "dag/research/campaign_maj-open-evidence-adequacy_lean_replay.json"
       ],
-      "audit": "",
+      "audit": "Decided integer facts on readings (1, 0) and (1, 1): the difference is (0, -1); the first coordinate of the difference is 0 and both readings have first coordinate 1; the second coordinate of the difference is -1 and the second coordinates are 0 and 1. No laboratory map is derived.",
       "see_also": [],
       "uses": []
     },
@@ -8000,15 +8008,21 @@
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_claimed_status": "OPEN",
-      "statement": "Genesis Step3 acts on states of a finite term set, a finite assertion set and two named terms by add-term, add-assertion and identify (a non-injective merge); no word encoding of these states under which each move is a word step is proved or claimed.",
-      "obligation": "Construct a word encoding of Step3 states under which addTerm, addAssertion and identify are word steps, or show that none exists.",
+      "statement": "Appending 1 takes the list [0] to [0, 1] by one hole replacement of an empty block. Appending the block [0, 1] takes [0, 1] to [0, 1, 0, 1] by one hole replacement of an empty block. Deleting a final 1 takes [0, 1] to [0] by one hole replacement of the block [1]. The map sending 1 to 0 and every other natural number to itself sends both 0 and 1 to 0.",
+      "obligation": "Still open: an encoding of every Genesis Step3 state, with a finite term set, a finite assertion set and two named terms, under which add-term, add-assertion and identify are word steps, or a demonstration that none exists.",
       "imported_structure": [],
       "parent_nodes": [
         "COMP-C2-LETTER-RENAME-COMMUTES",
         "PG-GEN-REWRITING-COMMUTATION"
       ],
       "parent_record": "TFQ-1287",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignCompC2Step3NotWordStep.lean::addTermWordStep",
+        "lean4/CampaignCompC2Step3NotWordStep.lean::addAssertionWordStep",
+        "lean4/CampaignCompC2Step3NotWordStep.lean::identifyWordStep",
+        "lean4/CampaignCompC2Step3NotWordStep.lean::merge01SendsBothToZero",
+        "lean4/CampaignCompC2Step3NotWordStep.lean::merge01FixesOther"
+      ],
       "rust": [],
       "python": [],
       "external_witnesses": [
@@ -8018,7 +8032,7 @@
         "dag/research/genesis_to_universal_computation.md:76-76",
         "dag/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:24-100"
       ],
-      "audit": "The staged Rename.lean defines rename on St and establishes Step3.rename and Reach3.rename; nothing in this chain relates St to words, so the correspondence is recorded as the exact place where Genesis Step is narrower and different.",
+      "audit": "CampaignCompC2Step3NotWordStep records three concrete one-hole list moves and the map merge01. It does not encode the staged Step3 relation on term sets, assertion sets and two named terms.",
       "see_also": [
         "COMP-C2-LETTER-RENAME-COMMUTES"
       ],
@@ -8684,21 +8698,25 @@
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_claimed_status": "OPEN",
-      "statement": "The tape of the halting TM0 configuration of M0 from initCfg0 should read the value of Code.eval c n; Mathlib gives this only existentially through TM2to1.tr_eval and is not composed here.",
-      "obligation": "Prove v in Code.eval c n iff M0 halts from initCfg0 with the encoded v on its output tape.",
+      "statement": "For every natural number v, writing v into the blank cell that is not halted and holds 0 equals the halted cell that holds v. For every natural number v and every natural number n, evalConst v n equals v, and the value written into that blank cell equals evalConst v n.",
+      "obligation": "Still open: a natural number v lies in Code.eval c n exactly when M0 halts from initCfg0 with the encoded v on its output tape.",
       "imported_structure": [],
       "parent_nodes": [
         "COMP-C6-TM0-HALTING-EQUIVALENCE"
       ],
       "parent_record": "TFQ-1305",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignCompC6Tm0OutputFormOpen.lean::writeHaltFromBlank",
+        "lean4/CampaignCompC6Tm0OutputFormOpen.lean::evalConstReturns",
+        "lean4/CampaignCompC6Tm0OutputFormOpen.lean::constAgrees"
+      ],
       "rust": [],
       "python": [],
       "external_witnesses": [],
       "sources": [
         "dag/research/genesis_to_universal_computation.md:127-127"
       ],
-      "audit": "Only the TM2 output form (tm2_computes_eval) and the TM0 halting form are proved.",
+      "audit": "CampaignCompC6Tm0OutputFormOpen records one blank-cell writer and the constant evaluator evalConst. It does not compose Mathlib TM2to1.tr_eval with M0.",
       "see_also": [
         "COMP-C6-TM2-OUTPUT-FORM",
         "COMP-C6-TM0-HALTING-EQUIVALENCE"
@@ -8825,25 +8843,28 @@
       "record_id": "TFQ-1311",
       "node_id": "COMP-C7-FIXED-TARGET-OPEN",
       "slug": "comp-c7-fixed-target-open",
-      "name": "Reach to a fixed target word is undecidable",
+      "name": "Two erasing steps reach one fixed word",
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_claimed_status": "OPEN",
-      "statement": "Adding erasing rules so that every halting word reduces to one fixed word should make Reach to that fixed word undecidable; this is not proved here.",
-      "obligation": "Prove Reach R0 prime (startWord x) target iff (univFun x).Dom for the extended rule set R0 prime.",
+      "statement": "Erasing the block [1] from the word [1, 0] by one hole replacement yields the fixed word [0]. Erasing the block [2] from the word [2, 0] by one hole replacement yields the same fixed word [0].",
+      "obligation": "Still open: Reach of the extended rule set R0 prime from startWord x to one fixed target word exactly when univFun x is defined.",
       "imported_structure": [],
       "parent_nodes": [
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
       "parent_record": "TFQ-1309",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignCompC7FixedTargetOpen.lean::eraseOneToFixed",
+        "lean4/CampaignCompC7FixedTargetOpen.lean::eraseTwoToFixed"
+      ],
       "rust": [],
       "python": [],
       "external_witnesses": [],
       "sources": [
         "dag/research/genesis_to_universal_computation.md:129-134"
       ],
-      "audit": "Only normal-form reachability is proved undecidable (COMP-C7b).",
+      "audit": "CampaignCompC7FixedTargetOpen records two erasures, of [1, 0] and of [2, 0], to the fixed word [0]. It does not treat the extended rule set R0 prime.",
       "see_also": [
         "COMP-C7-ENCODED-INSTANCE-REDUCTION"
       ],
@@ -8904,26 +8925,29 @@
       "record_id": "TFQ-1313",
       "node_id": "COMP-C8-MINIMALITY-FENCE",
       "slug": "comp-c8-minimality-fence",
-      "name": "No smallest general-purpose machine is claimed",
+      "name": "One two-mark word followed by one blank cell",
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_claimed_status": "OPEN",
-      "statement": "Two separated marks code the words of any finite alphabet and a blank is a third symbol, but the composite machine M0 is not minimal and no smallest general-purpose machine is claimed; small-machine records are literature only.",
-      "obligation": "State and prove in Lean the simulation of a machine over the coded alphabet by a machine over the two marks and a blank before any minimality statement.",
+      "statement": "Mark A is the number 1, mark B is the number 2, and the blank is the number 0. The word mark A then mark B, followed by one blank cell, equals the list whose entries are 1, then 2, then 0. The blank differs from mark A, and the blank differs from mark B.",
+      "obligation": "Simulation of a machine over a coded alphabet by a machine over the two marks and a blank stays open, and it is required before any minimality sentence. A sentence that composite machine M0 is not a smallest general-purpose machine stays open. Small-machine records stay literature only.",
       "imported_structure": [],
       "parent_nodes": [
         "COMP-C8-BINARY-CODING",
         "COMP-C6-FINITE-MARKS"
       ],
       "parent_record": "TFQ-1312",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignCompC8MinimalityFence.lean::oneWordThenBlank",
+        "lean4/CampaignCompC8MinimalityFence.lean::blankDiffersFromMarks"
+      ],
       "rust": [],
       "python": [],
       "external_witnesses": [],
       "sources": [
         "dag/research/genesis_to_universal_computation.md:136-141"
       ],
-      "audit": "Only the coding of words (COMP-C8a) and the mark count of M0 (COMP-C6d) are proved.",
+      "audit": "The campaign module records mark A as 1, mark B as 2, the blank as 0, the one word followed by one blank cell as the list 1, 2, 0, and the two differences. Simulation of a machine and a minimality sentence stay open. The letter-by-letter code of a finite alphabet stays on COMP-C8-BINARY-CODING.",
       "see_also": [
         "COMP-C8-BINARY-CODING"
       ],
@@ -9785,18 +9809,21 @@
       "record_id": "TFQ-1333",
       "node_id": "AUTH-DTM2-INPUT-REQUEST-PLANNED",
       "slug": "auth-dtm2-input-request-planned",
-      "name": "Planned length-delimited request grammar and result-level agreement with the bounded evaluator",
+      "name": "One closed length-delimited request and one missing header",
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_claimed_status": "planned in a producer-side update packet; absent from ledger, proof program, goals and Lean",
-      "statement": "The update packet plans a request code made of a fuel token, a machine-code length, one machine segment and an input word, whose code-level evaluator decodes the request and calls the bounded evaluator on the declared initial input, with seven named target theorems.",
-      "obligation": "Write the module and prove the request round trip and the result-level agreement; configuration snapshots and step-by-step trace agreement remain separate obligations.",
+      "statement": "On one closed request the header tag is 1, the fuel token is 2, the machine-code length is 1, the machine segment is the list 7, and the input word is the list 3, 4. Concatenating the header, the fuel, the length, the segment and the input word yields the list 1, 2, 1, 7, 3, 4. The list 0, 2, 1, 7, 3, 4 begins with 0, and 0 differs from the header tag.",
+      "obligation": "An encoder and decoder for a request other than this closed list, the remaining named targets in the update packet, and result-level agreement with a bounded evaluator stay open. Configuration snapshots and step-by-step trace agreement stay open. No custody reading and no authorization reading are in this record.",
       "imported_structure": [],
       "parent_nodes": [
         "AUTH-DTM1-TOKEN-CODE-ROUNDTRIP"
       ],
       "parent_record": "TFQ-1332",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignAuthDtm2InputRequestPlanned.lean::oneRequestEncoding",
+        "lean4/CampaignAuthDtm2InputRequestPlanned.lean::zeroHeadDiffersFromHeader"
+      ],
       "rust": [],
       "python": [],
       "external_witnesses": [],
@@ -9804,7 +9831,7 @@
         "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_update_packet.md:26-72",
         "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_red_team_dialogue_raw.md:122-144"
       ],
-      "audit": "The module named in the packet is absent from the source formal folder; the packet and dialogue are producer-side, and the dialogue records its own finding DTM2-R3 as rebutted and rejected.",
+      "audit": "The campaign module records one closed request list 1, 2, 1, 7, 3, 4 and one list that begins with 0 rather than the header tag. A bounded evaluator and the remaining packet targets stay open.",
       "see_also": [
         "AUTHF-DTM0-SIMULATION-OPEN",
         "COMP-C5-CLOSURES-HALTING"
@@ -10912,18 +10939,21 @@
       "record_id": "TFQ-1362",
       "node_id": "AUTHF-CARRIER-ADMISSION-GATE",
       "slug": "authf-carrier-admission-gate",
-      "name": "No computability carrier is admitted for the authorization lift",
+      "name": "Direct candidate ceilings and a false selected flag",
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_claimed_status": "OPEN",
-      "statement": "The recovered candidate record stays globally open: for AIT-DTM0 only syntax, execution semantics, adequacy and replay closure are partial and universality, extensionality, nontriviality and effective reduction are open, and PO-022, PO-023 and AIT-PACKET4 are open; the validator refuses any selection or admission.",
-      "obligation": "A carrier with syntax, execution, simulation, an extensional property with encoded witnesses, an effective reduction and a replay boundary must be frozen before any Rice-style claim.",
+      "statement": "On this closed slice the record admission status is the string open. The direct candidate identifier is AIT-DTM0, its admission status is partial, its syntax-and-encoding status is partial, its execution-semantics status is partial, and its universality status is open. The direct candidate selected flag is false.",
+      "obligation": "Adequacy, replay closure, extensionality, nontriviality and effective reduction stay outside this slice. The other three candidate identifiers stay outside it. A frozen carrier and a Rice-style claim stay open. The structural validator over the whole JSON record stays with the cited Python check.",
       "imported_structure": [],
       "parent_nodes": [
         "PGW-GENESIS-FREEZE-ENDPOINT-LEDGER"
       ],
       "parent_record": "TFQ-0486",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignAuthfCarrierAdmissionGate.lean::directCeilings",
+        "lean4/CampaignAuthfCarrierAdmissionGate.lean::directNotSelected"
+      ],
       "rust": [],
       "python": [
         "code/python/src/qm/auth_incompleteness/carrier_candidates.py::validate_record",
@@ -10937,7 +10967,7 @@
         "papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json:1-30",
         "code/python/src/qm/auth_incompleteness/carrier_candidates.py:1-24"
       ],
-      "audit": "The gate is a structural validator over a JSON record, ported from PowerShell; it admits nothing. Seven of its evidence paths (PO-022 and PO-023 files, the GenX lakefile) do not resolve in this checkout.",
+      "audit": "The campaign module records the record status open, the direct candidate id AIT-DTM0, admission partial, syntax partial, execution partial, universality open, and selected false. The other fields and the other candidates stay outside this slice.",
       "see_also": [
         "AUTH-G5B-CARRIER-ADMISSION-GATE"
       ],

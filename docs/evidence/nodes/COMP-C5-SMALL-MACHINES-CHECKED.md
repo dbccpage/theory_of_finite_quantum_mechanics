@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 10
-- cited Lean declarations covered by a current replay receipt: 1
+- distinct cited Lean declarations covered by a current replay receipt: 1
 - counted in-repo runnable tests: 4
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -54,6 +54,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `writeOne_halts` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms writeOne_halts` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/wdp/genesis_tm.rs`
@@ -69,6 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `incrementer` (rust_symbol) | yes | yes | yes | - | - |
 | `incrementer_matches_machine_for_all_small_inputs` (rust_test) | yes | yes | yes | - | `cd code/rust && cargo test -p tfqm_wdp incrementer_matches_machine_for_all_small_inputs` |
 | `step_simulation_holds_on_every_small_configuration` (rust_test) | yes | yes | yes | - | `cd code/rust && cargo test -p tfqm_wdp step_simulation_holds_on_every_small_configuration` |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/qm/genesis_tm.py`
@@ -82,6 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `all_two_state_machines` (python_symbol) | yes | yes | yes | - | - |
 | `busy_beaver_2` (python_symbol) | yes | yes | yes | - | - |
 | `incrementer` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/tests/test_genesis_tm.py`
@@ -94,6 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `test_all_two_state_two_symbol_machines_step_simulation` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_genesis_tm.py::test_all_two_state_two_symbol_machines_step_simulation` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1302_comp_c5_small_machines_checked.md`

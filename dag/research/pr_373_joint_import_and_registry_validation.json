@@ -1,0 +1,54 @@
+{
+  "authority_effect": "None",
+  "reviewed_prs": 30,
+  "preserved_statements_and_source_hashes": true,
+  "new_exception_authorized": false,
+  "joint_import": {
+    "purpose": "Joint import validates distinct declaration namespaces for reviewed PRs #366 and #373.",
+    "source_sha256": {
+      "CampaignFqGapU1Circle": "8595672b1aa07fe052c2628b43f99b608d4534ec41541e16f49cc6a128af8ebb",
+      "CampaignFqGapStoneContinuousTime": "7cd94d6cedb9da82eb4ac3682fbb8e097e6d1f5758c9f6e0dadbe1fd21d3f5a9"
+    },
+    "results": [
+      {
+        "command": [
+          "lean",
+          "-o",
+          "CampaignFqGapU1Circle.olean",
+          "CampaignFqGapU1Circle.lean"
+        ],
+        "exit_code": 0,
+        "output": "'fiveFourSquareForcesZero' depends on axioms: [propext, Quot.sound]\n'pythagorean345' does not depend on any axioms\n'clearedDenominatorForcesFourFifths' depends on axioms: [propext, Quot.sound]\n'noNonzeroClearedSquareRoot' depends on axioms: [propext, Quot.sound]\n"
+      },
+      {
+        "command": [
+          "lean",
+          "-o",
+          "CampaignFqGapStoneContinuousTime.olean",
+          "CampaignFqGapStoneContinuousTime.lean"
+        ],
+        "exit_code": 0,
+        "output": "'CampaignFqGapStoneContinuousTime.pythagorean345' does not depend on any axioms\n'CampaignFqGapStoneContinuousTime.fiveMulSqEqFourMulSq' depends on axioms: [propext, Quot.sound]\n"
+      },
+      {
+        "command": [
+          "lean",
+          "ImportBoth.lean"
+        ],
+        "exit_code": 0,
+        "output": "pythagorean345 : 3 * 3 + 4 * 4 = 5 * 5\nCampaignFqGapStoneContinuousTime.pythagorean345 : 3 * 3 + 4 * 4 = 5 * 5\nCampaignFqGapStoneContinuousTime.fiveMulSqEqFourMulSq (a b : Nat) (h : 5 * (a * a) = 4 * (b * b)) : a = 0 ∧ b = 0\n"
+      }
+    ]
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/373/integration/lakefile.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 4.062,
+    "output": ""
+  }
+}

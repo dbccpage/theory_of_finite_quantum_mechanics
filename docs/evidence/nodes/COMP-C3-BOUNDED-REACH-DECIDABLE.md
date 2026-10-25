@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 13
-- cited Lean declarations covered by a current replay receipt: 6
+- distinct cited Lean declarations covered by a current replay receipt: 6
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -60,6 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `reachB_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms reachB_iff` |
 | `reachSet_card_le` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms reachSet_card_le` |
 | `rtg_iff_mem_reachN_card` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms rtg_iff_mem_reachN_card` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/wdp/genesis_tm.rs`
@@ -75,6 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `config_space_size` (rust_symbol) | yes | yes | yes | - | - |
 | `decide_reach` (rust_symbol) | yes | yes | yes | - | - |
 | `reach_set_bounded` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/qm/genesis_tm.py`
@@ -88,6 +90,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `bounded_reach` (python_symbol) | yes | yes | yes | - | - |
 | `config_space_size` (python_symbol) | yes | yes | yes | - | - |
 | `decide_reach` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1291_comp_c3_bounded_reach_decidable.md`

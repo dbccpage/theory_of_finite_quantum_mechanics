@@ -12,7 +12,7 @@ Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 0
+- distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge.pd_quotient_decision_if_zeroRel_constant` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge.pd_quotient_decision_if_zeroRel_constant` |
 | `AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge.pd_quotient_split_blocks_report_only_authorization` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge.pd_quotient_split_blocks_report_only_authorization` |
 | `AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge.pd_quotient_total_decision_requires_zeroRel_constancy` | yes | yes | yes | - | `#print axioms AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge.pd_quotient_total_decision_requires_zeroRel_constancy` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1360_authf_pd_quotient_bridge.md`

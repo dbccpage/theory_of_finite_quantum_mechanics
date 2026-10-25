@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 10
 - cited Lean, Rust or Python symbols found in their in-repo files: 7
-- cited Lean declarations covered by a current replay receipt: 1
+- distinct cited Lean declarations covered by a current replay receipt: 1
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `OperationalFieldSelection.selected_parameter` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms OperationalFieldSelection.selected_parameter` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/OperationalFilterFamily.lean`
@@ -73,6 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `OperationalFilterFamily.normalized_reset_family` | yes | yes | yes | - | `#print axioms OperationalFilterFamily.normalized_reset_family` |
 | `OperationalFilterFamily.product_resets_irreducible_iff` | yes | yes | yes | - | `#print axioms OperationalFilterFamily.product_resets_irreducible_iff` |
 | `OperationalFilterFamily.product_test_pullback` | yes | yes | yes | - | `#print axioms OperationalFilterFamily.product_test_pullback` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/OperationalTomography.lean`
@@ -87,6 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `OperationalTomography.calibrated_tomography` | yes | yes | yes | - | `#print axioms OperationalTomography.calibrated_tomography` |
 | `OperationalTomography.tomography_of_irreducible` | yes | yes | yes | - | `#print axioms OperationalTomography.tomography_of_irreducible` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/finite_probability/operational_filters.rs`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 3
+- distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `cabello_parity_obstruction` | yes | yes | yes | Quot.sound, propext | `#print axioms cabello_parity_obstruction` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/H054GleasonCyclotomicObstruction.lean`
@@ -72,6 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `cabello_no_integer_frame_assignment` | yes | yes | yes | Quot.sound, propext | `#print axioms cabello_no_integer_frame_assignment` |
 | `frame_additivity_not_force_psd` | yes | yes | yes | none | `#print axioms frame_additivity_not_force_psd` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/kochen_specker.rs`

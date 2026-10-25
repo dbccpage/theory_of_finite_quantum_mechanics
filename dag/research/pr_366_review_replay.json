@@ -1,0 +1,73 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:31:36.432183+00:00",
+  "review_base": "b284f1d09194070b15b54419045b55c51482a2d5",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: FQ-GAP-U1-CIRCLE — Narrowed: cleared square root of (3+4i)/5; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignFqGapU1Circle.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignFqGapU1Circle",
+        "dag_node": "FQ-GAP-U1-CIRCLE",
+        "source": "lean4/CampaignFqGapU1Circle.lean",
+        "sha256": "8595672b1aa07fe052c2628b43f99b608d4534ec41541e16f49cc6a128af8ebb",
+        "sha256_after_build": "8595672b1aa07fe052c2628b43f99b608d4534ec41541e16f49cc6a128af8ebb",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "fiveFourSquareForcesZero",
+          "clearedDenominatorForcesFourFifths",
+          "noNonzeroClearedSquareRoot",
+          "pythagorean345"
+        ],
+        "axioms": {
+          "fiveFourSquareForcesZero": [
+            "Quot.sound",
+            "propext"
+          ],
+          "clearedDenominatorForcesFourFifths": [
+            "Quot.sound",
+            "propext"
+          ],
+          "noNonzeroClearedSquareRoot": [
+            "Quot.sound",
+            "propext"
+          ],
+          "pythagorean345": []
+        },
+        "output": "'fiveFourSquareForcesZero' depends on axioms: [propext, Quot.sound]\n'pythagorean345' does not depend on any axioms\n'clearedDenominatorForcesFourFifths' depends on axioms: [propext, Quot.sound]\n'noNonzeroClearedSquareRoot' depends on axioms: [propext, Quot.sound]\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/fq-gap-u1-circle.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.017,
+    "output": "checked 3*3+4*4=5*5; squares mod 5 = {0,1,4}; 4*square residue is 0 mod 5 only at residue 0; no natural b in 1..2000 has 5*a*a = 4*b*b; integers a,b,d in -12..12 solve both cleared equations only at 0,0,0\nfailures=0\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/366/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.135,
+    "output": ""
+  }
+}

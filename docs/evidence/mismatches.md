@@ -10,7 +10,7 @@ Part of the [evidence map](README.md). AuthorityEffect: None. Generated; every f
 | `computational_no_runnable_test`: COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited | 126 |
 | `proved_prose_no_in_repo_document`: PROVED_PROSE with no in-repo source document cited | 12 |
 | `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 53 |
-| `receipt_names_uncited_module`: A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) | 28 |
+| `receipt_names_uncited_module`: A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) | 27 |
 
 ## `proved_lean_below_e3` (0)
 
@@ -278,7 +278,7 @@ A cited in-repo path or symbol cannot be found in this checkout. Ordered by down
 | [TFQ-0289](nodes/TFQ-0289.md) | FINITE_HILBERT | `SOURCE_RECORD` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 | [TFQ-0316](nodes/TFQ-0316.md) | FINITE_HILBERT | `SOURCE_RECORD` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 
-## `receipt_names_uncited_module` (28)
+## `receipt_names_uncited_module` (27)
 
 A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence). Ordered by downstream nodes, most first.
 
@@ -311,5 +311,4 @@ A replay receipt names this node for a Lean module that the node does not cite i
 | [L1-U1-SELECTOR-OTHER-SEGMENT](nodes/L1-U1-SELECTOR-OTHER-SEGMENT.md) | L1_TO_L2 | `OPEN` | E3 | 0 | a replay receipt names this node for lean4/U1SelectorSegment.lean, but the node's lean, rust and source fields do not cite it |
 | [PG-WDP-DIAGNOSTIC-NOT-ROUTING](nodes/PG-WDP-DIAGNOSTIC-NOT-ROUTING.md) | WDP | `DEFINITION` | E3 | 0 | a replay receipt names this node for lean4/WdpDiagnosticRouting.lean, but the node's lean, rust and source fields do not cite it |
 | [PG-WDP-GROWTH-NO-REPAIR](nodes/PG-WDP-GROWTH-NO-REPAIR.md) | WDP | `PROVED_LEAN` | E3 | 0 | a replay receipt names this node for lean4/WdpGrowthNoRepair.lean, but the node's lean, rust and source fields do not cite it |
-| [PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY](nodes/PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY.md) | WDP | `CONDITIONAL` | E3 | 0 | a replay receipt names this node for lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean, but the node's lean, rust and source fields do not cite it |
 

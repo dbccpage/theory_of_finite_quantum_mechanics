@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 14
-- cited Lean declarations covered by a current replay receipt: 14
+- distinct cited Lean declarations covered by a current replay receipt: 14
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.wdp_growth_subcomplex_monotone` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.wdp_growth_subcomplex_monotone` |
 | `QuantumMechanics.DerivationDagQMClosure.wdp_two_simplex_attachment_preserves_phi1` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.wdp_two_simplex_attachment_preserves_phi1` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/WdpGrowthNoRepair.lean`
@@ -83,6 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `WdpGrowthNoRepair.phi_restrict_le` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpGrowthNoRepair.phi_restrict_le` |
 | `WdpGrowthNoRepair.rescaled_weights_instance` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpGrowthNoRepair.rescaled_weights_instance` |
 | `WdpGrowthNoRepair.triangle_row_closed` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WdpGrowthNoRepair.triangle_row_closed` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/wdp/obstruction.rs`

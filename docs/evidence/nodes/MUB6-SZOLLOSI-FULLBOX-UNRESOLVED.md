@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 7
-- cited Lean declarations covered by a current replay receipt: 7
+- distinct cited Lean declarations covered by a current replay receipt: 7
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -55,6 +55,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `full_box_check_unresolved` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms full_box_check_unresolved` |
 | `phase_interior_excluded` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms phase_interior_excluded` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/SzollosiNativeReflection.lean`
@@ -69,6 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `native_full_box_unresolved` | yes | yes | yes | Quot.sound, propext | `#print axioms native_full_box_unresolved` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/SzollosiRectangularReflection.lean`
@@ -86,6 +88,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `native_images_have_no_separation` | yes | yes | yes | Quot.sound, propext | `#print axioms native_images_have_no_separation` |
 | `native_jacobian_eq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms native_jacobian_eq` |
 | `solution_in_native_retained` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms solution_in_native_retained` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/25_mub/tfq_1272_mub6_szollosi_fullbox_unresolved.md`

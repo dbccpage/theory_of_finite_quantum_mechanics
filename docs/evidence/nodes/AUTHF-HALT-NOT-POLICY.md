@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 3
+- distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -54,6 +54,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `AuthorizationIncompleteness.DirectTuringMachineModels.syntactic_halt_does_not_select_direct_machine_policy` | yes | yes | yes | propext | `#print axioms AuthorizationIncompleteness.DirectTuringMachineModels.syntactic_halt_does_not_select_direct_machine_policy` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/AuthIncompleteness/Replay.lean`
@@ -68,6 +69,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `AuthorizationIncompleteness.ReplayPacketBindingModels.terminal_policy_is_not_selected_by_verification` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.ReplayPacketBindingModels.terminal_policy_is_not_selected_by_verification` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/AuthIncompleteness/TapeControl.lean`
@@ -82,6 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1353_authf_halt_not_policy.md`

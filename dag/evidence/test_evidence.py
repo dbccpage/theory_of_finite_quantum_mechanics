@@ -191,6 +191,41 @@ def test_declaration_names_match_in_one_direction_and_ambiguity_is_recorded():
     assert ambiguous["decl_ambiguous"] and not ambiguous["decl_listed"] and ambiguous["decl_axioms"] is None
 
 
+def test_scratch_commands_use_the_unique_current_receipt_namespace():
+    builder = be.Builder()
+    prefix = "lean4/CampaignAuthfCarrierAdmissionGate.lean::"
+    bare = builder.make_item(prefix + "directCeilings", "test", True)
+    qualified = builder.make_item(prefix + "CampaignAuthfCarrierAdmissionGate.directCeilings", "test", True)
+    assert bare["canonical_symbol"] == qualified["canonical_symbol"] == "CampaignAuthfCarrierAdmissionGate.directCeilings"
+    assert bare["command_note"] == qualified["command_note"]
+    assert "#print axioms CampaignAuthfCarrierAdmissionGate.directCeilings" in bare["command_note"]
+    ambiguous = builder.make_item("lean4/ChainRetraction.lean::cls_ne_zero", "test", True)
+    assert ambiguous["canonical_symbol"] is None
+
+
+def test_receipt_aliases_count_once_without_removing_audit_rows_or_changing_grade():
+    rows = [item(symbol=s, canonical_symbol="Ns.t", cited_in=["node.lean"], decl_axioms=[], decl_ambiguous=False)
+            for s in ("t", "Ns.t")]
+    grade, facts = be.grade_node(rows, [])
+    assert grade == "E3" and facts["lean_receipt_backed"] == 1
+    assert facts["symbols_found"] == len(rows) == 2
+    summary = be.lean_summary([{"items": rows, "status": "OPEN"}])
+    assert summary["lean_declarations_in_repo"]["distinct"] == 1
+    assert summary["lean_references_cited_in_node_lean_fields"] == {"present": 2}
+    different = item(symbol="Other.t", canonical_symbol="Other.t", cited_in=["node.lean"])
+    assert be.grade_node(rows + [different], [])[1]["lean_receipt_backed"] == 2
+
+
+def test_indexed_replay_receipts_have_top_level_digest_custody():
+    doc = document()
+    for receipt in doc["receipts"]:
+        path = receipt["receipt_file"]
+        data = (ROOT / path).read_bytes()
+        info = doc["files"][path]
+        assert info["size"] == len(data)
+        assert info["sha256"] == hashlib.sha256(data.replace(b"\r\n", b"\n")).hexdigest()
+
+
 def test_descendant_counts_are_unique_and_survive_a_cycle():
     nodes = {n: {} for n in "abcd"}
     routes = [{"inputs": ["a"], "output": "b"}, {"inputs": ["a", "b"], "output": "c"},
@@ -448,3 +483,23 @@ def test_external_paths_are_never_called_present():
                 assert not it["file_exists"] and not it["counts"]
             if it["resolution"] == "present":
                 assert (ROOT / it["path"]).exists()
+
+
+def test_all_replay_states_are_reported_in_the_evidence_summary():
+    import copy
+    import render_evidence as render
+
+    doc = copy.deepcopy(document())
+    counts = doc["summary"]["lean_declarations_in_repo"]
+    assert counts["distinct"] == sum(counts[k] for k in
+        ("replay_verified", "replay_stale", "replay_failed", "no_receipt"))
+    # Exercise the failure bucket even when a checkout has no failed receipt.
+    counts["replay_failed"] = 7
+    text = render.readme_page(doc, doc["nodes"])
+    assert "7 are in files whose current-hash receipt failed the build or axiom audit" in text
+
+
+def test_generated_symbol_tables_have_a_blank_line_before_the_grade_list():
+    for rel, text in outputs().items():
+        if rel.endswith(".md"):
+            assert not re.search(r"^\|.*\|\n- counts toward the grade:", text, re.M), rel

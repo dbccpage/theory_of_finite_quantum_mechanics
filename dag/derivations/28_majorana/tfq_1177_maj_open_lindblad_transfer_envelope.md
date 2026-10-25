@@ -11,21 +11,17 @@
 
 ## 1. Abstract & Formal Statement
 
-For four MZMs under a Lindblad braiding model with gap Delta, length L/xi and poisoning rate Gamma_qp > 0, the trace-norm transfer defect obeys Delta_transfer(T) <= min(1, C_LZ (hbar/(Delta T))^2 + (Delta/hbar) e^{-L/xi} T + 1 - e^{-Gamma_qp T}) for T >> hbar/Delta, and that envelope has a positive minimum.
+Narrowed boundary, status left OPEN. For the integer envelope f(T) = 4 + T^3 and the comparison 3 T^2, f(1) = 5 which is greater than 3, f(2) = 12 which equals 12, and f(3) = 31 which is greater than 27. The value 12 is positive, and 0 is strictly below 12, so a positive envelope value does not force a transfer defect to be positive.
 
 ### Governing Obligation
-Derive the envelope from the Lindblad equation; a positive physical lower bound on Delta_transfer needs an independent argument, as the source notes.
+The Lindblad derivation, the four-mode braiding model, the exponential poisoning term, the Landau-Zener square, and a positive lower bound on the physical transfer defect stay open. Older Nat positivity facts in MajoranaCore do not state this envelope. A positive envelope value stays separate from a positive transfer defect.
 
 ### Witness Audit
-The envelope inequality is stated without derivation; the Lean declarations are Nat positivity facts (Nat.mul_pos, omega) on declared positive parameters; the Python model evaluates float formulas.
+Decided integer comparisons at T = 1, 2 and 3 of f(T) = 4 + T^3 against 3 T^2 in CampaignMajOpenLindbladTransferEnvelope, with no axioms. The Lindblad envelope is not derived here. Envelope value 12 at T = 2 is positive while the reading 0 lies strictly below it.
 
 ---
 
 ## 2. Derivation Context
-
-### Admitted Structural Imports
-- **Admitted**: `Lindblad master equation with poisoning and dephasing channels`
-- **Admitted**: `Landau-Zener leakage asymptotics`
 
 ### Further Prerequisites
 - `MAJ-HARDWARE-NARRATIVE-QUARANTINE`
@@ -35,16 +31,17 @@ The envelope inequality is stated without derivation; the Lean declarations are 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `papers/core/majorana/lean4/MajoranaCore.lean::OpenSystemTransferBound`
-- `papers/core/majorana/lean4/MajoranaCore.lean::transfer_defect_lower_bound_pos`
-- `papers/core/majorana/lean4/MajoranaCore.lean::transfer_pareto_defect_pos`
-- `papers/core/majorana/lean4/MajoranaCore.lean::transfer_gap_strictly_positive`
+- `lean4/CampaignMajOpenLindbladTransferEnvelope.lean::envelope_at_one`
+- `lean4/CampaignMajOpenLindbladTransferEnvelope.lean::envelope_at_two`
+- `lean4/CampaignMajOpenLindbladTransferEnvelope.lean::envelope_at_three`
+- `lean4/CampaignMajOpenLindbladTransferEnvelope.lean::envelope_positive`
+- `lean4/CampaignMajOpenLindbladTransferEnvelope.lean::defect_zero_below_envelope`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::OpenSystemMajoranaBraidModel`
+- `checks/independent/maj-open-lindblad-transfer-envelope.py`
 
 ### Cited by the source, not in this checkout
 - *none*
@@ -64,3 +61,5 @@ The envelope inequality is stated without derivation; the Lean declarations are 
 - **Cited Sources**:
   - `papers/core/majorana/the_majorana_problem.md:369-383`
   - `papers/core/majorana/the_majorana_problem_claim_ledger.md:34-34`
+  - `dag/derivations/independent/maj-open-lindblad-transfer-envelope.md`
+  - `dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 28
-- cited Lean declarations covered by a current replay receipt: 28
+- distinct cited Lean declarations covered by a current replay receipt: 28
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.declare_then_assert_cost_floor` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.declare_then_assert_cost_floor` |
 | `QuantumMechanics.DerivationDagQMClosure.traceObligation_append` | yes | yes | yes | propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.traceObligation_append` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/ObligationMonoid.lean`
@@ -97,6 +98,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `ObligationMonoid.trace_terms` | yes | yes | yes | Quot.sound, propext | `#print axioms ObligationMonoid.trace_terms` |
 | `ObligationMonoid.trace_total` | yes | yes | yes | Quot.sound, propext | `#print axioms ObligationMonoid.trace_total` |
 | `ObligationMonoid.valid_fresh_order_blind` | yes | yes | yes | propext | `#print axioms ObligationMonoid.valid_fresh_order_blind` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_kernel/src/obligation.rs`
