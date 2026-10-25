@@ -1211,3 +1211,7 @@ lean_lib CampaignTfq0376Pregenesis where
 -- Campaign: PGW-PYTHON-LEAN-CARRIER-BRIDGE. Not a default target.
 lean_lib CampaignPgwPythonLeanCarrierBridge where
   roots := #[`CampaignPgwPythonLeanCarrierBridge]
+
+-- Campaign: COMP-C8-MINIMALITY-FENCE. Not a default target.
+lean_lib CampaignCompC8MinimalityFence where
+  roots := #[`CampaignCompC8MinimalityFence]

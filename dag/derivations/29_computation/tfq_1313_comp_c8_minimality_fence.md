@@ -1,4 +1,4 @@
-# [TFQ-1313] No smallest general-purpose machine is claimed
+# [TFQ-1313] One two-mark word followed by one blank cell
 
 > **Stage**: `COMPUTATION` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `COMP-C8-MINIMALITY-FENCE`  
 > **UUID**: `b5d1443d-58d0-5044-82ac-ac01376962d9`  
@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-Two separated marks code the words of any finite alphabet and a blank is a third symbol, but the composite machine M0 is not minimal and no smallest general-purpose machine is claimed; small-machine records are literature only.
+Mark A is the number 1, mark B is the number 2, and the blank is the number 0. The word mark A then mark B, followed by one blank cell, equals the list whose entries are 1, then 2, then 0. The blank differs from mark A, and the blank differs from mark B.
 
 ### Governing Obligation
-State and prove in Lean the simulation of a machine over the coded alphabet by a machine over the two marks and a blank before any minimality statement.
+Simulation of a machine over a coded alphabet by a machine over the two marks and a blank stays open, and it is required before any minimality sentence. A sentence that composite machine M0 is not a smallest general-purpose machine stays open. Small-machine records stay literature only.
 
 ### Witness Audit
-Only the coding of words (COMP-C8a) and the mark count of M0 (COMP-C6d) are proved.
+The campaign module records mark A as 1, mark B as 2, the blank as 0, the one word followed by one blank cell as the list 1, 2, 0, and the two differences. Simulation of a machine and a minimality sentence stay open. The letter-by-letter code of a finite alphabet stays on COMP-C8-BINARY-CODING.
 
 ---
 
@@ -34,7 +34,8 @@ Only the coding of words (COMP-C8a) and the mark count of M0 (COMP-C6d) are prov
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignCompC8MinimalityFence.lean::oneWordThenBlank`
+- `lean4/CampaignCompC8MinimalityFence.lean::blankDiffersFromMarks`
 
 ### Rust Certifiers
 - *none*

@@ -8904,26 +8904,29 @@
       "record_id": "TFQ-1313",
       "node_id": "COMP-C8-MINIMALITY-FENCE",
       "slug": "comp-c8-minimality-fence",
-      "name": "No smallest general-purpose machine is claimed",
+      "name": "One two-mark word followed by one blank cell",
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_claimed_status": "OPEN",
-      "statement": "Two separated marks code the words of any finite alphabet and a blank is a third symbol, but the composite machine M0 is not minimal and no smallest general-purpose machine is claimed; small-machine records are literature only.",
-      "obligation": "State and prove in Lean the simulation of a machine over the coded alphabet by a machine over the two marks and a blank before any minimality statement.",
+      "statement": "Mark A is the number 1, mark B is the number 2, and the blank is the number 0. The word mark A then mark B, followed by one blank cell, equals the list whose entries are 1, then 2, then 0. The blank differs from mark A, and the blank differs from mark B.",
+      "obligation": "Simulation of a machine over a coded alphabet by a machine over the two marks and a blank stays open, and it is required before any minimality sentence. A sentence that composite machine M0 is not a smallest general-purpose machine stays open. Small-machine records stay literature only.",
       "imported_structure": [],
       "parent_nodes": [
         "COMP-C8-BINARY-CODING",
         "COMP-C6-FINITE-MARKS"
       ],
       "parent_record": "TFQ-1312",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignCompC8MinimalityFence.lean::oneWordThenBlank",
+        "lean4/CampaignCompC8MinimalityFence.lean::blankDiffersFromMarks"
+      ],
       "rust": [],
       "python": [],
       "external_witnesses": [],
       "sources": [
         "dag/research/genesis_to_universal_computation.md:136-141"
       ],
-      "audit": "Only the coding of words (COMP-C8a) and the mark count of M0 (COMP-C6d) are proved.",
+      "audit": "The campaign module records mark A as 1, mark B as 2, the blank as 0, the one word followed by one blank cell as the list 1, 2, 0, and the two differences. Simulation of a machine and a minimality sentence stay open. The letter-by-letter code of a finite alphabet stays on COMP-C8-BINARY-CODING.",
       "see_also": [
         "COMP-C8-BINARY-CODING"
       ],

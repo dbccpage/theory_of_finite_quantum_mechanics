@@ -11354,7 +11354,7 @@ For any finite alphabet, the letter-by-letter fixed-width binary code of width c
 
 Obligation: A code is not an isomorphism of free monoids; no claim that a machine over the coded alphabet simulates a machine over the original (Mathlib TM1to1 is not used).
 
-### TFQ-1313 No smallest general-purpose machine is claimed
+### TFQ-1313 One two-mark word followed by one blank cell
 
 - UUID: `b5d1443d-58d0-5044-82ac-ac01376962d9`
 - Parent: `TFQ-1312`
@@ -11362,9 +11362,9 @@ Obligation: A code is not an isomorphism of free monoids; no claim that a machin
 - DAG node: `COMP-C8-MINIMALITY-FENCE`
 - Paper: [derivation](derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md)
 
-Two separated marks code the words of any finite alphabet and a blank is a third symbol, but the composite machine M0 is not minimal and no smallest general-purpose machine is claimed; small-machine records are literature only.
+Mark A is the number 1, mark B is the number 2, and the blank is the number 0. The word mark A then mark B, followed by one blank cell, equals the list whose entries are 1, then 2, then 0. The blank differs from mark A, and the blank differs from mark B.
 
-Obligation: State and prove in Lean the simulation of a machine over the coded alphabet by a machine over the two marks and a blank before any minimality statement.
+Obligation: Simulation of a machine over a coded alphabet by a machine over the two marks and a blank stays open, and it is required before any minimality sentence. A sentence that composite machine M0 is not a smallest general-purpose machine stays open. Small-machine records stay literature only.
 
 ### TFQ-1314 Does the obstruction a quantum computation generates limit its own ability to finish reliably
 
