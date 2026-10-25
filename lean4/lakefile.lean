@@ -1343,3 +1343,7 @@ lean_lib CampaignWittenPairing where
 -- Campaign: PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY. Not a default target.
 lean_lib CampaignPgwWdpPhiWellDefinedL1Duality where
   roots := #[`CampaignPgwWdpPhiWellDefinedL1Duality]
+
+-- Campaign: FSP-KITAEV-HONEYCOMB-SOLUTION. Not a default target.
+lean_lib CampaignKitaevSectorBlock where
+  roots := #[`CampaignKitaevSectorBlock]

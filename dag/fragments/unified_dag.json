@@ -4998,8 +4998,8 @@
       "stage": "FERMION_SIGN",
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace).",
-      "obligation": "A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.",
+      "statement": "On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X.",
+      "obligation": "This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed. Original target retained as an obligation: Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace). Prior boundary: A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.",
       "imported_structure": [
         "Kitaev honeycomb spin model and its Majorana representation (Kitaev 2006)"
       ],
@@ -5008,19 +5008,30 @@
         "FSP-WITTEN-INDEX-INVARIANCE"
       ],
       "parent_record": "TFQ-1186",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.flux_involution",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.hopping_involution",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.flux_commutes_hopping",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.project_commutes_hopping",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.sector_decomposition",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.restricted_hopping",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.sectors_distinct"
+      ],
       "rust": [],
       "python": [
         "code/python/src/fsp/kitaev_honeycomb_bisimulation_bridge.py",
-        "code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.py::test_vortex_free_ground_state"
+        "code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.py::test_vortex_free_ground_state",
+        "checks/independent/fsp-kitaev-honeycomb-solution.py"
       ],
       "external_witnesses": [
         "external:omega_majorana::sparse_kitaev::solve_kitaev_honeycomb_majorana (cited by the source, not in this checkout)"
       ],
       "sources": [
-        "papers/core/fsp/theory_of_finite_fsp.md:600-612"
+        "papers/core/fsp/theory_of_finite_fsp.md:600-612",
+        "dag/derivations/independent/fsp-kitaev-honeycomb-solution.md",
+        "dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json"
       ],
-      "audit": "Cited KitaevHoneycombCore.lean::kitaev_honeycomb_exact_majorana_solution does not exist; the module states u*u = 1 for u in {1, -1}, Int commutativity, and routing rfl facts. KitaevHoneycombEvaluator is absent from kitaev_honeycomb_evaluator.py; the bisimulation bridge tests are finite fixtures.",
+      "audit": "Cited KitaevHoneycombCore.lean::kitaev_honeycomb_exact_majorana_solution does not exist; the module states u*u = 1 for u in {1, -1}, Int commutativity, and routing rfl facts. KitaevHoneycombEvaluator is absent from kitaev_honeycomb_evaluator.py; the bisimulation bridge tests are finite fixtures. Campaign result: On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X. This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.",
       "see_also": [
         "DS-QM212-MAJORANA-PROBLEM"
       ],
