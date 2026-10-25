@@ -1267,3 +1267,7 @@ lean_lib CampaignPgwWdpIncidenceTransport where
 -- Campaign: PGW-WDP-BRIDGE-ONGOING-TO-WINDOW. Not a default target.
 lean_lib CampaignPgwWdpBridgeOngoing where
   roots := #[`CampaignPgwWdpBridgeOngoing]
+
+-- Campaign: PGW-WDP-HANDOFF-TO-L1. Not a default target.
+lean_lib CampaignPgwWdpHandoffToL1 where
+  roots := #[`CampaignPgwWdpHandoffToL1]

@@ -3,27 +3,34 @@ node_id: PGW-WDP-HANDOFF-TO-L1
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'WDP hands onward a declared, certified degree-1 window: Φ₁([h]) = Φ_J([h]), the quotient
-    infimum over repairs, certified for weighted ℓ¹ over ℚ by a matching repair and bounded circulation;
-    Γ₂([h]) = ‖d₁h‖₁; the diagnostic trichotomy; and the observer discipline that a protected question
-    passes through a report only when constant on its fibres. The 007 Local-Green/Global-Red series refuses
-    the case in which every local check passes and the global check fails, and its Symbol Game integration
-    sets the global verdict to 0 when Φ₁ > 0 or Γ₂ > 0, but it writes Φ₁(h) = ‖d₀h‖₁ (boundary leakage),
-    which is not WDP''s quotient infimum. The 007 lesson states that no automatic identification with
-    the PFP quantities phi1 or gamma2 is supplied, so an adapter from WDP''s quotient Φ₁ and Γ₂ to the
-    LGGR global evaluator is owed. The DAG''s next stage is L1_EMERGENCE (TFQ-0005 declared L1 sector
-    weights, TFQ-0349).'
+  source_statement: Narrowed boundary, status left OPEN. On one triangle with edges (01, 12, 02) and unit
+    integer weights, the coboundary of vertex values (f0, f1, f2) is (f1 - f0, f2 - f1, f2 - f0), and
+    the face of an edge triple (x01, x12, x02) is x01 + x12 - x02. For every integer edge triple and every
+    integer vertex repair, the unit l1 length of the residual is at least the absolute face value. When
+    the face is negative, the repair (0, h01, h01 + h12) leaves residual (0, 0, -face); otherwise the
+    repair (0, h01 - face, h02) leaves residual (face, 0, 0). Both residuals have unit l1 length equal
+    to the absolute face value, so on this triangle that length is the distance to integer coboundaries.
+    A face of 0 means the edge triple is the coboundary of the non-negative repair. Vertex values (0,
+    1, 0) have coboundary l1 length 2, the edge triple (1, -1, 0) is that coboundary, and the residual
+    of (1, -1, 0) against itself has length 0, so 2 is not the quotient value. The edge triple (1, 0,
+    0) has face 1. The verdict of (1, 1) is 0 and the verdict of (0, 0) is 1. Equal fibre decisions (1,
+    1) pass and (0, 1) does not.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: 'Terminal for the WDP stage: it does not identify WDP''s Φ₁ with 007''s ‖d₀h‖₁ (the
-    LGGR crate''s register_stabilized_family consumes verified quotient Φ₁ evidence for ClosedResidual
-    families only), does not make Φ₁ or Γ₂ sector weights or a quantum state (TFQ-0004), and does not
-    derive the L1 stage.'
+  source_bottleneck: Terminal for the WDP stage on the original window. This triangle case does not identify
+    WDP's quotient value with 007's coboundary length (the LGGR crate's register_stabilized_family consumes
+    verified quotient evidence for ClosedResidual families only), does not make the two window quantities
+    sector weights or a quantum state (TFQ-0004), and does not derive the L1 stage. The weighted certificate
+    over the rationals, the bounded-circulation dual on a general carrier, the LGGR adapter, sector weights,
+    general complexes, and the full diagnostic trichotomy stay open. A face of 0 is an integer coboundary
+    on this triangle only.
   source_refs:
   - dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:1487-1498
   - omega_engine_education/documentation/007_oelggr/local_green_global_red_foundational_series.md:147-161
   - omega_engine_education/documentation/007_oelggr/curriculum/1000_local_green_global_red_foundations/concepts/lesson_1000_01_local_green_global_red_foundations.md:116-120
+  - dag/derivations/independent/pgw-wdp-handoff-to-l1.md:5
+  - dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json:6
   paper_refs: []
   source_claim_label: OPEN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -37,9 +44,312 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/wdp_pgw_wdp_handoff_to_l1_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: iabs
+  line: 9
+  signature_excerpt: 'def iabs (n : Int) : Int'
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: face
+  line: 82
+  signature_excerpt: 'def face (x01 x12 x02 : Int) : Int'
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: l1
+  line: 85
+  signature_excerpt: 'def l1 (x01 x12 x02 : Int) : Int'
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: d0
+  line: 72
+  signature_excerpt: 'def d0 (f0 f1 f2 : Int) : Int × Int × Int'
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: leakage
+  line: 88
+  signature_excerpt: 'def leakage (f0 f1 f2 : Int) : Int'
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: verdict
+  line: 96
+  signature_excerpt: 'def verdict (phi gamma : Int) : Int'
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: fibreConstant
+  line: 206
+  signature_excerpt: 'def fibreConstant (a0 a1 : Int) : Prop'
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: distance_at_least
+  line: 115
+  signature_excerpt: |-
+    theorem distance_at_least (h01 h12 h02 f0 f1 f2 : Int) :
+        iabs (face h01 h12 h02) ≤
+          l1 (h01 - (f1 - f0)) (h12 - (f2 - f1)) (h02 - (f2 - f0))
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: repair_residual_neg
+  line: 127
+  signature_excerpt: |-
+    theorem repair_residual_neg (h01 h12 h02 : Int) :
+        h01 - (d0 0 h01 (h01 + h12)).1 = 0 ∧
+          h12 - (d0 0 h01 (h01 + h12)).2.1 = 0 ∧
+            h02 - (d0 0 h01 (h01 + h12)).2.2 = -(face h01 h12 h02)
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: repair_residual_nonneg
+  line: 136
+  signature_excerpt: |-
+    theorem repair_residual_nonneg (h01 h12 h02 : Int) :
+        h01 - (d0 0 (h01 - face h01 h12 h02) h02).1 = face h01 h12 h02 ∧
+          h12 - (d0 0 (h01 - face h01 h12 h02) h02).2.1 = 0 ∧
+            h02 - (d0 0 (h01 - face h01 h12 h02) h02).2.2 = 0
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: meet_neg
+  line: 145
+  signature_excerpt: |-
+    theorem meet_neg (h01 h12 h02 : Int) (_hs : face h01 h12 h02 < 0) :
+        l1 0 0 (-(face h01 h12 h02)) = iabs (face h01 h12 h02)
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: meet_nonneg
+  line: 155
+  signature_excerpt: |-
+    theorem meet_nonneg (h01 h12 h02 : Int) (hs : ¬ face h01 h12 h02 < 0) :
+        l1 (face h01 h12 h02) 0 0 = iabs (face h01 h12 h02)
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: face_zero_is_coboundary
+  line: 196
+  signature_excerpt: |-
+    theorem face_zero_is_coboundary (h01 h12 h02 : Int) (hz : face h01 h12 h02 = 0) :
+        h01 = (d0 0 (h01 - face h01 h12 h02) h02).1 ∧
+          h12 = (d0 0 (h01 - face h01 h12 h02) h02).2.1 ∧
+            h02 = (d0 0 (h01 - face h01 h12 h02) h02).2.2
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: leakage_is_not_quotient
+  line: 181
+  signature_excerpt: 'theorem leakage_is_not_quotient : leakage 0 1 0 ≠ l1 (1 - 1) (-1 - -1) (0 - 0)'
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: face_of_obstruction
+  line: 185
+  signature_excerpt: 'theorem face_of_obstruction : face 1 0 0 = 1'
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: obstructed_verdict
+  line: 188
+  signature_excerpt: 'theorem obstructed_verdict : verdict 1 1 = 0'
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: closed_verdict
+  line: 192
+  signature_excerpt: 'theorem closed_verdict : verdict 0 0 = 1'
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: equal_report_passes
+  line: 209
+  signature_excerpt: 'theorem equal_report_passes : fibreConstant 1 1'
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: unequal_report_fails
+  line: 213
+  signature_excerpt: 'theorem unequal_report_fails : ¬ fibreConstant 0 1'
+  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
+- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::distance_at_least
+  availability: local
+  symbol: distance_at_least
+  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  declaration_status: declaration_found_not_proof_checked
+  line: 115
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::repair_residual_neg
+  availability: local
+  symbol: repair_residual_neg
+  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  declaration_status: declaration_found_not_proof_checked
+  line: 127
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::repair_residual_nonneg
+  availability: local
+  symbol: repair_residual_nonneg
+  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  declaration_status: declaration_found_not_proof_checked
+  line: 136
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::meet_neg
+  availability: local
+  symbol: meet_neg
+  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  declaration_status: declaration_found_not_proof_checked
+  line: 145
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::meet_nonneg
+  availability: local
+  symbol: meet_nonneg
+  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  declaration_status: declaration_found_not_proof_checked
+  line: 155
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::face_zero_is_coboundary
+  availability: local
+  symbol: face_zero_is_coboundary
+  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  declaration_status: declaration_found_not_proof_checked
+  line: 196
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::leakage_is_not_quotient
+  availability: local
+  symbol: leakage_is_not_quotient
+  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  declaration_status: declaration_found_not_proof_checked
+  line: 181
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::face_of_obstruction
+  availability: local
+  symbol: face_of_obstruction
+  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  declaration_status: declaration_found_not_proof_checked
+  line: 185
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::obstructed_verdict
+  availability: local
+  symbol: obstructed_verdict
+  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  declaration_status: declaration_found_not_proof_checked
+  line: 188
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::closed_verdict
+  availability: local
+  symbol: closed_verdict
+  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  declaration_status: declaration_found_not_proof_checked
+  line: 192
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::equal_report_passes
+  availability: local
+  symbol: equal_report_passes
+  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  declaration_status: declaration_found_not_proof_checked
+  line: 209
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::unequal_report_fails
+  availability: local
+  symbol: unequal_report_fails
+  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  repository: this_repository
+  sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
+  declaration_status: declaration_found_not_proof_checked
+  line: 213
+  role: source_lead_only
 - original_ref: omega_engine/crates_rs/omega_local_green_global_red_lggr/src/ledger.rs::register_stabilized_family
   availability: external
   symbol: register_stabilized_family
@@ -85,8 +395,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
