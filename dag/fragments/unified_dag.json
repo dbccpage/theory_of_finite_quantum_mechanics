@@ -1481,7 +1481,7 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "COMPUTATIONALLY_CHECKED",
-      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
+      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi\u00b7psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
       "obligation": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "imported_structure": [
         "continuous time and Stone generator",
@@ -3086,7 +3086,7 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "IMPORTED_ASSUMPTION",
       "statement": "Minimum-weight coset decoding of a binary linear code given by its matrix is NP-hard (Berlekamp, McEliece and van Tilborg 1978).",
-      "obligation": "Literature result; no reduction is formalized or replayed here.",
+      "obligation": "Literature result (Berlekamp, McEliece, and van Tilborg 1978); the Cook-Levin / 3-Dimensional Matching NP-completeness reduction remains an imported external theorem. Narrowed in lean4/CampaignMajImportCosetWeightNpHard.lean and checks/independent/maj-import-coset-weight-np-hard.py while keeping status IMPORTED_ASSUMPTION to: (1) F2^n involutive vector addition ((r ^ c) ^ c = r) and Hamming weight subadditivity wt(u ^ v) + 2 overlap(u, v) = wt(u) + wt(v); (2) exact primal coset-weight decision equivalence (exists alpha, wt(r ^ d0 alpha) <= w) <-> parity-check syndrome-decoding decision (exists e, H(e) = H(r) and wt(e) <= w), gauge-shift invariance under r -> r ^ d0 beta, and budget-capped upper-bound witness inequalities; (3) constructive 5-coordinate (n = 5, k = 2) greedy single-generator flip local-minimum trap where wt(r) = 3, single flips give wt(r ^ g1) = 4 and wt(r ^ g2) = 4, and the joint flip gives the coset leader wt(r ^ g1 ^ g2) = 2 < 3; and (4) 3x4 vs 6x6 tetron torus coset budget overflow (2^11 = 2048 < 2^20 < 2^35 = 34,359,738,368) and explicit scope fences separating general linear codes from planar/toric graph-incidence families.",
       "imported_structure": [
         "Berlekamp-McEliece-van Tilborg 1978 hardness of coset weights"
       ],
@@ -3094,15 +3094,33 @@
         "MAJ-PHI1-HAMMING-COSET"
       ],
       "parent_record": "TFQ-1140",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.f2_vector_space_involutive_cancel",
+        "lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.f2_pointwise_bit_weight_identity",
+        "lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.f2_hamming_weight_subadditive",
+        "lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.coset_decoding_iff_syndrome_decoding",
+        "lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.coset_weight_decision_gauge_invariant",
+        "lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.sampled_gauge_upper_bounds_coset_leader",
+        "lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.greedy_single_gauge_flip_local_minimum_trap",
+        "lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.coset_search_budget_overflow_witness",
+        "lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.worst_case_code_hardness_vs_planar_toric_scope",
+        "lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.bmvt_import_scope_fence"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "papers/core/majorana/code/majorana_evaluator.py::compute_coset_weight",
+        "checks/independent/maj-import-coset-weight-np-hard.py::main"
+      ],
       "external_witnesses": [],
       "sources": [
         "papers/core/majorana/the_majorana_problem.md:283-283",
-        "papers/core/majorana/the_majorana_problem.md:473-473"
+        "papers/core/majorana/the_majorana_problem.md:473-473",
+        "dag/derivations/independent/maj-import-coset-weight-np-hard.md",
+        "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json",
+        "dag/research/campaign_maj-import-coset-weight-np-hard_lean_mutation.json",
+        "dag/research/campaign_maj-import-coset-weight-np-hard_independent.json"
       ],
-      "audit": "",
+      "audit": "Upgraded MAJ-IMPORT-COSET-WEIGHT-NP-HARD (TFQ-1157) from E1 to E3 while preserving status IMPORTED_ASSUMPTION via lean4/CampaignMajImportCosetWeightNpHard.lean (10 theorems, 0 sorrys, 6/6 mutants killed) and checks/independent/maj-import-coset-weight-np-hard.py (2436 exact F2^n coset-weight, syndrome-equivalence, greedy local-minimum trap, and budget-overflow checks, 0 failures).",
       "see_also": [],
       "uses": []
     },
@@ -9944,10 +9962,10 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "cited; local formalization open",
       "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
-      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice\u2082 for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
       "imported_structure": [
         "Rice theorem (Rice 1953)",
-        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
+        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice\u2082"
       ],
       "parent_nodes": [
         "AUTH-G5B-CARRIER-ADMISSION-GATE"
@@ -9957,7 +9975,7 @@
       "rust": [],
       "python": [],
       "external_witnesses": [
-        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
+        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice\u2082 (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
         "external:Mathlib/Computability/Halting.lean::ComputablePred.halting_problem (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
       ],
       "sources": [
@@ -9965,7 +9983,7 @@
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:305-315",
         "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:331-344"
       ],
-      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice₂ and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
+      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice\u2082 and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
       "see_also": [
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
@@ -9982,7 +10000,7 @@
       "status": "OPEN",
       "source_claimed_status": "open",
       "statement": "For an admitted program carrier and a nontrivial extensional property, a total computable sound and complete authorizer would decide that property; the lift is a stated target in the source and has no local theorem.",
-      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
+      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice\u2082 and halting_problem.",
       "imported_structure": [
         "admitted program carrier",
         "nontrivial extensional property"

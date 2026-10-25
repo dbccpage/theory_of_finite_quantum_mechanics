@@ -14,10 +14,10 @@
 Minimum-weight coset decoding of a binary linear code given by its matrix is NP-hard (Berlekamp, McEliece and van Tilborg 1978).
 
 ### Governing Obligation
-Literature result; no reduction is formalized or replayed here.
+Literature result (Berlekamp, McEliece, and van Tilborg 1978); the Cook-Levin / 3-Dimensional Matching NP-completeness reduction remains an imported external theorem. Narrowed in lean4/CampaignMajImportCosetWeightNpHard.lean and checks/independent/maj-import-coset-weight-np-hard.py while keeping status IMPORTED_ASSUMPTION to: (1) F2^n involutive vector addition ((r ^ c) ^ c = r) and Hamming weight subadditivity wt(u ^ v) + 2 overlap(u, v) = wt(u) + wt(v); (2) exact primal coset-weight decision equivalence (exists alpha, wt(r ^ d0 alpha) <= w) <-> parity-check syndrome-decoding decision (exists e, H(e) = H(r) and wt(e) <= w), gauge-shift invariance under r -> r ^ d0 beta, and budget-capped upper-bound witness inequalities; (3) constructive 5-coordinate (n = 5, k = 2) greedy single-generator flip local-minimum trap where wt(r) = 3, single flips give wt(r ^ g1) = 4 and wt(r ^ g2) = 4, and the joint flip gives the coset leader wt(r ^ g1 ^ g2) = 2 < 3; and (4) 3x4 vs 6x6 tetron torus coset budget overflow (2^11 = 2048 < 2^20 < 2^35 = 34,359,738,368) and explicit scope fences separating general linear codes from planar/toric graph-incidence families.
 
 ### Witness Audit
-No audit note.
+Upgraded MAJ-IMPORT-COSET-WEIGHT-NP-HARD (TFQ-1157) from E1 to E3 while preserving status IMPORTED_ASSUMPTION via lean4/CampaignMajImportCosetWeightNpHard.lean (10 theorems, 0 sorrys, 6/6 mutants killed) and checks/independent/maj-import-coset-weight-np-hard.py (2436 exact F2^n coset-weight, syndrome-equivalence, greedy local-minimum trap, and budget-overflow checks, 0 failures).
 
 ---
 
@@ -31,13 +31,23 @@ No audit note.
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.f2_vector_space_involutive_cancel`
+- `lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.f2_pointwise_bit_weight_identity`
+- `lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.f2_hamming_weight_subadditive`
+- `lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.coset_decoding_iff_syndrome_decoding`
+- `lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.coset_weight_decision_gauge_invariant`
+- `lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.sampled_gauge_upper_bounds_coset_leader`
+- `lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.greedy_single_gauge_flip_local_minimum_trap`
+- `lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.coset_search_budget_overflow_witness`
+- `lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.worst_case_code_hardness_vs_planar_toric_scope`
+- `lean4/CampaignMajImportCosetWeightNpHard.lean::CampaignMajImportCosetWeightNpHard.bmvt_import_scope_fence`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `papers/core/majorana/code/majorana_evaluator.py::compute_coset_weight`
+- `checks/independent/maj-import-coset-weight-np-hard.py::main`
 
 ### Cited by the source, not in this checkout
 - *none*
@@ -55,3 +65,7 @@ No audit note.
 - **Cited Sources**:
   - `papers/core/majorana/the_majorana_problem.md:283-283`
   - `papers/core/majorana/the_majorana_problem.md:473-473`
+  - `dag/derivations/independent/maj-import-coset-weight-np-hard.md`
+  - `dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json`
+  - `dag/research/campaign_maj-import-coset-weight-np-hard_lean_mutation.json`
+  - `dag/research/campaign_maj-import-coset-weight-np-hard_independent.json`

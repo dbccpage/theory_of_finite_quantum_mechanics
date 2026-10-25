@@ -10678,7 +10678,7 @@ Obligation: Prove the distance formulas (e.g. by a cut argument on the dual grid
 
 Minimum-weight coset decoding of a binary linear code given by its matrix is NP-hard (Berlekamp, McEliece and van Tilborg 1978).
 
-Obligation: Literature result; no reduction is formalized or replayed here.
+Obligation: Literature result (Berlekamp, McEliece, and van Tilborg 1978); the Cook-Levin / 3-Dimensional Matching NP-completeness reduction remains an imported external theorem. Narrowed in lean4/CampaignMajImportCosetWeightNpHard.lean and checks/independent/maj-import-coset-weight-np-hard.py while keeping status IMPORTED_ASSUMPTION to: (1) F2^n involutive vector addition ((r ^ c) ^ c = r) and Hamming weight subadditivity wt(u ^ v) + 2 overlap(u, v) = wt(u) + wt(v); (2) exact primal coset-weight decision equivalence (exists alpha, wt(r ^ d0 alpha) <= w) <-> parity-check syndrome-decoding decision (exists e, H(e) = H(r) and wt(e) <= w), gauge-shift invariance under r -> r ^ d0 beta, and budget-capped upper-bound witness inequalities; (3) constructive 5-coordinate (n = 5, k = 2) greedy single-generator flip local-minimum trap where wt(r) = 3, single flips give wt(r ^ g1) = 4 and wt(r ^ g2) = 4, and the joint flip gives the coset leader wt(r ^ g1 ^ g2) = 2 < 3; and (4) 3x4 vs 6x6 tetron torus coset budget overflow (2^11 = 2048 < 2^20 < 2^35 = 34,359,738,368) and explicit scope fences separating general linear codes from planar/toric graph-incidence families.
 
 ### TFQ-1158 Computing Phi1 is coset-leader decoding of im d0
 
