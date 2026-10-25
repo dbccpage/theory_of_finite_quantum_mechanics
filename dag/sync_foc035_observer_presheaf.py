@@ -49,6 +49,7 @@ FRAGMENT = 'dag/fragments/foc035_observer_presheaf.json'
 FOLDER = '35_foc035_observer_presheaf'
 NODE_PREFIX = 'OPS-'
 LEAN_FILE = 'lean4/LggrFiniteResults.lean'
+CAMPAIGN_CEILING = 'lean4/CampaignOpsRustReceiptsAndLimits.lean'
 INDEPENDENT = 'checks/independent/foc035_observer_presheaf.py'
 PYTHON_TESTS = ('code/python/tests/test_three_role_gate.py',)
 FORBIDDEN = ('proves', 'guarantees', 'mathematically verifies', 'fundamentally', 'true intelligence', 'impossible',
@@ -148,6 +149,9 @@ def _validate_node_evidence(nodes, cited, root, errs):
         if n['status'] == 'PROVED_LEAN':
             if not n['lean'] or any(not x.startswith(LEAN_FILE + '::') for x in n['lean']):
                 errs.append(f'{nid}: PROVED_LEAN must cite declarations of {LEAN_FILE}')
+        elif n['id'] == 'OPS-RUST-RECEIPTS-AND-LIMITS':
+            if not n['lean'] or any(not x.startswith(CAMPAIGN_CEILING + '::') for x in n['lean']):
+                errs.append(f'{nid}: ceiling narrowing must cite declarations of {CAMPAIGN_CEILING}')
         elif n['lean']:
             errs.append(f'{nid}: only PROVED_LEAN nodes carry lean references')
         if n['status'] == 'COMPUTATIONALLY_CHECKED' and not (

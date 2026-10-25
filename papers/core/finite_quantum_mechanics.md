@@ -1656,7 +1656,7 @@ The derivation DAG (`dag/derivation_dag.json`, schema `derivation_dag.v2`) now h
 | `RECORD_PARENT` | 89 |
 | **Total** | **934** |
 
-Of the 177 reviewed nodes, 64 are `consistent`, 18 are `caveat_added`, 70 are `statement_narrowed`, 25 are `status_lowered`. Only 216 of the 925 nodes cite two or more Lean declarations and two or more Rust witnesses; 351 cite no Lean declaration and 543 cite no Rust witness. A node's status is a label on its statement; it does not say that the statement is mechanized in both languages.
+Of the 177 reviewed nodes, 64 are `consistent`, 18 are `caveat_added`, 70 are `statement_narrowed`, 25 are `status_lowered`. Only 217 of the 925 nodes cite two or more Lean declarations and two or more Rust witnesses; 350 cite no Lean declaration and 543 cite no Rust witness. A node's status is a label on its statement; it does not say that the statement is mechanized in both languages.
 
 <!-- END GENERATED dag-census (papers/core/tools/build_results_audit_table.py) -->
 
