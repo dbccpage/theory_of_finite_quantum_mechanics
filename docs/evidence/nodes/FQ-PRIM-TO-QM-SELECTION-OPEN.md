@@ -49,9 +49,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignFqPrimToQmSelection.lean](../../../lean4/CampaignFqPrimToQmSelection.lean)
 - sha256 (`bytes`): `df3bc709da599a889424f62769a2524e54753a69bfa0e5214319542215dcb1a4`
-- cited in: node.lean, receipt dag/research/campaign_fq-prim-to-qm-selection-open_lean_replay.json (CampaignFqPrimToQmSelection), record TFQ-1010
+- cited in: node.lean, receipt dag/research/campaign_fq-prim-to-qm-selection-open_lean_replay.json (CampaignFqPrimToQmSelection), receipt dag/research/pr_365_review_replay.json (CampaignFqPrimToQmSelection), record TFQ-1010
 - replay: `verified`
   - receipt [dag/research/campaign_fq-prim-to-qm-selection-open_lean_replay.json](../../../dag/research/campaign_fq-prim-to-qm-selection-open_lean_replay.json) (module `CampaignFqPrimToQmSelection`): recorded sha256 `df3bc709da599a889424f62769a2524e54753a69bfa0e5214319542215dcb1a4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_365_review_replay.json](../../../dag/research/pr_365_review_replay.json) (module `CampaignFqPrimToQmSelection`): recorded sha256 `df3bc709da599a889424f62769a2524e54753a69bfa0e5214319542215dcb1a4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignFqPrimToQmSelection`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
