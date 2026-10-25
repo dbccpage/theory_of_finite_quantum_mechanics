@@ -8,11 +8,17 @@ target:
     of index 0, and says raw admission does not enforce requirement-preserving acceptance. The reproducing
     test was not opened. Genesis paper.md section 8 is the heading for closure. The finite statement still
     required is that this two-data history remains a visible counterexample beside the no-return count,
-    so a later admission API cannot treat every admitted rule as separation-preserving.'
+    so a later admission API cannot treat every admitted rule as separation-preserving. Narrowed in Lean
+    4 to two data and one unary form. Before the uniform rule, the instance on datum 0 makes the profile
+    bits true and false, and the class count is 2. After the uniform rule on form 0, both profile bits
+    are true and the class count is 1. The profile bit of datum 0 stays true. The profile bit of datum
+    1 changes. The no-return count is not restated. This one history is not a theorem about every later
+    admission API. The atlas replay stays unchecked. AuthorityEffect is None.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Admitting a uniform rule on two data can erase a prior separation, so raw admission
-    is not requirement-preserving acceptance.
+  source_bottleneck: 'The atlas replay of WDP-P000-017 stays unchecked. This file shows one history: two
+    data, one instance on datum 0, then the uniform rule on form 0, with the class count falling from
+    2 to 1. The no-return count is not restated, and a later admission API beyond this history stays open.'
   source_refs:
   - dag/derivations/02_genesis/tfq_0385_rule_can_erase_separation.md
   paper_refs:
@@ -23,7 +29,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/02_genesis/tfq_0385_rule_can_erase_separation.md
-    sha256: de000328087460cbe4e8d1493907c98c84687ebd4cac5c477afff17d8d13d21f
+    sha256: c047de36dccc5bf0019b0c44d6d878b6d70d0ed50d3cc771e8a4e7eec90e6450
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -31,9 +37,133 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_tfq_0385_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: abbrev
+  name: Datum
+  line: 4
+  signature_excerpt: abbrev Datum
+  source: lean4/CampaignTfq0385RuleErasesSeparation.lean
+  repository: this_repository
+  source_sha256: bb89512422e6d34ddfd19b01653c76325c46211bd98ced9b1898d59b6800eb12
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: profileBit
+  line: 13
+  signature_excerpt: 'def profileBit (rule0 inst0 : Bool) (d : Datum) : Bool'
+  source: lean4/CampaignTfq0385RuleErasesSeparation.lean
+  repository: this_repository
+  source_sha256: bb89512422e6d34ddfd19b01653c76325c46211bd98ced9b1898d59b6800eb12
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: classCount
+  line: 16
+  signature_excerpt: 'def classCount (rule0 inst0 : Bool) : Nat'
+  source: lean4/CampaignTfq0385RuleErasesSeparation.lean
+  repository: this_repository
+  source_sha256: bb89512422e6d34ddfd19b01653c76325c46211bd98ced9b1898d59b6800eb12
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: derivable
+  line: 9
+  signature_excerpt: 'def derivable (rule0 inst0 : Bool) (d : Datum) : Bool'
+  source: lean4/CampaignTfq0385RuleErasesSeparation.lean
+  repository: this_repository
+  source_sha256: bb89512422e6d34ddfd19b01653c76325c46211bd98ced9b1898d59b6800eb12
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: two_data
+  line: 19
+  signature_excerpt: 'theorem two_data : ∀ d : Datum, d = 0 ∨ d = 1'
+  source: lean4/CampaignTfq0385RuleErasesSeparation.lean
+  repository: this_repository
+  source_sha256: bb89512422e6d34ddfd19b01653c76325c46211bd98ced9b1898d59b6800eb12
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: marked_separates
+  line: 23
+  signature_excerpt: |-
+    theorem marked_separates :
+        profileBit false true 0 = true
+          ∧ profileBit false true 1 = false
+          ∧ profileBit false true 0 ≠ profileBit false true 1
+          ∧ classCount false true = 2
+  source: lean4/CampaignTfq0385RuleErasesSeparation.lean
+  repository: this_repository
+  source_sha256: bb89512422e6d34ddfd19b01653c76325c46211bd98ced9b1898d59b6800eb12
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: rule_collapses
+  line: 31
+  signature_excerpt: |-
+    theorem rule_collapses :
+        profileBit true true 0 = true
+          ∧ profileBit true true 1 = true
+          ∧ profileBit true true 0 = profileBit true true 1
+          ∧ classCount true true = 1
+  source: lean4/CampaignTfq0385RuleErasesSeparation.lean
+  repository: this_repository
+  source_sha256: bb89512422e6d34ddfd19b01653c76325c46211bd98ced9b1898d59b6800eb12
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: uniform_rule_erases_separation
+  line: 39
+  signature_excerpt: |-
+    theorem uniform_rule_erases_separation :
+        classCount false true = 2
+          ∧ classCount true true = 1
+          ∧ classCount false true ≠ classCount true true
+          ∧ profileBit false true 0 = profileBit true true 0
+          ∧ profileBit false true 1 ≠ profileBit true true 1
+  source: lean4/CampaignTfq0385RuleErasesSeparation.lean
+  repository: this_repository
+  source_sha256: bb89512422e6d34ddfd19b01653c76325c46211bd98ced9b1898d59b6800eb12
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignTfq0385RuleErasesSeparation.lean::two_data
+  availability: local
+  symbol: two_data
+  path: lean4/CampaignTfq0385RuleErasesSeparation.lean
+  repository: this_repository
+  sha256: bb89512422e6d34ddfd19b01653c76325c46211bd98ced9b1898d59b6800eb12
+  declaration_status: declaration_found_not_proof_checked
+  line: 19
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0385RuleErasesSeparation.lean::marked_separates
+  availability: local
+  symbol: marked_separates
+  path: lean4/CampaignTfq0385RuleErasesSeparation.lean
+  repository: this_repository
+  sha256: bb89512422e6d34ddfd19b01653c76325c46211bd98ced9b1898d59b6800eb12
+  declaration_status: declaration_found_not_proof_checked
+  line: 23
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0385RuleErasesSeparation.lean::rule_collapses
+  availability: local
+  symbol: rule_collapses
+  path: lean4/CampaignTfq0385RuleErasesSeparation.lean
+  repository: this_repository
+  sha256: bb89512422e6d34ddfd19b01653c76325c46211bd98ced9b1898d59b6800eb12
+  declaration_status: declaration_found_not_proof_checked
+  line: 31
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0385RuleErasesSeparation.lean::uniform_rule_erases_separation
+  availability: local
+  symbol: uniform_rule_erases_separation
+  path: lean4/CampaignTfq0385RuleErasesSeparation.lean
+  repository: this_repository
+  sha256: bb89512422e6d34ddfd19b01653c76325c46211bd98ced9b1898d59b6800eb12
+  declaration_status: declaration_found_not_proof_checked
+  line: 39
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -71,8 +201,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
