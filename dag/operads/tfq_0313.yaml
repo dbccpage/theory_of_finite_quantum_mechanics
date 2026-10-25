@@ -9,12 +9,25 @@ target:
     a finite module are not yet a written operator-algebra shadow in that slot. qm_004 already recorded
     that exact repairs inside one quotient class do not generate a noncommuting algebra, and qm_122 recovers
     Gaussian-integer matrices only as the scoped stand-in. Those neighboring records do not fill this
-    stub. AuthorityEffect is None.'
+    stub. AuthorityEffect is None. Narrowed in Lean 4 and an independent Python check to one 16-element
+    module (Z/4Z)^2. The endomorphisms A = [[0, 1], [0, 0]] and B = [[0, 0], [1, 0]] are additive and
+    (Z/4Z)-homogeneous. Their products are AB = [[1, 0], [0, 0]] and BA = [[0, 0], [0, 1]], and AB - BA
+    = [[1, 0], [0, 3]], which is not the zero matrix. The diagonal pair diag(1, 2) and diag(3, 1) commute,
+    with product diag(3, 2). A is not a scalar matrix. The coefficient ring satisfies 1+1+1+1 = 0 with
+    1 != 0. The Lean file does not identify that ring with the integers or the Gaussian integers. The
+    QM_202 stub, continuum operator algebra, and any derivation from the qm_122 Gaussian-integer stand-in
+    stay open. AuthorityEffect is None.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Keep the QM_202 operator-algebra slot open while the ledger row is only a stub.
+  source_bottleneck: Keep the QM_202 operator-algebra slot open while the ledger row is only a stub. The
+    checked fragment is only the 16-element pair of endomorphisms of (Z/4Z)^2 named in the statement;
+    it does not fill that slot.
   source_refs:
   - dag/derivations/09_finite_hilbert/tfq_0313_operator_algebra_shadow_slot_is_still_a_stub.md
+  - dag/derivations/independent/tfq-0313.md
+  - checks/independent/tfq-0313.py
+  - lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  - dag/research/campaign_tfq-0313_lean_replay.json
   paper_refs:
   - dag/derivations/09_finite_hilbert/tfq_0313_operator_algebra_shadow_slot_is_still_a_stub.md
   source_claim_label: OPEN
@@ -23,7 +36,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/09_finite_hilbert/tfq_0313_operator_algebra_shadow_slot_is_still_a_stub.md
-    sha256: 113467ffcae5e25de2b9d89ac41bb8238139f2eb193e0b46e5a4999a1ee75add
+    sha256: 24b581125dc9cd329c99b2bcfdaaea3b587d0eee4945fbda3093c6f9ac4ce0d9
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -31,16 +44,558 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/finite_hilbert_tfq_0313_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings:
-- original_ref: lean4/FiniteQM.lean
-  availability: local
-  symbol: null
-  path: lean4/FiniteQM.lean
+operation_candidates:
+- kind: structure
+  name: V
+  line: 26
+  signature_excerpt: structure V
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
   repository: this_repository
-  sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
-  declaration_status: file_only_no_symbol
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: apply
+  line: 37
+  signature_excerpt: 'def apply (m : M) (v : V) : V'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: A
+  line: 52
+  signature_excerpt: 'def A : M'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: M
+  line: 18
+  signature_excerpt: structure M
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: B
+  line: 54
+  signature_excerpt: 'def B : M'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: vadd
+  line: 31
+  signature_excerpt: 'def vadd (v w : V) : V'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: vsmul
+  line: 33
+  signature_excerpt: 'def vsmul (s : Fin 4) (v : V) : V'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mmul
+  line: 40
+  signature_excerpt: 'def mmul (p q : M) : M'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: msub
+  line: 46
+  signature_excerpt: 'def msub (p q : M) : M'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: e0
+  line: 62
+  signature_excerpt: 'def e0 : V'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: vsub
+  line: 35
+  signature_excerpt: 'def vsub (v w : V) : V'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: D
+  line: 56
+  signature_excerpt: 'def D : M'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: E
+  line: 58
+  signature_excerpt: 'def E : M'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: scalar
+  line: 60
+  signature_excerpt: 'def scalar (s : Fin 4) : M'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: allV
+  line: 145
+  signature_excerpt: 'def allV : List V'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: A_on
+  line: 64
+  signature_excerpt: 'theorem A_on (v : V) : apply A v = ⟨v.y, 0⟩'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: B_on
+  line: 69
+  signature_excerpt: 'theorem B_on (v : V) : apply B v = ⟨0, v.x⟩'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: A_additive
+  line: 74
+  signature_excerpt: 'theorem A_additive (v w : V) : apply A (vadd v w) = vadd (apply A v) (apply A w)'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: B_additive
+  line: 81
+  signature_excerpt: 'theorem B_additive (v w : V) : apply B (vadd v w) = vadd (apply B v) (apply B w)'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: A_homogeneous
+  line: 88
+  signature_excerpt: 'theorem A_homogeneous (s : Fin 4) (v : V) : apply A (vsmul s v) = vsmul s (apply
+    A v)'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: B_homogeneous
+  line: 93
+  signature_excerpt: 'theorem B_homogeneous (s : Fin 4) (v : V) : apply B (vsmul s v) = vsmul s (apply
+    B v)'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: ab_matrix
+  line: 98
+  signature_excerpt: 'theorem ab_matrix : mmul A B = ⟨1, 0, 0, 0⟩'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ba_matrix
+  line: 101
+  signature_excerpt: 'theorem ba_matrix : mmul B A = ⟨0, 0, 0, 1⟩'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: commutator_matrix
+  line: 104
+  signature_excerpt: 'theorem commutator_matrix : msub (mmul A B) (mmul B A) = ⟨1, 0, 0, 3⟩'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ab_ne_ba
+  line: 107
+  signature_excerpt: 'theorem ab_ne_ba : mmul A B ≠ mmul B A'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ab_matches_composition
+  line: 110
+  signature_excerpt: 'theorem ab_matches_composition (v : V) : apply (mmul A B) v = apply A (apply B v)'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ba_matches_composition
+  line: 115
+  signature_excerpt: 'theorem ba_matches_composition (v : V) : apply (mmul B A) v = apply B (apply A v)'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: actions_differ_on_e0
+  line: 120
+  signature_excerpt: 'theorem actions_differ_on_e0 : apply A (apply B e0) ≠ apply B (apply A e0)'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: left_action_e0
+  line: 123
+  signature_excerpt: 'theorem left_action_e0 : apply A (apply B e0) = ⟨1, 0⟩'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: right_action_e0
+  line: 126
+  signature_excerpt: 'theorem right_action_e0 : apply B (apply A e0) = ⟨0, 0⟩'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: commutator_on_e0
+  line: 129
+  signature_excerpt: |-
+    theorem commutator_on_e0 :
+        vsub (apply A (apply B e0)) (apply B (apply A e0)) = ⟨1, 0⟩
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: diagonals_commute
+  line: 133
+  signature_excerpt: 'theorem diagonals_commute : mmul D E = mmul E D'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: diagonal_product
+  line: 136
+  signature_excerpt: 'theorem diagonal_product : mmul D E = ⟨3, 0, 0, 2⟩'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: A_not_scalar
+  line: 139
+  signature_excerpt: 'theorem A_not_scalar (s : Fin 4) : A ≠ scalar s'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: coeff_char_four
+  line: 142
+  signature_excerpt: 'theorem coeff_char_four : (1 : Fin 4) + 1 + 1 + 1 = 0 ∧ (1 : Fin 4) ≠ 0'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: module_has_sixteen_vectors
+  line: 151
+  signature_excerpt: 'theorem module_has_sixteen_vectors : allV.length = 16 ∧ allV.Nodup'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: module_lists_every_vector
+  line: 156
+  signature_excerpt: 'theorem module_lists_every_vector (v : V) : v ∈ allV'
+  source: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  source_sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.A_on
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.A_on
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 64
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.B_on
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.B_on
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 69
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.A_additive
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.A_additive
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 74
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.B_additive
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.B_additive
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 81
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.A_homogeneous
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.A_homogeneous
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 88
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.B_homogeneous
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.B_homogeneous
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 93
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.ab_matrix
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.ab_matrix
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 98
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.ba_matrix
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.ba_matrix
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 101
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.commutator_matrix
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.commutator_matrix
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 104
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.ab_ne_ba
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.ab_ne_ba
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 107
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.ab_matches_composition
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.ab_matches_composition
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 110
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.ba_matches_composition
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.ba_matches_composition
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 115
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.actions_differ_on_e0
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.actions_differ_on_e0
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 120
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.left_action_e0
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.left_action_e0
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 123
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.right_action_e0
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.right_action_e0
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 126
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.commutator_on_e0
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.commutator_on_e0
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 129
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.diagonals_commute
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.diagonals_commute
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 133
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.diagonal_product
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.diagonal_product
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 136
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.A_not_scalar
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.A_not_scalar
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 139
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.coeff_char_four
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.coeff_char_four
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 142
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.module_has_sixteen_vectors
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.module_has_sixteen_vectors
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 151
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.module_lists_every_vector
+  availability: local
+  symbol: CampaignTfq0313OperatorAlgebraShadow.module_lists_every_vector
+  path: lean4/CampaignTfq0313OperatorAlgebraShadow.lean
+  repository: this_repository
+  sha256: 4da28c4185a649ae9dd255af8bd0f6f3399db048a35f3b103ecec1cfec4b20a9
+  declaration_status: declaration_found_not_proof_checked
+  line: 156
   role: source_lead_only
 presentation:
   colours: []
@@ -79,8 +634,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

@@ -1219,3 +1219,7 @@ lean_lib CampaignPgwContextFidelity where
 -- Campaign: TFQ-0003. Not a default target.
 lean_lib CampaignTfq0003FiniteObstruction where
   roots := #[`CampaignTfq0003FiniteObstruction]
+
+-- Campaign: TFQ-0313. Not a default target.
+lean_lib CampaignTfq0313OperatorAlgebraShadow where
+  roots := #[`CampaignTfq0313OperatorAlgebraShadow]
