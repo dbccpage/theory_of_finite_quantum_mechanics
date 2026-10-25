@@ -1331,3 +1331,7 @@ lean_lib CampaignAuthfCarrierAdmissionGate where
 -- Campaign: FQ-GAP-STONE-CONTINUOUS-TIME. Not a default target.
 lean_lib CampaignFqGapStoneContinuousTime where
   roots := #[`CampaignFqGapStoneContinuousTime]
+
+-- Campaign: CT-INFORMATION-MEDIA-INTEROPERABILITY. Not a default target.
+lean_lib CampaignInformationProductBoundary where
+  roots := #[`CampaignInformationProductBoundary]

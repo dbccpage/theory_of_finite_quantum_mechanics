@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "1e209acf5236fc42c55809ab518e2f32b74103ed7bab988a290b33435a7dd14b"
+  "sha256_lf": "5565bb527d8250e942f1939f20190089d965aafc8dc197a60426d2adc4137631"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -46,6 +46,11 @@
    "sha256": "eb5a18aa575be09bca67c2f39ef055f8193e27449d520ba9c7ed8d811c1c377d",
    "sha256_basis": "bytes",
    "size": 6894
+  },
+  "checks/independent/ct-information-media-interoperability.py": {
+   "sha256": "15b0f6e62a64db4abb02d6f3af2a1b22957eb3b04028ec61067806316e20d17f",
+   "sha256_basis": "bytes",
+   "size": 920
   },
   "checks/independent/dfm-bphz-continuum-fence.py": {
    "sha256": "0cad33ad25b1937de952b38c978ac1ef1058f91a938dc39efb5ad18f5be27752",
@@ -1223,9 +1228,9 @@
    "size": 9170
   },
   "dag/derivation_dag.json": {
-   "sha256": "1e209acf5236fc42c55809ab518e2f32b74103ed7bab988a290b33435a7dd14b",
+   "sha256": "5565bb527d8250e942f1939f20190089d965aafc8dc197a60426d2adc4137631",
    "sha256_basis": "lf-normalised",
-   "size": 4802094
+   "size": 4804535
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -5628,9 +5633,9 @@
    "size": 2510
   },
   "dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md": {
-   "sha256": "df0aabf17d37d88bba24f6754060aa1c7c220f393449927c48b5e2ed6a84bd98",
+   "sha256": "488f911d5f76f23937f25fee2f0acff9cee40b9ef9abf16041af5d101e3742d0",
    "sha256_basis": "lf-normalised",
-   "size": 4034
+   "size": 5747
   },
   "dag/derivations/30_constructor_theory/tfq_2007_ct_superinformation_medium_definition.md": {
    "sha256": "4b9f17157c36092978d75e1a2bba99312ad6b53b9abd565c3a6f99962e8f494f",
@@ -6146,6 +6151,11 @@
    "sha256": "8a4b43ee3e838b80c12d847ec935ab92d9eff0a73c77d0696735805b0b4d4dc3",
    "sha256_basis": "lf-normalised",
    "size": 5999
+  },
+  "dag/derivations/independent/ct-information-media-interoperability.md": {
+   "sha256": "3f7ca0e3239e5f9f03ee517bf3e1f6bab50db4c0a7263f91b0cec3fc73c6187a",
+   "sha256_basis": "lf-normalised",
+   "size": 1837
   },
   "dag/derivations/independent/ct-local-mediator-entanglement-import.md": {
    "sha256": "3d4655398ffaa1a4c41c4255b2fb0a28a166412327d4a63d943cefd9ff541337",
@@ -6716,6 +6726,11 @@
    "sha256": "91af759fbb224faa31e908367286486568713868f77e1aa81791d8e6af4cddc0",
    "sha256_basis": "lf-normalised",
    "size": 5502
+  },
+  "dag/research/campaign_ct-information-media-interoperability_lean_replay.json": {
+   "sha256": "2485a455edd9d21c23571b4e5d7b615bd4b0222d253292e79de2530fc86138cf",
+   "sha256_basis": "lf-normalised",
+   "size": 7282
   },
   "dag/research/campaign_ct-local-mediator-entanglement-import_lean_replay.json": {
    "sha256": "27872dcd9c596c2700fe63246298bbfeaf44eb0dc1d85fba28dc0323b1b5f3c7",
@@ -7863,9 +7878,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "sha256": "bc88cd7a72e2aca48755c89753eecaeedc3f8f468f2c884f690fa07a33447595",
    "sha256_basis": "lf-normalised",
-   "size": 217808
+   "size": 219733
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -8391,6 +8406,11 @@
    "sha256": "be8ca950fdb9a59cdef48afeecf2caa751ce2959f8a09d0d757bc63098093d74",
    "sha256_basis": "bytes",
    "size": 1273
+  },
+  "lean4/CampaignInformationProductBoundary.lean": {
+   "sha256": "1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d",
+   "sha256_basis": "bytes",
+   "size": 1544
   },
   "lean4/CampaignL1ResidualSectorWeights.lean": {
    "sha256": "f8b91f84cece66dcdc6e9423159d31ec17230dbf931a7117e2cb31c073b5275e",
@@ -282500,17 +282520,275 @@
    "absent_notes": [],
    "dependents": 11,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 0,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 4,
+    "lean_receipt_backed": 6,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 6
    },
    "flags": [],
-   "grade": "E0",
+   "grade": "E3",
    "id": "CT-INFORMATION-MEDIA-INTEROPERABILITY",
    "items": [
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "receipt dag/research/campaign_ct-information-media-interoperability_lean_replay.json (CampaignInformationProductBoundary)"
+     ],
+     "command": "cd lean4 && lake build CampaignInformationProductBoundary",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignInformationProductBoundary.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_ct-information-media-interoperability_lean_replay.json#0:CampaignInformationProductBoundary",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignInformationProductBoundary.Clones",
+     "cited_in": [
+      "receipt dag/research/campaign_ct-information-media-interoperability_lean_replay.json (CampaignInformationProductBoundary)"
+     ],
+     "command": "cd lean4 && lake build CampaignInformationProductBoundary",
+     "command_note": "then, in a scratch file that imports CampaignInformationProductBoundary: #print axioms CampaignInformationProductBoundary.Clones",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignInformationProductBoundary.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ct-information-media-interoperability_lean_replay.json#0:CampaignInformationProductBoundary",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignInformationProductBoundary.Clones",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignInformationProductBoundary.clones_product",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ct-information-media-interoperability_lean_replay.json (CampaignInformationProductBoundary)",
+      "record TFQ-2006"
+     ],
+     "command": "cd lean4 && lake build CampaignInformationProductBoundary",
+     "command_note": "then, in a scratch file that imports CampaignInformationProductBoundary: #print axioms CampaignInformationProductBoundary.clones_product",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignInformationProductBoundary.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ct-information-media-interoperability_lean_replay.json#0:CampaignInformationProductBoundary",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignInformationProductBoundary.clones_product",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignInformationProductBoundary.controlledFlip",
+     "cited_in": [
+      "receipt dag/research/campaign_ct-information-media-interoperability_lean_replay.json (CampaignInformationProductBoundary)"
+     ],
+     "command": "cd lean4 && lake build CampaignInformationProductBoundary",
+     "command_note": "then, in a scratch file that imports CampaignInformationProductBoundary: #print axioms CampaignInformationProductBoundary.controlledFlip",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignInformationProductBoundary.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ct-information-media-interoperability_lean_replay.json#0:CampaignInformationProductBoundary",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignInformationProductBoundary.controlledFlip",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignInformationProductBoundary.controlledFlip_involution",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ct-information-media-interoperability_lean_replay.json (CampaignInformationProductBoundary)",
+      "record TFQ-2006"
+     ],
+     "command": "cd lean4 && lake build CampaignInformationProductBoundary",
+     "command_note": "then, in a scratch file that imports CampaignInformationProductBoundary: #print axioms CampaignInformationProductBoundary.controlledFlip_involution",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignInformationProductBoundary.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ct-information-media-interoperability_lean_replay.json#0:CampaignInformationProductBoundary",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignInformationProductBoundary.controlledFlip_involution",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignInformationProductBoundary.controlledFlip_not_product",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ct-information-media-interoperability_lean_replay.json (CampaignInformationProductBoundary)",
+      "record TFQ-2006"
+     ],
+     "command": "cd lean4 && lake build CampaignInformationProductBoundary",
+     "command_note": "then, in a scratch file that imports CampaignInformationProductBoundary: #print axioms CampaignInformationProductBoundary.controlledFlip_not_product",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignInformationProductBoundary.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ct-information-media-interoperability_lean_replay.json#0:CampaignInformationProductBoundary",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignInformationProductBoundary.controlledFlip_not_product",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignInformationProductBoundary.productCloner",
+     "cited_in": [
+      "receipt dag/research/campaign_ct-information-media-interoperability_lean_replay.json (CampaignInformationProductBoundary)"
+     ],
+     "command": "cd lean4 && lake build CampaignInformationProductBoundary",
+     "command_note": "then, in a scratch file that imports CampaignInformationProductBoundary: #print axioms CampaignInformationProductBoundary.productCloner",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignInformationProductBoundary.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ct-information-media-interoperability_lean_replay.json#0:CampaignInformationProductBoundary",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignInformationProductBoundary.productCloner",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "record TFQ-2006"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/ct-information-media-interoperability.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
     {
      "canonical_symbol": null,
      "cited_in": [
@@ -282544,6 +282822,54 @@
      "command": null,
      "command_note": null,
      "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/derivations/independent/ct-information-media-interoperability.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/research/campaign_ct-information-media-interoperability_lean_replay.json",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
      "counts": false,
      "decl_ambiguous": false,
      "decl_axioms": null,
@@ -282561,7 +282887,7 @@
      "where": null
     }
    ],
-   "next_step": "cite at least one in-repo file that bears on the statement",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-2006"
    ],
@@ -306071,6 +306397,30 @@
    "axioms_itemised": true,
    "axioms_standard": true,
    "axioms_union": [
+    "propext"
+   ],
+   "built_successfully": true,
+   "checked_at": "2026-10-25T19:08:24.128600+00:00",
+   "dag_node": "CT-INFORMATION-MEDIA-INTEROPERABILITY",
+   "decl_count": 6,
+   "exit_code": 0,
+   "id": "dag/research/campaign_ct-information-media-interoperability_lean_replay.json#0:CampaignInformationProductBoundary",
+   "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": null,
+   "module": "CampaignInformationProductBoundary",
+   "path": "lean4/CampaignInformationProductBoundary.lean",
+   "receipt_file": "dag/research/campaign_ct-information-media-interoperability_lean_replay.json",
+   "receipt_file_sha256": "2485a455edd9d21c23571b4e5d7b615bd4b0222d253292e79de2530fc86138cf",
+   "recorded_sha256": "1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
     "Classical.choice",
     "Quot.sound",
     "propext"
@@ -319349,7 +319699,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "bc88cd7a72e2aca48755c89753eecaeedc3f8f468f2c884f690fa07a33447595",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319375,7 +319725,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "bc88cd7a72e2aca48755c89753eecaeedc3f8f468f2c884f690fa07a33447595",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319401,7 +319751,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "bc88cd7a72e2aca48755c89753eecaeedc3f8f468f2c884f690fa07a33447595",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319427,7 +319777,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "bc88cd7a72e2aca48755c89753eecaeedc3f8f468f2c884f690fa07a33447595",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319453,7 +319803,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "bc88cd7a72e2aca48755c89753eecaeedc3f8f468f2c884f690fa07a33447595",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319479,7 +319829,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "bc88cd7a72e2aca48755c89753eecaeedc3f8f468f2c884f690fa07a33447595",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319505,7 +319855,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "bc88cd7a72e2aca48755c89753eecaeedc3f8f468f2c884f690fa07a33447595",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319531,7 +319881,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "bc88cd7a72e2aca48755c89753eecaeedc3f8f468f2c884f690fa07a33447595",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319557,7 +319907,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "bc88cd7a72e2aca48755c89753eecaeedc3f8f468f2c884f690fa07a33447595",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319583,7 +319933,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "bc88cd7a72e2aca48755c89753eecaeedc3f8f468f2c884f690fa07a33447595",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319609,7 +319959,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "bc88cd7a72e2aca48755c89753eecaeedc3f8f468f2c884f690fa07a33447595",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319635,7 +319985,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "bc88cd7a72e2aca48755c89753eecaeedc3f8f468f2c884f690fa07a33447595",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319661,7 +320011,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "bc88cd7a72e2aca48755c89753eecaeedc3f8f468f2c884f690fa07a33447595",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319687,7 +320037,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "bc88cd7a72e2aca48755c89753eecaeedc3f8f468f2c884f690fa07a33447595",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319713,7 +320063,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "bc88cd7a72e2aca48755c89753eecaeedc3f8f468f2c884f690fa07a33447595",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -320314,10 +320664,10 @@
  ],
  "summary": {
   "by_grade": {
-   "E0": 154,
+   "E0": 153,
    "E1": 212,
    "E2": 38,
-   "E3": 521,
+   "E3": 522,
    "E4": 0
   },
   "by_status": {
@@ -320337,16 +320687,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 37,
   "e3_nodes_with_test_but_no_review": 38,
   "lean_declarations_in_repo": {
-   "distinct": 2041,
+   "distinct": 2044,
    "no_receipt": 39,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 1979,
-   "replay_verified_and_declaration_itemised": 1912,
+   "replay_verified": 1982,
+   "replay_verified_and_declaration_itemised": 1915,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 2368
+   "present": 2371
   },
   "mismatch_nodes": 190,
   "mismatches_by_kind": {
@@ -320367,7 +320717,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 585,
+  "receipts_indexed": 586,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
@@ -320398,10 +320748,10 @@
     "E4": 0
    },
    "CONSTRUCTOR_THEORY": {
-    "E0": 10,
+    "E0": 9,
     "E1": 1,
     "E2": 0,
-    "E3": 4,
+    "E3": 5,
     "E4": 0
    },
    "CONTINUUM_INTERFACE": {
@@ -320638,10 +320988,10 @@
     "E4": 0
    },
    "IMPORTED_ASSUMPTION": {
-    "E0": 5,
+    "E0": 4,
     "E1": 24,
     "E2": 1,
-    "E3": 40,
+    "E3": 41,
     "E4": 0
    },
    "OPEN": {

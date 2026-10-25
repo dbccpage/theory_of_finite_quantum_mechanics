@@ -11,11 +11,11 @@
 
 ## Statement
 
-Imported principles, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563, Sections 3-6 pp. 9-12): a computation variable is a set S of at least two possible attributes for which all permutation tasks are possible with side-effects (Section 3 p. 9); a variable S is clonable if the cloning task R_S(x0) = union_{x in S} {(x, x0) -> (x, x)} is possible with side-effects for some preparable blank attribute x0 (Section 4 eq. (3) p. 10); an information variable is a clonable computation variable, and an information medium is a substrate with at least one information variable (Section 4 p. 10). Distinguishability is defined afterward in Section 5 (eq. (4) p. 11) by mapping into an information variable, avoiding circularity, and every information variable is then shown to be distinguishable. Principle III (interoperability, Section 6 p. 12) states that the composite S1 + S2 of two substrates with information variables S1 and S2 is an information medium with information variable S1 x S2.
+For arbitrary types, cloners on admitted blank slices compose to a cloner on their Cartesian product. Product-local reversible maps alone do not implement all permutations of two bits: controlled flip is an involution but cannot be written (f(a),g(b)). Product cloning therefore does not supply the full permutation-task clause of interoperability.
 
 ## Governing obligation
 
-The interoperability principle (Principle III, Section 6 p. 12) constrains composite information variables to include S1 x S2 in the source's framework. It is not shown to select the Hilbert tensor product, local tomography or any positive cone, so it does not discharge FQ-GAP-TENSOR-UNIQUENESS.
+The declared functional task model does not prove the physical possibility of cloning or joint operations with side-effects. The imported interoperability principle and any Hilbert tensor-product/local-tomography conclusion remain separate obligations. Original target retained as an obligation: Imported principles, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563, Sections 3-6 pp. 9-12): a computation variable is a set S of at least two possible attributes for which all permutation tasks are possible with side-effects (Section 3 p. 9); a variable S is clonable if the cloning task R_S(x0) = union_{x in S} {(x, x0) -> (x, x)} is possible with side-effects for some preparable blank attribute x0 (Section 4 eq. (3) p. 10); an information variable is a clonable computation variable, and an information medium is a substrate with at least one information variable (Section 4 p. 10). Distinguishability is defined afterward in Section 5 (eq. (4) p. 11) by mapping into an information variable, avoiding circularity, and every information variable is then shown to be distinguishable. Principle III (interoperability, Section 6 p. 12) states that the composite S1 + S2 of two substrates with information variables S1 and S2 is an information medium with information variable S1 x S2. Prior boundary: The interoperability principle (Principle III, Section 6 p. 12) constrains composite information variables to include S1 x S2 in the source's framework. It is not shown to select the Hilbert tensor product, local tomography or any positive cone, so it does not discharge FQ-GAP-TENSOR-UNIQUENESS.
 
 ## Source status
 
@@ -32,22 +32,32 @@ Declared imported structure:
 ## What is open
 
 - Definitions audited against arXiv:1405.5563 Sections 3-6 pp. 9-12; which composition rule it yields for quantum state spaces remains outside the source.
+- The declared functional task model does not prove the physical possibility of cloning or joint operations with side-effects. The imported interoperability principle and any Hilbert tensor-product/local-tomography conclusion remain separate obligations.
 
 ## Connections to this repository
 
 - Route `FRO-R-CT-INFORMATION-MEDIA-INTEROPERABILITY` (`CONDITIONAL_ON_IMPORT`) from `CT-DEUTSCH-MARLETTO-2015-SOURCE`: The postulates are the import; the link to the source record is reading order.
 - Route `FRO-R-BACK-CT-INTEROP-TO-TENSOR` (`GAP_NO_DERIVATION`) from this node into `FQ-GAP-TENSOR-UNIQUENESS`: No source derives the quantum tensor composition, local tomography or the PSD cone from the interoperability principle. Recorded as a gap; the constructor-theoretic route is not compared with the operational route of TENSOR-TOMOGRAPHIC-COORDINATES.
 - The trunk node FQ-GAP-TENSOR-UNIQUENESS asks which operational assumptions single out quantum composition. No source read for this change derives that from the interoperability principle (gap route recorded).
+- The scoped functional task model has a current replay in dag/research/campaign_ct-information-media-interoperability_lean_replay.json; the imported physical principle remains separate.
 
 See also: `FQ-GAP-TENSOR-UNIQUENESS`, `GP-IMPORT-TENSOR-PRODUCT`.
 
 ## Non-claims
 
 - Not a derivation of tensor composition.
+- No physical task-possibility result is inferred from the functional model.
 
 ## Sources
 
 - `external:arXiv:1405.5563`: D. Deutsch and C. Marletto, "Constructor Theory of Information", arXiv:1405.5563 (2014); Proc. R. Soc. A (2015), doi:10.1098/rspa.2014.0540.
+- Repository: `dag/derivations/independent/ct-information-media-interoperability.md`
+- Repository: `dag/research/campaign_ct-information-media-interoperability_lean_replay.json`
+
+## Lean 4 declarations read
+- `lean4/CampaignInformationProductBoundary.lean::CampaignInformationProductBoundary.clones_product`
+- `lean4/CampaignInformationProductBoundary.lean::CampaignInformationProductBoundary.controlledFlip_involution`
+- `lean4/CampaignInformationProductBoundary.lean::CampaignInformationProductBoundary.controlledFlip_not_product`
 
 ## Downstream derivations
 

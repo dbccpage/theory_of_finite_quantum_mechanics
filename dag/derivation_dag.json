@@ -26696,17 +26696,23 @@
       "stage": "CONSTRUCTOR_THEORY",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "Audited and corrected against the full text of arXiv:1405.5563 (Sections 3-6, eqs. (3)-(4), Principle III, pp. 9-12) on 2026-10-22; taken as an imported assumption of this branch.",
-      "statement": "Imported principles, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563, Sections 3-6 pp. 9-12): a computation variable is a set S of at least two possible attributes for which all permutation tasks are possible with side-effects (Section 3 p. 9); a variable S is clonable if the cloning task R_S(x0) = union_{x in S} {(x, x0) -> (x, x)} is possible with side-effects for some preparable blank attribute x0 (Section 4 eq. (3) p. 10); an information variable is a clonable computation variable, and an information medium is a substrate with at least one information variable (Section 4 p. 10). Distinguishability is defined afterward in Section 5 (eq. (4) p. 11) by mapping into an information variable, avoiding circularity, and every information variable is then shown to be distinguishable. Principle III (interoperability, Section 6 p. 12) states that the composite S1 + S2 of two substrates with information variables S1 and S2 is an information medium with information variable S1 x S2.",
+      "statement": "For arbitrary types, cloners on admitted blank slices compose to a cloner on their Cartesian product. Product-local reversible maps alone do not implement all permutations of two bits: controlled flip is an involution but cannot be written (f(a),g(b)). Product cloning therefore does not supply the full permutation-task clause of interoperability.",
       "source": [
         "dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md",
-        "external:arXiv:1405.5563"
+        "external:arXiv:1405.5563",
+        "dag/derivations/independent/ct-information-media-interoperability.md",
+        "dag/research/campaign_ct-information-media-interoperability_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignInformationProductBoundary.lean::CampaignInformationProductBoundary.clones_product",
+        "lean4/CampaignInformationProductBoundary.lean::CampaignInformationProductBoundary.controlledFlip_involution",
+        "lean4/CampaignInformationProductBoundary.lean::CampaignInformationProductBoundary.controlledFlip_not_product"
+      ],
       "rust": [],
       "imported_structure": [
         "information medium and interoperability principle (assumption)"
       ],
-      "bottleneck": "The interoperability principle (Principle III, Section 6 p. 12) constrains composite information variables to include S1 x S2 in the source's framework. It is not shown to select the Hilbert tensor product, local tomography or any positive cone, so it does not discharge FQ-GAP-TENSOR-UNIQUENESS.",
+      "bottleneck": "The declared functional task model does not prove the physical possibility of cloning or joint operations with side-effects. The imported interoperability principle and any Hilbert tensor-product/local-tomography conclusion remain separate obligations. Original target retained as an obligation: Imported principles, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563, Sections 3-6 pp. 9-12): a computation variable is a set S of at least two possible attributes for which all permutation tasks are possible with side-effects (Section 3 p. 9); a variable S is clonable if the cloning task R_S(x0) = union_{x in S} {(x, x0) -> (x, x)} is possible with side-effects for some preparable blank attribute x0 (Section 4 eq. (3) p. 10); an information variable is a clonable computation variable, and an information medium is a substrate with at least one information variable (Section 4 p. 10). Distinguishability is defined afterward in Section 5 (eq. (4) p. 11) by mapping into an information variable, avoiding circularity, and every information variable is then shown to be distinguishable. Principle III (interoperability, Section 6 p. 12) states that the composite S1 + S2 of two substrates with information variables S1 and S2 is an information medium with information variable S1 x S2. Prior boundary: The interoperability principle (Principle III, Section 6 p. 12) constrains composite information variables to include S1 x S2 in the source's framework. It is not shown to select the Hilbert tensor product, local tomography or any positive cone, so it does not discharge FQ-GAP-TENSOR-UNIQUENESS.",
       "tags": [
         "frontier-branch",
         "frontier:constructor_theory",
@@ -71774,20 +71780,28 @@
         "CT-INFORMATION-MEDIA-INTEROPERABILITY"
       ],
       "f004_refs": [
-        "dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md"
+        "dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md",
+        "dag/derivations/independent/ct-information-media-interoperability.md",
+        "dag/research/campaign_ct-information-media-interoperability_lean_replay.json"
       ],
       "id": "TFQ-2006",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignInformationProductBoundary.lean::CampaignInformationProductBoundary.clones_product",
+        "lean4/CampaignInformationProductBoundary.lean::CampaignInformationProductBoundary.controlledFlip_involution",
+        "lean4/CampaignInformationProductBoundary.lean::CampaignInformationProductBoundary.controlledFlip_not_product"
+      ],
       "local_id": "CT-INFORMATION-MEDIA-INTEROPERABILITY",
       "name": "Imported: information media and the interoperability principle",
-      "obligation": "The interoperability principle (Principle III, Section 6 p. 12) constrains composite information variables to include S1 x S2 in the source's framework. It is not shown to select the Hilbert tensor product, local tomography or any positive cone, so it does not discharge FQ-GAP-TENSOR-UNIQUENESS.",
+      "obligation": "The declared functional task model does not prove the physical possibility of cloning or joint operations with side-effects. The imported interoperability principle and any Hilbert tensor-product/local-tomography conclusion remain separate obligations. Original target retained as an obligation: Imported principles, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563, Sections 3-6 pp. 9-12): a computation variable is a set S of at least two possible attributes for which all permutation tasks are possible with side-effects (Section 3 p. 9); a variable S is clonable if the cloning task R_S(x0) = union_{x in S} {(x, x0) -> (x, x)} is possible with side-effects for some preparable blank attribute x0 (Section 4 eq. (3) p. 10); an information variable is a clonable computation variable, and an information medium is a substrate with at least one information variable (Section 4 p. 10). Distinguishability is defined afterward in Section 5 (eq. (4) p. 11) by mapping into an information variable, avoiding circularity, and every information variable is then shown to be distinguishable. Principle III (interoperability, Section 6 p. 12) states that the composite S1 + S2 of two substrates with information variables S1 and S2 is an information medium with information variable S1 x S2. Prior boundary: The interoperability principle (Principle III, Section 6 p. 12) constrains composite information variables to include S1 x S2 in the source's framework. It is not shown to select the Hilbert tensor product, local tomography or any positive cone, so it does not discharge FQ-GAP-TENSOR-UNIQUENESS.",
       "parent_id": "TFQ-2005",
-      "python": [],
+      "python": [
+        "checks/independent/ct-information-media-interoperability.py"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "frontier_branches",
       "stage": "CONSTRUCTOR_THEORY",
-      "summary": "Imported principles, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563, Sections 3-6 pp. 9-12): a computation variable is a set S of at least two possible attributes for which all permutation tasks are possible with side-effects (Section 3 p. 9); a variable S is clonable if the cloning task R_S(x0) = union_{x in S} {(x, x0) -> (x, x)} is possible with side-effects for some preparable blank attribute x0 (Section 4 eq. (3) p. 10); an information variable is a clonable computation variable, and an information medium is a substrate with at least one information variable (Section 4 p. 10). Distinguishability is defined afterward in Section 5 (eq. (4) p. 11) by mapping into an information variable, avoiding circularity, and every information variable is then shown to be distinguishable. Principle III (interoperability, Section 6 p. 12) states that the composite S1 + S2 of two substrates with information variables S1 and S2 is an information medium with information variable S1 x S2.",
+      "summary": "For arbitrary types, cloners on admitted blank slices compose to a cloner on their Cartesian product. Product-local reversible maps alone do not implement all permutations of two bits: controlled flip is an involution but cannot be written (f(a),g(b)). Product cloning therefore does not supply the full permutation-task clause of interoperability.",
       "uuid": "ef802080-3a4d-5af6-b133-3aba34df6940"
     },
     {

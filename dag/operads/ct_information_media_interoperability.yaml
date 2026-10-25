@@ -3,26 +3,34 @@ node_id: CT-INFORMATION-MEDIA-INTEROPERABILITY
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Imported principles, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563,
-    Sections 3-6 pp. 9-12): a computation variable is a set S of at least two possible attributes for
-    which all permutation tasks are possible with side-effects (Section 3 p. 9); a variable S is clonable
-    if the cloning task R_S(x0) = union_{x in S} {(x, x0) -> (x, x)} is possible with side-effects for
-    some preparable blank attribute x0 (Section 4 eq. (3) p. 10); an information variable is a clonable
-    computation variable, and an information medium is a substrate with at least one information variable
-    (Section 4 p. 10). Distinguishability is defined afterward in Section 5 (eq. (4) p. 11) by mapping
-    into an information variable, avoiding circularity, and every information variable is then shown to
-    be distinguishable. Principle III (interoperability, Section 6 p. 12) states that the composite S1
-    + S2 of two substrates with information variables S1 and S2 is an information medium with information
-    variable S1 x S2.'
+  source_statement: 'For arbitrary types, cloners on admitted blank slices compose to a cloner on their
+    Cartesian product. Product-local reversible maps alone do not implement all permutations of two bits:
+    controlled flip is an involution but cannot be written (f(a),g(b)). Product cloning therefore does
+    not supply the full permutation-task clause of interoperability.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - information medium and interoperability principle (assumption)
-  source_bottleneck: The interoperability principle (Principle III, Section 6 p. 12) constrains composite
-    information variables to include S1 x S2 in the source's framework. It is not shown to select the
-    Hilbert tensor product, local tomography or any positive cone, so it does not discharge FQ-GAP-TENSOR-UNIQUENESS.
+  source_bottleneck: 'The declared functional task model does not prove the physical possibility of cloning
+    or joint operations with side-effects. The imported interoperability principle and any Hilbert tensor-product/local-tomography
+    conclusion remain separate obligations. Original target retained as an obligation: Imported principles,
+    audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563, Sections 3-6 pp. 9-12):
+    a computation variable is a set S of at least two possible attributes for which all permutation tasks
+    are possible with side-effects (Section 3 p. 9); a variable S is clonable if the cloning task R_S(x0)
+    = union_{x in S} {(x, x0) -> (x, x)} is possible with side-effects for some preparable blank attribute
+    x0 (Section 4 eq. (3) p. 10); an information variable is a clonable computation variable, and an information
+    medium is a substrate with at least one information variable (Section 4 p. 10). Distinguishability
+    is defined afterward in Section 5 (eq. (4) p. 11) by mapping into an information variable, avoiding
+    circularity, and every information variable is then shown to be distinguishable. Principle III (interoperability,
+    Section 6 p. 12) states that the composite S1 + S2 of two substrates with information variables S1
+    and S2 is an information medium with information variable S1 x S2. Prior boundary: The interoperability
+    principle (Principle III, Section 6 p. 12) constrains composite information variables to include S1
+    x S2 in the source''s framework. It is not shown to select the Hilbert tensor product, local tomography
+    or any positive cone, so it does not discharge FQ-GAP-TENSOR-UNIQUENESS.'
   source_refs:
   - dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md
   - external:arXiv:1405.5563
+  - dag/derivations/independent/ct-information-media-interoperability.md
+  - dag/research/campaign_ct-information-media-interoperability_lean_replay.json
   paper_refs:
   - dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md
   source_claim_label: IMPORTED_ASSUMPTION
@@ -31,7 +39,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md
-    sha256: df0aabf17d37d88bba24f6754060aa1c7c220f393449927c48b5e2ed6a84bd98
+    sha256: 488f911d5f76f23937f25fee2f0acff9cee40b9ef9abf16041af5d101e3742d0
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -39,9 +47,98 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/constructor_theory_ct_information_media_interoperability_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: Clones
+  line: 5
+  signature_excerpt: 'def Clones {A : Type u} (blank : A) (f : A × A → A × A) : Prop'
+  source: lean4/CampaignInformationProductBoundary.lean
+  repository: this_repository
+  source_sha256: 1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: productCloner
+  line: 6
+  signature_excerpt: |-
+    def productCloner {A : Type u} {B : Type v} (f : A × A → A × A) (g : B × B → B × B)
+        (p : (A × B) × (A × B)) : (A × B) × (A × B)
+  source: lean4/CampaignInformationProductBoundary.lean
+  repository: this_repository
+  source_sha256: 1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: controlledFlip
+  line: 17
+  signature_excerpt: 'def controlledFlip (p : Bool × Bool) : Bool × Bool'
+  source: lean4/CampaignInformationProductBoundary.lean
+  repository: this_repository
+  source_sha256: 1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: clones_product
+  line: 12
+  signature_excerpt: |-
+    theorem clones_product {A : Type u} {B : Type v} (a : A) (b : B)
+        (f : A × A → A × A) (g : B × B → B × B) (hf : Clones a f) (hg : Clones b g) :
+        Clones (a,b) (productCloner f g)
+  source: lean4/CampaignInformationProductBoundary.lean
+  repository: this_repository
+  source_sha256: 1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: controlledFlip_involution
+  line: 19
+  signature_excerpt: 'theorem controlledFlip_involution (p : Bool × Bool) : controlledFlip (controlledFlip
+    p) = p'
+  source: lean4/CampaignInformationProductBoundary.lean
+  repository: this_repository
+  source_sha256: 1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: controlledFlip_not_product
+  line: 23
+  signature_excerpt: |-
+    theorem controlledFlip_not_product :
+        ¬ ∃ f g : Bool → Bool, ∀ p, controlledFlip p = (f p.1,g p.2)
+  source: lean4/CampaignInformationProductBoundary.lean
+  repository: this_repository
+  source_sha256: 1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignInformationProductBoundary.lean::CampaignInformationProductBoundary.clones_product
+  availability: local
+  symbol: CampaignInformationProductBoundary.clones_product
+  path: lean4/CampaignInformationProductBoundary.lean
+  repository: this_repository
+  sha256: 1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d
+  declaration_status: declaration_found_not_proof_checked
+  line: 12
+  role: source_lead_only
+- original_ref: lean4/CampaignInformationProductBoundary.lean::CampaignInformationProductBoundary.controlledFlip_involution
+  availability: local
+  symbol: CampaignInformationProductBoundary.controlledFlip_involution
+  path: lean4/CampaignInformationProductBoundary.lean
+  repository: this_repository
+  sha256: 1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d
+  declaration_status: declaration_found_not_proof_checked
+  line: 19
+  role: source_lead_only
+- original_ref: lean4/CampaignInformationProductBoundary.lean::CampaignInformationProductBoundary.controlledFlip_not_product
+  availability: local
+  symbol: CampaignInformationProductBoundary.controlledFlip_not_product
+  path: lean4/CampaignInformationProductBoundary.lean
+  repository: this_repository
+  sha256: 1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d
+  declaration_status: declaration_found_not_proof_checked
+  line: 23
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -81,8 +178,6 @@ operad_slots:
     - information medium and interoperability principle (assumption)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
