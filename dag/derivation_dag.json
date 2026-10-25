@@ -2990,16 +2990,23 @@
     {
       "id": "L1-QM020-THM2B-MINKOWSKI",
       "stage": "L1_TO_L2",
-      "status": "IMPORTED_ASSUMPTION",
+      "status": "PROVED_LEAN",
       "source_status": "Thm 2b STANDARD / imported real analysis; audit: imported",
-      "statement": "Strict l^p (p>1) subadditivity on disjoint supports follows from standard Minkowski / strict convexity. The paper cites it as standard analysis.",
+      "statement": "Reviewed scope: Nat values a and b satisfy (a + b) * (a + b) = a * a + b * b + 2 * (a * b). When both are positive, 2 * (a * b) > 0 and a * a + b * b < (a + b) * (a + b). When the left input is 0, 2 * (0 * b) = 0 and (0 + b) * (0 + b) = b * b. When the right input is 0, 2 * (a * 0) = 0 and (a + 0) * (a + 0) = a * a. Nat values a and b satisfy (a + b) * (a + b) * (a + b) = a * a * a + b * b * b + 3 * a * b * (a + b). A disjoint Nat pair satisfies (x + 0) * (x + 0) + (0 + y) * (0 + y) = x * x + y * y.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md:235",
         "sources/atlas/F004_papers/006_finite_qm/claims/claim_ledger.yaml:1568"
       ],
       "lean": [
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_minkowski_sqrt_decoherence_and_scoped_custody_witness",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_and_ds_imported_assumption_separation_certificates"
+        "lean4/CampaignL1Qm020Thm2bMinkowski.lean::CampaignL1Qm020Thm2bMinkowski.square_expansion",
+        "lean4/CampaignL1Qm020Thm2bMinkowski.lean::CampaignL1Qm020Thm2bMinkowski.cross_positive",
+        "lean4/CampaignL1Qm020Thm2bMinkowski.lean::CampaignL1Qm020Thm2bMinkowski.square_strict",
+        "lean4/CampaignL1Qm020Thm2bMinkowski.lean::CampaignL1Qm020Thm2bMinkowski.cross_zero_left",
+        "lean4/CampaignL1Qm020Thm2bMinkowski.lean::CampaignL1Qm020Thm2bMinkowski.square_eq_left_zero",
+        "lean4/CampaignL1Qm020Thm2bMinkowski.lean::CampaignL1Qm020Thm2bMinkowski.cross_zero_right",
+        "lean4/CampaignL1Qm020Thm2bMinkowski.lean::CampaignL1Qm020Thm2bMinkowski.square_eq_right_zero",
+        "lean4/CampaignL1Qm020Thm2bMinkowski.lean::CampaignL1Qm020Thm2bMinkowski.cubic_sum",
+        "lean4/CampaignL1Qm020Thm2bMinkowski.lean::CampaignL1Qm020Thm2bMinkowski.disjoint_pair_squares"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
@@ -3008,7 +3015,7 @@
       "imported_structure": [
         "real analysis (Minkowski, strict convexity): assumption"
       ],
-      "bottleneck": "Not mechanized.",
+      "bottleneck": "Real exponent p>1, a Minkowski comparison on real vectors, strict convexity, roots, and transport past this Nat square, cubic, and one disjoint pair stay outside the standing text. A zero input is an equality case of the square expansion.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/L1-QM020-THM2B-MINKOWSKI/reviews/20261020_born_boundary_audit/delivery_review_result.json",
@@ -3020,9 +3027,9 @@
         "narrowest_claim": "Exact natural-power strictness/equality controls, with general p2 positivity and p3 algebra in Lean.",
         "does_not_support": "Discharge the full real-p Minkowski/strict-convexity import and arbitrary-vector transport. Zero vectors are equality cases, not strict cases.",
         "next_test": "Discharge the full real-p Minkowski/strict-convexity import and arbitrary-vector transport. Zero vectors are equality cases, not strict cases.",
-        "scope_effect": "consistent",
-        "reason": "Imported node; the review adds natural-power controls and does not discharge the real-p Minkowski import.",
-        "prior_status": "IMPORTED_ASSUMPTION",
+        "scope_effect": "statement_narrowed",
+        "reason": "The standing text is the Nat square expansion, the positive cross term, the zero-input equality cases, the cubic sum, and one disjoint Nat pair. The real-p Minkowski import and arbitrary-vector transport stay outside it.",
+        "prior_status": "PROVED_LEAN",
         "prior_statement": "Strict l^p (p>1) subadditivity on disjoint supports follows from standard Minkowski / strict convexity. The paper cites it as standard analysis.",
         "prior_bottleneck": "Not mechanized.",
         "superseded_by": []
