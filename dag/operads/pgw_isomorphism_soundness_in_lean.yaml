@@ -3,20 +3,22 @@ node_id: PGW-ISOMORPHISM-SOUNDNESS-IN-LEAN
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'CL-ISO-SOUND, soundness of the implemented isomorphism key, is a finite computation
-    only: the Python key procedure''s classes are cross-checked against a brute-force minimum over bijections,
-    and the Lean side is unresolved (D3: no Lean evidence). Attempt two leaves 482 regimes above the brute-force
-    limit of the key cross-check (H-4), and attempt one''s check of the Python orbit against the Lean
-    orbit (G-9) is not done.'
+  source_statement: Narrowed boundary, status left OPEN. U0 and U1 are well-formed duplicate-free regimes
+    with data count 2, one form of arity 1, and requirement (0, 1). BL is well-formed and duplicate-free
+    with form arity 2 and instance arguments 0 and 1. Each exhaustive candidate list has length 2. The
+    datum swap is an isomorphism from U0 to U1, and the exhaustive keys of U0 and U1 are equal. No isomorphism
+    from U0 to BL exists, and those exhaustive keys differ.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Open; the run trees are quotiented by the implemented isomorphism, whose soundness
-    is computational at the regimes cross-checked.
+  source_bottleneck: These facts are the exhaustive Lean search on U0, U1, and BL. They are not a Python
+    key cross-check and not an orbit comparison on exported runs. Status stays OPEN.
   source_refs:
   - dag/derivations/02_genesis/tfq_0500_isomorphism_soundness_in_lean.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:60
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:379
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1045-1059
+  - dag/derivations/independent/pgw-isomorphism-soundness-in-lean.md:5
+  - dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json:6
   paper_refs: []
   source_claim_label: OPEN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -30,9 +32,188 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_isomorphism_soundness_in_lean_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: pgwIso_U0_U1
+  line: 13
+  signature_excerpt: 'def pgwIso_U0_U1 : Iso U0 U1'
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: pgwIso_U0_wf
+  line: 34
+  signature_excerpt: 'theorem pgwIso_U0_wf : U0.wf'
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwIso_U1_wf
+  line: 51
+  signature_excerpt: 'theorem pgwIso_U1_wf : U1.wf'
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwIso_BL_wf
+  line: 68
+  signature_excerpt: 'theorem pgwIso_BL_wf : BL.wf'
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwIso_set_collections
+  line: 85
+  signature_excerpt: |-
+    theorem pgwIso_set_collections :
+        SetCollections U0 ∧ SetCollections U1 ∧ SetCollections BL
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwIso_candidate_counts
+  line: 93
+  signature_excerpt: |-
+    theorem pgwIso_candidate_counts :
+        (candidateKeys U0).length = 2 ∧
+          (candidateKeys U1).length = 2 ∧
+          (candidateKeys BL).length = 2
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwIso_keys_eq
+  line: 99
+  signature_excerpt: |-
+    theorem pgwIso_keys_eq :
+        canonicalKey U0 = canonicalKey U1
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwIso_keys_ne
+  line: 107
+  signature_excerpt: |-
+    theorem pgwIso_keys_ne :
+        canonicalKey U0 ≠ canonicalKey BL
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwIso_U0_not_BL
+  line: 104
+  signature_excerpt: 'theorem pgwIso_U0_not_BL (h : Iso U0 BL) : False'
+  source: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  source_sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
+- original_ref: lean4/CampaignPgwIsomorphismSoundnessInLean.lean::pgwIso_U0_U1
+  availability: local
+  symbol: pgwIso_U0_U1
+  path: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  declaration_status: declaration_found_not_proof_checked
+  line: 13
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwIsomorphismSoundnessInLean.lean::pgwIso_U0_wf
+  availability: local
+  symbol: pgwIso_U0_wf
+  path: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  declaration_status: declaration_found_not_proof_checked
+  line: 34
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwIsomorphismSoundnessInLean.lean::pgwIso_U1_wf
+  availability: local
+  symbol: pgwIso_U1_wf
+  path: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  declaration_status: declaration_found_not_proof_checked
+  line: 51
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwIsomorphismSoundnessInLean.lean::pgwIso_BL_wf
+  availability: local
+  symbol: pgwIso_BL_wf
+  path: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  declaration_status: declaration_found_not_proof_checked
+  line: 68
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwIsomorphismSoundnessInLean.lean::pgwIso_set_collections
+  availability: local
+  symbol: pgwIso_set_collections
+  path: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  declaration_status: declaration_found_not_proof_checked
+  line: 85
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwIsomorphismSoundnessInLean.lean::pgwIso_candidate_counts
+  availability: local
+  symbol: pgwIso_candidate_counts
+  path: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  declaration_status: declaration_found_not_proof_checked
+  line: 93
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwIsomorphismSoundnessInLean.lean::pgwIso_keys_eq
+  availability: local
+  symbol: pgwIso_keys_eq
+  path: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  declaration_status: declaration_found_not_proof_checked
+  line: 99
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwIsomorphismSoundnessInLean.lean::pgwIso_keys_ne
+  availability: local
+  symbol: pgwIso_keys_ne
+  path: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  declaration_status: declaration_found_not_proof_checked
+  line: 107
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwIsomorphismSoundnessInLean.lean::pgwIso_U0_not_BL
+  availability: local
+  symbol: pgwIso_U0_not_BL
+  path: lean4/CampaignPgwIsomorphismSoundnessInLean.lean
+  repository: this_repository
+  sha256: c2602a24aae6b99d24608c00c76234467829da96088ed24cdc129f3193370d2b
+  declaration_status: declaration_found_not_proof_checked
+  line: 104
+  role: source_lead_only
 - original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::canonical_bruteforce
   availability: external
   symbol: canonical_bruteforce
@@ -78,8 +259,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
