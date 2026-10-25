@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignPgwWdpIncidenceTransport.lean](../../../lean4/CampaignPgwWdpIncidenceTransport.lean)
 - sha256 (`bytes`): `d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf`
-- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json (CampaignPgwWdpIncidenceTransport), record TFQ-0543
+- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json (CampaignPgwWdpIncidenceTransport), receipt dag/research/pr_356_review_replay.json (CampaignPgwWdpIncidenceTransport), record TFQ-0543
 - replay: `verified`
   - receipt [dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json](../../../dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json) (module `CampaignPgwWdpIncidenceTransport`): recorded sha256 `d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_356_review_replay.json](../../../dag/research/pr_356_review_replay.json) (module `CampaignPgwWdpIncidenceTransport`): recorded sha256 `d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignPgwWdpIncidenceTransport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
