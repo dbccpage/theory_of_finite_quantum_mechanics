@@ -24657,15 +24657,18 @@
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C7d claims OPEN; audited status OPEN",
-      "statement": "Adding erasing rules so that every halting word reduces to one fixed word should make Reach to that fixed word undecidable; this is not proved here.",
+      "statement": "Erasing the block [1] from the word [1, 0] by one hole replacement yields the fixed word [0]. Erasing the block [2] from the word [2, 0] by one hole replacement yields the same fixed word [0].",
       "source": [
         "dag/derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md",
         "dag/research/genesis_to_universal_computation.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignCompC7FixedTargetOpen.lean::eraseOneToFixed",
+        "lean4/CampaignCompC7FixedTargetOpen.lean::eraseTwoToFixed"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Prove Reach R0 prime (startWord x) target iff (univFun x).Dom for the extended rule set R0 prime.",
+      "bottleneck": "Still open: Reach of the extended rule set R0 prime from startWord x to one fixed target word exactly when univFun x is defined.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -39135,7 +39138,7 @@
       ],
       "output": "COMP-C7-FIXED-TARGET-OPEN",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Prove Reach R0 prime (startWord x) target iff (univFun x).Dom for the extended rule set R0 prime.",
+      "mechanism": "Still open: Reach of the extended rule set R0 prime from startWord x to one fixed target word exactly when univFun x is defined.",
       "source": [
         "dag/derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md",
         "dag/research/genesis_to_universal_computation.md"
@@ -56061,6 +56064,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md",
         "lean4/H006PermutationUnitary.lean",
         "dag/derivations/independent/l1-imp-sector-symmetry-law.md",
         "checks/independent/l1-imp-sector-symmetry-law.py",
@@ -56807,7 +56812,11 @@
         "FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md"
+        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md"
       ],
       "id": "TFQ-1021",
       "lean4": [
@@ -57723,6 +57732,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md",
         "lean4/FiniteWignerTheorem.lean",
         "dag/derivations/independent/l1-imp-transition-probability-law.md",
         "dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json",
@@ -57769,7 +57780,12 @@
         "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md"
+        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md"
       ],
       "id": "TFQ-1048",
       "lean4": [
@@ -69406,17 +69422,20 @@
         "dag/research/genesis_to_universal_computation.md:129-134"
       ],
       "id": "TFQ-1311",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignCompC7FixedTargetOpen.lean::eraseOneToFixed",
+        "lean4/CampaignCompC7FixedTargetOpen.lean::eraseTwoToFixed"
+      ],
       "local_id": "COMP-C7-FIXED-TARGET-OPEN",
-      "name": "Reach to a fixed target word is undecidable",
-      "obligation": "Prove Reach R0 prime (startWord x) target iff (univFun x).Dom for the extended rule set R0 prime.",
+      "name": "Two erasing steps reach one fixed word",
+      "obligation": "Still open: Reach of the extended rule set R0 prime from startWord x to one fixed target word exactly when univFun x is defined.",
       "parent_id": "TFQ-1309",
       "python": [],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "COMPUTATION",
-      "summary": "Adding erasing rules so that every halting word reduces to one fixed word should make Reach to that fixed word undecidable; this is not proved here.",
+      "summary": "Erasing the block [1] from the word [1, 0] by one hole replacement yields the fixed word [0]. Erasing the block [2] from the word [2, 0] by one hole replacement yields the same fixed word [0].",
       "uuid": "edd36104-a1d7-5deb-86a2-dc9f4a06fc18"
     },
     {

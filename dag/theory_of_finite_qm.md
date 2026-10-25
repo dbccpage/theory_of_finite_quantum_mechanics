@@ -11330,7 +11330,7 @@ If the mark type has a Primcodable structure and startWord is computable, the no
 
 Obligation: Prove startWord_computable: a Primcodable structure on a mark type containing the infinite state type and a computability proof for the paired-input encoding.
 
-### TFQ-1311 Reach to a fixed target word is undecidable
+### TFQ-1311 Two erasing steps reach one fixed word
 
 - UUID: `edd36104-a1d7-5deb-86a2-dc9f4a06fc18`
 - Parent: `TFQ-1309`
@@ -11338,9 +11338,9 @@ Obligation: Prove startWord_computable: a Primcodable structure on a mark type c
 - DAG node: `COMP-C7-FIXED-TARGET-OPEN`
 - Paper: [derivation](derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md)
 
-Adding erasing rules so that every halting word reduces to one fixed word should make Reach to that fixed word undecidable; this is not proved here.
+Erasing the block [1] from the word [1, 0] by one hole replacement yields the fixed word [0]. Erasing the block [2] from the word [2, 0] by one hole replacement yields the same fixed word [0].
 
-Obligation: Prove Reach R0 prime (startWord x) target iff (univFun x).Dom for the extended rule set R0 prime.
+Obligation: Still open: Reach of the extended rule set R0 prime from startWord x to one fixed target word exactly when univFun x is defined.
 
 ### TFQ-1312 Injective binary coding of any finite alphabet with a decoder
 
