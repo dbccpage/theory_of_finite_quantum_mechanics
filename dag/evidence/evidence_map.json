@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "0b7bfe25afedf65a57c59b445d09e4d65fb52cbea4a590521da095457f2e983c"
+  "sha256_lf": "27e357247d26a0be503a9acc3130d0011ab6df1210a79cd865fc5de05be54ec5"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -1258,9 +1258,9 @@
    "size": 9170
   },
   "dag/derivation_dag.json": {
-   "sha256": "0b7bfe25afedf65a57c59b445d09e4d65fb52cbea4a590521da095457f2e983c",
+   "sha256": "27e357247d26a0be503a9acc3130d0011ab6df1210a79cd865fc5de05be54ec5",
    "sha256_basis": "lf-normalised",
-   "size": 4824272
+   "size": 4824953
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -2558,9 +2558,9 @@
    "size": 3016
   },
   "dag/derivations/08_l1_to_l2/tfq_1030_gp_import_circle_u1.md": {
-   "sha256": "237063c29e4e403abdc6fe996b6f1e66195dce323980eb7d39207583d5c942e7",
+   "sha256": "c37413a900d0a57ff15b62e1dafef041bfd9ae79e7bb9123f4a25e0936736bb3",
    "sha256_basis": "lf-normalised",
-   "size": 2609
+   "size": 2874
   },
   "dag/derivations/08_l1_to_l2/tfq_1031_gp_import_gleason.md": {
    "sha256": "8595fafb4d5ac5b8f30f0e58366c1bb9f52b1ae1d7decdc3340bcb3e84e06e16",
@@ -6952,6 +6952,11 @@
    "sha256_basis": "lf-normalised",
    "size": 7735
   },
+  "dag/research/campaign_gp-import-circle-u1_lean_replay.json": {
+   "sha256": "d615fa6a41940cfac17b168a31f3e7e375ed23650d604404a0d3023ba5c511db",
+   "sha256_basis": "lf-normalised",
+   "size": 4119
+  },
   "dag/research/campaign_gth-lang-core_lean_replay.json": {
    "sha256": "de3044a046db59586dc0e9e7120ba3d3a2e29c5ec02e79e2ec650a0f5f7e6457",
    "sha256_basis": "lf-normalised",
@@ -8073,9 +8078,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "81736c6bab3ce3df3fa782cdbbbd2edc5dd6926991095b90ff7c9ba65fb64dd8",
+   "sha256": "1fda89366439444d202748e14b43c896b63cf4d9236ff6c716f313f1efbda81f",
    "sha256_basis": "lf-normalised",
-   "size": 226280
+   "size": 228109
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -8606,6 +8611,11 @@
    "sha256": "d32660cc6a9710571cf7bb9a85403ed58889ae2a6a89c6e4a61689b519e3fa8e",
    "sha256_basis": "bytes",
    "size": 15168
+  },
+  "lean4/CampaignGpImportCircleU1.lean": {
+   "sha256": "ee2379460eece0f18f28d6603f4e411a008537cb7983e39e3b40d0a3061adbd7",
+   "sha256_basis": "bytes",
+   "size": 1473
   },
   "lean4/CampaignGthLangCore.lean": {
    "sha256": "57cb0bcf3599400870ca47f0e0f11c87f3dabe90f04752f964f0ee0f591eef5f",
@@ -90823,60 +90833,55 @@
    "dependents": 1,
    "facts": {
     "cited_code_files_not_tests": 0,
-    "counted_files": 2,
-    "lean_receipt_backed": 2,
+    "counted_files": 1,
+    "lean_receipt_backed": 8,
     "qualifying_reviews": 1,
     "runnable_tests": 0,
-    "symbols_found": 2
+    "symbols_found": 16
    },
    "flags": [],
    "grade": "E3",
    "id": "GP-IMPORT-CIRCLE-U1",
    "items": [
     {
-     "canonical_symbol": "QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries",
+     "canonical_symbol": null,
      "cited_in": [
-      "node.lean",
-      "record TFQ-1030"
+      "receipt dag/research/campaign_gp-import-circle-u1_lean_replay.json (CampaignGpImportCircleU1)"
      ],
-     "command": "cd lean4 && lake build DerivationDagQMClosure",
-     "command_note": "then, in a scratch file that imports DerivationDagQMClosure: #print axioms QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries",
+     "command": "cd lean4 && lake build CampaignGpImportCircleU1",
+     "command_note": null,
      "counted": true,
      "counts": true,
      "decl_ambiguous": false,
-     "decl_axioms": [
-      "Quot.sound",
-      "propext"
-     ],
-     "decl_listed": true,
+     "decl_axioms": null,
+     "decl_listed": false,
      "file_exists": true,
      "generated": false,
      "kind": "lean_decl",
-     "path": "lean4/DerivationDagQMClosure.lean",
+     "path": "lean4/CampaignGpImportCircleU1.lean",
      "receipts": [
       {
        "decl_ambiguous": false,
-       "decl_listed": true,
-       "id": "dag/research/lean_replay_campaign_finite_qm_structure.json#2:DerivationDagQMClosure",
+       "decl_listed": false,
+       "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
        "ok": true,
        "sha_match": true
       }
      ],
      "replay": "verified",
      "resolution": "present",
-     "symbol": "QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries",
-     "symbol_declared": true,
-     "symbol_exists": true,
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
      "where": null
     },
     {
-     "canonical_symbol": "FableHilbertWalk20260819.H011Circle.sign_fails_connectedness_shadow",
+     "canonical_symbol": "CampaignGpImportCircleU1.cycThrice",
      "cited_in": [
-      "node.lean",
-      "record TFQ-1030"
+      "receipt dag/research/campaign_gp-import-circle-u1_lean_replay.json (CampaignGpImportCircleU1)"
      ],
-     "command": "cd lean4 && lake build H011Circle",
-     "command_note": "then, in a scratch file that imports H011Circle: #print axioms FableHilbertWalk20260819.H011Circle.sign_fails_connectedness_shadow",
+     "command": "cd lean4 && lake build CampaignGpImportCircleU1",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCircleU1: #print axioms CampaignGpImportCircleU1.cycThrice",
      "counted": true,
      "counts": true,
      "decl_ambiguous": false,
@@ -90885,19 +90890,507 @@
      "file_exists": true,
      "generated": false,
      "kind": "lean_decl",
-     "path": "lean4/H011Circle.lean",
+     "path": "lean4/CampaignGpImportCircleU1.lean",
      "receipts": [
       {
        "decl_ambiguous": false,
        "decl_listed": true,
-       "id": "dag/research/lean_replay_campaign_finite_qm_structure.json#4:H011Circle",
+       "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
        "ok": true,
        "sha_match": true
       }
      ],
      "replay": "verified",
      "resolution": "present",
-     "symbol": "sign_fails_connectedness_shadow",
+     "symbol": "CampaignGpImportCircleU1.cycThrice",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCircleU1.cycTwice",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-circle-u1_lean_replay.json (CampaignGpImportCircleU1)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCircleU1",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCircleU1: #print axioms CampaignGpImportCircleU1.cycTwice",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCircleU1.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCircleU1.cycTwice",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCircleU1.iNorm",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-circle-u1_lean_replay.json (CampaignGpImportCircleU1)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCircleU1",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCircleU1: #print axioms CampaignGpImportCircleU1.iNorm",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCircleU1.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCircleU1.iNorm",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCircleU1.iSquare",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-circle-u1_lean_replay.json (CampaignGpImportCircleU1)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCircleU1",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCircleU1: #print axioms CampaignGpImportCircleU1.iSquare",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCircleU1.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCircleU1.iSquare",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCircleU1.iSquareNeOne",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-circle-u1_lean_replay.json (CampaignGpImportCircleU1)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCircleU1",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCircleU1: #print axioms CampaignGpImportCircleU1.iSquareNeOne",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCircleU1.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCircleU1.iSquareNeOne",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCircleU1.pairCoordsAreSigns",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-circle-u1_lean_replay.json (CampaignGpImportCircleU1)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCircleU1",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCircleU1: #print axioms CampaignGpImportCircleU1.pairCoordsAreSigns",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCircleU1.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCircleU1.pairCoordsAreSigns",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCircleU1.pairsDiffer",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-circle-u1_lean_replay.json (CampaignGpImportCircleU1)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCircleU1",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCircleU1: #print axioms CampaignGpImportCircleU1.pairsDiffer",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCircleU1.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCircleU1.pairsDiffer",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCircleU1.signSquare",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-circle-u1_lean_replay.json (CampaignGpImportCircleU1)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCircleU1",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCircleU1: #print axioms CampaignGpImportCircleU1.signSquare",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCircleU1.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCircleU1.signSquare",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCircleU1.cycThrice",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1030"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCircleU1",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCircleU1: #print axioms CampaignGpImportCircleU1.cycThrice",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCircleU1.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "cycThrice",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCircleU1.cycTwice",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1030"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCircleU1",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCircleU1: #print axioms CampaignGpImportCircleU1.cycTwice",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCircleU1.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "cycTwice",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCircleU1.iNorm",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1030"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCircleU1",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCircleU1: #print axioms CampaignGpImportCircleU1.iNorm",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCircleU1.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "iNorm",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCircleU1.iSquare",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1030"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCircleU1",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCircleU1: #print axioms CampaignGpImportCircleU1.iSquare",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCircleU1.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "iSquare",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCircleU1.iSquareNeOne",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1030"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCircleU1",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCircleU1: #print axioms CampaignGpImportCircleU1.iSquareNeOne",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCircleU1.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "iSquareNeOne",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCircleU1.pairCoordsAreSigns",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1030"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCircleU1",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCircleU1: #print axioms CampaignGpImportCircleU1.pairCoordsAreSigns",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCircleU1.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "pairCoordsAreSigns",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCircleU1.pairsDiffer",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1030"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCircleU1",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCircleU1: #print axioms CampaignGpImportCircleU1.pairsDiffer",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCircleU1.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "pairsDiffer",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCircleU1.signSquare",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1030"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCircleU1",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCircleU1: #print axioms CampaignGpImportCircleU1.signSquare",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCircleU1.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "signSquare",
      "symbol_declared": true,
      "symbol_exists": true,
      "where": null
@@ -91063,7 +91556,7 @@
      "review": "dag/results/GP-IMPORT-CIRCLE-U1/reviews/20261019_l1_import_audit/delivery_review_result.json",
      "review_file_ok": true,
      "review_sha256": "46db918febe41cdd7263b3ab9d6debe8558043f3f9ede78fa76395e33e14e1e6",
-     "scope_effect": "consistent",
+     "scope_effect": "statement_narrowed",
      "source": "pfp_review",
      "verdict": "scoped_result_or_obstruction_reviewed"
     }
@@ -313501,6 +313994,28 @@
    "toolchain": "4.35.0"
   },
   {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [],
+   "built_successfully": true,
+   "checked_at": "2026-10-25",
+   "dag_node": "GP-IMPORT-CIRCLE-U1",
+   "decl_count": 8,
+   "exit_code": 0,
+   "id": "dag/research/campaign_gp-import-circle-u1_lean_replay.json#0:CampaignGpImportCircleU1",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignGpImportCircleU1",
+   "path": "lean4/CampaignGpImportCircleU1.lean",
+   "receipt_file": "dag/research/campaign_gp-import-circle-u1_lean_replay.json",
+   "receipt_file_sha256": "d615fa6a41940cfac17b168a31f3e7e375ed23650d604404a0d3023ba5c511db",
+   "recorded_sha256": "ee2379460eece0f18f28d6603f4e411a008537cb7983e39e3b40d0a3061adbd7",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
    "admission_scan_passed": null,
    "axiom_audit_passed": true,
    "axioms_itemised": true,
@@ -326637,7 +327152,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "81736c6bab3ce3df3fa782cdbbbd2edc5dd6926991095b90ff7c9ba65fb64dd8",
+   "receipt_file_sha256": "1fda89366439444d202748e14b43c896b63cf4d9236ff6c716f313f1efbda81f",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -326663,7 +327178,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "81736c6bab3ce3df3fa782cdbbbd2edc5dd6926991095b90ff7c9ba65fb64dd8",
+   "receipt_file_sha256": "1fda89366439444d202748e14b43c896b63cf4d9236ff6c716f313f1efbda81f",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -326689,7 +327204,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "81736c6bab3ce3df3fa782cdbbbd2edc5dd6926991095b90ff7c9ba65fb64dd8",
+   "receipt_file_sha256": "1fda89366439444d202748e14b43c896b63cf4d9236ff6c716f313f1efbda81f",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -326715,7 +327230,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "81736c6bab3ce3df3fa782cdbbbd2edc5dd6926991095b90ff7c9ba65fb64dd8",
+   "receipt_file_sha256": "1fda89366439444d202748e14b43c896b63cf4d9236ff6c716f313f1efbda81f",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -326741,7 +327256,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "81736c6bab3ce3df3fa782cdbbbd2edc5dd6926991095b90ff7c9ba65fb64dd8",
+   "receipt_file_sha256": "1fda89366439444d202748e14b43c896b63cf4d9236ff6c716f313f1efbda81f",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -326767,7 +327282,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "81736c6bab3ce3df3fa782cdbbbd2edc5dd6926991095b90ff7c9ba65fb64dd8",
+   "receipt_file_sha256": "1fda89366439444d202748e14b43c896b63cf4d9236ff6c716f313f1efbda81f",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -326793,7 +327308,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "81736c6bab3ce3df3fa782cdbbbd2edc5dd6926991095b90ff7c9ba65fb64dd8",
+   "receipt_file_sha256": "1fda89366439444d202748e14b43c896b63cf4d9236ff6c716f313f1efbda81f",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -326819,7 +327334,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "81736c6bab3ce3df3fa782cdbbbd2edc5dd6926991095b90ff7c9ba65fb64dd8",
+   "receipt_file_sha256": "1fda89366439444d202748e14b43c896b63cf4d9236ff6c716f313f1efbda81f",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -326845,7 +327360,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "81736c6bab3ce3df3fa782cdbbbd2edc5dd6926991095b90ff7c9ba65fb64dd8",
+   "receipt_file_sha256": "1fda89366439444d202748e14b43c896b63cf4d9236ff6c716f313f1efbda81f",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -326871,7 +327386,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "81736c6bab3ce3df3fa782cdbbbd2edc5dd6926991095b90ff7c9ba65fb64dd8",
+   "receipt_file_sha256": "1fda89366439444d202748e14b43c896b63cf4d9236ff6c716f313f1efbda81f",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -326897,7 +327412,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "81736c6bab3ce3df3fa782cdbbbd2edc5dd6926991095b90ff7c9ba65fb64dd8",
+   "receipt_file_sha256": "1fda89366439444d202748e14b43c896b63cf4d9236ff6c716f313f1efbda81f",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -326923,7 +327438,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "81736c6bab3ce3df3fa782cdbbbd2edc5dd6926991095b90ff7c9ba65fb64dd8",
+   "receipt_file_sha256": "1fda89366439444d202748e14b43c896b63cf4d9236ff6c716f313f1efbda81f",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -326949,7 +327464,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "81736c6bab3ce3df3fa782cdbbbd2edc5dd6926991095b90ff7c9ba65fb64dd8",
+   "receipt_file_sha256": "1fda89366439444d202748e14b43c896b63cf4d9236ff6c716f313f1efbda81f",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -326975,7 +327490,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "81736c6bab3ce3df3fa782cdbbbd2edc5dd6926991095b90ff7c9ba65fb64dd8",
+   "receipt_file_sha256": "1fda89366439444d202748e14b43c896b63cf4d9236ff6c716f313f1efbda81f",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -327001,7 +327516,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "81736c6bab3ce3df3fa782cdbbbd2edc5dd6926991095b90ff7c9ba65fb64dd8",
+   "receipt_file_sha256": "1fda89366439444d202748e14b43c896b63cf4d9236ff6c716f313f1efbda81f",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -327625,16 +328140,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 37,
   "e3_nodes_with_test_but_no_review": 39,
   "lean_declarations_in_repo": {
-   "distinct": 2097,
+   "distinct": 2105,
    "no_receipt": 39,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 2035,
-   "replay_verified_and_declaration_itemised": 1968,
+   "replay_verified": 2043,
+   "replay_verified_and_declaration_itemised": 1976,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 2420
+   "present": 2426
   },
   "mismatch_nodes": 190,
   "mismatches_by_kind": {
@@ -327655,7 +328170,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 613,
+  "receipts_indexed": 614,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,

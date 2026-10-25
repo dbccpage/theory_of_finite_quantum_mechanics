@@ -1387,3 +1387,7 @@ lean_lib CampaignOpsObserverDeclarationRefusal where
 -- Campaign: OPS-AXIS3-RELABELING. Not a default target.
 lean_lib CampaignOpsAxis3Relabeling where
   roots := #[`CampaignOpsAxis3Relabeling]
+
+-- Campaign: GP-IMPORT-CIRCLE-U1. Not a default target.
+lean_lib CampaignGpImportCircleU1 where
+  roots := #[`CampaignGpImportCircleU1]

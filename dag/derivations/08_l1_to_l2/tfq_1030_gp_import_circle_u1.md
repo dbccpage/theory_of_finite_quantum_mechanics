@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-The circle group U(1) as phase group. The leftover (1,1) vs (1,-1) is already seen over {+1,-1}, so it does not select the circle. Under the extra 'not of exponent two' the sign group is excluded; Gaussian units and a three-cycle meet the extra. The circle itself and continuity of a one-parameter phase group stay hypotheses.
+Each sign squares to 1. The pairs (1, 1) and (1, -1) differ, and each of their coordinates is a sign. The integer pair 0, 1 has square norm 1, and the product of that pair with itself is the pair -1, 0, which differs from the pair 1, 0. The map sending 0 to 1, 1 to 2 and 2 to 0 returns 2 at the second step from 0 and returns 0 at the third step from 0.
 
 ### Governing Obligation
-Selector for C / U(1) is not derived; QM_028 / QM_062 carry the U1 selector as a separate node.
+The circle group U(1) and continuity of a one-parameter phase group stay hypotheses. The selector for that circle stays imported.
 
 ### Source Status
 imported; sign group excluded only under an extra
@@ -37,8 +37,14 @@ imported; sign group excluded only under an extra
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/H011Circle.lean::sign_fails_connectedness_shadow`
-- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries`
+- `lean4/CampaignGpImportCircleU1.lean::signSquare`
+- `lean4/CampaignGpImportCircleU1.lean::pairsDiffer`
+- `lean4/CampaignGpImportCircleU1.lean::pairCoordsAreSigns`
+- `lean4/CampaignGpImportCircleU1.lean::iNorm`
+- `lean4/CampaignGpImportCircleU1.lean::iSquare`
+- `lean4/CampaignGpImportCircleU1.lean::iSquareNeOne`
+- `lean4/CampaignGpImportCircleU1.lean::cycTwice`
+- `lean4/CampaignGpImportCircleU1.lean::cycThrice`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`
