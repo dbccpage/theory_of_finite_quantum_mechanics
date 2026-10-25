@@ -1323,3 +1323,7 @@ lean_lib CampaignCompC8MinimalityFence where
 -- Campaign: AUTH-DTM2-INPUT-REQUEST-PLANNED. Not a default target.
 lean_lib CampaignAuthDtm2InputRequestPlanned where
   roots := #[`CampaignAuthDtm2InputRequestPlanned]
+
+-- Campaign: AUTHF-CARRIER-ADMISSION-GATE. Not a default target.
+lean_lib CampaignAuthfCarrierAdmissionGate where
+  roots := #[`CampaignAuthfCarrierAdmissionGate]

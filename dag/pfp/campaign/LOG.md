@@ -158,3 +158,4 @@ One line per target, in order attempted: `<UTC date> | <node id> | <outcome clas
 2026-10-25 | COMP-C7-FIXED-TARGET-OPEN | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/369 | Two erasures send [1, 0] and [2, 0] to [0]; Reach for R0 prime stays open.
 2026-10-25 | COMP-C8-MINIMALITY-FENCE | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/370 | One two-mark word followed by one blank cell; machine simulation stays open.
 2026-10-25 | AUTH-DTM2-INPUT-REQUEST-PLANNED | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/371 | One closed request list 1, 2, 1, 7, 3, 4 and one missing header; the evaluator stays open.
+2026-10-25 | AUTHF-CARRIER-ADMISSION-GATE | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/372 | Direct candidate AIT-DTM0 ceilings and selected false; the other candidates stay open.

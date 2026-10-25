@@ -11942,7 +11942,7 @@ A manifest binding eight artifacts by SHA-256 together with a four-row transitio
 
 Obligation: Evaluator correspondence to the Lean model, SHA-256 collision resistance, runtime integrity and custody remain assumptions; the PowerShell runtime pin is not reproduced and the formal replay uses Lean v4.35.0 instead of the recorded v4.32.2.
 
-### TFQ-1362 No computability carrier is admitted for the authorization lift
+### TFQ-1362 Direct candidate ceilings and a false selected flag
 
 - UUID: `24f48fe9-e871-5568-b571-e078d12b748a`
 - Parent: `TFQ-0486`
@@ -11950,9 +11950,9 @@ Obligation: Evaluator correspondence to the Lean model, SHA-256 collision resist
 - DAG node: `AUTHF-CARRIER-ADMISSION-GATE`
 - Paper: [derivation](derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md)
 
-The recovered candidate record stays globally open: for AIT-DTM0 only syntax, execution semantics, adequacy and replay closure are partial and universality, extensionality, nontriviality and effective reduction are open, and PO-022, PO-023 and AIT-PACKET4 are open; the validator refuses any selection or admission.
+On this closed slice the record admission status is the string open. The direct candidate identifier is AIT-DTM0, its admission status is partial, its syntax-and-encoding status is partial, its execution-semantics status is partial, and its universality status is open. The direct candidate selected flag is false.
 
-Obligation: A carrier with syntax, execution, simulation, an extensional property with encoded witnesses, an effective reduction and a replay boundary must be frozen before any Rice-style claim.
+Obligation: Adequacy, replay closure, extensionality, nontriviality and effective reduction stay outside this slice. The other three candidate identifiers stay outside it. A frozen carrier and a Rice-style claim stay open. The structural validator over the whole JSON record stays with the cited Python check.
 
 ### TFQ-1363 Rice, Goedel and the LLM corollary are not formalized in the recovered files
 

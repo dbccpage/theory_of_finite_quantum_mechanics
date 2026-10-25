@@ -1,4 +1,4 @@
-# [TFQ-1362] No computability carrier is admitted for the authorization lift
+# [TFQ-1362] Direct candidate ceilings and a false selected flag
 
 > **Stage**: `COMPUTATION` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `AUTHF-CARRIER-ADMISSION-GATE`  
 > **UUID**: `24f48fe9-e871-5568-b571-e078d12b748a`  
@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-The recovered candidate record stays globally open: for AIT-DTM0 only syntax, execution semantics, adequacy and replay closure are partial and universality, extensionality, nontriviality and effective reduction are open, and PO-022, PO-023 and AIT-PACKET4 are open; the validator refuses any selection or admission.
+On this closed slice the record admission status is the string open. The direct candidate identifier is AIT-DTM0, its admission status is partial, its syntax-and-encoding status is partial, its execution-semantics status is partial, and its universality status is open. The direct candidate selected flag is false.
 
 ### Governing Obligation
-A carrier with syntax, execution, simulation, an extensional property with encoded witnesses, an effective reduction and a replay boundary must be frozen before any Rice-style claim.
+Adequacy, replay closure, extensionality, nontriviality and effective reduction stay outside this slice. The other three candidate identifiers stay outside it. A frozen carrier and a Rice-style claim stay open. The structural validator over the whole JSON record stays with the cited Python check.
 
 ### Witness Audit
-The gate is a structural validator over a JSON record, ported from PowerShell; it admits nothing. Seven of its evidence paths (PO-022 and PO-023 files, the GenX lakefile) do not resolve in this checkout.
+The campaign module records the record status open, the direct candidate id AIT-DTM0, admission partial, syntax partial, execution partial, universality open, and selected false. The other fields and the other candidates stay outside this slice.
 
 ---
 
@@ -31,7 +31,8 @@ The gate is a structural validator over a JSON record, ported from PowerShell; i
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignAuthfCarrierAdmissionGate.lean::directCeilings`
+- `lean4/CampaignAuthfCarrierAdmissionGate.lean::directNotSelected`
 
 ### Rust Certifiers
 - *none*
