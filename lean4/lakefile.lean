@@ -1231,3 +1231,7 @@ lean_lib CampaignTfq0319UnjoinedReceipt where
 -- Campaign: TFQ-0374. Not a default target.
 lean_lib CampaignTfq0374ThreeRecoveryContracts where
   roots := #[`CampaignTfq0374ThreeRecoveryContracts]
+
+-- Campaign: TFQ-0385. Not a default target.
+lean_lib CampaignTfq0385RuleErasesSeparation where
+  roots := #[`CampaignTfq0385RuleErasesSeparation]

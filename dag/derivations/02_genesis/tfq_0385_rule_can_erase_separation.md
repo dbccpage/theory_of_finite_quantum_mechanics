@@ -26,7 +26,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: missing declaration obligation: the AdmitRuleAll erasure counterexample was not found in the opened Inertia.lean or Run.lean fragments`](../../lean4/)
+- [`lean4/CampaignTfq0385RuleErasesSeparation.lean`](../../../lean4/CampaignTfq0385RuleErasesSeparation.lean) records two data, one unary instance on datum 0, and the class count falling from 2 to 1 when the uniform rule on form 0 is added. The node stays OPEN.
+- The opened fragments Inertia.lean and Run.lean are not cited for this counterexample.
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`absent: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/imposition.rs`](../../code/rust/src/)
