@@ -1339,3 +1339,7 @@ lean_lib CampaignFqGapContinuumHilbertLift where
 -- Campaign: FSP-WITTEN-INDEX-INVARIANCE. Not a default target.
 lean_lib CampaignWittenPairing where
   roots := #[`CampaignWittenPairing]
+
+-- Campaign: PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY. Not a default target.
+lean_lib CampaignPgwWdpPhiWellDefinedL1Duality where
+  roots := #[`CampaignPgwWdpPhiWellDefinedL1Duality]

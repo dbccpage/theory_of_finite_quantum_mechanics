@@ -17898,7 +17898,7 @@
       "stage": "WDP",
       "status": "CONDITIONAL",
       "source_status": "WDP monograph §4.2-§4.3 WDP-CH04-P01, conditional P02 and C01 (imported LP duality)",
-      "statement": "WDP-CH04-P01: Φ_J([δ]) = inf_f J(δ − d₀f) is independent of the representative, because δ' = δ + d₀g turns the infimum into one over h = f − g, a bijection of C⁰. WDP-CH04-P02 (conditional): when the repair space is finite-dimensional over ℝ or ℂ and J is a norm, the infimum is attained after quotienting ker d₀; the hypotheses cannot be dropped silently for seminorms or infinite carriers. WDP-CH04-C01 (conditional): with positive weights w, Φ_{1,w}([δ]) = max{⟨y, δ⟩ : d₀*y = 0, |y_e| ≤ w_e}, an imported finite-dimensional convex-duality result (REF-MATH-005, Rockafellar, Convex Analysis) specialized to the declared weighted graph complex. In code, finite_quotient_l1 minimizes over an explicit candidate list, and exact_quotient_l1 solves the weighted ℓ¹ programme over Fraction and reports a value only after an independent certificate check.",
+      "statement": "On integer triples, the triangle coboundary is d0(f0, f1, f2) = (f1 - f0, f2 - f1, f2 - f0). For all integer vertex triples f and g, d0(f0 + g0, f1 + g1, f2 + g2) equals the componentwise sum of d0(f) and d0(g), and (delta + d0(g)) - d0(f + g) equals delta - d0(f). The sum of absolute residual entries is unchanged by that shift. For delta = (1, 1, 0), every integer repair has absolute residual sum at least 2, and the repair (0, 1, 0) has absolute residual sum 2. For every integer vertex triple g, delta + d0(g) has absolute residual sum at least 2 at every integer repair, and the repair (g0, 1 + g1, g2) has absolute residual sum 2.",
       "source": [
         "dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:921-940",
@@ -17906,6 +17906,13 @@
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:1342-1359"
       ],
       "lean": [
+        "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::d0_linear",
+        "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::residual_shift",
+        "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::absSum_shift",
+        "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::absSum_ge_two",
+        "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::absSum_attained",
+        "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::shifted_ge",
+        "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::shifted_attained",
         "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound"
       ],
       "rust": [
@@ -17915,7 +17922,7 @@
         "Finite-dimensional convex (linear-programming) strong duality, REF-MATH-005 Rockafellar Convex Analysis, specialized to the declared weighted graph complex (assumption)",
         "Attainment hypothesis: repair space finite-dimensional over R or C and J a norm, not a seminorm (assumption)"
       ],
-      "bottleneck": "Representative independence is unconditional; the weak direction of the duality is not imported (WDP-CH04-P07, TFQ-0348, Lean dual_certificate_lower_bound), and C01 is not shown for arbitrary coefficient spaces.",
+      "bottleneck": "Standing text is the integer triangle coboundary: linearity, residual identity under a vertex shift, and absolute residual sum 2 for delta = (1, 1, 0) and for each integer coboundary shift of that one triple. Representative independence for a general cost, attainment on a real or complex repair space, weighted duality on an arbitrary complex, rational repairs, and a general coefficient field stay open. The weak direction of the duality is not imported (WDP-CH04-P07, TFQ-0348, Lean dual_certificate_lower_bound), and C01 is not shown for arbitrary coefficient spaces.",
       "tags": [
         "pregenesis-to-wdp",
         "TFQ-0544",
@@ -62394,6 +62401,13 @@
       ],
       "id": "TFQ-0544",
       "lean4": [
+        "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::d0_linear",
+        "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::residual_shift",
+        "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::absSum_shift",
+        "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::absSum_ge_two",
+        "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::absSum_attained",
+        "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::shifted_ge",
+        "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::shifted_attained",
         "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound"
       ],
       "local_id": "PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY",
@@ -62410,7 +62424,7 @@
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",
-      "summary": "WDP-CH04-P01: Φ_J([δ]) = inf_f J(δ − d₀f) is independent of the representative, because δ' = δ + d₀g turns the infimum into one over h = f − g, a bijection of C⁰. WDP-CH04-P02 (conditional): when the repair space is finite-dimensional over ℝ or ℂ and J is a norm, the infimum is attained after quotienting ker d₀; the hypotheses cannot be dropped silently for seminorms or infinite carriers. WDP-CH04-C01 (conditional): with positive weights w, Φ_{1,w}([δ]) = max{⟨y, δ⟩ : d₀*y = 0, |y_e| ≤ w_e}, an imported finite-dimensional convex-duality result (REF-MATH-005, Rockafellar, Convex Analysis) specialized to the declared weighted graph complex. In code, finite_quotient_l1 minimizes over an explicit candidate list, and exact_quotient_l1 solves the weighted ℓ¹ programme over Fraction and reports a value only after an independent certificate check.",
+      "summary": "On integer triples, the triangle coboundary is d0(f0, f1, f2) = (f1 - f0, f2 - f1, f2 - f0). For all integer vertex triples f and g, d0(f0 + g0, f1 + g1, f2 + g2) equals the componentwise sum of d0(f) and d0(g), and (delta + d0(g)) - d0(f + g) equals delta - d0(f). The sum of absolute residual entries is unchanged by that shift. For delta = (1, 1, 0), every integer repair has absolute residual sum at least 2, and the repair (0, 1, 0) has absolute residual sum 2. For every integer vertex triple g, delta + d0(g) has absolute residual sum at least 2 at every integer repair, and the repair (g0, 1 + g1, g2) has absolute residual sum 2.",
       "uuid": "e9c07c57-ad2e-591b-9c5f-34c327144059"
     },
     {

@@ -1,0 +1,91 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "source_base": "c50dc1b472596d1b5934408b00b9fbb72db91345",
+  "checked_at": "2026-10-25",
+  "result": "Narrowed to the integer triangle slice. Status stays CONDITIONAL.",
+  "proof_boundary": "On integer triples, d0(f0, f1, f2) = (f1 - f0, f2 - f1, f2 - f0) is linear, (delta + d0(g)) - d0(f + g) = delta - d0(f), and the absolute residual sum is unchanged by that shift. For delta = (1, 1, 0), every integer repair has absolute residual sum at least 2, the repair (0, 1, 0) attains 2, and both facts survive every integer coboundary shift. A general cost, a real or complex repair space, weighted duality on an arbitrary complex, rational repairs, and a general coefficient field stay outside this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "lakefile_sha256": "73c4f44965de298376b9b11aeb1932b5ab7529ae3d5f945df7464addbe8fe834",
+    "library": "CampaignPgwWdpPhiWellDefinedL1Duality (lean_lib in lean4/lakefile.lean; not a default target)",
+    "build_directory": "lean4/b (lakefile buildDir; gitignored)",
+    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run). The module imports no package.",
+    "command": "lake --no-cache --dir lean4 build CampaignPgwWdpPhiWellDefinedL1Duality",
+    "cwd": ".",
+    "wall_clock_ms": 4378,
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "results": [
+      {
+        "module": "CampaignPgwWdpPhiWellDefinedL1Duality",
+        "dag_node": "PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY",
+        "source": "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean",
+        "sha256": "ad360df138896aa08a749c4f5db0df98b8b46ba7ff7a3554477b3266f3d1d7fb",
+        "sha256_after_build": "ad360df138896aa08a749c4f5db0df98b8b46ba7ff7a3554477b3266f3d1d7fb",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "module_job_ms": 1000,
+        "wall_clock_ms": 4378,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "d0_linear",
+          "residual_shift",
+          "absSum_shift",
+          "absSum_ge_two",
+          "absSum_attained",
+          "shifted_ge",
+          "shifted_attained"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "d0_linear": [
+            "propext",
+            "Quot.sound"
+          ],
+          "residual_shift": [
+            "propext",
+            "Quot.sound"
+          ],
+          "absSum_shift": [
+            "propext",
+            "Quot.sound"
+          ],
+          "pair_d0_zero": [
+            "propext",
+            "Quot.sound"
+          ],
+          "pair_residual": [
+            "propext",
+            "Quot.sound"
+          ],
+          "natAbs_pair_le_absSum": [
+            "propext",
+            "Quot.sound"
+          ],
+          "absSum_ge_two": [
+            "propext",
+            "Quot.sound"
+          ],
+          "absSum_attained": [
+            "propext"
+          ],
+          "shifted_ge": [
+            "propext",
+            "Quot.sound"
+          ],
+          "shifted_attained": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        "output": "d0_linear depends on axioms: [propext, Quot.sound]\nresidual_shift depends on axioms: [propext, Quot.sound]\nabsSum_shift depends on axioms: [propext, Quot.sound]\npair_d0_zero depends on axioms: [propext, Quot.sound]\npair_residual depends on axioms: [propext, Quot.sound]\nnatAbs_pair_le_absSum depends on axioms: [propext, Quot.sound]\nabsSum_ge_two depends on axioms: [propext, Quot.sound]\nabsSum_attained depends on axioms: [propext]\nshifted_ge depends on axioms: [propext, Quot.sound]\nshifted_attained depends on axioms: [propext, Quot.sound]\n"
+      }
+    ]
+  }
+}
