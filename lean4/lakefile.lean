@@ -1379,3 +1379,7 @@ lean_lib CampaignQcvConditionalViabilityCertificate where
 -- Campaign: OPS-OBSERVER-DECLARATION-REFUSAL. Not a default target.
 lean_lib CampaignOpsObserverDeclarationRefusal where
   roots := #[`CampaignOpsObserverDeclarationRefusal]
+
+-- Campaign: OPS-AXIS3-RELABELING. Not a default target.
+lean_lib CampaignOpsAxis3Relabeling where
+  roots := #[`CampaignOpsAxis3Relabeling]

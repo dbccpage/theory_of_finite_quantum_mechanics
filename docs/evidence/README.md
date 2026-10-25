@@ -37,7 +37,7 @@ The `lean` fields of nodes cite 2044 distinct Lean declarations that lie in file
 | `PROVED_LEAN` | 0 | 0 | 0 | 267 | 0 | 267 |
 | `PROVED_PROSE` | 8 | 13 | 7 | 7 | 0 | 35 |
 | `COMPUTATIONALLY_CHECKED` | 36 | 60 | 20 | 43 | 0 | 159 |
-| `CONDITIONAL` | 11 | 2 | 2 | 22 | 0 | 37 |
+| `CONDITIONAL` | 11 | 1 | 2 | 23 | 0 | 37 |
 | `DEFINITION` | 21 | 17 | 1 | 53 | 0 | 92 |
 | `IMPORTED_ASSUMPTION` | 5 | 23 | 1 | 41 | 0 | 70 |
 | `ADMITTED_PRIMITIVE` | 0 | 0 | 0 | 3 | 0 | 3 |
@@ -83,7 +83,7 @@ The `lean` fields of nodes cite 2044 distinct Lean declarations that lie in file
 | [ADS_CFT](stages/ADS_CFT.md) | 5 | 1 | 0 | 7 | 0 | 13 | 3 | 0 |
 | [LOOP_QUANTUM_GRAVITY](stages/LOOP_QUANTUM_GRAVITY.md) | 8 | 2 | 0 | 6 | 0 | 16 | 4 | 0 |
 | [GENESIS_TO_HIGHER](stages/GENESIS_TO_HIGHER.md) | 0 | 10 | 0 | 2 | 0 | 12 | 0 | 0 |
-| [OBSERVER_PRESHEAF](stages/OBSERVER_PRESHEAF.md) | 0 | 25 | 6 | 2 | 0 | 33 | 2 | 0 |
+| [OBSERVER_PRESHEAF](stages/OBSERVER_PRESHEAF.md) | 0 | 24 | 6 | 3 | 0 | 33 | 2 | 0 |
 
 ## Evidence grades
 
