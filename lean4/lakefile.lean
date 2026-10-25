@@ -1211,3 +1211,7 @@ lean_lib CampaignTfq0376Pregenesis where
 -- Campaign: PGW-PYTHON-LEAN-CARRIER-BRIDGE. Not a default target.
 lean_lib CampaignPgwPythonLeanCarrierBridge where
   roots := #[`CampaignPgwPythonLeanCarrierBridge]
+
+-- Campaign: MAJ-OPEN-EVIDENCE-ADEQUACY. Not a default target.
+lean_lib CampaignMajOpenEvidenceAdequacy where
+  roots := #[`CampaignMajOpenEvidenceAdequacy]
