@@ -130,3 +130,4 @@ One line per target, in order attempted: `<UTC date> | <node id> | <outcome clas
 - **Mutation Gate (`dag/research/campaign_tfq-0376_lean_mutation.json`)**: 6/6 semantic mutations killed.
 - **Independent Checker (`checks/independent/tfq-0376.py`)**: 146 checks passed, 0 failed (`dag/research/campaign_tfq-0376_independent.json`).
 2026-10-24 | PGW-PYTHON-LEAN-CARRIER-BRIDGE | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/320 | Sealed reading L replays to R2L and reading F replays to R2F; a Python-to-Lean refinement stays open.
+2026-10-25 | L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/364 | Pairs (2, 0) and (0, 2) both sum to 2 and differ; 4 * k = 2 has no natural solution, and 4 * 1 = 4.
