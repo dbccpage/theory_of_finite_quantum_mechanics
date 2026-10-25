@@ -1291,3 +1291,7 @@ lean_lib CampaignGthShadow where
 -- Campaign: GTH-LANG-CORE. Not a default target.
 lean_lib CampaignGthLangCore where
   roots := #[`CampaignGthLangCore]
+
+-- Campaign: L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED. Not a default target.
+lean_lib CampaignL1ResidualSectorWeights where
+  roots := #[`CampaignL1ResidualSectorWeights]

@@ -2785,16 +2785,24 @@
       "id": "L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED",
       "stage": "L1_TO_L2",
       "status": "CONDITIONAL",
-      "source_status": "QM-020 Thm 3 residual-to-sector-weight non-uniqueness without a selector on the 4-cycle ((2,0) != (0,2) at Phi_1 = 2), dihedral C_4 symmetry-orbit selector collapse to (4,4), and positive-simplex trace normalization mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm",
-      "statement": "On the n-cycle with the unweighted L1 form and equal edge masses: the residual class is the holonomy S, Phi1 = |S|, the minimizers are the scaled simplex of sign-definite cochains, so for n >= 2, S != 0 and two nonempty sectors the sector weights (block L1 masses) are not determined by (Phi1, Gamma2 modelled as the holonomy); any selector, including the cyclic average S/n (integral iff n divides S), is extra input. The weighted-mass window form declared in the source is not treated in the kernel (native rows show a unique minimizer on a unique minimal-mass edge), and the sum-of-squares reading of Gamma2 is not treated.",
+      "source_status": "Conditional. CampaignL1ResidualSectorWeights records the pairs (2, 0) and (0, 2) at coordinate sum 2, and the two length-4 holonomy checks. The weighted form and the general n-cycle stay open.",
+      "statement": "Narrowed boundary, status left CONDITIONAL. The sector-weight pairs (2, 0) and (0, 2) both have coordinate sum 2 and differ. For length 4 and holonomy 2, no natural number k satisfies 4 * k = 2. For length 4 and holonomy 4, 4 * 1 = 4.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md:103",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/003_residual_density_calculus_l1_l2_boundary/qm_003_residual_density_calculus_l1_l2_boundary_claim_ledger.md#RDB-1",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/012_density_matrices_as_diagonal_residual_weights/qm_012_density_matrices_as_diagonal_residual_weights_claim_ledger.md#C1",
         "sources/atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml",
-        "lean4/DerivationDagQMClosure.lean"
+        "lean4/DerivationDagQMClosure.lean",
+        "lean4/CampaignL1ResidualSectorWeights.lean",
+        "dag/derivations/independent/l1-residual-sector-weights-declared.md",
+        "checks/independent/l1-residual-sector-weights-declared.py",
+        "dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json"
       ],
       "lean": [
+        "lean4/CampaignL1ResidualSectorWeights.lean::same_phi1",
+        "lean4/CampaignL1ResidualSectorWeights.lean::weights_differ",
+        "lean4/CampaignL1ResidualSectorWeights.lean::holonomy_two_not_divisible",
+        "lean4/CampaignL1ResidualSectorWeights.lean::holonomy_four_divisible",
         "lean4/BornRedundancy.lean::normalize",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.sector_weights_sum_to_phi1",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.even_cycle_sector_weights_require_selector",
@@ -2817,7 +2825,7 @@
         "sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Weighted L1 form with declared masses not proved in the kernel; Gamma2 modelled as holonomy, not as sum of squares of the weights; sector/weight modelling identification with the source declarations not formalised.",
+      "bottleneck": "The general n-cycle, the weighted L1 form with declared masses, the sum-of-squares reading of Gamma2, and any selector other than these two length-4 holonomy checks stay open. The pairs (2, 0) and (0, 2) are one witness that a common coordinate sum does not fix the pair.",
       "tags": [
         "gap",
         "packet:QM_005",
@@ -2841,7 +2849,9 @@
         "prior_status": "PROVED_LEAN",
         "prior_statement": "Sectors are residual sectors with declared finite nonnegative masses mu(s), total M > 0. The carrier is the weight vector w. No derivation of w from the Phi1 / Gamma2 residual is given in the sources read: w is an input to QM_003, QM_012 and QM_020.",
         "prior_bottleneck": "None (4-cycle minimizer non-uniqueness without selector, C_4 symmetry-orbit canonicalization, and sector-weight trace conservation mechanized in l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector, l1_even_cycle_symmetry_orbit_canonical_sector_weights, and sector_weights_sum_to_phi1).",
-        "superseded_by": [],
+        "superseded_by": [
+          "dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json"
+        ],
         "prior_route_status": {
           "L1-R-DECLARED-MASS-TO-WEIGHTS": "DERIVED_LEAN",
           "L1-R-RESIDUAL-TO-WEIGHTS": "DERIVED_LEAN"
