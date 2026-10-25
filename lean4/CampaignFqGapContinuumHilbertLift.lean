@@ -2,6 +2,8 @@
 -- Integer slice: 2 * a = 1 has no integer solution, and t * t - t - 1 has no integer root.
 -- Scalar-field selection, l2 uniformity, and a completion stay outside this module.
 
+
+namespace CampaignFqGapContinuumHilbertLift
 theorem twoMulNeOne (a : Int) : 2 * a ≠ 1 := by
   omega
 
@@ -75,3 +77,5 @@ theorem intPolyNeZero (t : Int) : t * t - t - 1 ≠ 0 := by
 #print axioms discIdentity
 #print axioms intSqNeFive
 #print axioms intPolyNeZero
+
+end CampaignFqGapContinuumHilbertLift

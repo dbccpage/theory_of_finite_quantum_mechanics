@@ -2,6 +2,8 @@
 -- Integer triangle slice. A general cost, a real or complex repair space,
 -- and weighted duality on an arbitrary complex stay outside this module.
 
+
+namespace CampaignPgwWdpPhiWellDefinedL1Duality
 def d0 (f0 f1 f2 : Int) : Int × Int × Int :=
   (f1 - f0, f2 - f1, f2 - f0)
 
@@ -98,3 +100,5 @@ theorem shifted_attained (g0 g1 g2 : Int) :
 #print axioms absSum_attained
 #print axioms shifted_ge
 #print axioms shifted_attained
+
+end CampaignPgwWdpPhiWellDefinedL1Duality

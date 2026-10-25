@@ -2,6 +2,8 @@
 -- One letter, no rewrite step, length bound 1.
 -- A computable start-word map and normal-form reachability stay outside this module.
 
+
+namespace CampaignCompC3NoFixedBound
 abbrev Word := List (Fin 1)
 
 def bound : Nat := 1
@@ -56,3 +58,5 @@ theorem not_empty : ¬ ReachB start emptyW := by
 #print axioms long_out
 #print axioms not_long
 #print axioms not_empty
+
+end CampaignCompC3NoFixedBound

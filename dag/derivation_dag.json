@@ -5895,10 +5895,10 @@
         "sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:333"
       ],
       "lean": [
-        "lean4/CampaignFqGapContinuumHilbertLift.lean::twoMulNeOne",
-        "lean4/CampaignFqGapContinuumHilbertLift.lean::discIdentity",
-        "lean4/CampaignFqGapContinuumHilbertLift.lean::intSqNeFive",
-        "lean4/CampaignFqGapContinuumHilbertLift.lean::intPolyNeZero",
+        "lean4/CampaignFqGapContinuumHilbertLift.lean::CampaignFqGapContinuumHilbertLift.twoMulNeOne",
+        "lean4/CampaignFqGapContinuumHilbertLift.lean::CampaignFqGapContinuumHilbertLift.discIdentity",
+        "lean4/CampaignFqGapContinuumHilbertLift.lean::CampaignFqGapContinuumHilbertLift.intSqNeFive",
+        "lean4/CampaignFqGapContinuumHilbertLift.lean::CampaignFqGapContinuumHilbertLift.intPolyNeZero",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
@@ -5941,17 +5941,17 @@
         "FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION"
       ],
       "pfp_review": {
-        "review": "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/review_result.json",
-        "review_sha256": "52fbc45c88ce3be846369c246bf7a2bed936b8262d5dccbdc416580ad14171d7",
+        "review": "dag/research/pr_374_current_scope_review.json",
+        "review_sha256": "259dedf3c14192e36a50c2e9d520bf9e59fd0d8f5bcf4e64003ac66644feb595",
         "review_refs": [
-          "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/review_result.json"
+          "dag/research/pr_374_current_scope_review.json"
         ],
-        "verdict": "scoped_result_or_obstruction_reviewed",
-        "narrowest_claim": "2 has no Gaussian-integer inverse because its real equation 2a=1 has no integer solution; the stated matrix has characteristic polynomial l^2-l-1 and discriminant identity 4p(l)+5=(2l-1)^2.",
-        "does_not_support": "Construct an actual completion with specified topology, carrier and embedding; prove any claimed rational/Gaussian spectral exit separately. No impossibility of completion follows from this obstruction.",
-        "next_test": "Construct an actual completion with specified topology, carrier and embedding; prove any claimed rational/Gaussian spectral exit separately. No impossibility of completion follows from this obstruction.",
+        "verdict": "scoped_integer_result_reviewed",
+        "narrowest_claim": "No integer a satisfies 2 * a = 1. For every integer t, 4 * (t * t - t - 1) + 5 = (2 * t - 1) * (2 * t - 1). For every integer n, n * n is not 5. For every integer t, t * t - t - 1 is not 0.",
+        "does_not_support": "Scalar-field selection, a Gaussian-integer matrix eigenvalue, choice of l2 uniformity or an infinite-dimensional Hilbert completion.",
+        "next_test": "Replay the submitted integer proofs and independent audit on their current source hashes.",
         "scope_effect": "statement_narrowed",
-        "reason": "Standing text is the integer equation 2 * a = 1, the discriminant identity, and the lack of an integer root of t * t - t - 1. Status stays CONDITIONAL.",
+        "reason": "Current review covers all four integer claims: 2*a is not 1, the discriminant identity, no integer square is 5, and t*t-t-1 is not 0. Status stays CONDITIONAL; the older Gaussian/matrix review is historical context.",
         "prior_status": "CONDITIONAL",
         "prior_statement": "The transition from the finite presented carrier (integer weights, finite report labels) to a continuous infinite-dimensional Hilbert space is not constructed in any source; QM_122 s6 refuses it. M_n(Z[i]) is recovered for finite report sets but is not M_n(C): Z[i] is not a field and a self-adjoint Gaussian-integer matrix need not have a Gaussian-integer eigenvalue (GAP-F001-S000-009). Construction half (split 2026-10-21): FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION records the completion once the scalar field and the l2 uniformity are supplied; this node keeps the selection of those two hypotheses, which no source derives.",
         "prior_bottleneck": "What remains at this node is the selection of the scalar field (R or C) and of the l2 uniformity from finite-theory primitives, which no source derives; the construction, the identification with l2(N, k), the intrinsic-uniformity completion and the lifting of bounded exact operators are recorded at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION; dynamics and generators remain at FQ-GAP-STONE-CONTINUOUS-TIME. Z[i] non-field obstruction and discriminant-5 spectral exit from Q(i) remain mechanized.",
@@ -17922,7 +17922,7 @@
         "Finite-dimensional convex (linear-programming) strong duality, REF-MATH-005 Rockafellar Convex Analysis, specialized to the declared weighted graph complex (assumption)",
         "Attainment hypothesis: repair space finite-dimensional over R or C and J a norm, not a seminorm (assumption)"
       ],
-      "bottleneck": "Standing text is the integer triangle coboundary: linearity, residual identity under a vertex shift, and absolute residual sum 2 for delta = (1, 1, 0) and for each integer coboundary shift of that one triple. Representative independence for a general cost, attainment on a real or complex repair space, weighted duality on an arbitrary complex, rational repairs, and a general coefficient field stay open. The weak direction of the duality is not imported (WDP-CH04-P07, TFQ-0348, Lean dual_certificate_lower_bound), and C01 is not shown for arbitrary coefficient spaces.",
+      "bottleneck": "Standing text is the integer triangle coboundary: linearity, residual identity under a vertex shift, and minimum absolute residual sum 2 for delta = (1, 1, 0) and for each integer coboundary shift of that one triple. Representative independence for a general cost, attainment on a real or complex repair space, weighted duality on an arbitrary complex, rational repairs, and a general coefficient field stay open. The weak direction of the duality is not imported (WDP-CH04-P07, TFQ-0348, Lean dual_certificate_lower_bound), and C01 is not shown for arbitrary coefficient spaces.",
       "tags": [
         "pregenesis-to-wdp",
         "TFQ-0544",
@@ -20585,12 +20585,12 @@
         "papers/core/majorana/the_majorana_problem_claim_ledger.md"
       ],
       "lean": [
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::d0_id",
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::nilpotent",
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::all_cocycle",
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::all_exact",
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::no_closed",
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::window_no_closed",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.d0_id",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.nilpotent",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.all_cocycle",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.all_exact",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.no_closed",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.window_no_closed",
         "papers/core/majorana/lean4/MajoranaCore.lean::legacy_carrier_obstruction"
       ],
       "rust": [],
@@ -24439,16 +24439,14 @@
         "dag/research/genesis_to_universal_computation.md"
       ],
       "lean": [
-        "lean4/CampaignCompC3NoFixedBound.lean::reach_eq",
-        "lean4/CampaignCompC3NoFixedBound.lean::reaches_self",
-        "lean4/CampaignCompC3NoFixedBound.lean::start_in",
-        "lean4/CampaignCompC3NoFixedBound.lean::empty_in",
-        "lean4/CampaignCompC3NoFixedBound.lean::long_len",
-        "lean4/CampaignCompC3NoFixedBound.lean::long_out",
-        "lean4/CampaignCompC3NoFixedBound.lean::not_long",
-        "lean4/CampaignCompC3NoFixedBound.lean::not_empty",
-        "lean4/GenesisComputation.lean::reachB_iff",
-        "lean4/GenesisCompUniv.lean::nfReach_not_computable"
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.reach_eq",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.reaches_self",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.start_in",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.empty_in",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.long_len",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.long_out",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.not_long",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.not_empty"
       ],
       "rust": [],
       "imported_structure": [],
@@ -24902,8 +24900,8 @@
     {
       "id": "COMP-C7-ENCODED-INSTANCE-REDUCTION",
       "stage": "COMPUTATION",
-      "status": "PROVED_LEAN",
-      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C7c claims CONDITIONAL; audited status PROVED_LEAN",
+      "status": "CONDITIONAL",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C7c claims CONDITIONAL; audited status CONDITIONAL",
       "statement": "If the mark type has a Primcodable structure and startWord is computable, the normal-form reachability problem on words of the fixed regime is not a computable predicate.",
       "source": [
         "dag/derivations/29_computation/tfq_1310_comp_c7_encoded_instance_reduction.md",
@@ -24913,10 +24911,12 @@
       ],
       "lean": [
         "lean4/GenesisCompUniv.lean::reach_problem_not_computable",
-        "lean4/CampaignCompC7EncodedInstanceReduction.lean::encoded_instance_reduction"
+        "lean4/CampaignCompC7EncodedInstanceReduction.lean::CampaignCompC7EncodedInstanceReduction.encoded_instance_reduction"
       ],
       "rust": [],
-      "imported_structure": [],
+      "imported_structure": [
+        "Primcodable structure on the mark type and Computable startWord (open lemma startWord_computable)"
+      ],
       "bottleneck": "The antecedent is a Primcodable instance for Sym G1 (TM1to0.Λ' M1) and Computable startWord. That antecedent is not constructed in this module. The standing claim is the implication from that antecedent to non-computability of the word predicate for Rules M0.",
       "tags": [
         "application-branch",
@@ -25369,8 +25369,8 @@
     {
       "id": "QCV-CONDITIONAL-VIABILITY-CERTIFICATE",
       "stage": "COMPUTATION",
-      "status": "PROVED_LEAN",
-      "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-Q5 claims CONDITIONAL; audited status PROVED_LEAN",
+      "status": "CONDITIONAL",
+      "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-Q5 claims CONDITIONAL; audited status CONDITIONAL",
       "statement": "If the initial backlog q0 is nonnegative, g < 1, kappa > 0, r is at least lam/((1-g)*kappa), c(k) <= C for every natural number k, p(k) >= 0, max(C,1)*p(0) < 1, and p(k+1) <= c(k)*p(k)^2 whenever BacklogBounded lam g (kappa*r) q0 holds, then that backlog predicate holds and for every rational L >= 0 and every epsilon > 0 some level k has L*p(k) <= epsilon. If also max(C,1)*p(0) <= 1/2, then every natural number k with L <= epsilon*max(C,1)*2^(2^k) has L*p(k) <= epsilon.",
       "source": [
         "dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md",
@@ -25384,14 +25384,19 @@
         "lean4/QcSelfObstruction.lean::conditional_viability_instance",
         "lean4/QcSelfObstruction.lean::level_error_le",
         "lean4/QcSelfObstruction.lean::explicit_level",
-        "lean4/CampaignQcvConditionalViabilityCertificate.lean::viability_nonneg_initial",
-        "lean4/CampaignQcvConditionalViabilityCertificate.lean::viability_explicit_level"
+        "lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_nonneg_initial",
+        "lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_explicit_level"
       ],
       "rust": [
         "code/rust/src/qm/campaigns/qc_self_obstruction.rs::viability_report",
         "code/rust/src/qm/campaigns/qc_self_obstruction.rs::level_for_failure"
       ],
-      "imported_structure": [],
+      "imported_structure": [
+        "noise obeys p(k+1) <= c(k)*p(k)^2 when repair keeps up (independent or local noise)",
+        "fresh ancillas at rate r",
+        "classical control and decoding fast enough for the syndrome",
+        "level-bounded overhead c(k) <= C"
+      ],
       "bottleneck": "The initial backlog q0 is nonnegative. The recurrence, the supply bound, and the overhead bound are hypotheses of the implication. A device, a noise process, and a classical decoder are outside this implication. A negative initial backlog is outside the narrowed statement.",
       "tags": [
         "application-branch",
@@ -39422,7 +39427,7 @@
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
       "output": "COMP-C7-ENCODED-INSTANCE-REDUCTION",
-      "status": "DERIVED_LEAN",
+      "status": "CONDITIONAL_ON_IMPORT",
       "mechanism": "The antecedent is a Primcodable instance for Sym G1 (TM1to0.Λ' M1) and Computable startWord. That antecedent is not constructed in this module. The standing claim is the implication from that antecedent to non-computability of the word predicate for Rules M0.",
       "source": [
         "dag/derivations/29_computation/tfq_1310_comp_c7_encoded_instance_reduction.md",
@@ -39624,7 +39629,7 @@
         "QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY"
       ],
       "output": "QCV-CONDITIONAL-VIABILITY-CERTIFICATE",
-      "status": "DERIVED_LEAN",
+      "status": "CONDITIONAL_ON_IMPORT",
       "mechanism": "The initial backlog q0 is nonnegative. The recurrence, the supply bound, and the overhead bound are hypotheses of the implication. A device, a noise process, and a classical decoder are outside this implication. A negative initial backlog is outside the narrowed statement.",
       "source": [
         "dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md",
@@ -43708,7 +43713,7 @@
       "obligation": "Each language must carry: no rational homomorphism supplies the missing square root of (3+4i)/5, and F002.S001 remains an empty open bridge rather than a completed circle.",
       "parent_id": "TFQ-0054",
       "pfp_review_refs": [
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/review_result.json",
+        "dag/research/pr_374_current_scope_review.json",
         "dag/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json",
         "dag/results/L1-IMP-U1-PHASES/reviews/20261020_born_boundary_audit/delivery_review_result.json"
       ],
@@ -43749,7 +43754,7 @@
       "obligation": "Each language must carry: Clifford admission, slash-square, exact solution rank, and a separate Dirac-adjoint check that anticommutators do not imply.",
       "parent_id": "TFQ-0054",
       "pfp_review_refs": [
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/review_result.json",
+        "dag/research/pr_374_current_scope_review.json",
         "dag/results/FQ-QM207-231-FINITE-MAP-CONTROLS/reviews/20261019_boundaries_audit/review_result.json"
       ],
       "python": [
@@ -44326,8 +44331,8 @@
       "obligation": "Each language must carry: Hermitian K yields a unitary Cayley S on at most 128 channels, T = (S-I)/(2i), and the construction is not an asymptotic continuum scattering operator.",
       "parent_id": "TFQ-0070",
       "pfp_review_refs": [
-        "dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/reviews/20261019_dynamics_audit/review_result.json",
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/review_result.json"
+        "dag/research/pr_374_current_scope_review.json",
+        "dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/reviews/20261019_dynamics_audit/review_result.json"
       ],
       "python": [
         "absent: not located"
@@ -44401,7 +44406,7 @@
       "obligation": "Each language must carry: isotony, locality and optional complement duality on a declared finite subset net of at most four parties, and must state that this net is not continuum Haag duality.",
       "parent_id": "TFQ-0072",
       "pfp_review_refs": [
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/review_result.json"
+        "dag/research/pr_374_current_scope_review.json"
       ],
       "python": [
         "absent: not located"
@@ -44788,8 +44793,8 @@
       "obligation": "Each language must carry an explicit gap record: the finite gauge, Dirac, Ward, vacuum, Lamb, S-matrix, Weinberg and hadronic controls do not occupy F002.S001, and the continuum bridge stays open.",
       "parent_id": "TFQ-0082",
       "pfp_review_refs": [
+        "dag/research/pr_374_current_scope_review.json",
         "dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/reviews/20261019_dynamics_audit/review_result.json",
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/review_result.json",
         "dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/reviews/20261019_dynamics_audit/review_result.json",
         "dag/results/FQ-QM207-231-FINITE-MAP-CONTROLS/reviews/20261019_boundaries_audit/review_result.json"
       ],
@@ -44891,7 +44896,7 @@
       "obligation": "FQ-GAP-CONTINUUM-HILBERT-LIFT stays unpaid; no continuum Hilbert space is admitted at the root.",
       "parent_id": "TFQ-0008",
       "pfp_review_refs": [
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/review_result.json",
+        "dag/research/pr_374_current_scope_review.json",
         "dag/results/PG-ROOT-DIFF-STRUCTURE/reviews/20261021_batch01b_audit/delivery_review_result.json"
       ],
       "python": [
@@ -45764,7 +45769,7 @@
       "obligation": "The interface stays open. GAP-F000-F002-001 and GAP-F002-S001-001 are not discharged.",
       "parent_id": "TFQ-0110",
       "pfp_review_refs": [
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/review_result.json"
+        "dag/research/pr_374_current_scope_review.json"
       ],
       "python": [],
       "record_status": "OPEN_INTERFACE",
@@ -45892,7 +45897,7 @@
       "obligation": "GAP-F002-LIMIT and GAP-F002-TOPOLOGY stay open. The continuum limit is not discharged.",
       "parent_id": "TFQ-0111",
       "pfp_review_refs": [
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/review_result.json"
+        "dag/research/pr_374_current_scope_review.json"
       ],
       "python": [
         "absent: no local python twin located for omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory/python/src/mtheory_interfaces/cochain_limit.py"
@@ -50305,7 +50310,7 @@
       "obligation": "Treat the Hilbert carrier, inner product, and Born pairing as supplied inputs for every later finite step.",
       "parent_id": "TFQ-0006",
       "pfp_review_refs": [
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/review_result.json",
+        "dag/research/pr_374_current_scope_review.json",
         "dag/results/L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY/reviews/20261020_born_boundary_audit/delivery_review_result.json"
       ],
       "python": [
@@ -65252,12 +65257,12 @@
       ],
       "id": "TFQ-1154",
       "lean4": [
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::d0_id",
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::nilpotent",
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::all_cocycle",
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::all_exact",
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::no_closed",
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::window_no_closed",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.d0_id",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.nilpotent",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.all_cocycle",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.all_exact",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.no_closed",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.window_no_closed",
         "papers/core/majorana/lean4/MajoranaCore.lean::legacy_carrier_obstruction"
       ],
       "local_id": "MAJ-LEGACY-CARRIER-RETRACTION",
@@ -69465,19 +69470,17 @@
       ],
       "id": "TFQ-1295",
       "lean4": [
-        "lean4/CampaignCompC3NoFixedBound.lean::reach_eq",
-        "lean4/CampaignCompC3NoFixedBound.lean::reaches_self",
-        "lean4/CampaignCompC3NoFixedBound.lean::start_in",
-        "lean4/CampaignCompC3NoFixedBound.lean::empty_in",
-        "lean4/CampaignCompC3NoFixedBound.lean::long_len",
-        "lean4/CampaignCompC3NoFixedBound.lean::long_out",
-        "lean4/CampaignCompC3NoFixedBound.lean::not_long",
-        "lean4/CampaignCompC3NoFixedBound.lean::not_empty",
-        "lean4/GenesisComputation.lean::reachB_iff",
-        "lean4/GenesisCompUniv.lean::nfReach_not_computable"
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.reach_eq",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.reaches_self",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.start_in",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.empty_in",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.long_len",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.long_out",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.not_long",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.not_empty"
       ],
       "local_id": "COMP-C3-NO-FIXED-BOUND",
-      "name": "No fixed length bound suffices for a general-purpose regime",
+      "name": "One-letter no-rule reachability at length bound 1",
       "obligation": "Standing text is one letter, no rewrite step, and length bound 1: (0) reaches itself, misses the empty word, and (0, 0) has length 2. A computable map from an input to a start word, one bound containing every halting start word, and a clash with normal-form reachability stay open. The older citations reachB_iff and nfReach_not_computable do not discharge this slice.",
       "parent_id": "TFQ-1294",
       "python": [],
@@ -69945,14 +69948,14 @@
       "id": "TFQ-1310",
       "lean4": [
         "lean4/GenesisCompUniv.lean::reach_problem_not_computable",
-        "lean4/CampaignCompC7EncodedInstanceReduction.lean::encoded_instance_reduction"
+        "lean4/CampaignCompC7EncodedInstanceReduction.lean::CampaignCompC7EncodedInstanceReduction.encoded_instance_reduction"
       ],
       "local_id": "COMP-C7-ENCODED-INSTANCE-REDUCTION",
       "name": "Reduction over encoded rewriting instances is conditional",
       "obligation": "The antecedent is a Primcodable instance for Sym G1 (TM1to0.Λ' M1) and Computable startWord. That antecedent is not constructed in this module. The standing claim is the implication from that antecedent to non-computability of the word predicate for Rules M0.",
       "parent_id": "TFQ-1309",
       "python": [],
-      "record_status": "PROVED_LEAN",
+      "record_status": "CONDITIONAL",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "COMPUTATION",
@@ -70454,8 +70457,8 @@
         "lean4/QcSelfObstruction.lean::conditional_viability_instance",
         "lean4/QcSelfObstruction.lean::level_error_le",
         "lean4/QcSelfObstruction.lean::explicit_level",
-        "lean4/CampaignQcvConditionalViabilityCertificate.lean::viability_nonneg_initial",
-        "lean4/CampaignQcvConditionalViabilityCertificate.lean::viability_explicit_level"
+        "lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_nonneg_initial",
+        "lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_explicit_level"
       ],
       "local_id": "QCV-CONDITIONAL-VIABILITY-CERTIFICATE",
       "name": "Conditional viability: explicit logical failure bound under fresh supply, net-efficient repair and bounded overhead",
@@ -70465,7 +70468,7 @@
         "code/python/src/qm/qc_self_obstruction.py::viability_report",
         "code/python/src/qm/qc_self_obstruction.py::level_for_failure"
       ],
-      "record_status": "PROVED_LEAN",
+      "record_status": "CONDITIONAL",
       "rust": [
         "code/rust/src/qm/campaigns/qc_self_obstruction.rs::viability_report",
         "code/rust/src/qm/campaigns/qc_self_obstruction.rs::level_for_failure"

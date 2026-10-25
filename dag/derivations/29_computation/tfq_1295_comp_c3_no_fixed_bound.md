@@ -1,4 +1,4 @@
-# [TFQ-1295] No fixed length bound suffices for a general-purpose regime
+# [TFQ-1295] One-letter no-rule reachability at length bound 1
 
 > **Stage**: `COMPUTATION` | **Status**: `CONDITIONAL` | **DAG node**: `COMP-C3-NO-FIXED-BOUND`  
 > **UUID**: `6e2302e2-dad6-5e9c-b23a-8e0735be440a`  
@@ -17,7 +17,7 @@ On lists of the one letter 0, with no rewrite step, reachability is equality. Th
 Standing text is one letter, no rewrite step, and length bound 1: (0) reaches itself, misses the empty word, and (0, 0) has length 2. A computable map from an input to a start word, one bound containing every halting start word, and a clash with normal-form reachability stay open. The older citations reachB_iff and nfReach_not_computable do not discharge this slice.
 
 ### Witness Audit
-The implication is argued in prose from reachB_iff and nfReach_not_computable; no single Lean declaration states it.
+The campaign module checks the single-letter words [], [0] and [0,0], length bound 1 and reflexive-only reachability. A computable start-word map and a general no-fixed-bound theorem remain open. GenesisCompBounded.reachB_iff and GenesisCompUniv.nfReach_not_computable are background for that broader obligation, not witnesses of this fixed example.
 
 ---
 
@@ -31,16 +31,14 @@ The implication is argued in prose from reachB_iff and nfReach_not_computable; n
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignCompC3NoFixedBound.lean::reach_eq`
-- `lean4/CampaignCompC3NoFixedBound.lean::reaches_self`
-- `lean4/CampaignCompC3NoFixedBound.lean::start_in`
-- `lean4/CampaignCompC3NoFixedBound.lean::empty_in`
-- `lean4/CampaignCompC3NoFixedBound.lean::long_len`
-- `lean4/CampaignCompC3NoFixedBound.lean::long_out`
-- `lean4/CampaignCompC3NoFixedBound.lean::not_long`
-- `lean4/CampaignCompC3NoFixedBound.lean::not_empty`
-- `lean4/GenesisComputation.lean::reachB_iff`
-- `lean4/GenesisCompUniv.lean::nfReach_not_computable`
+- `lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.reach_eq`
+- `lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.reaches_self`
+- `lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.start_in`
+- `lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.empty_in`
+- `lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.long_len`
+- `lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.long_out`
+- `lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.not_long`
+- `lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.not_empty`
 
 ### Rust Certifiers
 - *none*

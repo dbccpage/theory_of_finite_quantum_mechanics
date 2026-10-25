@@ -3,6 +3,8 @@
 -- startWord_computable stays a hypothesis.
 import GenesisCompUniv
 
+namespace CampaignCompC7EncodedInstanceReduction
+
 open GenesisComputation
 open GenesisComputation.Universal
 open GenesisComputation.TMEncoding
@@ -16,3 +18,5 @@ theorem encoded_instance_reduction
 
 #print axioms encoded_instance_reduction
 #print axioms reach_problem_not_computable
+
+end CampaignCompC7EncodedInstanceReduction

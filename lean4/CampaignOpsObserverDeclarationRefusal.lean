@@ -1,6 +1,8 @@
 -- Campaign: OPS-OBSERVER-DECLARATION-REFUSAL. Not a default target.
 -- Five-field classifier for one Bell label. No defect is read.
 
+
+namespace CampaignOpsObserverDeclarationRefusal
 inductive ObserverField where
   | kernel
   | admissibility
@@ -204,3 +206,5 @@ theorem accepted_authority : authorityOf (classify acceptedDraft) = some authori
 #print axioms mismatch_on_accepted
 #print axioms accepted_draft_class
 #print axioms accepted_authority
+
+end CampaignOpsObserverDeclarationRefusal

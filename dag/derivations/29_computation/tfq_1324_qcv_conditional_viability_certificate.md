@@ -1,6 +1,6 @@
 # [TFQ-1324] Conditional viability: explicit logical failure bound under fresh supply, net-efficient repair and bounded overhead
 
-> **Stage**: `COMPUTATION` | **Status**: `PROVED_LEAN` | **DAG node**: `QCV-CONDITIONAL-VIABILITY-CERTIFICATE`  
+> **Stage**: `COMPUTATION` | **Status**: `CONDITIONAL` | **DAG node**: `QCV-CONDITIONAL-VIABILITY-CERTIFICATE`  
 > **UUID**: `5b13fbaa-54ee-588f-8832-a005ef88341a`  
 > **Parent Derivation**: [TFQ-1320](tfq_1320_qcv_overhead_growth_criterion.md)  
 > **Source record**: `QCV-Q5` in `dag/research/quantum_computation_self_obstruction.md` (claimed status `CONDITIONAL`)
@@ -17,11 +17,17 @@ If the initial backlog q0 is nonnegative, g < 1, kappa > 0, r is at least lam/((
 The initial backlog q0 is nonnegative. The recurrence, the supply bound, and the overhead bound are hypotheses of the implication. A device, a noise process, and a classical decoder are outside this implication. A negative initial backlog is outside the narrowed statement.
 
 ### Witness Audit
-viability_nonneg_initial is conditional_viability with nonnegative initial backlog q0. viability_explicit_level applies conditional_viability_explicit after that backlog predicate holds, when max(C,1)*p(0) <= 1/2. Printed axioms are propext, Classical.choice, and Quot.sound. A negative initial backlog is outside the narrowed statement.
+viability_nonneg_initial is conditional_viability with nonnegative initial backlog q0. viability_explicit_level applies conditional_viability_explicit after that backlog predicate holds, when max(C,1)*p(0) <= 1/2. Printed axioms are propext, Classical.choice, and Quot.sound. A negative initial backlog is outside the narrowed statement. Review retains CONDITIONAL status because the named operational antecedents have not been constructed; the replay certifies the implication only.
 
 ---
 
 ## 2. Derivation Context
+
+### Admitted Structural Imports
+- **Admitted**: `noise obeys p(k+1) <= c(k)*p(k)^2 when repair keeps up (independent or local noise)`
+- **Admitted**: `fresh ancillas at rate r`
+- **Admitted**: `classical control and decoding fast enough for the syndrome`
+- **Admitted**: `level-bounded overhead c(k) <= C`
 
 ### Further Prerequisites
 - `QCV-NET-RATE-BACKLOG-DICHOTOMY`
@@ -40,8 +46,8 @@ viability_nonneg_initial is conditional_viability with nonnegative initial backl
 - `lean4/QcSelfObstruction.lean::conditional_viability_instance`
 - `lean4/QcSelfObstruction.lean::level_error_le`
 - `lean4/QcSelfObstruction.lean::explicit_level`
-- `lean4/CampaignQcvConditionalViabilityCertificate.lean::viability_nonneg_initial`
-- `lean4/CampaignQcvConditionalViabilityCertificate.lean::viability_explicit_level`
+- `lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_nonneg_initial`
+- `lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_explicit_level`
 
 ### Rust Certifiers
 - `code/rust/src/qm/campaigns/qc_self_obstruction.rs::viability_report`

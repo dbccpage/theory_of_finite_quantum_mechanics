@@ -69,6 +69,12 @@ def main() -> int:
     repair = sub3(add3(delta, d0(3, -2, 5)), d0(0 + 3, 1 + -2, 0 + 5))
     if abs_sum(repair) != 2:
         fail(f"shifted attained {repair}")
+    shifted_example = add3(delta, d0(0, 2, 0))
+    if shifted_example != (3, -1, 0) or abs_sum(shifted_example) != 4:
+        fail("shifted residual at repair zero must be 4")
+    if abs_sum(sub3(shifted_example, d0(0, 3, 0))) != 2:
+        fail("shifted attaining repair must give 2")
+    print("shift g=(0,2,0): residual sum 4 at zero repair, minimum 2 at repair (0,3,0)")
     print(f"failures={FAILURES}")
     print("finite window is an audit, not the general argument")
     return FAILURES

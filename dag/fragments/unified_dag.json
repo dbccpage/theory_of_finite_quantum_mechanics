@@ -2983,12 +2983,12 @@
       ],
       "parent_record": "TFQ-1153",
       "lean": [
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::d0_id",
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::nilpotent",
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::all_cocycle",
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::all_exact",
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::no_closed",
-        "lean4/CampaignMajLegacyCarrierRetraction.lean::window_no_closed",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.d0_id",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.nilpotent",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.all_cocycle",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.all_exact",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.no_closed",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.window_no_closed",
         "papers/core/majorana/lean4/MajoranaCore.lean::legacy_carrier_obstruction"
       ],
       "rust": [],
@@ -8255,7 +8255,7 @@
       "record_id": "TFQ-1295",
       "node_id": "COMP-C3-NO-FIXED-BOUND",
       "slug": "comp-c3-no-fixed-bound",
-      "name": "No fixed length bound suffices for a general-purpose regime",
+      "name": "One-letter no-rule reachability at length bound 1",
       "stage": "COMPUTATION",
       "status": "CONDITIONAL",
       "source_claimed_status": "CONDITIONAL",
@@ -8268,16 +8268,14 @@
       ],
       "parent_record": "TFQ-1294",
       "lean": [
-        "lean4/CampaignCompC3NoFixedBound.lean::reach_eq",
-        "lean4/CampaignCompC3NoFixedBound.lean::reaches_self",
-        "lean4/CampaignCompC3NoFixedBound.lean::start_in",
-        "lean4/CampaignCompC3NoFixedBound.lean::empty_in",
-        "lean4/CampaignCompC3NoFixedBound.lean::long_len",
-        "lean4/CampaignCompC3NoFixedBound.lean::long_out",
-        "lean4/CampaignCompC3NoFixedBound.lean::not_long",
-        "lean4/CampaignCompC3NoFixedBound.lean::not_empty",
-        "lean4/GenesisComputation.lean::reachB_iff",
-        "lean4/GenesisCompUniv.lean::nfReach_not_computable"
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.reach_eq",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.reaches_self",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.start_in",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.empty_in",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.long_len",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.long_out",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.not_long",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.not_empty"
       ],
       "rust": [],
       "python": [],
@@ -8285,7 +8283,7 @@
       "sources": [
         "dag/research/genesis_to_universal_computation.md:90-90"
       ],
-      "audit": "The implication is argued in prose from reachB_iff and nfReach_not_computable; no single Lean declaration states it.",
+      "audit": "The campaign module checks the single-letter words [], [0] and [0,0], length bound 1 and reflexive-only reachability. A computable start-word map and a general no-fixed-bound theorem remain open. GenesisCompBounded.reachB_iff and GenesisCompUniv.nfReach_not_computable are background for that broader obligation, not witnesses of this fixed example.",
       "see_also": [],
       "uses": []
     },
@@ -8849,18 +8847,20 @@
       "slug": "comp-c7-encoded-instance-reduction",
       "name": "Reduction over encoded rewriting instances is conditional",
       "stage": "COMPUTATION",
-      "status": "PROVED_LEAN",
+      "status": "CONDITIONAL",
       "source_claimed_status": "CONDITIONAL",
       "statement": "If the mark type has a Primcodable structure and startWord is computable, the normal-form reachability problem on words of the fixed regime is not a computable predicate.",
       "obligation": "The antecedent is a Primcodable instance for Sym G1 (TM1to0.Λ' M1) and Computable startWord. That antecedent is not constructed in this module. The standing claim is the implication from that antecedent to non-computability of the word predicate for Rules M0.",
-      "imported_structure": [],
+      "imported_structure": [
+        "Primcodable structure on the mark type and Computable startWord (open lemma startWord_computable)"
+      ],
       "parent_nodes": [
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
       "parent_record": "TFQ-1309",
       "lean": [
         "lean4/GenesisCompUniv.lean::reach_problem_not_computable",
-        "lean4/CampaignCompC7EncodedInstanceReduction.lean::encoded_instance_reduction"
+        "lean4/CampaignCompC7EncodedInstanceReduction.lean::CampaignCompC7EncodedInstanceReduction.encoded_instance_reduction"
       ],
       "rust": [],
       "python": [],
@@ -8870,7 +8870,7 @@
         "lean4/GenesisCompUniv.lean:329-339",
         "lean4/CampaignCompC7EncodedInstanceReduction.lean:11-15"
       ],
-      "audit": "encoded_instance_reduction has the same type as reach_problem_not_computable. Each takes a Primcodable instance on Sym G1 (TM1to0.Λ' M1) and Computable startWord, and the conclusion is that the word predicate for Rules M0 is not ComputablePred. Printed axioms are propext, Classical.choice, and Quot.sound. The antecedent is a hypothesis of that implication.",
+      "audit": "encoded_instance_reduction has the same type as reach_problem_not_computable. Each takes a Primcodable instance on Sym G1 (TM1to0.Λ' M1) and Computable startWord, and the conclusion is that the word predicate for Rules M0 is not ComputablePred. Printed axioms are propext, Classical.choice, and Quot.sound. The antecedent is a hypothesis of that implication. Review retains CONDITIONAL status because the named operational antecedents have not been constructed; the replay certifies the implication only.",
       "see_also": [],
       "uses": []
     },
@@ -9457,11 +9457,16 @@
       "slug": "qcv-conditional-viability-certificate",
       "name": "Conditional viability: explicit logical failure bound under fresh supply, net-efficient repair and bounded overhead",
       "stage": "COMPUTATION",
-      "status": "PROVED_LEAN",
+      "status": "CONDITIONAL",
       "source_claimed_status": "CONDITIONAL",
       "statement": "If the initial backlog q0 is nonnegative, g < 1, kappa > 0, r is at least lam/((1-g)*kappa), c(k) <= C for every natural number k, p(k) >= 0, max(C,1)*p(0) < 1, and p(k+1) <= c(k)*p(k)^2 whenever BacklogBounded lam g (kappa*r) q0 holds, then that backlog predicate holds and for every rational L >= 0 and every epsilon > 0 some level k has L*p(k) <= epsilon. If also max(C,1)*p(0) <= 1/2, then every natural number k with L <= epsilon*max(C,1)*2^(2^k) has L*p(k) <= epsilon.",
       "obligation": "The initial backlog q0 is nonnegative. The recurrence, the supply bound, and the overhead bound are hypotheses of the implication. A device, a noise process, and a classical decoder are outside this implication. A negative initial backlog is outside the narrowed statement.",
-      "imported_structure": [],
+      "imported_structure": [
+        "noise obeys p(k+1) <= c(k)*p(k)^2 when repair keeps up (independent or local noise)",
+        "fresh ancillas at rate r",
+        "classical control and decoding fast enough for the syndrome",
+        "level-bounded overhead c(k) <= C"
+      ],
       "parent_nodes": [
         "QCV-OVERHEAD-GROWTH-CRITERION",
         "QCV-NET-RATE-BACKLOG-DICHOTOMY",
@@ -9474,8 +9479,8 @@
         "lean4/QcSelfObstruction.lean::conditional_viability_instance",
         "lean4/QcSelfObstruction.lean::level_error_le",
         "lean4/QcSelfObstruction.lean::explicit_level",
-        "lean4/CampaignQcvConditionalViabilityCertificate.lean::viability_nonneg_initial",
-        "lean4/CampaignQcvConditionalViabilityCertificate.lean::viability_explicit_level"
+        "lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_nonneg_initial",
+        "lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_explicit_level"
       ],
       "rust": [
         "code/rust/src/qm/campaigns/qc_self_obstruction.rs::viability_report",
@@ -9491,7 +9496,7 @@
         "dag/research/quantum_computation_self_obstruction_axioms.txt:51-55",
         "lean4/CampaignQcvConditionalViabilityCertificate.lean:7-33"
       ],
-      "audit": "viability_nonneg_initial is conditional_viability with nonnegative initial backlog q0. viability_explicit_level applies conditional_viability_explicit after that backlog predicate holds, when max(C,1)*p(0) <= 1/2. Printed axioms are propext, Classical.choice, and Quot.sound. A negative initial backlog is outside the narrowed statement.",
+      "audit": "viability_nonneg_initial is conditional_viability with nonnegative initial backlog q0. viability_explicit_level applies conditional_viability_explicit after that backlog predicate holds, when max(C,1)*p(0) <= 1/2. Printed axioms are propext, Classical.choice, and Quot.sound. A negative initial backlog is outside the narrowed statement. Review retains CONDITIONAL status because the named operational antecedents have not been constructed; the replay certifies the implication only.",
       "see_also": [
         "DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE"
       ],

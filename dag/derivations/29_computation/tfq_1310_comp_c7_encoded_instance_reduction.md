@@ -1,6 +1,6 @@
 # [TFQ-1310] Reduction over encoded rewriting instances is conditional
 
-> **Stage**: `COMPUTATION` | **Status**: `PROVED_LEAN` | **DAG node**: `COMP-C7-ENCODED-INSTANCE-REDUCTION`  
+> **Stage**: `COMPUTATION` | **Status**: `CONDITIONAL` | **DAG node**: `COMP-C7-ENCODED-INSTANCE-REDUCTION`  
 > **UUID**: `4cbb5564-bc2b-5131-89ba-e2ab054afacd`  
 > **Parent Derivation**: [TFQ-1309](tfq_1309_comp_c7_nf_reach_undecidable.md)  
 > **Source record**: `COMP-C7c` in `dag/research/genesis_to_universal_computation.md` (claimed status `CONDITIONAL`)
@@ -17,11 +17,14 @@ If the mark type has a Primcodable structure and startWord is computable, the no
 The antecedent is a Primcodable instance for Sym G1 (TM1to0.Λ' M1) and Computable startWord. That antecedent is not constructed in this module. The standing claim is the implication from that antecedent to non-computability of the word predicate for Rules M0.
 
 ### Witness Audit
-encoded_instance_reduction has the same type as reach_problem_not_computable. Each takes a Primcodable instance on Sym G1 (TM1to0.Λ' M1) and Computable startWord, and the conclusion is that the word predicate for Rules M0 is not ComputablePred. Printed axioms are propext, Classical.choice, and Quot.sound. The antecedent is a hypothesis of that implication.
+encoded_instance_reduction has the same type as reach_problem_not_computable. Each takes a Primcodable instance on Sym G1 (TM1to0.Λ' M1) and Computable startWord, and the conclusion is that the word predicate for Rules M0 is not ComputablePred. Printed axioms are propext, Classical.choice, and Quot.sound. The antecedent is a hypothesis of that implication. Review retains CONDITIONAL status because the named operational antecedents have not been constructed; the replay certifies the implication only.
 
 ---
 
 ## 2. Derivation Context
+
+### Admitted Structural Imports
+- **Admitted**: `Primcodable structure on the mark type and Computable startWord (open lemma startWord_computable)`
 
 ---
 
@@ -29,7 +32,7 @@ encoded_instance_reduction has the same type as reach_problem_not_computable. Ea
 
 ### Lean 4 Theorems
 - `lean4/GenesisCompUniv.lean::reach_problem_not_computable`
-- `lean4/CampaignCompC7EncodedInstanceReduction.lean::encoded_instance_reduction`
+- `lean4/CampaignCompC7EncodedInstanceReduction.lean::CampaignCompC7EncodedInstanceReduction.encoded_instance_reduction`
 
 ### Rust Certifiers
 - *none*

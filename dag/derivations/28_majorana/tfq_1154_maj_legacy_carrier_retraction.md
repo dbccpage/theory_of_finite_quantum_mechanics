@@ -31,12 +31,12 @@ audit_legacy_carrier returns a literal dict {T: 0} for the legacy dimensions and
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignMajLegacyCarrierRetraction.lean::d0_id`
-- `lean4/CampaignMajLegacyCarrierRetraction.lean::nilpotent`
-- `lean4/CampaignMajLegacyCarrierRetraction.lean::all_cocycle`
-- `lean4/CampaignMajLegacyCarrierRetraction.lean::all_exact`
-- `lean4/CampaignMajLegacyCarrierRetraction.lean::no_closed`
-- `lean4/CampaignMajLegacyCarrierRetraction.lean::window_no_closed`
+- `lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.d0_id`
+- `lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.nilpotent`
+- `lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.all_cocycle`
+- `lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.all_exact`
+- `lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.no_closed`
+- `lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.window_no_closed`
 - `papers/core/majorana/lean4/MajoranaCore.lean::legacy_carrier_obstruction`
 
 ### Rust Certifiers

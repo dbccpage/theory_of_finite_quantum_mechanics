@@ -1,62 +1,213 @@
 {
   "schema_version": "campaign_lean_replay.v1",
   "authority_effect": "None",
-  "checked_at": "2026-10-25",
-  "source_base": "c50dc1b472596d1b5934408b00b9fbb72db91345",
-  "result": "Narrowed to a five-field classifier on one Bell label. The 2026-10-25 lake build of CampaignOpsObserverDeclarationRefusal exited 0. Printed axioms are propext, Classical.choice, and Quot.sound. The node stays CONDITIONAL.",
-  "proof_boundary": "This receipt records that lean4/CampaignOpsObserverDeclarationRefusal.lean type-checks against the sealed kernel. The recorded case is one Bell label and the five accepted texts, with a missing value, the empty string, or one space, and a non-blank text other than the accepted text. A defect receipt is not in the theorem statements. The node stays CONDITIONAL.",
+  "checked_at": "2026-10-25T21:41:07.515150+00:00",
+  "reviewed_pr": 386,
+  "reviewed_head": "08f020f9a1b5acbcb4cba10da4a26be731359ee1",
+  "source_state": "Integrated repairs; source SHA-256 is authoritative.",
+  "proof_boundary": "Scoped claims only. Named hypotheses and broader obligations remain explicit; no original broad target closure is inferred.",
   "lean_replay": {
-    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
-    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
-    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
-    "lakefile_sha256": "bff23a5c4d868777777410e54ed9b7e7beda1c387a67addeaaaa4ad30e8e4de6",
-    "library": "CampaignOpsObserverDeclarationRefusal (lean_lib in lean4/lakefile.lean; not a default target)",
-    "build_directory": "lean4/b (lakefile buildDir; removed with the worktree)",
-    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run). The module has no import.",
-    "command": "lake --no-cache --dir lean4 build CampaignOpsObserverDeclarationRefusal",
-    "allowed_axioms": [
-      "propext",
-      "Classical.choice",
-      "Quot.sound"
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit386.lean"
     ],
-    "wall_clock_ms": 13117,
-    "module_job_ms": 2400,
+    "cwd": "/workspace/review-round2/core-replay",
     "results": [
       {
         "module": "CampaignOpsObserverDeclarationRefusal",
         "dag_node": "OPS-OBSERVER-DECLARATION-REFUSAL",
         "source": "lean4/CampaignOpsObserverDeclarationRefusal.lean",
-        "sha256": "c8007f7921335135f125e83f5c4b53bf556574918f26528a4bd92a2dfac406d2",
-        "sha256_after_build": "c8007f7921335135f125e83f5c4b53bf556574918f26528a4bd92a2dfac406d2",
+        "sha256": "cf340e744179c28a40fa348b02e24b229635d0788115ff4e97191acc4b70e8dc",
+        "sha256_after_build": "cf340e744179c28a40fa348b02e24b229635d0788115ff4e97191acc4b70e8dc",
         "source_unchanged_during_build": true,
         "exit_code": 0,
+        "admission_scan_passed": true,
         "axiom_audit_passed": true,
         "built_successfully": true,
         "anchors": [
-          "blank_on_accepted",
-          "mismatch_on_accepted",
-          "accepted_draft_class",
-          "accepted_authority"
+          "CampaignOpsObserverDeclarationRefusal.step_blank",
+          "CampaignOpsObserverDeclarationRefusal.step_mismatch",
+          "CampaignOpsObserverDeclarationRefusal.step_pass",
+          "CampaignOpsObserverDeclarationRefusal.blank_on_accepted",
+          "CampaignOpsObserverDeclarationRefusal.mismatch_on_accepted",
+          "CampaignOpsObserverDeclarationRefusal.accepted_draft_class",
+          "CampaignOpsObserverDeclarationRefusal.accepted_authority",
+          "CampaignOpsObserverDeclarationRefusal.bellKernel",
+          "CampaignOpsObserverDeclarationRefusal.acceptedAdmissibility",
+          "CampaignOpsObserverDeclarationRefusal.acceptedNorm",
+          "CampaignOpsObserverDeclarationRefusal.acceptedTerminal",
+          "CampaignOpsObserverDeclarationRefusal.acceptedLayer",
+          "CampaignOpsObserverDeclarationRefusal.authorityNone",
+          "CampaignOpsObserverDeclarationRefusal.acceptedText",
+          "CampaignOpsObserverDeclarationRefusal.ObserverDraft.get",
+          "CampaignOpsObserverDeclarationRefusal.setField",
+          "CampaignOpsObserverDeclarationRefusal.blankText",
+          "CampaignOpsObserverDeclarationRefusal.step",
+          "CampaignOpsObserverDeclarationRefusal.classify",
+          "CampaignOpsObserverDeclarationRefusal.accepted_not_blank",
+          "CampaignOpsObserverDeclarationRefusal.authorityOf",
+          "CampaignOpsObserverDeclarationRefusal.acceptedDraft"
         ],
-        "anchors_reported": true,
         "axioms": {
-          "blank_on_accepted": [
-            "propext",
+          "CampaignOpsObserverDeclarationRefusal.step_blank": [
             "Classical.choice",
-            "Quot.sound"
-          ],
-          "mismatch_on_accepted": [
+            "Quot.sound",
             "propext"
           ],
-          "accepted_draft_class": [
+          "CampaignOpsObserverDeclarationRefusal.step_mismatch": [
             "propext"
           ],
-          "accepted_authority": [
+          "CampaignOpsObserverDeclarationRefusal.step_pass": [
             "propext"
-          ]
+          ],
+          "CampaignOpsObserverDeclarationRefusal.blank_on_accepted": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignOpsObserverDeclarationRefusal.mismatch_on_accepted": [
+            "propext"
+          ],
+          "CampaignOpsObserverDeclarationRefusal.accepted_draft_class": [
+            "propext"
+          ],
+          "CampaignOpsObserverDeclarationRefusal.accepted_authority": [
+            "propext"
+          ],
+          "CampaignOpsObserverDeclarationRefusal.bellKernel": [],
+          "CampaignOpsObserverDeclarationRefusal.acceptedAdmissibility": [],
+          "CampaignOpsObserverDeclarationRefusal.acceptedNorm": [],
+          "CampaignOpsObserverDeclarationRefusal.acceptedTerminal": [],
+          "CampaignOpsObserverDeclarationRefusal.acceptedLayer": [],
+          "CampaignOpsObserverDeclarationRefusal.authorityNone": [],
+          "CampaignOpsObserverDeclarationRefusal.acceptedText": [],
+          "CampaignOpsObserverDeclarationRefusal.ObserverDraft.get": [],
+          "CampaignOpsObserverDeclarationRefusal.setField": [],
+          "CampaignOpsObserverDeclarationRefusal.blankText": [],
+          "CampaignOpsObserverDeclarationRefusal.step": [],
+          "CampaignOpsObserverDeclarationRefusal.classify": [],
+          "CampaignOpsObserverDeclarationRefusal.accepted_not_blank": [],
+          "CampaignOpsObserverDeclarationRefusal.authorityOf": [],
+          "CampaignOpsObserverDeclarationRefusal.acceptedDraft": []
         },
-        "output": "info: CampaignOpsObserverDeclarationRefusal.lean:203:0: 'blank_on_accepted' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignOpsObserverDeclarationRefusal.lean:204:0: 'mismatch_on_accepted' depends on axioms: [propext]\ninfo: CampaignOpsObserverDeclarationRefusal.lean:205:0: 'accepted_draft_class' depends on axioms: [propext]\ninfo: CampaignOpsObserverDeclarationRefusal.lean:206:0: 'accepted_authority' depends on axioms: [propext]\n"
+        "output": "'CampaignOpsObserverDeclarationRefusal.bellKernel' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.acceptedAdmissibility' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.acceptedNorm' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.acceptedTerminal' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.acceptedLayer' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.authorityNone' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.acceptedText' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.ObserverDraft.get' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.setField' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.blankText' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.step' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.classify' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.step_blank' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignOpsObserverDeclarationRefusal.step_mismatch' depends on axioms: [propext]\n'CampaignOpsObserverDeclarationRefusal.step_pass' depends on axioms: [propext]\n'CampaignOpsObserverDeclarationRefusal.accepted_not_blank' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.authorityOf' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.acceptedDraft' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.blank_on_accepted' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignOpsObserverDeclarationRefusal.mismatch_on_accepted' depends on axioms: [propext]\n'CampaignOpsObserverDeclarationRefusal.accepted_draft_class' depends on axioms: [propext]\n'CampaignOpsObserverDeclarationRefusal.accepted_authority' depends on axioms: [propext]\n"
       }
     ]
+  },
+  "lake_build": {
+    "command": [
+      "lake",
+      "build",
+      "CampaignFqGapContinuumHilbertLift",
+      "CampaignWittenPairing",
+      "CampaignPgwWdpPhiWellDefinedL1Duality",
+      "CampaignKitaevSectorBlock",
+      "CampaignLaughlinRootAmbiguity",
+      "CampaignReportFiberDescent",
+      "CampaignInformationProductBoundary",
+      "CampaignMajLegacyCarrierRetraction",
+      "CampaignCompC3NoFixedBound",
+      "CampaignOpsObserverDeclarationRefusal"
+    ],
+    "exit_code": 0,
+    "seconds": 2.255,
+    "output": "ℹ [1/15] Built CampaignLaughlinRootAmbiguity (597ms)\ninfo: CampaignLaughlinRootAmbiguity.lean:24:0: 'CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots' depends on axioms: [propext, Quot.sound]\ninfo: CampaignLaughlinRootAmbiguity.lean:25:0: 'CampaignLaughlinRootAmbiguity.monodromy_not_injective' depends on axioms: [propext, Quot.sound]\ninfo: CampaignLaughlinRootAmbiguity.lean:26:0: 'CampaignLaughlinRootAmbiguity.roots_at_third_filling' does not depend on any axioms\nℹ [3/19] Built CampaignFqGapContinuumHilbertLift (707ms)\ninfo: CampaignFqGapContinuumHilbertLift.lean:76:0: 'CampaignFqGapContinuumHilbertLift.twoMulNeOne' depends on axioms: [propext, Quot.sound]\ninfo: CampaignFqGapContinuumHilbertLift.lean:77:0: 'CampaignFqGapContinuumHilbertLift.discIdentity' depends on axioms: [propext, Quot.sound]\ninfo: CampaignFqGapContinuumHilbertLift.lean:78:0: 'CampaignFqGapContinuumHilbertLift.intSqNeFive' depends on axioms: [propext, Quot.sound]\ninfo: CampaignFqGapContinuumHilbertLift.lean:79:0: 'CampaignFqGapContinuumHilbertLift.intPolyNeZero' depends on axioms: [propext, Quot.sound]\nℹ [5/19] Built CampaignPgwWdpPhiWellDefinedL1Duality (664ms)\ninfo: CampaignPgwWdpPhiWellDefinedL1Duality.lean:93:0: 'CampaignPgwWdpPhiWellDefinedL1Duality.d0_linear' depends on axioms: [propext, Quot.sound]\ninfo: CampaignPgwWdpPhiWellDefinedL1Duality.lean:94:0: 'CampaignPgwWdpPhiWellDefinedL1Duality.residual_shift' depends on axioms: [propext, Quot.sound]\ninfo: CampaignPgwWdpPhiWellDefinedL1Duality.lean:95:0: 'CampaignPgwWdpPhiWellDefinedL1Duality.absSum_shift' depends on axioms: [propext, Quot.sound]\ninfo: CampaignPgwWdpPhiWellDefinedL1Duality.lean:96:0: 'CampaignPgwWdpPhiWellDefinedL1Duality.pair_d0_zero' depends on axioms: [propext, Quot.sound]\ninfo: CampaignPgwWdpPhiWellDefinedL1Duality.lean:97:0: 'CampaignPgwWdpPhiWellDefinedL1Duality.pair_residual' depends on axioms: [propext, Quot.sound]\ninfo: CampaignPgwWdpPhiWellDefinedL1Duality.lean:98:0: 'CampaignPgwWdpPhiWellDefinedL1Duality.natAbs_pair_le_absSum' depends on axioms: [propext, Quot.sound]\ninfo: CampaignPgwWdpPhiWellDefinedL1Duality.lean:99:0: 'CampaignPgwWdpPhiWellDefinedL1Duality.absSum_ge_two' depends on axioms: [propext, Quot.sound]\ninfo: CampaignPgwWdpPhiWellDefinedL1Duality.lean:100:0: 'CampaignPgwWdpPhiWellDefinedL1Duality.absSum_attained' depends on axioms: [propext]\ninfo: CampaignPgwWdpPhiWellDefinedL1Duality.lean:101:0: 'CampaignPgwWdpPhiWellDefinedL1Duality.shifted_ge' depends on axioms: [propext, Quot.sound]\ninfo: CampaignPgwWdpPhiWellDefinedL1Duality.lean:102:0: 'CampaignPgwWdpPhiWellDefinedL1Duality.shifted_attained' depends on axioms: [propext, Quot.sound]\nℹ [8/21] Built CampaignWittenPairing (1.0s)\ninfo: CampaignWittenPairing.lean:40:0: 'CampaignWittenPairing.paired_trace' depends on axioms: [propext, Quot.sound]\ninfo: CampaignWittenPairing.lean:41:0: 'CampaignWittenPairing.weight_independent' depends on axioms: [propext, Quot.sound]\ninfo: CampaignWittenPairing.lean:42:0: 'CampaignWittenPairing.zero_index_with_ground_modes' depends on axioms: [propext, Quot.sound]\nℹ [10/21] Built CampaignKitaevSectorBlock (946ms)\ninfo: CampaignKitaevSectorBlock.lean:31:0: 'CampaignKitaevSectorBlock.flux_involution' depends on axioms: [propext, Quot.sound]\ninfo: CampaignKitaevSectorBlock.lean:32:0: 'CampaignKitaevSectorBlock.hopping_involution' depends on axioms: [propext, Quot.sound]\ninfo: CampaignKitaevSectorBlock.lean:33:0: 'CampaignKitaevSectorBlock.flux_commutes_hopping' does not depend on any axioms\ninfo: CampaignKitaevSectorBlock.lean:34:0: 'CampaignKitaevSectorBlock.project_commutes_hopping' depends on axioms: [propext, Quot.sound]\ninfo: CampaignKitaevSectorBlock.lean:35:0: 'CampaignKitaevSectorBlock.sector_decomposition' depends on axioms: [propext]\ninfo: CampaignKitaevSectorBlock.lean:36:0: 'CampaignKitaevSectorBlock.restricted_hopping' does not depend on any axioms\ninfo: CampaignKitaevSectorBlock.lean:37:0: 'CampaignKitaevSectorBlock.sectors_distinct' does not depend on any axioms\nℹ [12/21] Built CampaignReportFiberDescent (476ms)\ninfo: CampaignReportFiberDescent.lean:42:0: 'CampaignReportFiberDescent.unique_decoder_iff' depends on axioms: [Classical.choice, Quot.sound]\ninfo: CampaignReportFiberDescent.lean:43:0: 'CampaignReportFiberDescent.postprocess_obstruction' does not depend on any axioms\ninfo: CampaignReportFiberDescent.lean:44:0: 'CampaignReportFiberDescent.joint_report_sufficient' does not depend on any axioms\ninfo: CampaignReportFiberDescent.lean:45:0: 'CampaignReportFiberDescent.lost_bit_obstruction' does not depend on any axioms\nℹ [14/21] Built CampaignMajLegacyCarrierRetraction (385ms)\ninfo: CampaignMajLegacyCarrierRetraction.lean:44:0: 'CampaignMajLegacyCarrierRetraction.d0_id' does not depend on any axioms\ninfo: CampaignMajLegacyCarrierRetraction.lean:45:0: 'CampaignMajLegacyCarrierRetraction.nilpotent' does not depend on any axioms\ninfo: CampaignMajLegacyCarrierRetraction.lean:46:0: 'CampaignMajLegacyCarrierRetraction.all_cocycle' does not depend on any axioms\ninfo: CampaignMajLegacyCarrierRetraction.lean:47:0: 'CampaignMajLegacyCarrierRetraction.all_exact' does not depend on any axioms\ninfo: CampaignMajLegacyCarrierRetraction.lean:48:0: 'CampaignMajLegacyCarrierRetraction.no_closed' does not depend on any axioms\ninfo: CampaignMajLegacyCarrierRetraction.lean:49:0: 'CampaignMajLegacyCarrierRetraction.window_no_closed' does not depend on any axioms\nℹ [16/21] Built CampaignInformationProductBoundary (540ms)\ninfo: CampaignInformationProductBoundary.lean:31:0: 'CampaignInformationProductBoundary.clones_product' depends on axioms: [propext]\ninfo: CampaignInformationProductBoundary.lean:32:0: 'CampaignInformationProductBoundary.controlledFlip_involution' does not depend on any axioms\ninfo: CampaignInformationProductBoundary.lean:33:0: 'CampaignInformationProductBoundary.controlledFlip_not_product' depends on axioms: [propext]\nℹ [18/21] Built CampaignCompC3NoFixedBound (360ms)\ninfo: CampaignCompC3NoFixedBound.lean:53:0: 'CampaignCompC3NoFixedBound.reach_eq' does not depend on any axioms\ninfo: CampaignCompC3NoFixedBound.lean:54:0: 'CampaignCompC3NoFixedBound.reaches_self' depends on axioms: [propext]\ninfo: CampaignCompC3NoFixedBound.lean:55:0: 'CampaignCompC3NoFixedBound.start_in' depends on axioms: [propext, Quot.sound]\ninfo: CampaignCompC3NoFixedBound.lean:56:0: 'CampaignCompC3NoFixedBound.empty_in' depends on axioms: [propext]\ninfo: CampaignCompC3NoFixedBound.lean:57:0: 'CampaignCompC3NoFixedBound.long_len' depends on axioms: [propext]\ninfo: CampaignCompC3NoFixedBound.lean:58:0: 'CampaignCompC3NoFixedBound.long_out' depends on axioms: [propext]\ninfo: CampaignCompC3NoFixedBound.lean:59:0: 'CampaignCompC3NoFixedBound.not_long' depends on axioms: [propext]\ninfo: CampaignCompC3NoFixedBound.lean:60:0: 'CampaignCompC3NoFixedBound.not_empty' depends on axioms: [propext]\nℹ [20/21] Built CampaignOpsObserverDeclarationRefusal (1.2s)\ninfo: CampaignOpsObserverDeclarationRefusal.lean:205:0: 'CampaignOpsObserverDeclarationRefusal.blank_on_accepted' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignOpsObserverDeclarationRefusal.lean:206:0: 'CampaignOpsObserverDeclarationRefusal.mismatch_on_accepted' depends on axioms: [propext]\ninfo: CampaignOpsObserverDeclarationRefusal.lean:207:0: 'CampaignOpsObserverDeclarationRefusal.accepted_draft_class' depends on axioms: [propext]\ninfo: CampaignOpsObserverDeclarationRefusal.lean:208:0: 'CampaignOpsObserverDeclarationRefusal.accepted_authority' depends on axioms: [propext]\nBuild completed successfully (21 jobs).\ninfo: review_core: no previous manifest, creating one from scratch\ninfo: toolchain not updated; already up-to-date\n"
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/ops-observer-declaration-refusal.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.013,
+    "output": "bell_label=support presheaf over the maximal-context cover {0,2}|{0,3}|{1,2}|{1,3} with arities 2,2,2,2\nadmissibility=noncontextual polytope conv(A)\nnorm=L1\nterminal=defect = 0 -> ExactRepair; defect > 0 and a support-level global section exists -> ClosedResidual; defect > 0 and none exists -> OpenObstruction\nlayer=WDP-CH10-D01 diagnostic\nauthority=None\nblank_cases=15\nmismatch_cases=10\nfailures=0\n"
+  },
+  "axiom_audit": {
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit386.lean"
+    ],
+    "cwd": "/workspace/review-round2/core-replay",
+    "input_path": "Audit386.lean",
+    "input_contents": "import CampaignOpsObserverDeclarationRefusal\n#print axioms CampaignOpsObserverDeclarationRefusal.bellKernel\n#print axioms CampaignOpsObserverDeclarationRefusal.acceptedAdmissibility\n#print axioms CampaignOpsObserverDeclarationRefusal.acceptedNorm\n#print axioms CampaignOpsObserverDeclarationRefusal.acceptedTerminal\n#print axioms CampaignOpsObserverDeclarationRefusal.acceptedLayer\n#print axioms CampaignOpsObserverDeclarationRefusal.authorityNone\n#print axioms CampaignOpsObserverDeclarationRefusal.acceptedText\n#print axioms CampaignOpsObserverDeclarationRefusal.ObserverDraft.get\n#print axioms CampaignOpsObserverDeclarationRefusal.setField\n#print axioms CampaignOpsObserverDeclarationRefusal.blankText\n#print axioms CampaignOpsObserverDeclarationRefusal.step\n#print axioms CampaignOpsObserverDeclarationRefusal.classify\n#print axioms CampaignOpsObserverDeclarationRefusal.step_blank\n#print axioms CampaignOpsObserverDeclarationRefusal.step_mismatch\n#print axioms CampaignOpsObserverDeclarationRefusal.step_pass\n#print axioms CampaignOpsObserverDeclarationRefusal.accepted_not_blank\n#print axioms CampaignOpsObserverDeclarationRefusal.authorityOf\n#print axioms CampaignOpsObserverDeclarationRefusal.acceptedDraft\n#print axioms CampaignOpsObserverDeclarationRefusal.blank_on_accepted\n#print axioms CampaignOpsObserverDeclarationRefusal.mismatch_on_accepted\n#print axioms CampaignOpsObserverDeclarationRefusal.accepted_draft_class\n#print axioms CampaignOpsObserverDeclarationRefusal.accepted_authority\n",
+    "input_sha256": "b17b7dba87a03fd56ee6c3e654318e38a1d42da877f5bb677bedfec041799938",
+    "exit_code": 0,
+    "output": "'CampaignOpsObserverDeclarationRefusal.bellKernel' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.acceptedAdmissibility' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.acceptedNorm' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.acceptedTerminal' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.acceptedLayer' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.authorityNone' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.acceptedText' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.ObserverDraft.get' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.setField' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.blankText' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.step' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.classify' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.step_blank' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignOpsObserverDeclarationRefusal.step_mismatch' depends on axioms: [propext]\n'CampaignOpsObserverDeclarationRefusal.step_pass' depends on axioms: [propext]\n'CampaignOpsObserverDeclarationRefusal.accepted_not_blank' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.authorityOf' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.acceptedDraft' does not depend on any axioms\n'CampaignOpsObserverDeclarationRefusal.blank_on_accepted' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignOpsObserverDeclarationRefusal.mismatch_on_accepted' depends on axioms: [propext]\n'CampaignOpsObserverDeclarationRefusal.accepted_draft_class' depends on axioms: [propext]\n'CampaignOpsObserverDeclarationRefusal.accepted_authority' depends on axioms: [propext]\n"
+  },
+  "build_scope": "Targeted exact-source Lake package; full repository workspace not built.",
+  "scratch_package": {
+    "lakefile": "name = \"review_core\"\nversion = \"0.1.0\"\n\n[[lean_lib]]\nname = \"CampaignFqGapContinuumHilbertLift\"\n\n[[lean_lib]]\nname = \"CampaignWittenPairing\"\n\n[[lean_lib]]\nname = \"CampaignPgwWdpPhiWellDefinedL1Duality\"\n\n[[lean_lib]]\nname = \"CampaignKitaevSectorBlock\"\n\n[[lean_lib]]\nname = \"CampaignLaughlinRootAmbiguity\"\n\n[[lean_lib]]\nname = \"CampaignReportFiberDescent\"\n\n[[lean_lib]]\nname = \"CampaignInformationProductBoundary\"\n\n[[lean_lib]]\nname = \"CampaignMajLegacyCarrierRetraction\"\n\n[[lean_lib]]\nname = \"CampaignCompC3NoFixedBound\"\n\n[[lean_lib]]\nname = \"CampaignOpsObserverDeclarationRefusal\"\n",
+    "lean_toolchain": "leanprover/lean4:v4.35.0\n"
+  },
+  "superseded_receipt": {
+    "schema_version": "campaign_lean_replay.v1",
+    "authority_effect": "None",
+    "checked_at": "2026-10-25",
+    "source_base": "c50dc1b472596d1b5934408b00b9fbb72db91345",
+    "result": "Narrowed to a five-field classifier on one Bell label. The 2026-10-25 lake build of CampaignOpsObserverDeclarationRefusal exited 0. Printed axioms are propext, Classical.choice, and Quot.sound. The node stays CONDITIONAL.",
+    "proof_boundary": "This receipt records that lean4/CampaignOpsObserverDeclarationRefusal.lean type-checks against the sealed kernel. The recorded case is one Bell label and the five accepted texts, with a missing value, the empty string, or one space, and a non-blank text other than the accepted text. A defect receipt is not in the theorem statements. The node stays CONDITIONAL.",
+    "lean_replay": {
+      "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+      "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "lakefile_sha256": "bff23a5c4d868777777410e54ed9b7e7beda1c387a67addeaaaa4ad30e8e4de6",
+      "library": "CampaignOpsObserverDeclarationRefusal (lean_lib in lean4/lakefile.lean; not a default target)",
+      "build_directory": "lean4/b (lakefile buildDir; removed with the worktree)",
+      "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run). The module has no import.",
+      "command": "lake --no-cache --dir lean4 build CampaignOpsObserverDeclarationRefusal",
+      "allowed_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "wall_clock_ms": 13117,
+      "module_job_ms": 2400,
+      "results": [
+        {
+          "module": "CampaignOpsObserverDeclarationRefusal",
+          "dag_node": "OPS-OBSERVER-DECLARATION-REFUSAL",
+          "source": "lean4/CampaignOpsObserverDeclarationRefusal.lean",
+          "sha256": "c8007f7921335135f125e83f5c4b53bf556574918f26528a4bd92a2dfac406d2",
+          "sha256_after_build": "c8007f7921335135f125e83f5c4b53bf556574918f26528a4bd92a2dfac406d2",
+          "source_unchanged_during_build": true,
+          "exit_code": 0,
+          "axiom_audit_passed": true,
+          "built_successfully": true,
+          "anchors": [
+            "blank_on_accepted",
+            "mismatch_on_accepted",
+            "accepted_draft_class",
+            "accepted_authority"
+          ],
+          "anchors_reported": true,
+          "axioms": {
+            "blank_on_accepted": [
+              "propext",
+              "Classical.choice",
+              "Quot.sound"
+            ],
+            "mismatch_on_accepted": [
+              "propext"
+            ],
+            "accepted_draft_class": [
+              "propext"
+            ],
+            "accepted_authority": [
+              "propext"
+            ]
+          },
+          "output": "info: CampaignOpsObserverDeclarationRefusal.lean:203:0: 'blank_on_accepted' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignOpsObserverDeclarationRefusal.lean:204:0: 'mismatch_on_accepted' depends on axioms: [propext]\ninfo: CampaignOpsObserverDeclarationRefusal.lean:205:0: 'accepted_draft_class' depends on axioms: [propext]\ninfo: CampaignOpsObserverDeclarationRefusal.lean:206:0: 'accepted_authority' depends on axioms: [propext]\n"
+        }
+      ]
+    }
   }
 }

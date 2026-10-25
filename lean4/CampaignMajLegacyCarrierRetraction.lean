@@ -2,6 +2,8 @@
 -- Identity coboundary on Fin t → Bool. Sizes 1, 2, 3 and 4 are the standing window.
 -- The missing tetron_carrier.py measurement stays outside this module.
 
+
+namespace CampaignMajLegacyCarrierRetraction
 abbrev V (t : Nat) := Fin t → Bool
 
 def zero1 : V 1 := fun _ => false
@@ -45,3 +47,5 @@ theorem window_no_closed :
 #print axioms all_exact
 #print axioms no_closed
 #print axioms window_no_closed
+
+end CampaignMajLegacyCarrierRetraction

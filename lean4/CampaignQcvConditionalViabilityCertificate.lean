@@ -2,6 +2,8 @@
 -- Nonnegative initial backlog, then the explicit level bound.
 import QcSelfObstruction
 
+namespace CampaignQcvConditionalViabilityCertificate
+
 open QcSelfObstruction
 
 theorem viability_nonneg_initial
@@ -36,3 +38,5 @@ theorem viability_explicit_level
 #print axioms viability_explicit_level
 #print axioms conditional_viability
 #print axioms conditional_viability_explicit
+
+end CampaignQcvConditionalViabilityCertificate
