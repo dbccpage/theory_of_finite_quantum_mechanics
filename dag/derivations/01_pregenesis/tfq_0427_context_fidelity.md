@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-A trace that starts from a declared context s′ and takes steps valid relative to s′ need not be valid relative to the actual replayed state s ≠ s′: ValidTrace(τ | s′) does not imply ValidTrace(τ | s). Trial 2's Result 15 is the example, with internally consistent reasoning from the stale premise s′ = {<>} after Prompt 12 had designated <a> as current. A sound execution contract therefore accepts a context binding C(s′) only when s′ = Replay(H). The analysis calls this a clean theorem target and gives no proof. The Prompt 17 contrast fits it: a truncated window answered Verified and the full replay Retracted, each right for the history it received, which the appended analysis calls an information boundary rather than a reasoning failure.
+On a two-value carrier, replay is the left fold of supplyDiamond, which keeps the value, and designateA, which sets the value true, starting from false. A one-step trace that is valid at a declared context s' need not be valid at a different replayed value s: when s differs from s' there is a trace valid at s' and not at s. A contract on this carrier preserves trace validity at replay(H) if and only if it accepts a context binding only when the context equals replay(H). The history consisting of supplyDiamond replays to false and the only-diamond answer on it is verified; the history supplyDiamond then designateA replays to true and the only-diamond answer on it is retracted.
 
 ### Governing Obligation
 Define a trace semantics in which ValidTrace(τ | s′) is checkable, and make the verifier reconstruct Replay(H) and accept a declared context s′ only when s′ = Replay(H) before certifying any step taken from s′.
@@ -23,19 +23,22 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> A target statement and verifier requirement with no proof and no declared trace semantics; the replay certifiers listed check a claimed Genesis regime against its event history and do not define ValidTrace.
+> The two-value carrier is not the sealed Genesis event grammar, and ValidTrace here is not the Rust certifies predicate. Trial 2 Result 15, Prompt 12, and the Prompt 17 window are not instantiated. A general trace semantics for arbitrary regimes stays open.
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `missing obligation: no Lean definition of ValidTrace or of the context-fidelity non-implication; Represented.replay_deterministic in 000_genesis_19l57g1/lean4/Derivation/Represented.lean shows only that replay is a function of the history`
+- [`lean4/CampaignPgwContextFidelity.lean::answers_follow_received_history`](../../../lean4/CampaignPgwContextFidelity.lean)
+- [`lean4/CampaignPgwContextFidelity.lean::sound_iff_only_replay`](../../../lean4/CampaignPgwContextFidelity.lean)
+- [`lean4/CampaignPgwContextFidelity.lean::stale_not_transferred`](../../../lean4/CampaignPgwContextFidelity.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs::certifies`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs)
 
 ### Python Oracles & Numerical Evaluators
+- [`checks/independent/pgw-context-fidelity.py::main`](../../../checks/independent/pgw-context-fidelity.py)
 - [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::certify`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py)
 
 ---

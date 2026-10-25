@@ -1,0 +1,103 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:00:47.838768+00:00",
+  "source_commit": "87d06eb661bf6cd0574817530c9a3d56c93e9cd7",
+  "proof_boundary": "Campaign: PGW-CONTEXT-FIDELITY — Narrowed: two-value replay separates a stale context; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignPgwContextFidelity.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignPgwContextFidelity",
+        "dag_node": "PGW-CONTEXT-FIDELITY",
+        "source": "lean4/CampaignPgwContextFidelity.lean",
+        "sha256": "a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643",
+        "sha256_after_build": "a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignPgwContextFidelity.separatingStep_valid",
+          "CampaignPgwContextFidelity.separatingStep_invalid",
+          "CampaignPgwContextFidelity.stale_not_transferred",
+          "CampaignPgwContextFidelity.sound_implies_equal",
+          "CampaignPgwContextFidelity.sound_iff_only_replay",
+          "CampaignPgwContextFidelity.truncated_verified",
+          "CampaignPgwContextFidelity.full_retracted",
+          "CampaignPgwContextFidelity.answers_follow_received_history",
+          "CampaignPgwContextFidelity.acceptEqual_sound",
+          "CampaignPgwContextFidelity.equal_implies_sound",
+          "CampaignPgwContextFidelity.replay_supply",
+          "CampaignPgwContextFidelity.replay_full",
+          "CampaignPgwContextFidelity.unequal_pair_count",
+          "CampaignPgwContextFidelity.history_count"
+        ],
+        "axioms": {
+          "CampaignPgwContextFidelity.separatingStep_valid": [
+            "propext"
+          ],
+          "CampaignPgwContextFidelity.separatingStep_invalid": [
+            "propext"
+          ],
+          "CampaignPgwContextFidelity.stale_not_transferred": [
+            "propext"
+          ],
+          "CampaignPgwContextFidelity.sound_implies_equal": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignPgwContextFidelity.sound_iff_only_replay": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignPgwContextFidelity.truncated_verified": [
+            "propext"
+          ],
+          "CampaignPgwContextFidelity.full_retracted": [
+            "propext"
+          ],
+          "CampaignPgwContextFidelity.answers_follow_received_history": [
+            "propext"
+          ],
+          "CampaignPgwContextFidelity.acceptEqual_sound": [],
+          "CampaignPgwContextFidelity.equal_implies_sound": [],
+          "CampaignPgwContextFidelity.replay_supply": [],
+          "CampaignPgwContextFidelity.replay_full": [],
+          "CampaignPgwContextFidelity.unequal_pair_count": [],
+          "CampaignPgwContextFidelity.history_count": []
+        },
+        "output": "'CampaignPgwContextFidelity.separatingStep_valid' depends on axioms: [propext]\n'CampaignPgwContextFidelity.separatingStep_invalid' depends on axioms: [propext]\n'CampaignPgwContextFidelity.stale_not_transferred' depends on axioms: [propext]\n'CampaignPgwContextFidelity.acceptEqual_sound' does not depend on any axioms\n'CampaignPgwContextFidelity.sound_implies_equal' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignPgwContextFidelity.equal_implies_sound' does not depend on any axioms\n'CampaignPgwContextFidelity.sound_iff_only_replay' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignPgwContextFidelity.replay_supply' does not depend on any axioms\n'CampaignPgwContextFidelity.replay_full' does not depend on any axioms\n'CampaignPgwContextFidelity.truncated_verified' depends on axioms: [propext]\n'CampaignPgwContextFidelity.full_retracted' depends on axioms: [propext]\n'CampaignPgwContextFidelity.answers_follow_received_history' depends on axioms: [propext]\n'CampaignPgwContextFidelity.unequal_pair_count' does not depend on any axioms\n'CampaignPgwContextFidelity.history_count' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/pgw-context-fidelity.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.013,
+    "output": "checked 38 conditions, 0 failures\nunequal pairs 2; histories of length at most 2: 7\nreplay([supplyDiamond]) = false; replay([supplyDiamond, designateA]) = true\nanswers: verified on the first history, retracted on the second\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/344/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 0.372,
+    "output": ""
+  }
+}
