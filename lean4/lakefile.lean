@@ -1215,3 +1215,7 @@ lean_lib CampaignPgwPythonLeanCarrierBridge where
 -- Campaign: PGW-CONTEXT-FIDELITY. Not a default target.
 lean_lib CampaignPgwContextFidelity where
   roots := #[`CampaignPgwContextFidelity]
+
+-- Campaign: TFQ-0003. Not a default target.
+lean_lib CampaignTfq0003FiniteObstruction where
+  roots := #[`CampaignTfq0003FiniteObstruction]
