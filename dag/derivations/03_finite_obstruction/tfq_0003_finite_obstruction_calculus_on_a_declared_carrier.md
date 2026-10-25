@@ -26,10 +26,12 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Formalization
-*Formalization active. Proof obligations tracked under zero-sorry regime.*
+
+`lean4/CampaignTfq0003FiniteObstruction.lean` proves a finite fragment only. On the triangle with vertices {0,1,2}, Phi1(1,1,0) = 2, Gamma2 = 2, and the classical residual is 1. On the unfilled 4-cycle, Phi1(1,0,0,0) = 1 and Gamma2 = 0. The node stays OPEN. Rust is not cited.
 
 ### Sovereign Rust Certifiers
-*Computational witness tracked under `theory_of_finite_qm` crate.*
+
+No Rust witness is claimed for this narrowing.
 
 ---
 

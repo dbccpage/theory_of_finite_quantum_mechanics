@@ -8,13 +8,29 @@ target:
     from Genesis into the obstruction calculus. The required derivation is a finite carrier, a declared
     comparison, a quotient, and the obstruction signature (Phi1, Gamma2, and the classical residual) with
     the same statement in Python, Rust, and Lean 4. A Lake build of a local file is not that correspondence.
-    The signature stays on a finite complex.
+    The signature stays on a finite complex. Narrowed in Lean 4 and an independent Python check to two
+    finite complexes, with no status change. On vertices {0,1,2} the declared comparison 0 != 2 does not
+    make the edge cochain (0,0,1) a coboundary. The coboundary is d0(f) = (f(1)-f(0), f(2)-f(1), f(2)-f(0))
+    and the face charge is d1(w) = w(0,1)+w(1,2)-w(0,2), and d1 composed with d0 is 0. Quotient residual
+    mass Phi1(w) equals the absolute value of d1(w) and is attained by clearing the first two edges; closure
+    charge Gamma2(w) equals that same value. For w = (1,1,0), Phi1 = 2 and Gamma2 = 2, so the classical
+    residual is 2/2 = 1, also attained at the repair (0,1,0) whose residual is (0,2,0). The zero cochain
+    has Phi1 = 0, Gamma2 = 0, and the both-vanish value 0. On the unfilled 4-cycle with edges (0,1), (1,2),
+    (2,3), (3,0) there is no 2-cell, Gamma2 is 0, and Phi1 equals the absolute edge sum; w = (1,0,0,0)
+    has Phi1 = 1, Gamma2 = 0, classical residual 0, and is not a coboundary. The rule that refuses the
+    ratio when Phi1 = 0 and Gamma2 is not 0 is not met on either complex. Rust, a common three-language
+    statement, and a derivation from Genesis regime events are not proved.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Give the finite obstruction signature a carrier, a quotient, and a witness that matches
-    across three languages.
+  source_bottleneck: Rust does not carry this signature, the three languages do not yet state it in common,
+    and Genesis regime events do not derive it. The shelf volume remains an unfinished pass. The proved
+    fragment is the triangle and the unfilled 4-cycle named in the statement.
   source_refs:
   - dag/derivations/03_finite_obstruction/tfq_0003_finite_obstruction_calculus_on_a_declared_carrier.md
+  - dag/derivations/independent/tfq-0003.md
+  - checks/independent/tfq-0003.py
+  - lean4/CampaignTfq0003FiniteObstruction.lean
+  - dag/research/campaign_tfq-0003_lean_replay.json
   paper_refs:
   - dag/derivations/03_finite_obstruction/tfq_0003_finite_obstruction_calculus_on_a_declared_carrier.md
   source_claim_label: OPEN
@@ -23,7 +39,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/03_finite_obstruction/tfq_0003_finite_obstruction_calculus_on_a_declared_carrier.md
-    sha256: 5c814541d03b8d4c65da8a417e12c1f02c520f6d223c392a0bf6b5025d4ec481
+    sha256: f75b0e1d31ddd5ff617e9d8657ac39b18855c38f2e9e471258cc6a95537c6c40
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -31,9 +47,403 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/finite_obstruction_tfq_0003_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: inductive
+  name: V3
+  line: 12
+  signature_excerpt: inductive V3
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: d1
+  line: 31
+  signature_excerpt: 'def d1 (w : E3 → Int) : Int'
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: d0
+  line: 25
+  signature_excerpt: |-
+    def d0 (f : V3 → Int) : E3 → Int
+      | .e01 => f .v1 - f .v0
+      | .e12 => f .v2 - f .v1
+      | .e02 => f .v2 - f .v0
+
+    /-- Face charge of the single triangle: `w01 + w12 - w02`. -/
+    def d1 (w : E3 → Int) : Int
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: E3
+  line: 18
+  signature_excerpt: inductive E3
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: equiv
+  line: 109
+  signature_excerpt: 'def equiv (w w'' : E3 → Int) : Prop'
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: l1
+  line: 34
+  signature_excerpt: 'def l1 (w : E3 → Int) : Nat'
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: clear01
+  line: 59
+  signature_excerpt: |-
+    def clear01 (w : E3 → Int) : V3 → Int
+      | .v0 => 0
+      | .v1 => w .e01
+      | .v2 => w .e01 + w .e12
+
+    theorem clear01_e01 (w : E3 → Int) : d0 (clear01 w) .e01 = w .e01
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: phi1
+  line: 38
+  signature_excerpt: 'def phi1 (w : E3 → Int) : Nat'
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sample
+  line: 155
+  signature_excerpt: |-
+    def sample : E3 → Int
+      | .e01 => 1
+      | .e12 => 1
+      | .e02 => 0
+
+    def recordedRepair : V3 → Int
+      | .v0 => 0
+      | .v1 => 1
+      | .v2 => 0
+
+    theorem sample_d1 : d1 sample = 2
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gamma2
+  line: 42
+  signature_excerpt: 'def gamma2 (w : E3 → Int) : Nat'
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rcl
+  line: 144
+  signature_excerpt: 'def rcl (phi gamma : Nat) : Option (Nat × Nat)'
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: recordedRepair
+  line: 160
+  signature_excerpt: |-
+    def recordedRepair : V3 → Int
+      | .v0 => 0
+      | .v1 => 1
+      | .v2 => 0
+
+    theorem sample_d1 : d1 sample = 2
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: zeroCochain
+  line: 185
+  signature_excerpt: 'def zeroCochain : E3 → Int'
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: edge02
+  line: 195
+  signature_excerpt: |-
+    def edge02 : E3 → Int
+      | .e02 => 1
+      | .e01 => 0
+      | .e12 => 0
+
+    theorem vertex_comparison : V3.v0 ≠ V3.v2
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: phi1Cycle
+  line: 243
+  signature_excerpt: 'def phi1Cycle (w : E4 → Int) : Nat'
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cycleSample
+  line: 301
+  signature_excerpt: |-
+    def cycleSample : E4 → Int
+      | .e01 => 1
+      | .e12 => 0
+      | .e23 => 0
+      | .e30 => 0
+
+    def zeroCycle : E4 → Int
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: d1_d0
+  line: 47
+  signature_excerpt: 'theorem d1_d0 (f : V3 → Int) : d1 (d0 f) = 0'
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: equiv_iff_d1
+  line: 140
+  signature_excerpt: 'theorem equiv_iff_d1 (w w'' : E3 → Int) : equiv w w'' ↔ d1 w = d1 w'''
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: phi1_attained
+  line: 84
+  signature_excerpt: |-
+    theorem phi1_attained (w : E3 → Int) :
+        l1 (fun e => w e - d0 (clear01 w) e) = phi1 w
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sample_phi1
+  line: 167
+  signature_excerpt: 'theorem sample_phi1 : phi1 sample = 2'
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sample_gamma2
+  line: 169
+  signature_excerpt: 'theorem sample_gamma2 : gamma2 sample = 2'
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sample_rcl
+  line: 171
+  signature_excerpt: 'theorem sample_rcl : rcl (phi1 sample) (gamma2 sample) = some (2, 2)'
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: recorded_residual_l1
+  line: 181
+  signature_excerpt: |-
+    theorem recorded_residual_l1 :
+        l1 (fun e => sample e - d0 recordedRepair e) = 2
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: zero_signature
+  line: 187
+  signature_excerpt: |-
+    theorem zero_signature :
+        phi1 zeroCochain = 0 ∧ gamma2 zeroCochain = 0 ∧
+          rcl (phi1 zeroCochain) (gamma2 zeroCochain) = some (0, 1) ∧
+          equiv zeroCochain zeroCochain
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: comparison_is_not_the_quotient
+  line: 209
+  signature_excerpt: |-
+    theorem comparison_is_not_the_quotient :
+        V3.v0 ≠ V3.v2 ∧ ¬ equiv edge02 zeroCochain
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: cycle_signature
+  line: 324
+  signature_excerpt: |-
+    theorem cycle_signature :
+        phi1Cycle cycleSample = 1 ∧ gamma2Cycle cycleSample = 0 ∧
+          rcl (phi1Cycle cycleSample) (gamma2Cycle cycleSample) = some (0, 1) ∧
+          ¬ equivCycle cycleSample zeroCycle
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: rcl_refuses_zero_over_one
+  line: 147
+  signature_excerpt: 'theorem rcl_refuses_zero_over_one : rcl 0 1 = none'
+  source: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  source_sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignTfq0003FiniteObstruction.lean::CampaignTfq0003FiniteObstruction.d1_d0
+  availability: local
+  symbol: CampaignTfq0003FiniteObstruction.d1_d0
+  path: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  declaration_status: declaration_found_not_proof_checked
+  line: 47
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0003FiniteObstruction.lean::CampaignTfq0003FiniteObstruction.equiv_iff_d1
+  availability: local
+  symbol: CampaignTfq0003FiniteObstruction.equiv_iff_d1
+  path: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  declaration_status: declaration_found_not_proof_checked
+  line: 140
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0003FiniteObstruction.lean::CampaignTfq0003FiniteObstruction.phi1_attained
+  availability: local
+  symbol: CampaignTfq0003FiniteObstruction.phi1_attained
+  path: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  declaration_status: declaration_found_not_proof_checked
+  line: 84
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0003FiniteObstruction.lean::CampaignTfq0003FiniteObstruction.sample_phi1
+  availability: local
+  symbol: CampaignTfq0003FiniteObstruction.sample_phi1
+  path: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  declaration_status: declaration_found_not_proof_checked
+  line: 167
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0003FiniteObstruction.lean::CampaignTfq0003FiniteObstruction.sample_gamma2
+  availability: local
+  symbol: CampaignTfq0003FiniteObstruction.sample_gamma2
+  path: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  declaration_status: declaration_found_not_proof_checked
+  line: 169
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0003FiniteObstruction.lean::CampaignTfq0003FiniteObstruction.sample_rcl
+  availability: local
+  symbol: CampaignTfq0003FiniteObstruction.sample_rcl
+  path: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  declaration_status: declaration_found_not_proof_checked
+  line: 171
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0003FiniteObstruction.lean::CampaignTfq0003FiniteObstruction.recorded_residual_l1
+  availability: local
+  symbol: CampaignTfq0003FiniteObstruction.recorded_residual_l1
+  path: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  declaration_status: declaration_found_not_proof_checked
+  line: 181
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0003FiniteObstruction.lean::CampaignTfq0003FiniteObstruction.zero_signature
+  availability: local
+  symbol: CampaignTfq0003FiniteObstruction.zero_signature
+  path: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  declaration_status: declaration_found_not_proof_checked
+  line: 187
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0003FiniteObstruction.lean::CampaignTfq0003FiniteObstruction.comparison_is_not_the_quotient
+  availability: local
+  symbol: CampaignTfq0003FiniteObstruction.comparison_is_not_the_quotient
+  path: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  declaration_status: declaration_found_not_proof_checked
+  line: 209
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0003FiniteObstruction.lean::CampaignTfq0003FiniteObstruction.cycle_signature
+  availability: local
+  symbol: CampaignTfq0003FiniteObstruction.cycle_signature
+  path: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  declaration_status: declaration_found_not_proof_checked
+  line: 324
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0003FiniteObstruction.lean::CampaignTfq0003FiniteObstruction.rcl_refuses_zero_over_one
+  availability: local
+  symbol: CampaignTfq0003FiniteObstruction.rcl_refuses_zero_over_one
+  path: lean4/CampaignTfq0003FiniteObstruction.lean
+  repository: this_repository
+  sha256: 30088db8f503824643805fc63882900d6acea6cd91b7ca81eac818c74c6d8aa5
+  declaration_status: declaration_found_not_proof_checked
+  line: 147
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -71,8 +481,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
