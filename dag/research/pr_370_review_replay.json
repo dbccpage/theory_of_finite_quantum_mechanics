@@ -1,0 +1,60 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:35:46.618102+00:00",
+  "review_base": "37f72369fab7975e1eee09208da57e13e7857aa3",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: COMP-C8-MINIMALITY-FENCE — Narrowed: one two-mark word followed by one blank cell; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignCompC8MinimalityFence.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignCompC8MinimalityFence",
+        "dag_node": "COMP-C8-MINIMALITY-FENCE",
+        "source": "lean4/CampaignCompC8MinimalityFence.lean",
+        "sha256": "2fa4a9bed26ae6cb06d9f38f747e7e981f0266722c68c8e1d6ccb3fb37bf770d",
+        "sha256_after_build": "2fa4a9bed26ae6cb06d9f38f747e7e981f0266722c68c8e1d6ccb3fb37bf770d",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignCompC8MinimalityFence.oneWordThenBlank",
+          "CampaignCompC8MinimalityFence.blankDiffersFromMarks"
+        ],
+        "axioms": {
+          "CampaignCompC8MinimalityFence.oneWordThenBlank": [],
+          "CampaignCompC8MinimalityFence.blankDiffersFromMarks": []
+        },
+        "output": "'CampaignCompC8MinimalityFence.oneWordThenBlank' does not depend on any axioms\n'CampaignCompC8MinimalityFence.blankDiffersFromMarks' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/comp-c8-minimality-fence.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.012,
+    "output": "mark_a_is_1: True\nmark_b_is_2: True\nblank_is_0: True\none_word_then_blank: True\nlength_3: True\nblank_differs_from_mark_a: True\nblank_differs_from_mark_b: True\nfailures=0\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/370/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.318,
+    "output": ""
+  }
+}

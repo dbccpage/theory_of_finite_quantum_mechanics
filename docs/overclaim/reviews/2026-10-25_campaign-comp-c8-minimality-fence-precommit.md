@@ -10,6 +10,7 @@ Corrections to the PR's own text:
 - None. The standing statement is the closed tape, not the earlier sentence about an arbitrary alphabet, a machine simulation, or a minimality fence.
 
 ## Per-node table
+
 | Node | Declarations that discharge it | Verdict | Reason |
 |---|---|---|---|
 | COMP-C8-MINIMALITY-FENCE | `oneWordThenBlank` (lean4/CampaignCompC8MinimalityFence.lean:17), `blankDiffersFromMarks` (lean4/CampaignCompC8MinimalityFence.lean:21) | FULL | Each atomic clause of the standing statement is the type of one of those two declarations. Axiom lines at lean4/CampaignCompC8MinimalityFence.lean:24 and :25 are empty. |
@@ -22,6 +23,7 @@ Atomic clauses of the standing statement:
 Left in the obligation (dag/derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md:17): simulation of a machine over a coded alphabet, and a sentence that composite machine M0 is not a smallest general-purpose machine. Small-machine records stay literature only. The letter-by-letter code of a finite alphabet stays on COMP-C8-BINARY-CODING.
 
 ## Numbers recomputed
+
 | Where | Claimed | Recomputed (method) | Match |
 |---|---|---|---|
 | Standing statement | 1, 2, 0 and the list 1, 2, 0 | `checks/independent/comp-c8-minimality-fence.py`: mark_a == 1, mark_b == 2, blank == 0, append equals [1, 2, 0] | match |

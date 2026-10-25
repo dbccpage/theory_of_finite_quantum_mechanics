@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignCompC8MinimalityFence.lean](../../../lean4/CampaignCompC8MinimalityFence.lean)
 - sha256 (`bytes`): `2fa4a9bed26ae6cb06d9f38f747e7e981f0266722c68c8e1d6ccb3fb37bf770d`
-- cited in: node.lean, receipt dag/research/campaign_comp-c8-minimality-fence_lean_replay.json (CampaignCompC8MinimalityFence), record TFQ-1313
+- cited in: node.lean, receipt dag/research/campaign_comp-c8-minimality-fence_lean_replay.json (CampaignCompC8MinimalityFence), receipt dag/research/pr_370_review_replay.json (CampaignCompC8MinimalityFence), record TFQ-1313
 - replay: `verified`
   - receipt [dag/research/campaign_comp-c8-minimality-fence_lean_replay.json](../../../dag/research/campaign_comp-c8-minimality-fence_lean_replay.json) (module `CampaignCompC8MinimalityFence`): recorded sha256 `2fa4a9bed26ae6cb06d9f38f747e7e981f0266722c68c8e1d6ccb3fb37bf770d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_370_review_replay.json](../../../dag/research/pr_370_review_replay.json) (module `CampaignCompC8MinimalityFence`): recorded sha256 `2fa4a9bed26ae6cb06d9f38f747e7e981f0266722c68c8e1d6ccb3fb37bf770d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignCompC8MinimalityFence`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
