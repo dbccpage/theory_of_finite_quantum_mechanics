@@ -55,9 +55,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignCompC2Step3NotWordStep.lean](../../../lean4/CampaignCompC2Step3NotWordStep.lean)
 - sha256 (`bytes`): `78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c`
-- cited in: node.lean, receipt dag/research/campaign_comp-c2-step3-not-word-step_lean_replay.json (CampaignCompC2Step3NotWordStep), record TFQ-1290
+- cited in: node.lean, receipt dag/research/campaign_comp-c2-step3-not-word-step_lean_replay.json (CampaignCompC2Step3NotWordStep), receipt dag/research/pr_367_review_replay.json (CampaignCompC2Step3NotWordStep), record TFQ-1290
 - replay: `verified`
   - receipt [dag/research/campaign_comp-c2-step3-not-word-step_lean_replay.json](../../../dag/research/campaign_comp-c2-step3-not-word-step_lean_replay.json) (module `CampaignCompC2Step3NotWordStep`): recorded sha256 `78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/pr_367_review_replay.json](../../../dag/research/pr_367_review_replay.json) (module `CampaignCompC2Step3NotWordStep`): recorded sha256 `78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignCompC2Step3NotWordStep`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

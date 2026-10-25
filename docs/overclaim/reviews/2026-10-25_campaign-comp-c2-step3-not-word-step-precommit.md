@@ -10,6 +10,7 @@ Corrections to the PR's own text:
 - None. The standing statement is the three list moves and `merge01`. The bottleneck keeps the Genesis Step3 encoding open.
 
 ## Per-node table
+
 | Node | Declarations that discharge it | Verdict | Reason |
 |---|---|---|---|
 | COMP-C2-STEP3-NOT-WORD-STEP | `addTermWordStep`, `addAssertionWordStep`, `identifyWordStep`, `merge01SendsBothToZero`, `merge01FixesOther` in `lean4/CampaignCompC2Step3NotWordStep.lean` | FULL for the standing statement | Each atomic sentence of the standing statement is the type of one of those declarations. Status stays OPEN. An encoding of every Genesis Step3 state is not a theorem. |
@@ -25,6 +26,7 @@ Atomic claims of the standing statement:
 Not discharged, and not in the standing statement: a word encoding of every Genesis Step3 state (finite term set, finite assertion set, two named terms) under which add-term, add-assertion and identify are word steps, and a demonstration that none exists. Those remain the bottleneck. The node was not given PROVED_LEAN.
 
 ## Numbers recomputed
+
 | Where | Claimed | Recomputed (method) | Match |
 |---|---|---|---|
 | Standing statement and independent check | `[0]` with empty block replaced by `[1]` yields `[0, 1]`; `[0, 1]` with empty block replaced by `[0, 1]` yields `[0, 1, 0, 1]`; `[0, 1]` with block `[1]` replaced by `[]` yields `[0]`; `merge01(0)=0`, `merge01(1)=0`, `0≠1`, `merge01(2)=2` | `python -I -X utf8 checks/independent/comp-c2-step3-not-word-step.py` printed `failures=0` | match |
