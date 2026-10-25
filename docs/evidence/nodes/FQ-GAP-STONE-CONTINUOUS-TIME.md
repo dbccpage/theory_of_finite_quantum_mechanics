@@ -4,15 +4,15 @@ Stage: [FINITE_QM_DYNAMICS](../stages/FINITE_QM_DYNAMICS.md). Status: `CONDITION
 
 ## Statement
 
-> Continuous time and the Stone theorem are not constructed: strong continuity, one-parameter group and generator selection are priced interfaces; rational entries alone do not imply infinite order. Causal order between events is also admitted externally (GAP-C1000-001, declared_assumption, non-blocking): Q(zeta_n) carriers supply no relation between spacetime events.
+> The integers 3, 4 and 5 satisfy 3 * 3 + 4 * 4 = 5 * 5. For all natural numbers a and b, if 5 * a * a = 4 * b * b then a = 0 and b = 0.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
-- cited Lean, Rust or Python symbols found in their in-repo files: 16
-- cited Lean declarations covered by a current replay receipt: 10
+- counted in-repo evidence files: 6
+- cited Lean, Rust or Python symbols found in their in-repo files: 18
+- cited Lean declarations covered by a current replay receipt: 12
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -35,7 +35,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Bottleneck
 
-Specified on the carrier: continuous time = a Q-parameter group extending the Z-action of a unit step; this needs roots of every order, which the rational 2x2 Pythagorean rotation lacks already at order two (no rational half-step; a half-step exists only after adjoining sqrt 5), so continuous time requires a carrier extension and a generator choice. Discrete Cayley unitary steps U_H(t) = (I - i t H)(I + i t H)^(-1) on 2x2 Hermitian Q(i) generators (with projective-tangent composition law (t1+t2)/(1 - t1*t2*||H||^2), south-pole collision -I_2 at t1*t2*||H||^2 = 1, and Born trace invariance) are kernel-checked. Open: the general triviality of Q-parameter groups over Q(i) (needs unique factorisation in Z\[i\]); strong continuity and the R-completion remain declared external imports. Discrete step aliasing and non-trivial Pythagorean rotation powers without rational angle logarithms remain mechanized.
+Standing slice: the integers 3, 4 and 5 satisfy 3 * 3 + 4 * 4 = 5 * 5, and for all natural numbers a and b, if 5 * a * a = 4 * b * b then a = 0 and b = 0. Outside this slice, continuous time and the Stone theorem are not constructed: strong continuity, one-parameter group and generator selection are priced interfaces; rational entries alone do not imply infinite order. Causal order between events is also admitted externally (GAP-C1000-001, declared_assumption, non-blocking): Q(zeta_n) carriers supply no relation between spacetime events. Specified on the carrier: continuous time = a Q-parameter group extending the Z-action of a unit step; this needs roots of every order, which the rational 2x2 Pythagorean rotation lacks already at order two (no rational half-step; a half-step exists only after adjoining sqrt 5), so continuous time requires a carrier extension and a generator choice. Discrete Cayley unitary steps U_H(t) = (I - i t H)(I + i t H)^(-1) on 2x2 Hermitian Q(i) generators (with projective-tangent composition law (t1+t2)/(1 - t1*t2*||H||^2), south-pole collision -I_2 at t1*t2*||H||^2 = 1, and Born trace invariance) are kernel-checked. Open: the general triviality of Q-parameter groups over Q(i) (needs unique factorisation in Z\[i\]); strong continuity and the R-completion remain declared external imports. Discrete step aliasing and non-trivial Pythagorean rotation powers without rational angle logarithms remain mechanized.
 
 ## Source status
 
@@ -43,7 +43,7 @@ Carrier-level specification kernel-checked in dag/results/FQ-GAP-STONE-CONTINUOU
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: All-integer modulo-four aliasing is kernel checked; exact modulo-eight controls distinguish declared half-step tags.
   - does not support: Supply topology, strong continuity, actual exponentials and generator domains before invoking Stone; finite tags do not prove existence.
   - next test: Supply topology, strong continuity, actual exponentials and generator domains before invoking Stone; finite tags do not prove existence.
@@ -51,6 +51,21 @@ Carrier-level specification kernel-checked in dag/results/FQ-GAP-STONE-CONTINUOU
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignFqGapStoneContinuousTime.lean`
+
+- file: [lean4/CampaignFqGapStoneContinuousTime.lean](../../../lean4/CampaignFqGapStoneContinuousTime.lean)
+- sha256 (`bytes`): `f3ddd8a1e3da24b20758e061bdba9c1b98d6b046c6c65b0e4afbf1bf175c0a28`
+- cited in: node.lean, receipt dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json (CampaignFqGapStoneContinuousTime)
+- replay: `verified`
+  - receipt [dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json](../../../dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json) (module `CampaignFqGapStoneContinuousTime`): recorded sha256 `f3ddd8a1e3da24b20758e061bdba9c1b98d6b046c6c65b0e4afbf1bf175c0a28` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignFqGapStoneContinuousTime`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `fiveMulSqEqFourMulSq` | yes | yes | yes | Quot.sound, propext | `#print axioms fiveMulSqEqFourMulSq` |
+| `pythagorean345` | yes | yes | yes | none | `#print axioms pythagorean345` |
+- counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
