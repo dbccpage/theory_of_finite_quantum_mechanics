@@ -3,15 +3,22 @@ node_id: MUB-PRIME-POWER-CONSTRUCTION
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Construct and verify a complete d+1 MUB family for the stated prime-power carrier,
-    explicitly handling finite-field arithmetic, character sums and normalization.
+  source_statement: Narrowed boundary, status left OPEN. In dimension 2, the three bases Z = ((1, 0),
+    (0, 1)), X = ((1, 1), (1, -1)) and Y = ((1, i), (1, -i)) are mutually unbiased over the Gaussian integers.
+    Their squared norms are 1, 1, 2, 2, 2 and 2. Vectors inside one basis have inner product 0. For every
+    vector from one basis and every vector from another, twice the squared modulus of the inner product
+    equals the product of the squared norms. The square of i is -1. The additive character of the two-element
+    field sends 0 to 1 and 1 to -1, and it sends 1+1 to 1.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Provide the construction and all pairwise trace identities for the admitted dimension;
-    do not infer a dimension-six family from smaller dimensions.
+  source_bottleneck: This is the dimension-2 characteristic-two family only. It does not construct a complete
+    family for any larger prime power, does not treat odd characteristic, does not run a general character
+    sum, and does not infer a dimension-six family from this carrier.
   source_refs:
   - dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md
   - papers/core/mub6/README.md
+  - dag/derivations/independent/mub-prime-power-construction.md
+  - dag/research/campaign_mub-prime-power-construction_lean_replay.json
   paper_refs:
   - dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md
   source_claim_label: OPEN
@@ -20,7 +27,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md
-    sha256: 36a80e2b810e939e9276544b0b9bc012299d8c464296607aad02470495acefe8
+    sha256: 35808b69007abc4faa0461ae3dd99cfdcb4b2f7dd48b61f3ab3e2aaad5682db1
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -28,9 +35,287 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/mutually_unbiased_bases_mub_prime_power_construction_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: gmul
+  line: 12
+  signature_excerpt: 'def gmul (a b : Gauss) : Gauss'
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Gauss
+  line: 8
+  signature_excerpt: abbrev Gauss
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: vnorm
+  line: 24
+  signature_excerpt: 'def vnorm (u : Vec) : Int'
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: z0
+  line: 29
+  signature_excerpt: 'def z0 : Vec'
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: z1
+  line: 30
+  signature_excerpt: 'def z1 : Vec'
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: x0
+  line: 31
+  signature_excerpt: 'def x0 : Vec'
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: x1
+  line: 32
+  signature_excerpt: 'def x1 : Vec'
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: y0
+  line: 33
+  signature_excerpt: 'def y0 : Vec'
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: y1
+  line: 34
+  signature_excerpt: 'def y1 : Vec'
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Vec
+  line: 19
+  signature_excerpt: abbrev Vec
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gnorm
+  line: 17
+  signature_excerpt: 'def gnorm (a : Gauss) : Int'
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ip
+  line: 21
+  signature_excerpt: 'def ip (u v : Vec) : Gauss'
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gadd
+  line: 10
+  signature_excerpt: 'def gadd (a b : Gauss) : Gauss'
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gconj
+  line: 15
+  signature_excerpt: 'def gconj (a : Gauss) : Gauss'
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: balanced
+  line: 26
+  signature_excerpt: 'def balanced (u v : Vec) : Prop'
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: chi
+  line: 36
+  signature_excerpt: 'def chi (b : Bool) : Int'
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: i_squared
+  line: 39
+  signature_excerpt: 'theorem i_squared : gmul (0, 1) (0, 1) = (-1, 0)'
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: squared_norms
+  line: 42
+  signature_excerpt: |-
+    theorem squared_norms :
+        vnorm z0 = 1 ∧ vnorm z1 = 1 ∧
+          vnorm x0 = 2 ∧ vnorm x1 = 2 ∧
+            vnorm y0 = 2 ∧ vnorm y1 = 2
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: self_inner
+  line: 48
+  signature_excerpt: |-
+    theorem self_inner :
+        ip z0 z0 = (1, 0) ∧ ip z1 z1 = (1, 0) ∧
+          ip x0 x0 = (2, 0) ∧ ip x1 x1 = (2, 0) ∧
+            ip y0 y0 = (2, 0) ∧ ip y1 y1 = (2, 0)
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: basis_orthogonal
+  line: 54
+  signature_excerpt: |-
+    theorem basis_orthogonal :
+        ip z0 z1 = (0, 0) ∧ ip x0 x1 = (0, 0) ∧ ip y0 y1 = (0, 0)
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: cross_unbiased
+  line: 58
+  signature_excerpt: |-
+    theorem cross_unbiased :
+        balanced z0 x0 ∧ balanced z0 x1 ∧ balanced z1 x0 ∧ balanced z1 x1 ∧
+          balanced z0 y0 ∧ balanced z0 y1 ∧ balanced z1 y0 ∧ balanced z1 y1 ∧
+            balanced x0 y0 ∧ balanced x0 y1 ∧ balanced x1 y0 ∧ balanced x1 y1
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: char_values
+  line: 65
+  signature_excerpt: 'theorem char_values : chi false = 1 ∧ chi true = -1'
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: char_of_double
+  line: 68
+  signature_excerpt: |-
+    theorem char_of_double :
+        (false ^^ false) = false ∧ (true ^^ true) = false ∧
+          chi (false ^^ false) = 1 ∧ chi (true ^^ true) = 1
+  source: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignMubPrimePowerConstruction.lean::i_squared
+  availability: local
+  symbol: i_squared
+  path: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  declaration_status: declaration_found_not_proof_checked
+  line: 39
+  role: source_lead_only
+- original_ref: lean4/CampaignMubPrimePowerConstruction.lean::squared_norms
+  availability: local
+  symbol: squared_norms
+  path: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  declaration_status: declaration_found_not_proof_checked
+  line: 42
+  role: source_lead_only
+- original_ref: lean4/CampaignMubPrimePowerConstruction.lean::self_inner
+  availability: local
+  symbol: self_inner
+  path: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  declaration_status: declaration_found_not_proof_checked
+  line: 48
+  role: source_lead_only
+- original_ref: lean4/CampaignMubPrimePowerConstruction.lean::basis_orthogonal
+  availability: local
+  symbol: basis_orthogonal
+  path: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  declaration_status: declaration_found_not_proof_checked
+  line: 54
+  role: source_lead_only
+- original_ref: lean4/CampaignMubPrimePowerConstruction.lean::cross_unbiased
+  availability: local
+  symbol: cross_unbiased
+  path: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  declaration_status: declaration_found_not_proof_checked
+  line: 58
+  role: source_lead_only
+- original_ref: lean4/CampaignMubPrimePowerConstruction.lean::char_values
+  availability: local
+  symbol: char_values
+  path: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  declaration_status: declaration_found_not_proof_checked
+  line: 65
+  role: source_lead_only
+- original_ref: lean4/CampaignMubPrimePowerConstruction.lean::char_of_double
+  availability: local
+  symbol: char_of_double
+  path: lean4/CampaignMubPrimePowerConstruction.lean
+  repository: this_repository
+  sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  declaration_status: declaration_found_not_proof_checked
+  line: 68
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -68,8 +353,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

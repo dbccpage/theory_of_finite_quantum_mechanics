@@ -18318,16 +18318,26 @@
       "id": "MUB-PRIME-POWER-CONSTRUCTION",
       "stage": "MUTUALLY_UNBIASED_BASES",
       "status": "OPEN",
-      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
-      "statement": "Construct and verify a complete d+1 MUB family for the stated prime-power carrier, explicitly handling finite-field arithmetic, character sums and normalization.",
+      "source_status": "Dimension-2 Gaussian-integer bases Z, X and Y; the two-element character sends 1+1 to 1. Larger prime powers stay open.",
+      "statement": "Narrowed boundary, status left OPEN. In dimension 2, the three bases Z = ((1, 0), (0, 1)), X = ((1, 1), (1, -1)) and Y = ((1, i), (1, -i)) are mutually unbiased over the Gaussian integers. Their squared norms are 1, 1, 2, 2, 2 and 2. Vectors inside one basis have inner product 0. For every vector from one basis and every vector from another, twice the squared modulus of the inner product equals the product of the squared norms. The square of i is -1. The additive character of the two-element field sends 0 to 1 and 1 to -1, and it sends 1+1 to 1.",
       "source": [
         "dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md",
-        "papers/core/mub6/README.md"
+        "papers/core/mub6/README.md",
+        "dag/derivations/independent/mub-prime-power-construction.md",
+        "dag/research/campaign_mub-prime-power-construction_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMubPrimePowerConstruction.lean::i_squared",
+        "lean4/CampaignMubPrimePowerConstruction.lean::squared_norms",
+        "lean4/CampaignMubPrimePowerConstruction.lean::self_inner",
+        "lean4/CampaignMubPrimePowerConstruction.lean::basis_orthogonal",
+        "lean4/CampaignMubPrimePowerConstruction.lean::cross_unbiased",
+        "lean4/CampaignMubPrimePowerConstruction.lean::char_values",
+        "lean4/CampaignMubPrimePowerConstruction.lean::char_of_double"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Provide the construction and all pairwise trace identities for the admitted dimension; do not infer a dimension-six family from smaller dimensions.",
+      "bottleneck": "This is the dimension-2 characteristic-two family only. It does not construct a complete family for any larger prime power, does not treat odd characteristic, does not run a general character sum, and does not infer a dimension-six family from this carrier.",
       "tags": [
         "application-branch",
         "TFQ-0403"
@@ -56061,6 +56071,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md",
         "lean4/H006PermutationUnitary.lean",
         "dag/derivations/independent/l1-imp-sector-symmetry-law.md",
         "checks/independent/l1-imp-sector-symmetry-law.py",
@@ -56807,7 +56819,11 @@
         "FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md"
+        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md"
       ],
       "id": "TFQ-1021",
       "lean4": [
@@ -57723,6 +57739,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md",
         "lean4/FiniteWignerTheorem.lean",
         "dag/derivations/independent/l1-imp-transition-probability-law.md",
         "dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json",
@@ -57769,7 +57787,12 @@
         "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md"
+        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md"
       ],
       "id": "TFQ-1048",
       "lean4": [
@@ -62666,20 +62689,32 @@
       ],
       "f004_refs": [
         "dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md",
-        "papers/core/mub6/README.md"
+        "papers/core/mub6/README.md",
+        "dag/derivations/independent/mub-prime-power-construction.md",
+        "dag/research/campaign_mub-prime-power-construction_lean_replay.json"
       ],
       "id": "TFQ-0403",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignMubPrimePowerConstruction.lean::i_squared",
+        "lean4/CampaignMubPrimePowerConstruction.lean::squared_norms",
+        "lean4/CampaignMubPrimePowerConstruction.lean::self_inner",
+        "lean4/CampaignMubPrimePowerConstruction.lean::basis_orthogonal",
+        "lean4/CampaignMubPrimePowerConstruction.lean::cross_unbiased",
+        "lean4/CampaignMubPrimePowerConstruction.lean::char_values",
+        "lean4/CampaignMubPrimePowerConstruction.lean::char_of_double"
+      ],
       "local_id": "MUB-PRIME-POWER-CONSTRUCTION",
       "name": "Prime-power MUB construction and exact field obligations",
-      "obligation": "Provide the construction and all pairwise trace identities for the admitted dimension; do not infer a dimension-six family from smaller dimensions.",
+      "obligation": "This is the dimension-2 characteristic-two family only. It does not construct a complete family for any larger prime power, does not treat odd characteristic, does not run a general character sum, and does not infer a dimension-six family from this carrier.",
       "parent_id": "TFQ-0402",
-      "python": [],
+      "python": [
+        "checks/independent/mub-prime-power-construction.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "MUTUALLY_UNBIASED_BASES",
-      "summary": "Construct and verify a complete d+1 MUB family for the stated prime-power carrier, explicitly handling finite-field arithmetic, character sums and normalization.",
+      "summary": "Narrowed boundary, status left OPEN. In dimension 2, the three bases Z = ((1, 0), (0, 1)), X = ((1, 1), (1, -1)) and Y = ((1, i), (1, -i)) are mutually unbiased over the Gaussian integers. Their squared norms are 1, 1, 2, 2, 2 and 2. Vectors inside one basis have inner product 0. For every vector from one basis and every vector from another, twice the squared modulus of the inner product equals the product of the squared norms. The square of i is -1. The additive character of the two-element field sends 0 to 1 and 1 to -1, and it sends 1+1 to 1.",
       "uuid": "b1cd2642-4f5d-5264-a58f-a17a68f2f5de"
     },
     {
