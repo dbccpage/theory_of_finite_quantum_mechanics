@@ -11,8 +11,8 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `OPEN`. Evidence grade: **
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 10
-- cited Lean declarations covered by a current replay receipt: 9
+- cited Lean, Rust or Python symbols found in their in-repo files: 18
+- cited Lean declarations covered by a current replay receipt: 17
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -46,18 +46,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignPgwContextFidelity.lean](../../../lean4/CampaignPgwContextFidelity.lean)
 - sha256 (`bytes`): `a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643`
-- cited in: node.lean, receipt dag/research/campaign_pgw-context-fidelity_lean_replay.json (CampaignPgwContextFidelity), record TFQ-0427
+- cited in: node.lean, receipt dag/research/campaign_pgw-context-fidelity_lean_replay.json (CampaignPgwContextFidelity), receipt dag/research/pr_344_review_replay.json (CampaignPgwContextFidelity), record TFQ-0427
 - replay: `verified`
   - receipt [dag/research/campaign_pgw-context-fidelity_lean_replay.json](../../../dag/research/campaign_pgw-context-fidelity_lean_replay.json) (module `CampaignPgwContextFidelity`): recorded sha256 `a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_344_review_replay.json](../../../dag/research/pr_344_review_replay.json) (module `CampaignPgwContextFidelity`): recorded sha256 `a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignPgwContextFidelity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `CampaignPgwContextFidelity.acceptEqual_sound` | yes | yes | yes | none | `#print axioms CampaignPgwContextFidelity.acceptEqual_sound` |
 | `CampaignPgwContextFidelity.answers_follow_received_history` | yes | yes | yes | propext | `#print axioms CampaignPgwContextFidelity.answers_follow_received_history` |
+| `CampaignPgwContextFidelity.equal_implies_sound` | yes | yes | yes | none | `#print axioms CampaignPgwContextFidelity.equal_implies_sound` |
+| `CampaignPgwContextFidelity.full_retracted` | yes | yes | yes | propext | `#print axioms CampaignPgwContextFidelity.full_retracted` |
 | `CampaignPgwContextFidelity.history_count` | yes | yes | yes | none | `#print axioms CampaignPgwContextFidelity.history_count` |
+| `CampaignPgwContextFidelity.replay_full` | yes | yes | yes | none | `#print axioms CampaignPgwContextFidelity.replay_full` |
+| `CampaignPgwContextFidelity.replay_supply` | yes | yes | yes | none | `#print axioms CampaignPgwContextFidelity.replay_supply` |
+| `CampaignPgwContextFidelity.separatingStep_invalid` | yes | yes | yes | propext | `#print axioms CampaignPgwContextFidelity.separatingStep_invalid` |
+| `CampaignPgwContextFidelity.separatingStep_valid` | yes | yes | yes | propext | `#print axioms CampaignPgwContextFidelity.separatingStep_valid` |
 | `CampaignPgwContextFidelity.sound_iff_only_replay` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwContextFidelity.sound_iff_only_replay` |
+| `CampaignPgwContextFidelity.sound_implies_equal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwContextFidelity.sound_implies_equal` |
 | `CampaignPgwContextFidelity.stale_not_transferred` | yes | yes | yes | propext | `#print axioms CampaignPgwContextFidelity.stale_not_transferred` |
+| `CampaignPgwContextFidelity.truncated_verified` | yes | yes | yes | propext | `#print axioms CampaignPgwContextFidelity.truncated_verified` |
 | `CampaignPgwContextFidelity.unequal_pair_count` | yes | yes | yes | none | `#print axioms CampaignPgwContextFidelity.unequal_pair_count` |
 | `answers_follow_received_history` | yes | yes | yes | propext | `#print axioms answers_follow_received_history` |
 | `sound_iff_only_replay` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms sound_iff_only_replay` |
