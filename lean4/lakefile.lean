@@ -1040,10 +1040,6 @@ lean_lib CampaignDfmReggeGravityFence where
 lean_lib CampaignDfmRelationalTimeFence where
   roots := #[`CampaignDfmRelationalTimeFence]
 
--- Campaign: DFM-Z1-Z2-COUNTERTERM-FENCE. Not a default target.
-lean_lib CampaignDfmZ1Z2CountertermFence where
-  roots := #[`CampaignDfmZ1Z2CountertermFence]
-
 -- Campaign: PGW-SN-E08-WEIGHTED-L1-DUALITY. Not a default target.
 lean_lib CampaignSnE08WeightedL1Duality where
   roots := #[`CampaignSnE08WeightedL1Duality]
@@ -1071,26 +1067,6 @@ lean_lib CampaignAdsCftDualityImport where
 -- Campaign: ADS-HAPPY-TOY-NOT-DUALITY-GAP. Not a default target.
 lean_lib CampaignAdsHappyToyNotDualityGap where
   roots := #[`CampaignAdsHappyToyNotDualityGap]
-
--- Campaign: FSP-IMAGINARY-MU-REAL-DET. Non-default.
-lean_lib CampaignFspImaginaryMuRealDet where
-  roots := #[`CampaignFspImaginaryMuRealDet]
-
--- Campaign: TFQ-0008. Not a default target.
-lean_lib CampaignTfq0008FiniteDynamics where
-  roots := #[`CampaignTfq0008FiniteDynamics]
-
--- Campaign: CQFT-LOCAL-NET-AXIOMS-IMPORT. Not a default target.
-lean_lib CampaignCqftLocalNetAxiomsImport where
-  roots := #[`CampaignCqftLocalNetAxiomsImport]
-
--- Campaign: LQG-EPRL-VERTEX-IMPORT. Not a default target.
-lean_lib CampaignLqgEprlVertexImport where
-  roots := #[`CampaignLqgEprlVertexImport]
-
--- Campaign: LQG-CONTINUUM-LIMIT-GAP. Not a default target.
-lean_lib CampaignLqgContinuumLimitGap where
-  roots := #[`CampaignLqgContinuumLimitGap]
 
 -- Campaign: ADS-RT-FORMULA-IMPORT. Not a default target.
 lean_lib CampaignAdsRtFormulaImport where
@@ -1120,21 +1096,14 @@ lean_lib CampaignTfq0090FiniteQg where
 lean_lib CampaignTfq0107FiniteQg where
   roots := #[`CampaignTfq0107FiniteQg]
 
--- Campaign: TFQ-0118. Not a default target.
 lean_lib CampaignTfq0118ContinuumInterface where
   roots := #[`CampaignTfq0118ContinuumInterface]
 
--- Campaign: TFQ-0119. Not a default target.
 lean_lib CampaignTfq0119ContinuumInterface where
   roots := #[`CampaignTfq0119ContinuumInterface]
 
--- Campaign: TFQ-0123. Not a default target.
 lean_lib CampaignTfq0123ContinuumInterface where
   roots := #[`CampaignTfq0123ContinuumInterface]
-
--- Campaign: PG-WDP-GENESIS-BRIDGE-OBLIGATIONS. Not a default target.
-lean_lib CampaignPgwWdpBridgeObligations where
-  roots := #[`CampaignPgwWdpBridgeObligations]
 
 lean_lib CampaignTfq0006L1ToL2 where
   roots := #[`CampaignTfq0006L1ToL2]
@@ -1144,12 +1113,6 @@ lean_lib CampaignTfq0008FiniteQmDynamics where
 
 lean_lib CampaignTfq0009FiniteGauge where
   roots := #[`CampaignTfq0009FiniteGauge]
-
-lean_lib CampaignTfq0010FiniteQed where
-  roots := #[`CampaignTfq0010FiniteQed]
-
-lean_lib CampaignTfq0011FiniteQcd where
-  roots := #[`CampaignTfq0011FiniteQcd]
 
 lean_lib CampaignTfq0012FiniteQcd where
   roots := #[`CampaignTfq0012FiniteQcd]
@@ -1172,11 +1135,23 @@ lean_lib CampaignTfq0032FiniteQcd where
 lean_lib CampaignTfq0033FiniteQcd where
   roots := #[`CampaignTfq0033FiniteQcd]
 
-lean_lib CampaignTfq0038FiniteQcd where
-  roots := #[`CampaignTfq0038FiniteQcd]
+lean_lib CampaignTfq0044FiniteTopological where
+  roots := #[`CampaignTfq0044FiniteTopological]
 
 lean_lib CampaignTfq0039FiniteQcd where
   roots := #[`CampaignTfq0039FiniteQcd]
+
+lean_lib CampaignTfq0050FiniteTopological where
+  roots := #[`CampaignTfq0050FiniteTopological]
+
+lean_lib CampaignTfq0010FiniteQed where
+  roots := #[`CampaignTfq0010FiniteQed]
+
+lean_lib CampaignTfq0011FiniteQcd where
+  roots := #[`CampaignTfq0011FiniteQcd]
+
+lean_lib CampaignTfq0038FiniteQcd where
+  roots := #[`CampaignTfq0038FiniteQcd]
 
 lean_lib CampaignTfq0040FiniteQcd where
   roots := #[`CampaignTfq0040FiniteQcd]
@@ -1184,14 +1159,7 @@ lean_lib CampaignTfq0040FiniteQcd where
 lean_lib CampaignTfq0042FiniteQcd where
   roots := #[`CampaignTfq0042FiniteQcd]
 
-lean_lib CampaignTfq0044FiniteTopological where
-  roots := #[`CampaignTfq0044FiniteTopological]
-
-lean_lib CampaignTfq0050FiniteTopological where
-  roots := #[`CampaignTfq0050FiniteTopological]
-
-lean_lib CampaignTfq0171ImplementationSibling where
-  roots := #[`CampaignTfq0171ImplementationSibling]
+lean_lib CampaignTfq0171ImplementationSibling
 
 lean_lib CampaignTfq0183ImplementationSibling where
   roots := #[`CampaignTfq0183ImplementationSibling]
@@ -1207,3 +1175,6 @@ lean_lib CampaignTfq0199ImplementationSibling where
 
 lean_lib CampaignTfq0376Pregenesis where
   roots := #[`CampaignTfq0376Pregenesis]
+
+lean_lib CampaignFspFibonacciAnyonData where
+  roots := #[`CampaignFspFibonacciAnyonData]

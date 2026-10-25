@@ -49,7 +49,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.lean, receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet), record TFQ-1203
 - replay: `verified`
   - receipt [dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json](../../../dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json) (module `CampaignFspImaginaryMuRealDet`): recorded sha256 `6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignFspImaginaryMuRealDet`
+- check: `cd lean4 && lake build   # the library that contains lean4/CampaignFspImaginaryMuRealDet.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|

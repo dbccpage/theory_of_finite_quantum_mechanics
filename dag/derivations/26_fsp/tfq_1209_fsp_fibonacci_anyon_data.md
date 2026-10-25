@@ -14,10 +14,10 @@
 The Fibonacci category has fusion tau x tau = 1 + tau, quantum dimension d_tau = (1 + sqrt 5)/2 (irrational), F and R matrices solving the pentagon and hexagon equations, and three-anyon braids generate a dense subgroup of SU(2) (Freedman-Larsen-Wang).
 
 ### Governing Obligation
-The JSONL calls d_tau rational, which is false; the claim that braiding avoids sign degradation has no content here. Exact ribbon data are pinned elsewhere in the trunk (TFQ-0050), not in this package.
+The JSONL calls d_tau rational, which is false; the claim that braiding avoids sign degradation has no content here. Exact ribbon data are pinned elsewhere in the trunk (TFQ-0050), not in this package. Narrowed in lean4/CampaignFspFibonacciAnyonData.lean and checks/independent/fsp-fibonacci-anyon-data.py while keeping status IMPORTED_ASSUMPTION to: (1) exact Fibonacci fusion associativity sum_e N_{a,b}^e N_{e,c}^d = sum_f N_{a,f}^d N_{b,c}^f across all 16 quadruples (a,b,c,d) in {0,1}^4 and Fibonacci fusion channel growth fibSeq(n+2) = fibSeq(n+1) + fibSeq(n) with fibSeq(3) = 2; (2) exact golden-ratio ring Z[phi] (phi^2 = 1 + phi) identities for quantum dimensions d_1^2 + d_tau^2 = 2 + phi, inverse phi * phi^-1 = 1, F-matrix row normalization phi^-2 + phi^-1 = 1, and computational-basis state leakage phi^-3 * (2 + phi^-1) = phi^-1 = phi - 1; (3) 2x2 symmetric reflection F-matrix zero trace, orthogonality, and diagonal square (u^2 + v^2) I_2, plus involutive braid word reduction F(FR) = R under F^2 = I_2; (4) Mac Lane 5-term pentagon equation across all 512 4-anyon fusion trees and Artin braid relation sigma_1 sigma_2 sigma_1 == sigma_2 sigma_1 sigma_2; and (5) explicit GIN-C17 scope fences showing Pauli-Z involution non-commutativity ([M, Xi])_{01} = -2 M_{01} != 0, bounded non-square checks (2p - q)^2 != 5 q^2 for p,q in [1..25] refuting the source JSONL's rational d_tau wording, and non-injectivity of the 2D Fibonacci braid fixture with respect to microscopic fermion sign theorems.
 
 ### Witness Audit
-Cited FibonacciAnyonBraiding.lean::fibonacci_anyon_fusion_pentagon_solution does not exist; fibonacci_leakage_is_positive is decide on 618 > 0 and artin_braid_relation_holds returns a field of a supplied structure. FibonacciAnyonBraiding is absent as a symbol from fibonacci_anyon_braiding.py (GIN-C17 historical fixture).
+Replaced missing FibonacciAnyonBraiding.lean::fibonacci_anyon_fusion_pentagon_solution and trivial decide/structure-field fixtures with lean4/CampaignFspFibonacciAnyonData.lean (10 theorems, 0 sorrys, 6/6 mutants killed), code/python/src/fsp/fibonacci_anyon_braiding.py::FibonacciAnyonModel, and checks/independent/fsp-fibonacci-anyon-data.py (1813 exact fusion, Z[phi], 512-tree pentagon, braid, and GIN-C17 scope fence checks, 0 failures).
 
 ---
 
@@ -35,13 +35,24 @@ Cited FibonacciAnyonBraiding.lean::fibonacci_anyon_fusion_pentagon_solution does
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.fib_fusion_associativity`
+- `lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.fib_fusion_dimension_recurrence`
+- `lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.fib_phi_inverse_and_square_identities`
+- `lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.fib_leakage_algebraic_identity`
+- `lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.fib_f_matrix_orthogonality_and_involution`
+- `lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.artin_braid_word_involutive_reduction`
+- `lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.pauli_z_involution_commutator_obstruction`
+- `lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.five_not_rational_square_bounded_grid`
+- `lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.fibonacci_fusion_space_growth`
+- `lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.gin_c17_historical_fixture_scope_fence`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `code/python/src/fsp/fibonacci_anyon_braiding.py::FibonacciAnyonModel`
+- `code/python/src/fsp/fibonacci_anyon_braiding.py::FibonacciAnyonBraidingEngine`
+- `checks/independent/fsp-fibonacci-anyon-data.py::main`
 
 ### Cited by the source, not in this checkout
 - `external:omega_majorana::multiqubit_braid::fibonacci_braiding_unitary (cited by the source, not in this checkout)`
@@ -59,3 +70,7 @@ Cited FibonacciAnyonBraiding.lean::fibonacci_anyon_fusion_pentagon_solution does
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:626-638`
   - `papers/core/fsp/the_problem_of_the_fermion_sign.md:654-696`
+  - `dag/derivations/independent/fsp-fibonacci-anyon-data.md`
+  - `dag/research/campaign_fsp-fibonacci-anyon-data_lean_replay.json`
+  - `dag/research/campaign_fsp-fibonacci-anyon-data_lean_mutation.json`
+  - `dag/research/campaign_fsp-fibonacci-anyon-data_independent.json`

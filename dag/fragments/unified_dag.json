@@ -1481,7 +1481,7 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "COMPUTATIONALLY_CHECKED",
-      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
+      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi\u00b7psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
       "obligation": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "imported_structure": [
         "continuous time and Stone generator",
@@ -5056,7 +5056,7 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "The Fibonacci category has fusion tau x tau = 1 + tau, quantum dimension d_tau = (1 + sqrt 5)/2 (irrational), F and R matrices solving the pentagon and hexagon equations, and three-anyon braids generate a dense subgroup of SU(2) (Freedman-Larsen-Wang).",
-      "obligation": "The JSONL calls d_tau rational, which is false; the claim that braiding avoids sign degradation has no content here. Exact ribbon data are pinned elsewhere in the trunk (TFQ-0050), not in this package.",
+      "obligation": "The JSONL calls d_tau rational, which is false; the claim that braiding avoids sign degradation has no content here. Exact ribbon data are pinned elsewhere in the trunk (TFQ-0050), not in this package. Narrowed in lean4/CampaignFspFibonacciAnyonData.lean and checks/independent/fsp-fibonacci-anyon-data.py while keeping status IMPORTED_ASSUMPTION to: (1) exact Fibonacci fusion associativity sum_e N_{a,b}^e N_{e,c}^d = sum_f N_{a,f}^d N_{b,c}^f across all 16 quadruples (a,b,c,d) in {0,1}^4 and Fibonacci fusion channel growth fibSeq(n+2) = fibSeq(n+1) + fibSeq(n) with fibSeq(3) = 2; (2) exact golden-ratio ring Z[phi] (phi^2 = 1 + phi) identities for quantum dimensions d_1^2 + d_tau^2 = 2 + phi, inverse phi * phi^-1 = 1, F-matrix row normalization phi^-2 + phi^-1 = 1, and computational-basis state leakage phi^-3 * (2 + phi^-1) = phi^-1 = phi - 1; (3) 2x2 symmetric reflection F-matrix zero trace, orthogonality, and diagonal square (u^2 + v^2) I_2, plus involutive braid word reduction F(FR) = R under F^2 = I_2; (4) Mac Lane 5-term pentagon equation across all 512 4-anyon fusion trees and Artin braid relation sigma_1 sigma_2 sigma_1 == sigma_2 sigma_1 sigma_2; and (5) explicit GIN-C17 scope fences showing Pauli-Z involution non-commutativity ([M, Xi])_{01} = -2 M_{01} != 0, bounded non-square checks (2p - q)^2 != 5 q^2 for p,q in [1..25] refuting the source JSONL's rational d_tau wording, and non-injectivity of the 2D Fibonacci braid fixture with respect to microscopic fermion sign theorems.",
       "imported_structure": [
         "Fibonacci modular tensor category data (literature)"
       ],
@@ -5064,17 +5064,36 @@
         "FSP-LAUGHLIN-EXCHANGE-PHASE"
       ],
       "parent_record": "TFQ-1208",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.fib_fusion_associativity",
+        "lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.fib_fusion_dimension_recurrence",
+        "lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.fib_phi_inverse_and_square_identities",
+        "lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.fib_leakage_algebraic_identity",
+        "lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.fib_f_matrix_orthogonality_and_involution",
+        "lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.artin_braid_word_involutive_reduction",
+        "lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.pauli_z_involution_commutator_obstruction",
+        "lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.five_not_rational_square_bounded_grid",
+        "lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.fibonacci_fusion_space_growth",
+        "lean4/CampaignFspFibonacciAnyonData.lean::CampaignFspFibonacciAnyonData.gin_c17_historical_fixture_scope_fence"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "code/python/src/fsp/fibonacci_anyon_braiding.py::FibonacciAnyonModel",
+        "code/python/src/fsp/fibonacci_anyon_braiding.py::FibonacciAnyonBraidingEngine",
+        "checks/independent/fsp-fibonacci-anyon-data.py::main"
+      ],
       "external_witnesses": [
         "external:omega_majorana::multiqubit_braid::fibonacci_braiding_unitary (cited by the source, not in this checkout)"
       ],
       "sources": [
         "papers/core/fsp/theory_of_finite_fsp.md:626-638",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md:654-696"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md:654-696",
+        "dag/derivations/independent/fsp-fibonacci-anyon-data.md",
+        "dag/research/campaign_fsp-fibonacci-anyon-data_lean_replay.json",
+        "dag/research/campaign_fsp-fibonacci-anyon-data_lean_mutation.json",
+        "dag/research/campaign_fsp-fibonacci-anyon-data_independent.json"
       ],
-      "audit": "Cited FibonacciAnyonBraiding.lean::fibonacci_anyon_fusion_pentagon_solution does not exist; fibonacci_leakage_is_positive is decide on 618 > 0 and artin_braid_relation_holds returns a field of a supplied structure. FibonacciAnyonBraiding is absent as a symbol from fibonacci_anyon_braiding.py (GIN-C17 historical fixture).",
+      "audit": "Replaced missing FibonacciAnyonBraiding.lean::fibonacci_anyon_fusion_pentagon_solution and trivial decide/structure-field fixtures with lean4/CampaignFspFibonacciAnyonData.lean (10 theorems, 0 sorrys, 6/6 mutants killed), code/python/src/fsp/fibonacci_anyon_braiding.py::FibonacciAnyonModel, and checks/independent/fsp-fibonacci-anyon-data.py (1813 exact fusion, Z[phi], 512-tree pentagon, braid, and GIN-C17 scope fence checks, 0 failures).",
       "see_also": [
         "TFQ-0050",
         "TFQ-0164"
@@ -9944,10 +9963,10 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "cited; local formalization open",
       "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
-      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice\u2082 for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
       "imported_structure": [
         "Rice theorem (Rice 1953)",
-        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
+        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice\u2082"
       ],
       "parent_nodes": [
         "AUTH-G5B-CARRIER-ADMISSION-GATE"
@@ -9957,7 +9976,7 @@
       "rust": [],
       "python": [],
       "external_witnesses": [
-        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
+        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice\u2082 (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
         "external:Mathlib/Computability/Halting.lean::ComputablePred.halting_problem (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
       ],
       "sources": [
@@ -9965,7 +9984,7 @@
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:305-315",
         "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:331-344"
       ],
-      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice₂ and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
+      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice\u2082 and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
       "see_also": [
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
@@ -9982,7 +10001,7 @@
       "status": "OPEN",
       "source_claimed_status": "open",
       "statement": "For an admitted program carrier and a nontrivial extensional property, a total computable sound and complete authorizer would decide that property; the lift is a stated target in the source and has no local theorem.",
-      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
+      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice\u2082 and halting_problem.",
       "imported_structure": [
         "admitted program carrier",
         "nontrivial extensional property"
