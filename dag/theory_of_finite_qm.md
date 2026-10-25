@@ -9074,7 +9074,7 @@ Obligation: Check the scalar field, adjoint, rank, resolutions and all cross-bas
 - DAG node: `MUB-PRIME-POWER-CONSTRUCTION`
 - Paper: [derivation](derivations/25_mub/tfq_0403_mub_prime_power_construction.md)
 
-Narrowed boundary, status left OPEN. In dimension 2, the three bases Z = ((1, 0), (0, 1)), X = ((1, 1), (1, -1)) and Y = ((1, i), (1, -i)) are mutually unbiased over the Gaussian integers. Their squared norms are 1, 1, 2, 2, 2 and 2. Vectors inside one basis have inner product 0. For every vector from one basis and every vector from another, twice the squared modulus of the inner product equals the product of the squared norms. The square of i is -1. The additive character of the two-element field sends 0 to 1 and 1 to -1, and it sends 1+1 to 1.
+Narrowed boundary, status left OPEN. In dimension 2, the three bases Z = ((1, 0), (0, 1)), X = ((1, 1), (1, -1)) and Y = ((1, i), (1, -i)) are unnormalized Gaussian-integer representatives of mutually unbiased bases of C^2 after normalization. Their squared norms are 1, 1, 2, 2, 2 and 2. Distinct vectors inside one basis have inner product 0. For every vector from one basis and every vector from another, twice the squared modulus of the inner product equals the product of the squared norms. The square of i is -1. The additive character of the two-element field sends 0 to 1 and 1 to -1, and it sends 1+1 to 1.
 
 Obligation: This is the dimension-2 characteristic-two family only. It does not construct a complete family for any larger prime power, does not treat odd characteristic, does not run a general character sum, and does not infer a dimension-six family from this carrier.
 

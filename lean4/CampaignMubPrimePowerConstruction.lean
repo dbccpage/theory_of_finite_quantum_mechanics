@@ -1,6 +1,6 @@
 /-
 Narrowed boundary for MUB-PRIME-POWER-CONSTRUCTION.
-Dimension 2, characteristic two, three explicit bases over the Gaussian integers.
+Dimension 2, characteristic two, three explicit vector pairs with Gaussian-integer coordinates.
 This module does not construct a family in any larger prime power, and it does not
 treat dimension six.
 -/

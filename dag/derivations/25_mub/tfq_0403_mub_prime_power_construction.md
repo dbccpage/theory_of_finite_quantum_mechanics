@@ -10,7 +10,7 @@
 
 Narrowed boundary, status left OPEN. In dimension 2, the bases
 Z = ((1, 0), (0, 1)), X = ((1, 1), (1, -1)) and Y = ((1, i), (1, -i))
-are mutually unbiased over the Gaussian integers. Squared norms are 1, 1, 2, 2, 2 and 2.
+are unnormalized Gaussian-integer representatives of mutually unbiased bases of C^2 after normalization. Squared norms are 1, 1, 2, 2, 2 and 2.
 Vectors in one basis have inner product 0. For a vector from one basis and a vector from
 another, twice the squared modulus of the inner product equals the product of the squared
 norms. The square of i is -1. The additive character of the two-element field sends 0 to 1

@@ -4,7 +4,7 @@ Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: 
 
 ## Statement
 
-> Narrowed boundary, status left OPEN. In dimension 2, the three bases Z = ((1, 0), (0, 1)), X = ((1, 1), (1, -1)) and Y = ((1, i), (1, -i)) are mutually unbiased over the Gaussian integers. Their squared norms are 1, 1, 2, 2, 2 and 2. Vectors inside one basis have inner product 0. For every vector from one basis and every vector from another, twice the squared modulus of the inner product equals the product of the squared norms. The square of i is -1. The additive character of the two-element field sends 0 to 1 and 1 to -1, and it sends 1+1 to 1.
+> Narrowed boundary, status left OPEN. In dimension 2, the three bases Z = ((1, 0), (0, 1)), X = ((1, 1), (1, -1)) and Y = ((1, i), (1, -i)) are unnormalized Gaussian-integer representatives of mutually unbiased bases of C^2 after normalization. Their squared norms are 1, 1, 2, 2, 2 and 2. Distinct vectors inside one basis have inner product 0. For every vector from one basis and every vector from another, twice the squared modulus of the inner product equals the product of the squared norms. The square of i is -1. The additive character of the two-element field sends 0 to 1 and 1 to -1, and it sends 1+1 to 1.
 
 ## Grade
 
@@ -45,10 +45,11 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignMubPrimePowerConstruction.lean`
 
 - file: [lean4/CampaignMubPrimePowerConstruction.lean](../../../lean4/CampaignMubPrimePowerConstruction.lean)
-- sha256 (`bytes`): `1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef`
-- cited in: node.lean, receipt dag/research/campaign_mub-prime-power-construction_lean_replay.json (CampaignMubPrimePowerConstruction), record TFQ-0403
+- sha256 (`bytes`): `9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec`
+- cited in: node.lean, receipt dag/research/campaign_mub-prime-power-construction_lean_replay.json (CampaignMubPrimePowerConstruction), receipt dag/research/pr_359_review_replay.json (CampaignMubPrimePowerConstruction), record TFQ-0403
 - replay: `verified`
-  - receipt [dag/research/campaign_mub-prime-power-construction_lean_replay.json](../../../dag/research/campaign_mub-prime-power-construction_lean_replay.json) (module `CampaignMubPrimePowerConstruction`): recorded sha256 `1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/campaign_mub-prime-power-construction_lean_replay.json](../../../dag/research/campaign_mub-prime-power-construction_lean_replay.json) (module `CampaignMubPrimePowerConstruction`): recorded sha256 `9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_359_review_replay.json](../../../dag/research/pr_359_review_replay.json) (module `CampaignMubPrimePowerConstruction`): recorded sha256 `9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignMubPrimePowerConstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -72,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md`
 
 - file: [dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md](../../../dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md)
-- sha256 (`lf-normalised`): `35808b69007abc4faa0461ae3dd99cfdcb4b2f7dd48b61f3ab3e2aaad5682db1`
+- sha256 (`lf-normalised`): `2f116e1ab962c5884f1b46f70c8bc323833fafbd19c85cfdf9db435a7cda9261`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0403
 - counts toward the grade: no
@@ -80,14 +81,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/mub-prime-power-construction.md`
 
 - file: [dag/derivations/independent/mub-prime-power-construction.md](../../../dag/derivations/independent/mub-prime-power-construction.md)
-- sha256 (`lf-normalised`): `0c9855bc99257664b006985635ef7e6b4b97cc8e25c98a06e78155b140d7451e`
+- sha256 (`lf-normalised`): `d46d92da346abb519fd4cc96602f6f624bb0d1bf616963f4973a6208e5050064`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_mub-prime-power-construction_lean_replay.json`
 
 - file: [dag/research/campaign_mub-prime-power-construction_lean_replay.json](../../../dag/research/campaign_mub-prime-power-construction_lean_replay.json)
-- sha256 (`lf-normalised`): `1e01a8f877033ba42ab05b23f34d18cf5ce14781497b6c34739f4e9f990ce124`
+- sha256 (`lf-normalised`): `924d70ee83a46e14f69abab050d621fb2a576b10e6437b3b6765a964f4cca204`
 - cited in: node.source
 - counts toward the grade: yes
 

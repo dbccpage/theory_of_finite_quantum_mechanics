@@ -4,11 +4,12 @@ authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
   source_statement: Narrowed boundary, status left OPEN. In dimension 2, the three bases Z = ((1, 0),
-    (0, 1)), X = ((1, 1), (1, -1)) and Y = ((1, i), (1, -i)) are mutually unbiased over the Gaussian integers.
-    Their squared norms are 1, 1, 2, 2, 2 and 2. Vectors inside one basis have inner product 0. For every
-    vector from one basis and every vector from another, twice the squared modulus of the inner product
-    equals the product of the squared norms. The square of i is -1. The additive character of the two-element
-    field sends 0 to 1 and 1 to -1, and it sends 1+1 to 1.
+    (0, 1)), X = ((1, 1), (1, -1)) and Y = ((1, i), (1, -i)) are unnormalized Gaussian-integer representatives
+    of mutually unbiased bases of C^2 after normalization. Their squared norms are 1, 1, 2, 2, 2 and 2.
+    Distinct vectors inside one basis have inner product 0. For every vector from one basis and every
+    vector from another, twice the squared modulus of the inner product equals the product of the squared
+    norms. The square of i is -1. The additive character of the two-element field sends 0 to 1 and 1 to
+    -1, and it sends 1+1 to 1.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
   source_bottleneck: This is the dimension-2 characteristic-two family only. It does not construct a complete
@@ -27,7 +28,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md
-    sha256: 35808b69007abc4faa0461ae3dd99cfdcb4b2f7dd48b61f3ab3e2aaad5682db1
+    sha256: 2f116e1ab962c5884f1b46f70c8bc323833fafbd19c85cfdf9db435a7cda9261
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -42,7 +43,7 @@ operation_candidates:
   signature_excerpt: 'def gmul (a b : Gauss) : Gauss'
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
 - kind: abbrev
   name: Gauss
@@ -50,7 +51,7 @@ operation_candidates:
   signature_excerpt: abbrev Gauss
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
 - kind: def
   name: vnorm
@@ -58,7 +59,7 @@ operation_candidates:
   signature_excerpt: 'def vnorm (u : Vec) : Int'
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
 - kind: def
   name: z0
@@ -66,7 +67,7 @@ operation_candidates:
   signature_excerpt: 'def z0 : Vec'
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
 - kind: def
   name: z1
@@ -74,7 +75,7 @@ operation_candidates:
   signature_excerpt: 'def z1 : Vec'
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
 - kind: def
   name: x0
@@ -82,7 +83,7 @@ operation_candidates:
   signature_excerpt: 'def x0 : Vec'
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
 - kind: def
   name: x1
@@ -90,7 +91,7 @@ operation_candidates:
   signature_excerpt: 'def x1 : Vec'
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
 - kind: def
   name: y0
@@ -98,7 +99,7 @@ operation_candidates:
   signature_excerpt: 'def y0 : Vec'
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
 - kind: def
   name: y1
@@ -106,7 +107,7 @@ operation_candidates:
   signature_excerpt: 'def y1 : Vec'
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
 - kind: abbrev
   name: Vec
@@ -114,7 +115,7 @@ operation_candidates:
   signature_excerpt: abbrev Vec
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
 - kind: def
   name: gnorm
@@ -122,7 +123,7 @@ operation_candidates:
   signature_excerpt: 'def gnorm (a : Gauss) : Int'
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
 - kind: def
   name: ip
@@ -130,7 +131,7 @@ operation_candidates:
   signature_excerpt: 'def ip (u v : Vec) : Gauss'
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
 - kind: def
   name: gadd
@@ -138,7 +139,7 @@ operation_candidates:
   signature_excerpt: 'def gadd (a b : Gauss) : Gauss'
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
 - kind: def
   name: gconj
@@ -146,7 +147,7 @@ operation_candidates:
   signature_excerpt: 'def gconj (a : Gauss) : Gauss'
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
 - kind: def
   name: balanced
@@ -154,7 +155,7 @@ operation_candidates:
   signature_excerpt: 'def balanced (u v : Vec) : Prop'
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
 - kind: def
   name: chi
@@ -162,7 +163,7 @@ operation_candidates:
   signature_excerpt: 'def chi (b : Bool) : Int'
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
@@ -171,7 +172,7 @@ relation_candidates:
   signature_excerpt: 'theorem i_squared : gmul (0, 1) (0, 1) = (-1, 0)'
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -185,7 +186,7 @@ relation_candidates:
             vnorm y0 = 2 ∧ vnorm y1 = 2
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -199,7 +200,7 @@ relation_candidates:
             ip y0 y0 = (2, 0) ∧ ip y1 y1 = (2, 0)
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -211,7 +212,7 @@ relation_candidates:
         ip z0 z1 = (0, 0) ∧ ip x0 x1 = (0, 0) ∧ ip y0 y1 = (0, 0)
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -225,7 +226,7 @@ relation_candidates:
             balanced x0 y0 ∧ balanced x0 y1 ∧ balanced x1 y0 ∧ balanced x1 y1
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -235,7 +236,7 @@ relation_candidates:
   signature_excerpt: 'theorem char_values : chi false = 1 ∧ chi true = -1'
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -248,7 +249,7 @@ relation_candidates:
           chi (false ^^ false) = 1 ∧ chi (true ^^ true) = 1
   source: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  source_sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  source_sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -258,7 +259,7 @@ source_bindings:
   symbol: i_squared
   path: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   declaration_status: declaration_found_not_proof_checked
   line: 39
   role: source_lead_only
@@ -267,7 +268,7 @@ source_bindings:
   symbol: squared_norms
   path: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   declaration_status: declaration_found_not_proof_checked
   line: 42
   role: source_lead_only
@@ -276,7 +277,7 @@ source_bindings:
   symbol: self_inner
   path: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   declaration_status: declaration_found_not_proof_checked
   line: 48
   role: source_lead_only
@@ -285,7 +286,7 @@ source_bindings:
   symbol: basis_orthogonal
   path: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   declaration_status: declaration_found_not_proof_checked
   line: 54
   role: source_lead_only
@@ -294,7 +295,7 @@ source_bindings:
   symbol: cross_unbiased
   path: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   declaration_status: declaration_found_not_proof_checked
   line: 58
   role: source_lead_only
@@ -303,7 +304,7 @@ source_bindings:
   symbol: char_values
   path: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   declaration_status: declaration_found_not_proof_checked
   line: 65
   role: source_lead_only
@@ -312,7 +313,7 @@ source_bindings:
   symbol: char_of_double
   path: lean4/CampaignMubPrimePowerConstruction.lean
   repository: this_repository
-  sha256: 1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef
+  sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   declaration_status: declaration_found_not_proof_checked
   line: 68
   role: source_lead_only

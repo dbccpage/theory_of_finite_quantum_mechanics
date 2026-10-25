@@ -6,9 +6,9 @@ Node status stays OPEN. This note records dimension 2.
 
 ## Carrier
 
-The scalar field is the Gaussian integers. A number a + bi is the pair (a, b). Multiplication is (a, b)(c, d) = (ac - bd, ad + bc). The squared modulus is a squared plus b squared. The square of i, the pair (0, 1), is (-1, 0).
+The Gaussian integers form the ring used for exact coordinates of vectors in C^2; they are not a field. A number a + bi is the pair (a, b). Multiplication is (a, b)(c, d) = (ac - bd, ad + bc). The squared modulus is a squared plus b squared. The square of i, the pair (0, 1), is (-1, 0).
 
-Dimension 2 has three bases of two vectors:
+These three orthogonal vector pairs represent bases of C^2 after normalization:
 
 - Z0 = (1, 0) and Z1 = (0, 1).
 - X0 = (1, 1) and X1 = (1, -1).
@@ -18,7 +18,7 @@ The squared norm of a vector is the sum of the squared moduli of its two compone
 
 ## Unbiasedness
 
-Vectors in the same basis have inner product 0.
+Distinct vectors in the same basis have inner product 0.
 
 Take a vector u from one basis and a vector v from a different basis. Twice the squared modulus of their inner product equals the product of their squared norms. For the computational basis against either of the other bases, the inner-product squared modulus is 1 and the norm product is 2. For the X basis against the Y basis, the inner-product squared modulus is 2 and the norm product is 4. In every such pair the two sides agree, so the normalized overlap has squared modulus 1/2.
 
@@ -32,7 +32,7 @@ For these six vectors: the square of i, the six squared norms, the six self-inne
 
 ## What is assumed
 
-Gaussian-integer arithmetic and the two-element exclusive-or. The three bases are the listed vectors. AuthorityEffect is None.
+Gaussian-integer arithmetic and the two-element exclusive-or. The listed pairs represent bases over C; no basis of the Z[i]-module Z[i]^2 is claimed. AuthorityEffect is None.
 
 ## What is open
 

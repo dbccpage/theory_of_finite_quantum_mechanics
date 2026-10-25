@@ -1,33 +1,22 @@
 {
   "schema_version": "campaign_lean_replay.v1",
   "authority_effect": "None",
-  "checked_at": "2026-10-25",
-  "source_base": "7fa69d621c27bed7045d0b7fe34bbb1d34b27248",
-  "result": "Narrowed to dimension 2. Three Gaussian-integer bases are mutually unbiased, and the two-element character sends 1+1 to 1. The 2026-10-25 lake build of CampaignMubPrimePowerConstruction exited 0. Printed axioms are empty, inside propext, Classical.choice, and Quot.sound. The node stays OPEN.",
-  "proof_boundary": "This receipt records that lean4/CampaignMubPrimePowerConstruction.lean type-checks with no Mathlib import. The proved arithmetic is the square of i, six squared norms, six self-inner-products, three orthogonalities, twelve cross-basis identities, and the two-element character of a doubled element. No larger prime power and no dimension-six family is in the module. The node stays OPEN.",
+  "checked_at": "2026-10-25T17:23:08.638560+00:00",
+  "review_base": "cfd9beb0b771df6e809f6e44e3a8c32835760bea",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: MUB-PRIME-POWER-CONSTRUCTION — Narrowed: dimension 2 has three mutually unbiased bases; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
   "lean_replay": {
-    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
-    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
-    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
-    "lakefile_sha256": "de59644d39d53f437a7fd3a8f70803a7ba12fcc3a1ca09477b1ee65335a24a88",
-    "library": "CampaignMubPrimePowerConstruction (lean_lib in lean4/lakefile.lean; not a default target)",
-    "build_directory": "lean4/b (lakefile buildDir; removed with the worktree)",
-    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run)",
-    "command": "cd lean4 && lake build CampaignMubPrimePowerConstruction",
-    "allowed_axioms": [
-      "propext",
-      "Classical.choice",
-      "Quot.sound"
-    ],
-    "wall_clock_ms": 13781,
-    "module_job_ms": 805,
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignMubPrimePowerConstruction.lean",
+    "cwd": ".",
     "results": [
       {
         "module": "CampaignMubPrimePowerConstruction",
         "dag_node": "MUB-PRIME-POWER-CONSTRUCTION",
         "source": "lean4/CampaignMubPrimePowerConstruction.lean",
-        "sha256": "1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef",
-        "sha256_after_build": "1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef",
+        "sha256": "9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec",
+        "sha256_after_build": "9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec",
         "source_unchanged_during_build": true,
         "exit_code": 0,
         "admission_scan_passed": true,
@@ -42,7 +31,6 @@
           "char_values",
           "char_of_double"
         ],
-        "anchors_reported": true,
         "axioms": {
           "i_squared": [],
           "squared_norms": [],
@@ -52,8 +40,90 @@
           "char_values": [],
           "char_of_double": []
         },
-        "output": "info: CampaignMubPrimePowerConstruction.lean:73:0: 'i_squared' does not depend on any axioms\ninfo: CampaignMubPrimePowerConstruction.lean:74:0: 'squared_norms' does not depend on any axioms\ninfo: CampaignMubPrimePowerConstruction.lean:75:0: 'self_inner' does not depend on any axioms\ninfo: CampaignMubPrimePowerConstruction.lean:76:0: 'basis_orthogonal' does not depend on any axioms\ninfo: CampaignMubPrimePowerConstruction.lean:77:0: 'cross_unbiased' does not depend on any axioms\ninfo: CampaignMubPrimePowerConstruction.lean:78:0: 'char_values' does not depend on any axioms\ninfo: CampaignMubPrimePowerConstruction.lean:79:0: 'char_of_double' does not depend on any axioms\n"
+        "output": "'i_squared' does not depend on any axioms\n'squared_norms' does not depend on any axioms\n'self_inner' does not depend on any axioms\n'basis_orthogonal' does not depend on any axioms\n'cross_unbiased' does not depend on any axioms\n'char_values' does not depend on any axioms\n'char_of_double' does not depend on any axioms\n"
       }
     ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/mub-prime-power-construction.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.013,
+    "output": "checked 34 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/359/lakefile-reviewed-172308249841.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 0.384,
+    "output": ""
+  },
+  "superseded_receipt": {
+    "schema_version": "campaign_lean_replay.v1",
+    "authority_effect": "None",
+    "checked_at": "2026-10-25",
+    "source_base": "7fa69d621c27bed7045d0b7fe34bbb1d34b27248",
+    "result": "Narrowed to dimension 2. Three Gaussian-integer bases are mutually unbiased, and the two-element character sends 1+1 to 1. The 2026-10-25 lake build of CampaignMubPrimePowerConstruction exited 0. Printed axioms are empty, inside propext, Classical.choice, and Quot.sound. The node stays OPEN.",
+    "proof_boundary": "This receipt records that lean4/CampaignMubPrimePowerConstruction.lean type-checks with no Mathlib import. The proved arithmetic is the square of i, six squared norms, six self-inner-products, three orthogonalities, twelve cross-basis identities, and the two-element character of a doubled element. No larger prime power and no dimension-six family is in the module. The node stays OPEN.",
+    "lean_replay": {
+      "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+      "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "lakefile_sha256": "de59644d39d53f437a7fd3a8f70803a7ba12fcc3a1ca09477b1ee65335a24a88",
+      "library": "CampaignMubPrimePowerConstruction (lean_lib in lean4/lakefile.lean; not a default target)",
+      "build_directory": "lean4/b (lakefile buildDir; removed with the worktree)",
+      "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run)",
+      "command": "cd lean4 && lake build CampaignMubPrimePowerConstruction",
+      "allowed_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "wall_clock_ms": 13781,
+      "module_job_ms": 805,
+      "results": [
+        {
+          "module": "CampaignMubPrimePowerConstruction",
+          "dag_node": "MUB-PRIME-POWER-CONSTRUCTION",
+          "source": "lean4/CampaignMubPrimePowerConstruction.lean",
+          "sha256": "1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef",
+          "sha256_after_build": "1a982efc2d477c63d2d51f591116c99c948d1f40af2ce2caa385ea5524716bef",
+          "source_unchanged_during_build": true,
+          "exit_code": 0,
+          "admission_scan_passed": true,
+          "axiom_audit_passed": true,
+          "built_successfully": true,
+          "anchors": [
+            "i_squared",
+            "squared_norms",
+            "self_inner",
+            "basis_orthogonal",
+            "cross_unbiased",
+            "char_values",
+            "char_of_double"
+          ],
+          "anchors_reported": true,
+          "axioms": {
+            "i_squared": [],
+            "squared_norms": [],
+            "self_inner": [],
+            "basis_orthogonal": [],
+            "cross_unbiased": [],
+            "char_values": [],
+            "char_of_double": []
+          },
+          "output": "info: CampaignMubPrimePowerConstruction.lean:73:0: 'i_squared' does not depend on any axioms\ninfo: CampaignMubPrimePowerConstruction.lean:74:0: 'squared_norms' does not depend on any axioms\ninfo: CampaignMubPrimePowerConstruction.lean:75:0: 'self_inner' does not depend on any axioms\ninfo: CampaignMubPrimePowerConstruction.lean:76:0: 'basis_orthogonal' does not depend on any axioms\ninfo: CampaignMubPrimePowerConstruction.lean:77:0: 'cross_unbiased' does not depend on any axioms\ninfo: CampaignMubPrimePowerConstruction.lean:78:0: 'char_values' does not depend on any axioms\ninfo: CampaignMubPrimePowerConstruction.lean:79:0: 'char_of_double' does not depend on any axioms\n"
+        }
+      ]
+    }
   }
 }
