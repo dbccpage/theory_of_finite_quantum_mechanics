@@ -481,7 +481,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1007` | `FINITE_QM_CORE` | `PROVED_LEAN` | `FQ-PRIMDIFF-QUOTIENT-KERNEL` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1008` | `FINITE_QM_CORE` | `IMPORTED_ASSUMPTION` | `FQ-POSITIVE-WEIGHTS-ADMITTED` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1009` | `FINITE_QM_CORE` | `IMPORTED_ASSUMPTION` | `FQ-DECLARED-QUANTUM-INTERFACE` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-1010` | `FINITE_QM_CORE` | `CONDITIONAL` | `FQ-PRIM-TO-QM-SELECTION-OPEN` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-1010` | `FINITE_QM_CORE` | `CONDITIONAL` | `FQ-PRIM-TO-QM-SELECTION-OPEN` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1011` | `FINITE_QM_CORE` | `PROVED_LEAN` | `FQ-SORKIN-READOUT-CLASS-QM208` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1012` | `FINITE_QM_CORE` | `PROVED_LEAN` | `FQ-POWER-RULE-P2-SELECTION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1013` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `FQ-FIVE-IMPORT-PROXY-SEPARATION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
@@ -4507,9 +4507,9 @@ Obligation: See FQ-PRIM-TO-QM-SELECTION-OPEN.
 - Status: `CONDITIONAL`
 - DAG node: `FQ-PRIM-TO-QM-SELECTION-OPEN` (`CONDITIONAL`)
 
-Primitive difference does not select the declared quantum model or readout. Direct packet-walk execution is an integration result: the complexes, Cayley parameter, cyclotomic weights, detector and squared-amplitude readout were supplied independently of the computed difference value.
+For amplitudes 1 and 2, quadratic numerators are 1 and 4 with sum 5, and quartic numerators are 1 and 16 with sum 17. Both pairs are positive. The products 1*17 and 1*5 differ, so the normalized first weights 1/5 and 1/17 differ. For equal amplitudes 1 and 1, quadratic numerators are 1 and 1 with sum 2, and quartic numerators are 1 and 1 with sum 2.
 
-Obligation: Finite D2, D3, D2xD3, D3^2, and D3^3 projectors and the state-manifold dimension gap d-1 < d^2-1 are mechanized without free parameters; full continuum M_n(C) and Gleason n>=3 remain explicit external imports.
+Obligation: Selection of a declared quantum model or readout from primitive difference stays open. Packet-walk execution, the complexes, the Cayley parameter, cyclotomic weights, the detector and a squared-amplitude readout are not this integer witness. Continuum M_n(C) and Gleason n>=3 remain external imports. The D2, D3, D2xD3, D3^2 and D3^3 counts and the gap d-1 < d^2-1 for d >= 2 stay outside this witness.
 
 ### TFQ-1011 fq-sorkin-readout-class-qm208
 
