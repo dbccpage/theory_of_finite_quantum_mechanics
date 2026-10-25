@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 89. Grades: E0 27, E1 2, E3 60. Statuses: PROVED_LEAN 36, PROVED_PROSE 4, COMPUTATIONALLY_CHECKED 9, CONDITIONAL 10, DEFINITION 16, SOURCE_RECORD 1, OPEN 13.
+Nodes: 89. Grades: E0 26, E1 2, E3 61. Statuses: PROVED_LEAN 36, PROVED_PROSE 4, COMPUTATIONALLY_CHECKED 9, CONDITIONAL 10, DEFINITION 16, SOURCE_RECORD 1, OPEN 13.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -93,6 +93,6 @@ Nodes: 89. Grades: E0 27, E1 2, E3 60. Statuses: PROVED_LEAN 36, PROVED_PROSE 4,
 | [PGW-ISOMORPHISM-SOUNDNESS-IN-LEAN](../nodes/PGW-ISOMORPHISM-SOUNDNESS-IN-LEAN.md) | `OPEN` | E0 | CL-ISO-SOUND, soundness of the implemented isomorphism key, is a finite computation only: the Python key procedure's classes are cross-ch... | none in this checkout | - |
 | [PGW-RUNS-PAST-DECLARED-BOUNDS](../nodes/PGW-RUNS-PAST-DECLARED-BOUNDS.md) | `OPEN` | E3 | Challenge 4 was run to declared bounds only (fifteen rounds, a node guard of 250 per run, growth below four data, two items): 11,266 node... | [Progress.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/Progress.lean): `mark_progress` | - |
 | [PGW-STREAM-AT-FOUR-ITEMS](../nodes/PGW-STREAM-AT-FOUR-ITEMS.md) | `OPEN` | E0 | Challenge 1, the stream as a response, is OPEN with scoped finite results only: no retained V1 minimum of 1680 carries a datum, 32 of the... | none in this checkout | - |
-| [PGW-DRIVER-B-SEVENTH-EVENT](../nodes/PGW-DRIVER-B-SEVENTH-EVENT.md) | `OPEN` | E0 | Driver B, a lift that needs a new sealed Event kind, is retained as OPEN (AE-DRIVER-B-OPEN) and is successor research S3. The Alpha harne... | none in this checkout | - |
+| [PGW-DRIVER-B-SEVENTH-EVENT](../nodes/PGW-DRIVER-B-SEVENTH-EVENT.md) | `OPEN` | E3 | Narrowed in Lean 4 to a six-label model. Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll and Impose are the indices 0, 1, 2, 3, 4... | [CampaignPgwDriverBSeventhEvent.lean](../../../lean4/CampaignPgwDriverBSeventhEvent.lean): `amended_bound_accepts_seventh`, `index_roundtrip`, `ofIndex_roundtrip` +9<br>[pgw-driver-b-seventh-event.py](../../../checks/independent/pgw-driver-b-seventh-event.py): `main`<br>[pgw-driver-b-seventh-event.md](../../../dag/derivations/independent/pgw-driver-b-seventh-event.md)<br>[campaign_pgw-driver-b-seventh-event_lean_replay.json](../../../dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json) | - |
 | [PGW-ENDOGENOUS-DEMAND-OB1](../nodes/PGW-ENDOGENOUS-DEMAND-OB1.md) | `OPEN` | E3 | No endogenous demand generator exists in the Alpha harness (AE-DEMAND-OPEN, OB-1, successor research S2): a demand is a target pair (i, j... | [CampaignGenesisDemandPolicy.lean](../../../lean4/CampaignGenesisDemandPolicy.lean): `collapseTest_correct`, `fixed_data_saturates`, `instruction_records_demand` +14<br>[pgw-endogenous-demand-ob1.py](../../../checks/independent/pgw-endogenous-demand-ob1.py)<br>[pgw-endogenous-demand-ob1.md](../../../dag/derivations/independent/pgw-endogenous-demand-ob1.md) | - |
 

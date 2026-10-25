@@ -2533,9 +2533,9 @@ Obligation: Compute the stream challenge at four items with targets searched aft
 - Parent: `TFQ-0486`
 - Status: `OPEN_OBLIGATION`
 
-Driver B, a lift that needs a new sealed Event kind, is retained as OPEN (AE-DRIVER-B-OPEN) and is successor research S3. The Alpha harness has exactly the six sealed Event kinds (Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll, Impose), and append_sealed_event refuses a seventh constructor (SeventhEventError), so no lift beyond the six kinds can be admitted through the slice.
+Narrowed in Lean 4 to a six-label model. Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll and Impose are the indices 0, 1, 2, 3, 4 and 5, and each index returns its label. A guard that accepts a natural number exactly when it is strictly less than 6 accepts each of those six indices and refuses 6. A guard that accepts exactly when the number is strictly less than 7 accepts 6. The Alpha harness, a seventh sealed constructor, a seal amendment, and a theorem that every lift factors through the six kinds stay open.
 
-Obligation: Specify a lift that needs a seventh sealed Event kind, the seal amendment it requires and its replay law, or show that every lift in scope factors through the six kinds.
+Obligation: Specify a lift that needs a seventh sealed Event kind, the seal amendment it requires and its replay law, or show that every lift in scope factors through the six kinds. The Alpha harness, a seventh sealed constructor, a seal amendment, and a theorem that every lift factors through the six kinds stay open.
 
 ### TFQ-0504 endogenous-demand-ob1
 

@@ -6519,14 +6519,71 @@
       "parent_id": "TFQ-0486",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "Driver B, a lift that needs a new sealed Event kind, is retained as OPEN (AE-DRIVER-B-OPEN) and is successor research S3. The Alpha harness has exactly the six sealed Event kinds (Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll, Impose), and append_sealed_event refuses a seventh constructor (SeventhEventError), so no lift beyond the six kinds can be admitted through the slice.",
-      "obligation": "Specify a lift that needs a seventh sealed Event kind, the seal amendment it requires and its replay law, or show that every lift in scope factors through the six kinds.",
+      "summary": "Narrowed in Lean 4 to a six-label model. Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll and Impose are the indices 0, 1, 2, 3, 4 and 5, and each index returns its label. A guard that accepts a natural number exactly when it is strictly less than 6 accepts each of those six indices and refuses 6. A guard that accepts exactly when the number is strictly less than 7 accepts 6. The Alpha harness, a seventh sealed constructor, a seal amendment, and a theorem that every lift factors through the six kinds stay open.",
+      "obligation": "Specify a lift that needs a seventh sealed Event kind, the seal amendment it requires and its replay law, or show that every lift in scope factors through the six kinds. The Alpha harness, a seventh sealed constructor, a seal amendment, and a theorem that every lift factors through the six kinds stay open.",
       "imports": [],
-      "fence": "Open; the refusal of a seventh constructor is a harness guard, not a theorem that six kinds suffice, and amending the seal is the author's act.",
+      "fence": "Open. The refusal of label 6 is the bound k < 6 in this model, not a theorem that six kinds suffice, and the bound k < 7 accepts 6. The Alpha harness, SeventhEventError, a seal amendment, and a factorization of every lift through the six kinds stay open.",
       "witnesses": {
         "lean": [
           {
-            "absent": "no Lean statement about a seventh sealed Event kind"
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "sealedIndex_supply"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "sealedIndex_admitDatum"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "sealedIndex_admitForm"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "sealedIndex_admitInst"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "sealedIndex_admitRuleAll"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "sealedIndex_impose"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "ofIndex_roundtrip"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "index_roundtrip"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "six_labels_admitted"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "seventh_label_refused"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "amended_bound_accepts_seventh"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+            "symbol": "seventh_label_not_a_sealed_index"
           }
         ],
         "rust": [
@@ -6541,6 +6598,11 @@
             "root": "github19l",
             "path": "research/alpha_engine/harness.py",
             "symbol": "append_sealed_event"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-driver-b-seventh-event.py",
+            "symbol": "main"
           }
         ]
       },
@@ -6562,6 +6624,18 @@
           "path": "docs/ALPHA_HANDOFF.md",
           "lines": "179-192",
           "quote": "`append_sealed_event` refuses a seventh constructor"
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-driver-b-seventh-event.md",
+          "lines": "5",
+          "quote": "Node status stays OPEN. This note records one six-label model."
+        },
+        {
+          "root": "local",
+          "path": "dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json",
+          "lines": "6",
+          "quote": "The 2026-10-25 lake build of CampaignPgwDriverBSeventhEvent exited 0."
         }
       ],
       "coda_atlas_ids": [],
