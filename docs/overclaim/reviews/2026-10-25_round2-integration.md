@@ -23,7 +23,7 @@ All fourteen original heads are ancestors of the integration branch. Only their 
 | #387 | OPS-AXIS3-RELABELING | L2D | Added qualified theorem links to TFQ-2526; preserved CONDITIONAL status and explicit export-equality premise. |
 | #388 | L1-QM020-THM2B-MINKOWSKI | L3D | Withdrew the PROVED_LEAN promotion; retained the real-analysis import and added a current nine-theorem review. |
 
-Nine new proof-source exceptions remain unapproved. The original L4/D global floor, completed-score requirement and grade-E rejection remain unchanged. New source pins will only be applied after explicit authorization.
+The maintainer explicitly approved the nine exact proof-source exceptions with the reply “Approve these nine exact pins”. They are recorded in `dag/research/approved_round2_finite_proof_exceptions_2026_10_25.json`, bringing the approved proof inventory to 45 hashes. The original L4/D global floor, completed-score requirement and grade-E rejection remain unchanged.
 
 All fourteen campaign modules passed Lean, Python and axiom checks, plus a joint import. The two Mathlib-dependent modules were built from pinned sources. No complete-repository build is claimed.
 
