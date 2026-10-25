@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignPgwDriverBSeventhEvent.lean](../../../lean4/CampaignPgwDriverBSeventhEvent.lean)
 - sha256 (`bytes`): `a092f60ccc0db4a1a779de44480c0613c5573c749e3ddd49e393b48d21a5b222`
-- cited in: node.lean, receipt dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json (CampaignPgwDriverBSeventhEvent), record TFQ-0503
+- cited in: node.lean, receipt dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json (CampaignPgwDriverBSeventhEvent), receipt dag/research/pr_355_review_replay.json (CampaignPgwDriverBSeventhEvent), record TFQ-0503
 - replay: `verified`
   - receipt [dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json](../../../dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json) (module `CampaignPgwDriverBSeventhEvent`): recorded sha256 `a092f60ccc0db4a1a779de44480c0613c5573c749e3ddd49e393b48d21a5b222` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_355_review_replay.json](../../../dag/research/pr_355_review_replay.json) (module `CampaignPgwDriverBSeventhEvent`): recorded sha256 `a092f60ccc0db4a1a779de44480c0613c5573c749e3ddd49e393b48d21a5b222` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignPgwDriverBSeventhEvent`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
