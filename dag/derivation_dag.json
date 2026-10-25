@@ -16564,17 +16564,26 @@
       "stage": "GENESIS",
       "status": "OPEN",
       "source_status": "closeout.txt §9.1 D10 and §8; continuation.txt §13 declared-input floor (H-1)",
-      "statement": "No floor proof exists for the count of declared inputs (D10, H-1); the count stays two. Continuation attempt two found, at its declared bounds (fifteen rounds, a node guard of 250 per run, growth below four data, two items) and under its literal reading of carrying forward, four engines that carry the grammar forward declaring the stake and not the stream (SD-R-11), and calls this neither a floor proof nor a reduction outside those bounds. The completion-gate clause admits two readings of these bounded one-input carriers and was frozen as NOT_ESTABLISHED; whether the four carry forward past the bounds is OPEN (H-1, which needs the responder in Lean).",
+      "statement": "No floor proof exists for the count of declared inputs (D10, H-1); the count stays two. Continuation attempt two found, at its declared bounds (fifteen rounds, a node guard of 250 per run, growth below four data, two items) and under its literal reading of carrying forward, four engines that carry the grammar forward declaring the stake and not the stream (SD-R-11), and calls this neither a floor proof nor a reduction outside those bounds. The completion-gate clause admits two readings of these bounded one-input carriers and was frozen as NOT_ESTABLISHED; whether the four carry forward past the bounds is OPEN (H-1, which needs the responder in Lean). Narrowed in Lean 4 to two named inputs, stake and stream, and four carriers that each declare the stake and not the stream. The named list has length 2. Each of the four carriers has declared count 1, and 1 is below 2. The reading that every one of these four has count at least 2 is false. The reading that one of them has count 1 is true. The declared numerals are 15 rounds, a node guard of 250, a data bound of 4, and an item bound of 2. A carrier that declares neither input has count 0 and is not one of the four. These four carriers are not a floor for every later carrier, and the attempt-two search is not replayed. AuthorityEffect is None.",
       "source": [
         "dag/derivations/02_genesis/tfq_0498_declared_input_floor.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:386",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1064-1066",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:333-336"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignPgwDeclaredInputFloor.lean::vocabulary_is_two",
+        "lean4/CampaignPgwDeclaredInputFloor.lean::four_engines",
+        "lean4/CampaignPgwDeclaredInputFloor.lean::each_declares_stake_not_stream",
+        "lean4/CampaignPgwDeclaredInputFloor.lean::each_count_is_one",
+        "lean4/CampaignPgwDeclaredInputFloor.lean::one_below_two",
+        "lean4/CampaignPgwDeclaredInputFloor.lean::readings_disagree",
+        "lean4/CampaignPgwDeclaredInputFloor.lean::declared_bounds",
+        "lean4/CampaignPgwDeclaredInputFloor.lean::empty_carrier_is_not_among_the_four"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Open; the bounded one-input carriers are a computation at declared bounds, and the clause's other reading was left to the author, who approved the freeze without a separate ruling.",
+      "bottleneck": "Open; the bounded one-input carriers are a computation at declared bounds, and the clause's other reading was left to the author, who approved the freeze without a separate ruling. This file checks four carriers on the two names stake and stream: each declares the stake only, so the count is 1, below 2. The numerals 15, 250, 4, and 2 are recorded and are not a search. A floor for every carrier, a reduction past these four, and the attempt-two replay stay open.",
       "tags": [
         "pregenesis-to-wdp",
         "TFQ-0498",
@@ -56061,6 +56070,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md",
         "lean4/H006PermutationUnitary.lean",
         "dag/derivations/independent/l1-imp-sector-symmetry-law.md",
         "checks/independent/l1-imp-sector-symmetry-law.py",
@@ -56807,7 +56818,11 @@
         "FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md"
+        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md"
       ],
       "id": "TFQ-1021",
       "lean4": [
@@ -57723,6 +57738,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md",
         "lean4/FiniteWignerTheorem.lean",
         "dag/derivations/independent/l1-imp-transition-probability-law.md",
         "dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json",
@@ -57769,7 +57786,12 @@
         "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md"
+        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md"
       ],
       "id": "TFQ-1048",
       "lean4": [
@@ -60530,14 +60552,22 @@
       ],
       "id": "TFQ-0498",
       "lean4": [
-        "absent: no Lean statement of a declared-input floor"
+        "lean4/CampaignPgwDeclaredInputFloor.lean::vocabulary_is_two",
+        "lean4/CampaignPgwDeclaredInputFloor.lean::four_engines",
+        "lean4/CampaignPgwDeclaredInputFloor.lean::each_declares_stake_not_stream",
+        "lean4/CampaignPgwDeclaredInputFloor.lean::each_count_is_one",
+        "lean4/CampaignPgwDeclaredInputFloor.lean::one_below_two",
+        "lean4/CampaignPgwDeclaredInputFloor.lean::readings_disagree",
+        "lean4/CampaignPgwDeclaredInputFloor.lean::declared_bounds",
+        "lean4/CampaignPgwDeclaredInputFloor.lean::empty_carrier_is_not_among_the_four"
       ],
       "local_id": "PGW-DECLARED-INPUT-FLOOR",
       "name": "declared-input-floor",
-      "obligation": "Prove a floor for the declared-input count, or exhibit a reduction below two that holds past attempt two's bounds, with every bound stated.",
+      "obligation": "Prove a floor for the declared-input count, or exhibit a reduction below two that holds past attempt two's bounds, with every bound stated. This file checks four carriers on the two names stake and stream: each declares the stake only, so the count is 1, below 2. The numerals 15, 250, 4, and 2 are recorded and are not a search. A floor for every carrier, a reduction past these four, and the attempt-two replay stay open.",
       "parent_id": "TFQ-0486",
       "python": [
-        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_run/fwd_runs.py::carries_forward"
+        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_run/fwd_runs.py::carries_forward",
+        "checks/independent/pgw-declared-input-floor.py"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
@@ -60545,7 +60575,7 @@
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
-      "summary": "No floor proof exists for the count of declared inputs (D10, H-1); the count stays two. Continuation attempt two found, at its declared bounds (fifteen rounds, a node guard of 250 per run, growth below four data, two items) and under its literal reading of carrying forward, four engines that carry the grammar forward declaring the stake and not the stream (SD-R-11), and calls this neither a floor proof nor a reduction outside those bounds. The completion-gate clause admits two readings of these bounded one-input carriers and was frozen as NOT_ESTABLISHED; whether the four carry forward past the bounds is OPEN (H-1, which needs the responder in Lean).",
+      "summary": "No floor proof exists for the count of declared inputs (D10, H-1); the count stays two. Continuation attempt two found, at its declared bounds (fifteen rounds, a node guard of 250 per run, growth below four data, two items) and under its literal reading of carrying forward, four engines that carry the grammar forward declaring the stake and not the stream (SD-R-11), and calls this neither a floor proof nor a reduction outside those bounds. The completion-gate clause admits two readings of these bounded one-input carriers and was frozen as NOT_ESTABLISHED; whether the four carry forward past the bounds is OPEN (H-1, which needs the responder in Lean). Narrowed in Lean 4 to two named inputs, stake and stream, and four carriers that each declare the stake and not the stream. The named list has length 2. Each of the four carriers has declared count 1, and 1 is below 2. The reading that every one of these four has count at least 2 is false. The reading that one of them has count 1 is true. The declared numerals are 15 rounds, a node guard of 250, a data bound of 4, and an item bound of 2. A carrier that declares neither input has count 0 and is not one of the four. These four carriers are not a floor for every later carrier, and the attempt-two search is not replayed. AuthorityEffect is None.",
       "uuid": "55d68a4f-522d-5581-9299-3ee49eebef8f"
     },
     {
