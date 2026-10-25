@@ -10,9 +10,9 @@ Stage: [WDP](../stages/WDP.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 1
-- cited Lean declarations covered by a current replay receipt: 1
+- counted in-repo evidence files: 2
+- cited Lean, Rust or Python symbols found in their in-repo files: 8
+- cited Lean declarations covered by a current replay receipt: 8
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -20,7 +20,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `receipt_names_uncited_module`: a replay receipt names this node for lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean, but the node's lean, rust and source fields do not cite it. A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence).
 
 ## Imported structure
 
@@ -42,6 +42,26 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean`
+
+- file: [lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean](../../../lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean)
+- sha256 (`bytes`): `ad360df138896aa08a749c4f5db0df98b8b46ba7ff7a3554477b3266f3d1d7fb`
+- cited in: receipt dag/research/campaign_pgw-wdp-phi-well-defined-l1-duality_lean_replay.json (CampaignPgwWdpPhiWellDefinedL1Duality)
+- replay: `verified`
+  - receipt [dag/research/campaign_pgw-wdp-phi-well-defined-l1-duality_lean_replay.json](../../../dag/research/campaign_pgw-wdp-phi-well-defined-l1-duality_lean_replay.json) (module `CampaignPgwWdpPhiWellDefinedL1Duality`): recorded sha256 `ad360df138896aa08a749c4f5db0df98b8b46ba7ff7a3554477b3266f3d1d7fb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignPgwWdpPhiWellDefinedL1Duality`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `absSum_attained` | yes | yes | yes | propext | `#print axioms absSum_attained` |
+| `absSum_ge_two` | yes | yes | yes | Quot.sound, propext | `#print axioms absSum_ge_two` |
+| `absSum_shift` | yes | yes | yes | Quot.sound, propext | `#print axioms absSum_shift` |
+| `d0_linear` | yes | yes | yes | Quot.sound, propext | `#print axioms d0_linear` |
+| `residual_shift` | yes | yes | yes | Quot.sound, propext | `#print axioms residual_shift` |
+| `shifted_attained` | yes | yes | yes | Quot.sound, propext | `#print axioms shifted_attained` |
+| `shifted_ge` | yes | yes | yes | Quot.sound, propext | `#print axioms shifted_ge` |
+- counts toward the grade: yes
 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean`
 
