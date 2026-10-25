@@ -1211,3 +1211,7 @@ lean_lib CampaignTfq0376Pregenesis where
 -- Campaign: PGW-PYTHON-LEAN-CARRIER-BRIDGE. Not a default target.
 lean_lib CampaignPgwPythonLeanCarrierBridge where
   roots := #[`CampaignPgwPythonLeanCarrierBridge]
+
+-- Campaign: AUTH-DTM2-INPUT-REQUEST-PLANNED. Not a default target.
+lean_lib CampaignAuthDtm2InputRequestPlanned where
+  roots := #[`CampaignAuthDtm2InputRequestPlanned]

@@ -7291,16 +7291,19 @@
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_status": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-DTM2 claims planned in a producer-side update packet; absent from ledger, proof program, goals and Lean; audited status OPEN",
-      "statement": "The update packet plans a request code made of a fuel token, a machine-code length, one machine segment and an input word, whose code-level evaluator decodes the request and calls the bounded evaluator on the declared initial input, with seven named target theorems.",
+      "statement": "On one closed request the header tag is 1, the fuel token is 2, the machine-code length is 1, the machine segment is the list 7, and the input word is the list 3, 4. Concatenating the header, the fuel, the length, the segment and the input word yields the list 1, 2, 1, 7, 3, 4. The list 0, 2, 1, 7, 3, 4 begins with 0, and 0 differs from the header tag.",
       "source": [
         "dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md",
         "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_update_packet.md",
         "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_red_team_dialogue_raw.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignAuthDtm2InputRequestPlanned.lean::oneRequestRoundTrip",
+        "lean4/CampaignAuthDtm2InputRequestPlanned.lean::missingHeaderRejected"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Write the module and prove the request round trip and the result-level agreement; configuration snapshots and step-by-step trace agreement remain separate obligations.",
+      "bottleneck": "An encoder and decoder for a request other than this closed list, the remaining named targets in the update packet, and result-level agreement with a bounded evaluator stay open. Configuration snapshots and step-by-step trace agreement stay open. No custody reading and no authorization reading are in this record.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -11785,7 +11788,7 @@
       ],
       "output": "AUTH-DTM2-INPUT-REQUEST-PLANNED",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Write the module and prove the request round trip and the result-level agreement; configuration snapshots and step-by-step trace agreement remain separate obligations.",
+      "mechanism": "An encoder and decoder for a request other than this closed list, the remaining named targets in the update packet, and result-level agreement with a bounded evaluator stay open. Configuration snapshots and step-by-step trace agreement stay open. No custody reading and no authorization reading are in this record.",
       "source": [
         "dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md",
         "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_update_packet.md",
@@ -19923,12 +19926,12 @@
       "id": "TFQ-1333",
       "uuid": "367fdae7-b18d-593b-97cc-750904c97fc1",
       "local_id": "AUTH-DTM2-INPUT-REQUEST-PLANNED",
-      "name": "Planned length-delimited request grammar and result-level agreement with the bounded evaluator",
+      "name": "One closed length-delimited request and one missing header",
       "stage": "COMPUTATION",
       "parent_id": "TFQ-1332",
       "record_status": "OPEN_OBLIGATION",
-      "summary": "The update packet plans a request code made of a fuel token, a machine-code length, one machine segment and an input word, whose code-level evaluator decodes the request and calls the bounded evaluator on the declared initial input, with seven named target theorems.",
-      "obligation": "Write the module and prove the request round trip and the result-level agreement; configuration snapshots and step-by-step trace agreement remain separate obligations.",
+      "summary": "On one closed request the header tag is 1, the fuel token is 2, the machine-code length is 1, the machine segment is the list 7, and the input word is the list 3, 4. Concatenating the header, the fuel, the length, the segment and the input word yields the list 1, 2, 1, 7, 3, 4. The list 0, 2, 1, 7, 3, 4 begins with 0, and 0 differs from the header tag.",
+      "obligation": "An encoder and decoder for a request other than this closed list, the remaining named targets in the update packet, and result-level agreement with a bounded evaluator stay open. Configuration snapshots and step-by-step trace agreement stay open. No custody reading and no authorization reading are in this record.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "AUTH-DTM2-INPUT-REQUEST-PLANNED"
@@ -19942,7 +19945,10 @@
       ],
       "python": [],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignAuthDtm2InputRequestPlanned.lean::oneRequestRoundTrip",
+        "lean4/CampaignAuthDtm2InputRequestPlanned.lean::missingHeaderRejected"
+      ]
     },
     {
       "id": "TFQ-1334",
