@@ -1,13 +1,13 @@
 {
   "path": "checks/independent/pgw-declared-input-floor.py",
-  "original_sha256": "98956050fb938c093d9fa9beab28ca52c8cb1cbe64d40775e28d4dd12333d4ea",
-  "sha256": "98956050fb938c093d9fa9beab28ca52c8cb1cbe64d40775e28d4dd12333d4ea",
+  "original_sha256": "42f9c4058b3a13efa1af04d13ed1672d0e0dce23fab947375164f8a38c428333",
+  "sha256": "42f9c4058b3a13efa1af04d13ed1672d0e0dce23fab947375164f8a38c428333",
   "original_metrics": {
     "ccn": 13,
     "cognitive": 11,
     "nesting": 2,
     "functions": 2,
-    "lines": 87,
+    "lines": 88,
     "tools": {
       "radon": "6.0.1",
       "cognitive-complexity": "1.3.0",
@@ -19,12 +19,17 @@
     "cognitive": 11,
     "nesting": 2,
     "functions": 2,
-    "lines": 87,
+    "lines": 88,
     "tools": {
       "radon": "6.0.1",
       "cognitive-complexity": "1.3.0",
       "nesting": "AST control constructs; module executable statements additionally measured as one function"
     }
+  },
+  "previous_receipt": {
+    "prior_logical_path": "dag/research/pr_318_python_checker_review.json",
+    "sha256": "31faea8219f723fcbd604ad9107a6741dcf5cc495e40e66871e5a57f328dc79b",
+    "retained_at": "dag/research/pr_318_python_checker_prior_31faea8219f723fc.json"
   },
   "source_changed": false,
   "comparison_and_iteration_AST_multisets_unchanged": true,
@@ -40,7 +45,7 @@
         "checks/independent/pgw-declared-input-floor.py"
       ],
       "exit_code": 0,
-      "seconds": 0.14,
+      "seconds": 0.1,
       "output": "checked 39 claims, failures 0\r\n"
     },
     "optimized": {
@@ -53,7 +58,7 @@
         "checks/independent/pgw-declared-input-floor.py"
       ],
       "exit_code": 0,
-      "seconds": 0.24,
+      "seconds": 0.58,
       "output": "checked 39 claims, failures 0\r\n"
     },
     "quiet_import": {
@@ -64,10 +69,10 @@
         "-X",
         "utf8",
         "-c",
-        "import contextlib,importlib.util,io,pathlib,sys; p=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics\\\\checks\\\\independent\\\\pgw-declared-input-floor.py'); root=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics'); s=importlib.util.spec_from_file_location(\"reviewed_checker\",p); m=importlib.util.module_from_spec(s); out=io.StringIO();\ndef audit(event,args):\n if event==\"open\" and isinstance(args[0],str):\n  q=pathlib.Path(args[0]).resolve()\n  if q.is_relative_to(root) and q!=p and q.suffix!=\".pyc\": raise RuntimeError(\"Import read repository evidence: \"+str(q))\nsys.addaudithook(audit)\nwith contextlib.redirect_stdout(out),contextlib.redirect_stderr(out): s.loader.exec_module(m)\nif out.getvalue(): raise RuntimeError(\"Import executed checker output: \"+out.getvalue())\n"
+        "import contextlib,importlib.util,io,pathlib,sys; p=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics\\\\checks\\\\independent\\\\pgw-declared-input-floor.py'); root=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics'); s=importlib.util.spec_from_file_location(\"reviewed_checker\",p); m=importlib.util.module_from_spec(s); out=io.StringIO();\ndef audit(event,args):\n if event==\"open\" and isinstance(args[0],str):\n  q=pathlib.Path(args[0]).resolve()\n  if q.is_relative_to(root) and q!=p and q.suffix!=\".pyc\": raise RuntimeError(\"Import read repository evidence: \"+str(q))\nsys.addaudithook(audit)\ntry:\n with contextlib.redirect_stdout(out),contextlib.redirect_stderr(out): s.loader.exec_module(m)\nexcept SystemExit as exc: raise RuntimeError(\"Import raised SystemExit\") from exc\nif out.getvalue(): raise RuntimeError(\"Import executed checker output: \"+out.getvalue())\n"
       ],
       "exit_code": 0,
-      "seconds": 0.24,
+      "seconds": 0.1,
       "output": ""
     },
     "typing_tool": {
@@ -79,7 +84,7 @@
         "--version"
       ],
       "exit_code": 0,
-      "seconds": 0.64,
+      "seconds": 0.46,
       "output": "mypy 1.18.2 (compiled: yes)\r\n"
     },
     "strict_typing": {
@@ -97,7 +102,7 @@
         "checks/independent/pgw-declared-input-floor.py"
       ],
       "exit_code": 0,
-      "seconds": 1.86,
+      "seconds": 1.54,
       "output": "Success: no issues found in 1 source file\r\n"
     }
   },

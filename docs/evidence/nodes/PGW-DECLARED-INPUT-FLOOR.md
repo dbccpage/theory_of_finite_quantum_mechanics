@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/pgw-declared-input-floor.py`
 
 - file: [checks/independent/pgw-declared-input-floor.py](../../../checks/independent/pgw-declared-input-floor.py)
-- sha256 (`bytes`): `98956050fb938c093d9fa9beab28ca52c8cb1cbe64d40775e28d4dd12333d4ea`
+- sha256 (`bytes`): `42f9c4058b3a13efa1af04d13ed1672d0e0dce23fab947375164f8a38c428333`
 - cited in: record TFQ-0498
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

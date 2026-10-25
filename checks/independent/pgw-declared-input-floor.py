@@ -75,7 +75,8 @@ def main() -> None:
         check(f"no_{token}", token not in lean)
     check("no_axiom_decl", all(not line.startswith("axiom ") for line in lean.splitlines()))
     check("no_admit_token", "admit" not in lean)
-    check("prints_axioms", lean.count("#print axioms ") == len(THEOREM_NAMES))
+    reports = re.findall(r"^#print axioms ([A-Za-z0-9_.]+)$", lean, re.M)
+    check("prints_axioms", sorted(reports) == sorted(THEOREM_NAMES))
 
     print(f"checked {claims} claims, failures {len(failures)}")
     if failures:

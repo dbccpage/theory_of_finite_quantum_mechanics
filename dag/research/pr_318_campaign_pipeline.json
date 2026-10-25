@@ -3,6 +3,7 @@
   "source": "lean4/CampaignPgwDeclaredInputFloor.lean",
   "source_sha256": "4d60da82673bbba0522a875cbfa3b99c7ba076845b877b5a97438110da6e5beb",
   "proof_replay_reused_at_same_source_hash": true,
+  "resume_reason": "Repair named axiom-report validation; preserve all prior checks and the failing historical guard.",
   "resumed_import_harness_attempt": false,
   "python_checker_review": {
     "path": "checks/independent/pgw-declared-input-floor.py",
@@ -14,7 +15,7 @@
       "cognitive": 11,
       "nesting": 2,
       "functions": 2,
-      "lines": 87,
+      "lines": 88,
       "tools": {
         "radon": "6.0.1",
         "cognitive-complexity": "1.3.0",
@@ -22,39 +23,12 @@
       }
     }
   },
-  "schema_fixes": [
-    {
-      "node": "CQFT-REEH-SCHLIEDER-THEOREM-IMPORT",
-      "refs_preserved": [
-        "checks/independent/cqft-reeh-schlieder-theorem-import.py"
-      ],
-      "change": "Move unsupported duplicate python field to supported source references"
-    },
-    {
-      "node": "CQFT-CAUSAL-FACTORIZATION-IMPORT",
-      "refs_preserved": [
-        "checks/independent/cqft-causal-factorization-import.py"
-      ],
-      "change": "Move unsupported duplicate python field to supported source references"
-    },
-    {
-      "node": "ADS-REGGE-AREA-RT-GAP",
-      "refs_preserved": [
-        "checks/independent/ads-regge-area-rt-gap.py"
-      ],
-      "change": "Move unsupported duplicate python field to supported source references"
-    }
-  ],
-  "scalar_fix": {
-    "path": "dag/operads/tfq_0106.yaml",
-    "field": "target.source_bottleneck",
-    "preserved_text": "GAP: the physical cosmological constant is not discharged. The Rust carrier is only a degree-and-label scaffold.",
-    "change": "Quote the colon-containing scalar; preserve intended text"
-  },
+  "schema_fixes": [],
+  "scalar_fix": null,
   "sealed_inputs": {
     "named_sealed_files": 182,
     "bytes": 858142,
-    "restored": 182,
+    "restored": 0,
     "source": "exact HEAD Git blobs; no shared cache copied"
   },
   "checks": {
@@ -67,8 +41,8 @@
         "dag/sync_pfp_results.py"
       ],
       "exit_code": 0,
-      "seconds": 0.36,
-      "output": "stale=dag/theory_of_finite_qm.jsonl\r\n"
+      "seconds": 0.33,
+      "output": "pfp results synchronized\r\n"
     },
     "sync_unified_dag_write": {
       "command": [
@@ -79,8 +53,8 @@
         "dag/sync_unified_dag.py"
       ],
       "exit_code": 0,
-      "seconds": 0.96,
-      "output": "stale=dag/derivation_dag.json,dag/theory_of_finite_qm.jsonl\r\n"
+      "seconds": 0.61,
+      "output": "unified DAG synchronized\r\n"
     },
     "sync_application_branches_write": {
       "command": [
@@ -91,7 +65,7 @@
         "dag/sync_application_branches.py"
       ],
       "exit_code": 0,
-      "seconds": 0.42,
+      "seconds": 0.34,
       "output": "application branches synchronized\r\n"
     },
     "sync_pregenesis_to_wdp_write": {
@@ -103,8 +77,8 @@
         "dag/sync_pregenesis_to_wdp.py"
       ],
       "exit_code": 0,
-      "seconds": 0.76,
-      "output": "stale=dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md,dag/derivation_dag.json,dag/theory_of_finite_qm.jsonl,dag/theory_of_finite_qm.md\r\n"
+      "seconds": 1.08,
+      "output": "pregenesis-to-wdp fragment synchronized\r\n"
     },
     "sync_frontier_branches_write": {
       "command": [
@@ -115,8 +89,8 @@
         "dag/sync_frontier_branches.py"
       ],
       "exit_code": 0,
-      "seconds": 0.52,
-      "output": "stale=dag/derivation_dag.json\r\n"
+      "seconds": 0.71,
+      "output": "frontier branches synchronized\r\n"
     },
     "sync_genesis_to_higher_write": {
       "command": [
@@ -127,7 +101,7 @@
         "dag/sync_genesis_to_higher.py"
       ],
       "exit_code": 0,
-      "seconds": 0.39,
+      "seconds": 0.35,
       "output": "genesis-to-higher synchronized\r\n"
     },
     "sync_foc035_observer_presheaf_write": {
@@ -139,7 +113,7 @@
         "dag/sync_foc035_observer_presheaf.py"
       ],
       "exit_code": 0,
-      "seconds": 0.48,
+      "seconds": 0.41,
       "output": "foc035 observer presheaf synchronized\r\n"
     },
     "ledger_write": {
@@ -151,7 +125,7 @@
         "scripts/build_master_derivation_ledger.py"
       ],
       "exit_code": 0,
-      "seconds": 1.88,
+      "seconds": 1.77,
       "output": "Written: C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\papers\\core\\master_derivation_ledger.md\r\nWritten: C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\dag\\derivations\\MASTER_DERIVATION_LEDGER.md\r\n"
     },
     "prompts_write": {
@@ -165,8 +139,8 @@
         "--all-missing"
       ],
       "exit_code": 0,
-      "seconds": 16.6,
-      "output": "refusing to rewrite executed prompts: TFQ-0006, TFQ-0008, TFQ-0009, TFQ-0012, TFQ-0014, TFQ-0017, TFQ-0026, TFQ-0027, TFQ-0032, TFQ-0033, TFQ-0039, TFQ-0044, TFQ-0050, TFQ-0084, TFQ-0090, TFQ-0106, TFQ-0107, TFQ-0117, TFQ-0118, TFQ-0119, TFQ-0123, CQFT-REEH-SCHLIEDER-THEOREM-IMPORT, CQFT-CAUSAL-FACTORIZATION-IMPORT, ADS-RT-FORMULA-IMPORT, ADS-REGGE-AREA-RT-GAP, GTH-SHADOW, GTH-TRUNC, GTH-HORNS, GTH-HOTT-MODEL, GTH-LANG-CORE, GTH-LANG-REFLECT, GTH-LANG-INTERPRET, GTH-LANG-IMPORT\r\n{\"created\": 0, \"rewritten\": 15, \"unchanged\": 700}\r\n"
+      "seconds": 8.14,
+      "output": "refusing to rewrite executed prompts: TFQ-0006, TFQ-0008, TFQ-0009, TFQ-0012, TFQ-0014, TFQ-0017, TFQ-0026, TFQ-0027, TFQ-0032, TFQ-0033, TFQ-0039, TFQ-0044, TFQ-0050, TFQ-0084, TFQ-0090, TFQ-0106, TFQ-0107, TFQ-0117, TFQ-0118, TFQ-0119, TFQ-0123, CQFT-REEH-SCHLIEDER-THEOREM-IMPORT, CQFT-CAUSAL-FACTORIZATION-IMPORT, ADS-RT-FORMULA-IMPORT, ADS-REGGE-AREA-RT-GAP, GTH-SHADOW, GTH-TRUNC, GTH-HORNS, GTH-HOTT-MODEL, GTH-LANG-CORE, GTH-LANG-REFLECT, GTH-LANG-INTERPRET, GTH-LANG-IMPORT\r\n{\"created\": 0, \"rewritten\": 0, \"unchanged\": 715}\r\n"
     },
     "readme_write": {
       "command": [
@@ -178,7 +152,7 @@
         "--write"
       ],
       "exit_code": 0,
-      "seconds": 59.41,
+      "seconds": 34.59,
       "output": "README facts written\r\n"
     },
     "audit_write": {
@@ -191,8 +165,8 @@
         "--write"
       ],
       "exit_code": 0,
-      "seconds": 0.27,
-      "output": "finite_quantum_mechanics.md: updated\r\nfinite_quantum_mechanics_claim_ledger.md: already current\r\n"
+      "seconds": 0.39,
+      "output": "finite_quantum_mechanics.md: already current\r\nfinite_quantum_mechanics_claim_ledger.md: already current\r\n"
     },
     "evidence_write": {
       "command": [
@@ -204,7 +178,7 @@
         "--write"
       ],
       "exit_code": 0,
-      "seconds": 11.92,
+      "seconds": 8.43,
       "output": "evidence map written: 925 nodes, grades {'E0': 163, 'E1': 222, 'E2': 41, 'E3': 499, 'E4': 0}, 270 flags\r\n"
     },
     "repin_write": {
@@ -220,8 +194,8 @@
         "Preserve source references while repairing unsupported DAG keys; regenerate canonical views"
       ],
       "exit_code": 0,
-      "seconds": 0.44,
-      "output": "rebound: tensor_countermodel_validation.json sha dag/derivation_dag.json\r\nrebound: tensor_countermodel_validation.json sha dag/theory_of_finite_qm.jsonl\r\nrebound: tensor_countermodel_validation.json sha dag/theory_of_finite_qm.md\r\n3 stale pin(s)\r\n"
+      "seconds": 0.94,
+      "output": "receipts current\r\n"
     },
     "evidence_refresh_after_repin": {
       "command": [
@@ -233,7 +207,7 @@
         "--write"
       ],
       "exit_code": 0,
-      "seconds": 10.59,
+      "seconds": 7.15,
       "output": "evidence map written: 925 nodes, grades {'E0': 163, 'E1': 222, 'E2': 41, 'E3': 499, 'E4': 0}, 270 flags\r\n"
     },
     "repin_last": {
@@ -249,7 +223,7 @@
         "Final canonical receipt pins after derived evidence refresh"
       ],
       "exit_code": 0,
-      "seconds": 0.3,
+      "seconds": 0.22,
       "output": "receipts current\r\n"
     },
     "sync_pfp_results": {
@@ -275,7 +249,7 @@
         "--check"
       ],
       "exit_code": 0,
-      "seconds": 1.01,
+      "seconds": 1.04,
       "output": "unified DAG synchronized\r\n"
     },
     "sync_application_branches": {
@@ -288,7 +262,7 @@
         "--check"
       ],
       "exit_code": 0,
-      "seconds": 0.49,
+      "seconds": 0.48,
       "output": "application branches synchronized\r\n"
     },
     "sync_pregenesis_to_wdp": {
@@ -301,7 +275,7 @@
         "--check"
       ],
       "exit_code": 0,
-      "seconds": 1.37,
+      "seconds": 1.39,
       "output": "pregenesis-to-wdp fragment synchronized\r\n"
     },
     "sync_frontier_branches": {
@@ -314,7 +288,7 @@
         "--check"
       ],
       "exit_code": 0,
-      "seconds": 0.68,
+      "seconds": 0.72,
       "output": "frontier branches synchronized\r\n"
     },
     "sync_genesis_to_higher": {
@@ -327,7 +301,7 @@
         "--check"
       ],
       "exit_code": 0,
-      "seconds": 0.52,
+      "seconds": 0.39,
       "output": "genesis-to-higher synchronized\r\n"
     },
     "sync_foc035_observer_presheaf": {
@@ -340,7 +314,7 @@
         "--check"
       ],
       "exit_code": 0,
-      "seconds": 0.58,
+      "seconds": 0.74,
       "output": "foc035 observer presheaf synchronized\r\n"
     },
     "invariants": {
@@ -353,7 +327,7 @@
         "--invariants"
       ],
       "exit_code": 0,
-      "seconds": 0.43,
+      "seconds": 0.49,
       "output": "unified invariants failures=0\r\n"
     },
     "views": {
@@ -366,7 +340,7 @@
         "--check"
       ],
       "exit_code": 0,
-      "seconds": 0.68,
+      "seconds": 0.29,
       "output": "views match derivation_dag.json\r\n"
     },
     "dag": {
@@ -379,7 +353,7 @@
         "--no-files"
       ],
       "exit_code": 0,
-      "seconds": 2.01,
+      "seconds": 1.7,
       "output": "nodes=925 routes=934 records=977 failures=0\r\n"
     },
     "readme": {
@@ -392,7 +366,7 @@
         "--check"
       ],
       "exit_code": 0,
-      "seconds": 59.42,
+      "seconds": 41.01,
       "output": "README facts current\r\n"
     },
     "repin": {
@@ -405,7 +379,7 @@
         "--check"
       ],
       "exit_code": 0,
-      "seconds": 0.31,
+      "seconds": 0.62,
       "output": "receipts current\r\n"
     },
     "evidence": {
@@ -418,7 +392,7 @@
         "--check"
       ],
       "exit_code": 0,
-      "seconds": 10.84,
+      "seconds": 8.38,
       "output": "evidence map current\r\n"
     },
     "dag_regressions": {
@@ -444,8 +418,8 @@
         "no:cacheprovider"
       ],
       "exit_code": 0,
-      "seconds": 32.87,
-      "output": "................................                                         [100%]\r\n32 passed in 31.29s\r\n"
+      "seconds": 25.95,
+      "output": "................................                                         [100%]\r\n32 passed in 24.74s\r\n"
     },
     "independent": {
       "command": [
@@ -456,7 +430,7 @@
         "checks/independent/pgw-declared-input-floor.py"
       ],
       "exit_code": 0,
-      "seconds": 0.13,
+      "seconds": 0.14,
       "output": "checked 39 claims, failures 0\r\n"
     },
     "governance": {
@@ -469,8 +443,8 @@
         "origin/main"
       ],
       "exit_code": 1,
-      "seconds": 19.16,
-      "output": "changed since origin/main (1fa451fe1eac640d84f0c34ba88a71dcdd32dfb6): 62 paths\nchecked 8252: 70 pass, 8160 grandfathered, 20 boilerplate, 2 failed\nFAIL lean4/CampaignPgwDeclaredInputFloor.lean (new or not grandfathered)\n  lean4/CampaignPgwDeclaredInputFloor.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L1D\nFAIL lean4/CampaignSnE08WeightedL1Duality.lean (new or not grandfathered)\n  lean4/CampaignSnE08WeightedL1Duality.contract.score.yaml: [BINDING] contract.artifact.sha256: expected f35d7b06b68886a27305b2120f72b1336115f3bcdb587ce5ba50827131e8c687, found 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff\n"
+      "seconds": 17.84,
+      "output": "changed since origin/main (1fa451fe1eac640d84f0c34ba88a71dcdd32dfb6): 66 paths\nchecked 8252: 70 pass, 8160 grandfathered, 20 boilerplate, 2 failed\nFAIL lean4/CampaignPgwDeclaredInputFloor.lean (new or not grandfathered)\n  lean4/CampaignPgwDeclaredInputFloor.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L1D\nFAIL lean4/CampaignSnE08WeightedL1Duality.lean (new or not grandfathered)\n  lean4/CampaignSnE08WeightedL1Duality.contract.score.yaml: [BINDING] contract.artifact.sha256: expected f35d7b06b68886a27305b2120f72b1336115f3bcdb587ce5ba50827131e8c687, found 2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff\n"
     },
     "overclaim": {
       "command": [
@@ -484,20 +458,26 @@
         "--strict"
       ],
       "exit_code": 0,
-      "seconds": 14.93,
+      "seconds": 9.31,
       "output": "overclaim_scan: scope=changes since origin/main (merge base 1fa451fe1eac); HIGH=0 MEDIUM=0 LOW=3\r\n"
+    },
+    "qm_atlas_loc": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/verify_qm_atlas_loc.py"
+      ],
+      "exit_code": 0,
+      "seconds": 2.46,
+      "output": "QM_ATLAS_LOC_VERIFIER all_passed=True questions=65 verified_links=403 verified_window_symbols=197 rust_python_parity=True\r\n"
     }
   },
   "pytest_configuration": "[pytest]\naddopts = --import-mode=importlib\n",
-  "existing_build_pin_refresh": {
-    "path": "lean4/lakefile.lean",
-    "category": "build_registration",
-    "previous": "81a117a157f31abd26a003ae13a338d05d2d1e09661778867aab7e5d733cb9fd",
-    "current": "f589bd03d69b5e93d69bf238b541dc0d4e004621283ee0a937dd042476283ad4",
-    "new_exception": false
-  },
+  "existing_build_pin_refresh": null,
   "new_exception_paths": [],
-  "policy_unchanged": false,
+  "policy_unchanged": true,
   "floor_population_and_exception_categories_unchanged": true,
   "baseline_unchanged": true,
   "statuses_unchanged": true,

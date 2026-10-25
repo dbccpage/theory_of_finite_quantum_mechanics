@@ -52,6 +52,7 @@ The malformed colon-containing `target.source_bottleneck` scalar in `dag/operads
 | independent | 0 |
 | governance | 1 |
 | overclaim | 0 |
+| qm_atlas_loc | 0 |
 
 Full commands and outputs: `dag/research/pr_318_campaign_pipeline.json`.
 
