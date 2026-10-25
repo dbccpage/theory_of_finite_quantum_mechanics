@@ -14,7 +14,7 @@ For arbitrary types X, R and D, a report r:X→R and a decision d:X→D admit a 
 
 ## What is assumed
 
-The types, maps and algebraic models named above are declared. Lean uses only its standard core axioms; exact audit arithmetic uses integers, rational numbers and symbolic polynomials. AuthorityEffect: None.
+The types, maps and algebraic models named above are declared. Lean uses only its standard core axioms. The independent audit enumerates finite functions and compares their values exactly. AuthorityEffect: None.
 
 ## What is open
 

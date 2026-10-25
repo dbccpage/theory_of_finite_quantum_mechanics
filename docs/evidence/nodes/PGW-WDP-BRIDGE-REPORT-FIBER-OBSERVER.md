@@ -103,14 +103,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pgw-wdp-bridge-report-fiber-observer.md`
 
 - file: [dag/derivations/independent/pgw-wdp-bridge-report-fiber-observer.md](../../../dag/derivations/independent/pgw-wdp-bridge-report-fiber-observer.md)
-- sha256 (`lf-normalised`): `68e048534f8b23c95c153744f76fc88f27f63d797ffec789cb5758c0bad6552d`
+- sha256 (`lf-normalised`): `fbb509b3be63cfe7d2b150e228deee54d05c690ff312f2f00352f849cba89255`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json`
 
 - file: [dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json](../../../dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json)
-- sha256 (`lf-normalised`): `0c1298515e88ba8a231e2fe58e1166f02209cafb213cba963cfa559f29d82312`
+- sha256 (`lf-normalised`): `8e190dbfdaaccca9127a1b1da7f41cd30b457d2905a09c295d94a3247f773e52`
 - cited in: node.source
 - counts toward the grade: yes
 

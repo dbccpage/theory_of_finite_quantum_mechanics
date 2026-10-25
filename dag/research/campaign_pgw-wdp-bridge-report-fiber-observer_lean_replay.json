@@ -11,8 +11,9 @@
     "mathlib_note": "Only Std is imported. Lake built an exact source copy in a minimal scratch package with no Mathlib dependency; the full repository Mathlib workspace was not built.",
     "command": [
       "lake",
-      "build",
-      "CampaignReportFiberDescent"
+      "env",
+      "lean",
+      "Audit.lean"
     ],
     "cwd": "/workspace/next-five/pgw-wdp-bridge-report-fiber-observer/lake",
     "results": [
@@ -93,5 +94,29 @@
     "exit_code": 0,
     "seconds": 4.034,
     "output": ""
+  },
+  "axiom_audit": {
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/next-five/pgw-wdp-bridge-report-fiber-observer/lake",
+    "input_path": "Audit.lean",
+    "input_contents": "import CampaignReportFiberDescent\n#print axioms CampaignReportFiberDescent.Image\n#print axioms CampaignReportFiberDescent.lifted\n#print axioms CampaignReportFiberDescent.ConstantOnFibers\n#print axioms CampaignReportFiberDescent.unique_decoder_iff\n#print axioms CampaignReportFiberDescent.postprocess_obstruction\n#print axioms CampaignReportFiberDescent.joint_report_sufficient\n#print axioms CampaignReportFiberDescent.lost_bit_obstruction\n",
+    "input_sha256": "756c2b9430f2e85852288d88e1a82a9f13e6e2d6bfebd48447d640d7056573af",
+    "module_source_sha256": "135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56",
+    "exit_code": 0,
+    "output": "'CampaignReportFiberDescent.Image' does not depend on any axioms\n'CampaignReportFiberDescent.lifted' does not depend on any axioms\n'CampaignReportFiberDescent.ConstantOnFibers' does not depend on any axioms\n'CampaignReportFiberDescent.unique_decoder_iff' depends on axioms: [Classical.choice, Quot.sound]\n'CampaignReportFiberDescent.postprocess_obstruction' does not depend on any axioms\n'CampaignReportFiberDescent.joint_report_sufficient' does not depend on any axioms\n'CampaignReportFiberDescent.lost_bit_obstruction' does not depend on any axioms\n",
+    "scratch_package": {
+      "lakefile.toml": "name = \"campaign_replay\"\nversion = \"0.1.0\"\n[[lean_lib]]\nname = \"CampaignReportFiberDescent\"\n",
+      "lean-toolchain": "leanprover/lean4:v4.35.0\n",
+      "module_copy": {
+        "from": "lean4/CampaignReportFiberDescent.lean",
+        "to": "CampaignReportFiberDescent.lean",
+        "sha256": "135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56"
+      }
+    }
   }
 }
