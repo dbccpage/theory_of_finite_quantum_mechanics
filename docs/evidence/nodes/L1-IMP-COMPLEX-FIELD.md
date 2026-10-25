@@ -10,7 +10,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade:
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
+- counted in-repo evidence files: 8
 - cited Lean, Rust or Python symbols found in their in-repo files: 10
 - cited Lean declarations covered by a current replay receipt: 10
 - counted in-repo runnable tests: 0
@@ -20,9 +20,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-- `broken_reference`: path not found: dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md. A cited in-repo path or symbol cannot be found in this checkout.
-- `broken_reference`: path not found: dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/README.md. A cited in-repo path or symbol cannot be found in this checkout.
-- `broken_reference`: path not found: dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/p5/proposed_node_delta.json. A cited in-repo path or symbol cannot be found in this checkout.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -145,24 +143,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ### Documents and data: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md`
 
-- file: `dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md](../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md)
+- sha256 (`lf-normalised`): `9854dc36f40af42797cbdae8a8a115b3ebdc93cf85fd3e0b04dd99bb9f203632`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ### Documents and data: `dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/README.md`
 
-- file: `dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/README.md`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/README.md](../../../dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/README.md)
+- sha256 (`lf-normalised`): `531bd889a8690afcf88b8fe7ce15a1ab00b4ad2cd0ef41496f395ab8823a68a8`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ### Documents and data: `dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/p5/proposed_node_delta.json`
 
-- file: `dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/p5/proposed_node_delta.json`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/p5/proposed_node_delta.json](../../../dag/results/L1-IMP-COMPLEX-FIELD/runs/20261021T162659Z_complex_selection/p5/proposed_node_delta.json)
+- sha256 (`lf-normalised`): `ac708482b44b568b9d812fb710d4dc69621b680dd8d69e0d02b13f435efeb4b8`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
 

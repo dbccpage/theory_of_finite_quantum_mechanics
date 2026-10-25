@@ -1,22 +1,22 @@
 # PGW-WDP-BRIDGE-ONGOING-TO-WINDOW
 
-Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> GEN-WDP-07, a conditional theorem in the bridge register, fixes a carrier and marked triples F, keeps the full directed integer table e(x, y) = M_r(x, y) − M_s(x, y) including loops and independent reverse arcs, treats raising as e ↦ e + d₀g with (d₀g)(x, y) = g(x) − g(y), and uses the marked diagnostic D_F(e)(x, y, z) = e(x, y) + e(y, z) + e(z, x). Cancellation gives D_F d₀ = 0, so D_F(e + d₀g) = D_F e even for unbalanced triples, and rationalizing reflects integer repair equality. This is a repair quotient with descending reports, not automatically cohomology: C¹/im d₀ differs from ker D_F/im d₀, a filled mark may be unbalanced, triangle reports miss loops and two-way defects, and antisymmetric simplicial coordinates need e(x, x) = 0 and e(x, y) + e(y, x) = 0. Term addition and identification can fail to respect the quotient (source 23:D4), so carrier-changing operations need new congruence proofs.
+> Narrowed in Lean 4 to the carrier {0, 1}. The directed slots are e(0,0), e(1,1), e(0,1) and e(1,0). The coboundary of vertex values (g0, g1) is (0, 0, g0 - g1, g1 - g0). The unbalanced mark (0, 1, 0) has diagnostic e(0,1) + e(1,0) + e(0,0). That diagnostic is 0 on every coboundary and is unchanged when a coboundary is added. If a nonzero integer b scales an integer slot difference onto a coboundary, the difference is already the integer coboundary of (0, -d01). The table (1, 0, 0, -1) has diagnostic 0 and is not a coboundary. The table (0, 1, 0, 0) has diagnostic 0 and is not a coboundary. The one-arc table (0, 0, 1, 0) has diagnostic 1. The two-way table (0, 0, 1, 1) has arc sum 2 and arc difference 0. A general carrier, an arbitrary marked family, the degree-1 window of TFQ-0004, a continuous norm, and carrier-changing term operations stay open.
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 1
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 13
+- cited Lean declarations covered by a current replay receipt: 11
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Proposed, not derived: the bridge does not produce the window of TFQ-0004 from Genesis admission (TFQ-0344), integer change costs are not identified with a continuous norm, and dynamic carrier changes belong to GEN-WDP-O02 and O03.
+Open. One two-vertex carrier is checked. The coboundary cancellation, the denominator reflection, the two kernel witnesses, the one-arc diagnostic, and the two-way sum are checked. A general carrier, an arbitrary marked family, the window of TFQ-0004, a continuous norm, and carrier-changing term operations stay open.
 
 ## Source status
 
@@ -41,6 +41,30 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignPgwWdpBridgeOngoing.lean`
+
+- file: [lean4/CampaignPgwWdpBridgeOngoing.lean](../../../lean4/CampaignPgwWdpBridgeOngoing.lean)
+- sha256 (`bytes`): `70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a`
+- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json (CampaignPgwWdpBridgeOngoing), record TFQ-0555
+- replay: `verified`
+  - receipt [dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json](../../../dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json) (module `CampaignPgwWdpBridgeOngoing`): recorded sha256 `70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignPgwWdpBridgeOngoing`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `cob_slots` | yes | yes | yes | none | `#print axioms cob_slots` |
+| `compensated_loop_closed` | yes | yes | yes | none | `#print axioms compensated_loop_closed` |
+| `compensated_loop_not_coboundary` | yes | yes | yes | Quot.sound, propext | `#print axioms compensated_loop_not_coboundary` |
+| `denominator_clears` | yes | yes | yes | Quot.sound, propext | `#print axioms denominator_clears` |
+| `diag_after_repair` | yes | yes | yes | Quot.sound, propext | `#print axioms diag_after_repair` |
+| `diag_on_coboundary` | yes | yes | yes | Quot.sound, propext | `#print axioms diag_on_coboundary` |
+| `one_arc_diagnostic` | yes | yes | yes | none | `#print axioms one_arc_diagnostic` |
+| `silent_loop_closed` | yes | yes | yes | none | `#print axioms silent_loop_closed` |
+| `silent_loop_not_coboundary` | yes | yes | yes | Quot.sound, propext | `#print axioms silent_loop_not_coboundary` |
+| `two_way_difference` | yes | yes | yes | none | `#print axioms two_way_difference` |
+| `two_way_sum` | yes | yes | yes | none | `#print axioms two_way_sum` |
+- counts toward the grade: yes
 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean`
 
@@ -62,13 +86,38 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
+### Python: `checks/independent/pgw-wdp-bridge-ongoing-to-window.py`
+
+- file: [checks/independent/pgw-wdp-bridge-ongoing-to-window.py](../../../checks/independent/pgw-wdp-bridge-ongoing-to-window.py)
+- sha256 (`bytes`): `001c05df4170a358473308c57bbe9c11be46201a6c2dd4e2ad91582d6e4b7d1c`
+- cited in: record TFQ-0555
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `main` (python_symbol) | yes | yes | yes | - | - |
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md`
 
 - file: [dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md](../../../dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md)
-- sha256 (`lf-normalised`): `269f2cd986c98b9908b15c95a207f9694c0f1f987b747749a398a49b4a3e362c`
+- sha256 (`lf-normalised`): `6adcdc2b55a098a79115cddc98c2692ddf78d1a69efb1dfa80788f167fc719c7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0555
 - counts toward the grade: no
+
+### Documents and data: `dag/derivations/independent/pgw-wdp-bridge-ongoing-to-window.md`
+
+- file: [dag/derivations/independent/pgw-wdp-bridge-ongoing-to-window.md](../../../dag/derivations/independent/pgw-wdp-bridge-ongoing-to-window.md)
+- sha256 (`lf-normalised`): `a9d56a8a8799692e0a9002db1fa44b6baba175ee7e35fa026500f9efac47569f`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json`
+
+- file: [dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json](../../../dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json)
+- sha256 (`lf-normalised`): `41e1e2fc219982a3db616fd8080b0b9ede517c31e7fb877c476edc895bdb208c`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_ongoing_fixed_carrier_bridge.md`
 
@@ -96,10 +145,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 Named by the node; not in this repository and not checked here.
 
 - `external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/genesis_ongoing_adapter.rs::GenesisOngoingAdapter`
-
-## Absences recorded by the TFQ records
-
-- TFQ-0555 python: GEN-WDP-07 carries a written proof and the native omega_wdp adapter; no Python binding
 
 ## Routes
 
