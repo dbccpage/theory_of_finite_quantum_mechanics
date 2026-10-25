@@ -1,0 +1,108 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:40:26.611106+00:00",
+  "review_base": "a8c222166bbc903c3f884fcefd9c15232c20c41e",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: AUTH-DTM2-INPUT-REQUEST-PLANNED — Narrowed: one closed request list and one missing header; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignAuthDtm2InputRequestPlanned.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignAuthDtm2InputRequestPlanned",
+        "dag_node": "AUTH-DTM2-INPUT-REQUEST-PLANNED",
+        "source": "lean4/CampaignAuthDtm2InputRequestPlanned.lean",
+        "sha256": "070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd",
+        "sha256_after_build": "070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignAuthDtm2InputRequestPlanned.oneRequestEncoding",
+          "CampaignAuthDtm2InputRequestPlanned.zeroHeadDiffersFromHeader"
+        ],
+        "axioms": {
+          "CampaignAuthDtm2InputRequestPlanned.oneRequestEncoding": [],
+          "CampaignAuthDtm2InputRequestPlanned.zeroHeadDiffersFromHeader": []
+        },
+        "output": "'CampaignAuthDtm2InputRequestPlanned.oneRequestEncoding' does not depend on any axioms\n'CampaignAuthDtm2InputRequestPlanned.zeroHeadDiffersFromHeader' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/auth-dtm2-input-request-planned.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.012,
+    "output": "header_is_1: True\nfuel_is_2: True\nmachine_length_is_1: True\nsegment_is_7: True\ninput_is_3_4: True\nencode_request: True\nlength_6: True\nmissing_begins_with_0: True\nzero_differs_from_header: True\nfailures=0\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/371/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.32,
+    "output": ""
+  },
+  "superseded_receipt": {
+    "schema_version": "campaign_lean_replay.v1",
+    "authority_effect": "None",
+    "checked_at": "2026-10-25",
+    "source_base": "7fa69d621c27bed7045d0b7fe34bbb1d34b27248",
+    "result": "Narrowed to one closed request: header 1, fuel 2, machine-code length 1, segment [7], input word [3, 4], concatenation [1, 2, 1, 7, 3, 4], and one list that begins with 0 rather than the header. The 2026-10-25 lake build of CampaignAuthDtm2InputRequestPlanned exited 0 in 19248 ms, with the module job at 878 ms. Both printed axiom lists are empty. The node stays OPEN.",
+    "proof_boundary": "This receipt records that lean4/CampaignAuthDtm2InputRequestPlanned.lean type-checks and which axioms its print-axioms lines report. The recorded arithmetic is the closed request list 1, 2, 1, 7, 3, 4 and the missing-header list that begins with 0. No evaluator is constructed. The node stays OPEN.",
+    "lean_replay": {
+      "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+      "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "lakefile_sha256": "494c571319e234bba5e26258916013d1222b8160bcddcbed1adc6150f9824f43",
+      "library": "CampaignAuthDtm2InputRequestPlanned (lean_lib in lean4/lakefile.lean; not a default target)",
+      "build_directory": "lean4/b (lakefile buildDir)",
+      "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run). The module imports no package.",
+      "command": "cd lean4 && lake build CampaignAuthDtm2InputRequestPlanned",
+      "allowed_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "results": [
+        {
+          "module": "CampaignAuthDtm2InputRequestPlanned",
+          "dag_node": "AUTH-DTM2-INPUT-REQUEST-PLANNED",
+          "source": "lean4/CampaignAuthDtm2InputRequestPlanned.lean",
+          "sha256": "d3a7278ecc51dd3010eb911b5b6278eacce8db9b977c4902b383666322dfb4ec",
+          "sha256_after_build": "d3a7278ecc51dd3010eb911b5b6278eacce8db9b977c4902b383666322dfb4ec",
+          "source_unchanged_during_build": true,
+          "exit_code": 0,
+          "seconds": 19.248,
+          "module_job_ms": 878,
+          "admission_scan_passed": true,
+          "axiom_audit_passed": true,
+          "anchors": [
+            "CampaignAuthDtm2InputRequestPlanned.oneRequestRoundTrip",
+            "CampaignAuthDtm2InputRequestPlanned.missingHeaderRejected"
+          ],
+          "anchors_reported": true,
+          "axioms": {
+            "CampaignAuthDtm2InputRequestPlanned.oneRequestRoundTrip": [],
+            "CampaignAuthDtm2InputRequestPlanned.missingHeaderRejected": []
+          },
+          "output": "Built CampaignAuthDtm2InputRequestPlanned (878ms). oneRequestRoundTrip does not depend on any axioms. missingHeaderRejected does not depend on any axioms. Build completed successfully (3 jobs)."
+        }
+      ]
+    }
+  }
+}

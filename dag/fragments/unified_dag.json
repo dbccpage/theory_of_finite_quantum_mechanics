@@ -9809,18 +9809,21 @@
       "record_id": "TFQ-1333",
       "node_id": "AUTH-DTM2-INPUT-REQUEST-PLANNED",
       "slug": "auth-dtm2-input-request-planned",
-      "name": "Planned length-delimited request grammar and result-level agreement with the bounded evaluator",
+      "name": "One closed length-delimited request and one missing header",
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_claimed_status": "planned in a producer-side update packet; absent from ledger, proof program, goals and Lean",
-      "statement": "The update packet plans a request code made of a fuel token, a machine-code length, one machine segment and an input word, whose code-level evaluator decodes the request and calls the bounded evaluator on the declared initial input, with seven named target theorems.",
-      "obligation": "Write the module and prove the request round trip and the result-level agreement; configuration snapshots and step-by-step trace agreement remain separate obligations.",
+      "statement": "On one closed request the header tag is 1, the fuel token is 2, the machine-code length is 1, the machine segment is the list 7, and the input word is the list 3, 4. Concatenating the header, the fuel, the length, the segment and the input word yields the list 1, 2, 1, 7, 3, 4. The list 0, 2, 1, 7, 3, 4 begins with 0, and 0 differs from the header tag.",
+      "obligation": "An encoder and decoder for a request other than this closed list, the remaining named targets in the update packet, and result-level agreement with a bounded evaluator stay open. Configuration snapshots and step-by-step trace agreement stay open. No custody reading and no authorization reading are in this record.",
       "imported_structure": [],
       "parent_nodes": [
         "AUTH-DTM1-TOKEN-CODE-ROUNDTRIP"
       ],
       "parent_record": "TFQ-1332",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignAuthDtm2InputRequestPlanned.lean::oneRequestEncoding",
+        "lean4/CampaignAuthDtm2InputRequestPlanned.lean::zeroHeadDiffersFromHeader"
+      ],
       "rust": [],
       "python": [],
       "external_witnesses": [],
@@ -9828,7 +9831,7 @@
         "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_update_packet.md:26-72",
         "papers/foundations/authorization_incompleteness/_support/authorization_incompleteness_dtm2_input_execution_red_team_dialogue_raw.md:122-144"
       ],
-      "audit": "The module named in the packet is absent from the source formal folder; the packet and dialogue are producer-side, and the dialogue records its own finding DTM2-R3 as rebutted and rejected.",
+      "audit": "The campaign module records one closed request list 1, 2, 1, 7, 3, 4 and one list that begins with 0 rather than the header tag. A bounded evaluator and the remaining packet targets stay open.",
       "see_also": [
         "AUTHF-DTM0-SIMULATION-OPEN",
         "COMP-C5-CLOSURES-HALTING"

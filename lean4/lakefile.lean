@@ -1319,3 +1319,7 @@ lean_lib CampaignCompC7FixedTargetOpen where
 -- Campaign: COMP-C8-MINIMALITY-FENCE. Not a default target.
 lean_lib CampaignCompC8MinimalityFence where
   roots := #[`CampaignCompC8MinimalityFence]
+
+-- Campaign: AUTH-DTM2-INPUT-REQUEST-PLANNED. Not a default target.
+lean_lib CampaignAuthDtm2InputRequestPlanned where
+  roots := #[`CampaignAuthDtm2InputRequestPlanned]

@@ -11594,7 +11594,7 @@ For every finite-rule machine, decoding the token list that encodes it (the halt
 
 Obligation: No converse (encoding after decoding), no source-byte format, no configuration or input encoding and no agreement between parsed code and execution is established; the token alphabet is the natural numbers, so passing to the two-symbol tape alphabet needs a prefix-code argument, since free monoids on alphabets of different sizes are not isomorphic.
 
-### TFQ-1333 Planned length-delimited request grammar and result-level agreement with the bounded evaluator
+### TFQ-1333 One closed length-delimited request and one missing header
 
 - UUID: `367fdae7-b18d-593b-97cc-750904c97fc1`
 - Parent: `TFQ-1332`
@@ -11602,9 +11602,9 @@ Obligation: No converse (encoding after decoding), no source-byte format, no con
 - DAG node: `AUTH-DTM2-INPUT-REQUEST-PLANNED`
 - Paper: [derivation](derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md)
 
-The update packet plans a request code made of a fuel token, a machine-code length, one machine segment and an input word, whose code-level evaluator decodes the request and calls the bounded evaluator on the declared initial input, with seven named target theorems.
+On one closed request the header tag is 1, the fuel token is 2, the machine-code length is 1, the machine segment is the list 7, and the input word is the list 3, 4. Concatenating the header, the fuel, the length, the segment and the input word yields the list 1, 2, 1, 7, 3, 4. The list 0, 2, 1, 7, 3, 4 begins with 0, and 0 differs from the header tag.
 
-Obligation: Write the module and prove the request round trip and the result-level agreement; configuration snapshots and step-by-step trace agreement remain separate obligations.
+Obligation: An encoder and decoder for a request other than this closed list, the remaining named targets in the update packet, and result-level agreement with a bounded evaluator stay open. Configuration snapshots and step-by-step trace agreement stay open. No custody reading and no authorization reading are in this record.
 
 ### TFQ-1334 A no-decider boundary transports through a validity-preserving reduction and a closed decision class
 

@@ -1,0 +1,60 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:40:26.611106+00:00",
+  "review_base": "a8c222166bbc903c3f884fcefd9c15232c20c41e",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: AUTH-DTM2-INPUT-REQUEST-PLANNED — Narrowed: one closed request list and one missing header; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignAuthDtm2InputRequestPlanned.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignAuthDtm2InputRequestPlanned",
+        "dag_node": "AUTH-DTM2-INPUT-REQUEST-PLANNED",
+        "source": "lean4/CampaignAuthDtm2InputRequestPlanned.lean",
+        "sha256": "070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd",
+        "sha256_after_build": "070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignAuthDtm2InputRequestPlanned.oneRequestEncoding",
+          "CampaignAuthDtm2InputRequestPlanned.zeroHeadDiffersFromHeader"
+        ],
+        "axioms": {
+          "CampaignAuthDtm2InputRequestPlanned.oneRequestEncoding": [],
+          "CampaignAuthDtm2InputRequestPlanned.zeroHeadDiffersFromHeader": []
+        },
+        "output": "'CampaignAuthDtm2InputRequestPlanned.oneRequestEncoding' does not depend on any axioms\n'CampaignAuthDtm2InputRequestPlanned.zeroHeadDiffersFromHeader' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/auth-dtm2-input-request-planned.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.012,
+    "output": "header_is_1: True\nfuel_is_2: True\nmachine_length_is_1: True\nsegment_is_7: True\ninput_is_3_4: True\nencode_request: True\nlength_6: True\nmissing_begins_with_0: True\nzero_differs_from_header: True\nfailures=0\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/371/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.32,
+    "output": ""
+  }
+}
