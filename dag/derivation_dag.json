@@ -14145,14 +14145,20 @@
       "stage": "PREGENESIS",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 01)",
-      "statement": "Ledger row WDP-P001-009 says language restriction, partial word recovery, and total erasure have different types, with no Ext calculation. Pre-Genesis paper.md section 11.2 is the heading. Opened preservation.py defines recover_word, erase_word, and decimal_decode as separate functions, which does not by itself record that they differ on a new letter. The finite statement still required is a single finite witness, one new letter, on which the three contracts disagree, kept distinct from free-monoid size. WordRecovery.lean is listed in the package and was not opened, so its declarations stay unchecked here.",
+      "statement": "Ledger row WDP-P001-009 says language restriction, partial word recovery, and total erasure have different types, with no Ext calculation. Pre-Genesis paper.md section 11.2 is the heading. Opened preservation.py defines recover_word, erase_word, and decimal_decode as separate functions, which does not by itself record that they differ on a new letter. The finite statement still required is a single finite witness, one new letter, on which the three contracts disagree, kept distinct from free-monoid size. WordRecovery.lean is listed in the package and was not opened, so its declarations stay unchecked here. Narrowed in Lean 4 to one old letter a and one new letter fresh. The witness word is [a, fresh], and it contains fresh once. Language restriction of the sample [[a, fresh], [a]] returns [[a]], a list of words. Partial recovery of the witness returns none, an optional word. Total erasure of the witness returns [a], a word. On the old word [a], recovery returns the word and erasure returns the word. Recovery of the witness is not the erased word, and erasure is not the witness word. The witness word is absent from the restricted sample. No Ext group is defined in this file. Free-monoid size is not restated. The atlas files preservation.py and WordRecovery.lean stay unchecked. AuthorityEffect is None.",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0374_three_recovery_contracts.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignTfq0374ThreeRecoveryContracts.lean::letters_are_old_or_fresh",
+        "lean4/CampaignTfq0374ThreeRecoveryContracts.lean::fresh_is_not_old",
+        "lean4/CampaignTfq0374ThreeRecoveryContracts.lean::witness_uses_one_fresh",
+        "lean4/CampaignTfq0374ThreeRecoveryContracts.lean::old_word_agrees",
+        "lean4/CampaignTfq0374ThreeRecoveryContracts.lean::three_contracts_differ_on_a_new_letter"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Language restriction, partial word recovery, and total erasure are three different types, witnessed on one new letter, with no Ext calculation.",
+      "bottleneck": "The atlas files preservation.py and WordRecovery.lean stay unchecked. The finite witness in this file is the word [a, fresh]: restriction returns [[a]], recovery returns none, and erasure returns [a]. No Ext group is defined here, and free-monoid size is not restated.",
       "tags": [
         "unified-dag",
         "TFQ-0374",
@@ -55066,16 +55072,18 @@
       ],
       "id": "TFQ-0374",
       "lean4": [
-        "absent: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/WordRecovery.lean",
-        "absent: missing declaration obligation: three contracts differ on a new letter, file listed and not opened"
+        "lean4/CampaignTfq0374ThreeRecoveryContracts.lean::letters_are_old_or_fresh",
+        "lean4/CampaignTfq0374ThreeRecoveryContracts.lean::fresh_is_not_old",
+        "lean4/CampaignTfq0374ThreeRecoveryContracts.lean::witness_uses_one_fresh",
+        "lean4/CampaignTfq0374ThreeRecoveryContracts.lean::old_word_agrees",
+        "lean4/CampaignTfq0374ThreeRecoveryContracts.lean::three_contracts_differ_on_a_new_letter"
       ],
       "local_id": "A01-016",
       "name": "three-recovery-contracts",
-      "obligation": "Language restriction, partial word recovery, and total erasure are three different types, witnessed on one new letter, with no Ext calculation.",
+      "obligation": "The atlas files preservation.py and WordRecovery.lean stay unchecked. The finite witness in this file is the word [a, fresh]: restriction returns [[a]], recovery returns none, and erasure returns [a]. No Ext group is defined here, and free-monoid size is not restated.",
       "parent_id": "TFQ-0373",
       "python": [
-        "absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/preservation.py",
-        "absent: missing obligation: one new-letter witness where recover_word, erase_word, and a restriction map return different types"
+        "checks/independent/tfq-0374.py"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
@@ -55083,7 +55091,7 @@
       ],
       "source_slice": "01",
       "stage": "PREGENESIS",
-      "summary": "Ledger row WDP-P001-009 says language restriction, partial word recovery, and total erasure have different types, with no Ext calculation. Pre-Genesis paper.md section 11.2 is the heading. Opened preservation.py defines recover_word, erase_word, and decimal_decode as separate functions, which does not by itself record that they differ on a new letter. The finite statement still required is a single finite witness, one new letter, on which the three contracts disagree, kept distinct from free-monoid size. WordRecovery.lean is listed in the package and was not opened, so its declarations stay unchecked here.",
+      "summary": "Ledger row WDP-P001-009 says language restriction, partial word recovery, and total erasure have different types, with no Ext calculation. Pre-Genesis paper.md section 11.2 is the heading. Opened preservation.py defines recover_word, erase_word, and decimal_decode as separate functions, which does not by itself record that they differ on a new letter. The finite statement still required is a single finite witness, one new letter, on which the three contracts disagree, kept distinct from free-monoid size. WordRecovery.lean is listed in the package and was not opened, so its declarations stay unchecked here. Narrowed in Lean 4 to one old letter a and one new letter fresh. The witness word is [a, fresh], and it contains fresh once. Language restriction of the sample [[a, fresh], [a]] returns [[a]], a list of words. Partial recovery of the witness returns none, an optional word. Total erasure of the witness returns [a], a word. On the old word [a], recovery returns the word and erasure returns the word. Recovery of the witness is not the erased word, and erasure is not the witness word. The witness word is absent from the restricted sample. No Ext group is defined in this file. Free-monoid size is not restated. The atlas files preservation.py and WordRecovery.lean stay unchecked. AuthorityEffect is None.",
       "uuid": "1efaec4d-d31d-52bf-8033-b8d24ef93a4a"
     },
     {
@@ -56061,6 +56069,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md",
         "lean4/H006PermutationUnitary.lean",
         "dag/derivations/independent/l1-imp-sector-symmetry-law.md",
         "checks/independent/l1-imp-sector-symmetry-law.py",
@@ -56807,7 +56817,11 @@
         "FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md"
+        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md"
       ],
       "id": "TFQ-1021",
       "lean4": [
@@ -57723,6 +57737,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md",
         "lean4/FiniteWignerTheorem.lean",
         "dag/derivations/independent/l1-imp-transition-probability-law.md",
         "dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json",
@@ -57769,7 +57785,12 @@
         "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md"
+        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md"
       ],
       "id": "TFQ-1048",
       "lean4": [
