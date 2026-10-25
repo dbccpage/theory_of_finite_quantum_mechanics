@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-If g < 1, kappa > 0, r >= lam/((1-g)*kappa), c(k) <= C, max(C,1)*p(0) < 1 and the level errors p(k) >= 0 obey p(k+1) <= c(k)*p(k)^2 whenever the backlog is bounded, then the backlog is bounded and for every L >= 0 and epsilon > 0 some level k has L*p(k) <= epsilon; with max(C,1)*p(0) <= 1/2 any k with L <= epsilon*max(C,1)*2^(2^k) works.
+If the initial backlog q0 is nonnegative, g < 1, kappa > 0, r is at least lam/((1-g)*kappa), c(k) <= C for every natural number k, p(k) >= 0, max(C,1)*p(0) < 1, and p(k+1) <= c(k)*p(k)^2 whenever BacklogBounded lam g (kappa*r) q0 holds, then that backlog predicate holds and for every rational L >= 0 and every epsilon > 0 some level k has L*p(k) <= epsilon. If also max(C,1)*p(0) <= 1/2, then every natural number k with L <= epsilon*max(C,1)*2^(2^k) has L*p(k) <= epsilon.
 
 ### Governing Obligation
-The noise recurrence is a hypothesis: independence or locality of noise, fresh ancillas, fast classical control and bounded overhead are not shown for any device; the hypotheses are only shown jointly satisfiable on declared toy numbers.
+The initial backlog q0 is nonnegative. The recurrence, the supply bound, and the overhead bound are hypotheses of the implication. A device, a noise process, and a classical decoder are outside this implication. A negative initial backlog is outside the narrowed statement.
 
 ### Witness Audit
-conditional_viability is an implication whose noise hypothesis is itself conditioned on a bounded backlog; the conclusion is a union bound over L locations; the instance theorem checks satisfiability on lam = 1, g = 1/2, kappa = 1, r = 2, c = 4, p(0) = 1/10. Axioms of the cited declarations: propext, Classical.choice, Quot.sound only.
+viability_nonneg_initial is conditional_viability with nonnegative initial backlog q0. viability_explicit_level applies conditional_viability_explicit after that backlog predicate holds, when max(C,1)*p(0) <= 1/2. Printed axioms are propext, Classical.choice, and Quot.sound. A negative initial backlog is outside the narrowed statement. Review retains CONDITIONAL status because the named operational antecedents have not been constructed; the replay certifies the implication only.
 
 ---
 
@@ -46,6 +46,8 @@ conditional_viability is an implication whose noise hypothesis is itself conditi
 - `lean4/QcSelfObstruction.lean::conditional_viability_instance`
 - `lean4/QcSelfObstruction.lean::level_error_le`
 - `lean4/QcSelfObstruction.lean::explicit_level`
+- `lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_nonneg_initial`
+- `lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_explicit_level`
 
 ### Rust Certifiers
 - `code/rust/src/qm/campaigns/qc_self_obstruction.rs::viability_report`
@@ -72,3 +74,4 @@ conditional_viability is an implication whose noise hypothesis is itself conditi
 - **Cited Sources**:
   - `dag/research/quantum_computation_self_obstruction.md:123-136`
   - `dag/research/quantum_computation_self_obstruction_axioms.txt:51-55`
+  - `lean4/CampaignQcvConditionalViabilityCertificate.lean:9-35`

@@ -1,0 +1,121 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T19:08:24.128600+00:00",
+  "source_base": "c50dc1b472596d1b5934408b00b9fbb72db91345",
+  "result": "Narrowed; original node status retained. For arbitrary types, cloners on admitted blank slices compose to a cloner on their Cartesian product. Product-local reversible maps alone do not implement all permutations of two bits: controlled flip is an involution but cannot be written (f(a),g(b)). Product cloning therefore does not supply the full permutation-task clause of interoperability.",
+  "proof_boundary": "The declared functional task model does not prove the physical possibility of cloning or joint operations with side-effects. The imported interoperability principle and any Hilbert tensor-product/local-tomography conclusion remain separate obligations.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "mathlib_note": "Only Std is imported. Lake built an exact source copy in a minimal scratch package with no Mathlib dependency; the full repository Mathlib workspace was not built.",
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/next-five/ct-information-media-interoperability/lake",
+    "results": [
+      {
+        "module": "CampaignInformationProductBoundary",
+        "dag_node": "CT-INFORMATION-MEDIA-INTEROPERABILITY",
+        "source": "lean4/CampaignInformationProductBoundary.lean",
+        "sha256": "1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d",
+        "sha256_after_build": "1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignInformationProductBoundary.clones_product",
+          "CampaignInformationProductBoundary.controlledFlip_not_product",
+          "CampaignInformationProductBoundary.Clones",
+          "CampaignInformationProductBoundary.productCloner",
+          "CampaignInformationProductBoundary.controlledFlip",
+          "CampaignInformationProductBoundary.controlledFlip_involution"
+        ],
+        "axioms": {
+          "CampaignInformationProductBoundary.clones_product": [
+            "propext"
+          ],
+          "CampaignInformationProductBoundary.controlledFlip_not_product": [
+            "propext"
+          ],
+          "CampaignInformationProductBoundary.Clones": [],
+          "CampaignInformationProductBoundary.productCloner": [],
+          "CampaignInformationProductBoundary.controlledFlip": [],
+          "CampaignInformationProductBoundary.controlledFlip_involution": []
+        },
+        "output": "'CampaignInformationProductBoundary.Clones' does not depend on any axioms\n'CampaignInformationProductBoundary.productCloner' does not depend on any axioms\n'CampaignInformationProductBoundary.clones_product' depends on axioms: [propext]\n'CampaignInformationProductBoundary.controlledFlip' does not depend on any axioms\n'CampaignInformationProductBoundary.controlledFlip_involution' does not depend on any axioms\n'CampaignInformationProductBoundary.controlledFlip_not_product' depends on axioms: [propext]\n"
+      }
+    ]
+  },
+  "standalone_lean": {
+    "command": [
+      "lean",
+      "lean4/CampaignInformationProductBoundary.lean"
+    ],
+    "exit_code": 0,
+    "seconds": 0.345,
+    "output": "'CampaignInformationProductBoundary.clones_product' depends on axioms: [propext]\n'CampaignInformationProductBoundary.controlledFlip_involution' does not depend on any axioms\n'CampaignInformationProductBoundary.controlledFlip_not_product' depends on axioms: [propext]\n"
+  },
+  "lake_build": {
+    "command": [
+      "lake",
+      "build",
+      "CampaignInformationProductBoundary"
+    ],
+    "exit_code": 0,
+    "seconds": 0.441,
+    "output": "ℹ [2/3] Built CampaignInformationProductBoundary (346ms)\ninfo: CampaignInformationProductBoundary.lean:31:0: 'CampaignInformationProductBoundary.clones_product' depends on axioms: [propext]\ninfo: CampaignInformationProductBoundary.lean:32:0: 'CampaignInformationProductBoundary.controlledFlip_involution' does not depend on any axioms\ninfo: CampaignInformationProductBoundary.lean:33:0: 'CampaignInformationProductBoundary.controlledFlip_not_product' depends on axioms: [propext]\nBuild completed successfully (3 jobs).\ninfo: campaign_replay: no previous manifest, creating one from scratch\ninfo: toolchain not updated; already up-to-date\n"
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/ct-information-media-interoperability.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.013,
+    "output": "12 product-cloning inputs; controlled flip is an involutive permutation outside the 4 local products among 24 composite permutations\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/next-five/ct-information-media-interoperability/lakefile-registered.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.998,
+    "output": ""
+  },
+  "axiom_audit": {
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/next-five/ct-information-media-interoperability/lake",
+    "input_path": "Audit.lean",
+    "input_contents": "import CampaignInformationProductBoundary\n#print axioms CampaignInformationProductBoundary.Clones\n#print axioms CampaignInformationProductBoundary.productCloner\n#print axioms CampaignInformationProductBoundary.clones_product\n#print axioms CampaignInformationProductBoundary.controlledFlip\n#print axioms CampaignInformationProductBoundary.controlledFlip_involution\n#print axioms CampaignInformationProductBoundary.controlledFlip_not_product\n",
+    "input_sha256": "1d5ddaba43c472963871e29c23dc75ce51ced9689f15cd7a0342024f96cb3e18",
+    "module_source_sha256": "1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d",
+    "exit_code": 0,
+    "output": "'CampaignInformationProductBoundary.Clones' does not depend on any axioms\n'CampaignInformationProductBoundary.productCloner' does not depend on any axioms\n'CampaignInformationProductBoundary.clones_product' depends on axioms: [propext]\n'CampaignInformationProductBoundary.controlledFlip' does not depend on any axioms\n'CampaignInformationProductBoundary.controlledFlip_involution' does not depend on any axioms\n'CampaignInformationProductBoundary.controlledFlip_not_product' depends on axioms: [propext]\n",
+    "scratch_package": {
+      "lakefile.toml": "name = \"campaign_replay\"\nversion = \"0.1.0\"\n[[lean_lib]]\nname = \"CampaignInformationProductBoundary\"\n",
+      "lean-toolchain": "leanprover/lean4:v4.35.0\n",
+      "module_copy": {
+        "from": "lean4/CampaignInformationProductBoundary.lean",
+        "to": "CampaignInformationProductBoundary.lean",
+        "sha256": "1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d"
+      }
+    }
+  }
+}

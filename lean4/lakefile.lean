@@ -1212,6 +1212,10 @@ lean_lib CampaignTfq0376Pregenesis where
 lean_lib CampaignPgwPythonLeanCarrierBridge where
   roots := #[`CampaignPgwPythonLeanCarrierBridge]
 
+-- Campaign: L1-QM020-THM2B-MINKOWSKI. Not a default target.
+lean_lib CampaignL1Qm020Thm2bMinkowski where
+  roots := #[`CampaignL1Qm020Thm2bMinkowski]
+
 -- Campaign: PGW-CONTEXT-FIDELITY. Not a default target.
 lean_lib CampaignPgwContextFidelity where
   roots := #[`CampaignPgwContextFidelity]
@@ -1331,3 +1335,55 @@ lean_lib CampaignAuthfCarrierAdmissionGate where
 -- Campaign: FQ-GAP-STONE-CONTINUOUS-TIME. Not a default target.
 lean_lib CampaignFqGapStoneContinuousTime where
   roots := #[`CampaignFqGapStoneContinuousTime]
+
+-- Campaign: FQ-GAP-CONTINUUM-HILBERT-LIFT. Not a default target.
+lean_lib CampaignFqGapContinuumHilbertLift where
+  roots := #[`CampaignFqGapContinuumHilbertLift]
+
+-- Campaign: FSP-WITTEN-INDEX-INVARIANCE. Not a default target.
+lean_lib CampaignWittenPairing where
+  roots := #[`CampaignWittenPairing]
+
+-- Campaign: PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY. Not a default target.
+lean_lib CampaignPgwWdpPhiWellDefinedL1Duality where
+  roots := #[`CampaignPgwWdpPhiWellDefinedL1Duality]
+
+-- Campaign: FSP-KITAEV-HONEYCOMB-SOLUTION. Not a default target.
+lean_lib CampaignKitaevSectorBlock where
+  roots := #[`CampaignKitaevSectorBlock]
+
+-- Campaign: FSP-LAUGHLIN-EXCHANGE-PHASE. Not a default target.
+lean_lib CampaignLaughlinRootAmbiguity where
+  roots := #[`CampaignLaughlinRootAmbiguity]
+
+-- Campaign: PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER. Not a default target.
+lean_lib CampaignReportFiberDescent where
+  roots := #[`CampaignReportFiberDescent]
+
+-- Campaign: CT-INFORMATION-MEDIA-INTEROPERABILITY. Not a default target.
+lean_lib CampaignInformationProductBoundary where
+  roots := #[`CampaignInformationProductBoundary]
+
+-- Campaign: MAJ-LEGACY-CARRIER-RETRACTION. Not a default target.
+lean_lib CampaignMajLegacyCarrierRetraction where
+  roots := #[`CampaignMajLegacyCarrierRetraction]
+
+-- Campaign: COMP-C3-NO-FIXED-BOUND. Not a default target.
+lean_lib CampaignCompC3NoFixedBound where
+  roots := #[`CampaignCompC3NoFixedBound]
+
+-- Campaign: COMP-C7-ENCODED-INSTANCE-REDUCTION. Not a default target.
+lean_lib CampaignCompC7EncodedInstanceReduction where
+  roots := #[`CampaignCompC7EncodedInstanceReduction]
+
+-- Campaign: QCV-CONDITIONAL-VIABILITY-CERTIFICATE. Not a default target.
+lean_lib CampaignQcvConditionalViabilityCertificate where
+  roots := #[`CampaignQcvConditionalViabilityCertificate]
+
+-- Campaign: OPS-OBSERVER-DECLARATION-REFUSAL. Not a default target.
+lean_lib CampaignOpsObserverDeclarationRefusal where
+  roots := #[`CampaignOpsObserverDeclarationRefusal]
+
+-- Campaign: OPS-AXIS3-RELABELING. Not a default target.
+lean_lib CampaignOpsAxis3Relabeling where
+  roots := #[`CampaignOpsAxis3Relabeling]

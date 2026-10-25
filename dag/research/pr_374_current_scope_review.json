@@ -1,0 +1,27 @@
+{
+  "task_id": "FQ-GAP-CONTINUUM-HILBERT-LIFT",
+  "status": "scoped_integer_result_reviewed",
+  "authority_effect": "None",
+  "reviewer": "Codex source and exact-check review; no independent-author human review claimed.",
+  "historical_review": "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/review_result.json",
+  "claim_boundary": {
+    "supports": "No integer a satisfies 2 * a = 1. For every integer t, 4 * (t * t - t - 1) + 5 = (2 * t - 1) * (2 * t - 1). For every integer n, n * n is not 5. For every integer t, t * t - t - 1 is not 0.",
+    "narrowest_claim": "No integer a satisfies 2 * a = 1. For every integer t, 4 * (t * t - t - 1) + 5 = (2 * t - 1) * (2 * t - 1). For every integer n, n * n is not 5. For every integer t, t * t - t - 1 is not 0.",
+    "does_not_support": "Scalar-field selection, a Gaussian-integer matrix eigenvalue, choice of l2 uniformity or an infinite-dimensional Hilbert completion.",
+    "next_test": "Replay the submitted integer proofs and independent audit on their current source hashes."
+  },
+  "evidence": [
+    "dag/research/pr_374_round2_replay.json",
+    "checks/independent/fq-gap-continuum-hilbert-lift.py"
+  ],
+  "sources": {
+    "lean4/CampaignFqGapContinuumHilbertLift.lean": "553d4dbe9de7fe4be1fd0c58d4ac71ff381ec730f55b8339a7811c68bc290894",
+    "checks/independent/fq-gap-continuum-hilbert-lift.py": "be8a80956d91bbabee7c04f640e5cc9afb338d255acf59353d06bbf176411cad"
+  },
+  "verified_claims": {
+    "CampaignFqGapContinuumHilbertLift.twoMulNeOne": "Lean 4.35.0 replay passed; only standard core axioms",
+    "CampaignFqGapContinuumHilbertLift.discIdentity": "Lean 4.35.0 replay passed; only standard core axioms",
+    "CampaignFqGapContinuumHilbertLift.intSqNeFive": "Lean 4.35.0 replay passed; only standard core axioms",
+    "CampaignFqGapContinuumHilbertLift.intPolyNeZero": "Lean 4.35.0 replay passed; only standard core axioms"
+  }
+}

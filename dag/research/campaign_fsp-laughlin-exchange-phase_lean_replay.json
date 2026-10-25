@@ -1,0 +1,119 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T19:01:58.256286+00:00",
+  "source_base": "c50dc1b472596d1b5934408b00b9fbb72db91345",
+  "result": "Narrowed; original node status retained. In the formal angle-residue model modulo 2m, for every m>1 the distinct residues 1 and m+1 have the same doubled residue 2. Thus full-braid monodromy alone does not select an exchange residue. At m=3 the two residues are 1 and 4. This is an algebraic ambiguity, not a Berry-phase derivation.",
+  "proof_boundary": "The statistical exchange phase of Laughlin quasiholes requires the wavefunction, adiabatic transport and Berry connection, plus a branch/continuity convention. The algebraic non-uniqueness does not refute the Arovas-Schrieffer-Wilczek result.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "mathlib_note": "Only Std is imported. Lake built an exact source copy in a minimal scratch package with no Mathlib dependency; the full repository Mathlib workspace was not built.",
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/next-five/fsp-laughlin-exchange-phase/lake",
+    "results": [
+      {
+        "module": "CampaignLaughlinRootAmbiguity",
+        "dag_node": "FSP-LAUGHLIN-EXCHANGE-PHASE",
+        "source": "lean4/CampaignLaughlinRootAmbiguity.lean",
+        "sha256": "c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314",
+        "sha256_after_build": "c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots",
+          "CampaignLaughlinRootAmbiguity.monodromy_not_injective",
+          "CampaignLaughlinRootAmbiguity.monodromy",
+          "CampaignLaughlinRootAmbiguity.roots_at_third_filling"
+        ],
+        "axioms": {
+          "CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignLaughlinRootAmbiguity.monodromy_not_injective": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignLaughlinRootAmbiguity.monodromy": [],
+          "CampaignLaughlinRootAmbiguity.roots_at_third_filling": []
+        },
+        "output": "'CampaignLaughlinRootAmbiguity.monodromy' does not depend on any axioms\n'CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots' depends on axioms: [propext, Quot.sound]\n'CampaignLaughlinRootAmbiguity.monodromy_not_injective' depends on axioms: [propext, Quot.sound]\n'CampaignLaughlinRootAmbiguity.roots_at_third_filling' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "standalone_lean": {
+    "command": [
+      "lean",
+      "lean4/CampaignLaughlinRootAmbiguity.lean"
+    ],
+    "exit_code": 0,
+    "seconds": 0.348,
+    "output": "'CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots' depends on axioms: [propext, Quot.sound]\n'CampaignLaughlinRootAmbiguity.monodromy_not_injective' depends on axioms: [propext, Quot.sound]\n'CampaignLaughlinRootAmbiguity.roots_at_third_filling' does not depend on any axioms\n"
+  },
+  "lake_build": {
+    "command": [
+      "lake",
+      "build",
+      "CampaignLaughlinRootAmbiguity"
+    ],
+    "exit_code": 0,
+    "seconds": 0.439,
+    "output": "ℹ [2/3] Built CampaignLaughlinRootAmbiguity (356ms)\ninfo: CampaignLaughlinRootAmbiguity.lean:24:0: 'CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots' depends on axioms: [propext, Quot.sound]\ninfo: CampaignLaughlinRootAmbiguity.lean:25:0: 'CampaignLaughlinRootAmbiguity.monodromy_not_injective' depends on axioms: [propext, Quot.sound]\ninfo: CampaignLaughlinRootAmbiguity.lean:26:0: 'CampaignLaughlinRootAmbiguity.roots_at_third_filling' does not depend on any axioms\nBuild completed successfully (3 jobs).\ninfo: campaign_replay: no previous manifest, creating one from scratch\ninfo: toolchain not updated; already up-to-date\n"
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/fsp-laughlin-exchange-phase.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.021,
+    "output": "99 denominators: exactly two exchange residues for each specified monodromy; m=3 roots 1 and 4 differ by pi. No Berry phase calculated.\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/next-five/fsp-laughlin-exchange-phase/lakefile-registered.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 4.052,
+    "output": ""
+  },
+  "axiom_audit": {
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/next-five/fsp-laughlin-exchange-phase/lake",
+    "input_path": "Audit.lean",
+    "input_contents": "import CampaignLaughlinRootAmbiguity\n#print axioms CampaignLaughlinRootAmbiguity.monodromy\n#print axioms CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots\n#print axioms CampaignLaughlinRootAmbiguity.monodromy_not_injective\n#print axioms CampaignLaughlinRootAmbiguity.roots_at_third_filling\n",
+    "input_sha256": "f06f3c45a064f151c8df32e2802e081fac2490d3295bbb6b65d43945d0f13d46",
+    "module_source_sha256": "c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314",
+    "exit_code": 0,
+    "output": "'CampaignLaughlinRootAmbiguity.monodromy' does not depend on any axioms\n'CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots' depends on axioms: [propext, Quot.sound]\n'CampaignLaughlinRootAmbiguity.monodromy_not_injective' depends on axioms: [propext, Quot.sound]\n'CampaignLaughlinRootAmbiguity.roots_at_third_filling' does not depend on any axioms\n",
+    "scratch_package": {
+      "lakefile.toml": "name = \"campaign_replay\"\nversion = \"0.1.0\"\n[[lean_lib]]\nname = \"CampaignLaughlinRootAmbiguity\"\n",
+      "lean-toolchain": "leanprover/lean4:v4.35.0\n",
+      "module_copy": {
+        "from": "lean4/CampaignLaughlinRootAmbiguity.lean",
+        "to": "CampaignLaughlinRootAmbiguity.lean",
+        "sha256": "c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314"
+      }
+    }
+  }
+}

@@ -11,11 +11,11 @@
 
 ## Statement
 
-As the note states it for the Rust evaluator evaluate_l1_claim (Policy A2' and the profile binding): before any arithmetic it refuses an undeclared, empty or whitespace component with UndeclaredObserverComponent(name), and a component the evaluator does not implement with UnsupportedObserverComponent { component, declared }. The kernel must equal the label of the scenario under evaluation (for the Bell scenario "support presheaf over the maximal-context cover {0,2}|{0,3}|{1,2}|{1,3} with arities 2,2,2,2"); the other four components must equal the constants for the noncontextual polytope, the l1 norm, the terminal rule and the diagnostic layer. A supported tuple yields a receipt with authority_effect None, the terminal token and the typed profile. The refusal is a policy invariant by construction; the note does not derive it from Lemma A2.
+A five-field draft on one Bell label is classified by comparing each field with a fixed text, and the comparison does not read a defect. The kernel text is "support presheaf over the maximal-context cover {0,2}|{0,3}|{1,2}|{1,3} with arities 2,2,2,2". The admissibility text is "noncontextual polytope conv(A)". The norm text is "L1". The terminal text is "defect = 0 -> ExactRepair; defect > 0 and a support-level global section exists -> ClosedResidual; defect > 0 and none exists -> OpenObstruction". The layer text is "WDP-CH10-D01 diagnostic". Take a draft that already carries these five texts. Replacing one field by a missing value, the empty string, or one space yields the undeclared class of that field. Replacing one field by a text other than the empty string, one space, and that field's accepted text yields the unsupported class of that field and keeps the declared text. The draft of the five accepted texts is the accepted class, and the authority text of that class is "None".
 
 ## Governing obligation
 
-The computing tests are Rust tests of the source repository. The in-repo copy of the module (code/rust/src/sheaf_theory/empirical_presheaf) uses omega_solvers, an external crate that is not a member of the code/rust workspace (cargo metadata --no-deps lists no such package), and the source test file was not imported. These tests are not run here. The Python gate runs the same five-component refusal on its own observer field (node OPS-THREE-ROLE-GATE).
+The computing tests are Rust tests of the source repository. The in-repo copy of the module (code/rust/src/sheaf_theory/empirical_presheaf) uses omega_solvers, an external crate that is not a member of the code/rust workspace (cargo metadata --no-deps lists no such package), and the source test file was not imported. These tests are not run here. Outside this slice: a defect receipt, Unicode whitespace other than one space, the terminal token, the typed profile, and any kernel label other than the one Bell label. The Python gate on node OPS-THREE-ROLE-GATE checks its own observer field and is not this classifier.
 
 ## Source status
 
@@ -41,3 +41,7 @@ See also: `OPS-THREE-ROLE-GATE`.
 - Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-A4`
 - Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.2-1.3`
 - Repository: `dag/derivations/35_foc035_observer_presheaf/tfq_2518_ops_observer_declaration_refusal.md`
+- Repository: `lean4/CampaignOpsObserverDeclarationRefusal.lean`
+- Repository: `checks/independent/ops-observer-declaration-refusal.py`
+- Repository: `dag/derivations/independent/ops-observer-declaration-refusal.md`
+- Repository: `dag/research/campaign_ops-observer-declaration-refusal_lean_replay.json`

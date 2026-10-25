@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr[(-1)^F exp(-beta H)] = n_B(E=0) - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0.
+For every natural-number energy list P, every integer weight function w with w(0)=1, and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by P and f zeros followed by P equals b-f. It is independent of w.
 
 ### Governing Obligation
-Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself.
+Pairing is supplied by the shared spectral list; this does not derive that pairing from an arbitrary supercharge, spectral decomposition on a Hilbert space, the analytic exponential trace, or the ground-energy theorem. The full imported Witten-index statement remains open here. Original target retained as an obligation: On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr[(-1)^F exp(-beta H)] = n_B(E=0) - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0. Prior boundary: Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself.
 
 ### Witness Audit
-Cited NonAbelianGaugeSigns.lean::witten_index_beta_independence does not exist. regge_wdw_core.lean::witten_index_beta_invariant is rfl on WittenIndexTemperatureInvariancePredicate idx idx (idx = idx), a placeholder in an unbuilt file. evaluate_witten_index is absent from cdt_susy_witten_evaluator.py.
+Cited NonAbelianGaugeSigns.lean::witten_index_beta_independence does not exist. regge_wdw_core.lean::witten_index_beta_invariant is rfl on WittenIndexTemperatureInvariancePredicate idx idx (idx = idx), a placeholder in an unbuilt file. evaluate_witten_index is absent from cdt_susy_witten_evaluator.py. Campaign result: For every natural-number energy list P, every integer weight function w with w(0)=1, and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by P and f zeros followed by P equals b-f. It is independent of w. Pairing is supplied by the shared spectral list; this does not derive that pairing from an arbitrary supercharge, spectral decomposition on a Hilbert space, the analytic exponential trace, or the ground-energy theorem. The full imported Witten-index statement remains open here. The separate zero_index_with_ground_modes declaration states equal traces of the literal list [0] and the numeric fact 1+1>0; it has no explicit zero-mode membership or count proposition. It is not a witness for the node-level claim. The independent checker separately verifies zero-energy occupancy for fifteen constructed equal-multiplicity pairs.
 
 ---
 
@@ -31,13 +31,14 @@ Cited NonAbelianGaugeSigns.lean::witten_index_beta_independence does not exist. 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignWittenPairing.lean::CampaignWittenPairing.paired_trace`
+- `lean4/CampaignWittenPairing.lean::CampaignWittenPairing.weight_independent`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/fsp-witten-index-invariance.py`
 
 ### Cited by the source, not in this checkout
 - `external:omega_quantum_physics::quantum_state::witten_index_invariance (cited by the source, not in this checkout)`
@@ -55,3 +56,5 @@ Cited NonAbelianGaugeSigns.lean::witten_index_beta_independence does not exist. 
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:584-597`
   - `papers/core/fsp/lean4/regge_wdw_core.lean:796-800`
+  - `dag/derivations/independent/fsp-witten-index-invariance.md`
+  - `dag/research/campaign_fsp-witten-index-invariance_lean_replay.json`

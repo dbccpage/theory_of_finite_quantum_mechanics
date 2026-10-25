@@ -14,10 +14,10 @@
 If the mark type has a Primcodable structure and startWord is computable, the normal-form reachability problem on words of the fixed regime is not a computable predicate.
 
 ### Governing Obligation
-Prove startWord_computable: a Primcodable structure on a mark type containing the infinite state type and a computability proof for the paired-input encoding.
+The antecedent is a Primcodable instance for Sym G1 (TM1to0.Λ' M1) and Computable startWord. That antecedent is not constructed in this module. The standing claim is the implication from that antecedent to non-computability of the word predicate for Rules M0.
 
 ### Witness Audit
-reach_problem_not_computable composes the computable start-word map with a hypothetical decider and contradicts nfReach_not_computable; the two hypotheses are not proved.
+encoded_instance_reduction has the same type as reach_problem_not_computable. Each takes a Primcodable instance on Sym G1 (TM1to0.Λ' M1) and Computable startWord, and the conclusion is that the word predicate for Rules M0 is not ComputablePred. Printed axioms are propext, Classical.choice, and Quot.sound. The antecedent is a hypothesis of that implication. Review retains CONDITIONAL status because the named operational antecedents have not been constructed; the replay certifies the implication only.
 
 ---
 
@@ -32,6 +32,7 @@ reach_problem_not_computable composes the computable start-word map with a hypot
 
 ### Lean 4 Theorems
 - `lean4/GenesisCompUniv.lean::reach_problem_not_computable`
+- `lean4/CampaignCompC7EncodedInstanceReduction.lean::CampaignCompC7EncodedInstanceReduction.encoded_instance_reduction`
 
 ### Rust Certifiers
 - *none*
@@ -55,3 +56,4 @@ reach_problem_not_computable composes the computable start-word map with a hypot
 - **Cited Sources**:
   - `dag/research/genesis_to_universal_computation.md:129-134`
   - `lean4/GenesisCompUniv.lean:329-339`
+  - `lean4/CampaignCompC7EncodedInstanceReduction.lean:13-17`

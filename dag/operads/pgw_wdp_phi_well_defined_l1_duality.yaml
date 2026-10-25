@@ -3,23 +3,24 @@ node_id: PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'WDP-CH04-P01: Φ_J([δ]) = inf_f J(δ − d₀f) is independent of the representative, because
-    δ'' = δ + d₀g turns the infimum into one over h = f − g, a bijection of C⁰. WDP-CH04-P02 (conditional):
-    when the repair space is finite-dimensional over ℝ or ℂ and J is a norm, the infimum is attained after
-    quotienting ker d₀; the hypotheses cannot be dropped silently for seminorms or infinite carriers.
-    WDP-CH04-C01 (conditional): with positive weights w, Φ_{1,w}([δ]) = max{⟨y, δ⟩ : d₀*y = 0, |y_e| ≤
-    w_e}, an imported finite-dimensional convex-duality result (REF-MATH-005, Rockafellar, Convex Analysis)
-    specialized to the declared weighted graph complex. In code, finite_quotient_l1 minimizes over an
-    explicit candidate list, and exact_quotient_l1 solves the weighted ℓ¹ programme over Fraction and
-    reports a value only after an independent certificate check.'
+  source_statement: On integer triples, the triangle coboundary is d0(f0, f1, f2) = (f1 - f0, f2 - f1,
+    f2 - f0). For all integer vertex triples f and g, d0(f0 + g0, f1 + g1, f2 + g2) equals the componentwise
+    sum of d0(f) and d0(g), and (delta + d0(g)) - d0(f + g) equals delta - d0(f). The sum of absolute
+    residual entries is unchanged by that shift. For delta = (1, 1, 0), every integer repair has absolute
+    residual sum at least 2, and the repair (0, 1, 0) has absolute residual sum 2. For every integer vertex
+    triple g, delta + d0(g) has absolute residual sum at least 2 at every integer repair, and the repair
+    (g0, 1 + g1, g2) has absolute residual sum 2.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - Finite-dimensional convex (linear-programming) strong duality, REF-MATH-005 Rockafellar Convex Analysis,
     specialized to the declared weighted graph complex (assumption)
   - 'Attainment hypothesis: repair space finite-dimensional over R or C and J a norm, not a seminorm (assumption)'
-  source_bottleneck: Representative independence is unconditional; the weak direction of the duality is
-    not imported (WDP-CH04-P07, TFQ-0348, Lean dual_certificate_lower_bound), and C01 is not shown for
-    arbitrary coefficient spaces.
+  source_bottleneck: 'Standing text is the integer triangle coboundary: linearity, residual identity under
+    a vertex shift, and minimum absolute residual sum 2 for delta = (1, 1, 0) and for each integer coboundary
+    shift of that one triple. Representative independence for a general cost, attainment on a real or
+    complex repair space, weighted duality on an arbitrary complex, rational repairs, and a general coefficient
+    field stay open. The weak direction of the duality is not imported (WDP-CH04-P07, TFQ-0348, Lean dual_certificate_lower_bound),
+    and C01 is not shown for arbitrary coefficient spaces.'
   source_refs:
   - dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:921-940
@@ -40,6 +41,38 @@ source_provenance:
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates:
 - kind: def
+  name: d0
+  line: 7
+  signature_excerpt: 'def d0 (f0 f1 f2 : Int) : Int × Int × Int'
+  source: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  source_sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: add3
+  line: 10
+  signature_excerpt: 'def add3 (a b : Int × Int × Int) : Int × Int × Int'
+  source: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  source_sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sub3
+  line: 13
+  signature_excerpt: 'def sub3 (a b : Int × Int × Int) : Int × Int × Int'
+  source: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  source_sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: absSum
+  line: 16
+  signature_excerpt: 'def absSum (v : Int × Int × Int) : Nat'
+  source: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  source_sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  status: source_candidate_requires_semantic_review
+- kind: def
   name: sumOver
   line: 215
   signature_excerpt: 'def sumOver {E : Type} (es : List E) (g : E → ℚ) : ℚ'
@@ -57,6 +90,95 @@ operation_candidates:
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
+  name: d0_linear
+  line: 22
+  signature_excerpt: |-
+    theorem d0_linear (f0 f1 f2 g0 g1 g2 : Int) :
+        d0 (f0 + g0) (f1 + g1) (f2 + g2)
+          = add3 (d0 f0 f1 f2) (d0 g0 g1 g2)
+  source: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  source_sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: residual_shift
+  line: 32
+  signature_excerpt: |-
+    theorem residual_shift (d0v d1v d2v f0 f1 f2 g0 g1 g2 : Int) :
+        sub3 (add3 (d0v, d1v, d2v) (d0 g0 g1 g2))
+            (d0 (f0 + g0) (f1 + g1) (f2 + g2))
+          = sub3 (d0v, d1v, d2v) (d0 f0 f1 f2)
+  source: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  source_sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: absSum_shift
+  line: 44
+  signature_excerpt: |-
+    theorem absSum_shift (d0v d1v d2v f0 f1 f2 g0 g1 g2 : Int) :
+        absSum (sub3 (add3 (d0v, d1v, d2v) (d0 g0 g1 g2))
+            (d0 (f0 + g0) (f1 + g1) (f2 + g2)))
+          = absSum (sub3 (d0v, d1v, d2v) (d0 f0 f1 f2))
+  source: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  source_sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: absSum_ge_two
+  line: 71
+  signature_excerpt: |-
+    theorem absSum_ge_two (f0 f1 f2 : Int) :
+        2 ≤ absSum (sub3 (1, 1, 0) (d0 f0 f1 f2))
+  source: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  source_sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: absSum_attained
+  line: 78
+  signature_excerpt: 'theorem absSum_attained : absSum (sub3 (1, 1, 0) (d0 0 1 0)) = 2'
+  source: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  source_sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: shifted_ge
+  line: 81
+  signature_excerpt: |-
+    theorem shifted_ge (g0 g1 g2 f0 f1 f2 : Int) :
+        2 ≤ absSum (sub3 (add3 (1, 1, 0) (d0 g0 g1 g2))
+            (d0 (f0 + g0) (f1 + g1) (f2 + g2)))
+  source: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  source_sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: shifted_attained
+  line: 87
+  signature_excerpt: |-
+    theorem shifted_attained (g0 g1 g2 : Int) :
+        absSum (sub3 (add3 (1, 1, 0) (d0 g0 g1 g2))
+            (d0 (0 + g0) (1 + g1) (0 + g2))) = 2
+  source: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  source_sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
   name: dual_certificate_lower_bound
   line: 258
   signature_excerpt: |-
@@ -73,6 +195,69 @@ relation_candidates:
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
+- original_ref: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::d0_linear
+  availability: local
+  symbol: d0_linear
+  path: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  declaration_status: declaration_found_not_proof_checked
+  line: 22
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::residual_shift
+  availability: local
+  symbol: residual_shift
+  path: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  declaration_status: declaration_found_not_proof_checked
+  line: 32
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::absSum_shift
+  availability: local
+  symbol: absSum_shift
+  path: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  declaration_status: declaration_found_not_proof_checked
+  line: 44
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::absSum_ge_two
+  availability: local
+  symbol: absSum_ge_two
+  path: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  declaration_status: declaration_found_not_proof_checked
+  line: 71
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::absSum_attained
+  availability: local
+  symbol: absSum_attained
+  path: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  declaration_status: declaration_found_not_proof_checked
+  line: 78
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::shifted_ge
+  availability: local
+  symbol: shifted_ge
+  path: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  declaration_status: declaration_found_not_proof_checked
+  line: 81
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::shifted_attained
+  availability: local
+  symbol: shifted_attained
+  path: lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean
+  repository: this_repository
+  sha256: e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094
+  declaration_status: declaration_found_not_proof_checked
+  line: 87
+  role: source_lead_only
 - original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound
   availability: local
   symbol: dual_certificate_lower_bound

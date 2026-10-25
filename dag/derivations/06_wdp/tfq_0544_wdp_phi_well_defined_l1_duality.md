@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-WDP-CH04-P01: Φ_J([δ]) = inf_f J(δ − d₀f) is independent of the representative, because δ' = δ + d₀g turns the infimum into one over h = f − g, a bijection of C⁰. WDP-CH04-P02 (conditional): when the repair space is finite-dimensional over ℝ or ℂ and J is a norm, the infimum is attained after quotienting ker d₀; the hypotheses cannot be dropped silently for seminorms or infinite carriers. WDP-CH04-C01 (conditional): with positive weights w, Φ_{1,w}([δ]) = max{⟨y, δ⟩ : d₀*y = 0, |y_e| ≤ w_e}, an imported finite-dimensional convex-duality result (REF-MATH-005, Rockafellar, Convex Analysis) specialized to the declared weighted graph complex. In code, finite_quotient_l1 minimizes over an explicit candidate list, and exact_quotient_l1 solves the weighted ℓ¹ programme over Fraction and reports a value only after an independent certificate check.
+On integer triples, the triangle coboundary is d0(f0, f1, f2) = (f1 - f0, f2 - f1, f2 - f0). For all integer vertex triples f and g, d0(f0 + g0, f1 + g1, f2 + g2) equals the componentwise sum of d0(f) and d0(g), and (delta + d0(g)) - d0(f + g) equals delta - d0(f). The sum of absolute residual entries is unchanged by that shift. For delta = (1, 1, 0), every integer repair has absolute residual sum at least 2, and the repair (0, 1, 0) has absolute residual sum 2. For every integer vertex triple g, delta + d0(g) has absolute residual sum at least 2 at every integer repair, and the repair (g0, 1 + g1, g2) has absolute residual sum 2.
 
 ### Governing Obligation
 Return the same Φ_J for every representative of a class, report attainment only under the finite-dimensional norm hypothesis, and treat weighted-ℓ¹ strong duality as imported, accepting an instance only with a matching repair and bounded circulation.
@@ -31,13 +31,20 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> Representative independence is unconditional; the weak direction of the duality is not imported (WDP-CH04-P07, TFQ-0348, Lean dual_certificate_lower_bound), and C01 is not shown for arbitrary coefficient spaces.
+> Standing text is the integer triangle coboundary: linearity, residual identity under a vertex shift, and minimum absolute residual sum 2 for delta = (1, 1, 0) and for each integer coboundary shift of that one triple. Representative independence for a general cost, attainment on a real or complex repair space, weighted duality on an arbitrary complex, rational repairs, and a general coefficient field stay open. The weak direction of the duality is not imported (WDP-CH04-P07, TFQ-0348, Lean dual_certificate_lower_bound), and C01 is not shown for arbitrary coefficient spaces.
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- [`lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::absSum_attained`](../../../lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean)
+- [`lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::absSum_ge_two`](../../../lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean)
+- [`lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::absSum_shift`](../../../lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean)
+- [`lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::d0_linear`](../../../lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean)
+- [`lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::residual_shift`](../../../lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean)
+- [`lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::shifted_attained`](../../../lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean)
+- [`lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::shifted_ge`](../../../lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean)
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)

@@ -1,22 +1,22 @@
 # FSP-LAUGHLIN-EXCHANGE-PHASE
 
-Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `IMPORTED_ASSUMPTION`. Evidence grade: **E1**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `IMPORTED_ASSUMPTION`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta = pi/m.
+> In the formal angle-residue model modulo 2m, for every m\>1 the distinct residues 1 and m+1 have the same doubled residue 2. Thus full-braid monodromy alone does not select an exchange residue. At m=3 the two residues are 1 and 4. This is an algebraic ambiguity, not a Berry-phase derivation.
 
 ## Grade
 
-Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
-- distinct cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 6
+- cited Lean, Rust or Python symbols found in their in-repo files: 4
+- distinct cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite a Lean, Rust or Python symbol that exists in an in-repo file
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).
+The statistical exchange phase of Laughlin quasiholes requires the wavefunction, adiabatic transport and Berry connection, plus a branch/continuity convention. The algebraic non-uniqueness does not refute the Arovas-Schrieffer-Wilczek result. Original target retained as an obligation: Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta = pi/m. Prior boundary: No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).
 
 ## Source status
 
@@ -42,13 +42,53 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/CampaignLaughlinRootAmbiguity.lean`
+
+- file: [lean4/CampaignLaughlinRootAmbiguity.lean](../../../lean4/CampaignLaughlinRootAmbiguity.lean)
+- sha256 (`bytes`): `c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314`
+- cited in: node.lean, receipt dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json (CampaignLaughlinRootAmbiguity), receipt dag/research/pr_379_round2_replay.json (CampaignLaughlinRootAmbiguity), record TFQ-1208
+- replay: `verified`
+  - receipt [dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json](../../../dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json) (module `CampaignLaughlinRootAmbiguity`): recorded sha256 `c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_379_round2_replay.json](../../../dag/research/pr_379_round2_replay.json) (module `CampaignLaughlinRootAmbiguity`): recorded sha256 `c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignLaughlinRootAmbiguity`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignLaughlinRootAmbiguity.monodromy` | yes | yes | yes | none | `#print axioms CampaignLaughlinRootAmbiguity.monodromy` |
+| `CampaignLaughlinRootAmbiguity.monodromy_not_injective` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignLaughlinRootAmbiguity.monodromy_not_injective` |
+| `CampaignLaughlinRootAmbiguity.roots_at_third_filling` | yes | yes | yes | none | `#print axioms CampaignLaughlinRootAmbiguity.roots_at_third_filling` |
+| `CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots` |
+
+- counts toward the grade: yes
+
+### Python: `checks/independent/fsp-laughlin-exchange-phase.py`
+
+- file: [checks/independent/fsp-laughlin-exchange-phase.py](../../../checks/independent/fsp-laughlin-exchange-phase.py)
+- sha256 (`bytes`): `d6e5d0954e3d144a5cbc51987c5622b3465c98be7fd81b215a5ffa0eab9c73ba`
+- cited in: record TFQ-1208
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md`
 
 - file: [dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md](../../../dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md)
-- sha256 (`lf-normalised`): `77205f624d406801e014b0306bbbb87add5543f5719395237a33aa258809dbbd`
+- sha256 (`lf-normalised`): `f056366808c5a37a5c63ad71a601c2684371b4b5902f580f51568e14b5f52ff8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1208
 - counts toward the grade: no
+
+### Documents and data: `dag/derivations/independent/fsp-laughlin-exchange-phase.md`
+
+- file: [dag/derivations/independent/fsp-laughlin-exchange-phase.md](../../../dag/derivations/independent/fsp-laughlin-exchange-phase.md)
+- sha256 (`lf-normalised`): `a73514b196b8d7cfa78615844aaf7f4567abfac96050dc13045994c9dfe199e4`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json`
+
+- file: [dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json](../../../dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json)
+- sha256 (`lf-normalised`): `2f01ae58807dee6deabfc323533448ae97c649de25ce65fc9b8e8dbd70d947ee`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign.md`
 

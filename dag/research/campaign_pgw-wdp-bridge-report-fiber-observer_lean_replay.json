@@ -1,0 +1,122 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T19:04:52.932527+00:00",
+  "source_base": "c50dc1b472596d1b5934408b00b9fbb72db91345",
+  "result": "Narrowed; original node status retained. For arbitrary types X, R and D, a report r:X→R and a decision d:X→D admit a unique decoder on the actual image of r exactly when d is constant on every fibre of r. Equal reports with unequal decisions remain an obstruction after every report-only postprocessor. The joint report (r,d) is sufficient for d.",
+  "proof_boundary": "The maps are declared. The result constructs no evaluator, permission grantor or physical authenticity test. The decoder is classical/noncomputable in general. Unused reports require no default value, and the empty case is included.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "mathlib_note": "Only Std is imported. Lake built an exact source copy in a minimal scratch package with no Mathlib dependency; the full repository Mathlib workspace was not built.",
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/next-five/pgw-wdp-bridge-report-fiber-observer/lake",
+    "results": [
+      {
+        "module": "CampaignReportFiberDescent",
+        "dag_node": "PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER",
+        "source": "lean4/CampaignReportFiberDescent.lean",
+        "sha256": "135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56",
+        "sha256_after_build": "135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignReportFiberDescent.unique_decoder_iff",
+          "CampaignReportFiberDescent.Image",
+          "CampaignReportFiberDescent.lifted",
+          "CampaignReportFiberDescent.ConstantOnFibers",
+          "CampaignReportFiberDescent.postprocess_obstruction",
+          "CampaignReportFiberDescent.joint_report_sufficient",
+          "CampaignReportFiberDescent.lost_bit_obstruction"
+        ],
+        "axioms": {
+          "CampaignReportFiberDescent.unique_decoder_iff": [
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignReportFiberDescent.Image": [],
+          "CampaignReportFiberDescent.lifted": [],
+          "CampaignReportFiberDescent.ConstantOnFibers": [],
+          "CampaignReportFiberDescent.postprocess_obstruction": [],
+          "CampaignReportFiberDescent.joint_report_sufficient": [],
+          "CampaignReportFiberDescent.lost_bit_obstruction": []
+        },
+        "output": "'CampaignReportFiberDescent.Image' does not depend on any axioms\n'CampaignReportFiberDescent.lifted' does not depend on any axioms\n'CampaignReportFiberDescent.ConstantOnFibers' does not depend on any axioms\n'CampaignReportFiberDescent.unique_decoder_iff' depends on axioms: [Classical.choice, Quot.sound]\n'CampaignReportFiberDescent.postprocess_obstruction' does not depend on any axioms\n'CampaignReportFiberDescent.joint_report_sufficient' does not depend on any axioms\n'CampaignReportFiberDescent.lost_bit_obstruction' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "standalone_lean": {
+    "command": [
+      "lean",
+      "lean4/CampaignReportFiberDescent.lean"
+    ],
+    "exit_code": 0,
+    "seconds": 0.329,
+    "output": "'CampaignReportFiberDescent.unique_decoder_iff' depends on axioms: [Classical.choice, Quot.sound]\n'CampaignReportFiberDescent.postprocess_obstruction' does not depend on any axioms\n'CampaignReportFiberDescent.joint_report_sufficient' does not depend on any axioms\n'CampaignReportFiberDescent.lost_bit_obstruction' does not depend on any axioms\n"
+  },
+  "lake_build": {
+    "command": [
+      "lake",
+      "build",
+      "CampaignReportFiberDescent"
+    ],
+    "exit_code": 0,
+    "seconds": 0.443,
+    "output": "ℹ [2/3] Built CampaignReportFiberDescent (341ms)\ninfo: CampaignReportFiberDescent.lean:42:0: 'CampaignReportFiberDescent.unique_decoder_iff' depends on axioms: [Classical.choice, Quot.sound]\ninfo: CampaignReportFiberDescent.lean:43:0: 'CampaignReportFiberDescent.postprocess_obstruction' does not depend on any axioms\ninfo: CampaignReportFiberDescent.lean:44:0: 'CampaignReportFiberDescent.joint_report_sufficient' does not depend on any axioms\ninfo: CampaignReportFiberDescent.lean:45:0: 'CampaignReportFiberDescent.lost_bit_obstruction' does not depend on any axioms\nBuild completed successfully (3 jobs).\ninfo: campaign_replay: no previous manifest, creating one from scratch\ninfo: toolchain not updated; already up-to-date\n"
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/pgw-wdp-bridge-report-fiber-observer.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.034,
+    "output": "1555 report/decision maps including empty domain and unused reports: unique-image-decoder equivalence and postprocessing obstruction pass\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/next-five/pgw-wdp-bridge-report-fiber-observer/lakefile-registered.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 4.034,
+    "output": ""
+  },
+  "axiom_audit": {
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/next-five/pgw-wdp-bridge-report-fiber-observer/lake",
+    "input_path": "Audit.lean",
+    "input_contents": "import CampaignReportFiberDescent\n#print axioms CampaignReportFiberDescent.Image\n#print axioms CampaignReportFiberDescent.lifted\n#print axioms CampaignReportFiberDescent.ConstantOnFibers\n#print axioms CampaignReportFiberDescent.unique_decoder_iff\n#print axioms CampaignReportFiberDescent.postprocess_obstruction\n#print axioms CampaignReportFiberDescent.joint_report_sufficient\n#print axioms CampaignReportFiberDescent.lost_bit_obstruction\n",
+    "input_sha256": "756c2b9430f2e85852288d88e1a82a9f13e6e2d6bfebd48447d640d7056573af",
+    "module_source_sha256": "135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56",
+    "exit_code": 0,
+    "output": "'CampaignReportFiberDescent.Image' does not depend on any axioms\n'CampaignReportFiberDescent.lifted' does not depend on any axioms\n'CampaignReportFiberDescent.ConstantOnFibers' does not depend on any axioms\n'CampaignReportFiberDescent.unique_decoder_iff' depends on axioms: [Classical.choice, Quot.sound]\n'CampaignReportFiberDescent.postprocess_obstruction' does not depend on any axioms\n'CampaignReportFiberDescent.joint_report_sufficient' does not depend on any axioms\n'CampaignReportFiberDescent.lost_bit_obstruction' does not depend on any axioms\n",
+    "scratch_package": {
+      "lakefile.toml": "name = \"campaign_replay\"\nversion = \"0.1.0\"\n[[lean_lib]]\nname = \"CampaignReportFiberDescent\"\n",
+      "lean-toolchain": "leanprover/lean4:v4.35.0\n",
+      "module_copy": {
+        "from": "lean4/CampaignReportFiberDescent.lean",
+        "to": "CampaignReportFiberDescent.lean",
+        "sha256": "135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56"
+      }
+    }
+  }
+}

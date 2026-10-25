@@ -129,8 +129,8 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0052` | `FINITE_GAUGE` | `COMPUTATIONAL_CONTROL` | `FQ-DISCRETE-DYNAMICS-DICHOTOMY` (PROVED_LEAN), `L1-CHAIN-D1D0-AXIOM` (ADMITTED_PRIMITIVE), `DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO` (PROVED_LEAN) | `FQ-DISCRETE-DYNAMICS-DICHOTOMY`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-CHAIN-D1D0-AXIOM`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0053` | `FINITE_GAUGE` | `COMPUTATIONAL_CONTROL` | `FQ-U1-TRANSPORT-N-TORSION` (PROVED_LEAN), `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `FQ-U1-TRANSPORT-N-TORSION`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0054` | `FINITE_GAUGE` | `COMPUTATIONAL_CONTROL` | `FQ-U1-TRANSPORT-N-TORSION` (PROVED_LEAN), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `FQ-U1-TRANSPORT-N-TORSION`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0055` | `FINITE_GAUGE` | `GAP` | `FQ-GAP-U1-CIRCLE` (CONDITIONAL), `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0056` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0055` | `FINITE_GAUGE` | `GAP` | `FQ-GAP-U1-CIRCLE` (CONDITIONAL), `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_integer_result_reviewed / statement_narrowed |
+| `TFQ-0056` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_integer_result_reviewed / statement_narrowed |
 | `TFQ-0057` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN), `FQ-U1-TRANSPORT-N-TORSION` (PROVED_LEAN) | `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-U1-TRANSPORT-N-TORSION`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0058` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0059` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `DS-QM032-FINITE-FEYNMAN-SHADOW` (COMPUTATIONALLY_CHECKED), `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED) | `DS-QM032-FINITE-FEYNMAN-SHADOW`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`: scoped_result_or_obstruction_reviewed / status_lowered |
@@ -145,9 +145,9 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0068` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0069` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0070` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0071` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0071` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_integer_result_reviewed / statement_narrowed |
 | `TFQ-0072` | `FINITE_QED` | `OPEN_OBLIGATION` | `DS-QM032-FINITE-FEYNMAN-SHADOW` (COMPUTATIONALLY_CHECKED), `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED) | `DS-QM032-FINITE-FEYNMAN-SHADOW`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`: scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-0073` | `FINITE_QED` | `GAP` | `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0073` | `FINITE_QED` | `GAP` | `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | scoped_integer_result_reviewed / statement_narrowed |
 | `TFQ-0074` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0075` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0076` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
@@ -157,10 +157,10 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0080` | `FINITE_ELECTROWEAK` | `OPEN_OBLIGATION` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0081` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0082` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0083` | `FINITE_ELECTROWEAK` | `GAP` | `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL), `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED), `FQ-GAP-STONE-CONTINUOUS-TIME` (CONDITIONAL), `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-GAP-STONE-CONTINUOUS-TIME`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0083` | `FINITE_ELECTROWEAK` | `GAP` | `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL), `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED), `FQ-GAP-STONE-CONTINUOUS-TIME` (CONDITIONAL), `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_integer_result_reviewed / statement_narrowed; `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-GAP-STONE-CONTINUOUS-TIME`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0084` | `FINITE_QG` | `OPEN_OBLIGATION` | `TFQ-0084` (OPEN) | - |
 | `TFQ-0085` | `CONTINUUM_INTERFACE` | `GAP` | `TFQ-0085` (OPEN) | - |
-| `TFQ-0086` | `FINITE_QG` | `FINITE_ADMITTED` | `PG-ROOT-DIFF-STRUCTURE` (ADMITTED_PRIMITIVE), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `PG-ROOT-DIFF-STRUCTURE`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0086` | `FINITE_QG` | `FINITE_ADMITTED` | `PG-ROOT-DIFF-STRUCTURE` (ADMITTED_PRIMITIVE), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `PG-ROOT-DIFF-STRUCTURE`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_integer_result_reviewed / statement_narrowed |
 | `TFQ-0087` | `FINITE_QG` | `FINITE_CARRIER` | `PG-ROOT-DIFF-STRUCTURE` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0088` | `FINITE_QG` | `FINITE_SCHEMA` | `TFQ-0088` (SOURCE_RECORD) | - |
 | `TFQ-0089` | `FINITE_QG` | `FINITE_SCHEMA` | `TFQ-0089` (SOURCE_RECORD) | - |
@@ -185,11 +185,11 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0108` | `FINITE_QG` | `GAP` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0109` | `FINITE_QG` | `FINITE_MAP` | `TFQ-0109` (SOURCE_RECORD) | - |
 | `TFQ-0110` | `FINITE_QG` | `NOT_QG` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0111` | `FINITE_QG` | `OPEN_INTERFACE` | `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0111` | `FINITE_QG` | `OPEN_INTERFACE` | `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | scoped_integer_result_reviewed / statement_narrowed |
 | `TFQ-0112` | `CONTINUUM_INTERFACE` | `NAMED_INVENTORY` | `TFQ-0112` (SOURCE_RECORD) | - |
 | `TFQ-0113` | `CONTINUUM_INTERFACE` | `NAMED_INVENTORY` | `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0114` | `CONTINUUM_INTERFACE` | `GAP` | `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-0115` | `CONTINUUM_INTERFACE` | `GAP` | `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0115` | `CONTINUUM_INTERFACE` | `GAP` | `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | scoped_integer_result_reviewed / statement_narrowed |
 | `TFQ-0116` | `CONTINUUM_INTERFACE` | `EMPTY_SHELF` | `TFQ-0116` (SOURCE_RECORD) | - |
 | `TFQ-0117` | `CONTINUUM_INTERFACE` | `OPEN_ADJOINING` | `TFQ-0117` (OPEN) | - |
 | `TFQ-0118` | `CONTINUUM_INTERFACE` | `OPEN_OBLIGATIONS` | `TFQ-0118` (OPEN) | - |
@@ -308,7 +308,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0231` | `ENGINE_CUSTODY` | `SOURCE_RECORD` | `TFQ-0231` (SOURCE_RECORD) | - |
 | `TFQ-0232` | `ENGINE_CUSTODY` | `SOURCE_RECORD` | `TFQ-0232` (SOURCE_RECORD) | - |
 | `TFQ-0233` | `ENGINE_CUSTODY` | `OPEN_OBLIGATION` | `TFQ-0233` (OPEN) | - |
-| `TFQ-0234` | `FINITE_QM_CORE` | `SOURCE_RECORD` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_LEAN), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0234` | `FINITE_QM_CORE` | `SOURCE_RECORD` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_LEAN), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_integer_result_reviewed / statement_narrowed |
 | `TFQ-0235` | `FINITE_QM_DYNAMICS` | `SOURCE_RECORD` | `DS-QM021-IDEMPOTENT-CONDITIONING` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0236` | `FINITE_QM_DYNAMICS` | `SOURCE_RECORD` | `DS-QM021-IDEMPOTENT-CONDITIONING` (COMPUTATIONALLY_CHECKED), `DS-QM030-PROJECTION-POSTULATE-AND-BORN-PAIRING-IMPORT` (IMPORTED_ASSUMPTION) | `DS-QM021-IDEMPOTENT-CONDITIONING`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM030-PROJECTION-POSTULATE-AND-BORN-PAIRING-IMPORT`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0237` | `FINITE_QM_DYNAMICS` | `OPEN_OBLIGATION` | `TFQ-0237` (OPEN) | - |
@@ -365,7 +365,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0288` | `L1_TO_L2` | `SOURCE_RECORD` | `TFQ-0288` (SOURCE_RECORD) | - |
 | `TFQ-0289` | `FINITE_HILBERT` | `SOURCE_RECORD` | `TFQ-0289` (SOURCE_RECORD) | - |
 | `TFQ-0290` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM1-DIRECT-NORMALIZATION` (PROVED_LEAN), `FQ-BORN-NORMALIZATION-REDUNDANCY` (PROVED_LEAN) | `L1-QM020-THM1-DIRECT-NORMALIZATION`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-BORN-NORMALIZATION-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0291` | `L1_TO_L2` | `OPEN_OBLIGATION` | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT` (PROVED_LEAN), `L1-QM020-THM2B-MINKOWSKI` (IMPORTED_ASSUMPTION) | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-QM020-THM2B-MINKOWSKI`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0291` | `L1_TO_L2` | `OPEN_OBLIGATION` | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT` (PROVED_LEAN), `L1-QM020-THM2B-MINKOWSKI` (IMPORTED_ASSUMPTION) | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-QM020-THM2B-MINKOWSKI`: scoped_natural_arithmetic_reviewed / statement_narrowed |
 | `TFQ-0292` | `L1_TO_L2` | `GAP` | `L1-IMP-SQRT-FIELD` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0293` | `L1_TO_L2` | `GAP` | `L1-IMP-COMPLEX-FIELD` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0294` | `L1_TO_L2` | `GAP` | `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / statement_narrowed |
@@ -3365,7 +3365,7 @@ Obligation: Declare and check the transport from GenesisIncidence's boundary con
 - Parent: `TFQ-0542`
 - Status: `CONDITIONAL`
 
-WDP-CH04-P01: Φ_J([δ]) = inf_f J(δ − d₀f) is independent of the representative, because δ' = δ + d₀g turns the infimum into one over h = f − g, a bijection of C⁰. WDP-CH04-P02 (conditional): when the repair space is finite-dimensional over ℝ or ℂ and J is a norm, the infimum is attained after quotienting ker d₀; the hypotheses cannot be dropped silently for seminorms or infinite carriers. WDP-CH04-C01 (conditional): with positive weights w, Φ_{1,w}([δ]) = max{⟨y, δ⟩ : d₀*y = 0, |y_e| ≤ w_e}, an imported finite-dimensional convex-duality result (REF-MATH-005, Rockafellar, Convex Analysis) specialized to the declared weighted graph complex. In code, finite_quotient_l1 minimizes over an explicit candidate list, and exact_quotient_l1 solves the weighted ℓ¹ programme over Fraction and reports a value only after an independent certificate check.
+On integer triples, the triangle coboundary is d0(f0, f1, f2) = (f1 - f0, f2 - f1, f2 - f0). For all integer vertex triples f and g, d0(f0 + g0, f1 + g1, f2 + g2) equals the componentwise sum of d0(f) and d0(g), and (delta + d0(g)) - d0(f + g) equals delta - d0(f). The sum of absolute residual entries is unchanged by that shift. For delta = (1, 1, 0), every integer repair has absolute residual sum at least 2, and the repair (0, 1, 0) has absolute residual sum 2. For every integer vertex triple g, delta + d0(g) has absolute residual sum at least 2 at every integer repair, and the repair (g0, 1 + g1, g2) has absolute residual sum 2.
 
 Obligation: Return the same Φ_J for every representative of a class, report attainment only under the finite-dimensional norm hypothesis, and treat weighted-ℓ¹ strong duality as imported, accepting an instance only with a matching repair and bounded circulation.
 
@@ -3485,9 +3485,9 @@ Obligation: Treat the Genesis Ongoing cancellation, raising and marked-fill data
 - Parent: `TFQ-0554`
 - Status: `CONDITIONAL`
 
-GEN-WDP-03: with actual cases X, a declared evaluation report E: X → Reports and a protected admission or permission decision A: X → Decisions, a decoder on the actual image of E exists exactly when E(x) = E(y) implies A(x) = A(y); necessity applies the decoder to equal reports, sufficiency assigns each occupied report the decision of any representative, and equal reports with unequal decisions forbid every decoder and every report-only postprocessor. GEN-WDP-06 records that event multisets can lose final state, final states can lose occurrence counts, and fresh hashes can bind false receipts. This is the fibre criterion of the S(n)/MSS-N hand-off (TFQ-0338) and of WDP adapter descent (TFQ-0553), so a protected question passes from the realized report to a WDP observer exactly when it is constant on the fibres of the declared report.
+For arbitrary types X, R and D, a report r:X→R and a decision d:X→D admit a unique decoder on the actual image of r exactly when d is constant on every fibre of r. Equal reports with unequal decisions remain an obstruction after every report-only postprocessor. The joint report (r,d) is sufficient for d.
 
-Obligation: Admit a WDP observer for a protected question only when the question is constant on the declared report's fibres, return a conflicting pair otherwise, and keep evaluation and permission in a joint report when both are protected.
+Obligation: Keep declared report and decision assumptions explicit; no permission or physical authenticity follows from this factorization criterion.
 
 ### TFQ-0557 wdp-synthesis-trunk-tiers
 
@@ -10180,9 +10180,9 @@ Obligation: Give the lattice model, prove det(d xi / d phi) = det D_F, and treat
 - DAG node: `FSP-WITTEN-INDEX-INVARIANCE`
 - Paper: [derivation](derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md)
 
-On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr[(-1)^F exp(-beta H)] = n_B(E=0) - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0.
+For every natural-number energy list P, every integer weight function w with w(0)=1, and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by P and f zeros followed by P equals b-f. It is independent of w.
 
-Obligation: Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself.
+Obligation: Pairing is supplied by the shared spectral list; this does not derive that pairing from an arbitrary supercharge, spectral decomposition on a Hilbert space, the analytic exponential trace, or the ground-energy theorem. The full imported Witten-index statement remains open here. Original target retained as an obligation: On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr[(-1)^F exp(-beta H)] = n_B(E=0) - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0. Prior boundary: Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself.
 
 ### TFQ-1207 Kitaev honeycomb exact Majorana solution
 
@@ -10192,9 +10192,9 @@ Obligation: Standard result imported; it presupposes an exact lattice supercharg
 - DAG node: `FSP-KITAEV-HONEYCOMB-SOLUTION`
 - Paper: [derivation](derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md)
 
-Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace).
+On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X.
 
-Obligation: A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.
+Obligation: This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed. Original target retained as an obligation: Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace). Prior boundary: A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.
 
 ### TFQ-1208 Laughlin quasihole exchange phase pi/m
 
@@ -10204,9 +10204,9 @@ Obligation: A sign-free sampling claim for this representation is not made or ch
 - DAG node: `FSP-LAUGHLIN-EXCHANGE-PHASE`
 - Paper: [derivation](derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md)
 
-Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta = pi/m.
+In the formal angle-residue model modulo 2m, for every m>1 the distinct residues 1 and m+1 have the same doubled residue 2. Thus full-braid monodromy alone does not select an exchange residue. At m=3 the two residues are 1 and 4. This is an algebraic ambiguity, not a Berry-phase derivation.
 
-Obligation: No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).
+Obligation: The statistical exchange phase of Laughlin quasiholes requires the wavefunction, adiabatic transport and Berry connection, plus a branch/continuity convention. The algebraic non-uniqueness does not refute the Arovas-Schrieffer-Wilczek result. Original target retained as an obligation: Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta = pi/m. Prior boundary: No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).
 
 ### TFQ-1209 Fibonacci anyon fusion and braiding data
 
@@ -10640,9 +10640,9 @@ Obligation: None for the lemma; its use on the legacy carrier needs the legacy d
 - DAG node: `MAJ-LEGACY-CARRIER-RETRACTION`
 - Paper: [derivation](derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md)
 
-Given the recorded measurement that legacy tetron_carrier.py had dim H1 = 0 at T = 1..4, every closed residual on it was Exact, so its results support no statement about logical sectors and are superseded by the tetron-array family.
+For every natural number t, a 1-cochain is a function from Fin t to Bool. The coboundary d0 is the identity on those functions, and d1 sends each of them to the zero function Fin 1 to Bool. For every vertex function a, d1(d0(a)) equals that zero function. Every 1-cochain is a cocycle and is exact. A closed residual is a cocycle that is not exact, so no 1-cochain is a closed residual. In particular this holds for t = 1, t = 2, t = 3 and t = 4.
 
-Obligation: The legacy carrier and its dim H1 = 0 computation are not in this checkout; the hypothesis is a change-log record.
+Obligation: Standing text is the identity coboundary on functions Fin t to Bool: d1 after d0 is the zero function on one coordinate, every 1-cochain is exact, and none is a closed residual, including the sizes t = 1, 2, 3 and 4. The recorded measurement that tetron_carrier.py had dim H1 = 0 at those sizes is not in this checkout. A logical-sector reading of that missing file, and a comparison with the tetron-array family, stay open. The older citation legacy_carrier_obstruction assumes trivial first cohomology and does not discharge this slice.
 
 ### TFQ-1155 Per-class minimum weights 3, 4, 7 and distance 3 on the 3x4 torus
 
@@ -11138,7 +11138,7 @@ The one-state machine that moves right forever reaches words of every length und
 
 Obligation: One concrete machine; the general statement for every general-purpose regime is conditional (COMP-C3e).
 
-### TFQ-1295 No fixed length bound suffices for a general-purpose regime
+### TFQ-1295 One-letter no-rule reachability at length bound 1
 
 - UUID: `6e2302e2-dad6-5e9c-b23a-8e0735be440a`
 - Parent: `TFQ-1294`
@@ -11146,9 +11146,9 @@ Obligation: One concrete machine; the general statement for every general-purpos
 - DAG node: `COMP-C3-NO-FIXED-BOUND`
 - Paper: [derivation](derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md)
 
-If the map from an input to its start word were computable and one length bound witnessed every halting start word inside the bound, normal-form reachability would be decidable, contradicting nfReach_not_computable.
+On lists of the one letter 0, with no rewrite step, reachability is equality. The length bound is 1. The word (0) has length 1 and reaches itself. The empty word has length 0, so it is inside the bound, and (0) does not reach it. The word (0, 0) has length 2, so it is outside the bound, and (0) does not reach it.
 
-Obligation: Prove startWord_computable (COMP-C7c) and state the uniform version in Lean.
+Obligation: Standing text is one letter, no rewrite step, and length bound 1: (0) reaches itself, misses the empty word, and (0, 0) has length 2. A computable map from an input to a start word, one bound containing every halting start word, and a clash with normal-form reachability stay open. The older citations reachB_iff and nfReach_not_computable do not discharge this slice.
 
 ### TFQ-1296 Genesis stepE has no cap on admission
 
@@ -11328,7 +11328,7 @@ Obligation: The statement is about the family startWord; that the input-to-start
 
 If the mark type has a Primcodable structure and startWord is computable, the normal-form reachability problem on words of the fixed regime is not a computable predicate.
 
-Obligation: Prove startWord_computable: a Primcodable structure on a mark type containing the infinite state type and a computability proof for the paired-input encoding.
+Obligation: The antecedent is a Primcodable instance for Sym G1 (TM1to0.Λ' M1) and Computable startWord. That antecedent is not constructed in this module. The standing claim is the implication from that antecedent to non-computability of the word predicate for Rules M0.
 
 ### TFQ-1311 Two erasing steps reach one fixed word
 
@@ -11494,9 +11494,9 @@ Obligation: The identification of the qubit trace norm with the Bloch distance u
 - DAG node: `QCV-CONDITIONAL-VIABILITY-CERTIFICATE`
 - Paper: [derivation](derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md)
 
-If g < 1, kappa > 0, r >= lam/((1-g)*kappa), c(k) <= C, max(C,1)*p(0) < 1 and the level errors p(k) >= 0 obey p(k+1) <= c(k)*p(k)^2 whenever the backlog is bounded, then the backlog is bounded and for every L >= 0 and epsilon > 0 some level k has L*p(k) <= epsilon; with max(C,1)*p(0) <= 1/2 any k with L <= epsilon*max(C,1)*2^(2^k) works.
+If the initial backlog q0 is nonnegative, g < 1, kappa > 0, r is at least lam/((1-g)*kappa), c(k) <= C for every natural number k, p(k) >= 0, max(C,1)*p(0) < 1, and p(k+1) <= c(k)*p(k)^2 whenever BacklogBounded lam g (kappa*r) q0 holds, then that backlog predicate holds and for every rational L >= 0 and every epsilon > 0 some level k has L*p(k) <= epsilon. If also max(C,1)*p(0) <= 1/2, then every natural number k with L <= epsilon*max(C,1)*2^(2^k) has L*p(k) <= epsilon.
 
-Obligation: The noise recurrence is a hypothesis: independence or locality of noise, fresh ancillas, fast classical control and bounded overhead are not shown for any device; the hypotheses are only shown jointly satisfiable on declared toy numbers.
+Obligation: The initial backlog q0 is nonnegative. The recurrence, the supply bound, and the overhead bound are hypotheses of the implication. A device, a noise process, and a classical decoder are outside this implication. A negative initial backlog is outside the narrowed statement.
 
 ### TFQ-1325 Inside the model, viability holds exactly when the fresh supply reaches threshold and the overhead means are bounded
 
@@ -12060,9 +12060,9 @@ Obligation: Record only. Full text of arXiv:1405.5563 audited on 2026-10-22; its
 - DAG node: `CT-INFORMATION-MEDIA-INTEROPERABILITY`
 - Paper: [derivation](derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md)
 
-Imported principles, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563, Sections 3-6 pp. 9-12): a computation variable is a set S of at least two possible attributes for which all permutation tasks are possible with side-effects (Section 3 p. 9); a variable S is clonable if the cloning task R_S(x0) = union_{x in S} {(x, x0) -> (x, x)} is possible with side-effects for some preparable blank attribute x0 (Section 4 eq. (3) p. 10); an information variable is a clonable computation variable, and an information medium is a substrate with at least one information variable (Section 4 p. 10). Distinguishability is defined afterward in Section 5 (eq. (4) p. 11) by mapping into an information variable, avoiding circularity, and every information variable is then shown to be distinguishable. Principle III (interoperability, Section 6 p. 12) states that the composite S1 + S2 of two substrates with information variables S1 and S2 is an information medium with information variable S1 x S2.
+For arbitrary types, cloners on admitted blank slices compose to a cloner on their Cartesian product. Product-local reversible maps alone do not implement all permutations of two bits: controlled flip is an involution but cannot be written (f(a),g(b)). Product cloning therefore does not supply the full permutation-task clause of interoperability.
 
-Obligation: The interoperability principle (Principle III, Section 6 p. 12) constrains composite information variables to include S1 x S2 in the source's framework. It is not shown to select the Hilbert tensor product, local tomography or any positive cone, so it does not discharge FQ-GAP-TENSOR-UNIQUENESS.
+Obligation: The declared functional task model does not prove the physical possibility of cloning or joint operations with side-effects. The imported interoperability principle and any Hilbert tensor-product/local-tomography conclusion remain separate obligations. Original target retained as an obligation: Imported principles, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563, Sections 3-6 pp. 9-12): a computation variable is a set S of at least two possible attributes for which all permutation tasks are possible with side-effects (Section 3 p. 9); a variable S is clonable if the cloning task R_S(x0) = union_{x in S} {(x, x0) -> (x, x)} is possible with side-effects for some preparable blank attribute x0 (Section 4 eq. (3) p. 10); an information variable is a clonable computation variable, and an information medium is a substrate with at least one information variable (Section 4 p. 10). Distinguishability is defined afterward in Section 5 (eq. (4) p. 11) by mapping into an information variable, avoiding circularity, and every information variable is then shown to be distinguishable. Principle III (interoperability, Section 6 p. 12) states that the composite S1 + S2 of two substrates with information variables S1 and S2 is an information medium with information variable S1 x S2. Prior boundary: The interoperability principle (Principle III, Section 6 p. 12) constrains composite information variables to include S1 x S2 in the source's framework. It is not shown to select the Hilbert tensor product, local tomography or any positive cone, so it does not discharge FQ-GAP-TENSOR-UNIQUENESS.
 
 ### TFQ-2007 Imported: superinformation medium
 
@@ -13054,9 +13054,9 @@ Obligation: The norm and Term rows are arithmetic on the defect 2, not receipts 
 - DAG node: `OPS-OBSERVER-DECLARATION-REFUSAL`
 - Paper: [derivation](derivations/35_foc035_observer_presheaf/tfq_2518_ops_observer_declaration_refusal.md)
 
-As the note states it for the Rust evaluator evaluate_l1_claim (Policy A2' and the profile binding): before any arithmetic it refuses an undeclared, empty or whitespace component with UndeclaredObserverComponent(name), and a component the evaluator does not implement with UnsupportedObserverComponent { component, declared }. The kernel must equal the label of the scenario under evaluation (for the Bell scenario "support presheaf over the maximal-context cover {0,2}|{0,3}|{1,2}|{1,3} with arities 2,2,2,2"); the other four components must equal the constants for the noncontextual polytope, the l1 norm, the terminal rule and the diagnostic layer. A supported tuple yields a receipt with authority_effect None, the terminal token and the typed profile. The refusal is a policy invariant by construction; the note does not derive it from Lemma A2.
+A five-field draft on one Bell label is classified by comparing each field with a fixed text, and the comparison does not read a defect. The kernel text is "support presheaf over the maximal-context cover {0,2}|{0,3}|{1,2}|{1,3} with arities 2,2,2,2". The admissibility text is "noncontextual polytope conv(A)". The norm text is "L1". The terminal text is "defect = 0 -> ExactRepair; defect > 0 and a support-level global section exists -> ClosedResidual; defect > 0 and none exists -> OpenObstruction". The layer text is "WDP-CH10-D01 diagnostic". Take a draft that already carries these five texts. Replacing one field by a missing value, the empty string, or one space yields the undeclared class of that field. Replacing one field by a text other than the empty string, one space, and that field's accepted text yields the unsupported class of that field and keeps the declared text. The draft of the five accepted texts is the accepted class, and the authority text of that class is "None".
 
-Obligation: The computing tests are Rust tests of the source repository. The in-repo copy of the module (code/rust/src/sheaf_theory/empirical_presheaf) uses omega_solvers, an external crate that is not a member of the code/rust workspace (cargo metadata --no-deps lists no such package), and the source test file was not imported. These tests are not run here. The Python gate runs the same five-component refusal on its own observer field (node OPS-THREE-ROLE-GATE).
+Obligation: The computing tests are Rust tests of the source repository. The in-repo copy of the module (code/rust/src/sheaf_theory/empirical_presheaf) uses omega_solvers, an external crate that is not a member of the code/rust workspace (cargo metadata --no-deps lists no such package), and the source test file was not imported. These tests are not run here. Outside this slice: a defect receipt, Unicode whitespace other than one space, the terminal token, the typed profile, and any kernel label other than the one Bell label. The Python gate on node OPS-THREE-ROLE-GATE checks its own observer field and is not this classifier.
 
 ### TFQ-2519 Receipt replay, tamper rejection and size ceilings of the Rust module
 
@@ -13150,9 +13150,9 @@ Obligation: Cited by name, not re-run. The level statement is a typing remark an
 - DAG node: `OPS-AXIS3-RELABELING`
 - Paper: [derivation](derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md)
 
-Axis 3 of WDP-CH14-T01 under three hypotheses. (i) NS-14: an injective renaming sigma of presentation tokens commutes with the transition step and with full-history replay. (ii) CL-13 (passage_charge_const): a quantity conserved by internal transitions is constant on reachable states and equals its genesis value. (iii) The verdict V reads a history only through a declared export Exp, so V = Vbar o Exp, with Exp(sigma(H)) = Exp(H) for every injective renaming sigma; this is the identical-accessible-exports premise of Proposition 3.1 of the Argon synthesis. Then V(sigma(H)) = V(H), because V(sigma(H)) = Vbar(Exp(sigma(H))) = Vbar(Exp(H)) = V(H). Without (iii) the statement is false (node OPS-REFUTED-AXIS3-WIDE). A drop in the internal defect Delta_O stays computable and renaming-invariant; whether a drop is a repair or a reinterpretation is a question about the grounding map of the tokens, which no export-reading verdict decides.
+Let Exp send each history to an export and let Vbar send each export to a verdict. Define V(H) as Vbar applied to Exp(H). If sigma is a function on histories and Exp(sigma(H)) equals Exp(H) for each history H, then V(sigma(H)) equals V(H) for each history H. One such export is the length of a list of natural numbers. The map that sends 0 to 1, sends 1 to 0, and sends each other natural number to itself leaves that length unchanged, so a verdict of the length is unchanged.
 
-Obligation: Conditional on (iii), and on (i) and (ii) as cited, not re-run. WDP-CH14 has no node in this graph; (iii) is read as the observer-quotient reading of WDP chapter 10.
+Obligation: Hypotheses (i) NS-14 and (ii) CL-13 are cited, not re-run. Their Lean sources are not in this repository. The standing slice is the composition step: an export unchanged by sigma yields an unchanged verdict of that export, including list length under the map that swaps 0 with 1. Injectivity of sigma, a defect value, and whether a drop is a repair or a reinterpretation stay outside this slice. WDP-CH14 has no node in this graph. The unconditional form without an export hypothesis is node OPS-REFUTED-AXIS3-WIDE.
 
 ### TFQ-2527 WDP-CH14-C01 and the nonclaim N03
 

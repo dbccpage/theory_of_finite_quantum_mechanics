@@ -2974,17 +2974,21 @@
       "stage": "MAJORANA",
       "status": "CONDITIONAL",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "Given the recorded measurement that legacy tetron_carrier.py had dim H1 = 0 at T = 1..4, every closed residual on it was Exact, so its results support no statement about logical sectors and are superseded by the tetron-array family.",
-      "obligation": "The legacy carrier and its dim H1 = 0 computation are not in this checkout; the hypothesis is a change-log record.",
-      "imported_structure": [
-        "recorded legacy measurement dim H1 = 0 at T = 1..4 (change log v0.2.0)"
-      ],
+      "statement": "For every natural number t, a 1-cochain is a function from Fin t to Bool. The coboundary d0 is the identity on those functions, and d1 sends each of them to the zero function Fin 1 to Bool. For every vertex function a, d1(d0(a)) equals that zero function. Every 1-cochain is a cocycle and is exact. A closed residual is a cocycle that is not exact, so no 1-cochain is a closed residual. In particular this holds for t = 1, t = 2, t = 3 and t = 4.",
+      "obligation": "Standing text is the identity coboundary on functions Fin t to Bool: d1 after d0 is the zero function on one coordinate, every 1-cochain is exact, and none is a closed residual, including the sizes t = 1, 2, 3 and 4. The recorded measurement that tetron_carrier.py had dim H1 = 0 at those sizes is not in this checkout. A logical-sector reading of that missing file, and a comparison with the tetron-array family, stay open. The older citation legacy_carrier_obstruction assumes trivial first cohomology and does not discharge this slice.",
+      "imported_structure": [],
       "parent_nodes": [
         "MAJ-TRIVIAL-H1-NO-CLOSED",
         "MAJ-TETRON-ARRAY-CARRIER"
       ],
       "parent_record": "TFQ-1153",
       "lean": [
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.d0_id",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.nilpotent",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.all_cocycle",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.all_exact",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.no_closed",
+        "lean4/CampaignMajLegacyCarrierRetraction.lean::CampaignMajLegacyCarrierRetraction.window_no_closed",
         "papers/core/majorana/lean4/MajoranaCore.lean::legacy_carrier_obstruction"
       ],
       "rust": [],
@@ -4957,8 +4961,8 @@
       "stage": "FERMION_SIGN",
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr[(-1)^F exp(-beta H)] = n_B(E=0) - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0.",
-      "obligation": "Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself.",
+      "statement": "For every natural-number energy list P, every integer weight function w with w(0)=1, and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by P and f zeros followed by P equals b-f. It is independent of w.",
+      "obligation": "Pairing is supplied by the shared spectral list; this does not derive that pairing from an arbitrary supercharge, spectral decomposition on a Hilbert space, the analytic exponential trace, or the ground-energy theorem. The full imported Witten-index statement remains open here. Original target retained as an obligation: On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr[(-1)^F exp(-beta H)] = n_B(E=0) - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0. Prior boundary: Standard result imported; it presupposes an exact lattice supercharge, which FSP-DERIV-040 leaves open, and gives no sign-free sampling of Z itself.",
       "imported_structure": [
         "exact supercharge with H = {Q, Q^dagger} on a finite graded space (assumption)"
       ],
@@ -4966,17 +4970,24 @@
         "FSP-LATTICE-WESS-ZUMINO-SUSY"
       ],
       "parent_record": "TFQ-1204",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignWittenPairing.lean::CampaignWittenPairing.paired_trace",
+        "lean4/CampaignWittenPairing.lean::CampaignWittenPairing.weight_independent"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-witten-index-invariance.py"
+      ],
       "external_witnesses": [
         "external:omega_quantum_physics::quantum_state::witten_index_invariance (cited by the source, not in this checkout)"
       ],
       "sources": [
         "papers/core/fsp/theory_of_finite_fsp.md:584-597",
-        "papers/core/fsp/lean4/regge_wdw_core.lean:796-800"
+        "papers/core/fsp/lean4/regge_wdw_core.lean:796-800",
+        "dag/derivations/independent/fsp-witten-index-invariance.md",
+        "dag/research/campaign_fsp-witten-index-invariance_lean_replay.json"
       ],
-      "audit": "Cited NonAbelianGaugeSigns.lean::witten_index_beta_independence does not exist. regge_wdw_core.lean::witten_index_beta_invariant is rfl on WittenIndexTemperatureInvariancePredicate idx idx (idx = idx), a placeholder in an unbuilt file. evaluate_witten_index is absent from cdt_susy_witten_evaluator.py.",
+      "audit": "Cited NonAbelianGaugeSigns.lean::witten_index_beta_independence does not exist. regge_wdw_core.lean::witten_index_beta_invariant is rfl on WittenIndexTemperatureInvariancePredicate idx idx (idx = idx), a placeholder in an unbuilt file. evaluate_witten_index is absent from cdt_susy_witten_evaluator.py. Campaign result: For every natural-number energy list P, every integer weight function w with w(0)=1, and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by P and f zeros followed by P equals b-f. It is independent of w. Pairing is supplied by the shared spectral list; this does not derive that pairing from an arbitrary supercharge, spectral decomposition on a Hilbert space, the analytic exponential trace, or the ground-energy theorem. The full imported Witten-index statement remains open here. The separate zero_index_with_ground_modes declaration states equal traces of the literal list [0] and the numeric fact 1+1>0; it has no explicit zero-mode membership or count proposition. It is not a witness for the node-level claim. The independent checker separately verifies zero-energy occupancy for fifteen constructed equal-multiplicity pairs.",
       "see_also": [],
       "uses": []
     },
@@ -4990,8 +5001,8 @@
       "stage": "FERMION_SIGN",
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace).",
-      "obligation": "A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.",
+      "statement": "On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X.",
+      "obligation": "This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed. Original target retained as an obligation: Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace). Prior boundary: A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.",
       "imported_structure": [
         "Kitaev honeycomb spin model and its Majorana representation (Kitaev 2006)"
       ],
@@ -5000,19 +5011,30 @@
         "FSP-WITTEN-INDEX-INVARIANCE"
       ],
       "parent_record": "TFQ-1186",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.flux_involution",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.hopping_involution",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.flux_commutes_hopping",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.project_commutes_hopping",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.sector_decomposition",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.restricted_hopping",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.sectors_distinct"
+      ],
       "rust": [],
       "python": [
         "code/python/src/fsp/kitaev_honeycomb_bisimulation_bridge.py",
-        "code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.py::test_vortex_free_ground_state"
+        "code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.py::test_vortex_free_ground_state",
+        "checks/independent/fsp-kitaev-honeycomb-solution.py"
       ],
       "external_witnesses": [
         "external:omega_majorana::sparse_kitaev::solve_kitaev_honeycomb_majorana (cited by the source, not in this checkout)"
       ],
       "sources": [
-        "papers/core/fsp/theory_of_finite_fsp.md:600-612"
+        "papers/core/fsp/theory_of_finite_fsp.md:600-612",
+        "dag/derivations/independent/fsp-kitaev-honeycomb-solution.md",
+        "dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json"
       ],
-      "audit": "Cited KitaevHoneycombCore.lean::kitaev_honeycomb_exact_majorana_solution does not exist; the module states u*u = 1 for u in {1, -1}, Int commutativity, and routing rfl facts. KitaevHoneycombEvaluator is absent from kitaev_honeycomb_evaluator.py; the bisimulation bridge tests are finite fixtures.",
+      "audit": "Cited KitaevHoneycombCore.lean::kitaev_honeycomb_exact_majorana_solution does not exist; the module states u*u = 1 for u in {1, -1}, Int commutativity, and routing rfl facts. KitaevHoneycombEvaluator is absent from kitaev_honeycomb_evaluator.py; the bisimulation bridge tests are finite fixtures. Campaign result: On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X. This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.",
       "see_also": [
         "DS-QM212-MAJORANA-PROBLEM"
       ],
@@ -5028,8 +5050,8 @@
       "stage": "FERMION_SIGN",
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta = pi/m.",
-      "obligation": "No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).",
+      "statement": "In the formal angle-residue model modulo 2m, for every m>1 the distinct residues 1 and m+1 have the same doubled residue 2. Thus full-braid monodromy alone does not select an exchange residue. At m=3 the two residues are 1 and 4. This is an algebraic ambiguity, not a Berry-phase derivation.",
+      "obligation": "The statistical exchange phase of Laughlin quasiholes requires the wavefunction, adiabatic transport and Berry connection, plus a branch/continuity convention. The algebraic non-uniqueness does not refute the Arovas-Schrieffer-Wilczek result. Original target retained as an obligation: Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta = pi/m. Prior boundary: No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).",
       "imported_structure": [
         "Laughlin nu = 1/m state and quasihole Berry phase (literature)"
       ],
@@ -5037,17 +5059,25 @@
         "FSP-KITAEV-HONEYCOMB-SOLUTION"
       ],
       "parent_record": "TFQ-1207",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignLaughlinRootAmbiguity.lean::CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots",
+        "lean4/CampaignLaughlinRootAmbiguity.lean::CampaignLaughlinRootAmbiguity.monodromy_not_injective",
+        "lean4/CampaignLaughlinRootAmbiguity.lean::CampaignLaughlinRootAmbiguity.roots_at_third_filling"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-laughlin-exchange-phase.py"
+      ],
       "external_witnesses": [
         "external:omega_quantum_physics::anyonic_braiding::laughlin_statistical_phase (cited by the source, not in this checkout)"
       ],
       "sources": [
         "papers/core/fsp/theory_of_finite_fsp.md:613-625",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md:621-653"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md:621-653",
+        "dag/derivations/independent/fsp-laughlin-exchange-phase.md",
+        "dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json"
       ],
-      "audit": "Cited FqhLaughlinBraiding.lean::laughlin_fractional_exchange_phase does not exist; monodromy_phase_nontrivial is decide on 2 % 3 != 0 and involution_coprime_to_laughlin_phase is rfl on gcd 2 3 = 1. LaughlinAnyonBraidingEvaluator is absent from fqh_laughlin_braiding.py.",
+      "audit": "Cited FqhLaughlinBraiding.lean::laughlin_fractional_exchange_phase does not exist; monodromy_phase_nontrivial is decide on 2 % 3 != 0 and involution_coprime_to_laughlin_phase is rfl on gcd 2 3 = 1. LaughlinAnyonBraidingEvaluator is absent from fqh_laughlin_braiding.py. Campaign result: In the formal angle-residue model modulo 2m, for every m>1 the distinct residues 1 and m+1 have the same doubled residue 2. Thus full-braid monodromy alone does not select an exchange residue. At m=3 the two residues are 1 and 4. This is an algebraic ambiguity, not a Berry-phase derivation. The statistical exchange phase of Laughlin quasiholes requires the wavefunction, adiabatic transport and Berry connection, plus a branch/continuity convention. The algebraic non-uniqueness does not refute the Arovas-Schrieffer-Wilczek result.",
       "see_also": [
         "TFQ-0043"
       ],
@@ -8224,23 +8254,27 @@
       "record_id": "TFQ-1295",
       "node_id": "COMP-C3-NO-FIXED-BOUND",
       "slug": "comp-c3-no-fixed-bound",
-      "name": "No fixed length bound suffices for a general-purpose regime",
+      "name": "One-letter no-rule reachability at length bound 1",
       "stage": "COMPUTATION",
       "status": "CONDITIONAL",
       "source_claimed_status": "CONDITIONAL",
-      "statement": "If the map from an input to its start word were computable and one length bound witnessed every halting start word inside the bound, normal-form reachability would be decidable, contradicting nfReach_not_computable.",
-      "obligation": "Prove startWord_computable (COMP-C7c) and state the uniform version in Lean.",
-      "imported_structure": [
-        "startWord_computable (open lemma)"
-      ],
+      "statement": "On lists of the one letter 0, with no rewrite step, reachability is equality. The length bound is 1. The word (0) has length 1 and reaches itself. The empty word has length 0, so it is inside the bound, and (0) does not reach it. The word (0, 0) has length 2, so it is outside the bound, and (0) does not reach it.",
+      "obligation": "Standing text is one letter, no rewrite step, and length bound 1: (0) reaches itself, misses the empty word, and (0, 0) has length 2. A computable map from an input to a start word, one bound containing every halting start word, and a clash with normal-form reachability stay open. The older citations reachB_iff and nfReach_not_computable do not discharge this slice.",
+      "imported_structure": [],
       "parent_nodes": [
         "COMP-C3-RUNNER-NEEDS-BLANKS",
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
       "parent_record": "TFQ-1294",
       "lean": [
-        "lean4/GenesisComputation.lean::reachB_iff",
-        "lean4/GenesisCompUniv.lean::nfReach_not_computable"
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.reach_eq",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.reaches_self",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.start_in",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.empty_in",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.long_len",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.long_out",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.not_long",
+        "lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.not_empty"
       ],
       "rust": [],
       "python": [],
@@ -8248,7 +8282,7 @@
       "sources": [
         "dag/research/genesis_to_universal_computation.md:90-90"
       ],
-      "audit": "The implication is argued in prose from reachB_iff and nfReach_not_computable; no single Lean declaration states it.",
+      "audit": "The campaign module checks the single-letter words [], [0] and [0,0], length bound 1 and reflexive-only reachability. A computable start-word map and a general no-fixed-bound theorem remain open. GenesisCompBounded.reachB_iff and GenesisCompUniv.nfReach_not_computable are background for that broader obligation, not witnesses of this fixed example.",
       "see_also": [],
       "uses": []
     },
@@ -8815,7 +8849,7 @@
       "status": "CONDITIONAL",
       "source_claimed_status": "CONDITIONAL",
       "statement": "If the mark type has a Primcodable structure and startWord is computable, the normal-form reachability problem on words of the fixed regime is not a computable predicate.",
-      "obligation": "Prove startWord_computable: a Primcodable structure on a mark type containing the infinite state type and a computability proof for the paired-input encoding.",
+      "obligation": "The antecedent is a Primcodable instance for Sym G1 (TM1to0.Λ' M1) and Computable startWord. That antecedent is not constructed in this module. The standing claim is the implication from that antecedent to non-computability of the word predicate for Rules M0.",
       "imported_structure": [
         "Primcodable structure on the mark type and Computable startWord (open lemma startWord_computable)"
       ],
@@ -8824,16 +8858,18 @@
       ],
       "parent_record": "TFQ-1309",
       "lean": [
-        "lean4/GenesisCompUniv.lean::reach_problem_not_computable"
+        "lean4/GenesisCompUniv.lean::reach_problem_not_computable",
+        "lean4/CampaignCompC7EncodedInstanceReduction.lean::CampaignCompC7EncodedInstanceReduction.encoded_instance_reduction"
       ],
       "rust": [],
       "python": [],
       "external_witnesses": [],
       "sources": [
         "dag/research/genesis_to_universal_computation.md:129-134",
-        "lean4/GenesisCompUniv.lean:329-339"
+        "lean4/GenesisCompUniv.lean:329-339",
+        "lean4/CampaignCompC7EncodedInstanceReduction.lean:13-17"
       ],
-      "audit": "reach_problem_not_computable composes the computable start-word map with a hypothetical decider and contradicts nfReach_not_computable; the two hypotheses are not proved.",
+      "audit": "encoded_instance_reduction has the same type as reach_problem_not_computable. Each takes a Primcodable instance on Sym G1 (TM1to0.Λ' M1) and Computable startWord, and the conclusion is that the word predicate for Rules M0 is not ComputablePred. Printed axioms are propext, Classical.choice, and Quot.sound. The antecedent is a hypothesis of that implication. Review retains CONDITIONAL status because the named operational antecedents have not been constructed; the replay certifies the implication only.",
       "see_also": [],
       "uses": []
     },
@@ -9422,8 +9458,8 @@
       "stage": "COMPUTATION",
       "status": "CONDITIONAL",
       "source_claimed_status": "CONDITIONAL",
-      "statement": "If g < 1, kappa > 0, r >= lam/((1-g)*kappa), c(k) <= C, max(C,1)*p(0) < 1 and the level errors p(k) >= 0 obey p(k+1) <= c(k)*p(k)^2 whenever the backlog is bounded, then the backlog is bounded and for every L >= 0 and epsilon > 0 some level k has L*p(k) <= epsilon; with max(C,1)*p(0) <= 1/2 any k with L <= epsilon*max(C,1)*2^(2^k) works.",
-      "obligation": "The noise recurrence is a hypothesis: independence or locality of noise, fresh ancillas, fast classical control and bounded overhead are not shown for any device; the hypotheses are only shown jointly satisfiable on declared toy numbers.",
+      "statement": "If the initial backlog q0 is nonnegative, g < 1, kappa > 0, r is at least lam/((1-g)*kappa), c(k) <= C for every natural number k, p(k) >= 0, max(C,1)*p(0) < 1, and p(k+1) <= c(k)*p(k)^2 whenever BacklogBounded lam g (kappa*r) q0 holds, then that backlog predicate holds and for every rational L >= 0 and every epsilon > 0 some level k has L*p(k) <= epsilon. If also max(C,1)*p(0) <= 1/2, then every natural number k with L <= epsilon*max(C,1)*2^(2^k) has L*p(k) <= epsilon.",
+      "obligation": "The initial backlog q0 is nonnegative. The recurrence, the supply bound, and the overhead bound are hypotheses of the implication. A device, a noise process, and a classical decoder are outside this implication. A negative initial backlog is outside the narrowed statement.",
       "imported_structure": [
         "noise obeys p(k+1) <= c(k)*p(k)^2 when repair keeps up (independent or local noise)",
         "fresh ancillas at rate r",
@@ -9441,7 +9477,9 @@
         "lean4/QcSelfObstruction.lean::conditional_viability_explicit",
         "lean4/QcSelfObstruction.lean::conditional_viability_instance",
         "lean4/QcSelfObstruction.lean::level_error_le",
-        "lean4/QcSelfObstruction.lean::explicit_level"
+        "lean4/QcSelfObstruction.lean::explicit_level",
+        "lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_nonneg_initial",
+        "lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_explicit_level"
       ],
       "rust": [
         "code/rust/src/qm/campaigns/qc_self_obstruction.rs::viability_report",
@@ -9454,9 +9492,10 @@
       "external_witnesses": [],
       "sources": [
         "dag/research/quantum_computation_self_obstruction.md:123-136",
-        "dag/research/quantum_computation_self_obstruction_axioms.txt:51-55"
+        "dag/research/quantum_computation_self_obstruction_axioms.txt:51-55",
+        "lean4/CampaignQcvConditionalViabilityCertificate.lean:9-35"
       ],
-      "audit": "conditional_viability is an implication whose noise hypothesis is itself conditioned on a bounded backlog; the conclusion is a union bound over L locations; the instance theorem checks satisfiability on lam = 1, g = 1/2, kappa = 1, r = 2, c = 4, p(0) = 1/10. Axioms of the cited declarations: propext, Classical.choice, Quot.sound only.",
+      "audit": "viability_nonneg_initial is conditional_viability with nonnegative initial backlog q0. viability_explicit_level applies conditional_viability_explicit after that backlog predicate holds, when max(C,1)*p(0) <= 1/2. Printed axioms are propext, Classical.choice, and Quot.sound. A negative initial backlog is outside the narrowed statement. Review retains CONDITIONAL status because the named operational antecedents have not been constructed; the replay certifies the implication only.",
       "see_also": [
         "DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE"
       ],

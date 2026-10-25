@@ -3,17 +3,24 @@ node_id: FSP-KITAEV-HONEYCOMB-SOLUTION
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette
-    fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas
-    with a static Z2 gauge field (after projection to the physical subspace).'
+  source_statement: On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b)
+    and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors
+    commute with H and sum to the identity; the restricted hopping blocks are X and -X.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - Kitaev honeycomb spin model and its Majorana representation (Kitaev 2006)
-  source_bottleneck: A sign-free sampling claim for this representation is not made or checked here; the
-    gauge projection and flux-sector sum must be kept explicit.
+  source_bottleneck: 'This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette
+    operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.
+    Original target retained as an obligation: Kitaev (2006): in the four-Majorana representation of the
+    honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector
+    H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace).
+    Prior boundary: A sign-free sampling claim for this representation is not made or checked here; the
+    gauge projection and flux-sector sum must be kept explicit.'
   source_refs:
   - dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md
   - papers/core/fsp/theory_of_finite_fsp.md
+  - dag/derivations/independent/fsp-kitaev-honeycomb-solution.md
+  - dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json
   paper_refs:
   - dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md
   source_claim_label: IMPORTED_ASSUMPTION
@@ -22,7 +29,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md
-    sha256: 0ebd0dfc15b2b70e488dcdd6d206bc1ad34155458ba75abdfb68022cc9ea9fc4
+    sha256: f560415332b14d38ef65230f61315565536c06e1a3fc9ba2cb58bfc8355ddd17
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -30,9 +37,188 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_kitaev_honeycomb_solution_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: abbrev
+  name: State
+  line: 3
+  signature_excerpt: abbrev State
+  source: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  source_sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: flux
+  line: 5
+  signature_excerpt: 'def flux (v : State) : State'
+  source: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  source_sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sign
+  line: 4
+  signature_excerpt: 'def sign (g : Bool) : Int'
+  source: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  source_sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: hopping
+  line: 6
+  signature_excerpt: 'def hopping (v : State) : State'
+  source: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  source_sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: project
+  line: 7
+  signature_excerpt: 'def project (sector : Bool) (v : State) : State'
+  source: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  source_sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: flux_involution
+  line: 9
+  signature_excerpt: 'theorem flux_involution (v : State) : flux (flux v) = v'
+  source: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  source_sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: hopping_involution
+  line: 12
+  signature_excerpt: 'theorem hopping_involution (v : State) : hopping (hopping v) = v'
+  source: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  source_sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: flux_commutes_hopping
+  line: 15
+  signature_excerpt: 'theorem flux_commutes_hopping (v : State) : flux (hopping v) = hopping (flux v)'
+  source: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  source_sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: project_commutes_hopping
+  line: 18
+  signature_excerpt: |-
+    theorem project_commutes_hopping (sector : Bool) (v : State) :
+        project sector (hopping v) = hopping (project sector v)
+  source: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  source_sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sector_decomposition
+  line: 22
+  signature_excerpt: |-
+    theorem sector_decomposition (v : State) (g b : Bool) :
+        project false v g b + project true v g b = v g b
+  source: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  source_sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: restricted_hopping
+  line: 26
+  signature_excerpt: |-
+    theorem restricted_hopping (v : State) (g b : Bool) :
+        hopping v g b = sign g * v g (!b)
+  source: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  source_sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sectors_distinct
+  line: 29
+  signature_excerpt: 'theorem sectors_distinct : sign false ≠ sign true'
+  source: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  source_sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.flux_involution
+  availability: local
+  symbol: CampaignKitaevSectorBlock.flux_involution
+  path: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  declaration_status: declaration_found_not_proof_checked
+  line: 9
+  role: source_lead_only
+- original_ref: lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.hopping_involution
+  availability: local
+  symbol: CampaignKitaevSectorBlock.hopping_involution
+  path: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  declaration_status: declaration_found_not_proof_checked
+  line: 12
+  role: source_lead_only
+- original_ref: lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.flux_commutes_hopping
+  availability: local
+  symbol: CampaignKitaevSectorBlock.flux_commutes_hopping
+  path: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  declaration_status: declaration_found_not_proof_checked
+  line: 15
+  role: source_lead_only
+- original_ref: lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.project_commutes_hopping
+  availability: local
+  symbol: CampaignKitaevSectorBlock.project_commutes_hopping
+  path: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  declaration_status: declaration_found_not_proof_checked
+  line: 18
+  role: source_lead_only
+- original_ref: lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.sector_decomposition
+  availability: local
+  symbol: CampaignKitaevSectorBlock.sector_decomposition
+  path: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  declaration_status: declaration_found_not_proof_checked
+  line: 22
+  role: source_lead_only
+- original_ref: lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.restricted_hopping
+  availability: local
+  symbol: CampaignKitaevSectorBlock.restricted_hopping
+  path: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  declaration_status: declaration_found_not_proof_checked
+  line: 26
+  role: source_lead_only
+- original_ref: lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.sectors_distinct
+  availability: local
+  symbol: CampaignKitaevSectorBlock.sectors_distinct
+  path: lean4/CampaignKitaevSectorBlock.lean
+  repository: this_repository
+  sha256: d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329
+  declaration_status: declaration_found_not_proof_checked
+  line: 29
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -72,8 +258,6 @@ operad_slots:
     - Kitaev honeycomb spin model and its Majorana representation (Kitaev 2006)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

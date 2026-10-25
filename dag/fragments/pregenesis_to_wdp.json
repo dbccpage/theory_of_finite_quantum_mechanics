@@ -9830,15 +9830,50 @@
         "TFQ-0538",
         "TFQ-0522"
       ],
-      "summary": "WDP-CH04-P01: Φ_J([δ]) = inf_f J(δ − d₀f) is independent of the representative, because δ' = δ + d₀g turns the infimum into one over h = f − g, a bijection of C⁰. WDP-CH04-P02 (conditional): when the repair space is finite-dimensional over ℝ or ℂ and J is a norm, the infimum is attained after quotienting ker d₀; the hypotheses cannot be dropped silently for seminorms or infinite carriers. WDP-CH04-C01 (conditional): with positive weights w, Φ_{1,w}([δ]) = max{⟨y, δ⟩ : d₀*y = 0, |y_e| ≤ w_e}, an imported finite-dimensional convex-duality result (REF-MATH-005, Rockafellar, Convex Analysis) specialized to the declared weighted graph complex. In code, finite_quotient_l1 minimizes over an explicit candidate list, and exact_quotient_l1 solves the weighted ℓ¹ programme over Fraction and reports a value only after an independent certificate check.",
+      "summary": "On integer triples, the triangle coboundary is d0(f0, f1, f2) = (f1 - f0, f2 - f1, f2 - f0). For all integer vertex triples f and g, d0(f0 + g0, f1 + g1, f2 + g2) equals the componentwise sum of d0(f) and d0(g), and (delta + d0(g)) - d0(f + g) equals delta - d0(f). The sum of absolute residual entries is unchanged by that shift. For delta = (1, 1, 0), every integer repair has absolute residual sum at least 2, and the repair (0, 1, 0) has absolute residual sum 2. For every integer vertex triple g, delta + d0(g) has absolute residual sum at least 2 at every integer repair, and the repair (g0, 1 + g1, g2) has absolute residual sum 2.",
       "obligation": "Return the same Φ_J for every representative of a class, report attainment only under the finite-dimensional norm hypothesis, and treat weighted-ℓ¹ strong duality as imported, accepting an instance only with a matching repair and bounded circulation.",
       "imports": [
         "Finite-dimensional convex (linear-programming) strong duality, REF-MATH-005 Rockafellar Convex Analysis, specialized to the declared weighted graph complex (assumption)",
         "Attainment hypothesis: repair space finite-dimensional over R or C and J a norm, not a seminorm (assumption)"
       ],
-      "fence": "Representative independence is unconditional; the weak direction of the duality is not imported (WDP-CH04-P07, TFQ-0348, Lean dual_certificate_lower_bound), and C01 is not shown for arbitrary coefficient spaces.",
+      "fence": "Standing text is the integer triangle coboundary: linearity, residual identity under a vertex shift, and minimum absolute residual sum 2 for delta = (1, 1, 0) and for each integer coboundary shift of that one triple. Representative independence for a general cost, attainment on a real or complex repair space, weighted duality on an arbitrary complex, rational repairs, and a general coefficient field stay open. The weak direction of the duality is not imported (WDP-CH04-P07, TFQ-0348, Lean dual_certificate_lower_bound), and C01 is not shown for arbitrary coefficient spaces.",
       "witnesses": {
         "lean": [
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean",
+            "symbol": "d0_linear"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean",
+            "symbol": "residual_shift"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean",
+            "symbol": "absSum_shift"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean",
+            "symbol": "absSum_ge_two"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean",
+            "symbol": "absSum_attained"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean",
+            "symbol": "shifted_ge"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean",
+            "symbol": "shifted_attained"
+          },
           {
             "root": "local",
             "path": "lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean",
@@ -10765,18 +10800,38 @@
       "prerequisites": [
         "TFQ-0553"
       ],
-      "summary": "GEN-WDP-03: with actual cases X, a declared evaluation report E: X → Reports and a protected admission or permission decision A: X → Decisions, a decoder on the actual image of E exists exactly when E(x) = E(y) implies A(x) = A(y); necessity applies the decoder to equal reports, sufficiency assigns each occupied report the decision of any representative, and equal reports with unequal decisions forbid every decoder and every report-only postprocessor. GEN-WDP-06 records that event multisets can lose final state, final states can lose occurrence counts, and fresh hashes can bind false receipts. This is the fibre criterion of the S(n)/MSS-N hand-off (TFQ-0338) and of WDP adapter descent (TFQ-0553), so a protected question passes from the realized report to a WDP observer exactly when it is constant on the fibres of the declared report.",
-      "obligation": "Admit a WDP observer for a protected question only when the question is constant on the declared report's fibres, return a conflicting pair otherwise, and keep evaluation and permission in a joint report when both are protected.",
+      "summary": "For arbitrary types X, R and D, a report r:X→R and a decision d:X→D admit a unique decoder on the actual image of r exactly when d is constant on every fibre of r. Equal reports with unequal decisions remain an obstruction after every report-only postprocessor. The joint report (r,d) is sufficient for d.",
+      "obligation": "Keep declared report and decision assumptions explicit; no permission or physical authenticity follows from this factorization criterion.",
       "imports": [
         "Declared report map from the S(n)/MSS-N realized report image to the WDP observer presentation, with the protected decision on the actual cases (assumption)"
       ],
-      "fence": "Conditional on the declared report and protected question; the criterion derives no evaluator, grantor or permission, and a successful evaluation alone does not determine authorization (GEN-WDP-04).",
+      "fence": "The maps are declared. The result constructs no evaluator, permission grantor or physical authenticity test. The decoder is classical/noncomputable in general. Unused reports require no default value, and the empty case is included. Original target retained as an obligation: GEN-WDP-03: with actual cases X, a declared evaluation report E: X → Reports and a protected admission or permission decision A: X → Decisions, a decoder on the actual image of E exists exactly when E(x) = E(y) implies A(x) = A(y); necessity applies the decoder to equal reports, sufficiency assigns each occupied report the decision of any representative, and equal reports with unequal decisions forbid every decoder and every report-only postprocessor. GEN-WDP-06 records that event multisets can lose final state, final states can lose occurrence counts, and fresh hashes can bind false receipts. This is the fibre criterion of the S(n)/MSS-N hand-off (TFQ-0338) and of WDP adapter descent (TFQ-0553), so a protected question passes from the realized report to a WDP observer exactly when it is constant on the fibres of the declared report. Prior boundary: Conditional on the declared report and protected question; the criterion derives no evaluator, grantor or permission, and a successful evaluation alone does not determine authorization (GEN-WDP-04).",
       "witnesses": {
         "lean": [
           {
             "root": "local",
             "path": "lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean",
             "symbol": "factorization_iff_fiber_constancy"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignReportFiberDescent.lean",
+            "symbol": "CampaignReportFiberDescent.unique_decoder_iff"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignReportFiberDescent.lean",
+            "symbol": "CampaignReportFiberDescent.postprocess_obstruction"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignReportFiberDescent.lean",
+            "symbol": "CampaignReportFiberDescent.joint_report_sufficient"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignReportFiberDescent.lean",
+            "symbol": "CampaignReportFiberDescent.lost_bit_obstruction"
           }
         ],
         "rust": [
@@ -10791,6 +10846,10 @@
             "root": "symbol_game",
             "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py",
             "symbol": "decision_decoder"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-wdp-bridge-report-fiber-observer.py"
           }
         ]
       },
@@ -10812,6 +10871,18 @@
           "path": "omega_engine_education/documentation/006_oewdp/levels/level_22_genesis_to_wdp_bridges.md",
           "lines": "81-92",
           "quote": "report iff every case sharing that report has the same decision."
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-wdp-bridge-report-fiber-observer.md",
+          "lines": "5",
+          "quote": "For arbitrary types X, R and D, a report r:X→R and a decision d:X→D admit a unique decoder on the actual image of r exactly when d is constant on every fibre of r. Equal reports with unequal decisions remain an obstruction after every report-only postprocessor. The joint report (r,d) is sufficient for d."
+        },
+        {
+          "root": "local",
+          "path": "dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json",
+          "lines": "7",
+          "quote": "The maps are declared. The result constructs no evaluator, permission grantor or physical authenticity test. The decoder is classical/noncomputable in general. Unused reports require no default value, and the empty case is included."
         }
       ],
       "coda_atlas_ids": [],

@@ -4,15 +4,15 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 ## Statement
 
-> Strict l^p (p\>1) subadditivity on disjoint supports follows from standard Minkowski / strict convexity. The paper cites it as standard analysis.
+> Reviewed scope: Nat values a and b satisfy (a + b) * (a + b) = a * a + b * b + 2 * (a * b). When both are positive, 2 * (a * b) \> 0 and a * a + b * b \< (a + b) * (a + b). When the left input is 0, 2 * (0 * b) = 0 and (0 + b) * (0 + b) = b * b. When the right input is 0, 2 * (a * 0) = 0 and (a + 0) * (a + 0) = a * a. Nat values a and b satisfy (a + b) * (a + b) * (a + b) = a * a * a + b * b * b + 3 * a * b * (a + b). A disjoint Nat pair satisfies (x + 0) * (x + 0) + (0 + y) * (0 + y) = x * x + y * y.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
-- distinct cited Lean declarations covered by a current replay receipt: 2
+- cited Lean, Rust or Python symbols found in their in-repo files: 9
+- distinct cited Lean declarations covered by a current replay receipt: 9
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Not mechanized.
+Real exponent p\>1, a Minkowski comparison on real vectors, strict convexity, roots, and transport past this Nat square, cubic, and one disjoint pair stay outside the standing text. A zero input is an equality case of the square expansion.
 
 ## Source status
 
@@ -36,10 +36,10 @@ Thm 2b STANDARD / imported real analysis; audit: imported
 
 ## Review
 
-- PFP review: [dag/results/L1-QM020-THM2B-MINKOWSKI/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM020-THM2B-MINKOWSKI/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
-  - narrowest claim: Exact natural-power strictness/equality controls, with general p2 positivity and p3 algebra in Lean.
-  - does not support: Discharge the full real-p Minkowski/strict-convexity import and arbitrary-vector transport. Zero vectors are equality cases, not strict cases.
-  - next test: Discharge the full real-p Minkowski/strict-convexity import and arbitrary-vector transport. Zero vectors are equality cases, not strict cases.
+- PFP review: [dag/research/pr_388_current_scope_review.json](../../../dag/research/pr_388_current_scope_review.json); file present and sha256 matches the node's record: yes; verdict `scoped_natural_arithmetic_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+  - narrowest claim: Reviewed scope: Nat values a and b satisfy (a + b) * (a + b) = a * a + b * b + 2 * (a * b). When both are positive, 2 * (a * b) \> 0 and a * a + b * b \< (a + b) * (a + b). When the left input is 0, 2 * (0 * b) = 0 and (0 + b) * (0 + b) = b * b. When the right input is 0, 2 * (a * 0) = 0 and (a + 0) * (a + 0) = a * a. Nat values a and b satisfy (a + b) * (a + b) * (a + b) = a * a * a + b * b * b + 3 * a * b * (a + b). A disjoint Nat pair satisfies (x + 0) * (x + 0) + (0 + y) * (0 + y) = x * x + y * y.
+  - does not support: Real exponent p\>1, a Minkowski comparison on real vectors, strict convexity, roots, and transport past this Nat square, cubic, and one disjoint pair stay outside the standing text. A zero input is an equality case of the square expansion.
+  - next test: Retain the real-analysis import until the original real-p statement is mechanized.
 
 ## Evidence items
 
@@ -55,19 +55,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `cd lean4 && lake build BornRedundancy`
 - counts toward the grade: no
 
-### Lean: `lean4/DerivationDagQMClosure.lean`
+### Lean: `lean4/CampaignL1Qm020Thm2bMinkowski.lean`
 
-- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
-- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
-- cited in: node.lean
+- file: [lean4/CampaignL1Qm020Thm2bMinkowski.lean](../../../lean4/CampaignL1Qm020Thm2bMinkowski.lean)
+- sha256 (`bytes`): `bea59885861b46f4bda69ec0df555c595cb37122cad18fb207c2a4baec6c71fd`
+- cited in: node.lean, receipt dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json (CampaignL1Qm020Thm2bMinkowski), receipt dag/research/pr_388_round2_replay.json (CampaignL1Qm020Thm2bMinkowski)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build DerivationDagQMClosure`
+  - receipt [dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json](../../../dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json) (module `CampaignL1Qm020Thm2bMinkowski`): recorded sha256 `bea59885861b46f4bda69ec0df555c595cb37122cad18fb207c2a4baec6c71fd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_388_round2_replay.json](../../../dag/research/pr_388_round2_replay.json) (module `CampaignL1Qm020Thm2bMinkowski`): recorded sha256 `bea59885861b46f4bda69ec0df555c595cb37122cad18fb207c2a4baec6c71fd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignL1Qm020Thm2bMinkowski`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.l1_and_ds_imported_assumption_separation_certificates` | yes | yes | yes | module-level | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_and_ds_imported_assumption_separation_certificates` |
-| `QuantumMechanics.DerivationDagQMClosure.l1_minkowski_sqrt_decoherence_and_scoped_custody_witness` | yes | yes | yes | module-level | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_minkowski_sqrt_decoherence_and_scoped_custody_witness` |
+| `CampaignL1Qm020Thm2bMinkowski.cross_positive` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Qm020Thm2bMinkowski.cross_positive` |
+| `CampaignL1Qm020Thm2bMinkowski.cross_zero_left` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Qm020Thm2bMinkowski.cross_zero_left` |
+| `CampaignL1Qm020Thm2bMinkowski.cross_zero_right` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Qm020Thm2bMinkowski.cross_zero_right` |
+| `CampaignL1Qm020Thm2bMinkowski.cubic_sum` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Qm020Thm2bMinkowski.cubic_sum` |
+| `CampaignL1Qm020Thm2bMinkowski.disjoint_pair_squares` | yes | yes | yes | none | `#print axioms CampaignL1Qm020Thm2bMinkowski.disjoint_pair_squares` |
+| `CampaignL1Qm020Thm2bMinkowski.square_eq_left_zero` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Qm020Thm2bMinkowski.square_eq_left_zero` |
+| `CampaignL1Qm020Thm2bMinkowski.square_eq_right_zero` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Qm020Thm2bMinkowski.square_eq_right_zero` |
+| `CampaignL1Qm020Thm2bMinkowski.square_expansion` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Qm020Thm2bMinkowski.square_expansion` |
+| `CampaignL1Qm020Thm2bMinkowski.square_strict` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Qm020Thm2bMinkowski.square_strict` |
 
 - counts toward the grade: yes
 

@@ -3,23 +3,25 @@ node_id: QCV-CONDITIONAL-VIABILITY-CERTIFICATE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: If g < 1, kappa > 0, r >= lam/((1-g)*kappa), c(k) <= C, max(C,1)*p(0) < 1 and the
-    level errors p(k) >= 0 obey p(k+1) <= c(k)*p(k)^2 whenever the backlog is bounded, then the backlog
-    is bounded and for every L >= 0 and epsilon > 0 some level k has L*p(k) <= epsilon; with max(C,1)*p(0)
-    <= 1/2 any k with L <= epsilon*max(C,1)*2^(2^k) works.
+  source_statement: If the initial backlog q0 is nonnegative, g < 1, kappa > 0, r is at least lam/((1-g)*kappa),
+    c(k) <= C for every natural number k, p(k) >= 0, max(C,1)*p(0) < 1, and p(k+1) <= c(k)*p(k)^2 whenever
+    BacklogBounded lam g (kappa*r) q0 holds, then that backlog predicate holds and for every rational
+    L >= 0 and every epsilon > 0 some level k has L*p(k) <= epsilon. If also max(C,1)*p(0) <= 1/2, then
+    every natural number k with L <= epsilon*max(C,1)*2^(2^k) has L*p(k) <= epsilon.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - noise obeys p(k+1) <= c(k)*p(k)^2 when repair keeps up (independent or local noise)
   - fresh ancillas at rate r
   - classical control and decoding fast enough for the syndrome
   - level-bounded overhead c(k) <= C
-  source_bottleneck: 'The noise recurrence is a hypothesis: independence or locality of noise, fresh ancillas,
-    fast classical control and bounded overhead are not shown for any device; the hypotheses are only
-    shown jointly satisfiable on declared toy numbers.'
+  source_bottleneck: The initial backlog q0 is nonnegative. The recurrence, the supply bound, and the
+    overhead bound are hypotheses of the implication. A device, a noise process, and a classical decoder
+    are outside this implication. A negative initial backlog is outside the narrowed statement.
   source_refs:
   - dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md
   - dag/research/quantum_computation_self_obstruction.md
   - dag/research/quantum_computation_self_obstruction_axioms.txt
+  - lean4/CampaignQcvConditionalViabilityCertificate.lean
   paper_refs:
   - dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md
   source_claim_label: CONDITIONAL
@@ -28,7 +30,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md
-    sha256: dd0903560bbc7d8c2ff26aebb5053d15e7d6e6f62f9d93e872a756356dbc4a23
+    sha256: d22aadc6ce20541eb3255eb5d6e5359ca1985d1bb33c4b2fbe1f46f7160d3393
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -110,6 +112,47 @@ relation_candidates:
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
+- kind: theorem
+  name: viability_nonneg_initial
+  line: 9
+  signature_excerpt: |-
+    theorem viability_nonneg_initial
+        {lam g kappa r q0 : ℚ} {c : ℕ → ℚ} {C : ℚ}
+        (hq : 0 ≤ q0) (hg : g < 1) (hkap : 0 < kappa)
+        (hsupply : lam / ((1 - g) * kappa) ≤ r)
+        (hC : ∀ k, c k ≤ C)
+        (p : ℕ → ℚ) (hp : ∀ k, 0 ≤ p k)
+        (hrec : BacklogBounded lam g (kappa * r) q0 → ∀ k, p (k + 1) ≤ c k * p k ^ 2)
+        (hth : max C 1 * p 0 < 1) :
+        BacklogBounded lam g (kappa * r) q0 ∧
+          ∀ (L ε : ℚ), 0 ≤ L → 0 < ε → ∃ k : ℕ, L * p k ≤ ε
+  source: lean4/CampaignQcvConditionalViabilityCertificate.lean
+  repository: this_repository
+  source_sha256: 06c68a7ea5e207d83a2211bb0c7960efb974cffc68ec30ea3c94042d8e903b0e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: viability_explicit_level
+  line: 21
+  signature_excerpt: |-
+    theorem viability_explicit_level
+        {lam g kappa r q0 : ℚ} {c : ℕ → ℚ} {C : ℚ}
+        (hq : 0 ≤ q0) (hg : g < 1) (hkap : 0 < kappa)
+        (hsupply : lam / ((1 - g) * kappa) ≤ r)
+        (hC : ∀ k, c k ≤ C)
+        (p : ℕ → ℚ) (hp : ∀ k, 0 ≤ p k)
+        (hrec : BacklogBounded lam g (kappa * r) q0 → ∀ k, p (k + 1) ≤ c k * p k ^ 2)
+        (hth : max C 1 * p 0 ≤ 1 / 2)
+        (L ε : ℚ) (hL : 0 ≤ L) (k : ℕ)
+        (hk : L ≤ ε * max C 1 * 2 ^ (2 ^ k)) :
+        L * p k ≤ ε
+  source: lean4/CampaignQcvConditionalViabilityCertificate.lean
+  repository: this_repository
+  source_sha256: 06c68a7ea5e207d83a2211bb0c7960efb974cffc68ec30ea3c94042d8e903b0e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: lean4/QcSelfObstruction.lean::conditional_viability
   availability: local
@@ -155,6 +198,24 @@ source_bindings:
   sha256: be7f59c979614e015b49da0d9b4e233e5166f39b91a0c6de61d3e51659209a83
   declaration_status: declaration_found_not_proof_checked
   line: 60
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_nonneg_initial
+  availability: local
+  symbol: CampaignQcvConditionalViabilityCertificate.viability_nonneg_initial
+  path: lean4/CampaignQcvConditionalViabilityCertificate.lean
+  repository: this_repository
+  sha256: 06c68a7ea5e207d83a2211bb0c7960efb974cffc68ec30ea3c94042d8e903b0e
+  declaration_status: declaration_found_not_proof_checked
+  line: 9
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_explicit_level
+  availability: local
+  symbol: CampaignQcvConditionalViabilityCertificate.viability_explicit_level
+  path: lean4/CampaignQcvConditionalViabilityCertificate.lean
+  repository: this_repository
+  sha256: 06c68a7ea5e207d83a2211bb0c7960efb974cffc68ec30ea3c94042d8e903b0e
+  declaration_status: declaration_found_not_proof_checked
+  line: 21
   role: source_lead_only
 - original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::viability_report
   availability: local
