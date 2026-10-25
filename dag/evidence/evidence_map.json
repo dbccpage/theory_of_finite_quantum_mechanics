@@ -6533,9 +6533,9 @@
    "size": 3783
   },
   "dag/research/campaign_tfq-0003_lean_replay.json": {
-   "sha256": "d6866fa4a204073030f843809ca88324cf9731a0e47bf0ff431dd0275d23b22d",
+   "sha256": "7c0560f059da49ee90605152bb8eff80cfa4cbe23106512c3f5688b9408454cd",
    "sha256_basis": "lf-normalised",
-   "size": 4433
+   "size": 13111
   },
   "dag/research/campaign_tfq-0006_independent.json": {
    "sha256": "e7ff400d773ad0fb5fdaac7fc2fbd3155a0c50561f63625b8d9d5727a00c74ef",
@@ -7573,9 +7573,9 @@
    "size": 29457
   },
   "lean4/CampaignTfq0003FiniteObstruction.lean": {
-   "sha256": "3b81de3fdc28f74a9a44bce299d29e0e062bf9950a7cac29f7ec283785ef18e9",
+   "sha256": "5deda50b13b9e7a728e07ac22be6618696bab8a7af87236d98d5d64466c9f1e0",
    "sha256_basis": "bytes",
-   "size": 11781
+   "size": 12761
   },
   "lean4/CampaignTfq0006L1ToL2.lean": {
    "sha256": "3ad56ac5794c83c7dff9128db0356ab5ca69cfff1738d3cfff481f826b9359ce",
@@ -106845,10 +106845,10 @@
    "facts": {
     "cited_code_files_not_tests": 1,
     "counted_files": 4,
-    "lean_receipt_backed": 18,
+    "lean_receipt_backed": 25,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 18
+    "symbols_found": 25
    },
    "flags": [],
    "grade": "E3",
@@ -106857,7 +106857,8 @@
     {
      "cited_in": [
       "node.source",
-      "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)"
+      "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
      "command_note": null,
@@ -106877,6 +106878,13 @@
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -106890,6 +106898,7 @@
      "cited_in": [
       "node.lean",
       "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)",
       "record TFQ-0003"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
@@ -106913,6 +106922,13 @@
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -106924,8 +106940,50 @@
     },
     {
      "cited_in": [
+      "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
+     "command_note": "then, in a scratch file that imports CampaignTfq0003FiniteObstruction: #print axioms CampaignTfq0003FiniteObstruction.cycle_edges_complete",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0003FiniteObstruction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0003FiniteObstruction.cycle_edges_complete",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
       "node.lean",
       "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)",
       "record TFQ-0003"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
@@ -106948,6 +107006,13 @@
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -106961,6 +107026,7 @@
      "cited_in": [
       "node.lean",
       "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)",
       "record TFQ-0003"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
@@ -106984,6 +107050,13 @@
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -106997,6 +107070,7 @@
      "cited_in": [
       "node.lean",
       "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)",
       "record TFQ-0003"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
@@ -107020,6 +107094,13 @@
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -107031,8 +107112,87 @@
     },
     {
      "cited_in": [
+      "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
+     "command_note": "then, in a scratch file that imports CampaignTfq0003FiniteObstruction: #print axioms CampaignTfq0003FiniteObstruction.edge_count_cycle",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0003FiniteObstruction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0003FiniteObstruction.edge_count_cycle",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
+     "command_note": "then, in a scratch file that imports CampaignTfq0003FiniteObstruction: #print axioms CampaignTfq0003FiniteObstruction.edge_count_triangle",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0003FiniteObstruction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0003FiniteObstruction.edge_count_triangle",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
       "node.lean",
       "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)",
       "record TFQ-0003"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
@@ -107054,6 +107214,13 @@
        "decl_ambiguous": false,
        "decl_listed": true,
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
       }
@@ -107088,6 +107255,13 @@
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -107099,7 +107273,51 @@
     },
     {
      "cited_in": [
+      "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
+     "command_note": "then, in a scratch file that imports CampaignTfq0003FiniteObstruction: #print axioms CampaignTfq0003FiniteObstruction.holonomy_d0",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0003FiniteObstruction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0003FiniteObstruction.holonomy_d0",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
       "node.lean",
+      "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)",
       "record TFQ-0003"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
@@ -107123,6 +107341,13 @@
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -107135,6 +107360,8 @@
     {
      "cited_in": [
       "node.lean",
+      "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)",
       "record TFQ-0003"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
@@ -107158,6 +107385,13 @@
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -107171,6 +107405,7 @@
      "cited_in": [
       "node.lean",
       "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)",
       "record TFQ-0003"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
@@ -107194,6 +107429,13 @@
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -107206,6 +107448,8 @@
     {
      "cited_in": [
       "node.lean",
+      "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)",
       "record TFQ-0003"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
@@ -107229,6 +107473,13 @@
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -107242,6 +107493,7 @@
      "cited_in": [
       "node.lean",
       "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)",
       "record TFQ-0003"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
@@ -107262,6 +107514,13 @@
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -107275,6 +107534,7 @@
      "cited_in": [
       "node.lean",
       "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)",
       "record TFQ-0003"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
@@ -107295,6 +107555,13 @@
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -107308,6 +107575,7 @@
      "cited_in": [
       "node.lean",
       "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)",
       "record TFQ-0003"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
@@ -107328,6 +107596,13 @@
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -107341,6 +107616,7 @@
      "cited_in": [
       "node.lean",
       "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)",
       "record TFQ-0003"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
@@ -107361,6 +107637,13 @@
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -107373,6 +107656,8 @@
     {
      "cited_in": [
       "node.lean",
+      "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)",
       "record TFQ-0003"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
@@ -107393,6 +107678,13 @@
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -107406,6 +107698,7 @@
      "cited_in": [
       "node.lean",
       "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)",
       "record TFQ-0003"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
@@ -107426,6 +107719,13 @@
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -107437,7 +107737,50 @@
     },
     {
      "cited_in": [
+      "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
+     "command_note": "then, in a scratch file that imports CampaignTfq0003FiniteObstruction: #print axioms CampaignTfq0003FiniteObstruction.triangle_edges_complete",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0003FiniteObstruction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0003FiniteObstruction.triangle_edges_complete",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
       "node.lean",
+      "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)",
       "record TFQ-0003"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
@@ -107460,6 +107803,13 @@
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -107471,8 +107821,89 @@
     },
     {
      "cited_in": [
+      "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
+     "command_note": "then, in a scratch file that imports CampaignTfq0003FiniteObstruction: #print axioms CampaignTfq0003FiniteObstruction.triangle_vertices_complete",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0003FiniteObstruction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0003FiniteObstruction.triangle_vertices_complete",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
+      "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
+     "command_note": "then, in a scratch file that imports CampaignTfq0003FiniteObstruction: #print axioms CampaignTfq0003FiniteObstruction.vertex_count",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0003FiniteObstruction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignTfq0003FiniteObstruction.vertex_count",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "cited_in": [
       "node.lean",
       "receipt dag/research/campaign_tfq-0003_lean_replay.json (CampaignTfq0003FiniteObstruction)",
+      "receipt dag/research/pr_345_review_replay.json (CampaignTfq0003FiniteObstruction)",
       "record TFQ-0003"
      ],
      "command": "cd lean4 && lake build CampaignTfq0003FiniteObstruction",
@@ -107491,6 +107922,13 @@
        "decl_ambiguous": false,
        "decl_listed": true,
        "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
+       "ok": true,
+       "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
        "ok": true,
        "sha_match": true
       }
@@ -284635,19 +285073,19 @@
     "Quot.sound",
     "propext"
    ],
-   "built_successfully": null,
-   "checked_at": "2026-10-25",
+   "built_successfully": true,
+   "checked_at": "2026-10-25T17:06:54.986254+00:00",
    "dag_node": "TFQ-0003",
-   "decl_count": 18,
+   "decl_count": 24,
    "exit_code": 0,
    "id": "dag/research/campaign_tfq-0003_lean_replay.json#0:CampaignTfq0003FiniteObstruction",
-   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
-   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": null,
    "module": "CampaignTfq0003FiniteObstruction",
    "path": "lean4/CampaignTfq0003FiniteObstruction.lean",
    "receipt_file": "dag/research/campaign_tfq-0003_lean_replay.json",
-   "receipt_file_sha256": "d6866fa4a204073030f843809ca88324cf9731a0e47bf0ff431dd0275d23b22d",
-   "recorded_sha256": "3b81de3fdc28f74a9a44bce299d29e0e062bf9950a7cac29f7ec283785ef18e9",
+   "receipt_file_sha256": "7c0560f059da49ee90605152bb8eff80cfa4cbe23106512c3f5688b9408454cd",
+   "recorded_sha256": "5deda50b13b9e7a728e07ac22be6618696bab8a7af87236d98d5d64466c9f1e0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
   },
@@ -295573,6 +296011,31 @@
    "axioms_itemised": true,
    "axioms_standard": true,
    "axioms_union": [
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": true,
+   "checked_at": "2026-10-25T17:06:54.986254+00:00",
+   "dag_node": "TFQ-0003",
+   "decl_count": 24,
+   "exit_code": 0,
+   "id": "dag/research/pr_345_review_replay.json#0:CampaignTfq0003FiniteObstruction",
+   "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": null,
+   "module": "CampaignTfq0003FiniteObstruction",
+   "path": "lean4/CampaignTfq0003FiniteObstruction.lean",
+   "receipt_file": "dag/research/pr_345_review_replay.json",
+   "receipt_file_sha256": "daa56299f59ce0737001be7d974d3ae87aeb7ccf635f641b602e24bc999188f1",
+   "recorded_sha256": "5deda50b13b9e7a728e07ac22be6618696bab8a7af87236d98d5d64466c9f1e0",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
     "Classical.choice",
     "Quot.sound",
     "propext"
@@ -296606,7 +297069,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 524,
+  "receipts_indexed": 525,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,

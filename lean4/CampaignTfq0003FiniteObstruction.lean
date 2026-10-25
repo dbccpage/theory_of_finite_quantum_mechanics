@@ -333,11 +333,20 @@ theorem cycle_signature :
       ¬ equivCycle cycleSample zeroCycle := by
   refine ⟨rfl, rfl, rfl, cycle_not_exact⟩
 
-theorem vertex_count : 3 = 3 := rfl
+def triangleVertices : List V3 := [.v0, .v1, .v2]
+def triangleEdges : List E3 := [.e01, .e12, .e02]
+def cycleEdges : List E4 := [.e01, .e12, .e23, .e30]
 
-theorem edge_count_triangle : 3 = 3 := rfl
+theorem vertex_count : triangleVertices.length = 3 ∧ triangleVertices.Nodup := by decide
+theorem edge_count_triangle : triangleEdges.length = 3 ∧ triangleEdges.Nodup := by decide
+theorem edge_count_cycle : cycleEdges.length = 4 ∧ cycleEdges.Nodup := by decide
 
-theorem edge_count_cycle : 4 = 4 := rfl
+theorem triangle_vertices_complete (v : V3) : v ∈ triangleVertices := by
+  cases v <;> decide
+theorem triangle_edges_complete (e : E3) : e ∈ triangleEdges := by
+  cases e <;> decide
+theorem cycle_edges_complete (e : E4) : e ∈ cycleEdges := by
+  cases e <;> decide
 
 end CampaignTfq0003FiniteObstruction
 
@@ -359,3 +368,15 @@ end CampaignTfq0003FiniteObstruction
 #print axioms CampaignTfq0003FiniteObstruction.cycle_rcl_defined
 #print axioms CampaignTfq0003FiniteObstruction.cycle_signature
 #print axioms CampaignTfq0003FiniteObstruction.holonomy_d0
+
+#print axioms CampaignTfq0003FiniteObstruction.vertex_count
+
+#print axioms CampaignTfq0003FiniteObstruction.edge_count_triangle
+
+#print axioms CampaignTfq0003FiniteObstruction.edge_count_cycle
+
+#print axioms CampaignTfq0003FiniteObstruction.triangle_vertices_complete
+
+#print axioms CampaignTfq0003FiniteObstruction.triangle_edges_complete
+
+#print axioms CampaignTfq0003FiniteObstruction.cycle_edges_complete
