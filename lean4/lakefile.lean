@@ -1299,3 +1299,7 @@ lean_lib CampaignL1ResidualSectorWeights where
 -- Campaign: FQ-PRIM-TO-QM-SELECTION-OPEN. Not a default target.
 lean_lib CampaignFqPrimToQmSelection where
   roots := #[`CampaignFqPrimToQmSelection]
+
+-- Campaign: FQ-GAP-U1-CIRCLE. Not a default target.
+lean_lib CampaignFqGapU1Circle where
+  roots := #[`CampaignFqGapU1Circle]

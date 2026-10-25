@@ -5656,7 +5656,7 @@
       "stage": "FINITE_QM_CORE",
       "status": "CONDITIONAL",
       "source_status": "Projective Cayley compactification P^1(Q) <-> S^1(Q), 5-adic half-angle obstruction (4/5 and 1/5 not squares), mod-5 Gaussian power injectivity, Q/Z torsion-tower m-divisibility and finite Haar character orthogonality, quadratic sqrt(5) half-angle restoration + iterated real quadratic square-root tower K_{m+1} = K_m(sqrt((1+c_m)/2)) (explicit K_2 = Q(sqrt(5))(sqrt((5+2*sqrt(5))/10)) with N_{Q(sqrt(5))/Q}((5+2*sqrt(5))/10) = 1/20 and general 2^m-step Chebyshev recursion T_{2^{m+1}} = T_2 o T_{2^m}), rational Chebyshev/Taylor Cauchy approximations to (cos(2*pi*q), sin(2*pi*q)) over RegPhaseSeq, 4D Q(i) Hermitian Born trace representation, and discrete Cayley unitary steps U_H(t) = (I - i t H)(I + i t H)^(-1) kernel-checked in lean4/U1PythagoreanObstruction.lean, lean4/U1PowerMapInjectivity.lean, lean4/U1CayleyProjectiveCircle.lean, lean4/U1CyclotomicTorsionTower.lean, lean4/U1CauchyCircleCompletion.lean, lean4/U1ChebyshevCauchyBridge.lean, lean4/U1QuadraticTowerAndCayleyStone.lean, and lean4/U1PhaseSynthesis.lean (run 20261020T223000Z_u1_phase_completion_lean) and replayed in code/python/src/qm/u1_phase_completion.py and code/rust/src/qm/u1_phase_completion.rs; compact continuous R/Z circle topology remains an explicit completion structure",
-      "statement": "The circle group U(1) is not constructed on the finite host; continuity of a one-parameter phase group remains a hypothesis. In Q(i), u=(3+4i)/5 has no square root and n -> u^n is injective, so no homomorphism (Q,+) -> U(1)(Q(i)) sends 1 to u.",
+      "statement": "For every integer a, b and d, the equations 5*(a*a - b*b) = 3*(d*d) and a*a + b*b = d*d hold together only when a = 0, b = 0 and d = 0. For every natural number a and b, 5*a*a = 4*b*b holds only when b = 0. The identity 3*3 + 4*4 = 5*5 holds.",
       "source": [
         "sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:243"
       ],
@@ -5680,7 +5680,11 @@
         "lean4/U1QuadraticTowerAndCayleyStone.lean::U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_preserves_born_trace",
         "lean4/U1PhaseSynthesis.lean::U1Fable.PhaseSynthesis.u1_phase_completion_synthesis",
         "lean4/U1PhaseSynthesis.lean::U1Fable.PhaseSynthesis.chebyshev_taylor_and_hermitian_qi_bridge",
-        "lean4/U1PhaseSynthesis.lean::U1Fable.PhaseSynthesis.iterated_quadratic_tower_and_cayley_stone_bridge"
+        "lean4/U1PhaseSynthesis.lean::U1Fable.PhaseSynthesis.iterated_quadratic_tower_and_cayley_stone_bridge",
+        "lean4/CampaignFqGapU1Circle.lean::fiveFourSquareForcesZero",
+        "lean4/CampaignFqGapU1Circle.lean::pythagorean345",
+        "lean4/CampaignFqGapU1Circle.lean::clearedDenominatorForcesFourFifths",
+        "lean4/CampaignFqGapU1Circle.lean::noNonzeroClearedSquareRoot"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs::half_exponent_obstruction",
@@ -5692,7 +5696,7 @@
         "circle group U(1) (assumption)",
         "continuity of one-parameter phase group (assumption)"
       ],
-      "bottleneck": "Projective P^1(Q) Cayley compactification, 5-adic half-angle obstruction, mod-5 Gaussian power injectivity, Q/Z torsion-tower divisibility, quadratic sqrt(5) half-angle restoration + iterated real quadratic square-root tower K_{m+1} = K_m(sqrt((1+c_m)/2)), rational Chebyshev/Taylor Cauchy approximations over RegPhaseSeq, 4D Q(i) Hermitian Born trace representation, and discrete Cayley unitary steps U_H(t) = (I - i t H)(I + i t H)^(-1) are kernel-checked; compact continuous R/Z circle topology remains an explicit completion structure.",
+      "bottleneck": "Still open: the circle group U(1) on the finite host, continuity of a one-parameter phase group, injectivity of n mapped to u^n for u = (3+4i)/5, and a homomorphism from (Q, +) into U(1)(Q(i)) sending 1 to u. Projective Cayley, the 5-adic half-angle, mod-5 Gaussian powers, Q/Z torsion, the quadratic sqrt(5) tower, Chebyshev and Taylor approximations, 4D Hermitian Born traces, and discrete Cayley steps stay outside this integer witness. Compact continuous R/Z remains an external completion.",
       "tags": [],
       "see_also": [
         "GP-IMPORT-CIRCLE-U1",
@@ -5710,8 +5714,8 @@
         "narrowest_claim": "The rational Cayley parametrization satisfies the unit-circle equation on retained points, with exact inverse t=y/(x+1), and a general cleared identity. The square-root equations force a^2=4/5; bounded powers are computed exactly.",
         "does_not_support": "Prove 4/5 is not a rational square, full power-map injectivity, and the additive-Q homomorphism obstruction without bounded-search substitution; compact continuous U(1) remains imported.",
         "next_test": "Prove 4/5 is not a rational square, full power-map injectivity, and the additive-Q homomorphism obstruction without bounded-search substitution; compact continuous U(1) remains imported.",
-        "scope_effect": "consistent",
-        "reason": "Review predates the U(1) phase completion run; current text cites it.",
+        "scope_effect": "statement_narrowed",
+        "reason": "Campaign narrowing records the integer descent 5*a*a = 4*b*b only at b = 0 and the cleared pair only at 0, 0, 0. The circle, continuity, the power map, and the homomorphism stay open.",
         "prior_status": "CONDITIONAL",
         "prior_statement": "The circle group U(1) is not constructed on the finite host; continuity of a one-parameter phase group remains a hypothesis. In Q(i), u=(3+4i)/5 has no square root and n -> u^n is injective, so no homomorphism (Q,+) -> U(1)(Q(i)) sends 1 to u.",
         "prior_bottleneck": "Projective P^1(Q) Cayley compactification, 5-adic half-angle obstruction, mod-5 Gaussian power injectivity, Q/Z torsion-tower divisibility, quadratic sqrt(5) half-angle restoration + iterated real quadratic square-root tower K_{m+1} = K_m(sqrt((1+c_m)/2)), rational Chebyshev/Taylor Cauchy approximations over RegPhaseSeq, 4D Q(i) Hermitian Born trace representation, and discrete Cayley unitary steps U_H(t) = (I - i t H)(I + i t H)^(-1) are kernel-checked; compact continuous R/Z circle topology remains an explicit completion structure.",
