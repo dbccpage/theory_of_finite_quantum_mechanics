@@ -6508,7 +6508,7 @@
       "stage": "L1_TO_L2",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "imported / lost on this host (GaussInt is not a field); conditional selection of d = 2 among supplied same-family matrix carriers is established by ComplexFieldSelection (node L1-IMP-COMPLEX-FIELD), but the original complete-field claim remains imported because completeness is not derived",
-      "statement": "Complex numbers as a complete field. On the finite report host only Z[i] (Gaussian integers) is available: 1+i has no inverse, and a self-adjoint Gauss-integer matrix need not have a Gauss-integer eigenvalue.",
+      "statement": "For a Gaussian integer a+bi, the product (1+i)*(a+bi) equals (a-b)+(a+b)i and differs from the real unit, and (a+bi)*(1+i) differs from the real unit. The matrix with entries 0, 1, 1, 1 in row-major order has each diagonal entry equal to its own conjugate and each off-diagonal entry equal to the conjugate of the other, and it sends a column (x, y) to (y, x+y). When (x, y) differs from the zero column, (y, x+y) differs from lam*(x, y) for each Gaussian integer lam.",
       "source": [
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/gap_register.yaml#GAP-F001-S000-009",
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/continuum_price_ledger.yaml#PRICE-HD-01",
@@ -6516,9 +6516,11 @@
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/finite_hilbert_boundary_from_primitive_difference.md:148"
       ],
       "lean": [
-        "lean4/H017Extras.lean::remaining_extras_for_ordinary_mnC",
-        "lean4/H017ExtrasDropone.lean::drop_one_count",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels"
+        "lean4/CampaignGpImportComplexField.lean::onePlusI_mul_coords",
+        "lean4/CampaignGpImportComplexField.lean::onePlusI_not_unit",
+        "lean4/CampaignGpImportComplexField.lean::fib_conjugate_transpose",
+        "lean4/CampaignGpImportComplexField.lean::fib_mulVec",
+        "lean4/CampaignGpImportComplexField.lean::fib_no_gauss_eigenpair"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
@@ -6528,46 +6530,49 @@
       "imported_structure": [
         "complex field C: assumption (completion Q -> R/C is obstructed on the finite host, PRICE-ALG-01)"
       ],
-      "bottleneck": "No derivation of a field with completion from primitive difference; discrete substitute is the cyclotomic ring Z[zeta_n].",
+      "bottleneck": "The example rules out Gaussian-integer eigenpairs for this one matrix. A spectral theorem after extending scalars to a complete complex field, and a derivation or selection of that field from primitive difference, remain imported. This obstruction does not prove that completion or the complex numbers are uniquely necessary; the cyclotomic ring Z[zeta_n] remains a recorded discrete substitute.",
       "tags": [],
       "see_also": [
         "L1-IMP-COMPLEX-FIELD"
       ],
       "pfp_review": {
-        "review": "dag/results/GP-IMPORT-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json",
-        "review_sha256": "b34494db3cef6fc6eb1ecd308b7918ff66c47054ed2fb577f2e08624ade73ef7",
+        "review": "dag/research/pr_390_current_scope_review.json",
+        "review_sha256": "3aa29f0a47968b31eba42f7b1aeec15385a6e3e7e8a6c9bfb083c6b3faf64152",
         "review_refs": [
-          "dag/results/GP-IMPORT-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json"
+          "dag/research/pr_390_current_scope_review.json"
         ],
-        "verdict": "scoped_result_or_obstruction_reviewed",
-        "narrowest_claim": "Exact reciprocals/units and a no-integer-root obstruction control; generally no integer inverse to1+i and no integer square2 in Lean.",
-        "does_not_support": "Complete complex field, spectral theorem and completeness remain imports. The computed finite polynomial samples do not prove a full spectral theorem.",
-        "next_test": "Complete complex field, spectral theorem and completeness remain imports. The computed finite polynomial samples do not prove a full spectral theorem.",
-        "scope_effect": "consistent",
-        "reason": "Imported node; the review adds exact Z[i] controls. A later complex-carrier run constructs the completion.",
+        "verdict": "scoped_gaussian_integer_result_reviewed",
+        "narrowest_claim": "For a Gaussian integer a+bi, the product (1+i)*(a+bi) equals (a-b)+(a+b)i and differs from the real unit, and (a+bi)*(1+i) differs from the real unit. The matrix with entries 0, 1, 1, 1 in row-major order has each diagonal entry equal to its own conjugate and each off-diagonal entry equal to the conjugate of the other, and it sends a column (x, y) to (y, x+y). When (x, y) differs from the zero column, (y, x+y) differs from lam*(x, y) for each Gaussian integer lam.",
+        "does_not_support": "The example rules out Gaussian-integer eigenpairs for this one matrix. A spectral theorem after extending scalars to a complete complex field, and a derivation or selection of that field from primitive difference, remain imported. This obstruction does not prove that completion or the complex numbers are uniquely necessary; the cyclotomic ring Z[zeta_n] remains a recorded discrete substitute.",
+        "next_test": "Keep the complete-field import explicit while reusing the exact Gaussian-integer obstruction.",
+        "scope_effect": "statement_narrowed",
+        "reason": "Current review covers the Gaussian-integer non-unit and fixed-matrix obstruction with all variables restricted to Gaussian integers. The complete complex-field target stays IMPORTED_ASSUMPTION.",
         "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "Complex numbers as a complete field. On the finite report host only Z[i] (Gaussian integers) is available: 1+i has no inverse, and a self-adjoint Gauss-integer matrix need not have a Gauss-integer eigenvalue.",
         "prior_bottleneck": "No derivation of a field with completion from primitive difference; discrete substitute is the cyclotomic ring Z[zeta_n].",
-        "superseded_by": [
-          "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion",
-          "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps"
-        ]
+        "superseded_by": []
       }
     },
     {
       "id": "GP-IMPORT-CIRCLE-U1",
       "stage": "L1_TO_L2",
       "status": "IMPORTED_ASSUMPTION",
-      "source_status": "imported; sign group excluded only under an extra",
-      "statement": "The circle group U(1) as phase group. The leftover (1,1) vs (1,-1) is already seen over {+1,-1}, so it does not select the circle. Under the extra 'not of exponent two' the sign group is excluded; Gaussian units and a three-cycle meet the extra. The circle itself and continuity of a one-parameter phase group stay hypotheses.",
+      "source_status": "Lean-checked finite sign, pair and cycle examples; U(1), continuity and the circle selector remain imported.",
+      "statement": "Each sign squares to 1. The pairs (1, 1) and (1, -1) differ, and each of their coordinates is a sign. The integer pair 0, 1 has square norm 1, and the product of that pair with itself is the pair -1, 0, which differs from the pair 1, 0. The map sending 0 to 1, 1 to 2 and 2 to 0 returns 2 at the second step from 0 and returns 0 at the third step from 0.",
       "source": [
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/gap_register.yaml#GAP-F001-S000-005",
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/continuum_price_ledger.yaml#PRICE-HD-01",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/finite_hilbert_boundary_from_primitive_difference.md:152"
       ],
       "lean": [
-        "lean4/H011Circle.lean::sign_fails_connectedness_shadow",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries"
+        "lean4/CampaignGpImportCircleU1.lean::signSquare",
+        "lean4/CampaignGpImportCircleU1.lean::pairsDiffer",
+        "lean4/CampaignGpImportCircleU1.lean::pairCoordsAreSigns",
+        "lean4/CampaignGpImportCircleU1.lean::iNorm",
+        "lean4/CampaignGpImportCircleU1.lean::iSquare",
+        "lean4/CampaignGpImportCircleU1.lean::iSquareNeOne",
+        "lean4/CampaignGpImportCircleU1.lean::cycTwice",
+        "lean4/CampaignGpImportCircleU1.lean::cycThrice"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
@@ -6577,7 +6582,7 @@
         "U(1) phase group: assumption",
         "continuity of one-parameter phase group: assumption"
       ],
-      "bottleneck": "Selector for C / U(1) is not derived; QM_028 / QM_062 carry the U1 selector as a separate node.",
+      "bottleneck": "The circle group U(1), a continuous one-parameter phase group, and a selector for that circle remain imported. The sign, Gaussian-integer pair and three-cycle examples neither construct U(1) nor rule it out.",
       "tags": [],
       "see_also": [
         "FQ-GAP-U1-CIRCLE",
@@ -6586,23 +6591,21 @@
         "L1-U1-SELECTOR-OTHER-SEGMENT"
       ],
       "pfp_review": {
-        "review": "dag/results/GP-IMPORT-CIRCLE-U1/reviews/20261019_l1_import_audit/delivery_review_result.json",
-        "review_sha256": "46db918febe41cdd7263b3ab9d6debe8558043f3f9ede78fa76395e33e14e1e6",
+        "review": "dag/research/pr_391_current_scope_review.json",
+        "review_sha256": "a1a856121ee73368d752b8670f4169a99221955c65395da80f075a9afa32fce9",
         "review_refs": [
-          "dag/results/GP-IMPORT-CIRCLE-U1/reviews/20261019_l1_import_audit/delivery_review_result.json"
+          "dag/research/pr_391_current_scope_review.json"
         ],
-        "verdict": "scoped_result_or_obstruction_reviewed",
-        "narrowest_claim": "Complete C2/C3/C4 group tables, exponent-two controls and sign-interference values, plus exact cyclic controls in Lean.",
-        "does_not_support": "A circle group, topology and continuous one-parameter action remain extra hypotheses. Finite alternatives do not select U(1).",
-        "next_test": "A circle group, topology and continuous one-parameter action remain extra hypotheses. Finite alternatives do not select U(1).",
-        "scope_effect": "consistent",
-        "reason": "Imported node; the review adds group tables and exponent-two controls. Later U(1) runs construct parts of the circle.",
+        "verdict": "scoped_sign_pair_cycle_result_reviewed",
+        "narrowest_claim": "Each sign squares to 1. The pairs (1, 1) and (1, -1) differ, and each of their coordinates is a sign. The integer pair 0, 1 has square norm 1, and the product of that pair with itself is the pair -1, 0, which differs from the pair 1, 0. The map sending 0 to 1, 1 to 2 and 2 to 0 returns 2 at the second step from 0 and returns 0 at the third step from 0.",
+        "does_not_support": "The circle group U(1), a continuous one-parameter phase group, and a selector for that circle remain imported. The sign, Gaussian-integer pair and three-cycle examples neither construct U(1) nor rule it out.",
+        "next_test": "Keep the circle and continuity imports explicit; any broader construction needs a separate statement-level review.",
+        "scope_effect": "statement_narrowed",
+        "reason": "Current source review covers the sign-square lemma and the explicit pair and cycle computations. These examples do not discharge the original circle-group import; IMPORTED_ASSUMPTION is retained.",
         "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "The circle group U(1) as phase group. The leftover (1,1) vs (1,-1) is already seen over {+1,-1}, so it does not select the circle. Under the extra 'not of exponent two' the sign group is excluded; Gaussian units and a three-cycle meet the extra. The circle itself and continuity of a one-parameter phase group stay hypotheses.",
         "prior_bottleneck": "Selector for C / U(1) is not derived; QM_028 / QM_062 carry the U1 selector as a separate node.",
-        "superseded_by": [
-          "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean"
-        ]
+        "superseded_by": []
       }
     },
     {
@@ -57510,16 +57513,18 @@
       ],
       "id": "TFQ-1029",
       "lean4": [
-        "lean4/H017Extras.lean::remaining_extras_for_ordinary_mnC",
-        "lean4/H017ExtrasDropone.lean::drop_one_count",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels"
+        "lean4/CampaignGpImportComplexField.lean::onePlusI_mul_coords",
+        "lean4/CampaignGpImportComplexField.lean::onePlusI_not_unit",
+        "lean4/CampaignGpImportComplexField.lean::fib_conjugate_transpose",
+        "lean4/CampaignGpImportComplexField.lean::fib_mulVec",
+        "lean4/CampaignGpImportComplexField.lean::fib_no_gauss_eigenpair"
       ],
       "local_id": "GP-IMPORT-COMPLEX-FIELD",
       "name": "gp-import-complex-field",
-      "obligation": "No derivation of a field with completion from primitive difference; discrete substitute is the cyclotomic ring Z[zeta_n].",
+      "obligation": "The example rules out Gaussian-integer eigenpairs for this one matrix. A spectral theorem after extending scalars to a complete complex field, and a derivation or selection of that field from primitive difference, remain imported. This obstruction does not prove that completion or the complex numbers are uniquely necessary; the cyclotomic ring Z[zeta_n] remains a recorded discrete substitute.",
       "parent_id": "TFQ-0293",
       "pfp_review_refs": [
-        "dag/results/GP-IMPORT-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json"
+        "dag/research/pr_390_current_scope_review.json"
       ],
       "python": [],
       "record_status": "IMPORTED_ASSUMPTION",
@@ -57530,7 +57535,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "L1_TO_L2",
-      "summary": "Complex numbers as a complete field. On the finite report host only Z[i] (Gaussian integers) is available: 1+i has no inverse, and a self-adjoint Gauss-integer matrix need not have a Gauss-integer eigenvalue.",
+      "summary": "For a Gaussian integer a+bi, the product (1+i)*(a+bi) equals (a-b)+(a+b)i and differs from the real unit, and (a+bi)*(1+i) differs from the real unit. The matrix with entries 0, 1, 1, 1 in row-major order has each diagonal entry equal to its own conjugate and each off-diagonal entry equal to the conjugate of the other, and it sends a column (x, y) to (y, x+y). When (x, y) differs from the zero column, (y, x+y) differs from lam*(x, y) for each Gaussian integer lam.",
       "uuid": "23198208-a57c-5bd8-8036-a24af9c89d52"
     },
     {
@@ -57544,15 +57549,21 @@
       ],
       "id": "TFQ-1030",
       "lean4": [
-        "lean4/H011Circle.lean::sign_fails_connectedness_shadow",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries"
+        "lean4/CampaignGpImportCircleU1.lean::signSquare",
+        "lean4/CampaignGpImportCircleU1.lean::pairsDiffer",
+        "lean4/CampaignGpImportCircleU1.lean::pairCoordsAreSigns",
+        "lean4/CampaignGpImportCircleU1.lean::iNorm",
+        "lean4/CampaignGpImportCircleU1.lean::iSquare",
+        "lean4/CampaignGpImportCircleU1.lean::iSquareNeOne",
+        "lean4/CampaignGpImportCircleU1.lean::cycTwice",
+        "lean4/CampaignGpImportCircleU1.lean::cycThrice"
       ],
       "local_id": "GP-IMPORT-CIRCLE-U1",
       "name": "gp-import-circle-u1",
-      "obligation": "Selector for C / U(1) is not derived; QM_028 / QM_062 carry the U1 selector as a separate node.",
+      "obligation": "The circle group U(1), a continuous one-parameter phase group, and a selector for that circle remain imported. The sign, Gaussian-integer pair and three-cycle examples neither construct U(1) nor rule it out.",
       "parent_id": "TFQ-0294",
       "pfp_review_refs": [
-        "dag/results/GP-IMPORT-CIRCLE-U1/reviews/20261019_l1_import_audit/delivery_review_result.json"
+        "dag/research/pr_391_current_scope_review.json"
       ],
       "python": [],
       "record_status": "IMPORTED_ASSUMPTION",
@@ -57562,7 +57573,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "L1_TO_L2",
-      "summary": "The circle group U(1) as phase group. The leftover (1,1) vs (1,-1) is already seen over {+1,-1}, so it does not select the circle. Under the extra 'not of exponent two' the sign group is excluded; Gaussian units and a three-cycle meet the extra. The circle itself and continuity of a one-parameter phase group stay hypotheses.",
+      "summary": "Each sign squares to 1. The pairs (1, 1) and (1, -1) differ, and each of their coordinates is a sign. The integer pair 0, 1 has square norm 1, and the product of that pair with itself is the pair -1, 0, which differs from the pair 1, 0. The map sending 0 to 1, 1 to 2 and 2 to 0 returns 2 at the second step from 0 and returns 0 at the third step from 0.",
       "uuid": "c75b92e0-762b-580b-99f7-f6e75b48f249"
     },
     {

@@ -1,0 +1,37 @@
+{
+  "task_id": "GP-IMPORT-CIRCLE-U1",
+  "status": "scoped_sign_pair_cycle_result_reviewed",
+  "authority_effect": "None",
+  "reviewer": "Codex exact-source and independent-check review; no independent-author human review claimed.",
+  "historical_review": "dag/results/GP-IMPORT-CIRCLE-U1/reviews/20261019_l1_import_audit/delivery_review_result.json",
+  "historical_superseded_by": [
+    "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean"
+  ],
+  "claim_boundary": {
+    "supports": "Each sign squares to 1. The pairs (1, 1) and (1, -1) differ, and each of their coordinates is a sign. The integer pair 0, 1 has square norm 1, and the product of that pair with itself is the pair -1, 0, which differs from the pair 1, 0. The map sending 0 to 1, 1 to 2 and 2 to 0 returns 2 at the second step from 0 and returns 0 at the third step from 0.",
+    "narrowest_claim": "Each sign squares to 1. The pairs (1, 1) and (1, -1) differ, and each of their coordinates is a sign. The integer pair 0, 1 has square norm 1, and the product of that pair with itself is the pair -1, 0, which differs from the pair 1, 0. The map sending 0 to 1, 1 to 2 and 2 to 0 returns 2 at the second step from 0 and returns 0 at the third step from 0.",
+    "does_not_support": "The circle group U(1), a continuous one-parameter phase group, and a selector for that circle remain imported. The sign, Gaussian-integer pair and three-cycle examples neither construct U(1) nor rule it out.",
+    "next_test": "Keep the circle and continuity imports explicit; any broader construction needs a separate statement-level review."
+  },
+  "source_sha256": "ee2379460eece0f18f28d6603f4e411a008537cb7983e39e3b40d0a3061adbd7",
+  "independent_check_sha256": "85e38231a77657e1097e2cfdb75ad0e7381f46757da4fcf23d03a2ab6affcc2a",
+  "reviewed_declarations": [
+    "CampaignGpImportCircleU1.isSign",
+    "CampaignGpImportCircleU1.signSquare",
+    "CampaignGpImportCircleU1.pairsDiffer",
+    "CampaignGpImportCircleU1.pairCoordsAreSigns",
+    "CampaignGpImportCircleU1.gMul",
+    "CampaignGpImportCircleU1.gNorm",
+    "CampaignGpImportCircleU1.iNorm",
+    "CampaignGpImportCircleU1.iSquare",
+    "CampaignGpImportCircleU1.iSquareNeOne",
+    "CampaignGpImportCircleU1.cyc",
+    "CampaignGpImportCircleU1.cycTwice",
+    "CampaignGpImportCircleU1.cycThrice"
+  ],
+  "evidence": [
+    "dag/research/pr_391_round2_replay.json",
+    "checks/independent/gp-import-circle-u1.py",
+    "docs/overclaim/reviews/2026-10-25_pr-391-review.md"
+  ]
+}
