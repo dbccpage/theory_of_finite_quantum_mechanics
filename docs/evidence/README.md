@@ -12,32 +12,32 @@ The DAG has 925 nodes in 36 stages. Evidence grades: E0 154, E1 212, E2 38, E3 5
 
 | Group | Statuses | Nodes | Meaning |
 |---|---|---|---|
-| Proved in this repository, kernel-checked Lean | `PROVED_LEAN` | 267 | Lean declarations are cited as stating the node. Whether they lie in this repository and have a current replay receipt is in the grade table. |
+| Proved in this repository, kernel-checked Lean | `PROVED_LEAN` | 268 | Lean declarations are cited as stating the node. Whether they lie in this repository and have a current replay receipt is in the grade table. |
 | Proved in prose | `PROVED_PROSE` | 35 | A written proof exists; no machine check is claimed. |
 | Checked by computation | `COMPUTATIONALLY_CHECKED` | 159 | An exact finite computation is recorded. |
-| Conditional on named hypotheses | `CONDITIONAL` | 37 | Holds given hypotheses that the node names; the hypotheses are not derived. |
+| Conditional on named hypotheses | `CONDITIONAL` | 36 | Holds given hypotheses that the node names; the hypotheses are not derived. |
 | Definitions | `DEFINITION` | 92 | A definition or construction, not a claim of truth. |
 | Imported or admitted, not derived here | `IMPORTED_ASSUMPTION`, `ADMITTED_PRIMITIVE` | 73 | Taken in from outside the finite construction. Admitted as a starting object. |
 | External results recorded, not audited here | `SOURCE_RECORD` | 81 | An external result is recorded; nothing here audits it. |
 | Open | `OPEN` | 175 | No derivation is recorded. |
 | Refuted | `REFUTED` | 6 | A counterexample is recorded. |
 
-Of the 267 `PROVED_LEAN` nodes, 267 reach grade E3 or E4 (100 percent); 0 do not. The second group is listed in [mismatches](mismatches.md).
+Of the 268 `PROVED_LEAN` nodes, 268 reach grade E3 or E4 (100 percent); 0 do not. The second group is listed in [mismatches](mismatches.md).
 
 Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 521 nodes at E3, 166 have a qualifying review, 37 of those cite in-repo Rust or Python code that is not a test, and 38 have a runnable test but no review.
 
 ### Where the Lean evidence stands
 
-The `lean` fields of nodes cite 2041 distinct Lean declarations that lie in files of this checkout. 1979 of them are in a file whose current sha256 matches a passing replay receipt; 39 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches; 23 are in files whose current-hash receipt failed the build or axiom audit. The `PROVED_LEAN` nodes cite 1081 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
+The `lean` fields of nodes cite 2042 distinct Lean declarations that lie in files of this checkout. 1980 of them are in a file whose current sha256 matches a passing replay receipt; 39 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches; 23 are in files whose current-hash receipt failed the build or axiom audit. The `PROVED_LEAN` nodes cite 1083 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
 
 ### Status by evidence grade
 
 | Status | E0 | E1 | E2 | E3 | E4 | Total |
 |---|---|---|---|---|---|---|
-| `PROVED_LEAN` | 0 | 0 | 0 | 267 | 0 | 267 |
+| `PROVED_LEAN` | 0 | 0 | 0 | 268 | 0 | 268 |
 | `PROVED_PROSE` | 8 | 13 | 7 | 7 | 0 | 35 |
 | `COMPUTATIONALLY_CHECKED` | 36 | 60 | 20 | 43 | 0 | 159 |
-| `CONDITIONAL` | 11 | 2 | 2 | 22 | 0 | 37 |
+| `CONDITIONAL` | 11 | 2 | 2 | 21 | 0 | 36 |
 | `DEFINITION` | 21 | 17 | 1 | 53 | 0 | 92 |
 | `IMPORTED_ASSUMPTION` | 5 | 24 | 1 | 40 | 0 | 70 |
 | `ADMITTED_PRIMITIVE` | 0 | 0 | 0 | 3 | 0 | 3 |
@@ -77,7 +77,7 @@ The `lean` fields of nodes cite 2041 distinct Lean declarations that lie in file
 | [IMPLEMENTATION_SIBLING](stages/IMPLEMENTATION_SIBLING.md) | 1 | 20 | 0 | 5 | 0 | 26 | 0 | 23 |
 | [ENGINE_CUSTODY](stages/ENGINE_CUSTODY.md) | 8 | 26 | 0 | 0 | 0 | 34 | 0 | 9 |
 | [MAJORANA](stages/MAJORANA.md) | 0 | 7 | 11 | 28 | 0 | 46 | 5 | 0 |
-| [COMPUTATION](stages/COMPUTATION.md) | 0 | 9 | 3 | 70 | 0 | 82 | 43 | 4 |
+| [COMPUTATION](stages/COMPUTATION.md) | 0 | 9 | 3 | 70 | 0 | 82 | 44 | 4 |
 | [CONSTRUCTOR_THEORY](stages/CONSTRUCTOR_THEORY.md) | 10 | 1 | 0 | 4 | 0 | 15 | 3 | 2 |
 | [CAUSAL_QFT](stages/CAUSAL_QFT.md) | 4 | 0 | 0 | 10 | 0 | 14 | 6 | 0 |
 | [ADS_CFT](stages/ADS_CFT.md) | 5 | 1 | 0 | 7 | 0 | 13 | 3 | 0 |
@@ -103,7 +103,7 @@ Counting rules:
 - Derivation papers written by the syncs, and the generated JSONL and Markdown views, are listed and not counted: they restate the DAG and do not bear on a claim.
 - A symbol "exists" under the validator's leaf rule: the last name component occurs in the cited file. Counted symbols whose leaf occurs but for which no declaration form (`theorem`, `def`, `fn`, `struct`, ...) matched: 7. E3 additionally requires a declaration form or a listing in the receipt.
 - Paths that begin with `omega_engine` or `.claude` name sibling trees that are not in this repository. They are recorded as `external_unresolved`: neither confirmed nor refuted here.
-- Lean receipts are the files in `dag/research/` whose Lean results carry a module name and a sha256. A receipt covers a Lean file, not a single declaration, unless the receipt itemises the declaration's axioms. 1912 of the 1979 receipt-backed declarations are itemised; the others rest on the module-level audit. A cited symbol is matched to a receipt name only if the receipt name equals it or ends in a dot followed by it; when more than one receipt name matches, the match is recorded as ambiguous and no axiom list is copied (0 declarations).
+- Lean receipts are the files in `dag/research/` whose Lean results carry a module name and a sha256. A receipt covers a Lean file, not a single declaration, unless the receipt itemises the declaration's axioms. 1913 of the 1980 receipt-backed declarations are itemised; the others rest on the module-level audit. A cited symbol is matched to a receipt name only if the receipt name equals it or ends in a dot followed by it; when more than one receipt name matches, the match is recorded as ambiguous and no axiom list is copied (0 declarations).
 - File sha256 values are over the file bytes for `.lean`, `.rs`, `.py` and `.toml` files (their line endings are pinned in `.gitattributes`) and over the LF-normalised text for other files.
 
 ## Verify it yourself

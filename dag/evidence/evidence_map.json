@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "1e209acf5236fc42c55809ab518e2f32b74103ed7bab988a290b33435a7dd14b"
+  "sha256_lf": "c0680b25e503fe43bca4d2cde4ee8382fa2330a72a273bb6e3018755e8ab6d02"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -1223,9 +1223,9 @@
    "size": 9170
   },
   "dag/derivation_dag.json": {
-   "sha256": "1e209acf5236fc42c55809ab518e2f32b74103ed7bab988a290b33435a7dd14b",
+   "sha256": "c0680b25e503fe43bca4d2cde4ee8382fa2330a72a273bb6e3018755e8ab6d02",
    "sha256_basis": "lf-normalised",
-   "size": 4802094
+   "size": 4802582
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -5323,9 +5323,9 @@
    "size": 2380
   },
   "dag/derivations/29_computation/tfq_1310_comp_c7_encoded_instance_reduction.md": {
-   "sha256": "48015f9383eb0f57c090c0cbeb4efa4692453fe6e70d08f20cdf9a840dca5e4b",
+   "sha256": "4b3563cfe7e44a89eccb5e68ecf6a62abb10990e0424b622f3d2ba8846d01e9b",
    "sha256_basis": "lf-normalised",
-   "size": 1836
+   "size": 2122
   },
   "dag/derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md": {
    "sha256": "d6bbc8073f84166f8078de1298aee81a316080c63492f4c3ecb0cd7990db16d3",
@@ -6672,6 +6672,11 @@
    "sha256_basis": "lf-normalised",
    "size": 2790
   },
+  "dag/research/campaign_comp-c7-encoded-instance-reduction_lean_replay.json": {
+   "sha256": "400eea97da2a2f89406d6d2bc9c860c27227d80e0b0d008c3cd53a326e3f0753",
+   "sha256_basis": "lf-normalised",
+   "size": 3127
+  },
   "dag/research/campaign_comp-c7-fixed-target-open_lean_replay.json": {
    "sha256": "4142e3fd00764c989acb6c44b47848666bcceca6117e05bdc70a2332e3763b07",
    "sha256_basis": "lf-normalised",
@@ -7863,9 +7868,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "sha256": "e2dff8e04af1ece032100e74fa659b257edd73923d06136fd209c3bbbaf2cfa5",
    "sha256_basis": "lf-normalised",
-   "size": 217808
+   "size": 220387
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -8206,6 +8211,11 @@
    "sha256": "a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1",
    "sha256_basis": "bytes",
    "size": 772
+  },
+  "lean4/CampaignCompC7EncodedInstanceReduction.lean": {
+   "sha256": "e59dda30efcd5c5be3196204945413abd8b605e007d2173e545c6ac03dabcf57",
+   "sha256_basis": "bytes",
+   "size": 683
   },
   "lean4/CampaignCompC7FixedTargetOpen.lean": {
    "sha256": "fdf8c22aad238c9fc90ae8988290b8d214e29ceaf050e6246f5c8f49265a5347",
@@ -265505,7 +265515,7 @@
       "nodes": [
        "COMP-C7-ENCODED-INSTANCE-REDUCTION"
       ],
-      "status": "CONDITIONAL_ON_IMPORT"
+      "status": "DERIVED_LEAN"
      },
      {
       "id": "APP-R-COMP-C7-FIXED-TARGET-OPEN",
@@ -265524,16 +265534,87 @@
    "dependents": 0,
    "facts": {
     "cited_code_files_not_tests": 0,
-    "counted_files": 2,
-    "lean_receipt_backed": 1,
+    "counted_files": 3,
+    "lean_receipt_backed": 2,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 1
+    "symbols_found": 2
    },
    "flags": [],
    "grade": "E3",
    "id": "COMP-C7-ENCODED-INSTANCE-REDUCTION",
    "items": [
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.source",
+      "receipt dag/research/campaign_comp-c7-encoded-instance-reduction_lean_replay.json (CampaignCompC7EncodedInstanceReduction)"
+     ],
+     "command": "cd lean4 && lake build CampaignCompC7EncodedInstanceReduction",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignCompC7EncodedInstanceReduction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_comp-c7-encoded-instance-reduction_lean_replay.json#0:CampaignCompC7EncodedInstanceReduction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": "encoded_instance_reduction",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_comp-c7-encoded-instance-reduction_lean_replay.json (CampaignCompC7EncodedInstanceReduction)",
+      "record TFQ-1310"
+     ],
+     "command": "cd lean4 && lake build CampaignCompC7EncodedInstanceReduction",
+     "command_note": "then, in a scratch file that imports CampaignCompC7EncodedInstanceReduction: #print axioms encoded_instance_reduction",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignCompC7EncodedInstanceReduction.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_comp-c7-encoded-instance-reduction_lean_replay.json#0:CampaignCompC7EncodedInstanceReduction",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "encoded_instance_reduction",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
     {
      "canonical_symbol": null,
      "cited_in": [
@@ -265665,13 +265746,13 @@
       "nodes": [
        "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
-      "status": "CONDITIONAL_ON_IMPORT"
+      "status": "DERIVED_LEAN"
      }
     ],
     "out": []
    },
    "stage": "COMPUTATION",
-   "status": "CONDITIONAL"
+   "status": "PROVED_LEAN"
   },
   {
    "absent_notes": [],
@@ -305952,6 +306033,32 @@
    "axiom_audit_passed": true,
    "axioms_itemised": true,
    "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": true,
+   "checked_at": "2026-10-25",
+   "dag_node": "COMP-C7-ENCODED-INSTANCE-REDUCTION",
+   "decl_count": 2,
+   "exit_code": 0,
+   "id": "dag/research/campaign_comp-c7-encoded-instance-reduction_lean_replay.json#0:CampaignCompC7EncodedInstanceReduction",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignCompC7EncodedInstanceReduction",
+   "path": "lean4/CampaignCompC7EncodedInstanceReduction.lean",
+   "receipt_file": "dag/research/campaign_comp-c7-encoded-instance-reduction_lean_replay.json",
+   "receipt_file_sha256": "400eea97da2a2f89406d6d2bc9c860c27227d80e0b0d008c3cd53a326e3f0753",
+   "recorded_sha256": "e59dda30efcd5c5be3196204945413abd8b605e007d2173e545c6ac03dabcf57",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": null,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
    "axioms_union": [],
    "built_successfully": true,
    "checked_at": "2026-10-25",
@@ -319349,7 +319456,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "e2dff8e04af1ece032100e74fa659b257edd73923d06136fd209c3bbbaf2cfa5",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319375,7 +319482,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "e2dff8e04af1ece032100e74fa659b257edd73923d06136fd209c3bbbaf2cfa5",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319401,7 +319508,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "e2dff8e04af1ece032100e74fa659b257edd73923d06136fd209c3bbbaf2cfa5",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319427,7 +319534,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "e2dff8e04af1ece032100e74fa659b257edd73923d06136fd209c3bbbaf2cfa5",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319453,7 +319560,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "e2dff8e04af1ece032100e74fa659b257edd73923d06136fd209c3bbbaf2cfa5",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319479,7 +319586,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "e2dff8e04af1ece032100e74fa659b257edd73923d06136fd209c3bbbaf2cfa5",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319505,7 +319612,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "e2dff8e04af1ece032100e74fa659b257edd73923d06136fd209c3bbbaf2cfa5",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319531,7 +319638,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "e2dff8e04af1ece032100e74fa659b257edd73923d06136fd209c3bbbaf2cfa5",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319557,7 +319664,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "e2dff8e04af1ece032100e74fa659b257edd73923d06136fd209c3bbbaf2cfa5",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319583,7 +319690,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "e2dff8e04af1ece032100e74fa659b257edd73923d06136fd209c3bbbaf2cfa5",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319609,7 +319716,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "e2dff8e04af1ece032100e74fa659b257edd73923d06136fd209c3bbbaf2cfa5",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319635,7 +319742,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "e2dff8e04af1ece032100e74fa659b257edd73923d06136fd209c3bbbaf2cfa5",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319661,7 +319768,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "e2dff8e04af1ece032100e74fa659b257edd73923d06136fd209c3bbbaf2cfa5",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319687,7 +319794,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "e2dff8e04af1ece032100e74fa659b257edd73923d06136fd209c3bbbaf2cfa5",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -319713,7 +319820,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba",
+   "receipt_file_sha256": "e2dff8e04af1ece032100e74fa659b257edd73923d06136fd209c3bbbaf2cfa5",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -320323,11 +320430,11 @@
   "by_status": {
    "ADMITTED_PRIMITIVE": 3,
    "COMPUTATIONALLY_CHECKED": 159,
-   "CONDITIONAL": 37,
+   "CONDITIONAL": 36,
    "DEFINITION": 92,
    "IMPORTED_ASSUMPTION": 70,
    "OPEN": 175,
-   "PROVED_LEAN": 267,
+   "PROVED_LEAN": 268,
    "PROVED_PROSE": 35,
    "REFUTED": 6,
    "SOURCE_RECORD": 81
@@ -320337,16 +320444,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 37,
   "e3_nodes_with_test_but_no_review": 38,
   "lean_declarations_in_repo": {
-   "distinct": 2041,
+   "distinct": 2042,
    "no_receipt": 39,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 1979,
-   "replay_verified_and_declaration_itemised": 1912,
+   "replay_verified": 1980,
+   "replay_verified_and_declaration_itemised": 1913,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 2368
+   "present": 2369
   },
   "mismatch_nodes": 190,
   "mismatches_by_kind": {
@@ -320361,13 +320468,13 @@
   "mismatches_total": 253,
   "nodes": 925,
   "proved_lean_lean_references": {
-   "present": 1081
+   "present": 1083
   },
   "proved_lean_nodes": {
-   "total": 267,
-   "with_in_repo_lean": 267
+   "total": 268,
+   "with_in_repo_lean": 268
   },
-  "receipts_indexed": 585,
+  "receipts_indexed": 586,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
@@ -320627,7 +320734,7 @@
     "E0": 11,
     "E1": 2,
     "E2": 2,
-    "E3": 22,
+    "E3": 21,
     "E4": 0
    },
    "DEFINITION": {
@@ -320655,7 +320762,7 @@
     "E0": 0,
     "E1": 0,
     "E2": 0,
-    "E3": 267,
+    "E3": 268,
     "E4": 0
    },
    "PROVED_PROSE": {

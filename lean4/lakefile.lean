@@ -1331,3 +1331,7 @@ lean_lib CampaignAuthfCarrierAdmissionGate where
 -- Campaign: FQ-GAP-STONE-CONTINUOUS-TIME. Not a default target.
 lean_lib CampaignFqGapStoneContinuousTime where
   roots := #[`CampaignFqGapStoneContinuousTime]
+
+-- Campaign: COMP-C7-ENCODED-INSTANCE-REDUCTION. Not a default target.
+lean_lib CampaignCompC7EncodedInstanceReduction where
+  roots := #[`CampaignCompC7EncodedInstanceReduction]

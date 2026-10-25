@@ -24853,22 +24853,22 @@
     {
       "id": "COMP-C7-ENCODED-INSTANCE-REDUCTION",
       "stage": "COMPUTATION",
-      "status": "CONDITIONAL",
-      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C7c claims CONDITIONAL; audited status CONDITIONAL",
+      "status": "PROVED_LEAN",
+      "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C7c claims CONDITIONAL; audited status PROVED_LEAN",
       "statement": "If the mark type has a Primcodable structure and startWord is computable, the normal-form reachability problem on words of the fixed regime is not a computable predicate.",
       "source": [
         "dag/derivations/29_computation/tfq_1310_comp_c7_encoded_instance_reduction.md",
         "dag/research/genesis_to_universal_computation.md",
-        "lean4/GenesisCompUniv.lean"
+        "lean4/GenesisCompUniv.lean",
+        "lean4/CampaignCompC7EncodedInstanceReduction.lean"
       ],
       "lean": [
-        "lean4/GenesisCompUniv.lean::reach_problem_not_computable"
+        "lean4/GenesisCompUniv.lean::reach_problem_not_computable",
+        "lean4/CampaignCompC7EncodedInstanceReduction.lean::encoded_instance_reduction"
       ],
       "rust": [],
-      "imported_structure": [
-        "Primcodable structure on the mark type and Computable startWord (open lemma startWord_computable)"
-      ],
-      "bottleneck": "Prove startWord_computable: a Primcodable structure on a mark type containing the infinite state type and a computability proof for the paired-input encoding.",
+      "imported_structure": [],
+      "bottleneck": "The antecedent is a Primcodable instance for Sym G1 (TM1to0.Λ' M1) and Computable startWord. That antecedent is not constructed in this module. The standing claim is the implication from that antecedent to non-computability of the word predicate for Rules M0.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -39364,8 +39364,8 @@
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
       "output": "COMP-C7-ENCODED-INSTANCE-REDUCTION",
-      "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "Prove startWord_computable: a Primcodable structure on a mark type containing the infinite state type and a computability proof for the paired-input encoding.",
+      "status": "DERIVED_LEAN",
+      "mechanism": "The antecedent is a Primcodable instance for Sym G1 (TM1to0.Λ' M1) and Computable startWord. That antecedent is not constructed in this module. The standing claim is the implication from that antecedent to non-computability of the word predicate for Rules M0.",
       "source": [
         "dag/derivations/29_computation/tfq_1310_comp_c7_encoded_instance_reduction.md",
         "dag/research/genesis_to_universal_computation.md",
@@ -69828,18 +69828,20 @@
       "f004_refs": [
         "dag/derivations/29_computation/tfq_1310_comp_c7_encoded_instance_reduction.md",
         "dag/research/genesis_to_universal_computation.md:129-134",
-        "lean4/GenesisCompUniv.lean:329-339"
+        "lean4/GenesisCompUniv.lean:329-339",
+        "lean4/CampaignCompC7EncodedInstanceReduction.lean:11-15"
       ],
       "id": "TFQ-1310",
       "lean4": [
-        "lean4/GenesisCompUniv.lean::reach_problem_not_computable"
+        "lean4/GenesisCompUniv.lean::reach_problem_not_computable",
+        "lean4/CampaignCompC7EncodedInstanceReduction.lean::encoded_instance_reduction"
       ],
       "local_id": "COMP-C7-ENCODED-INSTANCE-REDUCTION",
       "name": "Reduction over encoded rewriting instances is conditional",
-      "obligation": "Prove startWord_computable: a Primcodable structure on a mark type containing the infinite state type and a computability proof for the paired-input encoding.",
+      "obligation": "The antecedent is a Primcodable instance for Sym G1 (TM1to0.Λ' M1) and Computable startWord. That antecedent is not constructed in this module. The standing claim is the implication from that antecedent to non-computability of the word predicate for Rules M0.",
       "parent_id": "TFQ-1309",
       "python": [],
-      "record_status": "CONDITIONAL",
+      "record_status": "PROVED_LEAN",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "COMPUTATION",
