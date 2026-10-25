@@ -365,7 +365,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0288` | `L1_TO_L2` | `SOURCE_RECORD` | `TFQ-0288` (SOURCE_RECORD) | - |
 | `TFQ-0289` | `FINITE_HILBERT` | `SOURCE_RECORD` | `TFQ-0289` (SOURCE_RECORD) | - |
 | `TFQ-0290` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM1-DIRECT-NORMALIZATION` (PROVED_LEAN), `FQ-BORN-NORMALIZATION-REDUNDANCY` (PROVED_LEAN) | `L1-QM020-THM1-DIRECT-NORMALIZATION`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-BORN-NORMALIZATION-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0291` | `L1_TO_L2` | `OPEN_OBLIGATION` | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT` (PROVED_LEAN), `L1-QM020-THM2B-MINKOWSKI` (IMPORTED_ASSUMPTION) | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-QM020-THM2B-MINKOWSKI`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0291` | `L1_TO_L2` | `OPEN_OBLIGATION` | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT` (PROVED_LEAN), `L1-QM020-THM2B-MINKOWSKI` (PROVED_LEAN) | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-QM020-THM2B-MINKOWSKI`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0292` | `L1_TO_L2` | `GAP` | `L1-IMP-SQRT-FIELD` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0293` | `L1_TO_L2` | `GAP` | `L1-IMP-COMPLEX-FIELD` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0294` | `L1_TO_L2` | `GAP` | `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / statement_narrowed |

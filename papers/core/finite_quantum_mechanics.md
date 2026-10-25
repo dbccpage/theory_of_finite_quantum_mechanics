@@ -1637,10 +1637,10 @@ The derivation DAG (`dag/derivation_dag.json`, schema `derivation_dag.v2`) now h
 | `ADMITTED_PRIMITIVE` | 3 | 3 |
 | `DEFINITION` | 92 | 14 |
 | `PROVED_PROSE` | 35 | 0 |
-| `PROVED_LEAN` | 267 | 100 |
+| `PROVED_LEAN` | 268 | 101 |
 | `COMPUTATIONALLY_CHECKED` | 159 | 22 |
 | `CONDITIONAL` | 37 | 12 |
-| `IMPORTED_ASSUMPTION` | 70 | 21 |
+| `IMPORTED_ASSUMPTION` | 69 | 20 |
 | `OPEN` | 175 | 5 |
 | `REFUTED` | 6 | 0 |
 | `SOURCE_RECORD` | 81 | 0 |
@@ -1656,7 +1656,7 @@ The derivation DAG (`dag/derivation_dag.json`, schema `derivation_dag.v2`) now h
 | `RECORD_PARENT` | 89 |
 | **Total** | **934** |
 
-Of the 177 reviewed nodes, 66 are `consistent`, 18 are `caveat_added`, 68 are `statement_narrowed`, 25 are `status_lowered`. Only 216 of the 925 nodes cite two or more Lean declarations and two or more Rust witnesses; 355 cite no Lean declaration and 543 cite no Rust witness. A node's status is a label on its statement; it does not say that the statement is mechanized in both languages.
+Of the 177 reviewed nodes, 65 are `consistent`, 18 are `caveat_added`, 69 are `statement_narrowed`, 25 are `status_lowered`. Only 216 of the 925 nodes cite two or more Lean declarations and two or more Rust witnesses; 355 cite no Lean declaration and 543 cite no Rust witness. A node's status is a label on its statement; it does not say that the statement is mechanized in both languages.
 
 <!-- END GENERATED dag-census (papers/core/tools/build_results_audit_table.py) -->
 
@@ -1780,7 +1780,7 @@ The table has one row for each of the 177 DAG nodes that carry a `pfp_review` ob
 | `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009` | `PROVED_LEAN` | `statement_narrowed` | Exact signed-square density projectors, overlap/Xi², zero-mass refusal, saturation and positive-support controls; general normalized Cauchy algebra and zero-weight strictness counterexample in Lean. | Prove the full real-square-root/trace-distance transport and conditional KKT overlap theorem under positive weights. Only Xi² is reported; no fabricated decimal Xi or unconditional Xi<1 is admitted. |
 | `L1-QM020-THM1-DIRECT-NORMALIZATION` | `PROVED_LEAN` | `statement_narrowed` | Exact idempotence, nonzero scaling and positive-ray-premise controls; general normalization algebra and a negative-ray counterexample in Lean. | Refine arbitrary lists and positive-mass ray classification to the source theorem. Do not claim positive-ray equivalence under nonzero totals alone. |
 | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT` | `PROVED_LEAN` | `statement_narrowed` | Exact scalar and disjoint-vector defect arrays, with a general disjoint-sign identity and the opposite-sign counterexample in Lean. | Prove source/list refinement and extend any l^p statement only under its real/natural exponent hypotheses. The false disjoint-same-sign biconditional is explicitly rejected. |
-| `L1-QM020-THM2B-MINKOWSKI` | `IMPORTED_ASSUMPTION` | `consistent` | Exact natural-power strictness/equality controls, with general p2 positivity and p3 algebra in Lean. | Discharge the full real-p Minkowski/strict-convexity import and arbitrary-vector transport. Zero vectors are equality cases, not strict cases. |
+| `L1-QM020-THM2B-MINKOWSKI` | `PROVED_LEAN` | `statement_narrowed` | Exact natural-power strictness/equality controls, with general p2 positivity and p3 algebra in Lean. | Discharge the full real-p Minkowski/strict-convexity import and arbitrary-vector transport. Zero vectors are equality cases, not strict cases. |
 | `L1-QM020-THM3-ROW-SPARSITY` | `PROVED_LEAN` | `statement_narrowed` | Exact phase-sign readouts, row sparsity, determinant, monomial and rank distinctions; general row interference and a singular sparse control in Lean. | Prove the full representation refinement and add injectivity/column conditions before claiming monomial invertibility. No scalar label licenses the stronger claim. |
 | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` | `PROVED_LEAN` | `consistent` | Exact supplied-lift matching and Born/direct normalization arrays; generic equality under matching weights and an invalid-lift control in Lean. | Prove arbitrary source lift refinement and supply square-root/complex structure where required. Matching normalized probabilities alone is weaker than raw lift equality. |
 | `L1-QM020-THM5-PHASE-AVERAGED-SHADOW` | `PROVED_LEAN` | `statement_narrowed` | Complete3-sector phase-conjugation mean, diagonal map and64 exact scalar readouts, with scalar cross cancellation in Lean. | Supply Haar measure, independence and Hilbert/source refinement. A finite polynomial-moment identity is not a continuum integration construction. |

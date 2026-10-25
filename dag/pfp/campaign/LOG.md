@@ -160,3 +160,4 @@ One line per target, in order attempted: `<UTC date> | <node id> | <outcome clas
 2026-10-25 | AUTH-DTM2-INPUT-REQUEST-PLANNED | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/371 | One closed request list 1, 2, 1, 7, 3, 4 and one missing header; the evaluator stays open.
 2026-10-25 | AUTHF-CARRIER-ADMISSION-GATE | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/372 | Direct candidate AIT-DTM0 ceilings and selected false; the other candidates stay open.
 2026-10-25 | FQ-GAP-STONE-CONTINUOUS-TIME | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/373 | Integer 3-4-5 equation; 5*a*a = 4*b*b forces a = 0 and b = 0; Stone and continuous time stay open.
+2026-10-25 | L1-QM020-THM2B-MINKOWSKI | Narrowed | PLACEHOLDER_PR | Nat square expansion, positive cross term, zero-input equality, cubic sum, and one disjoint pair; real-p Minkowski stays outside.

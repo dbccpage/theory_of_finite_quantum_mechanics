@@ -1008,8 +1008,10 @@
     {
       "node_id": "L1-QM020-THM2B-MINKOWSKI",
       "review": "dag/results/L1-QM020-THM2B-MINKOWSKI/reviews/20261020_born_boundary_audit/delivery_review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Imported node; the review adds natural-power controls and does not discharge the real-p Minkowski import."
+      "scope_effect": "statement_narrowed",
+      "statement": "Reviewed scope: Nat values a and b satisfy (a + b) * (a + b) = a * a + b * b + 2 * (a * b). When both are positive, 2 * (a * b) > 0 and a * a + b * b < (a + b) * (a + b). When the left input is 0, 2 * (0 * b) = 0 and (0 + b) * (0 + b) = b * b. When the right input is 0, 2 * (a * 0) = 0 and (a + 0) * (a + 0) = a * a. Nat values a and b satisfy (a + b) * (a + b) * (a + b) = a * a * a + b * b * b + 3 * a * b * (a + b). A disjoint Nat pair satisfies (x + 0) * (x + 0) + (0 + y) * (0 + y) = x * x + y * y.",
+      "bottleneck": "Real exponent p>1, a Minkowski comparison on real vectors, strict convexity, roots, and transport past this Nat square, cubic, and one disjoint pair stay outside the standing text. A zero input is an equality case of the square expansion.",
+      "reason": "The standing text is the Nat square expansion, the positive cross term, the zero-input equality cases, the cubic sum, and one disjoint Nat pair. The real-p Minkowski import and arbitrary-vector transport stay outside it."
     },
     {
       "node_id": "L1-QM020-THM3-ROW-SPARSITY",

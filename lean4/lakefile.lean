@@ -1212,6 +1212,10 @@ lean_lib CampaignTfq0376Pregenesis where
 lean_lib CampaignPgwPythonLeanCarrierBridge where
   roots := #[`CampaignPgwPythonLeanCarrierBridge]
 
+-- Campaign: L1-QM020-THM2B-MINKOWSKI. Not a default target.
+lean_lib CampaignL1Qm020Thm2bMinkowski where
+  roots := #[`CampaignL1Qm020Thm2bMinkowski]
+
 -- Campaign: PGW-CONTEXT-FIDELITY. Not a default target.
 lean_lib CampaignPgwContextFidelity where
   roots := #[`CampaignPgwContextFidelity]
