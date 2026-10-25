@@ -1481,7 +1481,7 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "COMPUTATIONALLY_CHECKED",
-      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
+      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi\u00b7psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
       "obligation": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "imported_structure": [
         "continuous time and Stone generator",
@@ -2801,20 +2801,38 @@
       "status": "OPEN",
       "source_claimed_status": "OPEN",
       "statement": "Which distinctions a local system can detect, preserve or repair within a specified time may admit a Lieb-Robinson quantitative extension supporting conditional statements on quantum computing viability.",
-      "obligation": "No such bound is stated or derived; the source says the papers do not yet justify a general verdict.",
+      "obligation": "Continuous-time Banach-algebra Lieb-Robinson bounds for microscopic superconducting Hamiltonians and general physical device viability verdicts remain open. Narrowed in lean4/CampaignMajOpenLiebRobinsonLocality.lean and checks/independent/maj-open-lieb-robinson-locality.py while keeping status OPEN to: (1) one-sided causal radius additivity R_LR(R_LR(r0, vLR, t1), vLR, t2) = R_LR(r0, vLR, t1 + t2) and two-sided 1D support diameter growth W_LR(w0, vLR, t) = w0 + 2 vLR t with strict step increase for vLR > 0; (2) syndrome recovery viability within the Lieb-Robinson horizon (2 W_LR(w0, vLR, t) < d implies every propagated error-pair difference satisfies wDiff < d) and horizon monotonicity across tLo < tHi with margin 4 vLR (tHi - tLo); (3) horizon overflow logical collision (when d <= 2 W_LR(w0, vLR, t), a weight-d logical cycle partitions into w1 = floor(d/2) and w2 = d - floor(d/2) inside the propagated ball); and (4) discrete commutator tail suppression c0 g^t < c0 mu^dist outside the light cone (t < dist), classical syndrome-routing delay inequality 2 w0 vCl + 4 vLR L < d vCl, and L=4 vs L=7 tetron torus viability window comparisons.",
       "imported_structure": [],
       "parent_nodes": [
         "MAJ-SYNDROME-RECOVERY-CRITERION"
       ],
       "parent_record": "TFQ-1147",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.lieb_robinson_causal_radius_additive",
+        "lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.lieb_robinson_1d_support_diameter_growth",
+        "lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.lieb_robinson_pair_difference_weight_bound",
+        "lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.syndrome_recovery_viability_within_lr_horizon",
+        "lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.critical_repair_horizon_monotonicity",
+        "lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.lieb_robinson_horizon_exceeded_logical_collision",
+        "lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.discrete_commutator_tail_decay_recurrence",
+        "lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.syndrome_measurement_communication_delay_bound",
+        "lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.torus_tetron_viability_window_witness",
+        "lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.lieb_robinson_locality_open_scope_fence"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/maj-open-lieb-robinson-locality.py::lr_support_weight_1d",
+        "checks/independent/maj-open-lieb-robinson-locality.py::main"
+      ],
       "external_witnesses": [],
       "sources": [
-        "papers/core/majorana/the_majorana_problem.md:205-205"
+        "papers/core/majorana/the_majorana_problem.md:205-205",
+        "dag/derivations/independent/maj-open-lieb-robinson-locality.md",
+        "dag/research/campaign_maj-open-lieb-robinson-locality_lean_replay.json",
+        "dag/research/campaign_maj-open-lieb-robinson-locality_lean_mutation.json",
+        "dag/research/campaign_maj-open-lieb-robinson-locality_independent.json"
       ],
-      "audit": "",
+      "audit": "Upgraded MAJ-OPEN-LIEB-ROBINSON-LOCALITY (TFQ-1149) from E1 to E3 while preserving status OPEN via lean4/CampaignMajOpenLiebRobinsonLocality.lean (10 theorems, 0 sorrys, 6/6 mutants killed) and checks/independent/maj-open-lieb-robinson-locality.py (11633 exact discrete Lieb-Robinson light-cone, viability horizon, commutator tail, and routing-delay checks, 0 failures).",
       "see_also": [],
       "uses": []
     },
@@ -9944,10 +9962,10 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "cited; local formalization open",
       "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
-      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice\u2082 for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
       "imported_structure": [
         "Rice theorem (Rice 1953)",
-        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
+        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice\u2082"
       ],
       "parent_nodes": [
         "AUTH-G5B-CARRIER-ADMISSION-GATE"
@@ -9957,7 +9975,7 @@
       "rust": [],
       "python": [],
       "external_witnesses": [
-        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
+        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice\u2082 (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
         "external:Mathlib/Computability/Halting.lean::ComputablePred.halting_problem (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
       ],
       "sources": [
@@ -9965,7 +9983,7 @@
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:305-315",
         "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:331-344"
       ],
-      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice₂ and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
+      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice\u2082 and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
       "see_also": [
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
@@ -9982,7 +10000,7 @@
       "status": "OPEN",
       "source_claimed_status": "open",
       "statement": "For an admitted program carrier and a nontrivial extensional property, a total computable sound and complete authorizer would decide that property; the lift is a stated target in the source and has no local theorem.",
-      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
+      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice\u2082 and halting_problem.",
       "imported_structure": [
         "admitted program carrier",
         "nontrivial extensional property"

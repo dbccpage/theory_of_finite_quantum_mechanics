@@ -14,10 +14,10 @@
 Which distinctions a local system can detect, preserve or repair within a specified time may admit a Lieb-Robinson quantitative extension supporting conditional statements on quantum computing viability.
 
 ### Governing Obligation
-No such bound is stated or derived; the source says the papers do not yet justify a general verdict.
+Continuous-time Banach-algebra Lieb-Robinson bounds for microscopic superconducting Hamiltonians and general physical device viability verdicts remain open. Narrowed in lean4/CampaignMajOpenLiebRobinsonLocality.lean and checks/independent/maj-open-lieb-robinson-locality.py while keeping status OPEN to: (1) one-sided causal radius additivity R_LR(R_LR(r0, vLR, t1), vLR, t2) = R_LR(r0, vLR, t1 + t2) and two-sided 1D support diameter growth W_LR(w0, vLR, t) = w0 + 2 vLR t with strict step increase for vLR > 0; (2) syndrome recovery viability within the Lieb-Robinson horizon (2 W_LR(w0, vLR, t) < d implies every propagated error-pair difference satisfies wDiff < d) and horizon monotonicity across tLo < tHi with margin 4 vLR (tHi - tLo); (3) horizon overflow logical collision (when d <= 2 W_LR(w0, vLR, t), a weight-d logical cycle partitions into w1 = floor(d/2) and w2 = d - floor(d/2) inside the propagated ball); and (4) discrete commutator tail suppression c0 g^t < c0 mu^dist outside the light cone (t < dist), classical syndrome-routing delay inequality 2 w0 vCl + 4 vLR L < d vCl, and L=4 vs L=7 tetron torus viability window comparisons.
 
 ### Witness Audit
-No audit note.
+Upgraded MAJ-OPEN-LIEB-ROBINSON-LOCALITY (TFQ-1149) from E1 to E3 while preserving status OPEN via lean4/CampaignMajOpenLiebRobinsonLocality.lean (10 theorems, 0 sorrys, 6/6 mutants killed) and checks/independent/maj-open-lieb-robinson-locality.py (11633 exact discrete Lieb-Robinson light-cone, viability horizon, commutator tail, and routing-delay checks, 0 failures).
 
 ---
 
@@ -28,13 +28,23 @@ No audit note.
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.lieb_robinson_causal_radius_additive`
+- `lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.lieb_robinson_1d_support_diameter_growth`
+- `lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.lieb_robinson_pair_difference_weight_bound`
+- `lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.syndrome_recovery_viability_within_lr_horizon`
+- `lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.critical_repair_horizon_monotonicity`
+- `lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.lieb_robinson_horizon_exceeded_logical_collision`
+- `lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.discrete_commutator_tail_decay_recurrence`
+- `lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.syndrome_measurement_communication_delay_bound`
+- `lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.torus_tetron_viability_window_witness`
+- `lean4/CampaignMajOpenLiebRobinsonLocality.lean::CampaignMajOpenLiebRobinsonLocality.lieb_robinson_locality_open_scope_fence`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/maj-open-lieb-robinson-locality.py::lr_support_weight_1d`
+- `checks/independent/maj-open-lieb-robinson-locality.py::main`
 
 ### Cited by the source, not in this checkout
 - *none*
@@ -51,3 +61,7 @@ No audit note.
 
 - **Cited Sources**:
   - `papers/core/majorana/the_majorana_problem.md:205-205`
+  - `dag/derivations/independent/maj-open-lieb-robinson-locality.md`
+  - `dag/research/campaign_maj-open-lieb-robinson-locality_lean_replay.json`
+  - `dag/research/campaign_maj-open-lieb-robinson-locality_lean_mutation.json`
+  - `dag/research/campaign_maj-open-lieb-robinson-locality_independent.json`
