@@ -1327,3 +1327,7 @@ lean_lib CampaignAuthDtm2InputRequestPlanned where
 -- Campaign: AUTHF-CARRIER-ADMISSION-GATE. Not a default target.
 lean_lib CampaignAuthfCarrierAdmissionGate where
   roots := #[`CampaignAuthfCarrierAdmissionGate]
+
+-- Campaign: FQ-GAP-STONE-CONTINUOUS-TIME. Not a default target.
+lean_lib CampaignFqGapStoneContinuousTime where
+  roots := #[`CampaignFqGapStoneContinuousTime]
