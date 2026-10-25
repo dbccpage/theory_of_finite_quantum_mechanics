@@ -130,3 +130,4 @@ One line per target, in order attempted: `<UTC date> | <node id> | <outcome clas
 - **Mutation Gate (`dag/research/campaign_tfq-0376_lean_mutation.json`)**: 6/6 semantic mutations killed.
 - **Independent Checker (`checks/independent/tfq-0376.py`)**: 146 checks passed, 0 failed (`dag/research/campaign_tfq-0376_independent.json`).
 2026-10-24 | PGW-PYTHON-LEAN-CARRIER-BRIDGE | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/320 | Sealed reading L replays to R2L and reading F replays to R2F; a Python-to-Lean refinement stays open.
+2026-10-25 | FQ-GAP-CONTINUUM-HILBERT-LIFT | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/374 | Integer equation 2 * a = 1 has no solution, the discriminant identity holds, and t * t - t - 1 has no integer root; scalar field, l2 uniformity, and the completion stay open.
