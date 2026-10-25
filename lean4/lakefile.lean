@@ -1303,3 +1303,7 @@ lean_lib CampaignFqPrimToQmSelection where
 -- Campaign: FQ-GAP-U1-CIRCLE. Not a default target.
 lean_lib CampaignFqGapU1Circle where
   roots := #[`CampaignFqGapU1Circle]
+
+-- Campaign: COMP-C2-STEP3-NOT-WORD-STEP. Not a default target.
+lean_lib CampaignCompC2Step3NotWordStep where
+  roots := #[`CampaignCompC2Step3NotWordStep]

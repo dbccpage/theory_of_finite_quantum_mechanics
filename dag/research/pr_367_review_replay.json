@@ -1,0 +1,68 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:32:39.280619+00:00",
+  "review_base": "1c04d1398cf39a310a0b04a7d744cc2a00e932cf",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: COMP-C2-STEP3-NOT-WORD-STEP — Narrowed: three list moves are word steps; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignCompC2Step3NotWordStep.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignCompC2Step3NotWordStep",
+        "dag_node": "COMP-C2-STEP3-NOT-WORD-STEP",
+        "source": "lean4/CampaignCompC2Step3NotWordStep.lean",
+        "sha256": "78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c",
+        "sha256_after_build": "78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "merge01FixesOther",
+          "addTermWordStep",
+          "addAssertionWordStep",
+          "identifyWordStep",
+          "merge01SendsBothToZero"
+        ],
+        "axioms": {
+          "merge01FixesOther": [
+            "propext"
+          ],
+          "addTermWordStep": [],
+          "addAssertionWordStep": [],
+          "identifyWordStep": [],
+          "merge01SendsBothToZero": []
+        },
+        "output": "'addTermWordStep' does not depend on any axioms\n'addAssertionWordStep' does not depend on any axioms\n'identifyWordStep' does not depend on any axioms\n'merge01SendsBothToZero' does not depend on any axioms\n'merge01FixesOther' depends on axioms: [propext]\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/comp-c2-step3-not-word-step.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.012,
+    "output": "checked [0] -> [0, 1] by replacing an empty block with [1]; [0, 1] -> [0, 1, 0, 1] by replacing an empty block with [0, 1]; [0, 1] -> [0] by replacing [1] with an empty block; merge01 sends 0 and 1 to 0 and fixes 2\nfailures=0\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/367/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.18,
+    "output": ""
+  }
+}
