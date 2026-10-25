@@ -3745,17 +3745,27 @@
       "stage": "FERMION_SIGN",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-043 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION",
-      "statement": "Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace).",
+      "statement": "On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X.",
       "source": [
         "dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-kitaev-honeycomb-solution.md",
+        "dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.flux_involution",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.hopping_involution",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.flux_commutes_hopping",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.project_commutes_hopping",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.sector_decomposition",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.restricted_hopping",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.sectors_distinct"
+      ],
       "rust": [],
       "imported_structure": [
         "Kitaev honeycomb spin model and its Majorana representation (Kitaev 2006)"
       ],
-      "bottleneck": "A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.",
+      "bottleneck": "This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed. Original target retained as an obligation: Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace). Prior boundary: A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -9996,10 +10006,11 @@
       ],
       "output": "FSP-KITAEV-HONEYCOMB-SOLUTION",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.",
+      "mechanism": "This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed. Original target retained as an obligation: Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace). Prior boundary: A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.",
       "source": [
         "dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-kitaev-honeycomb-solution.md"
       ]
     },
     {
@@ -16173,8 +16184,8 @@
       "stage": "FERMION_SIGN",
       "parent_id": "TFQ-1186",
       "record_status": "IMPORTED_ASSUMPTION",
-      "summary": "Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace).",
-      "obligation": "A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.",
+      "summary": "On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X.",
+      "obligation": "This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed. Original target retained as an obligation: Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace). Prior boundary: A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "FSP-KITAEV-HONEYCOMB-SOLUTION"
@@ -16183,14 +16194,25 @@
       "coda_atlas_paths": [],
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md",
-        "papers/core/fsp/theory_of_finite_fsp.md:600-612"
+        "papers/core/fsp/theory_of_finite_fsp.md:600-612",
+        "dag/derivations/independent/fsp-kitaev-honeycomb-solution.md",
+        "dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json"
       ],
       "python": [
         "code/python/src/fsp/kitaev_honeycomb_bisimulation_bridge.py",
-        "code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.py::test_vortex_free_ground_state"
+        "code/python/tests/fsp/test_kitaev_honeycomb_bisimulation.py::test_vortex_free_ground_state",
+        "checks/independent/fsp-kitaev-honeycomb-solution.py"
       ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.flux_involution",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.hopping_involution",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.flux_commutes_hopping",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.project_commutes_hopping",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.sector_decomposition",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.restricted_hopping",
+        "lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.sectors_distinct"
+      ]
     },
     {
       "id": "TFQ-1208",
