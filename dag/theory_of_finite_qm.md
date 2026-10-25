@@ -11086,9 +11086,9 @@ Obligation: Finite ranges only; the general formula is the trunk record TFQ-0436
 - DAG node: `COMP-C2-STEP3-NOT-WORD-STEP`
 - Paper: [derivation](derivations/29_computation/tfq_1290_comp_c2_step3_not_word_step.md)
 
-Genesis Step3 acts on states of a finite term set, a finite assertion set and two named terms by add-term, add-assertion and identify (a non-injective merge); no word encoding of these states under which each move is a word step is proved or claimed.
+Appending 1 takes the list [0] to [0, 1] by one hole replacement of an empty block. Appending the block [0, 1] takes [0, 1] to [0, 1, 0, 1] by one hole replacement of an empty block. Deleting a final 1 takes [0, 1] to [0] by one hole replacement of the block [1]. The map sending 1 to 0 and every other natural number to itself sends both 0 and 1 to 0.
 
-Obligation: Construct a word encoding of Step3 states under which addTerm, addAssertion and identify are word steps, or show that none exists.
+Obligation: Still open: an encoding of every Genesis Step3 state, with a finite term set, a finite assertion set and two named terms, under which add-term, add-assertion and identify are word steps, or a demonstration that none exists.
 
 ### TFQ-1291 Bounded reachability is decidable on a finite configuration space
 

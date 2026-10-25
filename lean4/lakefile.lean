@@ -1211,3 +1211,7 @@ lean_lib CampaignTfq0376Pregenesis where
 -- Campaign: PGW-PYTHON-LEAN-CARRIER-BRIDGE. Not a default target.
 lean_lib CampaignPgwPythonLeanCarrierBridge where
   roots := #[`CampaignPgwPythonLeanCarrierBridge]
+
+-- Campaign: COMP-C2-STEP3-NOT-WORD-STEP. Not a default target.
+lean_lib CampaignCompC2Step3NotWordStep where
+  roots := #[`CampaignCompC2Step3NotWordStep]

@@ -24007,16 +24007,22 @@
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C2e claims OPEN; audited status OPEN",
-      "statement": "Genesis Step3 acts on states of a finite term set, a finite assertion set and two named terms by add-term, add-assertion and identify (a non-injective merge); no word encoding of these states under which each move is a word step is proved or claimed.",
+      "statement": "Appending 1 takes the list [0] to [0, 1] by one hole replacement of an empty block. Appending the block [0, 1] takes [0, 1] to [0, 1, 0, 1] by one hole replacement of an empty block. Deleting a final 1 takes [0, 1] to [0] by one hole replacement of the block [1]. The map sending 1 to 0 and every other natural number to itself sends both 0 and 1 to 0.",
       "source": [
         "dag/derivations/29_computation/tfq_1290_comp_c2_step3_not_word_step.md",
         "dag/research/genesis_to_universal_computation.md",
         "dag/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignCompC2Step3NotWordStep.lean::addTermWordStep",
+        "lean4/CampaignCompC2Step3NotWordStep.lean::addAssertionWordStep",
+        "lean4/CampaignCompC2Step3NotWordStep.lean::identifyWordStep",
+        "lean4/CampaignCompC2Step3NotWordStep.lean::merge01SendsBothToZero",
+        "lean4/CampaignCompC2Step3NotWordStep.lean::merge01FixesOther"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Construct a word encoding of Step3 states under which addTerm, addAssertion and identify are word steps, or show that none exists.",
+      "bottleneck": "Still open: an encoding of every Genesis Step3 state, with a finite term set, a finite assertion set and two named terms, under which add-term, add-assertion and identify are word steps, or a demonstration that none exists.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -38830,7 +38836,7 @@
       ],
       "output": "COMP-C2-STEP3-NOT-WORD-STEP",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Construct a word encoding of Step3 states under which addTerm, addAssertion and identify are word steps, or show that none exists.",
+      "mechanism": "Still open: an encoding of every Genesis Step3 state, with a finite term set, a finite assertion set and two named terms, under which add-term, add-assertion and identify are word steps, or a demonstration that none exists.",
       "source": [
         "dag/derivations/29_computation/tfq_1290_comp_c2_step3_not_word_step.md",
         "dag/research/genesis_to_universal_computation.md",
@@ -56061,6 +56067,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md",
         "lean4/H006PermutationUnitary.lean",
         "dag/derivations/independent/l1-imp-sector-symmetry-law.md",
         "checks/independent/l1-imp-sector-symmetry-law.py",
@@ -56807,7 +56815,11 @@
         "FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md"
+        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md"
       ],
       "id": "TFQ-1021",
       "lean4": [
@@ -57723,6 +57735,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md",
         "lean4/FiniteWignerTheorem.lean",
         "dag/derivations/independent/l1-imp-transition-probability-law.md",
         "dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json",
@@ -57769,7 +57783,12 @@
         "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md"
+        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md"
       ],
       "id": "TFQ-1048",
       "lean4": [
@@ -68735,17 +68754,23 @@
         "dag/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean:24-100"
       ],
       "id": "TFQ-1290",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignCompC2Step3NotWordStep.lean::addTermWordStep",
+        "lean4/CampaignCompC2Step3NotWordStep.lean::addAssertionWordStep",
+        "lean4/CampaignCompC2Step3NotWordStep.lean::identifyWordStep",
+        "lean4/CampaignCompC2Step3NotWordStep.lean::merge01SendsBothToZero",
+        "lean4/CampaignCompC2Step3NotWordStep.lean::merge01FixesOther"
+      ],
       "local_id": "COMP-C2-STEP3-NOT-WORD-STEP",
       "name": "Genesis Step3 is not shown to be a word rewriting step",
-      "obligation": "Construct a word encoding of Step3 states under which addTerm, addAssertion and identify are word steps, or show that none exists.",
+      "obligation": "Still open: an encoding of every Genesis Step3 state, with a finite term set, a finite assertion set and two named terms, under which add-term, add-assertion and identify are word steps, or a demonstration that none exists.",
       "parent_id": "TFQ-1287",
       "python": [],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "COMPUTATION",
-      "summary": "Genesis Step3 acts on states of a finite term set, a finite assertion set and two named terms by add-term, add-assertion and identify (a non-injective merge); no word encoding of these states under which each move is a word step is proved or claimed.",
+      "summary": "Appending 1 takes the list [0] to [0, 1] by one hole replacement of an empty block. Appending the block [0, 1] takes [0, 1] to [0, 1, 0, 1] by one hole replacement of an empty block. Deleting a final 1 takes [0, 1] to [0] by one hole replacement of the block [1]. The map sending 1 to 0 and every other natural number to itself sends both 0 and 1 to 0.",
       "uuid": "a1227221-98a3-53aa-948d-6f27915798ee"
     },
     {
