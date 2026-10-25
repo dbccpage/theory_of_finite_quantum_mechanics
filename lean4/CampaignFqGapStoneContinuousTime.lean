@@ -2,6 +2,8 @@
 -- Integer slice: 3 * 3 + 4 * 4 = 5 * 5, and 5 * a * a = 4 * b * b forces a = b = 0.
 -- Continuous time, Stone, strong continuity, generator selection and causal order stay outside this module.
 
+namespace CampaignFqGapStoneContinuousTime
+
 theorem sqMod5 (n : Nat) :
     (n * n) % 5 = 0 ∨ (n * n) % 5 = 1 ∨ (n * n) % 5 = 4 := by
   have hmul : (n * n) % 5 = ((n % 5) * (n % 5)) % 5 := Nat.mul_mod n n 5
@@ -168,5 +170,7 @@ theorem fiveMulSqEqFourMulSq (a b : Nat) (h : 5 * (a * a) = 4 * (b * b)) : a = 0
     | inl ha => exact ha
     | inr ha => exact ha
 
-#print axioms pythagorean345
-#print axioms fiveMulSqEqFourMulSq
+end CampaignFqGapStoneContinuousTime
+
+#print axioms CampaignFqGapStoneContinuousTime.pythagorean345
+#print axioms CampaignFqGapStoneContinuousTime.fiveMulSqEqFourMulSq

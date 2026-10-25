@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "310ad259ea99ddf5d0dd5f541849e939575fa0ce2a2b90aac463e900a6f0a11b"
+  "sha256_lf": "43996cb90fe2cb2175181f526b179493a9d3ffd0c3705ba6e6bfa7e2b59aae74"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -1113,9 +1113,9 @@
    "size": 9170
   },
   "dag/derivation_dag.json": {
-   "sha256": "310ad259ea99ddf5d0dd5f541849e939575fa0ce2a2b90aac463e900a6f0a11b",
+   "sha256": "43996cb90fe2cb2175181f526b179493a9d3ffd0c3705ba6e6bfa7e2b59aae74",
    "sha256_basis": "lf-normalised",
-   "size": 4750560
+   "size": 4750626
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -7038,9 +7038,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "13873c44ed96ae6e10b9ee03184dec40745f127a998544f4ff342bcae52d4a41",
+   "sha256": "6b22ea887709e7a8c80277b44eeb2e0d20b6a42916eb240040f2e10e944dc59d",
    "sha256_basis": "lf-normalised",
-   "size": 212894
+   "size": 213312
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -7433,9 +7433,9 @@
    "size": 13168
   },
   "lean4/CampaignFqGapStoneContinuousTime.lean": {
-   "sha256": "f3ddd8a1e3da24b20758e061bdba9c1b98d6b046c6c65b0e4afbf1bf175c0a28",
+   "sha256": "7cd94d6cedb9da82eb4ac3682fbb8e097e6d1f5758c9f6e0dadbe1fd21d3f5a9",
    "sha256_basis": "bytes",
-   "size": 6735
+   "size": 6883
   },
   "lean4/CampaignFspHubbardProtected.lean": {
    "sha256": "69e8f526b33c0cf12ca315c6a419d69e6d8d96f83bae550b9e94e7af8b36c074",
@@ -78837,7 +78837,8 @@
    "items": [
     {
      "cited_in": [
-      "receipt dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json (CampaignFqGapStoneContinuousTime)"
+      "receipt dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json (CampaignFqGapStoneContinuousTime)",
+      "receipt dag/research/pr_373_review_replay.json (CampaignFqGapStoneContinuousTime)"
      ],
      "command": "cd lean4 && lake build CampaignFqGapStoneContinuousTime",
      "command_note": null,
@@ -78857,6 +78858,13 @@
        "id": "dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json#0:CampaignFqGapStoneContinuousTime",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/pr_373_review_replay.json#0:CampaignFqGapStoneContinuousTime",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
@@ -78869,10 +78877,11 @@
     {
      "cited_in": [
       "node.lean",
-      "receipt dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json (CampaignFqGapStoneContinuousTime)"
+      "receipt dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json (CampaignFqGapStoneContinuousTime)",
+      "receipt dag/research/pr_373_review_replay.json (CampaignFqGapStoneContinuousTime)"
      ],
      "command": "cd lean4 && lake build CampaignFqGapStoneContinuousTime",
-     "command_note": "then, in a scratch file that imports CampaignFqGapStoneContinuousTime: #print axioms fiveMulSqEqFourMulSq",
+     "command_note": "then, in a scratch file that imports CampaignFqGapStoneContinuousTime: #print axioms CampaignFqGapStoneContinuousTime.fiveMulSqEqFourMulSq",
      "counted": true,
      "counts": true,
      "decl_ambiguous": false,
@@ -78892,11 +78901,18 @@
        "id": "dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json#0:CampaignFqGapStoneContinuousTime",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_373_review_replay.json#0:CampaignFqGapStoneContinuousTime",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
      "resolution": "present",
-     "symbol": "fiveMulSqEqFourMulSq",
+     "symbol": "CampaignFqGapStoneContinuousTime.fiveMulSqEqFourMulSq",
      "symbol_declared": true,
      "symbol_exists": true,
      "where": null
@@ -78904,10 +78920,11 @@
     {
      "cited_in": [
       "node.lean",
-      "receipt dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json (CampaignFqGapStoneContinuousTime)"
+      "receipt dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json (CampaignFqGapStoneContinuousTime)",
+      "receipt dag/research/pr_373_review_replay.json (CampaignFqGapStoneContinuousTime)"
      ],
      "command": "cd lean4 && lake build CampaignFqGapStoneContinuousTime",
-     "command_note": "then, in a scratch file that imports CampaignFqGapStoneContinuousTime: #print axioms pythagorean345",
+     "command_note": "then, in a scratch file that imports CampaignFqGapStoneContinuousTime: #print axioms CampaignFqGapStoneContinuousTime.pythagorean345",
      "counted": true,
      "counts": true,
      "decl_ambiguous": false,
@@ -78924,11 +78941,18 @@
        "id": "dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json#0:CampaignFqGapStoneContinuousTime",
        "ok": true,
        "sha_match": true
+      },
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/pr_373_review_replay.json#0:CampaignFqGapStoneContinuousTime",
+       "ok": true,
+       "sha_match": true
       }
      ],
      "replay": "verified",
      "resolution": "present",
-     "symbol": "pythagorean345",
+     "symbol": "CampaignFqGapStoneContinuousTime.pythagorean345",
      "symbol_declared": true,
      "symbol_exists": true,
      "where": null
@@ -283321,7 +283345,7 @@
    "toolchain": "4.35.0"
   },
   {
-   "admission_scan_passed": null,
+   "admission_scan_passed": true,
    "axiom_audit_passed": true,
    "axioms_itemised": true,
    "axioms_standard": true,
@@ -283330,18 +283354,18 @@
     "propext"
    ],
    "built_successfully": true,
-   "checked_at": "2026-10-25",
+   "checked_at": "2026-10-25T18:21:10.781800+00:00",
    "dag_node": "FQ-GAP-STONE-CONTINUOUS-TIME",
    "decl_count": 2,
    "exit_code": 0,
    "id": "dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json#0:CampaignFqGapStoneContinuousTime",
-   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
-   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": null,
    "module": "CampaignFqGapStoneContinuousTime",
    "path": "lean4/CampaignFqGapStoneContinuousTime.lean",
    "receipt_file": "dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json",
-   "receipt_file_sha256": "7bc6d24fc1777af2c362ddc67abe7230b64f4ca98d0572f0147a380859595a8c",
-   "recorded_sha256": "f3ddd8a1e3da24b20758e061bdba9c1b98d6b046c6c65b0e4afbf1bf175c0a28",
+   "receipt_file_sha256": "8bd2cdd20a70386abddc5c8cb28d12deb8b7d84a946125945cfd20cbce60a6cb",
+   "recorded_sha256": "7cd94d6cedb9da82eb4ac3682fbb8e097e6d1f5758c9f6e0dadbe1fd21d3f5a9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
   },
@@ -294938,6 +294962,31 @@
    "axioms_itemised": true,
    "axioms_standard": true,
    "axioms_union": [
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": true,
+   "checked_at": "2026-10-25T18:21:10.781800+00:00",
+   "dag_node": "FQ-GAP-STONE-CONTINUOUS-TIME",
+   "decl_count": 2,
+   "exit_code": 0,
+   "id": "dag/research/pr_373_review_replay.json#0:CampaignFqGapStoneContinuousTime",
+   "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": null,
+   "module": "CampaignFqGapStoneContinuousTime",
+   "path": "lean4/CampaignFqGapStoneContinuousTime.lean",
+   "receipt_file": "dag/research/pr_373_review_replay.json",
+   "receipt_file_sha256": "1c95278fb6a98ca9e3506996aa8d8ed7220c2910db504130a287be85b71dfdfd",
+   "recorded_sha256": "7cd94d6cedb9da82eb4ac3682fbb8e097e6d1f5758c9f6e0dadbe1fd21d3f5a9",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
     "Classical.choice",
     "Quot.sound",
     "propext"
@@ -294953,7 +295002,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "13873c44ed96ae6e10b9ee03184dec40745f127a998544f4ff342bcae52d4a41",
+   "receipt_file_sha256": "6b22ea887709e7a8c80277b44eeb2e0d20b6a42916eb240040f2e10e944dc59d",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -294979,7 +295028,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "13873c44ed96ae6e10b9ee03184dec40745f127a998544f4ff342bcae52d4a41",
+   "receipt_file_sha256": "6b22ea887709e7a8c80277b44eeb2e0d20b6a42916eb240040f2e10e944dc59d",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -295005,7 +295054,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "13873c44ed96ae6e10b9ee03184dec40745f127a998544f4ff342bcae52d4a41",
+   "receipt_file_sha256": "6b22ea887709e7a8c80277b44eeb2e0d20b6a42916eb240040f2e10e944dc59d",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -295031,7 +295080,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "13873c44ed96ae6e10b9ee03184dec40745f127a998544f4ff342bcae52d4a41",
+   "receipt_file_sha256": "6b22ea887709e7a8c80277b44eeb2e0d20b6a42916eb240040f2e10e944dc59d",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -295057,7 +295106,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "13873c44ed96ae6e10b9ee03184dec40745f127a998544f4ff342bcae52d4a41",
+   "receipt_file_sha256": "6b22ea887709e7a8c80277b44eeb2e0d20b6a42916eb240040f2e10e944dc59d",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -295083,7 +295132,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "13873c44ed96ae6e10b9ee03184dec40745f127a998544f4ff342bcae52d4a41",
+   "receipt_file_sha256": "6b22ea887709e7a8c80277b44eeb2e0d20b6a42916eb240040f2e10e944dc59d",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -295109,7 +295158,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "13873c44ed96ae6e10b9ee03184dec40745f127a998544f4ff342bcae52d4a41",
+   "receipt_file_sha256": "6b22ea887709e7a8c80277b44eeb2e0d20b6a42916eb240040f2e10e944dc59d",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -295135,7 +295184,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "13873c44ed96ae6e10b9ee03184dec40745f127a998544f4ff342bcae52d4a41",
+   "receipt_file_sha256": "6b22ea887709e7a8c80277b44eeb2e0d20b6a42916eb240040f2e10e944dc59d",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -295161,7 +295210,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "13873c44ed96ae6e10b9ee03184dec40745f127a998544f4ff342bcae52d4a41",
+   "receipt_file_sha256": "6b22ea887709e7a8c80277b44eeb2e0d20b6a42916eb240040f2e10e944dc59d",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -295187,7 +295236,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "13873c44ed96ae6e10b9ee03184dec40745f127a998544f4ff342bcae52d4a41",
+   "receipt_file_sha256": "6b22ea887709e7a8c80277b44eeb2e0d20b6a42916eb240040f2e10e944dc59d",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -295213,7 +295262,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "13873c44ed96ae6e10b9ee03184dec40745f127a998544f4ff342bcae52d4a41",
+   "receipt_file_sha256": "6b22ea887709e7a8c80277b44eeb2e0d20b6a42916eb240040f2e10e944dc59d",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -295239,7 +295288,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "13873c44ed96ae6e10b9ee03184dec40745f127a998544f4ff342bcae52d4a41",
+   "receipt_file_sha256": "6b22ea887709e7a8c80277b44eeb2e0d20b6a42916eb240040f2e10e944dc59d",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -295265,7 +295314,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "13873c44ed96ae6e10b9ee03184dec40745f127a998544f4ff342bcae52d4a41",
+   "receipt_file_sha256": "6b22ea887709e7a8c80277b44eeb2e0d20b6a42916eb240040f2e10e944dc59d",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -295291,7 +295340,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "13873c44ed96ae6e10b9ee03184dec40745f127a998544f4ff342bcae52d4a41",
+   "receipt_file_sha256": "6b22ea887709e7a8c80277b44eeb2e0d20b6a42916eb240040f2e10e944dc59d",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -295317,7 +295366,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "13873c44ed96ae6e10b9ee03184dec40745f127a998544f4ff342bcae52d4a41",
+   "receipt_file_sha256": "6b22ea887709e7a8c80277b44eeb2e0d20b6a42916eb240040f2e10e944dc59d",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -295971,7 +296020,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 524,
+  "receipts_indexed": 525,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,

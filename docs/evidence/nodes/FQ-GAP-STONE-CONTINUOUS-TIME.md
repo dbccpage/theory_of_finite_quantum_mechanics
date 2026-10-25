@@ -55,16 +55,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignFqGapStoneContinuousTime.lean`
 
 - file: [lean4/CampaignFqGapStoneContinuousTime.lean](../../../lean4/CampaignFqGapStoneContinuousTime.lean)
-- sha256 (`bytes`): `f3ddd8a1e3da24b20758e061bdba9c1b98d6b046c6c65b0e4afbf1bf175c0a28`
-- cited in: node.lean, receipt dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json (CampaignFqGapStoneContinuousTime)
+- sha256 (`bytes`): `7cd94d6cedb9da82eb4ac3682fbb8e097e6d1f5758c9f6e0dadbe1fd21d3f5a9`
+- cited in: node.lean, receipt dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json (CampaignFqGapStoneContinuousTime), receipt dag/research/pr_373_review_replay.json (CampaignFqGapStoneContinuousTime)
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json](../../../dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json) (module `CampaignFqGapStoneContinuousTime`): recorded sha256 `f3ddd8a1e3da24b20758e061bdba9c1b98d6b046c6c65b0e4afbf1bf175c0a28` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json](../../../dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json) (module `CampaignFqGapStoneContinuousTime`): recorded sha256 `7cd94d6cedb9da82eb4ac3682fbb8e097e6d1f5758c9f6e0dadbe1fd21d3f5a9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_373_review_replay.json](../../../dag/research/pr_373_review_replay.json) (module `CampaignFqGapStoneContinuousTime`): recorded sha256 `7cd94d6cedb9da82eb4ac3682fbb8e097e6d1f5758c9f6e0dadbe1fd21d3f5a9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignFqGapStoneContinuousTime`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `fiveMulSqEqFourMulSq` | yes | yes | yes | Quot.sound, propext | `#print axioms fiveMulSqEqFourMulSq` |
-| `pythagorean345` | yes | yes | yes | none | `#print axioms pythagorean345` |
+| `CampaignFqGapStoneContinuousTime.fiveMulSqEqFourMulSq` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFqGapStoneContinuousTime.fiveMulSqEqFourMulSq` |
+| `CampaignFqGapStoneContinuousTime.pythagorean345` | yes | yes | yes | none | `#print axioms CampaignFqGapStoneContinuousTime.pythagorean345` |
 - counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
