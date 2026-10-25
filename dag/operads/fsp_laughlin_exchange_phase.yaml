@@ -3,17 +3,24 @@ node_id: FSP-LAUGHLIN-EXCHANGE-PHASE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin
-    state gives statistical phase theta = pi/m.'
+  source_statement: In the formal angle-residue model modulo 2m, for every m>1 the distinct residues 1
+    and m+1 have the same doubled residue 2. Thus full-braid monodromy alone does not select an exchange
+    residue. At m=3 the two residues are 1 and 4. This is an algebraic ambiguity, not a Berry-phase derivation.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - Laughlin nu = 1/m state and quasihole Berry phase (literature)
-  source_bottleneck: No Berry-phase or torus computation is in this checkout; the local module fixes m
-    = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).
+  source_bottleneck: 'The statistical exchange phase of Laughlin quasiholes requires the wavefunction,
+    adiabatic transport and Berry connection, plus a branch/continuity convention. The algebraic non-uniqueness
+    does not refute the Arovas-Schrieffer-Wilczek result. Original target retained as an obligation: Arovas-Schrieffer-Wilczek:
+    adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta
+    = pi/m. Prior boundary: No Berry-phase or torus computation is in this checkout; the local module
+    fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).'
   source_refs:
   - dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md
   - papers/core/fsp/theory_of_finite_fsp.md
   - papers/core/fsp/the_problem_of_the_fermion_sign.md
+  - dag/derivations/independent/fsp-laughlin-exchange-phase.md
+  - dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json
   paper_refs:
   - dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md
   source_claim_label: IMPORTED_ASSUMPTION
@@ -22,7 +29,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md
-    sha256: 77205f624d406801e014b0306bbbb87add5543f5719395237a33aa258809dbbd
+    sha256: f056366808c5a37a5c63ad71a601c2684371b4b5902f580f51568e14b5f52ff8
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -30,9 +37,81 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_laughlin_exchange_phase_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: monodromy
+  line: 4
+  signature_excerpt: 'def monodromy (m k : Nat) : Nat'
+  source: lean4/CampaignLaughlinRootAmbiguity.lean
+  repository: this_repository
+  source_sha256: c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: two_distinct_exchange_roots
+  line: 6
+  signature_excerpt: |-
+    theorem two_distinct_exchange_roots (m : Nat) (hm : 1 < m) :
+        1 < 2 * m ∧ m + 1 < 2 * m ∧ 1 ≠ m + 1 ∧
+        monodromy m 1 = 2 ∧ monodromy m (m + 1) = 2
+  source: lean4/CampaignLaughlinRootAmbiguity.lean
+  repository: this_repository
+  source_sha256: c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: monodromy_not_injective
+  line: 15
+  signature_excerpt: |-
+    theorem monodromy_not_injective (m : Nat) (hm : 1 < m) :
+        ¬ (∀ a b, a < 2*m → b < 2*m → monodromy m a = monodromy m b → a = b)
+  source: lean4/CampaignLaughlinRootAmbiguity.lean
+  repository: this_repository
+  source_sha256: c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: roots_at_third_filling
+  line: 21
+  signature_excerpt: |-
+    theorem roots_at_third_filling :
+        monodromy 3 1 = 2 ∧ monodromy 3 4 = 2 ∧ 1 ≠ (4 : Nat)
+  source: lean4/CampaignLaughlinRootAmbiguity.lean
+  repository: this_repository
+  source_sha256: c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignLaughlinRootAmbiguity.lean::CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots
+  availability: local
+  symbol: CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots
+  path: lean4/CampaignLaughlinRootAmbiguity.lean
+  repository: this_repository
+  sha256: c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314
+  declaration_status: declaration_found_not_proof_checked
+  line: 6
+  role: source_lead_only
+- original_ref: lean4/CampaignLaughlinRootAmbiguity.lean::CampaignLaughlinRootAmbiguity.monodromy_not_injective
+  availability: local
+  symbol: CampaignLaughlinRootAmbiguity.monodromy_not_injective
+  path: lean4/CampaignLaughlinRootAmbiguity.lean
+  repository: this_repository
+  sha256: c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314
+  declaration_status: declaration_found_not_proof_checked
+  line: 15
+  role: source_lead_only
+- original_ref: lean4/CampaignLaughlinRootAmbiguity.lean::CampaignLaughlinRootAmbiguity.roots_at_third_filling
+  availability: local
+  symbol: CampaignLaughlinRootAmbiguity.roots_at_third_filling
+  path: lean4/CampaignLaughlinRootAmbiguity.lean
+  repository: this_repository
+  sha256: c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314
+  declaration_status: declaration_found_not_proof_checked
+  line: 21
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -72,8 +151,6 @@ operad_slots:
     - Laughlin nu = 1/m state and quasihole Berry phase (literature)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

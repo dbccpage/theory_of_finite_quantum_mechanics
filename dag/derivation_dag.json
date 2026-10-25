@@ -22083,18 +22083,24 @@
       "stage": "FERMION_SIGN",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-044 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION",
-      "statement": "Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta = pi/m.",
+      "statement": "In the formal angle-residue model modulo 2m, for every m>1 the distinct residues 1 and m+1 have the same doubled residue 2. Thus full-braid monodromy alone does not select an exchange residue. At m=3 the two residues are 1 and 4. This is an algebraic ambiguity, not a Berry-phase derivation.",
       "source": [
         "dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md",
+        "dag/derivations/independent/fsp-laughlin-exchange-phase.md",
+        "dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignLaughlinRootAmbiguity.lean::CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots",
+        "lean4/CampaignLaughlinRootAmbiguity.lean::CampaignLaughlinRootAmbiguity.monodromy_not_injective",
+        "lean4/CampaignLaughlinRootAmbiguity.lean::CampaignLaughlinRootAmbiguity.roots_at_third_filling"
+      ],
       "rust": [],
       "imported_structure": [
         "Laughlin nu = 1/m state and quasihole Berry phase (literature)"
       ],
-      "bottleneck": "No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).",
+      "bottleneck": "The statistical exchange phase of Laughlin quasiholes requires the wavefunction, adiabatic transport and Berry connection, plus a branch/continuity convention. The algebraic non-uniqueness does not refute the Arovas-Schrieffer-Wilczek result. Original target retained as an obligation: Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta = pi/m. Prior boundary: No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -37885,7 +37891,7 @@
       ],
       "output": "FSP-LAUGHLIN-EXCHANGE-PHASE",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).",
+      "mechanism": "The statistical exchange phase of Laughlin quasiholes requires the wavefunction, adiabatic transport and Berry connection, plus a branch/continuity convention. The algebraic non-uniqueness does not refute the Arovas-Schrieffer-Wilczek result. Original target retained as an obligation: Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta = pi/m. Prior boundary: No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).",
       "source": [
         "dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -66823,20 +66829,28 @@
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md",
         "papers/core/fsp/theory_of_finite_fsp.md:613-625",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md:621-653"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md:621-653",
+        "dag/derivations/independent/fsp-laughlin-exchange-phase.md",
+        "dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json"
       ],
       "id": "TFQ-1208",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignLaughlinRootAmbiguity.lean::CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots",
+        "lean4/CampaignLaughlinRootAmbiguity.lean::CampaignLaughlinRootAmbiguity.monodromy_not_injective",
+        "lean4/CampaignLaughlinRootAmbiguity.lean::CampaignLaughlinRootAmbiguity.roots_at_third_filling"
+      ],
       "local_id": "FSP-LAUGHLIN-EXCHANGE-PHASE",
       "name": "Laughlin quasihole exchange phase pi/m",
-      "obligation": "No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).",
+      "obligation": "The statistical exchange phase of Laughlin quasiholes requires the wavefunction, adiabatic transport and Berry connection, plus a branch/continuity convention. The algebraic non-uniqueness does not refute the Arovas-Schrieffer-Wilczek result. Original target retained as an obligation: Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta = pi/m. Prior boundary: No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).",
       "parent_id": "TFQ-1207",
-      "python": [],
+      "python": [
+        "checks/independent/fsp-laughlin-exchange-phase.py"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "FERMION_SIGN",
-      "summary": "Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta = pi/m.",
+      "summary": "In the formal angle-residue model modulo 2m, for every m>1 the distinct residues 1 and m+1 have the same doubled residue 2. Thus full-braid monodromy alone does not select an exchange residue. At m=3 the two residues are 1 and 4. This is an algebraic ambiguity, not a Berry-phase derivation.",
       "uuid": "a0e95736-3b93-50e8-bd3f-cbde0bec619e"
     },
     {
