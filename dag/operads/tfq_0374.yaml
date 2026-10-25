@@ -9,11 +9,19 @@ target:
     which does not by itself record that they differ on a new letter. The finite statement still required
     is a single finite witness, one new letter, on which the three contracts disagree, kept distinct from
     free-monoid size. WordRecovery.lean is listed in the package and was not opened, so its declarations
-    stay unchecked here.
+    stay unchecked here. Narrowed in Lean 4 to one old letter a and one new letter fresh. The witness
+    word is [a, fresh], and it contains fresh once. Language restriction of the sample [[a, fresh], [a]]
+    returns [[a]], a list of words. Partial recovery of the witness returns none, an optional word. Total
+    erasure of the witness returns [a], a word. On the old word [a], recovery returns the word and erasure
+    returns the word. Recovery of the witness is not the erased word, and erasure is not the witness word.
+    The witness word is absent from the restricted sample. No Ext group is defined in this file. Free-monoid
+    size is not restated. The atlas files preservation.py and WordRecovery.lean stay unchecked. AuthorityEffect
+    is None.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Language restriction, partial word recovery, and total erasure are three different
-    types, witnessed on one new letter, with no Ext calculation.
+  source_bottleneck: 'The atlas files preservation.py and WordRecovery.lean stay unchecked. The finite
+    witness in this file is the word [a, fresh]: restriction returns [[a]], recovery returns none, and
+    erasure returns [a]. No Ext group is defined here, and free-monoid size is not restated.'
   source_refs:
   - dag/derivations/01_pregenesis/tfq_0374_three_recovery_contracts.md
   paper_refs:
@@ -24,7 +32,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/01_pregenesis/tfq_0374_three_recovery_contracts.md
-    sha256: 083b9439b28e4b35c309c0dd47198580fbcfee75ba5ec41d64d257904c2675ec
+    sha256: cbb9c0722f9cea41973be7048022d3bff44f66751bd9646af7e7768e969c6e31
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -32,9 +40,194 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/pregenesis_tfq_0374_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: inductive
+  name: Letter
+  line: 4
+  signature_excerpt: inductive Letter
+  source: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  source_sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: witness
+  line: 29
+  signature_excerpt: 'def witness : Word'
+  source: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  source_sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Word
+  line: 9
+  signature_excerpt: abbrev Word
+  source: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  source_sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: recoverWord
+  line: 19
+  signature_excerpt: 'def recoverWord (w : Word) : Option Word'
+  source: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  source_sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: oldWord
+  line: 26
+  signature_excerpt: 'def oldWord : Word'
+  source: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  source_sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: eraseWord
+  line: 23
+  signature_excerpt: 'def eraseWord (w : Word) : Word'
+  source: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  source_sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: restrictLanguage
+  line: 15
+  signature_excerpt: 'def restrictLanguage (lang : List Word) : List Word'
+  source: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  source_sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: allOld
+  line: 11
+  signature_excerpt: 'def allOld (w : Word) : Bool'
+  source: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  source_sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sample
+  line: 31
+  signature_excerpt: 'def sample : List Word'
+  source: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  source_sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: letters_are_old_or_fresh
+  line: 33
+  signature_excerpt: |-
+    theorem letters_are_old_or_fresh :
+        ∀ x : Letter, x = Letter.a ∨ x = Letter.fresh
+  source: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  source_sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: fresh_is_not_old
+  line: 40
+  signature_excerpt: 'theorem fresh_is_not_old : Letter.fresh ≠ Letter.a'
+  source: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  source_sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: witness_uses_one_fresh
+  line: 43
+  signature_excerpt: |-
+    theorem witness_uses_one_fresh :
+        witness = [Letter.a, Letter.fresh]
+          ∧ (witness.filter (fun x => decide (x = Letter.fresh))).length = 1
+  source: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  source_sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: old_word_agrees
+  line: 48
+  signature_excerpt: |-
+    theorem old_word_agrees :
+        recoverWord oldWord = some oldWord ∧ eraseWord oldWord = oldWord
+          ∧ restrictLanguage [oldWord] = [oldWord]
+  source: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  source_sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: three_contracts_differ_on_a_new_letter
+  line: 54
+  signature_excerpt: |-
+    theorem three_contracts_differ_on_a_new_letter :
+        (restrictLanguage sample : List Word) = [oldWord]
+          ∧ (recoverWord witness : Option Word) = none
+          ∧ (eraseWord witness : Word) = oldWord
+          ∧ recoverWord witness ≠ some (eraseWord witness)
+          ∧ eraseWord witness ≠ witness
+          ∧ oldWord ∈ restrictLanguage sample
+          ∧ witness ∉ restrictLanguage sample
+  source: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  source_sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignTfq0374ThreeRecoveryContracts.lean::letters_are_old_or_fresh
+  availability: local
+  symbol: letters_are_old_or_fresh
+  path: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  declaration_status: declaration_found_not_proof_checked
+  line: 33
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0374ThreeRecoveryContracts.lean::fresh_is_not_old
+  availability: local
+  symbol: fresh_is_not_old
+  path: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  declaration_status: declaration_found_not_proof_checked
+  line: 40
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0374ThreeRecoveryContracts.lean::witness_uses_one_fresh
+  availability: local
+  symbol: witness_uses_one_fresh
+  path: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  declaration_status: declaration_found_not_proof_checked
+  line: 43
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0374ThreeRecoveryContracts.lean::old_word_agrees
+  availability: local
+  symbol: old_word_agrees
+  path: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  declaration_status: declaration_found_not_proof_checked
+  line: 48
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0374ThreeRecoveryContracts.lean::three_contracts_differ_on_a_new_letter
+  availability: local
+  symbol: three_contracts_differ_on_a_new_letter
+  path: lean4/CampaignTfq0374ThreeRecoveryContracts.lean
+  repository: this_repository
+  sha256: 1558936ca62404215225ede5f79be94146902a1c460a2e55d4edf0391717b2ea
+  declaration_status: declaration_found_not_proof_checked
+  line: 54
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -72,8 +265,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

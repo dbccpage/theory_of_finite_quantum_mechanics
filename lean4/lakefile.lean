@@ -1227,3 +1227,7 @@ lean_lib CampaignTfq0313OperatorAlgebraShadow where
 -- Campaign: TFQ-0319. Not a default target.
 lean_lib CampaignTfq0319UnjoinedReceipt where
   roots := #[`CampaignTfq0319UnjoinedReceipt]
+
+-- Campaign: TFQ-0374. Not a default target.
+lean_lib CampaignTfq0374ThreeRecoveryContracts where
+  roots := #[`CampaignTfq0374ThreeRecoveryContracts]
