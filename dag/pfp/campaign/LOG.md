@@ -130,3 +130,4 @@ One line per target, in order attempted: `<UTC date> | <node id> | <outcome clas
 - **Mutation Gate (`dag/research/campaign_tfq-0376_lean_mutation.json`)**: 6/6 semantic mutations killed.
 - **Independent Checker (`checks/independent/tfq-0376.py`)**: 146 checks passed, 0 failed (`dag/research/campaign_tfq-0376_independent.json`).
 2026-10-24 | PGW-PYTHON-LEAN-CARRIER-BRIDGE | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/320 | Sealed reading L replays to R2L and reading F replays to R2F; a Python-to-Lean refinement stays open.
+2026-10-25 | PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/356 | One triangle: incidence (01, 02, 12) reorders to (01, 12, 02); the face (1, -1, 1) becomes (1, 1, -1); coboundary matches the transposed boundary; residual of (1, 1, 0) is at least 2; the window stays open.
