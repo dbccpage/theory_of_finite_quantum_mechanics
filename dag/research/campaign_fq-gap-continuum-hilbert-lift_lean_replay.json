@@ -1,0 +1,65 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "source_base": "7fa69d621c27bed7045d0b7fe34bbb1d34b27248",
+  "checked_at": "2026-10-25",
+  "result": "Narrowed to the integer slice. Status stays CONDITIONAL.",
+  "proof_boundary": "No integer a satisfies 2 * a = 1. For every integer t, 4 * (t * t - t - 1) + 5 = (2 * t - 1) * (2 * t - 1). For every integer n, n * n is not 5. For every integer t, t * t - t - 1 is not 0. Scalar-field selection, l2 uniformity, a completion, a Gaussian-integer eigenvalue, the matrix, and Z[i] as a field stay outside this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "lakefile_sha256": "64049bb3f5189d482cc5ec03543428221d068f658b44106df1a659152d9e8510",
+    "library": "CampaignFqGapContinuumHilbertLift (lean_lib in lean4/lakefile.lean; not a default target)",
+    "build_directory": "lean4/b (lakefile buildDir; gitignored)",
+    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run). The module imports no package.",
+    "command": "lake --no-cache --dir lean4 build CampaignFqGapContinuumHilbertLift",
+    "cwd": ".",
+    "wall_clock_ms": 6062,
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "results": [
+      {
+        "module": "CampaignFqGapContinuumHilbertLift",
+        "dag_node": "FQ-GAP-CONTINUUM-HILBERT-LIFT",
+        "source": "lean4/CampaignFqGapContinuumHilbertLift.lean",
+        "sha256": "7eedb6d7f11fc8294dd41db27c648391a39fcc4fee72f1eb7c310452632dfe4b",
+        "sha256_after_build": "7eedb6d7f11fc8294dd41db27c648391a39fcc4fee72f1eb7c310452632dfe4b",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "module_job_ms": 1400,
+        "wall_clock_ms": 6062,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "twoMulNeOne",
+          "discIdentity",
+          "intSqNeFive",
+          "intPolyNeZero"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "twoMulNeOne": [
+            "propext",
+            "Quot.sound"
+          ],
+          "discIdentity": [
+            "propext",
+            "Quot.sound"
+          ],
+          "intSqNeFive": [
+            "propext",
+            "Quot.sound"
+          ],
+          "intPolyNeZero": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        "output": "twoMulNeOne depends on axioms: [propext, Quot.sound]\ndiscIdentity depends on axioms: [propext, Quot.sound]\nintSqNeFive depends on axioms: [propext, Quot.sound]\nintPolyNeZero depends on axioms: [propext, Quot.sound]\n"
+      }
+    ]
+  }
+}

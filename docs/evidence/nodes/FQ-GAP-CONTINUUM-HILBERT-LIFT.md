@@ -4,15 +4,15 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 
 ## Statement
 
-> The transition from the finite presented carrier (integer weights, finite report labels) to a continuous infinite-dimensional Hilbert space is not constructed in any source; QM_122 s6 refuses it. M_n(Z\[i\]) is recovered for finite report sets but is not M_n(C): Z\[i\] is not a field and a self-adjoint Gaussian-integer matrix need not have a Gaussian-integer eigenvalue (GAP-F001-S000-009). Construction half (split 2026-10-21): FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION records the completion once the scalar field and the l2 uniformity are supplied; this node keeps the selection of those two hypotheses, which no source derives.
+> No integer a satisfies 2 * a = 1. For every integer t, 4 * (t * t - t - 1) + 5 = (2 * t - 1) * (2 * t - 1). For every integer n, n * n is not 5. For every integer t, t * t - t - 1 is not 0.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 10
-- cited Lean, Rust or Python symbols found in their in-repo files: 22
-- cited Lean declarations covered by a current replay receipt: 19
+- counted in-repo evidence files: 11
+- cited Lean, Rust or Python symbols found in their in-repo files: 26
+- cited Lean declarations covered by a current replay receipt: 23
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 1
@@ -30,7 +30,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-What remains at this node is the selection of the scalar field (R or C) and of the l2 uniformity from finite-theory primitives, which no source derives; the construction, the identification with l2(N, k), the intrinsic-uniformity completion and the lifting of bounded exact operators are recorded at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION; dynamics and generators remain at FQ-GAP-STONE-CONTINUOUS-TIME. Z\[i\] non-field obstruction and discriminant-5 spectral exit from Q(i) remain mechanized.
+Campaign integer slice: no integer a satisfies 2 * a = 1; for every integer t, 4 * (t * t - t - 1) + 5 = (2 * t - 1) * (2 * t - 1); no integer square equals 5; and t * t - t - 1 is not 0. Scalar-field selection, l2 uniformity, the completion, a Gaussian-integer eigenvalue and the matrix stay open. What remains at this node is the selection of the scalar field (R or C) and of the l2 uniformity from finite-theory primitives, which no source derives; the construction, the identification with l2(N, k), the intrinsic-uniformity completion and the lifting of bounded exact operators are recorded at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION; dynamics and generators remain at FQ-GAP-STONE-CONTINUOUS-TIME. Z\[i\] non-field obstruction and discriminant-5 spectral exit from Q(i) remain mechanized.
 
 ## Source status
 
@@ -38,7 +38,7 @@ Split on 2026-10-21: the construction (completion, embeddings, l2 model, intrins
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: 2 has no Gaussian-integer inverse because its real equation 2a=1 has no integer solution; the stated matrix has characteristic polynomial l^2-l-1 and discriminant identity 4p(l)+5=(2l-1)^2.
   - does not support: Construct an actual completion with specified topology, carrier and embedding; prove any claimed rational/Gaussian spectral exit separately. No impossibility of completion follows from this obstruction.
   - next test: Construct an actual completion with specified topology, carrier and embedding; prove any claimed rational/Gaussian spectral exit separately. No impossibility of completion follows from this obstruction.
@@ -46,6 +46,23 @@ Split on 2026-10-21: the construction (completion, embeddings, l2 model, intrins
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignFqGapContinuumHilbertLift.lean`
+
+- file: [lean4/CampaignFqGapContinuumHilbertLift.lean](../../../lean4/CampaignFqGapContinuumHilbertLift.lean)
+- sha256 (`bytes`): `7eedb6d7f11fc8294dd41db27c648391a39fcc4fee72f1eb7c310452632dfe4b`
+- cited in: node.lean, receipt dag/research/campaign_fq-gap-continuum-hilbert-lift_lean_replay.json (CampaignFqGapContinuumHilbertLift)
+- replay: `verified`
+  - receipt [dag/research/campaign_fq-gap-continuum-hilbert-lift_lean_replay.json](../../../dag/research/campaign_fq-gap-continuum-hilbert-lift_lean_replay.json) (module `CampaignFqGapContinuumHilbertLift`): recorded sha256 `7eedb6d7f11fc8294dd41db27c648391a39fcc4fee72f1eb7c310452632dfe4b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignFqGapContinuumHilbertLift`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `discIdentity` | yes | yes | yes | Quot.sound, propext | `#print axioms discIdentity` |
+| `intPolyNeZero` | yes | yes | yes | Quot.sound, propext | `#print axioms intPolyNeZero` |
+| `intSqNeFive` | yes | yes | yes | Quot.sound, propext | `#print axioms intSqNeFive` |
+| `twoMulNeOne` | yes | yes | yes | Quot.sound, propext | `#print axioms twoMulNeOne` |
+- counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
