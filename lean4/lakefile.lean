@@ -1211,3 +1211,7 @@ lean_lib CampaignTfq0376Pregenesis where
 -- Campaign: PGW-PYTHON-LEAN-CARRIER-BRIDGE. Not a default target.
 lean_lib CampaignPgwPythonLeanCarrierBridge where
   roots := #[`CampaignPgwPythonLeanCarrierBridge]
+
+-- Campaign: TFQ-0319. Not a default target.
+lean_lib CampaignTfq0319UnjoinedReceipt where
+  roots := #[`CampaignTfq0319UnjoinedReceipt]
