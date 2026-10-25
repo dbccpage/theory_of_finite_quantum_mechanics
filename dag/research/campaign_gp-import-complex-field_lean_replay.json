@@ -1,24 +1,21 @@
 {
   "schema_version": "campaign_lean_replay.v1",
   "authority_effect": "None",
-  "checked_at": "2026-10-25",
-  "source_base": "c50dc1b472596d1b5934408b00b9fbb72db91345",
-  "result": "Lean module CampaignGpImportComplexField compiles under Lean 4.35.0. The library CampaignGpImportComplexField is a non-default lean_lib in lean4/lakefile.lean. Every printed axiom list is a subset of propext, Classical.choice and Quot.sound. The module has no import.",
-  "proof_boundary": "The module records the coordinate product of 1+i with a+bi, both multiplication orders distinct from the real unit, conjugate symmetry of the matrix with row-major entries 0, 1, 1, 1, the column image (y, x+y), and that a nonzero column is not a Gaussian-integer eigenpair. A complete complex field and a spectral theorem for a general self-adjoint matrix are outside the module. AuthorityEffect: None.",
+  "checked_at": "2026-10-25T22:55:10.556351+00:00",
+  "reviewed_pr": 390,
+  "reviewed_head": "23573dbba26fd9334a870016ff25821a0d4ae933",
+  "source_state": "Integrated repairs; source SHA-256 is authoritative.",
+  "proof_boundary": "Scoped claims only. Named hypotheses and broader obligations remain explicit; no original broad target closure is inferred.",
   "lean_replay": {
-    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
-    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
-    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
-    "lakefile_sha256": "4c0be07e7671871a715b2c06603afe9585e27bf439578180728176d746f11d9b",
-    "library": "CampaignGpImportComplexField (lean_lib in lean4/lakefile.lean; not a default target)",
-    "build_directory": "lean4/b",
-    "dependency_packages": "lean4/.lake/packages junction to the Mathlib v4.35.0 cache; the module has no import",
-    "command": "cd lean4 && lake build CampaignGpImportComplexField",
-    "allowed_axioms": [
-      "propext",
-      "Classical.choice",
-      "Quot.sound"
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit390.lean"
     ],
+    "cwd": "/workspace/review-pr390/core-replay",
     "results": [
       {
         "module": "CampaignGpImportComplexField",
@@ -30,15 +27,61 @@
         "exit_code": 0,
         "admission_scan_passed": true,
         "axiom_audit_passed": true,
+        "built_successfully": true,
         "anchors": [
+          "CampaignGpImportComplexField.gNorm_mul",
+          "CampaignGpImportComplexField.int_sq_nonneg",
+          "CampaignGpImportComplexField.gNorm_eq_zero_iff",
+          "CampaignGpImportComplexField.gMul_eq_zero",
           "CampaignGpImportComplexField.onePlusI_mul_coords",
+          "CampaignGpImportComplexField.onePlusI_mul_ne_one",
+          "CampaignGpImportComplexField.gMul_comm",
           "CampaignGpImportComplexField.onePlusI_not_unit",
-          "CampaignGpImportComplexField.fib_conjugate_transpose",
+          "CampaignGpImportComplexField.intSqNeFive",
+          "CampaignGpImportComplexField.twice_sub_one_sq",
+          "CampaignGpImportComplexField.gauss_sq_ne_succ",
+          "CampaignGpImportComplexField.gMul_zero_left",
+          "CampaignGpImportComplexField.gMul_zero_right",
+          "CampaignGpImportComplexField.gMul_one_left",
+          "CampaignGpImportComplexField.gAdd_zero_left",
+          "CampaignGpImportComplexField.gMul_add_left",
+          "CampaignGpImportComplexField.gMul_assoc",
+          "CampaignGpImportComplexField.gMul_sub_left",
+          "CampaignGpImportComplexField.gSub_eq_zero_iff",
           "CampaignGpImportComplexField.fib_mulVec",
-          "CampaignGpImportComplexField.fib_no_gauss_eigenpair"
+          "CampaignGpImportComplexField.fib_no_gauss_eigenpair",
+          "CampaignGpImportComplexField.gAdd",
+          "CampaignGpImportComplexField.gSub",
+          "CampaignGpImportComplexField.gMul",
+          "CampaignGpImportComplexField.gConj",
+          "CampaignGpImportComplexField.gZero",
+          "CampaignGpImportComplexField.gOne",
+          "CampaignGpImportComplexField.gSq",
+          "CampaignGpImportComplexField.gNorm",
+          "CampaignGpImportComplexField.fib",
+          "CampaignGpImportComplexField.mulVec",
+          "CampaignGpImportComplexField.scaleVec",
+          "CampaignGpImportComplexField.fib_conjugate_transpose"
         ],
-        "anchors_reported": true,
         "axioms": {
+          "CampaignGpImportComplexField.gNorm_mul": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignGpImportComplexField.int_sq_nonneg": [
+            "propext"
+          ],
+          "CampaignGpImportComplexField.gNorm_eq_zero_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignGpImportComplexField.gMul_eq_zero": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
           "CampaignGpImportComplexField.onePlusI_mul_coords": [
             "Classical.choice",
             "Quot.sound",
@@ -49,12 +92,12 @@
             "Quot.sound",
             "propext"
           ],
-          "CampaignGpImportComplexField.onePlusI_not_unit": [
+          "CampaignGpImportComplexField.gMul_comm": [
             "Classical.choice",
             "Quot.sound",
             "propext"
           ],
-          "CampaignGpImportComplexField.gNorm_mul": [
+          "CampaignGpImportComplexField.onePlusI_not_unit": [
             "Classical.choice",
             "Quot.sound",
             "propext"
@@ -63,12 +106,49 @@
             "Quot.sound",
             "propext"
           ],
+          "CampaignGpImportComplexField.twice_sub_one_sq": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
           "CampaignGpImportComplexField.gauss_sq_ne_succ": [
             "Classical.choice",
             "Quot.sound",
             "propext"
           ],
-          "CampaignGpImportComplexField.fib_conjugate_transpose": [],
+          "CampaignGpImportComplexField.gMul_zero_left": [
+            "propext"
+          ],
+          "CampaignGpImportComplexField.gMul_zero_right": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignGpImportComplexField.gMul_one_left": [
+            "propext"
+          ],
+          "CampaignGpImportComplexField.gAdd_zero_left": [
+            "propext"
+          ],
+          "CampaignGpImportComplexField.gMul_add_left": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignGpImportComplexField.gMul_assoc": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignGpImportComplexField.gMul_sub_left": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignGpImportComplexField.gSub_eq_zero_iff": [
+            "Quot.sound",
+            "propext"
+          ],
           "CampaignGpImportComplexField.fib_mulVec": [
             "propext"
           ],
@@ -76,9 +156,147 @@
             "Classical.choice",
             "Quot.sound",
             "propext"
-          ]
-        }
+          ],
+          "CampaignGpImportComplexField.gAdd": [],
+          "CampaignGpImportComplexField.gSub": [],
+          "CampaignGpImportComplexField.gMul": [],
+          "CampaignGpImportComplexField.gConj": [],
+          "CampaignGpImportComplexField.gZero": [],
+          "CampaignGpImportComplexField.gOne": [],
+          "CampaignGpImportComplexField.gSq": [],
+          "CampaignGpImportComplexField.gNorm": [],
+          "CampaignGpImportComplexField.fib": [],
+          "CampaignGpImportComplexField.mulVec": [],
+          "CampaignGpImportComplexField.scaleVec": [],
+          "CampaignGpImportComplexField.fib_conjugate_transpose": []
+        },
+        "output": "'CampaignGpImportComplexField.gAdd' does not depend on any axioms\n'CampaignGpImportComplexField.gSub' does not depend on any axioms\n'CampaignGpImportComplexField.gMul' does not depend on any axioms\n'CampaignGpImportComplexField.gConj' does not depend on any axioms\n'CampaignGpImportComplexField.gZero' does not depend on any axioms\n'CampaignGpImportComplexField.gOne' does not depend on any axioms\n'CampaignGpImportComplexField.gSq' does not depend on any axioms\n'CampaignGpImportComplexField.gNorm' does not depend on any axioms\n'CampaignGpImportComplexField.gNorm_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.int_sq_nonneg' depends on axioms: [propext]\n'CampaignGpImportComplexField.gNorm_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.gMul_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.onePlusI_mul_coords' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.onePlusI_mul_ne_one' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.gMul_comm' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.onePlusI_not_unit' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.intSqNeFive' depends on axioms: [propext, Quot.sound]\n'CampaignGpImportComplexField.twice_sub_one_sq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.gauss_sq_ne_succ' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.gMul_zero_left' depends on axioms: [propext]\n'CampaignGpImportComplexField.gMul_zero_right' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.gMul_one_left' depends on axioms: [propext]\n'CampaignGpImportComplexField.gAdd_zero_left' depends on axioms: [propext]\n'CampaignGpImportComplexField.gMul_add_left' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.gMul_assoc' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.gMul_sub_left' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.gSub_eq_zero_iff' depends on axioms: [propext, Quot.sound]\n'CampaignGpImportComplexField.fib' does not depend on any axioms\n'CampaignGpImportComplexField.mulVec' does not depend on any axioms\n'CampaignGpImportComplexField.scaleVec' does not depend on any axioms\n'CampaignGpImportComplexField.fib_conjugate_transpose' does not depend on any axioms\n'CampaignGpImportComplexField.fib_mulVec' depends on axioms: [propext]\n'CampaignGpImportComplexField.fib_no_gauss_eigenpair' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
       }
     ]
+  },
+  "lake_build": {
+    "command": [
+      "lake",
+      "build",
+      "CampaignGpImportComplexField"
+    ],
+    "exit_code": 0,
+    "seconds": 0.757,
+    "output": "ℹ [2/3] Built CampaignGpImportComplexField (633ms)\ninfo: CampaignGpImportComplexField.lean:255:0: 'CampaignGpImportComplexField.onePlusI_mul_coords' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGpImportComplexField.lean:256:0: 'CampaignGpImportComplexField.onePlusI_mul_ne_one' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGpImportComplexField.lean:257:0: 'CampaignGpImportComplexField.onePlusI_not_unit' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGpImportComplexField.lean:258:0: 'CampaignGpImportComplexField.gNorm_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGpImportComplexField.lean:259:0: 'CampaignGpImportComplexField.intSqNeFive' depends on axioms: [propext, Quot.sound]\ninfo: CampaignGpImportComplexField.lean:260:0: 'CampaignGpImportComplexField.gauss_sq_ne_succ' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignGpImportComplexField.lean:261:0: 'CampaignGpImportComplexField.fib_conjugate_transpose' does not depend on any axioms\ninfo: CampaignGpImportComplexField.lean:262:0: 'CampaignGpImportComplexField.fib_mulVec' depends on axioms: [propext]\ninfo: CampaignGpImportComplexField.lean:263:0: 'CampaignGpImportComplexField.fib_no_gauss_eigenpair' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (3 jobs).\ninfo: review_pr390: no previous manifest, creating one from scratch\ninfo: toolchain not updated; already up-to-date\n"
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/review-round2/independent-venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/gp-import-complex-field.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.344,
+    "output": "gp-import-complex-field failures=0 coords=2 parity_unit=1 small_squares=4,1,0,1,4 char_gap=5 witness_product=1,1 witness_image=0,0,1,0\n"
+  },
+  "axiom_audit": {
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit390.lean"
+    ],
+    "cwd": "/workspace/review-pr390/core-replay",
+    "input_path": "Audit390.lean",
+    "input_contents": "import CampaignGpImportComplexField\n#print axioms CampaignGpImportComplexField.gAdd\n#print axioms CampaignGpImportComplexField.gSub\n#print axioms CampaignGpImportComplexField.gMul\n#print axioms CampaignGpImportComplexField.gConj\n#print axioms CampaignGpImportComplexField.gZero\n#print axioms CampaignGpImportComplexField.gOne\n#print axioms CampaignGpImportComplexField.gSq\n#print axioms CampaignGpImportComplexField.gNorm\n#print axioms CampaignGpImportComplexField.gNorm_mul\n#print axioms CampaignGpImportComplexField.int_sq_nonneg\n#print axioms CampaignGpImportComplexField.gNorm_eq_zero_iff\n#print axioms CampaignGpImportComplexField.gMul_eq_zero\n#print axioms CampaignGpImportComplexField.onePlusI_mul_coords\n#print axioms CampaignGpImportComplexField.onePlusI_mul_ne_one\n#print axioms CampaignGpImportComplexField.gMul_comm\n#print axioms CampaignGpImportComplexField.onePlusI_not_unit\n#print axioms CampaignGpImportComplexField.intSqNeFive\n#print axioms CampaignGpImportComplexField.twice_sub_one_sq\n#print axioms CampaignGpImportComplexField.gauss_sq_ne_succ\n#print axioms CampaignGpImportComplexField.gMul_zero_left\n#print axioms CampaignGpImportComplexField.gMul_zero_right\n#print axioms CampaignGpImportComplexField.gMul_one_left\n#print axioms CampaignGpImportComplexField.gAdd_zero_left\n#print axioms CampaignGpImportComplexField.gMul_add_left\n#print axioms CampaignGpImportComplexField.gMul_assoc\n#print axioms CampaignGpImportComplexField.gMul_sub_left\n#print axioms CampaignGpImportComplexField.gSub_eq_zero_iff\n#print axioms CampaignGpImportComplexField.fib\n#print axioms CampaignGpImportComplexField.mulVec\n#print axioms CampaignGpImportComplexField.scaleVec\n#print axioms CampaignGpImportComplexField.fib_conjugate_transpose\n#print axioms CampaignGpImportComplexField.fib_mulVec\n#print axioms CampaignGpImportComplexField.fib_no_gauss_eigenpair\n",
+    "input_sha256": "dc096c3ae9fa7939821711843450be064fc30f6f326dcadbc1c27f31fb5bfab1",
+    "exit_code": 0,
+    "output": "'CampaignGpImportComplexField.gAdd' does not depend on any axioms\n'CampaignGpImportComplexField.gSub' does not depend on any axioms\n'CampaignGpImportComplexField.gMul' does not depend on any axioms\n'CampaignGpImportComplexField.gConj' does not depend on any axioms\n'CampaignGpImportComplexField.gZero' does not depend on any axioms\n'CampaignGpImportComplexField.gOne' does not depend on any axioms\n'CampaignGpImportComplexField.gSq' does not depend on any axioms\n'CampaignGpImportComplexField.gNorm' does not depend on any axioms\n'CampaignGpImportComplexField.gNorm_mul' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.int_sq_nonneg' depends on axioms: [propext]\n'CampaignGpImportComplexField.gNorm_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.gMul_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.onePlusI_mul_coords' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.onePlusI_mul_ne_one' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.gMul_comm' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.onePlusI_not_unit' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.intSqNeFive' depends on axioms: [propext, Quot.sound]\n'CampaignGpImportComplexField.twice_sub_one_sq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.gauss_sq_ne_succ' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.gMul_zero_left' depends on axioms: [propext]\n'CampaignGpImportComplexField.gMul_zero_right' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.gMul_one_left' depends on axioms: [propext]\n'CampaignGpImportComplexField.gAdd_zero_left' depends on axioms: [propext]\n'CampaignGpImportComplexField.gMul_add_left' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.gMul_assoc' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.gMul_sub_left' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignGpImportComplexField.gSub_eq_zero_iff' depends on axioms: [propext, Quot.sound]\n'CampaignGpImportComplexField.fib' does not depend on any axioms\n'CampaignGpImportComplexField.mulVec' does not depend on any axioms\n'CampaignGpImportComplexField.scaleVec' does not depend on any axioms\n'CampaignGpImportComplexField.fib_conjugate_transpose' does not depend on any axioms\n'CampaignGpImportComplexField.fib_mulVec' depends on axioms: [propext]\n'CampaignGpImportComplexField.fib_no_gauss_eigenpair' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+  },
+  "build_scope": "Targeted exact-source Lake package; full repository workspace not built.",
+  "scratch_package": {
+    "lakefile": "name = \"review_pr390\"\nversion = \"0.1.0\"\n\n[[lean_lib]]\nname = \"CampaignGpImportComplexField\"\n",
+    "lean_toolchain": "leanprover/lean4:v4.35.0\n"
+  },
+  "superseded_receipt": {
+    "schema_version": "campaign_lean_replay.v1",
+    "authority_effect": "None",
+    "checked_at": "2026-10-25",
+    "source_base": "c50dc1b472596d1b5934408b00b9fbb72db91345",
+    "result": "Lean module CampaignGpImportComplexField compiles under Lean 4.35.0. The library CampaignGpImportComplexField is a non-default lean_lib in lean4/lakefile.lean. Every printed axiom list is a subset of propext, Classical.choice and Quot.sound. The module has no import.",
+    "proof_boundary": "The module records the coordinate product of 1+i with a+bi, both multiplication orders distinct from the real unit, conjugate symmetry of the matrix with row-major entries 0, 1, 1, 1, the column image (y, x+y), and that a nonzero column is not a Gaussian-integer eigenpair. A complete complex field and a spectral theorem for a general self-adjoint matrix are outside the module. AuthorityEffect: None.",
+    "lean_replay": {
+      "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+      "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "lakefile_sha256": "4c0be07e7671871a715b2c06603afe9585e27bf439578180728176d746f11d9b",
+      "library": "CampaignGpImportComplexField (lean_lib in lean4/lakefile.lean; not a default target)",
+      "build_directory": "lean4/b",
+      "dependency_packages": "lean4/.lake/packages junction to the Mathlib v4.35.0 cache; the module has no import",
+      "command": "cd lean4 && lake build CampaignGpImportComplexField",
+      "allowed_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "results": [
+        {
+          "module": "CampaignGpImportComplexField",
+          "dag_node": "GP-IMPORT-COMPLEX-FIELD",
+          "source": "lean4/CampaignGpImportComplexField.lean",
+          "sha256": "c090c3aa370fd870e88362aa4cd9f27302b427773acf8bf97c2a2f936929c5a6",
+          "sha256_after_build": "c090c3aa370fd870e88362aa4cd9f27302b427773acf8bf97c2a2f936929c5a6",
+          "source_unchanged_during_build": true,
+          "exit_code": 0,
+          "admission_scan_passed": true,
+          "axiom_audit_passed": true,
+          "anchors": [
+            "CampaignGpImportComplexField.onePlusI_mul_coords",
+            "CampaignGpImportComplexField.onePlusI_not_unit",
+            "CampaignGpImportComplexField.fib_conjugate_transpose",
+            "CampaignGpImportComplexField.fib_mulVec",
+            "CampaignGpImportComplexField.fib_no_gauss_eigenpair"
+          ],
+          "anchors_reported": true,
+          "axioms": {
+            "CampaignGpImportComplexField.onePlusI_mul_coords": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignGpImportComplexField.onePlusI_mul_ne_one": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignGpImportComplexField.onePlusI_not_unit": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignGpImportComplexField.gNorm_mul": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignGpImportComplexField.intSqNeFive": [
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignGpImportComplexField.gauss_sq_ne_succ": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ],
+            "CampaignGpImportComplexField.fib_conjugate_transpose": [],
+            "CampaignGpImportComplexField.fib_mulVec": [
+              "propext"
+            ],
+            "CampaignGpImportComplexField.fib_no_gauss_eigenpair": [
+              "Classical.choice",
+              "Quot.sound",
+              "propext"
+            ]
+          }
+        }
+      ]
+    }
   }
 }
