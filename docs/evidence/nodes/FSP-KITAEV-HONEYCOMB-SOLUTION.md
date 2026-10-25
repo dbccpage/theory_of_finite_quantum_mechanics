@@ -106,14 +106,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-kitaev-honeycomb-solution.md`
 
 - file: [dag/derivations/independent/fsp-kitaev-honeycomb-solution.md](../../../dag/derivations/independent/fsp-kitaev-honeycomb-solution.md)
-- sha256 (`lf-normalised`): `38570e731c7997870f4858a3c19756ea0b904daf886d144c65d0075dca3f2689`
+- sha256 (`lf-normalised`): `7afef1c8863452e4a33ff959edf51fb2a4adcbaf6f5b67b18bd1d2c697bf1d23`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json](../../../dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json)
-- sha256 (`lf-normalised`): `655df7572ed4374be5df3fd3361c8586aea73e31a2d68921942e40fccb206610`
+- sha256 (`lf-normalised`): `c317032459f2e9c3331e7f3e1feb6abd5b4882810c8f4ee18bcf79d2f5e629f5`
 - cited in: node.source
 - counts toward the grade: yes
 

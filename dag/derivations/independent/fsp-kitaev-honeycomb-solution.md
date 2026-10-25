@@ -14,7 +14,7 @@ On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=
 
 ## What is assumed
 
-The types, maps and algebraic models named above are declared. Lean uses only its standard core axioms; exact audit arithmetic uses integers, rational numbers and symbolic polynomials. AuthorityEffect: None.
+The types, maps and algebraic models named above are declared. Lean uses only its standard core axioms. The independent audit uses fixed SymPy matrices with exact integer and imaginary-unit entries. AuthorityEffect: None.
 
 ## What is open
 

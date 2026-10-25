@@ -11,8 +11,9 @@
     "mathlib_note": "Only Std is imported. Lake built an exact source copy in a minimal scratch package with no Mathlib dependency; the full repository Mathlib workspace was not built.",
     "command": [
       "lake",
-      "build",
-      "CampaignKitaevSectorBlock"
+      "env",
+      "lean",
+      "Audit.lean"
     ],
     "cwd": "/workspace/next-five/fsp-kitaev-honeycomb-solution/lake",
     "results": [
@@ -111,5 +112,29 @@
     "exit_code": 0,
     "seconds": 4.117,
     "output": ""
+  },
+  "axiom_audit": {
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/next-five/fsp-kitaev-honeycomb-solution/lake",
+    "input_path": "Audit.lean",
+    "input_contents": "import CampaignKitaevSectorBlock\n#print axioms CampaignKitaevSectorBlock.State\n#print axioms CampaignKitaevSectorBlock.sign\n#print axioms CampaignKitaevSectorBlock.flux\n#print axioms CampaignKitaevSectorBlock.hopping\n#print axioms CampaignKitaevSectorBlock.project\n#print axioms CampaignKitaevSectorBlock.flux_involution\n#print axioms CampaignKitaevSectorBlock.hopping_involution\n#print axioms CampaignKitaevSectorBlock.flux_commutes_hopping\n#print axioms CampaignKitaevSectorBlock.project_commutes_hopping\n#print axioms CampaignKitaevSectorBlock.sector_decomposition\n#print axioms CampaignKitaevSectorBlock.restricted_hopping\n#print axioms CampaignKitaevSectorBlock.sectors_distinct\n",
+    "input_sha256": "da3693e765c42fb7ea90ca0a982b1a039af4b38f353bfa5b39a1b5ec08f4b4d9",
+    "module_source_sha256": "d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329",
+    "exit_code": 0,
+    "output": "'CampaignKitaevSectorBlock.State' does not depend on any axioms\n'CampaignKitaevSectorBlock.sign' does not depend on any axioms\n'CampaignKitaevSectorBlock.flux' does not depend on any axioms\n'CampaignKitaevSectorBlock.hopping' does not depend on any axioms\n'CampaignKitaevSectorBlock.project' does not depend on any axioms\n'CampaignKitaevSectorBlock.flux_involution' depends on axioms: [propext, Quot.sound]\n'CampaignKitaevSectorBlock.hopping_involution' depends on axioms: [propext, Quot.sound]\n'CampaignKitaevSectorBlock.flux_commutes_hopping' does not depend on any axioms\n'CampaignKitaevSectorBlock.project_commutes_hopping' depends on axioms: [propext, Quot.sound]\n'CampaignKitaevSectorBlock.sector_decomposition' depends on axioms: [propext]\n'CampaignKitaevSectorBlock.restricted_hopping' does not depend on any axioms\n'CampaignKitaevSectorBlock.sectors_distinct' does not depend on any axioms\n",
+    "scratch_package": {
+      "lakefile.toml": "name = \"campaign_replay\"\nversion = \"0.1.0\"\n[[lean_lib]]\nname = \"CampaignKitaevSectorBlock\"\n",
+      "lean-toolchain": "leanprover/lean4:v4.35.0\n",
+      "module_copy": {
+        "from": "lean4/CampaignKitaevSectorBlock.lean",
+        "to": "CampaignKitaevSectorBlock.lean",
+        "sha256": "d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329"
+      }
+    }
   }
 }
