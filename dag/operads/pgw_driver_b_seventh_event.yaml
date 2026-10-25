@@ -3,19 +3,22 @@ node_id: PGW-DRIVER-B-SEVENTH-EVENT
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Driver B, a lift that needs a new sealed Event kind, is retained as OPEN (AE-DRIVER-B-OPEN)
-    and is successor research S3. The Alpha harness has exactly the six sealed Event kinds (Supply, AdmitDatum,
-    AdmitForm, AdmitInst, AdmitRuleAll, Impose), and append_sealed_event refuses a seventh constructor
-    (SeventhEventError), so no lift beyond the six kinds can be admitted through the slice.
+  source_statement: Narrowed boundary, status left OPEN. The sealed derivation Event has the six constructor
+    names Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll, and Impose. That name list has length
+    6 and no duplicates. Every event's constructor name is in the list, each of the six names is the name
+    of an event, and the name Seventh is outside the list. Every event's constructor name differs from
+    Seventh.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Open; the refusal of a seventh constructor is a harness guard, not a theorem that
-    six kinds suffice, and amending the seal is the author's act.
+  source_bottleneck: These facts are the six constructor names of the sealed derivation Event. They are
+    not a harness refusal and not a theorem that six kinds suffice for every lift. Status stays OPEN.
   source_refs:
   - dag/derivations/02_genesis/tfq_0503_driver_b_seventh_event.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:70-71
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:176
   - external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/docs/ALPHA_HANDOFF.md:179-192
+  - dag/derivations/independent/pgw-driver-b-seventh-event.md:5
+  - dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json:6
   paper_refs: []
   source_claim_label: OPEN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -29,9 +32,155 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/genesis_pgw_driver_b_seventh_event_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: pgwDrvB_kindName
+  line: 14
+  signature_excerpt: |-
+    def pgwDrvB_kindName : Event → String
+      | .supply _ => "Supply"
+      | .admitDatum => "AdmitDatum"
+      | .admitForm _ => "AdmitForm"
+      | .admitInst _ _ => "AdmitInst"
+      | .admitRuleAll _ => "AdmitRuleAll"
+      | .impose _ _ => "Impose"
+
+    theorem pgwDrvB_kind_count : pgwDrvB_kindNames.length = 6
+  source: lean4/CampaignPgwDriverBSeventhEvent.lean
+  repository: this_repository
+  source_sha256: c564f055a6e8d1990a81c3100a1ddc8b0c1c70afe7cea1ab919db27d0619a19a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pgwDrvB_kindNames
+  line: 11
+  signature_excerpt: 'def pgwDrvB_kindNames : List String'
+  source: lean4/CampaignPgwDriverBSeventhEvent.lean
+  repository: this_repository
+  source_sha256: c564f055a6e8d1990a81c3100a1ddc8b0c1c70afe7cea1ab919db27d0619a19a
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: pgwDrvB_kind_count
+  line: 22
+  signature_excerpt: 'theorem pgwDrvB_kind_count : pgwDrvB_kindNames.length = 6'
+  source: lean4/CampaignPgwDriverBSeventhEvent.lean
+  repository: this_repository
+  source_sha256: c564f055a6e8d1990a81c3100a1ddc8b0c1c70afe7cea1ab919db27d0619a19a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwDrvB_kind_nodup
+  line: 25
+  signature_excerpt: 'theorem pgwDrvB_kind_nodup : pgwDrvB_kindNames.Nodup'
+  source: lean4/CampaignPgwDriverBSeventhEvent.lean
+  repository: this_repository
+  source_sha256: c564f055a6e8d1990a81c3100a1ddc8b0c1c70afe7cea1ab919db27d0619a19a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwDrvB_kindName_mem
+  line: 28
+  signature_excerpt: 'theorem pgwDrvB_kindName_mem (e : Event) : pgwDrvB_kindName e ∈ pgwDrvB_kindNames'
+  source: lean4/CampaignPgwDriverBSeventhEvent.lean
+  repository: this_repository
+  source_sha256: c564f055a6e8d1990a81c3100a1ddc8b0c1c70afe7cea1ab919db27d0619a19a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwDrvB_names_realized
+  line: 49
+  signature_excerpt: |-
+    theorem pgwDrvB_names_realized :
+        pgwDrvB_kindName (.supply 0) = "Supply" ∧
+          pgwDrvB_kindName .admitDatum = "AdmitDatum" ∧
+          pgwDrvB_kindName (.admitForm 1) = "AdmitForm" ∧
+          pgwDrvB_kindName (.admitInst 0 []) = "AdmitInst" ∧
+          pgwDrvB_kindName (.admitRuleAll 0) = "AdmitRuleAll" ∧
+          pgwDrvB_kindName (.impose 0 1) = "Impose"
+  source: lean4/CampaignPgwDriverBSeventhEvent.lean
+  repository: this_repository
+  source_sha256: c564f055a6e8d1990a81c3100a1ddc8b0c1c70afe7cea1ab919db27d0619a19a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwDrvB_seventh_outside
+  line: 58
+  signature_excerpt: 'theorem pgwDrvB_seventh_outside : "Seventh" ∉ pgwDrvB_kindNames'
+  source: lean4/CampaignPgwDriverBSeventhEvent.lean
+  repository: this_repository
+  source_sha256: c564f055a6e8d1990a81c3100a1ddc8b0c1c70afe7cea1ab919db27d0619a19a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pgwDrvB_no_seventh_name
+  line: 61
+  signature_excerpt: 'theorem pgwDrvB_no_seventh_name (e : Event) : pgwDrvB_kindName e ≠ "Seventh"'
+  source: lean4/CampaignPgwDriverBSeventhEvent.lean
+  repository: this_repository
+  source_sha256: c564f055a6e8d1990a81c3100a1ddc8b0c1c70afe7cea1ab919db27d0619a19a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
+- original_ref: lean4/CampaignPgwDriverBSeventhEvent.lean::pgwDrvB_kind_count
+  availability: local
+  symbol: pgwDrvB_kind_count
+  path: lean4/CampaignPgwDriverBSeventhEvent.lean
+  repository: this_repository
+  sha256: c564f055a6e8d1990a81c3100a1ddc8b0c1c70afe7cea1ab919db27d0619a19a
+  declaration_status: declaration_found_not_proof_checked
+  line: 22
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwDriverBSeventhEvent.lean::pgwDrvB_kind_nodup
+  availability: local
+  symbol: pgwDrvB_kind_nodup
+  path: lean4/CampaignPgwDriverBSeventhEvent.lean
+  repository: this_repository
+  sha256: c564f055a6e8d1990a81c3100a1ddc8b0c1c70afe7cea1ab919db27d0619a19a
+  declaration_status: declaration_found_not_proof_checked
+  line: 25
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwDriverBSeventhEvent.lean::pgwDrvB_kindName_mem
+  availability: local
+  symbol: pgwDrvB_kindName_mem
+  path: lean4/CampaignPgwDriverBSeventhEvent.lean
+  repository: this_repository
+  sha256: c564f055a6e8d1990a81c3100a1ddc8b0c1c70afe7cea1ab919db27d0619a19a
+  declaration_status: declaration_found_not_proof_checked
+  line: 28
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwDriverBSeventhEvent.lean::pgwDrvB_names_realized
+  availability: local
+  symbol: pgwDrvB_names_realized
+  path: lean4/CampaignPgwDriverBSeventhEvent.lean
+  repository: this_repository
+  sha256: c564f055a6e8d1990a81c3100a1ddc8b0c1c70afe7cea1ab919db27d0619a19a
+  declaration_status: declaration_found_not_proof_checked
+  line: 49
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwDriverBSeventhEvent.lean::pgwDrvB_seventh_outside
+  availability: local
+  symbol: pgwDrvB_seventh_outside
+  path: lean4/CampaignPgwDriverBSeventhEvent.lean
+  repository: this_repository
+  sha256: c564f055a6e8d1990a81c3100a1ddc8b0c1c70afe7cea1ab919db27d0619a19a
+  declaration_status: declaration_found_not_proof_checked
+  line: 58
+  role: source_lead_only
+- original_ref: lean4/CampaignPgwDriverBSeventhEvent.lean::pgwDrvB_no_seventh_name
+  availability: local
+  symbol: pgwDrvB_no_seventh_name
+  path: lean4/CampaignPgwDriverBSeventhEvent.lean
+  repository: this_repository
+  sha256: c564f055a6e8d1990a81c3100a1ddc8b0c1c70afe7cea1ab919db27d0619a19a
+  declaration_status: declaration_found_not_proof_checked
+  line: 61
+  role: source_lead_only
 - original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/event.rs::Event
   availability: external
   symbol: Event
@@ -77,8 +226,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

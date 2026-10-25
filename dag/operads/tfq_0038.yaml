@@ -1,31 +1,36 @@
 schema_id: omega.pfp.finite-qm.operad-collection.v1
 node_id: TFQ-0038
 authority_effect: None
-collection_status: witness_verified
+collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Two readings of the K5 torsion must stay apart. The opening of
-    pauli_spin_statistics_graph_finite_map.md states rank_Q of the square boundary
-    as 7 and the rational 2-complex Betti number as 14. The Rust test and the Lean
-    literals use rational Betti number 6 and F2 Betti number 7, hence torsion rank
-    1. Lean also says whether the exchange loop represents that torsion class is not
-    established. A Python comment in analyze_conf2_graph speaks as if the torsion
-    forces the exchange loop to have order 2. The rank mismatch and the representative
-    question are an open gap beside the certificate.
+  source_statement: Two readings of the K5 torsion must stay apart. The opening of pauli_spin_statistics_graph_finite_map.md
+    states rank_Q of the square boundary as 7 and the rational 2-complex Betti number as 14. The Rust
+    test and the Lean literals use rational Betti number 6 and F2 Betti number 7, hence torsion rank 1.
+    Lean also says whether the exchange loop represents that torsion class is not established. A Python
+    comment in analyze_conf2_graph speaks as if the torsion forces the exchange loop to have order 2.
+    The rank mismatch and the representative question are an open gap beside the certificate.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Reconcile the map's K5 ranks with the Rust certificate and leave
-    the exchange-loop representative unresolved.
+  source_bottleneck: Reconcile the map's K5 ranks with the Rust certificate and leave the exchange-loop
+    representative unresolved.
   source_refs:
   - dag/derivations/17_finite_qcd/tfq_0038_reconcile_the_map_s_k5_ranks_with_the_rust_certificate_and_leave_the.md
+  - dag/derivations/independent/tfq-0038.md
+  - dag/research/campaign_tfq-0038_lean_replay.json
+  - dag/research/campaign_tfq-0038_lean_mutation.json
+  - dag/research/campaign_tfq-0038_independent.json
+  - docs/overclaim/reviews/2026-10-24_campaign-tfq-0038-precommit.md
+  - checks/independent/tfq-0038.py
+  - lean4/CampaignTfq0038FiniteQcd.lean
   paper_refs:
   - dag/derivations/17_finite_qcd/tfq_0038_reconcile_the_map_s_k5_ranks_with_the_rust_certificate_and_leave_the.md
   source_claim_label: OPEN
-  label_rule: Historical status is a source annotation. Check the exact theorem scope
-    and remaining imports before reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/17_finite_qcd/tfq_0038_reconcile_the_map_s_k5_ranks_with_the_rust_certificate_and_leave_the.md
-    sha256: eefe7ca7853afeeb6fbf35fcb0b1c82a7eb1e254def7f76c0ad4b6146bc659b3
+    sha256: 84a3c32382e9105b022bdf6a75ec7d77b876312b0b9f9b8dc7dae9861d13b400
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -33,35 +38,404 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/finite_qcd_tfq_0038_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
+operation_candidates:
+- kind: def
+  name: graphBetti1
+  line: 47
+  signature_excerpt: 'def graphBetti1 (v e : Int) : Int'
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: b1TwoComplexRat
+  line: 78
+  signature_excerpt: 'def b1TwoComplexRat (r : K5TwoComplexReading) : Int'
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: k5MapProseReading
+  line: 83
+  signature_excerpt: 'def k5MapProseReading : K5TwoComplexReading'
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: k5CertificateLiteralReading
+  line: 86
+  signature_excerpt: 'def k5CertificateLiteralReading : K5TwoComplexReading'
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: b1TwoComplexF2
+  line: 79
+  signature_excerpt: 'def b1TwoComplexF2 (r : K5TwoComplexReading) : Int'
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: torsionRankZ2
+  line: 80
+  signature_excerpt: 'def torsionRankZ2 (r : K5TwoComplexReading) : Int'
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: K5TwoComplexReading
+  line: 72
+  signature_excerpt: structure K5TwoComplexReading
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isOrderTwoTorsionClass
+  line: 131
+  signature_excerpt: 'def isOrderTwoTorsionClass (c : HomologyClassZPlusZ2) : Bool'
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sampleTorsionGenerator
+  line: 134
+  signature_excerpt: 'def sampleTorsionGenerator : HomologyClassZPlusZ2'
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sampleFreeCycle
+  line: 135
+  signature_excerpt: 'def sampleFreeCycle : HomologyClassZPlusZ2'
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sampleTrivialCycle
+  line: 136
+  signature_excerpt: 'def sampleTrivialCycle : HomologyClassZPlusZ2'
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: HomologyClassZPlusZ2
+  line: 126
+  signature_excerpt: structure HomologyClassZPlusZ2
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: k5ExchangeLoopRepresentativeStatus
+  line: 155
+  signature_excerpt: 'def k5ExchangeLoopRepresentativeStatus : ExchangeLoopStatus'
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: ExchangeLoopStatus
+  line: 150
+  signature_excerpt: |-
+    inductive ExchangeLoopStatus
+      | EstablishedOrderTwoTorsionGenerator
+      | UnresolvedOpenGap
+      deriving DecidableEq, Repr
+
+    def k5ExchangeLoopRepresentativeStatus : ExchangeLoopStatus
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: analyzeConf2GraphCommentVerdict
+  line: 172
+  signature_excerpt: 'def analyzeConf2GraphCommentVerdict : CommentAuditVerdict'
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: CommentAuditVerdict
+  line: 167
+  signature_excerpt: |-
+    inductive CommentAuditVerdict
+      | AuthorizedByTorsionRankAlone
+      | ExceedsCertificateScope
+      deriving DecidableEq, Repr
+
+    def analyzeConf2GraphCommentVerdict : CommentAuditVerdict
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: conf2_graph_1skeleton_betti_numbers_p3_y_c4_k4_k5
+  line: 52
+  signature_excerpt: |-
+    theorem conf2_graph_1skeleton_betti_numbers_p3_y_c4_k4_k5 :
+        graphBetti1 3 2 = 0 ∧
+        graphBetti1 6 6 = 1 ∧
+        graphBetti1 6 8 = 3 ∧
+        graphBetti1 6 12 = 7 ∧
+        graphBetti1 10 30 = 21 ∧
+        (5 * 3 : Int) = 15
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: conf2_c4_and_k4_2complex_rational_betti_numbers
+  line: 65
+  signature_excerpt: |-
+    theorem conf2_c4_and_k4_2complex_rational_betti_numbers :
+        graphBetti1 6 8 - 2 = 1 ∧
+        graphBetti1 6 12 - 3 = 4
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: k5_map_prose_reading_rank7_betti14_vs_certificate_reading_rank15_betti6
+  line: 92
+  signature_excerpt: |-
+    theorem k5_map_prose_reading_rank7_betti14_vs_certificate_reading_rank15_betti6 :
+        b1TwoComplexRat k5MapProseReading = 14 ∧
+        b1TwoComplexRat k5CertificateLiteralReading = 6 ∧
+        b1TwoComplexF2 k5CertificateLiteralReading = 7 ∧
+        torsionRankZ2 k5CertificateLiteralReading = 1 ∧
+        k5CertificateLiteralReading.rankD2Rat - k5MapProseReading.rankD2Rat = 8 ∧
+        b1TwoComplexRat k5MapProseReading - b1TwoComplexRat k5CertificateLiteralReading = 8 ∧
+        b1TwoComplexRat k5MapProseReading ≠ b1TwoComplexRat k5CertificateLiteralReading
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: universal_coefficient_torsion_rank_identity
+  line: 106
+  signature_excerpt: |-
+    theorem universal_coefficient_torsion_rank_identity (b1 rQ rF2 : Int) :
+        (b1 - rF2) - (b1 - rQ) = rQ - rF2
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: abelian_1d_character_collapse_boson_fermion
+  line: 112
+  signature_excerpt: |-
+    theorem abelian_1d_character_collapse_boson_fermion (chi : ℚ) :
+        chi ^ 2 = 1 ↔ (chi = 1 ∨ chi = -1)
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: non_zero_torsion_rank_does_not_identify_specific_loop_representative
+  line: 142
+  signature_excerpt: |-
+    theorem non_zero_torsion_rank_does_not_identify_specific_loop_representative :
+        isOrderTwoTorsionClass sampleTorsionGenerator = true ∧
+        isOrderTwoTorsionClass sampleFreeCycle = false ∧
+        isOrderTwoTorsionClass sampleTrivialCycle = false ∧
+        sampleTorsionGenerator ≠ sampleFreeCycle
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: exchange_loop_representative_question_remains_open_fence
+  line: 161
+  signature_excerpt: |-
+    theorem exchange_loop_representative_question_remains_open_fence :
+        k5ExchangeLoopRepresentativeStatus = ExchangeLoopStatus.UnresolvedOpenGap ∧
+        k5ExchangeLoopRepresentativeStatus ≠ ExchangeLoopStatus.EstablishedOrderTwoTorsionGenerator
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: python_comment_order_two_claim_exceeds_certificate_fence
+  line: 178
+  signature_excerpt: |-
+    theorem python_comment_order_two_claim_exceeds_certificate_fence :
+        analyzeConf2GraphCommentVerdict = CommentAuditVerdict.ExceedsCertificateScope ∧
+        analyzeConf2GraphCommentVerdict ≠ CommentAuditVerdict.AuthorizedByTorsionRankAlone
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: k5_rank_mismatch_recorded_beside_certificate_fence
+  line: 195
+  signature_excerpt: |-
+    theorem k5_rank_mismatch_recorded_beside_certificate_fence :
+        k5RankComparisonStatus =
+          RankComparisonStatus.ExplicitRankMismatchRecordedBesideCertificate ∧
+        k5RankComparisonStatus ≠ RankComparisonStatus.SilentlyIdentified
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0038_k5_torsion_and_exchange_loop_scope_ledger_fence
+  line: 217
+  signature_excerpt: |-
+    theorem tfq0038_k5_torsion_and_exchange_loop_scope_ledger_fence :
+        tfq0038RepoLedger.keepsTwoK5RankReadingsApart = true ∧
+        tfq0038RepoLedger.reconcilesRankFormulaAccounting = true ∧
+        tfq0038RepoLedger.leavesExchangeLoopRepresentativeUnresolved = true ∧
+        tfq0038RepoLedger.rejectsPythonCommentOrderTwoOverclaim = true ∧
+        tfq0038RepoLedger.conflatesRank7WithRank15 = false ∧
+        tfq0038RepoLedger.claimsExchangeLoopProvedTorsionGenerator = false
+  source: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  source_sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: graph_conf2_exchange_betti_and_character_collapse
+  line: 1068
+  signature_excerpt: |-
+    theorem graph_conf2_exchange_betti_and_character_collapse (chi : Rat) :
+        let v_conf_p3 : Int
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
-- language: lean4
+- original_ref: lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.conf2_graph_1skeleton_betti_numbers_p3_y_c4_k4_k5
+  availability: local
+  symbol: CampaignTfq0038FiniteQcd.conf2_graph_1skeleton_betti_numbers_p3_y_c4_k4_k5
   path: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  declaration_status: declaration_found_not_proof_checked
+  line: 52
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.conf2_c4_and_k4_2complex_rational_betti_numbers
+  availability: local
+  symbol: CampaignTfq0038FiniteQcd.conf2_c4_and_k4_2complex_rational_betti_numbers
+  path: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  declaration_status: declaration_found_not_proof_checked
+  line: 65
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.k5_map_prose_reading_rank7_betti14_vs_certificate_reading_rank15_betti6
+  availability: local
   symbol: CampaignTfq0038FiniteQcd.k5_map_prose_reading_rank7_betti14_vs_certificate_reading_rank15_betti6
-  role: Side-by-side separation of the two Conf_2(K_5) boundary rank readings (7 vs
-    15)
-- language: lean4
   path: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  declaration_status: declaration_found_not_proof_checked
+  line: 92
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.universal_coefficient_torsion_rank_identity
+  availability: local
+  symbol: CampaignTfq0038FiniteQcd.universal_coefficient_torsion_rank_identity
+  path: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  declaration_status: declaration_found_not_proof_checked
+  line: 106
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.abelian_1d_character_collapse_boson_fermion
+  availability: local
+  symbol: CampaignTfq0038FiniteQcd.abelian_1d_character_collapse_boson_fermion
+  path: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  declaration_status: declaration_found_not_proof_checked
+  line: 112
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.non_zero_torsion_rank_does_not_identify_specific_loop_representative
+  availability: local
   symbol: CampaignTfq0038FiniteQcd.non_zero_torsion_rank_does_not_identify_specific_loop_representative
-  role: Countermodel in Z + Z_2 showing torsion rank 1 does not identify which cycle
-    a loop represents
-- language: lean4
   path: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  declaration_status: declaration_found_not_proof_checked
+  line: 142
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.exchange_loop_representative_question_remains_open_fence
+  availability: local
   symbol: CampaignTfq0038FiniteQcd.exchange_loop_representative_question_remains_open_fence
-  role: Scope fence leaving the Conf_2(K_5) exchange-loop torsion representative unresolved
-- language: lean4
   path: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  declaration_status: declaration_found_not_proof_checked
+  line: 161
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.python_comment_order_two_claim_exceeds_certificate_fence
+  availability: local
+  symbol: CampaignTfq0038FiniteQcd.python_comment_order_two_claim_exceeds_certificate_fence
+  path: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  declaration_status: declaration_found_not_proof_checked
+  line: 178
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.k5_rank_mismatch_recorded_beside_certificate_fence
+  availability: local
+  symbol: CampaignTfq0038FiniteQcd.k5_rank_mismatch_recorded_beside_certificate_fence
+  path: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  declaration_status: declaration_found_not_proof_checked
+  line: 195
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0038FiniteQcd.lean::CampaignTfq0038FiniteQcd.tfq0038_k5_torsion_and_exchange_loop_scope_ledger_fence
+  availability: local
   symbol: CampaignTfq0038FiniteQcd.tfq0038_k5_torsion_and_exchange_loop_scope_ledger_fence
-  role: Canonical TFQ-0038 scope ledger fence
-- language: lean4
-  path: lean4/FiniteQM.lean
+  path: lean4/CampaignTfq0038FiniteQcd.lean
+  repository: this_repository
+  sha256: 9bddcc4986b5b29ff1387b321242c7bf078099d9f30e1ea1fc4d565c21e60385
+  declaration_status: declaration_found_not_proof_checked
+  line: 217
+  role: source_lead_only
+- original_ref: lean4/FiniteQM.lean::FiniteQM.graph_conf2_exchange_betti_and_character_collapse
+  availability: local
   symbol: FiniteQM.graph_conf2_exchange_betti_and_character_collapse
-  role: FiniteQM Conf_2(G) Betti and character collapse theorem
-- language: python
-  path: checks/independent/tfq-0038.py
-  symbol: run_all_checks
-  role: Independent Python checker for TFQ-0038
+  path: lean4/FiniteQM.lean
+  repository: this_repository
+  sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  declaration_status: declaration_found_not_proof_checked
+  line: 1068
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -77,59 +451,30 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: VERIFIED
-    carrier: Two-particle configuration complexes Conf_2(G) for G in {P_3, Y, C_4,
-      K_4, K_5} and homology model Z + Z_2
-    coefficient_ring: Q and F_2
-    assumptions:
-    - 15 disjoint-edge commuting-hop squares on Conf_2(K_5) vs certificate literal
-      ranks (15, 14)
-    - Exchange-loop homology representative left unresolved
-    source_pins:
-    - path: dag/derivations/17_finite_qcd/tfq_0038_reconcile_the_map_s_k5_ranks_with_the_rust_certificate_and_leave_the.md
-      sha256: eefe7ca7853afeeb6fbf35fcb0b1c82a7eb1e254def7f76c0ad4b6146bc659b3
-    public_input:
-      node_id: TFQ-0038
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: []
+    source_pins: []
+    public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: VERIFIED
-    operations:
-    - graphBetti1
-    - b1TwoComplexRat
-    - b1TwoComplexF2
-    - torsionRankZ2
-    - isOrderTwoTorsionClass
-    composition_plan:
-    - Verify 1-skeleton Betti numbers of Conf_2(P_3), Conf_2(Y), Conf_2(C_4), Conf_2(K_4),
-      Conf_2(K_5)
-    - Separate the rank_Q = 7 (b_1 = 14) disjoint-edge square boundary reading from
-      the rank_Q = 15, rank_F2 = 14 (b_1(Q)=6, b_1(F_2)=7) literal reading
-    - Prove in Z + Z_2 that torsion rank 1 does not force a given loop to represent
-      the order-2 torsion class
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: VERIFIED
-    algebraic_relations:
-    - b_1(Conf_2(K_5)) = 30 - 10 + 1 = 21
-    - 21 - 7 = 14 vs 21 - 15 = 6 and 21 - 14 = 7
-    - (b1 - rF2) - (b1 - rQ) = rQ - rF2
-    rejection_predicates:
-    - k5ExchangeLoopRepresentativeStatus = UnresolvedOpenGap
-    - analyzeConf2GraphCommentVerdict = ExceedsCertificateScope
-    - k5RankComparisonStatus = ExplicitRankMismatchRecordedBesideCertificate
-    negative_control_plan:
-    - 6 semantic Lean mutants in dag/research/campaign_tfq-0038_lean_mutation.json
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
   slot_m4_tri_language_witness_anchors:
-    mining_status: VERIFIED
-    certificate_predicates:
-    - k5_map_prose_reading_rank7_betti14_vs_certificate_reading_rank15_betti6
-    - non_zero_torsion_rank_does_not_identify_specific_loop_representative
-    - exchange_loop_representative_question_remains_open_fence
-    - python_comment_order_two_claim_exceeds_certificate_fence
-    - tfq0038_k5_torsion_and_exchange_loop_scope_ledger_fence
-    anchors:
-    - lean4/CampaignTfq0038FiniteQcd.lean
-    - lean4/FiniteQM.lean
-    - checks/independent/tfq-0038.py
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
     unpaid_imports: []
 stage_history: []
-open_obligations: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
 excluded_relation_leads: []
