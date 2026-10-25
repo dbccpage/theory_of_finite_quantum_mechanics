@@ -1367,3 +1367,7 @@ lean_lib CampaignMajLegacyCarrierRetraction where
 -- Campaign: COMP-C3-NO-FIXED-BOUND. Not a default target.
 lean_lib CampaignCompC3NoFixedBound where
   roots := #[`CampaignCompC3NoFixedBound]
+
+-- Campaign: COMP-C7-ENCODED-INSTANCE-REDUCTION. Not a default target.
+lean_lib CampaignCompC7EncodedInstanceReduction where
+  roots := #[`CampaignCompC7EncodedInstanceReduction]

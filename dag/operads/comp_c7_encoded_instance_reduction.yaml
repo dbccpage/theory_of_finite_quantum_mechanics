@@ -6,23 +6,24 @@ target:
   source_statement: If the mark type has a Primcodable structure and startWord is computable, the normal-form
     reachability problem on words of the fixed regime is not a computable predicate.
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions:
-  - Primcodable structure on the mark type and Computable startWord (open lemma startWord_computable)
-  source_bottleneck: 'Prove startWord_computable: a Primcodable structure on a mark type containing the
-    infinite state type and a computability proof for the paired-input encoding.'
+  declared_assumptions: []
+  source_bottleneck: The antecedent is a Primcodable instance for Sym G1 (TM1to0.Λ' M1) and Computable
+    startWord. That antecedent is not constructed in this module. The standing claim is the implication
+    from that antecedent to non-computability of the word predicate for Rules M0.
   source_refs:
   - dag/derivations/29_computation/tfq_1310_comp_c7_encoded_instance_reduction.md
   - dag/research/genesis_to_universal_computation.md
   - lean4/GenesisCompUniv.lean
+  - lean4/CampaignCompC7EncodedInstanceReduction.lean
   paper_refs:
   - dag/derivations/29_computation/tfq_1310_comp_c7_encoded_instance_reduction.md
-  source_claim_label: CONDITIONAL
+  source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/29_computation/tfq_1310_comp_c7_encoded_instance_reduction.md
-    sha256: 48015f9383eb0f57c090c0cbeb4efa4692453fe6e70d08f20cdf9a840dca5e4b
+    sha256: 4b3563cfe7e44a89eccb5e68ecf6a62abb10990e0424b622f3d2ba8846d01e9b
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -126,6 +127,20 @@ relation_candidates:
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
+- kind: theorem
+  name: encoded_instance_reduction
+  line: 11
+  signature_excerpt: |-
+    theorem encoded_instance_reduction
+        [Primcodable (Sym G1 (TM1to0.Λ' M1))] (hc : Computable startWord) :
+        ¬ ComputablePred (fun w : List (Sym G1 (TM1to0.Λ' M1)) =>
+          ∃ w', Reach (Rules M0) w w' ∧ Irreducible (Rules M0) w')
+  source: lean4/CampaignCompC7EncodedInstanceReduction.lean
+  repository: this_repository
+  source_sha256: e59dda30efcd5c5be3196204945413abd8b605e007d2173e545c6ac03dabcf57
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: lean4/GenesisCompUniv.lean::reach_problem_not_computable
   availability: local
@@ -135,6 +150,15 @@ source_bindings:
   sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
   declaration_status: declaration_found_not_proof_checked
   line: 329
+  role: source_lead_only
+- original_ref: lean4/CampaignCompC7EncodedInstanceReduction.lean::encoded_instance_reduction
+  availability: local
+  symbol: encoded_instance_reduction
+  path: lean4/CampaignCompC7EncodedInstanceReduction.lean
+  repository: this_repository
+  sha256: e59dda30efcd5c5be3196204945413abd8b605e007d2173e545c6ac03dabcf57
+  declaration_status: declaration_found_not_proof_checked
+  line: 11
   role: source_lead_only
 presentation:
   colours: []
@@ -154,8 +178,7 @@ operad_slots:
     mining_status: UNREVIEWED
     carrier: null
     coefficient_ring: null
-    assumptions:
-    - Primcodable structure on the mark type and Computable startWord (open lemma startWord_computable)
+    assumptions: []
     source_pins: []
     public_input: {}
   slot_m2_layer1_forward_morphisms:
@@ -171,8 +194,7 @@ operad_slots:
     mining_status: UNREVIEWED
     certificate_predicates: []
     anchors: []
-    unpaid_imports:
-    - Primcodable structure on the mark type and Computable startWord (open lemma startWord_computable)
+    unpaid_imports: []
 stage_history: []
 open_obligations:
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.

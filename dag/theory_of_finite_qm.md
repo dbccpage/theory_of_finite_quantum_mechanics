@@ -893,7 +893,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1307` | `COMPUTATION` | `OPEN_OBLIGATION` | `COMP-C6-TM0-OUTPUT-FORM-OPEN` (OPEN) | - |
 | `TFQ-1308` | `COMPUTATION` | `PROVED_LEAN` | `COMP-C7-MACHINE-HALTING-UNDECIDABLE` (PROVED_LEAN) | - |
 | `TFQ-1309` | `COMPUTATION` | `PROVED_LEAN` | `COMP-C7-NF-REACH-UNDECIDABLE` (PROVED_LEAN) | - |
-| `TFQ-1310` | `COMPUTATION` | `CONDITIONAL` | `COMP-C7-ENCODED-INSTANCE-REDUCTION` (CONDITIONAL) | - |
+| `TFQ-1310` | `COMPUTATION` | `PROVED_LEAN` | `COMP-C7-ENCODED-INSTANCE-REDUCTION` (PROVED_LEAN) | - |
 | `TFQ-1311` | `COMPUTATION` | `OPEN_OBLIGATION` | `COMP-C7-FIXED-TARGET-OPEN` (OPEN) | - |
 | `TFQ-1312` | `COMPUTATION` | `PROVED_LEAN` | `COMP-C8-BINARY-CODING` (PROVED_LEAN) | - |
 | `TFQ-1313` | `COMPUTATION` | `OPEN_OBLIGATION` | `COMP-C8-MINIMALITY-FENCE` (OPEN) | - |
@@ -11322,13 +11322,13 @@ Obligation: The statement is about the family startWord; that the input-to-start
 
 - UUID: `4cbb5564-bc2b-5131-89ba-e2ab054afacd`
 - Parent: `TFQ-1309`
-- Status: `CONDITIONAL`
+- Status: `PROVED_LEAN`
 - DAG node: `COMP-C7-ENCODED-INSTANCE-REDUCTION`
 - Paper: [derivation](derivations/29_computation/tfq_1310_comp_c7_encoded_instance_reduction.md)
 
 If the mark type has a Primcodable structure and startWord is computable, the normal-form reachability problem on words of the fixed regime is not a computable predicate.
 
-Obligation: Prove startWord_computable: a Primcodable structure on a mark type containing the infinite state type and a computability proof for the paired-input encoding.
+Obligation: The antecedent is a Primcodable instance for Sym G1 (TM1to0.Λ' M1) and Computable startWord. That antecedent is not constructed in this module. The standing claim is the implication from that antecedent to non-computability of the word predicate for Rules M0.
 
 ### TFQ-1311 Two erasing steps reach one fixed word
 
