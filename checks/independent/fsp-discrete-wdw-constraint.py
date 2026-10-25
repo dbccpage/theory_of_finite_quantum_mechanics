@@ -54,6 +54,26 @@ def dual_objective(
     )
 
 
+def _main_cases_1(check, edges_k3, vals):
+    for alpha in itertools.product([Fraction(-1), Fraction(0), Fraction(1)], repeat=3):
+        d0_a = tuple(d0_edge(u, v, alpha) for u, v in edges_k3)
+        for h_perp in itertools.product(vals, repeat=3):
+            h_norm = sum((abs(hv) for hv in h_perp), Fraction(0))
+            res_exact = total_joint_residual_l1(d0_a, d0_a, h_perp)
+            check(res_exact == h_norm, "cochain")
+            w1_zero = (Fraction(0), Fraction(0), Fraction(0))
+            w2_opt = tuple(rat_sign(hv) for hv in h_perp)
+            check(all(abs(wv) <= 1 for wv in w2_opt), "cochain")
+            check(dual_objective(w1_zero, w2_opt, d0_a, h_perp) == res_exact, "cochain")
+            for p in [(Fraction(1), Fraction(-1), Fraction(2)), d0_a]:
+                res_p = total_joint_residual_l1(p, d0_a, h_perp)
+                check(res_p >= h_norm, "cochain")
+                for v0 in range(3):
+                    if h_perp[v0] != 0:
+                        check(res_p >= abs(h_perp[v0]) > 0, "cochain")
+    return None
+
+
 def main() -> int:
     cochain_duality = 0
     projector_pw = 0
@@ -90,22 +110,7 @@ def main() -> int:
             for u, v in edges_k3:
                 check(d0_edge(u, v, const_vec) == Fraction(0), "cochain")
 
-    for alpha in itertools.product([Fraction(-1), Fraction(0), Fraction(1)], repeat=3):
-        d0_a = tuple(d0_edge(u, v, alpha) for u, v in edges_k3)
-        for h_perp in itertools.product(vals, repeat=3):
-            h_norm = sum((abs(hv) for hv in h_perp), Fraction(0))
-            res_exact = total_joint_residual_l1(d0_a, d0_a, h_perp)
-            check(res_exact == h_norm, "cochain")
-            w1_zero = (Fraction(0), Fraction(0), Fraction(0))
-            w2_opt = tuple(rat_sign(hv) for hv in h_perp)
-            check(all(abs(wv) <= 1 for wv in w2_opt), "cochain")
-            check(dual_objective(w1_zero, w2_opt, d0_a, h_perp) == res_exact, "cochain")
-            for p in [(Fraction(1), Fraction(-1), Fraction(2)), d0_a]:
-                res_p = total_joint_residual_l1(p, d0_a, h_perp)
-                check(res_p >= h_norm, "cochain")
-                for v0 in range(3):
-                    if h_perp[v0] != 0:
-                        check(res_p >= abs(h_perp[v0]) > 0, "cochain")
+    _main_cases_1(check, edges_k3, vals)
 
     # S^4 boundary of 5-simplex (N0 = 6, N1 = 15, vertex degree = 5)
     p_zero_15 = tuple(Fraction(0) for _ in range(15))

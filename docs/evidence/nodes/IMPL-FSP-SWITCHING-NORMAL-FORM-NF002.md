@@ -10,17 +10,17 @@ Stage: [IMPLEMENTATION](../stages/IMPLEMENTATION.md). Status: `PROVED_LEAN`. Evi
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
+- counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 12
 - cited Lean declarations covered by a current replay receipt: 12
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
-- `broken_reference`: path not found: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean. A cited in-repo path or symbol cannot be found in this checkout.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -36,7 +36,7 @@ Local compatibility port replayed with Lean 4.33.1; enumeration length, uniquene
 
 ## Review
 
-- PFP review: [dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `reviewed_with_targeted_native_integration`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json](../../../dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `reviewed_with_targeted_native_integration`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: All edge signings and vertex-switching orbits for the four declared graphs are exact; cycle XOR invariance and2^b Boolean-function cardinality are kernel checked.
   - does not support: Prove the general graph/forest refinement and freshly compile all source NF002 declarations before claiming its full core-only/no-Classical.choice theorem suite. This finite graph stage is not that suite.
   - next test: Prove the general graph/forest refinement and freshly compile all source NF002 declarations before claiming its full core-only/no-Classical.choice theorem suite. This finite graph stage is not that suite.
@@ -47,10 +47,12 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ### Lean: `dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
 
-- file: `dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean](../../../dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean)
+- sha256 (`bytes`): `dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931`
 - cited in: node.source
-- counts toward the grade: no
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
+- counts toward the grade: yes
 
 ### Lean: `lean4/SwitchingNormalForm.lean`
 

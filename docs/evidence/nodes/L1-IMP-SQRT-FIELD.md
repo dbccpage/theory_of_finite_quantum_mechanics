@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ Thm 4 audit: lift need not exist over the chosen rational coefficient field
 
 ## Review
 
-- PFP review: [dag/results/L1-IMP-SQRT-FIELD/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-IMP-SQRT-FIELD/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: no.
+- PFP review: [dag/results/L1-IMP-SQRT-FIELD/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-IMP-SQRT-FIELD/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Exact normalized-square classification on the retained rational packets, including zero/negative mass refusal and nonsquare controls.
   - does not support: Prove the rational-square decision refinement and construct any admitted algebraic/real square-root field. No blanket irrationality theorem is inferred from finite search.
   - next test: Prove the rational-square decision refinement and construct any admitted algebraic/real square-root field. No blanket irrationality theorem is inferred from finite search.

@@ -36,7 +36,7 @@ QM207-C1 phase-blindness of L1 weights, QM208-C3 quadratic cross-term interferen
 
 ## Review
 
-- PFP review: [dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact phase/readout and noncommutative matrix controls are retained; cross-term and quartic-gap polynomials are general rational kernel identities.
   - does not support: Prove each correctly specified physical necessity claim and supply phase, quadratic pairing, operator algebra, Born uniqueness and continuous dynamics. These controls do not derive or establish independence of all five imports.
   - next test: Prove each correctly specified physical necessity claim and supply phase, quadratic pairing, operator algebra, Born uniqueness and continuous dynamics. These controls do not derive or establish independence of all five imports.

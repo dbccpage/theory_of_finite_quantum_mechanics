@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md`
 
 - file: [dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md](../../../dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md)
-- sha256 (`lf-normalised`): `a00bd0f58128a75d088309c64a548d890f388d49e955cbe067de064bc912dfc2`
+- sha256 (`lf-normalised`): `faf05cbc8caee8fd9987ee1071e30f0c4d07e1cbb79d2d0cd0f3db309c3590e6`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1213
 - counts toward the grade: no
@@ -83,7 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_fsp-discrete-wdw-constraint_independent.json`
 
 - file: [dag/research/campaign_fsp-discrete-wdw-constraint_independent.json](../../../dag/research/campaign_fsp-discrete-wdw-constraint_independent.json)
-- sha256 (`lf-normalised`): `c6ccf7aed95ab3e8072075fd9a90a71d07f3c9228987fe014d164e2ded94e6d7`
+- sha256 (`lf-normalised`): `f7823aae2a79e7663a1b3b087a087982a236d8ecd11783c3f5808d191f420bba`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -37,7 +37,7 @@ GS-000 declared axioms H1-H5
 
 ## Review
 
-- PFP review: [dag/results/L1-OBSERVER-AXIOMS-H1-H5/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-OBSERVER-AXIOMS-H1-H5/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `ADMITTED_PRIMITIVE`; qualifies for E4: no.
+- PFP review: [dag/results/L1-OBSERVER-AXIOMS-H1-H5/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-OBSERVER-AXIOMS-H1-H5/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `ADMITTED_PRIMITIVE`; qualifies for E4: yes.
   - narrowest claim: Exact named rival defects and admitted weighted aggregate controls, with l-infinity and squared-energy counterexamples in Lean.
   - does not support: State and prove all observer axioms on the full finite projection and derive the conditional classification; these samples do not establish general axioms.
   - next test: State and prove all observer axioms on the full finite projection and derive the conditional classification; these samples do not establish general axioms.

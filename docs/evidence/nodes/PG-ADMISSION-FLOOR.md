@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 16
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ WDP primitive admission floor (Lean file); WDP-CH01-P01/P02 FINITE_PROVED
 
 ## Review
 
-- PFP review: [dag/results/PG-ADMISSION-FLOOR/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-ADMISSION-FLOOR/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/PG-ADMISSION-FLOOR/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-ADMISSION-FLOOR/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: A law-bearing cut (an irreflexive relation with an exhibited pair) exists exactly on carriers with two distinct points, its endpoints are apart, and a map separates the endpoints of every cut it carries into an irreflexive target; the pair of marks alone does not supply the relation or its law.
   - does not support: Deriving the law (irreflexivity) from the primitive difference \<\> or from Real_0: the relation and its law remain supplied data; any selection of a preferred cut or orientation (two orientations exist on two points); infinite carriers beyond the Lean statements; the arity-cost tie-breaker of the source (declared_arity_cost_selects is a decide on a priced toy, not used here); the aggregate local theorem pg_to_sn_and_wdp_route_chain_composition, which is a fixed enumeration.
   - next test: Replay the admission-floor model counts on 1..4 points with the declared Real_0 axiom list added as constraints and decide whether any declared axiom forces irreflexivity of the relation, i.e. whether the counts of relations with an exhibited pair but no law drop to zero.

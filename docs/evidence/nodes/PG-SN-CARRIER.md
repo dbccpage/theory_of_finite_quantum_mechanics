@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 23
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ Pre-Genesis §10 / SnCarrier base presentation, section lift, retraction outcome
 
 ## Review
 
-- PFP review: [dag/results/PG-SN-CARRIER/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-SN-CARRIER/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/PG-SN-CARRIER/reviews/20261021_batch01a_audit/delivery_review_result.json](../../../dag/results/PG-SN-CARRIER/reviews/20261021_batch01a_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: For a Lean restatement of the pinned restricted S(n) model (SnCarrier.lean sha 357376de..., glyph alphabet abstracted, wrappers flattened), the base-presentation lift is injective with a left-inverse retraction at every stage and its image has 1+g+3g^2 points; the unrestricted lift has no recovery; the declared carrier table differs from the stage-independent base total 1+g+3g^2 at stages 0, 2 and 3 for every g (and at stage 1 unless g = 0), and no alphabet matches the per-shape counts g and g^2 at stages 1 and 2 together; the table is a declaration, not derived from the model.
   - does not support: A corrected cardinality theorem for the S(n) carriers: the table carrierCard remains a declared definition with no theorem relating Carrier n to the base presentations or the lift; off-image refusal completeness (node PG-SN-OFF-IMAGE-REFUSAL); nested lift, retraction or refusal terms as members of the base type; any theorem identifying the restatement with the pinned types at G = Glyph (36 letters and digits), and per-stage shape-count or cumulative-count statements in Lean (native-only); the real 36-glyph syntax beyond the instance baseCard 36 = 3925 and alphabets above six glyphs in the native certificate; wire parsing and the Python/Lean correspondence of the source; the locally defined UnrepairedCarrier of SnCarrierDischarge (a different type from Carrier); any physical, categorical or adjunction reading, including the string metadata of the custody-successor file mssn_functor_bridge.rs.
   - next test: State and prove a corrected cardinality theorem: define Carrier n from the lift image or the stage-n shape set over the 36-glyph alphabet, prove its cardinality for n = 0..3 including the ground token, and decide whether carrierCard equals that derived function or must be replaced by it.

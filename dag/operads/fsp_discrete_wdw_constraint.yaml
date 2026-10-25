@@ -8,12 +8,22 @@ target:
     and the DeWitt supermetric of the continuum constraint is indefinite.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Construct H_perp on a declared finite state space and determine its spectrum; the
-    manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).
+  source_bottleneck: Narrowed algebraic checks only. Rational residuals obey elementary norm bounds, and
+    a zero-edge/sign-vertex witness has the displayed norm bound and objective equality. No incidence
+    operator, transpose annihilation proposition, optimizer API, or general strong-duality theorem is
+    constructed. A rank-one quadratic form, two supplied 2x2 projectors and a swap constraint have the
+    stated identities. The thermal values 8 and 5 are second-order polynomial traces, not Gibbs exponential
+    traces. The indefinite rational two-variable form is supplied and not derived from continuum DeWitt
+    geometry; no physical Wheeler-DeWitt projector or fermion-sign mechanism follows. Status is unchanged.
+    The original physical or operational bridge remains open.
   source_refs:
   - dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md
   - papers/core/fsp/theory_of_finite_fsp.md
   - papers/core/fsp/the_problem_of_the_fermion_sign.md
+  - dag/derivations/independent/fsp-discrete-wdw-constraint.md
+  - dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json
+  - dag/research/campaign_fsp-discrete-wdw-constraint_lean_mutation.json
+  - dag/research/campaign_fsp-discrete-wdw-constraint_independent.json
   paper_refs:
   - dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md
   source_claim_label: OPEN
@@ -22,7 +32,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md
-    sha256: 4c399c4f5b9ee84f8d46f9dc79aa5e3b783f0b5d2daee3e251ef2aa62a5b3360
+    sha256: faf05cbc8caee8fd9987ee1071e30f0c4d07e1cbb79d2d0cd0f3db309c3590e6
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -30,9 +40,370 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_discrete_wdw_constraint_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: d0Edge
+  line: 25
+  signature_excerpt: 'def d0Edge {n : ℕ} (u v : Fin n) (alpha : Fin n → ℚ) : ℚ'
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: dJointScalar
+  line: 29
+  signature_excerpt: 'def dJointScalar {n : ℕ} (_alpha : Fin n → ℚ) (_v : Fin n) : ℚ'
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: totalJointResidualL1
+  line: 46
+  signature_excerpt: 'def totalJointResidualL1 {m n : ℕ} (p d0alpha : Fin m → ℚ) (hPerp : Fin n → ℚ) :
+    ℚ'
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ratSign
+  line: 73
+  signature_excerpt: 'def ratSign (x : ℚ) : ℚ'
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: dualObjective
+  line: 77
+  signature_excerpt: |-
+    def dualObjective {m n : ℕ} (w1 : Fin m → ℚ) (w2 : Fin n → ℚ)
+        (p : Fin m → ℚ) (hPerp : Fin n → ℚ) : ℚ
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: quadraticConstraintForm
+  line: 124
+  signature_excerpt: 'def quadraticConstraintForm (a b x0 x1 : ℚ) : ℚ'
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: diffInvProjector
+  line: 143
+  signature_excerpt: 'def diffInvProjector : Matrix (Fin 2) (Fin 2) ℚ'
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: wdwDiffConstraint
+  line: 147
+  signature_excerpt: 'def wdwDiffConstraint : Matrix (Fin 2) (Fin 2) ℚ'
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pwStepMatrix
+  line: 198
+  signature_excerpt: 'def pwStepMatrix : Matrix (Fin 2) (Fin 2) ℚ'
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pwConstraintResidual
+  line: 202
+  signature_excerpt: 'def pwConstraintResidual (psi0 psi1 : Fin 2 → ℚ) : (Fin 2 → ℚ) × (Fin 2 → ℚ)'
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: dewittSupermetricForm
+  line: 238
+  signature_excerpt: 'def dewittSupermetricForm (vConf vTrans : ℚ) : ℚ'
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: hubbardFourStateSpectrum
+  line: 253
+  signature_excerpt: 'def hubbardFourStateSpectrum (s : ℚ) : Fin 4 → ℚ'
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: secondOrderThermalTrace
+  line: 256
+  signature_excerpt: 'def secondOrderThermalTrace (spec : Fin 4 → ℚ) (beta : ℚ) : ℚ'
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: dJoint_linear_and_constant_kernel
+  line: 33
+  signature_excerpt: |-
+    theorem dJoint_linear_and_constant_kernel
+        {n : ℕ} (u v : Fin n) (a b c : ℚ) (alpha beta : Fin n → ℚ) :
+        d0Edge u v (fun w => a * alpha w + b * beta w) =
+          a * d0Edge u v alpha + b * d0Edge u v beta ∧
+        d0Edge u v (fun _ => c) = 0 ∧
+        dJointScalar alpha v = 0
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: primal_l1_edge_and_vertex_residual_lower_bound
+  line: 50
+  signature_excerpt: |-
+    theorem primal_l1_edge_and_vertex_residual_lower_bound
+        {m n : ℕ} (p d0alpha : Fin m → ℚ) (hPerp : Fin n → ℚ) (v0 : Fin n)
+        (hv0 : hPerp v0 ≠ 0) :
+        (∑ v : Fin n, |hPerp v|) ≤ totalJointResidualL1 p d0alpha hPerp ∧
+        totalJointResidualL1 d0alpha d0alpha hPerp = ∑ v : Fin n, |hPerp v| ∧
+        |hPerp v0| ≤ totalJointResidualL1 p d0alpha hPerp ∧
+        0 < totalJointResidualL1 p d0alpha hPerp
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: strong_duality_direct_sum_wdw_exact_coboundary
+  line: 95
+  signature_excerpt: |-
+    theorem strong_duality_direct_sum_wdw_exact_coboundary
+        {m n : ℕ} (d0alpha : Fin m → ℚ) (hPerp : Fin n → ℚ) :
+        (∀ v : Fin n, |ratSign (hPerp v)| ≤ 1) ∧
+        dualObjective (fun _ => 0) (fun v => ratSign (hPerp v)) d0alpha hPerp =
+          totalJointResidualL1 d0alpha d0alpha hPerp
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: s4_seed_flat_vs_curved_wdw_defect_mass
+  line: 111
+  signature_excerpt: |-
+    theorem s4_seed_flat_vs_curved_wdw_defect_mass :
+        let hFlat : Fin 6 → ℚ
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: quadratic_constraint_psd_and_null_kernel_iff
+  line: 128
+  signature_excerpt: |-
+    theorem quadratic_constraint_psd_and_null_kernel_iff
+        (a b x0 x1 : ℚ) :
+        quadraticConstraintForm a b x0 x1 = (a * x0 + b * x1) ^ 2 ∧
+        0 ≤ quadraticConstraintForm a b x0 x1 ∧
+        (quadraticConstraintForm a b x0 x1 = 0 ↔ a * x0 + b * x1 = 0)
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: diffeomorphism_averaging_projector_and_constraint_complement
+  line: 151
+  signature_excerpt: |-
+    theorem diffeomorphism_averaging_projector_and_constraint_complement
+        (x0 x1 : ℚ) :
+        diffInvProjector * diffInvProjector = diffInvProjector ∧
+        wdwDiffConstraint * wdwDiffConstraint = wdwDiffConstraint ∧
+        diffInvProjectorᵀ = diffInvProjector ∧
+        wdwDiffConstraint * diffInvProjector = 0 ∧
+        (wdwDiffConstraint.mulVec ![x0, x1] = 0 ↔ x0 = x1) ∧
+        (diffInvProjector.mulVec ![x0, x1] = ![x0, x1] ↔ x0 = x1)
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: page_wootters_clock_system_conditioned_evolution
+  line: 206
+  signature_excerpt: |-
+    theorem page_wootters_clock_system_conditioned_evolution
+        (psi0 psi1 : Fin 2 → ℚ) :
+        pwStepMatrix * pwStepMatrix = 1 ∧
+        (pwConstraintResidual psi0 psi1 = (0, 0) ↔ psi1 = pwStepMatrix.mulVec psi0) ∧
+        pwConstraintResidual ![1, 0] ![0, 1] = (0, 0) ∧
+        (![(0 : ℚ), 1] : Fin 2 → ℚ) ≠ ![(1 : ℚ), 0]
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: dewitt_supermetric_indefinite_signature_fence
+  line: 242
+  signature_excerpt: |-
+    theorem dewitt_supermetric_indefinite_signature_fence :
+        dewittSupermetricForm 1 0 = -1 ∧
+        dewittSupermetricForm 1 0 < 0 ∧
+        dewittSupermetricForm 0 1 = 1 ∧
+        0 < dewittSupermetricForm 0 1 ∧
+        dewittSupermetricForm 1 1 = 0 ∧
+        ((1 : ℚ), (1 : ℚ)) ≠ ((0 : ℚ), (0 : ℚ))
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: wdw_constraint_kernel_vs_thermal_gibbs_trace_fence
+  line: 260
+  signature_excerpt: |-
+    theorem wdw_constraint_kernel_vs_thermal_gibbs_trace_fence :
+        (∀ i : Fin 4, (hubbardFourStateSpectrum 1 i = 0 ↔ hubbardFourStateSpectrum (1 / 2) i = 0)) ∧
+        secondOrderThermalTrace (hubbardFourStateSpectrum 1) 1 = 8 ∧
+        secondOrderThermalTrace (hubbardFourStateSpectrum (1 / 2)) 1 = 5 ∧
+        secondOrderThermalTrace (hubbardFourStateSpectrum 1) 1 ≠
+          secondOrderThermalTrace (hubbardFourStateSpectrum (1 / 2)) 1
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: wdw_constraint_projection_preserves_fermion_sign_cancellation_fence
+  line: 278
+  signature_excerpt: |-
+    theorem wdw_constraint_projection_preserves_fermion_sign_cancellation_fence
+        (v : Fin 2 → ℚ) :
+        (1 : ℚ) * (v ⬝ᵥ diffInvProjector.mulVec v) +
+          (-1 : ℚ) * (v ⬝ᵥ diffInvProjector.mulVec v) = 0
+  source: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  source_sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.dJoint_linear_and_constant_kernel
+  availability: local
+  symbol: CampaignFspDiscreteWdwConstraint.dJoint_linear_and_constant_kernel
+  path: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  declaration_status: declaration_found_not_proof_checked
+  line: 33
+  role: source_lead_only
+- original_ref: lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.primal_l1_edge_and_vertex_residual_lower_bound
+  availability: local
+  symbol: CampaignFspDiscreteWdwConstraint.primal_l1_edge_and_vertex_residual_lower_bound
+  path: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  declaration_status: declaration_found_not_proof_checked
+  line: 50
+  role: source_lead_only
+- original_ref: lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.strong_duality_direct_sum_wdw_exact_coboundary
+  availability: local
+  symbol: CampaignFspDiscreteWdwConstraint.strong_duality_direct_sum_wdw_exact_coboundary
+  path: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  declaration_status: declaration_found_not_proof_checked
+  line: 95
+  role: source_lead_only
+- original_ref: lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.s4_seed_flat_vs_curved_wdw_defect_mass
+  availability: local
+  symbol: CampaignFspDiscreteWdwConstraint.s4_seed_flat_vs_curved_wdw_defect_mass
+  path: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  declaration_status: declaration_found_not_proof_checked
+  line: 111
+  role: source_lead_only
+- original_ref: lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.quadratic_constraint_psd_and_null_kernel_iff
+  availability: local
+  symbol: CampaignFspDiscreteWdwConstraint.quadratic_constraint_psd_and_null_kernel_iff
+  path: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  declaration_status: declaration_found_not_proof_checked
+  line: 128
+  role: source_lead_only
+- original_ref: lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.diffeomorphism_averaging_projector_and_constraint_complement
+  availability: local
+  symbol: CampaignFspDiscreteWdwConstraint.diffeomorphism_averaging_projector_and_constraint_complement
+  path: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  declaration_status: declaration_found_not_proof_checked
+  line: 151
+  role: source_lead_only
+- original_ref: lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.page_wootters_clock_system_conditioned_evolution
+  availability: local
+  symbol: CampaignFspDiscreteWdwConstraint.page_wootters_clock_system_conditioned_evolution
+  path: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  declaration_status: declaration_found_not_proof_checked
+  line: 206
+  role: source_lead_only
+- original_ref: lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.dewitt_supermetric_indefinite_signature_fence
+  availability: local
+  symbol: CampaignFspDiscreteWdwConstraint.dewitt_supermetric_indefinite_signature_fence
+  path: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  declaration_status: declaration_found_not_proof_checked
+  line: 242
+  role: source_lead_only
+- original_ref: lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.wdw_constraint_kernel_vs_thermal_gibbs_trace_fence
+  availability: local
+  symbol: CampaignFspDiscreteWdwConstraint.wdw_constraint_kernel_vs_thermal_gibbs_trace_fence
+  path: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  declaration_status: declaration_found_not_proof_checked
+  line: 260
+  role: source_lead_only
+- original_ref: lean4/CampaignFspDiscreteWdwConstraint.lean::CampaignFspDiscreteWdwConstraint.wdw_constraint_projection_preserves_fermion_sign_cancellation_fence
+  availability: local
+  symbol: CampaignFspDiscreteWdwConstraint.wdw_constraint_projection_preserves_fermion_sign_cancellation_fence
+  path: lean4/CampaignFspDiscreteWdwConstraint.lean
+  repository: this_repository
+  sha256: b9c0facb18d974145f514cc8e47133efd525444aee3830a67cedd19b989644e3
+  declaration_status: declaration_found_not_proof_checked
+  line: 278
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -70,8 +441,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
