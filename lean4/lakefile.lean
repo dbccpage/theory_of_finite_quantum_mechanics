@@ -1247,3 +1247,7 @@ lean_lib CampaignPgwDeclaredInputFloor where
 -- Campaign: PGW-ISOMORPHISM-SOUNDNESS-IN-LEAN. Not a default target.
 lean_lib CampaignPgwIsomorphismSoundnessInLean where
   roots := #[`CampaignPgwIsomorphismSoundnessInLean]
+
+-- Campaign: PGW-RUNS-PAST-DECLARED-BOUNDS. Not a default target.
+lean_lib CampaignPgwRunsPastDeclaredBounds where
+  roots := #[`CampaignPgwRunsPastDeclaredBounds]
