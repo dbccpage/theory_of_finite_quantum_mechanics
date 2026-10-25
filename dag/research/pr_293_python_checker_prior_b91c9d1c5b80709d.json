@@ -1,0 +1,113 @@
+{
+  "path": "checks/independent/l1-u1-selector-other-segment.py",
+  "original_sha256": "90e9d8cf18e8bce10e44be64e30f50236cbdb3831e26535384dcaf5fb8d4e869",
+  "sha256": "8e273d8c0fca2db845a4c0bb09264524f8b65fd48fcc8ad8b73dd32a003f5526",
+  "original_metrics": {
+    "ccn": 12,
+    "cognitive": 21,
+    "nesting": 5,
+    "functions": 3,
+    "lines": 60,
+    "tools": {
+      "radon": "6.0.1",
+      "cognitive-complexity": "1.3.0",
+      "nesting": "AST control constructs; module executable statements additionally measured as one function"
+    }
+  },
+  "current_metrics": {
+    "ccn": 12,
+    "cognitive": 21,
+    "nesting": 5,
+    "functions": 4,
+    "lines": 59,
+    "tools": {
+      "radon": "6.0.1",
+      "cognitive-complexity": "1.3.0",
+      "nesting": "AST control constructs; module executable statements additionally measured as one function"
+    }
+  },
+  "source_changed": true,
+  "comparison_and_iteration_AST_multisets_unchanged": true,
+  "rejected_import_harness_attempt": null,
+  "checks": {
+    "normal": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/l1-u1-selector-other-segment.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.06,
+      "output": "checked 18 claims, failures 0\r\n"
+    },
+    "optimized": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-O",
+        "-X",
+        "utf8",
+        "checks/independent/l1-u1-selector-other-segment.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.26,
+      "output": "checked 18 claims, failures 0\r\n"
+    },
+    "quiet_import": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-X",
+        "utf8",
+        "-c",
+        "import contextlib,importlib.util,io,pathlib,sys; p=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics\\\\checks\\\\independent\\\\l1-u1-selector-other-segment.py'); root=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics'); s=importlib.util.spec_from_file_location(\"reviewed_checker\",p); m=importlib.util.module_from_spec(s); out=io.StringIO();\ndef audit(event,args):\n if event==\"open\" and isinstance(args[0],str):\n  q=pathlib.Path(args[0]).resolve()\n  if q.is_relative_to(root) and q!=p and q.suffix!=\".pyc\": raise RuntimeError(\"Import read repository evidence: \"+str(q))\nsys.addaudithook(audit)\nwith contextlib.redirect_stdout(out),contextlib.redirect_stderr(out): s.loader.exec_module(m)\nif out.getvalue(): raise RuntimeError(\"Import executed checker output: \"+out.getvalue())\n"
+      ],
+      "exit_code": 0,
+      "seconds": 0.49,
+      "output": ""
+    },
+    "typing_tool": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--version"
+      ],
+      "exit_code": 0,
+      "seconds": 0.48,
+      "output": "mypy 1.18.2 (compiled: yes)\r\n"
+    },
+    "strict_typing": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-m",
+        "mypy",
+        "--config-file",
+        "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\governance\\target\\pr-review-mypy.ini",
+        "--no-incremental",
+        "--cache-dir",
+        "C:\\Users\\a343o\\.codex\\worktrees\\open-pr-repairs\\theory_of_finite_quantum_mechanics\\governance\\target\\pr-review-mypy-cache",
+        "--explicit-package-bases",
+        "checks/independent/l1-u1-selector-other-segment.py"
+      ],
+      "exit_code": 1,
+      "seconds": 1.22,
+      "output": "checks\\independent\\l1-u1-selector-other-segment.py:8: error: Function is missing a type annotation  [no-untyped-def]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:15: error: Function is missing a type annotation  [no-untyped-def]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:18: error: Function is missing a type annotation  [no-untyped-def]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:21: error: Function is missing a return type annotation  [no-untyped-def]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:21: note: Use \"-> None\" if function does not return a value\r\nchecks\\independent\\l1-u1-selector-other-segment.py:25: error: Call to untyped function \"norm\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:26: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:27: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:28: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:29: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:30: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:30: error: Non-overlapping equality check (left operand type: \"Literal[4]\", right operand type: \"Literal[6]\")  [comparison-overlap]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:31: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:32: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:32: error: Call to untyped function \"mul\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:33: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:34: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:34: error: Call to untyped function \"mul\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:35: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:35: error: Call to untyped function \"mul\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:36: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:36: error: Call to untyped function \"norm\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:37: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:37: error: Non-overlapping equality check (left operand type: \"Literal[2]\", right operand type: \"Literal[1]\")  [comparison-overlap]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:38: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:39: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:39: error: Call to untyped function \"norm\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:45: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:46: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:54: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:55: error: Call to untyped function \"check\" in typed context  [no-untyped-call]\r\nchecks\\independent\\l1-u1-selector-other-segment.py:59: error: Call to untyped function \"main\" in typed context  [no-untyped-call]\r\nFound 31 errors in 1 file (checked 1 source file)\r\n"
+    }
+  },
+  "score_token": "L2E",
+  "contract_boundary": "Closed exact finite check program; internal helpers accept only the internally generated carriers. No general public input admission or physical theorem is claimed.",
+  "typing_configuration": "[mypy]\nstrict = True\npython_version = 3.14\n",
+  "structural_change": "Separate finite case loops into private helpers while preserving every original check and exact stdout; no new scientific evidence is inferred.",
+  "mutation_accounting": {
+    "generated": 0,
+    "killed": 0,
+    "detection_fraction": null
+  },
+  "acceptance": "Blocked below L4; failed checks remain failures."
+}
