@@ -6558,15 +6558,21 @@
       "stage": "L1_TO_L2",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "imported; sign group excluded only under an extra",
-      "statement": "The circle group U(1) as phase group. The leftover (1,1) vs (1,-1) is already seen over {+1,-1}, so it does not select the circle. Under the extra 'not of exponent two' the sign group is excluded; Gaussian units and a three-cycle meet the extra. The circle itself and continuity of a one-parameter phase group stay hypotheses.",
+      "statement": "Each sign squares to 1. The pairs (1, 1) and (1, -1) differ, and each of their coordinates is a sign. The integer pair 0, 1 has square norm 1, and the product of that pair with itself is the pair -1, 0, which differs from the pair 1, 0. The map sending 0 to 1, 1 to 2 and 2 to 0 returns 2 at the second step from 0 and returns 0 at the third step from 0.",
       "source": [
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/gap_register.yaml#GAP-F001-S000-005",
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/continuum_price_ledger.yaml#PRICE-HD-01",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/finite_hilbert_boundary_from_primitive_difference.md:152"
       ],
       "lean": [
-        "lean4/H011Circle.lean::sign_fails_connectedness_shadow",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries"
+        "lean4/CampaignGpImportCircleU1.lean::signSquare",
+        "lean4/CampaignGpImportCircleU1.lean::pairsDiffer",
+        "lean4/CampaignGpImportCircleU1.lean::pairCoordsAreSigns",
+        "lean4/CampaignGpImportCircleU1.lean::iNorm",
+        "lean4/CampaignGpImportCircleU1.lean::iSquare",
+        "lean4/CampaignGpImportCircleU1.lean::iSquareNeOne",
+        "lean4/CampaignGpImportCircleU1.lean::cycTwice",
+        "lean4/CampaignGpImportCircleU1.lean::cycThrice"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
@@ -6576,7 +6582,7 @@
         "U(1) phase group: assumption",
         "continuity of one-parameter phase group: assumption"
       ],
-      "bottleneck": "Selector for C / U(1) is not derived; QM_028 / QM_062 carry the U1 selector as a separate node.",
+      "bottleneck": "The circle group U(1) and continuity of a one-parameter phase group stay hypotheses. The selector for that circle stays imported.",
       "tags": [],
       "see_also": [
         "FQ-GAP-U1-CIRCLE",
@@ -6594,8 +6600,8 @@
         "narrowest_claim": "Complete C2/C3/C4 group tables, exponent-two controls and sign-interference values, plus exact cyclic controls in Lean.",
         "does_not_support": "A circle group, topology and continuous one-parameter action remain extra hypotheses. Finite alternatives do not select U(1).",
         "next_test": "A circle group, topology and continuous one-parameter action remain extra hypotheses. Finite alternatives do not select U(1).",
-        "scope_effect": "consistent",
-        "reason": "Imported node; the review adds group tables and exponent-two controls. Later U(1) runs construct parts of the circle.",
+        "scope_effect": "statement_narrowed",
+        "reason": "Standing text is the sign squares, the two sign pairs, the unit-norm square of the pair 0, 1, and one three-step cycle on 0, 1 and 2. The circle and continuity stay hypotheses.",
         "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "The circle group U(1) as phase group. The leftover (1,1) vs (1,-1) is already seen over {+1,-1}, so it does not select the circle. Under the extra 'not of exponent two' the sign group is excluded; Gaussian units and a three-cycle meet the extra. The circle itself and continuity of a one-parameter phase group stay hypotheses.",
         "prior_bottleneck": "Selector for C / U(1) is not derived; QM_028 / QM_062 carry the U1 selector as a separate node.",
@@ -57528,12 +57534,18 @@
       ],
       "id": "TFQ-1030",
       "lean4": [
-        "lean4/H011Circle.lean::sign_fails_connectedness_shadow",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries"
+        "lean4/CampaignGpImportCircleU1.lean::signSquare",
+        "lean4/CampaignGpImportCircleU1.lean::pairsDiffer",
+        "lean4/CampaignGpImportCircleU1.lean::pairCoordsAreSigns",
+        "lean4/CampaignGpImportCircleU1.lean::iNorm",
+        "lean4/CampaignGpImportCircleU1.lean::iSquare",
+        "lean4/CampaignGpImportCircleU1.lean::iSquareNeOne",
+        "lean4/CampaignGpImportCircleU1.lean::cycTwice",
+        "lean4/CampaignGpImportCircleU1.lean::cycThrice"
       ],
       "local_id": "GP-IMPORT-CIRCLE-U1",
       "name": "gp-import-circle-u1",
-      "obligation": "Selector for C / U(1) is not derived; QM_028 / QM_062 carry the U1 selector as a separate node.",
+      "obligation": "The circle group U(1) and continuity of a one-parameter phase group stay hypotheses. The selector for that circle stays imported.",
       "parent_id": "TFQ-0294",
       "pfp_review_refs": [
         "dag/results/GP-IMPORT-CIRCLE-U1/reviews/20261019_l1_import_audit/delivery_review_result.json"
@@ -57546,7 +57558,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "L1_TO_L2",
-      "summary": "The circle group U(1) as phase group. The leftover (1,1) vs (1,-1) is already seen over {+1,-1}, so it does not select the circle. Under the extra 'not of exponent two' the sign group is excluded; Gaussian units and a three-cycle meet the extra. The circle itself and continuity of a one-parameter phase group stay hypotheses.",
+      "summary": "Each sign squares to 1. The pairs (1, 1) and (1, -1) differ, and each of their coordinates is a sign. The integer pair 0, 1 has square norm 1, and the product of that pair with itself is the pair -1, 0, which differs from the pair 1, 0. The map sending 0 to 1, 1 to 2 and 2 to 0 returns 2 at the second step from 0 and returns 0 at the third step from 0.",
       "uuid": "c75b92e0-762b-580b-99f7-f6e75b48f249"
     },
     {
