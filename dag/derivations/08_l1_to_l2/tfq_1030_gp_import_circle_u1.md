@@ -16,7 +16,7 @@ Each sign squares to 1. The pairs (1, 1) and (1, -1) differ, and each of their c
 The circle group U(1), a continuous one-parameter phase group, and a selector for that circle remain imported. The sign, Gaussian-integer pair and three-cycle examples neither construct U(1) nor rule it out.
 
 ### Source Status
-imported; sign group excluded only under an extra
+Lean-checked finite sign, pair and cycle examples; U(1), continuity and the circle selector remain imported.
 
 ---
 

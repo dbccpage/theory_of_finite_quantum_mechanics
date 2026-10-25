@@ -33,7 +33,7 @@ The circle group U(1), a continuous one-parameter phase group, and a selector fo
 
 ## Source status
 
-imported; sign group excluded only under an extra
+Lean-checked finite sign, pair and cycle examples; U(1), continuity and the circle selector remain imported.
 
 ## Review
 
@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1030_gp_import_circle_u1.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1030_gp_import_circle_u1.md](../../../dag/derivations/08_l1_to_l2/tfq_1030_gp_import_circle_u1.md)
-- sha256 (`lf-normalised`): `2d79415467e61b39e37ca9970210619de41790a78b52c06dce4a2fd21d0e0815`
+- sha256 (`lf-normalised`): `2719e60d733bdfaef6a6b561466da5696165f334bc64c8a35972a9f59ea73ecf`
 - generated view: listed, not counted
 - cited in: record TFQ-1030
 - counts toward the grade: no
