@@ -13741,16 +13741,41 @@
       "stage": "FINITE_HILBERT",
       "status": "OPEN",
       "source_status": "TFQ record_status OPEN_OBLIGATION (source slice 03)",
-      "statement": "qm_202_operator_algebra_shadow.md is an internal draft. The status box says it does not derive continuum quantum mechanics and mints no authority. The claim ledger marks QM_202-C0 as a reserved band slot with stub status. The finite obligation is open: noncommuting endomorphisms of a finite module are not yet a written operator-algebra shadow in that slot. qm_004 already recorded that exact repairs inside one quotient class do not generate a noncommuting algebra, and qm_122 recovers Gaussian-integer matrices only as the scoped stand-in. Those neighboring records do not fill this stub. AuthorityEffect is None.",
+      "statement": "qm_202_operator_algebra_shadow.md is an internal draft. The status box says it does not derive continuum quantum mechanics and mints no authority. The claim ledger marks QM_202-C0 as a reserved band slot with stub status. The finite obligation is open: noncommuting endomorphisms of a finite module are not yet a written operator-algebra shadow in that slot. qm_004 already recorded that exact repairs inside one quotient class do not generate a noncommuting algebra, and qm_122 recovers Gaussian-integer matrices only as the scoped stand-in. Those neighboring records do not fill this stub. AuthorityEffect is None. Narrowed in Lean 4 and an independent Python check to one 16-element module (Z/4Z)^2. The endomorphisms A = [[0, 1], [0, 0]] and B = [[0, 0], [1, 0]] are additive and (Z/4Z)-homogeneous. Their products are AB = [[1, 0], [0, 0]] and BA = [[0, 0], [0, 1]], and AB - BA = [[1, 0], [0, 3]], which is not the zero matrix. The diagonal pair diag(1, 2) and diag(3, 1) commute, with product diag(3, 2). A is not a scalar matrix. The coefficient ring satisfies 1+1+1+1 = 0 with 1 != 0. The Lean file does not identify that ring with the integers or the Gaussian integers. The QM_202 stub, continuum operator algebra, and any derivation from the qm_122 Gaussian-integer stand-in stay open. AuthorityEffect is None.",
       "source": [
-        "dag/derivations/09_finite_hilbert/tfq_0313_operator_algebra_shadow_slot_is_still_a_stub.md"
+        "dag/derivations/09_finite_hilbert/tfq_0313_operator_algebra_shadow_slot_is_still_a_stub.md",
+        "dag/derivations/independent/tfq-0313.md",
+        "checks/independent/tfq-0313.py",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean",
+        "dag/research/campaign_tfq-0313_lean_replay.json"
       ],
       "lean": [
-        "lean4/FiniteQM.lean"
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.A_on",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.B_on",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.A_additive",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.B_additive",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.A_homogeneous",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.B_homogeneous",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.ab_matrix",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.ba_matrix",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.commutator_matrix",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.ab_ne_ba",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.ab_matches_composition",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.ba_matches_composition",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.actions_differ_on_e0",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.left_action_e0",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.right_action_e0",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.commutator_on_e0",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.diagonals_commute",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.diagonal_product",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.A_not_scalar",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.coeff_char_four",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.module_has_sixteen_vectors",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.module_lists_every_vector"
       ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Keep the QM_202 operator-algebra slot open while the ledger row is only a stub.",
+      "bottleneck": "Keep the QM_202 operator-algebra slot open while the ledger row is only a stub. The checked fragment is only the 16-element pair of endomorphisms of (Z/4Z)^2 named in the statement; it does not fill that slot.",
       "tags": [
         "unified-dag",
         "TFQ-0313",
@@ -52892,22 +52917,49 @@
       "f004_refs": [
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/qm_202_operator_algebra_shadow.md",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/qm_202_operator_algebra_shadow_claim_ledger.md",
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/qm_004_general_obstruction_management_calculus.md"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/qm_004_general_obstruction_management_calculus.md",
+        "dag/derivations/independent/tfq-0313.md",
+        "checks/independent/tfq-0313.py",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean",
+        "dag/research/campaign_tfq-0313_lean_replay.json"
       ],
       "id": "TFQ-0313",
       "lean4": [
-        "lean4/FiniteQM.lean"
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.A_on",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.B_on",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.A_additive",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.B_additive",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.A_homogeneous",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.B_homogeneous",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.ab_matrix",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.ba_matrix",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.commutator_matrix",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.ab_ne_ba",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.ab_matches_composition",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.ba_matches_composition",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.actions_differ_on_e0",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.left_action_e0",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.right_action_e0",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.commutator_on_e0",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.diagonals_commute",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.diagonal_product",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.A_not_scalar",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.coeff_char_four",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.module_has_sixteen_vectors",
+        "lean4/CampaignTfq0313OperatorAlgebraShadow.lean::CampaignTfq0313OperatorAlgebraShadow.module_lists_every_vector"
       ],
       "local_id": "A03-035",
       "name": "Operator-algebra shadow slot is still a stub",
-      "obligation": "Keep the QM_202 operator-algebra slot open while the ledger row is only a stub.",
+      "obligation": "Keep the QM_202 operator-algebra slot open while the ledger row is only a stub. The checked fragment is only the 16-element pair of endomorphisms of (Z/4Z)^2 named in the statement; it does not fill that slot.",
       "parent_id": "TFQ-0312",
-      "python": [],
+      "python": [
+        "checks/independent/tfq-0313.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "03",
       "stage": "FINITE_HILBERT",
-      "summary": "qm_202_operator_algebra_shadow.md is an internal draft. The status box says it does not derive continuum quantum mechanics and mints no authority. The claim ledger marks QM_202-C0 as a reserved band slot with stub status. The finite obligation is open: noncommuting endomorphisms of a finite module are not yet a written operator-algebra shadow in that slot. qm_004 already recorded that exact repairs inside one quotient class do not generate a noncommuting algebra, and qm_122 recovers Gaussian-integer matrices only as the scoped stand-in. Those neighboring records do not fill this stub. AuthorityEffect is None.",
+      "summary": "qm_202_operator_algebra_shadow.md is an internal draft. The status box says it does not derive continuum quantum mechanics and mints no authority. The claim ledger marks QM_202-C0 as a reserved band slot with stub status. The finite obligation is open: noncommuting endomorphisms of a finite module are not yet a written operator-algebra shadow in that slot. qm_004 already recorded that exact repairs inside one quotient class do not generate a noncommuting algebra, and qm_122 recovers Gaussian-integer matrices only as the scoped stand-in. Those neighboring records do not fill this stub. AuthorityEffect is None. Narrowed in Lean 4 and an independent Python check to one 16-element module (Z/4Z)^2. The endomorphisms A = [[0, 1], [0, 0]] and B = [[0, 0], [1, 0]] are additive and (Z/4Z)-homogeneous. Their products are AB = [[1, 0], [0, 0]] and BA = [[0, 0], [0, 1]], and AB - BA = [[1, 0], [0, 3]], which is not the zero matrix. The diagonal pair diag(1, 2) and diag(3, 1) commute, with product diag(3, 2). A is not a scalar matrix. The coefficient ring satisfies 1+1+1+1 = 0 with 1 != 0. The Lean file does not identify that ring with the integers or the Gaussian integers. The QM_202 stub, continuum operator algebra, and any derivation from the qm_122 Gaussian-integer stand-in stay open. AuthorityEffect is None.",
       "uuid": "716c1a44-4ef5-5283-bb68-a890eca66924"
     },
     {
@@ -56061,6 +56113,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md",
         "lean4/H006PermutationUnitary.lean",
         "dag/derivations/independent/l1-imp-sector-symmetry-law.md",
         "checks/independent/l1-imp-sector-symmetry-law.py",
@@ -56807,7 +56861,11 @@
         "FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md"
+        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md"
       ],
       "id": "TFQ-1021",
       "lean4": [
@@ -57723,6 +57781,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md",
         "lean4/FiniteWignerTheorem.lean",
         "dag/derivations/independent/l1-imp-transition-probability-law.md",
         "dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json",
@@ -57769,7 +57829,12 @@
         "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md"
+        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md"
       ],
       "id": "TFQ-1048",
       "lean4": [
