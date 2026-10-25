@@ -11,8 +11,8 @@ Stage: [OBSERVER_PRESHEAF](../stages/OBSERVER_PRESHEAF.md). Status: `CONDITIONAL
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 6
-- cited Lean, Rust or Python symbols found in their in-repo files: 3
-- distinct cited Lean declarations covered by a current replay receipt: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 4
+- distinct cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -45,17 +45,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignOpsAxis3Relabeling.lean`
 
 - file: [lean4/CampaignOpsAxis3Relabeling.lean](../../../lean4/CampaignOpsAxis3Relabeling.lean)
-- sha256 (`bytes`): `12ec56e7053207be28507d9f1b78b6a17cb124bd99e0b54a1371c79c5d0bada4`
-- cited in: node.source, receipt dag/research/campaign_ops-axis3-relabeling_lean_replay.json (CampaignOpsAxis3Relabeling)
+- sha256 (`bytes`): `8f6cc92938943a0dd559263f075aa7496c2bb25fab1db596f18a5fc078c01150`
+- cited in: node.source, receipt dag/research/campaign_ops-axis3-relabeling_lean_replay.json (CampaignOpsAxis3Relabeling), receipt dag/research/pr_387_round2_replay.json (CampaignOpsAxis3Relabeling), record TFQ-2526
 - replay: `verified`
-  - receipt [dag/research/campaign_ops-axis3-relabeling_lean_replay.json](../../../dag/research/campaign_ops-axis3-relabeling_lean_replay.json) (module `CampaignOpsAxis3Relabeling`): recorded sha256 `12ec56e7053207be28507d9f1b78b6a17cb124bd99e0b54a1371c79c5d0bada4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/campaign_ops-axis3-relabeling_lean_replay.json](../../../dag/research/campaign_ops-axis3-relabeling_lean_replay.json) (module `CampaignOpsAxis3Relabeling`): recorded sha256 `8f6cc92938943a0dd559263f075aa7496c2bb25fab1db596f18a5fc078c01150` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/pr_387_round2_replay.json](../../../dag/research/pr_387_round2_replay.json) (module `CampaignOpsAxis3Relabeling`): recorded sha256 `8f6cc92938943a0dd559263f075aa7496c2bb25fab1db596f18a5fc078c01150` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignOpsAxis3Relabeling`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `exportVerdictRelabel` | yes | yes | yes | none | `#print axioms exportVerdictRelabel` |
-| `lengthMapInvariant` | yes | yes | yes | propext | `#print axioms lengthMapInvariant` |
-| `lengthVerdictRelabel` | yes | yes | yes | propext | `#print axioms lengthVerdictRelabel` |
+| `CampaignOpsAxis3Relabeling.exportVerdictRelabel` | yes | yes | yes | none | `#print axioms CampaignOpsAxis3Relabeling.exportVerdictRelabel` |
+| `CampaignOpsAxis3Relabeling.lengthMapInvariant` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis3Relabeling.lengthMapInvariant` |
+| `CampaignOpsAxis3Relabeling.lengthVerdictRelabel` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis3Relabeling.lengthVerdictRelabel` |
+| `CampaignOpsAxis3Relabeling.swap01` | yes | yes | yes | none | `#print axioms CampaignOpsAxis3Relabeling.swap01` |
 
 - counts toward the grade: yes
 
@@ -84,7 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_ops-axis3-relabeling_lean_replay.json`
 
 - file: [dag/research/campaign_ops-axis3-relabeling_lean_replay.json](../../../dag/research/campaign_ops-axis3-relabeling_lean_replay.json)
-- sha256 (`lf-normalised`): `40edc4f8045dd6c792b19e06213edfc4d889dede96e5cc7fa35551e3817960fa`
+- sha256 (`lf-normalised`): `2877fc98daf3fe82d9b2668fb541b5b959c9cd8e4728726e7a05549db486927a`
 - cited in: node.source
 - counts toward the grade: yes
 

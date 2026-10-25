@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignLaughlinRootAmbiguity.lean](../../../lean4/CampaignLaughlinRootAmbiguity.lean)
 - sha256 (`bytes`): `c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314`
-- cited in: node.lean, receipt dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json (CampaignLaughlinRootAmbiguity), record TFQ-1208
+- cited in: node.lean, receipt dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json (CampaignLaughlinRootAmbiguity), receipt dag/research/pr_379_round2_replay.json (CampaignLaughlinRootAmbiguity), record TFQ-1208
 - replay: `verified`
   - receipt [dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json](../../../dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json) (module `CampaignLaughlinRootAmbiguity`): recorded sha256 `c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_379_round2_replay.json](../../../dag/research/pr_379_round2_replay.json) (module `CampaignLaughlinRootAmbiguity`): recorded sha256 `c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignLaughlinRootAmbiguity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

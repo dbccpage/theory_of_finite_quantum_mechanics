@@ -24,7 +24,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md
-    sha256: 90ea0c50bbe542693efbdd6007726254c5727a8b4387f254c2e12ccb427a3ed4
+    sha256: ad9b341c24544877bffe5645be3776c28cf711aa0e1bce4aa26e8f6fc7e44905
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -35,336 +35,213 @@ source_provenance:
 operation_candidates:
 - kind: abbrev
   name: Word
-  line: 5
+  line: 7
   signature_excerpt: abbrev Word
   source: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  source_sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  source_sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   status: source_candidate_requires_semantic_review
 - kind: inductive
   name: ReachB
-  line: 17
+  line: 19
   signature_excerpt: 'inductive ReachB : Word → Word → Prop'
   source: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  source_sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  source_sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   status: source_candidate_requires_semantic_review
 - kind: def
   name: start
-  line: 9
+  line: 11
   signature_excerpt: 'def start : Word'
   source: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  source_sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  source_sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   status: source_candidate_requires_semantic_review
 - kind: def
   name: inBound
-  line: 15
+  line: 17
   signature_excerpt: 'def inBound (w : Word) : Prop'
   source: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  source_sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  source_sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   status: source_candidate_requires_semantic_review
 - kind: def
   name: bound
-  line: 7
+  line: 9
   signature_excerpt: 'def bound : Nat'
   source: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  source_sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  source_sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   status: source_candidate_requires_semantic_review
 - kind: def
   name: emptyW
-  line: 13
+  line: 15
   signature_excerpt: 'def emptyW : Word'
   source: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  source_sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  source_sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   status: source_candidate_requires_semantic_review
 - kind: def
   name: long
-  line: 11
+  line: 13
   signature_excerpt: 'def long : Word'
   source: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  source_sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
-  status: source_candidate_requires_semantic_review
-- kind: abbrev
-  name: RuleList
-  line: 612
-  signature_excerpt: 'abbrev RuleList (α : Type*)'
-  source: lean4/GenesisComputation.lean
-  repository: this_repository
-  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: ReachB
-  line: 658
-  signature_excerpt: 'def ReachB (RL : RuleList α) (L : ℕ) : List α → List α → Prop'
-  source: lean4/GenesisComputation.lean
-  repository: this_repository
-  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: reachSet
-  line: 675
-  signature_excerpt: 'def reachSet (RL : RuleList α) (L : ℕ) (a : List α) : Finset (List α)'
-  source: lean4/GenesisComputation.lean
-  repository: this_repository
-  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: StepB
-  line: 654
-  signature_excerpt: 'def StepB (RL : RuleList α) (L : ℕ) (w w'' : List α) : Prop'
-  source: lean4/GenesisComputation.lean
-  repository: this_repository
-  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: reachN
-  line: 463
-  signature_excerpt: |-
-    def reachN (s : β → Finset β) : ℕ → β → Finset β
-      | 0, a => {a}
-      | n + 1, a => reachN s n a ∪ (reachN s n a).biUnion s
-
-    theorem reachN_succ_subset (s : β → Finset β) (n : ℕ) (a : β) :
-        reachN s n a ⊆ reachN s (n + 1) a
-  source: lean4/GenesisComputation.lean
-  repository: this_repository
-  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: sB
-  line: 650
-  signature_excerpt: 'def sB (RL : RuleList α) (L : ℕ) (w : List α) : Finset (List α)'
-  source: lean4/GenesisComputation.lean
-  repository: this_repository
-  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: wordsLE
-  line: 574
-  signature_excerpt: |-
-    def wordsLE (α : Type*) [Fintype α] [DecidableEq α] : ℕ → Finset (List α)
-      | 0 => {[]}
-      | n + 1 => insert [] (Finset.univ.biUnion fun a => (wordsLE α n).image (List.cons a))
-
-    theorem mem_wordsLE {n : ℕ} {w : List α} : w ∈ wordsLE α n ↔ w.length ≤ n
-  source: lean4/GenesisComputation.lean
-  repository: this_repository
-  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: Step
-  line: 267
-  signature_excerpt: 'def Step (R : List α → List α → Prop) (w w'' : List α) : Prop'
-  source: lean4/GenesisComputation.lean
-  repository: this_repository
-  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
-  status: source_candidate_requires_semantic_review
-- kind: def
-  name: inRules
-  line: 615
-  signature_excerpt: 'def inRules (RL : RuleList α) : List α → List α → Prop'
-  source: lean4/GenesisComputation.lean
-  repository: this_repository
-  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
+  source_sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
   name: reach_eq
-  line: 20
+  line: 22
   signature_excerpt: 'theorem reach_eq {a b : Word} (h : ReachB a b) : a = b'
   source: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  source_sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  source_sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: reaches_self
-  line: 24
+  line: 26
   signature_excerpt: 'theorem reaches_self : ReachB start start'
   source: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  source_sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  source_sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: start_in
-  line: 27
+  line: 29
   signature_excerpt: 'theorem start_in : inBound start'
   source: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  source_sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  source_sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: empty_in
-  line: 30
+  line: 32
   signature_excerpt: 'theorem empty_in : inBound emptyW'
   source: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  source_sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  source_sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: long_len
-  line: 33
+  line: 35
   signature_excerpt: 'theorem long_len : long.length = 2'
   source: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  source_sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  source_sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: long_out
-  line: 36
+  line: 38
   signature_excerpt: 'theorem long_out : ¬ inBound long'
   source: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  source_sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  source_sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: not_long
-  line: 39
+  line: 41
   signature_excerpt: 'theorem not_long : ¬ ReachB start long'
   source: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  source_sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  source_sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: not_empty
-  line: 45
+  line: 47
   signature_excerpt: 'theorem not_empty : ¬ ReachB start emptyW'
   source: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  source_sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
-  status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
-    proof.
-- kind: theorem
-  name: reachB_iff
-  line: 678
-  signature_excerpt: |-
-    theorem reachB_iff {RL : RuleList α} {L : ℕ} {a b : List α} (ha : a.length ≤ L) :
-        ReachB RL L a b ↔ b ∈ reachSet RL L a
-  source: lean4/GenesisComputation.lean
-  repository: this_repository
-  source_sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
-  status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
-    proof.
-- kind: theorem
-  name: nfReach_not_computable
-  line: 315
-  signature_excerpt: 'theorem nfReach_not_computable : ¬ ComputablePred NFReach'
-  source: lean4/GenesisCompUniv.lean
-  repository: this_repository
-  source_sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
+  source_sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
 - original_ref: lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.reach_eq
   availability: local
-  symbol: reach_eq
+  symbol: CampaignCompC3NoFixedBound.reach_eq
   path: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   declaration_status: declaration_found_not_proof_checked
-  line: 20
+  line: 22
   role: source_lead_only
 - original_ref: lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.reaches_self
   availability: local
-  symbol: reaches_self
+  symbol: CampaignCompC3NoFixedBound.reaches_self
   path: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   declaration_status: declaration_found_not_proof_checked
-  line: 24
+  line: 26
   role: source_lead_only
 - original_ref: lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.start_in
   availability: local
-  symbol: start_in
+  symbol: CampaignCompC3NoFixedBound.start_in
   path: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   declaration_status: declaration_found_not_proof_checked
-  line: 27
+  line: 29
   role: source_lead_only
 - original_ref: lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.empty_in
   availability: local
-  symbol: empty_in
+  symbol: CampaignCompC3NoFixedBound.empty_in
   path: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   declaration_status: declaration_found_not_proof_checked
-  line: 30
+  line: 32
   role: source_lead_only
 - original_ref: lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.long_len
   availability: local
-  symbol: long_len
+  symbol: CampaignCompC3NoFixedBound.long_len
   path: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   declaration_status: declaration_found_not_proof_checked
-  line: 33
+  line: 35
   role: source_lead_only
 - original_ref: lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.long_out
   availability: local
-  symbol: long_out
+  symbol: CampaignCompC3NoFixedBound.long_out
   path: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   declaration_status: declaration_found_not_proof_checked
-  line: 36
+  line: 38
   role: source_lead_only
 - original_ref: lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.not_long
   availability: local
-  symbol: not_long
+  symbol: CampaignCompC3NoFixedBound.not_long
   path: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   declaration_status: declaration_found_not_proof_checked
-  line: 39
+  line: 41
   role: source_lead_only
 - original_ref: lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.not_empty
   availability: local
-  symbol: not_empty
+  symbol: CampaignCompC3NoFixedBound.not_empty
   path: lean4/CampaignCompC3NoFixedBound.lean
   repository: this_repository
-  sha256: 68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e
+  sha256: 6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae
   declaration_status: declaration_found_not_proof_checked
-  line: 45
-  role: source_lead_only
-- original_ref: lean4/GenesisComputation.lean::reachB_iff
-  availability: local
-  symbol: reachB_iff
-  path: lean4/GenesisComputation.lean
-  repository: this_repository
-  sha256: f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994
-  declaration_status: declaration_found_not_proof_checked
-  line: 678
-  role: source_lead_only
-- original_ref: lean4/GenesisCompUniv.lean::nfReach_not_computable
-  availability: local
-  symbol: nfReach_not_computable
-  path: lean4/GenesisCompUniv.lean
-  repository: this_repository
-  sha256: 966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3
-  declaration_status: declaration_found_not_proof_checked
-  line: 315
+  line: 47
   role: source_lead_only
 presentation:
   colours: []

@@ -1637,9 +1637,9 @@ The derivation DAG (`dag/derivation_dag.json`, schema `derivation_dag.v2`) now h
 | `ADMITTED_PRIMITIVE` | 3 | 3 |
 | `DEFINITION` | 92 | 14 |
 | `PROVED_PROSE` | 35 | 0 |
-| `PROVED_LEAN` | 268 | 100 |
+| `PROVED_LEAN` | 267 | 100 |
 | `COMPUTATIONALLY_CHECKED` | 159 | 22 |
-| `CONDITIONAL` | 36 | 12 |
+| `CONDITIONAL` | 37 | 12 |
 | `IMPORTED_ASSUMPTION` | 70 | 21 |
 | `OPEN` | 175 | 5 |
 | `REFUTED` | 6 | 0 |
@@ -1649,14 +1649,14 @@ The derivation DAG (`dag/derivation_dag.json`, schema `derivation_dag.v2`) now h
 | Route status | Routes |
 | --- | ---: |
 | `DERIVED_PROSE` | 112 |
-| `DERIVED_LEAN` | 275 |
+| `DERIVED_LEAN` | 274 |
 | `COMPUTED` | 164 |
-| `CONDITIONAL_ON_IMPORT` | 90 |
+| `CONDITIONAL_ON_IMPORT` | 91 |
 | `GAP_NO_DERIVATION` | 204 |
 | `RECORD_PARENT` | 89 |
 | **Total** | **934** |
 
-Of the 177 reviewed nodes, 66 are `consistent`, 18 are `caveat_added`, 68 are `statement_narrowed`, 25 are `status_lowered`. Only 216 of the 925 nodes cite two or more Lean declarations and two or more Rust witnesses; 354 cite no Lean declaration and 543 cite no Rust witness. A node's status is a label on its statement; it does not say that the statement is mechanized in both languages.
+Of the 177 reviewed nodes, 65 are `consistent`, 18 are `caveat_added`, 69 are `statement_narrowed`, 25 are `status_lowered`. Only 216 of the 925 nodes cite two or more Lean declarations and two or more Rust witnesses; 351 cite no Lean declaration and 543 cite no Rust witness. A node's status is a label on its statement; it does not say that the statement is mechanized in both languages.
 
 <!-- END GENERATED dag-census (papers/core/tools/build_results_audit_table.py) -->
 
@@ -1836,7 +1836,7 @@ The table has one row for each of the 177 DAG nodes that carry a `pfp_review` ob
 | `FQ-DISCRETE-DYNAMICS-DICHOTOMY` | `PROVED_LEAN` | `statement_narrowed` | An all-natural-index integer numerator is nonzero in Lean; actual normalized retained powers have unit mass and never equal identity, unlike periodic controls. | Prove the recurrence-to-normalized-matrix bridge for all powers, then formulate any closure/topology or generator selection claim. No full dynamics dichotomy is inferred. |
 | `FQ-DISCRETE-TIME-STONE-AMBIGUITY` | `PROVED_LEAN` | `statement_narrowed` | The report-map obstruction and two distinct scaled Gaussian roots are kernel checked; native enumeration and normalized unitarity are replayed. | Construct logarithms, an actual continuous one-parameter group, topology and a generator selection rule. Tags do not supply analytic branches. |
 | `FQ-GAP-STONE-CONTINUOUS-TIME` | `CONDITIONAL` | `statement_narrowed` | All-integer modulo-four aliasing is kernel checked; exact modulo-eight controls distinguish declared half-step tags. | Supply topology, strong continuity, actual exponentials and generator domains before invoking Stone; finite tags do not prove existence. |
-| `FQ-GAP-CONTINUUM-HILBERT-LIFT` | `CONDITIONAL` | `consistent` | 2 has no Gaussian-integer inverse because its real equation 2a=1 has no integer solution; the stated matrix has characteristic polynomial l^2-l-1 and discriminant identity 4p(l)+5=(2l-1)^2. | Construct an actual completion with specified topology, carrier and embedding; prove any claimed rational/Gaussian spectral exit separately. No impossibility of completion follows from this obstruction. |
+| `FQ-GAP-CONTINUUM-HILBERT-LIFT` | `CONDITIONAL` | `statement_narrowed` | No integer a satisfies 2 * a = 1. For every integer t, 4 * (t * t - t - 1) + 5 = (2 * t - 1) * (2 * t - 1). For every integer n, n * n is not 5. For every integer t, t * t - t - 1 is not 0. | Scalar-field selection, a Gaussian-integer matrix eigenvalue, choice of l2 uniformity or an infinite-dimensional Hilbert completion. |
 | `FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY` | `PROVED_LEAN` | `statement_narrowed` | general rational-pair fine graining and full rational-root exclusion are kernel checked; retained multi-outcome multiplicities and quadratic-field root coefficients are exact. | Prove arbitrary finite-vector fine-graining transport and that the declared quadratic-field coefficients realize the intended physical readout. Counting is an admitted interpretation. |
 | `FQ-GAP-REAL-EMBEDDING-CHOICE` | `COMPUTATIONALLY_CHECKED` (was `PROVED_LEAN`) | `status_lowered` | Exact quadratic-field Gram/conjugate coefficients, a mixed signature control and real-root inequalities are checked; the fake 9/4 root is explicitly rejected. | Formalize the coefficient-to-real embedding homomorphisms, full Gram PSD and cyclotomic fixed-field degree identification. A declared evaluation is not that embedding. |
 | `FQ-ENTROPY-DICHOTOMY-BAKER` | `PROVED_LEAN` | `consistent` | Literal general-dimension source entropy signatures with explicit Baker hypothesis, plus five exact rational series computations with an explicit analytic remainder argument. | An unconditional proof of Baker or transcendence from a native flag, base-two entropy claims, or a kernel-verified finite-tail array transport. |

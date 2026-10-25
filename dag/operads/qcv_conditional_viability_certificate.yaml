@@ -9,7 +9,11 @@ target:
     L >= 0 and every epsilon > 0 some level k has L*p(k) <= epsilon. If also max(C,1)*p(0) <= 1/2, then
     every natural number k with L <= epsilon*max(C,1)*2^(2^k) has L*p(k) <= epsilon.
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: []
+  declared_assumptions:
+  - noise obeys p(k+1) <= c(k)*p(k)^2 when repair keeps up (independent or local noise)
+  - fresh ancillas at rate r
+  - classical control and decoding fast enough for the syndrome
+  - level-bounded overhead c(k) <= C
   source_bottleneck: The initial backlog q0 is nonnegative. The recurrence, the supply bound, and the
     overhead bound are hypotheses of the implication. A device, a noise process, and a classical decoder
     are outside this implication. A negative initial backlog is outside the narrowed statement.
@@ -20,13 +24,13 @@ target:
   - lean4/CampaignQcvConditionalViabilityCertificate.lean
   paper_refs:
   - dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md
-  source_claim_label: PROVED_LEAN
+  source_claim_label: CONDITIONAL
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md
-    sha256: e15baadecfe6f5208f1f9596410bd975dbe184ef23fa717bd13d5a5f72f2262a
+    sha256: 41490bfbe3d791f1db4c3a40163fa245fda7bfd574b2c96809cb014dd4ccaa66
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -110,7 +114,7 @@ relation_candidates:
     proof.
 - kind: theorem
   name: viability_nonneg_initial
-  line: 7
+  line: 9
   signature_excerpt: |-
     theorem viability_nonneg_initial
         {lam g kappa r q0 : ℚ} {c : ℕ → ℚ} {C : ℚ}
@@ -124,13 +128,13 @@ relation_candidates:
           ∀ (L ε : ℚ), 0 ≤ L → 0 < ε → ∃ k : ℕ, L * p k ≤ ε
   source: lean4/CampaignQcvConditionalViabilityCertificate.lean
   repository: this_repository
-  source_sha256: 13830e97181bf486cd8d8cbad509665787930f943a3d5306eeaa17c23cbd1c55
+  source_sha256: 06c68a7ea5e207d83a2211bb0c7960efb974cffc68ec30ea3c94042d8e903b0e
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
   name: viability_explicit_level
-  line: 19
+  line: 21
   signature_excerpt: |-
     theorem viability_explicit_level
         {lam g kappa r q0 : ℚ} {c : ℕ → ℚ} {C : ℚ}
@@ -145,7 +149,7 @@ relation_candidates:
         L * p k ≤ ε
   source: lean4/CampaignQcvConditionalViabilityCertificate.lean
   repository: this_repository
-  source_sha256: 13830e97181bf486cd8d8cbad509665787930f943a3d5306eeaa17c23cbd1c55
+  source_sha256: 06c68a7ea5e207d83a2211bb0c7960efb974cffc68ec30ea3c94042d8e903b0e
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -197,21 +201,21 @@ source_bindings:
   role: source_lead_only
 - original_ref: lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_nonneg_initial
   availability: local
-  symbol: viability_nonneg_initial
+  symbol: CampaignQcvConditionalViabilityCertificate.viability_nonneg_initial
   path: lean4/CampaignQcvConditionalViabilityCertificate.lean
   repository: this_repository
-  sha256: 13830e97181bf486cd8d8cbad509665787930f943a3d5306eeaa17c23cbd1c55
+  sha256: 06c68a7ea5e207d83a2211bb0c7960efb974cffc68ec30ea3c94042d8e903b0e
   declaration_status: declaration_found_not_proof_checked
-  line: 7
+  line: 9
   role: source_lead_only
 - original_ref: lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_explicit_level
   availability: local
-  symbol: viability_explicit_level
+  symbol: CampaignQcvConditionalViabilityCertificate.viability_explicit_level
   path: lean4/CampaignQcvConditionalViabilityCertificate.lean
   repository: this_repository
-  sha256: 13830e97181bf486cd8d8cbad509665787930f943a3d5306eeaa17c23cbd1c55
+  sha256: 06c68a7ea5e207d83a2211bb0c7960efb974cffc68ec30ea3c94042d8e903b0e
   declaration_status: declaration_found_not_proof_checked
-  line: 19
+  line: 21
   role: source_lead_only
 - original_ref: code/rust/src/qm/campaigns/qc_self_obstruction.rs::viability_report
   availability: local
@@ -249,7 +253,11 @@ operad_slots:
     mining_status: UNREVIEWED
     carrier: null
     coefficient_ring: null
-    assumptions: []
+    assumptions:
+    - noise obeys p(k+1) <= c(k)*p(k)^2 when repair keeps up (independent or local noise)
+    - fresh ancillas at rate r
+    - classical control and decoding fast enough for the syndrome
+    - level-bounded overhead c(k) <= C
     source_pins: []
     public_input: {}
   slot_m2_layer1_forward_morphisms:
@@ -265,7 +273,11 @@ operad_slots:
     mining_status: UNREVIEWED
     certificate_predicates: []
     anchors: []
-    unpaid_imports: []
+    unpaid_imports:
+    - noise obeys p(k+1) <= c(k)*p(k)^2 when repair keeps up (independent or local noise)
+    - fresh ancillas at rate r
+    - classical control and decoding fast enough for the syndrome
+    - level-bounded overhead c(k) <= C
 stage_history: []
 open_obligations:
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.

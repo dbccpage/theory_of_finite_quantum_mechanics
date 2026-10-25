@@ -1,6 +1,8 @@
 -- Campaign: OPS-AXIS3-RELABELING. Not a default target.
 -- Composition step from a declared export. Hypotheses (i) and (ii) are not used.
 
+namespace CampaignOpsAxis3Relabeling
+
 def swap01 : Nat → Nat
   | 0 => 1
   | 1 => 0
@@ -32,3 +34,5 @@ theorem lengthVerdictRelabel
 #print axioms exportVerdictRelabel
 #print axioms lengthMapInvariant
 #print axioms lengthVerdictRelabel
+
+end CampaignOpsAxis3Relabeling

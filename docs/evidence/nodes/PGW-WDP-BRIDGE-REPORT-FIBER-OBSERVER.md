@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignReportFiberDescent.lean](../../../lean4/CampaignReportFiberDescent.lean)
 - sha256 (`bytes`): `135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56`
-- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json (CampaignReportFiberDescent), record TFQ-0556
+- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json (CampaignReportFiberDescent), receipt dag/research/pr_380_round2_replay.json (CampaignReportFiberDescent), record TFQ-0556
 - replay: `verified`
   - receipt [dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json](../../../dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json) (module `CampaignReportFiberDescent`): recorded sha256 `135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound; only standard axioms: yes
+  - receipt [dag/research/pr_380_round2_replay.json](../../../dag/research/pr_380_round2_replay.json) (module `CampaignReportFiberDescent`): recorded sha256 `135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignReportFiberDescent`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

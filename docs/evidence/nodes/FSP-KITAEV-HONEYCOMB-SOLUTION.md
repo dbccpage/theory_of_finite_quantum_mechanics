@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignKitaevSectorBlock.lean](../../../lean4/CampaignKitaevSectorBlock.lean)
 - sha256 (`bytes`): `d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329`
-- cited in: node.lean, receipt dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json (CampaignKitaevSectorBlock), record TFQ-1207
+- cited in: node.lean, receipt dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json (CampaignKitaevSectorBlock), receipt dag/research/pr_378_round2_replay.json (CampaignKitaevSectorBlock), record TFQ-1207
 - replay: `verified`
   - receipt [dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json](../../../dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json) (module `CampaignKitaevSectorBlock`): recorded sha256 `d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_378_round2_replay.json](../../../dag/research/pr_378_round2_replay.json) (module `CampaignKitaevSectorBlock`): recorded sha256 `d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignKitaevSectorBlock`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

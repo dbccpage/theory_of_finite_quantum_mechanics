@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignInformationProductBoundary.lean](../../../lean4/CampaignInformationProductBoundary.lean)
 - sha256 (`bytes`): `1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d`
-- cited in: node.lean, receipt dag/research/campaign_ct-information-media-interoperability_lean_replay.json (CampaignInformationProductBoundary), record TFQ-2006
+- cited in: node.lean, receipt dag/research/campaign_ct-information-media-interoperability_lean_replay.json (CampaignInformationProductBoundary), receipt dag/research/pr_381_round2_replay.json (CampaignInformationProductBoundary), record TFQ-2006
 - replay: `verified`
   - receipt [dag/research/campaign_ct-information-media-interoperability_lean_replay.json](../../../dag/research/campaign_ct-information-media-interoperability_lean_replay.json) (module `CampaignInformationProductBoundary`): recorded sha256 `1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/pr_381_round2_replay.json](../../../dag/research/pr_381_round2_replay.json) (module `CampaignInformationProductBoundary`): recorded sha256 `1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignInformationProductBoundary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignWittenPairing.lean](../../../lean4/CampaignWittenPairing.lean)
 - sha256 (`bytes`): `daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1`
-- cited in: node.lean, receipt dag/research/campaign_fsp-witten-index-invariance_lean_replay.json (CampaignWittenPairing), record TFQ-1206
+- cited in: node.lean, receipt dag/research/campaign_fsp-witten-index-invariance_lean_replay.json (CampaignWittenPairing), receipt dag/research/pr_376_round2_replay.json (CampaignWittenPairing), record TFQ-1206
 - replay: `verified`
   - receipt [dag/research/campaign_fsp-witten-index-invariance_lean_replay.json](../../../dag/research/campaign_fsp-witten-index-invariance_lean_replay.json) (module `CampaignWittenPairing`): recorded sha256 `daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_376_round2_replay.json](../../../dag/research/pr_376_round2_replay.json) (module `CampaignWittenPairing`): recorded sha256 `daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignWittenPairing`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

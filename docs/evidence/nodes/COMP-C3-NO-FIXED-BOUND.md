@@ -10,9 +10,9 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `CONDITIONAL`. Evidence 
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 10
-- distinct cited Lean declarations covered by a current replay receipt: 10
+- counted in-repo evidence files: 2
+- cited Lean, Rust or Python symbols found in their in-repo files: 14
+- distinct cited Lean declarations covered by a current replay receipt: 14
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -45,60 +45,36 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignCompC3NoFixedBound.lean`
 
 - file: [lean4/CampaignCompC3NoFixedBound.lean](../../../lean4/CampaignCompC3NoFixedBound.lean)
-- sha256 (`bytes`): `68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e`
-- cited in: node.lean, receipt dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json (CampaignCompC3NoFixedBound), record TFQ-1295
+- sha256 (`bytes`): `6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae`
+- cited in: node.lean, receipt dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json (CampaignCompC3NoFixedBound), receipt dag/research/pr_383_round2_replay.json (CampaignCompC3NoFixedBound), record TFQ-1295
 - replay: `verified`
-  - receipt [dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json](../../../dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json) (module `CampaignCompC3NoFixedBound`): recorded sha256 `68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json](../../../dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json) (module `CampaignCompC3NoFixedBound`): recorded sha256 `6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_383_round2_replay.json](../../../dag/research/pr_383_round2_replay.json) (module `CampaignCompC3NoFixedBound`): recorded sha256 `6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignCompC3NoFixedBound`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `empty_in` | yes | yes | yes | propext | `#print axioms empty_in` |
-| `long_len` | yes | yes | yes | propext | `#print axioms long_len` |
-| `long_out` | yes | yes | yes | propext | `#print axioms long_out` |
-| `not_empty` | yes | yes | yes | propext | `#print axioms not_empty` |
-| `not_long` | yes | yes | yes | propext | `#print axioms not_long` |
-| `reach_eq` | yes | yes | yes | none | `#print axioms reach_eq` |
-| `reaches_self` | yes | yes | yes | propext | `#print axioms reaches_self` |
-| `start_in` | yes | yes | yes | Quot.sound, propext | `#print axioms start_in` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/GenesisCompUniv.lean`
-
-- file: [lean4/GenesisCompUniv.lean](../../../lean4/GenesisCompUniv.lean)
-- sha256 (`bytes`): `966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3`
-- cited in: node.lean, record TFQ-1295
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `GenesisCompUniv`): recorded sha256 `966d60cf259d7c22f275e13ab58dd6d027330f6ae146536eb68a97ddb97620f3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build GenesisCompUniv`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `nfReach_not_computable` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms nfReach_not_computable` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/GenesisComputation.lean`
-
-- file: [lean4/GenesisComputation.lean](../../../lean4/GenesisComputation.lean)
-- sha256 (`bytes`): `f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994`
-- cited in: node.lean, record TFQ-1295
-- replay: `verified`
-  - receipt [dag/research/campaign_pgw-context-decision-procedure_lean_replay.json](../../../dag/research/campaign_pgw-context-decision-procedure_lean_replay.json) (module `GenesisComputation`): recorded sha256 `f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/lean_replay_campaign_computation.json](../../../dag/research/lean_replay_campaign_computation.json) (module `GenesisComputation`): recorded sha256 `f7d47a38eba64f3ec82570efa952824487575f76305877a4acf0e15165657994` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build GenesisComputation`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `reachB_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms reachB_iff` |
+| `CampaignCompC3NoFixedBound.Word` | yes | yes | yes | none | `#print axioms CampaignCompC3NoFixedBound.Word` |
+| `CampaignCompC3NoFixedBound.bound` | yes | yes | yes | none | `#print axioms CampaignCompC3NoFixedBound.bound` |
+| `CampaignCompC3NoFixedBound.emptyW` | yes | yes | yes | none | `#print axioms CampaignCompC3NoFixedBound.emptyW` |
+| `CampaignCompC3NoFixedBound.empty_in` | yes | yes | yes | propext | `#print axioms CampaignCompC3NoFixedBound.empty_in` |
+| `CampaignCompC3NoFixedBound.inBound` | yes | yes | yes | none | `#print axioms CampaignCompC3NoFixedBound.inBound` |
+| `CampaignCompC3NoFixedBound.long` | yes | yes | yes | propext | `#print axioms CampaignCompC3NoFixedBound.long` |
+| `CampaignCompC3NoFixedBound.long_len` | yes | yes | yes | propext | `#print axioms CampaignCompC3NoFixedBound.long_len` |
+| `CampaignCompC3NoFixedBound.long_out` | yes | yes | yes | propext | `#print axioms CampaignCompC3NoFixedBound.long_out` |
+| `CampaignCompC3NoFixedBound.not_empty` | yes | yes | yes | propext | `#print axioms CampaignCompC3NoFixedBound.not_empty` |
+| `CampaignCompC3NoFixedBound.not_long` | yes | yes | yes | propext | `#print axioms CampaignCompC3NoFixedBound.not_long` |
+| `CampaignCompC3NoFixedBound.reach_eq` | yes | yes | yes | none | `#print axioms CampaignCompC3NoFixedBound.reach_eq` |
+| `CampaignCompC3NoFixedBound.reaches_self` | yes | yes | yes | propext | `#print axioms CampaignCompC3NoFixedBound.reaches_self` |
+| `CampaignCompC3NoFixedBound.start` | yes | yes | yes | propext | `#print axioms CampaignCompC3NoFixedBound.start` |
+| `CampaignCompC3NoFixedBound.start_in` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignCompC3NoFixedBound.start_in` |
 
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md`
 
 - file: [dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md](../../../dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md)
-- sha256 (`lf-normalised`): `90ea0c50bbe542693efbdd6007726254c5727a8b4387f254c2e12ccb427a3ed4`
+- sha256 (`lf-normalised`): `ad9b341c24544877bffe5645be3776c28cf711aa0e1bce4aa26e8f6fc7e44905`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1295
 - counts toward the grade: no

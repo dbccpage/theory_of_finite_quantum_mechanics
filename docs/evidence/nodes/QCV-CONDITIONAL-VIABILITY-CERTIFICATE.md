@@ -1,6 +1,6 @@
 # QCV-CONDITIONAL-VIABILITY-CERTIFICATE
 
-Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -24,7 +24,10 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
-None recorded.
+- noise obeys p(k+1) \<= c(k)*p(k)^2 when repair keeps up (independent or local noise)
+- fresh ancillas at rate r
+- classical control and decoding fast enough for the syndrome
+- level-bounded overhead c(k) \<= C
 
 ## Bottleneck
 
@@ -32,7 +35,7 @@ The initial backlog q0 is nonnegative. The recurrence, the supply bound, and the
 
 ## Source status
 
-dag/research/quantum_computation_self_obstruction.md record QCV-Q5 claims CONDITIONAL; audited status PROVED_LEAN
+dag/research/quantum_computation_self_obstruction.md record QCV-Q5 claims CONDITIONAL; audited status CONDITIONAL
 
 ## Review
 
@@ -45,16 +48,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignQcvConditionalViabilityCertificate.lean`
 
 - file: [lean4/CampaignQcvConditionalViabilityCertificate.lean](../../../lean4/CampaignQcvConditionalViabilityCertificate.lean)
-- sha256 (`bytes`): `13830e97181bf486cd8d8cbad509665787930f943a3d5306eeaa17c23cbd1c55`
-- cited in: node.lean, node.source, receipt dag/research/campaign_qcv-conditional-viability-certificate_lean_replay.json (CampaignQcvConditionalViabilityCertificate), record TFQ-1324
+- sha256 (`bytes`): `06c68a7ea5e207d83a2211bb0c7960efb974cffc68ec30ea3c94042d8e903b0e`
+- cited in: node.lean, node.source, receipt dag/research/campaign_qcv-conditional-viability-certificate_lean_replay.json (CampaignQcvConditionalViabilityCertificate), receipt dag/research/pr_385_round2_replay.json (CampaignQcvConditionalViabilityCertificate), record TFQ-1324
 - replay: `verified`
-  - receipt [dag/research/campaign_qcv-conditional-viability-certificate_lean_replay.json](../../../dag/research/campaign_qcv-conditional-viability-certificate_lean_replay.json) (module `CampaignQcvConditionalViabilityCertificate`): recorded sha256 `13830e97181bf486cd8d8cbad509665787930f943a3d5306eeaa17c23cbd1c55` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_qcv-conditional-viability-certificate_lean_replay.json](../../../dag/research/campaign_qcv-conditional-viability-certificate_lean_replay.json) (module `CampaignQcvConditionalViabilityCertificate`): recorded sha256 `06c68a7ea5e207d83a2211bb0c7960efb974cffc68ec30ea3c94042d8e903b0e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_385_round2_replay.json](../../../dag/research/pr_385_round2_replay.json) (module `CampaignQcvConditionalViabilityCertificate`): recorded sha256 `06c68a7ea5e207d83a2211bb0c7960efb974cffc68ec30ea3c94042d8e903b0e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignQcvConditionalViabilityCertificate`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `viability_explicit_level` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms viability_explicit_level` |
-| `viability_nonneg_initial` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms viability_nonneg_initial` |
+| `CampaignQcvConditionalViabilityCertificate.viability_explicit_level` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignQcvConditionalViabilityCertificate.viability_explicit_level` |
+| `CampaignQcvConditionalViabilityCertificate.viability_nonneg_initial` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignQcvConditionalViabilityCertificate.viability_nonneg_initial` |
 
 - counts toward the grade: yes
 
@@ -106,7 +110,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md`
 
 - file: [dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md](../../../dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md)
-- sha256 (`lf-normalised`): `e15baadecfe6f5208f1f9596410bd975dbe184ef23fa717bd13d5a5f72f2262a`
+- sha256 (`lf-normalised`): `41490bfbe3d791f1db4c3a40163fa245fda7bfd574b2c96809cb014dd4ccaa66`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1324
 - counts toward the grade: no
@@ -129,7 +133,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `APP-R-QCV-CONDITIONAL-VIABILITY-CERTIFICATE` `DERIVED_LEAN`: [QCV-OVERHEAD-GROWTH-CRITERION](QCV-OVERHEAD-GROWTH-CRITERION.md) (PROVED_LEAN), [QCV-NET-RATE-BACKLOG-DICHOTOMY](QCV-NET-RATE-BACKLOG-DICHOTOMY.md) (PROVED_LEAN), [QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY](QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY.md) (PROVED_LEAN)
+- `APP-R-QCV-CONDITIONAL-VIABILITY-CERTIFICATE` `CONDITIONAL_ON_IMPORT`: [QCV-OVERHEAD-GROWTH-CRITERION](QCV-OVERHEAD-GROWTH-CRITERION.md) (PROVED_LEAN), [QCV-NET-RATE-BACKLOG-DICHOTOMY](QCV-NET-RATE-BACKLOG-DICHOTOMY.md) (PROVED_LEAN), [QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY](QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY.md) (PROVED_LEAN)
 
 Outgoing (2):
 
