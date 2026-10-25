@@ -18107,19 +18107,34 @@
       "stage": "WDP",
       "status": "OPEN",
       "source_status": "WDP monograph §4.8 WDP-CH04-D02 vs 007 LGGR series §4 and lesson 1000_01 §3; adapter owed",
-      "statement": "WDP hands onward a declared, certified degree-1 window: Φ₁([h]) = Φ_J([h]), the quotient infimum over repairs, certified for weighted ℓ¹ over ℚ by a matching repair and bounded circulation; Γ₂([h]) = ‖d₁h‖₁; the diagnostic trichotomy; and the observer discipline that a protected question passes through a report only when constant on its fibres. The 007 Local-Green/Global-Red series refuses the case in which every local check passes and the global check fails, and its Symbol Game integration sets the global verdict to 0 when Φ₁ > 0 or Γ₂ > 0, but it writes Φ₁(h) = ‖d₀h‖₁ (boundary leakage), which is not WDP's quotient infimum. The 007 lesson states that no automatic identification with the PFP quantities phi1 or gamma2 is supplied, so an adapter from WDP's quotient Φ₁ and Γ₂ to the LGGR global evaluator is owed. The DAG's next stage is L1_EMERGENCE (TFQ-0005 declared L1 sector weights, TFQ-0349).",
+      "statement": "Narrowed boundary, status left OPEN. On one triangle with edges (01, 12, 02) and unit integer weights, the coboundary of vertex values (f0, f1, f2) is (f1 - f0, f2 - f1, f2 - f0), and the face of an edge triple (x01, x12, x02) is x01 + x12 - x02. For every integer edge triple and every integer vertex repair, the unit l1 length of the residual is at least the absolute face value. When the face is negative, the repair (0, h01, h01 + h12) leaves residual (0, 0, -face); otherwise the repair (0, h01 - face, h02) leaves residual (face, 0, 0). Both residuals have unit l1 length equal to the absolute face value, so on this triangle that length is the distance to integer coboundaries. A face of 0 means the edge triple is the coboundary of the non-negative repair. Vertex values (0, 1, 0) have coboundary l1 length 2, the edge triple (1, -1, 0) is that coboundary, and the residual of (1, -1, 0) against itself has length 0, so 2 is not the quotient value. The edge triple (1, 0, 0) has face 1. The verdict of (1, 1) is 0 and the verdict of (0, 0) is 1. Equal fibre decisions (1, 1) pass and (0, 1) does not.",
       "source": [
         "dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:1487-1498",
         "omega_engine_education/documentation/007_oelggr/local_green_global_red_foundational_series.md:147-161",
-        "omega_engine_education/documentation/007_oelggr/curriculum/1000_local_green_global_red_foundations/concepts/lesson_1000_01_local_green_global_red_foundations.md:116-120"
+        "omega_engine_education/documentation/007_oelggr/curriculum/1000_local_green_global_red_foundations/concepts/lesson_1000_01_local_green_global_red_foundations.md:116-120",
+        "dag/derivations/independent/pgw-wdp-handoff-to-l1.md:5",
+        "dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json:6"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignPgwWdpHandoffToL1.lean::distance_at_least",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::repair_residual_neg",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::repair_residual_nonneg",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::meet_neg",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::meet_nonneg",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::face_zero_is_coboundary",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::leakage_is_not_quotient",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::face_of_obstruction",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::obstructed_verdict",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::closed_verdict",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::equal_report_passes",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::unequal_report_fails"
+      ],
       "rust": [
         "omega_engine/crates_rs/omega_local_green_global_red_lggr/src/ledger.rs::register_stabilized_family"
       ],
       "imported_structure": [],
-      "bottleneck": "Terminal for the WDP stage: it does not identify WDP's Φ₁ with 007's ‖d₀h‖₁ (the LGGR crate's register_stabilized_family consumes verified quotient Φ₁ evidence for ClosedResidual families only), does not make Φ₁ or Γ₂ sector weights or a quantum state (TFQ-0004), and does not derive the L1 stage.",
+      "bottleneck": "Terminal for the WDP stage on the original window. This triangle case does not identify WDP's quotient value with 007's coboundary length (the LGGR crate's register_stabilized_family consumes verified quotient evidence for ClosedResidual families only), does not make the two window quantities sector weights or a quantum state (TFQ-0004), and does not derive the L1 stage. The weighted certificate over the rationals, the bounded-circulation dual on a general carrier, the LGGR adapter, sector weights, general complexes, and the full diagnostic trichotomy stay open. A face of 0 is an integer coboundary on this triangle only.",
       "tags": [
         "pregenesis-to-wdp",
         "TFQ-0558",
@@ -56061,6 +56076,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md",
         "lean4/H006PermutationUnitary.lean",
         "dag/derivations/independent/l1-imp-sector-symmetry-law.md",
         "checks/independent/l1-imp-sector-symmetry-law.py",
@@ -56807,7 +56824,11 @@
         "FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md"
+        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md"
       ],
       "id": "TFQ-1021",
       "lean4": [
@@ -57723,6 +57744,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md",
         "lean4/FiniteWignerTheorem.lean",
         "dag/derivations/independent/l1-imp-transition-probability-law.md",
         "dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json",
@@ -57769,7 +57792,12 @@
         "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md"
+        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md"
       ],
       "id": "TFQ-1048",
       "lean4": [
@@ -62442,14 +62470,26 @@
       ],
       "id": "TFQ-0558",
       "lean4": [
-        "absent: no Lean statement of an adapter from the WDP quotient Phi1 to the LGGR evaluator defect"
+        "lean4/CampaignPgwWdpHandoffToL1.lean::distance_at_least",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::repair_residual_neg",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::repair_residual_nonneg",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::meet_neg",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::meet_nonneg",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::face_zero_is_coboundary",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::leakage_is_not_quotient",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::face_of_obstruction",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::obstructed_verdict",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::closed_verdict",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::equal_report_passes",
+        "lean4/CampaignPgwWdpHandoffToL1.lean::unequal_report_fails"
       ],
       "local_id": "PGW-WDP-HANDOFF-TO-L1",
       "name": "wdp-handoff-to-l1",
-      "obligation": "Hand onward only the certified window values (Φ₁ as the quotient infimum with its certificate, Γ₂, the diagnostic class) and the report-fibre discipline, and supply a checked adapter before any LGGR verdict reads Φ₁ as ‖d₀h‖₁.",
+      "obligation": "Keep the certified window open beyond this triangle: weighted l1 over the rationals, a bounded-circulation dual on a general carrier, the second coboundary diagnostic, and a checked adapter before any LGGR verdict reads the quotient value as a coboundary length.",
       "parent_id": "TFQ-0557",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature",
+        "checks/independent/pgw-wdp-handoff-to-l1.py::main"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
@@ -62457,7 +62497,7 @@
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",
-      "summary": "WDP hands onward a declared, certified degree-1 window: Φ₁([h]) = Φ_J([h]), the quotient infimum over repairs, certified for weighted ℓ¹ over ℚ by a matching repair and bounded circulation; Γ₂([h]) = ‖d₁h‖₁; the diagnostic trichotomy; and the observer discipline that a protected question passes through a report only when constant on its fibres. The 007 Local-Green/Global-Red series refuses the case in which every local check passes and the global check fails, and its Symbol Game integration sets the global verdict to 0 when Φ₁ > 0 or Γ₂ > 0, but it writes Φ₁(h) = ‖d₀h‖₁ (boundary leakage), which is not WDP's quotient infimum. The 007 lesson states that no automatic identification with the PFP quantities phi1 or gamma2 is supplied, so an adapter from WDP's quotient Φ₁ and Γ₂ to the LGGR global evaluator is owed. The DAG's next stage is L1_EMERGENCE (TFQ-0005 declared L1 sector weights, TFQ-0349).",
+      "summary": "Narrowed boundary, status left OPEN. On one triangle with edges (01, 12, 02) and unit integer weights, the coboundary of vertex values (f0, f1, f2) is (f1 - f0, f2 - f1, f2 - f0), and the face of an edge triple (x01, x12, x02) is x01 + x12 - x02. For every integer edge triple and every integer vertex repair, the unit l1 length of the residual is at least the absolute face value. When the face is negative, the repair (0, h01, h01 + h12) leaves residual (0, 0, -face); otherwise the repair (0, h01 - face, h02) leaves residual (face, 0, 0). Both residuals have unit l1 length equal to the absolute face value, so on this triangle that length is the distance to integer coboundaries. A face of 0 means the edge triple is the coboundary of the non-negative repair. Vertex values (0, 1, 0) have coboundary l1 length 2, the edge triple (1, -1, 0) is that coboundary, and the residual of (1, -1, 0) against itself has length 0, so 2 is not the quotient value. The edge triple (1, 0, 0) has face 1. The verdict of (1, 1) is 0 and the verdict of (0, 0) is 1. Equal fibre decisions (1, 1) pass and (0, 1) does not.",
       "uuid": "315f5352-fe40-5e3f-89d1-0633412de97d"
     },
     {
