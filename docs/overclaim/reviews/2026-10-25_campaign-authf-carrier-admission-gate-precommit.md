@@ -10,6 +10,7 @@ Corrections to the PR's own text:
 - None. The standing statement is one direct-candidate slice, not the whole candidate inventory and not a refusal of every selection.
 
 ## Per-node table
+
 | Node | Declarations that discharge it | Verdict | Reason |
 |---|---|---|---|
 | AUTHF-CARRIER-ADMISSION-GATE | `directCeilings` (lean4/CampaignAuthfCarrierAdmissionGate.lean:18), `directNotSelected` (lean4/CampaignAuthfCarrierAdmissionGate.lean:24) | FULL | Each atomic clause of the standing statement is a conjunct of one of those two types. Axiom lines at lean4/CampaignAuthfCarrierAdmissionGate.lean:26 and :27 are empty. |
@@ -22,6 +23,7 @@ Atomic clauses of the standing statement:
 Left in the obligation (dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md:17): adequacy, replay closure, extensionality, nontriviality, effective reduction, the other three candidate identifiers, a frozen carrier, and a Rice-style claim. The structural validator over the whole JSON record stays with the cited Python check.
 
 ## Numbers recomputed
+
 | Where | Claimed | Recomputed (method) | Match |
 |---|---|---|---|
 | Standing statement | open, AIT-DTM0, partial, partial, partial, open, selected false | `checks/independent/authf-carrier-admission-gate.py` | match |

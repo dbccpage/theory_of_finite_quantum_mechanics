@@ -1,0 +1,60 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:41:40.655617+00:00",
+  "review_base": "7d4fdf37343d238fce4b81f097e1b7a970954014",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: AUTHF-CARRIER-ADMISSION-GATE — Narrowed: one direct-candidate ceiling slice; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignAuthfCarrierAdmissionGate.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignAuthfCarrierAdmissionGate",
+        "dag_node": "AUTHF-CARRIER-ADMISSION-GATE",
+        "source": "lean4/CampaignAuthfCarrierAdmissionGate.lean",
+        "sha256": "4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23",
+        "sha256_after_build": "4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignAuthfCarrierAdmissionGate.directCeilings",
+          "CampaignAuthfCarrierAdmissionGate.directNotSelected"
+        ],
+        "axioms": {
+          "CampaignAuthfCarrierAdmissionGate.directCeilings": [],
+          "CampaignAuthfCarrierAdmissionGate.directNotSelected": []
+        },
+        "output": "'CampaignAuthfCarrierAdmissionGate.directCeilings' does not depend on any axioms\n'CampaignAuthfCarrierAdmissionGate.directNotSelected' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/authf-carrier-admission-gate.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.013,
+    "output": "record_open: True\ndirect_id: True\ndirect_partial: True\nsyntax_partial: True\nexecution_partial: True\nuniversality_open: True\nselected_false: True\nopen_length_4: True\npartial_length_7: True\nid_length_8: True\nfailures=0\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/372/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.178,
+    "output": ""
+  }
+}

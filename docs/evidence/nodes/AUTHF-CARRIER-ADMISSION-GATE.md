@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignAuthfCarrierAdmissionGate.lean](../../../lean4/CampaignAuthfCarrierAdmissionGate.lean)
 - sha256 (`bytes`): `4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23`
-- cited in: node.lean, receipt dag/research/campaign_authf-carrier-admission-gate_lean_replay.json (CampaignAuthfCarrierAdmissionGate), record TFQ-1362
+- cited in: node.lean, receipt dag/research/campaign_authf-carrier-admission-gate_lean_replay.json (CampaignAuthfCarrierAdmissionGate), receipt dag/research/pr_372_review_replay.json (CampaignAuthfCarrierAdmissionGate), record TFQ-1362
 - replay: `verified`
   - receipt [dag/research/campaign_authf-carrier-admission-gate_lean_replay.json](../../../dag/research/campaign_authf-carrier-admission-gate_lean_replay.json) (module `CampaignAuthfCarrierAdmissionGate`): recorded sha256 `4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_372_review_replay.json](../../../dag/research/pr_372_review_replay.json) (module `CampaignAuthfCarrierAdmissionGate`): recorded sha256 `4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignAuthfCarrierAdmissionGate`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
