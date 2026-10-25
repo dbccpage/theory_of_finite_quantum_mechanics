@@ -20,7 +20,7 @@
     ]
   },
   "current_contract": "76af76a36b51b746f462225ad36dca8f5ac46c8340451575afcda0988de6b2bf",
-  "current_scoring": "97141b04c95f7cd33cee0eb409b391707239e84040cc94f7f962ddbe8dbc067b",
+  "current_scoring": "5d618f87375a1290b9980407f5b551966c7762d5c8cf3213ea98dfccf56732da",
   "contract_history": [
     {
       "sha256": "594fe19896cee567ee6e1fc41624d43fb1cc92e8c6e80b82038a6b915a5f4464",
@@ -190,6 +190,134 @@
         }
       },
       "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/pgw-declared-input-floor.py\",\n    \"sha256\": \"42f9c4058b3a13efa1af04d13ed1672d0e0dce23fab947375164f8a38c428333\"\n  },\n  \"assessment_id\": \"independent-checker-review-2026-10-24\",\n  \"basis\": {\n    \"G1\": \"Finite scope explicitly separated from the formal theorem and original scientific target.\",\n    \"G2\": \"Integer and Fraction operations with exact finite generated inputs; no float-derived Fraction or arbitrary user input is part of this CLI.\",\n    \"G3\": \"No network or shell execution in the inspected checker; explicit comparisons work with optimization enabled. Internal helpers are not a public validated-data API.\",\n    \"G4\": \"Fresh normal and optimized stdout and case counts exactly match the original-head independent replay. No independent mutation certificate is claimed.\",\n    \"G5\": \"Measured per-function complexity, nesting, strict mypy 1.18.2 and quiet import are in the source-bound receipt. Actual E-range metrics retain E. Typing diagnostics remain visible as an audit deficit; missing annotations alone do not demonstrate an E-level counterexample (SCORING section 1.4).\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-25T01:57:50.030127+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr_318_python_checker_review.json\",\n      \"sha256\": \"fba47efa2058906627490746d059c2222d59a32a8d83fd22b61b4a12cc1175ab\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Standalone bounded exact checking algorithm; no production architecture or admission lifecycle.\",\n  \"mutation_accounting\": {\n    \"detection_fraction\": null,\n    \"equivalent\": 0,\n    \"generated\": 0,\n    \"inconclusive\": 0,\n    \"invalid\": 0,\n    \"killed\": 0,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "original_paths": [
+        "checks/independent/pgw-declared-input-floor.py#assessment"
+      ]
+    },
+    {
+      "sha256": "280c4a93f55e7ea58e8cbd0a5511c8515a6e03ed6949810fe94bd2d0eeee4f3d",
+      "bytes": 2627,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "checks/independent/pgw-declared-input-floor.py",
+          "sha256": "98956050fb938c093d9fa9beab28ca52c8cb1cbe64d40775e28d4dd12333d4ea",
+          "language": "Python"
+        },
+        "AuthorityEffect": "None",
+        "assessment_id": "pr318-historical-axiom-report-guard-failure",
+        "profile": "Exact",
+        "level": "L2",
+        "level_basis": "Standalone bounded exact checking algorithm; no production architecture or admission lifecycle.",
+        "gates": {
+          "G1": "D",
+          "G2": "E",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "basis": {
+          "G1": "Finite scope explicitly separated from the formal theorem and original scientific target.",
+          "G2": "Concrete counterexample: replacing pgwInput_eq_items by a duplicate pgwBounds_values report keeps the count eight and was accepted by the old guard. The source-bound regression records the old exit 0 and repaired exit 1. Required report identity was not checked.",
+          "G3": "No network or shell execution in the inspected checker; explicit comparisons work with optimization enabled. Internal helpers are not a public validated-data API.",
+          "G4": "The exact guard regression reproduces acceptance by the former guard and rejection by the corrected guard for one count-preserving duplicate-report mutation. Positive recovery, missing-report rejection, normal/optimized execution, quiet import and strict typing are retained. This is not a broad mutation-coverage certificate.",
+          "G5": "Measured per-function complexity, nesting, strict mypy 1.18.2 and quiet import are in the source-bound receipt. Actual E-range metrics retain E. Typing diagnostics remain visible as an audit deficit; missing annotations alone do not demonstrate an E-level counterexample (SCORING section 1.4)."
+        },
+        "composite_grade": "E",
+        "score_token": "L2E",
+        "is_complete": true,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-25T02:01:46.195488+00:00",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "evidence": [
+          {
+            "path": "dag/research/pr_318_python_checker_review.json",
+            "sha256": "bb07c0d156e263dfb600a7e9cb3e8b776edce3d58f80f5aa27845b0ea2e45d58"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-24_pr-318-axiom-report-regression.json",
+            "sha256": "ad58d2bad3fb0289970976992d13b615e701468d18a8b36638e6f747910f71af"
+          }
+        ],
+        "mutation_accounting": {
+          "generated": 1,
+          "killed": 1,
+          "survived": 0,
+          "equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "detection_fraction": 1.0
+        }
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/pgw-declared-input-floor.py\",\n    \"sha256\": \"98956050fb938c093d9fa9beab28ca52c8cb1cbe64d40775e28d4dd12333d4ea\"\n  },\n  \"assessment_id\": \"pr318-historical-axiom-report-guard-failure\",\n  \"basis\": {\n    \"G1\": \"Finite scope explicitly separated from the formal theorem and original scientific target.\",\n    \"G2\": \"Concrete counterexample: replacing pgwInput_eq_items by a duplicate pgwBounds_values report keeps the count eight and was accepted by the old guard. The source-bound regression records the old exit 0 and repaired exit 1. Required report identity was not checked.\",\n    \"G3\": \"No network or shell execution in the inspected checker; explicit comparisons work with optimization enabled. Internal helpers are not a public validated-data API.\",\n    \"G4\": \"The exact guard regression reproduces acceptance by the former guard and rejection by the corrected guard for one count-preserving duplicate-report mutation. Positive recovery, missing-report rejection, normal/optimized execution, quiet import and strict typing are retained. This is not a broad mutation-coverage certificate.\",\n    \"G5\": \"Measured per-function complexity, nesting, strict mypy 1.18.2 and quiet import are in the source-bound receipt. Actual E-range metrics retain E. Typing diagnostics remain visible as an audit deficit; missing annotations alone do not demonstrate an E-level counterexample (SCORING section 1.4).\"\n  },\n  \"composite_grade\": \"E\",\n  \"evaluation_timestamp\": \"2026-10-25T02:01:46.195488+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr_318_python_checker_review.json\",\n      \"sha256\": \"bb07c0d156e263dfb600a7e9cb3e8b776edce3d58f80f5aa27845b0ea2e45d58\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_pr-318-axiom-report-regression.json\",\n      \"sha256\": \"ad58d2bad3fb0289970976992d13b615e701468d18a8b36638e6f747910f71af\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"E\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Standalone bounded exact checking algorithm; no production architecture or admission lifecycle.\",\n  \"mutation_accounting\": {\n    \"detection_fraction\": 1.0,\n    \"equivalent\": 0,\n    \"generated\": 1,\n    \"inconclusive\": 0,\n    \"invalid\": 0,\n    \"killed\": 1,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2E\"\n}\n",
+      "original_paths": [
+        "checks/independent/pgw-declared-input-floor.py#historical-guard-failure"
+      ]
+    },
+    {
+      "sha256": "5d618f87375a1290b9980407f5b551966c7762d5c8cf3213ea98dfccf56732da",
+      "bytes": 2617,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "checks/independent/pgw-declared-input-floor.py",
+          "sha256": "42f9c4058b3a13efa1af04d13ed1672d0e0dce23fab947375164f8a38c428333",
+          "language": "Python"
+        },
+        "AuthorityEffect": "None",
+        "assessment_id": "independent-checker-review-2026-10-24",
+        "profile": "Exact",
+        "level": "L2",
+        "level_basis": "Standalone bounded exact checking algorithm; no production architecture or admission lifecycle.",
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "basis": {
+          "G1": "Finite scope explicitly separated from the formal theorem and original scientific target.",
+          "G2": "Integer and Fraction operations with exact finite generated inputs; no float-derived Fraction or arbitrary user input is part of this CLI. The named axiom-report multiset must equal the expected declarations; a missing name cannot be replaced by a duplicate.",
+          "G3": "No network or shell execution in the inspected checker; explicit comparisons work with optimization enabled. Internal helpers are not a public validated-data API.",
+          "G4": "The exact guard regression reproduces acceptance by the former guard and rejection by the corrected guard for one count-preserving duplicate-report mutation. Positive recovery, missing-report rejection, normal/optimized execution, quiet import and strict typing are retained. This is not a broad mutation-coverage certificate.",
+          "G5": "Measured per-function complexity, nesting, strict mypy 1.18.2 and quiet import are in the source-bound receipt. Actual E-range metrics retain E. Typing diagnostics remain visible as an audit deficit; missing annotations alone do not demonstrate an E-level counterexample (SCORING section 1.4)."
+        },
+        "composite_grade": "D",
+        "score_token": "L2D",
+        "is_complete": true,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-25T02:01:46.195488+00:00",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "evidence": [
+          {
+            "path": "dag/research/pr_318_python_checker_review.json",
+            "sha256": "bb07c0d156e263dfb600a7e9cb3e8b776edce3d58f80f5aa27845b0ea2e45d58"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-24_pr-318-axiom-report-regression.json",
+            "sha256": "ad58d2bad3fb0289970976992d13b615e701468d18a8b36638e6f747910f71af"
+          }
+        ],
+        "mutation_accounting": {
+          "generated": 1,
+          "killed": 1,
+          "survived": 0,
+          "equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "detection_fraction": 1.0
+        }
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/pgw-declared-input-floor.py\",\n    \"sha256\": \"42f9c4058b3a13efa1af04d13ed1672d0e0dce23fab947375164f8a38c428333\"\n  },\n  \"assessment_id\": \"independent-checker-review-2026-10-24\",\n  \"basis\": {\n    \"G1\": \"Finite scope explicitly separated from the formal theorem and original scientific target.\",\n    \"G2\": \"Integer and Fraction operations with exact finite generated inputs; no float-derived Fraction or arbitrary user input is part of this CLI. The named axiom-report multiset must equal the expected declarations; a missing name cannot be replaced by a duplicate.\",\n    \"G3\": \"No network or shell execution in the inspected checker; explicit comparisons work with optimization enabled. Internal helpers are not a public validated-data API.\",\n    \"G4\": \"The exact guard regression reproduces acceptance by the former guard and rejection by the corrected guard for one count-preserving duplicate-report mutation. Positive recovery, missing-report rejection, normal/optimized execution, quiet import and strict typing are retained. This is not a broad mutation-coverage certificate.\",\n    \"G5\": \"Measured per-function complexity, nesting, strict mypy 1.18.2 and quiet import are in the source-bound receipt. Actual E-range metrics retain E. Typing diagnostics remain visible as an audit deficit; missing annotations alone do not demonstrate an E-level counterexample (SCORING section 1.4).\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-25T02:01:46.195488+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr_318_python_checker_review.json\",\n      \"sha256\": \"bb07c0d156e263dfb600a7e9cb3e8b776edce3d58f80f5aa27845b0ea2e45d58\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_pr-318-axiom-report-regression.json\",\n      \"sha256\": \"ad58d2bad3fb0289970976992d13b615e701468d18a8b36638e6f747910f71af\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Standalone bounded exact checking algorithm; no production architecture or admission lifecycle.\",\n  \"mutation_accounting\": {\n    \"detection_fraction\": 1.0,\n    \"equivalent\": 0,\n    \"generated\": 1,\n    \"inconclusive\": 0,\n    \"invalid\": 0,\n    \"killed\": 1,\n    \"survived\": 0,\n    \"unrun\": 0\n  },\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
       "original_paths": [
         "checks/independent/pgw-declared-input-floor.py#assessment"
       ]

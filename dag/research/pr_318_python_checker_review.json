@@ -28,8 +28,8 @@
   },
   "previous_receipt": {
     "prior_logical_path": "dag/research/pr_318_python_checker_review.json",
-    "sha256": "31faea8219f723fcbd604ad9107a6741dcf5cc495e40e66871e5a57f328dc79b",
-    "retained_at": "dag/research/pr_318_python_checker_prior_31faea8219f723fc.json"
+    "sha256": "fba47efa2058906627490746d059c2222d59a32a8d83fd22b61b4a12cc1175ab",
+    "retained_at": "dag/research/pr_318_python_checker_prior_fba47efa20589066.json"
   },
   "source_changed": false,
   "comparison_and_iteration_AST_multisets_unchanged": true,
@@ -45,7 +45,7 @@
         "checks/independent/pgw-declared-input-floor.py"
       ],
       "exit_code": 0,
-      "seconds": 0.1,
+      "seconds": 0.18,
       "output": "checked 39 claims, failures 0\r\n"
     },
     "optimized": {
@@ -58,7 +58,7 @@
         "checks/independent/pgw-declared-input-floor.py"
       ],
       "exit_code": 0,
-      "seconds": 0.58,
+      "seconds": 0.36,
       "output": "checked 39 claims, failures 0\r\n"
     },
     "quiet_import": {
@@ -72,7 +72,7 @@
         "import contextlib,importlib.util,io,pathlib,sys; p=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics\\\\checks\\\\independent\\\\pgw-declared-input-floor.py'); root=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics'); s=importlib.util.spec_from_file_location(\"reviewed_checker\",p); m=importlib.util.module_from_spec(s); out=io.StringIO();\ndef audit(event,args):\n if event==\"open\" and isinstance(args[0],str):\n  q=pathlib.Path(args[0]).resolve()\n  if q.is_relative_to(root) and q!=p and q.suffix!=\".pyc\": raise RuntimeError(\"Import read repository evidence: \"+str(q))\nsys.addaudithook(audit)\ntry:\n with contextlib.redirect_stdout(out),contextlib.redirect_stderr(out): s.loader.exec_module(m)\nexcept SystemExit as exc: raise RuntimeError(\"Import raised SystemExit\") from exc\nif out.getvalue(): raise RuntimeError(\"Import executed checker output: \"+out.getvalue())\n"
       ],
       "exit_code": 0,
-      "seconds": 0.1,
+      "seconds": 0.16,
       "output": ""
     },
     "typing_tool": {
@@ -84,7 +84,7 @@
         "--version"
       ],
       "exit_code": 0,
-      "seconds": 0.46,
+      "seconds": 0.83,
       "output": "mypy 1.18.2 (compiled: yes)\r\n"
     },
     "strict_typing": {
@@ -102,7 +102,7 @@
         "checks/independent/pgw-declared-input-floor.py"
       ],
       "exit_code": 0,
-      "seconds": 1.54,
+      "seconds": 2.11,
       "output": "Success: no issues found in 1 source file\r\n"
     }
   },
@@ -112,14 +112,21 @@
   "typing_configuration": "[mypy]\nstrict = True\npython_version = 3.14\n",
   "structural_change": "None",
   "mutation_accounting": {
-    "generated": 0,
-    "killed": 0,
+    "generated": 1,
+    "killed": 1,
     "survived": 0,
     "equivalent": 0,
     "invalid": 0,
     "inconclusive": 0,
     "unrun": 0,
-    "detection_fraction": null
+    "detection_fraction": 1.0
   },
-  "acceptance": "Blocked below L4; failed checks remain failures."
+  "acceptance": "Blocked below L4; failed checks remain failures.",
+  "checker_guard_repair": {
+    "path": "docs/overclaim/reviews/2026-10-24_pr-318-axiom-report-regression.json",
+    "sha256": "ad58d2bad3fb0289970976992d13b615e701468d18a8b36638e6f747910f71af",
+    "historical_guard_failure": "Duplicate report passed when another required report was missing."
+  },
+  "guard_failure_source_sha256": "98956050fb938c093d9fa9beab28ca52c8cb1cbe64d40775e28d4dd12333d4ea",
+  "mutation_scope": "One count-preserving duplicate-report mutation; no broader coverage claim."
 }
