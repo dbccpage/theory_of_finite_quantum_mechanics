@@ -8684,21 +8684,25 @@
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_claimed_status": "OPEN",
-      "statement": "The tape of the halting TM0 configuration of M0 from initCfg0 should read the value of Code.eval c n; Mathlib gives this only existentially through TM2to1.tr_eval and is not composed here.",
-      "obligation": "Prove v in Code.eval c n iff M0 halts from initCfg0 with the encoded v on its output tape.",
+      "statement": "For every natural number v, writing v into the blank cell that is not halted and holds 0 equals the halted cell that holds v. For every natural number v and every natural number n, evalConst v n equals v, and the value written into that blank cell equals evalConst v n.",
+      "obligation": "Still open: a natural number v lies in Code.eval c n exactly when M0 halts from initCfg0 with the encoded v on its output tape.",
       "imported_structure": [],
       "parent_nodes": [
         "COMP-C6-TM0-HALTING-EQUIVALENCE"
       ],
       "parent_record": "TFQ-1305",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignCompC6Tm0OutputFormOpen.lean::writeHaltFromBlank",
+        "lean4/CampaignCompC6Tm0OutputFormOpen.lean::evalConstReturns",
+        "lean4/CampaignCompC6Tm0OutputFormOpen.lean::constAgrees"
+      ],
       "rust": [],
       "python": [],
       "external_witnesses": [],
       "sources": [
         "dag/research/genesis_to_universal_computation.md:127-127"
       ],
-      "audit": "Only the TM2 output form (tm2_computes_eval) and the TM0 halting form are proved.",
+      "audit": "CampaignCompC6Tm0OutputFormOpen records one blank-cell writer and the constant evaluator evalConst. It does not compose Mathlib TM2to1.tr_eval with M0.",
       "see_also": [
         "COMP-C6-TM2-OUTPUT-FORM",
         "COMP-C6-TM0-HALTING-EQUIVALENCE"

@@ -11290,9 +11290,9 @@ Obligation: The size of S0 is not computed and the machine is not claimed small.
 - DAG node: `COMP-C6-TM0-OUTPUT-FORM-OPEN`
 - Paper: [derivation](derivations/29_computation/tfq_1307_comp_c6_tm0_output_form_open.md)
 
-The tape of the halting TM0 configuration of M0 from initCfg0 should read the value of Code.eval c n; Mathlib gives this only existentially through TM2to1.tr_eval and is not composed here.
+For every natural number v, writing v into the blank cell that is not halted and holds 0 equals the halted cell that holds v. For every natural number v and every natural number n, evalConst v n equals v, and the value written into that blank cell equals evalConst v n.
 
-Obligation: Prove v in Code.eval c n iff M0 halts from initCfg0 with the encoded v on its output tape.
+Obligation: Still open: a natural number v lies in Code.eval c n exactly when M0 halts from initCfg0 with the encoded v on its output tape.
 
 ### TFQ-1308 Halting of the fixed machine on the start family is not computable
 

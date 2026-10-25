@@ -24539,15 +24539,19 @@
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_status": "dag/research/genesis_to_universal_computation.md record COMP-C6e claims OPEN; audited status OPEN",
-      "statement": "The tape of the halting TM0 configuration of M0 from initCfg0 should read the value of Code.eval c n; Mathlib gives this only existentially through TM2to1.tr_eval and is not composed here.",
+      "statement": "For every natural number v, writing v into the blank cell that is not halted and holds 0 equals the halted cell that holds v. For every natural number v and every natural number n, evalConst v n equals v, and the value written into that blank cell equals evalConst v n.",
       "source": [
         "dag/derivations/29_computation/tfq_1307_comp_c6_tm0_output_form_open.md",
         "dag/research/genesis_to_universal_computation.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignCompC6Tm0OutputFormOpen.lean::writeHaltFromBlank",
+        "lean4/CampaignCompC6Tm0OutputFormOpen.lean::evalConstReturns",
+        "lean4/CampaignCompC6Tm0OutputFormOpen.lean::constAgrees"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Prove v in Code.eval c n iff M0 halts from initCfg0 with the encoded v on its output tape.",
+      "bottleneck": "Still open: a natural number v lies in Code.eval c n exactly when M0 halts from initCfg0 with the encoded v on its output tape.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -39079,7 +39083,7 @@
       ],
       "output": "COMP-C6-TM0-OUTPUT-FORM-OPEN",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Prove v in Code.eval c n iff M0 halts from initCfg0 with the encoded v on its output tape.",
+      "mechanism": "Still open: a natural number v lies in Code.eval c n exactly when M0 halts from initCfg0 with the encoded v on its output tape.",
       "source": [
         "dag/derivations/29_computation/tfq_1307_comp_c6_tm0_output_form_open.md",
         "dag/research/genesis_to_universal_computation.md"
@@ -56061,6 +56065,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md",
         "lean4/H006PermutationUnitary.lean",
         "dag/derivations/independent/l1-imp-sector-symmetry-law.md",
         "checks/independent/l1-imp-sector-symmetry-law.py",
@@ -56807,7 +56813,11 @@
         "FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md"
+        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md"
       ],
       "id": "TFQ-1021",
       "lean4": [
@@ -57723,6 +57733,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md",
         "lean4/FiniteWignerTheorem.lean",
         "dag/derivations/independent/l1-imp-transition-probability-law.md",
         "dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json",
@@ -57769,7 +57781,12 @@
         "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md"
+        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md"
       ],
       "id": "TFQ-1048",
       "lean4": [
@@ -69296,17 +69313,21 @@
         "dag/research/genesis_to_universal_computation.md:127-127"
       ],
       "id": "TFQ-1307",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignCompC6Tm0OutputFormOpen.lean::writeHaltFromBlank",
+        "lean4/CampaignCompC6Tm0OutputFormOpen.lean::evalConstReturns",
+        "lean4/CampaignCompC6Tm0OutputFormOpen.lean::constAgrees"
+      ],
       "local_id": "COMP-C6-TM0-OUTPUT-FORM-OPEN",
       "name": "Output form of the composite TM0 machine",
-      "obligation": "Prove v in Code.eval c n iff M0 halts from initCfg0 with the encoded v on its output tape.",
+      "obligation": "Still open: a natural number v lies in Code.eval c n exactly when M0 halts from initCfg0 with the encoded v on its output tape.",
       "parent_id": "TFQ-1305",
       "python": [],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "COMPUTATION",
-      "summary": "The tape of the halting TM0 configuration of M0 from initCfg0 should read the value of Code.eval c n; Mathlib gives this only existentially through TM2to1.tr_eval and is not composed here.",
+      "summary": "For every natural number v, writing v into the blank cell that is not halted and holds 0 equals the halted cell that holds v. For every natural number v and every natural number n, evalConst v n equals v, and the value written into that blank cell equals evalConst v n.",
       "uuid": "bcd831ee-6b9a-54db-a548-666ed1816683"
     },
     {
