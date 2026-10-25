@@ -64,7 +64,7 @@ theorem declared_bounds :
 theorem empty_carrier_is_not_among_the_four :
     count false false = 0 ∧
       count false false < count true false ∧
-      engines.all (fun p => decide (p = (false, false))) = false := by
+      engines.all (fun p => decide (p ≠ (false, false))) = true := by
   decide
 
 #print axioms vocabulary_is_two

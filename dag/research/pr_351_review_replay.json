@@ -1,0 +1,72 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:12:37.251998+00:00",
+  "review_base": "d4093ff106c02dfc81169eac6b9b7f92b73c60d3",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: PGW-DECLARED-INPUT-FLOOR — Narrowed: four stake-only carriers have count 1; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignPgwDeclaredInputFloor.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignPgwDeclaredInputFloor",
+        "dag_node": "PGW-DECLARED-INPUT-FLOOR",
+        "source": "lean4/CampaignPgwDeclaredInputFloor.lean",
+        "sha256": "90c4a432513ea82d1dddb40985300b11698a5045ac7109b1e26265496bdecb42",
+        "sha256_after_build": "90c4a432513ea82d1dddb40985300b11698a5045ac7109b1e26265496bdecb42",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignPgwDeclaredInputFloor.vocabulary_is_two",
+          "CampaignPgwDeclaredInputFloor.four_engines",
+          "CampaignPgwDeclaredInputFloor.each_declares_stake_not_stream",
+          "CampaignPgwDeclaredInputFloor.each_count_is_one",
+          "CampaignPgwDeclaredInputFloor.one_below_two",
+          "CampaignPgwDeclaredInputFloor.readings_disagree",
+          "CampaignPgwDeclaredInputFloor.declared_bounds",
+          "CampaignPgwDeclaredInputFloor.empty_carrier_is_not_among_the_four"
+        ],
+        "axioms": {
+          "CampaignPgwDeclaredInputFloor.vocabulary_is_two": [],
+          "CampaignPgwDeclaredInputFloor.four_engines": [],
+          "CampaignPgwDeclaredInputFloor.each_declares_stake_not_stream": [],
+          "CampaignPgwDeclaredInputFloor.each_count_is_one": [],
+          "CampaignPgwDeclaredInputFloor.one_below_two": [],
+          "CampaignPgwDeclaredInputFloor.readings_disagree": [],
+          "CampaignPgwDeclaredInputFloor.declared_bounds": [],
+          "CampaignPgwDeclaredInputFloor.empty_carrier_is_not_among_the_four": []
+        },
+        "output": "'CampaignPgwDeclaredInputFloor.vocabulary_is_two' does not depend on any axioms\n'CampaignPgwDeclaredInputFloor.four_engines' does not depend on any axioms\n'CampaignPgwDeclaredInputFloor.each_declares_stake_not_stream' does not depend on any axioms\n'CampaignPgwDeclaredInputFloor.each_count_is_one' does not depend on any axioms\n'CampaignPgwDeclaredInputFloor.one_below_two' does not depend on any axioms\n'CampaignPgwDeclaredInputFloor.readings_disagree' does not depend on any axioms\n'CampaignPgwDeclaredInputFloor.declared_bounds' does not depend on any axioms\n'CampaignPgwDeclaredInputFloor.empty_carrier_is_not_among_the_four' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/pgw-declared-input-floor.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.013,
+    "output": "checked 17 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/351/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.234,
+    "output": ""
+  }
+}

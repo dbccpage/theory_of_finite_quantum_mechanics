@@ -45,10 +45,11 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignPgwDeclaredInputFloor.lean`
 
 - file: [lean4/CampaignPgwDeclaredInputFloor.lean](../../../lean4/CampaignPgwDeclaredInputFloor.lean)
-- sha256 (`bytes`): `2c1dc5198350c5d293c4d994ee4ca8abd0113a2fcd01d8fa05087c40a6fea201`
-- cited in: node.lean, receipt dag/research/campaign_pgw-declared-input-floor_lean_replay.json (CampaignPgwDeclaredInputFloor), record TFQ-0498
+- sha256 (`bytes`): `90c4a432513ea82d1dddb40985300b11698a5045ac7109b1e26265496bdecb42`
+- cited in: node.lean, receipt dag/research/campaign_pgw-declared-input-floor_lean_replay.json (CampaignPgwDeclaredInputFloor), receipt dag/research/pr_351_review_replay.json (CampaignPgwDeclaredInputFloor), record TFQ-0498
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-declared-input-floor_lean_replay.json](../../../dag/research/campaign_pgw-declared-input-floor_lean_replay.json) (module `CampaignPgwDeclaredInputFloor`): recorded sha256 `2c1dc5198350c5d293c4d994ee4ca8abd0113a2fcd01d8fa05087c40a6fea201` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/campaign_pgw-declared-input-floor_lean_replay.json](../../../dag/research/campaign_pgw-declared-input-floor_lean_replay.json) (module `CampaignPgwDeclaredInputFloor`): recorded sha256 `90c4a432513ea82d1dddb40985300b11698a5045ac7109b1e26265496bdecb42` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_351_review_replay.json](../../../dag/research/pr_351_review_replay.json) (module `CampaignPgwDeclaredInputFloor`): recorded sha256 `90c4a432513ea82d1dddb40985300b11698a5045ac7109b1e26265496bdecb42` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignPgwDeclaredInputFloor`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

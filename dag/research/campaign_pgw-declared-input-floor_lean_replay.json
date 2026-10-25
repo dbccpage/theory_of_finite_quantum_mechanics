@@ -1,35 +1,27 @@
 {
   "schema_version": "campaign_lean_replay.v1",
   "authority_effect": "None",
-  "checked_at": "2026-10-25",
-  "source_base": "7fa69d621c27bed7045d0b7fe34bbb1d34b27248",
-  "result": "Lean module CampaignPgwDeclaredInputFloor compiles under Lean 4.35.0 with pinned Mathlib v4.35.0, built through lake from the non-default CampaignPgwDeclaredInputFloor library. Printed axioms are among propext, Classical.choice and Quot.sound. The outcome is Narrowed: two named inputs and four stake-only carriers, not a floor for every carrier.",
-  "proof_boundary": "The vocabulary stake, stream has length 2. Four carriers each declare the stake and not the stream, so each count is 1, and 1 is below 2. On this family the floor reading is false and the one-input reading is true. The numerals 15, 250, 4, and 2 are recorded. A carrier that declares neither input has count 0 and is not one of the four. The attempt-two search is not replayed. The node stays OPEN.",
+  "checked_at": "2026-10-25T17:12:37.251998+00:00",
+  "review_base": "d4093ff106c02dfc81169eac6b9b7f92b73c60d3",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: PGW-DECLARED-INPUT-FLOOR — Narrowed: four stake-only carriers have count 1; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
   "lean_replay": {
-    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
-    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
-    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
-    "lakefile_sha256": "847b217bb169481b59e440a6bf7fc3b002aff5d414cead2c42be218bd02a77a7",
-    "library": "CampaignPgwDeclaredInputFloor (lean_lib in lean4/lakefile.lean; not a default target)",
-    "build_directory": "lean4/b (lakefile buildDir; removed with the worktree)",
-    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run)",
-    "command": "lake --no-cache -d lean4 build CampaignPgwDeclaredInputFloor",
-    "allowed_axioms": [
-      "propext",
-      "Classical.choice",
-      "Quot.sound"
-    ],
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignPgwDeclaredInputFloor.lean",
+    "cwd": ".",
     "results": [
       {
         "module": "CampaignPgwDeclaredInputFloor",
         "dag_node": "PGW-DECLARED-INPUT-FLOOR",
         "source": "lean4/CampaignPgwDeclaredInputFloor.lean",
-        "sha256": "2c1dc5198350c5d293c4d994ee4ca8abd0113a2fcd01d8fa05087c40a6fea201",
-        "sha256_after_build": "2c1dc5198350c5d293c4d994ee4ca8abd0113a2fcd01d8fa05087c40a6fea201",
+        "sha256": "90c4a432513ea82d1dddb40985300b11698a5045ac7109b1e26265496bdecb42",
+        "sha256_after_build": "90c4a432513ea82d1dddb40985300b11698a5045ac7109b1e26265496bdecb42",
         "source_unchanged_during_build": true,
         "exit_code": 0,
-        "seconds": 1.0,
+        "admission_scan_passed": true,
         "axiom_audit_passed": true,
+        "built_successfully": true,
         "anchors": [
           "CampaignPgwDeclaredInputFloor.vocabulary_is_two",
           "CampaignPgwDeclaredInputFloor.four_engines",
@@ -40,7 +32,6 @@
           "CampaignPgwDeclaredInputFloor.declared_bounds",
           "CampaignPgwDeclaredInputFloor.empty_carrier_is_not_among_the_four"
         ],
-        "anchors_reported": true,
         "axioms": {
           "CampaignPgwDeclaredInputFloor.vocabulary_is_two": [],
           "CampaignPgwDeclaredInputFloor.four_engines": [],
@@ -50,8 +41,89 @@
           "CampaignPgwDeclaredInputFloor.readings_disagree": [],
           "CampaignPgwDeclaredInputFloor.declared_bounds": [],
           "CampaignPgwDeclaredInputFloor.empty_carrier_is_not_among_the_four": []
-        }
+        },
+        "output": "'CampaignPgwDeclaredInputFloor.vocabulary_is_two' does not depend on any axioms\n'CampaignPgwDeclaredInputFloor.four_engines' does not depend on any axioms\n'CampaignPgwDeclaredInputFloor.each_declares_stake_not_stream' does not depend on any axioms\n'CampaignPgwDeclaredInputFloor.each_count_is_one' does not depend on any axioms\n'CampaignPgwDeclaredInputFloor.one_below_two' does not depend on any axioms\n'CampaignPgwDeclaredInputFloor.readings_disagree' does not depend on any axioms\n'CampaignPgwDeclaredInputFloor.declared_bounds' does not depend on any axioms\n'CampaignPgwDeclaredInputFloor.empty_carrier_is_not_among_the_four' does not depend on any axioms\n"
       }
     ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/pgw-declared-input-floor.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.013,
+    "output": "checked 17 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/351/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.234,
+    "output": ""
+  },
+  "superseded_receipt": {
+    "schema_version": "campaign_lean_replay.v1",
+    "authority_effect": "None",
+    "checked_at": "2026-10-25",
+    "source_base": "7fa69d621c27bed7045d0b7fe34bbb1d34b27248",
+    "result": "Lean module CampaignPgwDeclaredInputFloor compiles under Lean 4.35.0 with pinned Mathlib v4.35.0, built through lake from the non-default CampaignPgwDeclaredInputFloor library. Printed axioms are among propext, Classical.choice and Quot.sound. The outcome is Narrowed: two named inputs and four stake-only carriers, not a floor for every carrier.",
+    "proof_boundary": "The vocabulary stake, stream has length 2. Four carriers each declare the stake and not the stream, so each count is 1, and 1 is below 2. On this family the floor reading is false and the one-input reading is true. The numerals 15, 250, 4, and 2 are recorded. A carrier that declares neither input has count 0 and is not one of the four. The attempt-two search is not replayed. The node stays OPEN.",
+    "lean_replay": {
+      "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+      "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+      "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+      "lakefile_sha256": "847b217bb169481b59e440a6bf7fc3b002aff5d414cead2c42be218bd02a77a7",
+      "library": "CampaignPgwDeclaredInputFloor (lean_lib in lean4/lakefile.lean; not a default target)",
+      "build_directory": "lean4/b (lakefile buildDir; removed with the worktree)",
+      "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run)",
+      "command": "lake --no-cache -d lean4 build CampaignPgwDeclaredInputFloor",
+      "allowed_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "results": [
+        {
+          "module": "CampaignPgwDeclaredInputFloor",
+          "dag_node": "PGW-DECLARED-INPUT-FLOOR",
+          "source": "lean4/CampaignPgwDeclaredInputFloor.lean",
+          "sha256": "2c1dc5198350c5d293c4d994ee4ca8abd0113a2fcd01d8fa05087c40a6fea201",
+          "sha256_after_build": "2c1dc5198350c5d293c4d994ee4ca8abd0113a2fcd01d8fa05087c40a6fea201",
+          "source_unchanged_during_build": true,
+          "exit_code": 0,
+          "seconds": 1.0,
+          "axiom_audit_passed": true,
+          "anchors": [
+            "CampaignPgwDeclaredInputFloor.vocabulary_is_two",
+            "CampaignPgwDeclaredInputFloor.four_engines",
+            "CampaignPgwDeclaredInputFloor.each_declares_stake_not_stream",
+            "CampaignPgwDeclaredInputFloor.each_count_is_one",
+            "CampaignPgwDeclaredInputFloor.one_below_two",
+            "CampaignPgwDeclaredInputFloor.readings_disagree",
+            "CampaignPgwDeclaredInputFloor.declared_bounds",
+            "CampaignPgwDeclaredInputFloor.empty_carrier_is_not_among_the_four"
+          ],
+          "anchors_reported": true,
+          "axioms": {
+            "CampaignPgwDeclaredInputFloor.vocabulary_is_two": [],
+            "CampaignPgwDeclaredInputFloor.four_engines": [],
+            "CampaignPgwDeclaredInputFloor.each_declares_stake_not_stream": [],
+            "CampaignPgwDeclaredInputFloor.each_count_is_one": [],
+            "CampaignPgwDeclaredInputFloor.one_below_two": [],
+            "CampaignPgwDeclaredInputFloor.readings_disagree": [],
+            "CampaignPgwDeclaredInputFloor.declared_bounds": [],
+            "CampaignPgwDeclaredInputFloor.empty_carrier_is_not_among_the_four": []
+          }
+        }
+      ]
+    }
   }
 }
