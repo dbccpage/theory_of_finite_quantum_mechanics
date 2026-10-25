@@ -1,22 +1,22 @@
 # AUTHF-CARRIER-ADMISSION-GATE
 
-Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `OPEN`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> The recovered candidate record stays globally open: for AIT-DTM0 only syntax, execution semantics, adequacy and replay closure are partial and universality, extensionality, nontriviality and effective reduction are open, and PO-022, PO-023 and AIT-PACKET4 are open; the validator refuses any selection or admission.
+> On this closed slice the record admission status is the string open. The direct candidate identifier is AIT-DTM0, its admission status is partial, its syntax-and-encoding status is partial, its execution-semantics status is partial, and its universality status is open. The direct candidate selected flag is false.
 
 ## Grade
 
-Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 7
+- cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
+- next step to raise the grade: add a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-A carrier with syntax, execution, simulation, an extensional property with encoded witnesses, an effective reduction and a replay boundary must be frozen before any Rice-style claim.
+Adequacy, replay closure, extensionality, nontriviality and effective reduction stay outside this slice. The other three candidate identifiers stay outside it. A frozen carrier and a Rice-style claim stay open. The structural validator over the whole JSON record stays with the cited Python check.
 
 ## Source status
 
@@ -41,6 +41,23 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignAuthfCarrierAdmissionGate.lean`
+
+- file: [lean4/CampaignAuthfCarrierAdmissionGate.lean](../../../lean4/CampaignAuthfCarrierAdmissionGate.lean)
+- sha256 (`bytes`): `4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23`
+- cited in: node.lean, receipt dag/research/campaign_authf-carrier-admission-gate_lean_replay.json (CampaignAuthfCarrierAdmissionGate), record TFQ-1362
+- replay: `verified`
+  - receipt [dag/research/campaign_authf-carrier-admission-gate_lean_replay.json](../../../dag/research/campaign_authf-carrier-admission-gate_lean_replay.json) (module `CampaignAuthfCarrierAdmissionGate`): recorded sha256 `4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignAuthfCarrierAdmissionGate`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignAuthfCarrierAdmissionGate.directCeilings` | yes | yes | yes | none | `#print axioms CampaignAuthfCarrierAdmissionGate.directCeilings` |
+| `CampaignAuthfCarrierAdmissionGate.directNotSelected` | yes | yes | yes | none | `#print axioms CampaignAuthfCarrierAdmissionGate.directNotSelected` |
+| `directCeilings` | yes | yes | yes | none | `#print axioms directCeilings` |
+| `directNotSelected` | yes | yes | yes | none | `#print axioms directNotSelected` |
+- counts toward the grade: yes
 
 ### Python: `code/python/src/qm/auth_incompleteness/carrier_candidates.py`
 
@@ -69,7 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md`
 
 - file: [dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md](../../../dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md)
-- sha256 (`lf-normalised`): `0a6293022c0501393dcae76d616663e3b8bb723894dae33d14dd1f869d390b08`
+- sha256 (`lf-normalised`): `6e9be85012000298cfdda54958c0d8881a97731d3851897128bb82e12305828f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1362
 - counts toward the grade: no

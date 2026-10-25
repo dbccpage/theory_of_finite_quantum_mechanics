@@ -3,14 +3,16 @@ node_id: AUTHF-CARRIER-ADMISSION-GATE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'The recovered candidate record stays globally open: for AIT-DTM0 only syntax, execution
-    semantics, adequacy and replay closure are partial and universality, extensionality, nontriviality
-    and effective reduction are open, and PO-022, PO-023 and AIT-PACKET4 are open; the validator refuses
-    any selection or admission.'
+  source_statement: On this closed slice the record admission status is the string open. The direct candidate
+    identifier is AIT-DTM0, its admission status is partial, its syntax-and-encoding status is partial,
+    its execution-semantics status is partial, and its universality status is open. The direct candidate
+    selected flag is false.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: A carrier with syntax, execution, simulation, an extensional property with encoded
-    witnesses, an effective reduction and a replay boundary must be frozen before any Rice-style claim.
+  source_bottleneck: Adequacy, replay closure, extensionality, nontriviality and effective reduction stay
+    outside this slice. The other three candidate identifiers stay outside it. A frozen carrier and a
+    Rice-style claim stay open. The structural validator over the whole JSON record stays with the cited
+    Python check.
   source_refs:
   - dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md
   - papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json
@@ -23,7 +25,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md
-    sha256: 0a6293022c0501393dcae76d616663e3b8bb723894dae33d14dd1f869d390b08
+    sha256: 6e9be85012000298cfdda54958c0d8881a97731d3851897128bb82e12305828f
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -31,9 +33,107 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/computation_authf_carrier_admission_gate_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: recordAdmission
+  line: 10
+  signature_excerpt: 'def recordAdmission : String'
+  source: lean4/CampaignAuthfCarrierAdmissionGate.lean
+  repository: this_repository
+  source_sha256: 4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: directId
+  line: 11
+  signature_excerpt: 'def directId : String'
+  source: lean4/CampaignAuthfCarrierAdmissionGate.lean
+  repository: this_repository
+  source_sha256: 4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: directAdmission
+  line: 12
+  signature_excerpt: 'def directAdmission : String'
+  source: lean4/CampaignAuthfCarrierAdmissionGate.lean
+  repository: this_repository
+  source_sha256: 4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: syntaxStatus
+  line: 13
+  signature_excerpt: 'def syntaxStatus : String'
+  source: lean4/CampaignAuthfCarrierAdmissionGate.lean
+  repository: this_repository
+  source_sha256: 4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: executionStatus
+  line: 14
+  signature_excerpt: 'def executionStatus : String'
+  source: lean4/CampaignAuthfCarrierAdmissionGate.lean
+  repository: this_repository
+  source_sha256: 4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: universalityStatus
+  line: 15
+  signature_excerpt: 'def universalityStatus : String'
+  source: lean4/CampaignAuthfCarrierAdmissionGate.lean
+  repository: this_repository
+  source_sha256: 4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: directSelected
+  line: 16
+  signature_excerpt: 'def directSelected : Bool'
+  source: lean4/CampaignAuthfCarrierAdmissionGate.lean
+  repository: this_repository
+  source_sha256: 4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: directCeilings
+  line: 18
+  signature_excerpt: |-
+    theorem directCeilings :
+        recordAdmission = "open" ∧ directId = "AIT-DTM0" ∧
+          directAdmission = "partial" ∧ syntaxStatus = "partial" ∧
+          executionStatus = "partial" ∧ universalityStatus = "open"
+  source: lean4/CampaignAuthfCarrierAdmissionGate.lean
+  repository: this_repository
+  source_sha256: 4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: directNotSelected
+  line: 24
+  signature_excerpt: 'theorem directNotSelected : directSelected = false'
+  source: lean4/CampaignAuthfCarrierAdmissionGate.lean
+  repository: this_repository
+  source_sha256: 4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignAuthfCarrierAdmissionGate.lean::directCeilings
+  availability: local
+  symbol: directCeilings
+  path: lean4/CampaignAuthfCarrierAdmissionGate.lean
+  repository: this_repository
+  sha256: 4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23
+  declaration_status: declaration_found_not_proof_checked
+  line: 18
+  role: source_lead_only
+- original_ref: lean4/CampaignAuthfCarrierAdmissionGate.lean::directNotSelected
+  availability: local
+  symbol: directNotSelected
+  path: lean4/CampaignAuthfCarrierAdmissionGate.lean
+  repository: this_repository
+  sha256: 4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23
+  declaration_status: declaration_found_not_proof_checked
+  line: 24
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -71,8 +171,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

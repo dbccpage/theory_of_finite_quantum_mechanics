@@ -26231,16 +26231,19 @@
       "stage": "COMPUTATION",
       "status": "OPEN",
       "source_status": "papers/foundations/authorization_incompleteness/evidence/original/formal_binding_manifest.md record AUTHF-24 claims OPEN; audited status OPEN",
-      "statement": "The recovered candidate record stays globally open: for AIT-DTM0 only syntax, execution semantics, adequacy and replay closure are partial and universality, extensionality, nontriviality and effective reduction are open, and PO-022, PO-023 and AIT-PACKET4 are open; the validator refuses any selection or admission.",
+      "statement": "On this closed slice the record admission status is the string open. The direct candidate identifier is AIT-DTM0, its admission status is partial, its syntax-and-encoding status is partial, its execution-semantics status is partial, and its universality status is open. The direct candidate selected flag is false.",
       "source": [
         "dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md",
         "papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json",
         "code/python/src/qm/auth_incompleteness/carrier_candidates.py"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignAuthfCarrierAdmissionGate.lean::directCeilings",
+        "lean4/CampaignAuthfCarrierAdmissionGate.lean::directNotSelected"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "A carrier with syntax, execution, simulation, an extensional property with encoded witnesses, an effective reduction and a replay boundary must be frozen before any Rice-style claim.",
+      "bottleneck": "Adequacy, replay closure, extensionality, nontriviality and effective reduction stay outside this slice. The other three candidate identifiers stay outside it. A frozen carrier and a Rice-style claim stay open. The structural validator over the whole JSON record stays with the cited Python check.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -39850,7 +39853,7 @@
       ],
       "output": "AUTHF-CARRIER-ADMISSION-GATE",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "A carrier with syntax, execution, simulation, an extensional property with encoded witnesses, an effective reduction and a replay boundary must be frozen before any Rice-style claim.",
+      "mechanism": "Adequacy, replay closure, extensionality, nontriviality and effective reduction stay outside this slice. The other three candidate identifiers stay outside it. A frozen carrier and a Rice-style claim stay open. The structural validator over the whole JSON record stays with the cited Python check.",
       "source": [
         "dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md",
         "papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json",
@@ -56061,6 +56064,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md",
+        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md",
         "lean4/H006PermutationUnitary.lean",
         "dag/derivations/independent/l1-imp-sector-symmetry-law.md",
         "checks/independent/l1-imp-sector-symmetry-law.py",
@@ -56807,7 +56812,11 @@
         "FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md"
+        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md",
+        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md"
       ],
       "id": "TFQ-1021",
       "lean4": [
@@ -57723,6 +57732,8 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
+        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md",
         "lean4/FiniteWignerTheorem.lean",
         "dag/derivations/independent/l1-imp-transition-probability-law.md",
         "dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json",
@@ -57769,7 +57780,12 @@
         "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md"
+        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json",
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md"
       ],
       "id": "TFQ-1048",
       "lean4": [
@@ -71098,10 +71114,13 @@
         "code/python/src/qm/auth_incompleteness/carrier_candidates.py:1-24"
       ],
       "id": "TFQ-1362",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignAuthfCarrierAdmissionGate.lean::directCeilings",
+        "lean4/CampaignAuthfCarrierAdmissionGate.lean::directNotSelected"
+      ],
       "local_id": "AUTHF-CARRIER-ADMISSION-GATE",
-      "name": "No computability carrier is admitted for the authorization lift",
-      "obligation": "A carrier with syntax, execution, simulation, an extensional property with encoded witnesses, an effective reduction and a replay boundary must be frozen before any Rice-style claim.",
+      "name": "Direct candidate ceilings and a false selected flag",
+      "obligation": "Adequacy, replay closure, extensionality, nontriviality and effective reduction stay outside this slice. The other three candidate identifiers stay outside it. A frozen carrier and a Rice-style claim stay open. The structural validator over the whole JSON record stays with the cited Python check.",
       "parent_id": "TFQ-0486",
       "python": [
         "code/python/src/qm/auth_incompleteness/carrier_candidates.py::validate_record",
@@ -71112,7 +71131,7 @@
       "rust": [],
       "source_slice": "application_branches",
       "stage": "COMPUTATION",
-      "summary": "The recovered candidate record stays globally open: for AIT-DTM0 only syntax, execution semantics, adequacy and replay closure are partial and universality, extensionality, nontriviality and effective reduction are open, and PO-022, PO-023 and AIT-PACKET4 are open; the validator refuses any selection or admission.",
+      "summary": "On this closed slice the record admission status is the string open. The direct candidate identifier is AIT-DTM0, its admission status is partial, its syntax-and-encoding status is partial, its execution-semantics status is partial, and its universality status is open. The direct candidate selected flag is false.",
       "uuid": "24f48fe9-e871-5568-b571-e078d12b748a"
     },
     {
