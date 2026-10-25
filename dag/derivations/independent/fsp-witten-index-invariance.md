@@ -14,7 +14,7 @@ For every natural-number energy list P, every integer weight function w with w(0
 
 ## What is assumed
 
-The types, maps and algebraic models named above are declared. Lean uses only its standard core axioms; exact audit arithmetic uses integers, rational numbers and symbolic polynomials. AuthorityEffect: None.
+The types, maps and algebraic models named above are declared. Lean uses only its standard core axioms. The independent audit uses exact integers, rational values and symbolic polynomials. AuthorityEffect: None.
 
 ## What is open
 

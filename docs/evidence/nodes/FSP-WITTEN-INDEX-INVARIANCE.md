@@ -89,14 +89,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-witten-index-invariance.md`
 
 - file: [dag/derivations/independent/fsp-witten-index-invariance.md](../../../dag/derivations/independent/fsp-witten-index-invariance.md)
-- sha256 (`lf-normalised`): `69b171390a208ff22e524333dbdb14bbd4d023c69e9d452fabfdfef0523ef03d`
+- sha256 (`lf-normalised`): `993057e8e1992e120457c71c2004479bf138b0386aa31b0da6556d705e4caa66`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_fsp-witten-index-invariance_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-witten-index-invariance_lean_replay.json](../../../dag/research/campaign_fsp-witten-index-invariance_lean_replay.json)
-- sha256 (`lf-normalised`): `a7a77d0125b112f8b620d9bb781e059d95336ba8e6fc7363fc54fe3f17217177`
+- sha256 (`lf-normalised`): `79ef4b7b3ba597f317654475ea6ef94f6c30de184b3d4312dd763c7fca7a13ce`
 - cited in: node.source
 - counts toward the grade: yes
 
