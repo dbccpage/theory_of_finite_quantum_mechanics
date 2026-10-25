@@ -33,8 +33,16 @@ def main() -> None:
         failures += 1
     if sp.expand((a - b) + (a + b) - 2 * a) != 0:
         failures += 1
-    if (sp.Integer(1) + sp.Integer(0)) % 2 == 0:
-        failures += 1
+    parity_cases = 0
+    for real in range(-12, 13):
+        for imag_part in range(-12, 13):
+            value = (real, imag_part)
+            for sample in (gmul((1, 1), value), gmul(value, (1, 1))):
+                if sample != (real - imag_part, real + imag_part):
+                    failures += 1
+                if sample[0] % 2 != sample[1] % 2 or sample == (1, 0):
+                    failures += 1
+                parity_cases += 1
 
     imag = sp.expand((p * q + q * p) - q - q * (2 * p - 1))
     if imag != 0:
@@ -100,7 +108,7 @@ def main() -> None:
     if failures:
         raise SystemExit(f"gp-import-complex-field failures={failures}")
     print(
-        "gp-import-complex-field failures=0 coords=2 parity_unit=1 "
+        f"gp-import-complex-field failures=0 coords=2 parity_cases={parity_cases} "
         f"small_squares={','.join(str(v) for v in small)} char_gap=5 witness_product=1,1 witness_image=0,0,1,0"
     )
 

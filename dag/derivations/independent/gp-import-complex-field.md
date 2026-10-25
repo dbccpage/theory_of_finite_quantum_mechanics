@@ -25,3 +25,5 @@ What is open
 The example rules out Gaussian-integer eigenpairs for this one matrix. A spectral theorem after extending scalars to a complete complex field, and a derivation or selection of that field from primitive difference, remain imported. This obstruction does not prove that completion or the complex numbers are uniquely necessary; the cyclotomic ring Z[zeta_n] remains a recorded discrete substitute. The cyclotomic ring Z[zeta_n] stays a recorded discrete substitute.
 
 The independent audit also computes the residual M*(x,lambda*x)-lambda*(x,lambda*x) using a separate SymPy matrix representation, and checks that its second entry is -(lambda^2-lambda-1)*x. This does not establish that all complex eigenpairs are absent; the fixed matrix has eigenpairs over larger fields.
+
+The parity audit checks both multiplication orders for all 625 pairs with coordinates from -12 to 12. All 1250 products have equal coordinate parity and differ from (1,0). This is a bounded audit; Lean supplies the universal non-unit theorem.
