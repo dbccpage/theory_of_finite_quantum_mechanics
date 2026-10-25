@@ -3485,9 +3485,9 @@ Obligation: Treat the Genesis Ongoing cancellation, raising and marked-fill data
 - Parent: `TFQ-0554`
 - Status: `CONDITIONAL`
 
-GEN-WDP-03: with actual cases X, a declared evaluation report E: X → Reports and a protected admission or permission decision A: X → Decisions, a decoder on the actual image of E exists exactly when E(x) = E(y) implies A(x) = A(y); necessity applies the decoder to equal reports, sufficiency assigns each occupied report the decision of any representative, and equal reports with unequal decisions forbid every decoder and every report-only postprocessor. GEN-WDP-06 records that event multisets can lose final state, final states can lose occurrence counts, and fresh hashes can bind false receipts. This is the fibre criterion of the S(n)/MSS-N hand-off (TFQ-0338) and of WDP adapter descent (TFQ-0553), so a protected question passes from the realized report to a WDP observer exactly when it is constant on the fibres of the declared report.
+For arbitrary types X, R and D, a report r:X→R and a decision d:X→D admit a unique decoder on the actual image of r exactly when d is constant on every fibre of r. Equal reports with unequal decisions remain an obstruction after every report-only postprocessor. The joint report (r,d) is sufficient for d.
 
-Obligation: Admit a WDP observer for a protected question only when the question is constant on the declared report's fibres, return a conflicting pair otherwise, and keep evaluation and permission in a joint report when both are protected.
+Obligation: Keep declared report and decision assumptions explicit; no permission or physical authenticity follows from this factorization criterion.
 
 ### TFQ-0557 wdp-synthesis-trunk-tiers
 

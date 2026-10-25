@@ -1351,3 +1351,7 @@ lean_lib CampaignKitaevSectorBlock where
 -- Campaign: FSP-LAUGHLIN-EXCHANGE-PHASE. Not a default target.
 lean_lib CampaignLaughlinRootAmbiguity where
   roots := #[`CampaignLaughlinRootAmbiguity]
+
+-- Campaign: PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER. Not a default target.
+lean_lib CampaignReportFiberDescent where
+  roots := #[`CampaignReportFiberDescent]

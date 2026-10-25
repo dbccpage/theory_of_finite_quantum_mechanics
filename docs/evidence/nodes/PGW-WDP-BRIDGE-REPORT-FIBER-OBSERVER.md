@@ -4,19 +4,19 @@ Stage: [WDP](../stages/WDP.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [
 
 ## Statement
 
-> GEN-WDP-03: with actual cases X, a declared evaluation report E: X → Reports and a protected admission or permission decision A: X → Decisions, a decoder on the actual image of E exists exactly when E(x) = E(y) implies A(x) = A(y); necessity applies the decoder to equal reports, sufficiency assigns each occupied report the decision of any representative, and equal reports with unequal decisions forbid every decoder and every report-only postprocessor. GEN-WDP-06 records that event multisets can lose final state, final states can lose occurrence counts, and fresh hashes can bind false receipts. This is the fibre criterion of the S(n)/MSS-N hand-off (TFQ-0338) and of WDP adapter descent (TFQ-0553), so a protected question passes from the realized report to a WDP observer exactly when it is constant on the fibres of the declared report.
+> For arbitrary types X, R and D, a report r:X→R and a decision d:X→D admit a unique decoder on the actual image of r exactly when d is constant on every fibre of r. Equal reports with unequal decisions remain an obstruction after every report-only postprocessor. The joint report (r,d) is sufficient for d.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 1
-- distinct cited Lean declarations covered by a current replay receipt: 1
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 8
+- distinct cited Lean declarations covered by a current replay receipt: 8
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Conditional on the declared report and protected question; the criterion derives no evaluator, grantor or permission, and a successful evaluation alone does not determine authorization (GEN-WDP-04).
+The maps are declared. The result constructs no evaluator, permission grantor or physical authenticity test. The decoder is classical/noncomputable in general. Unused reports require no default value, and the empty case is included. Original target retained as an obligation: GEN-WDP-03: with actual cases X, a declared evaluation report E: X → Reports and a protected admission or permission decision A: X → Decisions, a decoder on the actual image of E exists exactly when E(x) = E(y) implies A(x) = A(y); necessity applies the decoder to equal reports, sufficiency assigns each occupied report the decision of any representative, and equal reports with unequal decisions forbid every decoder and every report-only postprocessor. GEN-WDP-06 records that event multisets can lose final state, final states can lose occurrence counts, and fresh hashes can bind false receipts. This is the fibre criterion of the S(n)/MSS-N hand-off (TFQ-0338) and of WDP adapter descent (TFQ-0553), so a protected question passes from the realized report to a WDP observer exactly when it is constant on the fibres of the declared report. Prior boundary: Conditional on the declared report and protected question; the criterion derives no evaluator, grantor or permission, and a successful evaluation alone does not determine authorization (GEN-WDP-04).
 
 ## Source status
 
@@ -41,6 +41,27 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignReportFiberDescent.lean`
+
+- file: [lean4/CampaignReportFiberDescent.lean](../../../lean4/CampaignReportFiberDescent.lean)
+- sha256 (`bytes`): `135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56`
+- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json (CampaignReportFiberDescent), record TFQ-0556
+- replay: `verified`
+  - receipt [dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json](../../../dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json) (module `CampaignReportFiberDescent`): recorded sha256 `135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignReportFiberDescent`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignReportFiberDescent.ConstantOnFibers` | yes | yes | yes | none | `#print axioms CampaignReportFiberDescent.ConstantOnFibers` |
+| `CampaignReportFiberDescent.Image` | yes | yes | yes | none | `#print axioms CampaignReportFiberDescent.Image` |
+| `CampaignReportFiberDescent.joint_report_sufficient` | yes | yes | yes | none | `#print axioms CampaignReportFiberDescent.joint_report_sufficient` |
+| `CampaignReportFiberDescent.lifted` | yes | yes | yes | none | `#print axioms CampaignReportFiberDescent.lifted` |
+| `CampaignReportFiberDescent.lost_bit_obstruction` | yes | yes | yes | none | `#print axioms CampaignReportFiberDescent.lost_bit_obstruction` |
+| `CampaignReportFiberDescent.postprocess_obstruction` | yes | yes | yes | none | `#print axioms CampaignReportFiberDescent.postprocess_obstruction` |
+| `CampaignReportFiberDescent.unique_decoder_iff` | yes | yes | yes | Classical.choice, Quot.sound | `#print axioms CampaignReportFiberDescent.unique_decoder_iff` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean`
 
@@ -64,13 +85,34 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
+### Python: `checks/independent/pgw-wdp-bridge-report-fiber-observer.py`
+
+- file: [checks/independent/pgw-wdp-bridge-report-fiber-observer.py](../../../checks/independent/pgw-wdp-bridge-report-fiber-observer.py)
+- sha256 (`bytes`): `c7990400af7bea437cd1760f181c2f681834b89d909e82b04f552fa14d505a50`
+- cited in: record TFQ-0556
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md`
 
 - file: [dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md](../../../dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md)
-- sha256 (`lf-normalised`): `19e8eef4aac1da065dcadc14737026f1d87ede48e2763d090d83eabaacc54c2e`
+- sha256 (`lf-normalised`): `dc1816e9090c333bfdfad6f0f05c47c91f3cee82ca69710a0c479e5b51528bf8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0556
 - counts toward the grade: no
+
+### Documents and data: `dag/derivations/independent/pgw-wdp-bridge-report-fiber-observer.md`
+
+- file: [dag/derivations/independent/pgw-wdp-bridge-report-fiber-observer.md](../../../dag/derivations/independent/pgw-wdp-bridge-report-fiber-observer.md)
+- sha256 (`lf-normalised`): `fbb509b3be63cfe7d2b150e228deee54d05c690ff312f2f00352f849cba89255`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json`
+
+- file: [dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json](../../../dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json)
+- sha256 (`lf-normalised`): `8e190dbfdaaccca9127a1b1da7f41cd30b457d2905a09c295d94a3247f773e52`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md`
 

@@ -3,27 +3,35 @@ node_id: PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'GEN-WDP-03: with actual cases X, a declared evaluation report E: X → Reports and
-    a protected admission or permission decision A: X → Decisions, a decoder on the actual image of E
-    exists exactly when E(x) = E(y) implies A(x) = A(y); necessity applies the decoder to equal reports,
-    sufficiency assigns each occupied report the decision of any representative, and equal reports with
-    unequal decisions forbid every decoder and every report-only postprocessor. GEN-WDP-06 records that
-    event multisets can lose final state, final states can lose occurrence counts, and fresh hashes can
-    bind false receipts. This is the fibre criterion of the S(n)/MSS-N hand-off (TFQ-0338) and of WDP
-    adapter descent (TFQ-0553), so a protected question passes from the realized report to a WDP observer
-    exactly when it is constant on the fibres of the declared report.'
+  source_statement: For arbitrary types X, R and D, a report r:X→R and a decision d:X→D admit a unique
+    decoder on the actual image of r exactly when d is constant on every fibre of r. Equal reports with
+    unequal decisions remain an obstruction after every report-only postprocessor. The joint report (r,d)
+    is sufficient for d.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - Declared report map from the S(n)/MSS-N realized report image to the WDP observer presentation, with
     the protected decision on the actual cases (assumption)
-  source_bottleneck: Conditional on the declared report and protected question; the criterion derives
-    no evaluator, grantor or permission, and a successful evaluation alone does not determine authorization
-    (GEN-WDP-04).
+  source_bottleneck: 'The maps are declared. The result constructs no evaluator, permission grantor or
+    physical authenticity test. The decoder is classical/noncomputable in general. Unused reports require
+    no default value, and the empty case is included. Original target retained as an obligation: GEN-WDP-03:
+    with actual cases X, a declared evaluation report E: X → Reports and a protected admission or permission
+    decision A: X → Decisions, a decoder on the actual image of E exists exactly when E(x) = E(y) implies
+    A(x) = A(y); necessity applies the decoder to equal reports, sufficiency assigns each occupied report
+    the decision of any representative, and equal reports with unequal decisions forbid every decoder
+    and every report-only postprocessor. GEN-WDP-06 records that event multisets can lose final state,
+    final states can lose occurrence counts, and fresh hashes can bind false receipts. This is the fibre
+    criterion of the S(n)/MSS-N hand-off (TFQ-0338) and of WDP adapter descent (TFQ-0553), so a protected
+    question passes from the realized report to a WDP observer exactly when it is constant on the fibres
+    of the declared report. Prior boundary: Conditional on the declared report and protected question;
+    the criterion derives no evaluator, grantor or permission, and a successful evaluation alone does
+    not determine authorization (GEN-WDP-04).'
   source_refs:
   - dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md:14-17
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md:64-92
   - omega_engine_education/documentation/006_oewdp/levels/level_22_genesis_to_wdp_bridges.md:81-92
+  - dag/derivations/independent/pgw-wdp-bridge-report-fiber-observer.md:5
+  - dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json:7
   paper_refs: []
   source_claim_label: CONDITIONAL
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -76,6 +84,31 @@ operation_candidates:
   repository: this_repository
   source_sha256: dcf643dc81f991c62aedc6ce427ba87bfde4e5ff1103d15195009cfa7007a822
   status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Image
+  line: 4
+  signature_excerpt: 'abbrev Image {X : Type u} {R : Type v} (report : X → R)'
+  source: lean4/CampaignReportFiberDescent.lean
+  repository: this_repository
+  source_sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: lifted
+  line: 5
+  signature_excerpt: 'def lifted {X : Type u} {R : Type v} (report : X → R) (x : X) : Image report'
+  source: lean4/CampaignReportFiberDescent.lean
+  repository: this_repository
+  source_sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ConstantOnFibers
+  line: 6
+  signature_excerpt: 'def ConstantOnFibers {X : Type u} {R : Type v} {D : Type w} (r : X → R) (d : X →
+    D)'
+  source: lean4/CampaignReportFiberDescent.lean
+  repository: this_repository
+  source_sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
+  status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
   name: factorization_iff_fiber_constancy
@@ -90,6 +123,58 @@ relation_candidates:
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
+- kind: theorem
+  name: unique_decoder_iff
+  line: 9
+  signature_excerpt: |-
+    theorem unique_decoder_iff {X : Type u} {R : Type v} {D : Type w}
+        (report : X → R) (decision : X → D) :
+        (∃ decoder : Image report → D, (∀ x, decoder (lifted report x) = decision x) ∧
+          ∀ other : Image report → D, (∀ x, other (lifted report x) = decision x) → other = decoder) ↔
+        ConstantOnFibers report decision
+  source: lean4/CampaignReportFiberDescent.lean
+  repository: this_repository
+  source_sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: postprocess_obstruction
+  line: 29
+  signature_excerpt: |-
+    theorem postprocess_obstruction {X : Type u} {R : Type v} {S : Type z} {D : Type w}
+        (r : X → R) (p : R → S) (d : X → D) (x y : X)
+        (same : r x = r y) (different : d x ≠ d y) :
+        ¬ ConstantOnFibers (p ∘ r) d
+  source: lean4/CampaignReportFiberDescent.lean
+  repository: this_repository
+  source_sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: joint_report_sufficient
+  line: 35
+  signature_excerpt: |-
+    theorem joint_report_sufficient {X : Type u} {R : Type v} {D : Type w}
+        (r : X → R) (d : X → D) : ConstantOnFibers (fun x => (r x, d x)) d
+  source: lean4/CampaignReportFiberDescent.lean
+  repository: this_repository
+  source_sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: lost_bit_obstruction
+  line: 39
+  signature_excerpt: 'theorem lost_bit_obstruction : ¬ ConstantOnFibers (fun _ : Bool => ()) (fun b :
+    Bool => b)'
+  source: lean4/CampaignReportFiberDescent.lean
+  repository: this_repository
+  source_sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean::factorization_iff_fiber_constancy
   availability: local
@@ -99,6 +184,42 @@ source_bindings:
   sha256: dcf643dc81f991c62aedc6ce427ba87bfde4e5ff1103d15195009cfa7007a822
   declaration_status: declaration_found_not_proof_checked
   line: 36
+  role: source_lead_only
+- original_ref: lean4/CampaignReportFiberDescent.lean::CampaignReportFiberDescent.unique_decoder_iff
+  availability: local
+  symbol: CampaignReportFiberDescent.unique_decoder_iff
+  path: lean4/CampaignReportFiberDescent.lean
+  repository: this_repository
+  sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
+  declaration_status: declaration_found_not_proof_checked
+  line: 9
+  role: source_lead_only
+- original_ref: lean4/CampaignReportFiberDescent.lean::CampaignReportFiberDescent.postprocess_obstruction
+  availability: local
+  symbol: CampaignReportFiberDescent.postprocess_obstruction
+  path: lean4/CampaignReportFiberDescent.lean
+  repository: this_repository
+  sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
+  declaration_status: declaration_found_not_proof_checked
+  line: 29
+  role: source_lead_only
+- original_ref: lean4/CampaignReportFiberDescent.lean::CampaignReportFiberDescent.joint_report_sufficient
+  availability: local
+  symbol: CampaignReportFiberDescent.joint_report_sufficient
+  path: lean4/CampaignReportFiberDescent.lean
+  repository: this_repository
+  sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
+  declaration_status: declaration_found_not_proof_checked
+  line: 35
+  role: source_lead_only
+- original_ref: lean4/CampaignReportFiberDescent.lean::CampaignReportFiberDescent.lost_bit_obstruction
+  availability: local
+  symbol: CampaignReportFiberDescent.lost_bit_obstruction
+  path: lean4/CampaignReportFiberDescent.lean
+  repository: this_repository
+  sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
+  declaration_status: declaration_found_not_proof_checked
+  line: 39
   role: source_lead_only
 - original_ref: omega_engine/crates_rs/omega_wdp/src/proposal_admission_bridge.rs::ProposalAdmissionModel
   availability: external
