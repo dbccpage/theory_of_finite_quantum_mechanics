@@ -16586,21 +16586,30 @@
       "stage": "GENESIS",
       "status": "OPEN",
       "source_status": "closeout.txt §1 carriers and §9.1 D4; continuation.txt §13 carrier bridges (L-1)",
-      "statement": "No refinement proof joins any Python computation to any Lean statement. The sealed Lean is a token-erased abstraction connected to the sealed Python by executable checks only (CL-TOKEN-ERASURE); the Alpha harness's Lean is about harness datatypes, python_driver_refinement is NOT_PROVED and it does not model the new license binding (D4); attempt two's Lean speaks of every history of sealed events and switch markers, and that each edge of a Python run is such a history is read, not proved. Rung two track one's represented state is not bridged to the sealed regime (L-1, which needs an amendment of the seal that is the author's act), and the reading regimes differ: R2L and R2F in Lean, the sealed genesis histories that stop before the requirement in Python.",
+      "statement": "Narrowed boundary, status left OPEN. The sealed reading-L history has length 7 and replays from genesis to regime R2L. The sealed reading-F history has length 8 and replays from genesis to regime R2F. R2L has data count 2 and requirement list (0, 1). R2F has data count 3 and requirement list (1, 2). Both regimes have empty form, instance, and rule lists. R2L is not R2F, and the two replay results are not equal.",
       "source": [
         "dag/derivations/02_genesis/tfq_0499_python_lean_carrier_bridge.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:37-43",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:380",
-        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1077-1080"
+        "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1077-1080",
+        "dag/derivations/independent/pgw-python-lean-carrier-bridge.md:5",
+        "dag/research/campaign_pgw-python-lean-carrier-bridge_lean_replay.json:6"
       ],
       "lean": [
-        "lean4/Imported/Genesis19l57g1/SecondRun/Kernel.lean::replayE"
+        "lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwHistoryL_replays",
+        "lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwHistoryF_replays",
+        "lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwR2L_ne_R2F",
+        "lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwReplay_ne",
+        "lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwData_counts",
+        "lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwReqs",
+        "lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwEmpty_carriers",
+        "lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwHistory_lengths"
       ],
       "rust": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/replay.rs::replay"
       ],
       "imported_structure": [],
-      "bottleneck": "Open; agreement between Python and Lean is evidenced by executable checks on the inputs checked, which is not a refinement proof.",
+      "bottleneck": "These two replays are sealed Lean histories. They are not a refinement from a Python computation to a Lean statement. Token erasure, the license binding, rung-two track one, and the Python histories that stop before the requirement stay open. Status stays OPEN.",
       "tags": [
         "pregenesis-to-wdp",
         "TFQ-0499",
@@ -17063,7 +17072,7 @@
       "stage": "MSSN_SN",
       "status": "OPEN",
       "source_status": "000_pre_genesis_to_mssn paper.md section 7 S(6) row; 002_oesn level_06; CampaignSnProtectedAnswerTransport.lean",
-      "statement": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, when A, B, and Q are finite and u is injective, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).",
+      "statement": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md:237",
@@ -26938,9 +26947,6 @@
       "see_also": [
         "FQ-GAP-STONE-CONTINUOUS-TIME",
         "FQ-GAP-CONTINUUM-HILBERT-LIFT"
-      ],
-      "python": [
-        "checks/independent/cqft-reeh-schlieder-theorem-import.py"
       ]
     },
     {
@@ -27042,9 +27048,6 @@
       ],
       "see_also": [
         "CQFT-FINITE-STRICT-POSET-SPACELIKE"
-      ],
-      "python": [
-        "checks/independent/cqft-causal-factorization-import.py"
       ]
     },
     {
@@ -27548,9 +27551,6 @@
       "see_also": [
         "TFQ-0084",
         "TFQ-0100"
-      ],
-      "python": [
-        "checks/independent/ads-regge-area-rt-gap.py"
       ]
     },
     {
@@ -56061,8 +56061,6 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md",
-        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md",
-        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md",
         "lean4/H006PermutationUnitary.lean",
         "dag/derivations/independent/l1-imp-sector-symmetry-law.md",
         "checks/independent/l1-imp-sector-symmetry-law.py",
@@ -56809,11 +56807,7 @@
         "FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md",
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md",
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md",
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md",
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md"
+        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md"
       ],
       "id": "TFQ-1021",
       "lean4": [
@@ -57729,8 +57723,6 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md",
-        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
-        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md",
         "lean4/FiniteWignerTheorem.lean",
         "dag/derivations/independent/l1-imp-transition-probability-law.md",
         "dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json",
@@ -57777,12 +57769,7 @@
         "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md",
-        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md",
-        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json",
-        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md",
-        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json",
-        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md"
+        "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md"
       ],
       "id": "TFQ-1048",
       "lean4": [
@@ -60576,14 +60563,22 @@
       ],
       "id": "TFQ-0499",
       "lean4": [
-        "lean4/Imported/Genesis19l57g1/SecondRun/Kernel.lean::replayE"
+        "lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwHistoryL_replays",
+        "lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwHistoryF_replays",
+        "lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwR2L_ne_R2F",
+        "lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwReplay_ne",
+        "lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwData_counts",
+        "lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwReqs",
+        "lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwEmpty_carriers",
+        "lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwHistory_lengths"
       ],
       "local_id": "PGW-PYTHON-LEAN-CARRIER-BRIDGE",
       "name": "python-lean-carrier-bridge",
-      "obligation": "Prove a refinement from each cited Python computation to its Lean statement (run edges as sealed histories, harness driver to harness Lean), or keep every joined claim marked as executable-check evidence only.",
+      "obligation": "Keep these two replay results separate from a refinement. A refinement from each cited Python computation to its Lean statement stays open.",
       "parent_id": "TFQ-0486",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::replay"
+        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::replay",
+        "checks/independent/pgw-python-lean-carrier-bridge.py::main"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
@@ -60591,7 +60586,7 @@
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
-      "summary": "No refinement proof joins any Python computation to any Lean statement. The sealed Lean is a token-erased abstraction connected to the sealed Python by executable checks only (CL-TOKEN-ERASURE); the Alpha harness's Lean is about harness datatypes, python_driver_refinement is NOT_PROVED and it does not model the new license binding (D4); attempt two's Lean speaks of every history of sealed events and switch markers, and that each edge of a Python run is such a history is read, not proved. Rung two track one's represented state is not bridged to the sealed regime (L-1, which needs an amendment of the seal that is the author's act), and the reading regimes differ: R2L and R2F in Lean, the sealed genesis histories that stop before the requirement in Python.",
+      "summary": "Narrowed boundary, status left OPEN. The sealed reading-L history has length 7 and replays from genesis to regime R2L. The sealed reading-F history has length 8 and replays from genesis to regime R2F. R2L has data count 2 and requirement list (0, 1). R2F has data count 3 and requirement list (1, 2). Both regimes have empty form, instance, and rule lists. R2L is not R2F, and the two replay results are not equal.",
       "uuid": "0306c224-964b-5b0d-ab75-f3f37014c49d"
     },
     {
@@ -61235,7 +61230,7 @@
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",
-      "summary": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, when A, B, and Q are finite and u is injective, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).",
+      "summary": "S(6) recovers the old image exactly, but transporting a protected answer F across the lift u requires a target counterpart F′ with F′∘u = F, and preserving future operations requires the corresponding commuting transition equations. In Lean 4, OldImageLaw u r yields canonical retraction-induced transport retractionTransport r F d satisfying F′∘u = F (retraction_transport_law) and canonical transition lifts (canonical_transition_lift_commutes), including for SnCarrier (snCarrier_answer_transport, snCarrier_canonical_transition_square) and the integer S6Descent slice model (s6Descent_answer_transport, s6Descent_canonical_transition_square), while k-step commuting squares preserve transported answers (commuting_square_preserves_transported_answer). Off the image, F′ has |Q|^(|B|−|A|) counterparts (transport_counterpart_card, transport_off_image_underdetermined), unconstrained target transitions violate preservation (snCarrier_transition_counterexample, s6Descent_transition_counterexample), and the old-image identity alone establishes neither a logical conservative extension off the image (not_conservative_extension_off_image), nor an adjunction (old_image_not_right_inverse, old_image_not_left_galois_adjunction), nor resolution of an unrelated demand (unrelated_demand_not_resolved_by_lift, snCarrier_s6_demand_active).",
       "uuid": "26db6fbc-6946-5835-975b-48f71515ff5a"
     },
     {

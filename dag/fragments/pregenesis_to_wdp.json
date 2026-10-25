@@ -6225,16 +6225,51 @@
       "parent_id": "TFQ-0486",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "No refinement proof joins any Python computation to any Lean statement. The sealed Lean is a token-erased abstraction connected to the sealed Python by executable checks only (CL-TOKEN-ERASURE); the Alpha harness's Lean is about harness datatypes, python_driver_refinement is NOT_PROVED and it does not model the new license binding (D4); attempt two's Lean speaks of every history of sealed events and switch markers, and that each edge of a Python run is such a history is read, not proved. Rung two track one's represented state is not bridged to the sealed regime (L-1, which needs an amendment of the seal that is the author's act), and the reading regimes differ: R2L and R2F in Lean, the sealed genesis histories that stop before the requirement in Python.",
-      "obligation": "Prove a refinement from each cited Python computation to its Lean statement (run edges as sealed histories, harness driver to harness Lean), or keep every joined claim marked as executable-check evidence only.",
+      "summary": "Narrowed boundary, status left OPEN. The sealed reading-L history has length 7 and replays from genesis to regime R2L. The sealed reading-F history has length 8 and replays from genesis to regime R2F. R2L has data count 2 and requirement list (0, 1). R2F has data count 3 and requirement list (1, 2). Both regimes have empty form, instance, and rule lists. R2L is not R2F, and the two replay results are not equal.",
+      "obligation": "Keep these two replay results separate from a refinement. A refinement from each cited Python computation to its Lean statement stays open.",
       "imports": [],
-      "fence": "Open; agreement between Python and Lean is evidenced by executable checks on the inputs checked, which is not a refinement proof.",
+      "fence": "These two replays are sealed Lean histories. They are not a refinement from a Python computation to a Lean statement. Token erasure, the license binding, rung-two track one, and the Python histories that stop before the requirement stay open. Status stays OPEN.",
       "witnesses": {
         "lean": [
           {
             "root": "local",
-            "path": "lean4/Imported/Genesis19l57g1/SecondRun/Kernel.lean",
-            "symbol": "replayE"
+            "path": "lean4/CampaignPgwPythonLeanCarrierBridge.lean",
+            "symbol": "pgwHistoryL_replays"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwPythonLeanCarrierBridge.lean",
+            "symbol": "pgwHistoryF_replays"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwPythonLeanCarrierBridge.lean",
+            "symbol": "pgwR2L_ne_R2F"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwPythonLeanCarrierBridge.lean",
+            "symbol": "pgwReplay_ne"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwPythonLeanCarrierBridge.lean",
+            "symbol": "pgwData_counts"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwPythonLeanCarrierBridge.lean",
+            "symbol": "pgwReqs"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwPythonLeanCarrierBridge.lean",
+            "symbol": "pgwEmpty_carriers"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwPythonLeanCarrierBridge.lean",
+            "symbol": "pgwHistory_lengths"
           }
         ],
         "rust": [
@@ -6249,6 +6284,11 @@
             "root": "symbol_game",
             "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py",
             "symbol": "replay"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-python-lean-carrier-bridge.py",
+            "symbol": "main"
           }
         ]
       },
@@ -6270,6 +6310,18 @@
           "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt",
           "lines": "1077-1080",
           "quote": "rung two track one's represented state is not bridged to the sealed regime (L-1, which needs an amendment of the seal that is the author's act)"
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-python-lean-carrier-bridge.md",
+          "lines": "5",
+          "quote": "Node status stays OPEN. This note records two sealed Lean replays."
+        },
+        {
+          "root": "local",
+          "path": "dag/research/campaign_pgw-python-lean-carrier-bridge_lean_replay.json",
+          "lines": "6",
+          "quote": "The 2026-10-24 lake build of CampaignPgwPythonLeanCarrierBridge exited 0."
         }
       ],
       "coda_atlas_ids": [],
