@@ -1307,3 +1307,7 @@ lean_lib CampaignFqGapU1Circle where
 -- Campaign: COMP-C2-STEP3-NOT-WORD-STEP. Not a default target.
 lean_lib CampaignCompC2Step3NotWordStep where
   roots := #[`CampaignCompC2Step3NotWordStep]
+
+-- Campaign: COMP-C6-TM0-OUTPUT-FORM-OPEN. Not a default target.
+lean_lib CampaignCompC6Tm0OutputFormOpen where
+  roots := #[`CampaignCompC6Tm0OutputFormOpen]
