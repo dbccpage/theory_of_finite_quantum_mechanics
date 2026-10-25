@@ -1481,7 +1481,7 @@
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
       "source_claimed_status": "COMPUTATIONALLY_CHECKED",
-      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
+      "statement": "For U = [[0, -1], [1, 0]] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi\u00b7psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.",
       "obligation": "The group, links, action, step and vector are supplied. General finite-cycle transport and its closure criterion are established for these inputs; deriving them from primitive difference, continuous time, a one-parameter unitary group and a Hamiltonian constraint stay open.",
       "imported_structure": [
         "continuous time and Stone generator",
@@ -4919,23 +4919,41 @@
       "status": "OPEN",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "Claimed: on an off-shell supersymmetric lattice model the map xi = -partial^2 phi + W'(phi) has Jacobian equal to the fermion determinant and turns the partition function into a Gaussian with no sign problem; nothing in this checkout constructs the map or the Jacobian identity.",
-      "obligation": "Give the lattice model, prove det(d xi / d phi) = det D_F, and treat the sign of det D_F and the multiplicity of the map; Nicolai-map results are model specific in the literature.",
+      "obligation": "Give the lattice model, prove det(d xi / d phi) = det D_F, and treat the sign of det D_F and the multiplicity of the map; Nicolai-map results are model specific in the literature. Narrowed in lean4/CampaignFspNicolaiMapClaim.lean and checks/independent/fsp-nicolai-map-claim.py while keeping status OPEN to: (1) explicit 2-site and 3-site periodic skew-plus-diagonal lattice Nicolai map Jacobian identities J = D_kin(kappa) + diag(w_i) = D_F with det J_2 = w_0 w_1 + kappa^2 and det J_3 = w_0 w_1 w_2 + kappa^2 (w_0 + w_1 + w_2); (2) strict positivity det J_2 >= m^2 + kappa^2 > 0 and det J_3 > 0 under convex quartic superpotentials W''(phi_i) = m + c phi_i^2 >= m > 0 (m > 0, c >= 0); (3) change-of-variables branch sign decomposition J = sgn(J) * |J|, opposite-sign branch cancellation sgn(+2 phi_0) + sgn(-2 phi_0) = 0 on the non-convex fold map xi(phi) = phi^2 - c, negative inner-branch Jacobian J(0) = -3 < 0 on the cubic map xi(phi) = phi^3 - 3 phi, and negative determinant flip under supersymmetry-breaking perturbations delta * w_1 > w_0 w_1 + kappa^2; and (4) explicit scope fences against the historical regge_wdw_core.lean::NicolaiMapSignSuppressionPredicate t t (t = t) placeholder and against generalizing model-specific 1D convex Nicolai maps to arbitrary lattice fermion theories.",
       "imported_structure": [],
       "parent_nodes": [
         "FSP-LATTICE-WESS-ZUMINO-SUSY"
       ],
       "parent_record": "TFQ-1204",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.nicolai_map_2site_jacobian_equals_fermion_matrix",
+        "lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.nicolai_2site_skew_plus_positive_diag_det_pos",
+        "lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.nicolai_quadratic_superpotential_hessian_lower_bound",
+        "lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.nicolai_3site_periodic_skew_plus_diag_det_formula",
+        "lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.nicolai_change_of_variables_branch_sign_decomposition",
+        "lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.non_convex_double_well_nicolai_branch_cancellation",
+        "lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.non_monotonic_cubic_nicolai_three_branch_sign_defect",
+        "lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.susy_breaking_perturbation_induces_negative_determinant",
+        "lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.withdrawn_regge_wdw_core_tautology_fence",
+        "lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.nicolai_map_model_specificity_scope_fence"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "code/python/src/fsp/cdt_susy_witten_evaluator.py::CdtSusyWittenEvaluator",
+        "checks/independent/fsp-nicolai-map-claim.py::main"
+      ],
       "external_witnesses": [
         "external:omega_quantum_physics::quantum_channel::nicolai_map_jacobian_identity (cited by the source, not in this checkout)"
       ],
       "sources": [
         "papers/core/fsp/theory_of_finite_fsp.md:571-583",
-        "papers/core/fsp/lean4/regge_wdw_core.lean:806-810"
+        "papers/core/fsp/lean4/regge_wdw_core.lean:806-810",
+        "dag/derivations/independent/fsp-nicolai-map-claim.md",
+        "dag/research/campaign_fsp-nicolai-map-claim_lean_replay.json",
+        "dag/research/campaign_fsp-nicolai-map-claim_lean_mutation.json",
+        "dag/research/campaign_fsp-nicolai-map-claim_independent.json"
       ],
-      "audit": "Cited NonAbelianGaugeSigns.lean::nicolai_map_exact_sign_elimination does not exist. Nearest local declaration regge_wdw_core.lean::nicolai_map_eliminates_sign_fluctuations is rfl on NicolaiMapSignSuppressionPredicate t t, which unfolds to t = t: a placeholder; the file is also not a lakefile root and is never built. nicolai_map_jacobian_identity is absent from cdt_susy_witten_evaluator.py.",
+      "audit": "Replaced missing NonAbelianGaugeSigns.lean::nicolai_map_exact_sign_elimination and unbuilt regge_wdw_core.lean::nicolai_map_eliminates_sign_fluctuations (rfl on t = t) with lean4/CampaignFspNicolaiMapClaim.lean (10 theorems, 0 sorrys, 6/6 mutants killed), code/python/src/fsp/cdt_susy_witten_evaluator.py::CdtSusyWittenEvaluator, and checks/independent/fsp-nicolai-map-claim.py (4083 exact Jacobian, positivity, branch-multiplicity, and scope fence checks, 0 failures).",
       "see_also": [],
       "uses": []
     },
@@ -9944,10 +9962,10 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "cited; local formalization open",
       "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
-      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice\u2082 for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
       "imported_structure": [
         "Rice theorem (Rice 1953)",
-        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
+        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice\u2082"
       ],
       "parent_nodes": [
         "AUTH-G5B-CARRIER-ADMISSION-GATE"
@@ -9957,7 +9975,7 @@
       "rust": [],
       "python": [],
       "external_witnesses": [
-        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
+        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice\u2082 (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
         "external:Mathlib/Computability/Halting.lean::ComputablePred.halting_problem (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
       ],
       "sources": [
@@ -9965,7 +9983,7 @@
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:305-315",
         "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:331-344"
       ],
-      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice₂ and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
+      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice\u2082 and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
       "see_also": [
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],
@@ -9982,7 +10000,7 @@
       "status": "OPEN",
       "source_claimed_status": "open",
       "statement": "For an admitted program carrier and a nontrivial extensional property, a total computable sound and complete authorizer would decide that property; the lift is a stated target in the source and has no local theorem.",
-      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
+      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice\u2082 and halting_problem.",
       "imported_structure": [
         "admitted program carrier",
         "nontrivial extensional property"

@@ -14,10 +14,10 @@
 Claimed: on an off-shell supersymmetric lattice model the map xi = -partial^2 phi + W'(phi) has Jacobian equal to the fermion determinant and turns the partition function into a Gaussian with no sign problem; nothing in this checkout constructs the map or the Jacobian identity.
 
 ### Governing Obligation
-Give the lattice model, prove det(d xi / d phi) = det D_F, and treat the sign of det D_F and the multiplicity of the map; Nicolai-map results are model specific in the literature.
+Give the lattice model, prove det(d xi / d phi) = det D_F, and treat the sign of det D_F and the multiplicity of the map; Nicolai-map results are model specific in the literature. Narrowed in lean4/CampaignFspNicolaiMapClaim.lean and checks/independent/fsp-nicolai-map-claim.py while keeping status OPEN to: (1) explicit 2-site and 3-site periodic skew-plus-diagonal lattice Nicolai map Jacobian identities J = D_kin(kappa) + diag(w_i) = D_F with det J_2 = w_0 w_1 + kappa^2 and det J_3 = w_0 w_1 w_2 + kappa^2 (w_0 + w_1 + w_2); (2) strict positivity det J_2 >= m^2 + kappa^2 > 0 and det J_3 > 0 under convex quartic superpotentials W''(phi_i) = m + c phi_i^2 >= m > 0 (m > 0, c >= 0); (3) change-of-variables branch sign decomposition J = sgn(J) * |J|, opposite-sign branch cancellation sgn(+2 phi_0) + sgn(-2 phi_0) = 0 on the non-convex fold map xi(phi) = phi^2 - c, negative inner-branch Jacobian J(0) = -3 < 0 on the cubic map xi(phi) = phi^3 - 3 phi, and negative determinant flip under supersymmetry-breaking perturbations delta * w_1 > w_0 w_1 + kappa^2; and (4) explicit scope fences against the historical regge_wdw_core.lean::NicolaiMapSignSuppressionPredicate t t (t = t) placeholder and against generalizing model-specific 1D convex Nicolai maps to arbitrary lattice fermion theories.
 
 ### Witness Audit
-Cited NonAbelianGaugeSigns.lean::nicolai_map_exact_sign_elimination does not exist. Nearest local declaration regge_wdw_core.lean::nicolai_map_eliminates_sign_fluctuations is rfl on NicolaiMapSignSuppressionPredicate t t, which unfolds to t = t: a placeholder; the file is also not a lakefile root and is never built. nicolai_map_jacobian_identity is absent from cdt_susy_witten_evaluator.py.
+Replaced missing NonAbelianGaugeSigns.lean::nicolai_map_exact_sign_elimination and unbuilt regge_wdw_core.lean::nicolai_map_eliminates_sign_fluctuations (rfl on t = t) with lean4/CampaignFspNicolaiMapClaim.lean (10 theorems, 0 sorrys, 6/6 mutants killed), code/python/src/fsp/cdt_susy_witten_evaluator.py::CdtSusyWittenEvaluator, and checks/independent/fsp-nicolai-map-claim.py (4083 exact Jacobian, positivity, branch-multiplicity, and scope fence checks, 0 failures).
 
 ---
 
@@ -28,13 +28,23 @@ Cited NonAbelianGaugeSigns.lean::nicolai_map_exact_sign_elimination does not exi
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.nicolai_map_2site_jacobian_equals_fermion_matrix`
+- `lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.nicolai_2site_skew_plus_positive_diag_det_pos`
+- `lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.nicolai_quadratic_superpotential_hessian_lower_bound`
+- `lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.nicolai_3site_periodic_skew_plus_diag_det_formula`
+- `lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.nicolai_change_of_variables_branch_sign_decomposition`
+- `lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.non_convex_double_well_nicolai_branch_cancellation`
+- `lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.non_monotonic_cubic_nicolai_three_branch_sign_defect`
+- `lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.susy_breaking_perturbation_induces_negative_determinant`
+- `lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.withdrawn_regge_wdw_core_tautology_fence`
+- `lean4/CampaignFspNicolaiMapClaim.lean::CampaignFspNicolaiMapClaim.nicolai_map_model_specificity_scope_fence`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `code/python/src/fsp/cdt_susy_witten_evaluator.py::CdtSusyWittenEvaluator`
+- `checks/independent/fsp-nicolai-map-claim.py::main`
 
 ### Cited by the source, not in this checkout
 - `external:omega_quantum_physics::quantum_channel::nicolai_map_jacobian_identity (cited by the source, not in this checkout)`
@@ -52,3 +62,7 @@ Cited NonAbelianGaugeSigns.lean::nicolai_map_exact_sign_elimination does not exi
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:571-583`
   - `papers/core/fsp/lean4/regge_wdw_core.lean:806-810`
+  - `dag/derivations/independent/fsp-nicolai-map-claim.md`
+  - `dag/research/campaign_fsp-nicolai-map-claim_lean_replay.json`
+  - `dag/research/campaign_fsp-nicolai-map-claim_lean_mutation.json`
+  - `dag/research/campaign_fsp-nicolai-map-claim_independent.json`
