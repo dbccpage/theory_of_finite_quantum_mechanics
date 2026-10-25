@@ -35,3 +35,5 @@ Integer arithmetic and the declared product, square norm, and cycle map. Authori
 ## What is open
 
 The circle group U(1), continuity of a one-parameter phase group, and a selector for that circle.
+
+The independent audit uses the matrix with rows (0,-1), (1,0) for multiplication by i and the permutation table (1,2,0) for the cycle. It checks all three starting points, while the Lean claim is restricted to the stated iterates from zero. No classification or construction of a continuous phase group is inferred.

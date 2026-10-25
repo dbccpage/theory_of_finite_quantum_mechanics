@@ -11,8 +11,8 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 16
-- distinct cited Lean declarations covered by a current replay receipt: 8
+- cited Lean, Rust or Python symbols found in their in-repo files: 20
+- distinct cited Lean declarations covered by a current replay receipt: 12
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -29,7 +29,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-The circle group U(1) and continuity of a one-parameter phase group stay hypotheses. The selector for that circle stays imported.
+The circle group U(1), a continuous one-parameter phase group, and a selector for that circle remain imported. The sign, Gaussian-integer pair and three-cycle examples neither construct U(1) nor rule it out.
 
 ## Source status
 
@@ -37,10 +37,10 @@ imported; sign group excluded only under an extra
 
 ## Review
 
-- PFP review: [dag/results/GP-IMPORT-CIRCLE-U1/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-CIRCLE-U1/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
-  - narrowest claim: Complete C2/C3/C4 group tables, exponent-two controls and sign-interference values, plus exact cyclic controls in Lean.
-  - does not support: A circle group, topology and continuous one-parameter action remain extra hypotheses. Finite alternatives do not select U(1).
-  - next test: A circle group, topology and continuous one-parameter action remain extra hypotheses. Finite alternatives do not select U(1).
+- PFP review: [dag/research/pr_391_current_scope_review.json](../../../dag/research/pr_391_current_scope_review.json); file present and sha256 matches the node's record: yes; verdict `scoped_sign_pair_cycle_result_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+  - narrowest claim: Each sign squares to 1. The pairs (1, 1) and (1, -1) differ, and each of their coordinates is a sign. The integer pair 0, 1 has square norm 1, and the product of that pair with itself is the pair -1, 0, which differs from the pair 1, 0. The map sending 0 to 1, 1 to 2 and 2 to 0 returns 2 at the second step from 0 and returns 0 at the third step from 0.
+  - does not support: The circle group U(1), a continuous one-parameter phase group, and a selector for that circle remain imported. The sign, Gaussian-integer pair and three-cycle examples neither construct U(1) nor rule it out.
+  - next test: Keep the circle and continuity imports explicit; any broader construction needs a separate statement-level review.
 
 ## Evidence items
 
@@ -50,18 +50,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignGpImportCircleU1.lean](../../../lean4/CampaignGpImportCircleU1.lean)
 - sha256 (`bytes`): `ee2379460eece0f18f28d6603f4e411a008537cb7983e39e3b40d0a3061adbd7`
-- cited in: node.lean, receipt dag/research/campaign_gp-import-circle-u1_lean_replay.json (CampaignGpImportCircleU1), record TFQ-1030
+- cited in: node.lean, receipt dag/research/campaign_gp-import-circle-u1_lean_replay.json (CampaignGpImportCircleU1), receipt dag/research/pr_391_round2_replay.json (CampaignGpImportCircleU1), record TFQ-1030
 - replay: `verified`
-  - receipt [dag/research/campaign_gp-import-circle-u1_lean_replay.json](../../../dag/research/campaign_gp-import-circle-u1_lean_replay.json) (module `CampaignGpImportCircleU1`): recorded sha256 `ee2379460eece0f18f28d6603f4e411a008537cb7983e39e3b40d0a3061adbd7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/campaign_gp-import-circle-u1_lean_replay.json](../../../dag/research/campaign_gp-import-circle-u1_lean_replay.json) (module `CampaignGpImportCircleU1`): recorded sha256 `ee2379460eece0f18f28d6603f4e411a008537cb7983e39e3b40d0a3061adbd7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_391_round2_replay.json](../../../dag/research/pr_391_round2_replay.json) (module `CampaignGpImportCircleU1`): recorded sha256 `ee2379460eece0f18f28d6603f4e411a008537cb7983e39e3b40d0a3061adbd7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignGpImportCircleU1`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
+| `CampaignGpImportCircleU1.cyc` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.cyc` |
 | `CampaignGpImportCircleU1.cycThrice` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.cycThrice` |
 | `CampaignGpImportCircleU1.cycTwice` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.cycTwice` |
+| `CampaignGpImportCircleU1.gMul` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.gMul` |
+| `CampaignGpImportCircleU1.gNorm` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.gNorm` |
 | `CampaignGpImportCircleU1.iNorm` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.iNorm` |
 | `CampaignGpImportCircleU1.iSquare` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.iSquare` |
 | `CampaignGpImportCircleU1.iSquareNeOne` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.iSquareNeOne` |
+| `CampaignGpImportCircleU1.isSign` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.isSign` |
 | `CampaignGpImportCircleU1.pairCoordsAreSigns` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.pairCoordsAreSigns` |
 | `CampaignGpImportCircleU1.pairsDiffer` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.pairsDiffer` |
 | `CampaignGpImportCircleU1.signSquare` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.signSquare` |
@@ -86,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1030_gp_import_circle_u1.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1030_gp_import_circle_u1.md](../../../dag/derivations/08_l1_to_l2/tfq_1030_gp_import_circle_u1.md)
-- sha256 (`lf-normalised`): `c37413a900d0a57ff15b62e1dafef041bfd9ae79e7bb9123f4a25e0936736bb3`
+- sha256 (`lf-normalised`): `2d79415467e61b39e37ca9970210619de41790a78b52c06dce4a2fd21d0e0815`
 - generated view: listed, not counted
 - cited in: record TFQ-1030
 - counts toward the grade: no

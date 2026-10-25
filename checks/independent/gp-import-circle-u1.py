@@ -1,58 +1,54 @@
-"""Independent integer check for the GP-IMPORT-CIRCLE-U1 narrowing.
+"""Independent exact finite audit of the sign, pair and three-cycle examples.
 
-Recomputes sign squares, the two sign pairs, the square norm and product of
-the pair 0, 1, and one three-step cycle. Does not import repository code.
+Uses a matrix for multiplication by i and a permutation table for the cycle.
+These finite examples do not construct U(1) or a continuous phase parameter.
 """
 from __future__ import annotations
 
-failures = 0
+
+def main() -> None:
+    failures: list[str] = []
+    signs = (1, -1)
+    for value in signs:
+        if value * value != 1:
+            failures.append(f"sign square: {value}")
+
+    pairs = ((1, 1), (1, -1))
+    if pairs[0] == pairs[1]:
+        failures.append("pairs are not distinct")
+    if any(coordinate not in signs for pair in pairs for coordinate in pair):
+        failures.append("pair coordinate is not a sign")
+
+    imaginary_unit = (0, 1)
+    norm = sum(coordinate * coordinate for coordinate in imaginary_unit)
+    if norm != 1:
+        failures.append("imaginary unit square norm")
+    rotation = ((0, -1), (1, 0))
+    square = tuple(sum(a * b for a, b in zip(row, imaginary_unit)) for row in rotation)
+    if square != (-1, 0) or square == (1, 0):
+        failures.append("imaginary unit square")
+
+    successor = (1, 2, 0)
+    orbits: list[tuple[int, ...]] = []
+    for start in range(3):
+        state = start
+        orbit = []
+        for _ in range(3):
+            state = successor[state]
+            orbit.append(state)
+        if state != start or len(set(orbit)) != 3:
+            failures.append(f"three-cycle from {start}")
+        orbits.append(tuple(orbit))
+    if orbits[0] != (1, 2, 0):
+        failures.append("specified orbit from zero")
+
+    for failure in failures:
+        print("FAIL", failure)
+    print(f"sign_cases={len(signs)} pairs={pairs} norm={norm} square={square}")
+    print(f"cycle_cases={len(orbits)} orbit_from_zero={orbits[0]} failures={len(failures)}")
+    if failures:
+        raise SystemExit(1)
 
 
-def check(cond: bool, msg: str) -> None:
-    global failures
-    if not cond:
-        failures += 1
-        print("FAIL", msg)
-
-
-def is_sign(a: int) -> bool:
-    return a == 1 or a == -1
-
-
-def gmul(a: int, b: int, c: int, d: int) -> tuple[int, int]:
-    return (a * c - b * d, a * d + b * c)
-
-
-def gnorm(a: int, b: int) -> int:
-    return a * a + b * b
-
-
-def cyc(n: int) -> int:
-    if n == 0:
-        return 1
-    if n == 1:
-        return 2
-    if n == 2:
-        return 0
-    return n
-
-
-for a in (1, -1):
-    check(is_sign(a), f"sign {a}")
-    check(a * a == 1, f"square {a}")
-
-check((1, 1) != (1, -1), "pairs differ")
-check(is_sign(1) and is_sign(1) and is_sign(1) and is_sign(-1), "pair coordinates")
-check(gnorm(0, 1) == 1, "square norm")
-check(gmul(0, 1, 0, 1) == (-1, 0), "product")
-check(gmul(0, 1, 0, 1) != (1, 0), "product differs from 1, 0")
-check(cyc(cyc(0)) == 2, "second step")
-check(cyc(cyc(cyc(0))) == 0, "third step")
-
-print("sign_squares:", 1 * 1, (-1) * (-1))
-print("pairs:", (1, 1), (1, -1))
-print("norm:", gnorm(0, 1))
-print("product:", gmul(0, 1, 0, 1))
-print("cycle:", cyc(0), cyc(cyc(0)), cyc(cyc(cyc(0))))
-print(f"failures={failures}")
-raise SystemExit(failures)
+if __name__ == "__main__":
+    main()
