@@ -1251,3 +1251,7 @@ lean_lib CampaignPgwIsomorphismSoundnessInLean where
 -- Campaign: PGW-RUNS-PAST-DECLARED-BOUNDS. Not a default target.
 lean_lib CampaignPgwRunsPastDeclaredBounds where
   roots := #[`CampaignPgwRunsPastDeclaredBounds]
+
+-- Campaign: PGW-STREAM-AT-FOUR-ITEMS. Not a default target.
+lean_lib CampaignPgwStreamAtFourItems where
+  roots := #[`CampaignPgwStreamAtFourItems]

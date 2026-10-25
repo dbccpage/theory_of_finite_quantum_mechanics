@@ -1,0 +1,70 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:15:27.886554+00:00",
+  "review_base": "d14ddcf32466ca6005f5001de1c6629e2b9dd451",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: PGW-STREAM-AT-FOUR-ITEMS — Narrowed: a refusal at 3 is not a refusal at 4; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignPgwStreamAtFourItems.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignPgwStreamAtFourItems",
+        "dag_node": "PGW-STREAM-AT-FOUR-ITEMS",
+        "source": "lean4/CampaignPgwStreamAtFourItems.lean",
+        "sha256": "8f9250d6b36cbf05890fd86f04f44b36a16c9dd83ee67161bd88f63aa2d88de5",
+        "sha256_after_build": "8f9250d6b36cbf05890fd86f04f44b36a16c9dd83ee67161bd88f63aa2d88de5",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "pgwStreamAtThree",
+          "pgwStreamThreeNotFour",
+          "pgwStreamFourRefuses",
+          "pgwStreamFourAccepts",
+          "pgwStreamShortCircuitSkipsFour",
+          "pgwStreamOpenSearchReachesFour",
+          "pgwStreamShortCircuitKeepsThree"
+        ],
+        "axioms": {
+          "pgwStreamAtThree": [],
+          "pgwStreamThreeNotFour": [],
+          "pgwStreamFourRefuses": [],
+          "pgwStreamFourAccepts": [],
+          "pgwStreamShortCircuitSkipsFour": [],
+          "pgwStreamOpenSearchReachesFour": [],
+          "pgwStreamShortCircuitKeepsThree": []
+        },
+        "output": "'pgwStreamAtThree' does not depend on any axioms\n'pgwStreamThreeNotFour' does not depend on any axioms\n'pgwStreamFourRefuses' does not depend on any axioms\n'pgwStreamFourAccepts' does not depend on any axioms\n'pgwStreamShortCircuitSkipsFour' does not depend on any axioms\n'pgwStreamOpenSearchReachesFour' does not depend on any axioms\n'pgwStreamShortCircuitKeepsThree' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/pgw-stream-at-four-items.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.012,
+    "output": "checked 7 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/354/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.25,
+    "output": ""
+  }
+}
