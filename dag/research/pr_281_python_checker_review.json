@@ -26,12 +26,17 @@
       "nesting": "AST control constructs; module executable statements additionally measured as one function"
     }
   },
+  "previous_receipt": {
+    "prior_logical_path": "dag/research/pr_281_python_checker_review.json",
+    "sha256": "dfe8765fc29e7c6e801d9bb4f00ca1f79cee86e3babdc95a71d3dcae37a38aca",
+    "retained_at": "dag/research/pr_281_python_checker_prior_dfe8765fc29e7c6e.json"
+  },
   "source_changed": false,
   "comparison_and_iteration_AST_multisets_unchanged": true,
-  "rejected_import_harness_attempt": {
-    "path": "dag/research/pr_281_import_harness_invalid.json",
-    "sha256": "954d39bbce873fba3c78ef1df6648a420365ab5bce54879ec91e1c23b3611c6d",
-    "attributed_to_source": false
+  "rejected_import_harness_attempt": null,
+  "superseded_typing_calibration": {
+    "path": "dag/research/pr_281_typing_calibration_superseded.json",
+    "sha256": "01e23539ec1d4e667f26ad30e5f6fc1ec2cf3dd5da72ba12b3ca903d8552e39a"
   },
   "checks": {
     "normal": {
@@ -43,7 +48,7 @@
         "checks/independent/tfq-0011.py"
       ],
       "exit_code": 0,
-      "seconds": 0.09,
+      "seconds": 0.1,
       "output": "tfq-0011 independent check: 86 checks, 0 failures\r\n"
     },
     "optimized": {
@@ -56,7 +61,7 @@
         "checks/independent/tfq-0011.py"
       ],
       "exit_code": 0,
-      "seconds": 0.21,
+      "seconds": 0.37,
       "output": "tfq-0011 independent check: 86 checks, 0 failures\r\n"
     },
     "quiet_import": {
@@ -70,7 +75,7 @@
         "import contextlib,importlib.util,io,pathlib,sys; p=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics\\\\checks\\\\independent\\\\tfq-0011.py'); root=pathlib.Path('C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\open-pr-repairs\\\\theory_of_finite_quantum_mechanics'); s=importlib.util.spec_from_file_location(\"reviewed_checker\",p); m=importlib.util.module_from_spec(s); out=io.StringIO();\ndef audit(event,args):\n if event==\"open\" and isinstance(args[0],str):\n  q=pathlib.Path(args[0]).resolve()\n  if q.is_relative_to(root) and q!=p and q.suffix!=\".pyc\": raise RuntimeError(\"Import read repository evidence: \"+str(q))\nsys.addaudithook(audit)\nwith contextlib.redirect_stdout(out),contextlib.redirect_stderr(out): s.loader.exec_module(m)\nif out.getvalue(): raise RuntimeError(\"Import executed checker output: \"+out.getvalue())\n"
       ],
       "exit_code": 0,
-      "seconds": 0.28,
+      "seconds": 0.1,
       "output": ""
     },
     "typing_tool": {
@@ -82,7 +87,7 @@
         "--version"
       ],
       "exit_code": 0,
-      "seconds": 0.56,
+      "seconds": 0.49,
       "output": "mypy 1.18.2 (compiled: yes)\r\n"
     },
     "strict_typing": {
@@ -100,17 +105,23 @@
         "checks/independent/tfq-0011.py"
       ],
       "exit_code": 1,
-      "seconds": 1.45,
+      "seconds": 2.06,
       "output": "checks\\independent\\tfq-0011.py:143: error: Function is missing a type annotation for one or more arguments  [no-untyped-def]\r\nchecks\\independent\\tfq-0011.py:144: error: Returning Any from function declared to return \"int\"  [no-any-return]\r\nFound 2 errors in 1 file (checked 1 source file)\r\n"
     }
   },
-  "score_token": "L3E",
+  "score_token": "L3D",
+  "typing_diagnostics_classification": "Any missing typing mechanism is retained as a D-level audit deficit under SCORING section 1.4; no runtime E is inferred merely from missing annotations. Actual E-range structural metrics retain E.",
   "contract_boundary": "Closed exact finite check program; internal helpers accept only the internally generated carriers. No general public input admission or physical theorem is claimed.",
   "typing_configuration": "[mypy]\nstrict = True\npython_version = 3.14\n",
   "structural_change": "None",
   "mutation_accounting": {
     "generated": 0,
     "killed": 0,
+    "survived": 0,
+    "equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
     "detection_fraction": null
   },
   "acceptance": "Blocked below L4; failed checks remain failures."

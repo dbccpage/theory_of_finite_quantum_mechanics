@@ -10,7 +10,7 @@ Current score: **L3D**, below the substantive L4D floor. The claim-to-declaratio
 
 Proof source: `lean4/CampaignTfq0011FiniteQcd.lean` at SHA-256 `6714d88efe82d60e3e927d446179f5c57153b561fc1dc04d320aad992fab816f`. No proof source changed in this final pass; the successful exact-source Lean replay remains applicable.
 
-Independent Python checker: **L3E**. Its separate assessment includes strict typing, import behavior, structural metrics and normal/optimized replay. A failed typing or structural check remains E; no test-support exception or population change is added.
+Independent Python checker: **L3D**. Its separate assessment includes strict typing, import behavior, structural metrics and normal/optimized replay. Typing diagnostics remain an audit deficit under SCORING section 1.4; E-range metrics remain E. No test-support exception or population change is added.
 
 Three unsupported `python` fields, where present, were removed from the owning frontier fragment while retaining every reference in `source`. No node status, baseline, scoring floor, population, exception category or exception path was changed. The existing authorized declarative build-registration pin was rebound to the reviewed Lake file where needed; no new support exception was introduced.
 
@@ -52,6 +52,7 @@ The malformed colon-containing `target.source_bottleneck` scalar in `dag/operads
 | independent | 0 |
 | governance | 1 |
 | overclaim | 0 |
+| qm_atlas_loc | 0 |
 
 Full commands and outputs: `dag/research/pr_281_campaign_pipeline.json`.
 
