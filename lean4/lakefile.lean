@@ -1347,3 +1347,7 @@ lean_lib CampaignPgwWdpPhiWellDefinedL1Duality where
 -- Campaign: FSP-KITAEV-HONEYCOMB-SOLUTION. Not a default target.
 lean_lib CampaignKitaevSectorBlock where
   roots := #[`CampaignKitaevSectorBlock]
+
+-- Campaign: FSP-LAUGHLIN-EXCHANGE-PHASE. Not a default target.
+lean_lib CampaignLaughlinRootAmbiguity where
+  roots := #[`CampaignLaughlinRootAmbiguity]
