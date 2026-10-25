@@ -1209,9 +1209,12 @@
       "review": "dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/reviews/20261021_batch01a_audit/delivery_review_result.json",
       "scope_effect": "status_lowered",
       "status": "CONDITIONAL",
-      "statement": "On the n-cycle with the unweighted L1 form and equal edge masses: the residual class is the holonomy S, Phi1 = |S|, the minimizers are the scaled simplex of sign-definite cochains, so for n >= 2, S != 0 and two nonempty sectors the sector weights (block L1 masses) are not determined by (Phi1, Gamma2 modelled as the holonomy); any selector, including the cyclic average S/n (integral iff n divides S), is extra input. The weighted-mass window form declared in the source is not treated in the kernel (native rows show a unique minimizer on a unique minimal-mass edge), and the sum-of-squares reading of Gamma2 is not treated.",
-      "bottleneck": "Weighted L1 form with declared masses not proved in the kernel; Gamma2 modelled as holonomy, not as sum of squares of the weights; sector/weight modelling identification with the source declarations not formalised.",
+      "statement": "Narrowed boundary, status left CONDITIONAL. The sector-weight pairs (2, 0) and (0, 2) both have coordinate sum 2 and differ. For length 4 and holonomy 2, no natural number k satisfies 4 * k = 2. For length 4 and holonomy 4, 4 * 1 = 4.",
+      "bottleneck": "The general n-cycle, the weighted L1 form with declared masses, the sum-of-squares reading of Gamma2, and any selector other than these two length-4 holonomy checks stay open. The pairs (2, 0) and (0, 2) are one witness that a common coordinate sum does not fix the pair.",
       "reason": "The cited Lean theorems are fixed C4 instances and a list-sum bound; the new kernel result is non-derivability of the sector weights on the unweighted n-cycle only, and the weighted form of the source is not treated (a unique minimal-mass edge gives a unique minimizer).",
+      "superseded_by": [
+        "dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json"
+      ],
       "second_review": "Fresh-context same-model review (final pass) recorded in the batch second_reviews.json; not a human-independent review."
     },
     {
