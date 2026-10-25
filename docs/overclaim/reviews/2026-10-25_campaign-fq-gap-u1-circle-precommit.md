@@ -10,6 +10,7 @@ Corrections to the PR's own text:
 - None. The standing statement matches the theorem types.
 
 ## Per-node table
+
 | Node | Declarations that discharge it | Verdict | Reason |
 |---|---|---|---|
 | FQ-GAP-U1-CIRCLE | `pythagorean345`, `fiveFourSquareForcesZero`, `clearedDenominatorForcesFourFifths`, `noNonzeroClearedSquareRoot` | FULL on the narrowed statement | Each atomic sentence of the standing statement is the type of one of those declarations. Axioms are `propext` and `Quot.sound` or empty. The circle group, continuity, `n` mapped to `u^n`, and the homomorphism stay in the bottleneck and are not claimed. |
@@ -20,6 +21,7 @@ Atomic claims:
 - For every integer `a`, `b` and `d`, both `5*(a*a - b*b) = 3*(d*d)` and `a*a + b*b = d*d` only at `0, 0, 0` matches `noNonzeroClearedSquareRoot`. The bridge `5*(a*a) = 4*(d*d)` matches `clearedDenominatorForcesFourFifths`.
 
 ## Numbers recomputed
+
 | Where | Claimed | Recomputed (method) | Match |
 |---|---|---|---|
 | statement and `pythagorean345` | 3*3 + 4*4 = 5*5 | independent check and Lean `decide` | match |

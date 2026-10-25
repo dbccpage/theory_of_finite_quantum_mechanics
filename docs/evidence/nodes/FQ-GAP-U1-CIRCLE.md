@@ -75,9 +75,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignFqGapU1Circle.lean](../../../lean4/CampaignFqGapU1Circle.lean)
 - sha256 (`bytes`): `8595672b1aa07fe052c2628b43f99b608d4534ec41541e16f49cc6a128af8ebb`
-- cited in: node.lean, receipt dag/research/campaign_fq-gap-u1-circle_lean_replay.json (CampaignFqGapU1Circle)
+- cited in: node.lean, receipt dag/research/campaign_fq-gap-u1-circle_lean_replay.json (CampaignFqGapU1Circle), receipt dag/research/pr_366_review_replay.json (CampaignFqGapU1Circle)
 - replay: `verified`
   - receipt [dag/research/campaign_fq-gap-u1-circle_lean_replay.json](../../../dag/research/campaign_fq-gap-u1-circle_lean_replay.json) (module `CampaignFqGapU1Circle`): recorded sha256 `8595672b1aa07fe052c2628b43f99b608d4534ec41541e16f49cc6a128af8ebb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_366_review_replay.json](../../../dag/research/pr_366_review_replay.json) (module `CampaignFqGapU1Circle`): recorded sha256 `8595672b1aa07fe052c2628b43f99b608d4534ec41541e16f49cc6a128af8ebb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignFqGapU1Circle`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
