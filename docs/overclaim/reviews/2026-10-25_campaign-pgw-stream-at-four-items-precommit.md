@@ -10,11 +10,13 @@ Corrections to the PR's own text:
 - None. The standing statement is one refusal pair and one search flag. The four-item stream computation is not proved.
 
 ## Per-node table
+
 | Node | Declarations that discharge it | Verdict | Reason |
 |---|---|---|---|
 | PGW-STREAM-AT-FOUR-ITEMS | `pgwStreamRefusesAt` (lean4/CampaignPgwStreamAtFourItems.lean:8); `pgwStreamSearched` (:11); `pgwStreamAtThree` (:14); `pgwStreamThreeNotFour` (:17); `pgwStreamFourRefuses` (:20); `pgwStreamFourAccepts` (:23); `pgwStreamShortCircuitSkipsFour` (:26); `pgwStreamOpenSearchReachesFour` (:29); `pgwStreamShortCircuitKeepsThree` (:32) | NARROWED | Those Bool facts state the one reply at item count 3, the two replies at item count 4, and the three search facts. Printed axioms are empty. The retained minima, the refusal census, the guard-stopped frontier, and the four-item stream computation are not proved. Status stays OPEN. |
 
 ## Numbers recomputed
+
 | Where | Claimed | Recomputed (method) | Match |
 |---|---|---|---|
 | Refusal at 3 | item count 3 with the bit set refuses at 3 | `pgwStreamAtThree` and the check's first assertion | Match |
