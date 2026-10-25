@@ -1239,3 +1239,7 @@ lean_lib CampaignTfq0385RuleErasesSeparation where
 -- Campaign: PGW-K-ITEM-DELTA-GRAMMAR. Not a default target.
 lean_lib CampaignPgwKItemDeltaGrammar where
   roots := #[`CampaignPgwKItemDeltaGrammar]
+
+-- Campaign: PGW-DECLARED-INPUT-FLOOR. Not a default target.
+lean_lib CampaignPgwDeclaredInputFloor where
+  roots := #[`CampaignPgwDeclaredInputFloor]
