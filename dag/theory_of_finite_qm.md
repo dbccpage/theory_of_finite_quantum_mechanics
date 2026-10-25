@@ -3505,9 +3505,9 @@ Obligation: Attach a named falsifier to each WDP result family, keep the Appendi
 - Parent: `TFQ-0557`
 - Status: `OPEN_OBLIGATION`
 
-WDP hands onward a declared, certified degree-1 window: Φ₁([h]) = Φ_J([h]), the quotient infimum over repairs, certified for weighted ℓ¹ over ℚ by a matching repair and bounded circulation; Γ₂([h]) = ‖d₁h‖₁; the diagnostic trichotomy; and the observer discipline that a protected question passes through a report only when constant on its fibres. The 007 Local-Green/Global-Red series refuses the case in which every local check passes and the global check fails, and its Symbol Game integration sets the global verdict to 0 when Φ₁ > 0 or Γ₂ > 0, but it writes Φ₁(h) = ‖d₀h‖₁ (boundary leakage), which is not WDP's quotient infimum. The 007 lesson states that no automatic identification with the PFP quantities phi1 or gamma2 is supplied, so an adapter from WDP's quotient Φ₁ and Γ₂ to the LGGR global evaluator is owed. The DAG's next stage is L1_EMERGENCE (TFQ-0005 declared L1 sector weights, TFQ-0349).
+On vertices 0, 1, 2 with values (0, 1, 0), the coboundary in slot order (01, 12, 02) is (1, -1, 0). Its L1 norm is 2. Subtracting that coboundary leaves residual (0, 0, 0), whose L1 norm is 0, and 0 is at most every natural number, so this repair cost is a minimum. The leakage number 2 is not that minimum. The oriented sum 1 + (-1) - 0 equals 0.
 
-Obligation: Hand onward only the certified window values (Φ₁ as the quotient infimum with its certificate, Γ₂, the diagnostic class) and the report-fibre discipline, and supply a checked adapter before any LGGR verdict reads Φ₁ as ‖d₀h‖₁.
+Obligation: The finite check records coboundary (1, -1, 0), leakage 2, repair cost 0, and oriented sum 0 on vertex values (0, 1, 0). A certified weighted quotient for a general window, an LGGR adapter, and the L1 stage stay open.
 
 ## L1_EMERGENCE
 

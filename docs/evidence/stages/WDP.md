@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 29. Grades: E0 5, E2 1, E3 23. Statuses: PROVED_LEAN 6, PROVED_PROSE 3, CONDITIONAL 2, DEFINITION 14, OPEN 4.
+Nodes: 29. Grades: E0 4, E2 1, E3 24. Statuses: PROVED_LEAN 6, PROVED_PROSE 3, CONDITIONAL 2, DEFINITION 14, OPEN 4.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -34,5 +34,5 @@ Nodes: 29. Grades: E0 5, E2 1, E3 23. Statuses: PROVED_LEAN 6, PROVED_PROSE 3, C
 | [PGW-WDP-BRIDGE-ONGOING-TO-WINDOW](../nodes/PGW-WDP-BRIDGE-ONGOING-TO-WINDOW.md) | `OPEN` | E2 | GEN-WDP-07, a conditional theorem in the bridge register, fixes a carrier and marked triples F, keeps the full directed integer table e(x... | [RootGaugeNormalization.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean): `normal_preserves_round_sums` | - |
 | [PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER](../nodes/PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER.md) | `CONDITIONAL` | E3 | GEN-WDP-03: with actual cases X, a declared evaluation report E: X → Reports and a protected admission or permission decision A: X → Deci... | [ProposalAdmissionBridge.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean): `factorization_iff_fiber_constancy` | - |
 | [PGW-WDP-SYNTHESIS-TRUNK-TIERS](../nodes/PGW-WDP-SYNTHESIS-TRUNK-TIERS.md) | `DEFINITION` | E0 | Chapter 21 names, for each result family, the small countermodel that would refute it: quotient well-definedness fails if a representativ... | none in this checkout | - |
-| [PGW-WDP-HANDOFF-TO-L1](../nodes/PGW-WDP-HANDOFF-TO-L1.md) | `OPEN` | E0 | WDP hands onward a declared, certified degree-1 window: Φ₁(\[h\]) = Φ_J(\[h\]), the quotient infimum over repairs, certified for weighted ℓ¹... | none in this checkout | - |
+| [PGW-WDP-HANDOFF-TO-L1](../nodes/PGW-WDP-HANDOFF-TO-L1.md) | `OPEN` | E3 | On vertices 0, 1, 2 with values (0, 1, 0), the coboundary in slot order (01, 12, 02) is (1, -1, 0). Its L1 norm is 2. Subtracting that co... | [CampaignPgwWdpHandoffToL1.lean](../../../lean4/CampaignPgwWdpHandoffToL1.lean): `pgwHo_coboundary`, `pgwHo_leakage`, `pgwHo_leakage_not_min` +11<br>[pgw-wdp-handoff-to-l1.py](../../../checks/independent/pgw-wdp-handoff-to-l1.py): `main`<br>[pgw-wdp-handoff-to-l1.md](../../../dag/derivations/independent/pgw-wdp-handoff-to-l1.md)<br>[campaign_pgw-wdp-handoff-to-l1_lean_replay.json](../../../dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json) | - |
 
