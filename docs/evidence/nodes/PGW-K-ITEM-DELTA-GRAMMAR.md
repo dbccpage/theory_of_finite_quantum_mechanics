@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 28
-- cited Lean declarations covered by a current replay receipt: 28
+- cited Lean declaration references covered by a current replay receipt: 28
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -80,6 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `ten_atoms` | yes | yes | yes | none | `#print axioms ten_atoms` |
 | `well_formed_pairs_are` | yes | yes | yes | none | `#print axioms well_formed_pairs_are` |
 | `well_formed_singles_are` | yes | yes | yes | none | `#print axioms well_formed_singles_are` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/Genesis19l57g1/Derivation/Mention.lean`
@@ -94,6 +95,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `collapsed_fresh_datum` | yes | yes | yes | Quot.sound, propext | `#print axioms collapsed_fresh_datum` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean`
@@ -108,6 +110,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `rule_item_never_minimal` | yes | yes | yes | propext | `#print axioms rule_item_never_minimal` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs`

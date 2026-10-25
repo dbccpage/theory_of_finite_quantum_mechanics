@@ -4,19 +4,19 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade:
 
 ## Statement
 
-> On the n-cycle with the unweighted L1 form and equal edge masses: the residual class is the holonomy S, Phi1 = |S|, the minimizers are the scaled simplex of sign-definite cochains, so for n \>= 2, S != 0 and two nonempty sectors the sector weights (block L1 masses) are not determined by (Phi1, Gamma2 modelled as the holonomy); any selector, including the cyclic average S/n (integral iff n divides S), is extra input. The weighted-mass window form declared in the source is not treated in the kernel (native rows show a unique minimizer on a unique minimal-mass edge), and the sum-of-squares reading of Gamma2 is not treated.
+> Narrowed boundary, status left CONDITIONAL. The sector-weight pairs (2, 0) and (0, 2) both have coordinate sum 2 and differ. For length 4 and holonomy 2, no natural number k satisfies 4 * k = 2. For length 4 and holonomy 4, 4 * 1 = 4.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
-- cited Lean, Rust or Python symbols found in their in-repo files: 22
-- cited Lean declaration references covered by a current replay receipt: 20
+- counted in-repo evidence files: 9
+- cited Lean, Rust or Python symbols found in their in-repo files: 26
+- cited Lean declaration references covered by a current replay receipt: 24
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 1
+- counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,11 +28,11 @@ None recorded.
 
 ## Bottleneck
 
-Weighted L1 form with declared masses not proved in the kernel; Gamma2 modelled as holonomy, not as sum of squares of the weights; sector/weight modelling identification with the source declarations not formalised.
+The general n-cycle, the weighted L1 form with declared masses, the sum-of-squares reading of Gamma2, and any selector other than these two length-4 holonomy checks stay open. The pairs (2, 0) and (0, 2) are one witness that a common coordinate sum does not fix the pair.
 
 ## Source status
 
-QM-020 Thm 3 residual-to-sector-weight non-uniqueness without a selector on the 4-cycle ((2,0) != (0,2) at Phi_1 = 2), dihedral C_4 symmetry-orbit selector collapse to (4,4), and positive-simplex trace normalization mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
+Conditional. CampaignL1ResidualSectorWeights records the pairs (2, 0) and (0, 2) at coordinate sum 2, and the two length-4 holonomy checks. The weighted form and the general n-cycle stay open.
 
 ## Review
 
@@ -57,6 +57,25 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `normalize` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms normalize` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/CampaignL1ResidualSectorWeights.lean`
+
+- file: [lean4/CampaignL1ResidualSectorWeights.lean](../../../lean4/CampaignL1ResidualSectorWeights.lean)
+- sha256 (`bytes`): `f8b91f84cece66dcdc6e9423159d31ec17230dbf931a7117e2cb31c073b5275e`
+- cited in: node.lean, node.source, receipt dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json (CampaignL1ResidualSectorWeights), receipt dag/research/pr_364_review_replay.json (CampaignL1ResidualSectorWeights)
+- replay: `verified`
+  - receipt [dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json](../../../dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json) (module `CampaignL1ResidualSectorWeights`): recorded sha256 `f8b91f84cece66dcdc6e9423159d31ec17230dbf931a7117e2cb31c073b5275e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_364_review_replay.json](../../../dag/research/pr_364_review_replay.json) (module `CampaignL1ResidualSectorWeights`): recorded sha256 `f8b91f84cece66dcdc6e9423159d31ec17230dbf931a7117e2cb31c073b5275e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignL1ResidualSectorWeights`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `holonomy_four_divisible` | yes | yes | yes | none | `#print axioms holonomy_four_divisible` |
+| `holonomy_two_not_divisible` | yes | yes | yes | Quot.sound, propext | `#print axioms holonomy_two_not_divisible` |
+| `same_phi1` | yes | yes | yes | none | `#print axioms same_phi1` |
+| `weights_differ` | yes | yes | yes | none | `#print axioms weights_differ` |
 
 - counts toward the grade: yes
 
@@ -189,6 +208,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Python: `checks/independent/l1-residual-sector-weights-declared.py`
+
+- file: [checks/independent/l1-residual-sector-weights-declared.py](../../../checks/independent/l1-residual-sector-weights-declared.py)
+- sha256 (`bytes`): `bec830d915f19bb5b74b7cc7347476fa217501aeb3c294d85178af1015c3b3e4`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0005_declared_l1_sector_weights.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0005_declared_l1_sector_weights.md](../../../dag/derivations/07_l1_emergence/tfq_0005_declared_l1_sector_weights.md)
@@ -212,6 +238,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - generated view: listed, not counted
 - cited in: record TFQ-0167 (shared)
 - counts toward the grade: no
+
+### Documents and data: `dag/derivations/independent/l1-residual-sector-weights-declared.md`
+
+- file: [dag/derivations/independent/l1-residual-sector-weights-declared.md](../../../dag/derivations/independent/l1-residual-sector-weights-declared.md)
+- sha256 (`lf-normalised`): `9fc6212bbcd925157cfec1b4ddbcbe51f47a16d6abdb01e925f0879f0403f752`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json`
+
+- file: [dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json](../../../dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json)
+- sha256 (`lf-normalised`): `68502bdec2e87341d7851db7c9352a73cd4d71d7ac7abcebe4b105a0a6062dc8`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/003_residual_density_calculus_l1_l2_boundary/qm_003_residual_density_calculus_l1_l2_boundary_claim_ledger.md`
 

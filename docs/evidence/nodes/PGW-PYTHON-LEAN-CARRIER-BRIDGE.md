@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignPgwPythonLeanCarrierBridge.lean](../../../lean4/CampaignPgwPythonLeanCarrierBridge.lean)
 - sha256 (`bytes`): `096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3`
-- cited in: node.lean, receipt dag/research/campaign_pgw-python-lean-carrier-bridge_lean_replay.json (CampaignPgwPythonLeanCarrierBridge), record TFQ-0499
+- cited in: node.lean, receipt dag/research/campaign_pgw-python-lean-carrier-bridge_lean_replay.json (CampaignPgwPythonLeanCarrierBridge), receipt dag/research/pr_320_current_lean_replay.json (CampaignPgwPythonLeanCarrierBridge), record TFQ-0499
 - replay: `verified`
   - receipt [dag/research/campaign_pgw-python-lean-carrier-bridge_lean_replay.json](../../../dag/research/campaign_pgw-python-lean-carrier-bridge_lean_replay.json) (module `CampaignPgwPythonLeanCarrierBridge`): recorded sha256 `096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/pr_320_current_lean_replay.json](../../../dag/research/pr_320_current_lean_replay.json) (module `CampaignPgwPythonLeanCarrierBridge`): recorded sha256 `096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignPgwPythonLeanCarrierBridge`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

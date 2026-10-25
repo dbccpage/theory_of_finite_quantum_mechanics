@@ -4,15 +4,15 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 
 ## Statement
 
-> The circle group U(1) is not constructed on the finite host; continuity of a one-parameter phase group remains a hypothesis. In Q(i), u=(3+4i)/5 has no square root and n -\> u^n is injective, so no homomorphism (Q,+) -\> U(1)(Q(i)) sends 1 to u.
+> For every integer a, b and d, the equations 5*(a*a - b*b) = 3*(d*d) and a*a + b*b = d*d hold together only when a = 0, b = 0 and d = 0. For every natural number a and b, 5*a*a = 4*b*b holds only when b = 0. The identity 3*3 + 4*4 = 5*5 holds.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 10
-- cited Lean, Rust or Python symbols found in their in-repo files: 10
-- cited Lean declaration references covered by a current replay receipt: 4
+- counted in-repo evidence files: 11
+- cited Lean, Rust or Python symbols found in their in-repo files: 14
+- cited Lean declaration references covered by a current replay receipt: 8
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -54,7 +54,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Bottleneck
 
-Projective P^1(Q) Cayley compactification, 5-adic half-angle obstruction, mod-5 Gaussian power injectivity, Q/Z torsion-tower divisibility, quadratic sqrt(5) half-angle restoration + iterated real quadratic square-root tower K_{m+1} = K_m(sqrt((1+c_m)/2)), rational Chebyshev/Taylor Cauchy approximations over RegPhaseSeq, 4D Q(i) Hermitian Born trace representation, and discrete Cayley unitary steps U_H(t) = (I - i t H)(I + i t H)^(-1) are kernel-checked; compact continuous R/Z circle topology remains an explicit completion structure.
+Still open: the circle group U(1) on the finite host, continuity of a one-parameter phase group, injectivity of n mapped to u^n for u = (3+4i)/5, and a homomorphism from (Q, +) into U(1)(Q(i)) sending 1 to u. Projective Cayley, the 5-adic half-angle, mod-5 Gaussian powers, Q/Z torsion, the quadratic sqrt(5) tower, Chebyshev and Taylor approximations, 4D Hermitian Born traces, and discrete Cayley steps stay outside this integer witness. Compact continuous R/Z remains an external completion.
 
 ## Source status
 
@@ -62,7 +62,7 @@ Projective Cayley compactification P^1(Q) \<-\> S^1(Q), 5-adic half-angle obstru
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: The rational Cayley parametrization satisfies the unit-circle equation on retained points, with exact inverse t=y/(x+1), and a general cleared identity. The square-root equations force a^2=4/5; bounded powers are computed exactly.
   - does not support: Prove 4/5 is not a rational square, full power-map injectivity, and the additive-Q homomorphism obstruction without bounded-search substitution; compact continuous U(1) remains imported.
   - next test: Prove 4/5 is not a rational square, full power-map injectivity, and the additive-Q homomorphism obstruction without bounded-search substitution; compact continuous U(1) remains imported.
@@ -70,6 +70,25 @@ Projective Cayley compactification P^1(Q) \<-\> S^1(Q), 5-adic half-angle obstru
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignFqGapU1Circle.lean`
+
+- file: [lean4/CampaignFqGapU1Circle.lean](../../../lean4/CampaignFqGapU1Circle.lean)
+- sha256 (`bytes`): `8595672b1aa07fe052c2628b43f99b608d4534ec41541e16f49cc6a128af8ebb`
+- cited in: node.lean, receipt dag/research/campaign_fq-gap-u1-circle_lean_replay.json (CampaignFqGapU1Circle), receipt dag/research/pr_366_review_replay.json (CampaignFqGapU1Circle)
+- replay: `verified`
+  - receipt [dag/research/campaign_fq-gap-u1-circle_lean_replay.json](../../../dag/research/campaign_fq-gap-u1-circle_lean_replay.json) (module `CampaignFqGapU1Circle`): recorded sha256 `8595672b1aa07fe052c2628b43f99b608d4534ec41541e16f49cc6a128af8ebb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_366_review_replay.json](../../../dag/research/pr_366_review_replay.json) (module `CampaignFqGapU1Circle`): recorded sha256 `8595672b1aa07fe052c2628b43f99b608d4534ec41541e16f49cc6a128af8ebb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignFqGapU1Circle`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `clearedDenominatorForcesFourFifths` | yes | yes | yes | Quot.sound, propext | `#print axioms clearedDenominatorForcesFourFifths` |
+| `fiveFourSquareForcesZero` | yes | yes | yes | Quot.sound, propext | `#print axioms fiveFourSquareForcesZero` |
+| `noNonzeroClearedSquareRoot` | yes | yes | yes | Quot.sound, propext | `#print axioms noNonzeroClearedSquareRoot` |
+| `pythagorean345` | yes | yes | yes | none | `#print axioms pythagorean345` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 

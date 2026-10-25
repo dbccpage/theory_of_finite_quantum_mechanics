@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 29. Grades: E0 5, E3 24. Statuses: PROVED_LEAN 6, PROVED_PROSE 3, CONDITIONAL 2, DEFINITION 14, OPEN 4.
+Nodes: 29. Grades: E0 4, E3 25. Statuses: PROVED_LEAN 6, PROVED_PROSE 3, CONDITIONAL 2, DEFINITION 14, OPEN 4.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -34,5 +34,5 @@ Nodes: 29. Grades: E0 5, E3 24. Statuses: PROVED_LEAN 6, PROVED_PROSE 3, CONDITI
 | [PGW-WDP-BRIDGE-ONGOING-TO-WINDOW](../nodes/PGW-WDP-BRIDGE-ONGOING-TO-WINDOW.md) | `OPEN` | E3 | Narrowed in Lean 4 to the carrier {0, 1}. The directed slots are e(0,0), e(1,1), e(0,1) and e(1,0). The coboundary of vertex values (g0,... | [CampaignPgwWdpBridgeOngoing.lean](../../../lean4/CampaignPgwWdpBridgeOngoing.lean): `cob_slots`, `compensated_loop_closed`, `compensated_loop_not_coboundary` +8<br>[RootGaugeNormalization.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean): `normal_preserves_round_sums`<br>[pgw-wdp-bridge-ongoing-to-window.py](../../../checks/independent/pgw-wdp-bridge-ongoing-to-window.py): `main`<br>[pgw-wdp-bridge-ongoing-to-window.md](../../../dag/derivations/independent/pgw-wdp-bridge-ongoing-to-window.md)<br>+1 more file(s) | - |
 | [PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER](../nodes/PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER.md) | `CONDITIONAL` | E3 | GEN-WDP-03: with actual cases X, a declared evaluation report E: X → Reports and a protected admission or permission decision A: X → Deci... | [ProposalAdmissionBridge.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean): `factorization_iff_fiber_constancy` | - |
 | [PGW-WDP-SYNTHESIS-TRUNK-TIERS](../nodes/PGW-WDP-SYNTHESIS-TRUNK-TIERS.md) | `DEFINITION` | E0 | Chapter 21 names, for each result family, the small countermodel that would refute it: quotient well-definedness fails if a representativ... | none in this checkout | - |
-| [PGW-WDP-HANDOFF-TO-L1](../nodes/PGW-WDP-HANDOFF-TO-L1.md) | `OPEN` | E0 | WDP hands onward a declared, certified degree-1 window: Φ₁(\[h\]) = Φ_J(\[h\]), the quotient infimum over repairs, certified for weighted ℓ¹... | none in this checkout | - |
+| [PGW-WDP-HANDOFF-TO-L1](../nodes/PGW-WDP-HANDOFF-TO-L1.md) | `OPEN` | E3 | Narrowed boundary, status left OPEN. On one triangle with edges (01, 12, 02) and unit integer weights, the coboundary of vertex values (f... | [CampaignPgwWdpHandoffToL1.lean](../../../lean4/CampaignPgwWdpHandoffToL1.lean): `closed_verdict`, `coboundary_of_repair_vertex`, `d0_components` +17<br>[pgw-wdp-handoff-to-l1.py](../../../checks/independent/pgw-wdp-handoff-to-l1.py): `main`<br>[pgw-wdp-handoff-to-l1.md](../../../dag/derivations/independent/pgw-wdp-handoff-to-l1.md)<br>[campaign_pgw-wdp-handoff-to-l1_lean_replay.json](../../../dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json) | - |
 

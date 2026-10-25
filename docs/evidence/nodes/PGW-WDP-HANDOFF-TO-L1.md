@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 21
-- cited Lean declarations covered by a current replay receipt: 20
+- cited Lean declaration references covered by a current replay receipt: 20
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -74,6 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `repair_residual_neg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms repair_residual_neg` |
 | `repair_residual_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms repair_residual_nonneg` |
 | `unequal_report_fails` | yes | yes | yes | none | `#print axioms unequal_report_fails` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_local_green_global_red_lggr/src/ledger.rs`
@@ -92,6 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `main` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md`
