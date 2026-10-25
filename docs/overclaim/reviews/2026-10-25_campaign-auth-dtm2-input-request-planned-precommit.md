@@ -10,18 +10,20 @@ Corrections to the PR's own text:
 - None. The standing statement is one closed request list and one missing header, not the update packet's evaluator or its remaining named targets.
 
 ## Per-node table
+
 | Node | Declarations that discharge it | Verdict | Reason |
 |---|---|---|---|
-| AUTH-DTM2-INPUT-REQUEST-PLANNED | `oneRequestRoundTrip` (lean4/CampaignAuthDtm2InputRequestPlanned.lean:20), `missingHeaderRejected` (lean4/CampaignAuthDtm2InputRequestPlanned.lean:26) | FULL | Each atomic clause of the standing statement is a conjunct of one of those two types. Axiom lines at lean4/CampaignAuthDtm2InputRequestPlanned.lean:30 and :31 are empty. |
+| AUTH-DTM2-INPUT-REQUEST-PLANNED | `oneRequestEncoding` (lean4/CampaignAuthDtm2InputRequestPlanned.lean:20), `zeroHeadDiffersFromHeader` (lean4/CampaignAuthDtm2InputRequestPlanned.lean:26) | FULL | Each atomic clause of the standing statement is a conjunct of one of those two types. Axiom lines at lean4/CampaignAuthDtm2InputRequestPlanned.lean:30 and :31 are empty. |
 
 Atomic clauses of the standing statement:
-- Header tag 1, fuel 2, machine-code length 1, segment [7], input word [3, 4]: the first five conjuncts of `oneRequestRoundTrip` (line 21).
+- Header tag 1, fuel 2, machine-code length 1, segment [7], input word [3, 4]: the first five conjuncts of `oneRequestEncoding` (line 21).
 - Concatenating those fields yields [1, 2, 1, 7, 3, 4]: `encodeRequest = [1, 2, 1, 7, 3, 4]` (line 23). `encodeRequest` is the concatenation at line 17.
 - The list 0, 2, 1, 7, 3, 4 begins with 0, and 0 differs from the header tag: `head? = some 0`, `header = 1`, and `some 0 ≠ some header` (line 27).
 
 Left in the obligation (dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md:17): an encoder and decoder for any other request, the remaining named targets in the update packet, result-level agreement with a bounded evaluator, configuration snapshots, and step-by-step trace agreement. No custody reading and no authorization reading are in the record.
 
 ## Numbers recomputed
+
 | Where | Claimed | Recomputed (method) | Match |
 |---|---|---|---|
 | Standing statement | fields 1, 2, 1, 7, 3, 4 and the list 1, 2, 1, 7, 3, 4 | `checks/independent/auth-dtm2-input-request-planned.py` | match |

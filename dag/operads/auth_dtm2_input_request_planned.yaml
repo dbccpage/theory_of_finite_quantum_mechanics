@@ -25,7 +25,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md
-    sha256: 393f59baefc5ae07be557ea2b48a57717fcc9ce14012e89e218119bd8e01ed22
+    sha256: 3cb9b84df8a6d64d49eda6344d7a29b7c93f18f661f385bf9dd22077baf16266
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -40,7 +40,7 @@ operation_candidates:
   signature_excerpt: 'def header : Nat'
   source: lean4/CampaignAuthDtm2InputRequestPlanned.lean
   repository: this_repository
-  source_sha256: d3a7278ecc51dd3010eb911b5b6278eacce8db9b977c4902b383666322dfb4ec
+  source_sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
   status: source_candidate_requires_semantic_review
 - kind: def
   name: fuel
@@ -48,7 +48,7 @@ operation_candidates:
   signature_excerpt: 'def fuel : Nat'
   source: lean4/CampaignAuthDtm2InputRequestPlanned.lean
   repository: this_repository
-  source_sha256: d3a7278ecc51dd3010eb911b5b6278eacce8db9b977c4902b383666322dfb4ec
+  source_sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
   status: source_candidate_requires_semantic_review
 - kind: def
   name: machineLength
@@ -56,7 +56,7 @@ operation_candidates:
   signature_excerpt: 'def machineLength : Nat'
   source: lean4/CampaignAuthDtm2InputRequestPlanned.lean
   repository: this_repository
-  source_sha256: d3a7278ecc51dd3010eb911b5b6278eacce8db9b977c4902b383666322dfb4ec
+  source_sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
   status: source_candidate_requires_semantic_review
 - kind: def
   name: machineSegment
@@ -64,7 +64,7 @@ operation_candidates:
   signature_excerpt: 'def machineSegment : List Nat'
   source: lean4/CampaignAuthDtm2InputRequestPlanned.lean
   repository: this_repository
-  source_sha256: d3a7278ecc51dd3010eb911b5b6278eacce8db9b977c4902b383666322dfb4ec
+  source_sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
   status: source_candidate_requires_semantic_review
 - kind: def
   name: inputWord
@@ -72,7 +72,7 @@ operation_candidates:
   signature_excerpt: 'def inputWord : List Nat'
   source: lean4/CampaignAuthDtm2InputRequestPlanned.lean
   repository: this_repository
-  source_sha256: d3a7278ecc51dd3010eb911b5b6278eacce8db9b977c4902b383666322dfb4ec
+  source_sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
   status: source_candidate_requires_semantic_review
 - kind: def
   name: encodeRequest
@@ -80,51 +80,51 @@ operation_candidates:
   signature_excerpt: 'def encodeRequest : List Nat'
   source: lean4/CampaignAuthDtm2InputRequestPlanned.lean
   repository: this_repository
-  source_sha256: d3a7278ecc51dd3010eb911b5b6278eacce8db9b977c4902b383666322dfb4ec
+  source_sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
-  name: oneRequestRoundTrip
+  name: oneRequestEncoding
   line: 20
   signature_excerpt: |-
-    theorem oneRequestRoundTrip :
+    theorem oneRequestEncoding :
         header = 1 ∧ fuel = 2 ∧ machineLength = 1 ∧
           machineSegment = [7] ∧ inputWord = [3, 4] ∧
           encodeRequest = [1, 2, 1, 7, 3, 4]
   source: lean4/CampaignAuthDtm2InputRequestPlanned.lean
   repository: this_repository
-  source_sha256: d3a7278ecc51dd3010eb911b5b6278eacce8db9b977c4902b383666322dfb4ec
+  source_sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 - kind: theorem
-  name: missingHeaderRejected
+  name: zeroHeadDiffersFromHeader
   line: 26
   signature_excerpt: |-
-    theorem missingHeaderRejected :
+    theorem zeroHeadDiffersFromHeader :
         [0, 2, 1, 7, 3, 4].head? = some 0 ∧ header = 1 ∧ some 0 ≠ some header
   source: lean4/CampaignAuthDtm2InputRequestPlanned.lean
   repository: this_repository
-  source_sha256: d3a7278ecc51dd3010eb911b5b6278eacce8db9b977c4902b383666322dfb4ec
+  source_sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignAuthDtm2InputRequestPlanned.lean::oneRequestRoundTrip
+- original_ref: lean4/CampaignAuthDtm2InputRequestPlanned.lean::oneRequestEncoding
   availability: local
-  symbol: oneRequestRoundTrip
+  symbol: oneRequestEncoding
   path: lean4/CampaignAuthDtm2InputRequestPlanned.lean
   repository: this_repository
-  sha256: d3a7278ecc51dd3010eb911b5b6278eacce8db9b977c4902b383666322dfb4ec
+  sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
   declaration_status: declaration_found_not_proof_checked
   line: 20
   role: source_lead_only
-- original_ref: lean4/CampaignAuthDtm2InputRequestPlanned.lean::missingHeaderRejected
+- original_ref: lean4/CampaignAuthDtm2InputRequestPlanned.lean::zeroHeadDiffersFromHeader
   availability: local
-  symbol: missingHeaderRejected
+  symbol: zeroHeadDiffersFromHeader
   path: lean4/CampaignAuthDtm2InputRequestPlanned.lean
   repository: this_repository
-  sha256: d3a7278ecc51dd3010eb911b5b6278eacce8db9b977c4902b383666322dfb4ec
+  sha256: 070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd
   declaration_status: declaration_found_not_proof_checked
   line: 26
   role: source_lead_only

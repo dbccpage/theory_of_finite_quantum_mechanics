@@ -45,24 +45,25 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignAuthDtm2InputRequestPlanned.lean`
 
 - file: [lean4/CampaignAuthDtm2InputRequestPlanned.lean](../../../lean4/CampaignAuthDtm2InputRequestPlanned.lean)
-- sha256 (`bytes`): `d3a7278ecc51dd3010eb911b5b6278eacce8db9b977c4902b383666322dfb4ec`
-- cited in: node.lean, receipt dag/research/campaign_auth-dtm2-input-request-planned_lean_replay.json (CampaignAuthDtm2InputRequestPlanned), record TFQ-1333
+- sha256 (`bytes`): `070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd`
+- cited in: node.lean, receipt dag/research/campaign_auth-dtm2-input-request-planned_lean_replay.json (CampaignAuthDtm2InputRequestPlanned), receipt dag/research/pr_371_review_replay.json (CampaignAuthDtm2InputRequestPlanned), record TFQ-1333
 - replay: `verified`
-  - receipt [dag/research/campaign_auth-dtm2-input-request-planned_lean_replay.json](../../../dag/research/campaign_auth-dtm2-input-request-planned_lean_replay.json) (module `CampaignAuthDtm2InputRequestPlanned`): recorded sha256 `d3a7278ecc51dd3010eb911b5b6278eacce8db9b977c4902b383666322dfb4ec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/campaign_auth-dtm2-input-request-planned_lean_replay.json](../../../dag/research/campaign_auth-dtm2-input-request-planned_lean_replay.json) (module `CampaignAuthDtm2InputRequestPlanned`): recorded sha256 `070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_371_review_replay.json](../../../dag/research/pr_371_review_replay.json) (module `CampaignAuthDtm2InputRequestPlanned`): recorded sha256 `070d8ae283532b1ad74a769395accb6f197e758859a540cf45a27aacefe852cd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignAuthDtm2InputRequestPlanned`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignAuthDtm2InputRequestPlanned.missingHeaderRejected` | yes | yes | yes | none | `#print axioms CampaignAuthDtm2InputRequestPlanned.missingHeaderRejected` |
-| `CampaignAuthDtm2InputRequestPlanned.oneRequestRoundTrip` | yes | yes | yes | none | `#print axioms CampaignAuthDtm2InputRequestPlanned.oneRequestRoundTrip` |
-| `missingHeaderRejected` | yes | yes | yes | none | `#print axioms missingHeaderRejected` |
-| `oneRequestRoundTrip` | yes | yes | yes | none | `#print axioms oneRequestRoundTrip` |
+| `CampaignAuthDtm2InputRequestPlanned.oneRequestEncoding` | yes | yes | yes | none | `#print axioms CampaignAuthDtm2InputRequestPlanned.oneRequestEncoding` |
+| `CampaignAuthDtm2InputRequestPlanned.zeroHeadDiffersFromHeader` | yes | yes | yes | none | `#print axioms CampaignAuthDtm2InputRequestPlanned.zeroHeadDiffersFromHeader` |
+| `oneRequestEncoding` | yes | yes | yes | none | `#print axioms oneRequestEncoding` |
+| `zeroHeadDiffersFromHeader` | yes | yes | yes | none | `#print axioms zeroHeadDiffersFromHeader` |
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md`
 
 - file: [dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md](../../../dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md)
-- sha256 (`lf-normalised`): `393f59baefc5ae07be557ea2b48a57717fcc9ce14012e89e218119bd8e01ed22`
+- sha256 (`lf-normalised`): `3cb9b84df8a6d64d49eda6344d7a29b7c93f18f661f385bf9dd22077baf16266`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1333
 - counts toward the grade: no

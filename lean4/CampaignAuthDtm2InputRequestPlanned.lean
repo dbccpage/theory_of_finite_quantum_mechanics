@@ -17,17 +17,17 @@ def inputWord : List Nat := [3, 4]
 def encodeRequest : List Nat :=
   [header, fuel, machineLength] ++ machineSegment ++ inputWord
 
-theorem oneRequestRoundTrip :
+theorem oneRequestEncoding :
     header = 1 ∧ fuel = 2 ∧ machineLength = 1 ∧
       machineSegment = [7] ∧ inputWord = [3, 4] ∧
       encodeRequest = [1, 2, 1, 7, 3, 4] := by
   decide
 
-theorem missingHeaderRejected :
+theorem zeroHeadDiffersFromHeader :
     [0, 2, 1, 7, 3, 4].head? = some 0 ∧ header = 1 ∧ some 0 ≠ some header := by
   decide
 
-#print axioms oneRequestRoundTrip
-#print axioms missingHeaderRejected
+#print axioms oneRequestEncoding
+#print axioms zeroHeadDiffersFromHeader
 
 end CampaignAuthDtm2InputRequestPlanned

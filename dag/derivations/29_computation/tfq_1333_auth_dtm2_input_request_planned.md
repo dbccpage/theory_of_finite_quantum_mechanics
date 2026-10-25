@@ -32,8 +32,8 @@ The campaign module records one closed request list 1, 2, 1, 7, 3, 4 and one lis
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignAuthDtm2InputRequestPlanned.lean::oneRequestRoundTrip`
-- `lean4/CampaignAuthDtm2InputRequestPlanned.lean::missingHeaderRejected`
+- `lean4/CampaignAuthDtm2InputRequestPlanned.lean::oneRequestEncoding`
+- `lean4/CampaignAuthDtm2InputRequestPlanned.lean::zeroHeadDiffersFromHeader`
 
 ### Rust Certifiers
 - *none*
