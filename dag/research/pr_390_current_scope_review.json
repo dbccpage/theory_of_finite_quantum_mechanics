@@ -1,0 +1,68 @@
+{
+  "task_id": "GP-IMPORT-COMPLEX-FIELD",
+  "status": "scoped_gaussian_integer_result_reviewed",
+  "authority_effect": "None",
+  "reviewer": "Codex source and exact-check review; no independent-author human review claimed.",
+  "historical_review": "dag/results/GP-IMPORT-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json",
+  "historical_superseded_by": [
+    "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion",
+    "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps"
+  ],
+  "claim_boundary": {
+    "supports": "For a Gaussian integer a+bi, the product (1+i)*(a+bi) equals (a-b)+(a+b)i and differs from the real unit, and (a+bi)*(1+i) differs from the real unit. The matrix with entries 0, 1, 1, 1 in row-major order has each diagonal entry equal to its own conjugate and each off-diagonal entry equal to the conjugate of the other, and it sends a column (x, y) to (y, x+y). When (x, y) differs from the zero column, (y, x+y) differs from lam*(x, y) for each Gaussian integer lam.",
+    "narrowest_claim": "For a Gaussian integer a+bi, the product (1+i)*(a+bi) equals (a-b)+(a+b)i and differs from the real unit, and (a+bi)*(1+i) differs from the real unit. The matrix with entries 0, 1, 1, 1 in row-major order has each diagonal entry equal to its own conjugate and each off-diagonal entry equal to the conjugate of the other, and it sends a column (x, y) to (y, x+y). When (x, y) differs from the zero column, (y, x+y) differs from lam*(x, y) for each Gaussian integer lam.",
+    "does_not_support": "The example rules out Gaussian-integer eigenpairs for this one matrix. A spectral theorem after extending scalars to a complete complex field, and a derivation or selection of that field from primitive difference, remain imported. This obstruction does not prove that completion or the complex numbers are uniquely necessary; the cyclotomic ring Z[zeta_n] remains a recorded discrete substitute.",
+    "next_test": "Keep the complete-field import explicit while reusing the exact Gaussian-integer obstruction."
+  },
+  "source_sha256": "c090c3aa370fd870e88362aa4cd9f27302b427773acf8bf97c2a2f936929c5a6",
+  "independent_check_sha256": "afa9251fba92e70023b56d0641b6b021a7043c3364ff7bd6ce18ad040646cdad",
+  "reviewed_declarations": [
+    "CampaignGpImportComplexField.gNorm_mul",
+    "CampaignGpImportComplexField.int_sq_nonneg",
+    "CampaignGpImportComplexField.gNorm_eq_zero_iff",
+    "CampaignGpImportComplexField.gMul_eq_zero",
+    "CampaignGpImportComplexField.onePlusI_mul_coords",
+    "CampaignGpImportComplexField.onePlusI_mul_ne_one",
+    "CampaignGpImportComplexField.gMul_comm",
+    "CampaignGpImportComplexField.onePlusI_not_unit",
+    "CampaignGpImportComplexField.intSqNeFive",
+    "CampaignGpImportComplexField.twice_sub_one_sq",
+    "CampaignGpImportComplexField.gauss_sq_ne_succ",
+    "CampaignGpImportComplexField.gMul_zero_left",
+    "CampaignGpImportComplexField.gMul_zero_right",
+    "CampaignGpImportComplexField.gMul_one_left",
+    "CampaignGpImportComplexField.gAdd_zero_left",
+    "CampaignGpImportComplexField.gMul_add_left",
+    "CampaignGpImportComplexField.gMul_assoc",
+    "CampaignGpImportComplexField.gMul_sub_left",
+    "CampaignGpImportComplexField.gSub_eq_zero_iff",
+    "CampaignGpImportComplexField.fib_mulVec",
+    "CampaignGpImportComplexField.fib_no_gauss_eigenpair",
+    "CampaignGpImportComplexField.gAdd",
+    "CampaignGpImportComplexField.gSub",
+    "CampaignGpImportComplexField.gMul",
+    "CampaignGpImportComplexField.gConj",
+    "CampaignGpImportComplexField.gZero",
+    "CampaignGpImportComplexField.gOne",
+    "CampaignGpImportComplexField.gSq",
+    "CampaignGpImportComplexField.gNorm",
+    "CampaignGpImportComplexField.fib",
+    "CampaignGpImportComplexField.mulVec",
+    "CampaignGpImportComplexField.scaleVec",
+    "CampaignGpImportComplexField.fib_conjugate_transpose"
+  ],
+  "evidence": [
+    "dag/research/pr_390_round2_replay.json",
+    "checks/independent/gp-import-complex-field.py",
+    "docs/overclaim/reviews/2026-10-25_pr-390-review.md"
+  ],
+  "independent_parity_samples": {
+    "real_min": -12,
+    "real_max": 12,
+    "imaginary_min": -12,
+    "imaginary_max": 12,
+    "multiplication_orders": 2,
+    "checks": 1250,
+    "scope": "Bounded audit only; universal noninvertibility is proved by Lean."
+  }
+}

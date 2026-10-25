@@ -774,13 +774,11 @@
     },
     {
       "node_id": "GP-IMPORT-COMPLEX-FIELD",
-      "review": "dag/results/GP-IMPORT-COMPLEX-FIELD/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Imported node; the review adds exact Z[i] controls. A later complex-carrier run constructs the completion.",
-      "superseded_by": [
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion",
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps"
-      ]
+      "review": "dag/research/pr_390_current_scope_review.json",
+      "scope_effect": "statement_narrowed",
+      "statement": "For a Gaussian integer a+bi, the product (1+i)*(a+bi) equals (a-b)+(a+b)i and differs from the real unit, and (a+bi)*(1+i) differs from the real unit. The matrix with entries 0, 1, 1, 1 in row-major order has each diagonal entry equal to its own conjugate and each off-diagonal entry equal to the conjugate of the other, and it sends a column (x, y) to (y, x+y). When (x, y) differs from the zero column, (y, x+y) differs from lam*(x, y) for each Gaussian integer lam.",
+      "bottleneck": "The example rules out Gaussian-integer eigenpairs for this one matrix. A spectral theorem after extending scalars to a complete complex field, and a derivation or selection of that field from primitive difference, remain imported. This obstruction does not prove that completion or the complex numbers are uniquely necessary; the cyclotomic ring Z[zeta_n] remains a recorded discrete substitute.",
+      "reason": "Current review covers the Gaussian-integer non-unit and fixed-matrix obstruction with all variables restricted to Gaussian integers. The complete complex-field target stays IMPORTED_ASSUMPTION."
     },
     {
       "node_id": "GP-IMPORT-CONTINUOUS-TIME",
