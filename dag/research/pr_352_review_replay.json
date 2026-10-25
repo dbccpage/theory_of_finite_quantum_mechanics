@@ -1,0 +1,70 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:13:34.810724+00:00",
+  "review_base": "5aaf4fc4adb40d02b8da32cf81b16612f4b1da47",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: PGW-ISOMORPHISM-SOUNDNESS-IN-LEAN — Narrowed: two-data colorings have equal keys exactly under swap; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignPgwIsomorphismSoundnessInLean",
+        "dag_node": "PGW-ISOMORPHISM-SOUNDNESS-IN-LEAN",
+        "source": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+        "sha256": "0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0",
+        "sha256_after_build": "0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "pgwIsoSwapInvolutive",
+          "pgwIsoKeysOfFour",
+          "pgwIsoKeySwap",
+          "pgwIsoKeyIff",
+          "pgwIsoConstants",
+          "pgwIsoFour",
+          "pgwIsoMixed"
+        ],
+        "axioms": {
+          "pgwIsoSwapInvolutive": [],
+          "pgwIsoKeysOfFour": [],
+          "pgwIsoKeySwap": [],
+          "pgwIsoKeyIff": [],
+          "pgwIsoConstants": [],
+          "pgwIsoFour": [],
+          "pgwIsoMixed": []
+        },
+        "output": "'pgwIsoSwapInvolutive' does not depend on any axioms\n'pgwIsoKeysOfFour' does not depend on any axioms\n'pgwIsoKeySwap' does not depend on any axioms\n'pgwIsoKeyIff' does not depend on any axioms\n'pgwIsoConstants' does not depend on any axioms\n'pgwIsoFour' does not depend on any axioms\n'pgwIsoMixed' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/pgw-isomorphism-soundness-in-lean.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.012,
+    "output": "checked 34 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/352/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.162,
+    "output": ""
+  }
+}

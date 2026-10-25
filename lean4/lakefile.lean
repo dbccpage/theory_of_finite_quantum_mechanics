@@ -1243,3 +1243,7 @@ lean_lib CampaignPgwKItemDeltaGrammar where
 -- Campaign: PGW-DECLARED-INPUT-FLOOR. Not a default target.
 lean_lib CampaignPgwDeclaredInputFloor where
   roots := #[`CampaignPgwDeclaredInputFloor]
+
+-- Campaign: PGW-ISOMORPHISM-SOUNDNESS-IN-LEAN. Not a default target.
+lean_lib CampaignPgwIsomorphismSoundnessInLean where
+  roots := #[`CampaignPgwIsomorphismSoundnessInLean]

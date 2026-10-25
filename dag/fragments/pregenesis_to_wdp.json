@@ -6468,14 +6468,46 @@
       "parent_id": "TFQ-0486",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "CL-ISO-SOUND, soundness of the implemented isomorphism key, is a finite computation only: the Python key procedure's classes are cross-checked against a brute-force minimum over bijections, and the Lean side is unresolved (D3: no Lean evidence). Attempt two leaves 482 regimes above the brute-force limit of the key cross-check (H-4), and attempt one's check of the Python orbit against the Lean orbit (G-9) is not done.",
-      "obligation": "State and prove in Lean that equal implemented keys imply isomorphic regimes (and the converse where it is used), and check the Python automorphism orbits against the Lean orbits on the exported regimes.",
+      "summary": "Narrowed in Lean 4 to colorings of two data. A coloring is a pair of bits. The swap exchanges the two bits and is an involution. The serialization reads a bit as 0 or 1. The key is the lexicographic minimum of a coloring and its swap. The four keys are (0, 0), (0, 1), (0, 1), and (1, 1). Equal keys hold exactly when one coloring is the other or its swap. Two colorings share the key (0, 1). The two constant colorings are fixed by the swap and have different keys.",
+      "obligation": "State and prove in Lean that equal implemented keys imply isomorphic regimes (and the converse where it is used), and check the Python automorphism orbits against the Lean orbits on the exported regimes. The implemented key, the regimes past the brute-force limit, and the orbit comparison stay open.",
       "imports": [],
-      "fence": "Open; the run trees are quotiented by the implemented isomorphism, whose soundness is computational at the regimes cross-checked.",
+      "fence": "Open; the run trees are quotiented by the implemented isomorphism, whose soundness is computational at the regimes cross-checked. Narrowed in Lean 4 to colorings of two data, where equal keys hold exactly when one coloring is the other or its swap. The implemented key, the regimes past the brute-force limit, and the orbit comparison stay open.",
       "witnesses": {
         "lean": [
           {
-            "absent": "CL-ISO-SOUND has no Lean evidence (D3)"
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIsoSwapInvolutive"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIsoKeysOfFour"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIsoKeySwap"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIsoKeyIff"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIsoConstants"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIsoFour"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignPgwIsomorphismSoundnessInLean.lean",
+            "symbol": "pgwIsoMixed"
           }
         ],
         "rust": [
@@ -6490,6 +6522,11 @@
             "root": "symbol_game",
             "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py",
             "symbol": "canonical_bruteforce"
+          },
+          {
+            "root": "local",
+            "path": "checks/independent/pgw-isomorphism-soundness-in-lean.py",
+            "symbol": "main"
           }
         ]
       },
@@ -6511,6 +6548,18 @@
           "path": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt",
           "lines": "1045-1059",
           "quote": "the 482 regimes above the brute-force limit of the key cross-check (H-4)"
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-isomorphism-soundness-in-lean.md",
+          "lines": "5",
+          "quote": "Node status stays OPEN. This note records the two-data coloring key."
+        },
+        {
+          "root": "local",
+          "path": "dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json",
+          "lines": "6",
+          "quote": "The 2026-10-25 lake build of CampaignPgwIsomorphismSoundnessInLean exited 0."
         }
       ],
       "coda_atlas_ids": [],
