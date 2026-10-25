@@ -10,11 +10,13 @@ Corrections to the PR's own text:
 - None. The standing statement is five records. The census of stopped runs is not proved.
 
 ## Per-node table
+
 | Node | Declarations that discharge it | Verdict | Reason |
 |---|---|---|---|
 | PGW-RUNS-PAST-DECLARED-BOUNDS | `pgwBoundInside` (lean4/CampaignPgwRunsPastDeclaredBounds.lean:8); `pgwBoundOnLine` (:11); `pgwBoundRoundPast` (:14); `pgwBoundNodePast` (:17); `pgwBoundDataFour` (:20); `pgwBoundItemPast` (:23) | NARROWED | Those five Bool facts state the five records. Printed axioms are empty. `mark_progress` (lean4/Imported/Genesis19l57g1/Derivation/Progress.lean:84) assumes a well-formed regime, two distinct indices below the data count, and separable requirements, and concludes one `validResponse`. It does not state the bound line. The census, leftovers H-2 to H-9, and unboundedness are not proved. Status stays OPEN. |
 
 ## Numbers recomputed
+
 | Where | Claimed | Recomputed (method) | Match |
 |---|---|---|---|
 | Bound line | rounds ≤ 15, nodes ≤ 250, data < 4, items ≤ 2 | `pgwBoundInside` and the same four comparisons in the independent check | Match |

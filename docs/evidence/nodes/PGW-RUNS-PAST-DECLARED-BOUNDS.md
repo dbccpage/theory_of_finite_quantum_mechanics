@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignPgwRunsPastDeclaredBounds.lean](../../../lean4/CampaignPgwRunsPastDeclaredBounds.lean)
 - sha256 (`bytes`): `a8ca3ae2ff2c74e52d4ebdfbc8d625d47beb643a6fc0c6d0ace2cb589fd0b574`
-- cited in: node.lean, receipt dag/research/campaign_pgw-runs-past-declared-bounds_lean_replay.json (CampaignPgwRunsPastDeclaredBounds), record TFQ-0501
+- cited in: node.lean, receipt dag/research/campaign_pgw-runs-past-declared-bounds_lean_replay.json (CampaignPgwRunsPastDeclaredBounds), receipt dag/research/pr_353_review_replay.json (CampaignPgwRunsPastDeclaredBounds), record TFQ-0501
 - replay: `verified`
   - receipt [dag/research/campaign_pgw-runs-past-declared-bounds_lean_replay.json](../../../dag/research/campaign_pgw-runs-past-declared-bounds_lean_replay.json) (module `CampaignPgwRunsPastDeclaredBounds`): recorded sha256 `a8ca3ae2ff2c74e52d4ebdfbc8d625d47beb643a6fc0c6d0ace2cb589fd0b574` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_353_review_replay.json](../../../dag/research/pr_353_review_replay.json) (module `CampaignPgwRunsPastDeclaredBounds`): recorded sha256 `a8ca3ae2ff2c74e52d4ebdfbc8d625d47beb643a6fc0c6d0ace2cb589fd0b574` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignPgwRunsPastDeclaredBounds`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
