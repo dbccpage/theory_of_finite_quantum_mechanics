@@ -131,7 +131,7 @@ The result should equal the recorded sha256 in [`dag/research/frontier_targets_l
 
 ### (c) Replay the Lean receipts
 
-The receipts record builds with Lean 4.35.0 and Mathlib at `56a005855ea17e0b0958f73ec801ae140b0a1679`, on x86_64-w64-windows-gnu. Another platform with the same toolchain should reproduce the exit codes and the axiom lines; the receipts do not claim that it was tried.
+The receipts record builds with Lean 4.35.0 and Mathlib at `56a005855ea17e0b0958f73ec801ae140b0a1679`, on x86_64-unknown-linux-gnu, x86_64-w64-windows-gnu. Another platform with the same toolchain should reproduce the exit codes and the axiom lines; the receipts do not claim that it was tried.
 
 ```
 git clone https://github.com/dbccpage/theory_of_finite_quantum_mechanics.git

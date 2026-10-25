@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignMajOpenLindbladTransferEnvelope.lean](../../../lean4/CampaignMajOpenLindbladTransferEnvelope.lean)
 - sha256 (`bytes`): `0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e`
-- cited in: node.lean, receipt dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json (CampaignMajOpenLindbladTransferEnvelope), record TFQ-1177
+- cited in: node.lean, receipt dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json (CampaignMajOpenLindbladTransferEnvelope), receipt dag/research/pr_360_review_replay.json (CampaignMajOpenLindbladTransferEnvelope), record TFQ-1177
 - replay: `verified`
   - receipt [dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json](../../../dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json) (module `CampaignMajOpenLindbladTransferEnvelope`): recorded sha256 `0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_360_review_replay.json](../../../dag/research/pr_360_review_replay.json) (module `CampaignMajOpenLindbladTransferEnvelope`): recorded sha256 `0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignMajOpenLindbladTransferEnvelope`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
