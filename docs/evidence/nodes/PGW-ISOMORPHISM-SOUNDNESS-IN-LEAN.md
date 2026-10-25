@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignPgwIsomorphismSoundnessInLean.lean](../../../lean4/CampaignPgwIsomorphismSoundnessInLean.lean)
 - sha256 (`bytes`): `0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0`
-- cited in: node.lean, receipt dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json (CampaignPgwIsomorphismSoundnessInLean), record TFQ-0500
+- cited in: node.lean, receipt dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json (CampaignPgwIsomorphismSoundnessInLean), receipt dag/research/pr_352_review_replay.json (CampaignPgwIsomorphismSoundnessInLean), record TFQ-0500
 - replay: `verified`
   - receipt [dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json](../../../dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json) (module `CampaignPgwIsomorphismSoundnessInLean`): recorded sha256 `0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_352_review_replay.json](../../../dag/research/pr_352_review_replay.json) (module `CampaignPgwIsomorphismSoundnessInLean`): recorded sha256 `0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignPgwIsomorphismSoundnessInLean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

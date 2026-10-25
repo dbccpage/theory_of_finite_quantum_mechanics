@@ -10,11 +10,13 @@ Corrections to the PR's own text:
 - None. The standing statement is the two-data case. The implemented key is not proved.
 
 ## Per-node table
+
 | Node | Declarations that discharge it | Verdict | Reason |
 |---|---|---|---|
 | PGW-ISOMORPHISM-SOUNDNESS-IN-LEAN | `pgwIsoSwap` and `pgwIsoKey` (definitions, lean4/CampaignPgwIsomorphismSoundnessInLean.lean:10 and :16); `pgwIsoSwapInvolutive` (:27); `pgwIsoKeysOfFour` (:31); `pgwIsoKeySwap` (:38); `pgwIsoKeyIff` (:42); `pgwIsoConstants` (:48); `pgwIsoFour` (:54); `pgwIsoMixed` (:57) | NARROWED | The standing statement is this four-coloring case, and those declarations state it. Printed axioms are empty. The obligation's implemented key, the regimes past a brute-force limit, and the exported-orbit comparison are not proved. Status stays OPEN. |
 
 ## Numbers recomputed
+
 | Where | Claimed | Recomputed (method) | Match |
 |---|---|---|---|
 | Statement keys | (0, 0), (0, 1), (0, 1), (1, 1) | `pgwIsoKeysOfFour` and the independent check's four key assertions | Match |
