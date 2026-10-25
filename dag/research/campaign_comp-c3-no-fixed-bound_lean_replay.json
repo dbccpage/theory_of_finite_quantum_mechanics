@@ -1,0 +1,61 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "source_base": "c50dc1b472596d1b5934408b00b9fbb72db91345",
+  "checked_at": "2026-10-25",
+  "result": "Narrowed to one letter, no rewrite step, and length bound 1. Status stays CONDITIONAL.",
+  "proof_boundary": "On lists of the one letter 0, with no rewrite step, reachability is equality. The length bound is 1. The word (0) has length 1 and reaches itself. The empty word has length 0 and is not reached. The word (0, 0) has length 2 and is outside the bound. A computable start-word map, one bound on every halting start word, and normal-form reachability stay outside this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "lakefile_sha256": "09749c9618464eb2e24b50cf90290934e4b590e85c76266806c59d672f5897de",
+    "library": "CampaignCompC3NoFixedBound (lean_lib in lean4/lakefile.lean; not a default target)",
+    "build_directory": "lean4/b (lakefile buildDir; gitignored)",
+    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run). The module imports no package.",
+    "command": "lake --no-cache --dir lean4 build CampaignCompC3NoFixedBound",
+    "cwd": ".",
+    "wall_clock_ms": 4929,
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "results": [
+      {
+        "module": "CampaignCompC3NoFixedBound",
+        "dag_node": "COMP-C3-NO-FIXED-BOUND",
+        "source": "lean4/CampaignCompC3NoFixedBound.lean",
+        "sha256": "68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e",
+        "sha256_after_build": "68a7a1f0716ceccd2fe2c92c75715a9a7536c7d69cb04081b606e9ea4e5df74e",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "module_job_ms": 810,
+        "wall_clock_ms": 4929,
+        "axiom_audit_passed": true,
+        "anchors": [
+          "reach_eq",
+          "reaches_self",
+          "start_in",
+          "empty_in",
+          "long_len",
+          "long_out",
+          "not_long",
+          "not_empty"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "reach_eq": [],
+          "reaches_self": ["propext"],
+          "start_in": ["propext", "Quot.sound"],
+          "empty_in": ["propext"],
+          "long_len": ["propext"],
+          "long_out": ["propext"],
+          "not_long": ["propext"],
+          "not_empty": ["propext"]
+        },
+        "output": "reach_eq does not depend on any axioms\nreaches_self depends on axioms: [propext]\nstart_in depends on axioms: [propext, Quot.sound]\nempty_in depends on axioms: [propext]\nlong_len depends on axioms: [propext]\nlong_out depends on axioms: [propext]\nnot_long depends on axioms: [propext]\nnot_empty depends on axioms: [propext]\n"
+      }
+    ]
+  }
+}

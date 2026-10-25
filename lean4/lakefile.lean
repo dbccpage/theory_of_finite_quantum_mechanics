@@ -1363,3 +1363,7 @@ lean_lib CampaignInformationProductBoundary where
 -- Campaign: MAJ-LEGACY-CARRIER-RETRACTION. Not a default target.
 lean_lib CampaignMajLegacyCarrierRetraction where
   roots := #[`CampaignMajLegacyCarrierRetraction]
+
+-- Campaign: COMP-C3-NO-FIXED-BOUND. Not a default target.
+lean_lib CampaignCompC3NoFixedBound where
+  roots := #[`CampaignCompC3NoFixedBound]

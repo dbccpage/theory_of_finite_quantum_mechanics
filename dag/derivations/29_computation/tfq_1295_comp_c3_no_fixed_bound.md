@@ -11,10 +11,10 @@
 
 ## 1. Abstract & Formal Statement
 
-If the map from an input to its start word were computable and one length bound witnessed every halting start word inside the bound, normal-form reachability would be decidable, contradicting nfReach_not_computable.
+On lists of the one letter 0, with no rewrite step, reachability is equality. The length bound is 1. The word (0) has length 1 and reaches itself. The empty word has length 0, so it is inside the bound, and (0) does not reach it. The word (0, 0) has length 2, so it is outside the bound, and (0) does not reach it.
 
 ### Governing Obligation
-Prove startWord_computable (COMP-C7c) and state the uniform version in Lean.
+Standing text is one letter, no rewrite step, and length bound 1: (0) reaches itself, misses the empty word, and (0, 0) has length 2. A computable map from an input to a start word, one bound containing every halting start word, and a clash with normal-form reachability stay open. The older citations reachB_iff and nfReach_not_computable do not discharge this slice.
 
 ### Witness Audit
 The implication is argued in prose from reachB_iff and nfReach_not_computable; no single Lean declaration states it.
@@ -22,9 +22,6 @@ The implication is argued in prose from reachB_iff and nfReach_not_computable; n
 ---
 
 ## 2. Derivation Context
-
-### Admitted Structural Imports
-- **Admitted**: `startWord_computable (open lemma)`
 
 ### Further Prerequisites
 - `COMP-C7-NF-REACH-UNDECIDABLE`
@@ -34,6 +31,14 @@ The implication is argued in prose from reachB_iff and nfReach_not_computable; n
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- `lean4/CampaignCompC3NoFixedBound.lean::reach_eq`
+- `lean4/CampaignCompC3NoFixedBound.lean::reaches_self`
+- `lean4/CampaignCompC3NoFixedBound.lean::start_in`
+- `lean4/CampaignCompC3NoFixedBound.lean::empty_in`
+- `lean4/CampaignCompC3NoFixedBound.lean::long_len`
+- `lean4/CampaignCompC3NoFixedBound.lean::long_out`
+- `lean4/CampaignCompC3NoFixedBound.lean::not_long`
+- `lean4/CampaignCompC3NoFixedBound.lean::not_empty`
 - `lean4/GenesisComputation.lean::reachB_iff`
 - `lean4/GenesisCompUniv.lean::nfReach_not_computable`
 
