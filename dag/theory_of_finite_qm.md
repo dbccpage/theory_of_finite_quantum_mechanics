@@ -10916,9 +10916,9 @@ Obligation: The three lemmas unfold this rule; the Repair label is a routing tag
 - DAG node: `MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE`
 - Paper: [derivation](derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md)
 
-For four MZMs under a Lindblad braiding model with gap Delta, length L/xi and poisoning rate Gamma_qp > 0, the trace-norm transfer defect obeys Delta_transfer(T) <= min(1, C_LZ (hbar/(Delta T))^2 + (Delta/hbar) e^{-L/xi} T + 1 - e^{-Gamma_qp T}) for T >> hbar/Delta, and that envelope has a positive minimum.
+Narrowed boundary, status left OPEN. For the integer envelope f(T) = 4 + T^3 and the comparison 3 T^2, f(1) = 5 which is greater than 3, f(2) = 12 which equals 12, and f(3) = 31 which is greater than 27. The value 12 is positive, and 0 is strictly below 12, so a positive envelope value does not force a transfer defect to be positive.
 
-Obligation: Derive the envelope from the Lindblad equation; a positive physical lower bound on Delta_transfer needs an independent argument, as the source notes.
+Obligation: The Lindblad derivation, the four-mode braiding model, the exponential poisoning term, the Landau-Zener square, and a positive lower bound on the physical transfer defect stay open. Older Nat positivity facts in MajoranaCore do not state this envelope. A positive envelope value stays separate from a positive transfer defect.
 
 ### TFQ-1178 Non-Markovian bosonic-bath transfer envelope
 

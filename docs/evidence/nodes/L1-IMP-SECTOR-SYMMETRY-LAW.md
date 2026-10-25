@@ -10,7 +10,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 8
+- counted in-repo evidence files: 10
 - cited Lean, Rust or Python symbols found in their in-repo files: 91
 - cited Lean declarations covered by a current replay receipt: 89
 - counted in-repo runnable tests: 0
@@ -20,8 +20,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-- `broken_reference`: path not found: dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md. A cited in-repo path or symbol cannot be found in this checkout.
-- `broken_reference`: path not found: dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md. A cited in-repo path or symbol cannot be found in this checkout.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -227,17 +226,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ### Documents and data: `dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md`
 
-- file: `dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md](../../../dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md)
+- sha256 (`lf-normalised`): `f01c5d2da545bc6ad4951e385352cf309587c3540bbfd691fecf7192550beba4`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ### Documents and data: `dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md`
 
-- file: `dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md`
-- resolution: `missing` (not found in this checkout)
+- file: [dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md](../../../dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md)
+- sha256 (`lf-normalised`): `cc48bb4ba0e11dcfb32347c3e852fc453509ebda36518d3f8976b5bf808804bc`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ## Routes
 
