@@ -1287,3 +1287,7 @@ lean_lib CampaignMajOpenEvidenceAdequacy where
 -- Campaign: GTH-SHADOW. Not a default target.
 lean_lib CampaignGthShadow where
   roots := #[`CampaignGthShadow]
+
+-- Campaign: GTH-LANG-CORE. Not a default target.
+lean_lib CampaignGthLangCore where
+  roots := #[`CampaignGthLangCore]

@@ -11,15 +11,15 @@
 
 ## Statement
 
-The priced admission language is not defined. The reading intended for its primitives, which this node does not derive, is: a two-valued admission record kept with a reached result (PGW-GO-ADMISSION-GATE); a regime as a tuple of admitted data, forms, instances, rules and requirements, with state change only through an admission event or impose, and with supply external (PG-GEN-REGIME-EVENTS); and the two boxed laws that S(n+1) may contain only structure forced by an unresolved obstruction at S(n), and that a realization has no authority to extend S(n) (PGW-SN-TWO-BOXED-LAWS). No syntax, no typing judgement and no deep embedding is given. Alphabet declarations of the MSS-N grammar are not a primitive derived from those three nodes.
+Narrowed boundary, status left OPEN. One regime carrier has data 1 and forms, instances, rules and requirements all 0, and the sum of those five slots is 1. The same carrier with its rule slot set to 1 differs from it, and that rule slot is 1. The reach map sends 0 and 1 to 0.
 
 ## Governing obligation
 
-No syntax, typing judgement or deep embedding. MSS-N alphabet declarations are not a derived primitive. The infinite imports are not inputs of the route into this node.
+No syntax, typing judgement or deep embedding of a priced admission language is defined. The two boxed laws, the MSS-N alphabet, and every regime other than this one carrier stay open. The node lean list stays empty because this stage rejects a Lean citation.
 
 ## Source status
 
-Open. The priced admission language has no syntax. The three route inputs are the intended reading, not a derivation.
+Open. One integer regime carrier is recorded in CampaignGthLangCore. The priced admission language still has no syntax. The node lean list stays empty.
 
 ## Routes
 
@@ -37,4 +37,8 @@ See also: `PGW-MSSN-SYNTAX-NOT-DECODING`.
 ## Sources
 
 - Repository: `dag/derivations/independent/gth_lang_core.md`
+- Repository: `dag/derivations/independent/gth-lang-core.md`
 - Repository: `dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md`
+- Repository: `lean4/CampaignGthLangCore.lean`
+- Repository: `checks/independent/gth-lang-core.py`
+- Repository: `dag/research/campaign_gth-lang-core_lean_replay.json`
