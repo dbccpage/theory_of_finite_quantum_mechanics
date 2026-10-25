@@ -1,6 +1,6 @@
 # L1-QM020-THM2B-MINKOWSKI
 
-Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -36,10 +36,10 @@ Thm 2b STANDARD / imported real analysis; audit: imported
 
 ## Review
 
-- PFP review: [dag/results/L1-QM020-THM2B-MINKOWSKI/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM020-THM2B-MINKOWSKI/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
-  - narrowest claim: Exact natural-power strictness/equality controls, with general p2 positivity and p3 algebra in Lean.
-  - does not support: Discharge the full real-p Minkowski/strict-convexity import and arbitrary-vector transport. Zero vectors are equality cases, not strict cases.
-  - next test: Discharge the full real-p Minkowski/strict-convexity import and arbitrary-vector transport. Zero vectors are equality cases, not strict cases.
+- PFP review: [dag/research/pr_388_current_scope_review.json](../../../dag/research/pr_388_current_scope_review.json); file present and sha256 matches the node's record: yes; verdict `scoped_natural_arithmetic_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+  - narrowest claim: Reviewed scope: Nat values a and b satisfy (a + b) * (a + b) = a * a + b * b + 2 * (a * b). When both are positive, 2 * (a * b) \> 0 and a * a + b * b \< (a + b) * (a + b). When the left input is 0, 2 * (0 * b) = 0 and (0 + b) * (0 + b) = b * b. When the right input is 0, 2 * (a * 0) = 0 and (a + 0) * (a + 0) = a * a. Nat values a and b satisfy (a + b) * (a + b) * (a + b) = a * a * a + b * b * b + 3 * a * b * (a + b). A disjoint Nat pair satisfies (x + 0) * (x + 0) + (0 + y) * (0 + y) = x * x + y * y.
+  - does not support: Real exponent p\>1, a Minkowski comparison on real vectors, strict convexity, roots, and transport past this Nat square, cubic, and one disjoint pair stay outside the standing text. A zero input is an equality case of the square expansion.
+  - next test: Retain the real-analysis import until the original real-p statement is mechanized.
 
 ## Evidence items
 
@@ -59,9 +59,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignL1Qm020Thm2bMinkowski.lean](../../../lean4/CampaignL1Qm020Thm2bMinkowski.lean)
 - sha256 (`bytes`): `bea59885861b46f4bda69ec0df555c595cb37122cad18fb207c2a4baec6c71fd`
-- cited in: node.lean, receipt dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json (CampaignL1Qm020Thm2bMinkowski)
+- cited in: node.lean, receipt dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json (CampaignL1Qm020Thm2bMinkowski), receipt dag/research/pr_388_round2_replay.json (CampaignL1Qm020Thm2bMinkowski)
 - replay: `verified`
-  - receipt [dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json](../../../dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json) (module `CampaignL1Qm020Thm2bMinkowski`): recorded sha256 `bea59885861b46f4bda69ec0df555c595cb37122cad18fb207c2a4baec6c71fd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json](../../../dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json) (module `CampaignL1Qm020Thm2bMinkowski`): recorded sha256 `bea59885861b46f4bda69ec0df555c595cb37122cad18fb207c2a4baec6c71fd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_388_round2_replay.json](../../../dag/research/pr_388_round2_replay.json) (module `CampaignL1Qm020Thm2bMinkowski`): recorded sha256 `bea59885861b46f4bda69ec0df555c595cb37122cad18fb207c2a4baec6c71fd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignL1Qm020Thm2bMinkowski`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

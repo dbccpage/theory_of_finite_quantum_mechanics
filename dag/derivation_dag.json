@@ -2990,7 +2990,7 @@
     {
       "id": "L1-QM020-THM2B-MINKOWSKI",
       "stage": "L1_TO_L2",
-      "status": "PROVED_LEAN",
+      "status": "IMPORTED_ASSUMPTION",
       "source_status": "Thm 2b STANDARD / imported real analysis; audit: imported",
       "statement": "Reviewed scope: Nat values a and b satisfy (a + b) * (a + b) = a * a + b * b + 2 * (a * b). When both are positive, 2 * (a * b) > 0 and a * a + b * b < (a + b) * (a + b). When the left input is 0, 2 * (0 * b) = 0 and (0 + b) * (0 + b) = b * b. When the right input is 0, 2 * (a * 0) = 0 and (a + 0) * (a + 0) = a * a. Nat values a and b satisfy (a + b) * (a + b) * (a + b) = a * a * a + b * b * b + 3 * a * b * (a + b). A disjoint Nat pair satisfies (x + 0) * (x + 0) + (0 + y) * (0 + y) = x * x + y * y.",
       "source": [
@@ -3018,18 +3018,18 @@
       "bottleneck": "Real exponent p>1, a Minkowski comparison on real vectors, strict convexity, roots, and transport past this Nat square, cubic, and one disjoint pair stay outside the standing text. A zero input is an equality case of the square expansion.",
       "tags": [],
       "pfp_review": {
-        "review": "dag/results/L1-QM020-THM2B-MINKOWSKI/reviews/20261020_born_boundary_audit/delivery_review_result.json",
-        "review_sha256": "1f1c405fede0621b6b40591ddd68f71a687331acee550e5ecc6f7af82dd81b06",
+        "review": "dag/research/pr_388_current_scope_review.json",
+        "review_sha256": "29d751626d2d1a021587bddc62720c5cd22de81921963e2e9047e4690aafafea",
         "review_refs": [
-          "dag/results/L1-QM020-THM2B-MINKOWSKI/reviews/20261020_born_boundary_audit/delivery_review_result.json"
+          "dag/research/pr_388_current_scope_review.json"
         ],
-        "verdict": "scoped_result_or_obstruction_reviewed",
-        "narrowest_claim": "Exact natural-power strictness/equality controls, with general p2 positivity and p3 algebra in Lean.",
-        "does_not_support": "Discharge the full real-p Minkowski/strict-convexity import and arbitrary-vector transport. Zero vectors are equality cases, not strict cases.",
-        "next_test": "Discharge the full real-p Minkowski/strict-convexity import and arbitrary-vector transport. Zero vectors are equality cases, not strict cases.",
+        "verdict": "scoped_natural_arithmetic_reviewed",
+        "narrowest_claim": "Reviewed scope: Nat values a and b satisfy (a + b) * (a + b) = a * a + b * b + 2 * (a * b). When both are positive, 2 * (a * b) > 0 and a * a + b * b < (a + b) * (a + b). When the left input is 0, 2 * (0 * b) = 0 and (0 + b) * (0 + b) = b * b. When the right input is 0, 2 * (a * 0) = 0 and (a + 0) * (a + 0) = a * a. Nat values a and b satisfy (a + b) * (a + b) * (a + b) = a * a * a + b * b * b + 3 * a * b * (a + b). A disjoint Nat pair satisfies (x + 0) * (x + 0) + (0 + y) * (0 + y) = x * x + y * y.",
+        "does_not_support": "Real exponent p>1, a Minkowski comparison on real vectors, strict convexity, roots, and transport past this Nat square, cubic, and one disjoint pair stay outside the standing text. A zero input is an equality case of the square expansion.",
+        "next_test": "Retain the real-analysis import until the original real-p statement is mechanized.",
         "scope_effect": "statement_narrowed",
-        "reason": "The standing text is the Nat square expansion, the positive cross term, the zero-input equality cases, the cubic sum, and one disjoint Nat pair. The real-p Minkowski import and arbitrary-vector transport stay outside it.",
-        "prior_status": "PROVED_LEAN",
+        "reason": "Nine current Lean theorems establish the natural-number square/cubic identities, positive square gap and zero-input controls. Retain IMPORTED_ASSUMPTION for the original real-p Minkowski obligation; the arithmetic slice does not discharge that import.",
+        "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "Strict l^p (p>1) subadditivity on disjoint supports follows from standard Minkowski / strict convexity. The paper cites it as standard analysis.",
         "prior_bottleneck": "Not mechanized.",
         "superseded_by": []
@@ -52372,8 +52372,8 @@
       "obligation": "Keep the rational sign defect in the finite file and import real p>1 subadditivity.",
       "parent_id": "TFQ-0290",
       "pfp_review_refs": [
-        "dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/reviews/20261020_born_boundary_audit/delivery_review_result.json",
-        "dag/results/L1-QM020-THM2B-MINKOWSKI/reviews/20261020_born_boundary_audit/delivery_review_result.json"
+        "dag/research/pr_388_current_scope_review.json",
+        "dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/reviews/20261020_born_boundary_audit/delivery_review_result.json"
       ],
       "python": [],
       "record_status": "OPEN_OBLIGATION",

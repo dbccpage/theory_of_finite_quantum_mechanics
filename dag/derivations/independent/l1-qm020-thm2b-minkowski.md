@@ -1,6 +1,6 @@
 Status: AI-drafted, awaiting human review.
 
-The standing slice is arithmetic on the natural numbers. It does not use a real exponent, a root, or a vector of arbitrary length.
+The node retains IMPORTED_ASSUMPTION for its original real-p Minkowski obligation. The standing slice is arithmetic on the natural numbers. It does not use a real exponent, a root, or a vector of arbitrary length.
 
 Take natural numbers a and b. Expand the square by distributing:
 
