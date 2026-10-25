@@ -14,7 +14,7 @@ In the formal angle-residue model modulo 2m, for every m>1 the distinct residues
 
 ## What is assumed
 
-The types, maps and algebraic models named above are declared. Lean uses only its standard core axioms; exact audit arithmetic uses integers, rational numbers and symbolic polynomials. AuthorityEffect: None.
+The types, maps and algebraic models named above are declared. Lean uses only its standard core axioms. The independent audit uses integer modular arithmetic and rational multiples of pi. AuthorityEffect: None.
 
 ## What is open
 

@@ -11,8 +11,9 @@
     "mathlib_note": "Only Std is imported. Lake built an exact source copy in a minimal scratch package with no Mathlib dependency; the full repository Mathlib workspace was not built.",
     "command": [
       "lake",
-      "build",
-      "CampaignLaughlinRootAmbiguity"
+      "env",
+      "lean",
+      "Audit.lean"
     ],
     "cwd": "/workspace/next-five/fsp-laughlin-exchange-phase/lake",
     "results": [
@@ -90,5 +91,29 @@
     "exit_code": 0,
     "seconds": 4.052,
     "output": ""
+  },
+  "axiom_audit": {
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/next-five/fsp-laughlin-exchange-phase/lake",
+    "input_path": "Audit.lean",
+    "input_contents": "import CampaignLaughlinRootAmbiguity\n#print axioms CampaignLaughlinRootAmbiguity.monodromy\n#print axioms CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots\n#print axioms CampaignLaughlinRootAmbiguity.monodromy_not_injective\n#print axioms CampaignLaughlinRootAmbiguity.roots_at_third_filling\n",
+    "input_sha256": "f06f3c45a064f151c8df32e2802e081fac2490d3295bbb6b65d43945d0f13d46",
+    "module_source_sha256": "c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314",
+    "exit_code": 0,
+    "output": "'CampaignLaughlinRootAmbiguity.monodromy' does not depend on any axioms\n'CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots' depends on axioms: [propext, Quot.sound]\n'CampaignLaughlinRootAmbiguity.monodromy_not_injective' depends on axioms: [propext, Quot.sound]\n'CampaignLaughlinRootAmbiguity.roots_at_third_filling' does not depend on any axioms\n",
+    "scratch_package": {
+      "lakefile.toml": "name = \"campaign_replay\"\nversion = \"0.1.0\"\n[[lean_lib]]\nname = \"CampaignLaughlinRootAmbiguity\"\n",
+      "lean-toolchain": "leanprover/lean4:v4.35.0\n",
+      "module_copy": {
+        "from": "lean4/CampaignLaughlinRootAmbiguity.lean",
+        "to": "CampaignLaughlinRootAmbiguity.lean",
+        "sha256": "c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314"
+      }
+    }
   }
 }

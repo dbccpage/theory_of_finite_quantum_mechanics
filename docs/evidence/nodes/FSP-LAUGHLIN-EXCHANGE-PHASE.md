@@ -78,14 +78,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-laughlin-exchange-phase.md`
 
 - file: [dag/derivations/independent/fsp-laughlin-exchange-phase.md](../../../dag/derivations/independent/fsp-laughlin-exchange-phase.md)
-- sha256 (`lf-normalised`): `5b278faaf66fedc4a18f23bd1450dc1238eda9fa994fd54f6b06641d617b1cce`
+- sha256 (`lf-normalised`): `a73514b196b8d7cfa78615844aaf7f4567abfac96050dc13045994c9dfe199e4`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json](../../../dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json)
-- sha256 (`lf-normalised`): `eae84caca967ca8a55b556923bc7ef997566b5d6dd7d60c156c524bca62efa34`
+- sha256 (`lf-normalised`): `2f01ae58807dee6deabfc323533448ae97c649de25ce65fc9b8e8dbd70d947ee`
 - cited in: node.source
 - counts toward the grade: yes
 
