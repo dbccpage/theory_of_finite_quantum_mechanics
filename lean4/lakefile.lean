@@ -1211,3 +1211,7 @@ lean_lib CampaignTfq0376Pregenesis where
 -- Campaign: PGW-PYTHON-LEAN-CARRIER-BRIDGE. Not a default target.
 lean_lib CampaignPgwPythonLeanCarrierBridge where
   roots := #[`CampaignPgwPythonLeanCarrierBridge]
+
+-- Campaign: FQ-GAP-U1-CIRCLE. Not a default target.
+lean_lib CampaignFqGapU1Circle where
+  roots := #[`CampaignFqGapU1Circle]
