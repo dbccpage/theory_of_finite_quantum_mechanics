@@ -1371,3 +1371,7 @@ lean_lib CampaignCompC3NoFixedBound where
 -- Campaign: COMP-C7-ENCODED-INSTANCE-REDUCTION. Not a default target.
 lean_lib CampaignCompC7EncodedInstanceReduction where
   roots := #[`CampaignCompC7EncodedInstanceReduction]
+
+-- Campaign: QCV-CONDITIONAL-VIABILITY-CERTIFICATE. Not a default target.
+lean_lib CampaignQcvConditionalViabilityCertificate where
+  roots := #[`CampaignQcvConditionalViabilityCertificate]

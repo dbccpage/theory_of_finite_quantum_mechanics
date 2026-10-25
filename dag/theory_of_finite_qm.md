@@ -907,7 +907,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1321` | `COMPUTATION` | `IMPORTED_ASSUMPTION` | `QCV-IMPORT-NOISY-REVERSIBLE-LIMITS` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-1322` | `COMPUTATION` | `PROVED_LEAN` | `QCV-NOISY-HISTORY-TRACE-DISTANCE-DECAY` (PROVED_LEAN) | - |
 | `TFQ-1323` | `COMPUTATION` | `PROVED_LEAN` | `QCV-QUBIT-BLOCH-DECAY-EXACT` (PROVED_LEAN) | - |
-| `TFQ-1324` | `COMPUTATION` | `CONDITIONAL` | `QCV-CONDITIONAL-VIABILITY-CERTIFICATE` (CONDITIONAL) | - |
+| `TFQ-1324` | `COMPUTATION` | `PROVED_LEAN` | `QCV-CONDITIONAL-VIABILITY-CERTIFICATE` (PROVED_LEAN) | - |
 | `TFQ-1325` | `COMPUTATION` | `PROVED_LEAN` | `QCV-VIABILITY-NEEDS-ALL-REQUIREMENTS` (PROVED_LEAN) | - |
 | `TFQ-1326` | `COMPUTATION` | `OPEN_OBLIGATION` | `QCV-PHYSICAL-SATISFIABILITY-OPEN` (OPEN) | - |
 | `TFQ-1327` | `COMPUTATION` | `DEFINITION` | `QCV-FRESH-MARK-SUPPLY-BRIDGE` (DEFINITION) | - |
@@ -11490,13 +11490,13 @@ Obligation: The identification of the qubit trace norm with the Bloch distance u
 
 - UUID: `5b13fbaa-54ee-588f-8832-a005ef88341a`
 - Parent: `TFQ-1320`
-- Status: `CONDITIONAL`
+- Status: `PROVED_LEAN`
 - DAG node: `QCV-CONDITIONAL-VIABILITY-CERTIFICATE`
 - Paper: [derivation](derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md)
 
-If g < 1, kappa > 0, r >= lam/((1-g)*kappa), c(k) <= C, max(C,1)*p(0) < 1 and the level errors p(k) >= 0 obey p(k+1) <= c(k)*p(k)^2 whenever the backlog is bounded, then the backlog is bounded and for every L >= 0 and epsilon > 0 some level k has L*p(k) <= epsilon; with max(C,1)*p(0) <= 1/2 any k with L <= epsilon*max(C,1)*2^(2^k) works.
+If the initial backlog q0 is nonnegative, g < 1, kappa > 0, r is at least lam/((1-g)*kappa), c(k) <= C for every natural number k, p(k) >= 0, max(C,1)*p(0) < 1, and p(k+1) <= c(k)*p(k)^2 whenever BacklogBounded lam g (kappa*r) q0 holds, then that backlog predicate holds and for every rational L >= 0 and every epsilon > 0 some level k has L*p(k) <= epsilon. If also max(C,1)*p(0) <= 1/2, then every natural number k with L <= epsilon*max(C,1)*2^(2^k) has L*p(k) <= epsilon.
 
-Obligation: The noise recurrence is a hypothesis: independence or locality of noise, fresh ancillas, fast classical control and bounded overhead are not shown for any device; the hypotheses are only shown jointly satisfiable on declared toy numbers.
+Obligation: The initial backlog q0 is nonnegative. The recurrence, the supply bound, and the overhead bound are hypotheses of the implication. A device, a noise process, and a classical decoder are outside this implication. A negative initial backlog is outside the narrowed statement.
 
 ### TFQ-1325 Inside the model, viability holds exactly when the fresh supply reaches threshold and the overhead means are bounded
 
