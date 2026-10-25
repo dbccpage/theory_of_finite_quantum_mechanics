@@ -1375,3 +1375,7 @@ lean_lib CampaignCompC7EncodedInstanceReduction where
 -- Campaign: QCV-CONDITIONAL-VIABILITY-CERTIFICATE. Not a default target.
 lean_lib CampaignQcvConditionalViabilityCertificate where
   roots := #[`CampaignQcvConditionalViabilityCertificate]
+
+-- Campaign: OPS-OBSERVER-DECLARATION-REFUSAL. Not a default target.
+lean_lib CampaignOpsObserverDeclarationRefusal where
+  roots := #[`CampaignOpsObserverDeclarationRefusal]
