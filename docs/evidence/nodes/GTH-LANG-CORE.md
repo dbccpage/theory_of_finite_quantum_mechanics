@@ -45,10 +45,11 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignGthLangCore.lean`
 
 - file: [lean4/CampaignGthLangCore.lean](../../../lean4/CampaignGthLangCore.lean)
-- sha256 (`bytes`): `3fee7c6b3507d22453998733452e05592f64dc5d7b3cf45701ac749eaef76386`
-- cited in: node.source, receipt dag/research/campaign_gth-lang-core_lean_replay.json (CampaignGthLangCore)
+- sha256 (`bytes`): `57cb0bcf3599400870ca47f0e0f11c87f3dabe90f04752f964f0ee0f591eef5f`
+- cited in: node.source, receipt dag/research/campaign_gth-lang-core_lean_replay.json (CampaignGthLangCore), receipt dag/research/pr_363_review_replay.json (CampaignGthLangCore)
 - replay: `verified`
-  - receipt [dag/research/campaign_gth-lang-core_lean_replay.json](../../../dag/research/campaign_gth-lang-core_lean_replay.json) (module `CampaignGthLangCore`): recorded sha256 `3fee7c6b3507d22453998733452e05592f64dc5d7b3cf45701ac749eaef76386` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/campaign_gth-lang-core_lean_replay.json](../../../dag/research/campaign_gth-lang-core_lean_replay.json) (module `CampaignGthLangCore`): recorded sha256 `57cb0bcf3599400870ca47f0e0f11c87f3dabe90f04752f964f0ee0f591eef5f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_363_review_replay.json](../../../dag/research/pr_363_review_replay.json) (module `CampaignGthLangCore`): recorded sha256 `57cb0bcf3599400870ca47f0e0f11c87f3dabe90f04752f964f0ee0f591eef5f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignGthLangCore`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -92,7 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_gth-lang-core_lean_replay.json`
 
 - file: [dag/research/campaign_gth-lang-core_lean_replay.json](../../../dag/research/campaign_gth-lang-core_lean_replay.json)
-- sha256 (`lf-normalised`): `17b8376e0c95d93b83f9865b9b4285cf160065e63e8170d5e32557a507433ab4`
+- sha256 (`lf-normalised`): `de3044a046db59586dc0e9e7120ba3d3a2e29c5ec02e79e2ec650a0f5f7e6457`
 - cited in: node.source
 - counts toward the grade: yes
 
