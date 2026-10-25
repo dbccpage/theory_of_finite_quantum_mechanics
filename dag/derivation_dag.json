@@ -28243,16 +28243,20 @@
       "id": "GTH-SHADOW",
       "stage": "GENESIS_TO_HIGHER",
       "status": "OPEN",
-      "source_status": "Open. No finite semi-simplicial or globular set is defined from PGW-GO-ADMISSION-GATE.",
-      "statement": "No construction turns PGW-GO-ADMISSION-GATE into a finite semi-simplicial set or a finite globular set. That gate keeps a two-valued admission record with a reached result: reaching leaves not-admitted, and admission is not one of the four kinds of change. A finite semi-simplicial set of dimension at most N is finite sets X_0, ..., X_N and face maps d_i from X_n to X_{n-1} such that d_i composed with d_j equals d_{j-1} composed with d_i whenever i < j. It carries no degeneracy maps. A finite globular set is finite sets with source and target maps s, t from X_{n+1} to X_n such that s composed with s equals s composed with t, and t composed with t equals t composed with s. Neither family is defined from the admission record.",
+      "source_status": "Open. One triangle and one reach map are recorded. No finite semi-simplicial or globular set is defined from PGW-GO-ADMISSION-GATE.",
+      "statement": "Narrowed boundary, status left OPEN. On the triangle with vertices 0, 1 and 2, the edges are (0, 1), (0, 2) and (1, 2). The target of (0, 2) equals the target of (1, 2), the target of (0, 1) equals the source of (1, 2), and the source of (0, 1) equals the source of (0, 2). The reach map sends 0 and 1 to 0, and the pair (0, 0) differs from the edge (0, 1). For two edges labeled 0 and 1, the source map sends both to 0 and the target map sends both to 1, so the two source values agree and the two target values agree.",
       "source": [
         "dag/derivations/independent/gth_shadow.md",
-        "dag/derivations/34_genesis_to_higher/tfq_2400_gth_shadow.md"
+        "dag/derivations/independent/gth-shadow.md",
+        "dag/derivations/34_genesis_to_higher/tfq_2400_gth_shadow.md",
+        "checks/independent/gth-shadow.py",
+        "lean4/CampaignGthShadow.lean",
+        "dag/research/campaign_gth-shadow_lean_replay.json"
       ],
       "lean": [],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Missing parent construction: PGW-GO-ADMISSION-GATE is a two-valued admission record, and no source builds a finite semi-simplicial set or a finite globular set from it.",
+      "bottleneck": "No construction turns the admission gate into a finite semi-simplicial set or a finite globular set. The two-valued record's four kinds of change, degeneracy maps, and every complex other than this triangle and this pair of edges stay open. The node lean list stays empty because this stage rejects a Lean citation.",
       "tags": [
         "genesis-to-higher",
         "TFQ-2400"
@@ -73097,14 +73101,14 @@
       "lean4": [],
       "local_id": "GTH-SHADOW",
       "name": "Finite semi-simplicial or globular shadow of Genesis admission",
-      "obligation": "Missing parent construction: PGW-GO-ADMISSION-GATE is a two-valued admission record, and no source builds a finite semi-simplicial set or a finite globular set from it.",
+      "obligation": "No construction turns the admission gate into a finite semi-simplicial set or a finite globular set. The two-valued record's four kinds of change, degeneracy maps, and every complex other than this triangle and this pair of edges stay open. The node lean list stays empty because this stage rejects a Lean citation.",
       "parent_id": "TFQ-0481",
       "python": [],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "genesis_to_higher",
       "stage": "GENESIS_TO_HIGHER",
-      "summary": "No construction turns PGW-GO-ADMISSION-GATE into a finite semi-simplicial set or a finite globular set. That gate keeps a two-valued admission record with a reached result: reaching leaves not-admitted, and admission is not one of the four kinds of change. A finite semi-simplicial set of dimension at most N is finite sets X_0, ..., X_N and face maps d_i from X_n to X_{n-1} such that d_i composed with d_j equals d_{j-1} composed with d_i whenever i < j. It carries no degeneracy maps. A finite globular set is finite sets with source and target maps s, t from X_{n+1} to X_n such that s composed with s equals s composed with t, and t composed with t equals t composed with s. Neither family is defined from the admission record.",
+      "summary": "Narrowed boundary, status left OPEN. On the triangle with vertices 0, 1 and 2, the edges are (0, 1), (0, 2) and (1, 2). The target of (0, 2) equals the target of (1, 2), the target of (0, 1) equals the source of (1, 2), and the source of (0, 1) equals the source of (0, 2). The reach map sends 0 and 1 to 0, and the pair (0, 0) differs from the edge (0, 1). For two edges labeled 0 and 1, the source map sends both to 0 and the target map sends both to 1, so the two source values agree and the two target values agree.",
       "uuid": "b6bc4fd0-1df2-5665-9d37-42402d1e7b89"
     },
     {

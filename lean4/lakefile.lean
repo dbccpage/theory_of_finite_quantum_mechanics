@@ -1283,3 +1283,7 @@ lean_lib CampaignMajOpenLindbladTransferEnvelope where
 -- Campaign: MAJ-OPEN-EVIDENCE-ADEQUACY. Not a default target.
 lean_lib CampaignMajOpenEvidenceAdequacy where
   roots := #[`CampaignMajOpenEvidenceAdequacy]
+
+-- Campaign: GTH-SHADOW. Not a default target.
+lean_lib CampaignGthShadow where
+  roots := #[`CampaignGthShadow]

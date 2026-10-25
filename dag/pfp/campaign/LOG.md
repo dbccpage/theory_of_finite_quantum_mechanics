@@ -148,3 +148,4 @@ One line per target, in order attempted: `<UTC date> | <node id> | <outcome clas
 2026-10-25 | MUB-PRIME-POWER-CONSTRUCTION | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/359 | Dimension 2: three Gaussian-integer bases are mutually unbiased; larger prime powers stay open.
 2026-10-25 | MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/360 | Integer envelope at T = 1, 2 and 3: f(2) equals 12, and 0 stays strictly below 12.
 2026-10-25 | MAJ-OPEN-EVIDENCE-ADEQUACY | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/361 | Two integer readings (1, 0) and (1, 1): the first coordinate agrees and the second coordinate separates them.
+2026-10-25 | GTH-SHADOW | Narrowed | https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/362 | One triangle: three face identities hold, and the reach pair (0, 0) differs from the edge (0, 1).
