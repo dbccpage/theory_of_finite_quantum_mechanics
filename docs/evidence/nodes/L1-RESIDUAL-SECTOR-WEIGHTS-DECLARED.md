@@ -63,9 +63,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignL1ResidualSectorWeights.lean](../../../lean4/CampaignL1ResidualSectorWeights.lean)
 - sha256 (`bytes`): `f8b91f84cece66dcdc6e9423159d31ec17230dbf931a7117e2cb31c073b5275e`
-- cited in: node.lean, node.source, receipt dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json (CampaignL1ResidualSectorWeights)
+- cited in: node.lean, node.source, receipt dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json (CampaignL1ResidualSectorWeights), receipt dag/research/pr_364_review_replay.json (CampaignL1ResidualSectorWeights)
 - replay: `verified`
   - receipt [dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json](../../../dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json) (module `CampaignL1ResidualSectorWeights`): recorded sha256 `f8b91f84cece66dcdc6e9423159d31ec17230dbf931a7117e2cb31c073b5275e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_364_review_replay.json](../../../dag/research/pr_364_review_replay.json) (module `CampaignL1ResidualSectorWeights`): recorded sha256 `f8b91f84cece66dcdc6e9423159d31ec17230dbf931a7117e2cb31c073b5275e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignL1ResidualSectorWeights`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
