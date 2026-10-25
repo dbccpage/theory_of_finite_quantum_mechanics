@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.lean, node.source, receipt dag/research/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json (CampaignPgwWdpBridgeObligations)
 - replay: `verified`
   - receipt [dag/research/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json](../../../dag/research/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json) (module `CampaignPgwWdpBridgeObligations`): recorded sha256 `8d3358fa30d4b9a910101b4e49d925725239f47ecce5dec3f8de1ab238b6d026` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignPgwWdpBridgeObligations`
+- check: `cd lean4 && lake build   # the library that contains lean4/CampaignPgwWdpBridgeObligations.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|

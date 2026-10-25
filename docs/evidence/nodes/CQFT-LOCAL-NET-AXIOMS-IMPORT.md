@@ -50,7 +50,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.lean, node.source, receipt dag/research/campaign_cqft-local-net-axioms-import_lean_replay.json (CampaignCqftLocalNetAxiomsImport), record TFQ-2103
 - replay: `verified`
   - receipt [dag/research/campaign_cqft-local-net-axioms-import_lean_replay.json](../../../dag/research/campaign_cqft-local-net-axioms-import_lean_replay.json) (module `CampaignCqftLocalNetAxiomsImport`): recorded sha256 `3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignCqftLocalNetAxiomsImport`
+- check: `cd lean4 && lake build   # the library that contains lean4/CampaignCqftLocalNetAxiomsImport.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
