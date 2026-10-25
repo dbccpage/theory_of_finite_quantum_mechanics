@@ -24,7 +24,7 @@ The swap is an involution. The four keys are the pairs named above. Equal keys o
 
 ## What is assumed
 
-The order on pairs of numbers is lexicographic, first component then second. The universe is every pair of bits. No Python or Rust key procedure was executed. AuthorityEffect is None.
+The order on pairs of numbers is lexicographic, first component then second. The universe is every pair of bits. The independent Python coloring-key checker was executed; no implemented regime-key procedure in Python or Rust was executed. AuthorityEffect is None.
 
 ## What is open
 

@@ -4,19 +4,19 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 
 ## Statement
 
-> For amplitudes 1 and 2, quadratic numerators are 1 and 4 with sum 5, and quartic numerators are 1 and 16 with sum 17. Both pairs are positive. The products 1*17 and 1*5 differ, so the normalized first weights 1/5 and 1/17 differ. For equal amplitudes 1 and 1, quadratic numerators are 1 and 1 with sum 2, and quartic numerators are 1 and 1 with sum 2.
+> For amplitudes 1 and 2, quadratic numerators are 1 and 4 with sum 5, and quartic numerators are 1 and 16 with sum 17. Both pairs are positive. The products 1*17 and 1*5 differ, and the separate Fraction audit confirms that the normalized first weights 1/5 and 1/17 differ. For equal amplitudes 1 and 1, quadratic numerators are 1 and 1 with sum 2, and quartic numerators are 1 and 1 with sum 2.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
+- counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 7
-- cited Lean declaration references covered by a current replay receipt: 6
+- distinct cited Lean declarations covered by a current replay receipt: 6
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -123,10 +123,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust, record TFQ-1010
 - counts toward the grade: no
 
+### Python: `checks/independent/fq-prim-to-qm-selection-open.py`
+
+- file: [checks/independent/fq-prim-to-qm-selection-open.py](../../../checks/independent/fq-prim-to-qm-selection-open.py)
+- sha256 (`bytes`): `c34d80dd31d3b6b62f4773165707bfd5c67a3de6834a1941bfc5e7dadbf45760`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md](../../../dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md)
-- sha256 (`lf-normalised`): `bf0db59bb1fdcfb48fc9d373e2e51ccade9a314ce0986b2ba5ce4c58d6b5cebc`
+- sha256 (`lf-normalised`): `f226064407c7d048c31df49c62ce58f791e02504666aeb3891cf009eacda5a2c`
 - generated view: listed, not counted
 - cited in: record TFQ-1010
 - counts toward the grade: no

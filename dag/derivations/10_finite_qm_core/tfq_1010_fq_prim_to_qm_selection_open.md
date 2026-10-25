@@ -10,7 +10,7 @@
 
 ## 1. Abstract & Formal Statement
 
-For amplitudes 1 and 2, quadratic numerators are 1 and 4 with sum 5, and quartic numerators are 1 and 16 with sum 17. Both pairs are positive. The products 1*17 and 1*5 differ, so the normalized first weights 1/5 and 1/17 differ. For equal amplitudes 1 and 1, quadratic numerators are 1 and 1 with sum 2, and quartic numerators are 1 and 1 with sum 2.
+For amplitudes 1 and 2, quadratic numerators are 1 and 4 with sum 5, and quartic numerators are 1 and 16 with sum 17. Both pairs are positive. The products 1*17 and 1*5 differ, and the separate Fraction audit confirms that the normalized first weights 1/5 and 1/17 differ. For equal amplitudes 1 and 1, quadratic numerators are 1 and 1 with sum 2, and quartic numerators are 1 and 1 with sum 2.
 
 ### Governing Obligation
 Selection of a declared quantum model or readout from primitive difference stays open. Packet-walk execution, the complexes, the Cayley parameter, cyclotomic weights, the detector and a squared-amplitude readout are not this integer witness. Continuum M_n(C) and Gleason n>=3 remain external imports. The D2, D3, D2xD3, D3^2 and D3^3 counts and the gap d-1 < d^2-1 for d >= 2 stay outside this witness.
@@ -59,3 +59,4 @@ Selection of a declared quantum model or readout from primitive difference stays
   - `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:105`
   - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:367`
   - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332`
+  - `checks/independent/fq-prim-to-qm-selection-open.py`

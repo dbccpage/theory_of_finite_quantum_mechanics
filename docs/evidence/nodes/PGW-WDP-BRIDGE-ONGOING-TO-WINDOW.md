@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 13
-- cited Lean declaration references covered by a current replay receipt: 11
+- distinct cited Lean declarations covered by a current replay receipt: 11
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -104,7 +104,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md`
 
 - file: [dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md](../../../dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md)
-- sha256 (`lf-normalised`): `6adcdc2b55a098a79115cddc98c2692ddf78d1a69efb1dfa80788f167fc719c7`
+- sha256 (`lf-normalised`): `8749783737a91a50ce812948d4c91b245747977fd5314fd9fadb04aa115e83eb`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0555
 - counts toward the grade: no

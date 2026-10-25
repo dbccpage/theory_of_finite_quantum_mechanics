@@ -1,0 +1,466 @@
+{
+  "authority_effect": "None",
+  "reviewed_prs": 30,
+  "approved_finite_proof_hashes_unchanged": 31,
+  "validation_runs": [
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pfp_results.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.205,
+      "output": "stale=dag/derivation_dag.json,dag/theory_of_finite_qm.jsonl\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.394,
+      "output": "stale=dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md,dag/derivation_dag.json,dag/theory_of_finite_qm.jsonl,dag/theory_of_finite_qm.md\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_application_branches.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.218,
+      "output": "application branches synchronized\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pregenesis_to_wdp.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.402,
+      "output": "stale=dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md,dag/derivation_dag.json,dag/theory_of_finite_qm.jsonl,dag/theory_of_finite_qm.md\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_frontier_branches.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.299,
+      "output": "frontier branches synchronized\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_genesis_to_higher.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.223,
+      "output": "genesis-to-higher synchronized\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_foc035_observer_presheaf.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.246,
+      "output": "foc035 observer presheaf synchronized\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_master_derivation_ledger.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.681,
+      "output": "Written: /workspace/theory_of_finite_quantum_mechanics/papers/core/master_derivation_ledger.md\nWritten: /workspace/theory_of_finite_quantum_mechanics/dag/derivations/MASTER_DERIVATION_LEDGER.md\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/pfp/generate_prompts.py",
+        "--write",
+        "--all-missing"
+      ],
+      "exit_code": 0,
+      "seconds": 8.241,
+      "output": "refusing to rewrite executed prompts: TFQ-0006, TFQ-0008, TFQ-0009, TFQ-0012, TFQ-0014, TFQ-0017, TFQ-0026, TFQ-0027, TFQ-0032, TFQ-0033, TFQ-0039, TFQ-0044, TFQ-0050, TFQ-0090, TFQ-0106, TFQ-0107, TFQ-0117, TFQ-0118, TFQ-0119, TFQ-0123, CQFT-REEH-SCHLIEDER-THEOREM-IMPORT, CQFT-CAUSAL-FACTORIZATION-IMPORT, ADS-RT-FORMULA-IMPORT, ADS-REGGE-AREA-RT-GAP, GTH-SHADOW, GTH-LANG-CORE\n{\"created\": 0, \"rewritten\": 0, \"unchanged\": 722}\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "papers/core/tools/build_results_audit_table.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "seconds": 0.089,
+      "output": "finite_quantum_mechanics.md: already current\nfinite_quantum_mechanics_claim_ledger.md: already current\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "seconds": 21.454,
+      "output": "README facts written\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--run",
+        "hosted review followup",
+        "--reason",
+        "Correct citations and evidence custody while retaining all approved Lean bytes."
+      ],
+      "exit_code": 0,
+      "seconds": 0.096,
+      "output": "rebound: tensor_countermodel_validation.json sha dag/derivation_dag.json\nrebound: tensor_countermodel_validation.json sha dag/theory_of_finite_qm.jsonl\nrebound: tensor_countermodel_validation.json sha dag/theory_of_finite_qm.md\n3 stale pin(s)\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/evidence/build_evidence.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "seconds": 6.405,
+      "output": "evidence map written: 925 nodes, grades {'E0': 154, 'E1': 212, 'E2': 38, 'E3': 521, 'E4': 0}, 253 flags\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "dag/test_tensor_countermodel_receipt.py",
+        "dag/test_tensor_measurement_receipt.py",
+        "dag/test_application_branches.py",
+        "dag/test_frontier_branches.py",
+        "dag/test_genesis_to_higher.py",
+        "dag/test_foc035_observer_presheaf.py",
+        "dag/evidence/test_evidence.py",
+        "scripts/test_governance_policy.py",
+        "dag/test_build_status.py",
+        "dag/test_docs_liquid_safe.py",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "seconds": 20.827,
+      "output": "........................................................................ [ 80%]\n..................                                                       [100%]\n90 passed in 20.46s\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "seconds": 21.88,
+      "output": "README facts written\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--run",
+        "hosted review metadata final",
+        "--reason",
+        "Preserve generated views and source-bound assessment histories after hosted review."
+      ],
+      "exit_code": 0,
+      "seconds": 0.1,
+      "output": "receipts current\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/evidence/build_evidence.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "seconds": 6.479,
+      "output": "evidence map written: 925 nodes, grades {'E0': 154, 'E1': 212, 'E2': 38, 'E3': 521, 'E4': 0}, 253 flags\n"
+    },
+    {
+      "command": [
+        "governance/target/release/governance-check",
+        "--root",
+        ".",
+        "check",
+        "--changed-since",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "seconds": 1.728,
+      "output": "changed since origin/main (7fa69d621c27bed7045d0b7fe34bbb1d34b27248): 1343 paths\nchecked 8282: 102 pass, 8160 grandfathered, 20 boilerplate, 0 failed\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "seconds": 3.613,
+      "output": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 34,\n    \"valid_contracts_and_scores\": 34,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 32,\n      \"Rust\": 2\n    },\n    \"by_preliminary_profile\": {\n      \"Exact\": 30,\n      \"Non-Numeric\": 3,\n      \"Symbolic/Formal\": 1\n    },\n    \"completed_scores\": 34,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 34\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since origin/main (merge base 7fa69d621c27), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/contract_scores.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 14.905,
+      "output": "{\n  \"originals\": 0,\n  \"combined_files\": 8968,\n  \"all_passed\": true,\n  \"errors\": []\n}\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/validate_derivation_dag.py",
+        "--no-files"
+      ],
+      "exit_code": 0,
+      "seconds": 1.073,
+      "output": "nodes=925 routes=934 records=977 failures=0\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--invariants"
+      ],
+      "exit_code": 0,
+      "seconds": 0.182,
+      "output": "unified invariants failures=0\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/render_dag_views.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.108,
+      "output": "views match derivation_dag.json\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 21.623,
+      "output": "README facts current\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/evidence/build_evidence.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 6.311,
+      "output": "evidence map current\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.09,
+      "output": "receipts current\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "origin/main",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "seconds": 7.0,
+      "output": "overclaim_scan: scope=changes since origin/main (merge base 7fa69d621c27); HIGH=0 MEDIUM=0 LOW=10\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pfp_results.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.2,
+      "output": "pfp results synchronized\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.426,
+      "output": "unified DAG synchronized\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_application_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.218,
+      "output": "application branches synchronized\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pregenesis_to_wdp.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.399,
+      "output": "pregenesis-to-wdp fragment synchronized\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_frontier_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.301,
+      "output": "frontier branches synchronized\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_genesis_to_higher.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.226,
+      "output": "genesis-to-higher synchronized\n"
+    },
+    {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_foc035_observer_presheaf.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.345,
+      "output": "foc035 observer presheaf synchronized\n"
+    }
+  ],
+  "hosted_ci_status": "Checked separately on GitHub before merge."
+}

@@ -18,7 +18,7 @@ The five field identities, the concatenated list, its length 6, the leading 0, a
 
 ## What is assumed
 
-The four fields are these numbers and lists. Concatenation is list append. A missing header, on this one list, is a leading 0. AuthorityEffect is None. No package is imported.
+The five fields are these numbers and lists. Concatenation is list append. A missing header, on this one list, is a leading 0. AuthorityEffect is None. No package is imported.
 
 ## What is open
 

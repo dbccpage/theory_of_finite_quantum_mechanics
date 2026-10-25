@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 8
-- cited Lean declaration references covered by a current replay receipt: 7
+- distinct cited Lean declarations covered by a current replay receipt: 7
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -94,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pgw-isomorphism-soundness-in-lean.md`
 
 - file: [dag/derivations/independent/pgw-isomorphism-soundness-in-lean.md](../../../dag/derivations/independent/pgw-isomorphism-soundness-in-lean.md)
-- sha256 (`lf-normalised`): `4fb55b66f5215bd68c8ec68e70b5b74dada4b1eca936cd883fde7357f041cddf`
+- sha256 (`lf-normalised`): `c3402ac66350da58e38708532e19f867114313383b42ca60ebbef9dc171ff771`
 - cited in: node.source
 - counts toward the grade: yes
 

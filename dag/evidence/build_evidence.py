@@ -417,7 +417,7 @@ class Builder:
             "cited_in": [cited_in], "counted": counted,
             "file_exists": False, "symbol_exists": None, "symbol_declared": None,
             "generated": False, "replay": "n/a", "receipts": [], "decl_listed": False, "decl_ambiguous": False,
-            "decl_axioms": None, "command": None, "command_note": None,
+            "decl_axioms": None, "canonical_symbol": None, "command": None, "command_note": None,
         }
         if external:
             item.update(kind="external", resolution="external")
@@ -465,11 +465,14 @@ class Builder:
         rows = []
         symbol = item["symbol"]
         listed_axioms: set[str] = set()
+        canonical_names: set[str] = set()
         itemised = False
         for receipt in self.receipts_by_path.get(item["path"], []):
             sha_match = receipt["recorded_sha256"] in (info["sha256_raw"], info["sha256_lf"])
             hits = matching_names(symbol, [*receipt["_decl_axioms"], *receipt["_anchors"]]) if symbol else []
             ok = receipt_ok(receipt, sha_match)
+            if ok and len(hits) == 1:
+                canonical_names.add(hits[0])
             if ok and len(hits) == 1 and hits[0] in receipt["_decl_axioms"]:
                 listed_axioms.update(receipt["_decl_axioms"][hits[0]])
                 itemised = True
@@ -489,6 +492,12 @@ class Builder:
         item["decl_ambiguous"] = not item["decl_listed"] and any(r["decl_ambiguous"] for r in verified)
         if itemised:
             item["decl_axioms"] = sorted(listed_axioms)
+        # A short historical spelling and its unique qualified spelling denote
+        # one declaration. Incomparable namespace matches remain ambiguous.
+        candidates = [name for name in canonical_names
+                      if all(name == other or name.endswith("." + other) for other in canonical_names)]
+        if len(candidates) == 1:
+            item["canonical_symbol"] = candidates[0]
 
     def _command(self, item: dict) -> tuple[str | None, str | None]:
         path, symbol, kind = item["path"], item["symbol"], item["kind"]
@@ -502,7 +511,8 @@ class Builder:
             else:
                 build = f"cd lean4 && lake build   # the library that contains {path}"
             if symbol and module:
-                return build, f"then, in a scratch file that imports {module}: #print axioms {symbol}"
+                audited_symbol = item.get("canonical_symbol") or symbol
+                return build, f"then, in a scratch file that imports {module}: #print axioms {audited_symbol}"
             return build, None
         if kind == "python_test":
             target = path
@@ -579,6 +589,11 @@ def counted_present(items: list[dict]) -> list[dict]:
     return [i for i in items if i["counts"]]
 
 
+def lean_identity(item: dict) -> tuple[str, str | None]:
+    """Use an unambiguous current receipt name; preserve unresolved citation names."""
+    return item["path"], item.get("canonical_symbol") or item["symbol"]
+
+
 def grade_node(items: list[dict], reviews: list[dict]) -> tuple[str, dict]:
     present = counted_present(items)
     code = [i for i in present if i["kind"] in CODE_KINDS and i["symbol"] and i["symbol_exists"]]
@@ -591,7 +606,7 @@ def grade_node(items: list[dict], reviews: list[dict]) -> tuple[str, dict]:
         "cited_code_files_not_tests": len(code_files),
         "counted_files": len({i["path"] for i in present}),
         "symbols_found": len(code),
-        "lean_receipt_backed": len(lean),
+        "lean_receipt_backed": len({lean_identity(i) for i in lean}),
         "runnable_tests": len(tests),
         "qualifying_reviews": len(reviewed),
     }
@@ -733,7 +748,7 @@ def build_map() -> dict:
     rank = {k: i for i, k in enumerate(MISMATCH_ORDER)}
     mismatches.sort(key=lambda m: (rank[m["kind"]], -m["dependents"], m["node"], m["detail"]))
     files_table = {}
-    for path in sorted(b.cited_files):
+    for path in sorted(b.cited_files | {r["receipt_file"] for r in b.receipts}):
         info = b.files.info(path)
         if info:
             files_table[path] = {"sha256": info["sha256"], "sha256_basis": info["sha256_basis"], "size": info["size"]}
@@ -780,7 +795,10 @@ def lean_summary(node_rows: list[dict]) -> dict:
         own = [i for i in row["items"] if i["kind"] == "lean_decl" and "node.lean" in i["cited_in"]]
         for item in own:
             if item["resolution"] == "present" and item["symbol"]:
-                decls[(item["path"], item["symbol"])] = item
+                key = lean_identity(item)
+                # Prefer the audit row that spells the resolved name in full.
+                if key not in decls or item["symbol"] == key[1]:
+                    decls[key] = item
         if row["status"] == "PROVED_LEAN":
             pl_nodes["total"] += 1
             res = collections.Counter(i["resolution"] for i in own)

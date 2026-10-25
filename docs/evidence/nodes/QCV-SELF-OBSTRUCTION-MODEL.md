@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 7
-- cited Lean declaration references covered by a current replay receipt: 3
+- distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -105,7 +105,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivation_dag.json`
 
 - file: [dag/derivation_dag.json](../../../dag/derivation_dag.json)
-- sha256 (`lf-normalised`): `aec6751e38618b082cdf6dd93fcb31f0c319898012280ace74200d37c9d9930f`
+- sha256 (`lf-normalised`): `1e209acf5236fc42c55809ab518e2f32b74103ed7bab988a290b33435a7dd14b`
 - generated view: listed, not counted
 - cited in: node.source
 - counts toward the grade: no

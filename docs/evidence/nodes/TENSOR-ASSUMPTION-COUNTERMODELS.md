@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 8
 - cited Lean, Rust or Python symbols found in their in-repo files: 33
-- cited Lean declaration references covered by a current replay receipt: 33
+- distinct cited Lean declarations covered by a current replay receipt: 33
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -175,7 +175,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/tensor_countermodel_validation.json`
 
 - file: [dag/research/tensor_countermodel_validation.json](../../../dag/research/tensor_countermodel_validation.json)
-- sha256 (`lf-normalised`): `f08a15da4db8d0e784a1361247bcf5d85b1f7836bf8fcfd12a37b8307266372a`
+- sha256 (`lf-normalised`): `90b1db168f09e50a602a478d48027b987ef934abacdf420a23415920178520ba`
 - cited in: node.source
 - counts toward the grade: yes
 

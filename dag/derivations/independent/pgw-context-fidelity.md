@@ -20,7 +20,7 @@ There are two steps. `assertOnlyDiamond` is valid only at `false`. `assertHasA` 
 
 Let `s` and `s'` be values with `s ≠ s'`. Define one step from `s'`: `assertHasA` when `s'` is `true`, and `assertOnlyDiamond` when `s'` is `false`. That step is valid at `s'` by the two clauses above, and it is not valid at `s`, because the two values disagree and each step accepts only one of them. The one-element list of that step is therefore a trace valid at `s'` and not at `s`.
 
-There are 2 ordered pairs of distinct values, and the same one-step trace separates each of them. This count is the length of that filtered list, recomputed by the Lean definition `unequalPairs` and by the independent script.
+There are 2 ordered pairs of distinct values, and a one-step trace separates each of them. This count is the length of that filtered list, recomputed by the Lean definition `unequalPairs` and by the independent script.
 
 ## Sound contracts
 

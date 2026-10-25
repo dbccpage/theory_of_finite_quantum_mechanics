@@ -2,7 +2,7 @@
 
 Scope: this campaign branch against origin/main at 7fa69d621c27bed7045d0b7fe34bbb1d34b27248. Reviewed against the standing statement in dag/fragments/unified_dag.json and the generated paper dag/derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md:14. Rule applied: a PROVED_LEAN label needs Lean declarations in the repository that state the node's full statement and compile with only propext, Classical.choice and Quot.sound.
 
-Method: read the standing statement, the obligation, lean4/CampaignCompC8MinimalityFence.lean, the replay receipt, and checks/independent/comp-c8-minimality-fence.py. Scanner: python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict. The review did not rebuild Lean. The receipt records an earlier lake build in this worktree.
+Method: read the standing statement, the obligation, lean4/CampaignCompC8MinimalityFence.lean, the replay receipt, and checks/independent/comp-c8-minimality-fence.py. Scanner: python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict. The review did not rebuild Lean. The receipt records an earlier lake build in the earlier recorded build worktree.
 
 Result: 1 node FULL, 0 NARROWED, 0 OVERCLAIM. No node was raised. Status stays OPEN.
 
@@ -22,7 +22,7 @@ Atomic clauses of the standing statement:
 
 Left in the obligation (dag/derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md:17): simulation of a machine over a coded alphabet, and a sentence that composite machine M0 is not a smallest general-purpose machine. Small-machine records stay literature only. The letter-by-letter code of a finite alphabet stays on COMP-C8-BINARY-CODING.
 
-## Numbers recomputed
+## Numbers recorded from the earlier replay receipt
 
 | Where | Claimed | Recomputed (method) | Match |
 |---|---|---|---|
@@ -30,7 +30,7 @@ Left in the obligation (dag/derivations/29_computation/tfq_1313_comp_c8_minimali
 | Derivation note length | 3 | same script, `len(got) == 3` | match |
 | Independent check | failures=0 | `python -I -X utf8 checks/independent/comp-c8-minimality-fence.py` | match |
 | Axiom lines | empty for both declarations | receipt output and the lake log for the 2026-10-25 build | match |
-| Build | wall 16137 ms, module job 747 ms, exit 0, 3 jobs | `lake build CampaignCompC8MinimalityFence` in this worktree | match |
+| Build | wall 16137 ms, module job 747 ms, exit 0, 3 jobs | `lake build CampaignCompC8MinimalityFence` in the earlier recorded build worktree | match |
 | README papers | 1068 to 1069 | `git diff origin/main -- README.md`, one new paper | match |
 | README Lean references | 2287 to 2289 | same diff, two new anchors | match |
 | README lake libraries / roots | 90 / 942 to 91 / 943 | same diff, one new lean_lib | match |

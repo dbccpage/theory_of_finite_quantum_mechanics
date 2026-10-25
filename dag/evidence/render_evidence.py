@@ -111,7 +111,7 @@ def node_page(row: dict, node: dict, document: dict, rows_by_id: dict) -> str:
             "The grade rates the evidence this checkout holds; it is separate from the status.", "",
             f"- counted in-repo evidence files: {row['facts']['counted_files']}",
             f"- cited Lean, Rust or Python symbols found in their in-repo files: {row['facts']['symbols_found']}",
-            f"- cited Lean declaration references covered by a current replay receipt: {row['facts']['lean_receipt_backed']}",
+            f"- distinct cited Lean declarations covered by a current replay receipt: {row['facts']['lean_receipt_backed']}",
             f"- counted in-repo runnable tests: {row['facts']['runnable_tests']}",
             f"- counted in-repo Rust or Python files that are not tests: {row['facts']['cited_code_files_not_tests']}",
             f"- recorded statement-match reviews that qualify: {row['facts']['qualifying_reviews']}",
