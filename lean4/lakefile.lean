@@ -1295,3 +1295,7 @@ lean_lib CampaignGthLangCore where
 -- Campaign: L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED. Not a default target.
 lean_lib CampaignL1ResidualSectorWeights where
   roots := #[`CampaignL1ResidualSectorWeights]
+
+-- Campaign: FQ-PRIM-TO-QM-SELECTION-OPEN. Not a default target.
+lean_lib CampaignFqPrimToQmSelection where
+  roots := #[`CampaignFqPrimToQmSelection]

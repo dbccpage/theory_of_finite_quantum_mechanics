@@ -1,0 +1,64 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:30:33.183692+00:00",
+  "review_base": "5dde071ba16845ebc1acffb245fc5549aad730d5",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: FQ-PRIM-TO-QM-SELECTION-OPEN — Narrowed: amplitudes 1 and 2; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignFqPrimToQmSelection.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignFqPrimToQmSelection",
+        "dag_node": "FQ-PRIM-TO-QM-SELECTION-OPEN",
+        "source": "lean4/CampaignFqPrimToQmSelection.lean",
+        "sha256": "df3bc709da599a889424f62769a2524e54753a69bfa0e5214319542215dcb1a4",
+        "sha256_after_build": "df3bc709da599a889424f62769a2524e54753a69bfa0e5214319542215dcb1a4",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "quad_weights",
+          "quart_weights",
+          "normalized_first_weights_differ",
+          "symmetric_agreement"
+        ],
+        "axioms": {
+          "quad_weights": [],
+          "quart_weights": [],
+          "normalized_first_weights_differ": [],
+          "symmetric_agreement": []
+        },
+        "output": "'quad_weights' does not depend on any axioms\n'quart_weights' does not depend on any axioms\n'normalized_first_weights_differ' does not depend on any axioms\n'symmetric_agreement' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/fq-prim-to-qm-selection-open.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.02,
+    "output": "checked amplitudes 1 and 2\nquadratic weights 1/5 and 4/5\nquartic weights 1/17 and 16/17\ncross products 17 and 5\nsymmetric amplitudes 1 and 1 give weight 1/2\nfailures=0\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/365/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.222,
+    "output": ""
+  }
+}
