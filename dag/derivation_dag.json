@@ -16814,19 +16814,34 @@
       "stage": "GENESIS",
       "status": "OPEN",
       "source_status": "closeout.txt §2.1 retained OPEN and §4 S3; ALPHA_HANDOFF §9 typed outcomes",
-      "statement": "Driver B, a lift that needs a new sealed Event kind, is retained as OPEN (AE-DRIVER-B-OPEN) and is successor research S3. The Alpha harness has exactly the six sealed Event kinds (Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll, Impose), and append_sealed_event refuses a seventh constructor (SeventhEventError), so no lift beyond the six kinds can be admitted through the slice.",
+      "statement": "Narrowed in Lean 4 to a six-label model. Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll and Impose are the indices 0, 1, 2, 3, 4 and 5, and each index returns its label. A guard that accepts a natural number exactly when it is strictly less than 6 accepts each of those six indices and refuses 6. A guard that accepts exactly when the number is strictly less than 7 accepts 6. The Alpha harness, a seventh sealed constructor, a seal amendment, and a theorem that every lift factors through the six kinds stay open.",
       "source": [
         "dag/derivations/02_genesis/tfq_0503_driver_b_seventh_event.md",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:70-71",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:176",
-        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/docs/ALPHA_HANDOFF.md:179-192"
+        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/docs/ALPHA_HANDOFF.md:179-192",
+        "dag/derivations/independent/pgw-driver-b-seventh-event.md:5",
+        "dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json:6"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::sealedIndex_supply",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::sealedIndex_admitDatum",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::sealedIndex_admitForm",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::sealedIndex_admitInst",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::sealedIndex_admitRuleAll",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::sealedIndex_impose",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::ofIndex_roundtrip",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::index_roundtrip",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::six_labels_admitted",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::seventh_label_refused",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::amended_bound_accepts_seventh",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::seventh_label_not_a_sealed_index"
+      ],
       "rust": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/event.rs::Event"
       ],
       "imported_structure": [],
-      "bottleneck": "Open; the refusal of a seventh constructor is a harness guard, not a theorem that six kinds suffice, and amending the seal is the author's act.",
+      "bottleneck": "Open. The refusal of label 6 is the bound k < 6 in this model, not a theorem that six kinds suffice, and the bound k < 7 accepts 6. The Alpha harness, SeventhEventError, a seal amendment, and a factorization of every lift through the six kinds stay open.",
       "tags": [
         "pregenesis-to-wdp",
         "TFQ-0503",
@@ -60945,14 +60960,26 @@
       ],
       "id": "TFQ-0503",
       "lean4": [
-        "absent: no Lean statement about a seventh sealed Event kind"
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::sealedIndex_supply",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::sealedIndex_admitDatum",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::sealedIndex_admitForm",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::sealedIndex_admitInst",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::sealedIndex_admitRuleAll",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::sealedIndex_impose",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::ofIndex_roundtrip",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::index_roundtrip",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::six_labels_admitted",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::seventh_label_refused",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::amended_bound_accepts_seventh",
+        "lean4/CampaignPgwDriverBSeventhEvent.lean::seventh_label_not_a_sealed_index"
       ],
       "local_id": "PGW-DRIVER-B-SEVENTH-EVENT",
       "name": "driver-b-seventh-event",
-      "obligation": "Specify a lift that needs a seventh sealed Event kind, the seal amendment it requires and its replay law, or show that every lift in scope factors through the six kinds.",
+      "obligation": "Specify a lift that needs a seventh sealed Event kind, the seal amendment it requires and its replay law, or show that every lift in scope factors through the six kinds. The Alpha harness, a seventh sealed constructor, a seal amendment, and a theorem that every lift factors through the six kinds stay open.",
       "parent_id": "TFQ-0486",
       "python": [
-        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/harness.py::append_sealed_event"
+        "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/harness.py::append_sealed_event",
+        "checks/independent/pgw-driver-b-seventh-event.py::main"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
@@ -60960,7 +60987,7 @@
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
-      "summary": "Driver B, a lift that needs a new sealed Event kind, is retained as OPEN (AE-DRIVER-B-OPEN) and is successor research S3. The Alpha harness has exactly the six sealed Event kinds (Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll, Impose), and append_sealed_event refuses a seventh constructor (SeventhEventError), so no lift beyond the six kinds can be admitted through the slice.",
+      "summary": "Narrowed in Lean 4 to a six-label model. Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll and Impose are the indices 0, 1, 2, 3, 4 and 5, and each index returns its label. A guard that accepts a natural number exactly when it is strictly less than 6 accepts each of those six indices and refuses 6. A guard that accepts exactly when the number is strictly less than 7 accepts 6. The Alpha harness, a seventh sealed constructor, a seal amendment, and a theorem that every lift factors through the six kinds stay open.",
       "uuid": "1b95c368-c471-594f-b63d-e89ff4b9648c"
     },
     {

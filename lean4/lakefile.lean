@@ -1255,3 +1255,7 @@ lean_lib CampaignPgwRunsPastDeclaredBounds where
 -- Campaign: PGW-STREAM-AT-FOUR-ITEMS. Not a default target.
 lean_lib CampaignPgwStreamAtFourItems where
   roots := #[`CampaignPgwStreamAtFourItems]
+
+-- Campaign: PGW-DRIVER-B-SEVENTH-EVENT. Not a default target.
+lean_lib CampaignPgwDriverBSeventhEvent where
+  roots := #[`CampaignPgwDriverBSeventhEvent]

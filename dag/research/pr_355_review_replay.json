@@ -1,0 +1,101 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-25T17:16:23.658014+00:00",
+  "review_base": "b324bed268375754340af523075788fa106cfc5c",
+  "source_state": "Working tree including review repairs; source identity is bound by SHA-256.",
+  "proof_boundary": "Campaign: PGW-DRIVER-B-SEVENTH-EVENT — Narrowed: six labels, and bound 6 refuses 6; status is not promoted. Standalone Lean replay; no Mathlib dependency is imported by this module.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": "lean lean4/CampaignPgwDriverBSeventhEvent.lean",
+    "cwd": ".",
+    "results": [
+      {
+        "module": "CampaignPgwDriverBSeventhEvent",
+        "dag_node": "PGW-DRIVER-B-SEVENTH-EVENT",
+        "source": "lean4/CampaignPgwDriverBSeventhEvent.lean",
+        "sha256": "a092f60ccc0db4a1a779de44480c0613c5573c749e3ddd49e393b48d21a5b222",
+        "sha256_after_build": "a092f60ccc0db4a1a779de44480c0613c5573c749e3ddd49e393b48d21a5b222",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "sealedIndex_supply",
+          "sealedIndex_admitDatum",
+          "sealedIndex_admitForm",
+          "sealedIndex_admitInst",
+          "sealedIndex_admitRuleAll",
+          "sealedIndex_impose",
+          "ofIndex_roundtrip",
+          "index_roundtrip",
+          "six_labels_admitted",
+          "seventh_label_not_a_sealed_index",
+          "seventh_label_refused",
+          "amended_bound_accepts_seventh"
+        ],
+        "axioms": {
+          "sealedIndex_supply": [
+            "propext"
+          ],
+          "sealedIndex_admitDatum": [
+            "propext"
+          ],
+          "sealedIndex_admitForm": [
+            "propext"
+          ],
+          "sealedIndex_admitInst": [
+            "propext"
+          ],
+          "sealedIndex_admitRuleAll": [
+            "propext"
+          ],
+          "sealedIndex_impose": [
+            "propext"
+          ],
+          "ofIndex_roundtrip": [
+            "propext"
+          ],
+          "index_roundtrip": [
+            "Quot.sound",
+            "propext"
+          ],
+          "six_labels_admitted": [
+            "propext"
+          ],
+          "seventh_label_not_a_sealed_index": [
+            "propext"
+          ],
+          "seventh_label_refused": [],
+          "amended_bound_accepts_seventh": []
+        },
+        "output": "'sealedIndex_supply' depends on axioms: [propext]\n'sealedIndex_admitDatum' depends on axioms: [propext]\n'sealedIndex_admitForm' depends on axioms: [propext]\n'sealedIndex_admitInst' depends on axioms: [propext]\n'sealedIndex_admitRuleAll' depends on axioms: [propext]\n'sealedIndex_impose' depends on axioms: [propext]\n'ofIndex_roundtrip' depends on axioms: [propext]\n'index_roundtrip' depends on axioms: [propext, Quot.sound]\n'six_labels_admitted' depends on axioms: [propext]\n'seventh_label_refused' does not depend on any axioms\n'amended_bound_accepts_seventh' does not depend on any axioms\n'seventh_label_not_a_sealed_index' depends on axioms: [propext]\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/pgw-driver-b-seventh-event.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.012,
+    "output": "checked 33 conditions, 0 failures\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pr-review/355/lakefile-reviewed.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 3.21,
+    "output": ""
+  }
+}
