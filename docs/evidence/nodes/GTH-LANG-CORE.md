@@ -1,22 +1,22 @@
 # GTH-LANG-CORE
 
-Stage: [GENESIS_TO_HIGHER](../stages/GENESIS_TO_HIGHER.md). Status: `OPEN`. Evidence grade: **E1**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [GENESIS_TO_HIGHER](../stages/GENESIS_TO_HIGHER.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> The priced admission language is not defined. The reading intended for its primitives, which this node does not derive, is: a two-valued admission record kept with a reached result (PGW-GO-ADMISSION-GATE); a regime as a tuple of admitted data, forms, instances, rules and requirements, with state change only through an admission event or impose, and with supply external (PG-GEN-REGIME-EVENTS); and the two boxed laws that S(n+1) may contain only structure forced by an unresolved obstruction at S(n), and that a realization has no authority to extend S(n) (PGW-SN-TWO-BOXED-LAWS). No syntax, no typing judgement and no deep embedding is given. Alphabet declarations of the MSS-N grammar are not a primitive derived from those three nodes.
+> Narrowed boundary, status left OPEN. One regime carrier has data 1 and forms, instances, rules and requirements all 0, and the sum of those five slots is 1. The same carrier with its rule slot set to 1 differs from it, and that rule slot is 1. The reach map sends 0 and 1 to 0.
 
 ## Grade
 
-Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
-- cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 5
+- cited Lean declarations covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite a Lean, Rust or Python symbol that exists in an in-repo file
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,11 +28,11 @@ None recorded.
 
 ## Bottleneck
 
-No syntax, typing judgement or deep embedding. MSS-N alphabet declarations are not a derived primitive. The infinite imports are not inputs of the route into this node.
+No syntax, typing judgement or deep embedding of a priced admission language is defined. The two boxed laws, the MSS-N alphabet, and every regime other than this one carrier stay open. The node lean list stays empty because this stage rejects a Lean citation.
 
 ## Source status
 
-Open. The priced admission language has no syntax. The three route inputs are the intended reading, not a derivation.
+Open. One integer regime carrier is recorded in CampaignGthLangCore. The priced admission language still has no syntax. The node lean list stays empty.
 
 ## Review
 
@@ -42,18 +42,57 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/CampaignGthLangCore.lean`
+
+- file: [lean4/CampaignGthLangCore.lean](../../../lean4/CampaignGthLangCore.lean)
+- sha256 (`bytes`): `3fee7c6b3507d22453998733452e05592f64dc5d7b3cf45701ac749eaef76386`
+- cited in: node.source, receipt dag/research/campaign_gth-lang-core_lean_replay.json (CampaignGthLangCore)
+- replay: `verified`
+  - receipt [dag/research/campaign_gth-lang-core_lean_replay.json](../../../dag/research/campaign_gth-lang-core_lean_replay.json) (module `CampaignGthLangCore`): recorded sha256 `3fee7c6b3507d22453998733452e05592f64dc5d7b3cf45701ac749eaef76386` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignGthLangCore`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `carrier_slots` | yes | yes | yes | none | `#print axioms carrier_slots` |
+| `carrier_sum` | yes | yes | yes | none | `#print axioms carrier_sum` |
+| `reach_collapses` | yes | yes | yes | none | `#print axioms reach_collapses` |
+| `withRule_differs` | yes | yes | yes | none | `#print axioms withRule_differs` |
+| `withRule_slots` | yes | yes | yes | none | `#print axioms withRule_slots` |
+- counts toward the grade: yes
+
+### Python: `checks/independent/gth-lang-core.py`
+
+- file: [checks/independent/gth-lang-core.py](../../../checks/independent/gth-lang-core.py)
+- sha256 (`bytes`): `cbcb89d0299d1cfc204c0fcdca6b43edf7d23313d37033c15dde65eebd487c4e`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md`
 
 - file: [dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md](../../../dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md)
-- sha256 (`lf-normalised`): `1302ceb769cca552189a880855033826ec0174b9894291363aef659cf663737a`
+- sha256 (`lf-normalised`): `410aa93d68fc2caa3b12fb9b3190f4ed11ad649859a3f998339b00e3f7609f36`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2407
 - counts toward the grade: no
 
+### Documents and data: `dag/derivations/independent/gth-lang-core.md`
+
+- file: [dag/derivations/independent/gth-lang-core.md](../../../dag/derivations/independent/gth-lang-core.md)
+- sha256 (`lf-normalised`): `6ce894d42d022e47de467153129bbe72db4f40d5153ee0947186f6ba22f4d7a0`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/independent/gth_lang_core.md`
 
 - file: [dag/derivations/independent/gth_lang_core.md](../../../dag/derivations/independent/gth_lang_core.md)
-- sha256 (`lf-normalised`): `c7578e78a3d38c732aad62b2457cbebdcd71eda74155be178247f0e0df5b0e07`
+- sha256 (`lf-normalised`): `6ce894d42d022e47de467153129bbe72db4f40d5153ee0947186f6ba22f4d7a0`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/campaign_gth-lang-core_lean_replay.json`
+
+- file: [dag/research/campaign_gth-lang-core_lean_replay.json](../../../dag/research/campaign_gth-lang-core_lean_replay.json)
+- sha256 (`lf-normalised`): `17b8376e0c95d93b83f9865b9b4285cf160065e63e8170d5e32557a507433ab4`
 - cited in: node.source
 - counts toward the grade: yes
 

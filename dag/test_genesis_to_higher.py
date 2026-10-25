@@ -98,5 +98,9 @@ def test_papers_notes_and_forbidden_words():
         assert sync.forbidden_words(note) == [], path
         if n['id'] == 'GTH-LANG-LIMITS':
             assert 'Nothing in Lean.' in note
+        elif n['id'] == 'GTH-LANG-CORE':
+            proved = note.split('## What is proved', 1)[1].split('## What is assumed', 1)[0]
+            assert 'CampaignGthLangCore' in proved
+            assert 'lean list stays empty' in proved
         else:
             assert 'Nothing in Lean.' in note.split('## What is proved', 1)[1].split('## What is assumed', 1)[0]

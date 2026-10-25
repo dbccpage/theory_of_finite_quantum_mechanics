@@ -1,19 +1,19 @@
 Status: AI-drafted, awaiting human review.
 
-Node `GTH-LANG-CORE`, record TFQ-2407, parent record TFQ-2406 for reading order of the import that sits beside the language, while the route inputs are the three Genesis and MSS-N nodes named below.
+Node `GTH-LANG-CORE`, record TFQ-2407. The priced admission language stays without syntax. This note records one integer regime carrier.
 
-The priced admission language is not defined. The reading intended for its primitives, which this node does not derive, is: a two-valued admission record kept with a reached result (PGW-GO-ADMISSION-GATE); a regime as a tuple of admitted data, forms, instances, rules and requirements, with state change only through an admission event or impose, and with supply external (PG-GEN-REGIME-EVENTS); and the two boxed laws that S(n+1) may contain only structure forced by an unresolved obstruction at S(n), and that a realization has no authority to extend S(n) (PGW-SN-TWO-BOXED-LAWS). No syntax, no typing judgement and no deep embedding is given. Alphabet declarations of the MSS-N grammar are not a primitive derived from those three nodes.
+A regime here is five natural-number slots named data, forms, instances, rules and requirements. The carrier sets data to 1 and the other four slots to 0. The slot sum is the sum of the five slots, so the carrier sums to 1. The same carrier with its rule slot set to 1 differs from the carrier, and that rule slot is 1 while its data slot stays 1. The reach map sends 0 and 1 to 0.
 
-The route `GTH-R-GTH-LANG-CORE` has status `GAP_NO_DERIVATION` and requires all three of `PGW-GO-ADMISSION-GATE`, `PG-GEN-REGIME-EVENTS` and `PGW-SN-TWO-BOXED-LAWS`. See also `PGW-MSSN-SYNTAX-NOT-DECODING`, which is not an input.
+These integers are checked in `CampaignGthLangCore` and again in `checks/independent/gth-lang-core.py`. The node lean list stays empty because this stage rejects a Lean citation. Route `GTH-R-GTH-LANG-CORE` stays `GAP_NO_DERIVATION`. The three route inputs stay recorded readings. They are not hypotheses of these integer identities.
 
 ## What is proved
 
-Nothing in Lean.
+`CampaignGthLangCore` records one carrier with data 1 and forms, instances, rules and requirements all 0, slot sum 1, a rule-slot variant that differs and has rule slot 1, and a reach map sending 0 and 1 to 0. The node lean list stays empty.
 
 ## What is assumed
 
-The three existing nodes, in the readings already recorded for them: the admission gate, the regime tuple and events, and the two boxed laws on S(n+1) and on realizations.
+Arithmetic of closed natural numbers, and the five slot names as labels. The admission gate, the regime-event reading and the two boxed laws stay as already recorded nodes. They are not used to obtain these identities.
 
 ## What is open
 
-Syntax, typing and a deep embedding of a priced admission language. A derivation of those primitives from the three inputs.
+No syntax, typing judgement or deep embedding of a priced admission language. The two boxed laws, the MSS-N alphabet, admission events, impose, external supply, and every regime other than this one carrier.
