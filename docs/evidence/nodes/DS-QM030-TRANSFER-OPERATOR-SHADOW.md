@@ -36,7 +36,7 @@ Unmet after the PFP review: Formalize the full arbitrary finite action/dual sum 
 
 ## Review
 
-- PFP review: [dag/results/DS-QM030-TRANSFER-OPERATOR-SHADOW/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM030-TRANSFER-OPERATOR-SHADOW/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/DS-QM030-TRANSFER-OPERATOR-SHADOW/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM030-TRANSFER-OPERATOR-SHADOW/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: All coefficients of AB, (AB)v, A(Bv), fA, f(Av), and (fA)v agree on exact retained inputs.
   - does not support: Formalize the full arbitrary finite action/dual sum transport; the state carrier, linearity and coefficients are supplied.
   - next test: Formalize the full arbitrary finite action/dual sum transport; the state carrier, linearity and coefficients are supplied.

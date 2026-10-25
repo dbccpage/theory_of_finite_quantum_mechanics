@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- recorded statement-match reviews that qualify: 1
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -36,7 +36,7 @@ GAP-F001-S000-007 status DEFINED
 
 ## Review
 
-- PFP review: [dag/results/FQ-CPTP-CLASS-DEFINITION/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/FQ-CPTP-CLASS-DEFINITION/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: no.
+- PFP review: [dag/results/FQ-CPTP-CLASS-DEFINITION/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/FQ-CPTP-CLASS-DEFINITION/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `DEFINITION`; qualifies for E4: yes.
   - narrowest claim: Full depolarizing Choi arrays, eigenvector actions, rank controls and TP partial trace are exact; eigenvalue nonnegativity iff -1/3\<=p\<=1 and trace2 are kernel checked.
   - does not support: Prove the full Choi-PSD/Kraus/Stinespring bridge, environment metric and any actual field/conductor necessity. A class definition and data flags do not derive the channel class.
   - next test: Prove the full Choi-PSD/Kraus/Stinespring bridge, environment metric and any actual field/conductor necessity. A class definition and data flags do not derive the channel class.

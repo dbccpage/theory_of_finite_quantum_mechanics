@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Narrowed algebraic checks only. Five-integer face-vector translations preserve the displayed linear functionals; solving two rational linear equations characterizes invariant count weights. In Lean no simplicial complex, move admissibility, topology, or flat-connection extension count is constructed. The independent checker performs additional finite simplex-set examples, not a general refinement proof. normalizedFlatGaugeSum declares inverse-G cancellation for delta 0 and 1 and returns zero otherwise; it proves no gauge-bundle counting theorem. The Regge shift and WDW mass are supplied scalar formulas, not geometric action differences or constraint solutions. The stated face-count trajectories and arithmetic remain exact. Status is unchanged. The original physical or operational bridge remains open.
+Narrowed algebraic checks only. Five-integer face-vector translations preserve the displayed linear functionals; solving two rational linear equations characterizes invariant count weights. In Lean no simplicial complex, move admissibility, topology, or flat-connection extension count is constructed. The independent checker performs additional finite simplex-set examples, not a general refinement proof. normalizedFlatGaugeSum declares inverse-G cancellation for delta 0 and 1 and returns zero otherwise; no gauge-bundle counting theorem is established. The Regge shift and WDW mass are supplied scalar formulas, not geometric action differences or constraint solutions. The stated face-count trajectories and arithmetic remain exact. Status is unchanged. The original physical or operational bridge remains open.
 
 ## Source status
 
@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md`
 
 - file: [dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md](../../../dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md)
-- sha256 (`lf-normalised`): `42380cb36169d415858344b8ec08c171f8e448ec08334c16c05ae5724eca9421`
+- sha256 (`lf-normalised`): `1c604fb4458f51dd7ebb54c3c84224a97684deecd61da40bc3f5ed0cb321c35f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1214
 - counts toward the grade: no
@@ -83,7 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_fsp-pachner-invariance-claim_independent.json`
 
 - file: [dag/research/campaign_fsp-pachner-invariance-claim_independent.json](../../../dag/research/campaign_fsp-pachner-invariance-claim_independent.json)
-- sha256 (`lf-normalised`): `41a932013778086f134e4f4bfeb9283ecbc555bd9ead66fe18e2c652143c768f`
+- sha256 (`lf-normalised`): `35ec58752e9c85a1ffaf04c3fc7a2e77329caf7e6434652b6942cc1874206973`
 - cited in: node.source
 - counts toward the grade: yes
 

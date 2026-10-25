@@ -37,7 +37,7 @@ Unmet after the PFP review: Provide measured or derived rate/floor/reachability/
 
 ## Review
 
-- PFP review: [dag/results/DS-QM061-BUILDABILITY-SET-S/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM061-BUILDABILITY-SET-S/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: no; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
+- PFP review: [dag/results/DS-QM061-BUILDABILITY-SET-S/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM061-BUILDABILITY-SET-S/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: The declared rate inequality and all four Boolean conjunction controls are exact; the alias and Boolean characterization are kernel checked.
   - does not support: Provide measured or derived rate/floor/reachability/advantage evidence and a justified device-to-fields bridge before claiming a buildable useful quantum computer.
   - next test: Provide measured or derived rate/floor/reachability/advantage evidence and a justified device-to-fields bridge before claiming a buildable useful quantum computer.

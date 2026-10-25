@@ -55,6 +55,36 @@ def linear_exp(w: tuple[Fraction, ...], fv: tuple[int, int, int, int, int]) -> F
     return sum((wk * Fraction(nk) for wk, nk in zip(w, fv)), Fraction(0))
 
 
+def _main_cases_1(simplices, tri_map, tris_2):
+    for tri, s_list in sorted(tri_map.items()):
+        if len(s_list) == 3:
+            opp = tuple(sorted(set().union(*s_list) - set(tri)))
+            if len(opp) == 3 and opp not in tris_2:
+                for s in s_list:
+                    simplices.remove(s)
+                for edge in itertools.combinations(tri, 2):
+                    simplices.add(tuple(sorted(edge + opp)))
+                moved_33 = True
+                break
+    return moved_33
+
+
+def _main_cases_2(edges_1, simplices, tet_map):
+    for tet, s_list in sorted(tet_map.items()):
+        if len(s_list) == 2:
+            sa, sb = s_list
+            u = next(iter(set(sa) - set(tet)))
+            v = next(iter(set(sb) - set(tet)))
+            if tuple(sorted((u, v))) not in edges_1:
+                simplices.remove(sa)
+                simplices.remove(sb)
+                for tri in itertools.combinations(tet, 3):
+                    simplices.add(tuple(sorted(tri + (u, v))))
+                moved_24 = True
+                break
+    return moved_24
+
+
 def main() -> int:
     pachner_comb = 0
     state_sum = 0
@@ -98,18 +128,7 @@ def main() -> int:
         for tet in itertools.combinations(s, 4):
             tet_map[tuple(sorted(tet))].append(s)
     moved_24 = False
-    for tet, s_list in sorted(tet_map.items()):
-        if len(s_list) == 2:
-            sa, sb = s_list
-            u = next(iter(set(sa) - set(tet)))
-            v = next(iter(set(sb) - set(tet)))
-            if tuple(sorted((u, v))) not in edges_1:
-                simplices.remove(sa)
-                simplices.remove(sb)
-                for tri in itertools.combinations(tet, 3):
-                    simplices.add(tuple(sorted(tri + (u, v))))
-                moved_24 = True
-                break
+    moved_24 = _main_cases_2(edges_1, simplices, tet_map)
     check(moved_24, "comb")
     fv2 = face_vector_4d(simplices)
     check(fv2 == (7, 21, 34, 30, 12) and fv2 == pachner_2_to_4(fv1), "comb")
@@ -122,16 +141,7 @@ def main() -> int:
         for tri in itertools.combinations(s, 3):
             tri_map[tuple(sorted(tri))].append(s)
     moved_33 = False
-    for tri, s_list in sorted(tri_map.items()):
-        if len(s_list) == 3:
-            opp = tuple(sorted(set().union(*s_list) - set(tri)))
-            if len(opp) == 3 and opp not in tris_2:
-                for s in s_list:
-                    simplices.remove(s)
-                for edge in itertools.combinations(tri, 2):
-                    simplices.add(tuple(sorted(edge + opp)))
-                moved_33 = True
-                break
+    moved_33 = _main_cases_1(simplices, tri_map, tris_2)
     check(moved_33, "comb")
     fv3 = face_vector_4d(simplices)
     check(fv3 == (7, 21, 34, 30, 12) and fv3 == fv2, "comb")
