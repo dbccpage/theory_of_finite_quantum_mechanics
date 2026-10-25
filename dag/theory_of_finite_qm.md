@@ -500,7 +500,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1026` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
 | `TFQ-1027` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `FQ-IMPL-REALIFICATION-ADAPTER` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
 | `TFQ-1028` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-IMPL-PAIRING-AUDIT` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
-| `TFQ-1029` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-COMPLEX-FIELD` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-1029` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-COMPLEX-FIELD` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1030` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CIRCLE-U1` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1031` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-GLEASON` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1032` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-TENSOR-PRODUCT` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
@@ -4110,9 +4110,9 @@ Obligation: Unmet after the PFP review: Prove source residual-density factorizat
 - Status: `IMPORTED_ASSUMPTION`
 - DAG node: `GP-IMPORT-COMPLEX-FIELD` (`IMPORTED_ASSUMPTION`)
 
-Complex numbers as a complete field. On the finite report host only Z[i] (Gaussian integers) is available: 1+i has no inverse, and a self-adjoint Gauss-integer matrix need not have a Gauss-integer eigenvalue.
+For a Gaussian integer a+bi, the product (1+i)*(a+bi) equals (a-b)+(a+b)i and differs from the real unit, and (a+bi)*(1+i) differs from the real unit. The matrix with entries 0, 1, 1, 1 in row-major order has each diagonal entry equal to its own conjugate and each off-diagonal entry equal to the conjugate of the other, and it sends a column (x, y) to (y, x+y). When (x, y) differs from the zero column, (y, x+y) differs from lam*(x, y) for each Gaussian integer lam.
 
-Obligation: No derivation of a field with completion from primitive difference; discrete substitute is the cyclotomic ring Z[zeta_n].
+Obligation: A complete complex field, a spectral theorem for a general self-adjoint Gauss-integer matrix, and a derivation of completion from primitive difference stay imported. The cyclotomic ring Z[zeta_n] stays a recorded discrete substitute.
 
 ### TFQ-1030 gp-import-circle-u1
 
