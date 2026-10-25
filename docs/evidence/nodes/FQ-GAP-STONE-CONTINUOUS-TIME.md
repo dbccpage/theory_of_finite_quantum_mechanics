@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 16
-- cited Lean declarations covered by a current replay receipt: 10
+- cited Lean declaration references covered by a current replay receipt: 10
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -66,6 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
 | `QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_aliasing_and_real_embedding_conjugate` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_aliasing_and_real_embedding_conjugate` |
 | `QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/DiscreteTimeStoneSpec.lean`
@@ -86,6 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `BornFable.DiscreteTime.matrix_half_step_not_unique` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.DiscreteTime.matrix_half_step_not_unique` |
 | `BornFable.DiscreteTime.no_qparam_group_through_R345` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.DiscreteTime.no_qparam_group_through_R345` |
 | `BornFable.DiscreteTime.no_rational_half_step` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.DiscreteTime.no_rational_half_step` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/U1PhaseSynthesis.lean`
@@ -100,6 +102,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `U1Fable.PhaseSynthesis.iterated_quadratic_tower_and_cayley_stone_bridge` | yes | yes | yes | - | `#print axioms U1Fable.PhaseSynthesis.iterated_quadratic_tower_and_cayley_stone_bridge` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/U1QuadraticTowerAndCayleyStone.lean`
@@ -118,6 +121,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_preserves_born_trace` | yes | yes | yes | - | `#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_preserves_born_trace` |
 | `U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_resolvent_right` | yes | yes | yes | - | `#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_resolvent_right` |
 | `U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_unitary_left` | yes | yes | yes | - | `#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_unitary_left` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 4
+- cited Lean declaration references covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -59,6 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `AuthorizationIncompleteness.TapeControlModels.same_read_token_allows_distinct_semantic_adapters` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeControlModels.same_read_token_allows_distinct_semantic_adapters` |
 | `AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy` |
 | `AuthorizationIncompleteness.TapeControlModels.unread_report_blocks_content_decider` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.TapeControlModels.unread_report_blocks_content_decider` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1328_auth_tc0_tape_control_typing.md`

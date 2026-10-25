@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 23
-- cited Lean declarations covered by a current replay receipt: 23
+- cited Lean declaration references covered by a current replay receipt: 23
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -59,6 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` |
 | `QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` |
 | `QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/PreGenesisToMssn/SnCarrier.lean`
@@ -76,6 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `RetractOutcome` | yes | yes | yes | none | `#print axioms RetractOutcome` |
 | `retractionDownMap` | yes | yes | yes | propext | `#print axioms retractionDownMap` |
 | `sectionLift` | yes | yes | yes | none | `#print axioms sectionLift` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/PreGenesisToMssn/SnTheorems.lean`
@@ -91,6 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `ground_carrier_empty` | yes | yes | yes | none | `#print axioms ground_carrier_empty` |
 | `old_image_base` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms old_image_base` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/SnCarrierPfp.lean`
@@ -118,6 +121,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `SnCarrierPfp.table_ne_base_stage_two` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms SnCarrierPfp.table_ne_base_stage_two` |
 | `SnCarrierPfp.table_ne_base_stage_zero` | yes | yes | yes | Quot.sound, propext | `#print axioms SnCarrierPfp.table_ne_base_stage_zero` |
 | `SnCarrierPfp.unrestricted_lift_not_injective` | yes | yes | yes | propext | `#print axioms SnCarrierPfp.unrestricted_lift_not_injective` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_category_theory/src/mssn_functor_bridge.rs`

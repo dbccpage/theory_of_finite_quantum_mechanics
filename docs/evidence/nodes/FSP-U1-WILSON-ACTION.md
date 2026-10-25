@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 13
-- cited Lean declarations covered by a current replay receipt: 13
+- cited Lean declaration references covered by a current replay receipt: 13
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -66,6 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignFspU1WilsonAction.wilsonAction_linkOfAngle` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspU1WilsonAction.wilsonAction_linkOfAngle` |
 | `CampaignFspU1WilsonAction.wilsonAction_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspU1WilsonAction.wilsonAction_nonneg` |
 | `CampaignFspU1WilsonAction.wilsonAction_nonneg_needs_beta` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspU1WilsonAction.wilsonAction_nonneg_needs_beta` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1196_fsp_u1_wilson_action.md`

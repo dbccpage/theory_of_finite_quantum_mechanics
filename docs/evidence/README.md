@@ -28,7 +28,7 @@ Grade E4 needs an in-repo runnable test and a recorded review as well as a repla
 
 ### Where the Lean evidence stands
 
-The `lean` fields of nodes cite 1866 distinct Lean declarations that lie in files of this checkout. 1804 of them are in a file whose current sha256 matches a passing replay receipt; 39 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches. The `PROVED_LEAN` nodes cite 1081 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
+The `lean` fields of nodes cite 1866 distinct Lean declarations that lie in files of this checkout. 1804 of them are in a file whose current sha256 matches a passing replay receipt; 39 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches; 23 are in files whose current-hash receipt failed the build or axiom audit. The `PROVED_LEAN` nodes cite 1081 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
 
 ### Status by evidence grade
 
@@ -131,7 +131,7 @@ The result should equal the recorded sha256 in [`dag/research/frontier_targets_l
 
 ### (c) Replay the Lean receipts
 
-The receipts record builds with Lean 4.35.0 and Mathlib at `56a005855ea17e0b0958f73ec801ae140b0a1679`, on x86_64-w64-windows-gnu. Another platform with the same toolchain should reproduce the exit codes and the axiom lines; the receipts do not claim that it was tried.
+The receipts record builds with Lean 4.35.0 and Mathlib at `56a005855ea17e0b0958f73ec801ae140b0a1679`, on x86_64-unknown-linux-gnu, x86_64-w64-windows-gnu. Another platform with the same toolchain should reproduce the exit codes and the axiom lines; the receipts do not claim that it was tried.
 
 ```
 git clone https://github.com/dbccpage/theory_of_finite_quantum_mechanics.git

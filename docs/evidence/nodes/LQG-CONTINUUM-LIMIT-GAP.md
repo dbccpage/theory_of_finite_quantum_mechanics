@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 5
+- cited Lean declaration references covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignLqgContinuumLimitGap.level2_dimension_truncation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgContinuumLimitGap.level2_dimension_truncation` |
 | `CampaignLqgContinuumLimitGap.level2_free_positive_scale` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgContinuumLimitGap.level2_free_positive_scale` |
 | `CampaignLqgContinuumLimitGap.level2_tuple_census` | yes | yes | yes | none | `#print axioms CampaignLqgContinuumLimitGap.level2_tuple_census` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/general_relativity/spin_foam.rs`

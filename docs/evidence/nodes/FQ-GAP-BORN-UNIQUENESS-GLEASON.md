@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 16
 - cited Lean, Rust or Python symbols found in their in-repo files: 36
-- cited Lean declarations covered by a current replay receipt: 36
+- cited Lean declaration references covered by a current replay receipt: 36
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -61,6 +61,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `BornFable.val_rat_smul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.val_rat_smul` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornGaussRat.lean`
@@ -75,6 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `BornFable.GaussRat.instStarRing` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussRat.instStarRing` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornGaussianFrameRays.lean`
@@ -92,6 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `BornFable.GaussianFrames.frameFunction_smul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.frameFunction_smul` |
 | `BornFable.GaussianFrames.inner_smul_left` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.inner_smul_left` |
 | `BornFable.GaussianFrames.nonZero_smul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.nonZero_smul` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornGaussianRationalFrameObstruction.lean`
@@ -114,6 +117,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `BornFable.GaussianFrames.frame_tri_101` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.frame_tri_101` |
 | `BornFable.GaussianFrames.frame_tri_110` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.frame_tri_110` |
 | `BornFable.GaussianFrames.parity_class_function_is_third` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.parity_class_function_is_third` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornHermitianCarrier.lean`
@@ -129,6 +133,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `BornFable.HermitianCarrier.normSq_dot_le` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.HermitianCarrier.normSq_dot_le` |
 | `BornFable.HermitianCarrier.trace_rep` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.HermitianCarrier.trace_rep` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornHermitianPsdDecomposition.lean`
@@ -143,6 +148,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `BornFable.HermitianPsd.gram_of_psd` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.HermitianPsd.gram_of_psd` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornHermitianTraceRepresentation.lean`
@@ -160,6 +166,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `BornFable.HermitianCarrier.born_rule` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.HermitianCarrier.born_rule` |
 | `BornFable.HermitianCarrier.density_is_state` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.HermitianCarrier.density_is_state` |
 | `BornFable.HermitianCarrier.state_valuation_correspondence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.HermitianCarrier.state_valuation_correspondence` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornLinearExtension.lean`
@@ -174,6 +181,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `BornFable.OrderedQUnit.linear_extension` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.OrderedQUnit.linear_extension` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornMatrixCarrier.lean`
@@ -188,6 +196,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `BornFable.MatrixCarrier.order_unit` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.MatrixCarrier.order_unit` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornNormalization.lean`
@@ -212,6 +221,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `BornFable.PsdDecomposition.gram_of_psd` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.PsdDecomposition.gram_of_psd` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornRationalSphereObstruction.lean`
@@ -227,6 +237,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `BornFable.RationalSphere.parity_frame_function` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.RationalSphere.parity_frame_function` |
 | `BornFable.RationalSphere.parity_not_quadratic` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.RationalSphere.parity_not_quadratic` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/BornTraceRepresentation.lean`
@@ -244,6 +255,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `BornFable.MatrixCarrier.born_rule` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.MatrixCarrier.born_rule` |
 | `BornFable.MatrixCarrier.density_is_state` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.MatrixCarrier.density_is_state` |
 | `BornFable.MatrixCarrier.state_valuation_correspondence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.MatrixCarrier.state_valuation_correspondence` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
@@ -260,6 +272,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates` |
 | `QuantumMechanics.DerivationDagQMClosure.fq_gleason_d3_orthogonal_frame_additivity_eliminates_quartic_rival` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_gleason_d3_orthogonal_frame_additivity_eliminates_quartic_rival` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteQM.lean`
@@ -284,6 +297,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `frames_equinorm` | yes | yes | yes | none | `#print axioms frames_equinorm` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/H017Gleason.lean`
@@ -298,6 +312,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `gleason_pack_uniqueness_still_imported` | yes | yes | yes | none | `#print axioms gleason_pack_uniqueness_still_imported` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`

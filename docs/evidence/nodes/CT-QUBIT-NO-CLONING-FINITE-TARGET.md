@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 10
-- cited Lean declarations covered by a current replay receipt: 10
+- cited Lean declaration references covered by a current replay receipt: 10
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -75,6 +75,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `FrontierNoCloning.no_additive_cloner_for_Z_union_X` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FrontierNoCloning.no_additive_cloner_for_Z_union_X` |
 | `FrontierNoCloning.pauli_Z_X_completeness_identity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FrontierNoCloning.pauli_Z_X_completeness_identity` |
 | `FrontierNoCloning.pauli_overlap_idempotent_iff_equal_or_antipodal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FrontierNoCloning.pauli_overlap_idempotent_iff_equal_or_antipodal` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2009_ct_qubit_no_cloning_finite_target.md`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 15
-- cited Lean declarations covered by a current replay receipt: 15
+- cited Lean declaration references covered by a current replay receipt: 15
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.pg_root_coproduct_inert_diamond_and_six_operation_separation` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_root_coproduct_inert_diamond_and_six_operation_separation` |
 | `QuantumMechanics.DerivationDagQMClosure.pg_six_operations_and_primdiff_admission_gate` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_six_operations_and_primdiff_admission_gate` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/SixOperations.lean`
@@ -84,6 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `SixOperations.step_changes_admitted_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms SixOperations.step_changes_admitted_iff` |
 | `SixOperations.supply_admits_conflation_separates` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms SixOperations.supply_admits_conflation_separates` |
 | `SixOperations.supply_keeps_admitted` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms SixOperations.supply_keeps_admitted` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`

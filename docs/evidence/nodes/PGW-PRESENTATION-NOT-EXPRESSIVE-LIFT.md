@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 19
-- cited Lean declarations covered by a current replay receipt: 18
+- cited Lean declaration references covered by a current replay receipt: 18
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -70,6 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignPgwPresentationLift.same_internal_class_not_implies_same_presentation` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwPresentationLift.same_internal_class_not_implies_same_presentation` |
 | `CampaignPgwPresentationLift.statement_holds_under_opaque_only` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwPresentationLift.statement_holds_under_opaque_only` |
 | `CampaignPgwPresentationLift.two_marks_in_unformed_regime_collapsed` | yes | yes | yes | propext | `#print axioms CampaignPgwPresentationLift.two_marks_in_unformed_regime_collapsed` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/PreGenesisToMssn/Observation.lean`
@@ -84,6 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `empty_profiles_equal` | yes | yes | yes | Quot.sound, propext | `#print axioms empty_profiles_equal` |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/pgw-presentation-not-expressive-lift.py`
@@ -95,6 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `main` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md`

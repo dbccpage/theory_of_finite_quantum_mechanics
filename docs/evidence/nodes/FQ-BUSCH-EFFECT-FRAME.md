@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 4
+- cited Lean declaration references covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteQM.lean`
@@ -73,6 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `busch_ic_povm_vs_polyhedral_frame_cone` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms busch_ic_povm_vs_polyhedral_frame_cone` |
 | `galois_conjugate_negativity_vs_sos_total_positivity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms galois_conjugate_negativity_vs_sos_total_positivity` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/H058EffectFrameBusch.lean`
@@ -87,6 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `two_mul_half` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms two_mul_half` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/busch_effects.rs`

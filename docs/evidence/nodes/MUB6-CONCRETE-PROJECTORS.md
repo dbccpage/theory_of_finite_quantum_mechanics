@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 5
+- cited Lean declaration references covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `concreteProjector_rank_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms concreteProjector_rank_one` |
 | `concreteProjector_self_adjoint` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms concreteProjector_self_adjoint` |
 | `concreteProjector_trace_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms concreteProjector_trace_one` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/25_mub/tfq_1276_mub6_concrete_projectors.md`

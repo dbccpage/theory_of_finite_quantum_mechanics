@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 3
+- cited Lean declaration references covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -59,6 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.k23_centered_scaled2_zero_duality_gap` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.k23_centered_scaled2_zero_duality_gap` |
 | `QuantumMechanics.DerivationDagQMClosure.k23_uncentered_zero_duality_gap` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.k23_uncentered_zero_duality_gap` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/DualWitness.lean`
@@ -73,6 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `dual_witness_certifies_trace_distance` | yes | yes | yes | - | `#print axioms dual_witness_certifies_trace_distance` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/TraceZeroDuality.lean`
@@ -87,6 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `trace_zero_duality_gap_zero` | yes | yes | yes | Quot.sound, propext | `#print axioms trace_zero_duality_gap_zero` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/trace_distance_quotient.rs`

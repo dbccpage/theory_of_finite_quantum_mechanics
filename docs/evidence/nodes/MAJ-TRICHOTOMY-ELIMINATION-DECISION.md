@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 7
 - cited Lean, Rust or Python symbols found in their in-repo files: 6
-- cited Lean declarations covered by a current replay receipt: 2
+- cited Lean declaration references covered by a current replay receipt: 2
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -55,6 +55,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `gaussian_elimination_cubic_bound` | yes | yes | yes | none | `#print axioms gaussian_elimination_cubic_bound` |
 | `gaussian_elimination_ops` | yes | yes | yes | module-level | `#print axioms gaussian_elimination_ops` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/majorana/classify.rs`
@@ -66,6 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `classify_default` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `papers/core/majorana/code/majorana_evaluator.py`
@@ -78,6 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `GF2Matrix.solve` (python_symbol) | yes | yes | yes | - | - |
 | `classify_residual` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py`
@@ -90,6 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `test_gf2_matrix_rank_and_solve` (python_test) | yes | yes | yes | - | `python -m pytest papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_gf2_matrix_rank_and_solve` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1143_maj_trichotomy_elimination_decision.md`

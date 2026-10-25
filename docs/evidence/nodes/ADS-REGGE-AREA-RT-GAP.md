@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 12
-- cited Lean declarations covered by a current replay receipt: 12
+- cited Lean declaration references covered by a current replay receipt: 12
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -65,6 +65,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_formula` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_formula` |
 | `CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_pos` |
 | `CampaignAdsReggeAreaRtGap.sq_area_subdivision_scales_inv_m` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsReggeAreaRtGap.sq_area_subdivision_scales_inv_m` |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/ads-regge-area-rt-gap.py`

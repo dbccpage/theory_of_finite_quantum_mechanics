@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 3
+- cited Lean declaration references covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -59,6 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.k23_centered_scaled2_zero_duality_gap` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.k23_centered_scaled2_zero_duality_gap` |
 | `QuantumMechanics.DerivationDagQMClosure.k23_uncentered_zero_duality_gap` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.k23_uncentered_zero_duality_gap` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/DualWitness.lean`
@@ -73,6 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `DualWitness` | yes | yes | no | - | `#print axioms DualWitness` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/LggrFiniteResults.lean`
@@ -89,6 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `LggrFiniteResults.totalSatWeight3_le_two_mul_mass` | yes | yes | yes | Quot.sound, propext | `#print axioms LggrFiniteResults.totalSatWeight3_le_two_mul_mass` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`

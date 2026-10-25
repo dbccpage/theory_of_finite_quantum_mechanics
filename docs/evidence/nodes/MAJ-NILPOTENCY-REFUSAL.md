@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 6
-- cited Lean declarations covered by a current replay receipt: 2
+- cited Lean declaration references covered by a current replay receipt: 2
 - counted in-repo runnable tests: 2
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -55,6 +55,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `evaluate_complex_nilpotency` | yes | yes | yes | none | `#print axioms evaluate_complex_nilpotency` |
 | `nilpotency_refusal_sound` | yes | yes | yes | none | `#print axioms nilpotency_refusal_sound` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/majorana/classify.rs`
@@ -67,6 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `representation_invalid_is_refused_not_classified` (rust_test) | yes | yes | yes | - | `cd code/rust && cargo test -p tfqm_majorana representation_invalid_is_refused_not_classified` |
+
 - counts toward the grade: yes
 
 ### Python: `papers/core/majorana/code/majorana_evaluator.py`
@@ -79,6 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `F2CochainComplex.is_nilpotent` (python_symbol) | yes | yes | yes | - | - |
 | `classify_residual` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py`
@@ -91,6 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `test_cochain_nilpotency_and_refusal` (python_test) | yes | yes | yes | - | `python -m pytest papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_cochain_nilpotency_and_refusal` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1144_maj_nilpotency_refusal.md`

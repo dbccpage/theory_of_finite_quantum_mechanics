@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 1
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 2
+- cited Lean declaration references covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -55,6 +55,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `Q1` | yes | yes | yes | none | `#print axioms Q1` |
 | `Repair` | yes | yes | yes | none | `#print axioms Repair` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_wdp/src/obstruction.rs`

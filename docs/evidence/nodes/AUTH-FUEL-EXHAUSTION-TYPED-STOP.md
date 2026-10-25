@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 3
+- cited Lean declaration references covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -56,6 +56,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck` | yes | yes | yes | propext | `#print axioms AuthorizationIncompleteness.DirectTuringMachineModels.empty_rule_fixture_is_stuck` |
 | `AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt` | yes | yes | yes | propext | `#print axioms AuthorizationIncompleteness.DirectTuringMachineModels.execute_halted_of_declared_halt` |
 | `AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel` | yes | yes | yes | propext | `#print axioms AuthorizationIncompleteness.DirectTuringMachineModels.looping_fixture_exhausts_bounded_fuel` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1331_auth_fuel_exhaustion_typed_stop.md`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 8
 - cited Lean, Rust or Python symbols found in their in-repo files: 12
-- cited Lean declarations covered by a current replay receipt: 10
+- cited Lean declaration references covered by a current replay receipt: 10
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 1
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteQM.lean`
@@ -82,6 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `quartic_rival` | yes | yes | yes | propext | `#print axioms quartic_rival` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/H013FrameAdditivity.lean`
@@ -106,6 +108,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `two_effect_rules_share_unit_total_and_disagree` | yes | yes | yes | Quot.sound, propext | `#print axioms two_effect_rules_share_unit_total_and_disagree` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/SectorFormHermitian.lean`
@@ -121,6 +124,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `InnerProductFable.HermitianSectorForm.imagLeak12_imag_direction_not_additive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.HermitianSectorForm.imagLeak12_imag_direction_not_additive` |
 | `InnerProductFable.HermitianSectorForm.offdiag_eq_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.HermitianSectorForm.offdiag_eq_zero` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/SectorFormUniqueness.lean`
@@ -139,6 +143,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `InnerProductFable.SectorForm.offdiag_eq_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.SectorForm.offdiag_eq_zero` |
 | `InnerProductFable.SectorForm.offdiag_pair_sum_eq_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.SectorForm.offdiag_pair_sum_eq_zero` |
 | `InnerProductFable.SectorForm.qf_eq_sum_diag_sq_of_sectorAdditive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.SectorForm.qf_eq_sum_diag_sq_of_sectorAdditive` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/inner_product_uniqueness.rs`
@@ -151,6 +156,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `hermitian_sector_additivity_certificate` (rust_symbol) | yes | yes | yes | - | - |
 | `sector_additivity_certificate` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 5
+- cited Lean declaration references covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -60,6 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `FrontierAreaSpectrum.single_puncture_area_sq_strictly_increasing` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FrontierAreaSpectrum.single_puncture_area_sq_strictly_increasing` |
 | `FrontierAreaSpectrum.smallest_nonzero_area_level_is_spin_half` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FrontierAreaSpectrum.smallest_nonzero_area_level_is_spin_half` |
 | `FrontierAreaSpectrum.spin3_equals_four_spin_half` | yes | yes | yes | none | `#print axioms FrontierAreaSpectrum.spin3_equals_four_spin_half` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/33_loop_quantum_gravity/tfq_2304_lqg_area_spectrum_exact_target.md`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 22
-- cited Lean declarations covered by a current replay receipt: 22
+- cited Lean declaration references covered by a current replay receipt: 22
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -59,6 +59,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.pg_root_coproduct_inert_diamond_and_six_operation_separation` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_root_coproduct_inert_diamond_and_six_operation_separation` |
 | `QuantumMechanics.DerivationDagQMClosure.pg_six_operations_and_primdiff_admission_gate` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_six_operations_and_primdiff_admission_gate` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/PrimdiffAxioms.lean`
@@ -92,6 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `PrimdiffAxioms.rtc_least` | yes | yes | yes | none | `#print axioms PrimdiffAxioms.rtc_least` |
 | `PrimdiffAxioms.rtc_preorder` | yes | yes | yes | none | `#print axioms PrimdiffAxioms.rtc_preorder` |
 | `PrimdiffAxioms.trichotomy` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms PrimdiffAxioms.trichotomy` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/wdp/obstruction.rs`

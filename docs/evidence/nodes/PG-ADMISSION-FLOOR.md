@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 16
-- cited Lean declarations covered by a current replay receipt: 16
+- cited Lean declaration references covered by a current replay receipt: 16
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 1
@@ -67,6 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `AdmissionFloor.one_point_cut_count` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdmissionFloor.one_point_cut_count` |
 | `AdmissionFloor.pointed_relation_independence` | yes | yes | yes | none | `#print axioms AdmissionFloor.pointed_relation_independence` |
 | `AdmissionFloor.two_point_cut_count` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdmissionFloor.two_point_cut_count` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
@@ -81,6 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/PointedRelation.lean`
@@ -95,6 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `pointed_relation_independence` | yes | yes | yes | none | `#print axioms pointed_relation_independence` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/PrimitiveAdmissionFloor.lean`
@@ -111,6 +114,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `endpoints_apart` | yes | yes | yes | none | `#print axioms endpoints_apart` |
 | `identification_breaks_law` | yes | yes | yes | none | `#print axioms identification_breaks_law` |
 | `no_cut_on_subsingleton` | yes | yes | yes | none | `#print axioms no_cut_on_subsingleton` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/wdp/genesis_admission_execution.rs`

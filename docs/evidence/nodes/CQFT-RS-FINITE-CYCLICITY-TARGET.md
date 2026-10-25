@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 6
-- cited Lean declarations covered by a current replay receipt: 6
+- cited Lean declaration references covered by a current replay receipt: 6
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -61,6 +61,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `FrontierRsCyclicity.pair_of_sites_cyclic_for_GHZ3_and_W3_not_prod3` | yes | yes | yes | Quot.sound, propext | `#print axioms FrontierRsCyclicity.pair_of_sites_cyclic_for_GHZ3_and_W3_not_prod3` |
 | `FrontierRsCyclicity.separating_of_fullComplementaryRank` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FrontierRsCyclicity.separating_of_fullComplementaryRank` |
 | `FrontierRsCyclicity.single_site_not_cyclic_prod_ghz_w` | yes | yes | yes | none | `#print axioms FrontierRsCyclicity.single_site_not_cyclic_prod_ghz_w` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2107_cqft_rs_finite_cyclicity_target.md`

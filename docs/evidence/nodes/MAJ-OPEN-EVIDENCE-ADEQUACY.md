@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 3
+- cited Lean declaration references covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -46,9 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignMajOpenEvidenceAdequacy.lean](../../../lean4/CampaignMajOpenEvidenceAdequacy.lean)
 - sha256 (`bytes`): `81a40a01895906d43d21209fc70e5b9b2b5de09f8420670a14a11543d615c8a4`
-- cited in: node.lean, receipt dag/research/campaign_maj-open-evidence-adequacy_lean_replay.json (CampaignMajOpenEvidenceAdequacy), record TFQ-1182
+- cited in: node.lean, receipt dag/research/campaign_maj-open-evidence-adequacy_lean_replay.json (CampaignMajOpenEvidenceAdequacy), receipt dag/research/pr_361_review_replay.json (CampaignMajOpenEvidenceAdequacy), record TFQ-1182
 - replay: `verified`
   - receipt [dag/research/campaign_maj-open-evidence-adequacy_lean_replay.json](../../../dag/research/campaign_maj-open-evidence-adequacy_lean_replay.json) (module `CampaignMajOpenEvidenceAdequacy`): recorded sha256 `81a40a01895906d43d21209fc70e5b9b2b5de09f8420670a14a11543d615c8a4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_361_review_replay.json](../../../dag/research/pr_361_review_replay.json) (module `CampaignMajOpenEvidenceAdequacy`): recorded sha256 `81a40a01895906d43d21209fc70e5b9b2b5de09f8420670a14a11543d615c8a4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignMajOpenEvidenceAdequacy`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -56,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `diff_is_zero_neg_one` | yes | yes | yes | none | `#print axioms diff_is_zero_neg_one` |
 | `first_coord_kernel` | yes | yes | yes | none | `#print axioms first_coord_kernel` |
 | `second_coord_separates` | yes | yes | yes | none | `#print axioms second_coord_separates` |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/maj-open-evidence-adequacy.py`

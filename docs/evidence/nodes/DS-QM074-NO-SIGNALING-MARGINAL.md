@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 3
+- cited Lean declaration references covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 1
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm073_074_chsh_pr_box_and_no_signaling_marginal` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm073_074_chsh_pr_box_and_no_signaling_marginal` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Entanglement.lean`
@@ -72,6 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `non_signaling_under_local_b_flip` | yes | yes | yes | Quot.sound, propext | `#print axioms non_signaling_under_local_b_flip` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/NoSignalling.lean`
@@ -86,6 +88,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `no_signalling_under_admitted_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms no_signalling_under_admitted_composition` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/campaigns/no_signalling.rs`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 2
+- cited Lean declaration references covered by a current replay receipt: 2
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `operational_orbit_selects_positive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms operational_orbit_selects_positive` |
 | `positive_mem_of_rankOne` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms positive_mem_of_rankOne` |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/qm/tensor_composition.py`

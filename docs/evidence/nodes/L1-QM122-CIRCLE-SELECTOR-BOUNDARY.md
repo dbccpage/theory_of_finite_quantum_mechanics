@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 5
+- cited Lean declaration references covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/H011Circle.lean`
@@ -72,6 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `sign_excluded_circle_still_imported` | yes | yes | yes | propext | `#print axioms sign_excluded_circle_still_imported` |
 | `sign_fails_connectedness_shadow` | yes | yes | yes | none | `#print axioms sign_fails_connectedness_shadow` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/H011U1SelectorBoundary.lean`
@@ -87,6 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `selector_not_free` | yes | yes | yes | none | `#print axioms selector_not_free` |
 | `u1_selector_boundary` | yes | yes | yes | none | `#print axioms u1_selector_boundary` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs`

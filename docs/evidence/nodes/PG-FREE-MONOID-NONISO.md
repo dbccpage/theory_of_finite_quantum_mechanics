@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 18
-- cited Lean declarations covered by a current replay receipt: 18
+- cited Lean declaration references covered by a current replay receipt: 18
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/FreeMonoidNoniso.lean`
@@ -84,6 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `FreeMonoidNoniso.no_free_monoid_iso` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FreeMonoidNoniso.no_free_monoid_iso` |
 | `FreeMonoidNoniso.set_bijection_exists` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FreeMonoidNoniso.set_bijection_exists` |
 | `FreeMonoidNoniso.unequal_finite_alphabets_not_wordiso` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FreeMonoidNoniso.unequal_finite_alphabets_not_wordiso` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/PreGenesisToMssn/Paper.lean`
@@ -98,6 +100,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `unequal_finite_alphabets_not_iso` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms unequal_finite_alphabets_not_iso` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/SnMssn/Paper001.lean`
@@ -113,6 +116,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `no_discrete_equivalence` | yes | yes | yes | Quot.sound, propext | `#print axioms no_discrete_equivalence` |
 | `no_free_monoid_iso` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms no_free_monoid_iso` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`

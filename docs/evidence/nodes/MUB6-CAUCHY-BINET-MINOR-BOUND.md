@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 3
+- cited Lean declaration references covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -56,6 +56,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `exists_bounded_inverse_minor` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms exists_bounded_inverse_minor` |
 | `exists_minor_norm_ge` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms exists_minor_norm_ge` |
 | `inverse_entry_normSq_le` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms inverse_entry_normSq_le` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/25_mub/tfq_1259_mub6_cauchy_binet_minor_bound.md`

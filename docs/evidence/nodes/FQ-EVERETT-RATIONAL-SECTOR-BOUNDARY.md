@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 4
+- cited Lean declaration references covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/H059RationalSector.lean`
@@ -73,6 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `conductors_with_real_q_yield_rational_finegraining` | yes | yes | yes | none | `#print axioms conductors_with_real_q_yield_rational_finegraining` |
 | `rational_finegraining_exists` | yes | yes | yes | none | `#print axioms rational_finegraining_exists` |
 | `witness_poly_has_no_candidate_rational_root` | yes | yes | yes | none | `#print axioms witness_poly_has_no_candidate_rational_root` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/branch_finegraining.rs`

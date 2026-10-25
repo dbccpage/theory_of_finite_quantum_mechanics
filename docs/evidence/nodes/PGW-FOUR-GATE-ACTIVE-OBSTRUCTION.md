@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 4
+- cited Lean declaration references covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -56,6 +56,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `gates_of_obst` | yes | yes | yes | Quot.sound, propext | `#print axioms gates_of_obst` |
 | `obstP_factors` | yes | yes | yes | Quot.sound, propext | `#print axioms obstP_factors` |
 | `obst_of_gates` | yes | yes | yes | Quot.sound, propext | `#print axioms obst_of_gates` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/OeMssn/MssnObstructionDetector.lean`
@@ -70,6 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `obstP_factors` | yes | yes | yes | Quot.sound, propext | `#print axioms obstP_factors` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md`

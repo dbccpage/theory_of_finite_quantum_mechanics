@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 15
-- cited Lean declarations covered by a current replay receipt: 5
+- cited Lean declaration references covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `sqDist_runB` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms sqDist_runB` |
 | `sqDist_runB_le` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms sqDist_runB_le` |
 | `sqDist_stepB` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms sqDist_stepB` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/campaigns/qc_self_obstruction.rs`
@@ -73,6 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `bloch_step` (rust_symbol) | yes | yes | yes | - | - |
 | `decay_identity_holds` (rust_symbol) | yes | yes | yes | - | - |
 | `pauli_part_squares_to_norm` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/qm/qc_self_obstruction.py`
@@ -88,6 +90,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `bloch_step` (python_symbol) | yes | yes | yes | - | - |
 | `decay_identity_holds` (python_symbol) | yes | yes | yes | - | - |
 | `pauli_part_squares_to_norm` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1323_qcv_qubit_bloch_decay_exact.md`

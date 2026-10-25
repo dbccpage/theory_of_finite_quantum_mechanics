@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 22
-- cited Lean declarations covered by a current replay receipt: 20
+- cited Lean declaration references covered by a current replay receipt: 20
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `normalize` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms normalize` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
@@ -75,6 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `QuantumMechanics.DerivationDagQMClosure.l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure` |
 | `QuantumMechanics.DerivationDagQMClosure.l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector` |
 | `QuantumMechanics.DerivationDagQMClosure.sector_weights_sum_to_phi1` | yes | yes | yes | propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.sector_weights_sum_to_phi1` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/H001ProbabilitySimplex.lean`
@@ -111,6 +113,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `ResidualSectorWeights.sector_weights_sum_to_phi1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ResidualSectorWeights.sector_weights_sum_to_phi1` |
 | `ResidualSectorWeights.symmetric_integral_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ResidualSectorWeights.symmetric_integral_iff` |
 | `ResidualSectorWeights.symmetric_selector` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ResidualSectorWeights.symmetric_selector` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/category_theory/foundations/finite_set.rs`
@@ -183,6 +186,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness` (rust_symbol) | yes | yes | yes | - | - |
 | `verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0005_declared_l1_sector_weights.md`

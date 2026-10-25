@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 2
+- cited Lean declaration references covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -55,6 +55,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `detector_inadequate_when_kernel_nontrivial` | yes | yes | yes | none | `#print axioms detector_inadequate_when_kernel_nontrivial` |
 | `transfer_gap_strictly_positive` | yes | yes | yes | none | `#print axioms transfer_gap_strictly_positive` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1162_maj_realization_packet_gap.md`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 10
-- cited Lean declarations covered by a current replay receipt: 6
+- cited Lean declaration references covered by a current replay receipt: 6
 - counted in-repo runnable tests: 2
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `runner_step` | yes | yes | yes | propext | `#print axioms runner_step` |
 | `runner_unbounded` | yes | yes | yes | Quot.sound, propext | `#print axioms runner_unbounded` |
 | `runner_unboundedSupply` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms runner_unboundedSupply` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/GenesisComputation.lean`
@@ -73,6 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `closed_bounds_reach` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms closed_bounds_reach` |
 | `not_closed_of_unbounded` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms not_closed_of_unbounded` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/wdp/genesis_tm.rs`
@@ -86,6 +88,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `right_runner` (rust_symbol) | yes | yes | yes | - | - |
 | `right_runner_is_refused_by_every_bounded_decider` (rust_test) | yes | yes | yes | - | `cd code/rust && cargo test -p tfqm_wdp right_runner_is_refused_by_every_bounded_decider` |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/qm/genesis_tm.py`
@@ -97,6 +100,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `right_runner` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/tests/test_genesis_tm.py`
@@ -109,6 +113,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `test_right_runner_needs_unbounded_blanks` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_genesis_tm.py::test_right_runner_needs_unbounded_blanks` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1294_comp_c3_runner_needs_blanks.md`

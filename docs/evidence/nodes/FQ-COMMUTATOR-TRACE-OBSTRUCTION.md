@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 3
+- cited Lean declaration references covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `weyl_heisenberg_finite_trace_obstruction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms weyl_heisenberg_finite_trace_obstruction` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/H056ContinuumLiftBoundary.lean`
@@ -71,6 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `wintner_wielandt_dim2_obstruction` | yes | yes | yes | Quot.sound, propext | `#print axioms wintner_wielandt_dim2_obstruction` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/H068WeylCcrResidual.lean`
@@ -85,6 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `tr_comm2_vanishes` | yes | yes | yes | Quot.sound, propext | `#print axioms tr_comm2_vanishes` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/commutator.rs`

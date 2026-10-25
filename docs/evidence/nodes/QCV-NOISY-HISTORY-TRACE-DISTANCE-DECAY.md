@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 18
-- cited Lean declarations covered by a current replay receipt: 10
+- cited Lean declaration references covered by a current replay receipt: 10
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -64,6 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `tn` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms tn` |
 | `tn_conj` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms tn_conj` |
 | `tn_smul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms tn_smul` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/campaigns/qc_self_obstruction.rs`
@@ -78,6 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `depolarize_matrix` (rust_symbol) | yes | yes | yes | - | - |
 | `depth_until_below` (rust_symbol) | yes | yes | yes | - | - |
 | `matrix_step` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/qm/qc_self_obstruction.py`
@@ -92,6 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `depolarize_matrix` (python_symbol) | yes | yes | yes | - | - |
 | `depth_until_below` (python_symbol) | yes | yes | yes | - | - |
 | `matrix_step` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1322_qcv_noisy_history_trace_distance_decay.md`

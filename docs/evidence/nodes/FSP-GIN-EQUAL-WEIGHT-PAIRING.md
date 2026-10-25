@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 7
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 1
+- cited Lean declaration references covered by a current replay receipt: 1
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -54,6 +54,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `involution_pair_cancels_sign` | yes | yes | yes | propext | `#print axioms involution_pair_cancels_sign` |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/fsp/ct_aux_streaming_gin_engine.py`
@@ -72,6 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `HamiltonianGinBridge` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/tests/fsp/integration/test_hamiltonian_gin_bridge.py`
@@ -84,6 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `test_bipartite_hamiltonian_indexing_and_sign_repair` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/fsp/integration/test_hamiltonian_gin_bridge.py::test_bipartite_hamiltonian_indexing_and_sign_repair` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1194_fsp_gin_equal_weight_pairing.md`

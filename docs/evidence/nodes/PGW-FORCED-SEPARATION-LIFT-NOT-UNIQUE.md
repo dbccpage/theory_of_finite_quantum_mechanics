@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
-- cited Lean declarations covered by a current replay receipt: 3
+- cited Lean declaration references covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -54,6 +54,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `quotient_barrier` | yes | yes | yes | Quot.sound | `#print axioms quotient_barrier` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/Genesis19l57g1/Paper000.lean`
@@ -68,6 +69,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `separation_not_on_quotient` | yes | yes | yes | none | `#print axioms separation_not_on_quotient` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/PreGenesisToMssn/Observation.lean`
@@ -82,6 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `collapsed_quotient_barrier` | yes | yes | yes | Quot.sound, propext | `#print axioms collapsed_quotient_barrier` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs`

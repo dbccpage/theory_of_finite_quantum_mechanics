@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 4
+- cited Lean declaration references covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -54,6 +54,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `reach9_swap` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms reach9_swap` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/GenesisOngoing/Ninth/State.lean`
@@ -70,6 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `proj_ofR9_false` | yes | yes | yes | Quot.sound, propext | `#print axioms proj_ofR9_false` |
 | `proj_ofR9_true` | yes | yes | yes | Quot.sound, propext | `#print axioms proj_ofR9_true` |
 | `swap9_swap` | yes | yes | yes | Quot.sound, propext | `#print axioms swap9_swap` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0480_go_two_relations_swap.md`

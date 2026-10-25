@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 7
-- cited Lean declarations covered by a current replay receipt: 7
+- cited Lean declaration references covered by a current replay receipt: 7
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` |
 | `QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/LggrFiniteResults.lean`
@@ -78,6 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `LggrFiniteResults.odd_triangle_lp_dual_defect_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LggrFiniteResults.odd_triangle_lp_dual_defect_pos` |
 | `LggrFiniteResults.section_exists_iff_holonomy_zero` | yes | yes | yes | Quot.sound, propext | `#print axioms LggrFiniteResults.section_exists_iff_holonomy_zero` |
 | `LggrFiniteResults.totalSatWeight3_le_two_mul_mass` | yes | yes | yes | Quot.sound, propext | `#print axioms LggrFiniteResults.totalSatWeight3_le_two_mul_mass` |
+
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`

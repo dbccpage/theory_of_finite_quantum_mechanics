@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 10
-- cited Lean declarations covered by a current replay receipt: 4
+- cited Lean declaration references covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -68,6 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `firstSeparationHistory` | yes | yes | yes | none | `#print axioms firstSeparationHistory` |
 | `first_separation_pairwise` | yes | yes | yes | Quot.sound, propext | `#print axioms first_separation_pairwise` |
 | `first_separation_replay` | yes | yes | yes | propext | `#print axioms first_separation_replay` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/wdp/genesis_tm.rs`
@@ -81,6 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `first_separation_history` (rust_symbol) | yes | yes | yes | - | - |
 | `replay_e` (rust_symbol) | yes | yes | yes | - | - |
 | `step_e` (rust_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/qm/genesis_tm.py`
@@ -94,6 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `FIRST_SEPARATION` (python_symbol) | yes | yes | yes | - | - |
 | `replay` (python_symbol) | yes | yes | yes | - | - |
 | `step_e` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1283_comp_c1_first_separation_replay.md`

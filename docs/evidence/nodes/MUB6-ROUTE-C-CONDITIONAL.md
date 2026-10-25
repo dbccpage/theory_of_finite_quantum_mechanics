@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
-- cited Lean declarations covered by a current replay receipt: 2
+- cited Lean declaration references covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -57,6 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `no_complete_mub6_of_fourier_triple_landing` | yes | yes | yes | propext | `#print axioms no_complete_mub6_of_fourier_triple_landing` |
 | `no_complete_mub6_via_route_c` | yes | yes | yes | propext | `#print axioms no_complete_mub6_via_route_c` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/25_mub/tfq_1257_mub6_route_c_conditional.md`

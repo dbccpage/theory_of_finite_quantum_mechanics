@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 5
-- cited Lean declarations covered by a current replay receipt: 2
+- cited Lean declaration references covered by a current replay receipt: 2
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -55,6 +55,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `disjoint_pair_residual_nonzero` | yes | yes | yes | Quot.sound, propext | `#print axioms disjoint_pair_residual_nonzero` |
 | `disjoint_spectra_obstructs_involution` | yes | yes | yes | none | `#print axioms disjoint_spectra_obstructs_involution` |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/fsp/fermionic_hamiltonian.py`
@@ -66,6 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `free_triangle_analytics` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/fsp/hamiltonian_gin_bridge.py`
@@ -77,6 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `index_hamiltonian_paths` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/tests/fsp/integration/test_hamiltonian_gin_bridge.py`
@@ -89,6 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `test_frustrated_triangle_hamiltonian_indexing_obstruction` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/fsp/integration/test_hamiltonian_gin_bridge.py::test_frustrated_triangle_hamiltonian_indexing_obstruction` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1191_fsp_free_triangle_representation.md`

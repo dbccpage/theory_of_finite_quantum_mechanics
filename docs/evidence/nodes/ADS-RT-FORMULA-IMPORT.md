@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 16
-- cited Lean declarations covered by a current replay receipt: 16
+- cited Lean declaration references covered by a current replay receipt: 16
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -70,6 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `CampaignAdsRtFormulaImport.rt_ads3_reproduces_calabrese_cardy` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsRtFormulaImport.rt_ads3_reproduces_calabrese_cardy` |
 | `CampaignAdsRtFormulaImport.rt_over_brown_henneaux_eliminates_couplings` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsRtFormulaImport.rt_over_brown_henneaux_eliminates_couplings` |
 | `CampaignAdsRtFormulaImport.stabilizer_bits_to_nats_transcendental_conversion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsRtFormulaImport.stabilizer_bits_to_nats_transcendental_conversion` |
+
 - counts toward the grade: yes
 
 ### Python: `checks/independent/ads-rt-formula-import.py`

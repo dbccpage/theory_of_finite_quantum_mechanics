@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 7
-- cited Lean declarations covered by a current replay receipt: 5
+- cited Lean declaration references covered by a current replay receipt: 5
 - counted in-repo runnable tests: 2
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -58,6 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_executes_to_syntactic_halt` | yes | yes | yes | propext | `#print axioms AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_executes_to_syntactic_halt` |
 | `AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_transition_reaches_declared_halt` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_transition_reaches_declared_halt` |
 | `AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_transition_writes_mark` | yes | yes | yes | none | `#print axioms AuthorizationIncompleteness.DirectTuringMachineModels.write_and_halt_transition_writes_mark` |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/tests/test_auth_incompleteness_finite_models.py`
@@ -70,6 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `test_stuck_and_looping_fixtures_are_distinct_outcomes` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_auth_incompleteness_finite_models.py::test_stuck_and_looping_fixtures_are_distinct_outcomes` |
 | `test_write_and_halt_fixture` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_auth_incompleteness_finite_models.py::test_write_and_halt_fixture` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1342_authf_dtm0_fixtures.md`

@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 12
-- cited Lean declarations covered by a current replay receipt: 7
+- cited Lean declaration references covered by a current replay receipt: 7
 - counted in-repo runnable tests: 3
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -61,6 +61,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `verdict_boundExceeded_witness` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms verdict_boundExceeded_witness` |
 | `verdict_reachable_sound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms verdict_reachable_sound` |
 | `verdict_unreachable_sound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms verdict_unreachable_sound` |
+
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/wdp/genesis_tm.rs`
@@ -74,6 +75,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `Verdict` (rust_symbol) | yes | yes | yes | - | - |
 | `bounded_decider_reports_bound_exceeded` (rust_test) | yes | yes | yes | - | `cd code/rust && cargo test -p tfqm_wdp bounded_decider_reports_bound_exceeded` |
 | `start_outside_bound_is_refused` (rust_test) | yes | yes | yes | - | `cd code/rust && cargo test -p tfqm_wdp start_outside_bound_is_refused` |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/src/qm/genesis_tm.py`
@@ -85,6 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `decide_reach` (python_symbol) | yes | yes | yes | - | - |
+
 - counts toward the grade: yes
 
 ### Python: `code/python/tests/test_genesis_tm.py`
@@ -97,6 +100,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `test_growth_rule_is_refused_with_bound_exceeded` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_genesis_tm.py::test_growth_rule_is_refused_with_bound_exceeded` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1292_comp_c3_verdict_sound.md`

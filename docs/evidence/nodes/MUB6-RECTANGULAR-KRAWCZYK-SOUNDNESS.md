@@ -12,7 +12,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 - counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 4
-- cited Lean declarations covered by a current replay receipt: 4
+- cited Lean declaration references covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -56,6 +56,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `exclusion_sound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms exclusion_sound` |
 | `list_secant_identity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms list_secant_identity` |
 | `root_in_image` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms root_in_image` |
+
 - counts toward the grade: yes
 
 ### Lean: `lean4/SzollosiRectangularExclusion.lean`
@@ -70,6 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `no_quartet_of_check` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms no_quartet_of_check` |
+
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/25_mub/tfq_1271_mub6_rectangular_krawczyk_soundness.md`
