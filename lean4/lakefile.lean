@@ -1510,3 +1510,7 @@ lean_lib CampaignL1OrthogonalAdditivity where
 -- Reviewed campaign module; non-default target.
 lean_lib CampaignFqGapTensorUniqueness where
   roots := #[`CampaignFqGapTensorUniqueness]
+
+-- TFQ-0171 finite positive-mass separation. Not a default target.
+lean_lib CampaignTfq0171PositiveMass where
+  roots := #[`CampaignTfq0171PositiveMass]
