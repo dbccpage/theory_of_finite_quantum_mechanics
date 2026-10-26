@@ -13126,9 +13126,9 @@ Obligation: A name offered, not a result. No card or rule is created here.
 - DAG node: `OPS-AXIS1-WELLFOUNDED-ADMISSION`
 - Paper: [derivation](derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md)
 
-Axis 1 of WDP-CH14-T01 under the hypothesis that admission is the Genesis calculus, in which every AdmitInst depends on a previously admitted base datum: with no base instance no rule instance is admitted (the Genesis theorem collapsed_of_no_insts), so the process has nothing to certify. It says nothing about other shapes of admission. Imported by name: the theorem is Genesis's.
+Finite admission chain on three candidates. Candidate 0 has no predecessor. Candidate 1 names candidate 0 as its predecessor. Candidate 2 names candidate 1 as its predecessor. For every base assignment of boolean bits, admission of candidate 0 equals the base bit at candidate 0, admission of candidate 1 equals the disjunction of the base bit at candidate 1 with admission of candidate 0, and admission of candidate 2 equals the disjunction of the base bit at candidate 2 with admission of candidate 1. The base assignment that is false at each candidate admits none of the three. The base assignment that is true at candidate 0 and false at candidate 1 and at candidate 2 admits all three. The Genesis theorem collapsed_of_no_insts stays imported by name and is not re-run. The chain says nothing about other shapes of admission.
 
-Obligation: Cited by name, not re-run. WDP-CH14 has no node in this graph; the closest node is the admission gate PGW-GO-ADMISSION-GATE, and no source relates the two.
+Obligation: Cited by name, not re-run. WDP-CH14 has no node in this graph; the closest node is the admission gate PGW-GO-ADMISSION-GATE, and no source relates the two. The finite chain is a separate checked case and does not re-run collapsed_of_no_insts.
 
 ### TFQ-2525 Axis 2 of the regress: the meta-carrier level
 

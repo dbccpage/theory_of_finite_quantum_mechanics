@@ -1399,3 +1399,7 @@ lean_lib CampaignGpImportComplexField where
 -- Campaign: GP-IMPORT-CIRCLE-U1. Not a default target.
 lean_lib CampaignGpImportCircleU1 where
   roots := #[`CampaignGpImportCircleU1]
+
+-- Campaign: OPS-AXIS1-WELLFOUNDED-ADMISSION. Not a default target.
+lean_lib CampaignOpsAxis1WellfoundedAdmission where
+  roots := #[`CampaignOpsAxis1WellfoundedAdmission]
