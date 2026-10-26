@@ -3435,8 +3435,8 @@
       "stage": "MAJORANA",
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "DEFINITION",
-      "statement": "The spinless p-wave Kitaev chain H = -sum(t c_j^dag c_{j+1} + Delta c_j c_{j+1} + h.c.) - mu sum(c_j^dag c_j - 1/2), its BdG spectrum, the phase region |mu| < 2t with Delta nonzero, and the sweet-spot form H = -i t sum gamma_{2j} gamma_{2j+1} with free edge modes gamma_1, gamma_{2L} are imported models.",
-      "obligation": "No statement that a physical wire realizes this Hamiltonian without disorder or trivial subgap states is made or supported.",
+      "statement": "For every natural number L with 2 <= L and every natural number j with 1 <= j and j <= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu < (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu < (2 * t) * (2 * t), and delta differs from 0.",
+      "obligation": "The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.",
       "imported_structure": [
         "Kitaev 2001 chain Hamiltonian and topological phase table"
       ],
@@ -3448,7 +3448,11 @@
       "lean": [
         "papers/core/majorana/lean4/MajoranaCore.lean::KitaevSweetSpotChain",
         "papers/core/majorana/lean4/MajoranaCore.lean::mzm_boundary_decoupling",
-        "papers/core/majorana/lean4/MajoranaCore.lean::disjoint_majorana_pair_commute"
+        "papers/core/majorana/lean4/MajoranaCore.lean::disjoint_majorana_pair_commute",
+        "lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.edgeAbsent",
+        "lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.edgeWitness",
+        "lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.insidePoint",
+        "lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.outsidePoint"
       ],
       "rust": [],
       "python": [
@@ -3459,7 +3463,7 @@
         "papers/core/majorana/the_majorana_problem.md:324-335",
         "papers/core/majorana/the_majorana_problem_claim_ledger.md:22-22"
       ],
-      "audit": "mzm_boundary_decoupling returns the two isolation fields of the KitaevSweetSpotChain structure (assumed, not derived); disjoint_majorana_pair_commute is (sign = 1 or -1) -> sign * sign = 1 and states no commutator.",
+      "audit": "edgeAbsent states the index split for every natural L at least 2 and every bulk j. edgeWitness is the L = 2 case. insidePoint and outsidePoint are the two integer comparisons. The older isolation fields stay assumptions of the KitaevSweetSpotChain structure. The fermion Hamiltonian and the BdG spectrum stay imported.",
       "see_also": [
         "DS-QM212-MAJORANA-PROBLEM"
       ],

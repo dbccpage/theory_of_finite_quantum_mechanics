@@ -1454,3 +1454,6 @@ lean_lib CampaignDsCptpCompletePositivity where
 
 lean_lib CampaignDsQm204BornUniqueness where
   roots := #[`CampaignDsQm204BornUniqueness]
+
+lean_lib CampaignMajImportKitaevChain where
+  roots := #[`CampaignMajImportKitaevChain]

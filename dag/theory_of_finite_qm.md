@@ -10796,9 +10796,9 @@ Obligation: Each non-claim is a scope rule; none is a theorem.
 - DAG node: `MAJ-IMPORT-KITAEV-CHAIN`
 - Paper: [derivation](derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md)
 
-The spinless p-wave Kitaev chain H = -sum(t c_j^dag c_{j+1} + Delta c_j c_{j+1} + h.c.) - mu sum(c_j^dag c_j - 1/2), its BdG spectrum, the phase region |mu| < 2t with Delta nonzero, and the sweet-spot form H = -i t sum gamma_{2j} gamma_{2j+1} with free edge modes gamma_1, gamma_{2L} are imported models.
+For every natural number L with 2 <= L and every natural number j with 1 <= j and j <= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu < (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu < (2 * t) * (2 * t), and delta differs from 0.
 
-Obligation: No statement that a physical wire realizes this Hamiltonian without disorder or trivial subgap states is made or supported.
+Obligation: The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.
 
 ### TFQ-1168 Sweet-spot bonds avoid the edge Majorana indices
 
