@@ -3,10 +3,9 @@ node_id: AUTH-DTM2-INPUT-REQUEST-PLANNED
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: On one closed request the header tag is 1, the fuel token is 2, the machine-code length
-    is 1, the machine segment is the list 7, and the input word is the list 3, 4. Concatenating the header,
-    the fuel, the length, the segment and the input word yields the list 1, 2, 1, 7, 3, 4. The list 0,
-    2, 1, 7, 3, 4 begins with 0, and 0 differs from the header tag.
+  source_statement: The update packet plans a request code made of a fuel token, a machine-code length,
+    one machine segment and an input word, whose code-level evaluator decodes the request and calls the
+    bounded evaluator on the declared initial input, with seven named target theorems.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
   source_bottleneck: An encoder and decoder for a request other than this closed list, the remaining named
@@ -25,7 +24,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md
-    sha256: 3cb9b84df8a6d64d49eda6344d7a29b7c93f18f661f385bf9dd22077baf16266
+    sha256: 434a1a2aa103fcf9bede0c178910244735e6125831e1741793879856a2218ee6
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py

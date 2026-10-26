@@ -11,7 +11,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Erasing the block [1] from the word [1, 0] by one hole replacement yields the fixed word [0]. Erasing the block [2] from the word [2, 0] by one hole replacement yields the same fixed word [0].
+Adding erasing rules so that every halting word reduces to one fixed word should make Reach to that fixed word undecidable; this is not proved here.
 
 ### Governing Obligation
 Still open: Reach of the extended rule set R0 prime from startWord x to one fixed target word exactly when univFun x is defined.

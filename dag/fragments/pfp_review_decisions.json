@@ -11,20 +11,18 @@
     {
       "node_id": "DS-CONTINUOUS-TIME-EXP-GENERATOR",
       "review": "dag/results/DS-CONTINUOUS-TIME-EXP-GENERATOR/reviews/20261019_structure_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
+      "scope_effect": "caveat_added",
       "reason": "Boolean toggle has no square root, two Gaussian matrices square to the scale-4 swap and differ, the Cayley polynomial holds for each integer, distinct integers have distinct odd branch energies, and no integer matrix shifts the identity onto the swap while squaring to zero. Continuous time, exp, log and a path-integral measure stay imported.",
-      "statement": "Toggle sends false to true and true to false. No map on the labels false and true squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). The matrix with rows ((1, 1), (1, -1)) and ((1, -1), (1, 1)) squares to the matrix with diagonal entries (0, 0) and off-diagonal entries (4, 0). The coordinatewise negation of that matrix squares to the same matrix and differs from it. For every integer t, (1 - t*t) * (1 - t*t) + 4 * (t*t) equals (1 + t*t) * (1 + t*t). The branch energy 2*k + 1 equals 1 at k = 0 and 3 at k = 1, and distinct integers have distinct branch energies. The integers -1, 1, 1 and -1 give the corner value (-1)*(-1) + 1*1 = 2. No integers a, b, c and d satisfy a + 1 = 0, b = 1, c = 1, d + 1 = 0 together with a*a + b*c = 0, a*b + b*d = 0, c*a + d*c = 0 and c*b + d*d = 0.",
       "bottleneck": "The one-parameter family T(t) = exp(tH), the generator H = log T, and a continuum path integral stay imported. They still ask for real or complex time, a convergence oracle, and a measure, and none of those is constructed from the finite transport calculus. Generator selection among the odd branch energies stays a priced interface. The Boolean toggle, the two scale-4 matrices, the Cayley polynomial, the branch energies, and the absent nilpotent integer logarithm of the swap are one finite case."
     },
     {
       "node_id": "DS-CPTP-COMPLETE-POSITIVITY-IMPORT",
       "review": "dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
+      "scope_effect": "caveat_added",
       "reason": "A nonnegative integer times a square is at least 0. The pairing 1 * (-1) + (-1) * 1 equals -2, so for t greater than 0 the product t * (-2) is less than 0, while at t = 0 that product is 0. The sum of squares of 0, 1, -1 and 0 equals 2, and t * (-2) equals 2 * (-t). Complete positivity and Stinespring stay imported.",
       "superseded_by": [
         "dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/scope_review_v2.json"
       ],
-      "statement": "For every integer n, the product n * n is at least 0, and (-n) * (-n) equals n * n. For every natural pair k and m, the product of the integer of k with the integer of m equals the integer of k * m. For every integer pair a and b, if a is at least 0 and b is at least 0, then a * b is at least 0. For every integer triple t, x and w, if t is at least 0, then t * ((x + w) * (x + w)) is at least 0. The sum 1 * (-1) + (-1) * 1 equals -2. For every integer t, t times that sum equals (-2) * t, and t * (-2) equals 2 * (-t). If t is greater than 0, then t * (-2) is less than 0 and -t is less than 0. The product 0 * (-2) equals 0. The sum of squares 0 * 0 + 1 * 1 + (-1) * (-1) + 0 * 0 equals 2.",
       "bottleneck": "Complete positivity of a tensor extension, Kraus, Choi and Stinespring forms, and coherence transport above a classical kernel stay imported. The nonnegative product t * ((x + w) * (x + w)) for t at least 0, and the strict negative value t * (-2) for t greater than 0, are one finite scalar case. At t = 0 the product t * (-2) is 0."
     },
     {
@@ -129,9 +127,8 @@
     {
       "node_id": "DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT",
       "review": "dag/results/DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT/reviews/20261019_dynamics_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
+      "scope_effect": "caveat_added",
       "reason": "An integer Gram value is a square, so it is at least 0, and the table with entries a*a, a*b, b*b has determinant 0. The pair 1, 1 separates a cleared sum 1 from a cleared square-sum 1, and the pair 3, 4 separates them in the other direction. The trace formula stays imported.",
-      "statement": "For each integer n, the product n * n is at least 0, and (-n) * (-n) equals n * n. For each integer quadruple a, b, x and y, the product (a * x + b * y) * (a * x + b * y) is at least 0. For each integer a, the product a * a is at least 0. For each integer pair a and b, (a * b) * (a * b) equals a * a * (b * b), the difference of those two products is 0, and a * a + b * b is at least 0. The pair 1, 1 has sum equal to 2 * 1 and square-sum 2. The product 2 * 2 equals 4, and 2 differs from 4. The square of the sum 1 + 1 equals 4, and 4 equals 4 * 1. At the integers 1, 1, 1 and 1, the square (1 * 1 + 1 * 1) * (1 * 1 + 1 * 1) equals 4, and 1 * 1 * 1 * 1 + 2 * 1 * 1 * 1 * 1 + 1 * 1 * 1 * 1 equals 4. The pair 3, 4 has square-sum 25, and 5 * 5 equals 25, so the square-sum equals 5 * 5. The sum 3 + 4 equals 7, the product 7 * 7 equals 49, and 49 differs from 25.",
       "bottleneck": "The formula D_jk = Tr(C_j rho C_k^dagger), a density operator, class operators, and a bridge from finite transport stay imported. Positive semidefiniteness and trace one for a general history model stay imported. The integer Gram square, the determinant identity, and the cleared witnesses (1, 1) over 2 and (3, 4) over 5 are one finite case."
     },
     {
@@ -164,9 +161,8 @@
     {
       "node_id": "DS-QM062-U1-RESIDUES-IMPORT",
       "review": "dag/results/DS-QM062-U1-RESIDUES-IMPORT/reviews/20261019_resources_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
+      "scope_effect": "caveat_added",
       "reason": "Right-multiplication by the integer matrix with rows (0, -1) and (1, 0) has order 4, and for every natural number k the power equals the representative of k modulo 4. The remainder of k + 4 equals the remainder of k. Continuity, local tomography and a phase fiber stay imported.",
-      "statement": "For every natural number k, the remainder of k + 4 on division by 4 equals the remainder of k, the remainder of k + 1 equals the remainder of (the remainder of k, plus 1) on division by 4, the k-th right product by the matrix J equals the representative of the remainder of k, that product equals the identity matrix if and only if the remainder of k is 0, and the product at k + 4 equals the product at k. The identity matrix is the tuple (1, 0, 0, 1). The matrix J is the tuple (0, -1, 1, 0). Its square is the tuple (-1, 0, 0, -1). Its cube is the tuple (0, 1, -1, 0). The product of J with J equals the square, the product of the square with J equals the cube, and the product of the cube with J equals the identity. J, its square and its cube differ from the identity. The products at 1, 2, 3 and 4 equal J, the square, the cube and the identity. The remainders of 0, 1, 2, 3 and 4 on division by 4 are 0, 1, 2, 3 and 0. The integer 0 * 0 - 1 * 1 equals -1, and (-1) * (-1) equals 1.",
       "bottleneck": "Continuity of reversible dynamics, global field uniqueness, local tomography, a U(1) phase fiber, a complex involution, and a separation of that fiber from Q/Z torsion stay imported. The integer matrix of order 4 and the remainder identity (k + 4) modulo 4 are one finite case. This case does not select a phase fiber."
     },
     {
@@ -365,8 +361,7 @@
     {
       "node_id": "DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY",
       "review": "dag/results/DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY/reviews/20261019_boundaries_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "For every integer pair A and B, A + B equals (A + B) * 1. The sum 3 + 4 equals 7, and 7 differs from 0. The sum of squares 3 * 3 + 4 * 4 equals 25, and 5 * 5 equals 25. The sum of fourth products 3 * 3 * 3 * 3 + 4 * 4 * 4 * 4 equals 337. The product (3 * 3) * (3 * 3 * 3 * 3 + 4 * 4 * 4 * 4) differs from (3 * 3 * 3 * 3) * (5 * 5). The product 3 * (3 * 3 + 4 * 4) differs from (3 * 3) * (3 + 4). For every integer quadruple a, b, r and s, (r * a - s * b) * (r * a - s * b) + (s * a + r * b) * (s * a + r * b) equals (r * r + s * s) * (a * a + b * b). At a = 3, b = 4, r = 3 and s = 4, both sides equal 625.",
+      "scope_effect": "caveat_added",
       "bottleneck": "Gleason uniqueness, frame-function, effect, continuity and dimension hypotheses, and L^p pairings in measure theory stay imported. The integer sum identity, the rotation identity, and the two splits of the pair (3, 4) are one finite case. Bare normalization does not select a quadratic pairing.",
       "reason": "Integer pair-sum, rotation, and the two splits of the pair (3, 4) are the finite case recorded here. Gleason uniqueness and L^p measure pairings stay imported."
     },
@@ -531,8 +526,7 @@
     {
       "node_id": "FQ-GAP-C500-ORIGINAL-TARGETS",
       "review": "dag/results/FQ-GAP-C500-ORIGINAL-TARGETS/reviews/20261019_next_ten_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "For every natural number k, the numerals from 276 + 25 * k through 300 + 25 * k are a run of 25, and the next run starts at the next numeral. The ten runs for k from 1 through 10 begin at 301 and end at 550, covering 250 numerals, and 10 * 25 = 250. The ten clause-list lengths 0, 2, 4, 2, 4, 1, 1, 1, 1, 5 sum to 21, and the last length 5 is strictly greater than each earlier length. The five labels M2, M5, M7, J1 and J2 are pairwise distinct.",
+      "scope_effect": "caveat_added",
       "bottleneck": "Not run here: a fresh reading of each original target contract, the evidence files named beside the ten blocks, and any claim that a scoped receipt discharges a block. The gap-register titles say the original contracts remain open. These counts of register names do not discharge a block.",
       "reason": "Campaign narrowing records the ten target-numeral runs, the ten clause-list lengths, and the five Block 10 labels. Status stays OPEN. The original contracts are not run here.",
       "review_digest": {
@@ -545,8 +539,7 @@
     {
       "node_id": "FQ-GAP-CONTINUUM-HILBERT-LIFT",
       "review": "dag/research/pr_374_current_scope_review.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "No integer a satisfies 2 * a = 1. For every integer t, 4 * (t * t - t - 1) + 5 = (2 * t - 1) * (2 * t - 1). For every integer n, n * n is not 5. For every integer t, t * t - t - 1 is not 0.",
+      "scope_effect": "caveat_added",
       "bottleneck": "Campaign integer slice: no integer a satisfies 2 * a = 1; for every integer t, 4 * (t * t - t - 1) + 5 = (2 * t - 1) * (2 * t - 1); no integer square equals 5; and t * t - t - 1 is not 0. Scalar-field selection, l2 uniformity, the completion, a Gaussian-integer eigenvalue and the matrix stay open. What remains at this node is the selection of the scalar field (R or C) and of the l2 uniformity from finite-theory primitives, which no source derives; the construction, the identification with l2(N, k), the intrinsic-uniformity completion and the lifting of bounded exact operators are recorded at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION; dynamics and generators remain at FQ-GAP-STONE-CONTINUOUS-TIME. Z[i] non-field obstruction and discriminant-5 spectral exit from Q(i) remain mechanized.",
       "reason": "Current review covers all four integer claims: 2*a is not 1, the discriminant identity, no integer square is 5, and t*t-t-1 is not 0. Status stays CONDITIONAL; the older Gaussian/matrix review is historical context.",
       "superseded_by": [
@@ -563,8 +556,7 @@
     {
       "node_id": "FQ-GAP-CUSTODY-AND-RECEIPTS",
       "review": "dag/results/FQ-GAP-CUSTODY-AND-RECEIPTS/reviews/20261019_scope_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "The named untyped-row numerals satisfy 48 - 24 = 24. The named coverage numerals satisfy 53 - 22 = 31 and 22 < 53.",
+      "scope_effect": "caveat_added",
       "bottleneck": "Not run here: a recount of the ledger rows behind the numeral 48, a check that the GAP-FQM-002 text says 24, a search for the QM_208-211 libraries, the eight Mathlib claims of GAP-FQM-019, the Classical.choice dependency named H019.basisGen8_eval_pos, the GAP-FQM-022 provenance pointers, the Zenodo status of QM_020 and QM_080, and the README code-companion check. A stale receipt over H000..H018 coexists with Lean headers that say Candidate only. The three Nat identities do not discharge that inventory.",
       "reason": "Campaign narrowing records the Nat identities 48 - 24 = 24, 53 - 22 = 31 and 22 < 53. Status stays OPEN. The custody inventory is not run here.",
       "review_digest": {
@@ -586,8 +578,7 @@
     {
       "node_id": "FQ-GAP-STONE-CONTINUOUS-TIME",
       "review": "dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/reviews/20261019_dynamics_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "The integers 3, 4 and 5 satisfy 3 * 3 + 4 * 4 = 5 * 5. For all natural numbers a and b, if 5 * a * a = 4 * b * b then a = 0 and b = 0.",
+      "scope_effect": "caveat_added",
       "bottleneck": "Standing slice: the integers 3, 4 and 5 satisfy 3 * 3 + 4 * 4 = 5 * 5, and for all natural numbers a and b, if 5 * a * a = 4 * b * b then a = 0 and b = 0. Outside this slice, continuous time and the Stone theorem are not constructed: strong continuity, one-parameter group and generator selection are priced interfaces; rational entries alone do not imply infinite order. Causal order between events is also admitted externally (GAP-C1000-001, declared_assumption, non-blocking): Q(zeta_n) carriers supply no relation between spacetime events. Specified on the carrier: continuous time = a Q-parameter group extending the Z-action of a unit step; this needs roots of every order, which the rational 2x2 Pythagorean rotation lacks already at order two (no rational half-step; a half-step exists only after adjoining sqrt 5), so continuous time requires a carrier extension and a generator choice. Discrete Cayley unitary steps U_H(t) = (I - i t H)(I + i t H)^(-1) on 2x2 Hermitian Q(i) generators (with projective-tangent composition law (t1+t2)/(1 - t1*t2*||H||^2), south-pole collision -I_2 at t1*t2*||H||^2 = 1, and Born trace invariance) are kernel-checked. Open: the general triviality of Q-parameter groups over Q(i) (needs unique factorisation in Z[i]); strong continuity and the R-completion remain declared external imports. Discrete step aliasing and non-trivial Pythagorean rotation powers without rational angle logarithms remain mechanized.",
       "reason": "The 20261019 review predates the discrete-time Stone spec. The standing text is the integer equation 3 * 3 + 4 * 4 = 5 * 5 together with the condition that 5 * a * a = 4 * b * b forces a = 0 and b = 0 for natural numbers a and b. Status stays CONDITIONAL.",
       "superseded_by": [
@@ -609,9 +600,8 @@
     {
       "node_id": "FQ-GAP-U1-CIRCLE",
       "review": "dag/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "For every integer a, b and d, the equations 5*(a*a - b*b) = 3*(d*d) and a*a + b*b = d*d hold together only when a = 0, b = 0 and d = 0. For every natural number a and b, 5*a*a = 4*b*b holds only when b = 0. The identity 3*3 + 4*4 = 5*5 holds.",
-      "bottleneck": "Still open: the circle group U(1) on the finite host, continuity of a one-parameter phase group, injectivity of n mapped to u^n for u = (3+4i)/5, and a homomorphism from (Q, +) into U(1)(Q(i)) sending 1 to u. Projective Cayley, the 5-adic half-angle, mod-5 Gaussian powers, Q/Z torsion, the quadratic sqrt(5) tower, Chebyshev and Taylor approximations, 4D Hermitian Born traces, and discrete Cayley steps stay outside this integer witness. Compact continuous R/Z remains an external completion.",
+      "scope_effect": "caveat_added",
+      "bottleneck": "Still open: the circle group U(1) on the finite host and continuity of a one-parameter phase group. Injectivity of n mapped to u^n for u = (3+4i)/5 and the absence of a homomorphism from (Q, +) into U(1)(Q(i)) sending 1 to u are kernel-checked in the superseding run (u345IntPow_injective, no_rat_add_to_rat_circle_hom_u345). Projective Cayley, the 5-adic half-angle, mod-5 Gaussian powers, Q/Z torsion, the quadratic sqrt(5) tower, Chebyshev and Taylor approximations, 4D Hermitian Born traces, and discrete Cayley steps stay outside this integer witness. Compact continuous R/Z remains an external completion.",
       "reason": "Campaign narrowing records the integer descent 5*a*a = 4*b*b only at b = 0 and the cleared pair only at 0, 0, 0. The circle, continuity, the power map, and the homomorphism stay open.",
       "superseded_by": [
         "dag/results/FQ-GAP-U1-CIRCLE/runs/20261020T223000Z_u1_phase_completion_lean"
@@ -692,8 +682,7 @@
     {
       "node_id": "FQ-PRIM-TO-QM-SELECTION-OPEN",
       "review": "dag/results/FQ-PRIM-TO-QM-SELECTION-OPEN/reviews/20261019_structure_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "For amplitudes 1 and 2, quadratic numerators are 1 and 4 with sum 5, and quartic numerators are 1 and 16 with sum 17. Both pairs are positive. The products 1*17 and 1*5 differ, and the separate Fraction audit confirms that the normalized first weights 1/5 and 1/17 differ. For equal amplitudes 1 and 1, quadratic numerators are 1 and 1 with sum 2, and quartic numerators are 1 and 1 with sum 2.",
+      "scope_effect": "caveat_added",
       "bottleneck": "Selection of a declared quantum model or readout from primitive difference stays open. Packet-walk execution, the complexes, the Cayley parameter, cyclotomic weights, the detector and a squared-amplitude readout are not this integer witness. Continuum M_n(C) and Gleason n>=3 remain external imports. The D2, D3, D2xD3, D3^2 and D3^3 counts and the gap d-1 < d^2-1 for d >= 2 stay outside this witness.",
       "reason": "Campaign narrowing to amplitudes 1 and 2: quadratic weights 1/5 and 4/5, quartic weights 1/17 and 16/17, and agreement on equal amplitudes 1 and 1. The quantum-model selection gap stays open."
     },
@@ -792,24 +781,21 @@
     {
       "node_id": "GP-IMPORT-CIRCLE-U1",
       "review": "dag/research/pr_391_current_scope_review.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Each sign squares to 1. The pairs (1, 1) and (1, -1) differ, and each of their coordinates is a sign. The integer pair 0, 1 has square norm 1, and the product of that pair with itself is the pair -1, 0, which differs from the pair 1, 0. The map sending 0 to 1, 1 to 2 and 2 to 0 returns 2 at the second step from 0 and returns 0 at the third step from 0.",
+      "scope_effect": "caveat_added",
       "bottleneck": "The circle group U(1), a continuous one-parameter phase group, and a selector for that circle remain imported. The sign, Gaussian-integer pair and three-cycle examples neither construct U(1) nor rule it out.",
       "reason": "Current source review covers the sign-square lemma and the explicit pair and cycle computations. These examples do not discharge the original circle-group import; IMPORTED_ASSUMPTION is retained."
     },
     {
       "node_id": "GP-IMPORT-COMPLEX-FIELD",
       "review": "dag/research/pr_390_current_scope_review.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "For a Gaussian integer a+bi, the product (1+i)*(a+bi) equals (a-b)+(a+b)i and differs from the real unit, and (a+bi)*(1+i) differs from the real unit. The matrix with entries 0, 1, 1, 1 in row-major order has each diagonal entry equal to its own conjugate and each off-diagonal entry equal to the conjugate of the other, and it sends a column (x, y) to (y, x+y). When (x, y) differs from the zero column, (y, x+y) differs from lam*(x, y) for each Gaussian integer lam.",
+      "scope_effect": "caveat_added",
       "bottleneck": "The example rules out Gaussian-integer eigenpairs for this one matrix. A spectral theorem after extending scalars to a complete complex field, and a derivation or selection of that field from primitive difference, remain imported. This obstruction does not prove that completion or the complex numbers are uniquely necessary; the cyclotomic ring Z[zeta_n] remains a recorded discrete substitute.",
       "reason": "Current review covers the Gaussian-integer non-unit and fixed-matrix obstruction with all variables restricted to Gaussian integers. The complete complex-field target stays IMPORTED_ASSUMPTION."
     },
     {
       "node_id": "GP-IMPORT-CONTINUOUS-TIME",
       "review": "dag/results/GP-IMPORT-CONTINUOUS-TIME/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).",
+      "scope_effect": "caveat_added",
       "bottleneck": "Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.",
       "reason": "Boolean toggle has no square root on the two labels, and two Gaussian-integer interpolants square to the scale-4 swap and differ at one input. Continuous time and Stone's theorem stay imported.",
       "superseded_by": [
@@ -819,28 +805,25 @@
     {
       "node_id": "GP-IMPORT-CONTINUUM-HILBERT",
       "review": "dag/results/GP-IMPORT-CONTINUUM-HILBERT/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
+      "scope_effect": "caveat_added",
       "bottleneck": "The transition from a finite presented carrier, with integer weights and finite report labels, to a continuous infinite-dimensional Hilbert space stays imported. Scalar-field selection, l2 uniformity, a verified topology, a Cauchy completion and the lift of bounded exact operators stay imported. The completion record sits at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). QM_122 section 6 refuses that transition, and the QM_020 demotion box fences it. The length-4 window and the finite power-of-four identity are one finite case.",
       "reason": "The length-4 window (8, 4, 2, 1) and the identity 3 * sumPow4 n + 1 = pow4 n are one finite case. Scalar-field selection, l2 uniformity and a Cauchy completion stay imported.",
       "superseded_by": [
         "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion",
         "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps"
-      ],
-      "statement": "Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1."
+      ]
     },
     {
       "node_id": "GP-IMPORT-CPTP-CLASS",
       "review": "dag/results/GP-IMPORT-CPTP-CLASS/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair.",
+      "scope_effect": "caveat_added",
       "bottleneck": "The class of completely positive trace-preserving maps on a Hilbert space is not derived. Choi positivity, Kraus form and a Stinespring realization of that class stay imported. The Boolean collapse, the integer mass image and the four ancilla-false reversible dilations are one finite case. This mass image is a stochastic-kernel population shadow in the sense of QM_082, and it is not that channel class.",
       "reason": "Boolean collapse, the integer mass image and four ancilla-false reversible dilations are recorded. The Hilbert-space channel class stays imported."
     },
     {
       "node_id": "GP-IMPORT-GLEASON",
       "review": "dag/results/GP-IMPORT-GLEASON/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "On the two-label host, 2 < 3 and 3 ≤ 2 fails, and no three pairwise distinct labels exist. Amplitudes 2 on the false label and 1 on the true label have squared weights 4 and 1. The unit effect pairs both readout orders with 5. The false-indicator pairs as 4 in the direct order and as 1 after swapping the effect.",
+      "scope_effect": "caveat_added",
       "bottleneck": "Uniqueness of the Born quadratic form for dimension at least 3, under noncontextuality, sigma-additivity and continuity, stays imported. The two-label disagreements do not refute that uniqueness under those hypotheses. Quartic readout under scale-2 frame additivity stays outside this slice.",
       "reason": "Campaign narrowing records the two-label dimension failure and the unit-effect pairings 5 and 5 together with the false-indicator pairings 4 and 1. Status stays IMPORTED_ASSUMPTION.",
       "review_digest": {
@@ -859,7 +842,7 @@
     {
       "node_id": "GP-IMPORT-TENSOR-PRODUCT",
       "review": "dag/results/GP-IMPORT-TENSOR-PRODUCT/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
+      "scope_effect": "caveat_added",
       "reason": "Finite Bool-by-Bool agreement and a dump-right rival are recorded; Hilbert-space uniqueness stays imported.",
       "superseded_by": [
         "dag/research/tensor_composition_validation.json",
@@ -867,7 +850,6 @@
         "dag/research/tensor_measurement_validation.json",
         "dag/research/tensor_countermodel_validation.json"
       ],
-      "statement": "For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1.",
       "bottleneck": "The Hilbert-space tensor product is not derived as the unique way to combine systems. The agreement above uses additivity, integer homogeneity and the identity tag (i, j) on one Bool-by-Bool host. The dump-right map is a same-host rival whose tag collapses the second Boolean factor, so a weaker tag does not select the pointwise product. A second presented carrier and a physical composition rule stay imported (QM_122 7.1 item 1)."
     },
     {
@@ -1048,9 +1030,9 @@
     {
       "node_id": "L1-QM020-THM2B-MINKOWSKI",
       "review": "dag/research/pr_388_current_scope_review.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Nat values a and b satisfy (a + b) * (a + b) = a * a + b * b + 2 * (a * b). When both are positive, 2 * (a * b) > 0 and a * a + b * b < (a + b) * (a + b). When the left input is 0, 2 * (0 * b) = 0 and (0 + b) * (0 + b) = b * b. When the right input is 0, 2 * (a * 0) = 0 and (a + 0) * (a + 0) = a * a. Nat values a and b satisfy (a + b) * (a + b) * (a + b) = a * a * a + b * b * b + 3 * a * b * (a + b). A disjoint Nat pair satisfies (x + 0) * (x + 0) + (0 + y) * (0 + y) = x * x + y * y.",
-      "bottleneck": "Real exponent p>1, a Minkowski comparison on real vectors, strict convexity, roots, and transport past this Nat square, cubic, and one disjoint pair stay outside the standing text. A zero input is an equality case of the square expansion.",
+      "scope_effect": "caveat_added",
+      "statement": "Strict l^p (p>1) subadditivity for two nonzero vectors with disjoint supports follows from standard Minkowski / strict convexity. The paper cites it as standard analysis.",
+      "bottleneck": "Real exponent p>1, a Minkowski comparison on real vectors, strict convexity, roots, and transport past this Nat square, cubic, and one disjoint pair stay outside the checked slice. A zero input is an equality case of the square expansion.",
       "reason": "Nine current Lean theorems establish the natural-number square/cubic identities, positive square gap and zero-input controls. Retain IMPORTED_ASSUMPTION for the original real-p Minkowski obligation; the arithmetic slice does not discharge that import."
     },
     {
@@ -1257,7 +1239,7 @@
       "review": "dag/results/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED/reviews/20261021_batch01a_audit/delivery_review_result.json",
       "scope_effect": "status_lowered",
       "status": "CONDITIONAL",
-      "statement": "Narrowed boundary, status left CONDITIONAL. The sector-weight pairs (2, 0) and (0, 2) both have coordinate sum 2 and differ. For length 4 and holonomy 2, no natural number k satisfies 4 * k = 2. For length 4 and holonomy 4, 4 * 1 = 4.",
+      "statement": "Sectors are residual sectors with declared finite nonnegative masses mu(s), total M > 0. The carrier is the weight vector w. No derivation of w from the Phi1 / Gamma2 residual is given in the sources read: w is an input to QM_003, QM_012 and QM_020.",
       "bottleneck": "The general n-cycle, the weighted L1 form with declared masses, the sum-of-squares reading of Gamma2, and any selector other than these two length-4 holonomy checks stay open. The pairs (2, 0) and (0, 2) are one witness that a common coordinate sum does not fix the pair.",
       "reason": "The cited Lean theorems are fixed C4 instances and a list-sum bound; the new kernel result is non-derivability of the sector weights on the unweighted n-cycle only, and the weighted form of the source is not treated (a unique minimal-mass edge gives a unique minimizer).",
       "superseded_by": [

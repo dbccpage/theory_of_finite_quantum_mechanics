@@ -4,7 +4,7 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `OPEN`. Evidence grade: 
 
 ## Statement
 
-> On one closed request the header tag is 1, the fuel token is 2, the machine-code length is 1, the machine segment is the list 7, and the input word is the list 3, 4. Concatenating the header, the fuel, the length, the segment and the input word yields the list 1, 2, 1, 7, 3, 4. The list 0, 2, 1, 7, 3, 4 begins with 0, and 0 differs from the header tag.
+> The update packet plans a request code made of a fuel token, a machine-code length, one machine segment and an input word, whose code-level evaluator decodes the request and calls the bounded evaluator on the declared initial input, with seven named target theorems.
 
 ## Grade
 
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md`
 
 - file: [dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md](../../../dag/derivations/29_computation/tfq_1333_auth_dtm2_input_request_planned.md)
-- sha256 (`lf-normalised`): `3cb9b84df8a6d64d49eda6344d7a29b7c93f18f661f385bf9dd22077baf16266`
+- sha256 (`lf-normalised`): `434a1a2aa103fcf9bede0c178910244735e6125831e1741793879856a2218ee6`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1333
 - counts toward the grade: no

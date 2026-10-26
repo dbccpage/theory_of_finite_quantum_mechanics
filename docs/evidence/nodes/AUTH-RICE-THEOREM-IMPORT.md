@@ -4,7 +4,7 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `IMPORTED_ASSUMPTION`. E
 
 ## Statement
 
-> On the two-point carrier, code 0 and code 1 both send 0 to 0 and 1 to 1, and code 2 sends 0 to 0 and 1 to 0. The identity-table bit is true at code 0, true at code 1, and false at code 2. The code-zero bit is true at code 0, false at code 1, and false at code 2.
+> No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.
 
 ## Grade
 
@@ -96,7 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md`
 
 - file: [dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md](../../../dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md)
-- sha256 (`lf-normalised`): `cd09fea86a7d073a738b9621a165ada786367adc9285b220ee2e0bcbd373fb14`
+- sha256 (`lf-normalised`): `f8e394f304eaf4f851d437f4270e8037798d833b7748aba67cb9b3a17c0ecb22`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1337
 - counts toward the grade: no
