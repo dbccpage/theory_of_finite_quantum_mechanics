@@ -3,20 +3,30 @@ node_id: OPS-AXIS1-WELLFOUNDED-ADMISSION
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Axis 1 of WDP-CH14-T01 under the hypothesis that admission is the Genesis calculus,
-    in which every AdmitInst depends on a previously admitted base datum: with no base instance no rule
-    instance is admitted (the Genesis theorem collapsed_of_no_insts), so the process has nothing to certify.
-    It says nothing about other shapes of admission. Imported by name: the theorem is Genesis''s.'
+  source_statement: Finite admission chain on three candidates. Candidate 0 has no predecessor. Candidate
+    1 names candidate 0 as its predecessor. Candidate 2 names candidate 1 as its predecessor. For every
+    base assignment of boolean bits, admission of candidate 0 equals the base bit at candidate 0, admission
+    of candidate 1 equals the disjunction of the base bit at candidate 1 with admission of candidate 0,
+    and admission of candidate 2 equals the disjunction of the base bit at candidate 2 with admission
+    of candidate 1. The base assignment that is false at each candidate admits none of the three. The
+    base assignment that is true at candidate 0 and false at candidate 1 and at candidate 2 admits all
+    three. The Genesis theorem collapsed_of_no_insts stays imported by name and is not re-run. The chain
+    says nothing about other shapes of admission.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - 'Genesis theorem collapsed_of_no_insts: with no base instance no rule instance is admitted (assumption;
     cited by name, not re-run)'
   source_bottleneck: Cited by name, not re-run. WDP-CH14 has no node in this graph; the closest node is
-    the admission gate PGW-GO-ADMISSION-GATE, and no source relates the two.
+    the admission gate PGW-GO-ADMISSION-GATE, and no source relates the two. The finite chain is a separate
+    checked case and does not re-run collapsed_of_no_insts.
   source_refs:
   - sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C1
   - sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1
   - dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md
+  - lean4/CampaignOpsAxis1WellfoundedAdmission.lean
+  - checks/independent/ops-axis1-wellfounded-admission.py
+  - dag/derivations/independent/ops-axis1-wellfounded-admission.md
+  - dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json
   paper_refs:
   - dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md
   source_claim_label: IMPORTED_ASSUMPTION
@@ -25,7 +35,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md
-    sha256: 25773c81813dcb8f526618b3caae975452e0bb8329c59b88f9b8bd2f854c874d
+    sha256: bbc96d4e80a832fd3066eae3a807470422f0e7560ada3fe3204c174afa640983
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py

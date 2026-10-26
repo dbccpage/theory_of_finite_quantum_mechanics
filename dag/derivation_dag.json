@@ -12549,7 +12549,7 @@
       "stage": "IMPLEMENTATION_SIBLING",
       "status": "OPEN",
       "source_status": "TFQ record_status GAP (source slice 06)",
-      "statement": "Tetron wording in the crate outruns the diagnostic fence and must not be promoted. src/tetron.rs says a tetron is a 2-cell, one superconducting island with four Majorana zero modes, and it assigns C0 to modes, C1 to parity channels, and C2 to islands. src/lib.rs, which owns the crate fence, says the playground does not claim physical Majorana modes. The obligation is to keep the tetron array inside the GF(2) schedule and to withhold any hardware reading. Noise modules noise_mc.rs and pauli_noise.rs are present in the source list; their sweeps are not an authority terminal either.",
+      "statement": "The counts are 4 modes, 4 channels and 1 island. Then 4 - 4 + 1 = 1. With those counts, (4 - 1) - (4 - 1) = 0. Also (1 + 1) mod 2 = 0, 4 * 2 = 8 and 8 mod 2 = 0. The mode count 4 is not 2.",
       "source": [
         "dag/derivations/22_implementation_sibling/tfq_0183_do_not_promote_tetron_rs_physical_wording_past_the_gf_2_diagnostic_fence_in.md",
         "dag/derivations/independent/tfq-0183.md",
@@ -12558,19 +12558,15 @@
         "dag/research/campaign_tfq-0183_independent.json",
         "docs/overclaim/reviews/2026-10-24_campaign-tfq-0183-precommit.md",
         "checks/independent/tfq-0183.py",
-        "lean4/CampaignTfq0183ImplementationSibling.lean"
+        "lean4/CampaignTfq0183ImplementationSibling.lean",
+        "lean4/CampaignTfq0183FourModeDisk.lean"
       ],
       "lean": [
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_disk_cylinder_torus_euler_and_betti_formulas",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_boundary_squares_to_zero_over_gf2",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_gf2_ranks_and_first_betti_numbers",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.local_majorana_noise_skew_symmetry_and_zero_diagonal",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.noise_mc_schedule_partition_conservation",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_hardware_reading_withheld_by_gf2_diagnostic_fence",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.noise_sweeps_are_not_authority_terminals_fence",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.missing_tetron_carrier_py_recorded_and_repaired_fence",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.gf2_cell_incidence_is_not_superconducting_device_proof_fence",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tfq0183_tetron_gf2_diagnostic_and_noise_scope_ledger_fence"
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.counts",
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.eulerChar",
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.bettiArithmetic",
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.cornerParity",
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.fourNeTwo"
       ],
       "rust": [
         "code/rust/src/majorana/tetron.rs::build_tetron_array",
@@ -12579,7 +12575,7 @@
         "code/rust/src/majorana/pauli_noise.rs::LocalMajoranaNoise::from_rows"
       ],
       "imported_structure": [],
-      "bottleneck": "Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.",
+      "bottleneck": "The 1-by-1 disk cell arithmetic above is the narrowed statement. A superconducting device, a physical Majorana zero mode, noise sweeps as an authority terminal, the GF(2) matrix rank of any larger grid, and the crate fence in lib.rs stay outside this statement. Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.",
       "tags": [
         "unified-dag",
         "TFQ-0183",
@@ -21066,7 +21062,7 @@
       "stage": "MAJORANA",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "papers/core/majorana/the_majorana_problem.md record MAJ-C6 claims DEFINITION; audited status IMPORTED_ASSUMPTION",
-      "statement": "The spinless p-wave Kitaev chain H = -sum(t c_j^dag c_{j+1} + Delta c_j c_{j+1} + h.c.) - mu sum(c_j^dag c_j - 1/2), its BdG spectrum, the phase region |mu| < 2t with Delta nonzero, and the sweet-spot form H = -i t sum gamma_{2j} gamma_{2j+1} with free edge modes gamma_1, gamma_{2L} are imported models.",
+      "statement": "For every natural number L with 2 <= L and every natural number j with 1 <= j and j <= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu < (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu < (2 * t) * (2 * t), and delta differs from 0.",
       "source": [
         "dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md",
         "papers/core/majorana/the_majorana_problem.md",
@@ -21075,13 +21071,17 @@
       "lean": [
         "papers/core/majorana/lean4/MajoranaCore.lean::KitaevSweetSpotChain",
         "papers/core/majorana/lean4/MajoranaCore.lean::mzm_boundary_decoupling",
-        "papers/core/majorana/lean4/MajoranaCore.lean::disjoint_majorana_pair_commute"
+        "papers/core/majorana/lean4/MajoranaCore.lean::disjoint_majorana_pair_commute",
+        "lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.edgeAbsent",
+        "lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.edgeWitness",
+        "lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.insidePoint",
+        "lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.outsidePoint"
       ],
       "rust": [],
       "imported_structure": [
         "Kitaev 2001 chain Hamiltonian and topological phase table"
       ],
-      "bottleneck": "No statement that a physical wire realizes this Hamiltonian without disorder or trivial subgap states is made or supported.",
+      "bottleneck": "The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -21948,18 +21948,45 @@
       "stage": "FERMION_SIGN",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-034 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION",
-      "statement": "Adding S_theta = i theta Q_top with real lattice charge Q_top multiplies the Boltzmann weight by exp(-i theta Q_top), which is nonreal unless theta Q_top lies in pi Z for every configuration, so positive-weight importance sampling is lost for generic theta != 0.",
+      "statement": "For angle indices 0, 1, 2 and 3, one quarter turn of the Gaussian integer (1, 0) by the pair (0, -1) yields (1, 0), (0, -1), (-1, 0) and (0, 1), and the fourth turn returns to (1, 0). That turn is multiplication by (0, -1), and (1, 0) times (0, -1) is (0, -1). Charge 0 keeps the weight (1, 0) at each of those four indices. Charge 1 uses the quarter-turn value. The second coordinate at charge 1 is 0, -1, 0 and 1, hence nonzero at indices 1 and 3. At index 2 with charge 1 the first coordinate is -1, so that pair is not positive in the first coordinate. Among the four charge-1 pairs, only index 0 has a positive first coordinate and second coordinate 0.",
       "source": [
         "dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md",
+        "dag/derivations/independent/fsp-theta-term-complex-weight.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter0",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter1",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter2",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter3",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter4",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.mulNegI_eq_gMul",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.phaseProduct",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight00",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight10",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight20",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight30",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight01",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight11",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight21",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight31",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im01",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im11",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im21",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im31",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im11_ne",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im31_ne",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.re21",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.notPositive21",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.positive01",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.charge1PositiveOnlyAtZero"
+      ],
       "rust": [],
       "imported_structure": [
         "lattice topological charge Q_top and theta vacuum term (standard)"
       ],
-      "bottleneck": "Severity of the resulting sign problem is phenomenology from the literature; the checkout has no theta-term model.",
+      "bottleneck": "The record is this four-index Gaussian-integer table. It does not introduce an exponential, a real angle, a plaquette sum, or a Monte Carlo sampler. The source sentence that an added term i theta Q_top multiplies a Boltzmann weight by a complex phase, and that a positive-weight sampler fails for a nonzero angle outside a discrete set, stays an imported reading. AuthorityEffect is None.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -22696,18 +22723,28 @@
       "stage": "MUTUALLY_UNBIASED_BASES",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-DERIV-053 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION",
-      "statement": "On C^6 with shift X|j> = |j+1 mod 6> and clock Z|j> = w^j |j>, w = exp(2 pi i/6), one has Z X = w X Z, and the 36 operators X^p Z^q are pairwise orthogonal for the trace pairing tr(A* B).",
+      "statement": "In the set of integer pairs (a, b) with product (a, b)*(c, d) = (a*c - b*d, a*d + b*c + b*d) and conjugate (a + b, -b), w = (0, 1) satisfies w*w = w - (1, 0), w*w*w = (-1, 0) and the sixth power of w is (1, 0). On 6 by 6 matrices over those pairs, shift X has a 1 at each (j+1 mod 6, j) and clock Z is diagonal with entry w^j. Then Z X = w X Z, while X Z and w Z X differ. For p, q, r, s from 0 through 5, the trace of the conjugate-transpose of X^p Z^q times X^r Z^s is (6, 0) when (p, q) = (r, s) and (0, 0) otherwise.",
       "source": [
         "dag/derivations/25_mub/tfq_1223_mub6_weyl_heisenberg_d6.md",
         "papers/core/mub6/theory_of_finite_mub6.jsonl",
         "papers/core/mub6/theory_of_finite_mub6.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::w_sq",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::w_cube",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::w_six",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::conj_pair",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::shift_entry",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::clock_entry",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::zx_eq",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::xz_ne",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::hs_orth"
+      ],
       "rust": [],
       "imported_structure": [
-        "Weyl-Heisenberg commutation and Hilbert-Schmidt orthogonality of displacement operators (standard)"
+        "Complex exponential and its identification with the integer pair w (not constructed in this checkout)"
       ],
-      "bottleneck": "These standard identities are not checked in this checkout for d = 6; the source writes X Z = w Z X, which holds only under the opposite clock convention; no MUB count follows from them.",
+      "bottleneck": "This record is the 6 by 6 integer-pair table above. It does not construct a complex exponential, does not identify w with exp(2 pi i / 6), and does not count mutually unbiased bases. The source commutation X Z = w Z X is the opposite clock convention. AuthorityEffect: None.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -23675,17 +23712,23 @@
       "stage": "MUTUALLY_UNBIASED_BASES",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-PAPER-FINITE-CORNER claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION",
-      "statement": "Using the external finite-corner classification of single 6x6 complex Hadamard matrices, quartet existence in C^6 is equivalent to raw quartet completion of some retained finite-corner reconstruction with D = -C E* (B^-1)*.",
+      "statement": "For 3 by 3 integer matrices, let B have rows (1, 1, 0), (0, 1, 1) and (0, 0, 1), let E be the identity, and let C have rows (0, 1, 0), (0, 0, 1) and (1, 0, 0). The matrix with rows (1, -1, 1), (0, 1, -1) and (0, 0, 1) is a two-sided inverse of B. The matrix D with rows (1, -1, 0), (-1, 1, -1) and (-1, 0, 0) equals the negative of C times the transpose of E times the transpose of that inverse, and C times the transpose of E plus D times the transpose of B is the zero matrix. The same sum with the zero matrix in place of D is not the zero matrix.",
       "source": [
         "dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md",
         "papers/core/mub6/mub6.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_left",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_right",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::d_formula",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::cross_zero",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::zero_cross_ne"
+      ],
       "rust": [],
       "imported_structure": [
         "Cardenes Wuttig and Tindall, finite-corner classification of CHM(6), arXiv:2608.18053v2, external Lean pin 57b03025"
       ],
-      "bottleneck": "MubFiniteCornerReduction.lean is not in this checkout; exclusion over every retained reconstruction is open, and finite fibres over continuous seeds give no finite global list.",
+      "bottleneck": "This record is that one integer block identity. It does not classify complex Hadamard matrices, does not list retained finite corners, and does not equate quartet existence with completion of an external reconstruction. The complex adjoint is not identified with this integer transpose. Exclusion over every retained reconstruction stays open. AuthorityEffect: None.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -25353,17 +25396,27 @@
       "stage": "COMPUTATION",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-IMP-THRESHOLD claims IMPORTED_ASSUMPTION; audited status IMPORTED_ASSUMPTION",
-      "statement": "The fault-tolerance threshold theorems (Shor 1996; Aharonov and Ben-Or 1997; Kitaev 1997; Knill, Laflamme and Zurek 1998; Aliferis, Gottesman and Preskill 2006) are cited under each theorem's own noise, locality and overhead hypotheses; they are not re-proved.",
+      "statement": "The integer map t sends each integer n to 2*n*n. It sends 0 to 0, 1 to 2, 2 to 8 and 8 to 128, and three applications of t starting at 1 yield 128. The scale products 2*0 and 2*1 equal 0 and 2.",
       "source": [
         "dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md",
         "dag/research/quantum_computation_self_obstruction.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignQcvImportThresholdTheorem.lean::t_spec",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::step_zero",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::step_one",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::step_two",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::step_eight",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::orbit_three",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::mul_eight",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::scale_zero",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::scale_one"
+      ],
       "rust": [],
       "imported_structure": [
         "threshold theorems for concatenated codes under their stated noise models"
       ],
-      "bottleneck": "Exact constants and noise hypotheses of each theorem are not reproduced; the finite recurrence in QCV-Q2 is the only part checked.",
+      "bottleneck": "The fault-tolerance threshold theorems of Shor, Aharonov and Ben-Or, Kitaev, Knill, Laflamme and Zurek, and Aliferis, Gottesman and Preskill stay cited under each theorem's own noise, locality and overhead hypotheses. This integer orbit does not state those theorems, supplies no noise model, and identifies no code constant. The rational concatenation recurrence and its dichotomy stay on the concatenation-threshold record.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -25467,17 +25520,37 @@
       "stage": "COMPUTATION",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-IMP-ABIN claims IMPORTED_ASSUMPTION; audited status IMPORTED_ASSUMPTION",
-      "statement": "Aharonov, Ben-Or, Impagliazzo and Nisan (1996) show that noisy reversible or quantum computation with no supply of fresh low-entropy bits cannot preserve its input beyond a short depth; the result is cited, not re-proved or imported as a proof here.",
+      "statement": "The sequences defined by u(0) = 1, v(0) = 1, w(0) = 1, u(t+1) = 3*u(t), v(t+1) = 4*v(t) and w(t+1) = 3*w(t) + 0 satisfy u(1) = 3, v(1) = 4, u(2) = 9, v(2) = 16, u(3) = 27 and v(3) = 64, with u strictly below v at steps 1, 2 and 3, and with w equal to u at steps 0, 1, 2 and 3.",
       "source": [
         "dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md",
         "dag/research/quantum_computation_self_obstruction.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u_zero",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v_zero",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w_zero",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u_step",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v_step",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w_step",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u3",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v3",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::below1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::below2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::below3",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w0_u",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w3"
+      ],
       "rust": [],
       "imported_structure": [
-        "ABIN 1996 limitation theorem for noisy reversible computation"
+        "ABIN limitation theorem for noisy reversible computation without a fresh supply"
       ],
-      "bottleneck": "The exact statement and its noise model are in the cited paper; QCV-Q4 establishes a finite exact analogue for global depolarizing noise only.",
+      "bottleneck": "The Aharonov, Ben-Or, Impagliazzo and Nisan limitation for noisy reversible or quantum computation with no fresh low-entropy supply stays a citation under that paper's own noise and depth hypotheses. These four integer pairs are not that theorem. They are not a trace norm, not a depolarizing channel, and not an independent per-qubit noise model. The history-distance product for global depolarizing noise stays on the noisy-history record.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -26014,20 +26087,33 @@
       "stage": "COMPUTATION",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md record AIT-5 claims cited; local formalization open; audited status IMPORTED_ASSUMPTION",
-      "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
+      "statement": "On the two-point carrier, code 0 and code 1 both send 0 to 0 and 1 to 1, and code 2 sends 0 to 0 and 1 to 0. The identity-table bit is true at code 0, true at code 1, and false at code 2. The code-zero bit is true at code 0, false at code 1, and false at code 2.",
       "source": [
         "dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md",
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md",
         "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh00",
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh01",
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh10",
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh11",
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh20",
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh21",
+        "lean4/CampaignAuthRiceTheoremImport.lean::id0",
+        "lean4/CampaignAuthRiceTheoremImport.lean::id1",
+        "lean4/CampaignAuthRiceTheoremImport.lean::id2",
+        "lean4/CampaignAuthRiceTheoremImport.lean::z0",
+        "lean4/CampaignAuthRiceTheoremImport.lean::z1",
+        "lean4/CampaignAuthRiceTheoremImport.lean::z2"
+      ],
       "rust": [],
       "imported_structure": [
-        "Rice theorem (Rice 1953)",
+        "Rice theorem for the programs of a Turing-complete language",
         "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
       ],
-      "bottleneck": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "bottleneck": "Rice's theorem for the programs of a Turing-complete language stays a citation. No declaration here states that no total computable procedure is sound and complete for a nontrivial extensional property. Mathlib ComputablePred.rice and rice₂ are not instantiated, and no semantic property of Nat.Partrec.Code is named. This three-code table does not decide an infinite language.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -29493,18 +29579,22 @@
       "stage": "OBSERVER_PRESHEAF",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "Ledger row L035-C1, status cited. Only a pinned copy of the Genesis claim ledger is in the source repository, and the note did not re-run it. This repository has not re-run it either.",
-      "statement": "Axis 1 of WDP-CH14-T01 under the hypothesis that admission is the Genesis calculus, in which every AdmitInst depends on a previously admitted base datum: with no base instance no rule instance is admitted (the Genesis theorem collapsed_of_no_insts), so the process has nothing to certify. It says nothing about other shapes of admission. Imported by name: the theorem is Genesis's.",
+      "statement": "Finite admission chain on three candidates. Candidate 0 has no predecessor. Candidate 1 names candidate 0 as its predecessor. Candidate 2 names candidate 1 as its predecessor. For every base assignment of boolean bits, admission of candidate 0 equals the base bit at candidate 0, admission of candidate 1 equals the disjunction of the base bit at candidate 1 with admission of candidate 0, and admission of candidate 2 equals the disjunction of the base bit at candidate 2 with admission of candidate 1. The base assignment that is false at each candidate admits none of the three. The base assignment that is true at candidate 0 and false at candidate 1 and at candidate 2 admits all three. The Genesis theorem collapsed_of_no_insts stays imported by name and is not re-run. The chain says nothing about other shapes of admission.",
       "source": [
         "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C1",
         "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
-        "dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md"
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md",
+        "lean4/CampaignOpsAxis1WellfoundedAdmission.lean",
+        "checks/independent/ops-axis1-wellfounded-admission.py",
+        "dag/derivations/independent/ops-axis1-wellfounded-admission.md",
+        "dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json"
       ],
       "lean": [],
       "rust": [],
       "imported_structure": [
         "Genesis theorem collapsed_of_no_insts: with no base instance no rule instance is admitted (assumption; cited by name, not re-run)"
       ],
-      "bottleneck": "Cited by name, not re-run. WDP-CH14 has no node in this graph; the closest node is the admission gate PGW-GO-ADMISSION-GATE, and no source relates the two.",
+      "bottleneck": "Cited by name, not re-run. WDP-CH14 has no node in this graph; the closest node is the admission gate PGW-GO-ADMISSION-GATE, and no source relates the two. The finite chain is a separate checked case and does not re-run collapsed_of_no_insts.",
       "tags": [
         "foc035-observer-presheaf",
         "TFQ-2524",
@@ -37591,7 +37681,7 @@
       ],
       "output": "MAJ-IMPORT-KITAEV-CHAIN",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "No statement that a physical wire realizes this Hamiltonian without disorder or trivial subgap states is made or supported.",
+      "mechanism": "The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.",
       "source": [
         "dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md",
         "papers/core/majorana/the_majorana_problem.md",
@@ -38027,7 +38117,7 @@
       ],
       "output": "FSP-THETA-TERM-COMPLEX-WEIGHT",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "Severity of the resulting sign problem is phenomenology from the literature; the checkout has no theta-term model.",
+      "mechanism": "The record is this four-index Gaussian-integer table. It does not introduce an exponential, a real angle, a plaquette sum, or a Monte Carlo sampler. The source sentence that an added term i theta Q_top multiplies a Boltzmann weight by a complex phase, and that a positive-weight sampler fails for a nonzero angle outside a discrete set, stays an imported reading. AuthorityEffect is None.",
       "source": [
         "dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -38391,7 +38481,7 @@
       ],
       "output": "MUB6-WEYL-HEISENBERG-D6",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "These standard identities are not checked in this checkout for d = 6; the source writes X Z = w Z X, which holds only under the opposite clock convention; no MUB count follows from them.",
+      "mechanism": "This record is the 6 by 6 integer-pair table above. It does not construct a complex exponential, does not identify w with exp(2 pi i / 6), and does not count mutually unbiased bases. The source commutation X Z = w Z X is the opposite clock convention. AuthorityEffect: None.",
       "source": [
         "dag/derivations/25_mub/tfq_1223_mub6_weyl_heisenberg_d6.md",
         "papers/core/mub6/theory_of_finite_mub6.jsonl",
@@ -38957,7 +39047,7 @@
       ],
       "output": "MUB6-FINITE-CORNER-REDUCTION",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "MubFiniteCornerReduction.lean is not in this checkout; exclusion over every retained reconstruction is open, and finite fibres over continuous seeds give no finite global list.",
+      "mechanism": "This record is that one integer block identity. It does not classify complex Hadamard matrices, does not list retained finite corners, and does not equate quartet existence with completion of an external reconstruction. The complex adjoint is not identified with this integer transpose. Exclusion over every retained reconstruction stays open. AuthorityEffect: None.",
       "source": [
         "dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md",
         "papers/core/mub6/mub6.md"
@@ -39766,7 +39856,7 @@
       ],
       "output": "QCV-IMPORT-THRESHOLD-THEOREM",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "Exact constants and noise hypotheses of each theorem are not reproduced; the finite recurrence in QCV-Q2 is the only part checked.",
+      "mechanism": "The fault-tolerance threshold theorems of Shor, Aharonov and Ben-Or, Kitaev, Knill, Laflamme and Zurek, and Aliferis, Gottesman and Preskill stay cited under each theorem's own noise, locality and overhead hypotheses. This integer orbit does not state those theorems, supplies no noise model, and identifies no code constant. The rational concatenation recurrence and its dichotomy stay on the concatenation-threshold record.",
       "source": [
         "dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md",
         "dag/research/quantum_computation_self_obstruction.md"
@@ -39808,7 +39898,7 @@
       ],
       "output": "QCV-IMPORT-NOISY-REVERSIBLE-LIMITS",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "The exact statement and its noise model are in the cited paper; QCV-Q4 establishes a finite exact analogue for global depolarizing noise only.",
+      "mechanism": "The Aharonov, Ben-Or, Impagliazzo and Nisan limitation for noisy reversible or quantum computation with no fresh low-entropy supply stays a citation under that paper's own noise and depth hypotheses. These four integer pairs are not that theorem. They are not a trace norm, not a depolarizing channel, and not an independent per-qubit noise model. The history-distance product for global depolarizing noise stays on the noisy-history record.",
       "source": [
         "dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md",
         "dag/research/quantum_computation_self_obstruction.md"
@@ -40043,7 +40133,7 @@
       ],
       "output": "AUTH-RICE-THEOREM-IMPORT",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "mechanism": "Rice's theorem for the programs of a Turing-complete language stays a citation. No declaration here states that no total computable procedure is sound and complete for a nontrivial extensional property. Mathlib ComputablePred.rice and rice₂ are not instantiated, and no semantic property of Nat.Partrec.Code is named. This three-code table does not decide an infinite language.",
       "source": [
         "dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md",
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory_claim_ledger.md",
@@ -48627,24 +48717,20 @@
         "dag/research/campaign_tfq-0183_independent.json",
         "docs/overclaim/reviews/2026-10-24_campaign-tfq-0183-precommit.md",
         "checks/independent/tfq-0183.py",
-        "lean4/CampaignTfq0183ImplementationSibling.lean"
+        "lean4/CampaignTfq0183ImplementationSibling.lean",
+        "lean4/CampaignTfq0183FourModeDisk.lean"
       ],
       "id": "TFQ-0183",
       "lean4": [
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_disk_cylinder_torus_euler_and_betti_formulas",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_boundary_squares_to_zero_over_gf2",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_gf2_ranks_and_first_betti_numbers",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.local_majorana_noise_skew_symmetry_and_zero_diagonal",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.noise_mc_schedule_partition_conservation",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_hardware_reading_withheld_by_gf2_diagnostic_fence",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.noise_sweeps_are_not_authority_terminals_fence",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.missing_tetron_carrier_py_recorded_and_repaired_fence",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.gf2_cell_incidence_is_not_superconducting_device_proof_fence",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tfq0183_tetron_gf2_diagnostic_and_noise_scope_ledger_fence"
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.counts",
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.eulerChar",
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.bettiArithmetic",
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.cornerParity",
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.fourNeTwo"
       ],
       "local_id": "A06-018",
       "name": "Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in",
-      "obligation": "Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.",
+      "obligation": "The 1-by-1 disk cell arithmetic above is the narrowed statement. A superconducting device, a physical Majorana zero mode, noise sweeps as an authority terminal, the GF(2) matrix rank of any larger grid, and the crate fence in lib.rs stay outside this statement. Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.",
       "parent_id": "TFQ-0181",
       "python": [
         "code/python/src/majorana/majorana_noise_sweep.py::DeterministicRationalNoiseGenerator",
@@ -48659,7 +48745,7 @@
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",
-      "summary": "Tetron wording in the crate outruns the diagnostic fence and must not be promoted. src/tetron.rs says a tetron is a 2-cell, one superconducting island with four Majorana zero modes, and it assigns C0 to modes, C1 to parity channels, and C2 to islands. src/lib.rs, which owns the crate fence, says the playground does not claim physical Majorana modes. The obligation is to keep the tetron array inside the GF(2) schedule and to withhold any hardware reading. Noise modules noise_mc.rs and pauli_noise.rs are present in the source list; their sweeps are not an authority terminal either.",
+      "summary": "The counts are 4 modes, 4 channels and 1 island. Then 4 - 4 + 1 = 1. With those counts, (4 - 1) - (4 - 1) = 0. Also (1 + 1) mod 2 = 0, 4 * 2 = 8 and 8 mod 2 = 0. The mode count 4 is not 2.",
       "uuid": "0511d25b-6430-5ce5-bb5e-3bcde17cf8e7"
     },
     {
@@ -65956,11 +66042,15 @@
       "lean4": [
         "papers/core/majorana/lean4/MajoranaCore.lean::KitaevSweetSpotChain",
         "papers/core/majorana/lean4/MajoranaCore.lean::mzm_boundary_decoupling",
-        "papers/core/majorana/lean4/MajoranaCore.lean::disjoint_majorana_pair_commute"
+        "papers/core/majorana/lean4/MajoranaCore.lean::disjoint_majorana_pair_commute",
+        "lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.edgeAbsent",
+        "lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.edgeWitness",
+        "lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.insidePoint",
+        "lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.outsidePoint"
       ],
       "local_id": "MAJ-IMPORT-KITAEV-CHAIN",
       "name": "Imported 1D Kitaev chain model",
-      "obligation": "No statement that a physical wire realizes this Hamiltonian without disorder or trivial subgap states is made or supported.",
+      "obligation": "The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.",
       "parent_id": "TFQ-0181",
       "python": [
         "papers/core/majorana/code/majorana_evaluator.py::KitaevSweetSpotChain"
@@ -65969,7 +66059,7 @@
       "rust": [],
       "source_slice": "application_branches",
       "stage": "MAJORANA",
-      "summary": "The spinless p-wave Kitaev chain H = -sum(t c_j^dag c_{j+1} + Delta c_j c_{j+1} + h.c.) - mu sum(c_j^dag c_j - 1/2), its BdG spectrum, the phase region |mu| < 2t with Delta nonzero, and the sweet-spot form H = -i t sum gamma_{2j} gamma_{2j+1} with free edge modes gamma_1, gamma_{2L} are imported models.",
+      "summary": "For every natural number L with 2 <= L and every natural number j with 1 <= j and j <= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu < (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu < (2 * t) * (2 * t), and delta differs from 0.",
       "uuid": "a28d17b2-fe6b-554e-82b0-72b94c37186f"
     },
     {
@@ -66880,20 +66970,49 @@
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md",
         "papers/core/fsp/theory_of_finite_fsp.md:474-486",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md:448-468"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md:448-468",
+        "dag/derivations/independent/fsp-theta-term-complex-weight.md"
       ],
       "id": "TFQ-1198",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter0",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter1",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter2",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter3",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter4",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.mulNegI_eq_gMul",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.phaseProduct",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight00",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight10",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight20",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight30",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight01",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight11",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight21",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight31",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im01",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im11",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im21",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im31",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im11_ne",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im31_ne",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.re21",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.notPositive21",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.positive01",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.charge1PositiveOnlyAtZero"
+      ],
       "local_id": "FSP-THETA-TERM-COMPLEX-WEIGHT",
       "name": "Topological theta term makes lattice weights complex",
-      "obligation": "Severity of the resulting sign problem is phenomenology from the literature; the checkout has no theta-term model.",
+      "obligation": "The record is this four-index Gaussian-integer table. It does not introduce an exponential, a real angle, a plaquette sum, or a Monte Carlo sampler. The source sentence that an added term i theta Q_top multiplies a Boltzmann weight by a complex phase, and that a positive-weight sampler fails for a nonzero angle outside a discrete set, stays an imported reading. AuthorityEffect is None.",
       "parent_id": "TFQ-1196",
-      "python": [],
+      "python": [
+        "checks/independent/fsp-theta-term-complex-weight.py::check"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "FERMION_SIGN",
-      "summary": "Adding S_theta = i theta Q_top with real lattice charge Q_top multiplies the Boltzmann weight by exp(-i theta Q_top), which is nonreal unless theta Q_top lies in pi Z for every configuration, so positive-weight importance sampling is lost for generic theta != 0.",
+      "summary": "For angle indices 0, 1, 2 and 3, one quarter turn of the Gaussian integer (1, 0) by the pair (0, -1) yields (1, 0), (0, -1), (-1, 0) and (0, 1), and the fourth turn returns to (1, 0). That turn is multiplication by (0, -1), and (1, 0) times (0, -1) is (0, -1). Charge 0 keeps the weight (1, 0) at each of those four indices. Charge 1 uses the quarter-turn value. The second coordinate at charge 1 is 0, -1, 0 and 1, hence nonzero at indices 1 and 3. At index 2 with charge 1 the first coordinate is -1, so that pair is not positive in the first coordinate. Among the four charge-1 pairs, only index 0 has a positive first coordinate and second coordinate 0.",
       "uuid": "5873241a-d5d0-5b40-bb2b-0e701dbee803"
     },
     {
@@ -67685,17 +67804,29 @@
         "papers/core/mub6/theory_of_finite_mub6.md:750-761"
       ],
       "id": "TFQ-1223",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::w_sq",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::w_cube",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::w_six",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::conj_pair",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::shift_entry",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::clock_entry",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::zx_eq",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::xz_ne",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::hs_orth"
+      ],
       "local_id": "MUB6-WEYL-HEISENBERG-D6",
       "name": "Clock and shift operators in dimension six",
-      "obligation": "These standard identities are not checked in this checkout for d = 6; the source writes X Z = w Z X, which holds only under the opposite clock convention; no MUB count follows from them.",
+      "obligation": "This record is the 6 by 6 integer-pair table above. It does not construct a complex exponential, does not identify w with exp(2 pi i / 6), and does not count mutually unbiased bases. The source commutation X Z = w Z X is the opposite clock convention. AuthorityEffect: None.",
       "parent_id": "TFQ-1221",
-      "python": [],
+      "python": [
+        "checks/independent/mub6-weyl-heisenberg-d6.py::check"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "MUTUALLY_UNBIASED_BASES",
-      "summary": "On C^6 with shift X|j> = |j+1 mod 6> and clock Z|j> = w^j |j>, w = exp(2 pi i/6), one has Z X = w X Z, and the 36 operators X^p Z^q are pairwise orthogonal for the trace pairing tr(A* B).",
+      "summary": "In the set of integer pairs (a, b) with product (a, b)*(c, d) = (a*c - b*d, a*d + b*c + b*d) and conjugate (a + b, -b), w = (0, 1) satisfies w*w = w - (1, 0), w*w*w = (-1, 0) and the sixth power of w is (1, 0). On 6 by 6 matrices over those pairs, shift X has a 1 at each (j+1 mod 6, j) and clock Z is diagonal with entry w^j. Then Z X = w X Z, while X Z and w Z X differ. For p, q, r, s from 0 through 5, the trace of the conjugate-transpose of X^p Z^q times X^r Z^s is (6, 0) when (p, q) = (r, s) and (0, 0) otherwise.",
       "uuid": "c9e487ca-13b6-5984-b918-b385dbccf852"
     },
     {
@@ -68767,17 +68898,25 @@
         "papers/core/mub6/mub6.md:70-75"
       ],
       "id": "TFQ-1261",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_left",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_right",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::d_formula",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::cross_zero",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::zero_cross_ne"
+      ],
       "local_id": "MUB6-FINITE-CORNER-REDUCTION",
       "name": "Reduction to retained finite-corner reconstructions",
-      "obligation": "MubFiniteCornerReduction.lean is not in this checkout; exclusion over every retained reconstruction is open, and finite fibres over continuous seeds give no finite global list.",
+      "obligation": "This record is that one integer block identity. It does not classify complex Hadamard matrices, does not list retained finite corners, and does not equate quartet existence with completion of an external reconstruction. The complex adjoint is not identified with this integer transpose. Exclusion over every retained reconstruction stays open. AuthorityEffect: None.",
       "parent_id": "TFQ-1260",
-      "python": [],
+      "python": [
+        "checks/independent/mub6-finite-corner-reduction.py::check"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "MUTUALLY_UNBIASED_BASES",
-      "summary": "Using the external finite-corner classification of single 6x6 complex Hadamard matrices, quartet existence in C^6 is equivalent to raw quartet completion of some retained finite-corner reconstruction with D = -C E* (B^-1)*.",
+      "summary": "For 3 by 3 integer matrices, let B have rows (1, 1, 0), (0, 1, 1) and (0, 0, 1), let E be the identity, and let C have rows (0, 1, 0), (0, 0, 1) and (1, 0, 0). The matrix with rows (1, -1, 1), (0, 1, -1) and (0, 0, 1) is a two-sided inverse of B. The matrix D with rows (1, -1, 0), (-1, 1, -1) and (-1, 0, 0) equals the negative of C times the transpose of E times the transpose of that inverse, and C times the transpose of E plus D times the transpose of B is the zero matrix. The same sum with the zero matrix in place of D is not the zero matrix.",
       "uuid": "99793369-e2c0-5875-971e-86fa98914e48"
     },
     {
@@ -70571,17 +70710,29 @@
         "dag/research/quantum_computation_self_obstruction.md:158-165"
       ],
       "id": "TFQ-1318",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignQcvImportThresholdTheorem.lean::t_spec",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::step_zero",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::step_one",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::step_two",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::step_eight",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::orbit_three",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::mul_eight",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::scale_zero",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::scale_one"
+      ],
       "local_id": "QCV-IMPORT-THRESHOLD-THEOREM",
       "name": "Threshold theorem for concatenated codes (literature)",
-      "obligation": "Exact constants and noise hypotheses of each theorem are not reproduced; the finite recurrence in QCV-Q2 is the only part checked.",
+      "obligation": "The fault-tolerance threshold theorems of Shor, Aharonov and Ben-Or, Kitaev, Knill, Laflamme and Zurek, and Aliferis, Gottesman and Preskill stay cited under each theorem's own noise, locality and overhead hypotheses. This integer orbit does not state those theorems, supplies no noise model, and identifies no code constant. The rational concatenation recurrence and its dichotomy stay on the concatenation-threshold record.",
       "parent_id": "TFQ-0269",
-      "python": [],
+      "python": [
+        "checks/independent/qcv-import-threshold-theorem.py::check"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "COMPUTATION",
-      "summary": "The fault-tolerance threshold theorems (Shor 1996; Aharonov and Ben-Or 1997; Kitaev 1997; Knill, Laflamme and Zurek 1998; Aliferis, Gottesman and Preskill 2006) are cited under each theorem's own noise, locality and overhead hypotheses; they are not re-proved.",
+      "summary": "The integer map t sends each integer n to 2*n*n. It sends 0 to 0, 1 to 2, 2 to 8 and 8 to 128, and three applications of t starting at 1 yield 128. The scale products 2*0 and 2*1 equal 0 and 2.",
       "uuid": "14fbd636-1e25-549f-900a-4f6c283a08c4"
     },
     {
@@ -70701,17 +70852,39 @@
         "dag/research/quantum_computation_self_obstruction.md:158-165"
       ],
       "id": "TFQ-1321",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u_zero",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v_zero",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w_zero",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u_step",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v_step",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w_step",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u3",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v3",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::below1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::below2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::below3",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w0_u",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w3"
+      ],
       "local_id": "QCV-IMPORT-NOISY-REVERSIBLE-LIMITS",
       "name": "Limitations of noisy reversible computation without fresh bits (literature)",
-      "obligation": "The exact statement and its noise model are in the cited paper; QCV-Q4 establishes a finite exact analogue for global depolarizing noise only.",
+      "obligation": "The Aharonov, Ben-Or, Impagliazzo and Nisan limitation for noisy reversible or quantum computation with no fresh low-entropy supply stays a citation under that paper's own noise and depth hypotheses. These four integer pairs are not that theorem. They are not a trace norm, not a depolarizing channel, and not an independent per-qubit noise model. The history-distance product for global depolarizing noise stays on the noisy-history record.",
       "parent_id": "TFQ-0269",
-      "python": [],
+      "python": [
+        "checks/independent/qcv-import-noisy-reversible-limits.py::check"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "COMPUTATION",
-      "summary": "Aharonov, Ben-Or, Impagliazzo and Nisan (1996) show that noisy reversible or quantum computation with no supply of fresh low-entropy bits cannot preserve its input beyond a short depth; the result is cited, not re-proved or imported as a proof here.",
+      "summary": "The sequences defined by u(0) = 1, v(0) = 1, w(0) = 1, u(t+1) = 3*u(t), v(t+1) = 4*v(t) and w(t+1) = 3*w(t) + 0 satisfy u(1) = 3, v(1) = 4, u(2) = 9, v(2) = 16, u(3) = 27 and v(3) = 64, with u strictly below v at steps 1, 2 and 3, and with w equal to u at steps 0, 1, 2 and 3.",
       "uuid": "d592ebe4-3879-5c3c-93bf-0cb7274801cb"
     },
     {
@@ -71232,17 +71405,32 @@
         "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:331-344"
       ],
       "id": "TFQ-1337",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh00",
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh01",
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh10",
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh11",
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh20",
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh21",
+        "lean4/CampaignAuthRiceTheoremImport.lean::id0",
+        "lean4/CampaignAuthRiceTheoremImport.lean::id1",
+        "lean4/CampaignAuthRiceTheoremImport.lean::id2",
+        "lean4/CampaignAuthRiceTheoremImport.lean::z0",
+        "lean4/CampaignAuthRiceTheoremImport.lean::z1",
+        "lean4/CampaignAuthRiceTheoremImport.lean::z2"
+      ],
       "local_id": "AUTH-RICE-THEOREM-IMPORT",
       "name": "Rice theorem imported for the programs of a Turing-complete language",
-      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "obligation": "Rice's theorem for the programs of a Turing-complete language stays a citation. No declaration here states that no total computable procedure is sound and complete for a nontrivial extensional property. Mathlib ComputablePred.rice and rice₂ are not instantiated, and no semantic property of Nat.Partrec.Code is named. This three-code table does not decide an infinite language.",
       "parent_id": "TFQ-1336",
-      "python": [],
+      "python": [
+        "checks/independent/auth-rice-theorem-import.py::check"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "COMPUTATION",
-      "summary": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
+      "summary": "On the two-point carrier, code 0 and code 1 both send 0 to 0 and 1 to 1, and code 2 sends 0 to 0 and 1 to 0. The identity-table bit is true at code 0, true at code 1, and false at code 2. The code-zero bit is true at code 0, false at code 1, and false at code 2.",
       "uuid": "f1973d5e-4392-5e98-b961-8dc120fb9f02"
     },
     {
@@ -74534,17 +74722,33 @@
         "dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md"
       ],
       "id": "TFQ-2524",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignOpsAxis1WellfoundedAdmission.lean::CampaignOpsAxis1WellfoundedAdmission.pred0",
+        "lean4/CampaignOpsAxis1WellfoundedAdmission.lean::CampaignOpsAxis1WellfoundedAdmission.pred1",
+        "lean4/CampaignOpsAxis1WellfoundedAdmission.lean::CampaignOpsAxis1WellfoundedAdmission.pred2",
+        "lean4/CampaignOpsAxis1WellfoundedAdmission.lean::CampaignOpsAxis1WellfoundedAdmission.adm0",
+        "lean4/CampaignOpsAxis1WellfoundedAdmission.lean::CampaignOpsAxis1WellfoundedAdmission.adm1",
+        "lean4/CampaignOpsAxis1WellfoundedAdmission.lean::CampaignOpsAxis1WellfoundedAdmission.adm2",
+        "lean4/CampaignOpsAxis1WellfoundedAdmission.lean::CampaignOpsAxis1WellfoundedAdmission.none0",
+        "lean4/CampaignOpsAxis1WellfoundedAdmission.lean::CampaignOpsAxis1WellfoundedAdmission.none1",
+        "lean4/CampaignOpsAxis1WellfoundedAdmission.lean::CampaignOpsAxis1WellfoundedAdmission.none2",
+        "lean4/CampaignOpsAxis1WellfoundedAdmission.lean::CampaignOpsAxis1WellfoundedAdmission.zb0",
+        "lean4/CampaignOpsAxis1WellfoundedAdmission.lean::CampaignOpsAxis1WellfoundedAdmission.zb1",
+        "lean4/CampaignOpsAxis1WellfoundedAdmission.lean::CampaignOpsAxis1WellfoundedAdmission.zb2",
+        "lean4/CampaignOpsAxis1WellfoundedAdmission.lean::CampaignOpsAxis1WellfoundedAdmission.zero0",
+        "lean4/CampaignOpsAxis1WellfoundedAdmission.lean::CampaignOpsAxis1WellfoundedAdmission.zero1",
+        "lean4/CampaignOpsAxis1WellfoundedAdmission.lean::CampaignOpsAxis1WellfoundedAdmission.zero2"
+      ],
       "local_id": "OPS-AXIS1-WELLFOUNDED-ADMISSION",
       "name": "Axis 1 of the regress: well-foundedness of admission",
-      "obligation": "Cited by name, not re-run. WDP-CH14 has no node in this graph; the closest node is the admission gate PGW-GO-ADMISSION-GATE, and no source relates the two.",
+      "obligation": "Cited by name, not re-run. WDP-CH14 has no node in this graph; the closest node is the admission gate PGW-GO-ADMISSION-GATE, and no source relates the two. The finite chain is a separate checked case and does not re-run collapsed_of_no_insts.",
       "parent_id": "TFQ-0481",
       "python": [],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "foc035_observer_presheaf",
       "stage": "OBSERVER_PRESHEAF",
-      "summary": "Axis 1 of WDP-CH14-T01 under the hypothesis that admission is the Genesis calculus, in which every AdmitInst depends on a previously admitted base datum: with no base instance no rule instance is admitted (the Genesis theorem collapsed_of_no_insts), so the process has nothing to certify. It says nothing about other shapes of admission. Imported by name: the theorem is Genesis's.",
+      "summary": "Finite admission chain on three candidates. Candidate 0 has no predecessor. Candidate 1 names candidate 0 as its predecessor. Candidate 2 names candidate 1 as its predecessor. For every base assignment of boolean bits, admission of candidate 0 equals the base bit at candidate 0, admission of candidate 1 equals the disjunction of the base bit at candidate 1 with admission of candidate 0, and admission of candidate 2 equals the disjunction of the base bit at candidate 2 with admission of candidate 1. The base assignment that is false at each candidate admits none of the three. The base assignment that is true at candidate 0 and false at candidate 1 and at candidate 2 admits all three. The Genesis theorem collapsed_of_no_insts stays imported by name and is not re-run. The chain says nothing about other shapes of admission.",
       "uuid": "fd3e0f3b-3431-5f25-9c16-cbbd81079da8"
     },
     {

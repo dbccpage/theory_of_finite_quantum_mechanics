@@ -11,20 +11,20 @@
 
 ## 1. Abstract & Formal Statement
 
-No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.
+On the two-point carrier, code 0 and code 1 both send 0 to 0 and 1 to 1, and code 2 sends 0 to 0 and 1 to 0. The identity-table bit is true at code 0, true at code 1, and false at code 2. The code-zero bit is true at code 0, false at code 1, and false at code 2.
 
 ### Governing Obligation
-State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.
+Rice's theorem for the programs of a Turing-complete language stays a citation. No declaration here states that no total computable procedure is sound and complete for a nontrivial extensional property. Mathlib ComputablePred.rice and rice₂ are not instantiated, and no semantic property of Nat.Partrec.Code is named. This three-code table does not decide an infinite language.
 
 ### Witness Audit
-The source lists local formalization as open; Mathlib already carries rice, rice₂ and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.
+Closed Fin equalities beh00 through beh21 depend on propext. The Bool bits id0, id1, id2, z0, z1 and z2 depend on propext, Classical.choice and Quot.sound. The literature theorem remains an imported citation.
 
 ---
 
 ## 2. Derivation Context
 
 ### Admitted Structural Imports
-- **Admitted**: `Rice theorem (Rice 1953)`
+- **Admitted**: `Rice theorem for the programs of a Turing-complete language`
 - **Admitted**: `Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂`
 
 ### See Also
@@ -35,13 +35,24 @@ The source lists local formalization as open; Mathlib already carries rice, rice
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignAuthRiceTheoremImport.lean::beh00`
+- `lean4/CampaignAuthRiceTheoremImport.lean::beh01`
+- `lean4/CampaignAuthRiceTheoremImport.lean::beh10`
+- `lean4/CampaignAuthRiceTheoremImport.lean::beh11`
+- `lean4/CampaignAuthRiceTheoremImport.lean::beh20`
+- `lean4/CampaignAuthRiceTheoremImport.lean::beh21`
+- `lean4/CampaignAuthRiceTheoremImport.lean::id0`
+- `lean4/CampaignAuthRiceTheoremImport.lean::id1`
+- `lean4/CampaignAuthRiceTheoremImport.lean::id2`
+- `lean4/CampaignAuthRiceTheoremImport.lean::z0`
+- `lean4/CampaignAuthRiceTheoremImport.lean::z1`
+- `lean4/CampaignAuthRiceTheoremImport.lean::z2`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/auth-rice-theorem-import.py::check`
 
 ### Cited by the source, not in this checkout
 - `external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)`
