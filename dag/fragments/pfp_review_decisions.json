@@ -177,26 +177,29 @@
     {
       "node_id": "DS-QM063-HOLONOMY-COHERENT-INTENSITY",
       "review": "dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/reviews/20261019_resources_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Relative Gaussian holonomy and two-path intensity are invariant under the retained common unit phases; the rational unit-phase conditional is general in Lean.",
-      "bottleneck": "Unmet after the PFP review: Prove the full graph connection/tree gauge-trivialization and matrix-valued holonomy transports; no SU(2) trace bound or higher-form result is claimed. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports common-phase invariance of two-path intensity and a rational unit-phase conditional; tree gauge-triviality and matrix-valued holonomy are not supported."
+      "scope_effect": "status_lowered",
+      "statement": "For two paths, coherent intensity equals the L1 sum plus the real part of relative loop holonomy; holonomy and intensity are invariant under vertex gauge repair; U(1) connections on a tree are gauge-trivial; intensity does not factor through L1 weights when holonomy varies. Higher-form holonomy refused; matrix-valued SU(2) trace bound is a CONJECTURE.",
+      "bottleneck": "Lean states the two-path identity |z1 + z2|^2 = |z1|^2 + |z2|^2 + 2 Re(conj(z1) z2) over Gaussian integers, invariance under the common phase i, holonomy zero for coboundaries on closed vertex paths, and a three-edge tree gauge. General U(1) phases and general trees are not in Lean.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "DS-QM064-074-083-ANNEX-REDIRECT-ROWS",
       "review": "dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/reviews/20261019_resources_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Triangle identities, retained stochastic outputs and contextual marginal residuals are recomputed exactly; generic finite rational contraction is kernel checked.",
-      "bottleneck": "Unmet after the PFP review: Supply graph-to-phase, channel-to-kernel and physical composition/causality transports. The three control families do not by packaging close the annex interpretations. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports triangle identities, stochastic outputs, marginal residuals and a generic rational contraction; the annex interpretations are not closed."
+      "scope_effect": "status_lowered",
+      "statement": "The 064, 074 and 083 annex claims (phase 1-cochain coboundary d1 d0 = 0, gauge invariance of triangle cycle holonomy, no-signaling marginal condition, and L1 contraction of stochastic Markov kernels) are mechanized in DerivationDagQMClosure.lean and NoSignalling.lean.",
+      "bottleneck": "Lean states triangle holonomy gauge invariance and L1 contraction for 2x2 column-stochastic integer kernels. General kernels and the no-signalling clause are not in the cited Lean.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "DS-QM070-PRODUCT-NONFACTORIZATION",
       "review": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/reviews/20261019_resources_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Actual marginals, normalized product reconstruction, signed residuals and Phi are checked; residual and zero-defect polynomials are general over Q in Lean.",
-      "bottleneck": "Unmet after the PFP review: Formalize arbitrary finite table reconstruction and justify any tensor/basis/quantum coherence lift; a product defect of diagonals does not test entanglement. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "The cited tensor_not_forced_open is a Boolean flag; the review supports the residual and zero-defect polynomials over Q, not arbitrary-table reconstruction."
+      "scope_effect": "status_lowered",
+      "statement": "For a finite nonnegative joint table w on A x B with W>0, the product defect Phi(w) vanishes iff w factors through its marginals. Phi is basis-relative and does not see entanglement (Bell state and the classical mixture share the (1/2,0,0,1/2) table).",
+      "bottleneck": "Lean states the 2x2 case only: a product table has determinant 0 and the identity table does not factor. The iff for general A x B is not in Lean.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS",
@@ -207,50 +210,56 @@
     {
       "node_id": "DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED",
       "review": "dag/results/DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED/reviews/20261019_resources_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact phase-reversed pure densities and their dephased mixture share populations but differ under an admitted coherent readout; scalar readout/purity differences are kernel checked.",
-      "bottleneck": "Unmet after the PFP review: Construct or admit the qubit/coherence carrier, transformations and measurement rule; no generalized Bloch-contraction conjecture is accepted. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports one phase-reversed pair against its dephased mixture under an admitted coherent readout; the Q1-Q4 price-list completeness and Bloch-contraction remarks are not supported."
+      "scope_effect": "status_lowered",
+      "statement": "The bit shadow is derived (P7-C1..C4) but the qubit and superposition are obstructed: the Q1-Q4 import price list names what must be added; completeness of that list is only an interpretive reading (P7-C7, fenced). The generalized Bloch-contraction statement (P7-C10) is a CONJECTURE and the ledger records a computation refuting a sharpened form.",
+      "bottleneck": "The obstruction is a record of what must be imported, not a theorem. The cited Lean consists of integer identities for fixed 2x2 matrices.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "OPEN"
     },
     {
       "node_id": "DS-QM073-BELL-THEOREM-OBSTRUCTED",
       "review": "dag/results/DS-QM073-BELL-THEOREM-OBSTRUCTED/reviews/20261019_resources_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Actual contextual arrays and all marginal residuals are computed; 4v readout and the v=1 algebraic countermodel are kernel checked.",
-      "bottleneck": "Unmet after the PFP review: Admit or derive the global-joint, quantum operator/tensor, measurement and source assumptions separately before claiming a Bell/quantum/Tsirelson derivation. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review computes contextual arrays and marginal residuals and checks the 4v readout and v=1 countermodel; the clause-by-clause obstruction of the Bell theorem is not supported."
+      "scope_effect": "status_lowered",
+      "statement": "Bell theorem is obstructed clause by clause with three named admissions; no derivation of quantum violation or of the Tsirelson bound from the finite tables.",
+      "bottleneck": "A record of three admissions, not a theorem. The cited Lean has finite CHSH identities and a Boolean conjunction.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "OPEN"
     },
     {
       "node_id": "DS-QM073-FINITE-CHSH-AND-PR-BOX",
       "review": "dag/results/DS-QM073-FINITE-CHSH-AND-PR-BOX/reviews/20261019_resources_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Every deterministic row, weighted correlation and PR entry is exact; deterministic CHSH and generic convex absolute bound are kernel checked.",
-      "bottleneck": "Unmet after the PFP review: Formalize the concrete table-to-general convex theorem transport and any full Fine converse or quantum realization. Product/separable for a bare classical table has a different meaning from quantum separability. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports deterministic CHSH rows and a generic convex absolute bound; bare-table separability and a table-to-convex transport are not supported."
+      "scope_effect": "status_lowered",
+      "statement": "Bare joint tables are always separable (P8-C3); under a single global joint table the finite CHSH bound is 2; the PR box reaches 4 and has no joint table. The load-bearing hypothesis is the existence of one global joint table. Tsirelson ceiling is not derived (P8-C8 OPEN).",
+      "bottleneck": "Lean checks that every deterministic +/-1 assignment has CHSH value of square 4 and the PR-box value 4. The bound 2 for a single joint table follows by convexity, which is not in Lean; separability of bare tables is a native check.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "DS-QM074-NO-SIGNALING-MARGINAL",
       "review": "dag/results/DS-QM074-NO-SIGNALING-MARGINAL/reviews/20261019_resources_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact contextual marginals distinguish nonsignaling correlated tables from the signaling control; scalar PR-family marginal and nonproduct controls are kernel checked.",
-      "bottleneck": "Unmet after the PFP review: Prove full admitted-composition/channel-to-table transport and justify physical subsystem/setting independence; no causality law is derived. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Cited no_signalling_under_admitted_composition is about density matrices, not probability tables; the review supports contextual marginals and scalar PR-family controls."
+      "scope_effect": "status_lowered",
+      "statement": "In a bipartite joint distribution rho(a,b|x,y), the no-signaling marginal condition holds under an admitted composition rule, and local marginals do not force product factorization. The statement is about admitted tables, not about relativistic causality (that is Q-held).",
+      "bottleneck": "Lean states the two-qubit case: under an admitted tensor composition, a unitary on Alice's factor leaves the partial trace over A unchanged (no_signalling_under_admitted_composition). General finite bipartite carriers are not in Lean.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION",
       "review": "dag/results/DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION/reviews/20261019_resources_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact diagonal half-trace/total-variation identity is kernel checked; rescaling controls retain normalization ambiguity.",
-      "bottleneck": "Unmet after the PFP review: Supply spectral/matrix interface, unitary invariance, CPTP compatibility, edge additivity and the actual uniqueness proof before promoting to full quantum half trace norm. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Only the diagonal half-trace/total-variation identity is kernel checked; the selection theorem under four imports has no Lean statement."
+      "scope_effect": "status_lowered",
+      "statement": "The half trace norm is the distinguishability metric under four imports: quantum interface M_n(C), trace-distance axioms (unitary invariance, classical total-variation reduction, homogeneity), CPTP compatibility and edge additivity. Does not survive removal of those imports.",
+      "bottleneck": "Not in Lean. The cited Lean is integer arithmetic and the 2x2 pinching inequality.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "OPEN"
     },
     {
       "node_id": "DS-QM080-IMPORT-FREE-TRACE-NORM-CORE",
       "review": "dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/reviews/20261019_resources_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Two-coordinate quotient shift invariance, dual upper bound and existence of a bounded attaining rational witness are kernel checked with exact controls.",
-      "bottleneck": "Unmet after the PFP review: Prove arbitrary finite-dimensional normed-space duality and the matrix/spectral lift separately. This coordinate result is not the original general theorem. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Cited Eig2 theorems cover two coordinates; the review states this is not the general finite-dimensional normed-space theorem."
+      "scope_effect": "status_lowered",
+      "statement": "Quotient invariance of the trace-distance defect (Thm 4), finite convex duality (Thm 5) and existence of bounded dual witnesses (Thm 6) hold over any finite-dimensional normed space; identifying the dual with the trace-zero ball and the matrix lift need the spectral theorem (imported).",
+      "bottleneck": "Lean states the two-coordinate case of the duality and a discrete dual-witness bound. Theorems 4 to 6 for an arbitrary finite-dimensional normed space are not in Lean.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "DS-QM081-CPTP-MONOTONE-NOT-SELECTING",
@@ -267,10 +276,11 @@
     {
       "node_id": "DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL",
       "review": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/reviews/20261019_resources_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact Kraus completeness, channel outputs, stochastic kernel and same-diagonal distinct-output controls are retained; scalar Cayley and population conservation are kernel checked.",
-      "bottleneck": "Unmet after the PFP review: Formalize all matrix/Kraus/tensor positivity transports and physical channel admission. Basis-relative stochastic shadows do not select a unique quantum channel. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports retained Kraus and kernel outputs, same-diagonal distinct-output controls and scalar population conservation; the general Kraus-to-kernel transport is not formalized."
+      "scope_effect": "status_lowered",
+      "statement": "A stochastic kernel preserves states and composes; a CPTP map with Kraus operators induces a column-stochastic population shadow after a basis choice and diagonal read. The induced kernel is basis-relative and the diagonal shadow does not fix the full channel.",
+      "bottleneck": "Lean exhibits two channels with the same diagonal shadow (diagonal_shadow_does_not_fix_channel), which settles the last clause. That a Kraus channel induces a column-stochastic shadow is a native check, not Lean.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "DS-QM090-092-AUTHORITY-FIREWALL",
@@ -290,18 +300,20 @@
     {
       "node_id": "DS-QM090-093-QM-UNIQUENESS-TIER3",
       "review": "dag/results/DS-QM090-093-QM-UNIQUENESS-TIER3/reviews/20261019_boundaries_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Actual context tables, global-assignment exclusion and spectator marginal recovery are exact; the odd-cycle and rational recovery statements are kernel checked.",
-      "bottleneck": "Unmet after the PFP review: Give the full theory/equivalence notion and exclude competing packet theories before Tier-3 complex-Hilbert uniqueness. No ontology or arbitrary non-QM theory classification is asserted. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Statement says Tier-3 uniqueness is open yet carries PROVED_LEAN; the review supports odd-cycle global-assignment exclusion and spectator marginal recovery only."
+      "scope_effect": "status_lowered",
+      "statement": "That contextual obstruction plus the five conditions (finite contexts, overlap, no global repair, probabilistic pairing, no-signalling) uniquely select complex Hilbert QM is open; non-QM contextual packet theories are not excluded. Tier-4 ontological derivation is refused.",
+      "bottleneck": "The node records an open question. The cited Lean is integer arithmetic and Boolean conjunctions.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "OPEN"
     },
     {
       "node_id": "DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO",
       "review": "dag/results/DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO/reviews/20261019_boundaries_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Full conjugated arrays, composition control and trace-pairing/coboundary identities are checked exactly with a general rational conditional kernel identity.",
-      "bottleneck": "Unmet after the PFP review: Formalize the array-to-matrix interpretation, full complex unitary packet and contextual gluing/physical readout. Gauge invariance alone is not selection. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports conjugated arrays, trace-pairing and coboundary identities and a rational conditional kernel identity; the complex unitary packet and contextual gluing are not supported."
+      "scope_effect": "status_lowered",
+      "statement": "For M_2 packets, trace cyclicity gives d1_Q d0_Q = 0 (Born/trace invariance under exact unitary gauge); Born is a defect face at C^2, invariance not selection; classical gluing fails for contextual observables (Phi_Q>0). Packet-specific.",
+      "bottleneck": "Lean states only the scalar telescoping identity (fj - fi) + (fk - fj) - (fk - fi) = 0. The M_2 trace-cyclicity statement is checked natively on fixed matrices.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "DS-QM093-SURVIVAL-THEOREM",
@@ -315,26 +327,29 @@
     {
       "node_id": "DS-QM094-EVERETT-RELATIVE-STATE-CONTACT",
       "review": "dag/results/DS-QM094-EVERETT-RELATIVE-STATE-CONTACT/reviews/20261019_boundaries_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Actual relative-state density, partial trace and expectation controls are exact; the scalar orthogonality and absolute-bound identities are kernel checked.",
-      "bottleneck": "Unmet after the PFP review: Prove the full tensor/partial-trace coordinate bridge and justify a physical record basis/probability rule. No branch selection or many-worlds ontology follows. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports retained relative-state densities and scalar orthogonality bounds; the tensor/partial-trace coordinate bridge and branch selection are not supported."
+      "scope_effect": "status_lowered",
+      "statement": "Under an imported finite Hilbert/tensor/partial-trace package, orthogonal records make the reduced state diagonal; Phi_off bounds expectation differences; equal local L1 shadows can hide distinguishable coherent states. Holonomy alone selecting a branch basis is NoRule; relative-state representation does not entail many-worlds ontology (refused); Everettian probability from branch weights is an open obstruction.",
+      "bottleneck": "Checked on fixed exact matrices natively. The cited Lean has scalar identities only; the reduced-state statement is not in Lean.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE",
       "review": "dag/results/DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE/reviews/20261019_boundaries_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact finite backlog trajectories and declared gate controls are checked; lambda<=mu implies non-increasing natural backlog in Lean.",
-      "bottleneck": "Unmet after the PFP review: Supply actual workload/noise/overhead assumptions, scaled repair rates and a p_pair convergence argument or the correctly cited threshold theorem. This toy queue is not a threshold theorem. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports finite backlog trajectories and lambda <= mu implies non-increasing backlog; it states the toy queue is not a threshold theorem."
+      "scope_effect": "status_lowered",
+      "statement": "If declared threshold hypotheses hold at the target workload and p_pair -> 0, the projection-obstruction conditional no-go does not follow. The threshold theorem itself is cited as standard, not re-proved. The rate inequality mu_repair >= lambda_proj at scale is open; physical scalability is not claimed.",
+      "bottleneck": "A conditional record citing the standard threshold theorem. The cited Lean evaluates a declared Boolean certificate; the rate inequality at scale is open.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "OPEN"
     },
     {
       "node_id": "DS-QM102-SYNDROME-CAPACITY-BOUND",
       "review": "dag/results/DS-QM102-SYNDROME-CAPACITY-BOUND/reviews/20261019_boundaries_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Complete retained repetition-code error tables and zero-syndrome logical controls are exact; the distance arithmetic and three-bit correction statement are kernel checked.",
-      "bottleneck": "Unmet after the PFP review: Prove the arbitrary code/homology distance and decoder transport under the actual error model. A guaranteed-correctable lower bound is not a general upper-bound theorem. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports retained repetition-code tables and a three-bit correction statement; arbitrary code and homology distance are not supported (needs [[5,1,3]]/[[7,1,3]] style follow-up)."
+      "scope_effect": "status_lowered",
+      "statement": "An error syndrome is a coboundary defect s = delta^1 e and the guaranteed-correctable weight is t = floor((d-1)/2) via cochain homology distance. The proof supports the lower bound direction only; an upper-bound reading would be a different statement. Local syndrome zeroing does not prevent logical errors (C3).",
+      "bottleneck": "Checked exhaustively for the three-bit repetition code. The general bound t = floor((d - 1)/2) is not in Lean.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "DS-QM103-SHOW-THE-PACKET-PROTOCOL",
@@ -345,18 +360,19 @@
     {
       "node_id": "DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS",
       "review": "dag/results/DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS/reviews/20261019_boundaries_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Q8 group operations, pure-gauge loops and noncommuting plaquette controls are native/kernel checked on the declared eight-element group.",
-      "bottleneck": "Unmet after the PFP review: Supply continuum manifold/metric/connection, SU(2) representations, measure, physical scales and Hamiltonian/Einstein dynamics before any quantum-gravity interpretation. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports Q8 group operations, pure-gauge loops and noncommuting plaquettes; the Bianchi-shaped and geodesic-refusal items are not separately supported."
+      "scope_effect": "status_lowered",
+      "statement": "On toy carriers: pure-gauge connections have trivial loop holonomy, Q8 plaquette gives a nonzero Wilson loop, Bianchi-shaped d1 d0 = 0, transport composes, an incomplete geodesic is a refusal. Imported: continuum connection and measure, SU(2) representation theory, spin-network Hilbert space, manifold, metric, Levi-Civita, Einstein tensor. Hamiltonian constraint and the Einstein equation are Q-held / open. Q8 is a shadow, not SU(2).",
+      "bottleneck": "Checked on the declared Q8 carrier natively. The cited Lean has spin admissibility for two triples and 360 - 6*60 = 0.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "DS-QM120-MERMIN-PERES-F2-OBSTRUCTION",
       "review": "dag/results/DS-QM120-MERMIN-PERES-F2-OBSTRUCTION/reviews/20261019_boundaries_audit/review_result.json",
       "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Actual subset solution counts and five-context witnesses are exact; global signed-parity obstruction and each explicit dropped-context witness are kernel checked.",
-      "bottleneck": "Unmet after the PFP review: Transport the enumeration to a fully formal incidence/cochain object and any physical observable realization. This finite parity packet does not derive Hilbert space or quantum mechanics. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Cited mermin_peres_parity_obstruction and the F2 no-global-section theorem back the parity obstruction; the incidence/cochain formulation is not a formal object (needs a formal F2 cochain)."
+      "statement": "The six signed parity contexts of the Mermin-Peres square have no global assignment: for every assignment of the nine entries in F2, the row parities and column parities cannot equal the declared values 0, 0, 0, 0, 0, 1, because the sum of the row parities equals the sum of the column parities.",
+      "bottleneck": "In Lean: no assignment in F2 satisfies the six parity constraints (ds_qm120_mermin_peres_f2_no_global_section, mermin_peres_parity_obstruction). Satisfiability of each single context and each five-context subset is a native check and is not part of this statement. It derives neither QM nor Hilbert space.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The statement is the exact content of the cited Lean."
     },
     {
       "node_id": "DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY",
@@ -409,10 +425,11 @@
     {
       "node_id": "FQ-BELL-RATIONAL-VIOLATION-14-5",
       "review": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/reviews/20261019_next_ten_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Five literal kernel anchors for the fixed admitted quantum matrices and arbitrary Nat-weighted assignment obstruction, plus three independently checked exact native cases and actual mutation rejections.",
-      "bottleneck": "Unmet after the PFP review: Deriving Born/tensor structure, physical locality/setting independence, a complete formal arbitrary-rational-table transport theorem, or general probability-subtype operad coherence. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports five kernel anchors for the fixed matrices and the Nat-weighted assignment obstruction; the absence of any positive common joint law for arbitrary rational tables is not formalized."
+      "scope_effect": "status_lowered",
+      "statement": "A rational density matrix with (3,4,5)-triangle observables has S_CHSH = 14/5 > 2 while the four pair distributions have full support and admit no positive common joint law (full-support Bell tables require positivity, not support alone).",
+      "bottleneck": "Lean checks the scaled value 5 S = 14 and that no deterministic mixture with integer weights summing to 25 reaches the quantum value. A joint law with arbitrary rational weights, and the full-support claim, are native checks, not Lean.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "FQ-BORN-NORMALIZATION-REDUNDANCY",
@@ -423,10 +440,11 @@
     {
       "node_id": "FQ-BUSCH-EFFECT-FRAME",
       "review": "dag/results/FQ-BUSCH-EFFECT-FRAME/reviews/20261019_boundaries_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact six-effect readouts and reconstruction, plus a finite-probe-versus-PSD counterexample, are native/kernel checked at the stated scalar/coordinate scopes.",
-      "bottleneck": "Unmet after the PFP review: Prove full effect positivity, matrix/trace transport, arbitrary Busch hypotheses and the separate real-place/Galois/SOS claims. Finite informational completeness alone is not full positivity or Born uniqueness. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports six-effect readouts and a finite-probe versus PSD counterexample; the Galois/SOS claim and full effect positivity are not supported."
+      "scope_effect": "status_lowered",
+      "statement": "At declared real places, an informationally-complete POVM family and a polyhedral frame cone are distinguished (busch_ic_povm_vs_polyhedral_frame_cone); Galois-conjugate negativity versus SOS total positivity is witnessed (galois_conjugate_negativity_vs_sos_total_positivity). Busch-type effect hypotheses are explicit.",
+      "bottleneck": "Lean evaluates fixed rational traces, determinants, Bloch sums and minors for the declared effects and frame cone. No general Busch-type theorem is stated.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "FQ-CABELLO-FRAME-POLYTOPE-146",
@@ -459,9 +477,9 @@
       "node_id": "FQ-CONTEXTUALITY-CECH-F2",
       "review": "dag/results/FQ-CONTEXTUALITY-CECH-F2/reviews/20261019_next_ten_audit/review_result.json",
       "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Two explicit degree-two parity covers and a genuine global-section control, exact matrices/ranks and literal source kernel parity/differential signatures.",
-      "bottleneck": "Unmet after the PFP review: Conflation of incidence rank with overlap rank, general sheaf equivalence, a kernel proof of the native rank outputs, or physical reconstruction. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Differential and parity theorems are in Lean; the rank-8 and rank-17 values and H1 dimension are native outputs without a kernel proof."
+      "statement": "Over F2 the cochain complex of a finite measurement scenario satisfies d1 d0 = 0. The Cabello scenario X1 has no global section. No +/-1 assignment of the Mermin-Peres square has all row products +1 and column products +1, +1, -1.",
+      "bottleneck": "In Lean: d1 d0 = 0 for every finite scenario (differential_squares_to_zero), no global section for the Cabello scenario X1 (x1_has_no_global_section), and the Mermin-Peres parity contradiction (mermin_peres_parity_obstruction). The Peres-Mermin incidence rank 8 is a native exact computation and is not part of this statement.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The statement is the exact content of the cited Lean."
     },
     {
       "node_id": "FQ-CPTP-CLASS-DEFINITION",
@@ -478,18 +496,20 @@
     {
       "node_id": "FQ-DISCRETE-DYNAMICS-DICHOTOMY",
       "review": "dag/results/FQ-DISCRETE-DYNAMICS-DICHOTOMY/reviews/20261019_dynamics_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: An all-natural-index integer numerator is nonzero in Lean; actual normalized retained powers have unit mass and never equal identity, unlike periodic controls.",
-      "bottleneck": "Unmet after the PFP review: Prove the recurrence-to-normalized-matrix bridge for all powers, then formulate any closure/topology or generator selection claim. No full dynamics dichotomy is inferred. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Cited pythagorean_rotation_order_infinite is an integer-numerator fact; the recurrence-to-matrix bridge for all powers is open (needs a recurrence-to-matrix bridge)."
+      "scope_effect": "status_lowered",
+      "statement": "For a declared finite unitary step, finite order is decided by cyclotomic characteristic factors with replay; the Lean example is the Pythagorean rotation (3/5,4/5), whose powers never return to the identity (pythagorean_rotation_order_infinite). Two bookkeeping theorems (periodic_sector_requires_declaration, aperiodic_sector_closure_no_declaration) hold by rfl on declared price constants and carry no independent mathematical content.",
+      "bottleneck": "Lean states that no power of the Pythagorean rotation (3/5, 4/5) is the identity (pythagorean_rotation_order_infinite). The cyclotomic decision procedure for a general declared step is a native replay. periodic_sector_requires_declaration evaluates a declared constant.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "FQ-DISCRETE-TIME-STONE-AMBIGUITY",
       "review": "dag/results/FQ-DISCRETE-TIME-STONE-AMBIGUITY/reviews/20261019_dynamics_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: The report-map obstruction and two distinct scaled Gaussian roots are kernel checked; native enumeration and normalized unitarity are replayed.",
-      "bottleneck": "Unmet after the PFP review: Construct logarithms, an actual continuous one-parameter group, topology and a generator selection rule. Tags do not supply analytic branches. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review kernel-checks the report-map obstruction and two scaled Gaussian roots; matrix-logarithm branch ambiguity and dense-orbit remarks are not supported."
+      "scope_effect": "status_lowered",
+      "statement": "The two-state toggle has no report-level square root (no_bool_half_step); complex interpolants are not unique because of matrix-logarithm branches (interpolant_not_unique, branch_ambiguity_distinct, stone_discrete_generator_ambiguity); dense-orbit closure already uses an ambient topology and selects no one-parameter interpolation.",
+      "bottleneck": "Lean states that the Boolean toggle has no square root as a map Bool -> Bool (no_bool_half_step). The non-uniqueness of complex interpolants rests on two explicit Gaussian matrices checked natively; the cited branch theorems distinguish labels only.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "FQ-ENTROPY-DICHOTOMY-BAKER",
@@ -500,10 +520,11 @@
     {
       "node_id": "FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY",
       "review": "dag/results/FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY/reviews/20261019_dynamics_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: general rational-pair fine graining and full rational-root exclusion are kernel checked; retained multi-outcome multiplicities and quadratic-field root coefficients are exact.",
-      "bottleneck": "Unmet after the PFP review: Prove arbitrary finite-vector fine-graining transport and that the declared quadratic-field coefficients realize the intended physical readout. Counting is an admitted interpretation. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Cited theorems cover rational pairs and one quadratic witness; the iff for arbitrary finite weight vectors is not transported."
+      "scope_effect": "status_lowered",
+      "statement": "Equal-weight branch counting in a forking tree reproduces Born weights iff all weights are rational. For Born weights in Q(zeta_n)^+ minus Q (witness conductor 5, weights (5 +- sqrt5)/10) no finite integer fine-graining N = sum m_j gives m_j/N = w_j (witness polynomial 5x^2-5x+1 has no rational root).",
+      "bottleneck": "Lean states the two-outcome case: rational weights p0/D, p1/D have an equal-weight fine-graining. For the witness polynomial 5x^2 - 5x + 1 Lean checks the rational-root candidates; the multi-outcome iff is not in Lean.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "FQ-FIVE-IMPORT-PROXY-SEPARATION",
@@ -634,18 +655,20 @@
     {
       "node_id": "FQ-IMPL-REALIFICATION-ADAPTER",
       "review": "dag/results/FQ-IMPL-REALIFICATION-ADAPTER/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Actual scalar realification products, multiplication quotient, balancing kernel and normalization factor are exact; literal algebraic product/balancing identities are kernel checked.",
-      "bottleneck": "Unmet after the PFP review: Prove the full operator/density adapter, balanced tensor metric and positivity/admission transport for arbitrary finite matrices. No derivation or selection of the complex structure is supplied. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports scalar realification products, the balancing kernel and normalization factor; the operator and density adapter for arbitrary matrices is not proved."
+      "scope_effect": "status_lowered",
+      "statement": "A declared finite complex realization over Q(i) is mapped to its balanced real tensor (realify operator/density, product operator/density), in both omega_wdp (Genesis side) and omega_quantum_physics (quantum owner). State admission stays with the quantum owner and balancing with the math owner; this is the Rust site where a Genesis result meets a declared complex structure, and the code states it chooses none.",
+      "bottleneck": "The claims describe Rust code and are backed by its native exact tests. The cited Lean is integer arithmetic and does not state the claims.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "FQ-IMPL-WDP-AMPLITUDE-BRIDGE",
       "review": "dag/results/FQ-IMPL-WDP-AMPLITUDE-BRIDGE/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact bounded phase/holonomy/readout controls and a general positive-power mod5 residue induction are retained with literal gauge/norm kernel identities.",
-      "bottleneck": "Unmet after the PFP review: Formalize the Gaussian numerator/denominator transport and the rational-additive-group obstruction to a homomorphism sending1 to this u. Do not infer a preferred readout or a general phase-selection theorem. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports bounded phase/holonomy/readout controls and a mod-5 residue induction; the rational-additive-group homomorphism obstruction is not formalized."
+      "scope_effect": "status_lowered",
+      "statement": "omega_wdp amplitude_bridge.rs is the only artifact for WDP-CH19-P11/P12: with unit phase u=(3+4i)/5, integer edge cochains give transports u^{a_e}; adding a coboundary conjugates transports and leaves cycle holonomy unchanged; both readouts N(z1+z2) and N(z1+z2)^2 are common-phase invariant and left free; no homomorphism (Q,+) -> U(1)(Q(i)) sends 1 to u, and u^n != 1 for every n >= 1 (certified via (3+4i)^n mod 5).",
+      "bottleneck": "The claims are about a Rust artifact and are backed by its native exact tests. The cited Lean is integer arithmetic (3^2 + 4^2 = 5^2 and similar) and does not state the claims.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "FQ-INTERFERENCE-NONDESCENT",
@@ -656,10 +679,11 @@
     {
       "node_id": "FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED",
       "review": "dag/results/FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED/reviews/20261019_scope_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact integer population descent iff every row is sparse is rechecked generally. The all-ones zero-cancellation control is explicit; native cross-term differences are 4abxy and 4cdxy.",
-      "bottleneck": "Unmet after the PFP review: Prove the advertised normalized/projective characterization, with its exact carrier and retained-zero convention, separately; do not promote the stronger-looking target wording from the integer theorem. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Only the integer population statement is rechecked in general; the normalized/projective characterization with retained zero is not proved (needs the normalized/projective PHASE-BLIND follow-up)."
+      "scope_effect": "status_lowered",
+      "statement": "A matrix A descends through the phase-blind population report iff every row has at most one nonzero entry, provided the quotient retains the zero vector as a distinct output; without the retained zero point the claim is false on projective space (A = [[1,1],[1,1]]).",
+      "bottleneck": "Lean states the 2x2 integer case (descent_compatible_iff_row_sparse). The n x n statement is not in Lean; the all-ones counterexample on projective space is a native check.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "FQ-PHASE-FIBER-QUOTIENT",
@@ -677,10 +701,11 @@
     {
       "node_id": "FQ-POWER-RULE-P2-SELECTION",
       "review": "dag/results/FQ-POWER-RULE-P2-SELECTION/reviews/20261019_structure_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: The real power equation (3/5)^p+(4/5)^p=1 iff p=2 is kernel checked. Integer p=1..8 reproduce actual shared-ray context weights; mixed-sign p=1 supplies a retained counterexample to unrestricted Sorkin vanishing.",
-      "bottleneck": "Unmet after the PFP review: The power-law family, real exponentiation and the real orthonormal contexts are admitted; formal transport of the concrete context normalization to the Real.rpow equation remains a separate bridge. No unrestricted readout uniqueness or Gleason theorem follows. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "The real power equation is kernel checked; transport of the concrete context normalization to Real.rpow is a separate bridge, and the node had no Lean artifact found at extraction."
+      "scope_effect": "status_lowered",
+      "statement": "Within the declared positive-power family P_p(i) = |c_i|^p / sum_j |c_j|^p on two rational orthonormal contexts sharing a ray (psi = (1,1,0), (3,4,5) rotation), context-independence holds iff (3/5)^p + (4/5)^p = 1, whose unique positive solution is p = 2. Classifies the power family; not a Gleason theorem. Sorkin I3 does not select p (vanishes at p=1 and p=2).",
+      "bottleneck": "The real equation (3/5)^p + (4/5)^p = 1 iff p = 2 is stated in lean4/PromptStructure.lean (power_real_unique). The step that context-independence on the declared pair of contexts is equivalent to this equation is checked natively for integer p = 1..8, not in Lean.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "FQ-PRIM-TO-QM-SELECTION-OPEN",
@@ -698,34 +723,37 @@
     {
       "node_id": "FQ-QM207-231-FINITE-MAP-CONTROLS",
       "review": "dag/results/FQ-QM207-231-FINITE-MAP-CONTROLS/reviews/20261019_boundaries_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: The selected rational energy polynomial, exact minimizer and virial identity are kernel/native checked for all rational z where stated.",
-      "bottleneck": "Unmet after the PFP review: Derive the variational functional from the actual Hamiltonian/ansatz and audit the remaining finite-map rows and their residual imports. No batch closure of all25 controls, QED/QCD/gravity or physical spectrum is claimed. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review examined one of the 25 controls (the helium variational polynomial, minimizer and virial identity); the other 24 are not covered by this review."
+      "scope_effect": "status_lowered",
+      "statement": "Twenty-five finite-map controls QM-207..QM-231 (phase fiber, readout, context parity, frame function, clock tower, Symanzik/BPHZ, Dirac Ward-Takahashi, vacuum polarization, Kravchuk/hydrogen, Page-Wootters/Tsirelson/Wigner, electroweak, QCD beta0, Regge, Conf_2 spin-statistics, Dirac-Coulomb/helium, tree-level QED, PPN, GHZ/Mermin, Chern parity) each compute an exact finite invariant over Q or Q(zeta_N) and name the completion step and residual import in its own row. They are on main (PR #1132 merged, 5c6706eba; QM-226..231 added by bfa800fe2, 3c3042143, 0c3532f3b). Each row lists what is NOT derived (e.g. non-triviality of tau, second measurement context, Gleason positivity closure, Stone strong continuity, Feynman-parameter measure, UV subtraction).",
+      "bottleneck": "The 25 controls are exact native computations. Lean restates three of them (a helium variational identity, a Conf_2 character count, one Klein-Nishina ratio).",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "FQ-SORKIN-READOUT-CLASS-QM208",
       "review": "dag/results/FQ-SORKIN-READOUT-CLASS-QM208/reviews/20261019_structure_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: general I3(alpha*t²+beta*t⁴)=12*beta*abc(a+b+c), hence general vanishing iff beta=0. Exact Q(zeta12) control norms (7,±4) give R_AB invariance iff B=0; no full positivity-cone classification is inferred.",
-      "bottleneck": "Unmet after the PFP review: Formalize the embedding-weight/basis-coordinate conversion and full rational readout positivity cone. Polynomial restriction and amplitude addition are admitted, and this is not a classification of all readouts. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports the general I3 formula and the Q(zeta12) control norms; the full positivity-cone classification and Galois selection of alpha = beta are not inferred."
+      "scope_effect": "status_lowered",
+      "statement": "Inside the phase-blind family alpha|c|^2 + beta|c|^4, third-order Sorkin I3 vanishes identically iff beta = 0; over Z[zeta_12] the I3 = 0 rational readout cone R_{A,B} is classified and Galois-invariance selects equal embedding weights alpha = beta. Does not hold outside the polynomial family.",
+      "bottleneck": "Lean checks rational identities for the declared Z[zeta_12] readout family R_{A,B} (vanishing iff B = 0 on the two test vectors) and fixed positive minors. The full classification of the I3 = 0 cone and the Galois selection alpha = beta are not in Lean.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "FQ-TENSOR-LU-RIVAL-EXCLUSION",
       "review": "dag/results/FQ-TENSOR-LU-RIVAL-EXCLUSION/reviews/20261019_boundaries_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact tensor/right-Z and dump/right-Z arrays plus the genuine report-action non-descent witness are native/kernel checked.",
-      "bottleneck": "Unmet after the PFP review: Transport to the original abstract bilinear Kronecker interface, full local-unitary group and physical tensor/basis/inner-product admission. The rival counterexample alone does not derive the tensor product. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports the Bool x Bool arrays and a report-action non-descent witness; transport to the abstract bilinear Kronecker interface and the full local-unitary group is open."
+      "scope_effect": "caveat_added",
+      "statement": "On Bool x Bool a bilinear, integer-homogeneous, Kronecker-normalized combining rule equals the pointwise product (bilinear_product_unique_on_bool_prod); the weaker interface has a dump-the-right-report rival u boxtimes v = (<0|v>+<1|v>) u, which fails local-unitary covariance (rival_fails_local_unitary_covariance).",
+      "bottleneck": "Stated in H014BilinearProduct.lean, H014Interface.lean and H062CompositionTensorMub.lean. The setting is two Boolean factors; larger factor sets are not covered.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored."
     },
     {
       "node_id": "FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY",
       "review": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/reviews/20261019_structure_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact squared trace norms for the stated 2x2 trace-zero Hermitian family contract under the admitted diagonal pinching; the scalar inequality and positive rescaling implication are kernel checked.",
-      "bottleneck": "Unmet after the PFP review: Prove the norm-family uniqueness theorem over all dimensions and the full CPTP class. Diagonal pinching and a scale family are necessary controls, not that theorem. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "No Lean statement of the uniqueness-up-to-scale theorem exists; the review supports a 2x2 trace-zero family under diagonal pinching and a scalar rescaling implication."
+      "scope_effect": "status_lowered",
+      "statement": "If norms N_n on Herm_0(n,C) satisfy N_m(Phi(X)) <= N_n(X) for every CPTP map Phi : M_n(C) -> M_m(C), then there is one c > 0 with N_n = c ||.||_1 on every nonzero space. Holds on the full stated channel and matrix domain; not a selection of that domain from primitive difference.",
+      "bottleneck": "Not in Lean. The cited Lean states a duality equality for a 2x2 eigenvalue pair and that diagonal pinching does not increase -det on 2x2 trace-zero integer matrices. The characterization of CPTP-monotone norms on Herm_0(n, C) is a cited result, not derived here.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "OPEN"
     },
     {
       "node_id": "FQ-TRACE-ZERO-DUALITY-K23",
@@ -739,26 +767,28 @@
     {
       "node_id": "FQ-TSIRELSON-SOS-Q-SQRT2",
       "review": "dag/results/FQ-TSIRELSON-SOS-Q-SQRT2/reviews/20261019_structure_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Two exact Q(sqrt2) SOS matrix certificates and Bell-density expectation2sqrt2 are reproduced independently. general rational four-coordinate scaled SOS inequalities and attainment ratio are kernel checked for this fixed operator.",
-      "bottleneck": "Unmet after the PFP review: Formalize the concrete Q(sqrt2)-matrix to real quadratic-form transport before claiming a full Lean operator certificate; arbitrary observables, tensor selection and quantum probability are not derived. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Cited q2_tsirelson_attainment is an existential over Z[sqrt2] vectors; the review kernel-checks scaled four-coordinate SOS inequalities and native Q(sqrt2) SOS matrices (needs Q(sqrt2) to real SOS)."
+      "scope_effect": "status_lowered",
+      "statement": "On the declared bipartite carrier with A0=Z, A1=X, B0=(Z+X)/sqrt2, B1=(Z-X)/sqrt2 and |Phi+>, the CHSH operator satisfies two exact SOS inequalities and attains 2sqrt2; the witness lives in the real field Q(sqrt2) and is static, so complex U(1) phase and continuous time are not needed. Lean: unit-norm-squared-4 vectors over Z[sqrt2] with scaled CHSH sum 8.",
+      "bottleneck": "Lean exhibits four vectors over Z[sqrt2] with squared norm 4 whose scaled CHSH sum is 8 sqrt2 (q2_tsirelson_attainment). The two SOS operator inequalities are native exact checks, not Lean.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "FQ-U1-TRANSPORT-N-TORSION",
       "review": "dag/results/FQ-U1-TRANSPORT-N-TORSION/reviews/20261019_boundaries_audit/review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Actual finite graph gauge normal forms, relative path phase and N² orbit-invariant counts are exact; cycle identities over ZMod n and pair-cardinality arithmetic are kernel checked.",
-      "bottleneck": "Unmet after the PFP review: Prove full graph gauge-orbit classification and the cyclotomic mu_N embedding/order hypotheses for arbitrary graphs/N; no continuous circle or topological connectedness is derived. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports finite graph gauge normal forms and N^2 orbit counts; full graph gauge-orbit classification and the mu_N embedding for arbitrary graphs are not proved."
+      "scope_effect": "status_lowered",
+      "statement": "N-torsion edge 1-cochain tau with values in mu_N in Q(zeta_N)^x: gauge classes Hom(H_1(G,Z), mu_N) have size N^{beta_1(G)}; relative report phase equals path holonomy tau(p1)tau(p2)^-1. Sign group {+1,-1} fails connectedness under \"not exponent two\"; Gaussian units and three-cycle meet it.",
+      "bottleneck": "Lean states gauge invariance of a triangle holonomy modulo N and small modular facts. The count N^beta_1(G) of gauge classes and the holonomy identity on general graphs are native exact checks on declared graphs, not Lean.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY",
       "review": "dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
       "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact d=3 Weyl basis reconstruction and commutator controls, plus the generic conditional scalar-commutant theorem and literal cubic-root algebra.",
-      "bottleneck": "Unmet after the PFP review: Transport the array model to field/matrix semantics and prove representation irreducibility for all admitted odd primes. Primitive-root existence, seed selection and infinite-dimensional results are not derived. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports d = 3 Weyl reconstruction and the generic conditional scalar-commutant theorem; irreducibility for all odd primes needs Weyl field semantics."
+      "statement": "For every n >= 1 and every field K, an (n+1) x (n+1) matrix that commutes with a diagonal clock matrix with distinct eigenvalues and with the cyclic shift is scalar. In particular, for odd prime d the clock and shift matrices over Q(zeta_d) have scalar commutant.",
+      "bottleneck": "Stated in WeylCommutant.lean (clock_shift_commutant_scalar). Irreducibility of the Schrodinger representation follows by Schur's lemma, and the Weyl commutator X^a Z^b X^-a Z^-b = omega^(-ab) I is a separate computation; neither is a cited Lean declaration. No statement for infinite dimension.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The statement is the exact content of the cited Lean."
     },
     {
       "node_id": "GP-DROP-ONE-CENSUS",
@@ -875,9 +905,9 @@
       "node_id": "IMPL-THYMUS-SCREENING-SOUNDNESS",
       "review": "dag/results/IMPL-THYMUS-SCREENING-SOUNDNESS/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json",
       "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Complete finite panel/predicate controls and mismatch witnesses are exact; zero in-panel false positives under the actual screened predicate is kernel checked.",
-      "bottleneck": "Unmet after the PFP review: Bind an actual production detector, executed code and authenticated self-panel to these predicates, and state any out-of-panel assumptions. No generalization beyond the sealed panel or physical immune-system theorem is claimed. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Cited self_panel_soundness is zero in-panel false positives for a finite sealed panel and deterministic predicate; no production detector or immune-system claim is supported."
+      "statement": "For a screening predicate d and a sealed panel, the screen admits the panel iff d holds on every panel member, and an admitted panel has no false positives under d.",
+      "bottleneck": "Stated in ThymusScreening.lean (thymus_admit_iff, self_panel_soundness). It concerns the repository's screening tool, not quantum mechanics.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The statement is the exact content of the cited Lean."
     },
     {
       "node_id": "L1-CHAIN-D1D0-AXIOM",
@@ -888,10 +918,11 @@
     {
       "node_id": "L1-DENSITY-LIFT-SIGNED-SQRT-PUB009",
       "review": "dag/results/L1-DENSITY-LIFT-SIGNED-SQRT-PUB009/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact signed-square density projectors, overlap/Xi², zero-mass refusal, saturation and positive-support controls; general normalized Cauchy algebra and zero-weight strictness counterexample in Lean.",
-      "bottleneck": "Unmet after the PFP review: Prove the full real-square-root/trace-distance transport and conditional KKT overlap theorem under positive weights. Only Xi² is reported; no fabricated decimal Xi or unconditional Xi<1 is admitted. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "The strict bound Xi < 1 is prose-only (the cited Xi.lean is a file, no symbol); the review supports signed-square projectors, overlap and Xi^2 controls and a Cauchy algebra in Lean."
+      "scope_effect": "status_lowered",
+      "statement": "For an l1 residual v with mass M(v) > 0, psi(v)_i = sgn(v_i) sqrt(|v_i| / M(v)) gives the rank-one real projector rho(v) = psi psi^T, a real L2 lift. The alignment statistic Xi = (1/2) ||rho(h*) - rho(phi*)||_tr is strictly below 1 by complementary slackness. Xi depends on coordinate order and is undefined at zero residual. It does not derive QM.",
+      "bottleneck": "The bound Xi < 1 is not in Lean. The cited Lean states only that a sum of squared differences of three integers is nonnegative and vanishes on a constant triple. The construction of psi(v) and rho(v) is a definition.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "OPEN"
     },
     {
       "node_id": "L1-FRAMEWORK-KKT-CERT",
@@ -902,18 +933,20 @@
     {
       "node_id": "L1-GS000-EDGEWISE-L1",
       "review": "dag/results/L1-GS000-EDGEWISE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Weighted two-edge l1 decomposition, exact transposition defect and l-infinity disjoint-additivity countercontrols; general transposition algebra under positive coordinates.",
-      "bottleneck": "Unmet after the PFP review: Prove the full H1-H5 classification and graph-orbit theorem on its stated carrier, separately from finite examples. Nonnegative zero weights give a seminorm, not faithfulness. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports a weighted two-edge decomposition, the transposition defect and l-infinity countercontrols; the full H1-H5 classification and graph-orbit theorem are not supported."
+      "scope_effect": "status_lowered",
+      "statement": "Under H1-H5 the aggregate seminorm is an edgewise weighted l1 sum (Thm 1), with orbit-constant weights under graph symmetry (Thm 2); with edge-transitivity the weights collapse to unweighted l1 (Thm 3). Counterexamples CE1-CE5 show each axiom is used.",
+      "bottleneck": "Lean states only fixed small cases: a two-edge weighted l1 sum, a three-coordinate seminorm that is additive and homogeneous by hypothesis, and the l-infinity counterexample on two coordinates. Theorems 1 to 3 under H1-H5 on a general edge set, and the counterexamples CE1-CE5, are not in Lean.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "L1-GS001-GAUGE-L1",
       "review": "dag/results/L1-GS001-GAUGE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: All eight signed-permutation gauge values, swap anisotropy, and equal-length direction countercontrol; exact sign/swap laws in Lean.",
-      "bottleneck": "Unmet after the PFP review: Establish the actual maximal bounded-linear symmetry and faithful edge-additive hypotheses; do not infer them from an eight-element test. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports eight signed-permutation gauge values and swap anisotropy; the maximal bounded-linear symmetry hypotheses are not established by an eight-element test."
+      "scope_effect": "status_lowered",
+      "statement": "A faithful, edge-additive, maximal bounded-linear symmetry on the gauge presentation gives weighted l1 as the outer aggregation. Alternative route to l1 to L1-GS000-EDGEWISE-L1, with a different hypothesis set.",
+      "bottleneck": "Lean states intermediate steps only: under explicit norming, homogeneity and orbit hypotheses, the aggregate is constant on unit vectors and the edge weights are orbit-constant. The conclusion that the outer aggregation is weighted l1 is not derived in Lean.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "OPEN"
     },
     {
       "node_id": "L1-IMP-COMPLEX-FIELD",
@@ -998,42 +1031,45 @@
     {
       "node_id": "L1-QM002-O022A-PHI1-QUOTIENT",
       "review": "dag/results/L1-QM002-O022A-PHI1-QUOTIENT/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact rational triangle primal construction, minimum weighted cost and gauge-shift invariance, plus general telescoping and lower-bound assumptions in Lean.",
-      "bottleneck": "Unmet after the PFP review: Refine arbitrary finite repair packets to Banach quotients and the unrestricted CODA-A bridge. The literal Lean bound theorem is a scalar interface, not an array refinement. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "The cited Lean bound is a scalar interface and the statement concedes the analytic identity is prose; the review supports a triangle packet only."
+      "scope_effect": "status_lowered",
+      "statement": "For a finite-dimensional repair packet with c = d0, Phi1([x]) equals the Banach-quotient norm of the cofiber shadow. The Lean statement named in the ledger is definitional, so the analytic identity is carried by the prose proof only. The unrestricted CODA-A bridge is refused / OPEN.",
+      "bottleneck": "The identity Phi1([x]) = Banach-quotient norm is not in Lean (the source says its Lean statement is definitional). The cited Lean has the gauge-shift identity on one edge and additivity of an edge residual sum. The prose argument in the source paper has not been reviewed here.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "OPEN"
     },
     {
       "node_id": "L1-QM003-C17-COMPOSABLE-FACTORIZATION",
       "review": "dag/results/L1-QM003-C17-COMPOSABLE-FACTORIZATION/reviews/20261020_born_boundary_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact stochastic composition/action equality and diagonal density presentation, plus scalar matrix multiplication identities and the Hadamard defect in Lean.",
-      "bottleneck": "Unmet after the PFP review: Prove source residual-density factorization on its full carrier and channel class. The source diagonal multiplication anchor alone does not prove it. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports exact stochastic composition, scalar matrix identities and the Hadamard defect; factorization on the full carrier and channel class is not proved."
+      "scope_effect": "status_lowered",
+      "statement": "Diagonal Markov-composable channels factor through the residual density carrier (qm003_c17_diagonal_composable_factorization), while Hadamard off-diagonal coherence separates matrix composition from diagonal multiplication.",
+      "bottleneck": "Lean states the 2x2 case: products of diagonal 2x2 integer matrices are diagonal with entrywise products, and the Hadamard matrix gives an explicit off-diagonal counterexample. General dimension and general Markov kernels are not in Lean.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "L1-QM020-C10-BRANCH-LOCALIZATION",
       "review": "dag/results/L1-QM020-C10-BRANCH-LOCALIZATION/reviews/20261020_born_boundary_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact coherence/dephasing arrays and the resulting dynamical non-descent counterexample; literal sign/readout obstruction identities in Lean.",
-      "bottleneck": "Unmet after the PFP review: Provide any branching or many-worlds interpretation and its empirical criteria separately; mathematical non-descent neither establishes nor refutes an interpretation. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "The statement is a scope fence; what the review supports is dephasing non-descent arrays and sign/readout identities, with no interpretation claimed."
+      "scope_effect": "status_lowered",
+      "statement": "Branch-localization and many-worlds readings of the lifted phases are conjectures, not part of the QM_020 theorems.",
+      "bottleneck": "Interpretive readings (branch localization, many worlds) are not formalised. The cited Lean has 2x2 pinching and sign identities, which bear on dephasing but not on the readings.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "OPEN"
     },
     {
       "node_id": "L1-QM020-THM1-DIRECT-NORMALIZATION",
       "review": "dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/reviews/20261020_born_boundary_audit/delivery_review_result.json",
       "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact idempotence, nonzero scaling and positive-ray-premise controls; general normalization algebra and a negative-ray counterexample in Lean.",
-      "bottleneck": "Unmet after the PFP review: Refine arbitrary lists and positive-mass ray classification to the source theorem. Do not claim positive-ray equivalence under nonzero totals alone. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "With total W != 0 equal normalizations include opposite rays (the review gives a negative-ray counterexample); the iff holds under positive mass."
+      "statement": "For a list w of rationals with nonzero total W, the normalized list P = w/W sums to one and normalizing P again returns P. For two lists w, w' with positive totals, P(w) = P(w') iff w' = c w for some rational c > 0. The ray criterion needs positive totals: with W < 0 the lists w and -w have the same normalization.",
+      "bottleneck": "Stated over List Rat in BornRedundancy.lean (listSum_normalize, normalize_idempotent, ray_quotient_classification). The source version, which asks only for a nonzero total in the ray criterion, is false for negative totals and is not claimed.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The statement is the exact content of the cited Lean."
     },
     {
       "node_id": "L1-QM020-THM2A-L1-ADDITIVITY-DEFECT",
       "review": "dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/reviews/20261020_born_boundary_audit/delivery_review_result.json",
       "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact scalar and disjoint-vector defect arrays, with a general disjoint-sign identity and the opposite-sign counterexample in Lean.",
-      "bottleneck": "Unmet after the PFP review: Prove source/list refinement and extend any l^p statement only under its real/natural exponent hypotheses. The false disjoint-same-sign biconditional is explicitly rejected. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports the scalar defect identity and opposite-sign counterexample and rejects the stated disjoint-support biconditional."
+      "statement": "For integers x and y, the l1 additivity defect D1(x, y) = |x| + |y| - |x + y| is zero iff x y >= 0, that is, iff x and y are not of strictly opposite sign.",
+      "bottleneck": "Stated for integer scalars in BornRedundancy.lean (D1_zero_iff_same_sign, D1_zero_iff_mul_nonneg). The coordinatewise vector version follows by summing over coordinates and is not separately in Lean. The l^p statements for p > 1 are not in Lean. The source phrase 'for disjoint supports' is dropped: on disjoint supports the defect is always zero.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The statement is the exact content of the cited Lean."
     },
     {
       "node_id": "L1-QM020-THM2B-MINKOWSKI",
@@ -1046,10 +1082,11 @@
     {
       "node_id": "L1-QM020-THM3-ROW-SPARSITY",
       "review": "dag/results/L1-QM020-THM3-ROW-SPARSITY/reviews/20261020_born_boundary_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact phase-sign readouts, row sparsity, determinant, monomial and rank distinctions; general row interference and a singular sparse control in Lean.",
-      "bottleneck": "Unmet after the PFP review: Prove the full representation refinement and add injectivity/column conditions before claiming monomial invertibility. No scalar label licenses the stronger claim. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Row sparsity is supported; monomial (invertible) needs injectivity or column conditions the statement omitted."
+      "scope_effect": "status_lowered",
+      "statement": "A linear map that is descent-compatible (respects the l1 weight descent on a chosen sector basis, with phase rotation freedom) is monomial, i.e. strictly row-sparse. Lean covers the 2x2 real case.",
+      "bottleneck": "Lean states the 2x2 integer case: a 2x2 matrix is descent-compatible iff each row has at most one nonzero entry (descent_compatible_iff_row_sparse). The n x n statement is not in Lean, and 'monomial' (invertible) needs an injectivity or column condition the statement omits.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY",
@@ -1060,10 +1097,11 @@
     {
       "node_id": "L1-QM020-THM5-PHASE-AVERAGED-SHADOW",
       "review": "dag/results/L1-QM020-THM5-PHASE-AVERAGED-SHADOW/reviews/20261020_born_boundary_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Complete3-sector phase-conjugation mean, diagonal map and64 exact scalar readouts, with scalar cross cancellation in Lean.",
-      "bottleneck": "Unmet after the PFP review: Supply Haar measure, independence and Hilbert/source refinement. A finite polynomial-moment identity is not a continuum integration construction. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports the finite {+1,-1} phase mean on a complete 3-sector table; Haar measure, independence and the Hilbert refinement are not supplied."
+      "scope_effect": "status_lowered",
+      "statement": "Under a chosen Hilbert lift with independent Haar-uniform phases, E |<u, psi(theta)>|^2 = sum |u_gamma|^2 w_gamma. Worked replay w=(2,1,1) gives 37/16. Rust replaces Haar by a declared finite phase group (decided for n <= 3). The paper says it must not be upgraded without full Hilbert and Haar discharge.",
+      "bottleneck": "Lean states the two-sector sign average ((a1+a2)^2 + (a1-a2)^2 + (-a1+a2)^2 + (-a1-a2)^2)/4 = a1^2 + a2^2 and the 2x2 diagonal pinching. Haar measure and independent continuous phases are not constructed; the worked value 37/16 is a native replay.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "L1-QM020-THM6-P1-SCOPE-FENCE",
@@ -1088,42 +1126,47 @@
     {
       "node_id": "L1-QM121-LADDER-RUNGS-2-6",
       "review": "dag/results/L1-QM121-LADDER-RUNGS-2-6/reviews/20261020_born_boundary_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Complete retained stochastic path tables and matrix-power equality, diagonal action and exact two-phase readout, with finite composition algebra in Lean.",
-      "bottleneck": "Unmet after the PFP review: Prove arbitrary-rung/source representation refinements and discharge the admitted carrier, Born uniqueness and continuous/unitary limits. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports stochastic path tables, matrix-power equality, diagonal action and a two-phase readout; arbitrary-rung and source representations are not supported."
+      "scope_effect": "status_lowered",
+      "statement": "Ladder over QM_020 rung 1: diagonal density (2), channels as stochastic kernels (3), path-sum as matrix power (4), superposition phase content as quotient fiber U(1)^(|E_w|-1) (5), interference as non-l1 cross term (6). The ceiling of the ladder is the C/U(1) carrier, Born-quadratic uniqueness (Gleason) and the continuum / unitarity limit, all imported.",
+      "bottleneck": "Lean checks fixed numerical instances of rungs 2 to 6 (one diagonal expectation, one diagonal matrix product, the Hadamard square, one cross-term inequality). The rungs as general statements are not in Lean; the ceiling imports stay imported.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "L1-QM122-BORN-PAIRING-NONUNIQUE",
       "review": "dag/results/L1-QM122-BORN-PAIRING-NONUNIQUE/reviews/20261020_born_boundary_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact quadratic/quartic/swapped atom values, honest normalization contracts and Gaussian Hadamard/rotated frame countercontrols; literal unit and frame identities in Lean.",
-      "bottleneck": "Unmet after the PFP review: Formalize full source pairing refinement and the additional frame/POVM/Gleason uniqueness hypotheses. These rivals share only their stated weak contracts. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Two of the cited theorems are Boolean flags (uniqueness_not_discharged, born_nonuniqueness_open); the review supports concrete quadratic/quartic/swapped atom values and frame countercontrols."
+      "scope_effect": "status_lowered",
+      "statement": "A pairing exists (pairing_exists), a quartic rival to the quadratic pairing exists (quartic_rival), and uniqueness is not discharged (uniqueness_not_discharged, born_nonuniqueness_open). Under frame additivity the fourth power is excluded. Ordinary Gleason dimension is not matched by the two-label host (H017Gleason).",
+      "bottleneck": "Lean exhibits the pairing on one state and an explicit quartic rival on one state (pairing_exists, quartic_rival), which settles the existence claims. Exclusion of the fourth power under frame additivity is not in the cited Lean. uniqueness_not_discharged and born_nonuniqueness_open evaluate a declared Boolean flag and carry no mathematical content.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "L1-QM122-CIRCLE-SELECTOR-BOUNDARY",
       "review": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/reviews/20261020_born_boundary_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Actual cyclic regular-representation shift/square matrices and group-order controls, plus finite modular alternatives in Lean.",
-      "bottleneck": "Unmet after the PFP review: Provide genuine topological connectedness, selector uniqueness and source refinement. A Boolean selector pack or finite shadow cannot discharge U(1). The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "selector_not_free is a Boolean flag; the review supports cyclic regular-representation matrices, group-order controls and finite modular alternatives."
+      "scope_effect": "status_lowered",
+      "statement": "A sign carrier ({+1,-1}) suffices for the finite phase tasks tested (sign_carrier_suffices) and the circle is not forced: excluding the sign group needs an extra condition, and the circle itself stays imported.",
+      "bottleneck": "Lean states, for the declared finite carriers, that the sign group fails the connectedness condition while the Gaussian units and the order-3 cyclic group meet it, and that two states with equal weights have different coherent readouts. That the circle is not forced is a statement about the absence of a derivation, recorded in the bottleneck rather than proved.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "L1-QM122-LEFTOVER-MNC-NOT-RECOVERED",
       "review": "dag/results/L1-QM122-LEFTOVER-MNC-NOT-RECOVERED/reviews/20261020_born_boundary_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: All matrix-unit products and noncommutativity are exact, alongside Gaussian unit/nonunit controls; generic matrix-unit scalar multiplication and a commutator control in Lean.",
-      "bottleneck": "Unmet after the PFP review: Recover the claimed complex field, circle, Born uniqueness, tensor/CPTP class, continuous time and source carrier maps, or retain them as admitted. A finish table is not completion evidence. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports matrix-unit products, noncommutativity and Gaussian unit controls; the finish table is a declaration, not evidence that the eight extras are open."
+      "scope_effect": "status_lowered",
+      "statement": "The finite Hilbert boundary from primitive difference does not recover ordinary M_n(C). Open: Gleason at n >= 3, CPTP, tensor uniqueness, circle, Python dual. Imports listed in section 7: complex scalars as a field, circle phases, Born uniqueness (Gleason), Hilbert tensor, CPTP, continuous time. H017Finish gives a declared finish table, not a derivation.",
+      "bottleneck": "This node records that no derivation of M_n(C) exists here; that is not a theorem. The cited Lean is a census of a declared Boolean table and Gaussian-integer norm identities. The listed imports stay imported.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "OPEN"
     },
     {
       "node_id": "L1-WDP-CH08-C01-REPLICA-L1",
       "review": "dag/results/L1-WDP-CH08-C01-REPLICA-L1/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Reviewed scope: Exact concatenated l1, squared energy and coherent scalar-scaling comparisons; general algebraic replication/scaling distinction in Lean.",
-      "bottleneck": "Unmet after the PFP review: Specify the source aggregation and independent-replica axioms and prove a classification under them. This does not derive physical replica independence or exclude l2. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "Review supports concatenated l1 versus squared-energy comparisons; the classification under independent-replica axioms is not proved and l2 is not excluded."
+      "scope_effect": "status_lowered",
+      "statement": "l1 appears when aggregation over independent replicas is required to be extensive. WDP 8.5 states that l2 is not excluded by this argument.",
+      "bottleneck": "No classification is formalised. The cited Lean contains additivity of finite sums and the numerical example 3^2 + 4^2 = 5^2 with (2*3)^2 + (2*4)^2 = 100, which illustrates the extensive/homogeneous distinction but does not derive l1 from replica extensivity.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "OPEN"
     },
     {
       "node_id": "L1-WDP-WINDOW-PHI1-GAMMA2",

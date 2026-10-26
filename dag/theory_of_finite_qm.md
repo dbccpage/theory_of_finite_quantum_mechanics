@@ -126,38 +126,38 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0049` | `FINITE_TOPOLOGICAL` | `COMPUTATIONAL_CONTROL` | `TFQ-0049` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-0050` | `FINITE_TOPOLOGICAL` | `OPEN_OBLIGATION` | `TFQ-0050` (OPEN) | - |
 | `TFQ-0051` | `FINITE_TOPOLOGICAL` | `COMPUTATIONAL_CONTROL` | `TFQ-0051` (COMPUTATIONALLY_CHECKED) | - |
-| `TFQ-0052` | `FINITE_GAUGE` | `COMPUTATIONAL_CONTROL` | `FQ-DISCRETE-DYNAMICS-DICHOTOMY` (PROVED_LEAN), `L1-CHAIN-D1D0-AXIOM` (ADMITTED_PRIMITIVE), `DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO` (PROVED_LEAN) | `FQ-DISCRETE-DYNAMICS-DICHOTOMY`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-CHAIN-D1D0-AXIOM`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO`: scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0053` | `FINITE_GAUGE` | `COMPUTATIONAL_CONTROL` | `FQ-U1-TRANSPORT-N-TORSION` (PROVED_LEAN), `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `FQ-U1-TRANSPORT-N-TORSION`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / caveat_added |
-| `TFQ-0054` | `FINITE_GAUGE` | `COMPUTATIONAL_CONTROL` | `FQ-U1-TRANSPORT-N-TORSION` (PROVED_LEAN), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `FQ-U1-TRANSPORT-N-TORSION`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / caveat_added |
+| `TFQ-0052` | `FINITE_GAUGE` | `COMPUTATIONAL_CONTROL` | `FQ-DISCRETE-DYNAMICS-DICHOTOMY` (COMPUTATIONALLY_CHECKED), `L1-CHAIN-D1D0-AXIOM` (ADMITTED_PRIMITIVE), `DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO` (COMPUTATIONALLY_CHECKED) | `FQ-DISCRETE-DYNAMICS-DICHOTOMY`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-CHAIN-D1D0-AXIOM`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO`: scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0053` | `FINITE_GAUGE` | `COMPUTATIONAL_CONTROL` | `FQ-U1-TRANSPORT-N-TORSION` (COMPUTATIONALLY_CHECKED), `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `FQ-U1-TRANSPORT-N-TORSION`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / caveat_added |
+| `TFQ-0054` | `FINITE_GAUGE` | `COMPUTATIONAL_CONTROL` | `FQ-U1-TRANSPORT-N-TORSION` (COMPUTATIONALLY_CHECKED), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `FQ-U1-TRANSPORT-N-TORSION`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0055` | `FINITE_GAUGE` | `GAP` | `FQ-GAP-U1-CIRCLE` (CONDITIONAL), `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / caveat_added; `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_integer_result_reviewed / caveat_added |
-| `TFQ-0056` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_integer_result_reviewed / caveat_added |
-| `TFQ-0057` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN), `FQ-U1-TRANSPORT-N-TORSION` (PROVED_LEAN) | `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-U1-TRANSPORT-N-TORSION`: scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0058` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0056` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_integer_result_reviewed / caveat_added |
+| `TFQ-0057` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED), `FQ-U1-TRANSPORT-N-TORSION` (COMPUTATIONALLY_CHECKED) | `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-U1-TRANSPORT-N-TORSION`: scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0058` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0059` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `DS-QM032-FINITE-FEYNMAN-SHADOW` (COMPUTATIONALLY_CHECKED), `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED) | `DS-QM032-FINITE-FEYNMAN-SHADOW`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`: scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-0060` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0061` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN), `DS-QM032-FINITE-FEYNMAN-SHADOW` (COMPUTATIONALLY_CHECKED) | `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / statement_narrowed; `DS-QM032-FINITE-FEYNMAN-SHADOW`: scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-0062` | `FINITE_QED` | `OPEN_OBLIGATION` | `FQ-DISCRETE-DYNAMICS-DICHOTOMY` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0063` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0064` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0065` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0066` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0067` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN), `FQ-COMMUTATOR-TRACE-OBSTRUCTION` (PROVED_LEAN) | `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-COMMUTATOR-TRACE-OBSTRUCTION`: scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0068` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0069` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0070` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0060` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0061` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED), `DS-QM032-FINITE-FEYNMAN-SHADOW` (COMPUTATIONALLY_CHECKED) | `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM032-FINITE-FEYNMAN-SHADOW`: scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0062` | `FINITE_QED` | `OPEN_OBLIGATION` | `FQ-DISCRETE-DYNAMICS-DICHOTOMY` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0063` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0064` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0065` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0066` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0067` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED), `FQ-COMMUTATOR-TRACE-OBSTRUCTION` (PROVED_LEAN) | `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-COMMUTATOR-TRACE-OBSTRUCTION`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0068` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0069` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0070` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0071` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_integer_result_reviewed / caveat_added |
 | `TFQ-0072` | `FINITE_QED` | `OPEN_OBLIGATION` | `DS-QM032-FINITE-FEYNMAN-SHADOW` (COMPUTATIONALLY_CHECKED), `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED) | `DS-QM032-FINITE-FEYNMAN-SHADOW`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`: scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0073` | `FINITE_QED` | `GAP` | `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | scoped_integer_result_reviewed / caveat_added |
-| `TFQ-0074` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0075` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0076` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0077` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0078` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0079` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0080` | `FINITE_ELECTROWEAK` | `OPEN_OBLIGATION` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0081` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0082` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0083` | `FINITE_ELECTROWEAK` | `GAP` | `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL), `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED), `FQ-GAP-STONE-CONTINUOUS-TIME` (CONDITIONAL), `FQ-QM207-231-FINITE-MAP-CONTROLS` (PROVED_LEAN) | `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_integer_result_reviewed / caveat_added; `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-GAP-STONE-CONTINUOUS-TIME`: scoped_result_or_obstruction_reviewed / caveat_added; `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0074` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0075` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0076` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0077` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0078` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0079` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0080` | `FINITE_ELECTROWEAK` | `OPEN_OBLIGATION` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0081` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0082` | `FINITE_ELECTROWEAK` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0083` | `FINITE_ELECTROWEAK` | `GAP` | `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL), `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED), `FQ-GAP-STONE-CONTINUOUS-TIME` (CONDITIONAL), `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_integer_result_reviewed / caveat_added; `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-GAP-STONE-CONTINUOUS-TIME`: scoped_result_or_obstruction_reviewed / caveat_added; `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0084` | `FINITE_QG` | `OPEN_OBLIGATION` | `TFQ-0084` (OPEN) | - |
 | `TFQ-0085` | `CONTINUUM_INTERFACE` | `GAP` | `TFQ-0085` (OPEN) | - |
 | `TFQ-0086` | `FINITE_QG` | `FINITE_ADMITTED` | `PG-ROOT-DIFF-STRUCTURE` (ADMITTED_PRIMITIVE), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `PG-ROOT-DIFF-STRUCTURE`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_integer_result_reviewed / caveat_added |
@@ -165,13 +165,13 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0088` | `FINITE_QG` | `FINITE_SCHEMA` | `TFQ-0088` (SOURCE_RECORD) | - |
 | `TFQ-0089` | `FINITE_QG` | `FINITE_SCHEMA` | `TFQ-0089` (SOURCE_RECORD) | - |
 | `TFQ-0090` | `FINITE_QG` | `GAP` | `TFQ-0090` (OPEN) | - |
-| `TFQ-0091` | `FINITE_QG` | `FINITE_SHADOW` | `DS-QM063-HOLONOMY-COHERENT-INTENSITY` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0092` | `FINITE_QG` | `TOY_CARRIER` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0093` | `FINITE_QG` | `EXACT_LABEL` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0094` | `FINITE_QG` | `FINITE_GEOMETRY` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0095` | `FINITE_QG` | `TOY_CARRIER` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0096` | `FINITE_QG` | `GAP` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0097` | `FINITE_QG` | `FINITE_SHADOW` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0091` | `FINITE_QG` | `FINITE_SHADOW` | `DS-QM063-HOLONOMY-COHERENT-INTENSITY` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0092` | `FINITE_QG` | `TOY_CARRIER` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0093` | `FINITE_QG` | `EXACT_LABEL` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0094` | `FINITE_QG` | `FINITE_GEOMETRY` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0095` | `FINITE_QG` | `TOY_CARRIER` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0096` | `FINITE_QG` | `GAP` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0097` | `FINITE_QG` | `FINITE_SHADOW` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0098` | `FINITE_QG` | `FINITE_TOY` | `TFQ-0098` (SOURCE_RECORD) | - |
 | `TFQ-0099` | `FINITE_QG` | `FLOAT_SCRIPT` | `TFQ-0099` (SOURCE_RECORD) | - |
 | `TFQ-0100` | `FINITE_QG` | `EXACT_PROXY_NOT_EH` | `TFQ-0100` (SOURCE_RECORD) | - |
@@ -182,9 +182,9 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0105` | `FINITE_QG` | `FINITE_RECOUPLING` | `TFQ-0105` (SOURCE_RECORD) | - |
 | `TFQ-0106` | `FINITE_QG` | `GAP` | `TFQ-0106` (OPEN) | - |
 | `TFQ-0107` | `FINITE_QG` | `GAP` | `TFQ-0107` (OPEN) | - |
-| `TFQ-0108` | `FINITE_QG` | `GAP` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0108` | `FINITE_QG` | `GAP` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0109` | `FINITE_QG` | `FINITE_MAP` | `TFQ-0109` (SOURCE_RECORD) | - |
-| `TFQ-0110` | `FINITE_QG` | `NOT_QG` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0110` | `FINITE_QG` | `NOT_QG` | `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0111` | `FINITE_QG` | `OPEN_INTERFACE` | `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | scoped_integer_result_reviewed / caveat_added |
 | `TFQ-0112` | `CONTINUUM_INTERFACE` | `NAMED_INVENTORY` | `TFQ-0112` (SOURCE_RECORD) | - |
 | `TFQ-0113` | `CONTINUUM_INTERFACE` | `NAMED_INVENTORY` | `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
@@ -260,7 +260,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0183` | `IMPLEMENTATION_SIBLING` | `GAP` | `TFQ-0183` (OPEN) | - |
 | `TFQ-0184` | `IMPLEMENTATION_SIBLING` | `GAP` | `TFQ-0184` (OPEN) | - |
 | `TFQ-0185` | `IMPLEMENTATION_SIBLING` | `COMPUTATIONAL_CONTROL` | `FQ-TRACE-ZERO-DUALITY-K23` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-0186` | `IMPLEMENTATION_SIBLING` | `GAP` | `FQ-TRACE-ZERO-DUALITY-K23` (COMPUTATIONALLY_CHECKED), `FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY` (PROVED_LEAN) | `FQ-TRACE-ZERO-DUALITY-K23`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY`: scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0186` | `IMPLEMENTATION_SIBLING` | `GAP` | `FQ-TRACE-ZERO-DUALITY-K23` (COMPUTATIONALLY_CHECKED), `FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY` (OPEN) | `FQ-TRACE-ZERO-DUALITY-K23`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY`: scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0187` | `IMPLEMENTATION_SIBLING` | `COMPUTATIONAL_CONTROL` | `TFQ-0187` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-0188` | `IMPLEMENTATION_SIBLING` | `GAP` | `FQ-IMPL-F64-GATING` (DEFINITION) | reviewed_with_targeted_native_integration / consistent |
 | `TFQ-0189` | `IMPLEMENTATION_SIBLING` | `COMPUTATIONAL_CONTROL` | `TFQ-0189` (COMPUTATIONALLY_CHECKED) | - |
@@ -319,8 +319,8 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0242` | `FINITE_QM_DYNAMICS` | `SOURCE_RECORD` | `DS-QM030-GRADED-PATHSUM` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0243` | `FINITE_QM_DYNAMICS` | `SOURCE_RECORD` | `DS-QM032-FINITE-FEYNMAN-SHADOW` (COMPUTATIONALLY_CHECKED), `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL` (COMPUTATIONALLY_CHECKED) | `DS-QM032-FINITE-FEYNMAN-SHADOW`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`: scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0244` | `FINITE_QM_DYNAMICS` | `SOURCE_RECORD` | `DS-QM033-SCHRODINGER-DISCRETE-COCHAIN` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-0245` | `FINITE_QM_DYNAMICS` | `OPEN_OBLIGATION` | `DS-QM034-035-050-051-095-RESERVED-STUBS` (CONDITIONAL), `FQ-DISCRETE-DYNAMICS-DICHOTOMY` (PROVED_LEAN) | `DS-QM034-035-050-051-095-RESERVED-STUBS`: scoped_result_or_obstruction_reviewed / consistent; `FQ-DISCRETE-DYNAMICS-DICHOTOMY`: scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0246` | `FINITE_QM_DYNAMICS` | `OPEN_OBLIGATION` | `DS-QM034-035-050-051-095-RESERVED-STUBS` (CONDITIONAL), `FQ-GAP-STONE-CONTINUOUS-TIME` (CONDITIONAL), `FQ-DISCRETE-TIME-STONE-AMBIGUITY` (PROVED_LEAN) | `DS-QM034-035-050-051-095-RESERVED-STUBS`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-STONE-CONTINUOUS-TIME`: scoped_result_or_obstruction_reviewed / caveat_added; `FQ-DISCRETE-TIME-STONE-AMBIGUITY`: scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0245` | `FINITE_QM_DYNAMICS` | `OPEN_OBLIGATION` | `DS-QM034-035-050-051-095-RESERVED-STUBS` (CONDITIONAL), `FQ-DISCRETE-DYNAMICS-DICHOTOMY` (COMPUTATIONALLY_CHECKED) | `DS-QM034-035-050-051-095-RESERVED-STUBS`: scoped_result_or_obstruction_reviewed / consistent; `FQ-DISCRETE-DYNAMICS-DICHOTOMY`: scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0246` | `FINITE_QM_DYNAMICS` | `OPEN_OBLIGATION` | `DS-QM034-035-050-051-095-RESERVED-STUBS` (CONDITIONAL), `FQ-GAP-STONE-CONTINUOUS-TIME` (CONDITIONAL), `FQ-DISCRETE-TIME-STONE-AMBIGUITY` (COMPUTATIONALLY_CHECKED) | `DS-QM034-035-050-051-095-RESERVED-STUBS`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-STONE-CONTINUOUS-TIME`: scoped_result_or_obstruction_reviewed / caveat_added; `FQ-DISCRETE-TIME-STONE-AMBIGUITY`: scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0247` | `FINITE_QM_DYNAMICS` | `SOURCE_RECORD` | `DS-QM041-HEISENBERG-PICTURE-FINITE` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0248` | `FINITE_QM_DYNAMICS` | `SOURCE_RECORD` | `DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT` (IMPORTED_ASSUMPTION), `DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY` (PROVED_LEAN) | `DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT`: scoped_result_or_obstruction_reviewed / caveat_added; `DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0249` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
@@ -328,29 +328,29 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0251` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM060-SUPERPOSITION-QUOTIENT-FIBER` (PROVED_LEAN), `FQ-PHASE-FIBER-QUOTIENT` (PROVED_LEAN) | `DS-QM060-SUPERPOSITION-QUOTIENT-FIBER`: scoped_result_or_obstruction_reviewed / consistent; `FQ-PHASE-FIBER-QUOTIENT`: scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0252` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE` (PROVED_LEAN), `DS-QM061-BUILDABILITY-SET-S` (COMPUTATIONALLY_CHECKED), `FQ-INTERFERENCE-NONDESCENT` (PROVED_LEAN) | `DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM061-BUILDABILITY-SET-S`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-INTERFERENCE-NONDESCENT`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0253` | `FINITE_QM_STRUCTURE` | `OPEN_OBLIGATION` | `DS-QM062-U1-SELECTOR-LAYERS` (COMPUTATIONALLY_CHECKED), `DS-QM062-U1-RESIDUES-IMPORT` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `DS-QM062-U1-SELECTOR-LAYERS`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM062-U1-RESIDUES-IMPORT`: scoped_result_or_obstruction_reviewed / caveat_added; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / caveat_added |
-| `TFQ-0254` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM063-HOLONOMY-COHERENT-INTENSITY` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0255` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM064-074-083-ANNEX-REDIRECT-ROWS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0256` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM070-PRODUCT-NONFACTORIZATION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0254` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM063-HOLONOMY-COHERENT-INTENSITY` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0255` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM064-074-083-ANNEX-REDIRECT-ROWS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0256` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM070-PRODUCT-NONFACTORIZATION` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0257` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0258` | `FINITE_QM_STRUCTURE` | `GAP` | `DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0259` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM073-FINITE-CHSH-AND-PR-BOX` (PROVED_LEAN), `FQ-BELL-CLASSICAL-JOINT-EXTENSION` (PROVED_LEAN), `FQ-BELL-RATIONAL-VIOLATION-14-5` (PROVED_LEAN) | `DS-QM073-FINITE-CHSH-AND-PR-BOX`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-BELL-CLASSICAL-JOINT-EXTENSION`: separator_extension_reviewed_guards_repaired / statement_narrowed; `FQ-BELL-RATIONAL-VIOLATION-14-5`: scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0260` | `FINITE_QM_STRUCTURE` | `GAP` | `DS-QM073-BELL-THEOREM-OBSTRUCTED` (PROVED_LEAN), `FQ-TSIRELSON-SOS-Q-SQRT2` (PROVED_LEAN), `FQ-BELL-RATIONAL-VIOLATION-14-5` (PROVED_LEAN) | `DS-QM073-BELL-THEOREM-OBSTRUCTED`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-TSIRELSON-SOS-Q-SQRT2`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-BELL-RATIONAL-VIOLATION-14-5`: scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0261` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM074-NO-SIGNALING-MARGINAL` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0258` | `FINITE_QM_STRUCTURE` | `GAP` | `DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0259` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM073-FINITE-CHSH-AND-PR-BOX` (COMPUTATIONALLY_CHECKED), `FQ-BELL-CLASSICAL-JOINT-EXTENSION` (PROVED_LEAN), `FQ-BELL-RATIONAL-VIOLATION-14-5` (COMPUTATIONALLY_CHECKED) | `DS-QM073-FINITE-CHSH-AND-PR-BOX`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-BELL-CLASSICAL-JOINT-EXTENSION`: separator_extension_reviewed_guards_repaired / statement_narrowed; `FQ-BELL-RATIONAL-VIOLATION-14-5`: scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0260` | `FINITE_QM_STRUCTURE` | `GAP` | `DS-QM073-BELL-THEOREM-OBSTRUCTED` (OPEN), `FQ-TSIRELSON-SOS-Q-SQRT2` (COMPUTATIONALLY_CHECKED), `FQ-BELL-RATIONAL-VIOLATION-14-5` (COMPUTATIONALLY_CHECKED) | `DS-QM073-BELL-THEOREM-OBSTRUCTED`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-TSIRELSON-SOS-Q-SQRT2`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-BELL-RATIONAL-VIOLATION-14-5`: scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0261` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM074-NO-SIGNALING-MARGINAL` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0262` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `FQ-CPTP-CLASS-DEFINITION` (DEFINITION) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0263` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY` (PROVED_LEAN), `DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION` (PROVED_LEAN), `DS-QM080-IMPORT-FREE-TRACE-NORM-CORE` (PROVED_LEAN) | `FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY`: scoped_result_or_obstruction_reviewed / statement_narrowed; `DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION`: scoped_result_or_obstruction_reviewed / statement_narrowed; `DS-QM080-IMPORT-FREE-TRACE-NORM-CORE`: scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0263` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY` (OPEN), `DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION` (OPEN), `DS-QM080-IMPORT-FREE-TRACE-NORM-CORE` (COMPUTATIONALLY_CHECKED) | `FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM080-IMPORT-FREE-TRACE-NORM-CORE`: scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0264` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM081-CPTP-MONOTONE-NOT-SELECTING` (PROVED_LEAN), `DS-QM081-STOCHASTIC-L1-CONTRACTION` (PROVED_LEAN) | `DS-QM081-CPTP-MONOTONE-NOT-SELECTING`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM081-STOCHASTIC-L1-CONTRACTION`: scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0265` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0265` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0266` | `FINITE_QM_STRUCTURE` | `GAP` | `DS-CPTP-COMPLETE-POSITIVITY-IMPORT` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / caveat_added |
-| `TFQ-0267` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM064-074-083-ANNEX-REDIRECT-ROWS` (PROVED_LEAN), `DS-CPTP-COMPLETE-POSITIVITY-IMPORT` (IMPORTED_ASSUMPTION) | `DS-QM064-074-083-ANNEX-REDIRECT-ROWS`: scoped_result_or_obstruction_reviewed / statement_narrowed; `DS-CPTP-COMPLETE-POSITIVITY-IMPORT`: scoped_result_or_obstruction_reviewed / caveat_added |
+| `TFQ-0267` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM064-074-083-ANNEX-REDIRECT-ROWS` (COMPUTATIONALLY_CHECKED), `DS-CPTP-COMPLETE-POSITIVITY-IMPORT` (IMPORTED_ASSUMPTION) | `DS-QM064-074-083-ANNEX-REDIRECT-ROWS`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-CPTP-COMPLETE-POSITIVITY-IMPORT`: scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0268` | `FINITE_QM_INFORMATION` | `OPEN_OBLIGATION` | `FQ-ENTROPY-DICHOTOMY-BAKER` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0269` | `FINITE_QM_INFORMATION` | `SOURCE_RECORD` | `DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0270` | `FINITE_QM_INFORMATION` | `SOURCE_RECORD` | `DS-QM102-SYNDROME-CAPACITY-BOUND` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0269` | `FINITE_QM_INFORMATION` | `SOURCE_RECORD` | `DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0270` | `FINITE_QM_INFORMATION` | `SOURCE_RECORD` | `DS-QM102-SYNDROME-CAPACITY-BOUND` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0271` | `FINITE_QM_INFORMATION` | `OPEN_OBLIGATION` | `DS-QM103-SHOW-THE-PACKET-PROTOCOL` (DEFINITION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0272` | `FINITE_QM_INFORMATION` | `SOURCE_RECORD` | `DS-QM090-092-AUTHORITY-FIREWALL` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-0273` | `FINITE_QM_STRUCTURE` | `OPEN_OBLIGATION` | `DS-QM093-SURVIVAL-THEOREM` (COMPUTATIONALLY_CHECKED), `DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY` (PROVED_LEAN), `DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO` (PROVED_LEAN) | `DS-QM093-SURVIVAL-THEOREM`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO`: scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0274` | `FINITE_QM_STRUCTURE` | `GAP` | `DS-QM090-093-QM-UNIQUENESS-TIER3` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0273` | `FINITE_QM_STRUCTURE` | `OPEN_OBLIGATION` | `DS-QM093-SURVIVAL-THEOREM` (COMPUTATIONALLY_CHECKED), `DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY` (PROVED_LEAN), `DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO` (COMPUTATIONALLY_CHECKED) | `DS-QM093-SURVIVAL-THEOREM`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO`: scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0274` | `FINITE_QM_STRUCTURE` | `GAP` | `DS-QM090-093-QM-UNIQUENESS-TIER3` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0275` | `FINITE_QM_INFORMATION` | `SOURCE_RECORD` | `DS-QM090-092-AUTHORITY-FIREWALL` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-0276` | `FINITE_QM_INFORMATION` | `OPEN_OBLIGATION` | `DS-QM094-EVERETT-RELATIVE-STATE-CONTACT` (PROVED_LEAN), `FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY` (PROVED_LEAN) | `DS-QM094-EVERETT-RELATIVE-STATE-CONTACT`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY`: scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0276` | `FINITE_QM_INFORMATION` | `OPEN_OBLIGATION` | `DS-QM094-EVERETT-RELATIVE-STATE-CONTACT` (COMPUTATIONALLY_CHECKED), `FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY` (COMPUTATIONALLY_CHECKED) | `DS-QM094-EVERETT-RELATIVE-STATE-CONTACT`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY`: scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0277` | `FINITE_QM_INFORMATION` | `SOURCE_RECORD` | `DS-QM090-092-AUTHORITY-FIREWALL` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0278` | `FINITE_QM_INFORMATION` | `OPEN_OBLIGATION` | `DS-QM034-035-050-051-095-RESERVED-STUBS` (CONDITIONAL), `DS-QM090-092-AUTHORITY-FIREWALL` (COMPUTATIONALLY_CHECKED) | `DS-QM034-035-050-051-095-RESERVED-STUBS`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM090-092-AUTHORITY-FIREWALL`: scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0279` | `L1_TO_L2` | `SOURCE_RECORD` | `TFQ-0279` (SOURCE_RECORD) | - |
@@ -374,19 +374,19 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0297` | `FINITE_HILBERT` | `OPEN_OBLIGATION` | `TFQ-0297` (OPEN) | - |
 | `TFQ-0298` | `FINITE_HILBERT` | `OPEN_OBLIGATION` | `TFQ-0298` (OPEN) | - |
 | `TFQ-0299` | `L1_TO_L2` | `GAP` | `L1-IMP-ORTHOGONAL-ADDITIVITY` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0300` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM3-ROW-SPARSITY` (PROVED_LEAN), `FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED` (PROVED_LEAN) | `L1-QM020-THM3-ROW-SPARSITY`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED`: scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0300` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM3-ROW-SPARSITY` (COMPUTATIONALLY_CHECKED), `FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED` (COMPUTATIONALLY_CHECKED) | `L1-QM020-THM3-ROW-SPARSITY`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED`: scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0301` | `L1_TO_L2` | `GAP` | `L1-IMP-HAAR-INDEPENDENT-PHASES` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0302` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM5-PHASE-AVERAGED-SHADOW` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0302` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM5-PHASE-AVERAGED-SHADOW` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0303` | `L1_TO_L2` | `GAP` | `L1-IMP-LINEAR-ISOMETRIC-DYNAMICS` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0304` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM7-REPRESENTATION-CAPACITY` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0305` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM6-P1-SCOPE-FENCE` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0306` | `L1_TO_L2` | `GAP` | `L1-QM122-BORN-PAIRING-NONUNIQUE` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0306` | `L1_TO_L2` | `GAP` | `L1-QM122-BORN-PAIRING-NONUNIQUE` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0307` | `FINITE_HILBERT` | `GAP` | `L1-QM020-THM6-P2-GLEASON` (IMPORTED_ASSUMPTION), `FQ-GAP-BORN-UNIQUENESS-GLEASON` (CONDITIONAL) | `L1-QM020-THM6-P2-GLEASON`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-BORN-UNIQUENESS-GLEASON`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0308` | `FINITE_HILBERT` | `OPEN_OBLIGATION` | `TFQ-0308` (OPEN) | - |
-| `TFQ-0309` | `FINITE_HILBERT` | `SOURCE_RECORD` | `L1-QM121-LADDER-RUNGS-2-6` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0309` | `FINITE_HILBERT` | `SOURCE_RECORD` | `L1-QM121-LADDER-RUNGS-2-6` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0310` | `FINITE_HILBERT` | `SOURCE_RECORD` | `L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0311` | `FINITE_HILBERT` | `GAP` | `L1-QM122-LEFTOVER-MNC-NOT-RECOVERED` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0312` | `FINITE_HILBERT` | `OPEN_OBLIGATION` | `L1-QM122-CIRCLE-SELECTOR-BOUNDARY` (PROVED_LEAN), `L1-QM122-BORN-PAIRING-NONUNIQUE` (PROVED_LEAN) | `L1-QM122-CIRCLE-SELECTOR-BOUNDARY`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-QM122-BORN-PAIRING-NONUNIQUE`: scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0311` | `FINITE_HILBERT` | `GAP` | `L1-QM122-LEFTOVER-MNC-NOT-RECOVERED` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0312` | `FINITE_HILBERT` | `OPEN_OBLIGATION` | `L1-QM122-CIRCLE-SELECTOR-BOUNDARY` (COMPUTATIONALLY_CHECKED), `L1-QM122-BORN-PAIRING-NONUNIQUE` (COMPUTATIONALLY_CHECKED) | `L1-QM122-CIRCLE-SELECTOR-BOUNDARY`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-QM122-BORN-PAIRING-NONUNIQUE`: scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0313` | `FINITE_HILBERT` | `OPEN_OBLIGATION` | `TFQ-0313` (OPEN) | - |
 | `TFQ-0314` | `FINITE_HILBERT` | `SOURCE_RECORD` | `TFQ-0314` (SOURCE_RECORD) | - |
 | `TFQ-0315` | `FINITE_HILBERT` | `SOURCE_RECORD` | `TFQ-0315` (SOURCE_RECORD) | - |
@@ -427,13 +427,13 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0350` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-CHAIN-D1D0-AXIOM` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0351` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-FRAMEWORK-KKT-CERT` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0352` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-OBSERVER-AXIOMS-H1-H5` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0353` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-GS000-EDGEWISE-L1` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0354` | `L1_EMERGENCE` | `GAP` | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (CONDITIONAL), `L1-WDP-WINDOW-PHI1-GAMMA2` (DEFINITION), `L1-GS000-EDGEWISE-L1` (PROVED_LEAN) | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-WDP-WINDOW-PHI1-GAMMA2`: scoped_result_or_obstruction_reviewed / consistent; `L1-GS000-EDGEWISE-L1`: scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0355` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_LEAN), `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009` (PROVED_LEAN), `L1-IMP-HILBERT-INNER-PRODUCT` (CONDITIONAL) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent; `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009`: scoped_result_or_obstruction_reviewed / statement_narrowed; `L1-IMP-HILBERT-INNER-PRODUCT`: scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0356` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-GS001-GAUGE-L1` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0357` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-WDP-CH08-C01-REPLICA-L1` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0353` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-GS000-EDGEWISE-L1` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0354` | `L1_EMERGENCE` | `GAP` | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (CONDITIONAL), `L1-WDP-WINDOW-PHI1-GAMMA2` (DEFINITION), `L1-GS000-EDGEWISE-L1` (COMPUTATIONALLY_CHECKED) | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-WDP-WINDOW-PHI1-GAMMA2`: scoped_result_or_obstruction_reviewed / consistent; `L1-GS000-EDGEWISE-L1`: scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0355` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_LEAN), `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009` (OPEN), `L1-IMP-HILBERT-INNER-PRODUCT` (CONDITIONAL) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent; `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-IMP-HILBERT-INNER-PRODUCT`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0356` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-GS001-GAUGE-L1` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0357` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-WDP-CH08-C01-REPLICA-L1` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0358` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-WDP-WITNESS-MASS` (DEFINITION) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0359` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-QM002-O022A-PHI1-QUOTIENT` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0359` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-QM002-O022A-PHI1-QUOTIENT` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0360` | `WDP` | `SOURCE_RECORD` | `PG-ADMISSION-FLOOR` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0361` | `PREGENESIS` | `SOURCE_RECORD` | `PG-INERT-DIAMOND` (DEFINITION) | scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0362` | `PREGENESIS` | `SOURCE_RECORD` | `PG-INERT-DIAMOND` (DEFINITION) | scoped_result_or_obstruction_reviewed / caveat_added |
@@ -475,21 +475,21 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1001` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `L1-IMP-SECTOR-SYMMETRY-LAW` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-1002` | `L1_TO_L2` | `DEFINITION` | `L1-WDP-REALIFICATION-J` (DEFINITION) | scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-1003` | `L1_TO_L2` | `OPEN_OBLIGATION` | `L1-U1-SELECTOR-OTHER-SEGMENT` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-1004` | `L1_TO_L2` | `PROVED_LEAN` | `L1-QM020-C10-BRANCH-LOCALIZATION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-1005` | `L1_TO_L2` | `PROVED_LEAN` | `L1-QM003-C17-COMPOSABLE-FACTORIZATION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-1004` | `L1_TO_L2` | `OPEN_OBLIGATION` | `L1-QM020-C10-BRANCH-LOCALIZATION` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-1005` | `L1_TO_L2` | `COMPUTATIONAL_CONTROL` | `L1-QM003-C17-COMPOSABLE-FACTORIZATION` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-1006` | `FINITE_QM_CORE` | `DEFINITION` | `FQ-CARRIER-CONTRACT-V2` (DEFINITION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1007` | `FINITE_QM_CORE` | `PROVED_LEAN` | `FQ-PRIMDIFF-QUOTIENT-KERNEL` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1008` | `FINITE_QM_CORE` | `IMPORTED_ASSUMPTION` | `FQ-POSITIVE-WEIGHTS-ADMITTED` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1009` | `FINITE_QM_CORE` | `IMPORTED_ASSUMPTION` | `FQ-DECLARED-QUANTUM-INTERFACE` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1010` | `FINITE_QM_CORE` | `CONDITIONAL` | `FQ-PRIM-TO-QM-SELECTION-OPEN` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / caveat_added |
-| `TFQ-1011` | `FINITE_QM_CORE` | `PROVED_LEAN` | `FQ-SORKIN-READOUT-CLASS-QM208` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-1012` | `FINITE_QM_CORE` | `PROVED_LEAN` | `FQ-POWER-RULE-P2-SELECTION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-1011` | `FINITE_QM_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-SORKIN-READOUT-CLASS-QM208` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-1012` | `FINITE_QM_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-POWER-RULE-P2-SELECTION` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-1013` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `FQ-FIVE-IMPORT-PROXY-SEPARATION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1014` | `FINITE_QM_CORE` | `PROVED_LEAN` | `FQ-GLEASON-D2-RATIONAL-PLANE-OBSTRUCTION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1015` | `FINITE_QM_CORE` | `PROVED_LEAN` | `FQ-CABELLO-NO-INTEGER-FRAME` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1016` | `FINITE_QM_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-CABELLO-FRAME-POLYTOPE-146` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-1017` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `FQ-BUSCH-EFFECT-FRAME` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-1018` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `FQ-TENSOR-LU-RIVAL-EXCLUSION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-1017` | `FINITE_QM_STRUCTURE` | `COMPUTATIONAL_CONTROL` | `FQ-BUSCH-EFFECT-FRAME` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-1018` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `FQ-TENSOR-LU-RIVAL-EXCLUSION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-1019` | `FINITE_QM_CORE` | `CONDITIONAL` | `FQ-GAP-TENSOR-UNIQUENESS` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1020` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
 | `TFQ-1021` | `FINITE_QM_CORE` | `PROVED_LEAN` | `FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION` (PROVED_LEAN) | - |
@@ -497,8 +497,8 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1023` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-CUSTODY-AND-RECEIPTS` (OPEN) | scoped_numeral_slice_reviewed / caveat_added |
 | `TFQ-1024` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-CORPUS-REWRITE` (OPEN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1025` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-C500-ORIGINAL-TARGETS` (OPEN) | scoped_block_numeral_slice_reviewed / caveat_added |
-| `TFQ-1026` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
-| `TFQ-1027` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `FQ-IMPL-REALIFICATION-ADAPTER` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
+| `TFQ-1026` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
+| `TFQ-1027` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-IMPL-REALIFICATION-ADAPTER` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
 | `TFQ-1028` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-IMPL-PAIRING-AUDIT` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
 | `TFQ-1029` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-COMPLEX-FIELD` (IMPORTED_ASSUMPTION) | scoped_gaussian_integer_result_reviewed / caveat_added |
 | `TFQ-1030` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CIRCLE-U1` (IMPORTED_ASSUMPTION) | scoped_sign_pair_cycle_result_reviewed / caveat_added |
@@ -4085,23 +4085,23 @@ Obligation: Selection of C and U(1) from finite carriers proper (finite fields/r
 
 - UUID: `94aa9074-ceee-5e5f-8d99-77c33033c272`
 - Parent: `TFQ-0234`
-- Status: `PROVED_LEAN`
-- DAG node: `L1-QM020-C10-BRANCH-LOCALIZATION` (`PROVED_LEAN`)
+- Status: `OPEN_OBLIGATION`
+- DAG node: `L1-QM020-C10-BRANCH-LOCALIZATION` (`OPEN`)
 
-Reviewed scope: Exact coherence/dephasing arrays and the resulting dynamical non-descent counterexample; literal sign/readout obstruction identities in Lean.
+Branch-localization and many-worlds readings of the lifted phases are conjectures, not part of the QM_020 theorems.
 
-Obligation: Unmet after the PFP review: Provide any branching or many-worlds interpretation and its empirical criteria separately; mathematical non-descent neither establishes nor refutes an interpretation. The broader source statement is kept in pfp_review.prior_statement.
+Obligation: Interpretive readings (branch localization, many worlds) are not formalised. The cited Lean has 2x2 pinching and sign identities, which bear on dephasing but not on the readings.
 
 ### TFQ-1005 l1-qm003-c17-composable-factorization
 
 - UUID: `df80c035-84c4-519e-ac15-4e97875e7b37`
 - Parent: `TFQ-0355`
-- Status: `PROVED_LEAN`
-- DAG node: `L1-QM003-C17-COMPOSABLE-FACTORIZATION` (`PROVED_LEAN`)
+- Status: `COMPUTATIONAL_CONTROL`
+- DAG node: `L1-QM003-C17-COMPOSABLE-FACTORIZATION` (`COMPUTATIONALLY_CHECKED`)
 
-Reviewed scope: Exact stochastic composition/action equality and diagonal density presentation, plus scalar matrix multiplication identities and the Hadamard defect in Lean.
+Diagonal Markov-composable channels factor through the residual density carrier (qm003_c17_diagonal_composable_factorization), while Hadamard off-diagonal coherence separates matrix composition from diagonal multiplication.
 
-Obligation: Unmet after the PFP review: Prove source residual-density factorization on its full carrier and channel class. The source diagonal multiplication anchor alone does not prove it. The broader source statement is kept in pfp_review.prior_statement.
+Obligation: Lean states the 2x2 case: products of diagonal 2x2 integer matrices are diagonal with entrywise products, and the Hadamard matrix gives an explicit off-diagonal counterexample. General dimension and general Markov kernels are not in Lean.
 
 ### TFQ-1029 gp-import-complex-field
 
@@ -4515,23 +4515,23 @@ Obligation: Selection of a declared quantum model or readout from primitive diff
 
 - UUID: `e823f7a0-a78c-52df-bc39-7f0b523f5a21`
 - Parent: `TFQ-0251`
-- Status: `PROVED_LEAN`
-- DAG node: `FQ-SORKIN-READOUT-CLASS-QM208` (`PROVED_LEAN`)
+- Status: `COMPUTATIONAL_CONTROL`
+- DAG node: `FQ-SORKIN-READOUT-CLASS-QM208` (`COMPUTATIONALLY_CHECKED`)
 
-Reviewed scope: general I3(alpha*t²+beta*t⁴)=12*beta*abc(a+b+c), hence general vanishing iff beta=0. Exact Q(zeta12) control norms (7,±4) give R_AB invariance iff B=0; no full positivity-cone classification is inferred.
+Inside the phase-blind family alpha|c|^2 + beta|c|^4, third-order Sorkin I3 vanishes identically iff beta = 0; over Z[zeta_12] the I3 = 0 rational readout cone R_{A,B} is classified and Galois-invariance selects equal embedding weights alpha = beta. Does not hold outside the polynomial family.
 
-Obligation: Unmet after the PFP review: Formalize the embedding-weight/basis-coordinate conversion and full rational readout positivity cone. Polynomial restriction and amplitude addition are admitted, and this is not a classification of all readouts. The broader source statement is kept in pfp_review.prior_statement.
+Obligation: Lean checks rational identities for the declared Z[zeta_12] readout family R_{A,B} (vanishing iff B = 0 on the two test vectors) and fixed positive minors. The full classification of the I3 = 0 cone and the Galois selection alpha = beta are not in Lean.
 
 ### TFQ-1012 fq-power-rule-p2-selection
 
 - UUID: `82ef8fec-294b-51c8-9b81-629746aeff47`
 - Parent: `TFQ-1009`
-- Status: `PROVED_LEAN`
-- DAG node: `FQ-POWER-RULE-P2-SELECTION` (`PROVED_LEAN`)
+- Status: `COMPUTATIONAL_CONTROL`
+- DAG node: `FQ-POWER-RULE-P2-SELECTION` (`COMPUTATIONALLY_CHECKED`)
 
-Reviewed scope: The real power equation (3/5)^p+(4/5)^p=1 iff p=2 is kernel checked. Integer p=1..8 reproduce actual shared-ray context weights; mixed-sign p=1 supplies a retained counterexample to unrestricted Sorkin vanishing.
+Within the declared positive-power family P_p(i) = |c_i|^p / sum_j |c_j|^p on two rational orthonormal contexts sharing a ray (psi = (1,1,0), (3,4,5) rotation), context-independence holds iff (3/5)^p + (4/5)^p = 1, whose unique positive solution is p = 2. Classifies the power family; not a Gleason theorem. Sorkin I3 does not select p (vanishes at p=1 and p=2).
 
-Obligation: Unmet after the PFP review: The power-law family, real exponentiation and the real orthonormal contexts are admitted; formal transport of the concrete context normalization to the Real.rpow equation remains a separate bridge. No unrestricted readout uniqueness or Gleason theorem follows. The broader source statement is kept in pfp_review.prior_statement.
+Obligation: The real equation (3/5)^p + (4/5)^p = 1 iff p = 2 is stated in lean4/PromptStructure.lean (power_real_unique). The step that context-independence on the declared pair of contexts is equivalent to this equation is checked natively for integer p = 1..8, not in Lean.
 
 ### TFQ-1014 fq-gleason-d2-rational-plane-obstruction
 
@@ -5178,12 +5178,12 @@ Obligation: Quadratic geometry and Born pairing overlap; no independence theorem
 
 - UUID: `2a9f3b16-5f95-5f31-ac50-1d14d908072f`
 - Parent: `TFQ-1009`
-- Status: `PROVED_LEAN`
-- DAG node: `FQ-BUSCH-EFFECT-FRAME` (`PROVED_LEAN`)
+- Status: `COMPUTATIONAL_CONTROL`
+- DAG node: `FQ-BUSCH-EFFECT-FRAME` (`COMPUTATIONALLY_CHECKED`)
 
-Reviewed scope: Exact six-effect readouts and reconstruction, plus a finite-probe-versus-PSD counterexample, are native/kernel checked at the stated scalar/coordinate scopes.
+At declared real places, an informationally-complete POVM family and a polyhedral frame cone are distinguished (busch_ic_povm_vs_polyhedral_frame_cone); Galois-conjugate negativity versus SOS total positivity is witnessed (galois_conjugate_negativity_vs_sos_total_positivity). Busch-type effect hypotheses are explicit.
 
-Obligation: Unmet after the PFP review: Prove full effect positivity, matrix/trace transport, arbitrary Busch hypotheses and the separate real-place/Galois/SOS claims. Finite informational completeness alone is not full positivity or Born uniqueness. The broader source statement is kept in pfp_review.prior_statement.
+Obligation: Lean evaluates fixed rational traces, determinants, Bloch sums and minors for the declared effects and frame cone. No general Busch-type theorem is stated.
 
 ### TFQ-1018 fq-tensor-lu-rival-exclusion
 
@@ -5192,9 +5192,9 @@ Obligation: Unmet after the PFP review: Prove full effect positivity, matrix/tra
 - Status: `PROVED_LEAN`
 - DAG node: `FQ-TENSOR-LU-RIVAL-EXCLUSION` (`PROVED_LEAN`)
 
-Reviewed scope: Exact tensor/right-Z and dump/right-Z arrays plus the genuine report-action non-descent witness are native/kernel checked.
+On Bool x Bool a bilinear, integer-homogeneous, Kronecker-normalized combining rule equals the pointwise product (bilinear_product_unique_on_bool_prod); the weaker interface has a dump-the-right-report rival u boxtimes v = (<0|v>+<1|v>) u, which fails local-unitary covariance (rival_fails_local_unitary_covariance).
 
-Obligation: Unmet after the PFP review: Transport to the original abstract bilinear Kronecker interface, full local-unitary group and physical tensor/basis/inner-product admission. The rival counterexample alone does not derive the tensor product. The broader source statement is kept in pfp_review.prior_statement.
+Obligation: Stated in H014BilinearProduct.lean, H014Interface.lean and H062CompositionTensorMub.lean. The setting is two Boolean factors; larger factor sets are not covered.
 
 ### TFQ-1020 fq-weyl-finite-schrodinger-irreducibility
 
@@ -5203,9 +5203,9 @@ Obligation: Unmet after the PFP review: Transport to the original abstract bilin
 - Status: `PROVED_LEAN`
 - DAG node: `FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY` (`PROVED_LEAN`)
 
-Reviewed scope: Exact d=3 Weyl basis reconstruction and commutator controls, plus the generic conditional scalar-commutant theorem and literal cubic-root algebra.
+For every n >= 1 and every field K, an (n+1) x (n+1) matrix that commutes with a diagonal clock matrix with distinct eigenvalues and with the cyclic shift is scalar. In particular, for odd prime d the clock and shift matrices over Q(zeta_d) have scalar commutant.
 
-Obligation: Unmet after the PFP review: Transport the array model to field/matrix semantics and prove representation irreducibility for all admitted odd primes. Primitive-root existence, seed selection and infinite-dimensional results are not derived. The broader source statement is kept in pfp_review.prior_statement.
+Obligation: Stated in WeylCommutant.lean (clock_shift_commutant_scalar). Irreducibility of the Schrodinger representation follows by Schur's lemma, and the Weyl commutator X^a Z^b X^-a Z^-b = omega^(-ab) I is a separate computation; neither is a cited Lean declaration. No statement for infinite dimension.
 
 ### TFQ-1036 gp-gap-exact-duality
 
@@ -7503,23 +7503,23 @@ Obligation: Match the area-label surd of j(j+1) at spin j = n/2 and the declared
 
 - UUID: `4d1a57cd-1d47-594f-9462-b64f8e6aedaa`
 - Parent: `TFQ-1027`
-- Status: `PROVED_LEAN`
-- DAG node: `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (`PROVED_LEAN`)
+- Status: `COMPUTATIONAL_CONTROL`
+- DAG node: `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (`COMPUTATIONALLY_CHECKED`)
 
-Reviewed scope: Exact bounded phase/holonomy/readout controls and a general positive-power mod5 residue induction are retained with literal gauge/norm kernel identities.
+omega_wdp amplitude_bridge.rs is the only artifact for WDP-CH19-P11/P12: with unit phase u=(3+4i)/5, integer edge cochains give transports u^{a_e}; adding a coboundary conjugates transports and leaves cycle holonomy unchanged; both readouts N(z1+z2) and N(z1+z2)^2 are common-phase invariant and left free; no homomorphism (Q,+) -> U(1)(Q(i)) sends 1 to u, and u^n != 1 for every n >= 1 (certified via (3+4i)^n mod 5).
 
-Obligation: Unmet after the PFP review: Formalize the Gaussian numerator/denominator transport and the rational-additive-group obstruction to a homomorphism sending1 to this u. Do not infer a preferred readout or a general phase-selection theorem. The broader source statement is kept in pfp_review.prior_statement.
+Obligation: The claims are about a Rust artifact and are backed by its native exact tests. The cited Lean is integer arithmetic (3^2 + 4^2 = 5^2 and similar) and does not state the claims.
 
 ### TFQ-1027 fq-impl-realification-adapter
 
 - UUID: `ede28733-9821-5833-8771-7cc0bfce6c1d`
 - Parent: `TFQ-1007`
-- Status: `PROVED_LEAN`
-- DAG node: `FQ-IMPL-REALIFICATION-ADAPTER` (`PROVED_LEAN`)
+- Status: `COMPUTATIONAL_CONTROL`
+- DAG node: `FQ-IMPL-REALIFICATION-ADAPTER` (`COMPUTATIONALLY_CHECKED`)
 
-Reviewed scope: Actual scalar realification products, multiplication quotient, balancing kernel and normalization factor are exact; literal algebraic product/balancing identities are kernel checked.
+A declared finite complex realization over Q(i) is mapped to its balanced real tensor (realify operator/density, product operator/density), in both omega_wdp (Genesis side) and omega_quantum_physics (quantum owner). State admission stays with the quantum owner and balancing with the math owner; this is the Rust site where a Genesis result meets a declared complex structure, and the code states it chooses none.
 
-Obligation: Unmet after the PFP review: Prove the full operator/density adapter, balanced tensor metric and positivity/admission transport for arbitrary finite matrices. No derivation or selection of the complex structure is supplied. The broader source statement is kept in pfp_review.prior_statement.
+Obligation: The claims describe Rust code and are backed by its native exact tests. The cited Lean is integer arithmetic and does not state the claims.
 
 ### TFQ-1028 fq-impl-pairing-audit
 
@@ -7550,9 +7550,9 @@ Obligation: All NF-002 theorems T1-T5 and the duplicate-free 2^numChord normal-f
 - Status: `PROVED_LEAN`
 - DAG node: `IMPL-THYMUS-SCREENING-SOUNDNESS` (`PROVED_LEAN`)
 
-Reviewed scope: Complete finite panel/predicate controls and mismatch witnesses are exact; zero in-panel false positives under the actual screened predicate is kernel checked.
+For a screening predicate d and a sealed panel, the screen admits the panel iff d holds on every panel member, and an admitted panel has no false positives under d.
 
-Obligation: Unmet after the PFP review: Bind an actual production detector, executed code and authenticated self-panel to these predicates, and state any out-of-panel assumptions. No generalization beyond the sealed panel or physical immune-system theorem is claimed. The broader source statement is kept in pfp_review.prior_statement.
+Obligation: Stated in ThymusScreening.lean (thymus_admit_iff, self_panel_soundness). It concerns the repository's screening tool, not quantum mechanics.
 
 ### TFQ-1046 impl-lggr-finite-results-lean
 

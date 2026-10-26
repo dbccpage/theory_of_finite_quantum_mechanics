@@ -1,6 +1,6 @@
 # [TFQ-1011] FQ-SORKIN-READOUT-CLASS-QM208
 
-> **Stage**: `FINITE_QM_CORE` | **Status**: `PROVED_LEAN` | **DAG node**: `FQ-SORKIN-READOUT-CLASS-QM208` (`PROVED_LEAN`)  
+> **Stage**: `FINITE_QM_CORE` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `FQ-SORKIN-READOUT-CLASS-QM208` (`COMPUTATIONALLY_CHECKED`)  
 > **UUID**: `e823f7a0-a78c-52df-bc39-7f0b523f5a21`  
 > **Parent Derivation**: [TFQ-0251](../12_finite_qm_structure/tfq_0251_superposition_as_a_quotient_fiber.md)
 
@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Reviewed scope: general I3(alpha*t²+beta*t⁴)=12*beta*abc(a+b+c), hence general vanishing iff beta=0. Exact Q(zeta12) control norms (7,±4) give R_AB invariance iff B=0; no full positivity-cone classification is inferred.
+Inside the phase-blind family alpha|c|^2 + beta|c|^4, third-order Sorkin I3 vanishes identically iff beta = 0; over Z[zeta_12] the I3 = 0 rational readout cone R_{A,B} is classified and Galois-invariance selects equal embedding weights alpha = beta. Does not hold outside the polynomial family.
 
 ### Governing Obligation
-Unmet after the PFP review: Formalize the embedding-weight/basis-coordinate conversion and full rational readout positivity cone. Polynomial restriction and amplitude addition are admitted, and this is not a classification of all readouts. The broader source statement is kept in pfp_review.prior_statement.
+Lean checks rational identities for the declared Z[zeta_12] readout family R_{A,B} (vanishing iff B = 0 on the two test vectors) and fixed positive minors. The full classification of the I3 = 0 cone and the Galois selection alpha = beta are not in Lean.
 
 ### Source Status
 QM-208 table row: exact finite invariant; residual "add-then-square composition and restriction to the polynomial readout family"
