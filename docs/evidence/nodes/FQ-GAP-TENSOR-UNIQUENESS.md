@@ -10,9 +10,9 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 12
-- cited Lean, Rust or Python symbols found in their in-repo files: 8
-- distinct cited Lean declarations covered by a current replay receipt: 7
+- counted in-repo evidence files: 14
+- cited Lean, Rust or Python symbols found in their in-repo files: 9
+- distinct cited Lean declarations covered by a current replay receipt: 8
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 1
@@ -41,10 +41,10 @@ The 20261019 scope audit remains a determinant obstruction on a supplied rationa
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `CONDITIONAL`; qualifies for E4: yes.
-  - narrowest claim: On the admitted 2x2 rational coefficient host every simple tensor has zero coefficient determinant; \[\[1,0\],\[0,1\]\] has determinant one and is not simple. Native norm multiplication is checked on retained inputs.
-  - does not support: Formalize state/effect cones, covariance requirements, their min/max comparison and any uniqueness theorem; general tensor selection remains an import.
-  - next test: Formalize state/effect cones, covariance requirements, their min/max comparison and any uniqueness theorem; general tensor selection remains an import.
+- PFP review: [dag/research/pr442_statement_review_20261026.json](../../../dag/research/pr442_statement_review_20261026.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
+  - narrowest claim: Every 2 by 2 outer product of integer vectors has determinant zero; the identity matrix has determinant one and is not such an outer product.
+  - does not support: This integer coefficient-matrix obstruction does not select a tensor product or establish state/effect-cone reconstruction. Previously verified conditional reconstruction and measurement results remain separately cited; local complex QM, tomography, calibrated reversible interactions and saturation hypotheses remain supplied.
+  - next test: Derive the supplied operational hypotheses from primitive difference; do not replace the existing conditional reconstruction with this finite obstruction.
 
 ## Evidence items
 
@@ -54,13 +54,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CampaignFqGapTensorUniqueness.lean](../../../lean4/CampaignFqGapTensorUniqueness.lean)
 - sha256 (`bytes`): `e49a61cbcdcbd8f885d757b2cb03962e3db9ec07a5dcb1573308d0ebd2f3a971`
-- cited in: node.lean, node.source, receipt dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json (CampaignFqGapTensorUniqueness), record TFQ-1019
+- cited in: node.lean, node.source, receipt dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json (CampaignFqGapTensorUniqueness), receipt dag/research/pr442_review_lean_replay.json (CampaignFqGapTensorUniqueness), record TFQ-1019
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json](../../../dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json) (module `CampaignFqGapTensorUniqueness`): recorded sha256 `e49a61cbcdcbd8f885d757b2cb03962e3db9ec07a5dcb1573308d0ebd2f3a971` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json](../../../dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json) (module `CampaignFqGapTensorUniqueness`): recorded sha256 `e49a61cbcdcbd8f885d757b2cb03962e3db9ec07a5dcb1573308d0ebd2f3a971` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/pr442_review_lean_replay.json](../../../dag/research/pr442_review_lean_replay.json) (module `CampaignFqGapTensorUniqueness`): recorded sha256 `e49a61cbcdcbd8f885d757b2cb03962e3db9ec07a5dcb1573308d0ebd2f3a971` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignFqGapTensorUniqueness`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
+| `CampaignFqGapTensorUniqueness.det` | yes | yes | yes | none | `#print axioms CampaignFqGapTensorUniqueness.det` |
 | `CampaignFqGapTensorUniqueness.identityDet` | yes | yes | yes | propext | `#print axioms CampaignFqGapTensorUniqueness.identityDet` |
 | `CampaignFqGapTensorUniqueness.identityNotOuter` | yes | yes | yes | propext | `#print axioms CampaignFqGapTensorUniqueness.identityNotOuter` |
 | `CampaignFqGapTensorUniqueness.outerDet` | yes | yes | yes | propext | `#print axioms CampaignFqGapTensorUniqueness.outerDet` |
@@ -117,14 +119,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/fq-gap-tensor-uniqueness.py`
 
 - file: [checks/independent/fq-gap-tensor-uniqueness.py](../../../checks/independent/fq-gap-tensor-uniqueness.py)
-- sha256 (`bytes`): `be370f021c3d2be68f061661be3de12ea9bebcf24632edaeb0d0e8ff9fb68476`
+- sha256 (`bytes`): `594234df43a5586a86eb7032972338e3111d6f7bb0d628668a905bf0aa6786b4`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md](../../../dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md)
-- sha256 (`lf-normalised`): `7e5f98cca988cd5b534bab6b35427012bb913330064dcf02df6a09f7fb5a6577`
+- sha256 (`lf-normalised`): `6234c531189f01e68c371be491323a54d5e77d9982a2e01a5de868a1583b651b`
 - generated view: listed, not counted
 - cited in: record TFQ-1019
 - counts toward the grade: no
@@ -172,14 +174,28 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fq-gap-tensor-uniqueness.md`
 
 - file: [dag/derivations/independent/fq-gap-tensor-uniqueness.md](../../../dag/derivations/independent/fq-gap-tensor-uniqueness.md)
-- sha256 (`lf-normalised`): `b3ad9cee9caf3c3767dc94e423239a35290d3d7a31be2fc81b8bf2b7fee7bb7c`
+- sha256 (`lf-normalised`): `04eb1d6dc825b1a3232910843d1dc5c132ec230a8a1b7b9c32fa1f91ff6af1bb`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json`
 
 - file: [dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json](../../../dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json)
-- sha256 (`lf-normalised`): `a108cb228bfd1cde62d50ee423dc689fd0f6882042a7022c1ee71c9a8ff516ce`
+- sha256 (`lf-normalised`): `e45f650411be10a953621bcfeed7c11f1b18959e5932238e21193cd227ddfc50`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/pr442_review_lean_replay.json`
+
+- file: [dag/research/pr442_review_lean_replay.json](../../../dag/research/pr442_review_lean_replay.json)
+- sha256 (`lf-normalised`): `a190b5a1585e68d7f7e96bc2d588edf982baf6ef6a5bbf11e585f944a774a04c`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/pr442_statement_review_20261026.json`
+
+- file: [dag/research/pr442_statement_review_20261026.json](../../../dag/research/pr442_statement_review_20261026.json)
+- sha256 (`lf-normalised`): `1949b49b9f993f18b02381ada3d14e4b79324089d25bac9994d37580b1e28ab0`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -193,7 +209,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/tensor_countermodel_validation.json`
 
 - file: [dag/research/tensor_countermodel_validation.json](../../../dag/research/tensor_countermodel_validation.json)
-- sha256 (`lf-normalised`): `bce60819d00a80712c1c88fdbab5501acfd16deaff79fc5fd42868000e4f1297`
+- sha256 (`lf-normalised`): `dfd081545473659144788bf3f3dd459f4c988884334b405fb00a9a3164ba7612`
 - cited in: node.source
 - counts toward the grade: yes
 

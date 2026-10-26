@@ -1491,6 +1491,22 @@ lean_lib «CampaignFiniteGroupPachner» where
 lean_lib CampaignDfmRefinementLimit where
   roots := #[`CampaignDfmRefinementLimit]
 
--- Campaign: FQ-GAP-TENSOR-UNIQUENESS. Not a default target.
+-- Reviewed campaign module; non-default target.
+lean_lib CampaignLqgProjectiveLimit where
+  roots := #[`CampaignLqgProjectiveLimit]
+
+-- Reviewed campaign module; non-default target.
+lean_lib CampaignL1U1SelectorOtherSegment where
+  roots := #[`CampaignL1U1SelectorOtherSegment]
+
+-- Reviewed campaign module; non-default target.
+lean_lib CampaignOpsLeanGap where
+  roots := #[`CampaignOpsLeanGap]
+
+-- Reviewed campaign module; non-default target.
+lean_lib CampaignL1OrthogonalAdditivity where
+  roots := #[`CampaignL1OrthogonalAdditivity]
+
+-- Reviewed campaign module; non-default target.
 lean_lib CampaignFqGapTensorUniqueness where
   roots := #[`CampaignFqGapTensorUniqueness]

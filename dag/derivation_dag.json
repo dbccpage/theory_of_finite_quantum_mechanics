@@ -3540,10 +3540,15 @@
       "id": "L1-IMP-ORTHOGONAL-ADDITIVITY",
       "stage": "L1_TO_L2",
       "status": "CONDITIONAL",
-      "source_status": "Orthogonality of the sector basis derived from sector additivity of the readout alone in dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form (SectorFormUniqueness.offdiag_pair_sum_eq_zero, offdiag_eq_zero, eq_diagonal_of_sectorAdditive, qf_eq_sum_diag_sq_of_sectorAdditive; SectorFormHermitian.offdiag_eq_zero with the two directions 1 and i, and imagLeak12 showing the second direction is needed). Frame additivity on arbitrary orthogonal frames is not derived. Earlier: Thm 6 assumptions 4 and 7: orthogonal additivity; projection-measure / frame-function structure",
-      "statement": "Derived part (dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form): sector additivity of the quadratic readout on disjoint supports forces every off-diagonal Gram entry to vanish, so the sector basis is orthogonal for every sector-additive form and the readout is the diagonal sum; this couples the l1 additivity of sectors to the orthogonality of the selected form. Imported part: probability additive over arbitrary orthogonal frames and defined on projection measures / frames (Thm 6 assumptions 4 and 7), under which the quartic rival dies (H013FrameAdditivity) and without which two effect rules share the unit total and disagree (H013SameContract), remains supplied.",
+      "source_status": "Sector additivity over disjoint supports gives off-diagonal pair-sum cancellation and the diagonal quadratic readout. Entrywise off-diagonal zero additionally requires symmetry; the complex Hermitian theorem uses Hermitian symmetry and both real and imaginary sector directions. Arbitrary orthogonal-frame additivity and projection-measure structure remain supplied. Earlier sector-form source and prior reviews remain cited.",
+      "statement": "For a sector-additive rational coefficient matrix, the sum of each off-diagonal pair is zero and the quadratic readout equals the sum of the diagonal squares. Symmetry of the matrix is a further hypothesis before each off-diagonal entry is zero. On the 2 by 2 integer matrix with entries 1, 1, -1 and 1, the off-diagonal pair sums to 0, neither off-diagonal entry is 0, and for every integer pair a, b the quadratic form equals a*a + b*b, which equals the sum of the forms on (a, 0) and (0, b). Probability additive on arbitrary orthogonal frames, and projection measures, stay supplied.",
       "source": [
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md:780"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md:780",
+        "lean4/CampaignL1OrthogonalAdditivity.lean",
+        "checks/independent/l1-imp-orthogonal-additivity.py",
+        "dag/derivations/independent/l1-imp-orthogonal-additivity.md",
+        "dag/research/pr440_statement_review_20261026.json",
+        "dag/research/pr440_review_lean_replay.json"
       ],
       "lean": [
         "lean4/H013FrameAdditivity.lean",
@@ -3556,7 +3561,12 @@
         "lean4/SectorFormUniqueness.lean::InnerProductFable.SectorForm.qf_eq_sum_diag_sq_of_sectorAdditive",
         "lean4/SectorFormUniqueness.lean::InnerProductFable.SectorForm.l1_disjoint_additive",
         "lean4/SectorFormHermitian.lean::InnerProductFable.HermitianSectorForm.offdiag_eq_zero",
-        "lean4/SectorFormHermitian.lean::InnerProductFable.HermitianSectorForm.imagLeak12_imag_direction_not_additive"
+        "lean4/SectorFormHermitian.lean::InnerProductFable.HermitianSectorForm.imagLeak12_imag_direction_not_additive",
+        "lean4/CampaignL1OrthogonalAdditivity.lean::CampaignL1OrthogonalAdditivity.pairSum",
+        "lean4/CampaignL1OrthogonalAdditivity.lean::CampaignL1OrthogonalAdditivity.entriesNotZero",
+        "lean4/CampaignL1OrthogonalAdditivity.lean::CampaignL1OrthogonalAdditivity.readout",
+        "lean4/CampaignL1OrthogonalAdditivity.lean::CampaignL1OrthogonalAdditivity.axisSum",
+        "lean4/CampaignL1OrthogonalAdditivity.lean::CampaignL1OrthogonalAdditivity.negCross"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs",
@@ -3569,22 +3579,23 @@
         "sector additivity of the quadratic readout on disjoint supports: assumption (transcribed from l1 additivity)",
         "frame additivity on arbitrary orthogonal frames of the selected form and projection measures / frames beyond the sector basis: assumption"
       ],
-      "bottleneck": "Sector additivity of the quadratic readout is supplied as a law (transcribed from l1 additivity); frame additivity on arbitrary orthogonal frames of the selected form, as Gleason-type uniqueness needs, is not derived here (H013 headers say Candidate only).",
+      "bottleneck": "The 2 by 2 matrix is one witness that a sector-additive form can keep a nonzero off-diagonal entry when the pair sums to zero. Frame additivity on arbitrary orthogonal frames, projection measures, and Gleason-type uniqueness stay supplied. Sector additivity of the quadratic readout on a general carrier remains the hypothesis transcribed from l1 additivity. AuthorityEffect: None.",
       "tags": [
         "conditional-on-readout-laws"
       ],
       "pfp_review": {
-        "review": "dag/results/L1-IMP-ORTHOGONAL-ADDITIVITY/reviews/20261020_born_boundary_audit/delivery_review_result.json",
-        "review_sha256": "841648b501aeb854d66b132fc803d38baed4530bb0bcc8ee762a97672f696d32",
+        "review": "dag/research/pr440_statement_review_20261026.json",
+        "review_sha256": "4f5a86e040e2b2505abe883699560466c5dca6810408ee462b0de026486aedc8",
         "review_refs": [
-          "dag/results/L1-IMP-ORTHOGONAL-ADDITIVITY/reviews/20261020_born_boundary_audit/delivery_review_result.json"
+          "dag/results/L1-IMP-ORTHOGONAL-ADDITIVITY/reviews/20261020_born_boundary_audit/delivery_review_result.json",
+          "dag/research/pr440_statement_review_20261026.json"
         ],
         "verdict": "scoped_result_or_obstruction_reviewed",
-        "narrowest_claim": "Exact projector resolution of identity, quadratic frame totals and quartic basis dependence, with generic orthogonal-frame algebra in Lean.",
-        "does_not_support": "Prove source/array refinement and the full frame-law uniqueness theorem; a few frame values neither derive orthogonality nor prove Gleason.",
-        "next_test": "Prove source/array refinement and the full frame-law uniqueness theorem; a few frame values neither derive orthogonality nor prove Gleason.",
-        "scope_effect": "consistent",
-        "reason": "Review predates the sector-form run; current node text splits derived and imported parts and already cites it.",
+        "narrowest_claim": "The integer coefficient matrix [[1,1],[-1,1]] has nonzero off-diagonal entries whose sum is zero, and its quadratic form equals a*a+b*b and the sum of its two axis readouts for every integer a,b.",
+        "does_not_support": "One nonsymmetric coefficient matrix; no Gram-matrix or arbitrary orthogonal-frame/projection-measure theorem. General sector additivity remains supplied. Entrywise off-diagonal zero needs symmetry (and in the Hermitian setting the stated real/imaginary sector hypotheses).",
+        "next_test": "Derive rather than assume arbitrary-frame probability additivity and the projection-measure hypotheses.",
+        "scope_effect": "statement_narrowed",
+        "reason": "Correct the missing symmetry premise and add one nonsymmetric coefficient-matrix counterexample; preserve CONDITIONAL status and historical review provenance.",
         "prior_status": "CONDITIONAL",
         "prior_statement": "Derived part (dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form): sector additivity of the quadratic readout on disjoint supports forces every off-diagonal Gram entry to vanish, so the sector basis is orthogonal for every sector-additive form and the readout is the diagonal sum; this couples the l1 additivity of sectors to the orthogonality of the selected form. Imported part: probability additive over arbitrary orthogonal frames and defined on projection measures / frames (Thm 6 assumptions 4 and 7), under which the quartic rival dies (H013FrameAdditivity) and without which two effect rules share the unit total and disagree (H013SameContract), remains supplied.",
         "prior_bottleneck": "Sector additivity of the quadratic readout is supplied as a law (transcribed from l1 additivity); frame additivity on arbitrary orthogonal frames of the selected form, as Gleason-type uniqueness needs, is not derived here (H013 headers say Candidate only).",
@@ -4112,9 +4123,13 @@
       "stage": "L1_TO_L2",
       "status": "OPEN",
       "source_status": "Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, split-real zero-divisor exclusion, non-abelian Pauli exclusion, and Gaussian-integer cx ring injectivity) mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm",
-      "statement": "Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; finite fields/rings (unit circle of order p -+ 1, native table only), cyclotomic extensions, completion and continuity are not treated.",
+      "statement": "Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; a general finite-field/ring classification, cyclotomic extensions, completion and continuity remain open. Separate modulo-7 result: On the integers modulo 7, with product (a, b) * (c, d) = (a*c - b*d, a*d + b*c), the pairs (x, y) with x*x + y*y = 1 are exactly the powers g^0 through g^7, in exponent order, for g = (2, 2): (1, 0), (2, 2), (0, 1), (5, 2), (6, 0), (5, 5), (0, 6) and (2, 5). The next power g^8 is (1, 0), and g^1 through g^7 all differ from (1, 0). The count 8 equals 7 + 1 and is not 4.",
       "source": [
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/121_the_finite_qm_ingredient_ladder/qm_121_the_finite_qm_ingredient_ladder_claim_ledger.md#C10"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/121_the_finite_qm_ingredient_ladder/qm_121_the_finite_qm_ingredient_ladder_claim_ledger.md#C10",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean",
+        "checks/independent/l1-u1-selector-other-segment.py",
+        "dag/derivations/independent/l1-u1-selector-other-segment.md",
+        "dag/research/pr435_review_lean_replay.json"
       ],
       "lean": [
         "lean4/H011U1SelectorBoundary.lean::selector_not_free",
@@ -4122,7 +4137,20 @@
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity"
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step1",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step2",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step3",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step4",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step5",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step6",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step7",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step8",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.norms",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.solutions_iff",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.eight_distinct",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.eight",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.earlier_ne_one",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.not_axis"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs",
@@ -4134,7 +4162,7 @@
         "sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved.",
+      "bottleneck": "Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved. Only the explicit modulo-7 carrier and its stated operations are covered. The Nat subtraction encoding agrees with integer subtraction only on the bounded residue domain. Selection of C or U(1), general prime or ring classification, cyclotomic fields, completion and continuity remain open; the older Gaussian-rational torsion result is retained separately.",
       "tags": [
         "cross-segment"
       ],
@@ -5120,16 +5148,19 @@
         "lean4/CampaignFqGapTensorUniqueness.lean",
         "dag/derivations/independent/fq-gap-tensor-uniqueness.md",
         "dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json",
-        "checks/independent/fq-gap-tensor-uniqueness.py"
+        "checks/independent/fq-gap-tensor-uniqueness.py",
+        "dag/research/pr442_statement_review_20261026.json",
+        "dag/research/pr442_review_lean_replay.json"
       ],
       "lean": [
-        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.outerDet",
-        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityDet",
-        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityNotOuter",
         "lean4/CoupledRelationalProjectors.lean::QuantumMechanics.CoupledRelationalProjectors.coupled_bipartite_and_tripartite_relational_master_certificate",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_tensor_uniqueness_min_vs_max_tensor_and_covariance",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
+        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
+        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.outerDet",
+        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityDet",
+        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityNotOuter",
+        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.productsEq"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/coupled_relational_operad.rs::evaluate_coupled_relational_operad",
@@ -5159,20 +5190,21 @@
         "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY"
       ],
       "pfp_review": {
-        "review": "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json",
-        "review_sha256": "fc43b2dca1747b4aa45e047291173713453b0aafd7d3d14539e06d1af7fa2c52",
+        "review": "dag/research/pr442_statement_review_20261026.json",
+        "review_sha256": "1949b49b9f993f18b02381ada3d14e4b79324089d25bac9994d37580b1e28ab0",
         "review_refs": [
-          "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json"
+          "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json",
+          "dag/research/pr442_statement_review_20261026.json"
         ],
         "verdict": "scoped_result_or_obstruction_reviewed",
-        "narrowest_claim": "On the admitted 2x2 rational coefficient host every simple tensor has zero coefficient determinant; [[1,0],[0,1]] has determinant one and is not simple. Native norm multiplication is checked on retained inputs.",
-        "does_not_support": "Formalize state/effect cones, covariance requirements, their min/max comparison and any uniqueness theorem; general tensor selection remains an import.",
-        "next_test": "Formalize state/effect cones, covariance requirements, their min/max comparison and any uniqueness theorem; general tensor selection remains an import.",
-        "scope_effect": "statement_narrowed",
-        "reason": "The standing text keeps the operational premises as supplied, and adds the integer outer-product determinant on a 2 by 2 integer matrix. Tensor selection stays supplied.",
+        "narrowest_claim": "Every 2 by 2 outer product of integer vectors has determinant zero; the identity matrix has determinant one and is not such an outer product.",
+        "does_not_support": "This integer coefficient-matrix obstruction does not select a tensor product or establish state/effect-cone reconstruction. Previously verified conditional reconstruction and measurement results remain separately cited; local complex QM, tomography, calibrated reversible interactions and saturation hypotheses remain supplied.",
+        "next_test": "Derive the supplied operational hypotheses from primitive difference; do not replace the existing conditional reconstruction with this finite obstruction.",
+        "scope_effect": "consistent",
+        "reason": "The application sync owns the conditional reconstruction statement; earlier reconstruction receipts remain authoritative for those claims. This current source review adds only the integer determinant lemma and retains the earlier scope audit as provenance.",
         "prior_status": "CONDITIONAL",
-        "prior_statement": "General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises.",
-        "prior_bottleneck": "The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional.",
+        "prior_statement": "General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises. On integer coefficients, every 2 by 2 outer product of two vectors has determinant 0, and the matrix with entries 1, 0, 0 and 1 has determinant 1, so that matrix is not an outer product of two integer vectors.",
+        "prior_bottleneck": "The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional. The integer determinant split separates the matrix with entries 1, 0, 0 and 1 from the outer products of integer vectors. It does not select a tensor product, compare state or effect cones, or discharge the operational premises. AuthorityEffect: None.",
         "superseded_by": [
           "dag/research/tensor_composition_validation.json",
           "dag/research/tensor_formalization_validation.json",
@@ -28661,26 +28693,44 @@
       "id": "LQG-CONTINUUM-LIMIT-GAP",
       "stage": "LOOP_QUANTUM_GRAVITY",
       "status": "OPEN",
-      "source_status": "Finite census and Q(sqrt 2) dimension identities checked in Lean 4.35.0 on 2026-10-24. Node stays OPEN. No continuum limit, semiclassical limit, or physical cosmological constant is derived. Earlier audit against arXiv:1205.2019 Part V and TFQ-0104/TFQ-0105 was on 2026-10-22.",
-      "statement": "No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recoupling tables of the repository, or from the exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit.",
+      "source_status": "Finite census and Q(sqrt 2) dimension identities checked in Lean 4.35.0 on 2026-10-24. Node stays OPEN. No continuum limit, semiclassical limit, or physical cosmological constant is derived. Earlier audit against arXiv:1205.2019 Part V and TFQ-0104/TFQ-0105 was on 2026-10-22. The supplied-family projective probability extension is separately kernel-checked; no physical LQG continuum claim follows.",
+      "statement": "No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recoupling tables of the repository, or from the exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit. Separate conditional mathematical result: For a supplied finite discrete label alphabet and normalized nonnegative probability laws on every finite set of natural-number coordinates, compatibility under coordinate restriction is equivalent to existence of an infinite projective-limit measure. Under compatibility, that probability measure is unique. Every countable family of measurable finite-window constraints having mass one in its finite law holds almost everywhere simultaneously in the limit, and at least one satisfying infinite configuration exists. The theorem specializes to the three level-two spin labels Fin 3 and arbitrary predicates on their finite windows.",
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md",
         "lean4/CampaignLqgContinuumLimitGap.lean",
         "dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json",
         "dag/derivations/independent/lqg-continuum-limit-gap.md",
         "checks/independent/lqg-continuum-limit-gap.py",
-        "code/rust/src/general_relativity/spin_foam.rs"
+        "code/rust/src/general_relativity/spin_foam.rs",
+        "lean4/CampaignLqgProjectiveLimit.lean",
+        "checks/independent/lqg-projective-limit.py",
+        "dag/derivations/independent/lqg-projective-limit.md",
+        "dag/research/campaign_lqg-projective-limit_lean_replay.json"
       ],
       "lean": [
         "lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_admissible_count",
         "lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_tuple_census",
         "lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_dimension_truncation",
         "lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_counts_do_not_select_a_scale",
-        "lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_free_positive_scale"
+        "lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_free_positive_scale",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.spin_constraints_ae",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.spin_labels_extension",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.countable_constraints",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.constraints_have_configuration",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.projective_of_limit",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.exists_limit_iff_projective",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.empty_stage",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.content_sigma_subadditive",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.limit_marginals",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.limit_unique"
       ],
       "rust": [],
-      "imported_structure": [],
-      "bottleneck": "The census and the two dimension identities do not discharge a continuum limit, a semiclassical limit, or a physical cosmological constant. No sequence of triangulations and no Einstein equation is constructed. Routes FRO-R-LQG-CONTINUUM-LIMIT-GAP and FRO-R-BACK-LQG-LIMIT-TO-TFQ0105 stay GAP_NO_DERIVATION. The broader audit sentence, that no source read for this change derives a limit, is not discharged in full.",
+      "imported_structure": [
+        "supplied finite discrete label alphabet and product measurable structure",
+        "normalized nonnegative finite laws compatible under all finite coordinate restrictions",
+        "countably many supplied finite-window constraints with probability one"
+      ],
+      "bottleneck": "The alphabet, discrete topology, product measurable structure, compatible finite probability laws and full-mass constraint premises are supplied. Physical LQG or complex spin-foam amplitudes are not shown to satisfy them. No triangulation refinement, manifold, semiclassical geometry, Einstein dynamics or physical cosmological constant is derived; the original node and physical routes remain OPEN/GAP. Earlier finite-census boundary: The census and the two dimension identities do not discharge a continuum limit, a semiclassical limit, or a physical cosmological constant. No sequence of triangulations and no Einstein equation is constructed. Routes FRO-R-LQG-CONTINUUM-LIMIT-GAP and FRO-R-BACK-LQG-LIMIT-TO-TFQ0105 stay GAP_NO_DERIVATION. The broader audit sentence, that no source read for this change derives a limit, is not discharged in full.",
       "tags": [
         "frontier-branch",
         "frontier:loop_quantum_gravity",
@@ -29545,16 +29595,20 @@
       "stage": "OBSERVER_PRESHEAF",
       "status": "OPEN",
       "source_status": "Ledger row L035-L1, status open.",
-      "statement": "Not formalised in Lean: the equivalences between global sections, conv(A) and the noncontextual fraction, and between strong contextuality and NCF 0 (nodes OPS-NCF-LHV-EQUIVALENCE and OPS-STRONG-CONTEXTUALITY-NCF-ZERO); Vorob'ev sufficiency and its converse (node OPS-VOROBEV-THEOREM); delta0 e = 0 if and only if e is no-signalling; rational normalisation of weights; and any link from the Lean model of natural-number-weighted lists to the Rust Scenario type or to the Rust and Python gates.",
+      "statement": "Not formalised in Lean: the equivalences between global sections, conv(A) and the noncontextual fraction, and between strong contextuality and NCF 0 (nodes OPS-NCF-LHV-EQUIVALENCE and OPS-STRONG-CONTEXTUALITY-NCF-ZERO); Vorob'ev sufficiency and its converse (node OPS-VOROBEV-THEOREM); delta0 e = 0 if and only if e is no-signalling; rational normalisation of weights; and any link from the Lean model of natural-number-weighted lists to the Rust Scenario type or to the Rust and Python gates. Separate finite result: For all four Boolean variables, the four specified parity constraints have no common assignment; their left XOR is false and the right XOR is true. The arithmetic identity 2*2*2*2 = 16 holds; the separate independent enumeration counts 16 assignments.",
       "source": [
         "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-L1",
         "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#4",
-        "dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md"
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md",
+        "lean4/CampaignOpsLeanGap.lean",
+        "checks/independent/ops-lean-gap.py",
+        "dag/derivations/independent/ops-lean-gap.md",
+        "dag/research/pr439_review_lean_replay.json"
       ],
       "lean": [],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Missing: a Lean proof of any item listed in the statement. The Lean file lean4/LggrFiniteResults.lean covers only the statements of nodes OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among these rows.",
+      "bottleneck": "Missing: Lean proofs of the unresolved global-section/NCF, strong-contextuality, Vorobev, no-signalling, rational-normalization and Rust-refinement items listed first in the statement. The separate four-variable parity obstruction and arithmetic product are already proved in CampaignOpsLeanGap. The Lean file lean4/LggrFiniteResults.lean covers only the statements of nodes OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among these rows. This one parity box does not establish the listed global-section/NCF equivalences, strong-contextuality criterion, Vorobev theorem, no-signalling coboundary equivalence, rational normalization or Rust Scenario refinement. The Lean sixteen lemma is arithmetic, not a type-cardinality theorem. The original OPS obligation remains OPEN.",
       "tags": [
         "foc035-observer-presheaf",
         "TFQ-2520",
@@ -32290,7 +32344,7 @@
         "lean4/SectorFormUniqueness.lean",
         "lean4/SectorFormHermitian.lean"
       ],
-      "note": "Holds once sector additivity of the quadratic readout is supplied; orthogonality of the sector basis follows without any symmetry assumption. Frame additivity beyond the sector basis is not covered."
+      "note": "Once sector additivity of the quadratic readout is supplied, off-diagonal pairs cancel and the readout is diagonal. Entrywise off-diagonal zero and sector-basis orthogonality additionally require symmetry; the Hermitian version uses its Hermitian and real/imaginary sector premises. Frame additivity beyond the sector basis remains supplied."
     },
     {
       "id": "FQ-R-CONTINUUM-HILBERT-LIFT-CONSTRUCTION",
@@ -41378,7 +41432,7 @@
       ],
       "output": "LQG-CONTINUUM-LIMIT-GAP",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "No source derives a limit."
+      "mechanism": "A supplied compatible finite-label probability family has an infinite measure limit, but no route from the recoupling or EPRL inputs to continuum spacetime or a semiclassical limit is established."
     },
     {
       "id": "FRO-R-BACK-CT-INTEROP-TO-TENSOR",
@@ -41432,7 +41486,7 @@
       ],
       "output": "TFQ-0105",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "The trunk record TFQ-0105 states that no continuum limit and no physical cosmological constant are discharged by the level-2 recoupling table. No source supplies a limit statement that would change this."
+      "mechanism": "The supplied-family projective probability measure does not identify a physical cosmological constant, derive the Einstein equation or establish the physical continuum limit required by TFQ-0105. That target-specific connection remains underived."
     },
     {
       "id": "GTH-R-GTH-SHADOW",
@@ -53064,6 +53118,7 @@
       "obligation": "Import orthogonal frame additivity separately from additivity on one fixed sector basis.",
       "parent_id": "TFQ-0298",
       "pfp_review_refs": [
+        "dag/research/pr440_statement_review_20261026.json",
         "dag/results/L1-IMP-ORTHOGONAL-ADDITIVITY/reviews/20261020_born_boundary_audit/delivery_review_result.json"
       ],
       "python": [],
@@ -56908,7 +56963,11 @@
         "L1-U1-SELECTOR-OTHER-SEGMENT"
       ],
       "f004_refs": [
-        "dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md"
+        "dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean",
+        "checks/independent/l1-u1-selector-other-segment.py",
+        "dag/derivations/independent/l1-u1-selector-other-segment.md",
+        "dag/research/pr435_review_lean_replay.json"
       ],
       "id": "TFQ-1003",
       "lean4": [
@@ -56917,11 +56976,24 @@
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity"
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step1",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step2",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step3",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step4",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step5",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step6",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step7",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step8",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.norms",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.solutions_iff",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.eight_distinct",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.eight",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.earlier_ne_one",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.not_axis"
       ],
       "local_id": "L1-U1-SELECTOR-OTHER-SEGMENT",
       "name": "l1-u1-selector-other-segment",
-      "obligation": "Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved.",
+      "obligation": "Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved. Only the explicit modulo-7 carrier and its stated operations are covered. The Nat subtraction encoding agrees with integer subtraction only on the bounded residue domain. Selection of C or U(1), general prime or ring classification, cyclotomic fields, completion and continuity remain open; the older Gaussian-rational torsion result is retained separately.",
       "parent_id": "TFQ-0312",
       "pfp_review_refs": [
         "dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/reviews/20261021_batch01a_audit/delivery_review_result.json"
@@ -56939,7 +57011,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "L1_TO_L2",
-      "summary": "Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; finite fields/rings (unit circle of order p -+ 1, native table only), cyclotomic extensions, completion and continuity are not treated.",
+      "summary": "Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; a general finite-field/ring classification, cyclotomic extensions, completion and continuity remain open. Separate modulo-7 result: On the integers modulo 7, with product (a, b) * (c, d) = (a*c - b*d, a*d + b*c), the pairs (x, y) with x*x + y*y = 1 are exactly the powers g^0 through g^7, in exponent order, for g = (2, 2): (1, 0), (2, 2), (0, 1), (5, 2), (6, 0), (5, 5), (0, 6) and (2, 5). The next power g^8 is (1, 0), and g^1 through g^7 all differ from (1, 0). The count 8 equals 7 + 1 and is not 4.",
       "uuid": "c4828dd4-6aac-54c5-ae75-507da476dcce"
     },
     {
@@ -57507,24 +57579,28 @@
         "lean4/CampaignFqGapTensorUniqueness.lean",
         "dag/derivations/independent/fq-gap-tensor-uniqueness.md",
         "dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json",
-        "checks/independent/fq-gap-tensor-uniqueness.py"
+        "checks/independent/fq-gap-tensor-uniqueness.py",
+        "dag/research/pr442_statement_review_20261026.json",
+        "dag/research/pr442_review_lean_replay.json"
       ],
       "id": "TFQ-1019",
       "lean4": [
-        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.outerDet",
-        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityDet",
-        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityNotOuter",
         "lean4/CoupledRelationalProjectors.lean::QuantumMechanics.CoupledRelationalProjectors.coupled_bipartite_and_tripartite_relational_master_certificate",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_tensor_uniqueness_min_vs_max_tensor_and_covariance",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
+        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
+        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.outerDet",
+        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityDet",
+        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityNotOuter",
+        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.productsEq"
       ],
       "local_id": "FQ-GAP-TENSOR-UNIQUENESS",
       "name": "fq-gap-tensor-uniqueness",
       "obligation": "The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional. The integer determinant split separates the matrix with entries 1, 0, 0 and 1 from the outer products of integer vectors. It does not select a tensor product, compare state or effect cones, or discharge the operational premises. AuthorityEffect: None.",
       "parent_id": "TFQ-1018",
       "pfp_review_refs": [
-        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json"
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json",
+        "dag/research/pr442_statement_review_20261026.json"
       ],
       "python": [],
       "record_status": "CONDITIONAL",
@@ -73953,20 +74029,35 @@
         "LQG-CONTINUUM-LIMIT-GAP"
       ],
       "f004_refs": [
-        "dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md"
+        "dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md",
+        "dag/derivations/independent/lqg-projective-limit.md",
+        "dag/research/campaign_lqg-projective-limit_lean_replay.json"
       ],
       "id": "TFQ-2315",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.spin_constraints_ae",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.spin_labels_extension",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.countable_constraints",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.constraints_have_configuration",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.projective_of_limit",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.exists_limit_iff_projective",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.empty_stage",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.content_sigma_subadditive",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.limit_marginals",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.limit_unique"
+      ],
       "local_id": "LQG-CONTINUUM-LIMIT-GAP",
       "name": "Gap: no route from finite recoupling to a continuum or semiclassical limit",
-      "obligation": "Recorded as an explicit non-claim.",
+      "obligation": "The alphabet, discrete topology, product measurable structure, compatible finite probability laws and full-mass constraint premises are supplied. Physical LQG or complex spin-foam amplitudes are not shown to satisfy them. No triangulation refinement, manifold, semiclassical geometry, Einstein dynamics or physical cosmological constant is derived; the original node and physical routes remain OPEN/GAP.",
       "parent_id": "TFQ-2314",
-      "python": [],
+      "python": [
+        "checks/independent/lqg-projective-limit.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "frontier_branches",
       "stage": "LOOP_QUANTUM_GRAVITY",
-      "summary": "No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recoupling tables of the repository, or from the exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit.",
+      "summary": "No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recoupling tables of the repository, or from the exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit. Separate conditional mathematical result: For a supplied finite discrete label alphabet and normalized nonnegative probability laws on every finite set of natural-number coordinates, compatibility under coordinate restriction is equivalent to existence of an infinite projective-limit measure. Under compatibility, that probability measure is unique. Every countable family of measurable finite-window constraints having mass one in its finite law holds almost everywhere simultaneously in the limit, and at least one satisfying infinite configuration exists. The theorem specializes to the three level-two spin labels Fin 3 and arbitrary predicates on their finite windows.",
       "uuid": "b7b24330-ba22-52d9-94db-79067f4f113d"
     },
     {
@@ -74747,20 +74838,29 @@
         "OPS-LEAN-GAP"
       ],
       "f004_refs": [
-        "dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md"
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md",
+        "dag/derivations/independent/ops-lean-gap.md",
+        "dag/research/pr439_review_lean_replay.json"
       ],
       "id": "TFQ-2520",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignOpsLeanGap.lean::CampaignOpsLeanGap.lhsSum",
+        "lean4/CampaignOpsLeanGap.lean::CampaignOpsLeanGap.rhsSum",
+        "lean4/CampaignOpsLeanGap.lean::CampaignOpsLeanGap.noAssignment",
+        "lean4/CampaignOpsLeanGap.lean::CampaignOpsLeanGap.sixteen"
+      ],
       "local_id": "OPS-LEAN-GAP",
       "name": "What is not formalised in Lean",
-      "obligation": "Missing: a Lean proof of any item listed in the statement. The Lean file lean4/LggrFiniteResults.lean covers only the statements of nodes OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among these rows.",
+      "obligation": "Missing: Lean proofs of the unresolved global-section/NCF, strong-contextuality, Vorobev, no-signalling, rational-normalization and Rust-refinement items listed first in the statement. The separate four-variable parity obstruction and arithmetic product are already proved in CampaignOpsLeanGap. The Lean file lean4/LggrFiniteResults.lean covers only the statements of nodes OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among these rows. This one parity box does not establish the listed global-section/NCF equivalences, strong-contextuality criterion, Vorobev theorem, no-signalling coboundary equivalence, rational normalization or Rust Scenario refinement. The Lean sixteen lemma is arithmetic, not a type-cardinality theorem. The original OPS obligation remains OPEN.",
       "parent_id": "TFQ-1046",
-      "python": [],
+      "python": [
+        "checks/independent/ops-lean-gap.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "foc035_observer_presheaf",
       "stage": "OBSERVER_PRESHEAF",
-      "summary": "Not formalised in Lean: the equivalences between global sections, conv(A) and the noncontextual fraction, and between strong contextuality and NCF 0 (nodes OPS-NCF-LHV-EQUIVALENCE and OPS-STRONG-CONTEXTUALITY-NCF-ZERO); Vorob'ev sufficiency and its converse (node OPS-VOROBEV-THEOREM); delta0 e = 0 if and only if e is no-signalling; rational normalisation of weights; and any link from the Lean model of natural-number-weighted lists to the Rust Scenario type or to the Rust and Python gates.",
+      "summary": "Not formalised in Lean: the equivalences between global sections, conv(A) and the noncontextual fraction, and between strong contextuality and NCF 0 (nodes OPS-NCF-LHV-EQUIVALENCE and OPS-STRONG-CONTEXTUALITY-NCF-ZERO); Vorob'ev sufficiency and its converse (node OPS-VOROBEV-THEOREM); delta0 e = 0 if and only if e is no-signalling; rational normalisation of weights; and any link from the Lean model of natural-number-weighted lists to the Rust Scenario type or to the Rust and Python gates. Separate finite result: For all four Boolean variables, the four specified parity constraints have no common assignment; their left XOR is false and the right XOR is true. The arithmetic identity 2*2*2*2 = 16 holds; the separate independent enumeration counts 16 assignments.",
       "uuid": "fc3c5534-d852-5f12-9000-7ac59451afc4"
     },
     {

@@ -31,3 +31,5 @@ Integer multiplication is the ring multiplication of `Int`. No local Hilbert spa
 ## What is open
 
 Local complex quantum mechanics, independent preparation and testing, local tomography, local unitaries, a calibrated reversible controlled shift, and the saturation hypotheses for effects and finite tests stay supplied. The determinant split does not compare state cones with effect cones and does not choose a tensor product. Primitive difference has not supplied those operational premises.
+
+The repaired independent checker compares determinant computations with separate exact rational row elimination, and rejects identity, wrong-sign and changed-entry controls. Counts are measured and failures raise explicit exceptions rather than returning an unbounded count as a process exit code. This finite census does not replace the universal Lean theorem.

@@ -373,7 +373,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0296` | `L1_TO_L2` | `GAP` | `L1-IMP-HILBERT-INNER-PRODUCT` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0297` | `FINITE_HILBERT` | `OPEN_OBLIGATION` | `TFQ-0297` (OPEN) | - |
 | `TFQ-0298` | `FINITE_HILBERT` | `OPEN_OBLIGATION` | `TFQ-0298` (OPEN) | - |
-| `TFQ-0299` | `L1_TO_L2` | `GAP` | `L1-IMP-ORTHOGONAL-ADDITIVITY` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0299` | `L1_TO_L2` | `GAP` | `L1-IMP-ORTHOGONAL-ADDITIVITY` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0300` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM3-ROW-SPARSITY` (PROVED_LEAN), `FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED` (PROVED_LEAN) | `L1-QM020-THM3-ROW-SPARSITY`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0301` | `L1_TO_L2` | `GAP` | `L1-IMP-HAAR-INDEPENDENT-PHASES` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0302` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM5-PHASE-AVERAGED-SHADOW` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
@@ -490,7 +490,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1016` | `FINITE_QM_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-CABELLO-FRAME-POLYTOPE-146` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-1017` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `FQ-BUSCH-EFFECT-FRAME` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1018` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `FQ-TENSOR-LU-RIVAL-EXCLUSION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-1019` | `FINITE_QM_CORE` | `CONDITIONAL` | `FQ-GAP-TENSOR-UNIQUENESS` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-1019` | `FINITE_QM_CORE` | `CONDITIONAL` | `FQ-GAP-TENSOR-UNIQUENESS` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1020` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
 | `TFQ-1021` | `FINITE_QM_CORE` | `PROVED_LEAN` | `FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION` (PROVED_LEAN) | - |
 | `TFQ-1022` | `FINITE_QM_DYNAMICS` | `COMPUTATIONAL_CONTROL` | `FQ-GAP-REAL-EMBEDDING-CHOICE` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
@@ -4077,9 +4077,9 @@ Obligation: Selection of J not derived (see L1-U1-SELECTOR-OTHER-SEGMENT). Lean 
 - Status: `OPEN_OBLIGATION`
 - DAG node: `L1-U1-SELECTOR-OTHER-SEGMENT` (`OPEN`)
 
-Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; finite fields/rings (unit circle of order p -+ 1, native table only), cyclotomic extensions, completion and continuity are not treated.
+Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; a general finite-field/ring classification, cyclotomic extensions, completion and continuity remain open. Separate modulo-7 result: On the integers modulo 7, with product (a, b) * (c, d) = (a*c - b*d, a*d + b*c), the pairs (x, y) with x*x + y*y = 1 are exactly the powers g^0 through g^7, in exponent order, for g = (2, 2): (1, 0), (2, 2), (0, 1), (5, 2), (6, 0), (5, 5), (0, 6) and (2, 5). The next power g^8 is (1, 0), and g^1 through g^7 all differ from (1, 0). The count 8 equals 7 + 1 and is not 4.
 
-Obligation: Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved.
+Obligation: Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved. Only the explicit modulo-7 carrier and its stated operations are covered. The Nat subtraction encoding agrees with integer subtraction only on the bounded residue domain. Selection of C or U(1), general prime or ring classification, cyclotomic fields, completion and continuity remain open; the older Gaussian-rational torsion result is retained separately.
 
 ### TFQ-1004 l1-qm020-c10-branch-localization
 
@@ -12678,9 +12678,9 @@ Obligation: The checked identities are rational arithmetic for the imported labe
 - DAG node: `LQG-CONTINUUM-LIMIT-GAP`
 - Paper: [derivation](derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md)
 
-No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recoupling tables of the repository, or from the exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit.
+No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recoupling tables of the repository, or from the exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit. Separate conditional mathematical result: For a supplied finite discrete label alphabet and normalized nonnegative probability laws on every finite set of natural-number coordinates, compatibility under coordinate restriction is equivalent to existence of an infinite projective-limit measure. Under compatibility, that probability measure is unique. Every countable family of measurable finite-window constraints having mass one in its finite law holds almost everywhere simultaneously in the limit, and at least one satisfying infinite configuration exists. The theorem specializes to the three level-two spin labels Fin 3 and arbitrary predicates on their finite windows.
 
-Obligation: Recorded as an explicit non-claim.
+Obligation: The alphabet, discrete topology, product measurable structure, compatible finite probability laws and full-mass constraint premises are supplied. Physical LQG or complex spin-foam amplitudes are not shown to satisfy them. No triangulation refinement, manifold, semiclassical geometry, Einstein dynamics or physical cosmological constant is derived; the original node and physical routes remain OPEN/GAP.
 
 ## GENESIS_TO_HIGHER
 
@@ -13078,9 +13078,9 @@ Obligation: The Lean statement is the narrowed ceiling arithmetic above. The Rus
 - DAG node: `OPS-LEAN-GAP`
 - Paper: [derivation](derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md)
 
-Not formalised in Lean: the equivalences between global sections, conv(A) and the noncontextual fraction, and between strong contextuality and NCF 0 (nodes OPS-NCF-LHV-EQUIVALENCE and OPS-STRONG-CONTEXTUALITY-NCF-ZERO); Vorob'ev sufficiency and its converse (node OPS-VOROBEV-THEOREM); delta0 e = 0 if and only if e is no-signalling; rational normalisation of weights; and any link from the Lean model of natural-number-weighted lists to the Rust Scenario type or to the Rust and Python gates.
+Not formalised in Lean: the equivalences between global sections, conv(A) and the noncontextual fraction, and between strong contextuality and NCF 0 (nodes OPS-NCF-LHV-EQUIVALENCE and OPS-STRONG-CONTEXTUALITY-NCF-ZERO); Vorob'ev sufficiency and its converse (node OPS-VOROBEV-THEOREM); delta0 e = 0 if and only if e is no-signalling; rational normalisation of weights; and any link from the Lean model of natural-number-weighted lists to the Rust Scenario type or to the Rust and Python gates. Separate finite result: For all four Boolean variables, the four specified parity constraints have no common assignment; their left XOR is false and the right XOR is true. The arithmetic identity 2*2*2*2 = 16 holds; the separate independent enumeration counts 16 assignments.
 
-Obligation: Missing: a Lean proof of any item listed in the statement. The Lean file lean4/LggrFiniteResults.lean covers only the statements of nodes OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among these rows.
+Obligation: Missing: Lean proofs of the unresolved global-section/NCF, strong-contextuality, Vorobev, no-signalling, rational-normalization and Rust-refinement items listed first in the statement. The separate four-variable parity obstruction and arithmetic product are already proved in CampaignOpsLeanGap. The Lean file lean4/LggrFiniteResults.lean covers only the statements of nodes OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among these rows. This one parity box does not establish the listed global-section/NCF equivalences, strong-contextuality criterion, Vorobev theorem, no-signalling coboundary equivalence, rational normalization or Rust Scenario refinement. The Lean sixteen lemma is arithmetic, not a type-cardinality theorem. The original OPS obligation remains OPEN.
 
 ### TFQ-2521 The three-role gate on a fixed fixture
 
