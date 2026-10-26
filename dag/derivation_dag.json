@@ -12953,7 +12953,7 @@
       "stage": "IMPLEMENTATION_SIBLING",
       "status": "OPEN",
       "source_status": "TFQ record_status GAP (source slice 06)",
-      "statement": "Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap.",
+      "statement": "Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap. Narrowed in Lean 4 and an independent Python check to Nat arithmetic, with no status change. For every natural number n, the product n * n * n is at most n * n * n. For every natural number n at least 1, twice that cube equals (n - 1) * n * (2 * n - 1) plus n * (3 * n - 1), the product (n - 1) * n * (2 * n - 1) is strictly below twice the cube, and n * (3 * n - 1) is at least 2. At n = 4 the cube is 64, the sum 1 * 1 + 2 * 2 + 3 * 3 is 14, the quotient (3 * 4 * (2 * 4 - 1)) / 6 is 14, and 14 is strictly below 64. A measured tetron-homology reading of those count facts, custody of the README title, the F004 realization-packet gap, noise sweeps, and the evaluator role stay outside this arithmetic.",
       "source": [
         "dag/derivations/22_implementation_sibling/tfq_0184_do_not_read_paper_009_reflexivity_declarations_as_measured_tetron_homology.md",
         "dag/derivations/independent/tfq-0184.md",
@@ -12962,7 +12962,10 @@
         "dag/research/campaign_tfq-0184_independent.json",
         "docs/overclaim/reviews/2026-10-24_campaign-tfq-0184-precommit.md",
         "checks/independent/tfq-0184.py",
-        "lean4/CampaignTfq0184ImplementationSibling.lean"
+        "lean4/CampaignTfq0184ImplementationSibling.lean",
+        "lean4/CampaignTfq0184CubicCount.lean",
+        "dag/research/campaign_tfq-0184_cubic_count_lean_replay.json",
+        "docs/overclaim/reviews/2026-10-26_campaign-tfq-0184-cubic-count.md"
       ],
       "lean": [
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound",
@@ -12974,7 +12977,15 @@
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence",
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.majorana_evaluator_is_companion_control_not_gap_closure_fence",
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.wdp_carrier_manifest_homology_conversion_fence",
-        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence"
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.cubicReflexivity",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.eliminationSplit",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.gapAtLeastTwo",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.eliminationBelowTwiceCube",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourCube",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourSumOfSquares",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourClosedForm",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourCountBelowCube"
       ],
       "rust": [
         "code/rust/src/wdp/lib.rs::to_homology_carrier"
@@ -49223,7 +49234,10 @@
         "dag/research/campaign_tfq-0184_independent.json",
         "docs/overclaim/reviews/2026-10-24_campaign-tfq-0184-precommit.md",
         "checks/independent/tfq-0184.py",
-        "lean4/CampaignTfq0184ImplementationSibling.lean"
+        "lean4/CampaignTfq0184ImplementationSibling.lean",
+        "lean4/CampaignTfq0184CubicCount.lean",
+        "dag/research/campaign_tfq-0184_cubic_count_lean_replay.json",
+        "docs/overclaim/reviews/2026-10-26_campaign-tfq-0184-cubic-count.md"
       ],
       "id": "TFQ-0184",
       "lean4": [
@@ -49236,7 +49250,15 @@
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence",
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.majorana_evaluator_is_companion_control_not_gap_closure_fence",
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.wdp_carrier_manifest_homology_conversion_fence",
-        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence"
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.cubicReflexivity",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.eliminationSplit",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.gapAtLeastTwo",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.eliminationBelowTwiceCube",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourCube",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourSumOfSquares",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourClosedForm",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourCountBelowCube"
       ],
       "local_id": "A06-019",
       "name": "Do not read paper 009 reflexivity declarations as measured tetron homology",
@@ -49253,7 +49275,7 @@
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",
-      "summary": "Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap.",
+      "summary": "Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap. Narrowed in Lean 4 and an independent Python check to Nat arithmetic, with no status change. For every natural number n, the product n * n * n is at most n * n * n. For every natural number n at least 1, twice that cube equals (n - 1) * n * (2 * n - 1) plus n * (3 * n - 1), the product (n - 1) * n * (2 * n - 1) is strictly below twice the cube, and n * (3 * n - 1) is at least 2. At n = 4 the cube is 64, the sum 1 * 1 + 2 * 2 + 3 * 3 is 14, the quotient (3 * 4 * (2 * 4 - 1)) / 6 is 14, and 14 is strictly below 64. A measured tetron-homology reading of those count facts, custody of the README title, the F004 realization-packet gap, noise sweeps, and the evaluator role stay outside this arithmetic.",
       "uuid": "7e0a95bd-f3d3-5e79-b862-6b33a4eab241"
     },
     {
