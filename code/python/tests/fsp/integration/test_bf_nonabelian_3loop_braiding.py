@@ -1,18 +1,14 @@
 """
-test_bf_nonabelian_3loop_braiding.py — Integration Tests for (3+1)D Non-Abelian SU(2)_k Topological BF Theory & 3-Loop Braiding.
+Selected floating-point fusion-matrix diagnostic regressions.
 
 AuthorityEffect: None.
 
-Tests:
-1. SU(2)_k Modular Category Data: validates quantum dimensions, twists, and F-matrix unitarity for k = 2, 3, 4.
-2. Abelian limit (j = 0): confirms contractible holonomy, zero defect mass, and TerminalRoute.ExactRepair.
-3. Non-abelian 3-loop braiding at k = 2: confirms 2x2 matrix holonomy, non-real/indefinite trace,
-   positive defect mass Phi_1 > 0, and TerminalRoute.OpenSignObstruction.
-4. Non-abelian 3-loop braiding at k = 3: confirms Fibonacci-level braiding obstruction, Phi_1 > 0,
-   and TerminalRoute.OpenSignObstruction.
-5. Orientation energy asymmetry: confirms thermal weight gap and TerminalRoute.SplitBrainRefusal.
-6. Quantum double projection repair (Drinfeld Double D(SU(2)_k)): confirms that folding M_WL (x) M_WL^dagger
-   identically restores real nonnegative trace, nullifies defect mass Phi_1 = 0, and routes to TerminalRoute.ExactRepair.
+Check selected level-2/3/4 scalar and matrix formulas, the trivial-flag branch,
+route conventions, orientation-weight inputs and the doubled-trace diagnostic.
+These are numerical fixtures, not BF-theory, Wang-Levin, modular-category or
+physical sign-problem certificates. Historical function and route labels remain
+API identifiers. The zero-trace case specifically fences the conventional
+average_sign_gin=1 output from an inferred physical ensemble average.
 """
 
 from __future__ import annotations
@@ -38,6 +34,20 @@ from src.fsp.bf_nonabelian_3loop_braiding import (
 )
 
 
+def test_holonomy_is_the_declared_commutator():
+    """Anticommuting Pauli squares give -I, unlike the old docstring product."""
+    class FixedCategory:
+        def f_matrix_fundamental(self):
+            return np.array([[1, 1], [1, -1]], dtype=complex) / math.sqrt(2)
+
+        def r_matrix_fundamental(self):
+            return np.diag([1, 1j])
+
+    model = WangLevin3LoopBraidingModel(k_level=2)
+    model.category = FixedCategory()
+    assert np.allclose(model.compute_3loop_holonomy_matrix(), -np.eye(2), atol=1e-12)
+
+
 def test_su2_level_k_modular_data():
     """Validates SU(2)_k quantum dimensions, total dimension, and fundamental F-matrix unitarity."""
     for k in [2, 3, 4]:
@@ -54,7 +64,7 @@ def test_su2_level_k_modular_data():
 
 
 def test_abelian_trivial_flux_limit():
-    """Validates that for spin-0 loops, 3-loop braiding reduces to identity and ExactRepair."""
+    """Check the all-zero flag's identity matrix and conventional route."""
     model = WangLevin3LoopBraidingModel(k_level=2, loop_fluxes=(0.0, 0.0, 0.0))
     receipt = NonAbelianBfEngine.audit_nonabelian_3loop_braiding(model)
 
@@ -68,7 +78,7 @@ def test_abelian_trivial_flux_limit():
 
 
 def test_nonabelian_3loop_braiding_obstruction_k2():
-    """Validates that in SU(2)_2 BF theory, fundamental 3-loop braiding produces OpenSignObstruction."""
+    """Check the supplied level-2 numerical fixture's diagnostic route."""
     model = WangLevin3LoopBraidingModel(k_level=2, loop_fluxes=(0.5, 0.5, 0.5))
     receipt = NonAbelianBfEngine.audit_nonabelian_3loop_braiding(model, use_quantum_double=False)
 
@@ -80,7 +90,7 @@ def test_nonabelian_3loop_braiding_obstruction_k2():
 
 
 def test_nonabelian_3loop_braiding_obstruction_k3():
-    """Validates that in SU(2)_3 BF theory, fundamental 3-loop braiding produces OpenSignObstruction."""
+    """Check the supplied level-3 numerical fixture's diagnostic route."""
     model = WangLevin3LoopBraidingModel(k_level=3, loop_fluxes=(0.5, 0.5, 0.5))
     receipt = NonAbelianBfEngine.audit_nonabelian_3loop_braiding(model, use_quantum_double=False)
 

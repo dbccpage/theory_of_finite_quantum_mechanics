@@ -14,13 +14,17 @@ entropy theorem. Baker A1 remains a cited input, not a result of this file.
 from __future__ import annotations
 
 import importlib.util
+import json
+import subprocess
 import sys
 import warnings
 from collections.abc import Callable, Mapping
 from fractions import Fraction as Q
 from pathlib import Path
+from typing import Any
 
 import src.linear_algebra.entropy_dichotomy as entropy_dichotomy
+from src.linear_algebra.cyclo_density import CyclotomicError
 from src.linear_algebra.entropy_dichotomy import (
     EntropyKernelError,
     RationalTextError,
@@ -339,6 +343,139 @@ def test_negative() -> None:
     _require_refusal(lambda: parse_exact_bound(True), ClaimCheckError, "bound is not an exact integer")
     if parse_exact_bound(4) != 4:
         raise _fail("exact bound guard changed an integer")
+
+
+def test_serialized_refuses_tuple_float() -> None:
+    """A tuple cannot hide a float from the exact JSON boundary."""
+    _require_refusal(
+        lambda: entropy_dichotomy.serialized({"x": (_float_probe("0.5"),)}),
+        EntropyKernelError,
+        "float leakage at object.x[0]",
+    )
+
+
+def test_serialized_refuses_float_mapping_key() -> None:
+    """JSON's conversion of float keys to text does not admit the input."""
+    for token in ("0.5", "1e309", "-1e309"):
+        _require_refusal(
+            lambda token=token: entropy_dichotomy.serialized({_float_probe(token): "value"}),
+            EntropyKernelError,
+            "float leakage at object.<key>",
+        )
+
+
+def test_serialized_refuses_nested_nonfinite_tuple_float() -> None:
+    """Mixed tuple/list/dict nesting cannot hide finite or infinite floats."""
+    for token in ("0.5", "1e309", "-1e309"):
+        _require_refusal(
+            lambda token=token: entropy_dichotomy.serialized({"x": ({"a": [_float_probe(token)]},)}),
+            EntropyKernelError,
+            "float leakage at object.x[0].a[0]",
+        )
+
+
+def test_serialized_preserves_exact_container_bytes() -> None:
+    """Exact tuples and existing rational-certificate bytes retain their format."""
+    payload = {"z": 1, "a": ("1/2", ["0/1", "1/1"])}
+    expected = '{"a":["1/2",["0/1","1/1"]],"z":1}\n'
+    if entropy_dichotomy.serialized(payload) != expected:
+        raise _fail("exact JSON container format drifted")
+
+
+def _tracked_entropy_case(identity: str) -> dict[str, Any]:
+    return next(case for case in entropy_dichotomy.fixtures() if case["fixture_id"] == identity)
+
+
+def test_rational_public_verdict_uses_canonical_owner() -> None:
+    """The tracked rational fixture does not require the removed provider name."""
+    case = _tracked_entropy_case("s1_mixed_half")
+    result = entropy_dichotomy.entropy_verdict(case)
+    if result["verdict"] != "REFUSED_TRANSCENDENTAL" or result["anchor"] != "A1":
+        raise _fail("rational mixed-state verdict drifted")
+
+
+def test_rational_public_interval_uses_canonical_owner() -> None:
+    """The tracked half-density has a bounded natural-log interval."""
+    case = _tracked_entropy_case("s1_mixed_half")
+    result = entropy_dichotomy.entropy_interval(case, 4)
+    entropy_dichotomy.validate_interval(result)
+    if not Q(1, 2) < Q(result["lower"]) <= Q(result["upper"]) < 1:
+        raise _fail("rational half-density enclosure drifted")
+    if Q(result["width"]) > Q(1, 16):
+        raise _fail("rational half-density precision drifted")
+
+
+def test_rational_public_import_repair_keeps_refusals() -> None:
+    """Canonical imports do not bypass the existing rational parser."""
+    case = _tracked_entropy_case("s1_mixed_half")
+    case["matrix"][0][0] = "0.5"
+    _require_refusal(
+        lambda: entropy_dichotomy.entropy_verdict(case),
+        RationalTextError,
+        "rational input must be reduced a/b with positive denominator",
+    )
+    _require_refusal(
+        lambda: entropy_dichotomy.entropy_interval(case, 4),
+        RationalTextError,
+        "rational input must be reduced a/b with positive denominator",
+    )
+
+
+def test_canonical_cyclotomic_consumer_keeps_arity_refusal() -> None:
+    """An invalid coefficient vector reaches its real owner, not a fallback."""
+    case = _tracked_entropy_case("s1_pure")
+    case["matrix"][0][0] = {"cyclotomic_coefficients": ["1/1"]}
+    _require_refusal(
+        lambda: entropy_dichotomy.entropy_verdict(case),
+        CyclotomicError,
+        "cyclotomic coefficient arity differs from phi(conductor)",
+    )
+
+
+def _cli_fixture(directory: Path) -> Path:
+    interface = directory / "entropy_interface.json"
+    interface.write_text(
+        json.dumps({"fixtures": [_tracked_entropy_case("s1_pure")]}),
+        encoding="utf-8",
+    )
+    return interface
+
+
+def _run_cli(arguments: list[str], directory: Path) -> dict[str, Any]:
+    completed = subprocess.run(
+        [sys.executable, "-B", *arguments],
+        cwd=directory,
+        check=True,
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+    return json.loads(completed.stdout)
+
+
+def test_existing_direct_file_report_cli(tmp_path: Path) -> None:
+    """The previously working direct-file default report keeps its behavior."""
+    interface = _cli_fixture(tmp_path)
+    result = _run_cli([str(_LIBRARY), "--interface", str(interface)], tmp_path)
+    if result["cases"][0]["output"]["purity"] != "PURE":
+        raise _fail("direct-file rational report drifted")
+
+
+def test_canonical_provider_package_cli_modes(tmp_path: Path) -> None:
+    """Package CLI selectors call the existing renamed providers."""
+    interface = _cli_fixture(tmp_path)
+    expected = (
+        ("--verdict-only", "c750_b01_verdict_v1"),
+        ("--cyclotomic-characteristic", "cyclotomic_density_v1"),
+        ("--spectral-roots", "ordered_real_polynomial_roots_v1"),
+    )
+    for flag, schema in expected:
+        result = _run_cli(
+            ["-m", "src.linear_algebra.entropy_dichotomy", flag, "--interface", str(interface)],
+            Path(__file__).resolve().parents[2],
+        )
+        if result["schema"] != schema or len(result["cases"]) != 1:
+            raise _fail("canonical provider CLI mode drifted", mode=flag)
 
 
 def test_origin() -> None:
