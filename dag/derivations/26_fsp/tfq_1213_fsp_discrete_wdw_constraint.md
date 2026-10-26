@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegative and acts as a projection on diffeomorphism-invariant states; no such operator is constructed here, and the DeWitt supermetric of the continuum constraint is indefinite.
+On integer triples, the declared constraint H(x,y,z)=(0,2y,-z) is symmetric for the usual dot product and has kernel exactly the vectors with y=z=0. The map P(x,y,z)=(x,0,0) is idempotent, maps into that kernel, fixes exactly the kernel, and has residual orthogonal to every kernel vector. H has a nonzero kernel but is indefinite and is not idempotent. Thus this finite-dimensional constraint and its kernel projector are distinct operators.
 
 ### Governing Obligation
-Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).
+This is a declared finite-dimensional integer model; its set of integer triples is infinite. It constructs no discrete Wheeler-DeWitt operator, triangulation dynamics, diffeomorphism action, physical state space or continuum limit. Its counterexample concerns an inference from symmetry and a nonzero kernel to positivity or idempotence, not a specified gravitational model. Original target retained as an obligation: Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegative and acts as a projection on diffeomorphism-invariant states; no such operator is constructed here, and the DeWitt supermetric of the continuum constraint is indefinite. Prior boundary: Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).
 
 ### Witness Audit
-Cited ReggePachnerWdw.lean::wheeler_dewitt_constraint_null_kernel does not exist; wdw_defect_unscreenable states (p - alpha) + h > 0 in Nat for h > 0. evaluate_wdw_constraint is absent from regge_pachner_wdw.py.
+Cited ReggePachnerWdw.lean::wheeler_dewitt_constraint_null_kernel does not exist; wdw_defect_unscreenable states (p - alpha) + h > 0 in Nat for h > 0. evaluate_wdw_constraint is absent from regge_pachner_wdw.py. Current scoped campaign result: On integer triples, the declared constraint H(x,y,z)=(0,2y,-z) is symmetric for the usual dot product and has kernel exactly the vectors with y=z=0. The map P(x,y,z)=(x,0,0) is idempotent, maps into that kernel, fixes exactly the kernel, and has residual orthogonal to every kernel vector. H has a nonzero kernel but is indefinite and is not idempotent. Thus this finite-dimensional constraint and its kernel projector are distinct operators. This is a declared finite-dimensional integer model; its set of integer triples is infinite. It constructs no discrete Wheeler-DeWitt operator, triangulation dynamics, diffeomorphism action, physical state space or continuum limit. Its counterexample concerns an inference from symmetry and a nonzero kernel to positivity or idempotence, not a specified gravitational model.
 
 ---
 
@@ -28,13 +28,21 @@ Cited ReggePachnerWdw.lean::wheeler_dewitt_constraint_null_kernel does not exist
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_symmetric`
+- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.kernel_characterization`
+- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projector_idempotent`
+- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projected_vector_satisfies_constraint`
+- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projector_fixes_exactly_kernel`
+- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projection_residual_orthogonal_to_kernel`
+- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.nontrivial_kernel`
+- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_is_indefinite`
+- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_is_not_projector`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/fsp-discrete-wdw-constraint.py`
 
 ### Cited by the source, not in this checkout
 - `external:omega_quantum_physics::quantum_regge_bridge::wheeler_dewitt_constraint_projector (cited by the source, not in this checkout)`
@@ -52,3 +60,5 @@ Cited ReggePachnerWdw.lean::wheeler_dewitt_constraint_null_kernel does not exist
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:681-693`
   - `papers/core/fsp/the_problem_of_the_fermion_sign.md:170-173`
+  - `dag/derivations/independent/fsp-discrete-wdw-constraint.md`
+  - `dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json`

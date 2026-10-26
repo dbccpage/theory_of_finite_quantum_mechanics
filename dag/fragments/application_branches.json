@@ -3851,17 +3851,26 @@
       "stage": "FERMION_SIGN",
       "status": "OPEN",
       "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-046 claims PROVED_LEAN; audited status OPEN",
-      "statement": "Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout.",
+      "statement": "For the additive group Z2 with trivial Z2 coefficient action, the Boolean 3-cochain omega(a,b,c)=a*b*c is normalized and satisfies the cocycle identity. Every normalized 2-cochain beta has coboundary zero at (1,1,1), whereas omega is one there. Thus omega is not a normalized coboundary, and normalized 2-cochain rephasing leaves a negative sign at that triple.",
       "source": [
         "dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
         "papers/core/fsp/the_problem_of_the_fermion_sign.md",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md"
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md",
+        "dag/derivations/independent/fsp-bf-2group-sign-claim.md",
+        "dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_cocycle",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.cocycle_identity",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_coboundary_at_generator",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.not_a_normalized_coboundary",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.generator_sign_survives_rephasing",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.",
+      "bottleneck": "The result concerns the explicitly defined Z2 cochain model and normalized rephasings. It constructs no BF state sum, 2-group gauge dynamics, knotted-worldsheet amplitude or three-loop braiding observable. No general cancellation or sign-free theorem follows. Original target retained as an obligation: Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout. Prior boundary: Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -3874,17 +3883,27 @@
       "stage": "FERMION_SIGN",
       "status": "OPEN",
       "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-047 claims PROVED_LEAN; audited status OPEN",
-      "statement": "Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout.",
+      "statement": "For every assignment of Boolean edge signs to a triangle and every Boolean vertex switching, the XOR of the three edge signs is invariant. A switching makes all three edge signs positive exactly when their XOR is zero. An explicit switching gives the normal form (0,0,parity), and the product of integer edge signs equals the sign of that parity. A negative-parity triangle is obstructed within this switching class, whereas a balanced triangle with two negative edges can be made positive.",
       "source": [
         "dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
         "papers/core/fsp/the_problem_of_the_fermion_sign.md",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md"
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md",
+        "dag/derivations/independent/fsp-cobordism-intrinsic-sign.md",
+        "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.parity_invariant",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.switching_normal_form",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.positive_switching_iff",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.negative_cycle_obstruction",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.edge_product_is_cycle_sign",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.explicit_negative_cycle",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.balanced_negative_edges_are_removable"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.",
+      "bottleneck": "Only diagonal vertex-sign switching on one three-cycle is classified. No spin bordism group, eta invariant, fermion representation, bulk cancellation or obstruction over all representations is computed. The original cobordism-based intrinsic-sign claim remains open. Original target retained as an obligation: Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout. Prior boundary: Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -3897,18 +3916,27 @@
       "stage": "FERMION_SIGN",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-048 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION",
-      "statement": "On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here.",
+      "statement": "For any commutative ring and finite hinge set, the action S=sum_h A_h*(tau-sum_j theta_hj) equals tau*sum_h A_h-sum_h A_h*sum_j theta_hj. For fixed deficits it is linear in the declared areas, and splitting an area while keeping its deficit fixed preserves its contribution. Zero deficits imply zero action. Declared integer data also show that zero total action need not mean zero deficits, and changing areas can change the action on the same finite index set.",
       "source": [
         "dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md",
+        "dag/derivations/independent/fsp-regge-deficit-action.md",
+        "dag/research/campaign_fsp-regge-deficit-action_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.deficit_expansion",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.area_linearity",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.flat_deficits_give_zero",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.same_deficit_area_split",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.zero_action_does_not_imply_flat",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.declared_areas_change_action"
+      ],
       "rust": [],
       "imported_structure": [
         "Regge calculus (Regge 1961; Cheeger-Mueller-Schrader convergence)"
       ],
-      "bottleneck": "Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).",
+      "bottleneck": "Areas, angles and the full-turn parameter are declared algebraic data. Geometric realizability, actual triangulation moves, Lorentzian signature, convergence to the Einstein-Hilbert action, and fermion-sign consequences are not established. Original target retained as an obligation: On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here. Prior boundary: Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -3924,16 +3952,28 @@
       "stage": "FERMION_SIGN",
       "status": "OPEN",
       "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-049 claims PROVED_LEAN; audited status OPEN",
-      "statement": "Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegative and acts as a projection on diffeomorphism-invariant states; no such operator is constructed here, and the DeWitt supermetric of the continuum constraint is indefinite.",
+      "statement": "On integer triples, the declared constraint H(x,y,z)=(0,2y,-z) is symmetric for the usual dot product and has kernel exactly the vectors with y=z=0. The map P(x,y,z)=(x,0,0) is idempotent, maps into that kernel, fixes exactly the kernel, and has residual orthogonal to every kernel vector. H has a nonzero kernel but is indefinite and is not idempotent. Thus this finite-dimensional constraint and its kernel projector are distinct operators.",
       "source": [
         "dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md",
+        "dag/derivations/independent/fsp-discrete-wdw-constraint.md",
+        "dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_symmetric",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.kernel_characterization",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projector_idempotent",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projected_vector_satisfies_constraint",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projector_fixes_exactly_kernel",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projection_residual_orthogonal_to_kernel",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.nontrivial_kernel",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_is_indefinite",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_is_not_projector"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).",
+      "bottleneck": "This is a declared finite-dimensional integer model; its set of integer triples is infinite. It constructs no discrete Wheeler-DeWitt operator, triangulation dynamics, diffeomorphism action, physical state space or continuum limit. Its counterexample concerns an inference from symmetry and a nonzero kernel to positivity or idempotence, not a specified gravitational model. Original target retained as an obligation: Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegative and acts as a projection on diffeomorphism-invariant states; no such operator is constructed here, and the DeWitt supermetric of the continuum constraint is indefinite. Prior boundary: Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -10072,7 +10112,7 @@
       ],
       "output": "FSP-BF-2GROUP-SIGN-CLAIM",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.",
+      "mechanism": "The result concerns the explicitly defined Z2 cochain model and normalized rephasings. It constructs no BF state sum, 2-group gauge dynamics, knotted-worldsheet amplitude or three-loop braiding observable. No general cancellation or sign-free theorem follows. Original target retained as an obligation: Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout. Prior boundary: Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.",
       "source": [
         "dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -10086,7 +10126,7 @@
       ],
       "output": "FSP-COBORDISM-INTRINSIC-SIGN",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.",
+      "mechanism": "Only diagonal vertex-sign switching on one three-cycle is classified. No spin bordism group, eta invariant, fermion representation, bulk cancellation or obstruction over all representations is computed. The original cobordism-based intrinsic-sign claim remains open. Original target retained as an obligation: Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout. Prior boundary: Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.",
       "source": [
         "dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -10101,7 +10141,7 @@
       ],
       "output": "FSP-REGGE-DEFICIT-ACTION",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).",
+      "mechanism": "Areas, angles and the full-turn parameter are declared algebraic data. Geometric realizability, actual triangulation moves, Lorentzian signature, convergence to the Einstein-Hilbert action, and fermion-sign consequences are not established. Original target retained as an obligation: On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here. Prior boundary: Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).",
       "source": [
         "dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -10115,7 +10155,7 @@
       ],
       "output": "FSP-DISCRETE-WDW-CONSTRAINT",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).",
+      "mechanism": "This is a declared finite-dimensional integer model; its set of integer triples is infinite. It constructs no discrete Wheeler-DeWitt operator, triangulation dynamics, diffeomorphism action, physical state space or continuum limit. Its counterexample concerns an inference from symmetry and a nonzero kernel to positivity or idempotence, not a specified gravitational model. Original target retained as an obligation: Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegative and acts as a projection on diffeomorphism-invariant states; no such operator is constructed here, and the DeWitt supermetric of the continuum constraint is indefinite. Prior boundary: Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).",
       "source": [
         "dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -16317,8 +16357,8 @@
       "stage": "FERMION_SIGN",
       "parent_id": "TFQ-1208",
       "record_status": "OPEN_OBLIGATION",
-      "summary": "Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout.",
-      "obligation": "Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.",
+      "summary": "For the additive group Z2 with trivial Z2 coefficient action, the Boolean 3-cochain omega(a,b,c)=a*b*c is normalized and satisfies the cocycle identity. Every normalized 2-cochain beta has coboundary zero at (1,1,1), whereas omega is one there. Thus omega is not a normalized coboundary, and normalized 2-cochain rephasing leaves a negative sign at that triple.",
+      "obligation": "The result concerns the explicitly defined Z2 cochain model and normalized rephasings. It constructs no BF state sum, 2-group gauge dynamics, knotted-worldsheet amplitude or three-loop braiding observable. No general cancellation or sign-free theorem follows. Original target retained as an obligation: Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout. Prior boundary: Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "FSP-BF-2GROUP-SIGN-CLAIM"
@@ -16329,11 +16369,22 @@
         "dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md",
         "papers/core/fsp/theory_of_finite_fsp.md:639-651",
         "papers/core/fsp/the_problem_of_the_fermion_sign.md:733-828",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:29-31"
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:29-31",
+        "dag/derivations/independent/fsp-bf-2group-sign-claim.md",
+        "dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-bf-2group-sign-claim.py"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_cocycle",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.cocycle_identity",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_coboundary_at_generator",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.not_a_normalized_coboundary",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.generator_sign_survives_rephasing",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive"
+      ]
     },
     {
       "id": "TFQ-1211",
@@ -16343,8 +16394,8 @@
       "stage": "FERMION_SIGN",
       "parent_id": "TFQ-1210",
       "record_status": "OPEN_OBLIGATION",
-      "summary": "Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout.",
-      "obligation": "Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.",
+      "summary": "For every assignment of Boolean edge signs to a triangle and every Boolean vertex switching, the XOR of the three edge signs is invariant. A switching makes all three edge signs positive exactly when their XOR is zero. An explicit switching gives the normal form (0,0,parity), and the product of integer edge signs equals the sign of that parity. A negative-parity triangle is obstructed within this switching class, whereas a balanced triangle with two negative edges can be made positive.",
+      "obligation": "Only diagonal vertex-sign switching on one three-cycle is classified. No spin bordism group, eta invariant, fermion representation, bulk cancellation or obstruction over all representations is computed. The original cobordism-based intrinsic-sign claim remains open. Original target retained as an obligation: Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout. Prior boundary: Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "FSP-COBORDISM-INTRINSIC-SIGN"
@@ -16355,11 +16406,23 @@
         "dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md",
         "papers/core/fsp/theory_of_finite_fsp.md:652-665",
         "papers/core/fsp/the_problem_of_the_fermion_sign.md:829-853",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:32-32"
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:32-32",
+        "dag/derivations/independent/fsp-cobordism-intrinsic-sign.md",
+        "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-cobordism-intrinsic-sign.py"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.parity_invariant",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.switching_normal_form",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.positive_switching_iff",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.negative_cycle_obstruction",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.edge_product_is_cycle_sign",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.explicit_negative_cycle",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.balanced_negative_edges_are_removable"
+      ]
     },
     {
       "id": "TFQ-1212",
@@ -16369,8 +16432,8 @@
       "stage": "FERMION_SIGN",
       "parent_id": "TFQ-0549",
       "record_status": "IMPORTED_ASSUMPTION",
-      "summary": "On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here.",
-      "obligation": "Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).",
+      "summary": "For any commutative ring and finite hinge set, the action S=sum_h A_h*(tau-sum_j theta_hj) equals tau*sum_h A_h-sum_h A_h*sum_j theta_hj. For fixed deficits it is linear in the declared areas, and splitting an area while keeping its deficit fixed preserves its contribution. Zero deficits imply zero action. Declared integer data also show that zero total action need not mean zero deficits, and changing areas can change the action on the same finite index set.",
+      "obligation": "Areas, angles and the full-turn parameter are declared algebraic data. Geometric realizability, actual triangulation moves, Lorentzian signature, convergence to the Einstein-Hilbert action, and fermion-sign consequences are not established. Original target retained as an obligation: On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here. Prior boundary: Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "FSP-REGGE-DEFICIT-ACTION"
@@ -16380,11 +16443,22 @@
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md",
         "papers/core/fsp/theory_of_finite_fsp.md:668-680",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md:542-582"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md:542-582",
+        "dag/derivations/independent/fsp-regge-deficit-action.md",
+        "dag/research/campaign_fsp-regge-deficit-action_lean_replay.json"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-regge-deficit-action.py"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.deficit_expansion",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.area_linearity",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.flat_deficits_give_zero",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.same_deficit_area_split",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.zero_action_does_not_imply_flat",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.declared_areas_change_action"
+      ]
     },
     {
       "id": "TFQ-1213",
@@ -16394,8 +16468,8 @@
       "stage": "FERMION_SIGN",
       "parent_id": "TFQ-1212",
       "record_status": "OPEN_OBLIGATION",
-      "summary": "Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegative and acts as a projection on diffeomorphism-invariant states; no such operator is constructed here, and the DeWitt supermetric of the continuum constraint is indefinite.",
-      "obligation": "Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).",
+      "summary": "On integer triples, the declared constraint H(x,y,z)=(0,2y,-z) is symmetric for the usual dot product and has kernel exactly the vectors with y=z=0. The map P(x,y,z)=(x,0,0) is idempotent, maps into that kernel, fixes exactly the kernel, and has residual orthogonal to every kernel vector. H has a nonzero kernel but is indefinite and is not idempotent. Thus this finite-dimensional constraint and its kernel projector are distinct operators.",
+      "obligation": "This is a declared finite-dimensional integer model; its set of integer triples is infinite. It constructs no discrete Wheeler-DeWitt operator, triangulation dynamics, diffeomorphism action, physical state space or continuum limit. Its counterexample concerns an inference from symmetry and a nonzero kernel to positivity or idempotence, not a specified gravitational model. Original target retained as an obligation: Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegative and acts as a projection on diffeomorphism-invariant states; no such operator is constructed here, and the DeWitt supermetric of the continuum constraint is indefinite. Prior boundary: Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "FSP-DISCRETE-WDW-CONSTRAINT"
@@ -16405,11 +16479,25 @@
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md",
         "papers/core/fsp/theory_of_finite_fsp.md:681-693",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md:170-173"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md:170-173",
+        "dag/derivations/independent/fsp-discrete-wdw-constraint.md",
+        "dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-discrete-wdw-constraint.py"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_symmetric",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.kernel_characterization",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projector_idempotent",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projected_vector_satisfies_constraint",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projector_fixes_exactly_kernel",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projection_residual_orthogonal_to_kernel",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.nontrivial_kernel",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_is_indefinite",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_is_not_projector"
+      ]
     },
     {
       "id": "TFQ-1214",

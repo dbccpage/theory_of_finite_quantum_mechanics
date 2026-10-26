@@ -1399,3 +1399,28 @@ lean_lib CampaignGpImportComplexField where
 -- Campaign: GP-IMPORT-CIRCLE-U1. Not a default target.
 lean_lib CampaignGpImportCircleU1 where
   roots := #[`CampaignGpImportCircleU1]
+
+-- Campaign: FQ-GAP-CUSTODY-AND-RECEIPTS. Not a default target.
+lean_lib CampaignFqGapCustodyAndReceipts where
+  roots := #[`CampaignFqGapCustodyAndReceipts]
+
+lean_lib CampaignFqGapC500OriginalTargets where
+  roots := #[`CampaignFqGapC500OriginalTargets]
+
+lean_lib CampaignGpImportGleason where
+  roots := #[`CampaignGpImportGleason]
+
+lean_lib CampaignBfCocycleObstruction where
+  roots := #[`CampaignBfCocycleObstruction]
+
+lean_lib CampaignSignedTriangleSwitching where
+  roots := #[`CampaignSignedTriangleSwitching]
+
+lean_lib CampaignIdentityConvention where
+  roots := #[`CampaignIdentityConvention]
+
+lean_lib CampaignReggeFiniteAction where
+  roots := #[`CampaignReggeFiniteAction]
+
+lean_lib CampaignConstraintKernelProjector where
+  roots := #[`CampaignConstraintKernelProjector]

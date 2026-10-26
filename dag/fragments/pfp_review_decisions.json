@@ -521,8 +521,16 @@
     {
       "node_id": "FQ-GAP-C500-ORIGINAL-TARGETS",
       "review": "dag/results/FQ-GAP-C500-ORIGINAL-TARGETS/reviews/20261019_next_ten_audit/review_result.json",
-      "scope_effect": "consistent",
-      "reason": "OPEN node; the review states the examined records do not discharge the original contracts."
+      "scope_effect": "statement_narrowed",
+      "statement": "For every natural number k, the numerals from 276 + 25 * k through 300 + 25 * k are a run of 25, and the next run starts at the next numeral. The ten runs for k from 1 through 10 begin at 301 and end at 550, covering 250 numerals, and 10 * 25 = 250. The ten clause-list lengths 0, 2, 4, 2, 4, 1, 1, 1, 1, 5 sum to 21, and the last length 5 is strictly greater than each earlier length. The five labels M2, M5, M7, J1 and J2 are pairwise distinct.",
+      "bottleneck": "Not run here: a fresh reading of each original target contract, the evidence files named beside the ten blocks, and any claim that a scoped receipt discharges a block. The gap-register titles say the original contracts remain open. These counts of register names do not discharge a block.",
+      "reason": "Campaign narrowing records the ten target-numeral runs, the ten clause-list lengths, and the five Block 10 labels. Status stays OPEN. The original contracts are not run here.",
+      "review_digest": {
+        "verdict": "scoped_block_numeral_slice_reviewed",
+        "narrowest_claim": "For every natural number k, the numerals from 276 + 25 * k through 300 + 25 * k are a run of 25, and the next run starts at the next numeral. The ten runs for k from 1 through 10 begin at 301 and end at 550, covering 250 numerals, and 10 * 25 = 250. The ten clause-list lengths 0, 2, 4, 2, 4, 1, 1, 1, 1, 5 sum to 21, and the last length 5 is strictly greater than each earlier length. The five labels M2, M5, M7, J1 and J2 are pairwise distinct.",
+        "does_not_support": "A fresh reading of each original target contract, the evidence files named beside the ten blocks, or a claim that a scoped receipt discharges a block.",
+        "next_test": "Read each original target contract and the evidence files named beside the ten blocks before treating any block as discharged."
+      }
     },
     {
       "node_id": "FQ-GAP-CONTINUUM-HILBERT-LIFT",
@@ -545,8 +553,16 @@
     {
       "node_id": "FQ-GAP-CUSTODY-AND-RECEIPTS",
       "review": "dag/results/FQ-GAP-CUSTODY-AND-RECEIPTS/reviews/20261019_scope_audit/review_result.json",
-      "scope_effect": "consistent",
-      "reason": "OPEN node; the review binds retained sources to bytes and states the historical register is not discharged."
+      "scope_effect": "statement_narrowed",
+      "statement": "The named untyped-row numerals satisfy 48 - 24 = 24. The named coverage numerals satisfy 53 - 22 = 31 and 22 < 53.",
+      "bottleneck": "Not run here: a recount of the ledger rows behind the numeral 48, a check that the GAP-FQM-002 text says 24, a search for the QM_208-211 libraries, the eight Mathlib claims of GAP-FQM-019, the Classical.choice dependency named H019.basisGen8_eval_pos, the GAP-FQM-022 provenance pointers, the Zenodo status of QM_020 and QM_080, and the README code-companion check. A stale receipt over H000..H018 coexists with Lean headers that say Candidate only. The three Nat identities do not discharge that inventory.",
+      "reason": "Campaign narrowing records the Nat identities 48 - 24 = 24, 53 - 22 = 31 and 22 < 53. Status stays OPEN. The custody inventory is not run here.",
+      "review_digest": {
+        "verdict": "scoped_numeral_slice_reviewed",
+        "narrowest_claim": "The named untyped-row numerals satisfy 48 - 24 = 24. The named coverage numerals satisfy 53 - 22 = 31 and 22 < 53.",
+        "does_not_support": "A recount of ledger rows, missing libraries, Mathlib promotion, the named Classical.choice dependency, provenance pointers, Zenodo publication status, or the README code-companion check.",
+        "next_test": "Recount the ledger rows, the named libraries, the Mathlib claims, the Classical.choice dependency, the provenance pointers, the Zenodo records, and the README check on a clean tree."
+      }
     },
     {
       "node_id": "FQ-GAP-REAL-EMBEDDING-CHOICE",
@@ -808,8 +824,16 @@
     {
       "node_id": "GP-IMPORT-GLEASON",
       "review": "dag/results/GP-IMPORT-GLEASON/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Imported node; the review adds unit-contract rivals. Later Born runs construct effect-valuation carriers.",
+      "scope_effect": "statement_narrowed",
+      "statement": "On the two-label host, 2 < 3 and 3 ≤ 2 fails, and no three pairwise distinct labels exist. Amplitudes 2 on the false label and 1 on the true label have squared weights 4 and 1. The unit effect pairs both readout orders with 5. The false-indicator pairs as 4 in the direct order and as 1 after swapping the effect.",
+      "bottleneck": "Uniqueness of the Born quadratic form for dimension at least 3, under noncontextuality, sigma-additivity and continuity, stays imported. The two-label disagreements do not refute that uniqueness under those hypotheses. Quartic readout under scale-2 frame additivity stays outside this slice.",
+      "reason": "Campaign narrowing records the two-label dimension failure and the unit-effect pairings 5 and 5 together with the false-indicator pairings 4 and 1. Status stays IMPORTED_ASSUMPTION.",
+      "review_digest": {
+        "verdict": "scoped_two_label_pairing_reviewed",
+        "narrowest_claim": "On the two-label host, 2 < 3 and 3 ≤ 2 fails, and no three pairwise distinct labels exist. Amplitudes 2 on the false label and 1 on the true label have squared weights 4 and 1. The unit effect pairs both readout orders with 5. The false-indicator pairs as 4 in the direct order and as 1 after swapping the effect.",
+        "does_not_support": "Uniqueness of the Born quadratic form for dimension at least 3 under noncontextuality, sigma-additivity and continuity, or a refutation of that uniqueness.",
+        "next_test": "Admit the Gleason hypotheses and a host with at least three labels before treating Born uniqueness as derived."
+      },
       "superseded_by": [
         "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T004525Z_fable51_born",
         "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T162715Z_jordan_classical_qubit",

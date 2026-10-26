@@ -494,15 +494,15 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1020` | `FINITE_QM_STRUCTURE` | `PROVED_LEAN` | `FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
 | `TFQ-1021` | `FINITE_QM_CORE` | `PROVED_LEAN` | `FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION` (PROVED_LEAN) | - |
 | `TFQ-1022` | `FINITE_QM_DYNAMICS` | `COMPUTATIONAL_CONTROL` | `FQ-GAP-REAL-EMBEDDING-CHOICE` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-1023` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-CUSTODY-AND-RECEIPTS` (OPEN) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-1023` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-CUSTODY-AND-RECEIPTS` (OPEN) | scoped_numeral_slice_reviewed / statement_narrowed |
 | `TFQ-1024` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-CORPUS-REWRITE` (OPEN) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-1025` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-C500-ORIGINAL-TARGETS` (OPEN) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-1025` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GAP-C500-ORIGINAL-TARGETS` (OPEN) | scoped_block_numeral_slice_reviewed / statement_narrowed |
 | `TFQ-1026` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
 | `TFQ-1027` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `FQ-IMPL-REALIFICATION-ADAPTER` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
 | `TFQ-1028` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-IMPL-PAIRING-AUDIT` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
 | `TFQ-1029` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-COMPLEX-FIELD` (IMPORTED_ASSUMPTION) | scoped_gaussian_integer_result_reviewed / statement_narrowed |
 | `TFQ-1030` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CIRCLE-U1` (IMPORTED_ASSUMPTION) | scoped_sign_pair_cycle_result_reviewed / statement_narrowed |
-| `TFQ-1031` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-GLEASON` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-1031` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-GLEASON` (IMPORTED_ASSUMPTION) | scoped_two_label_pairing_reviewed / statement_narrowed |
 | `TFQ-1032` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-TENSOR-PRODUCT` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1033` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CPTP-CLASS` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1034` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CONTINUOUS-TIME` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
@@ -1509,9 +1509,9 @@ Obligation: Keep the presentation P and the internal quotient N as separate reco
 - Parent: `TFQ-0422`
 - Status: `SOURCE_RECORD`
 
-Whether <a> supplied after <> is a new state depends on an identity convention that no prompt had declared. Under the opaque convention a state is what the regime can tell apart, and with O empty <> and <a> are not told apart; under the exact-inscription convention a state is the inscription itself, the strings differ, and the regime has one more syntactic state. Trials 1 and 2 answered under the first convention and the full replay under the second, calling <a> a new state. The analysis keeps both branches and records the effect as undecidable until one convention is declared.
+For arbitrary observer families, equality of all observations is an equivalence relation. Forgetting observers preserves indistinguishability, an empty observer family identifies every pair, and adjoining an exact-identity observer makes indistinguishability equivalent to equality. The supplied inscription `<a>` after `<>` is new relative to the exact observer and not new relative to the empty observer family. No single proposition agrees with both novelty answers.
 
-Obligation: Require a declared identity convention before answering whether a supplied inscription is a new state, and report the opaque and exact-inscription answers as separate branches until one is declared.
+Obligation: Keep the observer family and identity convention declared; no preferred convention, computability theorem or authority grant follows.
 
 ### TFQ-0424 absence-of-rule-not-identification
 
@@ -4132,9 +4132,9 @@ Obligation: The circle group U(1), a continuous one-parameter phase group, and a
 - Status: `IMPORTED_ASSUMPTION`
 - DAG node: `GP-IMPORT-GLEASON` (`IMPORTED_ASSUMPTION`)
 
-Uniqueness of the Born quadratic form at dimension n >= 3 needs Gleason-type hypotheses (noncontextuality, sigma-additivity, continuity). On the two-label host the dimension extra already fails; the weaker unit-effect contract has two disagreeing pairings (4 versus 1 on the false-indicator at amplitudes (2,1)).
+On the two-label host, 2 < 3 and 3 ≤ 2 fails, and no three pairwise distinct labels exist. Amplitudes 2 on the false label and 1 on the true label have squared weights 4 and 1. The unit effect pairs both readout orders with 5. The false-indicator pairs as 4 in the direct order and as 1 after swapping the effect.
 
-Obligation: Necessity of Gleason uniqueness is OPEN; only rival-readout exclusions (quartic under scale-2 frame additivity) are proved.
+Obligation: Uniqueness of the Born quadratic form for dimension at least 3, under noncontextuality, sigma-additivity and continuity, stays imported. The two-label disagreements do not refute that uniqueness under those hypotheses. Quartic readout under scale-2 frame additivity stays outside this slice.
 
 ### TFQ-1032 gp-import-tensor-product
 
@@ -4595,9 +4595,9 @@ Obligation: Both hypotheses are supplied; their selection from finite-theory pri
 - Status: `OPEN_OBLIGATION`
 - DAG node: `FQ-GAP-CUSTODY-AND-RECEIPTS` (`OPEN`)
 
-Receipt and custody items: 48 (ledger) vs 24 (GAP-FQM-002 text) untyped claim rows; GAP-FQM-017 QM_208-211 claim maps point at nonexistent *_lib libraries (tautology tests); GAP-FQM-019 eight claims need a Mathlib build to promote; GAP-FQM-020 QM_122 axiom report covers 22 of 53 files and hides a Classical.choice dependency (H019.basisGen8_eval_pos); GAP-FQM-022 QM_122 provenance cites nonexistent sources; QM_020 and QM_080 are published (Zenodo) and not free to rewrite; README states the code-companion --check fails on the current tree.
+The named untyped-row numerals satisfy 48 - 24 = 24. The named coverage numerals satisfy 53 - 22 = 31 and 22 < 53.
 
-Obligation: Receipts are not proofs: a stale receipt over H000..H018 coexists with Lean headers that say "Candidate only"; replay against a clean Lean build is not claimed.
+Obligation: Not run here: a recount of the ledger rows behind the numeral 48, a check that the GAP-FQM-002 text says 24, a search for the QM_208-211 libraries, the eight Mathlib claims of GAP-FQM-019, the Classical.choice dependency named H019.basisGen8_eval_pos, the GAP-FQM-022 provenance pointers, the Zenodo status of QM_020 and QM_080, and the README code-companion check. A stale receipt over H000..H018 coexists with Lean headers that say Candidate only. The three Nat identities do not discharge that inventory.
 
 ### TFQ-1024 fq-gap-corpus-rewrite
 
@@ -4617,9 +4617,9 @@ Obligation: Complete or retire the rewrite; no derivation content.
 - Status: `OPEN_OBLIGATION`
 - DAG node: `FQ-GAP-C500-ORIGINAL-TARGETS` (`OPEN`)
 
-For each of ten C500 blocks the original target contract remains open; closure is recorded only for a scoped statement backed by evidence files (open or invalid bet clauses listed per block, e.g. M2, M5, M7, J1, J2 in Block 10).
+For every natural number k, the numerals from 276 + 25 * k through 300 + 25 * k are a run of 25, and the next run starts at the next numeral. The ten runs for k from 1 through 10 begin at 301 and end at 550, covering 250 numerals, and 10 * 25 = 250. The ten clause-list lengths 0, 2, 4, 2, 4, 1, 1, 1, 1, 5 sum to 21, and the last length 5 is strictly greater than each earlier length. The five labels M2, M5, M7, J1 and J2 are pairwise distinct.
 
-Obligation: Scoped resolution is narrower than the original targets; map per-block clauses before citing any C500 target as discharged.
+Obligation: Not run here: a fresh reading of each original target contract, the evidence files named beside the ten blocks, and any claim that a scoped receipt discharges a block. The gap-register titles say the original contracts remain open. These counts of register names do not discharge a block.
 
 ### TFQ-1037 gp-fin-gauss-matrix-algebra
 
@@ -10228,9 +10228,9 @@ Obligation: The JSONL calls d_tau rational, which is false; the claim that braid
 - DAG node: `FSP-BF-2GROUP-SIGN-CLAIM`
 - Paper: [derivation](derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md)
 
-Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout.
+For the additive group Z2 with trivial Z2 coefficient action, the Boolean 3-cochain omega(a,b,c)=a*b*c is normalized and satisfies the cocycle identity. Every normalized 2-cochain beta has coboundary zero at (1,1,1), whereas omega is one there. Thus omega is not a normalized coboundary, and normalized 2-cochain rephasing leaves a negative sign at that triple.
 
-Obligation: Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.
+Obligation: The result concerns the explicitly defined Z2 cochain model and normalized rephasings. It constructs no BF state sum, 2-group gauge dynamics, knotted-worldsheet amplitude or three-loop braiding observable. No general cancellation or sign-free theorem follows. Original target retained as an obligation: Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout. Prior boundary: Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.
 
 ### TFQ-1211 Cobordism invariant as intrinsic sign obstruction (unsupported)
 
@@ -10240,9 +10240,9 @@ Obligation: Define the finite BF or 2-group gauge model, compute the 3-loop brai
 - DAG node: `FSP-COBORDISM-INTRINSIC-SIGN`
 - Paper: [derivation](derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md)
 
-Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout.
+For every assignment of Boolean edge signs to a triangle and every Boolean vertex switching, the XOR of the three edge signs is invariant. A switching makes all three edge signs positive exactly when their XOR is zero. An explicit switching gives the normal form (0,0,parity), and the product of integer edge signs equals the sign of that parity. A negative-parity triangle is obstructed within this switching class, whereas a balanced triangle with two negative edges can be made positive.
 
-Obligation: Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.
+Obligation: Only diagonal vertex-sign switching on one three-cycle is classified. No spin bordism group, eta invariant, fermion representation, bulk cancellation or obstruction over all representations is computed. The original cobordism-based intrinsic-sign claim remains open. Original target retained as an obligation: Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout. Prior boundary: Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.
 
 ### TFQ-1212 Regge deficit angles and action
 
@@ -10252,9 +10252,9 @@ Obligation: Relate the anomaly invariant to the sign of a declared finite repres
 - DAG node: `FSP-REGGE-DEFICIT-ACTION`
 - Paper: [derivation](derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md)
 
-On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here.
+For any commutative ring and finite hinge set, the action S=sum_h A_h*(tau-sum_j theta_hj) equals tau*sum_h A_h-sum_h A_h*sum_j theta_hj. For fixed deficits it is linear in the declared areas, and splitting an area while keeping its deficit fixed preserves its contribution. Zero deficits imply zero action. Declared integer data also show that zero total action need not mean zero deficits, and changing areas can change the action on the same finite index set.
 
-Obligation: Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).
+Obligation: Areas, angles and the full-turn parameter are declared algebraic data. Geometric realizability, actual triangulation moves, Lorentzian signature, convergence to the Einstein-Hilbert action, and fermion-sign consequences are not established. Original target retained as an obligation: On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here. Prior boundary: Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).
 
 ### TFQ-1213 Discrete Wheeler-DeWitt constraint on triangulations
 
@@ -10264,9 +10264,9 @@ Obligation: Regge calculus carries no fermion-sign content in this package; Lore
 - DAG node: `FSP-DISCRETE-WDW-CONSTRAINT`
 - Paper: [derivation](derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md)
 
-Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegative and acts as a projection on diffeomorphism-invariant states; no such operator is constructed here, and the DeWitt supermetric of the continuum constraint is indefinite.
+On integer triples, the declared constraint H(x,y,z)=(0,2y,-z) is symmetric for the usual dot product and has kernel exactly the vectors with y=z=0. The map P(x,y,z)=(x,0,0) is idempotent, maps into that kernel, fixes exactly the kernel, and has residual orthogonal to every kernel vector. H has a nonzero kernel but is indefinite and is not idempotent. Thus this finite-dimensional constraint and its kernel projector are distinct operators.
 
-Obligation: Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).
+Obligation: This is a declared finite-dimensional integer model; its set of integer triples is infinite. It constructs no discrete Wheeler-DeWitt operator, triangulation dynamics, diffeomorphism action, physical state space or continuum limit. Its counterexample concerns an inference from symmetry and a nonzero kernel to positivity or idempotence, not a specified gravitational model. Original target retained as an obligation: Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegative and acts as a projection on diffeomorphism-invariant states; no such operator is constructed here, and the DeWitt supermetric of the continuum constraint is indefinite. Prior boundary: Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).
 
 ### TFQ-1214 Pachner-move invariance of a triangulation sum (unsupported)
 
