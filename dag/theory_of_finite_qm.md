@@ -12678,9 +12678,9 @@ Obligation: The checked identities are rational arithmetic for the imported labe
 - DAG node: `LQG-CONTINUUM-LIMIT-GAP`
 - Paper: [derivation](derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md)
 
-No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recoupling tables of the repository, or from the exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit.
+No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recoupling tables of the repository, or from the exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit. Separate conditional mathematical result: For a supplied finite discrete label alphabet and normalized nonnegative probability laws on every finite set of natural-number coordinates, compatibility under coordinate restriction is equivalent to existence of an infinite projective-limit measure. Under compatibility, that probability measure is unique. Every countable family of measurable finite-window constraints having mass one in its finite law holds almost everywhere simultaneously in the limit, and at least one satisfying infinite configuration exists. The theorem specializes to the three level-two spin labels Fin 3 and arbitrary predicates on their finite windows.
 
-Obligation: Recorded as an explicit non-claim.
+Obligation: The alphabet, discrete topology, product measurable structure, compatible finite probability laws and full-mass constraint premises are supplied. Physical LQG or complex spin-foam amplitudes are not shown to satisfy them. No triangulation refinement, manifold, semiclassical geometry, Einstein dynamics or physical cosmological constant is derived; the original node and physical routes remain OPEN/GAP.
 
 ## GENESIS_TO_HIGHER
 

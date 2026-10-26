@@ -11,34 +11,43 @@
 
 ## Statement
 
-No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recoupling tables of the repository, or from the exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit.
+No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recoupling tables of the repository, or from the exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit. Separate conditional mathematical result: For a supplied finite discrete label alphabet and normalized nonnegative probability laws on every finite set of natural-number coordinates, compatibility under coordinate restriction is equivalent to existence of an infinite projective-limit measure. Under compatibility, that probability measure is unique. Every countable family of measurable finite-window constraints having mass one in its finite law holds almost everywhere simultaneously in the limit, and at least one satisfying infinite configuration exists. The theorem specializes to the three level-two spin labels Fin 3 and arbitrary predicates on their finite windows.
 
 ## Governing obligation
 
-The census and the two dimension identities do not discharge a continuum limit, a semiclassical limit, or a physical cosmological constant. No sequence of triangulations and no Einstein equation is constructed. Routes FRO-R-LQG-CONTINUUM-LIMIT-GAP and FRO-R-BACK-LQG-LIMIT-TO-TFQ0105 stay GAP_NO_DERIVATION. The broader audit sentence, that no source read for this change derives a limit, is not discharged in full.
+The alphabet, discrete topology, product measurable structure, compatible finite probability laws and full-mass constraint premises are supplied. Physical LQG or complex spin-foam amplitudes are not shown to satisfy them. No triangulation refinement, manifold, semiclassical geometry, Einstein dynamics or physical cosmological constant is derived; the original node and physical routes remain OPEN/GAP. Earlier finite-census boundary: The census and the two dimension identities do not discharge a continuum limit, a semiclassical limit, or a physical cosmological constant. No sequence of triangulations and no Einstein equation is constructed. Routes FRO-R-LQG-CONTINUUM-LIMIT-GAP and FRO-R-BACK-LQG-LIMIT-TO-TFQ0105 stay GAP_NO_DERIVATION. The broader audit sentence, that no source read for this change derives a limit, is not discharged in full.
 
 ## Source status
 
-Finite census and Q(sqrt 2) dimension identities checked in Lean 4.35.0 on 2026-10-24. Node stays OPEN. No continuum limit, semiclassical limit, or physical cosmological constant is derived. Earlier audit against arXiv:1205.2019 Part V and TFQ-0104/TFQ-0105 was on 2026-10-22.
+Finite census and Q(sqrt 2) dimension identities checked in Lean 4.35.0 on 2026-10-24. Node stays OPEN. No continuum limit, semiclassical limit, or physical cosmological constant is derived. Earlier audit against arXiv:1205.2019 Part V and TFQ-0104/TFQ-0105 was on 2026-10-22. The supplied-family projective probability extension is separately kernel-checked; no physical LQG continuum claim follows.
 
 ## What is imported
 
-- Nothing is imported by this node as a premise of a repository result.
+- supplied finite discrete label alphabet and product measurable structure
+- normalized nonnegative finite laws compatible under all finite coordinate restrictions
+- countably many supplied finite-window constraints with probability one
+
+Declared imported structure:
+- `supplied finite discrete label alphabet and product measurable structure`
+- `normalized nonnegative finite laws compatible under all finite coordinate restrictions`
+- `countably many supplied finite-window constraints with probability one`
 
 ## What is open
 
-- No further obligation is recorded beyond the governing obligation.
+- The alphabet, discrete topology, product measurable structure, compatible finite probability laws and full-mass constraint premises are supplied. Physical LQG or complex spin-foam amplitudes are not shown to satisfy them. No triangulation refinement, manifold, semiclassical geometry, Einstein dynamics or physical cosmological constant is derived; the original node and physical routes remain OPEN/GAP.
 
 ## Connections to this repository
 
-- Route `FRO-R-LQG-CONTINUUM-LIMIT-GAP` (`GAP_NO_DERIVATION`) from `LQG-EPRL-VERTEX-IMPORT`, `LQG-TV-LEVEL2-PENTAGON-TARGET`: No source derives a limit.
-- Route `FRO-R-BACK-LQG-LIMIT-TO-TFQ0105` (`GAP_NO_DERIVATION`) from this node into `TFQ-0105`: The trunk record TFQ-0105 states that no continuum limit and no physical cosmological constant are discharged by the level-2 recoupling table. No source supplies a limit statement that would change this.
+- Route `FRO-R-LQG-CONTINUUM-LIMIT-GAP` (`GAP_NO_DERIVATION`) from `LQG-EPRL-VERTEX-IMPORT`, `LQG-TV-LEVEL2-PENTAGON-TARGET`: A supplied compatible finite-label probability family has an infinite measure limit, but no route from the recoupling or EPRL inputs to continuum spacetime or a semiclassical limit is established.
+- Route `FRO-R-BACK-LQG-LIMIT-TO-TFQ0105` (`GAP_NO_DERIVATION`) from this node into `TFQ-0105`: The supplied-family projective probability measure does not identify a physical cosmological constant, derive the Einstein equation or establish the physical continuum limit required by TFQ-0105. That target-specific connection remains underived.
+- For a supplied finite discrete label alphabet and normalized nonnegative probability laws on every finite set of natural-number coordinates, compatibility under coordinate restriction is equivalent to existence of an infinite projective-limit measure. Under compatibility, that probability measure is unique. Every countable family of measurable finite-window constraints having mass one in its finite law holds almost everywhere simultaneously in the limit, and at least one satisfying infinite configuration exists. The theorem specializes to the three level-two spin labels Fin 3 and arbitrary predicates on their finite windows.
+- The new proof constructs an infinite measure from supplied compatible probabilities, without asserting that physical spin-foam data have these properties.
 
 See also: `TFQ-0104`, `TFQ-0105`, `TFQ-0085`.
 
 ## Non-claims
 
-- No limit is proved or implied.
+- No continuum or semiclassical LQG spacetime limit, Einstein dynamics or physical cosmological constant is derived. The supplied-family measure extension is a separate conditional mathematical theorem.
 
 ## Sources
 
@@ -47,6 +56,10 @@ See also: `TFQ-0104`, `TFQ-0105`, `TFQ-0085`.
 - Repository: `dag/derivations/independent/lqg-continuum-limit-gap.md`
 - Repository: `checks/independent/lqg-continuum-limit-gap.py`
 - Repository: `code/rust/src/general_relativity/spin_foam.rs`
+- Repository: `lean4/CampaignLqgProjectiveLimit.lean`
+- Repository: `checks/independent/lqg-projective-limit.py`
+- Repository: `dag/derivations/independent/lqg-projective-limit.md`
+- Repository: `dag/research/campaign_lqg-projective-limit_lean_replay.json`
 
 ## Lean 4 declarations read
 - `lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_admissible_count`
@@ -54,6 +67,16 @@ See also: `TFQ-0104`, `TFQ-0105`, `TFQ-0085`.
 - `lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_dimension_truncation`
 - `lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_counts_do_not_select_a_scale`
 - `lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_free_positive_scale`
+- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.spin_constraints_ae`
+- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.spin_labels_extension`
+- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.countable_constraints`
+- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.constraints_have_configuration`
+- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.projective_of_limit`
+- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.exists_limit_iff_projective`
+- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.empty_stage`
+- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.content_sigma_subadditive`
+- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.limit_marginals`
+- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.limit_unique`
 
 ## Downstream derivations
 

@@ -130,3 +130,5 @@ Run `governance-check baseline --write` after bringing grandfathered files up to
 | [`schema/contract-score.v1.json`](schema/contract-score.v1.json) | JSON Schema of a companion. |
 | [`hook/build.rs`](hook/build.rs) | The canonical build hook. |
 | `code/rust/src/governance/` | The `governance` crate: score vocabulary (`score.rs`), policy and baseline (`policy.rs`), companion view (`descriptor.rs`), verifiers (`verify.rs`), repository access (`repo.rs`), build-script support (`buildtime.rs`), and the `governance-check` binary. |
+
+The approved PR #434 conditional continuum module `CampaignLqgProjectiveLimit` retains L3D under its exact-source `finite_proof_example` pin. This historical category also covers this conditional infinite-limit theorem; no physical continuum result or node-status promotion follows. The path, digest and user approval are recorded in [`approved_pr_434_continuum_exception_2026_10_26.json`](../dag/research/approved_pr_434_continuum_exception_2026_10_26.json).
