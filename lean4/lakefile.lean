@@ -1478,3 +1478,6 @@ lean_lib CampaignAuthRiceTheoremImport where
 
 lean_lib CampaignOpsAxis1WellfoundedAdmission where
   roots := #[`CampaignOpsAxis1WellfoundedAdmission]
+
+lean_lib CampaignTfq0183FourModeDisk where
+  roots := #[`CampaignTfq0183FourModeDisk]
