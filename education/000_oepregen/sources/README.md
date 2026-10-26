@@ -2,23 +2,27 @@
 
 **AuthorityEffect:** None.
 
-Six primary records are in this folder. `design_derivation_v0.md` and
-`analysis_derivation_v1.md` were already tracked. `trial_1_transcript.md`,
-`trial_2_transcript.md`, `full_replay_prompt_pack.md`, and
-`full_replay_transcript.md` were restored from commit
-`0622e7e666877c61ae9330fe55b6a223965e23eb` (the parent of `271004906a`, which
-removed them). Plain-text copies remain in the atlas, and the lessons cite those
-copies. The restored markdown and the atlas text are separate files. Do not edit
-either copy; corrections belong in the chapters.
+Two of the six primary records remain in this folder: `design_derivation_v0.md` and
+`analysis_derivation_v1.md`. These four transcript markdown paths are absent.
+They were not opened, and no transcript prose was written for them:
+
+- `trial_1_transcript.md`
+- `trial_2_transcript.md`
+- `full_replay_prompt_pack.md`
+- `full_replay_transcript.md`
+
+Lessons still name atlas `.txt` paths with those stems. Those four working-tree
+paths are also absent, so this page does not repoint at them. Do not cite the
+markdown paths as if they were present.
 
 | File | Original name | What it is |
 | --- | --- | --- |
 | `design_derivation_v0.md` | `omega_engine_derivation_v0.md` | The experimental design, written before any trial: principles, hidden comparison targets, pre-registered branches, controls. |
-| `trial_1_transcript.md` | `oe_prompt_and_response_deepseek_v0.0.md` | Trial 1: prompts 1 to 13 and the model's replies. Controls 1 to 10 were sent inside code fences. This markdown file is in this folder. Lessons cite the separate atlas copy [`trial_1_transcript.txt`](../../../../omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/pre_genesis/sources/trial_1_transcript.txt). |
+| `trial_1_transcript.md` | `oe_prompt_and_response_deepseek_v0.0.md` | Absent. The atlas path `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/pre_genesis/sources/trial_1_transcript.txt` is also absent from this working tree. Not opened. |
 | `analysis_derivation_v1.md` | `omega_engine_derivation_v1.md` | Analysis of Trial 1 (lines 1 to 583) and of Trial 2 up to Result 16 (lines 585 to 1190). Written in the second person to the author; who wrote it is not recorded. |
-| `trial_2_transcript.md` | `oe_prompt_and_response_deepseek_v1.0.md` | Trial 2: prompts 1 to 17, raw controls, then an appended analysis from line 890 ("Verdict" to the closing spine). This markdown file is in this folder. Lessons cite the separate atlas copy [`trial_2_transcript.txt`](../../../../omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/pre_genesis/sources/trial_2_transcript.txt). |
-| `full_replay_prompt_pack.md` | `oe_prompt_and_response_deepseek_v1.1.md` | Prompts prepared for the full-history replay. All results are empty. This markdown file is in this folder. The atlas copy is [`full_replay_prompt_pack.txt`](../../../../omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/pre_genesis/sources/full_replay_prompt_pack.txt). |
-| `full_replay_transcript.md` | `oe_full_generator_results_v1.md` | The full-history replay: prompts 11, 12, 14, 15, 17, 18 and 19 with replies. This markdown file is in this folder. Lessons cite the separate atlas copy [`full_replay_transcript.txt`](../../../../omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/pre_genesis/sources/full_replay_transcript.txt). |
+| `trial_2_transcript.md` | `oe_prompt_and_response_deepseek_v1.0.md` | Absent. The atlas path `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/pre_genesis/sources/trial_2_transcript.txt` is also absent from this working tree. Not opened. |
+| `full_replay_prompt_pack.md` | `oe_prompt_and_response_deepseek_v1.1.md` | Absent. The atlas path `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/pre_genesis/sources/full_replay_prompt_pack.txt` is also absent from this working tree. Not opened. |
+| `full_replay_transcript.md` | `oe_full_generator_results_v1.md` | Absent. The atlas path `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/pre_genesis/sources/full_replay_transcript.txt` is also absent from this working tree. Not opened. |
 
 What the record does not contain:
 
