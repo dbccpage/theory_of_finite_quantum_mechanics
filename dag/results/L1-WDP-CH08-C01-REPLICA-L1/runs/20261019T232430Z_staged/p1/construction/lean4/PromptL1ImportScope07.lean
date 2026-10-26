@@ -1,3 +1,0 @@
-import PromptL1Imports
-#print axioms QuantumMechanics.PromptL1Imports.replica_law
-#print axioms QuantumMechanics.PromptL1Imports.replica_control

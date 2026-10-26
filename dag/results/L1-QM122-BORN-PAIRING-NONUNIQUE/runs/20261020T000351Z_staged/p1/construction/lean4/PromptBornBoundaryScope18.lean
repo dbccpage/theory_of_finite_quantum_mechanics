@@ -1,3 +1,0 @@
-import PromptBornBoundaries
-#print axioms QuantumMechanics.PromptBornBoundaries.pairing_law
-#print axioms QuantumMechanics.PromptBornBoundaries.pairing_control

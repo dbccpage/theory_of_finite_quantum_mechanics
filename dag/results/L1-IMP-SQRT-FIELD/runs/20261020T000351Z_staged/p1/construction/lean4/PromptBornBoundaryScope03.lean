@@ -1,3 +1,0 @@
-import PromptBornBoundaries
-#print axioms QuantumMechanics.PromptBornBoundaries.sqrt_law
-#print axioms QuantumMechanics.PromptBornBoundaries.sqrt_control

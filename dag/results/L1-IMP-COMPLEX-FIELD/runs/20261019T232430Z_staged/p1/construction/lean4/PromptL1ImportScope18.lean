@@ -1,3 +1,0 @@
-import PromptL1Imports
-#print axioms QuantumMechanics.PromptL1Imports.complex_law
-#print axioms QuantumMechanics.PromptL1Imports.complex_control

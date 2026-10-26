@@ -1,1 +1,0 @@
-Original control source, outputs and receipts before adding an explicit complete-basis guard for the identity-presentation witness. The initial report stated the correct witness but did not replay that equality; current verification explicitly checks it. Original source snapshots retained. These archived development receipts are historical, not current-live-source checks.

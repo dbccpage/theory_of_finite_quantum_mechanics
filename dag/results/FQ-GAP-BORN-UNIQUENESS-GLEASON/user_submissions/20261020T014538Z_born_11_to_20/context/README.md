@@ -1,1 +1,0 @@
-Historical task-index snapshot. Its links are interpreted at dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/, its original location. This exact snapshot retains the index bytes referenced by the earlier user-submission manifest; the discovery index itself may advance.
