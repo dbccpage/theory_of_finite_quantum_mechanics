@@ -32,7 +32,7 @@ Unmet after the PFP review: Define the intended GTOC/Hilb categories and actual 
 
 ## Source status
 
-QM206-C1 4-vertex plaquette cochain exactness d1(d0 f)=0, QM206-C3 coboundary holonomy invariance, and QM206-C7 Theorem 2.1 non-full/non-faithful diagonal descent F_Descent mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
+QM206-C1 4-vertex plaquette cochain exactness d1(d0 f)=0, QM206-C3 coboundary holonomy invariance, and QM206-C7 Theorem 2.1 non-full/non-faithful diagonal descent F_Descent mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics
 
 ## Review
 
@@ -76,9 +76,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust, record TFQ-1041
 - counts toward the grade: no
 
-### Rust: `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs`
+### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs)
+- file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust, record TFQ-1041
 
@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1041_ds_qm206_boundary_synthesis.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1041_ds_qm206_boundary_synthesis.md](../../../dag/derivations/12_finite_qm_structure/tfq_1041_ds_qm206_boundary_synthesis.md)
-- sha256 (`lf-normalised`): `19e079060025f3c2c46394381021a9f8dc05f0fe21eb42cefdedafcc2bf119fa`
+- sha256 (`lf-normalised`): `dff7940224be40c46c488afb47f4d229b5b064f6d631956adee7253ae9802fba`
 - generated view: listed, not counted
 - cited in: record TFQ-1041
 - counts toward the grade: no

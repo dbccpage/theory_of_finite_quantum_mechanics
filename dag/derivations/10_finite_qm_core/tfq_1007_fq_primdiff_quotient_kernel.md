@@ -53,5 +53,5 @@ LEAN PROVED (RECEIPTED) per ledger; Lean header for the H000..H018 family says C
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332`
-  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics_claim_ledger.md#SRC-122`
+  - `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md:1332`
+  - `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md#SRC-122`

@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vector_and_quantum_observer_geometries"
+version = "0.4.0"
+description = "Projection Obstruction research package — vector_and_quantum_observer_geometries"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24.0",
+    "pytest>=7.3.0",
+    "pytest-cov>=4.0.0",
+]
+
+[tool.setuptools]
+package-dir = { "" = "code" }
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["code/tests"]
+pythonpath = ["code"]
+addopts = "-p no:debugging"
+

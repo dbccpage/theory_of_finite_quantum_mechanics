@@ -45,7 +45,7 @@ current results. The paper and the gap registry replace them.
 ## 4. Repository structure
 
 ```
-010_mub6/
+mub6/
 ├── README.md                    # This document
 ├── agents.md                    # Agent rules for this deposit
 ├── LICENSE                      # CC-BY-4.0 (manuscript and documentation)

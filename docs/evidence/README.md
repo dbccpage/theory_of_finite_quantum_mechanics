@@ -6,7 +6,7 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
-The DAG has 925 nodes in 36 stages. Evidence grades: E0 152, E1 195, E2 35, E3 543.
+The DAG has 925 nodes in 36 stages. Evidence grades: E0 78, E1 258, E2 46, E3 543.
 
 ### What is proved here, what is imported, what is open
 
@@ -24,7 +24,7 @@ The DAG has 925 nodes in 36 stages. Evidence grades: E0 152, E1 195, E2 35, E3 5
 
 Of the 220 `PROVED_LEAN` nodes, 220 reach grade E3 or E4 (100 percent); 0 do not. The second group is listed in [mismatches](mismatches.md).
 
-Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 543 nodes at E3, 118 have a qualifying review, 23 of those cite in-repo Rust or Python code that is not a test, and 39 have a runnable test but no review.
+Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 543 nodes at E3, 118 have a qualifying review, 23 of those cite in-repo Rust or Python code that is not a test, and 59 have a runnable test but no review.
 
 ### Where the Lean evidence stands
 
@@ -35,47 +35,47 @@ The `lean` fields of nodes cite 2679 distinct Lean declarations that lie in file
 | Status | E0 | E1 | E2 | E3 | E4 | Total |
 |---|---|---|---|---|---|---|
 | `PROVED_LEAN` | 0 | 0 | 0 | 220 | 0 | 220 |
-| `PROVED_PROSE` | 8 | 13 | 7 | 9 | 0 | 37 |
-| `COMPUTATIONALLY_CHECKED` | 36 | 60 | 20 | 77 | 0 | 193 |
-| `CONDITIONAL` | 10 | 1 | 0 | 26 | 0 | 37 |
-| `DEFINITION` | 21 | 17 | 1 | 53 | 0 | 92 |
+| `PROVED_PROSE` | 4 | 15 | 9 | 9 | 0 | 37 |
+| `COMPUTATIONALLY_CHECKED` | 6 | 87 | 23 | 77 | 0 | 193 |
+| `CONDITIONAL` | 0 | 11 | 0 | 26 | 0 | 37 |
+| `DEFINITION` | 6 | 27 | 6 | 53 | 0 | 92 |
 | `IMPORTED_ASSUMPTION` | 4 | 13 | 0 | 53 | 0 | 70 |
 | `ADMITTED_PRIMITIVE` | 0 | 0 | 0 | 3 | 0 | 3 |
-| `SOURCE_RECORD` | 52 | 28 | 0 | 1 | 0 | 81 |
-| `OPEN` | 21 | 59 | 6 | 100 | 0 | 186 |
+| `SOURCE_RECORD` | 42 | 38 | 0 | 1 | 0 | 81 |
+| `OPEN` | 16 | 63 | 7 | 100 | 0 | 186 |
 | `REFUTED` | 0 | 4 | 1 | 1 | 0 | 6 |
-| Total | 152 | 195 | 35 | 543 | 0 | 925 |
+| Total | 78 | 258 | 46 | 543 | 0 | 925 |
 
 ### Stage by evidence grade
 
 | Stage | E0 | E1 | E2 | E3 | E4 | Total | `PROVED_LEAN` | Flags |
 |---|---|---|---|---|---|---|---|---|
-| [PREGENESIS](stages/PREGENESIS.md) | 7 | 0 | 0 | 24 | 0 | 31 | 12 | 5 |
-| [GENESIS](stages/GENESIS.md) | 22 | 2 | 0 | 65 | 0 | 89 | 36 | 12 |
-| [MSSN_SN](stages/MSSN_SN.md) | 14 | 0 | 0 | 14 | 0 | 28 | 12 | 6 |
-| [WDP](stages/WDP.md) | 4 | 0 | 0 | 25 | 0 | 29 | 6 | 6 |
+| [PREGENESIS](stages/PREGENESIS.md) | 4 | 3 | 0 | 24 | 0 | 31 | 12 | 5 |
+| [GENESIS](stages/GENESIS.md) | 0 | 18 | 6 | 65 | 0 | 89 | 36 | 6 |
+| [MSSN_SN](stages/MSSN_SN.md) | 7 | 6 | 1 | 14 | 0 | 28 | 12 | 4 |
+| [WDP](stages/WDP.md) | 0 | 1 | 3 | 25 | 0 | 29 | 6 | 3 |
 | [L1_EMERGENCE](stages/L1_EMERGENCE.md) | 0 | 0 | 0 | 9 | 0 | 9 | 1 | 1 |
 | [L1_TO_L2](stages/L1_TO_L2.md) | 10 | 0 | 0 | 38 | 0 | 48 | 3 | 13 |
 | [FINITE_QM_CORE](stages/FINITE_QM_CORE.md) | 1 | 0 | 0 | 32 | 0 | 33 | 12 | 34 |
-| [FINITE_QM_DYNAMICS](stages/FINITE_QM_DYNAMICS.md) | 2 | 0 | 0 | 20 | 0 | 22 | 1 | 18 |
+| [FINITE_QM_DYNAMICS](stages/FINITE_QM_DYNAMICS.md) | 0 | 2 | 0 | 20 | 0 | 22 | 1 | 18 |
 | [FINITE_QM_STRUCTURE](stages/FINITE_QM_STRUCTURE.md) | 0 | 0 | 0 | 44 | 0 | 44 | 11 | 26 |
-| [IMPLEMENTATION](stages/IMPLEMENTATION.md) | 2 | 0 | 0 | 8 | 0 | 10 | 4 | 5 |
+| [IMPLEMENTATION](stages/IMPLEMENTATION.md) | 1 | 1 | 0 | 8 | 0 | 10 | 4 | 5 |
 | [DRESSING_FIELD](stages/DRESSING_FIELD.md) | 0 | 10 | 8 | 25 | 0 | 43 | 11 | 2 |
 | [MUTUALLY_UNBIASED_BASES](stages/MUTUALLY_UNBIASED_BASES.md) | 0 | 27 | 3 | 37 | 0 | 67 | 32 | 3 |
 | [FERMION_SIGN](stages/FERMION_SIGN.md) | 0 | 11 | 6 | 24 | 0 | 41 | 5 | 1 |
 | [TENSOR_COMPOSITION](stages/TENSOR_COMPOSITION.md) | 0 | 0 | 0 | 7 | 0 | 7 | 7 | 0 |
 | [FINITE_OBSTRUCTION](stages/FINITE_OBSTRUCTION.md) | 2 | 5 | 0 | 2 | 0 | 9 | 0 | 1 |
-| [AUTHORIZATION](stages/AUTHORIZATION.md) | 8 | 0 | 0 | 0 | 0 | 8 | 0 | 0 |
+| [AUTHORIZATION](stages/AUTHORIZATION.md) | 7 | 0 | 1 | 0 | 0 | 8 | 0 | 0 |
 | [FINITE_HILBERT](stages/FINITE_HILBERT.md) | 3 | 4 | 0 | 1 | 0 | 8 | 0 | 4 |
 | [FINITE_GAUGE](stages/FINITE_GAUGE.md) | 0 | 0 | 0 | 1 | 0 | 1 | 0 | 0 |
 | [FINITE_QED](stages/FINITE_QED.md) | 0 | 0 | 0 | 1 | 0 | 1 | 0 | 0 |
 | [FINITE_QCD](stages/FINITE_QCD.md) | 3 | 16 | 0 | 13 | 0 | 32 | 1 | 18 |
 | [FINITE_TOPOLOGICAL](stages/FINITE_TOPOLOGICAL.md) | 2 | 5 | 0 | 2 | 0 | 9 | 0 | 7 |
-| [FINITE_QG](stages/FINITE_QG.md) | 7 | 5 | 0 | 3 | 0 | 15 | 0 | 0 |
-| [CONTINUUM_INTERFACE](stages/CONTINUUM_INTERFACE.md) | 5 | 0 | 0 | 4 | 0 | 9 | 0 | 0 |
-| [IMPLEMENTATION_CORE](stages/IMPLEMENTATION_CORE.md) | 25 | 16 | 0 | 0 | 0 | 41 | 0 | 68 |
+| [FINITE_QG](stages/FINITE_QG.md) | 5 | 7 | 0 | 3 | 0 | 15 | 0 | 0 |
+| [CONTINUUM_INTERFACE](stages/CONTINUUM_INTERFACE.md) | 2 | 3 | 0 | 4 | 0 | 9 | 0 | 0 |
+| [IMPLEMENTATION_CORE](stages/IMPLEMENTATION_CORE.md) | 0 | 41 | 0 | 0 | 0 | 41 | 0 | 68 |
 | [IMPLEMENTATION_SIBLING](stages/IMPLEMENTATION_SIBLING.md) | 1 | 20 | 0 | 5 | 0 | 26 | 0 | 23 |
-| [ENGINE_CUSTODY](stages/ENGINE_CUSTODY.md) | 8 | 26 | 0 | 0 | 0 | 34 | 0 | 9 |
+| [ENGINE_CUSTODY](stages/ENGINE_CUSTODY.md) | 4 | 30 | 0 | 0 | 0 | 34 | 0 | 9 |
 | [MAJORANA](stages/MAJORANA.md) | 0 | 6 | 11 | 29 | 0 | 46 | 5 | 0 |
 | [COMPUTATION](stages/COMPUTATION.md) | 0 | 6 | 3 | 73 | 0 | 82 | 43 | 4 |
 | [CONSTRUCTOR_THEORY](stages/CONSTRUCTOR_THEORY.md) | 9 | 1 | 0 | 5 | 0 | 15 | 3 | 2 |
@@ -152,15 +152,15 @@ and run `lake env lean Check.lean`. The expected output lists only `propext`, `C
 
 ## Where status and evidence disagree
 
-268 flags on 204 nodes. They are reported here and the DAG statuses are not changed. The full list, with one line per flag, is in [mismatches](mismatches.md).
+257 flags on 193 nodes. They are reported here and the DAG statuses are not changed. The full list, with one line per flag, is in [mismatches](mismatches.md).
 
 | Flag | Count | Meaning |
 |---|---|---|
 | `proved_lean_below_e3` | 0 | PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt |
 | `proved_lean_external_only` | 0 | PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout |
 | `receipt_not_current` | 33 | A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit |
-| `computational_no_runnable_test` | 160 | COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited |
-| `proved_prose_no_in_repo_document` | 12 | PROVED_PROSE with no in-repo source document cited |
+| `computational_no_runnable_test` | 157 | COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited |
+| `proved_prose_no_in_repo_document` | 4 | PROVED_PROSE with no in-repo source document cited |
 | `broken_reference` | 52 | A cited in-repo path or symbol cannot be found in this checkout |
 | `receipt_names_uncited_module` | 11 | A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) |
 

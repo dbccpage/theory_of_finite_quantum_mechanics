@@ -41,7 +41,7 @@ In accordance with strict constructive principles:
 - `missing obligation: the H3V7N5QF package holds no Rust`
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/fourth/invariants.py::never_decreases` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/fourth/invariants.py::never_decreases`](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/fourth/invariants.py)
 
 ---
 
@@ -55,5 +55,5 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `lean4/Imported/GenesisOngoing/Fourth/Contain.lean:15-16`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/fourth/claim_ledger.md:59`
+  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/fourth/claim_ledger.md:59`
   - `omega_engine_education/documentation/005_oegenong/levels/level_05_monotone_mass_growth.md:37`

@@ -1,7 +1,7 @@
 -- ============================================================================
 -- THE FERMION SIGN PROBLEM AS SQL
 -- Common Table Expressions, Window Functions, and Declarative Sharding
--- Origin: omega_engine_atlas/coda_atlas/F004_papers/008_fsp
+-- Origin: sources/atlas/papers/fermion_sign_problem
 -- Claim: urn:omega:sql:fermion_sign_problem:v1
 -- AuthorityEffect: None
 -- Scope Fence: What this file does not claim: Declarative CTE and window function reference queries for sign problem audits; does not execute continuous quantum path simulation directly.

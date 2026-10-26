@@ -16,7 +16,7 @@ Reviewed scope: Exact quadratic-field Gram/conjugate coefficients, a mixed signa
 Unmet after the PFP review: Formalize the coefficient-to-real embedding homomorphisms, full Gram PSD and cyclotomic fixed-field degree identification. A declared evaluation is not that embedding. The broader source statement is kept in pfp_review.prior_statement.
 
 ### Source Status
-H060 2D pure-state Gram total positivity under every real embedding vs conductor-5 mixed witness W5 = diag(-2+sqrt(5), 3-sqrt(5)) Galois conjugate sign flip (evalAtS(9)=(1,3) > 0 vs evalAtS(-9)=(-17,21)) and phi(120)/2 = 16 real embeddings mechanized in DerivationDagQMClosure.lean, H060EmbeddingRelativity.lean, and 006_finite_qm
+H060 2D pure-state Gram total positivity under every real embedding vs conductor-5 mixed witness W5 = diag(-2+sqrt(5), 3-sqrt(5)) Galois conjugate sign flip (evalAtS(9)=(1,3) > 0 vs evalAtS(-9)=(-17,21)) and phi(120)/2 = 16 real embeddings mechanized in DerivationDagQMClosure.lean, H060EmbeddingRelativity.lean, and finite_quantum_mechanics
 
 ---
 
@@ -40,7 +40,7 @@ H060 2D pure-state Gram total positivity under every real embedding vs conductor
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche8_tensor_stone_continuum_embedding_and_leftover_mnc_witness`
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness`
 - `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness`
-- `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness`
+- `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness`
 
 ---
 
@@ -53,4 +53,4 @@ H060 2D pure-state Gram total positivity under every real embedding vs conductor
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:411`
+  - `sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml:411`

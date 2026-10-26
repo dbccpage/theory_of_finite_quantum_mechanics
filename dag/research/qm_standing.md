@@ -1,6 +1,6 @@
 # Program Census & Research Standing
 
-**Scope:** Technical program status across the `006_finite_qm` estate, encompassing foundational theory, algebraic carriers, formal verification, and computational engines.  
+**Scope:** Technical program status across the `finite_quantum_mechanics` estate, encompassing foundational theory, algebraic carriers, formal verification, and computational engines.  
 **Updated:** 2026-10-11  
 
 ---

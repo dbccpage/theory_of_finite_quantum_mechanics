@@ -30,7 +30,7 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `missing obligation: no Lean three-valued status for an undeclared relation; the vacuous case of formalization B is empty_profiles_equal in 000_pre_genesis_to_mssn/lean4/Observation.lean`
+- `missing obligation: no Lean three-valued status for an undeclared relation; the vacuous case of formalization B is empty_profiles_equal in pregenesis_to_minimal_symbol_systems/lean4/Observation.lean`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust UNDECIDABLE status for a pair with no declared relation`
@@ -49,6 +49,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:62-68`
+  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:62-68`
   - `omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:147-175`
   - `omega_engine_education/documentation/000_oepregen/02_trial_record.md:55-60`

@@ -1,6 +1,6 @@
 # Lean Claim Map: Paper GR-002 — Discrete General Relativity on L1
 
-**Paper Target:** `004_general_relativity/002_constraint_closure_and_the_l1structure_of_physical_law`
+**Paper Target:** `general_relativity/constraint_closure_and_the_l1_structure_of_physical_law`
 **Version:** v1.2.0
 **Mechanization Level:** 15 formal interactive Lean 4 theorem reports verified in `lean4/` under `verify_manifest.py` with zero `sorry` and axioms within `{propext, Classical.choice, Quot.sound}`.
 **Evidence Scope:** Lean receipts certify the listed finite formal checks; they do not promote continuous-GR or particle-physics claims.

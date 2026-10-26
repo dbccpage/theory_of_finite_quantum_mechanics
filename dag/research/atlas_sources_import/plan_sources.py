@@ -26,8 +26,8 @@ from import_sources import (Budget, FailureCode, ImportFailure, JSON, MAX_FILE,
 
 COMMIT = '3379759468'
 PREFIX = 'omega_engine_atlas/coda_atlas/F004_papers/'
-FAMS = frozenset(('003_quantum_foundations', '004_general_relativity', '006_finite_qm',
-                 '007_finite_to_continuum', '008_fsp', '009_ms_majorana', '010_mub6'))
+FAMS = frozenset(('quantum_foundations', 'general_relativity', 'finite_quantum_mechanics',
+                 'finite_to_continuum', 'fermion_sign_problem', 'majorana', 'mub6'))
 LIVE = frozenset(('dag nodes/records/routes (derivation_dag.json)', 'dag fragments (sync inputs)',
     'code/**', 'papers/**', 'scripts/**', 'lean4/**', 'docs/**', 'problem_sets/**',
     'dag other (operads, research, pfp, tools)', 'other'))

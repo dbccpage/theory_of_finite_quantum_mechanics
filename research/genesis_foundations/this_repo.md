@@ -331,7 +331,7 @@ No 2-cell, 3-cell, or higher cell is composed in these stages. `theory_of_finite
 
 ### Genesis object-language items this checkout does not prove
 
-External Lean paths cited by these nodes resolve as `external_unresolved` on the node pages (sibling trees `omega_engine_atlas/.../000_genesis_19l57g1` or `omega_engine_education/...`, not files in this checkout). DAG status `PROVED_LEAN` is not a proof in this repository. The fragment note `theory_of_finite_quantum_mechanics:dag/fragments/pregenesis_to_wdp.json::segment_note` says Lean paths prefixed for 19L57G1 at commit `85a83ae7ce64dc2123ff218568a4ecd37e566d33` are not in this checkout.
+External Lean paths cited by these nodes resolve as `external_unresolved` on the node pages (sibling trees `omega_engine_atlas/.../genesis` or `omega_engine_education/...`, not files in this checkout). DAG status `PROVED_LEAN` is not a proof in this repository. The fragment note `theory_of_finite_quantum_mechanics:dag/fragments/pregenesis_to_wdp.json::segment_note` says Lean paths prefixed for 19L57G1 at commit `85a83ae7ce64dc2123ff218568a4ecd37e566d33` are not in this checkout.
 
 Status `PROVED_LEAN`, Lean not in this checkout (36 Genesis nodes, plus two Pre-Genesis nodes and nine MSS-N nodes):
 

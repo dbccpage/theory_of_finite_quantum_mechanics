@@ -25,7 +25,7 @@ Finite cutoff enumeration alone supplies no closure theorem.
 
 For every protected question $Q$, the report $q(h)=[h]$ preserves $Q$ precisely
 when $Q$ is constant on each fiber. This is the
-[WDP criterion GEN-WDP-03](../../001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md).
+[WDP criterion GEN-WDP-03](../../finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md).
 The same condition must apply to the relevant costs, occurrences and future
 questions (GEN-WDP-06 and O02–O03), not just the final endpoint. An endpoint
 quotient may produce a thin groupoid while destroying exactly those questions.
@@ -167,7 +167,7 @@ nondegenerate matrix-trace pairing; positivity on all rank-one projectors
 forces each representing matrix to be positive. It is a consequence of the
 chosen state/effect premises, not an independent derivation of those premises.
 
-The [PO-000 E.7 bounds](../../002_projection_obstruction/000_projection_obstruction/projection_obstruction.md)
+The [PO-000 E.7 bounds](../../projection_obstruction/projection_obstruction_paper/projection_obstruction.md)
 give, for central weights $p_r=\operatorname{Tr}\rho_r$,
 
 $$
@@ -245,7 +245,7 @@ An ordinary sign character on paths and a projective two-cocycle modifying
 algebra multiplication are different data; the Pauli example does not identify
 one with the other or remove the FSP obstruction.
 
-The [S(n)/MSS-N manuscript](../../001_finite_obstruction_calculus/001_sn_mssn/README.md)
+The [S(n)/MSS-N manuscript](../../finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/README.md)
 retains its chain-retraction and finite-demand results. This note establishes
 no new native stage, no unconditional Born rule, and no dynamics, locality,
 outcome selection, or continuum limit. Those remain distinct obligations.

@@ -199,8 +199,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0392 lean4: missing declaration obligation: no arrow in 000_pre_genesis_to_mssn/lean4/Paper.lean from a literal inscription to a coproduct root
-- TFQ-0392 python: missing obligation: a negative check that no function in 000_pre_genesis_to_mssn/code/preservation.py sends literal <> to a two-channel coproduct
+- TFQ-0392 lean4: missing declaration obligation: no arrow in pregenesis_to_minimal_symbol_systems/lean4/Paper.lean from a literal inscription to a coproduct root
+- TFQ-0392 python: missing obligation: a negative check that no function in pregenesis_to_minimal_symbol_systems/code/preservation.py sends literal <> to a two-channel coproduct
 - TFQ-0392 rust: missing obligation: a refused conversion in omega_ooutwire_primitives from the inscription token to a Difference-Structure value
 - TFQ-0393 lean4: missing declaration obligation: a coproduct Real_0 distinct from HasRawDistinction in B001_raw_distinction.lean
 - TFQ-0393 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/B001_raw_distinction.lean

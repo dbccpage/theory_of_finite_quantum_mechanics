@@ -88,14 +88,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `papers/core/majorana/the_majorana_problem.md`
 
 - file: [papers/core/majorana/the_majorana_problem.md](../../../papers/core/majorana/the_majorana_problem.md)
-- sha256 (`lf-normalised`): `e92416bb1739e51de20a8ad6a26d4b5f3d76b974d7556507b13149b29e8edb47`
+- sha256 (`lf-normalised`): `2f55c0f24f87388cfa9d7a4a7d832f34c0fa30b857d344811f4336f634c1684b`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `papers/core/majorana/the_majorana_problem_change_log.md`
 
 - file: [papers/core/majorana/the_majorana_problem_change_log.md](../../../papers/core/majorana/the_majorana_problem_change_log.md)
-- sha256 (`lf-normalised`): `c37871232dd6ea91a271c77fa1e6f92d37b5b27e0b5f7517420cded3aee4bd38`
+- sha256 (`lf-normalised`): `4592b207071a2c05f46a6ffdd890a2332f957a7e6b805e9aa6c6988e451e9fa8`
 - cited in: node.source
 - counts toward the grade: yes
 

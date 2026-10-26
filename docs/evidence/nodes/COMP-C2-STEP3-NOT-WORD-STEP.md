@@ -74,7 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1290_comp_c2_step3_not_word_step.md`
 
 - file: [dag/derivations/29_computation/tfq_1290_comp_c2_step3_not_word_step.md](../../../dag/derivations/29_computation/tfq_1290_comp_c2_step3_not_word_step.md)
-- sha256 (`lf-normalised`): `506a7c6a661c5b7ef457c288c243de2c3778e9285925ad0a045befffb110ded6`
+- sha256 (`lf-normalised`): `e518f3cd2ae192457cb8dbbc3b11c5310316593626bb06b8934698dd6a99a4c8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1290
 - counts toward the grade: no

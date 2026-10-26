@@ -40,11 +40,11 @@ In accordance with strict constructive principles:
 - [`lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwReqs`](../../../lean4/CampaignPgwPythonLeanCarrierBridge.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/replay.rs::replay` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/replay.rs::replay`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/replay.rs)
 
 ### Python Oracles & Numerical Evaluators
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py::replay`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py)
 - [`checks/independent/pgw-python-lean-carrier-bridge.py::main`](../../../checks/independent/pgw-python-lean-carrier-bridge.py)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::replay` (private upstream source, not in this repository)
 
 ---
 
@@ -57,8 +57,8 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:37-43`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:380`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1077-1080`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:37-43`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:380`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1077-1080`
   - `dag/derivations/independent/pgw-python-lean-carrier-bridge.md:5`
   - `dag/research/campaign_pgw-python-lean-carrier-bridge_lean_replay.json:6`

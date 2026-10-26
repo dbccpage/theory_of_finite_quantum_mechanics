@@ -29,8 +29,8 @@
 **Document ID:** `QM_010`  
 **Version:** v0.1 (Internal Pre-Print)  
 **Date:** 2026-07-24  
-**Folder:** `003_quantum_foundations/`  
-**Claim ledger:** [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (IDs `010:QM-010-C1` through `010:QM-010-C8`)  
+**Folder:** `quantum_foundations/`  
+**Claim ledger:** [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (IDs `010:QM-010-C1` through `010:QM-010-C8`)  
 **Authority:** `AuthorityEffect::None`
 
 ### Status box (binding)
@@ -252,22 +252,22 @@ Claim-ID body index (packaging)
 
 | ID | Home |
 |---|---|
-| `QM-010-C1` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-010-C2` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-010-C3` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-010-C4` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-010-C5` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-010-C6` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-010-C7` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-010-C8` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `PL-QM032-1` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `PL-QM032-2` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `PL-QM032-3` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `Consumes` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM_005` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM_120` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `FOC003` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `FOC006` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `WD-7` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
+| `QM-010-C1` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-010-C2` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-010-C3` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-010-C4` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-010-C5` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-010-C6` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-010-C7` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-010-C8` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `PL-QM032-1` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `PL-QM032-2` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `PL-QM032-3` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `Consumes` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM_005` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM_120` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `FOC003` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `FOC006` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `WD-7` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
 
 <!-- claim-id-body-index:end -->

@@ -4,15 +4,15 @@ AuthorityEffect: None.
 
 ## What this is
 
-Seven paper folders copied from a private research repository. Each file is byte for byte except 38 files whose links into that repository were replaced by plain citations on 2026-10-26 (marked `edited_after_copy` in `PROVENANCE.json`). They keep their original relative paths under `atlas/F004_papers/`:
+Seven paper folders copied from a private research repository. Each file is byte for byte except 323 files edited on 2026-10-26, when links into that repository were removed and paths were updated to the renamed folders (six of them were also changed by the certifi bump in #450). Those files are marked `edited_after_copy` in `PROVENANCE.json`, which also keeps their original sha256. On 2026-10-26 the folders were renamed to descriptive names under `atlas/papers/` (the old-to-new map is `destination_renames` in `PROVENANCE.json`):
 
-- `001_finite_obstruction_calculus/000_genesis_19l57g1`
-- `001_finite_obstruction_calculus/000_pre_genesis_to_mssn`
-- `001_finite_obstruction_calculus/000_witnessed_difference_programme`
-- `001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf`
-- `001_finite_obstruction_calculus/001_local_green_global_red_foundational_series`
-- `001_finite_obstruction_calculus/001_sn_mssn`
-- `002_projection_obstruction`
+- `finite_obstruction_calculus/genesis`
+- `finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems`
+- `finite_obstruction_calculus/witnessed_difference_programme`
+- `finite_obstruction_calculus/genesis_ongoing`
+- `finite_obstruction_calculus/local_green_global_red`
+- `finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems`
+- `projection_obstruction`
 
 Each folder holds a paper (Markdown, TeX, PDF), its Lean 4 sources, and the Python, Rust, JSON and CSV files the paper cites.
 
@@ -20,11 +20,11 @@ Each folder holds a paper (Markdown, TeX, PDF), its Lean 4 sources, and the Pyth
 
 They are source texts. Whatever a file in `atlas/` says about being proved, verified or checked is the source's own wording. It is not a status in this repository, and it changes no node in `dag/derivation_dag.json`. The statuses in the DAG govern; see [`docs/evidence/README.md`](../docs/evidence/README.md) for how each status is backed.
 
-Nothing here is scanned or scored by this repository's checks: the contract/score checker, the overclaim scanner, the evidence builder and the README facts inventory read explicit paths (`code/`, `lean4/`, `papers/`, `dag/`, `docs/`), and `scripts/build_readme_facts.py` skips `atlas/` so archive files do not inflate its counts. The Lean files were not built here. Nothing in the DAG was re-pointed at these files.
+Nothing here is scanned or scored by this repository's checks: the contract/score checker, the overclaim scanner, the evidence builder and the README facts inventory read explicit paths (`code/`, `lean4/`, `papers/`, `dag/`, `docs/`), and `scripts/build_readme_facts.py` skips `atlas/` so archive files do not inflate its counts. The Lean files were not built here. DAG citations of upstream paths whose files are copied here now name the copy in `atlas/papers/`.
 
 ## Bytes and provenance
 
-`atlas/**` is marked `-text -whitespace` in `.gitattributes`, so line endings and trailing whitespace stay as copied. [`PROVENANCE.json`](PROVENANCE.json) records the source commit, the source path, the SHA-256 and size of every file, and every exclusion rule with its count.
+`atlas/**` is marked `-text -whitespace` in `.gitattributes`, so line endings and trailing whitespace stay as copied. [`PROVENANCE.json`](PROVENANCE.json) records the source commit, the source path, the current path, the SHA-256 and size of every file, and every exclusion rule with its count.
 
 ## What was left out, and why
 

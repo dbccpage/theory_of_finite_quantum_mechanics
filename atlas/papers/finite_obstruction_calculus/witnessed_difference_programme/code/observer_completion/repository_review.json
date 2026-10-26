@@ -1,0 +1,105 @@
+{
+  "schema": "wdp-observer-completion-repository-review-v1",
+  "date": "2026-10-04",
+  "bridge_claim": "GEN-WDP-46",
+  "review_checkout_base": "71f8441d99eebd61f3c6a1d6685861eea50dcfcc",
+  "authority_effect": "None",
+  "delivery": {
+    "manifest": "delivered_sha256sums.txt",
+    "checked_before_modification": true,
+    "files_checked": 8,
+    "all_hashes_matched": true,
+    "original_sha256": {
+      "README.md": "93d12e49a2218de276be81ddd5e27369ccf8c490d96d4e29513ee814a7068360",
+      "generic_input.json": "d64043da735f6d62e9649dbf5efb594fb69922724eeb4492e9f16fbc1f099947",
+      "generic_receipt.json": "14bc47d7e03c29294e493568efa7ce8b4b273d151775178d14ed17f0595ff4b8",
+      "observer_completion.py": "7fd14e506fdd3a8508d6f55bc3f2e537bd9d8f9ad40f38a1dab3d2d57cfc7354",
+      "observer_completion_certificates.json": "07b58cac9d1f6935c637bf46bb3d779c55ae8f9e91291e8469a49ac81df93830",
+      "replay_examples.py": "b576cc4420f0be0994e4ccdf565f0b97a64b13d418eabd5aee4ce0b3fd77f8a7",
+      "sharp_observer_completion_theorem.md": "18259629a4717ca927e1a73a4177d3c2ac59289b7223850bd27faf05d2c44d1b",
+      "source_provenance.json": "11b56b2c7f93e28e72799db133e147aadcd61b176145c56a4b112d818c4dfc25"
+    },
+    "receipt_json_bytes_unchanged": true,
+    "manifest_scope": "Original delivered bytes, not the subsequently reviewed files. Parent WDP release inventories bind the reviewed tree."
+  },
+  "source_verification": {
+    "commit": "39aacbe33bc7e6fabb94323b14e1ddeebe15e86e",
+    "git_blobs_confirmed": [
+      {
+        "path": "atlas/papers/projection_obstruction/projection_obstruction_paper/projection_obstruction.md",
+        "blob": "886d5b23a7a5635847b21077b78d685284a96991"
+      },
+      {
+        "path": "atlas/papers/finite_obstruction_calculus/local_green_global_red/lggr_v_local_green_global_red/lggr_v_local_green_global_red.md",
+        "blob": "e7cf055125ceea5eb1e3cdc2fe754c7e99406f4b"
+      },
+      {
+        "path": "omega_engine_atlas/coda_atlas/F005_coda/coda/coda.md",
+        "blob": "b2b2795c4bab93f5c927c9d034f7fdda5e774aef"
+      }
+    ],
+    "wdp_attachment": {
+      "sha256": "36fa00d2b03d814844b02d4eb7d56f7fd80a62342b7e3b3696a698697955e3a1",
+      "status": "SOURCE_DECLARED_NOT_RECHECKED",
+      "reason": "The original manuscript attachment bytes were not supplied with the delivered package."
+    }
+  },
+  "mathematical_review": {
+    "accepted_scope": "Finite rational presentations over their real extensions, a shared raw-realization/repair image, unrestricted rational scalar measurements, and faithful rational polyhedral norms.",
+    "three_patch_minima_raw_quotient_both": [3, 3, 6],
+    "coupled_minima_raw_quotient_both": [0, 2, 2],
+    "preserved_distinctions": [
+      "Every section defect Ds is exact and has quotient mass zero.",
+      "The LGGR and Projection Obstruction coupled report conventions differ.",
+      "The scalar zero-observer example is a new extension, not a source observer.",
+      "Minimum row count and minimum recovery constant are different objectives."
+    ],
+    "corrections": [
+      "Zero recovery domain gives constant zero; zero report space with nonzero recovery domain gives infinity.",
+      "Rational query vectors are required for rational distance certificates.",
+      "Zero-dimensional norms and distance certificates use an explicit vacuous branch."
+    ],
+    "novelty_scope": "Integrated source-bound derivation using standard linear algebra, quotient norms, polyhedral enumeration and LP certificates. No priority or global novelty claim."
+  },
+  "checker_repairs": [
+    "Strict JSON admission rejects duplicate keys, floats and nonfinite constants.",
+    "Wire matrices require exact dimensions and canonical rational strings; booleans are not scalars or integer dimensions.",
+    "Receipt claims bind to separately supplied expected inputs, targets and norms.",
+    "Adapted inverse matrices must also have the declared subspace order.",
+    "Active vertex indices, independence, equations and complete enumeration are checked.",
+    "Initial failure and weighted-distance query claims are checked and bound.",
+    "Unknown fields and nested authority claims are refused.",
+    "Vacuity flags retain Boolean type and zero-dimensional distance conventions are explicit."
+  ],
+  "execution": {
+    "runtime": "Bundled Python with standard-library Fraction arithmetic; pytest loaded from existing local dependencies.",
+    "pytest_command": "PYTHONPATH=code plus installed pytest; PYTEST_DISABLE_PLUGIN_AUTOLOAD=1; python -B -m pytest code/unit_tests/test_observer_completion.py -o addopts= -q --tb=short --basetemp <fresh external temporary directory>",
+    "pytest_exit_code": 0,
+    "pytest_output": "27 passed in 7.65s",
+    "independent_rank_oracle": "Nonzero determinant minors, without the implementation's row elimination; 81 small D/Q presentations and 243 completions.",
+    "regeneration": "Source and generic receipts regenerated and compared with unchanged delivered JSON in the scoped tests.",
+    "source_cli": {
+      "command": "python -B replay_examples.py adversarial observer_completion_certificates.json",
+      "exit_code": 0,
+      "output": "Rejected all 15 tampered certificates; restricted-menu and degenerate cases passed."
+    },
+    "generic_cli": {
+      "command": "python -B observer_completion.py check generic_receipt.json generic_input.json",
+      "exit_code": 0,
+      "output": "Exact certificate checks passed."
+    },
+    "lint": {
+      "selection": ["F401", "F841", "I"],
+      "files": ["observer_completion.py", "replay_examples.py", "__init__.py", "../unit_tests/test_observer_completion.py"],
+      "exit_code": 0,
+      "output": "All checks passed!"
+    }
+  },
+  "not_established": [
+    "Lean formalization or native Rust implementation verification.",
+    "Full repository test-suite success or verification of the Python interpreter.",
+    "Efficiency on large facet descriptions or restricted-sensor attainability.",
+    "Physical-residual adapter adequacy, continuum reconstruction or institutional authorization.",
+    "A rebuilt publication PDF, archive, deposit or authenticated authority grant."
+  ]
+}

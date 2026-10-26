@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1190_fsp_sign_estimator_variance.md`
 
 - file: [dag/derivations/26_fsp/tfq_1190_fsp_sign_estimator_variance.md](../../../dag/derivations/26_fsp/tfq_1190_fsp_sign_estimator_variance.md)
-- sha256 (`lf-normalised`): `b973805c03253d1bb902c6036b6c3238ee0ae2d420d59d8dc802904947093cc5`
+- sha256 (`lf-normalised`): `8bacf83482edb225ddb1e58afc2c705a59c8dfe66035fa9d64a7e206bdfbad67`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1190
 - counts toward the grade: no
@@ -60,7 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
 
 - file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `ad94021f09fb60b94e1a91553294c46ef5d3903f8093297b6289f124386e7178`
+- sha256 (`lf-normalised`): `5a72c2f6006ea18c3362f0a63e8525b65d41898e8f1bd437b7e4c2e368c7e102`
 - cited in: node.source
 - counts toward the grade: yes
 

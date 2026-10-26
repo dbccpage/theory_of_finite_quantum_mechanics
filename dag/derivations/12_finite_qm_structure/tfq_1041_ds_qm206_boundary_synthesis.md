@@ -16,7 +16,7 @@ On a declared four-vertex toy map the image and kernel and all composition contr
 Unmet after the PFP review: Define the intended GTOC/Hilb categories and actual descent functor, prove its properties and discharge the QM205 pointer-basis stub. The toy map is not that functor. The broader source statement is kept in pfp_review.prior_statement.
 
 ### Source Status
-QM206-C1 4-vertex plaquette cochain exactness d1(d0 f)=0, QM206-C3 coboundary holonomy invariance, and QM206-C7 Theorem 2.1 non-full/non-faithful diagonal descent F_Descent mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
+QM206-C1 4-vertex plaquette cochain exactness d1(d0 f)=0, QM206-C3 coboundary holonomy invariance, and QM206-C7 Theorem 2.1 non-full/non-faithful diagonal descent F_Descent mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics
 
 ---
 
@@ -37,7 +37,7 @@ QM206-C1 4-vertex plaquette cochain exactness d1(d0 f)=0, QM206-C3 coboundary ho
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche6_conditional_and_open_boundary_certificates_witness`
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness`
 - `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness`
-- `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness`
+- `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness`
 
 ---
 

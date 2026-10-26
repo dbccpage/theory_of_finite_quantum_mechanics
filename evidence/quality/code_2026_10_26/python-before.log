@@ -349,7 +349,7 @@ tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-10/test_tracked_release_output
         workspace_marker = root / "omega_engine/crates_rs/Cargo.toml"
         workspace_marker.parent.mkdir(parents=True)
         workspace_marker.write_text("[workspace]\n")
-        paper = root / "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm"
+        paper = root / "sources/atlas/papers/finite_quantum_mechanics"
         entrypoint = paper / ENTRYPOINT
         entrypoint.parent.mkdir(parents=True)
 >       shutil.copyfile(PAPER / ENTRYPOINT, entrypoint)

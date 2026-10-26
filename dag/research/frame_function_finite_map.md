@@ -1,6 +1,6 @@
 # QM-210 Born Rule and State–Effect Quadratic Pairing: the Finite Map
 
-**Scope:** research note for `006_finite_qm`; not part of the manuscript, not a claim promotion. Companion to `phase_fiber_holonomy_bridge_finite_map.md`.
+**Scope:** research note for `finite_quantum_mechanics`; not part of the manuscript, not a claim promotion. Companion to `phase_fiber_holonomy_bridge_finite_map.md`.
 **Code:** `python/finite_qm/use_cases/frame_function_control.py`, tests in `tests/e2e/test_e2e_frame_function_control.py` (9 tests).
 **Status marks used:** PROVED (argument given here, finite and checkable), COMPUTED (exact arithmetic over Q and F₂, replayable), IMPORTED (added structure that nothing finite here produces), CONJECTURED (none in this note).
 
@@ -81,4 +81,4 @@ Section 11.5 (the Cabello frame polytope and its 146 half-integral vertices) and
 - Supports: on the Cabello set in Q⁴ and its 3- and 6-basis prefixes, and on the Peres 24-ray set, every frame function is a real symmetric trace-one form (nullity zero), the frame identity holds exactly, no two-valued frame function exists, and the explicit trace-one form ρ₂ is nonnegative on every declared ray while not positive semidefinite.
 - Does not support: Gleason's theorem or any finite analogue of its positive half; complex Hermitian statements; a derivation of the Born pairing; independence of QM-210.
 - Narrowest claim: on the declared finite carriers the QM-210 import splits into an exactly computed linear invariant plus a Z/2 parity obstruction, an imported continuum completion (all frames), and the imported positive cone.
-- Next test: `cd omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm && PYTHONPATH=python python3 -m pytest tests/e2e/test_e2e_frame_function_control.py -q -p no:cacheprovider` (expect 9 passed).
+- Next test: `cd sources/atlas/papers/finite_quantum_mechanics && PYTHONPATH=python python3 -m pytest tests/e2e/test_e2e_frame_function_control.py -q -p no:cacheprovider` (expect 9 passed).

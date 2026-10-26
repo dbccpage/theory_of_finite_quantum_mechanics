@@ -10,7 +10,7 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `DEFINITION`. Evidence gra
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
+- counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
@@ -32,7 +32,7 @@ The relation depends on the declared O_n and compares observation values in the 
 
 ## Source status
 
-000_genesis_19l57g1 paper.md section 4 definition; v1 Formalization B; 000_oepregen rewriting Definition 2.3
+genesis paper.md section 4 definition; v1 Formalization B; 000_oepregen rewriting Definition 2.3
 
 ## Review
 
@@ -58,19 +58,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
+- sha256 (`lf-normalised`): `0dde974e14ff1b54ff6e65705a1194aea38fad7e65bf77b159a07ea1b96bb9a5`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0421_observational_equivalence.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0421_observational_equivalence.md](../../../dag/derivations/01_pregenesis/tfq_0421_observational_equivalence.md)
-- sha256 (`lf-normalised`): `1f00c63d578a46cf7b4bfcd0260b53ae7949171319cc13df8b7d2c6ae53fa85a`
+- sha256 (`lf-normalised`): `970dd3599dbb9e3053ecb567e697e7d06e702476028302eb2473b63b1c788fed`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0421
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### Documents and data: `omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md`
@@ -89,8 +89,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0421 python: no Python ≈ₙ check over Pre-Genesis inscriptions; the Genesis profile instance is separable in 000_genesis_19l57g1/code/derivation/observe.py
-- TFQ-0421 rust: no Rust observation-family type for Pre-Genesis inscriptions; the Genesis profile instance is separable in 000_genesis_19l57g1/code/rust/src/separability.rs
+- TFQ-0421 python: no Python ≈ₙ check over Pre-Genesis inscriptions; the Genesis profile instance is separable in genesis/code/derivation/observe.py
+- TFQ-0421 rust: no Rust observation-family type for Pre-Genesis inscriptions; the Genesis profile instance is separable in genesis/code/rust/src/separability.rs
 
 ## Routes
 

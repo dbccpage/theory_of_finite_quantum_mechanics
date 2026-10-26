@@ -35,7 +35,7 @@ Ledger row L035-N3: refuted (the note's own earlier statement), found in the rev
 
 ## Sources
 
-- Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N3`
-- Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1`
+- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-N3`
+- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1`
 - Repository: `checks/independent/foc035_observer_presheaf.py`
 - Repository: `dag/derivations/35_foc035_observer_presheaf/tfq_2528_ops_refuted_axis3_wide.md`

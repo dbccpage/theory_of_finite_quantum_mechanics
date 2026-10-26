@@ -58,5 +58,5 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean:98-117`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:1518-1535`
+  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1518-1535`
   - `omega_engine_education/documentation/006_oewdp/levels/level_03_discrete_complex_cochains.md:319-328`

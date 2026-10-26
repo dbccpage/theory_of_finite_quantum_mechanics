@@ -8,10 +8,10 @@
 The standalone draft is retired. Its surviving mathematical core (classical independence diagnostic, stochastic map contraction, and observation-loss boundary) is merged directly into:
 
 - **Consolidated Account:** [`qm_071_entanglement_as_a_separability_obstruction.md`](qm_071_entanglement_as_a_separability_obstruction.md) (Section 1: Classical Independence and the Observation-Loss Boundary).
-- **Source Notes:** [`../006_finite_qm/finite_quantum_mechanics_source_notes.md#1130-product-non-factorization-in-bipartite-systems-qm-070-merged-and-retired`](../006_finite_qm/finite_quantum_mechanics_source_notes.md#1130-product-non-factorization-in-bipartite-systems-qm-070-merged-and-retired) (§11.30).
+- **Source Notes:** [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1130-product-non-factorization-in-bipartite-systems-qm-070-merged-and-retired`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1130-product-non-factorization-in-bipartite-systems-qm-070-merged-and-retired) (§11.30).
 - **Certified Rust Implementation:** `omega_engine/crates_rs/omega_finite_probability/src/joint_table.rs` (`JointTable::{product_defect, product_defect_mass, apply_local_maps, has_vanishing_minors}`).
 - **Integration & Property Tests:** `omega_engine/crates_rs/tests/omega_quantum_physics/entanglement/product_non_factorization.rs`.
-- **Claims & Provenance:** Replayed in [`qm_071_entanglement_as_a_separability_obstruction.md`](qm_071_entanglement_as_a_separability_obstruction.md) (Section 1) and source notes [`../006_finite_qm/finite_quantum_mechanics_source_notes.md#1130-product-non-factorization-in-bipartite-systems-qm-070-merged-and-retired`](../006_finite_qm/finite_quantum_mechanics_source_notes.md#1130-product-non-factorization-in-bipartite-systems-qm-070-merged-and-retired) (§11.30).
+- **Claims & Provenance:** Replayed in [`qm_071_entanglement_as_a_separability_obstruction.md`](qm_071_entanglement_as_a_separability_obstruction.md) (Section 1) and source notes [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1130-product-non-factorization-in-bipartite-systems-qm-070-merged-and-retired`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1130-product-non-factorization-in-bipartite-systems-qm-070-merged-and-retired) (§11.30).
 
 ---
 

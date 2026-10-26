@@ -1,6 +1,6 @@
 # Finite-to-Infinite Mathematical Architecture & Roadmap
 
-**Scope:** Architectural analysis and research roadmap for the interface between finite/algebraic quantum systems and infinite-dimensional continuum quantum mechanics across the `006_finite_qm` estate.  
+**Scope:** Architectural analysis and research roadmap for the interface between finite/algebraic quantum systems and infinite-dimensional continuum quantum mechanics across the `finite_quantum_mechanics` estate.  
 **Target:** `qm_finite_to_infinite.md`  
 **Updated:** 2026-10-11  
 

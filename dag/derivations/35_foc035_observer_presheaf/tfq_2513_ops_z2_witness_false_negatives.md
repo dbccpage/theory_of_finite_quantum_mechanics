@@ -40,6 +40,6 @@ Ledger row L035-B12: cited. The external identifier was checked against the arXi
 ## Sources
 
 - `external:arXiv:1111.3620`: S. Abramsky, S. Mansfield and R. S. Barbosa, The cohomology of non-locality and contextuality, EPTCS 95 (2012) 1-14, arXiv:1111.3620.
-- Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B12`
-- Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4`
+- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B12`
+- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4`
 - Repository: `dag/derivations/35_foc035_observer_presheaf/tfq_2513_ops_z2_witness_false_negatives.md`

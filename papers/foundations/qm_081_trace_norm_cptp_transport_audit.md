@@ -33,7 +33,7 @@
 **Status:** Conditional selector audit under declared imports (O025)
 **Series numbering:** this paper is **QM_081** in the current repo; "O025" is its legacy series label (it follows O024 = `QM_101` and the O025a KCS pentagon). Both labels denote this paper; cross-references below use the legacy O-labels where the sibling papers do.
 **Lean backing:** `QM.TraceNonSelect` (LT-L, §3 non-selection — Mathlib-free) and `QM.StochasticL1` (LT-M, §5.1 classical ℓ¹-contraction shadow — `import Mathlib`). Both `Lean replay QM`-checked (2026-06-14); axioms standard (`propext`, `Classical.choice`, `Quot.sound`; LT-L's `scale_monotone` axiom-free); no authority minted.
-**Mechanization:** MECHANIZED (ENC-0226: `lean4/research_programs/003_quantum_foundations/003_qm_stochastic_channel.lean`, `lean4/shared_kernel/primitive_difference.lean`)
+**Mechanization:** MECHANIZED (ENC-0226: `lean4/research_programs/quantum_foundations/003_qm_stochastic_channel.lean`, `lean4/shared_kernel/primitive_difference.lean`)
 
 1. Abstract and Claim Discipline
 
@@ -169,18 +169,18 @@ Claim-ID body index (packaging)
 
 | ID | Home |
 |---|---|
-| `QM-081-C1` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `081:QM-081-C1`) |
-| `QM-081-C2` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `081:QM-081-C2`) |
-| `QM-081-C3` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `081:QM-081-C3`) |
-| `QM-081-C4` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `081:QM-081-C4`) |
-| `QM-081-C5` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `081:QM-081-C5`) |
-| `QM-081-C6` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `081:QM-081-C6`) |
-| `QM-091-D1` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `081:QM-091-D1`) |
-| `QM-091-N1` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `081:QM-091-N1`) |
-| `QM-091-N2` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `081:QM-091-N2`) |
-| `ENC` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.37) |
-| `ENC-0247` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.37) |
-| `ENC-0246` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.37) |
-| `ENC-1055` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.37) |
+| `QM-081-C1` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `081:QM-081-C1`) |
+| `QM-081-C2` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `081:QM-081-C2`) |
+| `QM-081-C3` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `081:QM-081-C3`) |
+| `QM-081-C4` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `081:QM-081-C4`) |
+| `QM-081-C5` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `081:QM-081-C5`) |
+| `QM-081-C6` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `081:QM-081-C6`) |
+| `QM-091-D1` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `081:QM-091-D1`) |
+| `QM-091-N1` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `081:QM-091-N1`) |
+| `QM-091-N2` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `081:QM-091-N2`) |
+| `ENC` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.37) |
+| `ENC-0247` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.37) |
+| `ENC-0246` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.37) |
+| `ENC-1055` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.37) |
 
 <!-- claim-id-body-index:end -->

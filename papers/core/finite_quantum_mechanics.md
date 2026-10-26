@@ -787,7 +787,7 @@ lake build
 
 The dependency-free replay for the standalone $K_{2,3}$ paper (standard-library
 rational arithmetic and focused `pytest` tests) lives in the sibling package
-`F004_papers/013_trace_zero_quotient_duality/code` and is not part of this
+`papers/013_trace_zero_quotient_duality/code` and is not part of this
 archive; `companion_papers/trace_zero_quotient_duality_monograph.md` holds the
 monograph text only. The paper archive is checked by
 

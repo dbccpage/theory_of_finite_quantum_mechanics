@@ -10,7 +10,7 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `COMPUTATIONALLY_CHECKED`. Evide
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
+- counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
@@ -68,6 +68,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
+- sha256 (`lf-normalised`): `0dde974e14ff1b54ff6e65705a1194aea38fad7e65bf77b159a07ea1b96bb9a5`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/02_genesis/tfq_0381_cost_two_first_separation.md`
 
 - file: [dag/derivations/02_genesis/tfq_0381_cost_two_first_separation.md](../../../dag/derivations/02_genesis/tfq_0381_cost_two_first_separation.md)
@@ -84,25 +91,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0382
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
 ## Absences recorded by the TFQ records
 
 - TFQ-0381 lean4: declaration obligation: deltaU0_valid inside the declared response grammar
-- TFQ-0381 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean
-- TFQ-0381 python: missing obligation: a cost counter in 000_genesis_19l57g1/code/derivation/candidates.py, listed and not opened, scoped to the declared response grammar
+- TFQ-0381 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Minimality.lean
+- TFQ-0381 python: missing obligation: a cost counter in genesis/code/derivation/candidates.py, listed and not opened, scoped to the declared response grammar
 - TFQ-0381 rust: missing obligation: minima.rs must record item cost two without dropping ties
-- TFQ-0381 rust: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs
+- TFQ-0381 rust: no local rust twin located for atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs
 - TFQ-0382 lean4: missing declaration obligation: refined class (2, 1) versus the unbounded reading-L family, file listed and not opened
-- TFQ-0382 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/MinimalityF.lean
-- TFQ-0382 python: missing obligation: a refined-cost key (2, 1) in 000_genesis_19l57g1/code/derivation/candidates.py that does not hide the unbounded reading-L family
+- TFQ-0382 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/MinimalityF.lean
+- TFQ-0382 python: missing obligation: a refined-cost key (2, 1) in genesis/code/derivation/candidates.py that does not hide the unbounded reading-L family
 - TFQ-0382 rust: missing obligation: separate counters for item-cost minima and the refined class
-- TFQ-0382 rust: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs
+- TFQ-0382 rust: no local rust twin located for atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs
 
 ## Routes
 

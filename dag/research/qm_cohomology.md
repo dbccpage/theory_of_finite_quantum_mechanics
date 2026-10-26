@@ -1,11 +1,11 @@
 # qm_cohomology.md — Cohomology / obstruction roadmap
 
-**Scope:** Cohomology and obstruction roadmap across the `006_finite_qm` estate.  
+**Scope:** Cohomology and obstruction roadmap across the `finite_quantum_mechanics` estate.  
 **Target:** `qm_cohomology.md`  
 **Target:** `qm_cohomology.md`  
 **Updated:** 2026-10-11  
 
-This roadmap details the cohomology, obstruction management, and duality machinery connecting discrete difference complexes to quantum realization across the `006_finite_qm` estate.
+This roadmap details the cohomology, obstruction management, and duality machinery connecting discrete difference complexes to quantum realization across the `finite_quantum_mechanics` estate.
 
 ## Standing
 

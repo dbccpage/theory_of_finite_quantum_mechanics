@@ -153,7 +153,7 @@ Assume the full complex algebra is retained faithfully, all normalized positive
 linear functionals and positive-contraction effects are admitted, composition
 is the standard C*-tensor product, and sufficient simple ancillas and joint
 states are operationally available. Under these **additional operational
-premises**, [PO-000 E.7](../../002_projection_obstruction/000_projection_obstruction/projection_obstruction.md)
+premises**, [PO-000 E.7](../../projection_obstruction/projection_obstruction_paper/projection_obstruction.md)
 applies to the $r$ sectors in (3):
 
 $$\operatorname{Tr}\sigma^2\le\sum_{j=1}^{r}p_j^2,
@@ -178,7 +178,7 @@ two-model class $k=0,1$, the protected question “dimension of the center” ha
 answers 36 and 1 at the same report. It cannot descend through that report.
 The exact minimax absolute-error floor is $35/2$, attained at the midpoint
 $37/2$. This applies the
-[WDP fiber criterion](../../001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md)
+[WDP fiber criterion](../../finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
 to a missing algebraic premise. It is not a measured physical uncertainty.
 
 Selecting a simple sector after the fact has a nontrivial kernel whenever
@@ -230,7 +230,7 @@ precisely why a finite family exhaustion cannot settle unrestricted MUB6.
 
 ## 6. Native history and FSP obligations
 
-The existing [generative-history construction](../../001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/derivations/generative_histories_contextual_compression_derivation.md)
+The existing [generative-history construction](../../finite_obstruction_calculus/witnessed_difference_programme/docs/derivations/generative_histories_contextual_compression_derivation.md)
 starts with an admitted typed signature or an actual guarded transition
 function. GEN-WDP-72 identifies the greatest protected contextual congruence;
 it supplies neither finite index nor native reversibility. A proposed
@@ -266,7 +266,7 @@ and its endpoint-descent criterion survive in their stated family. A
 nondegenerate projective algebra does not remove negative Monte Carlo weights
 or establish efficient sampling.
 
-The [S(n)/MSS-N architecture](../../001_finite_obstruction_calculus/001_sn_mssn/README.md)
+The [S(n)/MSS-N architecture](../../finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/README.md)
 still prohibits a selected mathematical realization from creating a native
 stage. Carrier admission, finite quotient, scalar choice, cocycle selection,
 faithful reflection, full state/effect spaces, composition and process

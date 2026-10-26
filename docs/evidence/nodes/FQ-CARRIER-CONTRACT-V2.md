@@ -94,22 +94,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md](../../../dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md)
-- sha256 (`lf-normalised`): `f99630e2edfc95bbc2973a4a2969557a076d9a252aa051d4e16b8257c3317648`
+- sha256 (`lf-normalised`): `d8fabbd2b237af7de2f61810adcac844ae0a2f515a12ff4c64a9c14deddfb0e7`
 - generated view: listed, not counted
 - cited in: record TFQ-1006
 - counts toward the grade: no
 
-### Documents and data: `sources/atlas/F004_papers/006_finite_qm/claims/carrier_contract.yaml`
+### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/claims/carrier_contract.yaml`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/claims/carrier_contract.yaml](../../../sources/atlas/F004_papers/006_finite_qm/claims/carrier_contract.yaml)
+- file: [sources/atlas/papers/finite_quantum_mechanics/claims/carrier_contract.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/carrier_contract.yaml)
 - sha256 (`lf-normalised`): `a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md`
+### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md](../../../sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md)
-- sha256 (`lf-normalised`): `5e43f206b08726fd4b27888d6fed3f211aac8398d5f8bf3dce712c415d7d81cc`
+- file: [sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
 

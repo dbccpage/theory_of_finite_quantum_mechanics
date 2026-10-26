@@ -32,7 +32,7 @@ None (O022 7-row registry-relative minimality and \[5, 7\] super-registry non-tr
 
 ## Source status
 
-O022 7-row capability registry unique selection of Row 6 (complex-Hilbert CPTP), \[5, 7\] super-registry non-transfer witness, and 24-ray (16 local + 8 PR-box) Tier-3 uniqueness boundary mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
+O022 7-row capability registry unique selection of Row 6 (complex-Hilbert CPTP), \[5, 7\] super-registry non-transfer witness, and 24-ray (16 local + 8 PR-box) Tier-3 uniqueness boundary mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics
 
 ## Review
 
@@ -76,9 +76,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
-### Rust: `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs`
+### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs)
+- file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust
 

@@ -36,11 +36,11 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::validCount_rename`](../../../lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs::orbits_are_equivariant_under_renaming` (private upstream source, not in this repository)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs::pair_orbits` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/automorphism.rs::orbits_are_equivariant_under_renaming`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/automorphism.rs)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/automorphism.rs::pair_orbits`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/automorphism.rs)
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::pair_orbits` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py::pair_orbits`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py)
 
 ---
 
@@ -54,6 +54,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:371-379`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:385-391`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:371-379`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:385-391`
   - `lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:1067-1072`

@@ -30,9 +30,9 @@ document_id: "QM_102"
 version: "v1.0.0"
 status: "READY_FOR_AUTHOR_REVIEW"
 authority_effect: "None"
-mechanization: "MECHANIZED (ENC-1066: lean4/research_programs/003_quantum_foundations/repair_monotonicity.lean, lean4/shared_kernel/primitive_difference.lean; repair_monotone, threshold_repair_nonzero_of_unabsorbed)"
-source_notes: "../006_finite_qm/finite_quantum_mechanics_source_notes.md#1146-cochain-repair-capacity-certificates-and-error-threshold-boundaries"
-claim_ledger: "../006_finite_qm/claims/claim_ledger.yaml"
+mechanization: "MECHANIZED (ENC-1066: lean4/research_programs/quantum_foundations/repair_monotonicity.lean, lean4/shared_kernel/primitive_difference.lean; repair_monotone, threshold_repair_nonzero_of_unabsorbed)"
+source_notes: "../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1146-cochain-repair-capacity-certificates-and-error-threshold-boundaries"
+claim_ledger: "../finite_quantum_mechanics/claims/claim_ledger.yaml"
 
 QM_102 — Cochain Repair Capacity Certificates and Error Threshold Boundaries
 =============================================================================
@@ -99,14 +99,14 @@ Continuous physical qudit baths and infinite Hilbert space error models are exte
 1. **What it supports**: Formalizes error syndromes as cochain coboundary defects and bounds repair capacity by homology distance $d$.
 2. **What it does not support**: Does not claim fault tolerance suppresses errors above threshold $p > p_{\text{th}}$.
 3. **The narrowest defensible claim**: Cochain homology distance $d$ bounds unique error syndrome repair capacity.
-4. **The next test needed**: Formalize in `omega_engine/lean4/research_programs/003_quantum_foundations/003_qm_m2_packet_classifier.lean`.
+4. **The next test needed**: Formalize in `omega_engine/lean4/research_programs/quantum_foundations/003_qm_m2_packet_classifier.lean`.
 
 
 <!-- claim-id-body-index:begin -->
 
 Claim-ID body index (packaging)
 
-All claims verified in source notes [`../006_finite_qm/finite_quantum_mechanics_source_notes.md#1146-cochain-repair-capacity-certificates-and-error-threshold-boundaries`](../006_finite_qm/finite_quantum_mechanics_source_notes.md#1146-cochain-repair-capacity-certificates-and-error-threshold-boundaries) (§11.46) and `tests/omega_quantum_physics/repair_and_gravity/cochain_repair_capacity.rs`.
+All claims verified in source notes [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1146-cochain-repair-capacity-certificates-and-error-threshold-boundaries`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1146-cochain-repair-capacity-certificates-and-error-threshold-boundaries) (§11.46) and `tests/omega_quantum_physics/repair_and_gravity/cochain_repair_capacity.rs`.
 
 | ID | Home |
 |---|---|

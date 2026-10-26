@@ -1,8 +1,8 @@
 # 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus
 
 **AuthorityEffect:** None  
-**Paper Key:** `002_projection_obstruction/026_microsoft_majorana_problem`  
-**Live directory:** `009_ms_majorana`. Lean `gaussian_elimination_cubic_bound` is `Nat.le_refl` of `n * n * n`. Enum `rfl` declarations are not measured tetron homology.  
+**Paper Key:** `projection_obstruction/026_microsoft_majorana_problem`  
+**Live directory:** `majorana`. Lean `gaussian_elimination_cubic_bound` is `Nat.le_refl` of `n * n * n`. Enum `rfl` declarations are not measured tetron homology.  
 **Provenance:** Ingested from `https://github.com/dbccpage/anomalon` at commit `2fa585182063433950bdf513a5b0f3562c08aa76`  
 **Date:** 2026-09-19  
 

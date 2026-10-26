@@ -36,12 +36,12 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/Genesis19l57g1/Derivation/IsoCollapse.lean::collapsed_transport`](../../../lean4/Imported/Genesis19l57g1/Derivation/IsoCollapse.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::the_key_is_invariant_under_every_renaming` (private upstream source, not in this repository)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::a_single_collapsed_pair_transports_under_renaming` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs::the_key_is_invariant_under_every_renaming`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/closure.rs::a_single_collapsed_pair_transports_under_renaming`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/closure.rs)
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::rename` (private upstream source, not in this repository)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::collapsed_pairs` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py::rename`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py::collapsed_pairs`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py)
 
 ---
 
@@ -54,5 +54,5 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:607-618`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:759-772`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:607-618`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:759-772`

@@ -31,8 +31,8 @@ version: "v1.0.0 (Mechanized Authority Non-Promotion Firewall)"
 status: "READY_FOR_AUTHOR_REVIEW"
 authority_effect: "None"
 mechanization: "MECHANIZED (ENC-1063: lean4/007_authority_firewall/001_the_authority_firewall_a_machine_checked_separation_of_evidence_from_authority_in_finite_systems/OmegaCosmology/Primitives/AuthorityNonPromotion.lean, lean4/shared_kernel/primitive_difference.lean; authorityNonPromotionPrimitiveDifference, authority_non_promotion_nonzero_of_unsealed)"
-claim_ledger: "../006_finite_qm/claims/claim_ledger.yaml"
-change_log: "../006_finite_qm/finite_quantum_mechanics_source_notes.md#1140-interpretations-as-authority-shadows-and-the-promotion-error"
+claim_ledger: "../finite_quantum_mechanics/claims/claim_ledger.yaml"
+change_log: "../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1140-interpretations-as-authority-shadows-and-the-promotion-error"
 
 QM_091 — Formal Possibility Is Not Physical Terminalization
 ===========================================================
@@ -533,23 +533,23 @@ Claim-ID body index (packaging)
 
 | ID | Home |
 |---|---|
-| `QM-091-C1a` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C1a`) |
-| `QM-091-C1b` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C1b`) |
-| `QM-091-C2` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C2`) |
-| `QM-091-C3` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C3`) |
-| `QM-091-C4` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C4`) |
-| `QM-091-C5` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C5`) |
-| `QM-091-C6` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C6`) |
-| `QM-091-C7` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C7`) |
-| `QM-091-C8` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C8`) |
-| `QM-091-C9` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C9`) |
-| `QM-091-C10` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C10`) |
-| `QM-091-C11` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C11`) |
-| `QM-091-C12` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C12`) |
-| `QM-091-C13` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C13`) |
-| `QM-091-C14` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C14`) |
-| `QM-091-C15` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C15`) |
-| `QM-091-C16` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C16`) |
-| `QM-091-C1` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `091:QM-091-C1a`) |
+| `QM-091-C1a` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C1a`) |
+| `QM-091-C1b` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C1b`) |
+| `QM-091-C2` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C2`) |
+| `QM-091-C3` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C3`) |
+| `QM-091-C4` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C4`) |
+| `QM-091-C5` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C5`) |
+| `QM-091-C6` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C6`) |
+| `QM-091-C7` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C7`) |
+| `QM-091-C8` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C8`) |
+| `QM-091-C9` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C9`) |
+| `QM-091-C10` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C10`) |
+| `QM-091-C11` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C11`) |
+| `QM-091-C12` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C12`) |
+| `QM-091-C13` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C13`) |
+| `QM-091-C14` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C14`) |
+| `QM-091-C15` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C15`) |
+| `QM-091-C16` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C16`) |
+| `QM-091-C1` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `091:QM-091-C1a`) |
 
 <!-- claim-id-body-index:end -->

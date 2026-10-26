@@ -37,10 +37,10 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/PreGenesisToMssn/Observation.lean::empty_profiles_equal`](../../../lean4/Imported/PreGenesisToMssn/Observation.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `missing obligation: no Rust observation-family type for Pre-Genesis inscriptions; the Genesis profile instance is separable in 000_genesis_19l57g1/code/rust/src/separability.rs`
+- `missing obligation: no Rust observation-family type for Pre-Genesis inscriptions; the Genesis profile instance is separable in genesis/code/rust/src/separability.rs`
 
 ### Python Oracles & Numerical Evaluators
-- `missing obligation: no Python ≈ₙ check over Pre-Genesis inscriptions; the Genesis profile instance is separable in 000_genesis_19l57g1/code/derivation/observe.py`
+- `missing obligation: no Python ≈ₙ check over Pre-Genesis inscriptions; the Genesis profile instance is separable in genesis/code/derivation/observe.py`
 
 ---
 
@@ -53,6 +53,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:107-116`
+  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:107-116`
   - `omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:177-215`
   - `omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:64-70`

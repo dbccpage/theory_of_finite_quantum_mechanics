@@ -1,6 +1,6 @@
 # PGW-ABSENCE-OF-RULE-NOT-IDENTIFICATION
 
-Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `DEFINITION`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `DEFINITION`. Evidence grade: **E1**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `DEFINITION`. Evidence gra
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
+- counted in-repo evidence files: 1
 - cited Lean, Rust or Python symbols found in their in-repo files: 0
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: cite a Lean, Rust or Python symbol that exists in an in-repo file
 
 ## Flags
 
@@ -42,19 +42,19 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
+- sha256 (`lf-normalised`): `0dde974e14ff1b54ff6e65705a1194aea38fad7e65bf77b159a07ea1b96bb9a5`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0424_absence_of_rule_not_identification.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0424_absence_of_rule_not_identification.md](../../../dag/derivations/01_pregenesis/tfq_0424_absence_of_rule_not_identification.md)
-- sha256 (`lf-normalised`): `47ab796f80a455a1b12348ee222988f2da61eb43a7f0e77763844b6f79f48d32`
+- sha256 (`lf-normalised`): `ec6a6ccfb0e59ba181d436be0b2d6537993ab4c19cd802e00c0d2de8e52f99b5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0424
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### Documents and data: `omega_engine_education/documentation/000_oepregen/02_trial_record.md`
@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0424 lean4: no Lean three-valued status for an undeclared relation; the vacuous case of formalization B is empty_profiles_equal in 000_pre_genesis_to_mssn/lean4/Observation.lean
+- TFQ-0424 lean4: no Lean three-valued status for an undeclared relation; the vacuous case of formalization B is empty_profiles_equal in pregenesis_to_minimal_symbol_systems/lean4/Observation.lean
 - TFQ-0424 python: no Python UNDECIDABLE status for a pair with no declared relation
 - TFQ-0424 rust: no Rust UNDECIDABLE status for a pair with no declared relation
 

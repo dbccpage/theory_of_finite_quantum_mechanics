@@ -101,10 +101,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0367
 - counts toward the grade: no
 
-### Documents and data: `sources/atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
+### Documents and data: `sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
 
-- file: [sources/atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml](../../../sources/atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml)
-- sha256 (`lf-normalised`): `2bfb4441352c4206cbd84f3e500e4c3ba817364aff49623a001087ecf12df5a6`
+- file: [sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml](../../../sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml)
+- sha256 (`lf-normalised`): `bb38e1e763dba36d1194fde3c597b73c19f651ec9b4137eeb694fd92fed6f8fb`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -116,8 +116,8 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0367 lean4: missing declaration obligation: a choice-free listed-history criterion inside 000_pre_genesis_to_mssn/lean4, where Paper.lean still mentions Classical.choice
-- TFQ-0367 python: missing obligation: a first-match reconstructor on an explicit list in 000_pre_genesis_to_mssn/code/preservation.py, beside report_factor and not using an unlisted search
+- TFQ-0367 lean4: missing declaration obligation: a choice-free listed-history criterion inside pregenesis_to_minimal_symbol_systems/lean4, where Paper.lean still mentions Classical.choice
+- TFQ-0367 python: missing obligation: a first-match reconstructor on an explicit list in pregenesis_to_minimal_symbol_systems/code/preservation.py, beside report_factor and not using an unlisted search
 - TFQ-0367 rust: missing obligation: a listed-history reconstructor in crate pre_mssn_preservation whose input length is part of the statement
 
 ## Routes

@@ -1,6 +1,6 @@
 # Finite-QM Roadmaps — Index
 
-**Scope:** Guide and architectural index for the `006_finite_qm` research monographs and technical roadmaps.  
+**Scope:** Guide and architectural index for the `finite_quantum_mechanics` research monographs and technical roadmaps.  
 **Updated:** 2026-10-11  
 
 This directory contains the core technical roadmaps evaluating the presentation of quantum mechanics on finite and algebraic carriers and characterizing the interfaces to continuum quantum mechanics.

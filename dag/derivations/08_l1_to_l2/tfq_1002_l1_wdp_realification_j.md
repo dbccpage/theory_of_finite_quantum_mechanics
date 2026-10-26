@@ -50,4 +50,4 @@ genesis_qm_realification_bridge: 'declarations of complex structure, not a theor
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_qm_realification_bridge.md`
+  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_qm_realification_bridge.md`

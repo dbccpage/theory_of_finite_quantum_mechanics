@@ -38,8 +38,8 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust port of ProposalRecord`
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/graph_genesis.py::ProposalRecord` (private upstream source, not in this repository)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/graph_genesis.py::carries_no_authority` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/graph_genesis.py::ProposalRecord`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/graph_genesis.py)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/graph_genesis.py::carries_no_authority`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/graph_genesis.py)
 
 ---
 

@@ -50,5 +50,5 @@ QM-208 table row: exact finite invariant; residual "add-then-square composition 
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:380`
-  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics_claim_ledger.md#QM-219`
+  - `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md:380`
+  - `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md#QM-219`

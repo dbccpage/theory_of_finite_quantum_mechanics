@@ -7,10 +7,10 @@
 
 The standalone synthesis is retired. Its surviving mathematical kernel (finite path sums with a unique cut) and corrected gauge boundaries are merged into Finite Quantum Mechanics and the general obstruction framework:
 
-- **Source Notes:** [`../006_finite_qm/finite_quantum_mechanics_source_notes.md#1114-finite-weighted-transport-calculus-qm-030-extracted-and-retired`](../006_finite_qm/finite_quantum_mechanics_source_notes.md#1114-finite-weighted-transport-calculus-qm-030-extracted-and-retired) (§11.14).
+- **Source Notes:** [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1114-finite-weighted-transport-calculus-qm-030-extracted-and-retired`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1114-finite-weighted-transport-calculus-qm-030-extracted-and-retired) (§11.14).
 - **Certified Graded Transport:** `TimeSlicedTransport::{path_sum, propagator, sliced_composition}` in `omega_engine/crates_rs/omega_quantum_physics`.
 - **Integration Tests:** `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/tests/dynamics/weighted_transport_calculus.rs`.
-- **Consolidated Claims:** [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (IDs `030:QM-030-C1` through `030:QM-030-C27`).
+- **Consolidated Claims:** [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (IDs `030:QM-030-C1` through `030:QM-030-C27`).
 
 ## Retained Mathematical Formulation
 

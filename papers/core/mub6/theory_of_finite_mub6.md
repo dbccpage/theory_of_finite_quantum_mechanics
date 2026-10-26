@@ -724,7 +724,7 @@ This stage comprises 5 sequential and parallel finite derivation steps formally 
 ### MUB6-DERIV-051: Quhex Tensor Product Decomposition C^6 = C^2 (x) C^3
 
 - **UUID:** `bcef9ff4-56cb-595c-b51e-f4a433554552`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-050`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/dim6/quhex_decomp.py:decompose_c6_qubit_qutrit`
@@ -737,7 +737,7 @@ Decomposes the six-dimensional Hilbert space as a bipartite quhex system C^6 = C
 ### MUB6-DERIV-052: Composite Order 6 Obstruction to Finite Galois Field Extension
 
 - **UUID:** `7813ec3f-13d4-5a80-96f8-d946bbed9124`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-051`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/dim6/galois_obstruction.py:verify_galois_absence`
@@ -750,7 +750,7 @@ Establishes that no finite Galois field GF(6) can exist because the dimension 6 
 ### MUB6-DERIV-053: Discrete Weyl-Heisenberg Operators X_6 and Z_6
 
 - **UUID:** `c0437a9c-1cde-53f1-924c-34bf0aae76ca`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-052`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/dim6/weyl_heisenberg.py:generate_weyl_heisenberg_d6`
@@ -763,7 +763,7 @@ Constructs the discrete Weyl-Heisenberg operators X_6 (cyclic shift) and Z_6 (di
 ### MUB6-DERIV-054: Generalized Pauli Group and Symplectic Subspaces in Dimension Six
 
 - **UUID:** `74632d60-0472-5719-a489-57a4c4aa7f3f`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-053`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/dim6/pauli_group.py:analyze_pauli_subgroups`
@@ -776,7 +776,7 @@ Analyzes maximal abelian subgroups of the generalized Pauli group over the ring 
 ### MUB6-DERIV-055: Mutually Unbiased Bases Formal Definition and Inner Product Bounds
 
 - **UUID:** `6d37adf8-6140-57da-a984-7b6ae744fd61`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-054`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/dim6/mub_definition.py:verify_mub_inner_products`
@@ -793,7 +793,7 @@ This stage comprises 7 sequential and parallel finite derivation steps formally 
 ### MUB6-DERIV-056: Equivalence Between MUB Pairs and Dephased Complex Hadamard Matrices
 
 - **UUID:** `16e4d56e-3775-52aa-b48c-4ebbb840cff8`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-055`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/hadamard/mub_hadamard_equiv.py:verify_hadamard_bijection`
@@ -806,7 +806,7 @@ Establishes the bijective correspondence between pairs of MUBs {I_d, H/sqrt(d)} 
 ### MUB6-DERIV-057: Fourier Matrix F_6 and Non-Prime Field Defect
 
 - **UUID:** `5586344a-ec4d-5545-b9db-2c2845f2e003`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-056`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/hadamard/fourier_f6.py:analyze_f6_defect`
@@ -819,7 +819,7 @@ Analyzes the 6x6 Fourier matrix (F_6)_jk = omega_6^{j k} and computes its non-pr
 ### MUB6-DERIV-058: Haagerup 1-Parameter Moduli Family H_6(q) Construction
 
 - **UUID:** `ad511ffd-17d6-5a69-ac09-589c67301b82`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-057`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/hadamard/haagerup_h6.py:construct_haagerup_family`
@@ -832,7 +832,7 @@ Constructs the 1-parameter family H_6(q) of complex Hadamard matrices discovered
 ### MUB6-DERIV-059: Szöllősi Deltoid Boundary and 2-Parameter Defect Geometry
 
 - **UUID:** `177cfe98-eb50-5f78-8aa2-50c25197e98c`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-058`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/hadamard/szollosi_deltoid.py:compute_deltoid_boundary`
@@ -845,7 +845,7 @@ Maps the 2-parameter family of complex Hadamard matrices discovered by Szollosi,
 ### MUB6-DERIV-060: Karlsson 3-Parameter Affine and Non-Affine Moduli Orbit
 
 - **UUID:** `cc3e1636-a4de-5dc5-bf4f-37abfd04cd75`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-059`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/hadamard/karlsson_moduli.py:sample_karlsson_orbit`
@@ -858,7 +858,7 @@ Explores the 3-parameter moduli orbit of complex Hadamard matrices in dimension 
 ### MUB6-DERIV-061: Tao Matrix S_6 and Equilateral Phase Configurations
 
 - **UUID:** `8d03751c-299e-571f-9a6f-4b858e34ee79`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-060`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/hadamard/tao_matrix.py:verify_s6_properties`
@@ -871,7 +871,7 @@ Analyzes the Tao matrix S_6, a complex Hadamard matrix with third roots of unity
 ### MUB6-DERIV-062: Ditǎ Affine Transformations and Moduli Fiber Stratification
 
 - **UUID:** `d9d08877-d3d3-5915-9da0-be29a3b1ec89`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-061`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/hadamard/dita_affine.py:stratify_moduli_fibers`
@@ -888,7 +888,7 @@ This stage comprises 6 sequential and parallel finite derivation steps formally 
 ### MUB6-DERIV-063: Standard Triad Configuration {I_6, F_6, B_3}
 
 - **UUID:** `0428d24f-2846-5d3f-90fc-5c49c3322e3f`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-062`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/algebraic_variety/standard_triad.py:construct_standard_triad`
@@ -901,7 +901,7 @@ Constructs the standard triad of mutually unbiased bases {I_6, F_6, B_3} in C^6,
 ### MUB6-DERIV-064: ConcreteMubPolynomials 72-Coordinate Algebraic Variety Formulation
 
 - **UUID:** `667b4c5d-9385-53e7-a6ab-32ae7f465fbc`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-063`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/algebraic_variety/polynomial_system.py:build_72_coordinate_system`
@@ -914,7 +914,7 @@ Formulates the candidate 4th basis B_4 = (v_{j,k}) as a system of real algebraic
 ### MUB6-DERIV-065: 180 Orthogonality and Overlap Residual Constraint System
 
 - **UUID:** `9b8dd412-d1a0-5d93-b4cb-7955dd71d840`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-064`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/algebraic_variety/residuals_180.py:evaluate_180_residuals`
@@ -927,7 +927,7 @@ Constructs the exact system of 180 real polynomial equations enforcing unitarity
 ### MUB6-DERIV-066: Gram Matrix Definiteness and Real Nullstellensatz Realization
 
 - **UUID:** `85bbd946-1091-5b33-95a6-d03a0e71fe1e`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-065`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/algebraic_variety/gram_nullstellensatz.py:verify_gram_semidefiniteness`
@@ -940,7 +940,7 @@ Formulates the Gram matrix G of all 24 vectors from the hypothetical 4-MUB set {
 ### MUB6-DERIV-067: Gröbner Basis Elimination and Elimination Ideal Slices
 
 - **UUID:** `ed0f7b62-d468-58a8-87f3-462582234fe9`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-066`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/algebraic_variety/grobner_elimination.py:compute_grobner_slices`
@@ -953,7 +953,7 @@ Performs Buchberger's algorithm and graded reverse lexicographic Grobner basis e
 ### MUB6-DERIV-068: Semialgebraic Slice Emptiness in Standard Torus Coordinates
 
 - **UUID:** `66cff16c-ac0b-5864-a56a-2b978dbbb03d`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-067`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/algebraic_variety/torus_emptiness.py:verify_slice_emptiness`
@@ -1052,7 +1052,7 @@ This stage comprises 6 sequential and parallel finite derivation steps formally 
 ### MUB6-DERIV-075: Matolcsi-Weiner Conjecture 2 Formalization and 20 Balanced Masks
 
 - **UUID:** `152ba2bc-8c20-5a68-8971-3e460205436d`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-074`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/conjecture2/matolcsi_weiner.py:formalize_conjecture_2`
@@ -1065,7 +1065,7 @@ Formalizes Matolcsi-Weiner Conjecture 2 asserting that no 6x6 complex Hadamard m
 ### MUB6-DERIV-076: Tao Matrix L1 Operator Norm 9 Obstruction on Balanced Masks
 
 - **UUID:** `8eb52436-e721-5f40-b9f0-a807df45baeb`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-075`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/conjecture2/tao_norm9.py:compute_tao_l1_norm`
@@ -1078,7 +1078,7 @@ Evaluates the l1 operator norm ||P_mask S_6 P_mask||_1 across the 20 balanced ma
 ### MUB6-DERIV-077: Analytic Cube Slices and Krawczyk Interval Newton Rigor
 
 - **UUID:** `c2a2499d-6a3e-5d56-b2f1-14d63a59d458`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-076`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/conjecture2/krawczyk_slices.py:run_krawczyk_interval_test`
@@ -1091,7 +1091,7 @@ Partitions the continuous parameter domain into a finite grid of compact boxes a
 ### MUB6-DERIV-078: Smale Alpha Sentry Verification of Zero Isolated Smooth Roots
 
 - **UUID:** `8d2278c2-05b9-5132-ba91-208e71a22164`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-077`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/conjecture2/smale_alpha.py:run_smale_alpha_test`
@@ -1104,7 +1104,7 @@ Applies Smale's alpha theory to candidate approximate solutions of the MUB(6) va
 ### MUB6-DERIV-079: Continuous Hadamard Manifold Bounded Residue Fences
 
 - **UUID:** `5b1c9d73-ac17-5f2f-bdb6-ced012a8979c`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-078`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/conjecture2/manifold_fences.py:compute_residue_fences`
@@ -1117,7 +1117,7 @@ Establishes uniform strictly positive lower bounds ||f(x)|| >= delta > 0 on the 
 ### MUB6-DERIV-080: Deltoid Cusp and Affine Leaf Boundary Singularity Exclusion
 
 - **UUID:** `b5888ddd-5e2f-5d35-ad5d-317eb7dec329`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-079`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/conjecture2/cusp_exclusion.py:exclude_cusp_singularities`
@@ -1134,7 +1134,7 @@ This stage comprises 6 sequential and parallel finite derivation steps formally 
 ### MUB6-DERIV-081: Basis Gluing Psi Map and Transverse Overlap Contraction
 
 - **UUID:** `4fff3ec8-5f89-5f4e-a667-2902ba727b17`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-080`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/terminal/basis_gluing_psi.py:evaluate_psi_contraction`
@@ -1147,7 +1147,7 @@ Constructs the basis gluing map Psi: H(6) -> R_+ measuring the aggregate transve
 ### MUB6-DERIV-082: Simplicial 1-Cochain Circulation Invariant Phi_1 Lower Bound
 
 - **UUID:** `bd98276c-42fa-59f8-b63f-7d49312292e6`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-081`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/terminal/cochain_circulation.py:compute_phi1_lower_bound`
@@ -1160,7 +1160,7 @@ Computes the simplicial 1-cochain circulation invariant Phi_1 = oint_{gamma} A_m
 ### MUB6-DERIV-083: Route C Fourier Landing Bypass Obstruction Resolution
 
 - **UUID:** `162b245a-7757-59ee-919e-a30e7f07531c`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-082`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/terminal/route_c_bypass.py:resolve_route_c_obstruction`
@@ -1173,7 +1173,7 @@ Resolves the Route C Fourier landing bypass obstruction, which previously permit
 ### MUB6-DERIV-084: Matolcsi-Szöllősi Moduli Master Routing Classification
 
 - **UUID:** `616c38cf-3fb7-59cf-887e-9dee88060cb0`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-083`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/terminal/moduli_routing.py:classify_master_routing`
@@ -1186,7 +1186,7 @@ Assembles the master routing classification partitioning all candidate complex H
 ### MUB6-DERIV-085: Non-Existence of Mutually Unbiased Quartet in Dimension Six
 
 - **UUID:** `f54f3da5-c038-5547-817d-b93997d52716`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-084`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/terminal/quartet_non_existence.py:certify_quartet_absence`
@@ -1199,7 +1199,7 @@ Synthesizes the algebraic, semialgebraic, and topological refutations into a uni
 ### MUB6-DERIV-086: Terminal Classification Theorem for Maximal MUB Cardinality in Dimension Six
 
 - **UUID:** `44c042b7-35b2-53dc-9c13-b9781fa42b35`
-- **Coda Atlas ID:** `F004.010_mub6` (EADC: `EA:004.010.000`)
+- **Coda Atlas ID:** `F004.mub6` (EADC: `EA:004.010.000`)
 - **Dependencies:** `MUB6-DERIV-085`
 - **Tri-Lingual Implementation Targets:**
   - **Python:** `code/mub_verify/terminal/terminal_mub6_theorem.py:certify_max_mub6_equals_3`

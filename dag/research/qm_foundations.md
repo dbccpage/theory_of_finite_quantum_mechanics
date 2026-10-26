@@ -1,6 +1,6 @@
 # Foundations Roadmap — Primitive Difference Through Channels
 
-**Scope:** Foundational theory connecting primitive difference, quantum states, Born/Gleason measures, phase and superposition, entanglement, and quantum channels across the `006_finite_qm` estate.  
+**Scope:** Foundational theory connecting primitive difference, quantum states, Born/Gleason measures, phase and superposition, entanglement, and quantum channels across the `finite_quantum_mechanics` estate.  
 **Target:** `qm_foundations.md`  
 **Updated:** 2026-10-11  
 

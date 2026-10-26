@@ -271,7 +271,7 @@ _WITTEN_PDF_SHA256 = "d10e8d591b29284dcf029c2bde74b27bf76be98f957173eeb545d04e3f
 _WITTEN_PDF_BYTE_COUNT = 1_164_417
 _GR_PUBLISHED_ROOT = (
     "omega_research/programs/010_general_relativity/"
-    "002_constraint_closure_and_the_l1structure_of_physical_law"
+    "constraint_closure_and_the_l1_structure_of_physical_law"
 )
 
 

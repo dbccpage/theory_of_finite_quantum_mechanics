@@ -114,7 +114,7 @@ def clean(p: str) -> str:
 def group_of(path: str) -> str:
     parts = path.split("/")
     if parts[0] == "omega_engine_atlas":
-        if len(parts) >= 5 and parts[2] == "F004_papers":
+        if len(parts) >= 5 and parts[2] == "papers":
             return "/".join(parts[:5]) if parts[3][:1].isdigit() and len(parts) > 5 else "/".join(parts[:4])
         return "/".join(parts[:3])
     if parts[0] == "omega_engine_education" and len(parts) >= 3:
@@ -183,7 +183,7 @@ def removed_listing(atlas: Path):
     if not names:
         return {}
     sizes = subprocess.run(["git", "-c", "core.quotepath=off", "-C", str(atlas), "ls-tree", "-r", "-l", REMOVAL_COMMIT + "^", "--",
-                            "omega_engine_atlas/coda_atlas/F004_papers"], capture_output=True, encoding="utf-8")
+                            "omega_engine_atlas/coda_atlas/papers"], capture_output=True, encoding="utf-8")
     out = {}
     for line in sizes.stdout.splitlines():
         meta, _, name = line.partition("	")

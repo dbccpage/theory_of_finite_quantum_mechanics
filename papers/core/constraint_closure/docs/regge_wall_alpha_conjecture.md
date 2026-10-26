@@ -9,7 +9,7 @@ $$
 **Evidence Scope:** Exploratory finite conjecture note; no physical derivation claim.
 **Class:** Track-A climb conjecture / Track-B not discharged  
 **Date:** 2026-08-02  
-**Home package:** `002_constraint_closure_and_the_l1structure_of_physical_law`
+**Home package:** `constraint_closure_and_the_l1_structure_of_physical_law`
 
 ---
 

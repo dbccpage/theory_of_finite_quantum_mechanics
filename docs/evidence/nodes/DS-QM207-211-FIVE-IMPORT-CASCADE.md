@@ -32,7 +32,7 @@ Unmet after the PFP review: Prove each correctly specified physical necessity cl
 
 ## Source status
 
-QM207-C1 phase-blindness of L1 weights, QM208-C3 quadratic cross-term interference, QM209-C2 non-commutative operator algebra, QM210-C3 Lp power-rule separation, and QM211-C1..C3 five-import drop-one independence mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
+QM207-C1 phase-blindness of L1 weights, QM208-C3 quadratic cross-term interference, QM209-C2 non-commutative operator algebra, QM210-C3 Lp power-rule separation, and QM211-C1..C3 five-import drop-one independence mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics
 
 ## Review
 
@@ -106,9 +106,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust, record TFQ-1042
 - counts toward the grade: no
 
-### Rust: `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs`
+### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs)
+- file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust, record TFQ-1042
 
@@ -121,7 +121,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md](../../../dag/derivations/12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md)
-- sha256 (`lf-normalised`): `f5356ece83164f387483e017e1eb9d108dd7a4a252cb9f453e6564ed37d264ec`
+- sha256 (`lf-normalised`): `4c238c212d2758a4096f93e1aea7f04f82e1eab7fa3abc887ed143830819934b`
 - generated view: listed, not counted
 - cited in: record TFQ-1042
 - counts toward the grade: no

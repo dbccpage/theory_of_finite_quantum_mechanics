@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One-command verifier for the MUB(6) paper deposit package (010_mub6).
+"""One-command verifier for the MUB(6) paper deposit package (mub6).
 
 Deterministic, two-way verification:
 1. Every file listed in sha256sums exists and matches its recorded hash.

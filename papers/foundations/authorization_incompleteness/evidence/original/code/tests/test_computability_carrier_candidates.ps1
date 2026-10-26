@@ -167,12 +167,12 @@ function Test-CarrierRecord {
   Assert-Equal -Actual $direct[0].fields.universality.status -Expected "open" -Label "direct universality ceiling"
 
   $po22Path = Join-Path $Root (
-    "lean4/coda_research/002_projection_obstruction/" +
+    "lean4/coda_research/projection_obstruction/" +
     "022_finite_presentation_calculus_for_computation/" +
     "finite_presentation_calculus_for_computation.lean"
   )
   $po23Path = Join-Path $Root (
-    "lean4/coda_research/002_projection_obstruction/" +
+    "lean4/coda_research/projection_obstruction/" +
     "023_halting_as_a_non_faithful_quotient/" +
     "halting_as_a_non_faithful_quotient.lean"
   )

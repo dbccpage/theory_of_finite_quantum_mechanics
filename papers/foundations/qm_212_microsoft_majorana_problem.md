@@ -31,8 +31,8 @@ version: "v0.2.0"
 status: "DRAFT"
 authority_effect: "None"
 mechanization: "CODE_DEMO (omega_majorana surface_grid_2x2_* + GF2 classifier); Lean majorana_parity/ OPEN"
-claim_ledger: "../009_ms_majorana/claim_ledger.yaml"
-change_log: "../009_ms_majorana/the_majorana_problem_change_log.md"
+claim_ledger: "../majorana/claim_ledger.yaml"
+change_log: "../majorana/the_majorana_problem_change_log.md"
 provenance: "Archive rewrite of research_notes_000/.archive/023 - Majorana Topological QC/v003/majorana_topological_qc_v003.md under 003 honesty fences"
 
 ---
@@ -48,7 +48,7 @@ QM_212 — The Microsoft Majorana Problem
 
 > **Status box (binding)**
 >
-> **Status:** First estate-native draft. Supersedes the archive note *Topological Quantum Computation as $\ell^1$ Composition* (paper 023 v003) for live navigation under `003_quantum_foundations`.  
+> **Status:** First estate-native draft. Supersedes the archive note *Topological Quantum Computation as $\ell^1$ Composition* (paper 023 v003) for live navigation under `quantum_foundations`.  
 > **Core (narrow algebra):** The verifiable *software* side of Majorana / Ising topological-QC talk reduces to (i) finite GF(2) cochain residual classification on a **declared** complex and (ii) exact specialized matrix identities in $\mathbb{Q}(\zeta_{16})$.  
 > **The “Microsoft problem”:** Public hardware narratives (Kitaev-wire fabrication, interferometric parity, Azure-facing bridge language) create a **compositional claim gap**: device reports and algebraic diagnostics live on different carriers; neither side automatically discharges the other.  
 > **AuthorityEffect:** `None`.

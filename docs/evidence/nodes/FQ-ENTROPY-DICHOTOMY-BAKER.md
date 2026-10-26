@@ -32,7 +32,7 @@ None (algebraic purity dichotomy, Renyi-2 purity deficit, and C750 prime-reducti
 
 ## Source status
 
-C750 algebraic purity dichotomy (entropy_zero_iff_pure and Renyi-2 purity deficit d^2 - (p^2 + (d-p)^2) = 2(dp - p^2)), prime-reduction linear form vanishing on pure weights (gamma = 0) vs non-zero mixed witness (gamma = 6 != 0 on d=4, S=1, b=2), and conditional Baker transcendence gate mechanized in DerivationDagQMClosure.lean, EntropyDichotomy.lean, C750Purity.lean, and 006_finite_qm
+C750 algebraic purity dichotomy (entropy_zero_iff_pure and Renyi-2 purity deficit d^2 - (p^2 + (d-p)^2) = 2(dp - p^2)), prime-reduction linear form vanishing on pure weights (gamma = 0) vs non-zero mixed witness (gamma = 6 != 0 on d=4, S=1, b=2), and conditional Baker transcendence gate mechanized in DerivationDagQMClosure.lean, EntropyDichotomy.lean, C750Purity.lean, and finite_quantum_mechanics
 
 ## Review
 
@@ -114,9 +114,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
-### Rust: `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs`
+### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs)
+- file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust
 
@@ -134,16 +134,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0268
 - counts toward the grade: no
 
-### Documents and data: `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml`
+### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml](../../../sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml)
-- sha256 (`lf-normalised`): `16a418a93748cef695fad3c1fab0fd14dd95c6985b23ee8a814b171eca60a445`
+- file: [sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
+- sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
 - cited in: node.source
 - counts toward the grade: yes
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0268 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm
+- TFQ-0268 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
 - TFQ-0268 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/entropy.rs
 - TFQ-0268 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/exact_entropy.rs
 

@@ -10,7 +10,7 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `DEFINITION`. Evidence grade: **
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
+- counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
@@ -89,6 +89,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
+- sha256 (`lf-normalised`): `0dde974e14ff1b54ff6e65705a1194aea38fad7e65bf77b159a07ea1b96bb9a5`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/02_genesis/tfq_0002_genesis_regime_events_as_a_separate_admission_record.md`
 
 - file: [dag/derivations/02_genesis/tfq_0002_genesis_regime_events_as_a_separate_admission_record.md](../../../dag/derivations/02_genesis/tfq_0002_genesis_regime_events_as_a_separate_admission_record.md)
@@ -113,23 +120,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0342 (shared)
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
 ## Absences recorded by the TFQ records
 
 - TFQ-0342 rust: no local rust twin located for omega_engine/crates_rs/omega_kernel/src/obligation.rs
 - TFQ-0378 lean4: declaration obligation: genesis as the five-field empty regime, events still to be matched to the ledger families
-- TFQ-0378 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Inertia.lean
+- TFQ-0378 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Inertia.lean
 - TFQ-0378 python: missing obligation: model.py was listed and not opened; the five regime fields still need a local check against WDP-P000-006
-- TFQ-0378 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py
-- TFQ-0378 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py
-- TFQ-0378 rust: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/event.rs
-- TFQ-0378 rust: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/regime.rs
+- TFQ-0378 python: no local python twin located for atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py
+- TFQ-0378 python: no local python twin located for atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py
+- TFQ-0378 rust: no local rust twin located for atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/event.rs
+- TFQ-0378 rust: no local rust twin located for atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/regime.rs
 
 ## Routes
 

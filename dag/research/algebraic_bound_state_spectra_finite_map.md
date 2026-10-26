@@ -51,6 +51,6 @@ This note records the finite-to-continuum decomposition of canonical textbook bo
 
 ## Verification Anchors
 
-- **Python reference use case:** `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/algebraic_bound_state_spectra_control.py` (`evaluate_algebraic_bound_state_spectra_control`)
-- **Python e2e test suite:** `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/tests/e2e/test_e2e_algebraic_bound_state_spectra_control.py` (`6 passed`)
+- **Python reference use case:** `sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/algebraic_bound_state_spectra_control.py` (`evaluate_algebraic_bound_state_spectra_control`)
+- **Python e2e test suite:** `sources/atlas/papers/finite_quantum_mechanics/tests/e2e/test_e2e_algebraic_bound_state_spectra_control.py` (`6 passed`)
 - **Rust compiled implementation & unit test:** `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/algebraic_bound_state_spectra.rs` (`evaluate_qm217_algebraic_bound_state_spectra`, `test_qm217_algebraic_bound_state_spectra_control`), re-exported from `quantum_import_finite_maps`

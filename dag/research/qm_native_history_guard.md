@@ -15,7 +15,7 @@ not supply a native groupoid, a complex scalar field or a quantum state cone.
 Fix an existing pair of terms, one relation and every other field of a
 validated raw Source-25 state. Let the chosen assertion's multiplicity be
 $n\in\mathbb N$. The
-[preserved seed](../../001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/prompt/twentyfifth/seed_prompt.md)
+[preserved seed](../../finite_obstruction_calculus/genesis_ongoing/prompt/twentyfifth/seed_prompt.md)
 and the [native executor](../../../../../omega_engine/crates_rs/omega_wdp/src/genesis_source_execution.rs)
 give the following slice:
 
@@ -187,7 +187,7 @@ declared inputs to that comparison.
 
 Now admit the uniform mixture of the $K=r+1$ initial-depth pointer states.
 As a state of the classical algebra $\mathbb C^X$, it has $K$ central weights
-$1/K$, so [PO-000 E.7](../../002_projection_obstruction/000_projection_obstruction/projection_obstruction.md#e7-a-sharp-quantitative-obstruction-from-central-weights)
+$1/K$, so [PO-000 E.7](../../projection_obstruction/projection_obstruction_paper/projection_obstruction.md#e7-a-sharp-quantitative-obstruction-from-central-weights)
 bounds every extension's purity by $1/K$. This remains true even if a full
 matrix ancilla is allowed. As a state in the single algebra $M_{|X|}(\mathbb C)$,
 it has rank $K$ and an available $M_K$ ancilla can purify it, giving purity one.
@@ -206,7 +206,7 @@ offered as certification of an entire operational theory.
 For WDP's greatest question-preserving contextual quotient, this supplies an
 explicit instance: unrestricted legality has infinitely many classes, while
 the bounded context contract has exactly $r+1$. For the
-[S(n)/MSSN bridge](../../001_finite_obstruction_calculus/001_sn_mssn/README.md),
+[S(n)/MSSN bridge](../../finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/README.md),
 the report reflects this one native question family; the saturated profile,
 adjoint completion and quantum enlargement have no authority to create a new
 native stage. Other native moves can couple cells or change carriers and need

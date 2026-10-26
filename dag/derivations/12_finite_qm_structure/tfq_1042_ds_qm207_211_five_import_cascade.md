@@ -16,7 +16,7 @@ Exact phase/readout and noncommutative matrix controls are retained, and the cro
 Unmet after the PFP review: Prove each correctly specified physical necessity claim and supply phase, quadratic pairing, operator algebra, Born uniqueness and continuous dynamics. These controls do not derive or establish independence of all five imports. The broader source statement is kept in pfp_review.prior_statement.
 
 ### Source Status
-QM207-C1 phase-blindness of L1 weights, QM208-C3 quadratic cross-term interference, QM209-C2 non-commutative operator algebra, QM210-C3 Lp power-rule separation, and QM211-C1..C3 five-import drop-one independence mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
+QM207-C1 phase-blindness of L1 weights, QM208-C3 quadratic cross-term interference, QM209-C2 non-commutative operator algebra, QM210-C3 Lp power-rule separation, and QM211-C1..C3 five-import drop-one independence mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics
 
 ---
 
@@ -40,7 +40,7 @@ QM207-C1 phase-blindness of L1 weights, QM208-C3 quadratic cross-term interferen
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness`
 - `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness`
-- `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness`
+- `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness`
 
 ---
 

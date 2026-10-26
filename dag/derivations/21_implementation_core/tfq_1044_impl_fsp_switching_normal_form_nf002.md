@@ -56,6 +56,6 @@ Local compatibility port replayed with Lean 4.33.1; enumeration length, uniquene
 
 - **Cited Sources**:
   - `lean4/SwitchingNormalForm.lean`
-  - `sources/atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
+  - `sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
   - `dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean`
   - `lean4/SwitchingNormalForm.lean`

@@ -50,7 +50,7 @@ Cited FermionSignCore.lean::car_algebra_anticommutation_relations does not exist
 - `code/python/tests/fsp/sign_sql/test_exact_models.py::test_hop_sign_replays_two_car_operations`
 
 ### Cited by the source, not in this checkout
-- `external:omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermionic_hamiltonian.py::FermionicFockSpace (cited by the source, not in this checkout)`
+- `external:sources/atlas/papers/fermion_sign_problem/code/fermionic_hamiltonian.py::FermionicFockSpace (cited by the source, not in this checkout)`
 - `external:omega_majorana::majorana_fock_algebra::MajoranaFockAlgebra (cited by the source, not in this checkout)`
 
 ---

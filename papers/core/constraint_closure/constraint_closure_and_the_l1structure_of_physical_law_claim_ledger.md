@@ -1,6 +1,6 @@
 # Claim Ledger — Constraint-Closure Toy Model for $\ell^1$ Residuals on Finite Complexes (GR-002)
 
-**Paper Key:** `004_general_relativity/002_constraint_closure_and_the_l1structure_of_physical_law`
+**Paper Key:** `general_relativity/constraint_closure_and_the_l1_structure_of_physical_law`
 **Paper:** `constraint_closure_and_the_l1structure_of_physical_law.md`
 **Version:** 1.2 (As-Is Toy-Model Republication, 2026-09-11)
 **Scope:** Finite toy-model claims only: rigorous discrete linear $\ell^1$ quotient/certificate statements, exact LP strong duality, dual circulation certificates, and Regge-calculus examples. All continuous-GR and particle-physics interpretations are illustrative, conditional, or quarantined; speculative particle physics analogies are strictly fenced with formal falsification receipts.

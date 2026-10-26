@@ -19,7 +19,7 @@ if str(code_dir) not in sys.path:
 qm_020_path = (
     code_dir.parents[2]
     / "published"
-    / "003_quantum_foundations"
+    / "quantum_foundations"
     / "qm_020_born_normalization_and_conditional_hilbert_lift"
     / "coda"
 )

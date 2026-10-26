@@ -3,7 +3,7 @@
 --- yaml
 title: Constraint-Closure Toy Model for ℓ¹ Residuals Change Log
 file_name: constraint_closure_and_the_l1structure_of_physical_law_change_log.md
-file_location: coda_atlas/F004_papers/004_general_relativity/002_constraint_closure_and_the_l1structure_of_physical_law/
+file_location: sources/atlas/papers/general_relativity/constraint_closure_and_the_l1_structure_of_physical_law/
 status: Canonical
 evidence_scope: finite_receipts_only
 paper_id: GR-002
@@ -131,7 +131,7 @@ bytes, and this review did not independently replay the pre-change tree.
   that puts `code/` on `sys.path`. The per-file `sys.path.insert(..., "solvers")`
   blocks are gone, and the suite now runs from any working directory.
 * Moved `code/jupyter_notebooks/` up to
-  `002_constraint_closure_and_the_l1structure_of_physical_law/jupyter_notebooks/`.
+  `constraint_closure_and_the_l1_structure_of_physical_law/jupyter_notebooks/`.
 * **Deleted `code/l1_regge.py`** — a re-export shim pointing at
   `004_projection_obstruction/021_dewitt_superspace_case_study/code/regge_geometry.py`.
   That path does not exist in this repository (the program is numbered `002_`,

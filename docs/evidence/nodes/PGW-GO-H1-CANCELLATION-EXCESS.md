@@ -10,13 +10,13 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 7
 - distinct cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -32,7 +32,7 @@ For the chosen reading C-J1 only (the unchosen C-J2 and C-J3 give 29 and 1081 re
 
 ## Source status
 
-001_genesis_ongoing_h3v7n5qf paper/twentysecond/claim_ledger.md D1 and D4; lean4_core/Twentysecond
+genesis_ongoing paper/twentysecond/claim_ledger.md D1 and D4; lean4_core/Twentysecond
 
 ## Review
 
@@ -88,19 +88,33 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Python: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentysecond/state.py)
+- sha256 (`bytes`): `5138e0126e482c5d960255a1073db17b856851c9cff885dc96d39f35f19fed5b`
+- cited in: record TFQ-0483
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `cost` (python_symbol) | yes | yes | yes | - | - |
+| `excess` (python_symbol) | yes | yes | yes | - | - |
+| `plain` (python_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/claim_ledger.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/claim_ledger.md)
+- sha256 (`lf-normalised`): `7e91bbdb06f407ab74633d875470289b724dcfff465477529a8d49f5d1df7f08`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/02_genesis/tfq_0483_go_h1_cancellation_excess.md`
 
 - file: [dag/derivations/02_genesis/tfq_0483_go_h1_cancellation_excess.md](../../../dag/derivations/02_genesis/tfq_0483_go_h1_cancellation_excess.md)
-- sha256 (`lf-normalised`): `9fc3bcced0328cd6e4a0691b1cca9e1af02a80dfc7896c74740e45d60af7d418`
+- sha256 (`lf-normalised`): `ecbec4e82ae6b1fa1d082f22db01cc231d99703414fa21a4b8da66083a829560`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0483
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/twentysecond/claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/twentysecond/claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### Documents and data: `omega_engine_education/documentation/005_oegenong/levels/level_19_round_r1_cancellation.md`
@@ -109,14 +123,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
 - cited in: node.source
 - counts toward the grade: no
-
-### External sources
-
-Named by the node; not in this repository and not checked here.
-
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::cost`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::excess`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::plain`
 
 ## Absences recorded by the TFQ records
 

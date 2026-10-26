@@ -10,7 +10,7 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `DEFINITION`. Evidence gra
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
+- counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 18
 - distinct cited Lean declarations covered by a current replay receipt: 18
 - counted in-repo runnable tests: 0
@@ -119,6 +119,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
+- sha256 (`lf-normalised`): `0dde974e14ff1b54ff6e65705a1194aea38fad7e65bf77b159a07ea1b96bb9a5`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
+- sha256 (`lf-normalised`): `a4a7d840b11e912896032aebc9ead95f7978c0e6f60656f44645c6d8fadf593b`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md](../../../dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md)
@@ -151,20 +165,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0392 (shared)
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
 ### Documents and data: `omega_engine_product_planning_office/architecture_review/06_genesis_native_route.md`
 
 - file: `omega_engine_product_planning_office/architecture_review/06_genesis_native_route.md`
@@ -174,17 +174,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0361 lean4: missing declaration obligation: a literal inscription type in 000_pre_genesis_to_mssn/lean4/Paper.lean, which was opened and does not declare that token
-- TFQ-0361 python: missing obligation: a typed token constructor in 000_pre_genesis_to_mssn/code/preservation.py that stores literal <> without turning it into an empty word or a carrier
+- TFQ-0361 lean4: missing declaration obligation: a literal inscription type in pregenesis_to_minimal_symbol_systems/lean4/Paper.lean, which was opened and does not declare that token
+- TFQ-0361 python: missing obligation: a typed token constructor in pregenesis_to_minimal_symbol_systems/code/preservation.py that stores literal <> without turning it into an empty word or a carrier
 - TFQ-0361 rust: missing obligation: a host token in omega_ooutwire_primitives that rejects equating <> with an admitted ground
-- TFQ-0361 rust: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/token.rs
-- TFQ-0362 lean4: missing declaration obligation: a four-constructor host condition in 000_pre_genesis_to_mssn/lean4/Paper.lean matching ledger row WDP-P000-001
+- TFQ-0361 rust: no local rust twin located for atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/token.rs
+- TFQ-0362 lean4: missing declaration obligation: a four-constructor host condition in pregenesis_to_minimal_symbol_systems/lean4/Paper.lean matching ledger row WDP-P000-001
 - TFQ-0362 python: missing obligation: four-way classifier beside preservation.report_factor for absent payload, empty word, literal <>, and admitted ground
-- TFQ-0362 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/preservation.py
+- TFQ-0362 python: no local python twin located for atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/preservation.py
 - TFQ-0362 rust: missing obligation: an enum in crate pre_mssn_preservation with those four host conditions
-- TFQ-0362 rust: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs
-- TFQ-0392 lean4: missing declaration obligation: no arrow in 000_pre_genesis_to_mssn/lean4/Paper.lean from a literal inscription to a coproduct root
-- TFQ-0392 python: missing obligation: a negative check that no function in 000_pre_genesis_to_mssn/code/preservation.py sends literal <> to a two-channel coproduct
+- TFQ-0362 rust: no local rust twin located for atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs
+- TFQ-0392 lean4: missing declaration obligation: no arrow in pregenesis_to_minimal_symbol_systems/lean4/Paper.lean from a literal inscription to a coproduct root
+- TFQ-0392 python: missing obligation: a negative check that no function in pregenesis_to_minimal_symbol_systems/code/preservation.py sends literal <> to a two-channel coproduct
 - TFQ-0392 rust: missing obligation: a refused conversion in omega_ooutwire_primitives from the inscription token to a Difference-Structure value
 
 ## Routes

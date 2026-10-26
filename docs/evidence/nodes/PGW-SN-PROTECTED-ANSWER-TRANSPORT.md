@@ -10,7 +10,7 @@ Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `OPEN`. Evidence grade: **E3**. 
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
+- counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 27
 - distinct cited Lean declarations covered by a current replay receipt: 26
 - counted in-repo runnable tests: 0
@@ -32,7 +32,7 @@ The canonical retraction-induced transport, counterpart count, k-step commuting-
 
 ## Source status
 
-000_pre_genesis_to_mssn paper.md section 7 S(6) row; 002_oesn level_06; CampaignSnProtectedAnswerTransport.lean
+pregenesis_to_minimal_symbol_systems paper.md section 7 S(6) row; 002_oesn level_06; CampaignSnProtectedAnswerTransport.lean
 
 ## Review
 
@@ -94,10 +94,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
+- sha256 (`lf-normalised`): `a4a7d840b11e912896032aebc9ead95f7978c0e6f60656f44645c6d8fadf593b`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md](../../../dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md)
-- sha256 (`lf-normalised`): `1003e5183618f5d990aa29345d1e3d39a3ed3581e367aac57ba4809fb535755e`
+- sha256 (`lf-normalised`): `2c1badbc0ff1d2b3b8387d954b0c4141ecd8f13d3b9f7e1642ebce5840140f79`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0519
 - counts toward the grade: no
@@ -108,13 +115,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `af28444b874d2ff50ab0c4ae25109401d610a2f8b694ba97873b2b171b012412`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
 
 ### Documents and data: `omega_engine_education/documentation/002_oesn/levels/level_06_tower_extension_retraction.md`
 

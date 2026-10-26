@@ -490,7 +490,7 @@ def main() -> int:
     w("")
     w("### The QM and other papers (`omega_engine_atlas/coda_atlas/F004_papers/**`)")
     w("")
-    fam = [n for n in groups if n.startswith("omega_engine_atlas/coda_atlas/F004_papers")]
+    fam = [n for n in groups if n.startswith("omega_engine_atlas/coda_atlas/papers")]
     blocked = [n for n in fam if verdict(groups[n])[0] == "NOT YET SAFE"]
     removed_fam = [n for n in fam if verdict(groups[n])[0] == "ALREADY REMOVED"]
     blocker_kinds = collections.Counter()

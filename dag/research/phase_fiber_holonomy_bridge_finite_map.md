@@ -1,6 +1,6 @@
 # QM-207 Phase Fiber and the Finite Multi-Report Holonomy Bridge
 
-**Scope:** research note for `006_finite_qm`; not part of the manuscript, not a claim promotion.
+**Scope:** research note for `finite_quantum_mechanics`; not part of the manuscript, not a claim promotion.
 **Code:** `python/finite_qm/use_cases/holonomy_bridge_control.py`, tests in `tests/e2e/test_e2e_holonomy_bridge_control.py`.
 **Status marks used:** PROVED (argument given here, finite and checkable), COMPUTED (exact arithmetic in a cyclotomic field, replayable), IMPORTED (added structure that nothing finite here produces), CONJECTURED (none in this note).
 
@@ -56,7 +56,7 @@ COMPUTED: `gauge_orbit_census` enumerates all 3⁵ cochains on the control carri
 Everything in Section 4 is exact for every conductor N. Two limits separate the finite data from U(1).
 
 - Algebraic direct limit: the union of all μ_N is the torsion group Q/Z, and the union of all Q(ζ_N) is the maximal abelian extension of Q. Every statement of Section 4 holds at each finite stage and passes to this union without any completion. PROVED (each stage is finite; the union is a directed union of groups).
-- Metric completion: with the circle metric d(x, y) = min_k |x − y − k|, the Cauchy completion of Q/Z is R/Z ≅ U(1), and Q/Z is dense in it. IMPORTED: this step uses the completeness of the reals. No construction in this package or in the `007_finite_to_continuum` code builds the completion; they check finite interval enclosures or name completion as a hypothesis (gap register GAP-F001-S000-002, GAP-F001-S000-005).
+- Metric completion: with the circle metric d(x, y) = min_k |x − y − k|, the Cauchy completion of Q/Z is R/Z ≅ U(1), and Q/Z is dense in it. IMPORTED: this step uses the completeness of the reals. No construction in this package or in the `finite_to_continuum` code builds the completion; they check finite interval enclosures or name completion as a hypothesis (gap register GAP-F001-S000-002, GAP-F001-S000-005).
 
 So QM-207 = (finite cyclic transition-cycle invariants in Hom(H₁, μ_N), exact) + (Cauchy completion Q/Z → R/Z, imported) + (the fiber itself, imported). The completion step is an import and is reported as one.
 

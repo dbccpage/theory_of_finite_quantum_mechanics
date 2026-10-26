@@ -736,7 +736,7 @@ contract-relevant predicate despite a demonstrated split fiber.
   Brain Sciences, 3(3), 417-457.
   [DOI](https://doi.org/10.1017/S0140525X00005756)
 - Carroll, J. H. (2026). PO-000 authorization boundary source, local
-  replay binding in `002_projection_obstruction/000_projection_obstruction`.
+  replay binding in `projection_obstruction/projection_obstruction_paper`.
 - Carroll, J. H. (2026). `19L57G1@sealed-derivation-v1`
   (`3100c4ed5ce70d2b6cff6d2ccd3b0251cf918d0a`), cited as a sealed
   mechanical verification record only.

@@ -41,7 +41,7 @@ In accordance with strict constructive principles:
 - `missing obligation: the H3V7N5QF package holds no Rust`
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/xry/explore.py::explore` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/xry/explore.py::explore`](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/xry/explore.py)
 
 ---
 
@@ -54,6 +54,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md:44`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md:82`
+  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md:44`
+  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md:82`
   - `omega_engine_education/documentation/005_oegenong/levels/level_07_graph_reachability_closure.md:33`

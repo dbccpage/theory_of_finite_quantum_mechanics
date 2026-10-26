@@ -88,7 +88,7 @@ Module `lean4/Discrete4DBianchiSpectralContraction.lean` (source monorepo; not s
 
 ## 4. Synthesis & Epistemic Alignment Matrix
 
-| Evaluation Dimension | OpenAI Reference (`family_266_mub6`) | Omega Engine Estate (`omega_engine_atlas/coda_atlas/F004_papers/010_mub6/`) |
+| Evaluation Dimension | OpenAI Reference (`family_266_mub6`) | Omega Engine Estate (`sources/atlas/papers/mub6/`) |
 | :--- | :--- | :--- |
 | **Bound $N(6) \le 5$** | Formalized statement in `MUBSix.lean` (`theorem fourier_and_family_bound`). | Admitted as external cited input under `BRIDGE-MUB6-COVERAGE` pending full Lean kernel replay. |
 | **Fourier Vanishing** | Exact rational Nullstellensatz certificates ($g(H, \pi(\alpha)) = 0$ for $H \not\sim T$) verified by `verify.py`. | Fully consistent with estate exact cyclotomic/rational evaluations; reproduces 20/20 symbolic zero checks on affine families. |

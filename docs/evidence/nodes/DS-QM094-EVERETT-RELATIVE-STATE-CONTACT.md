@@ -32,7 +32,7 @@ Checked on fixed exact matrices natively. The cited Lean has scalar identities o
 
 ## Source status
 
-QCE-C1..C12 Everett relative-state reduced-density record-overlap formula (off-diagonal c0*c1*r vanishing at r=0), Pythagorean isometric child-branch norm conservation, and global swap observable distinguishability vs diagonal collapse (4 != 2) mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
+QCE-C1..C12 Everett relative-state reduced-density record-overlap formula (off-diagonal c0*c1*r vanishing at r=0), Pythagorean isometric child-branch norm conservation, and global swap observable distinguishability vs diagonal collapse (4 != 2) mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics
 
 ## Review
 
@@ -77,9 +77,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
-### Rust: `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs`
+### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs)
+- file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust
 
@@ -106,7 +106,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0276 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm
+- TFQ-0276 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
 
 ## Routes
 

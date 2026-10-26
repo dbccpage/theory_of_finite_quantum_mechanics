@@ -93,7 +93,7 @@ CUSTODY_TESTS = (
     "tests/legacy/unit/test_gap_register.py",
     "tests/legacy/unit/test_cochain.py",
 )
-PACKAGE_PATH = ("omega_engine_atlas", "coda_atlas", "F004_papers", "006_finite_qm")
+PACKAGE_PATH = ("omega_engine_atlas", "coda_atlas", "papers", "finite_quantum_mechanics")
 _ORIGINAL_MANUSCRIPTS = 67
 _PYTEST_TIMEOUT = 180
 

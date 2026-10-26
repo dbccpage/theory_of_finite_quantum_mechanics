@@ -17,7 +17,7 @@ The standalone manuscript `qm_041_heisenberg_picture_shadow.md` is retired as an
    - Decoherence functional: `omega_functional::decoherence::DecoherenceFunctional`.
    - Heisenberg observable evolution: `omega_quantum_physics::heisenberg_picture`.
    - Integration tests: `tests/omega_quantum_physics/representation/heisenberg_picture_shadow.rs`.
-4. **Consolidated Claim Tracking:** [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (IDs `041:QM_041-C1` through `041:QM_041-C4`).
+4. **Consolidated Claim Tracking:** [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (IDs `041:QM_041-C1` through `041:QM_041-C4`).
 
 ---
 
@@ -70,4 +70,4 @@ $$
 | `QM_041-C1` (Decoherence matrix diagonal non-negativity) | Merged | [`qm_043_gellmann_hartle_cochain_decoherence.md`](qm_043_gellmann_hartle_cochain_decoherence.md) (`QM_043-C2`) |
 | `QM_041-C2` (Vanishing off-diagonal gives sum rule additivity) | Refined & Merged | [`qm_043_gellmann_hartle_cochain_decoherence.md`](qm_043_gellmann_hartle_cochain_decoherence.md) (Weak vs. Medium decoherence) |
 | `QM_041-C3` (Heisenberg equation $\dot{A} = i[H, A]$) | Retained in Dynamics | [`qm_034_unitary_finite_shadow.md`](qm_034_unitary_finite_shadow.md); `heisenberg_picture_shadow.rs` |
-| `QM_041-C4` (Quarantine of continuum master equations) | Preserved Scope Fence | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
+| `QM_041-C4` (Quarantine of continuum master equations) | Preserved Scope Fence | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |

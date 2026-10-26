@@ -1,6 +1,6 @@
 # Change Log — The Problem of the Fermion Sign: From Genesis to the Hamiltonian GIN Index
 
-**Paper Key:** `002_projection_obstruction/023_fermion_sign_and_computational_hardness`  
+**Paper Key:** `projection_obstruction/023_fermion_sign_and_computational_hardness`  
 **Monograph File:** `the_problem_of_the_fermion_sign.md`  
 **AuthorityEffect:** None  
 

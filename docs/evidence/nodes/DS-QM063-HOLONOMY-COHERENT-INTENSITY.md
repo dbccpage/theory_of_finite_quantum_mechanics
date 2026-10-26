@@ -32,7 +32,7 @@ Lean states the two-path identity |z1 + z2|^2 = |z1|^2 + |z2|^2 + 2 Re(conj(z1) 
 
 ## Source status
 
-QCS-C2 two-path coherent intensity identity, vertex gauge invariance, QCS-C4 3-edge spanning-tree gauge triviality, and QCS-C9 L1 non-factorization mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
+QCS-C2 two-path coherent intensity identity, vertex gauge invariance, QCS-C4 3-edge spanning-tree gauge triviality, and QCS-C9 L1 non-factorization mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics
 
 ## Review
 
@@ -99,9 +99,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
-### Rust: `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs`
+### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs)
+- file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust
 
@@ -136,9 +136,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0091 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/holonomy_bridge_control.py
+- TFQ-0091 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/holonomy_bridge_control.py
 - TFQ-0091 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
-- TFQ-0254 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm
+- TFQ-0254 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
 
 ## Routes
 

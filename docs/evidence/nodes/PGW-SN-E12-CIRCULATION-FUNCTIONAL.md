@@ -10,7 +10,7 @@ Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
+- counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
@@ -32,7 +32,7 @@ Lean covers the criterion over ℤ; the rational case is the same written argume
 
 ## Source status
 
-000_pre_genesis_to_mssn paper.md section 17.2 and lean4/Cochain.lean; 002_oesn levels/level_12 (E12)
+pregenesis_to_minimal_symbol_systems paper.md section 17.2 and lean4/Cochain.lean; 002_oesn levels/level_12 (E12)
 
 ## Review
 
@@ -58,19 +58,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
+- sha256 (`lf-normalised`): `a4a7d840b11e912896032aebc9ead95f7978c0e6f60656f44645c6d8fadf593b`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0523_sn_e12_circulation_functional.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0523_sn_e12_circulation_functional.md](../../../dag/derivations/05_mssn_sn/tfq_0523_sn_e12_circulation_functional.md)
-- sha256 (`lf-normalised`): `589dbafe098714b0ef8ee2c000c83ab47806aaf026498c6a0fa0e8cdcd6d235c`
+- sha256 (`lf-normalised`): `4f55a96e5e4fc8c34ca04e890b61b032528b0aa11e368da89a75d3cb389b6465`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0523
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### Documents and data: `omega_engine_education/documentation/002_oesn/levels/level_12_observer_stack_dda.md`

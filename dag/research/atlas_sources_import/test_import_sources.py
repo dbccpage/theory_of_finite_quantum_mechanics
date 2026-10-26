@@ -33,7 +33,7 @@ def test_exact_copy_and_provenance(tmp_path, optimized):
     root, source, row = fixture(tmp_path)
     result = run(root, [row], optimized)
     assert result.returncode == 0, result.stderr
-    assert (root / 'sources/atlas/F004_papers/family/source.lean').read_bytes() == source.read_bytes()
+    assert (root / 'sources/atlas/papers/family/source.lean').read_bytes() == source.read_bytes()
     entry = json.loads((root / 'sources/atlas/PROVENANCE.json').read_text())['files'][0]
     assert entry['sha256'] == entry['in_repo_sha256'] == row['git_sha256']
 
@@ -290,7 +290,7 @@ def planner_fixture(tmp_path, planner):
         directory.mkdir()
     for repository in (root, sibling):
         git_fixture(repository, 'init', '--quiet')
-    family = '008_fsp'
+    family = 'fermion_sign_problem'
     original = planner.PREFIX + family + '/code/sample.py'
     historical = sibling / original
     historical.parent.mkdir(parents=True)
@@ -344,7 +344,7 @@ def test_planner_exact_git_custody_and_outcomes(tmp_path, planner, twin, restore
 def test_planner_invalid_inputs_refuse(tmp_path, planner, fault):
     config, inventory, copy, _ = planner_fixture(tmp_path, planner)
     if fault == 'escape':
-        inventory['paths'][0]['path'] = planner.PREFIX + '008_fsp/../../outside'
+        inventory['paths'][0]['path'] = planner.PREFIX + 'fermion_sign_problem/../../outside'
     elif fault == 'duplicate':
         inventory['paths'] *= 2
     elif fault == 'empty':

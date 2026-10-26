@@ -30,7 +30,7 @@ document_id: "QM_033"
 version: "v1.0.0"
 status: "READY_FOR_AUTHOR_REVIEW"
 authority_effect: "None"
-claim_ledger: "../006_finite_qm/finite_quantum_mechanics_source_notes.md#1123-discrete-schrodinger-cochain-transport-qm_033"
+claim_ledger: "../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1123-discrete-schrodinger-cochain-transport-qm_033"
 change_log: "absorbed into source notes §11.23"
 
 QM_033 — Discrete Schrödinger Cochain Transport and Squared Euclidean Norm Conservation
@@ -115,7 +115,7 @@ The representation of $\psi(t)$ as a vector in a continuous Hilbert space $\math
 1. **What it supports**: Proves conservation of $\sum_v|\psi_v|^2=\|\psi\|_2^2$ for Hermitian $H$, and gauge invariance of the cycle phase sum.
 2. **What it does not support**: Does not derive continuous space or Hilbert space containers without observer projections.
 3. **The narrowest defensible claim**: Hermitian 0-cochain graph matrices generate probability-conserving discrete Schrödinger transport.
-4. **The next test needed**: Formalize in `omega_engine/lean4/research_programs/003_quantum_foundations/003_qm_schrodinger_discrete_cochain.lean`.
+4. **The next test needed**: Formalize in `omega_engine/lean4/research_programs/quantum_foundations/003_qm_schrodinger_discrete_cochain.lean`.
 
 
 <!-- claim-id-body-index:begin -->

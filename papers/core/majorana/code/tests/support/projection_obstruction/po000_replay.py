@@ -76,13 +76,13 @@ from omega_engine.crates.projection_obstruction.worked_examples import (
 def _resolve_package_root() -> Path:
     here = Path(__file__).resolve()
     for p in [here.parent, *here.parents]:
-        if (p / "000_projection_obstruction.md").exists() and (p / "code").is_dir():
+        if (p / "projection_obstruction_paper.md").exists() and (p / "code").is_dir():
             return p
         published = (
             p
             / "published"
             / "004_projection_obstruction"
-            / "000_projection_obstruction"
+            / "projection_obstruction_paper"
         )
         if published.is_dir():
             return published
@@ -148,11 +148,11 @@ def publication_hashes(package_root: Path = PACKAGE_ROOT) -> dict[str, str]:
 
     publication_root = package_root
     names = (
-        "000_projection_obstruction.md",
+        "projection_obstruction_paper.md",
         "000_projection_obstruction_claim_ledger.md",
         "000_projection_obstruction_change_log.md",
-        "000_projection_obstruction.pdf",
-        "000_projection_obstruction.tex",
+        "projection_obstruction_paper.pdf",
+        "projection_obstruction_paper.tex",
         "PO000_ENVIRONMENT_RECEIPT.json",
         "PO000_REPRODUCTION_REQUIREMENTS.txt",
         "PO000_LEAN_axiom_report.txt",
@@ -658,7 +658,7 @@ def _scope_fence_receipt(package_root: Path) -> ClaimEvidence:
     guide = (
         guide_file.read_text(encoding="utf-8").lower()
         if guide_file.exists()
-        else ((package_root / "000_projection_obstruction.md").read_text(encoding="utf-8").lower() if (package_root / "000_projection_obstruction.md").exists() else "")
+        else ((package_root / "projection_obstruction_paper.md").read_text(encoding="utf-8").lower() if (package_root / "projection_obstruction_paper.md").exists() else "")
     )
     required_fragments = (
         "authorityeffect: none",

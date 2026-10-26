@@ -32,7 +32,7 @@ This node records that no derivation of M_n(C) exists here; that is not a theore
 
 ## Source status
 
-QM-122-C31..C37 eight-extra finish table (3 derived, 4 conditional, 1 false), Z\[i\] two-mode mixing weight-doubling identity, swapI unitary norm preservation outside real permutations, and 2x2=4 reversible dilation classification mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
+QM-122-C31..C37 eight-extra finish table (3 derived, 4 conditional, 1 false), Z\[i\] two-mode mixing weight-doubling identity, swapI unitary norm preservation outside real permutations, and 2x2=4 reversible dilation classification mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics
 
 ## Review
 
@@ -106,9 +106,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
-### Rust: `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs`
+### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs)
+- file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust
 
@@ -142,7 +142,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0311 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/_code/qm_122/qm122_lib/qm122_dual.py
+- TFQ-0311 python: no local python twin located for sources/atlas/papers/quantum_foundations/_code/qm_122/qm122_lib/qm122_dual.py
 
 ## Routes
 

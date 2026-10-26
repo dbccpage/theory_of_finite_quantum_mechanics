@@ -78,15 +78,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1013_fq_five_import_proxy_separation.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1013_fq_five_import_proxy_separation.md](../../../dag/derivations/12_finite_qm_structure/tfq_1013_fq_five_import_proxy_separation.md)
-- sha256 (`lf-normalised`): `8f0c5be15f8c165b845d054f75adb96be2bd131ecb77dca165d412e69f9c869a`
+- sha256 (`lf-normalised`): `23e57744adbb9b2f3ab6aa8112dd2391a2521a53e1589dcf5ac2a15d1cd5cd1e`
 - generated view: listed, not counted
 - cited in: record TFQ-1013
 - counts toward the grade: no
 
-### Documents and data: `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md`
+### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md](../../../sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md)
-- sha256 (`lf-normalised`): `5e43f206b08726fd4b27888d6fed3f211aac8398d5f8bf3dce712c415d7d81cc`
+- file: [sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
 

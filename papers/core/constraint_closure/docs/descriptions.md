@@ -1,7 +1,7 @@
 # Component & Architecture Descriptions: Paper GR-002
 
-**Paper ID:** `004_general_relativity/002_constraint_closure_and_the_l1structure_of_physical_law`
-**Series:** `004_general_relativity`
+**Paper ID:** `general_relativity/constraint_closure_and_the_l1_structure_of_physical_law`
+**Series:** `general_relativity`
 **Version:** v1.2.0
 
 ---

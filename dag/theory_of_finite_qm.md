@@ -1204,7 +1204,7 @@ Obligation: A finite host token for literal <> stays distinct from an absent pay
   - `omega_engine_atlas/coda_atlas/F000_finite/floor.yaml`
   - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/README.md`
 
-Historical ledger row WDP-P000-001, read in 000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md, separates absent input, the empty word, literal <>, and an admitted ground. The same four-row table is in opened Pre-Genesis paper.md section 1 and Genesis paper.md section 1. An absent option payload is not an object-level empty word, and a grammar start need not accept that empty word. The finite statement still required is four distinct host conditions with an explicit premise that the host can represent absence. Later code must not collapse those four rows into one carrier.
+Historical ledger row WDP-P000-001, read in genesis/code/fixtures/historical_claim_ledger.md, separates absent input, the empty word, literal <>, and an admitted ground. The same four-row table is in opened Pre-Genesis paper.md section 1 and Genesis paper.md section 1. An absent option payload is not an object-level empty word, and a grammar start need not accept that empty word. The finite statement still required is four distinct host conditions with an explicit premise that the host can represent absence. Later code must not collapse those four rows into one carrier.
 
 Obligation: Absent input, empty word, literal <>, and admitted ground remain four host conditions, each with what has not followed.
 
@@ -1256,7 +1256,7 @@ Obligation: Equal profiles yield no separating function of the collapsed quotien
 - Atlas paths:
   - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch05_descent_versus_selected_representatives.md`
 
-Opened PreMssn.history_report_criterion in 000_pre_genesis_to_mssn/lean4/Paper.lean says a question factors through the report image exactly when it is constant on report fibers, and the file header says Classical.choice is used for arbitrary report images. history_factor_unique is the companion declaration. DAG node PG-HISTORY-REPORT-CRITERION and ledger rows WDP-P000-005 and WDP-P001-018 record that image-restricted criterion. The finite statement still required is to keep the choice-using direction for unlisted images separate from a listed population.
+Opened PreMssn.history_report_criterion in pregenesis_to_minimal_symbol_systems/lean4/Paper.lean says a question factors through the report image exactly when it is constant on report fibers, and the file header says Classical.choice is used for arbitrary report images. history_factor_unique is the companion declaration. DAG node PG-HISTORY-REPORT-CRITERION and ledger rows WDP-P000-005 and WDP-P001-018 record that image-restricted criterion. The finite statement still required is to keep the choice-using direction for unlisted images separate from a listed population.
 
 Obligation: A question over histories factors through the realized report image exactly when it is constant on report fibers, and the factor is unique on that image.
 
@@ -1269,7 +1269,7 @@ Obligation: A question over histories factors through the realized report image 
 - Atlas paths:
   - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch05_descent_versus_selected_representatives.md`
 
-PG-PREGEN-CONSTRUCTIVE-SUMMARY names a choice-free listed-history criterion, with declarations recon_of_fiberConstant and fiberConstant_of_recon. The reading note says draft work for that node is not counted on main. The education path cited by the DAG was not opened, and 000_pre_genesis_to_mssn/lean4 has no ListedHistorySummary file in the directory listing. Opened Paper.lean still uses Classical.choose for arbitrary images. The finite statement still required is a choice-free first-match reconstruction whose domain is an explicit finite list of histories, with unlisted populations left outside that statement.
+PG-PREGEN-CONSTRUCTIVE-SUMMARY names a choice-free listed-history criterion, with declarations recon_of_fiberConstant and fiberConstant_of_recon. The reading note says draft work for that node is not counted on main. The education path cited by the DAG was not opened, and pregenesis_to_minimal_symbol_systems/lean4 has no ListedHistorySummary file in the directory listing. Opened Paper.lean still uses Classical.choose for arbitrary images. The finite statement still required is a choice-free first-match reconstruction whose domain is an explicit finite list of histories, with unlisted populations left outside that statement.
 
 Obligation: For an explicit finite list of histories, fiber constancy and first-match reconstruction match, with no use of choice, and unlisted populations stay outside.
 
@@ -1282,7 +1282,7 @@ Obligation: For an explicit finite list of histories, fiber constancy and first-
 - Atlas paths:
   - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch02_primitive_difference_and_finite_carrier.md`
 
-Pre-Genesis paper.md section 6, which was opened, separates S(n), alphabet size k, grammar profile p, atlas target MSS-m, homology degree H_j, and coverage length. Ledger row WDP-P001-001 in 001_sn_mssn/paper_claim_ledger.md says native stages, alphabet indices, profiles, atlas rows, and homological degrees differ, and that the crosswalk does not derive every row. The finite statement still required is that a shared numeral, such as 2 in S(2) and MSS-2, does not identify those objects.
+Pre-Genesis paper.md section 6, which was opened, separates S(n), alphabet size k, grammar profile p, atlas target MSS-m, homology degree H_j, and coverage length. Ledger row WDP-P001-001 in symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md says native stages, alphabet indices, profiles, atlas rows, and homological degrees differ, and that the crosswalk does not derive every row. The finite statement still required is that a shared numeral, such as 2 in S(2) and MSS-2, does not identify those objects.
 
 Obligation: S(n), alphabet size, grammar profile, MSS target, and homology degree remain different quantities even when their numerals coincide.
 
@@ -2822,7 +2822,7 @@ Obligation: Check the C4 certificate with exact rationals: primal residual norm,
 - Status: `SOURCE_RECORD`
 - Coda atlas: `F000.S000`
 
-Package 001_sn_mssn is the active manuscript from admitted distinctions to S(n) and MSS-N. Its README says it combines former education 000_sn, 000_mssn, and corrected 001_pregenesis_through_mssn, and that it separates declared architecture from implementation evidence. Ledger row WDP-P001-001 is a definition: native stages, alphabet indices, profiles, atlas rows, and homological degrees differ, and the crosswalk does not derive every row. WDP-P001-002 records finite demand cardinality s_next = s - d + b, with a discharged subset and disjoint births required.
+Package symmetric_groups_and_minimal_symbol_systems is the active manuscript from admitted distinctions to S(n) and MSS-N. Its README says it combines former education 000_sn, 000_mssn, and corrected 001_pregenesis_through_mssn, and that it separates declared architecture from implementation evidence. Ledger row WDP-P001-001 is a definition: native stages, alphabet indices, profiles, atlas rows, and homological degrees differ, and the crosswalk does not derive every row. WDP-P001-002 records finite demand cardinality s_next = s - d + b, with a discharged subset and disjoint births required.
 
 Obligation: Account finite demand by s_next = s - d + b only when the discharged subset and disjoint-birth hypotheses are supplied.
 
@@ -2833,7 +2833,7 @@ Obligation: Account finite demand by s_next = s - d + b only when the discharged
 - Status: `SOURCE_RECORD`
 - Coda atlas: `F000.S000`
 
-WDP-P001-004 records that a supplied binary tag can separate one collapsed pair and retain the old report. Finding tags and satisfying many conflicts are separate questions. The DAG node PG-REFINE-SEPARATES points at the same Pre-Genesis section and at Paper001.lean symbol supplied_tag_separates. WDP-P001-003 is a negative boundary: the displayed seven-entry survivor sequence is a chosen ledger example, not a native law. Grammar files sn.ebnf and mssn.ebnf sit under 001_sn_mssn/code/grammar, and WDP-P001-014 says the MSS grammar has 22 listed public starts, which is not 22 completed semantic adapters.
+WDP-P001-004 records that a supplied binary tag can separate one collapsed pair and retain the old report. Finding tags and satisfying many conflicts are separate questions. The DAG node PG-REFINE-SEPARATES points at the same Pre-Genesis section and at Paper001.lean symbol supplied_tag_separates. WDP-P001-003 is a negative boundary: the displayed seven-entry survivor sequence is a chosen ledger example, not a native law. Grammar files sn.ebnf and mssn.ebnf sit under symmetric_groups_and_minimal_symbol_systems/code/grammar, and WDP-P001-014 says the MSS grammar has 22 listed public starts, which is not 22 completed semantic adapters.
 
 Obligation: Let one supplied binary tag separate one collapsed pair, and keep the seven-entry survivor sequence and the 22 grammar starts from becoming laws.
 
@@ -6063,7 +6063,7 @@ Obligation: Do not let a 12-decimal print authorize beta0 or the Creutz identity
 - Atlas paths:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
 
-lattice_dirac_doubling.rs declares a Euclidean Clifford family, a period N at least 3, and a rational Wilson coefficient r. The naive operator is the symmetric difference with gamma_mu, and its symbol i sum gamma_mu sin k_mu vanishes at corners k in {0, pi}^d. For even N and periodic boundaries, naive_species_count is 2^d before spin multiplicity. The file states that these counts are computed on declared lattices and that no continuum limit is taken. Carrier dimension above 128 is refused. No matching Python use case was found under 006_finite_qm/python, and FiniteQM.lean has no lattice Dirac theorem. Narrowed in Lean 4 and an independent Python verifier to four exact finite/algebraic components and non-equivalence fences: (1) Euclidean Clifford algebra generators gamma1, gamma2, gamma5 over Z[i] satisfying gamma_a^2 = I_2 and {gamma_a, gamma_b} = 0 (euclidean_clifford_anticommutator_relations); (2) 1D symmetric difference zero-velocity modes at k in {0, pi}, even-vs-odd period periodicity on an N-cycle, and 2^d naive species count (2, 4, 8, 16 for d = 1..4) on even-N periodic lattices (naive_symmetric_difference_vanishes_at_zero_and_pi_modes, even_vs_odd_period_pi_mode_periodicity, naive_species_count_values_1d_to_4d); (3) rational Wilson corner mass shift m + 2*r*c lifting all c >= 1 doubler corners for r > 0 and the MAX_CARRIER_DIMENSION = 128 admission guard (wilson_term_lifts_nonzero_pi_corners, wilson_critical_mass_selects_corner_shell, carrier_dimension_admission_guard_128); and (4) explicit chiral symmetry breaking {w I_2, gamma5} != 0 for w != 0 and no-continuum-limit scope fences (wilson_scalar_mass_breaks_gamma5_anticommutativity_fence, finite_brillouin_grid_cardinality_fence, tfq0026_tri_language_replay_scope_ledger_fence).
+lattice_dirac_doubling.rs declares a Euclidean Clifford family, a period N at least 3, and a rational Wilson coefficient r. The naive operator is the symmetric difference with gamma_mu, and its symbol i sum gamma_mu sin k_mu vanishes at corners k in {0, pi}^d. For even N and periodic boundaries, naive_species_count is 2^d before spin multiplicity. The file states that these counts are computed on declared lattices and that no continuum limit is taken. Carrier dimension above 128 is refused. No matching Python use case was found under finite_quantum_mechanics/python, and FiniteQM.lean has no lattice Dirac theorem. Narrowed in Lean 4 and an independent Python verifier to four exact finite/algebraic components and non-equivalence fences: (1) Euclidean Clifford algebra generators gamma1, gamma2, gamma5 over Z[i] satisfying gamma_a^2 = I_2 and {gamma_a, gamma_b} = 0 (euclidean_clifford_anticommutator_relations); (2) 1D symmetric difference zero-velocity modes at k in {0, pi}, even-vs-odd period periodicity on an N-cycle, and 2^d naive species count (2, 4, 8, 16 for d = 1..4) on even-N periodic lattices (naive_symmetric_difference_vanishes_at_zero_and_pi_modes, even_vs_odd_period_pi_mode_periodicity, naive_species_count_values_1d_to_4d); (3) rational Wilson corner mass shift m + 2*r*c lifting all c >= 1 doubler corners for r > 0 and the MAX_CARRIER_DIMENSION = 128 admission guard (wilson_term_lifts_nonzero_pi_corners, wilson_critical_mass_selects_corner_shell, carrier_dimension_admission_guard_128); and (4) explicit chiral symmetry breaking {w I_2, gamma5} != 0 for w != 0 and no-continuum-limit scope fences (wilson_scalar_mass_breaks_gamma5_anticommutativity_fence, finite_brillouin_grid_cardinality_fence, tfq0026_tri_language_replay_scope_ledger_fence).
 
 Obligation: Add Python and Lean replays of the declared doubling count, or leave the obstruction as Rust-only.
 
@@ -6274,7 +6274,7 @@ Obligation: Keep the Z2 many-body benchmark off the SU(3) Wilson claim.
 - Atlas paths:
   - `omega_engine_atlas/coda_atlas/F002_continuum/S001_continuum_finite_shadow_bridge/shelf.yaml`
 
-ravera_dfm_finite_to_continuum.rs evaluates evaluate_su3_spanning_tree_vs_landau_gribov_control on CarrierGraph::diamond with five explicit block links over Q(i), checks a non-abelian commutator, and dresses every spanning tree, and it counts diagonal Klein-four copies. Lean su3_diagonal_klein_four_landau_gribov_copies and spanning_tree_dfm_eliminates_gribov_copies treat the copy count 4^3=64 and a tree identity for rational, not matrix, link variables. No Python twin of this function was found under 006_finite_qm/python. The module title uses continuum language; that title is not a bridge theorem.
+ravera_dfm_finite_to_continuum.rs evaluates evaluate_su3_spanning_tree_vs_landau_gribov_control on CarrierGraph::diamond with five explicit block links over Q(i), checks a non-abelian commutator, and dresses every spanning tree, and it counts diagonal Klein-four copies. Lean su3_diagonal_klein_four_landau_gribov_copies and spanning_tree_dfm_eliminates_gribov_copies treat the copy count 4^3=64 and a tree identity for rational, not matrix, link variables. No Python twin of this function was found under finite_quantum_mechanics/python. The module title uses continuum language; that title is not a bridge theorem.
 
 Obligation: Supply a Python replay or keep the Gribov diamond as Rust plus a Lean rational shadow.
 
@@ -8221,7 +8221,7 @@ Obligation: Record differing sentences side by side and do not select one by tes
   - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime`
   - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime`
 
-A claim ledger row is not a proof. The finite-quantum claim map defines ceilings, and it says source Lean is an evidence locus rather than an atlas-package proof. The 006_finite_qm header says a mapped test supports only a finite fixture and unreceipted Lean remains source. MathematicalClaim is a static catalog of ids and module names, and the file says the catalog does not recompute a proof or admit a claim. F003 may store a row id in the witness field. That stores the row; it does not make the row the finite statement the triple still has to name.
+A claim ledger row is not a proof. The finite-quantum claim map defines ceilings, and it says source Lean is an evidence locus rather than an atlas-package proof. The finite_quantum_mechanics header says a mapped test supports only a finite fixture and unreceipted Lean remains source. MathematicalClaim is a static catalog of ids and module names, and the file says the catalog does not recompute a proof or admit a claim. F003 may store a row id in the witness field. That stores the row; it does not make the row the finite statement the triple still has to name.
 
 Obligation: Bind a ledger row as an index and never as a stand-in for a proof.
 
@@ -8476,9 +8476,9 @@ Obligation: Use OPEN_OBLIGATION, SOURCE_RECORD, or GAP in the spirit of the grap
   - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime`
   - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime`
 
-The 006_finite_qm deposit is a corpus the runtime may cite, not a discharge the engine performs. The directory holds a claim ledger, a gap register, and Python, Lean, and native notes, with AuthorityEffect None in the ledger header. Its evidence note limits a mapped test to a finite fixture. F001.S000 coordinates the atlas reconstruction, while this paper directory is an F004 corpus beside it. Prime custody can store the corpus path in the source-locus field. Storing the path does not copy every row into an accepted triple, and it does not change the inert pre-genesis mark.
+The finite_quantum_mechanics deposit is a corpus the runtime may cite, not a discharge the engine performs. The directory holds a claim ledger, a gap register, and Python, Lean, and native notes, with AuthorityEffect None in the ledger header. Its evidence note limits a mapped test to a finite fixture. F001.S000 coordinates the atlas reconstruction, while this paper directory is an F004 corpus beside it. Prime custody can store the corpus path in the source-locus field. Storing the path does not copy every row into an accepted triple, and it does not change the inert pre-genesis mark.
 
-Obligation: Cite 006_finite_qm as corpus material without discharging its rows by path alone.
+Obligation: Cite finite_quantum_mechanics as corpus material without discharging its rows by path alone.
 
 ### TFQ-0231 Python runtime landings are surveys
 
