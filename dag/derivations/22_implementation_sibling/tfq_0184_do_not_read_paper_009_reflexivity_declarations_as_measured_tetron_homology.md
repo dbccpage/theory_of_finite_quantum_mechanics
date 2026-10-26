@@ -10,6 +10,8 @@
 
 Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap.
 
+The paragraph above stays the open reading. A later Nat module, `lean4/CampaignTfq0184CubicCount.lean`, checks a narrower count and does not discharge that reading. For every natural number n, n * n * n is at most n * n * n. For every natural number n at least 1, twice the cube equals (n - 1) * n * (2 * n - 1) plus n * (3 * n - 1), that first product is strictly below twice the cube, and the gap n * (3 * n - 1) is at least 2. At n = 4 the cube is 64, the sum 1 * 1 + 2 * 2 + 3 * 3 is 14, the quotient (3 * 4 * (2 * 4 - 1)) / 6 is 14, and 14 is strictly below 64. Status stays OPEN.
+
 ### Governing Obligation
 Do not read paper 009 reflexivity declarations as measured tetron homology.
 
@@ -37,6 +39,15 @@ In accordance with strict constructive principles:
   - `CampaignTfq0184ImplementationSibling.majorana_evaluator_is_companion_control_not_gap_closure_fence`
   - `CampaignTfq0184ImplementationSibling.wdp_carrier_manifest_homology_conversion_fence`
   - `CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence`
+- `lean4/CampaignTfq0184CubicCount.lean` (narrower Nat count; does not discharge the open reading above):
+  - `CampaignTfq0184CubicCount.cubicReflexivity`
+  - `CampaignTfq0184CubicCount.eliminationSplit`
+  - `CampaignTfq0184CubicCount.gapAtLeastTwo`
+  - `CampaignTfq0184CubicCount.eliminationBelowTwiceCube`
+  - `CampaignTfq0184CubicCount.fourCube`
+  - `CampaignTfq0184CubicCount.fourSumOfSquares`
+  - `CampaignTfq0184CubicCount.fourClosedForm`
+  - `CampaignTfq0184CubicCount.fourCountBelowCube`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `code/rust/src/wdp/lib.rs`:

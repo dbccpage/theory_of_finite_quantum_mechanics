@@ -1510,3 +1510,7 @@ lean_lib CampaignL1OrthogonalAdditivity where
 -- Reviewed campaign module; non-default target.
 lean_lib CampaignFqGapTensorUniqueness where
   roots := #[`CampaignFqGapTensorUniqueness]
+
+-- TFQ-0184 cubic count. Non-default target.
+lean_lib CampaignTfq0184CubicCount where
+  roots := #[`CampaignTfq0184CubicCount]
