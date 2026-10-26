@@ -3,7 +3,7 @@
 A proof section is the part of a Markdown file under papers/ that starts at a line
 "DAG node: `ID`" (one or more backticked node ids) and runs to the next heading or the next such
 line. It must contain a paragraph opening with "*Proof.*", and every Lean reference written as
-`lean4/<file>.lean::<name>` in it must resolve in this checkout.
+`lean4/<file>.lean::<name>` (or a `.lean` file under papers/) in it must resolve in this checkout.
 
 A PROVED_PROSE node has a prose proof by definition (its cited source is one). A PROVED_LEAN or
 COMPUTATIONALLY_CHECKED node has one when a proof section names it. Run this file to print the
@@ -23,7 +23,7 @@ PROOF_STATUSES = ("PROVED_LEAN", "PROVED_PROSE", "COMPUTATIONALLY_CHECKED")
 _NODE_LINE = re.compile(r"^DAG nodes?: (.+)$")
 _HEADING = re.compile(r"^#{1,6} ")
 _TICKED = re.compile(r"`([^`]+)`")
-_LEAN_REF = re.compile(r"`(lean4/[^`:]+\.lean)::([^`]+)`")
+_LEAN_REF = re.compile(r"`((?:lean4|papers)/[^`:]+\.lean)::([^`]+)`")
 
 
 def load_nodes(root: Path = ROOT) -> dict[str, dict]:
