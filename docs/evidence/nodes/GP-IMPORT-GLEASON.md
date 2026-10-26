@@ -4,15 +4,15 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 ## Statement
 
-> Uniqueness of the Born quadratic form at dimension n \>= 3 needs Gleason-type hypotheses (noncontextuality, sigma-additivity, continuity). On the two-label host the dimension extra already fails; the weaker unit-effect contract has two disagreeing pairings (4 versus 1 on the false-indicator at amplitudes (2,1)).
+> On the two-label host, 2 \< 3 and 3 ≤ 2 fails, and no three pairwise distinct labels exist. Amplitudes 2 on the false label and 1 on the true label have squared weights 4 and 1. The unit effect pairs both readout orders with 5. The false-indicator pairs as 4 in the direct order and as 1 after swapping the effect.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 5
-- distinct cited Lean declarations covered by a current replay receipt: 5
+- counted in-repo evidence files: 1
+- cited Lean, Rust or Python symbols found in their in-repo files: 12
+- distinct cited Lean declarations covered by a current replay receipt: 6
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -29,7 +29,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Necessity of Gleason uniqueness is OPEN; only rival-readout exclusions (quartic under scale-2 frame additivity) are proved.
+Uniqueness of the Born quadratic form for dimension at least 3, under noncontextuality, sigma-additivity and continuity, stays imported. The two-label disagreements do not refute that uniqueness under those hypotheses. Quartic readout under scale-2 frame additivity stays outside this slice.
 
 ## Source status
 
@@ -37,73 +37,38 @@ imported (OracleNeeded firewall, GTOC-8)
 
 ## Review
 
-- PFP review: [dag/results/GP-IMPORT-GLEASON/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-GLEASON/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
-  - narrowest claim: Exact unit-contract rivals and frame quartic obstruction arrays, with general quadratic/quartic frame identities in Lean.
-  - does not support: Prove uniqueness only after admitting the full intended Gleason/frame hypotheses and dimension. These counterexamples do not refute Gleason under its hypotheses.
-  - next test: Prove uniqueness only after admitting the full intended Gleason/frame hypotheses and dimension. These counterexamples do not refute Gleason under its hypotheses.
+- PFP review: [dag/results/GP-IMPORT-GLEASON/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-GLEASON/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_two_label_pairing_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+  - narrowest claim: On the two-label host, 2 \< 3 and 3 ≤ 2 fails, and no three pairwise distinct labels exist. Amplitudes 2 on the false label and 1 on the true label have squared weights 4 and 1. The unit effect pairs both readout orders with 5. The false-indicator pairs as 4 in the direct order and as 1 after swapping the effect.
+  - does not support: Uniqueness of the Born quadratic form for dimension at least 3 under noncontextuality, sigma-additivity and continuity, or a refutation of that uniqueness.
+  - next test: Admit the Gleason hypotheses and a host with at least three labels before treating Born uniqueness as derived.
 
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/DerivationDagQMClosure.lean`
+### Lean: `lean4/CampaignGpImportGleason.lean`
 
-- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
-- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
-- cited in: node.lean, record TFQ-1031
+- file: [lean4/CampaignGpImportGleason.lean](../../../lean4/CampaignGpImportGleason.lean)
+- sha256 (`bytes`): `13a68c5bb1a92476960aa77de7ef1dd8dfe1a912ebc9ebb325fab5c1bbffa06a`
+- cited in: node.lean, receipt dag/research/campaign_gp-import-gleason_lean_replay.json (CampaignGpImportGleason), record TFQ-1031
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build DerivationDagQMClosure`
+  - receipt [dag/research/campaign_gp-import-gleason_lean_replay.json](../../../dag/research/campaign_gp-import-gleason_lean_replay.json) (module `CampaignGpImportGleason`): recorded sha256 `13a68c5bb1a92476960aa77de7ef1dd8dfe1a912ebc9ebb325fab5c1bbffa06a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignGpImportGleason`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/H013FrameAdditivity.lean`
-
-- file: [lean4/H013FrameAdditivity.lean](../../../lean4/H013FrameAdditivity.lean)
-- sha256 (`bytes`): `626dd1c874e5a1add3f02cb81f5f535c17637c2f55fdffa12a094b1c34f928a8`
-- cited in: node.lean, record TFQ-1031
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `H013FrameAdditivity`): recorded sha256 `626dd1c874e5a1add3f02cb81f5f535c17637c2f55fdffa12a094b1c34f928a8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build H013FrameAdditivity`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `fourth_power_dies_under_frame_additivity` | yes | yes | yes | propext | `#print axioms fourth_power_dies_under_frame_additivity` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/H013SameContract.lean`
-
-- file: [lean4/H013SameContract.lean](../../../lean4/H013SameContract.lean)
-- sha256 (`bytes`): `47568af5eaa40e031525b641574866c3044176756fb245b6084c96711e8bcca8`
-- cited in: node.lean, record TFQ-1031
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `H013SameContract`): recorded sha256 `47568af5eaa40e031525b641574866c3044176756fb245b6084c96711e8bcca8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H013SameContract`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `two_effect_rules_share_unit_total_and_disagree` | yes | yes | yes | Quot.sound, propext | `#print axioms two_effect_rules_share_unit_total_and_disagree` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/H017Gleason.lean`
-
-- file: [lean4/H017Gleason.lean](../../../lean4/H017Gleason.lean)
-- sha256 (`bytes`): `ceef94bcf70d76a392949b8a9f07a8be3de52fd51f86960f494c3c58bcc95837`
-- cited in: node.lean, record TFQ-1031
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H017Gleason`): recorded sha256 `ceef94bcf70d76a392949b8a9f07a8be3de52fd51f86960f494c3c58bcc95837` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build H017Gleason`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `gleason_pack_uniqueness_still_imported` | yes | yes | yes | none | `#print axioms gleason_pack_uniqueness_still_imported` |
-| `two_label_host_not_gleason_dimension` | yes | yes | yes | none | `#print axioms two_label_host_not_gleason_dimension` |
+| `CampaignGpImportGleason.dimensionExtraFails` | yes | yes | yes | none | `#print axioms CampaignGpImportGleason.dimensionExtraFails` |
+| `CampaignGpImportGleason.falseIndicatorDisagrees` | yes | yes | yes | none | `#print axioms CampaignGpImportGleason.falseIndicatorDisagrees` |
+| `CampaignGpImportGleason.noThreeDistinctLabels` | yes | yes | yes | none | `#print axioms CampaignGpImportGleason.noThreeDistinctLabels` |
+| `CampaignGpImportGleason.squaredWeights` | yes | yes | yes | none | `#print axioms CampaignGpImportGleason.squaredWeights` |
+| `CampaignGpImportGleason.twoLabelsBelowThree` | yes | yes | yes | none | `#print axioms CampaignGpImportGleason.twoLabelsBelowThree` |
+| `CampaignGpImportGleason.unitPairingsAgree` | yes | yes | yes | none | `#print axioms CampaignGpImportGleason.unitPairingsAgree` |
+| `dimensionExtraFails` | yes | yes | yes | none | `#print axioms dimensionExtraFails` |
+| `falseIndicatorDisagrees` | yes | yes | yes | none | `#print axioms falseIndicatorDisagrees` |
+| `noThreeDistinctLabels` | yes | yes | yes | none | `#print axioms noThreeDistinctLabels` |
+| `squaredWeights` | yes | yes | yes | none | `#print axioms squaredWeights` |
+| `twoLabelsBelowThree` | yes | yes | yes | none | `#print axioms twoLabelsBelowThree` |
+| `unitPairingsAgree` | yes | yes | yes | none | `#print axioms unitPairingsAgree` |
 
 - counts toward the grade: yes
 
@@ -117,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1031_gp_import_gleason.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1031_gp_import_gleason.md](../../../dag/derivations/08_l1_to_l2/tfq_1031_gp_import_gleason.md)
-- sha256 (`lf-normalised`): `8595fafb4d5ac5b8f30f0e58366c1bb9f52b1ae1d7decdc3340bcb3e84e06e16`
+- sha256 (`lf-normalised`): `a91bd8a6b227bb738181b77c091de89fe44d578efa6229d26d244f8615b94771`
 - generated view: listed, not counted
 - cited in: record TFQ-1031
 - counts toward the grade: no
