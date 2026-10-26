@@ -158,3 +158,34 @@ def test_same_byte_control_symlinks_refused(sealed, tmp_path, control):
     path.symlink_to(retained)
     with pytest.raises(ValueError, match="symlink or junction"):
         module.verify(sealed, archive)
+
+
+def test_valid_alternative_deflate_encoding(sealed, tmp_path):
+    archive = tmp_path / "portable.zip"
+    with zipfile.ZipFile(ROOT / "mub6_publication.zip") as source, zipfile.ZipFile(archive, "w") as target:
+        for info in source.infolist():
+            target.writestr(info, source.read(info), compresslevel=1)
+    assert archive.read_bytes() != (ROOT / "mub6_publication.zip").read_bytes()
+    archive.with_suffix(".zip.sha256").write_text(
+        f"{hashlib.sha256(archive.read_bytes()).hexdigest()}  {archive.name}\n", encoding="utf-8")
+    module.verify(sealed, archive)
+
+
+@pytest.mark.parametrize("change", ["order", "timestamp", "comment", "extra"])
+def test_resealed_archive_metadata_refused(sealed, tmp_path, change):
+    archive = tmp_path / "altered.zip"
+    with zipfile.ZipFile(ROOT / "mub6_publication.zip") as source, zipfile.ZipFile(archive, "w") as target:
+        members = source.infolist()
+        if change == "order":
+            members.reverse()
+        for index, info in enumerate(members):
+            data = source.read(info)
+            if index == 0:
+                if change == "timestamp": info.date_time = (2026, 10, 17, 12, 0, 0)
+                if change == "comment": info.comment = b"unexpected"
+                if change == "extra": info.extra = b"\xfe\xca\x00\x00"
+            target.writestr(info, data)
+    archive.with_suffix(".zip.sha256").write_text(
+        f"{hashlib.sha256(archive.read_bytes()).hexdigest()}  {archive.name}\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="Noncanonical complete archive bytes"):
+        module.verify(sealed, archive)

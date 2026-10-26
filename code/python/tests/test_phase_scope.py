@@ -62,3 +62,25 @@ class PhaseScopeTests(unittest.TestCase):
     def test_custody(self):self._inventory('custody')
 if __name__=='__main__':unittest.main()
 
+
+
+def test_bounded_text_and_symlink_escape(tmp_path):
+    import pytest
+    for value in ["1e1000000000", "1.5", "1_000", 1 << 1024, Q(1, 1 << 1024)]:
+        with pytest.raises(ValueError):
+            evaluate("weights", [value, 1, 2, 3])
+    root = tmp_path / "root"
+    root.mkdir()
+    outside = tmp_path / "outside"
+    outside.write_text("outside root", encoding="utf-8")
+    link = root / "escape"
+    link.symlink_to(outside)
+    with pytest.raises(ValueError, match="escapes"):
+        evaluate("custody", ["escape"], root)
+    with pytest.raises(ValueError, match="regular file"):
+        evaluate("corpus", ["."], root)
+    oversized = root / "oversized"
+    with oversized.open("wb") as stream:
+        stream.truncate((16 << 20) + 1)
+    with pytest.raises(ValueError, match="16 MiB"):
+        evaluate("corpus", ["oversized"], root)

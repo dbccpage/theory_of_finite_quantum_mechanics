@@ -7,8 +7,10 @@ import io
 import json
 import re
 import stat
+import struct
 import sys
 import zipfile
+import zlib
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "code"))
@@ -36,6 +38,55 @@ def canonical_archive(root: Path, names: set[str], publication_date: str) -> byt
             info.compress_type = zipfile.ZIP_DEFLATED
             target.writestr(info, safe_path(root, name).read_bytes())
     return buffer.getvalue()
+
+
+def verify_archive_envelope(raw: bytes, members: list[zipfile.ZipInfo], publication_date: str) -> None:
+    """Check the complete ZIP32 envelope without assuming a zlib encoder version.
+
+    DEFLATE has multiple valid encodings. The sidecar binds the actual archive;
+    member SHA-256 checks bind its decoded bytes. This checks the publication's
+    fixed metadata and contiguous layout, including local/central agreement.
+    """
+    def require(condition: bool) -> None:
+        if not condition:
+            raise ValueError("Noncanonical complete archive bytes")
+
+    require(len(raw) >= 22)
+    end = struct.unpack("<4s4H2LH", raw[-22:])
+    signature, disk, directory_disk, on_disk, total, directory_size, directory_at, comment = end
+    require(signature == b"PK\x05\x06" and disk == directory_disk == comment == 0)
+    require(on_disk == total == len(members) and directory_at + directory_size == len(raw) - 22)
+    stamp = (*map(int, publication_date.split("-")), 12, 0, 0)
+    year, month, day, hour, minute, second = stamp
+    dos_time = (hour << 11) | (minute << 5) | (second // 2)
+    dos_date = ((year - 1980) << 9) | (month << 5) | day
+    require([m.filename for m in members] == sorted(m.filename for m in members))
+    local_at, central_at = 0, directory_at
+    for member in members:
+        name = member.filename.encode("utf-8")
+        flags = 0 if name.isascii() else 0x800
+        require(member.date_time == stamp and member.header_offset == local_at)
+        require(member.create_system == 3 and member.create_version == member.extract_version == 20)
+        require(member.flag_bits == flags and member.compress_type == zipfile.ZIP_DEFLATED)
+        require(member.external_attr == 0o100644 << 16 and member.internal_attr == 0)
+        require(member.extra == member.comment == b"" and member.volume == 0)
+        local = struct.pack("<4s5H3L2H", b"PK\x03\x04", 20, flags, 8, dos_time, dos_date,
+                            member.CRC, member.compress_size, member.file_size, len(name), 0) + name
+        require(raw[local_at:local_at + len(local)] == local)
+        data_at = local_at + len(local)
+        local_at = data_at + member.compress_size
+        require(local_at <= directory_at)
+        decoder = zlib.decompressobj(-15)
+        decoded = decoder.decompress(raw[data_at:local_at], member.file_size + 1)
+        require(len(decoded) == member.file_size and decoder.eof
+                and not decoder.unused_data and not decoder.unconsumed_tail)
+        central = struct.pack("<4s6H3L5H2L", b"PK\x01\x02", (3 << 8) | 20, 20, flags, 8,
+                              dos_time, dos_date, member.CRC, member.compress_size,
+                              member.file_size, len(name), 0, 0, 0, 0,
+                              0o100644 << 16, member.header_offset) + name
+        require(raw[central_at:central_at + len(central)] == central)
+        central_at += len(central)
+    require(local_at == directory_at and central_at == len(raw) - 22)
 
 
 def verify(root: Path, archive: Path | None = None) -> None:
@@ -113,8 +164,7 @@ def verify(root: Path, archive: Path | None = None) -> None:
                     raise ValueError("Nonregular archive member")
                 if hashlib.sha256(z.read(member)).hexdigest() != sha(path):
                     raise ValueError(f"Archive member mismatch: {member.filename}")
-        if archive.read_bytes() != canonical_archive(root, actual, meta["publication_date"]):
-            raise ValueError("Noncanonical complete archive bytes")
+        verify_archive_envelope(archive.read_bytes(), members, meta["publication_date"])
         if dict(read_manifest(root, root / "sha256sums")) != sums or any(
             sha(safe_path(root, name)) != expected for name, expected in sums.items()
         ):
@@ -132,7 +182,7 @@ def main() -> int:
     args = parser.parse_args()
     try:
         verify(args.root, args.archive)
-    except (OSError, ValueError, KeyError, TypeError, zipfile.BadZipFile) as exc:
+    except (OSError, ValueError, KeyError, TypeError, zipfile.BadZipFile, zlib.error) as exc:
         print(f"FAIL: {exc}", file=sys.stderr)
         return 1
     return 0

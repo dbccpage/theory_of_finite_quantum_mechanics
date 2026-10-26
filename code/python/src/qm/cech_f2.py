@@ -5,9 +5,18 @@ adjustments are distinct matrices. No floating Pauli check is used.
 """
 from itertools import combinations
 
+def _binary_matrix(rows, columns):
+    if type(columns) is not int or columns < 0:
+        raise ValueError('nonnegative integer column count required')
+    if type(rows) not in (list, tuple) or any(type(r) not in (list, tuple) for r in rows):
+        raise ValueError('binary rectangular matrix required')
+    a = [list(r) for r in rows]
+    if any(len(r) != columns or any(type(x) is not int or x not in (0, 1) for x in r) for r in a):
+        raise ValueError('binary rectangular matrix required')
+    return a
+
 def rank(rows,columns):
-    a=[list(r) for r in rows]
-    if any(len(r)!=columns or any(type(x) is not int or x not in (0,1) for x in r) for r in a):raise ValueError('binary rectangular matrix required')
+    a=_binary_matrix(rows,columns)
     k=0
     for j in range(columns):
         i=next((i for i in range(k,len(a)) if a[i][j]),None)
@@ -19,6 +28,9 @@ def rank(rows,columns):
     return k
 
 def solve(rows,rhs,n):
+    rows=_binary_matrix(rows,n)
+    if type(rhs) not in (list, tuple) or len(rhs)!=len(rows) or any(type(b) is not int or b not in (0,1) for b in rhs):
+        raise ValueError('one binary right-hand side per row required')
     a=[r+[b] for r,b in zip(rows,rhs)];pivots=[];k=0
     for j in range(n):
         i=next((i for i in range(k,len(a)) if a[i][j]),None)

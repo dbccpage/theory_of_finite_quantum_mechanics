@@ -131,8 +131,8 @@ def test_origin_resolves_in_repo() -> None:
 _MUTANTS: tuple[tuple[str, str, str], ...] = (
     (
         "float entry admitted",
-        "if isinstance(value, float):",
-        "if isinstance(value, float):\n        return Fraction(0)\n    if False:",
+        "if issubclass(type(value), float):",
+        "if issubclass(type(value), float):\n        return Fraction(0)\n    if False:",
     ),
     (
         "boolean entry admitted",
@@ -232,8 +232,11 @@ def test_mutation_suite_kills_non_equivalent_mutants() -> None:
             assert count == 1, f"{name} matched {count} sites"
             module_name = f"mutant_packet_protocol_{index}"
             loaded.append(module_name)
+            mutated = source.replace(old, new, 1)
+            # Invalid Python is not a behavioral mutation kill.
+            compile(mutated, module_name + ".py", "exec")
             try:
-                namespace = _load_source(source.replace(old, new, 1), module_name)
+                namespace = _load_source(mutated, module_name)
                 survived = _oracle(namespace)
             except Exception:
                 survived = False

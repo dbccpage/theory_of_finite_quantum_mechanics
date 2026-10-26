@@ -10,7 +10,7 @@ from pathlib import Path
 import yaml
 
 PAPER = Path(__file__).resolve().parents[2]
-ENTRYPOINT = Path("python/src/qm/entrypoints/review_estate.py")
+ENTRYPOINT = Path("python/src/qm/review_estate.py")
 
 
 def test_tracked_release_outputs_cannot_enter_catalog_cycle(tmp_path: Path) -> None:

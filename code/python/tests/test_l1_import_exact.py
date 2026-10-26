@@ -48,3 +48,39 @@ for row in rows:
 
 if __name__ == '__main__':
     unittest.main()
+
+
+def test_bounded_rational_grammar_and_exact_arity():
+    from fractions import Fraction
+    import pytest
+    class FractionOverride(Fraction):
+        @property
+        def numerator(self):
+            raise AssertionError("untrusted scalar method executed")
+    for value in ["1e1000000000", "1.25", "1_000", "1/0", 1 << 1024, Fraction(1, 1 << 1024)]:
+        with pytest.raises((ValueError, ZeroDivisionError)):
+            m.evaluate("edge", [value, 2, 3, 4])
+    with pytest.raises(TypeError):
+        m.evaluate("edge", [FractionOverride(1), 2, 3, 4])
+    for kind, values in [("circle", []), ("circle", [2, 3]), ("kkt", [1] * 11),
+                         ("quotient", [1] * 10), ("mass", []), ("unknown", [])]:
+        with pytest.raises(ValueError):
+            m.evaluate(kind, values)
+    assert m.evaluate("edge", ["3/5", "4/5", 1, 1])[:2] == ["3/5", "4/5"]
+
+
+def test_domain_checks_survive_optimization():
+    import subprocess
+    script = f"""
+import importlib.util
+spec = importlib.util.spec_from_file_location('subject', {str(ROOT / 'code/python/src/qm/l1_import_exact.py')!r})
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+for kind, values in [('circle', [5]), ('time', [0]), ('hilbert', [9]), ('dilation', [2, 0, -1])]:
+    try:
+        module.evaluate(kind, values)
+    except ValueError:
+        continue
+    raise SystemExit('invalid domain admitted under -O: ' + kind)
+"""
+    subprocess.run([sys.executable, "-I", "-O", "-c", script], check=True, capture_output=True, text=True)

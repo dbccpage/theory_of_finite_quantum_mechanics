@@ -25,7 +25,7 @@ from math import gcd, lcm
 from pathlib import Path
 from typing import Any, Mapping
 
-_DATA_DIR = Path(__file__).resolve().parent.parent / "qm" / "data"
+_DATA_DIR = Path(__file__).resolve().parent.parent / "qm"
 
 
 class EntropyKernelError(ValueError):

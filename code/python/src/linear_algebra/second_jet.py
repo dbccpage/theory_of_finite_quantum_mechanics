@@ -1,6 +1,6 @@
 """Second-order jet of one rational quadratic in two variables.
 
-Origin: papers/derivations/mub6/artifacts/knowledge/observation_quartic_overlap_secant_failure.md,
+Origin: papers/core/mub6/documentation/observation_quartic_overlap_secant_failure.md,
 which states that the midpoint secant identity holds strictly for quadratic
 polynomials and that a degree-4 overlap has a non-vanishing second-order remainder.
 Claim: urn:omega:fqm:linear-algebra:second-jet:v1

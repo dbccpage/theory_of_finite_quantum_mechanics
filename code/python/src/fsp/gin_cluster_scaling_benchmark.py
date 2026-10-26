@@ -7,11 +7,11 @@ involution-symmetric sector of 2D Hubbard lattices (L x L >= 16 x 16,
 N = 256 to 1024 sites).
 
 Strict Claim Hygiene:
-1. What it supports: Demonstrates that inverted posting list indexing of
-   spectator modes scales as O(log M) / set-intersection time for partner
-   retrieval, yielding substantial speedups (50x - 1000x) over naive O(M)
-   linear scans, and certifies exact destructive sign cancellation
-   W(C) sgn(C) + W(C') sgn(C') = 0 on cluster updates.
+1. What it supports: Measures posting-list lookup and linear scan on generated
+   pairs with matching binary floating-point weights and opposite signs.
+   Cancellation is checked to tolerance 1e-12. Timings depend on the host and
+   dataset; no fixed speedup or logarithmic worst-case bound is established.
+   Posting intersections can visit all configurations in an unselective case.
 2. What it does not support: This benchmark does NOT solve the generic
    fermion sign problem for non-bipartite or frustrated lattices (Troyer-Wiese
    NP-hard fence). It applies exclusively to the involution-symmetric sector
@@ -128,8 +128,6 @@ class GinClusterPostingIndex:
                 return set()
             candidates = set(first_list)
             for m in sorted_req[1:]:
-                if len(candidates) <= 1:
-                    break
                 candidates.intersection_update(self.posting_index.get(m, ()))
                 if not candidates:
                     return set()
@@ -146,7 +144,7 @@ class GinClusterPostingIndex:
         cfg_id: int,
         cluster_modes: Set[int],
     ) -> Optional[int]:
-        """Finds involution partner via GIN inverted posting list intersection in O(log M) / set time."""
+        """Finds a partner by posting intersections followed by a full occupation check."""
         current = self.cfg_modes.get(cfg_id)
         if current is None:
             return None

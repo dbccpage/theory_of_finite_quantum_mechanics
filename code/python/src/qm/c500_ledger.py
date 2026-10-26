@@ -1,7 +1,26 @@
 """Source-bound original-target ledger; source status is not a discharge proof."""
 import copy
+
+def _mapping(value, fields, role):
+    if type(value) is not dict or not fields <= value.keys():
+        raise ValueError(f'{role}: mapping with required fields expected')
+    return value
+
+def _records(value, fields, role):
+    if type(value) not in (list, tuple):
+        raise ValueError(f'{role}: record sequence required')
+    for row in value:
+        _mapping(row, fields, role)
+        if type(row['id']) is not str or not row['id']:
+            raise ValueError(f'{role}: nonempty text id required')
+    return value
+
 def summarize(block):
-    review,gap=block['review'],block['gap'];targets=review['targets'];scores=review['scores']
+    block=_mapping(block,{'review','gap'},'block')
+    review=_mapping(block['review'],{'targets','scores','block','launch_preconditions','supported_scope'},'review')
+    gap=_mapping(block['gap'],{'open_or_invalid_bet_clauses','unresolved_targets','status','resolution'},'gap')
+    targets=_records(review['targets'],{'id','plan_target_satisfied','action','required_exit_evidence'},'targets')
+    scores=_records(review['scores'],{'id','resolution'},'scores')
     if not targets or len({t['id'] for t in targets})!=len(targets):raise ValueError('distinct target records required')
     if len({c['id'] for c in scores})!=len(scores) or any(c['resolution'] not in ('SCOPED_EVIDENCE','OPEN','INVALID') for c in scores):raise ValueError('actual distinct reviewed clauses required')
     if any(type(t['plan_target_satisfied']) is not bool or not t['action'] or not t['required_exit_evidence'] for t in targets):raise ValueError('typed original target contract required')

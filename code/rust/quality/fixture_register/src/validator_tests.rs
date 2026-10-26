@@ -386,9 +386,10 @@ fn actual_register_custody_does_not_promote_fixtures() {
         .ancestors()
         .find(|p| p.join("SCORING.md").is_file() && p.join("scripts/contract_scores.py").is_file())
         .expect("repository markers");
-    let raw =
-        std::fs::read(root.join("code/rust/src/tests/omega_mub/fixture_receipt_register.json"))
-            .unwrap();
+    let raw = std::fs::read(
+        root.join("code/rust/src/tests/omega_mub/fixture_receipt_register_current.json"),
+    )
+    .unwrap();
     let register = parse_register(&raw).unwrap();
     let observations = verify_register(root, &register).unwrap();
     assert_eq!(observations.len(), register.len());
@@ -397,5 +398,85 @@ fn actual_register_custody_does_not_promote_fixtures() {
         "FIXTURE_CUSTODY {}",
         json!({"AuthorityEffect":"None","kind":"fixture-only","entries":observations.len(),"bytes":bytes,
         "observations":observations.iter().map(|v|json!({"recorded_path":v.recorded_path(),"resolved_path":v.resolved_path(),"sha256":v.sha256(),"bytes":v.bytes()})).collect::<Vec<_>>()})
+    );
+}
+
+#[test]
+fn annotated_receipts_preserve_history_and_fixture_status() {
+    let root = Path::new(env!("CARGO_MANIFEST_DIR"))
+        .ancestors()
+        .find(|p| p.join("SCORING.md").is_file())
+        .unwrap();
+    let directory = root.join("code/rust/src/tests/omega_mub");
+    let history = std::fs::read(directory.join("fixture_receipt_register.json")).unwrap();
+    let current = std::fs::read(directory.join("fixture_receipt_register_current.json")).unwrap();
+    let transitions: Value = serde_json::from_slice(
+        &std::fs::read(directory.join("fixture_receipt_transitions.json")).unwrap(),
+    )
+    .unwrap();
+    assert_eq!(transitions["authority_effect"], "None");
+    assert_eq!(
+        format!("{:x}", Sha256::digest(&history)),
+        transitions["historical_register_sha256"]
+    );
+    assert_eq!(
+        format!("{:x}", Sha256::digest(&current)),
+        transitions["current_register_sha256"]
+    );
+    // Historical custody must still refuse the corrected current bytes.
+    let historical = parse_register(&history).unwrap();
+    assert!(matches!(
+        verify_register(root, &historical).unwrap_err().cause,
+        ReceiptError::DigestMismatch { .. }
+    ));
+    let original: Value = serde_json::from_slice(&history).unwrap();
+    let mut updated: Value = serde_json::from_slice(&current).unwrap();
+    let changes = transitions["transitions"].as_array().unwrap();
+    assert_eq!(changes.len(), 4);
+    let mut seen = HashSet::new();
+    for change in changes {
+        let path = change["path"].as_str().unwrap();
+        assert!(seen.insert(path));
+        verify_receipt(root, path, change["after_sha256"].as_str().unwrap()).unwrap();
+        let snapshot = change["historical_snapshot"].as_str().unwrap();
+        verify_receipt(root, snapshot, change["before_sha256"].as_str().unwrap()).unwrap();
+        let mut annotated: Value =
+            serde_json::from_slice(&std::fs::read(root.join(path)).unwrap()).unwrap();
+        let old: Value =
+            serde_json::from_slice(&std::fs::read(root.join(snapshot)).unwrap()).unwrap();
+        let fields = change["added_fields"].as_object().unwrap();
+        assert_eq!(fields.len(), 3);
+        assert!(fields["certificate_status"]
+            .as_str()
+            .unwrap()
+            .starts_with("NOT_A_CERTIFICATE:"));
+        for key in [
+            "certificate_status",
+            "certificate_status_corrected",
+            "certificate_status_note",
+        ] {
+            assert!(old.get(key).is_none());
+            assert_eq!(
+                annotated.as_object_mut().unwrap().remove(key).unwrap(),
+                fields[key]
+            );
+        }
+        assert_eq!(
+            annotated, old,
+            "only the documented warning fields may change"
+        );
+        let record = updated["fixtures"]
+            .as_array_mut()
+            .unwrap()
+            .iter_mut()
+            .find(|r| relocate(r["path"].as_str().unwrap()) == path)
+            .unwrap();
+        assert_eq!(record["sha256"], change["after_sha256"]);
+        record["sha256"] = change["before_sha256"].clone();
+    }
+    updated["description"] = original["description"].clone();
+    assert_eq!(
+        updated, original,
+        "fixture classification and all other records are preserved"
     );
 }
