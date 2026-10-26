@@ -4,7 +4,7 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 
 ## Statement
 
-> For amplitudes 1 and 2, quadratic numerators are 1 and 4 with sum 5, and quartic numerators are 1 and 16 with sum 17. Both pairs are positive. The products 1*17 and 1*5 differ, and the separate Fraction audit confirms that the normalized first weights 1/5 and 1/17 differ. For equal amplitudes 1 and 1, quadratic numerators are 1 and 1 with sum 2, and quartic numerators are 1 and 1 with sum 2.
+> Primitive difference does not select the declared quantum model or readout. Direct packet-walk execution is an integration result: the complexes, Cayley parameter, cyclotomic weights, detector and squared-amplitude readout were supplied independently of the computed difference value.
 
 ## Grade
 
@@ -36,7 +36,7 @@ Selection of a declared quantum model or readout from primitive difference stays
 
 ## Review
 
-- PFP review: [dag/results/FQ-PRIM-TO-QM-SELECTION-OPEN/reviews/20261019_structure_audit/review_result.json](../../../dag/results/FQ-PRIM-TO-QM-SELECTION-OPEN/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-PRIM-TO-QM-SELECTION-OPEN/reviews/20261019_structure_audit/review_result.json](../../../dag/results/FQ-PRIM-TO-QM-SELECTION-OPEN/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: Identical two-label input carrier and amplitudes admit distinct positive normalized quadratic and quartic rules, with a symmetric agreement control; the 1:2 example is checked in Lean.
   - does not support: Derive a quantum carrier/readout selection principle and its hypotheses. Full continuum matrix/Hilbert/Gleason imports are not discharged by executing a declared packet walk.
   - next test: Derive a quantum carrier/readout selection principle and its hypotheses. Full continuum matrix/Hilbert/Gleason imports are not discharged by executing a declared packet walk.
@@ -133,7 +133,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md](../../../dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md)
-- sha256 (`lf-normalised`): `f226064407c7d048c31df49c62ce58f791e02504666aeb3891cf009eacda5a2c`
+- sha256 (`lf-normalised`): `bde446c51de07ce3778a7c040788c724926479fa89c425f337bcda84d945d7f6`
 - generated view: listed, not counted
 - cited in: record TFQ-1010
 - counts toward the grade: no

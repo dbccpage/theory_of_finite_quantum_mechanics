@@ -10,7 +10,7 @@
 
 ## 1. Abstract & Formal Statement
 
-For a Gaussian integer a+bi, the product (1+i)*(a+bi) equals (a-b)+(a+b)i and differs from the real unit, and (a+bi)*(1+i) differs from the real unit. The matrix with entries 0, 1, 1, 1 in row-major order has each diagonal entry equal to its own conjugate and each off-diagonal entry equal to the conjugate of the other, and it sends a column (x, y) to (y, x+y). When (x, y) differs from the zero column, (y, x+y) differs from lam*(x, y) for each Gaussian integer lam.
+Complex numbers as a complete field. On the finite report host only Z[i] (Gaussian integers) is available: 1+i has no inverse, and a self-adjoint Gauss-integer matrix need not have a Gauss-integer eigenvalue.
 
 ### Governing Obligation
 The example rules out Gaussian-integer eigenpairs for this one matrix. A spectral theorem after extending scalars to a complete complex field, and a derivation or selection of that field from primitive difference, remain imported. This obstruction does not prove that completion or the complex numbers are uniquely necessary; the cyclotomic ring Z[zeta_n] remains a recorded discrete substitute.

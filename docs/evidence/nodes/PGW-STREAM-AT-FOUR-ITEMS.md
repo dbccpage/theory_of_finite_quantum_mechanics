@@ -4,7 +4,7 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `OPEN`. Evidence grade: **E3**. 
 
 ## Statement
 
-> Narrowed in Lean 4 to one refusal pair and one search flag. A refusal at item count 3 is a refusal at 3 and is not a refusal at 4. A reply at item count 4 may refuse, and a reply at item count 4 may accept. With the short-circuit flag set, a target at 4 after a refusal at 3 is not searched, while the target at 3 is searched. With the flag clear, the target at 4 is searched. The retained minima, the refusal census, the guard-stopped frontier, and the four-item stream computation stay open.
+> Challenge 1, the stream as a response, is OPEN with scoped finite results only: no retained V1 minimum of 1680 carries a datum, 32 of them were selected at three items, all fourteen recorded refusal situations are answered at exactly three items, and two new first refusals appear. 1039 nodes stopped at the guard, targets after a node's first refusal were not searched (the first-refusal short-circuit), and four items were not computed (R1-X PENDING); V2 beyond nineteen situations and the narrow-versus-wide comparison are also OPEN. Attempt two's runs add only that no response carries a datum at two items, and the continuation was not authorized to take Challenge 1 up.
 
 ## Grade
 
@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0502_stream_at_four_items.md`
 
 - file: [dag/derivations/02_genesis/tfq_0502_stream_at_four_items.md](../../../dag/derivations/02_genesis/tfq_0502_stream_at_four_items.md)
-- sha256 (`lf-normalised`): `31340e8bf6486643dcdd4b5cda566e415079da6c4421cc0946ca4b767be06f9d`
+- sha256 (`lf-normalised`): `89060e5b9d1c9f12722a8194549206ae07ebddb8e9039e6b0b5b49f7e39a3c27`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0502
 - counts toward the grade: no

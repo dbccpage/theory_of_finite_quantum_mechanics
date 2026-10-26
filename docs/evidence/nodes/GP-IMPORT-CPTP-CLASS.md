@@ -4,15 +4,15 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 ## Statement
 
-> On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair.
+> The class of completely positive trace-preserving maps. Collapse non-reversibility and failure of a same-basis isometry are not CPTP obstructions; exactly four reversible dilations of collapse exist under the declared convention that the ancilla starts at false.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 22
-- distinct cited Lean declarations covered by a current replay receipt: 11
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 24
+- distinct cited Lean declarations covered by a current replay receipt: 12
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -37,7 +37,7 @@ imported; no channel class defined on the finite host
 
 ## Review
 
-- PFP review: [dag/results/GP-IMPORT-CPTP-CLASS/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-CPTP-CLASS/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/results/GP-IMPORT-CPTP-CLASS/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-CPTP-CLASS/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Four actual reversible dilation maps/inverses and exact reset-channel Choi/TP/action arrays, with generic inverse and reset trace identities in Lean.
   - does not support: Prove the native-array-to-channel/dilation refinement and classify arbitrary CPTP maps under admitted complex Hilbert structure. The ancilla convention is essential.
   - next test: Prove the native-array-to-channel/dilation refinement and classify arbitrary CPTP maps under admitted complex Hilbert structure. The ancilla convention is essential.
@@ -82,6 +82,35 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Lean: `lean4/DerivationDagQMClosure.lean`
+
+- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
+- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
+- cited in: node.lean, record TFQ-1033
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build DerivationDagQMClosure`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/H015CollapseDilations.lean`
+
+- file: [lean4/H015CollapseDilations.lean](../../../lean4/H015CollapseDilations.lean)
+- sha256 (`bytes`): `689bfa7562cf0a0205c346d902c8c2879b3ca0eaaee263a4fd4b4a3714f56bde`
+- cited in: node.lean, record TFQ-1033
+- replay: `none`
+- check: `cd lean4 && lake build H015CollapseDilations`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `four_reversible_dilations_of_collapse` | yes | yes | yes | - | `#print axioms four_reversible_dilations_of_collapse` |
+
+- counts toward the grade: yes
+
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
 
 - file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
@@ -92,7 +121,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1033_gp_import_cptp_class.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1033_gp_import_cptp_class.md](../../../dag/derivations/08_l1_to_l2/tfq_1033_gp_import_cptp_class.md)
-- sha256 (`lf-normalised`): `b8c80e5a9e52ca3b063800278b252122c5dffa295f08cb2d9538eab6eae8d644`
+- sha256 (`lf-normalised`): `e41431b3d5c5fc0973ad431cf5041411a0895230ffe9c668b9d0e77ffb954248`
 - generated view: listed, not counted
 - cited in: record TFQ-1033
 - counts toward the grade: no

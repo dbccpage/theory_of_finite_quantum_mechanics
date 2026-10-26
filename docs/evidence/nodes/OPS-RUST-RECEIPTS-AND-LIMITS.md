@@ -4,7 +4,7 @@ Stage: [OBSERVER_PRESHEAF](../stages/OBSERVER_PRESHEAF.md). Status: `CONDITIONAL
 
 ## Statement
 
-> In Lean, maxGlobal is 2^20 and equals 1048576, and maxLp is 2^22 and equals 4194304. Then 2^64 \> maxGlobal, 2^21 = 2097152, and 2^21 \> maxGlobal. Also 10 * 2 = 20, 2^10 = 1024, 20 * 1024 = 20480, 2^10 \< maxGlobal, and 20 * 1024 \< maxLp. Not in this statement: a zero duality gap, a dual inequality, tamper or shape rejection, a rebuilt linear programme, a singleton census, and any Rust refusal.
+> As the ledger states them for the Rust module empirical_presheaf. (B15) The l1 defect receipt has zero duality gap: \<phi*, e\> + y0 equals the defect, with the sup norm of phi* at most 1 and A^T phi* + y0 \<= 0, and replay rejects tampering and shape errors. (B17) verify_noncontextual_fraction and verify_l1_defect_receipt rebuild the linear programme, verify the embedded solution as its certificate, and bind primal, dual and value to the receipt's part, functional and fraction; the pivot trace is not bound. (B16) Every global and local section count is a checked fold against MAX_GLOBAL_ASSIGNMENTS = 2^20 returning EnumerationLimit, and dense allocations are bounded by MAX_LP_ENTRIES = 2^22 returning LpSizeLimit, with nothing of either size allocated or enumerated before the refusal: 64 binary singletons have 2^64 assignments and one context of 21 binary measurements has 2^21 sections, both above 2^20, while ten binary singletons give a 20 x 1024 incidence inside both ceilings. (B9, shape) The whole declared cochain is shape-checked before any incidence is read. Recomputed here: the ceiling arithmetic, and a zero-gap primal and dual pair for the PR box and the noisy boxes in the independent script's own solver, which does not test the Rust verifiers.
 
 ## Grade
 
@@ -105,7 +105,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2519_ops_rust_receipts_and_limits.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2519_ops_rust_receipts_and_limits.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2519_ops_rust_receipts_and_limits.md)
-- sha256 (`lf-normalised`): `dbd7d50fa9672d292ca461e59401fb5826d39fb42dc7f2df058ebac24dc3928a`
+- sha256 (`lf-normalised`): `d55a0e0b8218794d3a96f25efeb53daead17c7618f5d6b77641a8ec66b86eae5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2519
 - counts toward the grade: no

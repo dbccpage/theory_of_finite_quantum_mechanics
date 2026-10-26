@@ -4,7 +4,7 @@ Stage: [DRESSING_FIELD](../stages/DRESSING_FIELD.md). Status: `OPEN`. Evidence g
 
 ## Statement
 
-> The graph with vertices {0,1,2,3} and edges e0=(0,1), e1=(0,2), e2=(1,3), e3=(2,3), e4=(1,2) has exactly eight connected 3-edge subsets among its ten 3-edge subsets. For weights 2, 3, 5, 7, 11 on those edges in that order, the sum of the products of the two omitted weights over those eight subsets is 247, and the same sum with every weight 1 is 8. A rational interval around a 1-to-4-loop QED anomalous-moment series stays open.
+> The dossier claim that rational intervals built from U_G bracket the imported 1-to-4-loop QED series a_e to 12 decimal places has no check in the cited replay module.
 
 ## Grade
 
@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1104_dfm_symanzik_qed_ae_fence.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1104_dfm_symanzik_qed_ae_fence.md](../../../dag/derivations/24_dressing_field/tfq_1104_dfm_symanzik_qed_ae_fence.md)
-- sha256 (`lf-normalised`): `b87cb562004403bfed5e845d7e0987e4edc4e505168409d159d5263a8d0c9a95`
+- sha256 (`lf-normalised`): `008175f49e76b5053b2d3467e0c43a028601b227c35d9a14a42451f0f76a862b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1104
 - counts toward the grade: no

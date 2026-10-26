@@ -10,7 +10,7 @@
 
 ## 1. Abstract & Formal Statement
 
-On the two-label host, 2 < 3 and 3 ≤ 2 fails, and no three pairwise distinct labels exist. Amplitudes 2 on the false label and 1 on the true label have squared weights 4 and 1. The unit effect pairs both readout orders with 5. The false-indicator pairs as 4 in the direct order and as 1 after swapping the effect.
+Uniqueness of the Born quadratic form at dimension n >= 3 needs Gleason-type hypotheses (noncontextuality, sigma-additivity, continuity). On the two-label host the dimension extra already fails; the weaker unit-effect contract has two disagreeing pairings (4 versus 1 on the false-indicator at amplitudes (2,1)).
 
 ### Governing Obligation
 Uniqueness of the Born quadratic form for dimension at least 3, under noncontextuality, sigma-additivity and continuity, stays imported. The two-label disagreements do not refute that uniqueness under those hypotheses. Quartic readout under scale-2 frame additivity stays outside this slice.

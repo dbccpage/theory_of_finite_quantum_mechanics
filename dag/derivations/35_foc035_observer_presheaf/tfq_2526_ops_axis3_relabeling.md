@@ -11,11 +11,11 @@
 
 ## Statement
 
-Let Exp send each history to an export and let Vbar send each export to a verdict. Define V(H) as Vbar applied to Exp(H). If sigma is a function on histories and Exp(sigma(H)) equals Exp(H) for each history H, then V(sigma(H)) equals V(H) for each history H. One such export is the length of a list of natural numbers. The map that sends 0 to 1, sends 1 to 0, and sends each other natural number to itself leaves that length unchanged, so a verdict of the length is unchanged.
+Axis 3 of WDP-CH14-T01 under three hypotheses. (i) NS-14: an injective renaming sigma of presentation tokens commutes with the transition step and with full-history replay. (ii) CL-13 (passage_charge_const): a quantity conserved by internal transitions is constant on reachable states and equals its genesis value. (iii) The verdict V reads a history only through a declared export Exp, so V = Vbar o Exp, with Exp(sigma(H)) = Exp(H) for every injective renaming sigma; this is the identical-accessible-exports premise of Proposition 3.1 of the Argon synthesis. Then V(sigma(H)) = V(H), because V(sigma(H)) = Vbar(Exp(sigma(H))) = Vbar(Exp(H)) = V(H). Without (iii) the statement is false (node OPS-REFUTED-AXIS3-WIDE). A drop in the internal defect Delta_O stays computable and renaming-invariant; whether a drop is a repair or a reinterpretation is a question about the grounding map of the tokens, which no export-reading verdict decides.
 
 ## Governing obligation
 
-Hypotheses (i) NS-14 and (ii) CL-13 are cited, not re-run. Their Lean sources are not in this repository. The standing slice is the composition step: an export unchanged by sigma yields an unchanged verdict of that export, including list length under the map that swaps 0 with 1. Injectivity of sigma, a defect value, and whether a drop is a repair or a reinterpretation stay outside this slice. WDP-CH14 has no node in this graph. The unconditional form without an export hypothesis is node OPS-REFUTED-AXIS3-WIDE.
+Hypotheses (i) NS-14 and (ii) CL-13 are cited, not re-run. Their Lean sources are not in this repository. The checked slice is the composition step: an export unchanged by sigma yields an unchanged verdict of that export, including list length under the map that swaps 0 with 1. Injectivity of sigma, a defect value, and whether a drop is a repair or a reinterpretation stay outside this slice. WDP-CH14 has no node in this graph. The unconditional form without an export hypothesis is node OPS-REFUTED-AXIS3-WIDE.
 
 ## Source status
 

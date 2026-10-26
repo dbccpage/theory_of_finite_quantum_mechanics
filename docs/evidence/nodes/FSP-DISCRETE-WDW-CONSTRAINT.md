@@ -4,7 +4,7 @@ Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `OPEN`. Evidence grade
 
 ## Statement
 
-> On integer triples, the declared constraint H(x,y,z)=(0,2y,-z) is symmetric for the usual dot product and has kernel exactly the vectors with y=z=0. The map P(x,y,z)=(x,0,0) is idempotent, maps into that kernel, fixes exactly the kernel, and has residual orthogonal to every kernel vector. H has a nonzero kernel but is indefinite and is not idempotent. Thus this finite-dimensional constraint and its kernel projector are distinct operators.
+> Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegative and acts as a projection on diffeomorphism-invariant states; no such operator is constructed here, and the DeWitt supermetric of the continuum constraint is indefinite.
 
 ## Grade
 
@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md`
 
 - file: [dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md](../../../dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md)
-- sha256 (`lf-normalised`): `8a378592338e94ab4a9085d2df3927d931a2e5d48cff9c675a642cae22ad9524`
+- sha256 (`lf-normalised`): `10bd8dd266745158896eb4090925b2e6183b1ff622f713c1f7ab9ad86401b9a4`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1213
 - counts toward the grade: no

@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Narrowed in Lean 4 to colorings of two data. A coloring is a pair of bits. The swap exchanges the two bits and is an involution. The serialization reads a bit as 0 or 1. The key is the lexicographic minimum of a coloring and its swap. The four keys are (0, 0), (0, 1), (0, 1), and (1, 1). Equal keys hold exactly when one coloring is the other or its swap. Two colorings share the key (0, 1). The two constant colorings are fixed by the swap and have different keys.
+CL-ISO-SOUND, soundness of the implemented isomorphism key, is a finite computation only: the Python key procedure's classes are cross-checked against a brute-force minimum over bijections, and the Lean side is unresolved (D3: no Lean evidence). Attempt two leaves 482 regimes above the brute-force limit of the key cross-check (H-4), and attempt one's check of the Python orbit against the Lean orbit (G-9) is not done.
 
 ### Governing Obligation
 State and prove in Lean that equal implemented keys imply isomorphic regimes (and the converse where it is used), and check the Python automorphism orbits against the Lean orbits on the exported regimes. The implemented key, the regimes past the brute-force limit, and the orbit comparison stay open.

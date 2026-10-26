@@ -11,7 +11,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Mark A is the number 1, mark B is the number 2, and the blank is the number 0. The word mark A then mark B, followed by one blank cell, equals the list whose entries are 1, then 2, then 0. The blank differs from mark A, and the blank differs from mark B.
+Two separated marks code the words of any finite alphabet and a blank is a third symbol, but minimality of the composite machine M0 is not claimed and no smallest general-purpose machine is claimed; small-machine records are literature only.
 
 ### Governing Obligation
 Simulation of a machine over a coded alphabet by a machine over the two marks and a blank stays open, and it is required before any minimality sentence. A sentence that composite machine M0 is not a smallest general-purpose machine stays open. Small-machine records stay literature only.

@@ -11,7 +11,7 @@
 
 ## 1. Abstract & Formal Statement
 
-For angle indices 0, 1, 2 and 3, one quarter turn of the Gaussian integer (1, 0) by the pair (0, -1) yields (1, 0), (0, -1), (-1, 0) and (0, 1), and the fourth turn returns to (1, 0). That turn is multiplication by (0, -1), and (1, 0) times (0, -1) is (0, -1). Charge 0 keeps the weight (1, 0) at each of those four indices. Charge 1 uses the quarter-turn value. The second coordinate at charge 1 is 0, -1, 0 and 1, hence nonzero at indices 1 and 3. At index 2 with charge 1 the first coordinate is -1, so that pair is not positive in the first coordinate. Among the four charge-1 pairs, only index 0 has a positive first coordinate and second coordinate 0.
+Adding S_theta = i theta Q_top with real lattice charge Q_top multiplies the Boltzmann weight by exp(-i theta Q_top), which is nonreal unless theta Q_top lies in pi Z for every configuration, so positive-weight importance sampling is lost for generic theta != 0.
 
 ### Governing Obligation
 The record is this four-index Gaussian-integer table. It does not introduce an exponential, a real angle, a plaquette sum, or a Monte Carlo sampler. The source sentence that an added term i theta Q_top multiplies a Boltzmann weight by a complex phase, and that a positive-weight sampler fails for a nonzero angle outside a discrete set, stays an imported reading. AuthorityEffect is None.

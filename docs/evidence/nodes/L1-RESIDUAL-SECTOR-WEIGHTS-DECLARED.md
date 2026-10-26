@@ -4,7 +4,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade:
 
 ## Statement
 
-> Narrowed boundary, status left CONDITIONAL. The sector-weight pairs (2, 0) and (0, 2) both have coordinate sum 2 and differ. For length 4 and holonomy 2, no natural number k satisfies 4 * k = 2. For length 4 and holonomy 4, 4 * 1 = 4.
+> Sectors are residual sectors with declared finite nonnegative masses mu(s), total M \> 0. The carrier is the weight vector w. No derivation of w from the Phi1 / Gamma2 residual is given in the sources read: w is an input to QM_003, QM_012 and QM_020.
 
 ## Grade
 

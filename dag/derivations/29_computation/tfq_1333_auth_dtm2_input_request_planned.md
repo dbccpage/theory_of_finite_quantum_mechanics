@@ -11,7 +11,7 @@
 
 ## 1. Abstract & Formal Statement
 
-On one closed request the header tag is 1, the fuel token is 2, the machine-code length is 1, the machine segment is the list 7, and the input word is the list 3, 4. Concatenating the header, the fuel, the length, the segment and the input word yields the list 1, 2, 1, 7, 3, 4. The list 0, 2, 1, 7, 3, 4 begins with 0, and 0 differs from the header tag.
+The update packet plans a request code made of a fuel token, a machine-code length, one machine segment and an input word, whose code-level evaluator decodes the request and calls the bounded evaluator on the declared initial input, with seven named target theorems.
 
 ### Governing Obligation
 An encoder and decoder for a request other than this closed list, the remaining named targets in the update packet, and result-level agreement with a bounded evaluator stay open. Configuration snapshots and step-by-step trace agreement stay open. No custody reading and no authorization reading are in this record.

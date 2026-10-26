@@ -10,7 +10,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Toggle sends false to true and true to false. No map on the labels false and true squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). The matrix with rows ((1, 1), (1, -1)) and ((1, -1), (1, 1)) squares to the matrix with diagonal entries (0, 0) and off-diagonal entries (4, 0). The coordinatewise negation of that matrix squares to the same matrix and differs from it. For every integer t, (1 - t*t) * (1 - t*t) + 4 * (t*t) equals (1 + t*t) * (1 + t*t). The branch energy 2*k + 1 equals 1 at k = 0 and 3 at k = 1, and distinct integers have distinct branch energies. The integers -1, 1, 1 and -1 give the corner value (-1)*(-1) + 1*1 = 2. No integers a, b, c and d satisfy a + 1 = 0, b = 1, c = 1, d + 1 = 0 together with a*a + b*c = 0, a*b + b*d = 0, c*a + d*c = 0 and c*b + d*d = 0.
+The one-parameter family T(t)=exp(tH), the generator H=log T and the continuum path integral need real/complex time, convergence and a measure; none is constructed from the finite transport calculus. Refused as finite.
 
 ### Governing Obligation
 The one-parameter family T(t) = exp(tH), the generator H = log T, and a continuum path integral stay imported. They still ask for real or complex time, a convergence oracle, and a measure, and none of those is constructed from the finite transport calculus. Generator selection among the odd branch energies stays a priced interface. The Boolean toggle, the two scale-4 matrices, the Cayley polynomial, the branch energies, and the absent nilpotent integer logarithm of the swap are one finite case.

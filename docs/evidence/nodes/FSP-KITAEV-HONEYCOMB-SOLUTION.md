@@ -4,7 +4,7 @@ Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `IMPORTED_ASSUMPTION`.
 
 ## Statement
 
-> On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X.
+> Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace).
 
 ## Grade
 
@@ -99,7 +99,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md`
 
 - file: [dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md](../../../dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md)
-- sha256 (`lf-normalised`): `f560415332b14d38ef65230f61315565536c06e1a3fc9ba2cb58bfc8355ddd17`
+- sha256 (`lf-normalised`): `e68ad1c409c91c238b6b6a3646df7c2dbdd5ba374273f89da2ac46124e55f2a6`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1207
 - counts toward the grade: no

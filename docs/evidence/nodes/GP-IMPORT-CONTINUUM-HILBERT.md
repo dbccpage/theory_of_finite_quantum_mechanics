@@ -4,7 +4,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 ## Statement
 
-> Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1.
+> Transition from the finite presented carrier (integer weights, finite report labels) to a continuous infinite-dimensional Hilbert space. QM_122 section 6 refuses it; QM_020 demotion box fences it.
 
 ## Grade
 
@@ -37,7 +37,7 @@ OPEN gap GAP-F001-S000-002 (continuum interface)
 
 ## Review
 
-- PFP review: [dag/results/GP-IMPORT-CONTINUUM-HILBERT/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-CONTINUUM-HILBERT/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/results/GP-IMPORT-CONTINUUM-HILBERT/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-CONTINUUM-HILBERT/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Exact truncation coordinates, norm, positive tail and successive difference controls; general finite recurrence identity and positivity interface in Lean.
   - does not support: Construct and verify the topology, Cauchy completion and infinite-dimensional Hilbert carrier. No finite truncation settles those imports.
   - next test: Construct and verify the topology, Cauchy completion and infinite-dimensional Hilbert carrier. No finite truncation settles those imports.
@@ -97,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1035_gp_import_continuum_hilbert.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1035_gp_import_continuum_hilbert.md](../../../dag/derivations/08_l1_to_l2/tfq_1035_gp_import_continuum_hilbert.md)
-- sha256 (`lf-normalised`): `a66a10bf75543c4a11b54a42bb2d646ffd4fec231db024014cf80740482bfc82`
+- sha256 (`lf-normalised`): `97f91be837764652ab1542bb8619f2cf079ec1083ee845bac40074ce489470dd`
 - generated view: listed, not counted
 - cited in: record TFQ-1035
 - counts toward the grade: no

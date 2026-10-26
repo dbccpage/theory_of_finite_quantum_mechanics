@@ -3,15 +3,10 @@ node_id: OPS-AXIS1-WELLFOUNDED-ADMISSION
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Finite admission chain on three candidates. Candidate 0 has no predecessor. Candidate
-    1 names candidate 0 as its predecessor. Candidate 2 names candidate 1 as its predecessor. For every
-    base assignment of boolean bits, admission of candidate 0 equals the base bit at candidate 0, admission
-    of candidate 1 equals the disjunction of the base bit at candidate 1 with admission of candidate 0,
-    and admission of candidate 2 equals the disjunction of the base bit at candidate 2 with admission
-    of candidate 1. The base assignment that is false at each candidate admits none of the three. The
-    base assignment that is true at candidate 0 and false at candidate 1 and at candidate 2 admits all
-    three. The Genesis theorem collapsed_of_no_insts stays imported by name and is not re-run. The chain
-    says nothing about other shapes of admission.
+  source_statement: 'Axis 1 of WDP-CH14-T01 under the hypothesis that admission is the Genesis calculus,
+    in which every AdmitInst depends on a previously admitted base datum: with no base instance no rule
+    instance is admitted (the Genesis theorem collapsed_of_no_insts), so the process has nothing to certify.
+    It says nothing about other shapes of admission. Imported by name: the theorem is Genesis''s.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - 'Genesis theorem collapsed_of_no_insts: with no base instance no rule instance is admitted (assumption;
@@ -35,7 +30,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md
-    sha256: bbc96d4e80a832fd3066eae3a807470422f0e7560ada3fe3204c174afa640983
+    sha256: b680a90623abd09255ad7644e3196e6093c61111d8a461029d6077b075a0e533
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py

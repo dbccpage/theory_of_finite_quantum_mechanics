@@ -4,7 +4,7 @@ Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: 
 
 ## Statement
 
-> Narrowed boundary, status left OPEN. In dimension 2, the three bases Z = ((1, 0), (0, 1)), X = ((1, 1), (1, -1)) and Y = ((1, i), (1, -i)) are unnormalized Gaussian-integer representatives of mutually unbiased bases of C^2 after normalization. Their squared norms are 1, 1, 2, 2, 2 and 2. Distinct vectors inside one basis have inner product 0. For every vector from one basis and every vector from another, twice the squared modulus of the inner product equals the product of the squared norms. The square of i is -1. The additive character of the two-element field sends 0 to 1 and 1 to -1, and it sends 1+1 to 1.
+> Construct and verify a complete d+1 MUB family for the stated prime-power carrier, explicitly handling finite-field arithmetic, character sums and normalization.
 
 ## Grade
 

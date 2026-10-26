@@ -4,7 +4,7 @@ Stage: [CONSTRUCTOR_THEORY](../stages/CONSTRUCTOR_THEORY.md). Status: `IMPORTED_
 
 ## Statement
 
-> For arbitrary types, cloners on admitted blank slices compose to a cloner on their Cartesian product. Product-local reversible maps alone do not implement all permutations of two bits: controlled flip is an involution but cannot be written (f(a),g(b)). Product cloning therefore does not supply the full permutation-task clause of interoperability.
+> Imported principles, audited and corrected against Deutsch and Marletto (2015, arXiv:1405.5563, Sections 3-6 pp. 9-12): a computation variable is a set S of at least two possible attributes for which all permutation tasks are possible with side-effects (Section 3 p. 9); a variable S is clonable if the cloning task R_S(x0) = union_{x in S} {(x, x0) -\> (x, x)} is possible with side-effects for some preparable blank attribute x0 (Section 4 eq. (3) p. 10); an information variable is a clonable computation variable, and an information medium is a substrate with at least one information variable (Section 4 p. 10). Distinguishability is defined afterward in Section 5 (eq. (4) p. 11) by mapping into an information variable, avoiding circularity, and every information variable is then shown to be distinguishable. Principle III (interoperability, Section 6 p. 12) states that the composite S1 + S2 of two substrates with information variables S1 and S2 is an information medium with information variable S1 x S2.
 
 ## Grade
 
@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md`
 
 - file: [dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md](../../../dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md)
-- sha256 (`lf-normalised`): `488f911d5f76f23937f25fee2f0acff9cee40b9ef9abf16041af5d101e3742d0`
+- sha256 (`lf-normalised`): `20fa784ab65ab323bb0c9e37ac3a4f477d358f15b584da7fbe12349fe37c61d8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2006
 - counts toward the grade: no

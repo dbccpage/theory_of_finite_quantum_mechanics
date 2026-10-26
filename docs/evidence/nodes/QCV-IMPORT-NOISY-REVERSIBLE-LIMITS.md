@@ -4,7 +4,7 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `IMPORTED_ASSUMPTION`. E
 
 ## Statement
 
-> The sequences defined by u(0) = 1, v(0) = 1, w(0) = 1, u(t+1) = 3*u(t), v(t+1) = 4*v(t) and w(t+1) = 3*w(t) + 0 satisfy u(1) = 3, v(1) = 4, u(2) = 9, v(2) = 16, u(3) = 27 and v(3) = 64, with u strictly below v at steps 1, 2 and 3, and with w equal to u at steps 0, 1, 2 and 3.
+> Aharonov, Ben-Or, Impagliazzo and Nisan (1996) show that noisy reversible or quantum computation with no supply of fresh low-entropy bits cannot preserve its input beyond a short depth; the result is cited, not re-proved or imported as a proof here.
 
 ## Grade
 
@@ -109,7 +109,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md`
 
 - file: [dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md](../../../dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md)
-- sha256 (`lf-normalised`): `70fe968448ac9159d574fb3b89365b3533572c77f9cc7b3688ceeac04f6cdf22`
+- sha256 (`lf-normalised`): `19c903e2ef2b313f21b60fa35b5ba8b4bf433301f86b7ac6dce771fa2d509ef1`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1321
 - counts toward the grade: no

@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-In the formal angle-residue model modulo 2m, for every m>1 the distinct residues 1 and m+1 have the same doubled residue 2. Thus full-braid monodromy alone does not select an exchange residue. At m=3 the two residues are 1 and 4. This is an algebraic ambiguity, not a Berry-phase derivation.
+Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta = pi/m.
 
 ### Governing Obligation
 The statistical exchange phase of Laughlin quasiholes requires the wavefunction, adiabatic transport and Berry connection, plus a branch/continuity convention. The algebraic non-uniqueness does not refute the Arovas-Schrieffer-Wilczek result. Original target retained as an obligation: Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta = pi/m. Prior boundary: No Berry-phase or torus computation is in this checkout; the local module fixes m = 3 and checks numeric constants only (ledger GIN-C16 withdraws its reading).
 
 ### Witness Audit
-Cited FqhLaughlinBraiding.lean::laughlin_fractional_exchange_phase does not exist; monodromy_phase_nontrivial is decide on 2 % 3 != 0 and involution_coprime_to_laughlin_phase is rfl on gcd 2 3 = 1. LaughlinAnyonBraidingEvaluator is absent from fqh_laughlin_braiding.py. Campaign result: In the formal angle-residue model modulo 2m, for every m>1 the distinct residues 1 and m+1 have the same doubled residue 2. Thus full-braid monodromy alone does not select an exchange residue. At m=3 the two residues are 1 and 4. This is an algebraic ambiguity, not a Berry-phase derivation. The statistical exchange phase of Laughlin quasiholes requires the wavefunction, adiabatic transport and Berry connection, plus a branch/continuity convention. The algebraic non-uniqueness does not refute the Arovas-Schrieffer-Wilczek result.
+Cited FqhLaughlinBraiding.lean::laughlin_fractional_exchange_phase does not exist; monodromy_phase_nontrivial is decide on 2 % 3 != 0 and involution_coprime_to_laughlin_phase is rfl on gcd 2 3 = 1. LaughlinAnyonBraidingEvaluator is absent from fqh_laughlin_braiding.py. Campaign result: Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta = pi/m. The statistical exchange phase of Laughlin quasiholes requires the wavefunction, adiabatic transport and Berry connection, plus a branch/continuity convention. The algebraic non-uniqueness does not refute the Arovas-Schrieffer-Wilczek result.
 
 ---
 

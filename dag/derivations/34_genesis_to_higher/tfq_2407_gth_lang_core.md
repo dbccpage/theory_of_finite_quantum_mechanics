@@ -11,7 +11,7 @@
 
 ## Statement
 
-Narrowed boundary, status left OPEN. One regime carrier has data 1 and forms, instances, rules and requirements all 0, and the sum of those five slots is 1. The same carrier with its rule slot set to 1 differs from it, and that rule slot is 1. The reach map sends 0 and 1 to 0.
+The priced admission language is not defined. The reading intended for its primitives, which this node does not derive, is: a two-valued admission record kept with a reached result (PGW-GO-ADMISSION-GATE); a regime as a tuple of admitted data, forms, instances, rules and requirements, with state change only through an admission event or impose, and with supply external (PG-GEN-REGIME-EVENTS); and the two boxed laws that S(n+1) may contain only structure forced by an unresolved obstruction at S(n), and that a realization has no authority to extend S(n) (PGW-SN-TWO-BOXED-LAWS). No syntax, no typing judgement and no deep embedding is given. Alphabet declarations of the MSS-N grammar are not a primitive derived from those three nodes.
 
 ## Governing obligation
 
