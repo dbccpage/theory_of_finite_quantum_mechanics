@@ -1526,3 +1526,15 @@ lean_lib CampaignFqGapTensorUniqueness where
 -- TFQ-0171 finite positive-mass separation. Not a default target.
 lean_lib CampaignTfq0171PositiveMass where
   roots := #[`CampaignTfq0171PositiveMass]
+
+-- TFQ-0184 cubic count. Non-default target.
+lean_lib CampaignTfq0184CubicCount where
+  roots := #[`CampaignTfq0184CubicCount]
+
+-- Campaign: L1-GS001-GAUGE-L1. Not a default target.
+lean_lib CampaignL1Gs001GaugeL1 where
+  roots := #[`CampaignL1Gs001GaugeL1]
+
+-- L1-WDP-CH08-C01-REPLICA-L1 scale count. Non-default target.
+lean_lib CampaignL1ReplicaScale where
+  roots := #[`CampaignL1ReplicaScale]

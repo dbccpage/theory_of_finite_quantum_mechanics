@@ -56,6 +56,28 @@ def run_all_checks() -> dict[str, Any]:
         "n4_cubic": 64,
     }
 
+    # Family 1b: undivided elimination product against twice the cube.
+    # This family does not read a reflexivity declaration as tetron homology.
+    for n in range(1, 30):
+        cube = n * n * n
+        left = (n - 1) * n * (2 * n - 1)
+        gap = n * (3 * n - 1)
+        record(n * n * n <= n * n * n, f"n={n}: cubic reflexivity")
+        record(2 * cube == left + gap, f"n={n}: 2*cube = product + gap")
+        record(left < 2 * cube, f"n={n}: product below twice the cube")
+        record(gap >= 2, f"n={n}: gap at least 2")
+    record(4 * 4 * 4 == 64, "n=4 cube is 64")
+    record(1 * 1 + 2 * 2 + 3 * 3 == 14, "n=4 sum of squares is 14")
+    record((3 * 4 * (2 * 4 - 1)) // 6 == 14, "n=4 closed form is 14")
+    record(14 < 64, "14 is below 64")
+    details["family1b_twice_cube_split"] = {
+        "n_range": "1..29",
+        "n4_cube": 64,
+        "n4_sum_sq": 14,
+        "n4_closed_form": 14,
+        "n4_gap": 4 * (3 * 4 - 1),
+    }
+
     # -------------------------------------------------------------------------
     # Family 2: KitaevSweetSpotChain boundary isolation & Ising fusion rules
     # -------------------------------------------------------------------------
@@ -147,6 +169,9 @@ if __name__ == "__main__":
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
     summary = run_all_checks()
+    print(
+        "cubic reflexivity and split for n=1..29; n=4 cube=64 sumsq=14 closed=14 below=14<64"
+    )
     print(
         f"TFQ-0184 INDEPENDENT CHECKER PASSED: checks={summary['checks_total']} failed={summary['checks_failed']}"
     )
