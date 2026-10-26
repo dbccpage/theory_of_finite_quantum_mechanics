@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here.
+For any commutative ring and finite hinge set, the action S=sum_h A_h*(tau-sum_j theta_hj) equals tau*sum_h A_h-sum_h A_h*sum_j theta_hj. For fixed deficits it is linear in the declared areas, and splitting an area while keeping its deficit fixed preserves its contribution. Zero deficits imply zero action. Declared integer data also show that zero total action need not mean zero deficits, and changing areas can change the action on the same finite index set.
 
 ### Governing Obligation
-Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).
+Areas, angles and the full-turn parameter are declared algebraic data. Geometric realizability, actual triangulation moves, Lorentzian signature, convergence to the Einstein-Hilbert action, and fermion-sign consequences are not established. Original target retained as an obligation: On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here. Prior boundary: Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).
 
 ### Witness Audit
-Cited ReggePachnerWdw.lean::regge_deficit_angle_action_identity does not exist; flat_vertex_wdw_closure states that a Nat sum of zero deficits is zero. regge_wdw_core.lean::discrete_first_bianchi_identity assumes the cyclic sum vanishes and factors it out, in an unbuilt file. ReggeTriangulationEvaluator is absent from regge_pachner_wdw.py.
+Cited ReggePachnerWdw.lean::regge_deficit_angle_action_identity does not exist; flat_vertex_wdw_closure states that a Nat sum of zero deficits is zero. regge_wdw_core.lean::discrete_first_bianchi_identity assumes the cyclic sum vanishes and factors it out, in an unbuilt file. ReggeTriangulationEvaluator is absent from regge_pachner_wdw.py. Current scoped campaign result: For any commutative ring and finite hinge set, the action S=sum_h A_h*(tau-sum_j theta_hj) equals tau*sum_h A_h-sum_h A_h*sum_j theta_hj. For fixed deficits it is linear in the declared areas, and splitting an area while keeping its deficit fixed preserves its contribution. Zero deficits imply zero action. Declared integer data also show that zero total action need not mean zero deficits, and changing areas can change the action on the same finite index set. Areas, angles and the full-turn parameter are declared algebraic data. Geometric realizability, actual triangulation moves, Lorentzian signature, convergence to the Einstein-Hilbert action, and fermion-sign consequences are not established.
 
 ---
 
@@ -37,13 +37,18 @@ Cited ReggePachnerWdw.lean::regge_deficit_angle_action_identity does not exist; 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.deficit_expansion`
+- `lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.area_linearity`
+- `lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.flat_deficits_give_zero`
+- `lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.same_deficit_area_split`
+- `lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.zero_action_does_not_imply_flat`
+- `lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.declared_areas_change_action`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/fsp-regge-deficit-action.py`
 
 ### Cited by the source, not in this checkout
 - `external:omega_quantum_physics::quantum_regge_bridge::regge_deficit_angle_curvature (cited by the source, not in this checkout)`
@@ -53,7 +58,6 @@ Cited ReggePachnerWdw.lean::regge_deficit_angle_action_identity does not exist; 
 ## 4. Downstream Derivations (Outgoing DAG Links)
 
 - [TFQ-1213](tfq_1213_fsp_discrete_wdw_constraint.md)
-- [TFQ-1214](tfq_1214_fsp_pachner_invariance_claim.md)
 
 ---
 
@@ -62,3 +66,5 @@ Cited ReggePachnerWdw.lean::regge_deficit_angle_action_identity does not exist; 
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:668-680`
   - `papers/core/fsp/the_problem_of_the_fermion_sign.md:542-582`
+  - `dag/derivations/independent/fsp-regge-deficit-action.md`
+  - `dag/research/campaign_fsp-regge-deficit-action_lean_replay.json`

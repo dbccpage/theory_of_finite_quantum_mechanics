@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 580" width="100%" height="100%" style="background:#0b0f19; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#1e293b" stroke-width="0.7" opacity="0.6"/>
+    </pattern>
+    <radialGradient id="bgGlow" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#1e1b4b" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0b0f19" stop-opacity="1"/>
+    </radialGradient>
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <marker id="arrowCyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+  </defs>
+
+  <rect width="940" height="580" fill="url(#bgGlow)"/>
+  <rect width="940" height="580" fill="url(#grid)"/>
+  <rect x="16" y="16" width="908" height="548" rx="12" fill="none" stroke="#334155" stroke-width="1.2"/>
+
+  <!-- Top Banner / Badges -->
+  <g transform="translate(32, 26)">
+    <rect x="0" y="0" width="165" height="24" rx="6" fill="#4338ca" fill-opacity="0.3" stroke="#818cf8" stroke-width="1.2"/>
+    <text x="82" y="16" fill="#a5b4fc" font-size="11" font-weight="700" text-anchor="middle">Ongoing Level 00: Seed</text>
+
+    <rect x="175" y="0" width="160" height="24" rx="6" fill="#0284c7" fill-opacity="0.3" stroke="#38bdf8" stroke-width="1.2"/>
+    <text x="255" y="16" fill="#38bdf8" font-size="10.5" font-weight="700" text-anchor="middle">H3V7N5QF Base Seed</text>
+
+    <rect x="345" y="0" width="175" height="24" rx="6" fill="#065f46" fill-opacity="0.3" stroke="#34d399" stroke-width="1.2"/>
+    <text x="432" y="16" fill="#34d399" font-size="10.5" font-weight="700" text-anchor="middle">two_states_on_given_terms</text>
+
+    <rect x="530" y="0" width="140" height="24" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="600" y="16" fill="#94a3b8" font-size="10" font-weight="500" text-anchor="middle">AuthorityEffect: None</text>
+
+    <text x="0" y="52" fill="#f8fafc" font-size="18" font-weight="700" letter-spacing="0.2">Level 0: The Primordial Relational Seed</text>
+    <text x="0" y="72" fill="#94a3b8" font-size="12" font-weight="400">Two Terms {a, b}, Initial Assertion arb, and Uncommitted bra Yield Exactly Two Legal Initial States</text>
+  </g>
+
+  <!-- Left Box: Inference and Formal Rules -->
+  <g transform="translate(32, 115)">
+    <rect x="0" y="0" width="410" height="380" rx="8" fill="#111827" fill-opacity="0.9" stroke="#1f2937" stroke-width="1.2"/>
+    <rect x="0" y="0" width="410" height="36" rx="8" fill="#1e293b" fill-opacity="0.8"/>
+    <text x="16" y="23" fill="#f8fafc" font-size="12" font-weight="700">Initial Seed State Theorem</text>
+
+    <!-- Rule Fraction -->
+    <g transform="translate(30, 55)">
+      <rect x="0" y="0" width="350" height="90" rx="6" fill="#0f172a" stroke="#334155"/>
+      <text x="175" y="30" fill="#93c5fd" font-size="13" font-weight="600" text-anchor="middle" font-family="monospace">s.terms = {a, b} &#8743; asserted(arb)</text>
+      <line x1="25" y1="44" x2="325" y2="44" stroke="#e2e8f0" stroke-width="1.8"/>
+      <text x="175" y="68" fill="#38bdf8" font-size="13" font-weight="700" text-anchor="middle" font-family="monospace">s.rel = {(a,b)} &#8744; s.rel = {(a,b), (b,a)}   [Seed0]</text>
+    </g>
+
+    <!-- Detailed Notes -->
+    <g transform="translate(20, 165)">
+      <text x="0" y="15" fill="#e2e8f0" font-size="12" font-weight="600">&#8226; Terms &amp; Relation Setup:</text>
+      <text x="16" y="34" fill="#94a3b8" font-size="11">Starts with exactly two terms: <tspan fill="#38bdf8" font-family="monospace">a</tspan> and <tspan fill="#38bdf8" font-family="monospace">b</tspan>.</text>
+      <text x="16" y="50" fill="#94a3b8" font-size="11">One binary relation <tspan fill="#a5b4fc" font-family="monospace">r</tspan> with <tspan fill="#fbbf24" font-family="monospace">arb</tspan> asserted.</text>
+
+      <text x="0" y="78" fill="#e2e8f0" font-size="12" font-weight="600">&#8226; Uncommitted Inverse (bra):</text>
+      <text x="16" y="96" fill="#94a3b8" font-size="11">The seed does not assert whether <tspan fill="#fbbf24" font-family="monospace">bra</tspan> holds,</text>
+      <text x="16" y="112" fill="#94a3b8" font-size="11">yielding exactly two initial configurations.</text>
+
+      <text x="0" y="140" fill="#e2e8f0" font-size="12" font-weight="600">&#8226; First Change Adds Term:</text>
+      <text x="16" y="158" fill="#94a3b8" font-size="11">Proved theorem <tspan fill="#34d399" font-family="monospace">first_change_adds_term</tspan>: any growth</text>
+      <text x="16" y="174" fill="#94a3b8" font-size="11">from this ground must adjoin a fresh term.</text>
+    </g>
+  </g>
+
+  <!-- Right Box: Operational Diagram -->
+  <g transform="translate(460, 115)">
+    <rect x="0" y="0" width="448" height="380" rx="8" fill="#111827" fill-opacity="0.9" stroke="#1f2937" stroke-width="1.2"/>
+    <rect x="0" y="0" width="448" height="36" rx="8" fill="#1e293b" fill-opacity="0.8"/>
+    <text x="16" y="23" fill="#f8fafc" font-size="12" font-weight="700">The Two Legal Initial Seed Configurations</text>
+
+    <g transform="translate(30, 45)">
+      <!-- Configuration 1: Directed Arc only -->
+      <rect x="15" y="10" width="370" height="105" rx="6" fill="#1e1b4b" fill-opacity="0.3" stroke="#818cf8" stroke-width="1.2"/>
+      <text x="35" y="32" fill="#a5b4fc" font-size="11.5" font-weight="700">Initial State 1: Directed Arc {(a, b)}</text>
+      <!-- Visual: Node a to Node b -->
+      <circle cx="100" cy="70" r="16" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+      <text x="100" y="74" fill="#38bdf8" font-size="12" font-weight="700" text-anchor="middle">a</text>
+      <line x1="120" y1="70" x2="250" y2="70" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowCyan)"/>
+      <circle cx="270" cy="70" r="16" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+      <text x="270" y="74" fill="#38bdf8" font-size="12" font-weight="700" text-anchor="middle">b</text>
+      <text x="325" y="74" fill="#94a3b8" font-size="10">arb only</text>
+
+      <!-- Configuration 2: Bidirectional Link -->
+      <rect x="15" y="135" width="370" height="115" rx="6" fill="#064e3b" fill-opacity="0.25" stroke="#34d399" stroke-width="1.2"/>
+      <text x="35" y="157" fill="#34d399" font-size="11.5" font-weight="700">Initial State 2: Bidirectional Link {(a, b), (b, a)}</text>
+      <!-- Visual: Nodes with both arrows -->
+      <circle cx="100" cy="200" r="16" fill="#0f172a" stroke="#34d399" stroke-width="2"/>
+      <text x="100" y="204" fill="#34d399" font-size="12" font-weight="700" text-anchor="middle">a</text>
+      <line x1="120" y1="193" x2="250" y2="193" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrowCyan)"/>
+      <line x1="250" y1="207" x2="120" y2="207" stroke="#34d399" stroke-width="1.8" marker-end="url(#arrowCyan)"/>
+      <circle cx="270" cy="200" r="16" fill="#0f172a" stroke="#34d399" stroke-width="2"/>
+      <text x="270" y="204" fill="#34d399" font-size="12" font-weight="700" text-anchor="middle">b</text>
+      <text x="325" y="204" fill="#94a3b8" font-size="10">arb + bra</text>
+
+      <!-- Bottom Invariant Summary -->
+      <rect x="15" y="270" width="370" height="35" rx="4" fill="#1e293b" stroke="#475569"/>
+      <text x="200" y="292" fill="#f8fafc" font-size="10" font-weight="600" text-anchor="middle">Classification Theorem: two_states_on_given_terms (Lean 4 Proved)</text>
+    </g>
+  </g>
+
+  <!-- Footer Status Bar -->
+  <g transform="translate(32, 510)">
+    <rect x="0" y="0" width="876" height="38" rx="6" fill="#0f172a" stroke="#1e293b"/>
+    <text x="16" y="23" fill="#94a3b8" font-size="11">Formal Status: <tspan fill="#34d399" font-weight="700">BASE_SEED_SEALED</tspan> | Campaign: <tspan fill="#e2e8f0">H3V7N5QF Blind Derivation 1</tspan> | Legal States: <tspan fill="#38bdf8">Exactly 2</tspan> | MSS Anchor: <tspan fill="#fbbf24">MSS-000 Analog</tspan></text>
+  </g>
+
+</svg>

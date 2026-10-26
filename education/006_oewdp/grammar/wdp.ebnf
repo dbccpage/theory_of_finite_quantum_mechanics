@@ -1,0 +1,41 @@
+(* Witnessed Difference Programme (WDP) Grammar, Version 1.
+   AuthorityEffect: None. GenesisEffect: None.
+   Conforms to check_grammars.py EBNF subset. All productions defined here.
+   Encodes witnessed differences, transport events, quotient forms,
+   primal/dual balance projections, and typed obstruction refusals. *)
+
+(* Master start profile *)
+wdp_statement = difference_item | transport_event | quotient_witness | balance_matrix | refusal ;
+
+(* 1. Witnessed Difference Tokens *)
+difference_item = distinct_cut | simplex_pair | marked_quotient ;
+distinct_cut = "<", glyph, "!=", glyph, ">" ;
+simplex_pair = "<", glyph, ",", glyph, ">" ;
+marked_quotient = "quot<", glyph, "/", word, ">" ;
+
+(* 2. Transport & Homotopy Events *)
+transport_event = d0_map | d1_map | h_homotopy ;
+d0_map = "d0(", glyph, ")" ;
+d1_map = "d1(", glyph, ",", glyph, ")" ;
+h_homotopy = "H(", glyph, ",", glyph, ")" ;
+
+(* 3. Quotient Witness & Obstruction Profile *)
+quotient_witness = "witness<", "fiber:", word, ",", "status:", witness_status, ">" ;
+witness_status = "EXACT_REPAIR" | "HOMOTOPIC_ZERO" | "CLOSED_CLASS" | "OPEN_OBSTRUCTION" ;
+
+(* 4. Balance Matrix & Complex Composite *)
+balance_matrix = "balance<", "sites:", digits, ",", "trace:", digits, ">" ;
+
+(* 5. Typed Refusal Codes *)
+refusal = "refusal<", refusal_code, ">" ;
+refusal_code = "ERR_FIBER_NON_CONSTANT" | "ERR_MALFORMED_FILLER" | "ERR_CAPACITY_EXHAUSTED" | "ERR_DUAL_IMBALANCE" ;
+
+(* 6. Terminals and Character Sets over Sigma36 *)
+word = glyph, { glyph } ;
+glyph = lower_latin | digit ;
+digits = digit, { digit } ;
+digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+
+lower_latin = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j"
+            | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t"
+            | "u" | "v" | "w" | "x" | "y" | "z" ;

@@ -3,17 +3,28 @@ node_id: FSP-DISCRETE-WDW-CONSTRAINT
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegative
-    and acts as a projection on diffeomorphism-invariant states; no such operator is constructed here,
-    and the DeWitt supermetric of the continuum constraint is indefinite.'
+  source_statement: On integer triples, the declared constraint H(x,y,z)=(0,2y,-z) is symmetric for the
+    usual dot product and has kernel exactly the vectors with y=z=0. The map P(x,y,z)=(x,0,0) is idempotent,
+    maps into that kernel, fixes exactly the kernel, and has residual orthogonal to every kernel vector.
+    H has a nonzero kernel but is indefinite and is not idempotent. Thus this finite-dimensional constraint
+    and its kernel projector are distinct operators.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Construct H_perp on a declared finite state space and determine its spectrum; the
-    manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).
+  source_bottleneck: 'This is a declared finite-dimensional integer model; its set of integer triples
+    is infinite. It constructs no discrete Wheeler-DeWitt operator, triangulation dynamics, diffeomorphism
+    action, physical state space or continuum limit. Its counterexample concerns an inference from symmetry
+    and a nonzero kernel to positivity or idempotence, not a specified gravitational model. Original target
+    retained as an obligation: Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations
+    is nonnegative and acts as a projection on diffeomorphism-invariant states; no such operator is constructed
+    here, and the DeWitt supermetric of the continuum constraint is indefinite. Prior boundary: Construct
+    H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint
+    H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).'
   source_refs:
   - dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md
   - papers/core/fsp/theory_of_finite_fsp.md
   - papers/core/fsp/the_problem_of_the_fermion_sign.md
+  - dag/derivations/independent/fsp-discrete-wdw-constraint.md
+  - dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json
   paper_refs:
   - dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md
   source_claim_label: OPEN
@@ -22,7 +33,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md
-    sha256: 4c399c4f5b9ee84f8d46f9dc79aa5e3b783f0b5d2daee3e251ef2aa62a5b3360
+    sha256: 8a378592338e94ab4a9085d2df3927d931a2e5d48cff9c675a642cae22ad9524
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -30,9 +41,243 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_discrete_wdw_constraint_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: abbrev
+  name: Vec
+  line: 7
+  signature_excerpt: abbrev Vec
+  source: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: dot
+  line: 15
+  signature_excerpt: 'def dot (v w : Vec) : Int'
+  source: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: constraint
+  line: 11
+  signature_excerpt: 'def constraint (v : Vec) : Vec'
+  source: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: zero
+  line: 9
+  signature_excerpt: 'def zero : Vec'
+  source: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: project
+  line: 13
+  signature_excerpt: 'def project (v : Vec) : Vec'
+  source: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: subtract
+  line: 17
+  signature_excerpt: 'def subtract (v w : Vec) : Vec'
+  source: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: constraint_symmetric
+  line: 19
+  signature_excerpt: |-
+    theorem constraint_symmetric (v w : Vec) :
+        dot (constraint v) w = dot v (constraint w)
+  source: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: kernel_characterization
+  line: 24
+  signature_excerpt: |-
+    theorem kernel_characterization (v : Vec) :
+        constraint v = zero ↔ v.2.1 = 0 ∧ v.2.2 = 0
+  source: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: projector_idempotent
+  line: 35
+  signature_excerpt: 'theorem projector_idempotent (v : Vec) : project (project v) = project v'
+  source: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: projected_vector_satisfies_constraint
+  line: 37
+  signature_excerpt: |-
+    theorem projected_vector_satisfies_constraint (v : Vec) :
+        constraint (project v) = zero
+  source: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: projector_fixes_exactly_kernel
+  line: 40
+  signature_excerpt: |-
+    theorem projector_fixes_exactly_kernel (v : Vec) :
+        project v = v ↔ constraint v = zero
+  source: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: projection_residual_orthogonal_to_kernel
+  line: 52
+  signature_excerpt: |-
+    theorem projection_residual_orthogonal_to_kernel (v w : Vec)
+        (hw : constraint w = zero) : dot (subtract v (project v)) w = 0
+  source: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: nontrivial_kernel
+  line: 57
+  signature_excerpt: 'theorem nontrivial_kernel : constraint (1, 0, 0) = zero ∧ (1, 0, 0) ≠ zero'
+  source: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: constraint_is_indefinite
+  line: 60
+  signature_excerpt: |-
+    theorem constraint_is_indefinite :
+        dot (0, 1, 0) (constraint (0, 1, 0)) > 0 ∧
+        dot (0, 0, 1) (constraint (0, 0, 1)) < 0
+  source: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: constraint_is_not_projector
+  line: 64
+  signature_excerpt: |-
+    theorem constraint_is_not_projector :
+        constraint (constraint (0, 1, 0)) ≠ constraint (0, 1, 0)
+  source: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_symmetric
+  availability: local
+  symbol: CampaignConstraintKernelProjector.constraint_symmetric
+  path: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  declaration_status: declaration_found_not_proof_checked
+  line: 19
+  role: source_lead_only
+- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.kernel_characterization
+  availability: local
+  symbol: CampaignConstraintKernelProjector.kernel_characterization
+  path: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  declaration_status: declaration_found_not_proof_checked
+  line: 24
+  role: source_lead_only
+- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projector_idempotent
+  availability: local
+  symbol: CampaignConstraintKernelProjector.projector_idempotent
+  path: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  declaration_status: declaration_found_not_proof_checked
+  line: 35
+  role: source_lead_only
+- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projected_vector_satisfies_constraint
+  availability: local
+  symbol: CampaignConstraintKernelProjector.projected_vector_satisfies_constraint
+  path: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  declaration_status: declaration_found_not_proof_checked
+  line: 37
+  role: source_lead_only
+- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projector_fixes_exactly_kernel
+  availability: local
+  symbol: CampaignConstraintKernelProjector.projector_fixes_exactly_kernel
+  path: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  declaration_status: declaration_found_not_proof_checked
+  line: 40
+  role: source_lead_only
+- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projection_residual_orthogonal_to_kernel
+  availability: local
+  symbol: CampaignConstraintKernelProjector.projection_residual_orthogonal_to_kernel
+  path: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  declaration_status: declaration_found_not_proof_checked
+  line: 52
+  role: source_lead_only
+- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.nontrivial_kernel
+  availability: local
+  symbol: CampaignConstraintKernelProjector.nontrivial_kernel
+  path: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  declaration_status: declaration_found_not_proof_checked
+  line: 57
+  role: source_lead_only
+- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_is_indefinite
+  availability: local
+  symbol: CampaignConstraintKernelProjector.constraint_is_indefinite
+  path: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  declaration_status: declaration_found_not_proof_checked
+  line: 60
+  role: source_lead_only
+- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_is_not_projector
+  availability: local
+  symbol: CampaignConstraintKernelProjector.constraint_is_not_projector
+  path: lean4/CampaignConstraintKernelProjector.lean
+  repository: this_repository
+  sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
+  declaration_status: declaration_found_not_proof_checked
+  line: 64
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -70,8 +315,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

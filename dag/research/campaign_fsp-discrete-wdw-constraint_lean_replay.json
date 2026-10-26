@@ -1,0 +1,144 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-26T02:39:44.114971+00:00",
+  "source_base": "4fea09ae176aae31115e38bb2b21819237055811",
+  "result": "Narrowed; original status retained. On integer triples, the declared constraint H(x,y,z)=(0,2y,-z) is symmetric for the usual dot product and has kernel exactly the vectors with y=z=0. The map P(x,y,z)=(x,0,0) is idempotent, maps into that kernel, fixes exactly the kernel, and has residual orthogonal to every kernel vector. H has a nonzero kernel but is indefinite and is not idempotent. Thus this finite-dimensional constraint and its kernel projector are distinct operators.",
+  "proof_boundary": "This is a declared finite-dimensional integer model; its set of integer triples is infinite. It constructs no discrete Wheeler-DeWitt operator, triangulation dynamics, diffeomorphism action, physical state space or continuum limit. Its counterexample concerns an inference from symmetry and a nonzero kernel to positivity or idempotence, not a specified gravitational model.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/next-five-2/fsp-discrete-wdw-constraint/lake",
+    "results": [
+      {
+        "module": "CampaignConstraintKernelProjector",
+        "dag_node": "FSP-DISCRETE-WDW-CONSTRAINT",
+        "source": "lean4/CampaignConstraintKernelProjector.lean",
+        "sha256": "4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6",
+        "sha256_after_build": "4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignConstraintKernelProjector.constraint_symmetric",
+          "CampaignConstraintKernelProjector.kernel_characterization",
+          "CampaignConstraintKernelProjector.projected_vector_satisfies_constraint",
+          "CampaignConstraintKernelProjector.projector_fixes_exactly_kernel",
+          "CampaignConstraintKernelProjector.projection_residual_orthogonal_to_kernel",
+          "CampaignConstraintKernelProjector.Vec",
+          "CampaignConstraintKernelProjector.zero",
+          "CampaignConstraintKernelProjector.constraint",
+          "CampaignConstraintKernelProjector.project",
+          "CampaignConstraintKernelProjector.dot",
+          "CampaignConstraintKernelProjector.subtract",
+          "CampaignConstraintKernelProjector.projector_idempotent",
+          "CampaignConstraintKernelProjector.nontrivial_kernel",
+          "CampaignConstraintKernelProjector.constraint_is_indefinite",
+          "CampaignConstraintKernelProjector.constraint_is_not_projector"
+        ],
+        "axioms": {
+          "CampaignConstraintKernelProjector.constraint_symmetric": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignConstraintKernelProjector.kernel_characterization": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignConstraintKernelProjector.projected_vector_satisfies_constraint": [
+            "propext"
+          ],
+          "CampaignConstraintKernelProjector.projector_fixes_exactly_kernel": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignConstraintKernelProjector.projection_residual_orthogonal_to_kernel": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignConstraintKernelProjector.Vec": [],
+          "CampaignConstraintKernelProjector.zero": [],
+          "CampaignConstraintKernelProjector.constraint": [],
+          "CampaignConstraintKernelProjector.project": [],
+          "CampaignConstraintKernelProjector.dot": [],
+          "CampaignConstraintKernelProjector.subtract": [],
+          "CampaignConstraintKernelProjector.projector_idempotent": [],
+          "CampaignConstraintKernelProjector.nontrivial_kernel": [],
+          "CampaignConstraintKernelProjector.constraint_is_indefinite": [],
+          "CampaignConstraintKernelProjector.constraint_is_not_projector": []
+        },
+        "output": "'CampaignConstraintKernelProjector.Vec' does not depend on any axioms\n'CampaignConstraintKernelProjector.zero' does not depend on any axioms\n'CampaignConstraintKernelProjector.constraint' does not depend on any axioms\n'CampaignConstraintKernelProjector.project' does not depend on any axioms\n'CampaignConstraintKernelProjector.dot' does not depend on any axioms\n'CampaignConstraintKernelProjector.subtract' does not depend on any axioms\n'CampaignConstraintKernelProjector.constraint_symmetric' depends on axioms: [propext, Quot.sound]\n'CampaignConstraintKernelProjector.kernel_characterization' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignConstraintKernelProjector.projector_idempotent' does not depend on any axioms\n'CampaignConstraintKernelProjector.projected_vector_satisfies_constraint' depends on axioms: [propext]\n'CampaignConstraintKernelProjector.projector_fixes_exactly_kernel' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignConstraintKernelProjector.projection_residual_orthogonal_to_kernel' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignConstraintKernelProjector.nontrivial_kernel' does not depend on any axioms\n'CampaignConstraintKernelProjector.constraint_is_indefinite' does not depend on any axioms\n'CampaignConstraintKernelProjector.constraint_is_not_projector' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "lake_build": {
+    "command": [
+      "lake",
+      "--no-cache",
+      "build",
+      "CampaignConstraintKernelProjector"
+    ],
+    "exit_code": 0,
+    "seconds": 2.442,
+    "output": "⚠ [764/765] Built CampaignConstraintKernelProjector (1.4s)\nwarning: CampaignConstraintKernelProjector.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignConstraintKernelProjector.lean:67:0: 'CampaignConstraintKernelProjector.constraint_symmetric' depends on axioms: [propext, Quot.sound]\ninfo: CampaignConstraintKernelProjector.lean:68:0: 'CampaignConstraintKernelProjector.kernel_characterization' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignConstraintKernelProjector.lean:69:0: 'CampaignConstraintKernelProjector.projector_idempotent' does not depend on any axioms\ninfo: CampaignConstraintKernelProjector.lean:70:0: 'CampaignConstraintKernelProjector.projected_vector_satisfies_constraint' depends on axioms: [propext]\ninfo: CampaignConstraintKernelProjector.lean:71:0: 'CampaignConstraintKernelProjector.projector_fixes_exactly_kernel' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignConstraintKernelProjector.lean:72:0: 'CampaignConstraintKernelProjector.projection_residual_orthogonal_to_kernel' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\ninfo: CampaignConstraintKernelProjector.lean:73:0: 'CampaignConstraintKernelProjector.nontrivial_kernel' does not depend on any axioms\ninfo: CampaignConstraintKernelProjector.lean:74:0: 'CampaignConstraintKernelProjector.constraint_is_indefinite' does not depend on any axioms\ninfo: CampaignConstraintKernelProjector.lean:75:0: 'CampaignConstraintKernelProjector.constraint_is_not_projector' does not depend on any axioms\nBuild completed successfully (765 jobs).\n"
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/fsp-discrete-wdw-constraint.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.281,
+    "output": "vectors=125 rank=2 kernel_dimension=1 quadratic_values=(2,-1) nonprojector=True failures=0\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/next-five-2/fsp-discrete-wdw-constraint/registered-lakefile.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 4.705,
+    "output": ""
+  },
+  "build_scope": "Exact-source minimal package. The full repository Lean workspace was not built.",
+  "axiom_audit": {
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/next-five-2/fsp-discrete-wdw-constraint/lake",
+    "input_path": "Audit.lean",
+    "input_contents": "import CampaignConstraintKernelProjector\n#print axioms CampaignConstraintKernelProjector.Vec\n#print axioms CampaignConstraintKernelProjector.zero\n#print axioms CampaignConstraintKernelProjector.constraint\n#print axioms CampaignConstraintKernelProjector.project\n#print axioms CampaignConstraintKernelProjector.dot\n#print axioms CampaignConstraintKernelProjector.subtract\n#print axioms CampaignConstraintKernelProjector.constraint_symmetric\n#print axioms CampaignConstraintKernelProjector.kernel_characterization\n#print axioms CampaignConstraintKernelProjector.projector_idempotent\n#print axioms CampaignConstraintKernelProjector.projected_vector_satisfies_constraint\n#print axioms CampaignConstraintKernelProjector.projector_fixes_exactly_kernel\n#print axioms CampaignConstraintKernelProjector.projection_residual_orthogonal_to_kernel\n#print axioms CampaignConstraintKernelProjector.nontrivial_kernel\n#print axioms CampaignConstraintKernelProjector.constraint_is_indefinite\n#print axioms CampaignConstraintKernelProjector.constraint_is_not_projector\n",
+    "input_sha256": "50da78b2372ec4d8c658d40385628bf8b8bf0f0a5e9fd2071b69ca0a23d621ac",
+    "module_source_sha256": "4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6",
+    "exit_code": 0,
+    "output": "'CampaignConstraintKernelProjector.Vec' does not depend on any axioms\n'CampaignConstraintKernelProjector.zero' does not depend on any axioms\n'CampaignConstraintKernelProjector.constraint' does not depend on any axioms\n'CampaignConstraintKernelProjector.project' does not depend on any axioms\n'CampaignConstraintKernelProjector.dot' does not depend on any axioms\n'CampaignConstraintKernelProjector.subtract' does not depend on any axioms\n'CampaignConstraintKernelProjector.constraint_symmetric' depends on axioms: [propext, Quot.sound]\n'CampaignConstraintKernelProjector.kernel_characterization' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignConstraintKernelProjector.projector_idempotent' does not depend on any axioms\n'CampaignConstraintKernelProjector.projected_vector_satisfies_constraint' depends on axioms: [propext]\n'CampaignConstraintKernelProjector.projector_fixes_exactly_kernel' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignConstraintKernelProjector.projection_residual_orthogonal_to_kernel' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'CampaignConstraintKernelProjector.nontrivial_kernel' does not depend on any axioms\n'CampaignConstraintKernelProjector.constraint_is_indefinite' does not depend on any axioms\n'CampaignConstraintKernelProjector.constraint_is_not_projector' does not depend on any axioms\n",
+    "scratch_package": {
+      "lakefile": "import Lake\nopen Lake DSL\nrequire mathlib from \"/workspace/review-round2/mathlib-replay/.lake/packages/mathlib\"\npackage CampaignReplay\nlean_lib CampaignConstraintKernelProjector where\n  roots := #[`CampaignConstraintKernelProjector]\n",
+      "lean_toolchain": "leanprover/lean4:v4.35.0\n",
+      "source_copy": {
+        "from": "lean4/CampaignConstraintKernelProjector.lean",
+        "to": "CampaignConstraintKernelProjector.lean",
+        "sha256": "4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6"
+      }
+    }
+  }
+}

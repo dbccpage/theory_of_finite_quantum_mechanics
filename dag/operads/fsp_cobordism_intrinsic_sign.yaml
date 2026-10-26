@@ -3,19 +3,28 @@ node_id: FSP-COBORDISM-INTRINSIC-SIGN
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in
-    Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the
-    bordism group, eta invariant or sign obstruction exists in this checkout.'
+  source_statement: For every assignment of Boolean edge signs to a triangle and every Boolean vertex
+    switching, the XOR of the three edge signs is invariant. A switching makes all three edge signs positive
+    exactly when their XOR is zero. An explicit switching gives the normal form (0,0,parity), and the
+    product of integer edge signs equals the sign of that parity. A negative-parity triangle is obstructed
+    within this switching class, whereas a balanced triangle with two negative edges can be made positive.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Relate the anomaly invariant to the sign of a declared finite representation and
-    rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature
-    are class specific.
+  source_bottleneck: 'Only diagonal vertex-sign switching on one three-cycle is classified. No spin bordism
+    group, eta invariant, fermion representation, bulk cancellation or obstruction over all representations
+    is computed. The original cobordism-based intrinsic-sign claim remains open. Original target retained
+    as an obligation: Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta)
+    in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of
+    the bordism group, eta invariant or sign obstruction exists in this checkout. Prior boundary: Relate
+    the anomaly invariant to the sign of a declared finite representation and rule out every representation
+    in a stated class; anomaly-based intrinsic sign results in the literature are class specific.'
   source_refs:
   - dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md
   - papers/core/fsp/theory_of_finite_fsp.md
   - papers/core/fsp/the_problem_of_the_fermion_sign.md
   - papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md
+  - dag/derivations/independent/fsp-cobordism-intrinsic-sign.md
+  - dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json
   paper_refs:
   - dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md
   source_claim_label: OPEN
@@ -24,7 +33,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md
-    sha256: d815b611a72cffeb553d0280b69ab0409c48f5864f5102a995065c9f60b9b6c3
+    sha256: 15963c8fc5bdd48d164afa863774a7d0d7d189c9af1c6ad907443d156389e290
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -32,9 +41,197 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_cobordism_intrinsic_sign_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: structure
+  name: Signs
+  line: 7
+  signature_excerpt: structure Signs
+  source: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: parity
+  line: 13
+  signature_excerpt: 'def parity (s : Signs) : Bool'
+  source: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: switched
+  line: 15
+  signature_excerpt: 'def switched (g0 g1 g2 : Bool) (s : Signs) : Signs'
+  source: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: positive
+  line: 20
+  signature_excerpt: 'def positive : Signs'
+  source: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sign
+  line: 22
+  signature_excerpt: 'def sign (b : Bool) : Int'
+  source: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: parity_invariant
+  line: 24
+  signature_excerpt: |-
+    theorem parity_invariant (g0 g1 g2 : Bool) (s : Signs) :
+        parity (switched g0 g1 g2 s) = parity s
+  source: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: switching_normal_form
+  line: 29
+  signature_excerpt: |-
+    theorem switching_normal_form (s : Signs) :
+        switched false s.edge01 (Bool.xor s.edge01 s.edge12) s =
+          ⟨false, false, parity s⟩
+  source: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: positive_switching_iff
+  line: 35
+  signature_excerpt: |-
+    theorem positive_switching_iff (s : Signs) :
+        (∃ g0 g1 g2, switched g0 g1 g2 s = positive) ↔ parity s = false
+  source: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: negative_cycle_obstruction
+  line: 47
+  signature_excerpt: |-
+    theorem negative_cycle_obstruction (s : Signs) (h : parity s = true) :
+        ¬ ∃ g0 g1 g2, switched g0 g1 g2 s = positive
+  source: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: edge_product_is_cycle_sign
+  line: 54
+  signature_excerpt: |-
+    theorem edge_product_is_cycle_sign (s : Signs) :
+        sign s.edge01 * sign s.edge12 * sign s.edge20 = sign (parity s)
+  source: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: explicit_negative_cycle
+  line: 59
+  signature_excerpt: |-
+    theorem explicit_negative_cycle :
+        ¬ ∃ g0 g1 g2, switched g0 g1 g2 ⟨true, false, false⟩ = positive
+  source: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: balanced_negative_edges_are_removable
+  line: 63
+  signature_excerpt: |-
+    theorem balanced_negative_edges_are_removable :
+        switched false true false ⟨true, true, false⟩ = positive
+  source: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.parity_invariant
+  availability: local
+  symbol: CampaignSignedTriangleSwitching.parity_invariant
+  path: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  declaration_status: declaration_found_not_proof_checked
+  line: 24
+  role: source_lead_only
+- original_ref: lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.switching_normal_form
+  availability: local
+  symbol: CampaignSignedTriangleSwitching.switching_normal_form
+  path: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  declaration_status: declaration_found_not_proof_checked
+  line: 29
+  role: source_lead_only
+- original_ref: lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.positive_switching_iff
+  availability: local
+  symbol: CampaignSignedTriangleSwitching.positive_switching_iff
+  path: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  declaration_status: declaration_found_not_proof_checked
+  line: 35
+  role: source_lead_only
+- original_ref: lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.negative_cycle_obstruction
+  availability: local
+  symbol: CampaignSignedTriangleSwitching.negative_cycle_obstruction
+  path: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  declaration_status: declaration_found_not_proof_checked
+  line: 47
+  role: source_lead_only
+- original_ref: lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.edge_product_is_cycle_sign
+  availability: local
+  symbol: CampaignSignedTriangleSwitching.edge_product_is_cycle_sign
+  path: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  declaration_status: declaration_found_not_proof_checked
+  line: 54
+  role: source_lead_only
+- original_ref: lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.explicit_negative_cycle
+  availability: local
+  symbol: CampaignSignedTriangleSwitching.explicit_negative_cycle
+  path: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  declaration_status: declaration_found_not_proof_checked
+  line: 59
+  role: source_lead_only
+- original_ref: lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.balanced_negative_edges_are_removable
+  availability: local
+  symbol: CampaignSignedTriangleSwitching.balanced_negative_edges_are_removable
+  path: lean4/CampaignSignedTriangleSwitching.lean
+  repository: this_repository
+  sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
+  declaration_status: declaration_found_not_proof_checked
+  line: 63
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -72,8 +269,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

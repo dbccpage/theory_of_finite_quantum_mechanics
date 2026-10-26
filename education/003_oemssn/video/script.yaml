@@ -1,0 +1,438 @@
+# Narration and visuals for the 003 MSS-N explainer.
+# AuthorityEffect: None. Grounded in the 003 research brief and curriculum.md.
+# Build: see ../../../education_app/_docs/video_builder.md
+title: "MSS-N: glyph grammars, declared readings, and what an atlas can claim"
+strand: "003 MSS-N"
+output_name: 003_minimal_symbol_system_n_mssn
+segments:
+
+  - id: s001
+    chapter: "Opening"
+    visual:
+      kind: title
+      title: "MSS-N"
+      subtitle: "Glyph grammars, declared readings, and what an atlas can claim"
+      tagline: "Strand 003 of the Omega Engine curriculum"
+    narration: >
+      M S S N, the minimal symbol system. Glyph grammars, declared readings, and what an atlas can claim.
+      This strand is different from the three before it. It is not a derivation. It is an atlas, designed from outside,
+      of ways to write things with a small alphabet, and of checks someone would like to run on them.
+
+  - id: s002
+    chapter: "Opening"
+    visual:
+      kind: table
+      heading: "What is checked, and what is not"
+      columns: ["Part", "Status"]
+      wrap: [40, 34]
+      rows:
+        - ["grammar mssn.ebnf: 39 cases over 22 starts", {text: "replayed: PASS", colour: good}]
+        - ["codec", {text: "all 22 starts; targeted grammar comparisons pass", colour: accent2}]
+        - ["Lean syntax sketch", {text: "compiles; no parser-equivalence theorem", colour: accent2}]
+        - ["paper proofs", {text: "correct written arguments, not mechanized", colour: accent2}]
+        - ["101-level atlas", {text: "targets; most evaluator names have no code", colour: bad}]
+    narration: >
+      Start with the honest scorecard. The grammar file is checked: thirty nine cases over twenty two readings replay and pass.
+      The codec now rejects the previously accepted non ASCII digits and undeclared Unicode tokens. The Lean syntax sketch compiles, but does not prove parser correspondence. Separate Lean files prove the algebraic results listed in the proof inventory.
+      The paper's proofs are correct, and you can do them by hand, but nothing mechanizes them. And the large atlas of one hundred and one levels is a list of targets.
+      Most of the evaluator names and error codes in its tables exist in no code at all. So this video teaches the grammar and the paper, and treats the atlas as a map of intentions.
+
+  # ------------------------------------------------------------ 1
+  - id: s010
+    chapter: "1. An atlas, not a derivation"
+    visual:
+      kind: bullets
+      heading: "What the atlas says about itself"
+      items:
+        - "\"an externally designed atlas of finite representations and verifier obligations\""
+        - "\"not constrained to blind derivation\""
+        - {text: "\"MSS-2 ≠ S(2)\": atlas rows are not Genesis stages", colour: accent2}
+        - "every row is a specification target, not evidence the target was met"
+    narration: >
+      Part one. An atlas, not a derivation. The strand describes itself as an externally designed atlas of finite representations and verifier obligations,
+      not constrained to blind derivation. And it states plainly that its rows are not Genesis stages. M S S two is not S of two.
+      Matching numbers establish nothing. Every row of the atlas is a specification target, not evidence that the target was met.
+
+  - id: s011
+    chapter: "1. An atlas, not a derivation"
+    visual:
+      kind: table
+      heading: "Coverage is not depth"
+      columns: ["Measure", "Counts", "Value today"]
+      wrap: [16, 40, 20]
+      rows:
+        - ["coverage C(N)", "rows that have been specified", "101"]
+        - ["depth D(k)", "a contiguous chain of licensed lift records", {text: "0", colour: bad}]
+      caption: "\"Having an atlas of 100 rows provides C(100) coverage; it does not demonstrate that row 0 generated row 100.\""
+    narration: >
+      The paper draws a distinction that is worth remembering beyond this strand. Coverage counts how many rows have been specified.
+      Depth counts a contiguous chain of licensed lifts, each with its repairs exhausted, its extension minimised, its retraction verified, and a host replay that passes.
+      The atlas has coverage one hundred and one. Its depth is zero, because no licensed lift record exists anywhere. As the paper says,
+      having a hundred rows does not demonstrate that row zero generated row one hundred.
+
+  - id: s012
+    chapter: "1. An atlas, not a derivation"
+    visual:
+      kind: table
+      heading: "The canonical tower's grades"
+      columns: ["Grade", "Levels", "Meaning"]
+      wrap: [12, 30, 36]
+      rows:
+        - ["COMPUTED", "6: 0, 1, 23, 35, 36, 48", "a structural shape check exists"]
+        - ["SYNTAX", "20: 2 to 21", "grammar only"]
+        - ["NONE", "75", "nothing"]
+      caption: "Grades are assigned by level membership. With a checker replaced by one that fails, level 35 still reads COMPUTED."
+    narration: >
+      The engine's canonical tower module grades the levels. Six are graded computed, twenty syntax, and seventy five nothing. Be careful even with those six.
+      The research for this video found that the grades are assigned by which level a number is, not by running the checks. When one checker was replaced by a function that always fails,
+      level thirty five still reported computed. So a grade is a label. A receipt from a run is evidence.
+
+  # ------------------------------------------------------------ 2
+  - id: s020
+    chapter: "2. The alphabet and what to declare"
+    visual:
+      kind: code
+      heading: "Γ38: the alphabet"
+      size: 30
+      code: |
+        a b c d e f g h i j k l m n o p q r s t u v w x y z
+        0 1 2 3 4 5 6 7 8 9
+        <  >
+
+        Σ36 = letters and digits (used by word)
+    narration: >
+      Part two. The alphabet, and what must be declared. The alphabet has thirty eight glyphs. Twenty six lowercase letters, ten digits,
+      and the two marks less than and greater than. The grammar's word rule uses the thirty six letters and digits. In the rawest reading,
+      the two angle marks are just glyphs too. Balanced pairing is not an axiom. It is something a grammar may or may not add.
+
+  - id: s021
+    chapter: "2. The alphabet and what to declare"
+    visual:
+      kind: table
+      heading: "Eight things every symbol model must declare"
+      columns: ["#", "Declare"]
+      wrap: [4, 50]
+      rows:
+        - ["1", "terminal spellings"]
+        - ["2", "tokenization policy"]
+        - ["3", "grammar"]
+        - ["4", "public start symbol"]
+        - ["5", "layout policy"]
+        - ["6", "identity policy"]
+        - ["7", "annotation decoding"]
+        - ["8", "manipulation rules"]
+    narration: >
+      The paper's central discipline is a list of eight things that every symbol manipulation model must declare separately.
+      Terminal spellings. How text is cut into tokens. The grammar. Which start symbol is meant. How layout and whitespace are treated.
+      When two things count as the same. How annotations are decoded. And what moves are allowed. Most confusion about symbols comes from leaving one of these undeclared,
+      as the pre genesis trials showed again and again.
+
+  - id: s022
+    chapter: "2. The alphabet and what to declare"
+    visual:
+      kind: bullets
+      heading: "Three relations that share notation"
+      items:
+        - {math: 'E \subseteq V \times V \quad \text{an encoded relation}'}
+        - {math: '\to_{\mathrm{rewrite}} \quad \text{a rewrite relation}'}
+        - {math: 'q : V \to O \quad \text{an observation map}'}
+    narration: >
+      The paper also separates three relations that are often written with the same arrow. An encoded relation, a set of pairs that a string describes.
+      A rewrite relation, the moves that change one string into another. And an observation map, what an observer can read off a string.
+      An arrow in a string could mean any of the three, and the grammar alone does not say which.
+
+  # ------------------------------------------------------------ 3
+  - id: s030
+    chapter: "3. One string, many readings"
+    visual:
+      kind: table
+      heading: "Same text, four public starts"
+      columns: ["Text", "raw_glyphs", "label_path", "suffix_path", "glyph_path"]
+      rows:
+        - [{code: "a>b>c>a"}, {text: "accept", colour: good}, {text: "accept", colour: good}, {text: "refuse", colour: bad}, {text: "accept", colour: good}]
+        - [{code: "a0>b2>c1>a0"}, {text: "accept", colour: good}, {text: "accept", colour: good}, {text: "accept", colour: good}, {text: "refuse", colour: bad}]
+      caption: "There is no default start. Every case names its reading."
+    narration: >
+      Part three. One string, many readings. The grammar is not one grammar with one start symbol. It is a family of twenty two named readings, and there is no default.
+      Look at two strings. a, arrow b, arrow c, arrow a, is accepted as raw glyphs, as a label path and as a glyph path, but refused as a suffix path.
+      a zero, arrow b two, arrow c one, arrow a zero, is accepted by three readings and refused as a glyph path.
+
+  - id: s031
+    chapter: "3. One string, many readings"
+    visual:
+      kind: table
+      heading: "What \"a0\" means under each reading"
+      columns: ["Reading", "a0 is..."]
+      wrap: [16, 52]
+      rows:
+        - ["label_path", "one identifier"]
+        - ["suffix_path", "the label a with the annotation 0"]
+        - ["glyph_path", "two adjacent vertices, a and 0, with no direction between them: refused"]
+    narration: >
+      Why? Because a zero means different things. As a label path, a zero is a single identifier. As a suffix path, it is the label a with the annotation zero,
+      which is why the suffix path refuses the first string, whose vertices carry no annotation. As a glyph path, a zero is two adjacent vertices with no direction between them,
+      which the glyph path refuses. Same characters, different structure, and the only thing that decides is the declared reading.
+
+  - id: s032
+    chapter: "3. One string, many readings"
+    visual:
+      kind: code
+      heading: "Run it"
+      size: 24
+      code: |
+        py -3.12 omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/code/check_mssn.py
+
+        PASS: 39 cases accepted/refused across 22 starts in mssn.ebnf
+        AuthorityEffect: None.
+    narration: >
+      You can run the replay yourself. Thirty nine cases, accepted or refused, across twenty two starts. One small repair was made for this video:
+      the checker used to print the number twenty two as fixed text. It now counts the starts in the cases it actually ran.
+
+  # ------------------------------------------------------------ 4
+  - id: s040
+    chapter: "4. Syntax is not decoding"
+    visual:
+      kind: table
+      heading: "What a grammar can and cannot enforce"
+      columns: ["Condition", "Enforced by"]
+      wrap: [40, 30]
+      rows:
+        - ["no zero denominators (if written lexically)", "lexical rule"]
+        - ["brackets balance", "context-free grammar"]
+        - ["no cycle; triangle inequality", {text: "semantic evaluation", colour: accent2}]
+      caption: "a:1/0 parses in scalar_path. Division by zero is a later numeric refusal."
+    narration: >
+      Part four. Syntax is not decoding. Some conditions a grammar can enforce. Zero denominators can be excluded by spelling, if the grammar is written that way.
+      Balanced brackets need a context free grammar. Other conditions, like having no cycles or obeying a triangle inequality, are not syntax at all.
+      They are semantic obligations that only an evaluator can check. So the string a colon one slash zero parses as a scalar path. Its division by zero
+      is refused later, by a numeric check, not by the grammar.
+
+  - id: s041
+    chapter: "4. Syntax is not decoding"
+    visual:
+      kind: dialogue
+      heading: "edge_weight_path: both marks must agree"
+      turns:
+        - {who: "accept (MSSN_022)", text: "a>2.5>b<1<c", mono: true, colour: good}
+        - {who: "refuse (MSSN_023)", side: right, text: "a>2<b", mono: true, colour: bad}
+    narration: >
+      A small example of what syntax can do. In the edge weight reading, a weight sits between two marks, and both marks on a step must point the same way.
+      a, arrow two point five arrow, b, back arrow one back arrow, c is accepted: each step's two marks agree. a, arrow two, back arrow, b is refused. That is a grammar enforcing a local consistency rule,
+      which is about as far as grammar goes.
+
+  # ------------------------------------------------------------ 5
+  - id: s050
+    chapter: "5. More keys, not more meaning"
+    visual:
+      kind: bullets
+      heading: "Capability needs declared rules"
+      items:
+        - {math: 'a^{+} \ \text{with}\ \mathrm{dec}(w)=|w| \;\cong\; (\mathbb{Z}^{+}, +)'}
+        - {math: 'ab \neq ba \quad \text{(two glyphs: a non-commutative free monoid)}'}
+        - "relations without arrows: juxtaposition, pairing [a, b], or a table"
+      caption: "\"capability changes are strictly conditional on declared formation and decoding rules\""
+    narration: >
+      Part five. More keys, not more meaning. The paper's milestones are all conditional. One glyph, with repetition, gives strings of a's. With the decoder
+      that reads a string's length, those strings model the positive integers under addition. Two glyphs give a free monoid that is not commutative: a b is not b a.
+      Relations can be encoded without any arrow glyph, by putting things side by side, by pairing, or by a table. In every case, the capability comes from a declared rule,
+      not from adding a key to the keyboard.
+
+  - id: s051
+    chapter: "5. More keys, not more meaning"
+    visual:
+      kind: math
+      heading: "Free monoids of different rank are not isomorphic"
+      lines:
+        - '\{0,1\}^{*} \not\cong \{0,\dots,9\}^{*}'
+        - {text: "Indecomposable elements of a free monoid are exactly its generators."}
+        - {text: "An isomorphism preserves indecomposables, and 2 ≠ 10."}
+        - {text: "A fixed-width binary code embeds {0..9}* into {0,1}*, but not onto."}
+    narration: >
+      Here is the first theorem, with its whole proof. The strings over two symbols and the strings over ten symbols are not isomorphic as monoids.
+      In a free monoid, the elements that cannot be split into two non empty pieces are exactly the single generators. An isomorphism must send indecomposable elements
+      to indecomposable elements, so it would match two generators with ten. That is impossible. You can still embed decimal strings into binary ones with a fixed width code,
+      but not onto. Notice the consequence. A larger alphabet is not the same system with more names. The revised alphabet insert supplies this proof and a separate prefix-free encoding theorem. Teach the paper.
+
+  - id: s052
+    chapter: "5. More keys, not more meaning"
+    visual:
+      kind: table
+      heading: "Renaming must be a bijection"
+      columns: ["Map", "Collision"]
+      wrap: [26, 40]
+      rows:
+        - ["ρ(c) = d, ρ(d) = d", "ρ(ac) = ρ(ad) = ad"]
+        - ["a ↦ 0, b ↦ 00", "aa and b both give 00"]
+        - ["a ↦ 0, b ↦ 00", "ab and ba both give 000"]
+    narration: >
+      A renaming of the alphabet is invertible exactly when it is a bijection. If c and d both go to d, then a c and a d become the same string.
+      A code can collide even when letters stay distinct. Send a to zero and b to zero zero. Then double a and b both become zero zero,
+      and a b and b a both become zero zero zero. Collisions like these are the reason the identity policy is on the list of things to declare.
+
+  # ------------------------------------------------------------ 6
+  - id: s060
+    chapter: "6. Retraction of languages"
+    visual:
+      kind: math
+      heading: "A language-level retraction"
+      lines:
+        - 'A \subseteq B:\qquad \ell(L) = L,\qquad r(M) = M \cap A^{*}'
+        - 'r(\ell(L)) = L'
+        - 'h : B^{*} \to A^{*},\quad h(a_1\,b\,a_2) = a_1 a_2 \quad\text{(erasure loses information)}'
+    narration: >
+      Part six. Retraction of languages. If one alphabet is contained in another, a language over the small alphabet is also a language over the large one.
+      Going back, keep only the strings that use the small alphabet. Do both, and you recover the original language. That is a retraction, but at the level of whole languages.
+      It is not a map on strings. The string map that erases the new letters loses information: it turns a one b a two into a one a two. And the paper adds a warning.
+      The identity confirms that the old expressions can be recovered. It does not imply that the larger system gained nothing.
+
+  - id: s061
+    chapter: "6. Retraction of languages"
+    visual:
+      kind: math
+      heading: "The old-image law, with typed refusal"
+      lines:
+        - 'r(u(x)) = x \qquad r(z) = \mathrm{NON\_DESCENT}'
+        - {text: "Satisfies the old-image law. Does not give an inverse on z, or permission to add z."}
+        - {text: "Write r_N for down-maps, never d_N (d_N is the death count).", colour: accent2}
+    narration: >
+      The same pattern appeared in the S of n strand. Suppose the new system contains u of x and a new element z. The way down returns x for u of x,
+      and the refusal non descent for z. That satisfies the old image law. It does not give an inverse on z, and it does not give permission to have added z.
+      One notation fix made for this video: the strand wrote down maps as d sub N, which the repository reserves for death counts. They are now r sub N.
+
+  # ------------------------------------------------------------ 7
+  - id: s070
+    chapter: "7. Filling a hole"
+    visual:
+      kind: graph
+      heading: "a>b>c>a: one cycle, no face"
+      nodes: {a: [-1.6, -0.6], b: [1.6, -0.6], c: [0, 0.9]}
+      edges: [[a, b], [b, c], [c, a]]
+      notes: ["z = e_ab + e_bc + e_ca,   ∂z = (b − a) + (c − b) + (a − c) = 0,   H₁ ≅ ℤ·[z] with no 2-cells"]
+    narration: >
+      Part seven. Filling a hole. Read a arrow b arrow c arrow a as a directed graph. The boundary of an edge is its target minus its source.
+      Add the three edges, and the boundary telescopes to zero, so the sum is a cycle. With no two dimensional cells, the first homology is generated by that one cycle.
+      Notice what the string does not supply. It gives the three edges. It does not give a face to fill the triangle. A face would be a new declared cell.
+
+  - id: s071
+    chapter: "7. Filling a hole"
+    visual:
+      kind: bullets
+      heading: "Two warnings from the paper"
+      items:
+        - "Homology is not directed reachability: −e is a formal inverse"
+        - "Vanishing homology is not null-homotopy (the commutator in S¹ ∨ S¹)"
+        - "the inscription supplies the 1-skeleton, not the 2-cell"
+    narration: >
+      Two warnings from the paper. Homology is not about which vertex you can reach by following arrows. Minus an edge is a formal inverse, whether or not you can travel backwards.
+      And homology vanishing is weaker than a loop being contractible. In a figure eight, a commutator of the two loops has zero homology class but cannot be shrunk to a point.
+
+  - id: s072
+    chapter: "7. Filling a hole"
+    visual:
+      kind: math
+      heading: "Filling a hole blocks a chain-map retraction"
+      lines:
+        - 'r\circ i = \mathrm{id}_C,\quad i(z) = \partial b'
+        - '\Longrightarrow\; z = r(\partial b) = \partial(r\,b)\;\Longrightarrow\;[z] = 0'
+        - {text: "So an extension that kills a nonzero class has no retraction fixing the original complex."}
+      box_last: false
+    narration: >
+      Now the central proposition. Suppose you extend a complex C to a bigger complex D, and the extension kills a cycle z that was not a boundary before:
+      in D, z is the boundary of some b. Suppose also there is a chain map r back from D to C that fixes C. Then z equals r of the boundary of b,
+      which is the boundary of r of b, a boundary in C. So z was a boundary all along, which contradicts the assumption. Filling a hole is a one way step.
+      You cannot retract it while keeping the original complex.
+
+  - id: s073
+    chapter: "7. Filling a hole"
+    visual:
+      kind: graph
+      heading: "The smallest example"
+      nodes: {a: [-1.6, 0], b: [1.6, 0]}
+      edges: [[a, b, accent2]]
+      notes: ["Before: no edges, [b − a] ≠ 0. After: ∂e = b − a. A retraction fixing C₀ needs r₁ = 0, forcing b − a = 0: impossible."]
+    narration: >
+      The smallest example has two points and no edges. Then b minus a is not a boundary, so it is a nonzero class. Now add one edge whose boundary is b minus a.
+      Any chain map back that fixes the two points must send the new edge into the old edge group, which is zero. Then the boundary of the edge, b minus a, would have to be zero.
+      It is not. So no retraction exists. The research for this video computed this exactly, and also checked a control: adding a parallel edge, which kills nothing, does allow a retraction.
+
+  # ------------------------------------------------------------ 8
+  - id: s080
+    chapter: "8. Three packet languages"
+    visual:
+      kind: table
+      heading: "Three languages that look alike"
+      columns: ["Input", "boundary", "tower wire", "glyph_path"]
+      rows:
+        - [{code: "<>"}, "accept", "accept", "refuse"]
+        - [{code: "<ab>"}, "accept", "accept (atom ab)", "refuse"]
+        - [{code: "<<ab><>>"}, "accept", {text: "refuse", colour: bad}, "refuse"]
+        - [{code: "op<<10010><1><11><10>>"}, "refuse", {text: "accept: −3/2", colour: good}, "refuse"]
+        - [{code: "a>b>c>a"}, "refuse", "refuse", "accept"]
+    narration: >
+      Part eight. Three packet languages. Three grammars in the repository look alike and are different. The boundary grammar accepts the empty mark, bracketed words,
+      and nested composites. The canonical tower wire accepts the empty mark, bracketed words, and operator applications with binary opcodes, but refuses nested composites.
+      And this strand's glyph path grammar accepts unwrapped paths like a arrow b arrow c arrow a, and none of the bracketed forms.
+      The tower even decodes an exact rational: opcode one zero zero one zero, sign one, numerator three, denominator two, gives minus three halves.
+
+  - id: s081
+    chapter: "8. Three packet languages"
+    visual:
+      kind: bullets
+      heading: "Reading packets honestly"
+      items:
+        - "<ab> is an atom whose word is ab; an edge from a to b is a declared decoder"
+        - "tower stage checks return STRUCTURAL_ONLY, never mathematical certification"
+        - "MSS-0 admits only <>; the tower's MSS-1 refuses <a> and accepts <01>"
+        - "the tower does use opcodes; \"zero opcodes\" was wrong"
+    narration: >
+      Some consequences. In both packet grammars, a b in brackets is a single atom whose word is a b. Reading it as an edge from a to b is a decoding choice.
+      The tower's stage checks say structural only, never mathematical certification. Its stage zero admits only the empty mark, and its stage one refuses a in brackets
+      and accepts binary atoms such as zero one, which contradicts a sentence in this strand's level one. And the claim that the wire has zero opcodes was wrong.
+
+  - id: s082
+    chapter: "8. Three packet languages"
+    visual:
+      kind: flow
+      heading: "Where this sits in the engine"
+      nodes:
+        - {text: "MSS-N: what can be written", colour: accent}
+        - {text: "PFP: how a model's packet is carried and checked", colour: accent2}
+        - {text: "WDP: the mathematics a check is about", colour: good}
+      caption: "PFP keeps MSS-N as a separate object from the protocol. A packet never certifies itself."
+    narration: >
+      Where does this sit? M S S N is about what can be written, and how a written thing is read. The Proposal Fidelity Protocol is about how a model's packet is carried
+      to the host and checked. And the Witnessed Difference Programme is the mathematics those checks are about. The protocol keeps M S S N as a separate object,
+      and the rule that runs through all four strands holds here too. A packet never certifies itself. Only the host's receipt carries a status.
+
+  - id: s090
+    chapter: "Closing"
+    visual:
+      kind: bullets
+      heading: "What this strand does not claim"
+      items:
+        - "that MSS levels are Genesis stages, or that the atlas is verified as a whole"
+        - "that Evaluator::* names or ERR_* codes in the tables are running software"
+        - "that Lean syntax sketches prove parser correspondence"
+        - "that the paper's theorems are machine-checked"
+        - "anything physical, on the strength of the domain files"
+    narration: >
+      To close, what this strand does not claim. Its levels are not Genesis stages, and the atlas is not verified as a whole. The evaluator names and error codes in the tables
+      are mostly labels, not software. The Lean syntax sketches provide no parser-correspondence theorem. Targeted tests now cover ASCII boundaries and the declared Unicode tokens. The paper's written theorems have their stated assumptions and
+      written proofs, not machine checked ones. And nothing physical follows from the domain files, whose so called Bianchi theorems return their own hypotheses.
+
+  - id: s091
+    chapter: "Closing"
+    visual:
+      kind: flow
+      heading: "The four foundation strands"
+      nodes:
+        - "000 Pre-Genesis"
+        - "001 Genesis"
+        - "002 S(n)"
+        - {text: "010 MSS-N", colour: good}
+      caption: "Next: 030 PFP for how models are spoken to, and 070 WDP for the mathematics."
+    narration: >
+      That completes the four foundation strands. Pre genesis showed what a model does with an empty mark. Genesis showed what a declared regime can derive from it.
+      S of n labelled the stages and taught small exact obstructions. And M S S N showed how many ways one string can be read, and what an atlas can and cannot claim.
+      From here, strand zero thirty teaches the protocol the engine uses to talk to language models, and strand zero seventy teaches the mathematics.
+      The curriculum file for this strand has exercises with answers for all eight parts.

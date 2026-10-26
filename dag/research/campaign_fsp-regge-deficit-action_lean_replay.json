@@ -1,0 +1,134 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-26T02:37:04.697988+00:00",
+  "source_base": "4fea09ae176aae31115e38bb2b21819237055811",
+  "result": "Narrowed; original status retained. For any commutative ring and finite hinge set, the action S=sum_h A_h*(tau-sum_j theta_hj) equals tau*sum_h A_h-sum_h A_h*sum_j theta_hj. For fixed deficits it is linear in the declared areas, and splitting an area while keeping its deficit fixed preserves its contribution. Zero deficits imply zero action. Declared integer data also show that zero total action need not mean zero deficits, and changing areas can change the action on the same finite index set.",
+  "proof_boundary": "Areas, angles and the full-turn parameter are declared algebraic data. Geometric realizability, actual triangulation moves, Lorentzian signature, convergence to the Einstein-Hilbert action, and fermion-sign consequences are not established.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/next-five-2/fsp-regge-deficit-action/lake",
+    "results": [
+      {
+        "module": "CampaignReggeFiniteAction",
+        "dag_node": "FSP-REGGE-DEFICIT-ACTION",
+        "source": "lean4/CampaignReggeFiniteAction.lean",
+        "sha256": "dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089",
+        "sha256_after_build": "dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignReggeFiniteAction.action",
+          "CampaignReggeFiniteAction.deficit_expansion",
+          "CampaignReggeFiniteAction.area_linearity",
+          "CampaignReggeFiniteAction.flat_deficits_give_zero",
+          "CampaignReggeFiniteAction.same_deficit_area_split",
+          "CampaignReggeFiniteAction.zero_action_does_not_imply_flat",
+          "CampaignReggeFiniteAction.declared_areas_change_action"
+        ],
+        "axioms": {
+          "CampaignReggeFiniteAction.action": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignReggeFiniteAction.deficit_expansion": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignReggeFiniteAction.area_linearity": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignReggeFiniteAction.flat_deficits_give_zero": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignReggeFiniteAction.same_deficit_area_split": [
+            "propext"
+          ],
+          "CampaignReggeFiniteAction.zero_action_does_not_imply_flat": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignReggeFiniteAction.declared_areas_change_action": [
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        "output": "'CampaignReggeFiniteAction.action' depends on axioms: [propext, Quot.sound]\n'CampaignReggeFiniteAction.deficit_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignReggeFiniteAction.area_linearity' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignReggeFiniteAction.flat_deficits_give_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignReggeFiniteAction.same_deficit_area_split' depends on axioms: [propext]\n'CampaignReggeFiniteAction.zero_action_does_not_imply_flat' depends on axioms: [propext, Quot.sound]\n'CampaignReggeFiniteAction.declared_areas_change_action' depends on axioms: [propext, Quot.sound]\n"
+      }
+    ]
+  },
+  "lake_build": {
+    "command": [
+      "lake",
+      "--no-cache",
+      "build",
+      "CampaignReggeFiniteAction"
+    ],
+    "exit_code": 0,
+    "seconds": 2.422,
+    "output": "⚠ [922/923] Built CampaignReggeFiniteAction (1.6s)\nwarning: CampaignReggeFiniteAction.lean: imports `Mathlib.Algebra.BigOperators.Ring.Finset` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignReggeFiniteAction.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignReggeFiniteAction.lean:49:0: 'CampaignReggeFiniteAction.deficit_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignReggeFiniteAction.lean:50:0: 'CampaignReggeFiniteAction.area_linearity' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignReggeFiniteAction.lean:51:0: 'CampaignReggeFiniteAction.flat_deficits_give_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignReggeFiniteAction.lean:52:0: 'CampaignReggeFiniteAction.same_deficit_area_split' depends on axioms: [propext]\ninfo: CampaignReggeFiniteAction.lean:53:0: 'CampaignReggeFiniteAction.zero_action_does_not_imply_flat' depends on axioms: [propext, Quot.sound]\ninfo: CampaignReggeFiniteAction.lean:54:0: 'CampaignReggeFiniteAction.declared_areas_change_action' depends on axioms: [propext, Quot.sound]\nBuild completed successfully (923 jobs).\n"
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/fsp-regge-deficit-action.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.306,
+    "output": "symbolic_identities=3 integer_cases=729 nonflat_action=0 area_actions=[1, 2] failures=0\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/next-five-2/fsp-regge-deficit-action/registered-lakefile.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 4.394,
+    "output": ""
+  },
+  "build_scope": "Exact-source minimal package. The full repository Lean workspace was not built.",
+  "axiom_audit": {
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/next-five-2/fsp-regge-deficit-action/lake",
+    "input_path": "Audit.lean",
+    "input_contents": "import CampaignReggeFiniteAction\n#print axioms CampaignReggeFiniteAction.action\n#print axioms CampaignReggeFiniteAction.deficit_expansion\n#print axioms CampaignReggeFiniteAction.area_linearity\n#print axioms CampaignReggeFiniteAction.flat_deficits_give_zero\n#print axioms CampaignReggeFiniteAction.same_deficit_area_split\n#print axioms CampaignReggeFiniteAction.zero_action_does_not_imply_flat\n#print axioms CampaignReggeFiniteAction.declared_areas_change_action\n",
+    "input_sha256": "7b2377a45e9ea82679b1b50b75442ea18317d42d8589cd281020cdf8e67dc971",
+    "module_source_sha256": "dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089",
+    "exit_code": 0,
+    "output": "'CampaignReggeFiniteAction.action' depends on axioms: [propext, Quot.sound]\n'CampaignReggeFiniteAction.deficit_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignReggeFiniteAction.area_linearity' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignReggeFiniteAction.flat_deficits_give_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignReggeFiniteAction.same_deficit_area_split' depends on axioms: [propext]\n'CampaignReggeFiniteAction.zero_action_does_not_imply_flat' depends on axioms: [propext, Quot.sound]\n'CampaignReggeFiniteAction.declared_areas_change_action' depends on axioms: [propext, Quot.sound]\n",
+    "scratch_package": {
+      "lakefile": "import Lake\nopen Lake DSL\nrequire mathlib from \"/workspace/review-round2/mathlib-replay/.lake/packages/mathlib\"\npackage CampaignReplay\nlean_lib CampaignReggeFiniteAction where\n  roots := #[`CampaignReggeFiniteAction]\n",
+      "lean_toolchain": "leanprover/lean4:v4.35.0\n",
+      "source_copy": {
+        "from": "lean4/CampaignReggeFiniteAction.lean",
+        "to": "CampaignReggeFiniteAction.lean",
+        "sha256": "dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089"
+      }
+    }
+  }
+}

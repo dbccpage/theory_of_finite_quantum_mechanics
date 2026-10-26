@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 580" width="100%" height="100%">
+  <defs>
+    <!-- Background & Grid -->
+    <radialGradient id="bg-glow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#1e1b4b" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#0b0f19" stop-opacity="1.0"/>
+    </radialGradient>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+
+    <!-- Gradients -->
+    <linearGradient id="card-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stroke-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0f172a" stroke-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="cyan-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="violet-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+    <linearGradient id="emerald-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="glow-violet" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Markers -->
+    <marker id="arrow-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#06b6d4"/>
+    </marker>
+    <marker id="arrow-violet" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#8b5cf6"/>
+    </marker>
+  </defs>
+
+  <!-- Base Canvas -->
+  <rect width="940" height="580" fill="#0b0f19"/>
+  <rect width="940" height="580" fill="url(#bg-glow)"/>
+  <rect width="940" height="580" fill="url(#grid)"/>
+
+  <!-- Top Header / Navigation -->
+  <g id="header" transform="translate(40, 30)">
+    <rect x="0" y="0" width="860" height="60" rx="8" fill="url(#card-grad)" stroke="#334155" stroke-width="1"/>
+    <rect x="0" y="0" width="8" height="60" rx="4" fill="url(#cyan-glow)"/>
+    
+    <text x="25" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#06b6d4" letter-spacing="1.5">LEVEL 21 • ROUND R3 TWIN FILLS</text>
+    <text x="25" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" fill="#f8fafc">Round R3 Twin Fills &amp; The 2-Cell Topological Horizon</text>
+    
+    <rect x="670" y="15" width="170" height="30" rx="15" fill="#083344" stroke="#06b6d4" stroke-width="1"/>
+    <circle cx="685" cy="30" r="4" fill="#06b6d4" filter="url(#glow-cyan)"/>
+    <text x="698" y="35" font-family="monospace" font-size="11" font-weight="600" fill="#a5f3fc">2-CELL HORIZON</text>
+  </g>
+
+  <!-- Left Column: Formal Specification -->
+  <g id="left-col" transform="translate(40, 105)">
+    <rect x="0" y="0" width="370" height="400" rx="8" fill="url(#card-grad)" stroke="#334155" stroke-width="1"/>
+    
+    <path d="M 20 35 L 350 35" stroke="#1e293b" stroke-width="1"/>
+    <text x="20" y="25" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#94a3b8" letter-spacing="1">FORMAL SPECIFICATION (LEAN 4)</text>
+
+    <!-- Code Block -->
+    <rect x="15" y="48" width="340" height="150" rx="6" fill="#030712" stroke="#1e293b" stroke-width="1"/>
+    <text x="25" y="70" font-family="monospace" font-size="11" fill="#64748b">-- Round R3 Twin Fill Variants</text>
+    <text x="25" y="90" font-family="monospace" font-size="11" fill="#f43f5e">inductive <tspan fill="#38bdf8">TwinFillVariant</tspan> where</text>
+    <text x="35" y="108" font-family="monospace" font-size="11" fill="#e2e8f0">  | var3A_loop : OneTermLoop → TwinFillVariant</text>
+    <text x="35" y="126" font-family="monospace" font-size="11" fill="#e2e8f0">  | var3B_2cell : ThreeTerm2Cell → TwinFillVariant</text>
+    <text x="25" y="148" font-family="monospace" font-size="11" fill="#10b981">theorem <tspan fill="#e2e8f0">two_cell_frontier_reached</tspan> :</text>
+    <text x="35" y="166" font-family="monospace" font-size="11" fill="#a855f7">  ∂(var3B_2cell boundary) = cycle ∧</text>
+    <text x="35" y="184" font-family="monospace" font-size="11" fill="#a855f7">  homology_class ≠ 0</text>
+
+    <!-- Axiomatic Invariants -->
+    <text x="20" y="222" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#94a3b8" letter-spacing="0.5">ESTATE ARCHITECTURE / INVARIANTS</text>
+    
+    <g transform="translate(20, 235)">
+      <circle cx="5" cy="10" r="3" fill="#06b6d4"/>
+      <text x="18" y="13" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#cbd5e1"><tspan font-weight="600" fill="#f8fafc">Variant 3A (Loop Fill):</tspan> 1-term self loop closure</text>
+      <text x="18" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#64748b">Collapses cycle via direct self-loop identification</text>
+
+      <circle cx="5" cy="45" r="3" fill="#8b5cf6"/>
+      <text x="18" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#cbd5e1"><tspan font-weight="600" fill="#f8fafc">Variant 3B (2-Cell Fill):</tspan> 3-term triangle boundary</text>
+      <text x="18" y="62" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#64748b">Spans 2-dimensional disk filling the 3-edge cycle</text>
+
+      <circle cx="5" cy="80" r="3" fill="#10b981"/>
+      <text x="18" y="83" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#cbd5e1"><tspan font-weight="600" fill="#f8fafc">Topological Horizon:</tspan> Passage beyond 1-skeleton</text>
+      <text x="18" y="97" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#64748b">Exact boundary operator ∂₂ : C₂ → C₁ realized</text>
+
+      <circle cx="5" cy="115" r="3" fill="#f59e0b"/>
+      <text x="18" y="118" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#cbd5e1"><tspan font-weight="600" fill="#f8fafc">MSS-021 Parity:</tspan> Higher-dimensional simplex ceiling</text>
+      <text x="18" y="132" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#64748b">Bridges graph rewrite system to discrete cell complex</text>
+    </g>
+  </g>
+
+  <!-- Right Column: Operational Diagram -->
+  <g id="right-col" transform="translate(430, 105)">
+    <rect x="0" y="0" width="470" height="400" rx="8" fill="url(#card-grad)" stroke="#334155" stroke-width="1"/>
+    
+    <path d="M 20 35 L 450 35" stroke="#1e293b" stroke-width="1"/>
+    <text x="20" y="25" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#94a3b8" letter-spacing="1">ROUND R3 TWIN FILL DUALITY &amp; 2-CELL SPAN</text>
+
+    <!-- Visual of Variant 3A vs Variant 3B -->
+    <g transform="translate(25, 50)">
+      
+      <!-- Variant 3A: 1-term loop -->
+      <g transform="translate(10, 15)">
+        <rect x="0" y="0" width="185" height="200" rx="6" fill="#030712" stroke="#06b6d4" stroke-width="1.5"/>
+        <text x="12" y="22" font-family="monospace" font-size="11" font-weight="700" fill="#38bdf8">VARIANT 3A: LOOP FILL</text>
+        
+        <!-- Loop diagram -->
+        <g transform="translate(90, 95)">
+          <circle cx="0" cy="0" r="16" fill="#0f172a" stroke="#06b6d4" stroke-width="2"/>
+          <text x="0" y="5" font-family="monospace" font-size="12" fill="#e2e8f0" text-anchor="middle">v</text>
+          
+          <!-- Self loop -->
+          <path d="M 12 -10 C 35 -35, -35 -35, -12 -10" fill="none" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow-cyan)"/>
+        </g>
+
+        <text x="15" y="150" font-family="monospace" font-size="10" fill="#cbd5e1">1-term self-loop closure</text>
+        <text x="15" y="166" font-family="monospace" font-size="9" fill="#94a3b8">Dimension: 1-cell (loop)</text>
+        <text x="15" y="182" font-family="monospace" font-size="9" fill="#06b6d4">Bypasses higher cells</text>
+      </g>
+
+      <!-- Variant 3B: 3-term 2-cell -->
+      <g transform="translate(225, 15)">
+        <rect x="0" y="0" width="185" height="200" rx="6" fill="#030712" stroke="#8b5cf6" stroke-width="1.5"/>
+        <text x="12" y="22" font-family="monospace" font-size="11" font-weight="700" fill="#c4b5fd">VARIANT 3B: 2-CELL FILL</text>
+        
+        <!-- Triangle / 2-cell interior -->
+        <g transform="translate(90, 80)">
+          <!-- Shaded interior of 2-cell -->
+          <polygon points="0,-30 45,35 -45,35" fill="#8b5cf6" fill-opacity="0.25" stroke="#a855f7" stroke-width="2"/>
+          <text x="0" y="18" font-family="monospace" font-size="11" font-weight="700" fill="#f472b6" text-anchor="middle">2-CELL (σ₂)</text>
+
+          <circle cx="0" cy="-30" r="5" fill="#38bdf8"/>
+          <circle cx="45" cy="35" r="5" fill="#38bdf8"/>
+          <circle cx="-45" cy="35" r="5" fill="#38bdf8"/>
+        </g>
+
+        <text x="15" y="150" font-family="monospace" font-size="10" fill="#cbd5e1">3-term oriented 2-cell</text>
+        <text x="15" y="166" font-family="monospace" font-size="9" fill="#94a3b8">Dimension: 2-cell boundary</text>
+        <text x="15" y="182" font-family="monospace" font-size="9" fill="#c4b5fd">∂(σ₂) = e₁ + e₂ - e₃</text>
+      </g>
+
+      <!-- Summary Frontier Banner -->
+      <g transform="translate(10, 235)">
+        <rect x="0" y="0" width="400" height="70" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+        <text x="15" y="22" font-family="monospace" font-size="11" font-weight="700" fill="#34d399">TOPOLOGICAL HORIZON CEILING REACHED</text>
+        <text x="15" y="40" font-family="monospace" font-size="10" fill="#e2e8f0">Genesis evolution reaches the 2-cell simplicial boundary.</text>
+        <text x="15" y="56" font-family="monospace" font-size="9" fill="#94a3b8">Completes discrete descent across 22 levels from creation.</text>
+      </g>
+
+    </g>
+  </g>
+
+  <!-- Bottom Operational Status Bar -->
+  <g id="status-bar" transform="translate(40, 520)">
+    <rect x="0" y="0" width="860" height="35" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    
+    <text x="20" y="22" font-family="monospace" font-size="11" fill="#64748b">INVARIANT:</text>
+    <text x="95" y="22" font-family="monospace" font-size="11" font-weight="600" fill="#38bdf8">TwinFillVariant (3A Loop vs 3B 2-Cell Frontier)</text>
+
+    <text x="470" y="22" font-family="monospace" font-size="11" fill="#64748b">PARITY ANCHOR:</text>
+    <text x="570" y="22" font-family="monospace" font-size="11" font-weight="600" fill="#8b5cf6">MSS-021 (Simplex Frontier)</text>
+
+    <rect x="730" y="8" width="115" height="20" rx="4" fill="#083344" stroke="#06b6d4" stroke-width="1"/>
+    <text x="740" y="22" font-family="monospace" font-size="10" font-weight="700" fill="#a5f3fc">2-CELL SEALED</text>
+  </g>
+</svg>

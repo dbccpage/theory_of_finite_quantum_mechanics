@@ -3,12 +3,18 @@ node_id: MAJ-IMPORT-COSET-WEIGHT-NP-HARD
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Minimum-weight coset decoding of a binary linear code given by its matrix is NP-hard
-    (Berlekamp, McEliece and van Tilborg 1978).
+  source_statement: For the 2 by 4 parity-check matrix over the two-element field with rows (1, 1, 0,
+    0) and (0, 1, 1, 1), among the 16 length-4 vectors labeled 0 through 15 with the least significant
+    bit as coordinate 0, the vectors with syndrome (1, 0) are the labels 1, 6, 10 and 13. Their Hamming
+    weights are 1, 2, 2 and 3, so the minimum weight is 1, and the single weight-1 vector in that list
+    is label 1 with coordinates (1, 0, 0, 0). The vectors with syndrome (0, 0) are the labels 0, 7, 11
+    and 12.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - Berlekamp-McEliece-van Tilborg 1978 hardness of coset weights
-  source_bottleneck: Literature result; no reduction is formalized or replayed here.
+  source_bottleneck: Berlekamp, McEliece and van Tilborg 1978 remains an imported literature claim. No
+    reduction is formalized. The 2 by 4 enumeration is one matrix and one syndrome and does not discharge
+    hardness for a general binary matrix.
   source_refs:
   - dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md
   - papers/core/majorana/the_majorana_problem.md
@@ -20,7 +26,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md
-    sha256: 894d77b6f0e0bb14f85b84436be15c13b62344715eb7ed63b7fd95e987b745ee
+    sha256: aa52b250db021250757a0b96d865b1971f6659fd84ee253cedecb762adf04c6e
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -28,9 +34,266 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/majorana_maj_import_coset_weight_np_hard_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: row1
+  line: 13
+  signature_excerpt: 'def row1 (n : Nat) : Nat'
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: dot4
+  line: 17
+  signature_excerpt: 'def dot4 (a b c d n : Nat) : Nat'
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: bit
+  line: 11
+  signature_excerpt: 'def bit (n i : Nat) : Nat'
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: row2
+  line: 15
+  signature_excerpt: 'def row2 (n : Nat) : Nat'
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: coset
+  line: 28
+  signature_excerpt: 'def coset : List Nat'
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: inCoset
+  line: 20
+  signature_excerpt: 'def inCoset (n : Nat) : Bool'
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: wt
+  line: 24
+  signature_excerpt: 'def wt (n : Nat) : Nat'
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: weight1
+  line: 26
+  signature_excerpt: 'def weight1 (n : Nat) : Bool'
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: kernel
+  line: 30
+  signature_excerpt: 'def kernel : List Nat'
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: inKernel
+  line: 22
+  signature_excerpt: 'def inKernel (n : Nat) : Bool'
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: length_sixteen
+  line: 32
+  signature_excerpt: 'theorem length_sixteen : (List.range 16).length = 16'
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: row1_matches
+  line: 34
+  signature_excerpt: |-
+    theorem row1_matches :
+        (List.range 16).all (fun n => row1 n == dot4 1 1 0 0 n) = true
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: row2_matches
+  line: 37
+  signature_excerpt: |-
+    theorem row2_matches :
+        (List.range 16).all (fun n => row2 n == dot4 0 1 1 1 n) = true
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: coset_is
+  line: 40
+  signature_excerpt: 'theorem coset_is : coset = [1, 6, 10, 13]'
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: coset_weights
+  line: 42
+  signature_excerpt: 'theorem coset_weights : coset.map wt = [1, 2, 2, 3]'
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: min_weight_one
+  line: 44
+  signature_excerpt: 'theorem min_weight_one : coset.foldl Nat.min 4 = 1'
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: weight_one_labels
+  line: 46
+  signature_excerpt: 'theorem weight_one_labels : coset.filter weight1 = [1]'
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: label_one_coordinates
+  line: 48
+  signature_excerpt: |-
+    theorem label_one_coordinates :
+        bit 1 0 = 1 ∧ bit 1 1 = 0 ∧ bit 1 2 = 0 ∧ bit 1 3 = 0
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: kernel_is
+  line: 51
+  signature_excerpt: 'theorem kernel_is : kernel = [0, 7, 11, 12]'
+  source: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  source_sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignMajImportCosetWeight.lean::length_sixteen
+  availability: local
+  symbol: length_sixteen
+  path: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  declaration_status: declaration_found_not_proof_checked
+  line: 32
+  role: source_lead_only
+- original_ref: lean4/CampaignMajImportCosetWeight.lean::row1_matches
+  availability: local
+  symbol: row1_matches
+  path: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  declaration_status: declaration_found_not_proof_checked
+  line: 34
+  role: source_lead_only
+- original_ref: lean4/CampaignMajImportCosetWeight.lean::row2_matches
+  availability: local
+  symbol: row2_matches
+  path: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  declaration_status: declaration_found_not_proof_checked
+  line: 37
+  role: source_lead_only
+- original_ref: lean4/CampaignMajImportCosetWeight.lean::coset_is
+  availability: local
+  symbol: coset_is
+  path: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  declaration_status: declaration_found_not_proof_checked
+  line: 40
+  role: source_lead_only
+- original_ref: lean4/CampaignMajImportCosetWeight.lean::coset_weights
+  availability: local
+  symbol: coset_weights
+  path: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  declaration_status: declaration_found_not_proof_checked
+  line: 42
+  role: source_lead_only
+- original_ref: lean4/CampaignMajImportCosetWeight.lean::min_weight_one
+  availability: local
+  symbol: min_weight_one
+  path: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  declaration_status: declaration_found_not_proof_checked
+  line: 44
+  role: source_lead_only
+- original_ref: lean4/CampaignMajImportCosetWeight.lean::weight_one_labels
+  availability: local
+  symbol: weight_one_labels
+  path: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  declaration_status: declaration_found_not_proof_checked
+  line: 46
+  role: source_lead_only
+- original_ref: lean4/CampaignMajImportCosetWeight.lean::label_one_coordinates
+  availability: local
+  symbol: label_one_coordinates
+  path: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  declaration_status: declaration_found_not_proof_checked
+  line: 48
+  role: source_lead_only
+- original_ref: lean4/CampaignMajImportCosetWeight.lean::kernel_is
+  availability: local
+  symbol: kernel_is
+  path: lean4/CampaignMajImportCosetWeight.lean
+  repository: this_repository
+  sha256: 29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008
+  declaration_status: declaration_found_not_proof_checked
+  line: 51
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -70,8 +333,6 @@ operad_slots:
     - Berlekamp-McEliece-van Tilborg 1978 hardness of coset weights
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

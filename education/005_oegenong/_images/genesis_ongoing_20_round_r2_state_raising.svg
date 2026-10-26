@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 580" width="100%" height="100%">
+  <defs>
+    <!-- Background & Grid -->
+    <radialGradient id="bg-glow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#1e1b4b" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#0b0f19" stop-opacity="1.0"/>
+    </radialGradient>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+
+    <!-- Gradients -->
+    <linearGradient id="card-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stroke-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0f172a" stroke-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="purple-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="cyan-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="amber-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="glow-purple" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Markers -->
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#a855f7"/>
+    </marker>
+    <marker id="arrow-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#06b6d4"/>
+    </marker>
+  </defs>
+
+  <!-- Base Canvas -->
+  <rect width="940" height="580" fill="#0b0f19"/>
+  <rect width="940" height="580" fill="url(#bg-glow)"/>
+  <rect width="940" height="580" fill="url(#grid)"/>
+
+  <!-- Top Header / Navigation -->
+  <g id="header" transform="translate(40, 30)">
+    <rect x="0" y="0" width="860" height="60" rx="8" fill="url(#card-grad)" stroke="#334155" stroke-width="1"/>
+    <rect x="0" y="0" width="8" height="60" rx="4" fill="url(#purple-glow)"/>
+    
+    <text x="25" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#a855f7" letter-spacing="1.5">LEVEL 20 • ROUND R2 STATE RAISING</text>
+    <text x="25" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" fill="#f8fafc">Least-Cost Representatives &amp; Certified Survivors</text>
+    
+    <rect x="660" y="15" width="180" height="30" rx="15" fill="#2e1065" stroke="#a855f7" stroke-width="1"/>
+    <circle cx="675" cy="30" r="4" fill="#a855f7" filter="url(#glow-purple)"/>
+    <text x="688" y="35" font-family="monospace" font-size="11" font-weight="600" fill="#e9d5ff">LEAST-COST LIFTS</text>
+  </g>
+
+  <!-- Left Column: Formal Specification -->
+  <g id="left-col" transform="translate(40, 105)">
+    <rect x="0" y="0" width="370" height="400" rx="8" fill="url(#card-grad)" stroke="#334155" stroke-width="1"/>
+    
+    <path d="M 20 35 L 350 35" stroke="#1e293b" stroke-width="1"/>
+    <text x="20" y="25" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#94a3b8" letter-spacing="1">FORMAL SPECIFICATION (LEAN 4)</text>
+
+    <!-- Code Block -->
+    <rect x="15" y="48" width="340" height="150" rx="6" fill="#030712" stroke="#1e293b" stroke-width="1"/>
+    <text x="25" y="70" font-family="monospace" font-size="11" fill="#64748b">-- Round R2 Quotient Lifting</text>
+    <text x="25" y="90" font-family="monospace" font-size="11" fill="#f43f5e">def <tspan fill="#38bdf8">LeastCostRep</tspan> (equiv_class : Set State) : State :=</text>
+    <text x="35" y="108" font-family="monospace" font-size="11" fill="#e2e8f0">  argmin (fun s =&gt; cost_delta s) equiv_class</text>
+    <text x="25" y="130" font-family="monospace" font-size="11" fill="#64748b">-- 2 Certified Survivors Breakdown</text>
+    <text x="25" y="148" font-family="monospace" font-size="11" fill="#10b981">theorem <tspan fill="#e2e8f0">two_survivor_uniqueness_break</tspan> :</text>
+    <text x="35" y="166" font-family="monospace" font-size="11" fill="#a855f7">  ∃ s1 s2 : State, s1 ≠ s2 ∧</text>
+    <text x="45" y="184" font-family="monospace" font-size="11" fill="#a855f7">  cost s1 = cost s2 ∧ Survivors card = 2</text>
+
+    <!-- Axiomatic Invariants -->
+    <text x="20" y="222" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#94a3b8" letter-spacing="0.5">ESTATE ARCHITECTURE / INVARIANTS</text>
+    
+    <g transform="translate(20, 235)">
+      <circle cx="5" cy="10" r="3" fill="#a855f7"/>
+      <text x="18" y="13" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#cbd5e1"><tspan font-weight="600" fill="#f8fafc">Round R2 State Raising:</tspan> Raising equivalence classes</text>
+      <text x="18" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#64748b">Lifting from quotient space back to concrete carriers</text>
+
+      <circle cx="5" cy="45" r="3" fill="#06b6d4"/>
+      <text x="18" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#cbd5e1"><tspan font-weight="600" fill="#f8fafc">Least-Cost Selection:</tspan> Minimal cost Δ representative</text>
+      <text x="18" y="62" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#64748b">Only representatives minimizing carrier size survive</text>
+
+      <circle cx="5" cy="80" r="3" fill="#f59e0b"/>
+      <text x="18" y="83" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#cbd5e1"><tspan font-weight="600" fill="#f8fafc">Uniqueness Breaking:</tspan> 2 degenerate survivors</text>
+      <text x="18" y="97" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#64748b">Term addition breaks canonical unique representative</text>
+
+      <circle cx="5" cy="115" r="3" fill="#10b981"/>
+      <text x="18" y="118" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#cbd5e1"><tspan font-weight="600" fill="#f8fafc">MSS-020 Parity:</tspan> Autopoietic state reflection</text>
+      <text x="18" y="132" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#64748b">Reflective duals emerge as equally minimal candidates</text>
+    </g>
+  </g>
+
+  <!-- Right Column: Operational Diagram -->
+  <g id="right-col" transform="translate(430, 105)">
+    <rect x="0" y="0" width="470" height="400" rx="8" fill="url(#card-grad)" stroke="#334155" stroke-width="1"/>
+    
+    <path d="M 20 35 L 450 35" stroke="#1e293b" stroke-width="1"/>
+    <text x="20" y="25" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#94a3b8" letter-spacing="1">STATE RAISING &amp; CERTIFIED SURVIVOR DUALITY</text>
+
+    <!-- Quotient to Concrete Lifting -->
+    <g transform="translate(30, 50)">
+      
+      <!-- Base Quotient Class [S] -->
+      <g transform="translate(140, 20)">
+        <ellipse cx="60" cy="25" rx="75" ry="25" fill="#1e1b4b" stroke="#8b5cf6" stroke-width="1.5"/>
+        <text x="60" y="28" font-family="monospace" font-size="12" font-weight="700" fill="#c4b5fd" text-anchor="middle">Quotient [S] / ~</text>
+      </g>
+
+      <!-- Upward Lifting Arrows -->
+      <path d="M 170 50 L 110 110" fill="none" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow-purple)"/>
+      <path d="M 230 50 L 290 110" fill="none" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow-purple)"/>
+      <text x="200" y="85" font-family="monospace" font-size="10" fill="#a855f7" text-anchor="middle">Lift (State Raising)</text>
+
+      <!-- Concrete Survivor State 1 -->
+      <g transform="translate(20, 120)">
+        <rect x="0" y="0" width="165" height="120" rx="6" fill="#030712" stroke="#06b6d4" stroke-width="1.5"/>
+        <text x="12" y="22" font-family="monospace" font-size="11" font-weight="700" fill="#38bdf8">SURVIVOR 1 (Left Lift)</text>
+        <text x="12" y="42" font-family="monospace" font-size="10" fill="#e2e8f0">Terms: {a, b, c₁}</text>
+        <text x="12" y="60" font-family="monospace" font-size="10" fill="#94a3b8">Relations: a ↦ b, b ↦ c₁</text>
+        <text x="12" y="80" font-family="monospace" font-size="10" fill="#10b981">Cost Δ = 3 (Minimal)</text>
+        <text x="12" y="100" font-family="monospace" font-size="9" fill="#6ee7b7">✓ Certified Survivor</text>
+      </g>
+
+      <!-- Concrete Survivor State 2 -->
+      <g transform="translate(225, 120)">
+        <rect x="0" y="0" width="165" height="120" rx="6" fill="#030712" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="12" y="22" font-family="monospace" font-size="11" font-weight="700" fill="#fbbf24">SURVIVOR 2 (Right Lift)</text>
+        <text x="12" y="42" font-family="monospace" font-size="10" fill="#e2e8f0">Terms: {a, b, c₂}</text>
+        <text x="12" y="60" font-family="monospace" font-size="10" fill="#94a3b8">Relations: b ↦ a, a ↦ c₂</text>
+        <text x="12" y="80" font-family="monospace" font-size="10" fill="#10b981">Cost Δ = 3 (Minimal)</text>
+        <text x="12" y="100" font-family="monospace" font-size="9" fill="#fbbf24">✓ Certified Survivor</text>
+      </g>
+
+      <!-- Uniqueness Broken Callout -->
+      <g transform="translate(70, 260)">
+        <rect x="0" y="0" width="260" height="50" rx="6" fill="#0f172a" stroke="#ec4899" stroke-width="1"/>
+        <text x="130" y="22" font-family="monospace" font-size="10" font-weight="700" fill="#f472b6" text-anchor="middle">UNIQUENESS BROKEN (|Survivors| = 2)</text>
+        <text x="130" y="38" font-family="monospace" font-size="9" fill="#94a3b8" text-anchor="middle">Term addition produces degenerate minimal cost lifts</text>
+      </g>
+
+    </g>
+  </g>
+
+  <!-- Bottom Operational Status Bar -->
+  <g id="status-bar" transform="translate(40, 520)">
+    <rect x="0" y="0" width="860" height="35" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    
+    <text x="20" y="22" font-family="monospace" font-size="11" fill="#64748b">INVARIANT:</text>
+    <text x="95" y="22" font-family="monospace" font-size="11" font-weight="600" fill="#c4b5fd">LeastCostRep &amp; Degenerate Lift Survivors (|S| = 2)</text>
+
+    <text x="470" y="22" font-family="monospace" font-size="11" fill="#64748b">PARITY ANCHOR:</text>
+    <text x="570" y="22" font-family="monospace" font-size="11" font-weight="600" fill="#a855f7">MSS-020 (Autopoietic Reflection)</text>
+
+    <rect x="730" y="8" width="115" height="20" rx="4" fill="#2e1065" stroke="#a855f7" stroke-width="1"/>
+    <text x="740" y="22" font-family="monospace" font-size="10" font-weight="700" fill="#e9d5ff">2 SURVIVORS</text>
+  </g>
+</svg>

@@ -1,0 +1,112 @@
+schema_version: smplx.nf.contract.v0
+schema_ref: ./normal_form_contract_schema.yaml
+contract_kind: normal_form_contract
+identity:
+  id: nf.representation.tbnf
+  name: Token-Bounded Normal Form
+  short_name: TBNF
+  version: v0
+  theory_status: proposed
+  contract_status: draft
+  verification_status: absent
+  family: representation
+  status: draft
+classification:
+  hierarchy_level: normal_form
+  subject_kind:
+  - wire_string
+  - token_alphabet
+  - prefix_free_codec
+  data_posture: at_rest
+  mathematical_posture: operational
+purpose:
+  excludes_anomaly: wire strings containing out-of-alphabet bytes, whitespace injections,
+    and multi-reading parse ambiguities under non-prefix-free token dictionaries
+  preserves_invariant: unique bijective decoding between wire strings and token sequences
+    under a certified prefix-free code over the declared 38-symbol alphabet
+  protected_skeleton:
+  - alphabet
+  - prefix_free_token_dictionary
+  - unique_decodability_certificate
+  - decoded_token_sequence
+  erased_structure: []
+  non_claims:
+  - a decoder returning one parse and round-tripping to the source string does not
+    prove unique decodability; ambiguous codes (e.g. {a, aa} on string "aa") allow greedy
+    parsers to round-trip while multiple valid segmentations exist. Uniqueness requires
+    an independently certified prefix-free code or Sardinas-Patterson verification
+  - whitespace and out-of-alphabet characters are rejected, not silently erased; stripping
+    them silently would alter message semantics
+  - bijectively decoding tokens does not establish an AST grammar or higher-level syntactic
+    well-formedness beyond unambiguous lexical serialization
+  - does not imply authorization
+declarations_required:
+- alphabet: declared symbol set (26 lowercase ASCII letters, 10 digits, and brackets '<', '>')
+- token_dictionary: set of finite words over the alphabet
+- prefix_free_or_sp_proof: witness establishing that token_dictionary is prefix-free or uniquely decodable
+- wire_string: input sequence of characters
+validation_criteria:
+- alphabet_membership: every byte in wire_string strictly belongs to the declared alphabet (whitespace and other characters cause rejection)
+- code_unambiguity: token_dictionary is certified prefix-free (no codeword is a prefix of another) or passes the Sardinas-Patterson criterion
+- unique_decoding_roundtrip: decoder produces unique token sequence T, and re-encoding T exactly equals wire_string
+terminal_routes:
+- Accept
+- RejectOutOfAlphabet
+- RejectAmbiguousPrefix
+- Unsupported
+terminal_route_map:
+  Accept: Preserve
+  RejectOutOfAlphabet: Reject
+  RejectAmbiguousPrefix: Reject
+  Unsupported: Unsupported
+extensions:
+  condition_to_local_route_map:
+    unambiguous_roundtrip: Accept
+    out_of_alphabet_byte: RejectOutOfAlphabet
+    ambiguous_code_dictionary: RejectAmbiguousPrefix
+certification:
+  certificate_required: true
+  certificate_kind: prefix_free_code_certificate
+  obstruction_class_required: false
+  loss_ledger_required: false
+  verifier_required: true
+  loss_ledger_trigger_id: null
+evidence_required:
+- token_dictionary: list
+- prefix_free_property_witness: boolean
+- sardinas_patterson_test_passed: boolean
+- input_wire_string: string
+- decoded_token_sequence: list
+- re_encoded_wire_string: string
+- round_trip_equality_verified: boolean
+authorization:
+  authorized_by: null
+  certified_implies_authorized: false
+failure_modes:
+- symptom: string contains a space, newline, or byte outside the 38-symbol alphabet
+  diagnosis: token alphabet violation (rejected, not stripped)
+  terminal: RejectOutOfAlphabet
+- symptom: token dictionary is not prefix-free, admitting multiple valid segmentations
+  diagnosis: prefix decoding is not uniquely decodable
+  terminal: RejectAmbiguousPrefix
+definition:
+  source: coda_all_universe/mssn_sn_tower/definitions.md
+  section: '3.1'
+  formal_statement: Token-bounded normal form establishing bijective, uniquely decodable
+    serializations over a declared 38-symbol alphabet using independently certified
+    prefix-free codes, rejecting whitespace and out-of-alphabet characters.
+  quadrilateral:
+    qualifies_as_true_normal_form: false
+    qualification_gap: reconstruction_is_a_decoding_bijection_not_a_relational_join
+    qualifies_as_extended_form: true
+    anomaly_exclusion: lexical injection and ambiguous token segmentation
+    lossless_join:
+      status: decoding_bijection
+      statement: certified prefix-free code bijectively maps between wire strings
+        and token sequences
+    dependency_preservation:
+      status: alphabet_membership_retained
+      statement: decoding strictly retains declared alphabet membership
+    syntactic_decision:
+      status: schema_decidable
+      statement: membership is alphabet validation plus prefix-free code certification

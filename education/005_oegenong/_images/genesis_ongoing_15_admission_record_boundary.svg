@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 580" width="100%" height="100%" style="background:#0b0f19; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#1e293b" stroke-width="0.7" opacity="0.6"/>
+    </pattern>
+    <radialGradient id="bgGlow" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#1e1b4b" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0b0f19" stop-opacity="1"/>
+    </radialGradient>
+    <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glowRose" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <rect width="940" height="580" fill="url(#bgGlow)"/>
+  <rect width="940" height="580" fill="url(#grid)"/>
+  <rect x="16" y="16" width="908" height="548" rx="12" fill="none" stroke="#334155" stroke-width="1.2"/>
+
+  <!-- Top Banner / Badges -->
+  <g transform="translate(32, 26)">
+    <rect x="0" y="0" width="165" height="24" rx="6" fill="#4338ca" fill-opacity="0.3" stroke="#818cf8" stroke-width="1.2"/>
+    <text x="82" y="16" fill="#a5b4fc" font-size="11" font-weight="700" text-anchor="middle">Ongoing Level 15: Record</text>
+
+    <rect x="175" y="0" width="165" height="24" rx="6" fill="#0284c7" fill-opacity="0.3" stroke="#38bdf8" stroke-width="1.2"/>
+    <text x="257" y="16" fill="#38bdf8" font-size="10.5" font-weight="700" text-anchor="middle">Admission vs Step</text>
+
+    <rect x="350" y="0" width="165" height="24" rx="6" fill="#065f46" fill-opacity="0.3" stroke="#34d399" stroke-width="1.2"/>
+    <text x="432" y="16" fill="#34d399" font-size="10.5" font-weight="700" text-anchor="middle">Derivation 15 Finding</text>
+
+    <rect x="525" y="0" width="140" height="24" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="595" y="16" fill="#94a3b8" font-size="10" font-weight="500" text-anchor="middle">AuthorityEffect: None</text>
+
+    <text x="0" y="52" fill="#f8fafc" font-size="18" font-weight="700" letter-spacing="0.2">Level 15: Admission Record vs. Realized Step</text>
+    <text x="0" y="72" fill="#94a3b8" font-size="12" font-weight="400">Passive Admission Logs Alter No Reachability; License Must Be Bound to State Execution</text>
+  </g>
+
+  <!-- Left Box: Inference and Formal Rules -->
+  <g transform="translate(32, 115)">
+    <rect x="0" y="0" width="410" height="380" rx="8" fill="#111827" fill-opacity="0.9" stroke="#1f2937" stroke-width="1.2"/>
+    <rect x="0" y="0" width="410" height="36" rx="8" fill="#1e293b" fill-opacity="0.8"/>
+    <text x="16" y="23" fill="#f8fafc" font-size="12" font-weight="700">Record Non-Execution Rule</text>
+
+    <!-- Rule Fraction -->
+    <g transform="translate(20, 55)">
+      <rect x="0" y="0" width="370" height="90" rx="6" fill="#0f172a" stroke="#334155"/>
+      <text x="185" y="30" fill="#93c5fd" font-size="12" font-weight="600" text-anchor="middle" font-family="monospace">state' = (state.data, state.record &#8746; {a}) &#8743; state.rel' = state.rel</text>
+      <line x1="20" y1="44" x2="350" y2="44" stroke="#e2e8f0" stroke-width="1.8"/>
+      <text x="185" y="68" fill="#f43f5e" font-size="12" font-weight="700" text-anchor="middle" font-family="monospace">Reach(state) = Reach(state')   [NoExecutionEffect]</text>
+    </g>
+
+    <!-- Detailed Notes -->
+    <g transform="translate(20, 165)">
+      <text x="0" y="15" fill="#e2e8f0" font-size="12" font-weight="600">&#8226; Derivation 15 Passive Record Result:</text>
+      <text x="16" y="34" fill="#94a3b8" font-size="11">Adding an admission log beside the carrier state</text>
+      <text x="16" y="50" fill="#94a3b8" font-size="11">leaves graph reachability completely unchanged.</text>
+
+      <text x="0" y="78" fill="#e2e8f0" font-size="12" font-weight="600">&#8226; Peer Review Narrowing:</text>
+      <text x="16" y="96" fill="#94a3b8" font-size="11">Derivation 15's claims of dynamic progress were narrowed</text>
+      <text x="16" y="112" fill="#94a3b8" font-size="11">because the record had zero impact on reachable transitions.</text>
+
+      <text x="0" y="140" fill="#e2e8f0" font-size="12" font-weight="600">&#8226; MSS-015 Demarcation:</text>
+      <text x="16" y="158" fill="#94a3b8" font-size="11">Enforces that admission records cannot masquerade</text>
+      <text x="16" y="174" fill="#94a3b8" font-size="11">as active terminal state mutations without execution licenses.</text>
+    </g>
+  </g>
+
+  <!-- Right Box: Operational Diagram -->
+  <g transform="translate(460, 115)">
+    <rect x="0" y="0" width="448" height="380" rx="8" fill="#111827" fill-opacity="0.9" stroke="#1f2937" stroke-width="1.2"/>
+    <rect x="0" y="0" width="448" height="36" rx="8" fill="#1e293b" fill-opacity="0.8"/>
+    <text x="16" y="23" fill="#f8fafc" font-size="12" font-weight="700">Active State vs Passive Record Logging</text>
+
+    <g transform="translate(30, 45)">
+      <!-- Box 1: Passive Record Sidecar -->
+      <rect x="15" y="10" width="370" height="100" rx="6" fill="#4c0519" fill-opacity="0.25" stroke="#f43f5e" stroke-width="1.2"/>
+      <text x="35" y="32" fill="#f43f5e" font-size="11.5" font-weight="700">Passive Side Record (Derivation 15)</text>
+      <text x="35" y="52" fill="#fca5a5" font-size="9.5">&#8226; State payload unchanged: terms and relations identical</text>
+      <text x="35" y="70" fill="#fca5a5" font-size="9.5">&#8226; Appends only a passive ledger: record &#8594; record &#8746; {admission}</text>
+      <text x="35" y="88" fill="#fca5a5" font-size="9.5">&#8226; Result: Proved Reachable Space ISOMORPHIC to Derivation 9</text>
+
+      <!-- Box 2: Active State Execution -->
+      <rect x="15" y="125" width="370" height="100" rx="6" fill="#064e3b" fill-opacity="0.3" stroke="#34d399" stroke-width="1.2"/>
+      <text x="35" y="147" fill="#34d399" font-size="11.5" font-weight="700">Active State Mutation (Derivation 4, 16)</text>
+      <text x="35" y="167" fill="#a7f3d0" font-size="9.5">&#8226; Modifies state payload: alters term multiplicities or steps</text>
+      <text x="35" y="185" fill="#a7f3d0" font-size="9.5">&#8226; New transitions generated &#8594; Non-trivial reachable space expansion</text>
+      <text x="35" y="203" fill="#38bdf8" font-size="9.5" font-weight="700">&#8226; Result: 125&#8211;149 Lean theorems of genuine invariant growth</text>
+
+      <!-- Bottom Invariant Summary -->
+      <rect x="15" y="240" width="370" height="35" rx="4" fill="#1e293b" stroke="#475569"/>
+      <text x="200" y="262" fill="#fbbf24" font-size="10" font-weight="600" text-anchor="middle">Logging &#8800; Mutating &#183; Records Grant Zero Authority</text>
+    </g>
+  </g>
+
+  <!-- Footer Status Bar -->
+  <g transform="translate(32, 510)">
+    <rect x="0" y="0" width="876" height="38" rx="6" fill="#0f172a" stroke="#1e293b"/>
+    <text x="16" y="23" fill="#94a3b8" font-size="11">Formal Status: <tspan fill="#34d399" font-weight="700">RECORD_ISOMORPHISM_PROVED</tspan> | Campaign: <tspan fill="#e2e8f0">Derivation 15</tspan> | Review: <tspan fill="#f43f5e">Overclaims Narrowed</tspan> | MSS Anchor: <tspan fill="#fbbf24">MSS-015 Analog</tspan></text>
+  </g>
+
+</svg>

@@ -3,15 +3,20 @@ node_id: MUB6-FINITE-CORNER-REDUCTION
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Using the external finite-corner classification of single 6x6 complex Hadamard matrices,
-    quartet existence in C^6 is equivalent to raw quartet completion of some retained finite-corner reconstruction
-    with D = -C E* (B^-1)*.
+  source_statement: For 3 by 3 integer matrices, let B have rows (1, 1, 0), (0, 1, 1) and (0, 0, 1), let
+    E be the identity, and let C have rows (0, 1, 0), (0, 0, 1) and (1, 0, 0). The matrix with rows (1,
+    -1, 1), (0, 1, -1) and (0, 0, 1) is a two-sided inverse of B. The matrix D with rows (1, -1, 0), (-1,
+    1, -1) and (-1, 0, 0) equals the negative of C times the transpose of E times the transpose of that
+    inverse, and C times the transpose of E plus D times the transpose of B is the zero matrix. The same
+    sum with the zero matrix in place of D is not the zero matrix.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - Cardenes Wuttig and Tindall, finite-corner classification of CHM(6), arXiv:2608.18053v2, external
     Lean pin 57b03025
-  source_bottleneck: MubFiniteCornerReduction.lean is not in this checkout; exclusion over every retained
-    reconstruction is open, and finite fibres over continuous seeds give no finite global list.
+  source_bottleneck: 'This record is that one integer block identity. It does not classify complex Hadamard
+    matrices, does not list retained finite corners, and does not equate quartet existence with completion
+    of an external reconstruction. The complex adjoint is not identified with this integer transpose.
+    Exclusion over every retained reconstruction stays open. AuthorityEffect: None.'
   source_refs:
   - dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md
   - papers/core/mub6/mub6.md
@@ -23,7 +28,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md
-    sha256: c06c2e49408ff683256c44e7042c07f3ce126907c07a9fe98a63572362482d1c
+    sha256: 8d373d6117b1241216ea5889ed2f643bed9b50077e16530ef4a97302ba86e121
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -31,9 +36,288 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/mutually_unbiased_bases_mub6_finite_corner_reduction_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: mmul
+  line: 11
+  signature_excerpt: 'def mmul (A B : Mat) : Mat'
+  source: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  source_sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: bMat
+  line: 31
+  signature_excerpt: |-
+    def bMat : Mat
+      | 0, 0 => 1
+      | 0, 1 => 1
+      | 0, 2 => 0
+      | 1, 0 => 0
+      | 1, 1 => 1
+      | 1, 2 => 1
+      | 2, 0 => 0
+      | 2, 1 => 0
+      | 2, 2 => 1
+
+    def bInv : Mat
+      | 0, 0 => 1
+      | 0, 1 => -1
+      | 0, 2 => 1
+  source: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  source_sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: bInv
+  line: 42
+  signature_excerpt: |-
+    def bInv : Mat
+      | 0, 0 => 1
+      | 0, 1 => -1
+      | 0, 2 => 1
+      | 1, 0 => 0
+      | 1, 1 => 1
+      | 1, 2 => -1
+      | 2, 0 => 0
+      | 2, 1 => 0
+      | 2, 2 => 1
+
+    def eMat : Mat
+      | 0, 0 => 1
+      | 1, 1 => 1
+      | 2, 2 => 1
+  source: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  source_sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: eye
+  line: 23
+  signature_excerpt: |-
+    def eye : Mat
+      | 0, 0 => 1
+      | 1, 1 => 1
+      | 2, 2 => 1
+      | _, _ => 0
+
+    def zero : Mat
+  source: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  source_sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Mat
+  line: 9
+  signature_excerpt: abbrev Mat
+  source: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  source_sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: dMat
+  line: 70
+  signature_excerpt: |-
+    def dMat : Mat
+      | 0, 0 => 1
+      | 0, 1 => -1
+      | 0, 2 => 0
+      | 1, 0 => -1
+      | 1, 1 => 1
+      | 1, 2 => -1
+      | 2, 0 => -1
+      | 2, 1 => 0
+      | 2, 2 => 0
+
+    theorem eq_of_entries (A B : Mat)
+        (h00 : A 0 0 = B 0 0) (h01 : A 0 1 = B 0 1) (h02 : A 0 2 = B 0 2)
+        (h10 : A 1 0 = B 1 0) (h11 : A 1 1 = B 1 1) (h12 : A 1 2 = B 1 2)
+        (h20 : A 2 0 = B 2 0) (h21 : A 2 1 = B 2 1) (h22 : A 2 2 = B 2 2) :
+  source: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  source_sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mneg
+  line: 17
+  signature_excerpt: 'def mneg (A : Mat) : Mat'
+  source: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  source_sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: cMat
+  line: 59
+  signature_excerpt: |-
+    def cMat : Mat
+      | 0, 0 => 0
+      | 0, 1 => 1
+      | 0, 2 => 0
+      | 1, 0 => 0
+      | 1, 1 => 0
+      | 1, 2 => 1
+      | 2, 0 => 1
+      | 2, 1 => 0
+      | 2, 2 => 0
+
+    def dMat : Mat
+      | 0, 0 => 1
+      | 0, 1 => -1
+      | 0, 2 => 0
+  source: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  source_sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: transp
+  line: 20
+  signature_excerpt: 'def transp (A : Mat) : Mat'
+  source: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  source_sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: eMat
+  line: 53
+  signature_excerpt: |-
+    def eMat : Mat
+      | 0, 0 => 1
+      | 1, 1 => 1
+      | 2, 2 => 1
+      | _, _ => 0
+
+    def cMat : Mat
+      | 0, 0 => 0
+      | 0, 1 => 1
+      | 0, 2 => 0
+      | 1, 0 => 0
+      | 1, 1 => 0
+      | 1, 2 => 1
+      | 2, 0 => 1
+      | 2, 1 => 0
+  source: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  source_sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: madd
+  line: 14
+  signature_excerpt: 'def madd (A B : Mat) : Mat'
+  source: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  source_sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: zero
+  line: 29
+  signature_excerpt: 'def zero : Mat'
+  source: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  source_sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: b_inv_left
+  line: 98
+  signature_excerpt: 'theorem b_inv_left : mmul bMat bInv = eye'
+  source: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  source_sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: b_inv_right
+  line: 101
+  signature_excerpt: 'theorem b_inv_right : mmul bInv bMat = eye'
+  source: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  source_sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: d_formula
+  line: 104
+  signature_excerpt: |-
+    theorem d_formula :
+        dMat = mneg (mmul (mmul cMat (transp eMat)) (transp bInv))
+  source: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  source_sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: cross_zero
+  line: 108
+  signature_excerpt: |-
+    theorem cross_zero :
+        madd (mmul cMat (transp eMat)) (mmul dMat (transp bMat)) = zero
+  source: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  source_sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: zero_cross_ne
+  line: 112
+  signature_excerpt: |-
+    theorem zero_cross_ne :
+        madd (mmul cMat (transp eMat)) (mmul zero (transp bMat)) ≠ zero
+  source: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  source_sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_left
+  availability: local
+  symbol: b_inv_left
+  path: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  declaration_status: declaration_found_not_proof_checked
+  line: 98
+  role: source_lead_only
+- original_ref: lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_right
+  availability: local
+  symbol: b_inv_right
+  path: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  declaration_status: declaration_found_not_proof_checked
+  line: 101
+  role: source_lead_only
+- original_ref: lean4/CampaignMub6FiniteCornerReduction.lean::d_formula
+  availability: local
+  symbol: d_formula
+  path: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  declaration_status: declaration_found_not_proof_checked
+  line: 104
+  role: source_lead_only
+- original_ref: lean4/CampaignMub6FiniteCornerReduction.lean::cross_zero
+  availability: local
+  symbol: cross_zero
+  path: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  declaration_status: declaration_found_not_proof_checked
+  line: 108
+  role: source_lead_only
+- original_ref: lean4/CampaignMub6FiniteCornerReduction.lean::zero_cross_ne
+  availability: local
+  symbol: zero_cross_ne
+  path: lean4/CampaignMub6FiniteCornerReduction.lean
+  repository: this_repository
+  sha256: 79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401
+  declaration_status: declaration_found_not_proof_checked
+  line: 112
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -75,8 +359,6 @@ operad_slots:
       Lean pin 57b03025
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

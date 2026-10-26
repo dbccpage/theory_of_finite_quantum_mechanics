@@ -11,33 +11,51 @@
 
 ## 1. Abstract & Formal Statement
 
-Aharonov, Ben-Or, Impagliazzo and Nisan (1996) show that noisy reversible or quantum computation with no supply of fresh low-entropy bits cannot preserve its input beyond a short depth; the result is cited, not re-proved or imported as a proof here.
+The sequences defined by u(0) = 1, v(0) = 1, w(0) = 1, u(t+1) = 3*u(t), v(t+1) = 4*v(t) and w(t+1) = 3*w(t) + 0 satisfy u(1) = 3, v(1) = 4, u(2) = 9, v(2) = 16, u(3) = 27 and v(3) = 64, with u strictly below v at steps 1, 2 and 3, and with w equal to u at steps 0, 1, 2 and 3.
 
 ### Governing Obligation
-The exact statement and its noise model are in the cited paper; QCV-Q4 establishes a finite exact analogue for global depolarizing noise only.
+The Aharonov, Ben-Or, Impagliazzo and Nisan limitation for noisy reversible or quantum computation with no fresh low-entropy supply stays a citation under that paper's own noise and depth hypotheses. These four integer pairs are not that theorem. They are not a trace norm, not a depolarizing channel, and not an independent per-qubit noise model. The history-distance product for global depolarizing noise stays on the noisy-history record.
 
 ### Witness Audit
-A citation record: no declaration in this checkout states the cited theorem.
+Closed integer equalities for the recurrences, the pairs at steps 0 through 3, the three strict comparisons, and the zero-addend agreement. Each printed axiom list is empty. The literature limitation remains an imported citation.
 
 ---
 
 ## 2. Derivation Context
 
 ### Admitted Structural Imports
-- **Admitted**: `ABIN 1996 limitation theorem for noisy reversible computation`
+- **Admitted**: `ABIN limitation theorem for noisy reversible computation without a fresh supply`
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::u_zero`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::v_zero`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::w_zero`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::u_step`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::v_step`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::w_step`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::u1`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::v1`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::u2`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::v2`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::u3`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::v3`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::below1`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::below2`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::below3`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::w0_u`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::w1`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::w2`
+- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::w3`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/qcv-import-noisy-reversible-limits.py::check`
 
 ### Cited by the source, not in this checkout
 - *none*

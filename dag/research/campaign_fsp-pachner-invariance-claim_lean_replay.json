@@ -1,0 +1,634 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-26T14:28:50.079475+00:00",
+  "source_base": "4fea09ae176aae31115e38bb2b21819237055811",
+  "result": "Narrowed to the specified finite-group model; revised statement PROVED_LEAN. For every finite group G, the untwisted flat-connection count on the canonical 4D 1-5, 2-4 and 3-3 Pachner pairs, divided by |G| to the number of interior vertices, agrees for every fixed flat common boundary. The normalized total counts also agree for every finite compatible exterior family represented by dependent pairs, with the same outside-vertex count.",
+  "proof_boundary": "The supplied finite group, untwisted flat-connection model, canonical local complexes and compatible finite exterior interface are explicit. No general triangulation/gluing-equivalence or PL-homeomorphism library is formalized; no Regge, twisted/Crane-Yetter, fermion-sign or continuum conclusion follows. Human review remains pending.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/pachner-derivation/lake",
+    "results": [
+      {
+        "module": "CampaignFiniteGroupPachner",
+        "dag_node": "FSP-PACHNER-INVARIANCE-CLAIM",
+        "source": "lean4/CampaignFiniteGroupPachner.lean",
+        "sha256": "e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca",
+        "sha256_after_build": "e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignFiniteGroupPachner.edgeOne",
+          "CampaignFiniteGroupPachner.triangleOne",
+          "CampaignFiniteGroupPachner.edgeTwo",
+          "CampaignFiniteGroupPachner.triangleTwo",
+          "CampaignFiniteGroupPachner.triangleLeft",
+          "CampaignFiniteGroupPachner.triangleRight",
+          "CampaignFiniteGroupPachner.triangleBoundary",
+          "CampaignFiniteGroupPachner.facetFace",
+          "CampaignFiniteGroupPachner.facetFaceDecidable",
+          "CampaignFiniteGroupPachner.one_facet_edges",
+          "CampaignFiniteGroupPachner.one_facet_triangles",
+          "CampaignFiniteGroupPachner.five_facet_edges",
+          "CampaignFiniteGroupPachner.five_facet_triangles",
+          "CampaignFiniteGroupPachner.two_facet_edges",
+          "CampaignFiniteGroupPachner.two_facet_triangles",
+          "CampaignFiniteGroupPachner.four_facet_edges",
+          "CampaignFiniteGroupPachner.four_facet_triangles",
+          "CampaignFiniteGroupPachner.three_facet_edges",
+          "CampaignFiniteGroupPachner.three_facet_triangles",
+          "CampaignFiniteGroupPachner.one_boundary_skeleton",
+          "CampaignFiniteGroupPachner.two_boundary_skeleton",
+          "CampaignFiniteGroupPachner.three_boundary_skeleton",
+          "CampaignFiniteGroupPachner.one_root_triangle",
+          "CampaignFiniteGroupPachner.two_root_edges",
+          "CampaignFiniteGroupPachner.two_root_triangle",
+          "CampaignFiniteGroupPachner.boundary_has_triangle_cone",
+          "CampaignFiniteGroupPachner.Connection",
+          "CampaignFiniteGroupPachner.FlatOn",
+          "CampaignFiniteGroupPachner.Coloring",
+          "CampaignFiniteGroupPachner.Complete",
+          "CampaignFiniteGroupPachner.BoundaryOne",
+          "CampaignFiniteGroupPachner.BoundaryTwo",
+          "CampaignFiniteGroupPachner.BoundaryThree",
+          "CampaignFiniteGroupPachner.ThreeLeft",
+          "CampaignFiniteGroupPachner.ThreeRight",
+          "CampaignFiniteGroupPachner.pureConnection",
+          "CampaignFiniteGroupPachner.pureColoring",
+          "CampaignFiniteGroupPachner.edge_from_root",
+          "CampaignFiniteGroupPachner.complete_from_row",
+          "CampaignFiniteGroupPachner.triangle_from_cone",
+          "CampaignFiniteGroupPachner.boundary_three_flat",
+          "CampaignFiniteGroupPachner.flat_boundary_of_matching",
+          "CampaignFiniteGroupPachner.nonflat_boundary_has_no_extension",
+          "CampaignFiniteGroupPachner.connectionFintype",
+          "CampaignFiniteGroupPachner.coloringFintype",
+          "CampaignFiniteGroupPachner.Matches",
+          "CampaignFiniteGroupPachner.SelfFillings",
+          "CampaignFiniteGroupPachner.OneNew",
+          "CampaignFiniteGroupPachner.TwoNew",
+          "CampaignFiniteGroupPachner.ThreeOld",
+          "CampaignFiniteGroupPachner.ThreeNew",
+          "CampaignFiniteGroupPachner.selfFillingsFintype",
+          "CampaignFiniteGroupPachner.oneNewFintype",
+          "CampaignFiniteGroupPachner.twoNewFintype",
+          "CampaignFiniteGroupPachner.threeOldFintype",
+          "CampaignFiniteGroupPachner.threeNewFintype",
+          "CampaignFiniteGroupPachner.selfFilling",
+          "CampaignFiniteGroupPachner.self_filling_unique",
+          "CampaignFiniteGroupPachner.complete_eq_of_row",
+          "CampaignFiniteGroupPachner.onePotential",
+          "CampaignFiniteGroupPachner.fillOne",
+          "CampaignFiniteGroupPachner.oneParameter",
+          "CampaignFiniteGroupPachner.one_parameter_fill",
+          "CampaignFiniteGroupPachner.fill_one_parameter",
+          "CampaignFiniteGroupPachner.oneFillingEquiv",
+          "CampaignFiniteGroupPachner.fillTwo",
+          "CampaignFiniteGroupPachner.two_filling_unique",
+          "CampaignFiniteGroupPachner.fillThreeOld",
+          "CampaignFiniteGroupPachner.fillThreeNew",
+          "CampaignFiniteGroupPachner.three_old_unique",
+          "CampaignFiniteGroupPachner.three_new_unique",
+          "CampaignFiniteGroupPachner.card_of_unique_witness",
+          "CampaignFiniteGroupPachner.self_filling_count",
+          "CampaignFiniteGroupPachner.one_filling_count",
+          "CampaignFiniteGroupPachner.two_filling_count",
+          "CampaignFiniteGroupPachner.three_old_count",
+          "CampaignFiniteGroupPachner.three_new_count",
+          "CampaignFiniteGroupPachner.unnormalized_one_five_iff",
+          "CampaignFiniteGroupPachner.interiorVertices",
+          "CampaignFiniteGroupPachner.localFacets",
+          "CampaignFiniteGroupPachner.face_is_in_a_facet",
+          "CampaignFiniteGroupPachner.local_facets_have_five_vertices",
+          "CampaignFiniteGroupPachner.facet_counts",
+          "CampaignFiniteGroupPachner.one_old_interior",
+          "CampaignFiniteGroupPachner.one_new_interior",
+          "CampaignFiniteGroupPachner.two_old_interior",
+          "CampaignFiniteGroupPachner.two_new_interior",
+          "CampaignFiniteGroupPachner.three_old_interior",
+          "CampaignFiniteGroupPachner.three_new_interior",
+          "CampaignFiniteGroupPachner.localAmplitude",
+          "CampaignFiniteGroupPachner.group_order_ne_zero",
+          "CampaignFiniteGroupPachner.pachner_one_five",
+          "CampaignFiniteGroupPachner.pachner_two_four",
+          "CampaignFiniteGroupPachner.pachner_three_three",
+          "CampaignFiniteGroupPachner.stateSum",
+          "CampaignFiniteGroupPachner.glued_one_five",
+          "CampaignFiniteGroupPachner.glued_two_four",
+          "CampaignFiniteGroupPachner.glued_three_three",
+          "CampaignFiniteGroupPachner.Vertex"
+        ],
+        "axioms": {
+          "CampaignFiniteGroupPachner.edgeOne": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.triangleOne": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.edgeTwo": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.triangleTwo": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.triangleLeft": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.triangleRight": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.triangleBoundary": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.facetFace": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.facetFaceDecidable": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.one_facet_edges": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.one_facet_triangles": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.five_facet_edges": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.five_facet_triangles": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.two_facet_edges": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.two_facet_triangles": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.four_facet_edges": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.four_facet_triangles": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.three_facet_edges": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.three_facet_triangles": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.one_boundary_skeleton": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.two_boundary_skeleton": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.three_boundary_skeleton": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.one_root_triangle": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.two_root_edges": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.two_root_triangle": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.boundary_has_triangle_cone": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.Connection": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.FlatOn": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.Coloring": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.Complete": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.BoundaryOne": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.BoundaryTwo": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.BoundaryThree": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.ThreeLeft": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.ThreeRight": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.pureConnection": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.pureColoring": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.edge_from_root": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.complete_from_row": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.triangle_from_cone": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.boundary_three_flat": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.flat_boundary_of_matching": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.nonflat_boundary_has_no_extension": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.connectionFintype": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.coloringFintype": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.Matches": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.SelfFillings": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.OneNew": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.TwoNew": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.ThreeOld": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.ThreeNew": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.selfFillingsFintype": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.oneNewFintype": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.twoNewFintype": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.threeOldFintype": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.threeNewFintype": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.selfFilling": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.self_filling_unique": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.complete_eq_of_row": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.onePotential": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.fillOne": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.oneParameter": [
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.one_parameter_fill": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.fill_one_parameter": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.oneFillingEquiv": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.fillTwo": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.two_filling_unique": [
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.fillThreeOld": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.fillThreeNew": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.three_old_unique": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.three_new_unique": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.card_of_unique_witness": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.self_filling_count": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.one_filling_count": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.two_filling_count": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.three_old_count": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.three_new_count": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.unnormalized_one_five_iff": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.interiorVertices": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.localFacets": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.face_is_in_a_facet": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.local_facets_have_five_vertices": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.facet_counts": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.one_old_interior": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.one_new_interior": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.two_old_interior": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.two_new_interior": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.three_old_interior": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.three_new_interior": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.localAmplitude": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.group_order_ne_zero": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.pachner_one_five": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.pachner_two_four": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.pachner_three_three": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.stateSum": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.glued_one_five": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.glued_two_four": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.glued_three_three": [
+            "Classical.choice",
+            "Quot.sound",
+            "propext"
+          ],
+          "CampaignFiniteGroupPachner.Vertex": []
+        },
+        "output": "'CampaignFiniteGroupPachner.Vertex' does not depend on any axioms\n'CampaignFiniteGroupPachner.edgeOne' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.triangleOne' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.edgeTwo' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.triangleTwo' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.triangleLeft' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.triangleRight' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.triangleBoundary' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.facetFace' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.facetFaceDecidable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.one_facet_edges' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.one_facet_triangles' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.five_facet_edges' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.five_facet_triangles' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.two_facet_edges' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.two_facet_triangles' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.four_facet_edges' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.four_facet_triangles' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_facet_edges' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_facet_triangles' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.one_boundary_skeleton' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.two_boundary_skeleton' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_boundary_skeleton' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.one_root_triangle' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.two_root_edges' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.two_root_triangle' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.boundary_has_triangle_cone' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.Connection' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.FlatOn' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.Coloring' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.Complete' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.BoundaryOne' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.BoundaryTwo' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.BoundaryThree' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.ThreeLeft' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.ThreeRight' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.pureConnection' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.pureColoring' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.edge_from_root' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.complete_from_row' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.triangle_from_cone' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.boundary_three_flat' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.flat_boundary_of_matching' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.nonflat_boundary_has_no_extension' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.connectionFintype' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.coloringFintype' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.Matches' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.SelfFillings' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.OneNew' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.TwoNew' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.ThreeOld' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.ThreeNew' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.selfFillingsFintype' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.oneNewFintype' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.twoNewFintype' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.threeOldFintype' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.threeNewFintype' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.selfFilling' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.self_filling_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.complete_eq_of_row' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.onePotential' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.fillOne' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.oneParameter' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.one_parameter_fill' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.fill_one_parameter' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.oneFillingEquiv' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.fillTwo' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.two_filling_unique' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.fillThreeOld' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.fillThreeNew' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_old_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_new_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.card_of_unique_witness' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.self_filling_count' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.one_filling_count' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.two_filling_count' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_old_count' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_new_count' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.unnormalized_one_five_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.interiorVertices' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.localFacets' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.face_is_in_a_facet' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.local_facets_have_five_vertices' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.facet_counts' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.one_old_interior' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.one_new_interior' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.two_old_interior' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.two_new_interior' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_old_interior' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_new_interior' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.localAmplitude' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.group_order_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.pachner_one_five' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.pachner_two_four' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.pachner_three_three' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.stateSum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.glued_one_five' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.glued_two_four' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.glued_three_three' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      }
+    ]
+  },
+  "lake_build": {
+    "command": [
+      "lake",
+      "--no-cache",
+      "build",
+      "CampaignFiniteGroupPachner"
+    ],
+    "exit_code": 0,
+    "seconds": 9.004,
+    "output": "⚠ [918/919] Built CampaignFiniteGroupPachner (7.8s)\nwarning: CampaignFiniteGroupPachner.lean: imports `Mathlib.Data.Fintype.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFiniteGroupPachner.lean: imports `Mathlib.Data.Fintype.Pi` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFiniteGroupPachner.lean: imports `Mathlib.Data.Fintype.BigOperators` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFiniteGroupPachner.lean: imports `Mathlib.Data.Finset.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFiniteGroupPachner.lean: imports `Mathlib.Data.Rat.Defs` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFiniteGroupPachner.lean: imports `Mathlib.Algebra.Field.Rat` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFiniteGroupPachner.lean: imports `Mathlib.Algebra.BigOperators.Group.Finset.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\nwarning: CampaignFiniteGroupPachner.lean: imports `Mathlib.Tactic.FieldSimp` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file\ninfo: CampaignFiniteGroupPachner.lean:403:0: 'CampaignFiniteGroupPachner.nonflat_boundary_has_no_extension' depends on axioms: [propext]\ninfo: CampaignFiniteGroupPachner.lean:404:0: 'CampaignFiniteGroupPachner.unnormalized_one_five_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignFiniteGroupPachner.lean:405:0: 'CampaignFiniteGroupPachner.oneFillingEquiv' depends on axioms: [propext, Quot.sound]\ninfo: CampaignFiniteGroupPachner.lean:406:0: 'CampaignFiniteGroupPachner.one_filling_count' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignFiniteGroupPachner.lean:407:0: 'CampaignFiniteGroupPachner.two_filling_count' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignFiniteGroupPachner.lean:408:0: 'CampaignFiniteGroupPachner.three_old_count' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignFiniteGroupPachner.lean:409:0: 'CampaignFiniteGroupPachner.three_new_count' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignFiniteGroupPachner.lean:410:0: 'CampaignFiniteGroupPachner.face_is_in_a_facet' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignFiniteGroupPachner.lean:411:0: 'CampaignFiniteGroupPachner.pachner_one_five' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignFiniteGroupPachner.lean:412:0: 'CampaignFiniteGroupPachner.pachner_two_four' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignFiniteGroupPachner.lean:413:0: 'CampaignFiniteGroupPachner.pachner_three_three' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignFiniteGroupPachner.lean:414:0: 'CampaignFiniteGroupPachner.glued_one_five' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignFiniteGroupPachner.lean:415:0: 'CampaignFiniteGroupPachner.glued_two_four' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignFiniteGroupPachner.lean:416:0: 'CampaignFiniteGroupPachner.glued_three_three' depends on axioms: [propext, Classical.choice, Quot.sound]\nBuild completed successfully (919 jobs).\n"
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/fsp-pachner-invariance-claim.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.804,
+    "output": "{\n  \"AuthorityEffect\": \"None\",\n  \"status\": \"passed\",\n  \"method\": \"edge-CSP enumeration plus independent full Cartesian C2 enumeration\",\n  \"groups\": [\n    {\n      \"group\": \"C1\",\n      \"order\": 1,\n      \"moves\": [\n        {\n          \"move\": \"1-5\",\n          \"facets\": [\n            1,\n            5\n          ],\n          \"vertices\": [\n            5,\n            6\n          ],\n          \"edges\": [\n            10,\n            15\n          ],\n          \"triangles\": [\n            10,\n            20\n          ],\n          \"boundary_tetrahedra\": 5,\n          \"interior_vertices\": [\n            0,\n            1\n          ],\n          \"flat_boundaries\": 1,\n          \"flat_colorings\": [\n            1,\n            1\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"0\"\n        },\n        {\n          \"move\": \"2-4\",\n          \"facets\": [\n            2,\n            4\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            14,\n            15\n          ],\n          \"triangles\": [\n            16,\n            20\n          ],\n          \"boundary_tetrahedra\": 8,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 1,\n          \"flat_colorings\": [\n            1,\n            1\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"0\"\n        },\n        {\n          \"move\": \"3-3\",\n          \"facets\": [\n            3,\n            3\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            15,\n            15\n          ],\n          \"triangles\": [\n            19,\n            19\n          ],\n          \"boundary_tetrahedra\": 9,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 1,\n          \"flat_colorings\": [\n            1,\n            1\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"0\"\n        }\n      ]\n    },\n    {\n      \"group\": \"C2\",\n      \"order\": 2,\n      \"moves\": [\n        {\n          \"move\": \"1-5\",\n          \"facets\": [\n            1,\n            5\n          ],\n          \"vertices\": [\n            5,\n            6\n          ],\n          \"edges\": [\n            10,\n            15\n          ],\n          \"triangles\": [\n            10,\n            20\n          ],\n          \"boundary_tetrahedra\": 5,\n          \"interior_vertices\": [\n            0,\n            1\n          ],\n          \"flat_boundaries\": 16,\n          \"flat_colorings\": [\n            16,\n            32\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              2\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"3/16\"\n        },\n        {\n          \"move\": \"2-4\",\n          \"facets\": [\n            2,\n            4\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            14,\n            15\n          ],\n          \"triangles\": [\n            16,\n            20\n          ],\n          \"boundary_tetrahedra\": 8,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 32,\n          \"flat_colorings\": [\n            32,\n            32\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"3/16\"\n        },\n        {\n          \"move\": \"3-3\",\n          \"facets\": [\n            3,\n            3\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            15,\n            15\n          ],\n          \"triangles\": [\n            19,\n            19\n          ],\n          \"boundary_tetrahedra\": 9,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 32,\n          \"flat_colorings\": [\n            32,\n            32\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"3/16\"\n        }\n      ]\n    },\n    {\n      \"group\": \"C3\",\n      \"order\": 3,\n      \"moves\": [\n        {\n          \"move\": \"1-5\",\n          \"facets\": [\n            1,\n            5\n          ],\n          \"vertices\": [\n            5,\n            6\n          ],\n          \"edges\": [\n            10,\n            15\n          ],\n          \"triangles\": [\n            10,\n            20\n          ],\n          \"boundary_tetrahedra\": 5,\n          \"interior_vertices\": [\n            0,\n            1\n          ],\n          \"flat_boundaries\": 81,\n          \"flat_colorings\": [\n            81,\n            243\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              3\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"40/729\"\n        },\n        {\n          \"move\": \"2-4\",\n          \"facets\": [\n            2,\n            4\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            14,\n            15\n          ],\n          \"triangles\": [\n            16,\n            20\n          ],\n          \"boundary_tetrahedra\": 8,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 243,\n          \"flat_colorings\": [\n            243,\n            243\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"121/2187\"\n        },\n        {\n          \"move\": \"3-3\",\n          \"facets\": [\n            3,\n            3\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            15,\n            15\n          ],\n          \"triangles\": [\n            19,\n            19\n          ],\n          \"boundary_tetrahedra\": 9,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 243,\n          \"flat_colorings\": [\n            243,\n            243\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"121/2187\"\n        }\n      ]\n    },\n    {\n      \"group\": \"C4\",\n      \"order\": 4,\n      \"moves\": [\n        {\n          \"move\": \"1-5\",\n          \"facets\": [\n            1,\n            5\n          ],\n          \"vertices\": [\n            5,\n            6\n          ],\n          \"edges\": [\n            10,\n            15\n          ],\n          \"triangles\": [\n            10,\n            20\n          ],\n          \"boundary_tetrahedra\": 5,\n          \"interior_vertices\": [\n            0,\n            1\n          ],\n          \"flat_boundaries\": 256,\n          \"flat_colorings\": [\n            256,\n            1024\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              4\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"3/128\"\n        },\n        {\n          \"move\": \"2-4\",\n          \"facets\": [\n            2,\n            4\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            14,\n            15\n          ],\n          \"triangles\": [\n            16,\n            20\n          ],\n          \"boundary_tetrahedra\": 8,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 1024,\n          \"flat_colorings\": [\n            1024,\n            1024\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"3/128\"\n        },\n        {\n          \"move\": \"3-3\",\n          \"facets\": [\n            3,\n            3\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            15,\n            15\n          ],\n          \"triangles\": [\n            19,\n            19\n          ],\n          \"boundary_tetrahedra\": 9,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 1024,\n          \"flat_colorings\": [\n            1024,\n            1024\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"3/128\"\n        }\n      ]\n    },\n    {\n      \"group\": \"C5\",\n      \"order\": 5,\n      \"moves\": [\n        {\n          \"move\": \"1-5\",\n          \"facets\": [\n            1,\n            5\n          ],\n          \"vertices\": [\n            5,\n            6\n          ],\n          \"edges\": [\n            10,\n            15\n          ],\n          \"triangles\": [\n            10,\n            20\n          ],\n          \"boundary_tetrahedra\": 5,\n          \"interior_vertices\": [\n            0,\n            1\n          ],\n          \"flat_boundaries\": 625,\n          \"flat_colorings\": [\n            625,\n            3125\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              5\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"936/78125\"\n        },\n        {\n          \"move\": \"2-4\",\n          \"facets\": [\n            2,\n            4\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            14,\n            15\n          ],\n          \"triangles\": [\n            16,\n            20\n          ],\n          \"boundary_tetrahedra\": 8,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 3125,\n          \"flat_colorings\": [\n            3125,\n            3125\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"4686/390625\"\n        },\n        {\n          \"move\": \"3-3\",\n          \"facets\": [\n            3,\n            3\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            15,\n            15\n          ],\n          \"triangles\": [\n            19,\n            19\n          ],\n          \"boundary_tetrahedra\": 9,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 3125,\n          \"flat_colorings\": [\n            3125,\n            3125\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"4686/390625\"\n        }\n      ]\n    },\n    {\n      \"group\": \"S3\",\n      \"order\": 6,\n      \"moves\": [\n        {\n          \"move\": \"1-5\",\n          \"facets\": [\n            1,\n            5\n          ],\n          \"vertices\": [\n            5,\n            6\n          ],\n          \"edges\": [\n            10,\n            15\n          ],\n          \"triangles\": [\n            10,\n            20\n          ],\n          \"boundary_tetrahedra\": 5,\n          \"interior_vertices\": [\n            0,\n            1\n          ],\n          \"flat_boundaries\": 1296,\n          \"flat_colorings\": [\n            1296,\n            7776\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              6\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"1/144\"\n        },\n        {\n          \"move\": \"2-4\",\n          \"facets\": [\n            2,\n            4\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            14,\n            15\n          ],\n          \"triangles\": [\n            16,\n            20\n          ],\n          \"boundary_tetrahedra\": 8,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 7776,\n          \"flat_colorings\": [\n            7776,\n            7776\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"1/144\"\n        },\n        {\n          \"move\": \"3-3\",\n          \"facets\": [\n            3,\n            3\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            15,\n            15\n          ],\n          \"triangles\": [\n            19,\n            19\n          ],\n          \"boundary_tetrahedra\": 9,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 7776,\n          \"flat_colorings\": [\n            7776,\n            7776\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"1/144\"\n        }\n      ]\n    }\n  ],\n  \"negative_flatness_control\": {\n    \"group\": \"C2\",\n    \"omitted_interior_flatness\": {\n      \"fillings_per_boundary\": 32,\n      \"normalized_amplitude\": \"16\"\n    }\n  },\n  \"scope\": \"Finite test groups only; the universal theorem is kernel checked separately.\"\n}\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/pachner-derivation/registered-lakefile.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 5.735,
+    "output": ""
+  },
+  "build_scope": "Exact-source minimal package. The full repository Lean workspace was not built.",
+  "axiom_audit": {
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/pachner-derivation/lake",
+    "input_path": "Audit.lean",
+    "input_contents": "import CampaignFiniteGroupPachner\n#print axioms CampaignFiniteGroupPachner.Vertex\n#print axioms CampaignFiniteGroupPachner.edgeOne\n#print axioms CampaignFiniteGroupPachner.triangleOne\n#print axioms CampaignFiniteGroupPachner.edgeTwo\n#print axioms CampaignFiniteGroupPachner.triangleTwo\n#print axioms CampaignFiniteGroupPachner.triangleLeft\n#print axioms CampaignFiniteGroupPachner.triangleRight\n#print axioms CampaignFiniteGroupPachner.triangleBoundary\n#print axioms CampaignFiniteGroupPachner.facetFace\n#print axioms CampaignFiniteGroupPachner.facetFaceDecidable\n#print axioms CampaignFiniteGroupPachner.one_facet_edges\n#print axioms CampaignFiniteGroupPachner.one_facet_triangles\n#print axioms CampaignFiniteGroupPachner.five_facet_edges\n#print axioms CampaignFiniteGroupPachner.five_facet_triangles\n#print axioms CampaignFiniteGroupPachner.two_facet_edges\n#print axioms CampaignFiniteGroupPachner.two_facet_triangles\n#print axioms CampaignFiniteGroupPachner.four_facet_edges\n#print axioms CampaignFiniteGroupPachner.four_facet_triangles\n#print axioms CampaignFiniteGroupPachner.three_facet_edges\n#print axioms CampaignFiniteGroupPachner.three_facet_triangles\n#print axioms CampaignFiniteGroupPachner.one_boundary_skeleton\n#print axioms CampaignFiniteGroupPachner.two_boundary_skeleton\n#print axioms CampaignFiniteGroupPachner.three_boundary_skeleton\n#print axioms CampaignFiniteGroupPachner.one_root_triangle\n#print axioms CampaignFiniteGroupPachner.two_root_edges\n#print axioms CampaignFiniteGroupPachner.two_root_triangle\n#print axioms CampaignFiniteGroupPachner.boundary_has_triangle_cone\n#print axioms CampaignFiniteGroupPachner.Connection\n#print axioms CampaignFiniteGroupPachner.FlatOn\n#print axioms CampaignFiniteGroupPachner.Coloring\n#print axioms CampaignFiniteGroupPachner.Complete\n#print axioms CampaignFiniteGroupPachner.BoundaryOne\n#print axioms CampaignFiniteGroupPachner.BoundaryTwo\n#print axioms CampaignFiniteGroupPachner.BoundaryThree\n#print axioms CampaignFiniteGroupPachner.ThreeLeft\n#print axioms CampaignFiniteGroupPachner.ThreeRight\n#print axioms CampaignFiniteGroupPachner.pureConnection\n#print axioms CampaignFiniteGroupPachner.pureColoring\n#print axioms CampaignFiniteGroupPachner.edge_from_root\n#print axioms CampaignFiniteGroupPachner.complete_from_row\n#print axioms CampaignFiniteGroupPachner.triangle_from_cone\n#print axioms CampaignFiniteGroupPachner.boundary_three_flat\n#print axioms CampaignFiniteGroupPachner.flat_boundary_of_matching\n#print axioms CampaignFiniteGroupPachner.nonflat_boundary_has_no_extension\n#print axioms CampaignFiniteGroupPachner.connectionFintype\n#print axioms CampaignFiniteGroupPachner.coloringFintype\n#print axioms CampaignFiniteGroupPachner.Matches\n#print axioms CampaignFiniteGroupPachner.SelfFillings\n#print axioms CampaignFiniteGroupPachner.OneNew\n#print axioms CampaignFiniteGroupPachner.TwoNew\n#print axioms CampaignFiniteGroupPachner.ThreeOld\n#print axioms CampaignFiniteGroupPachner.ThreeNew\n#print axioms CampaignFiniteGroupPachner.selfFillingsFintype\n#print axioms CampaignFiniteGroupPachner.oneNewFintype\n#print axioms CampaignFiniteGroupPachner.twoNewFintype\n#print axioms CampaignFiniteGroupPachner.threeOldFintype\n#print axioms CampaignFiniteGroupPachner.threeNewFintype\n#print axioms CampaignFiniteGroupPachner.selfFilling\n#print axioms CampaignFiniteGroupPachner.self_filling_unique\n#print axioms CampaignFiniteGroupPachner.complete_eq_of_row\n#print axioms CampaignFiniteGroupPachner.onePotential\n#print axioms CampaignFiniteGroupPachner.fillOne\n#print axioms CampaignFiniteGroupPachner.oneParameter\n#print axioms CampaignFiniteGroupPachner.one_parameter_fill\n#print axioms CampaignFiniteGroupPachner.fill_one_parameter\n#print axioms CampaignFiniteGroupPachner.oneFillingEquiv\n#print axioms CampaignFiniteGroupPachner.fillTwo\n#print axioms CampaignFiniteGroupPachner.two_filling_unique\n#print axioms CampaignFiniteGroupPachner.fillThreeOld\n#print axioms CampaignFiniteGroupPachner.fillThreeNew\n#print axioms CampaignFiniteGroupPachner.three_old_unique\n#print axioms CampaignFiniteGroupPachner.three_new_unique\n#print axioms CampaignFiniteGroupPachner.card_of_unique_witness\n#print axioms CampaignFiniteGroupPachner.self_filling_count\n#print axioms CampaignFiniteGroupPachner.one_filling_count\n#print axioms CampaignFiniteGroupPachner.two_filling_count\n#print axioms CampaignFiniteGroupPachner.three_old_count\n#print axioms CampaignFiniteGroupPachner.three_new_count\n#print axioms CampaignFiniteGroupPachner.unnormalized_one_five_iff\n#print axioms CampaignFiniteGroupPachner.interiorVertices\n#print axioms CampaignFiniteGroupPachner.localFacets\n#print axioms CampaignFiniteGroupPachner.face_is_in_a_facet\n#print axioms CampaignFiniteGroupPachner.local_facets_have_five_vertices\n#print axioms CampaignFiniteGroupPachner.facet_counts\n#print axioms CampaignFiniteGroupPachner.one_old_interior\n#print axioms CampaignFiniteGroupPachner.one_new_interior\n#print axioms CampaignFiniteGroupPachner.two_old_interior\n#print axioms CampaignFiniteGroupPachner.two_new_interior\n#print axioms CampaignFiniteGroupPachner.three_old_interior\n#print axioms CampaignFiniteGroupPachner.three_new_interior\n#print axioms CampaignFiniteGroupPachner.localAmplitude\n#print axioms CampaignFiniteGroupPachner.group_order_ne_zero\n#print axioms CampaignFiniteGroupPachner.pachner_one_five\n#print axioms CampaignFiniteGroupPachner.pachner_two_four\n#print axioms CampaignFiniteGroupPachner.pachner_three_three\n#print axioms CampaignFiniteGroupPachner.stateSum\n#print axioms CampaignFiniteGroupPachner.glued_one_five\n#print axioms CampaignFiniteGroupPachner.glued_two_four\n#print axioms CampaignFiniteGroupPachner.glued_three_three\n",
+    "input_sha256": "1a40701a1eca0b20685c8a4f51aeb283c8845ed723c432bb61ab16484a452672",
+    "module_source_sha256": "e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca",
+    "exit_code": 0,
+    "output": "'CampaignFiniteGroupPachner.Vertex' does not depend on any axioms\n'CampaignFiniteGroupPachner.edgeOne' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.triangleOne' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.edgeTwo' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.triangleTwo' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.triangleLeft' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.triangleRight' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.triangleBoundary' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.facetFace' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.facetFaceDecidable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.one_facet_edges' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.one_facet_triangles' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.five_facet_edges' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.five_facet_triangles' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.two_facet_edges' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.two_facet_triangles' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.four_facet_edges' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.four_facet_triangles' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_facet_edges' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_facet_triangles' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.one_boundary_skeleton' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.two_boundary_skeleton' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_boundary_skeleton' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.one_root_triangle' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.two_root_edges' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.two_root_triangle' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.boundary_has_triangle_cone' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.Connection' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.FlatOn' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.Coloring' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.Complete' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.BoundaryOne' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.BoundaryTwo' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.BoundaryThree' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.ThreeLeft' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.ThreeRight' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.pureConnection' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.pureColoring' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.edge_from_root' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.complete_from_row' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.triangle_from_cone' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.boundary_three_flat' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.flat_boundary_of_matching' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.nonflat_boundary_has_no_extension' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.connectionFintype' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.coloringFintype' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.Matches' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.SelfFillings' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.OneNew' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.TwoNew' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.ThreeOld' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.ThreeNew' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.selfFillingsFintype' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.oneNewFintype' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.twoNewFintype' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.threeOldFintype' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.threeNewFintype' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.selfFilling' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.self_filling_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.complete_eq_of_row' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.onePotential' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.fillOne' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.oneParameter' depends on axioms: [propext]\n'CampaignFiniteGroupPachner.one_parameter_fill' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.fill_one_parameter' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.oneFillingEquiv' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.fillTwo' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.two_filling_unique' depends on axioms: [propext, Quot.sound]\n'CampaignFiniteGroupPachner.fillThreeOld' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.fillThreeNew' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_old_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_new_unique' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.card_of_unique_witness' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.self_filling_count' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.one_filling_count' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.two_filling_count' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_old_count' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_new_count' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.unnormalized_one_five_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.interiorVertices' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.localFacets' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.face_is_in_a_facet' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.local_facets_have_five_vertices' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.facet_counts' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.one_old_interior' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.one_new_interior' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.two_old_interior' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.two_new_interior' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_old_interior' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.three_new_interior' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.localAmplitude' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.group_order_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.pachner_one_five' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.pachner_two_four' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.pachner_three_three' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.stateSum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.glued_one_five' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.glued_two_four' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignFiniteGroupPachner.glued_three_three' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+    "scratch_package": {
+      "lakefile": "import Lake\nopen Lake DSL\nrequire mathlib from \"/workspace/review-round2/mathlib-replay/.lake/packages/mathlib\"\npackage CampaignReplay\nlean_lib CampaignFiniteGroupPachner where\n  roots := #[`CampaignFiniteGroupPachner]\n",
+      "lean_toolchain": "leanprover/lean4:v4.35.0\n",
+      "source_copy": {
+        "from": "lean4/CampaignFiniteGroupPachner.lean",
+        "to": "CampaignFiniteGroupPachner.lean",
+        "sha256": "e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca"
+      }
+    }
+  },
+  "independent_optimized_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-O",
+      "-X",
+      "utf8",
+      "checks/independent/fsp-pachner-invariance-claim.py"
+    ],
+    "exit_code": 0,
+    "seconds": 1.008,
+    "output": "{\n  \"AuthorityEffect\": \"None\",\n  \"status\": \"passed\",\n  \"method\": \"edge-CSP enumeration plus independent full Cartesian C2 enumeration\",\n  \"groups\": [\n    {\n      \"group\": \"C1\",\n      \"order\": 1,\n      \"moves\": [\n        {\n          \"move\": \"1-5\",\n          \"facets\": [\n            1,\n            5\n          ],\n          \"vertices\": [\n            5,\n            6\n          ],\n          \"edges\": [\n            10,\n            15\n          ],\n          \"triangles\": [\n            10,\n            20\n          ],\n          \"boundary_tetrahedra\": 5,\n          \"interior_vertices\": [\n            0,\n            1\n          ],\n          \"flat_boundaries\": 1,\n          \"flat_colorings\": [\n            1,\n            1\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"0\"\n        },\n        {\n          \"move\": \"2-4\",\n          \"facets\": [\n            2,\n            4\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            14,\n            15\n          ],\n          \"triangles\": [\n            16,\n            20\n          ],\n          \"boundary_tetrahedra\": 8,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 1,\n          \"flat_colorings\": [\n            1,\n            1\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"0\"\n        },\n        {\n          \"move\": \"3-3\",\n          \"facets\": [\n            3,\n            3\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            15,\n            15\n          ],\n          \"triangles\": [\n            19,\n            19\n          ],\n          \"boundary_tetrahedra\": 9,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 1,\n          \"flat_colorings\": [\n            1,\n            1\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"0\"\n        }\n      ]\n    },\n    {\n      \"group\": \"C2\",\n      \"order\": 2,\n      \"moves\": [\n        {\n          \"move\": \"1-5\",\n          \"facets\": [\n            1,\n            5\n          ],\n          \"vertices\": [\n            5,\n            6\n          ],\n          \"edges\": [\n            10,\n            15\n          ],\n          \"triangles\": [\n            10,\n            20\n          ],\n          \"boundary_tetrahedra\": 5,\n          \"interior_vertices\": [\n            0,\n            1\n          ],\n          \"flat_boundaries\": 16,\n          \"flat_colorings\": [\n            16,\n            32\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              2\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"3/16\"\n        },\n        {\n          \"move\": \"2-4\",\n          \"facets\": [\n            2,\n            4\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            14,\n            15\n          ],\n          \"triangles\": [\n            16,\n            20\n          ],\n          \"boundary_tetrahedra\": 8,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 32,\n          \"flat_colorings\": [\n            32,\n            32\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"3/16\"\n        },\n        {\n          \"move\": \"3-3\",\n          \"facets\": [\n            3,\n            3\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            15,\n            15\n          ],\n          \"triangles\": [\n            19,\n            19\n          ],\n          \"boundary_tetrahedra\": 9,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 32,\n          \"flat_colorings\": [\n            32,\n            32\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"3/16\"\n        }\n      ]\n    },\n    {\n      \"group\": \"C3\",\n      \"order\": 3,\n      \"moves\": [\n        {\n          \"move\": \"1-5\",\n          \"facets\": [\n            1,\n            5\n          ],\n          \"vertices\": [\n            5,\n            6\n          ],\n          \"edges\": [\n            10,\n            15\n          ],\n          \"triangles\": [\n            10,\n            20\n          ],\n          \"boundary_tetrahedra\": 5,\n          \"interior_vertices\": [\n            0,\n            1\n          ],\n          \"flat_boundaries\": 81,\n          \"flat_colorings\": [\n            81,\n            243\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              3\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"40/729\"\n        },\n        {\n          \"move\": \"2-4\",\n          \"facets\": [\n            2,\n            4\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            14,\n            15\n          ],\n          \"triangles\": [\n            16,\n            20\n          ],\n          \"boundary_tetrahedra\": 8,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 243,\n          \"flat_colorings\": [\n            243,\n            243\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"121/2187\"\n        },\n        {\n          \"move\": \"3-3\",\n          \"facets\": [\n            3,\n            3\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            15,\n            15\n          ],\n          \"triangles\": [\n            19,\n            19\n          ],\n          \"boundary_tetrahedra\": 9,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 243,\n          \"flat_colorings\": [\n            243,\n            243\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"121/2187\"\n        }\n      ]\n    },\n    {\n      \"group\": \"C4\",\n      \"order\": 4,\n      \"moves\": [\n        {\n          \"move\": \"1-5\",\n          \"facets\": [\n            1,\n            5\n          ],\n          \"vertices\": [\n            5,\n            6\n          ],\n          \"edges\": [\n            10,\n            15\n          ],\n          \"triangles\": [\n            10,\n            20\n          ],\n          \"boundary_tetrahedra\": 5,\n          \"interior_vertices\": [\n            0,\n            1\n          ],\n          \"flat_boundaries\": 256,\n          \"flat_colorings\": [\n            256,\n            1024\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              4\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"3/128\"\n        },\n        {\n          \"move\": \"2-4\",\n          \"facets\": [\n            2,\n            4\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            14,\n            15\n          ],\n          \"triangles\": [\n            16,\n            20\n          ],\n          \"boundary_tetrahedra\": 8,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 1024,\n          \"flat_colorings\": [\n            1024,\n            1024\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"3/128\"\n        },\n        {\n          \"move\": \"3-3\",\n          \"facets\": [\n            3,\n            3\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            15,\n            15\n          ],\n          \"triangles\": [\n            19,\n            19\n          ],\n          \"boundary_tetrahedra\": 9,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 1024,\n          \"flat_colorings\": [\n            1024,\n            1024\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"3/128\"\n        }\n      ]\n    },\n    {\n      \"group\": \"C5\",\n      \"order\": 5,\n      \"moves\": [\n        {\n          \"move\": \"1-5\",\n          \"facets\": [\n            1,\n            5\n          ],\n          \"vertices\": [\n            5,\n            6\n          ],\n          \"edges\": [\n            10,\n            15\n          ],\n          \"triangles\": [\n            10,\n            20\n          ],\n          \"boundary_tetrahedra\": 5,\n          \"interior_vertices\": [\n            0,\n            1\n          ],\n          \"flat_boundaries\": 625,\n          \"flat_colorings\": [\n            625,\n            3125\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              5\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"936/78125\"\n        },\n        {\n          \"move\": \"2-4\",\n          \"facets\": [\n            2,\n            4\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            14,\n            15\n          ],\n          \"triangles\": [\n            16,\n            20\n          ],\n          \"boundary_tetrahedra\": 8,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 3125,\n          \"flat_colorings\": [\n            3125,\n            3125\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"4686/390625\"\n        },\n        {\n          \"move\": \"3-3\",\n          \"facets\": [\n            3,\n            3\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            15,\n            15\n          ],\n          \"triangles\": [\n            19,\n            19\n          ],\n          \"boundary_tetrahedra\": 9,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 3125,\n          \"flat_colorings\": [\n            3125,\n            3125\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"4686/390625\"\n        }\n      ]\n    },\n    {\n      \"group\": \"S3\",\n      \"order\": 6,\n      \"moves\": [\n        {\n          \"move\": \"1-5\",\n          \"facets\": [\n            1,\n            5\n          ],\n          \"vertices\": [\n            5,\n            6\n          ],\n          \"edges\": [\n            10,\n            15\n          ],\n          \"triangles\": [\n            10,\n            20\n          ],\n          \"boundary_tetrahedra\": 5,\n          \"interior_vertices\": [\n            0,\n            1\n          ],\n          \"flat_boundaries\": 1296,\n          \"flat_colorings\": [\n            1296,\n            7776\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              6\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"1/144\"\n        },\n        {\n          \"move\": \"2-4\",\n          \"facets\": [\n            2,\n            4\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            14,\n            15\n          ],\n          \"triangles\": [\n            16,\n            20\n          ],\n          \"boundary_tetrahedra\": 8,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 7776,\n          \"flat_colorings\": [\n            7776,\n            7776\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"1/144\"\n        },\n        {\n          \"move\": \"3-3\",\n          \"facets\": [\n            3,\n            3\n          ],\n          \"vertices\": [\n            6,\n            6\n          ],\n          \"edges\": [\n            15,\n            15\n          ],\n          \"triangles\": [\n            19,\n            19\n          ],\n          \"boundary_tetrahedra\": 9,\n          \"interior_vertices\": [\n            0,\n            0\n          ],\n          \"flat_boundaries\": 7776,\n          \"flat_colorings\": [\n            7776,\n            7776\n          ],\n          \"fixed_boundary_fillings\": [\n            [\n              1\n            ],\n            [\n              1\n            ]\n          ],\n          \"normalized_local_amplitude\": \"1\",\n          \"weighted_exterior_total\": \"1/144\"\n        }\n      ]\n    }\n  ],\n  \"negative_flatness_control\": {\n    \"group\": \"C2\",\n    \"omitted_interior_flatness\": {\n      \"fillings_per_boundary\": 32,\n      \"normalized_amplitude\": \"16\"\n    }\n  },\n  \"scope\": \"Finite test groups only; the universal theorem is kernel checked separately.\"\n}\n"
+  },
+  "independent_source_sha256": "ec9f5bf0c4bdf2d8b829f23871f376b08c3f329746aaadfde6cb8293cd0b38b5"
+}

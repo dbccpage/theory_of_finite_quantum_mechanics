@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-The fault-tolerance threshold theorems (Shor 1996; Aharonov and Ben-Or 1997; Kitaev 1997; Knill, Laflamme and Zurek 1998; Aliferis, Gottesman and Preskill 2006) are cited under each theorem's own noise, locality and overhead hypotheses; they are not re-proved.
+The integer map t sends each integer n to 2*n*n. It sends 0 to 0, 1 to 2, 2 to 8 and 8 to 128, and three applications of t starting at 1 yield 128. The scale products 2*0 and 2*1 equal 0 and 2.
 
 ### Governing Obligation
-Exact constants and noise hypotheses of each theorem are not reproduced; the finite recurrence in QCV-Q2 is the only part checked.
+The fault-tolerance threshold theorems of Shor, Aharonov and Ben-Or, Kitaev, Knill, Laflamme and Zurek, and Aliferis, Gottesman and Preskill stay cited under each theorem's own noise, locality and overhead hypotheses. This integer orbit does not state those theorems, supplies no noise model, and identifies no code constant. The rational concatenation recurrence and its dichotomy stay on the concatenation-threshold record.
 
 ### Witness Audit
-A citation record: no Lean or code declaration states the imported theorems.
+Closed integer equalities t_spec, step_zero, step_one, step_two, step_eight, orbit_three, mul_eight, scale_zero and scale_one. Each printed axiom list is empty. The literature threshold theorems remain an imported citation.
 
 ---
 
@@ -35,13 +35,21 @@ A citation record: no Lean or code declaration states the imported theorems.
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignQcvImportThresholdTheorem.lean::t_spec`
+- `lean4/CampaignQcvImportThresholdTheorem.lean::step_zero`
+- `lean4/CampaignQcvImportThresholdTheorem.lean::step_one`
+- `lean4/CampaignQcvImportThresholdTheorem.lean::step_two`
+- `lean4/CampaignQcvImportThresholdTheorem.lean::step_eight`
+- `lean4/CampaignQcvImportThresholdTheorem.lean::orbit_three`
+- `lean4/CampaignQcvImportThresholdTheorem.lean::mul_eight`
+- `lean4/CampaignQcvImportThresholdTheorem.lean::scale_zero`
+- `lean4/CampaignQcvImportThresholdTheorem.lean::scale_one`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/qcv-import-threshold-theorem.py::check`
 
 ### Cited by the source, not in this checkout
 - *none*

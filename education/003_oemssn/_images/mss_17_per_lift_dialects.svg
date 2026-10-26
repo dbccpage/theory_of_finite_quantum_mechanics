@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 540" width="100%" height="100%" style="background:#0b0f19; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <defs>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1e293b" stroke-width="0.8" opacity="0.6"/>
+    </pattern>
+    <radialGradient id="bgGlow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#1e1b4b" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0b0f19" stop-opacity="1"/>
+    </radialGradient>
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glowRed" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f43f5e"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#c084fc"/>
+    </marker>
+  </defs>
+
+  <rect width="880" height="540" fill="url(#bgGlow)"/>
+  <rect width="880" height="540" fill="url(#grid)"/>
+  <rect x="16" y="16" width="848" height="508" rx="12" fill="none" stroke="#334155" stroke-width="1.2"/>
+
+  <!-- Top Banner / Header -->
+  <g transform="translate(32, 32)">
+    <rect x="0" y="0" width="86" height="24" rx="6" fill="#0284c7" fill-opacity="0.2" stroke="#38bdf8" stroke-width="1"/>
+    <text x="43" y="16" fill="#38bdf8" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="1">MSS-17</text>
+
+    <rect x="94" y="0" width="56" height="24" rx="6" fill="#6366f1" fill-opacity="0.2" stroke="#818cf8" stroke-width="1"/>
+    <text x="122" y="16" fill="#a5b4fc" font-size="11" font-weight="700" text-anchor="middle">S(17)</text>
+
+    <rect x="158" y="0" width="136" height="24" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="226" y="16" fill="#94a3b8" font-size="10" font-weight="500" text-anchor="middle">AuthorityEffect: None</text>
+
+    <text x="0" y="52" fill="#f8fafc" font-size="19" font-weight="700" letter-spacing="0.2">Level 17: Per-Lift Dialect Languages (MSS-17)</text>
+    <text x="0" y="71" fill="#94a3b8" font-size="12" font-weight="400">Encapsulated sub-dialects (SymBin, SymLft, SymPar, SymGodel) with cryptographic SHA-256 seals</text>
+
+    <g transform="translate(530, 0)">
+      <rect x="0" y="0" width="286" height="74" rx="8" fill="#030712" stroke="#1e293b" stroke-width="1"/>
+      <text x="12" y="18" fill="#64748b" font-size="10" font-weight="600" text-transform="uppercase" letter-spacing="0.8">Wire Grammar Packet</text>
+      <text x="12" y="44" fill="#38bdf8" font-size="12" font-family="ui-monospace, monospace" font-weight="600">&lt;&lt;dialect tag version encoding body checksum&gt;&gt;</text>
+    </g>
+  </g>
+
+  <line x1="32" y1="120" x2="848" y2="120" stroke="#1e293b" stroke-width="1.2"/>
+
+  <!-- Center Visualization Canvas -->
+  <g transform="translate(32, 132)">
+    
+        <!-- 4 Dialect Capsules Side by Side -->
+        <g transform="translate(15, 20)">
+          <!-- SymBin -->
+          <rect x="0" y="0" width="185" height="230" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+          <rect x="12" y="12" width="80" height="22" rx="4" fill="#0284c7"/>
+          <text x="52" y="27" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">SymBin</text>
+          <text x="12" y="55" fill="#f8fafc" font-size="12" font-weight="700">Binary Grammar</text>
+          <text x="12" y="75" fill="#94a3b8" font-size="10">Bitstring tokens &amp; cuts</text>
+          <text x="12" y="92" fill="#94a3b8" font-size="10">Level 0..1 primitives</text>
+          <rect x="12" y="170" width="160" height="40" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+          <text x="92" y="188" fill="#38bdf8" font-size="9" font-family="ui-monospace, monospace" text-anchor="middle">SHA-256: 3a9f...c2</text>
+          <text x="92" y="202" fill="#10b981" font-size="9" text-anchor="middle">Verified Seal</text>
+        </g>
+
+        <g transform="translate(215, 20)">
+          <!-- SymLft -->
+          <rect x="0" y="0" width="185" height="230" rx="8" fill="#1e293b" stroke="#818cf8" stroke-width="1.2"/>
+          <rect x="12" y="12" width="80" height="22" rx="4" fill="#4338ca"/>
+          <text x="52" y="27" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">SymLft</text>
+          <text x="12" y="55" fill="#f8fafc" font-size="12" font-weight="700">Ascent Lift Logic</text>
+          <text x="12" y="75" fill="#94a3b8" font-size="10">Up/down map routing</text>
+          <text x="12" y="92" fill="#94a3b8" font-size="10">Repair cochain records</text>
+          <rect x="12" y="170" width="160" height="40" rx="4" fill="#0f172a" stroke="#818cf8" stroke-width="1"/>
+          <text x="92" y="188" fill="#818cf8" font-size="9" font-family="ui-monospace, monospace" text-anchor="middle">SHA-256: b71d...e4</text>
+          <text x="92" y="202" fill="#10b981" font-size="9" text-anchor="middle">Verified Seal</text>
+        </g>
+
+        <g transform="translate(415, 20)">
+          <!-- SymPar -->
+          <rect x="0" y="0" width="185" height="230" rx="8" fill="#1e293b" stroke="#c084fc" stroke-width="1.2"/>
+          <rect x="12" y="12" width="80" height="22" rx="4" fill="#7e22ce"/>
+          <text x="52" y="27" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">SymPar</text>
+          <text x="12" y="55" fill="#f8fafc" font-size="12" font-weight="700">Parallel Evaluator</text>
+          <text x="12" y="75" fill="#94a3b8" font-size="10">Concentric dispatch</text>
+          <text x="12" y="92" fill="#94a3b8" font-size="10">Multi-lane verification</text>
+          <rect x="12" y="170" width="160" height="40" rx="4" fill="#0f172a" stroke="#c084fc" stroke-width="1"/>
+          <text x="92" y="188" fill="#c084fc" font-size="9" font-family="ui-monospace, monospace" text-anchor="middle">SHA-256: 884a...91</text>
+          <text x="92" y="202" fill="#10b981" font-size="9" text-anchor="middle">Verified Seal</text>
+        </g>
+
+        <g transform="translate(615, 20)">
+          <!-- SymGodel -->
+          <rect x="0" y="0" width="185" height="230" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2"/>
+          <rect x="12" y="12" width="85" height="22" rx="4" fill="#b45309"/>
+          <text x="54" y="27" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">SymGodel</text>
+          <text x="12" y="55" fill="#f8fafc" font-size="12" font-weight="700">G&#246;del Indexing</text>
+          <text x="12" y="75" fill="#94a3b8" font-size="10">Prime factorization AST</text>
+          <text x="12" y="92" fill="#94a3b8" font-size="10">Incompleteness fences</text>
+          <rect x="12" y="170" width="160" height="40" rx="4" fill="#0f172a" stroke="#f59e0b" stroke-width="1"/>
+          <text x="92" y="188" fill="#f59e0b" font-size="9" font-family="ui-monospace, monospace" text-anchor="middle">SHA-256: e9c0...17</text>
+          <text x="92" y="202" fill="#10b981" font-size="9" text-anchor="middle">Verified Seal</text>
+        </g>
+        
+  </g>
+
+  <!-- Bottom Footer -->
+  <g transform="translate(32, 468)">
+    <line x1="0" y1="0" x2="816" y2="0" stroke="#1e293b" stroke-width="1.2"/>
+    
+    <text x="0" y="22" fill="#64748b" font-size="10" font-weight="600" text-transform="uppercase" letter-spacing="0.5">Pipeline Evaluator:</text>
+    <text x="120" y="22" fill="#38bdf8" font-size="11" font-family="ui-monospace, monospace" font-weight="600">Evaluator::DialectEncapsulator</text>
+
+    <text x="380" y="22" fill="#64748b" font-size="10" font-weight="600" text-transform="uppercase" letter-spacing="0.5">Primary Error:</text>
+    <text x="470" y="22" fill="#f43f5e" font-size="11" font-family="ui-monospace, monospace" font-weight="600">ERR_DIALECT_CHECKSUM_MISMATCH</text>
+
+    <text x="0" y="44" fill="#64748b" font-size="10" font-weight="600" text-transform="uppercase" letter-spacing="0.5">Forcing Invariant:</text>
+    <text x="120" y="44" fill="#cbd5e1" font-size="11" font-weight="400">Local dialect packaging lacks continuous l^2 Hodge orthogonal projection and Laplacians; forced lift to MSS-18.</text>
+  </g>
+</svg>

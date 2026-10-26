@@ -1,0 +1,555 @@
+# Narration and visuals for the 001 Genesis explainer.
+# AuthorityEffect: None. Grounded in 19L57G1@sealed-derivation-v1 (3100c4e) and curriculum.md.
+# Build: see ../../../education_app/_docs/video_builder.md
+title: "Genesis: what a formal system can say when handed one opaque mark"
+strand: "001 Genesis"
+output_name: 001_genesis
+segments:
+
+  - id: s001
+    chapter: "Opening"
+    visual:
+      kind: title
+      title: "Genesis"
+      subtitle: "What a formal system can say when it is handed one opaque mark"
+      tagline: "Strand 001 of the Omega Engine curriculum"
+    narration: >
+      Genesis. What a formal system can say when it is handed one opaque mark.
+      In the previous strand we watched a language model respond to the empty mark. This strand asks the same question
+      of a formal system, where every answer is a theorem or a bounded computation, and every assumption has to be declared.
+
+  - id: s002
+    chapter: "Opening"
+    visual:
+      kind: bullets
+      heading: "What Genesis is, and what it is not"
+      items:
+        - "An external study: the repository 19L57G1, sealed at tag sealed-derivation-v1 (commit 3100c4e)"
+        - "Its proofs are in Lean 4, in that repository"
+        - {text: "Part of the project mathematical and engineering foundation", colour: accent2}
+        - {text: "Source-specific correspondences continue within WDP", colour: accent2}
+    narration: >
+      Genesis begins with an opaque inscription and makes admissions and observations explicit.
+      It is part of the mathematical and engineering foundation of Project Anomalon and Omega.
+      The original sealed source, later source research, educational models and current Rust engine
+      have separate carriers and proof populations. Their exact correspondences are established at
+      their interfaces. The current source account uses final revision f1d56c01 while preserving the
+      historical seal and its receipts. The earlier narrative remains available in the archive.
+
+  - id: s003
+    chapter: "Opening"
+    visual:
+      kind: flow
+      heading: "Where 001 sits"
+      nodes:
+        - {text: "000: what a model did with <>", colour: muted}
+        - {text: "001: what a formal regime can derive from <>", colour: good}
+        - "002: the S(n) presentation tower"
+        - "010: the MSS-N atlas"
+      caption: "Teaching levels, S(n) stages and MSS indices are separate numbering systems."
+    narration: >
+      Here is where this strand sits. Strand zero zero zero recorded what a language model did when handed the empty mark.
+      Strand zero zero one asks what a formal regime can derive from it. Strand zero zero two reads Genesis as a tower of presentation stages,
+      called S of n. And strand zero ten is the minimal symbol system atlas. One warning from the reading guide. Teaching levels,
+      S of n stages and atlas indices are separate numbering systems. A level number here is not a stage number there.
+
+  # ------------------------------------------------------------ 1
+  - id: s010
+    chapter: "1. The opaque seed"
+    visual:
+      kind: bullets
+      heading: "The seed"
+      items:
+        - {code: "<>"}
+        - "one opaque datum in the declared source regime"
+        - "its printed glyphs do not supply two elements, an ordering or a relation"
+      caption: "reading_guide.md, lines 10 to 11"
+    narration: >
+      Part one. The opaque seed. The study begins with one inscription, the empty mark. The reading guide is precise about what it is.
+      The inscription is one opaque datum in the declared source regime. Its printed glyphs do not supply two elements, an ordering, or a relation.
+      Two angle brackets are how we write it. They are not two things inside it.
+
+  - id: s011
+    chapter: "1. The opaque seed"
+    visual:
+      kind: table
+      heading: "What a claim of \"forced\" must declare"
+      columns: ["Declare", "Why"]
+      wrap: [26, 46]
+      rows:
+        - ["the regime", "what exists and what can be derived"]
+        - ["the permitted changes", "which events or items may be added"]
+        - ["the cost measure", "what makes one change cheaper"]
+        - ["the isomorphism convention", "when two answers count as the same"]
+        - ["the bounds", "how far a search has looked"]
+    narration: >
+      The reading guide then sets the rule that governs everything else. Any claim that something is forced must state five things.
+      The regime. The permitted changes. The cost measure. The isomorphism convention, meaning when two answers count as the same.
+      And the bounds of any search. A claim missing one of these is not a claim about what is forced. It is a claim about what someone preferred.
+
+  # ------------------------------------------------------------ 2
+  - id: s020
+    chapter: "2. The regime and its events"
+    visual:
+      kind: code
+      heading: "The regime (lean4/Derivation/Basic.lean)"
+      code: |
+        structure Regime where
+          data  : Nat                 -- D: how many data are admitted
+          forms : List Nat            -- F: arities of admitted forms
+          insts : List Inst           -- I: admitted instances
+          rules : List Nat            -- U: uniform all-tuples rules
+          reqs  : List (Nat × Nat)    -- Q: separation requirements
+
+        genesis : Regime := ⟨0, [], [], [], []⟩
+    narration: >
+      Part two. The regime and its events. In the Lean development a regime has five parts. D, a count of admitted data.
+      F, the arities of admitted forms. I, the admitted instances. U, uniform rules that hold for all tuples. And Q, the separation requirements,
+      pairs of data that someone has demanded be told apart. Genesis is the empty regime: zero data, and every list empty.
+      Notice that data is just a number. In Lean, the spelling of a token is erased. Only how many data there are survives.
+
+  - id: s021
+    chapter: "2. The regime and its events"
+    visual:
+      kind: table
+      heading: "Six events"
+      columns: ["Event", "Well-formed only if"]
+      wrap: [20, 52]
+      rows:
+        - [{code: "supply t"}, "always (it changes nothing)"]
+        - [{code: "admitDatum"}, "always"]
+        - [{code: "admitForm a"}, "a ≥ 1"]
+        - [{code: "admitInst f args"}, "form f exists, arity matches, all args admitted"]
+        - [{code: "admitRuleAll f"}, "form f exists"]
+        - [{code: "impose i j"}, "i < j < data"]
+      caption: "An ill-formed event poisons the whole history."
+    narration: >
+      Six events can act on a regime. Supply a token. Admit a datum. Admit a form of some arity, which must be at least one.
+      Admit an instance of a form, which needs the form to exist, the arity to match, and every argument to be an admitted datum.
+      Admit a uniform rule for a form. And impose a requirement that data i and j be separated, which needs both to exist.
+      A history is replayed event by event, and an ill formed event poisons the whole history. There is no partial credit.
+
+  - id: s022
+    chapter: "2. The regime and its events"
+    visual:
+      kind: bullets
+      heading: "Check the grammar yourself"
+      items:
+        - {code: "py -3.12 omega_engine_education/documentation/001_genesis/code/check_genesis.py"}
+        - {code: "PASS: 29 cases accepted/refused across starts in genesis.ebnf"}
+        - "This checks the text form of events and deltas"
+        - {text: "It does not check their meaning; the Lean stepE function does", colour: accent2}
+    narration: >
+      This strand carries a small text grammar for these events, with a checker you can run. It accepts and refuses twenty nine cases.
+      Be clear about what that checks. It checks that an event is spelled correctly. It does not check whether the event is well formed
+      on a given regime. That is the job of the step function in Lean. A grammar is a spelling rule, not a semantics.
+
+  # ------------------------------------------------------------ 3
+  - id: s030
+    chapter: "3. Supply is not admission"
+    visual:
+      kind: math
+      heading: "Supply is a no-op"
+      lines:
+        - '\mathrm{stepE}\ r\ (\mathrm{supply}\ t) = \mathrm{some}\ r'
+        - '\texttt{supply\_no\_op}, \quad \texttt{genesis\_underivable}'
+        - {text: "\"Result: inertia. Exactly nothing follows from the initial inscription alone.\""}
+    narration: >
+      Part three. Supply is not admission. The first theorem is almost a definition. Stepping a regime with a supply event returns the same regime.
+      It is called supply no op. A second theorem, genesis underivable, says nothing at all is derivable at genesis. The sealed paper's words are:
+      Result, inertia. Exactly nothing follows from the initial inscription alone. Both theorems were rebuilt during the research for this video.
+      The Lean build reports that supply no op depends only on propositional extensionality, and genesis underivable depends on no axioms at all.
+
+  - id: s031
+    chapter: "3. Supply is not admission"
+    visual:
+      kind: table
+      heading: "The same lesson, two settings"
+      columns: ["", "000 Pre-Genesis", "001 Genesis"]
+      wrap: [14, 30, 30]
+      rows:
+        - ["setting", "a language model", "a declared regime"]
+        - ["evidence", "three recorded replies", "Lean theorems"]
+        - ["lesson", "presentation is not expressive power", "supply is not admission"]
+    narration: >
+      Compare this with the previous strand. There, the full replay called a in brackets a new state, while two other runs called it a new costume.
+      The disagreement came from an undeclared convention. Here the convention is declared. Supply and admission are different events,
+      and supply changes nothing. The lesson is the same, presentation is not expressive power, but now it is a theorem about a declared regime,
+      not an interpretation of a reply.
+
+  # ------------------------------------------------------------ 4
+  - id: s040
+    chapter: "4. Observation and collapse"
+    visual:
+      kind: bullets
+      heading: "How a regime observes"
+      items:
+        - "context: a form with holes"
+        - "plugging: fill every hole with the same datum"
+        - "derivable: an admitted instance, or covered by a uniform rule"
+        - {text: "\"No other inference is admitted.\"", colour: accent2}
+    narration: >
+      Part four. Observation and collapse. How does a regime tell two data apart? Through contexts. A context is a form with some slots left as holes.
+      Plugging a datum into a context fills every hole with that datum. The result is derivable if it is one of the admitted instances,
+      or if a uniform rule covers it. And that is all. The Lean file says it plainly. No other inference is admitted.
+
+  - id: s041
+    chapter: "4. Observation and collapse"
+    visual:
+      kind: math
+      heading: "Collapsed and separable"
+      lines:
+        - '\mathrm{collapsed}\ r\ d\ d^{\prime} \iff \forall C:\ (r \vdash C[d]) \leftrightarrow (r \vdash C[d^{\prime}])'
+        - '\mathrm{separable}\ r\ d\ d^{\prime} \iff \exists C:\ (r \vdash C[d]) \neq (r \vdash C[d^{\prime}])'
+        - {text: "Separability is existential, so every proof carries its witness context."}
+    narration: >
+      Two data are collapsed in a regime when every well formed context gives them the same derivability. They are separable when some context
+      gives them different derivability. Separability is stated existentially on purpose, so that every proof of separation carries its witness.
+      You never get to say two things differ without showing the context that tells them apart.
+
+  - id: s042
+    chapter: "4. Observation and collapse"
+    visual:
+      kind: partition
+      heading: "No instances: total collapse"
+      items: ["d0 = <a>", "d1 = <ab>"]
+      stages:
+        - {label: "externally: two different inscriptions", groups: [["d0 = <a>"], ["d1 = <ab>"]], colour: muted}
+        - {label: "internally, with no instances: one class", groups: [["d0 = <a>", "d1 = <ab>"]], colour: bad, note: "collapsed_of_no_insts"}
+    narration: >
+      Now the first real result. With no admitted instances, every pair of data is collapsed. The theorem is called collapsed of no insts.
+      The sealed study admits a in brackets and a b in brackets as two data. To an external reader they are different strings.
+      Inside the regime, with no instances, no context can tell them apart. They fall into one class. Admitting a datum changed the state,
+      but the number of observational classes stayed at one. That is the precise counterexample to the idea that a new inscription necessarily
+      increases expressive power.
+
+  - id: s043
+    chapter: "4. Observation and collapse"
+    visual:
+      kind: bullets
+      heading: "What is unavailable inside"
+      items:
+        - "glyph identity"
+        - "how many components an inscription has"
+        - "order"
+        - "substring structure"
+      caption: "All of these are visible to the reader; none is available to the regime."
+    narration: >
+      Notice everything the regime cannot see. It cannot see which glyphs are written. It cannot count components. It cannot see order,
+      or that one string contains another. All of that is visible to us as readers. None of it is available to the regime, because nothing was
+      admitted that could observe it. In strand zero zero zero, the same point appeared as vacuous equivalence. Here it is a Lean theorem.
+
+  - id: s044
+    chapter: "4. Observation and collapse"
+    visual:
+      kind: flow
+      heading: "The three challenges of the sealed run"
+      layout: column
+      wrap: 64
+      nodes:
+        - {text: "Challenge 1: supply <a>. By supply_no_op the regime cannot change.", colour: muted}
+        - {text: "Challenge 2: admit <a> and <ab>. Two data, still collapsed.", colour: accent2}
+        - {text: "Challenge 3: demand that they be separated. What is the cheapest response?", colour: good}
+    narration: >
+      It helps to see the sealed run as three challenges, each a step from outside. Challenge one supplies a in brackets.
+      By supply no op, the regime cannot change, so the result is inertia again. Challenge two admits a in brackets and a b in brackets as data.
+      Now the regime has data, but no forms and no instances, so the two are collapsed. Challenge three imposes a requirement:
+      these two data must be separated. Everything that follows is the study's answer to challenge three.
+
+  # ------------------------------------------------------------ 5
+  - id: s050
+    chapter: "5. Two readings and a demand"
+    visual:
+      kind: table
+      heading: "Two surviving readings"
+      columns: ["Reading", "What admits", "Regime after Challenge 2"]
+      wrap: [10, 34, 30]
+      rows:
+        - ["L", "only explicit retention admits", {code: "⟨2, [], [], [], [(0,1)]⟩"}]
+        - ["F", "the initial inscription is admitted at genesis", {code: "⟨3, [], [], [], [(1,2)]⟩"}]
+      caption: "The text does not decide between them, so both are carried (paper section 11, clause h)."
+    narration: >
+      Part five. Two readings and a demand. The source text can be read in two ways, and the study refuses to choose. In reading L,
+      only explicit retention admits a datum, so after the second challenge there are two data. In reading F, the initial inscription itself
+      is admitted at genesis, so there are three. In both, a requirement has been imposed: the two challenge data must be separated.
+      Because the text does not decide between L and F, both readings are carried in full, to the end. That is itself a result.
+
+  - id: s051
+    chapter: "5. Two readings and a demand"
+    visual:
+      kind: bullets
+      heading: "Responding to a separation demand"
+      items:
+        - {code: "NewDatum   NewForm(n)   NewInst(f, args)   NewRuleAll(f)"}
+        - "A response Δ is a list of these items"
+        - "Valid: it applies, separates the target pair, and keeps every earlier requirement separated"
+    narration: >
+      How can a regime answer the demand? By adding items. There are four kinds. A new datum. A new form of some arity. A new instance of a form.
+      Or a new uniform rule. A response is a list of these items. It is valid if it applies cleanly, separates the demanded pair,
+      and keeps every earlier requirement separated. The question is now well posed. What is the cheapest valid response?
+
+  # ------------------------------------------------------------ 6
+  - id: s060
+    chapter: "6. The price of separation"
+    visual:
+      kind: math
+      heading: "Two declared costs"
+      lines:
+        - '\mu_1(\Delta) = |\Delta|'
+        - '\mu_2(\Delta) = \big(|\Delta|,\ \textstyle\sum \text{new-form arities}\big)\ \text{(lexicographic)}'
+        - {text: "Both are declared. Neither is derived from the seed."}
+    narration: >
+      Part six. The price of separation. Cost needs a measure, and the study declares two. Mu one counts items. Mu two counts items first,
+      and then breaks ties by the total arity of the new forms. Both measures are declared. Neither is derived from the seed. Hold on to that,
+      because it decides the ending.
+
+  - id: s061
+    chapter: "6. The price of separation"
+    visual:
+      kind: bullets
+      heading: "One item is never enough"
+      items:
+        - "cost1_insufficient_general: no response of 0 or 1 item is valid with no forms and no instances"
+        - "a new form alone observes nothing: no instance uses it"
+        - "a new instance alone is ill-formed: it needs a form"
+        - "a new datum or a rule alone adds no distinguishing judgement"
+    narration: >
+      The first half of the result. One item is never enough, on a regime with no forms and no instances. A new form on its own observes nothing,
+      because no instance uses it. A new instance on its own is ill formed, because it needs a form. A new datum, or a rule, adds no judgement
+      that treats the two data differently. The theorem is called cost one insufficient general.
+
+  - id: s062
+    chapter: "6. The price of separation"
+    visual:
+      kind: code
+      heading: "Two items are enough (Minimality.lean)"
+      code: |
+        deltaU0 := [.newForm 1, .newInst 0 [0]]
+
+        U0 = ⟨2, [1], [(0, [0])], [], [(0, 1)]⟩
+
+        separating context: ⟨0, [none]⟩
+          plug d0: (0, [0])  derivable
+          plug d1: (0, [1])  not derivable
+    narration: >
+      The second half. Two items are enough. Declare a unary form, and assert it of datum zero. The resulting regime has one form of arity one,
+      and one instance, the form applied to datum zero. Now take the context consisting of that form with a single hole. Plug in datum zero,
+      and the result is derivable. Plug in datum one, and it is not. The pair is separated. So the minimum price of the first separation is exactly two,
+      in both readings.
+
+  - id: s0625
+    chapter: "6. The price of separation"
+    visual:
+      kind: code
+      heading: "Two other cost-two responses"
+      code: |
+        binary link:       [.newForm 2, .newInst 0 [0, 1]]
+          separating context  ⟨0, [none, some 1]⟩
+            plug d0: (0, [0, 1])  derivable
+            plug d1: (0, [1, 1])  not derivable
+
+        binary self-loop:  [.newForm 2, .newInst 0 [0, 0]]
+          separating context  ⟨0, [none, none]⟩
+    narration: >
+      The unary mark is not the only answer of cost two. The binary link declares a form of arity two, and asserts it of datum zero and datum one.
+      Its separating context fixes the second slot to datum one and leaves the first as a hole. Plug in datum zero, and you get the asserted instance.
+      Plug in datum one, and you get the form applied to one and one, which was never asserted. So the link separates too. The binary self loop
+      asserts the form of datum zero with itself, and the context with both slots as holes separates it. Three shapes, all of cost two.
+
+  - id: s063
+    chapter: "6. The price of separation"
+    visual:
+      kind: bullets
+      heading: "Why it is two, and what that means"
+      items:
+        - "declare a form, then assert one instance"
+        - "a single \"step\" that bundles both still costs 2"
+        - {text: "\"a property of the declare-then-assert grammar\" (WDP CH03-P03)", colour: accent2}
+        - {text: "not a universal constant", colour: bad}
+    narration: >
+      Why two? Because the grammar separates declaring a judgement form from asserting an instance of it. If you bundle both into one step,
+      you have hidden an item, not removed it. And here is the wording rule from the Witnessed Difference Programme. The value two is a property
+      of the declare then assert grammar. It is not a universal constant of nature or of reasoning. Change the grammar and the number can change.
+
+  # ------------------------------------------------------------ 7
+  - id: s070
+    chapter: "7. Ties and a declared choice"
+    visual:
+      kind: table
+      heading: "Cheapest answers under μ1 (max_items 2, max_arity 2)"
+      columns: ["Reading", "Valid deltas", "Isomorphism classes"]
+      rows:
+        - ["L", "6", "3: unary mark, binary link, binary self-loop"]
+        - ["F", "10", "5"]
+      caption: "Plus, for every arity k, the k-ary mark: a countably infinite tie class."
+    narration: >
+      Part seven. Ties, and a declared choice. Under mu one, the cheapest answer is not unique. Within at most two items and arity at most two,
+      reading L has six valid responses, which fall into three classes up to isomorphism. A unary mark. A binary link between the two data.
+      And a binary self loop. Reading F has ten responses in five classes. And beyond the bounds, for every arity k, a k ary mark is also minimal,
+      and marks of different arity are not isomorphic. So the tie class under mu one is countably infinite.
+
+  - id: s071
+    chapter: "7. Ties and a declared choice"
+    visual:
+      kind: code
+      heading: "The recorded bounded enumeration"
+      size: 22
+      code: |
+        L mu1 min_cost [2, -1] valid 6  classes [form1+inst1, form2+inst2diag, form2+inst2]
+        L mu2 min_cost [2, 1]  valid 2  classes [form1+inst1]
+        F mu1 min_cost [2, -1] valid 10 classes [form1+inst1, form2+inst2diag, form2+inst2 ×3]
+        F mu2 min_cost [2, 1]  valid 2  classes [form1+inst1]
+      caption: "19L57G1 recorded challenge3_report, Bounds(2, 2); historical evidence"
+    narration: >
+      These are the recorded counts for the declared bounded enumeration. This narration does not claim a fresh full source run.
+      Here is the output. Reading L under mu one, six valid, three classes. Under mu two, two valid, one class. Reading F under mu one,
+      ten valid, five classes. Under mu two, two valid, one class.
+
+  - id: s072
+    chapter: "7. Ties and a declared choice"
+    visual:
+      kind: graph
+      heading: "The μ2 tie: mark d0 or mark d1"
+      nodes: {d0: [-1.5, 0], d1: [1.5, 0]}
+      edges: [[d0, d1, muted], [d1, d0, muted]]
+      notes: ["Swapping d0 and d1 maps one answer to the other: one isomorphism class, and no swap-respecting rule can prefer either."]
+    narration: >
+      Under mu two the minimum becomes unique up to isomorphism. It costs two items with total arity one. It is the unary mark. But look at what
+      unique up to isomorphism means here. There are still two responses: mark datum zero, or mark datum one. Swapping the two data maps one to the other,
+      so they are a single class. And for the same reason, no rule that respects the swap can prefer one over the other. Picking one is a choice.
+
+  - id: s073
+    chapter: "7. Ties and a declared choice"
+    visual:
+      kind: bullets
+      heading: "Found, or chosen?"
+      items:
+        - "μ2's uniqueness depends on choosing μ2"
+        - "choosing μ2 is a declared act, not a derivation"
+        - {text: "the isomorphism canonicalizer's general soundness is open (CL-ISO-SOUND)", colour: accent2}
+    narration: >
+      So, was the unique answer found, or chosen? It was chosen. Mu two's uniqueness depends on choosing mu two, and the paper records that choice
+      as a declared act. One more honest caveat. The class counts depend on an implemented isomorphism canonicalizer, and its soundness in general
+      is still open. The bounded counts were checked. The general canonicalizer was not proved.
+
+  # ------------------------------------------------------------ 8
+  - id: s080
+    chapter: "8. What was declared"
+    visual:
+      kind: bullets
+      heading: "Declared, not derived"
+      items:
+        - "the cost measures"
+        - "the candidate grammar"
+        - "the isomorphism relation"
+        - "the persistence of requirements"
+        - "the pair-separation closure policy"
+        - "the external continuation policy"
+      caption: "\"No object-language endogenous demand generator was derived.\""
+    narration: >
+      Part eight. What was declared. The sealed paper ends with a list of things that were declared, not derived. The cost measures.
+      The candidate grammar. The isomorphism relation. The persistence of requirements. The closure policy for pair separation.
+      And the external policy that supplies further demands. Its terminal clause says no object language demand generator was derived.
+      The seed does not ask for its own next step. Someone outside does. And no unboundedness is claimed.
+
+  - id: s081
+    chapter: "8. What was declared"
+    visual:
+      kind: math
+      heading: "A witnessed difference needs a law"
+      lines:
+        - 'R\ \text{irreflexive} \;\wedge\; R(a,b) \;\Longrightarrow\; a \neq b'
+        - {text: "irrefl_witness_ne: depends on no axioms"}
+        - {text: "One point with R(a,a): the law is needed. Two points, empty R: the exhibit is needed."}
+    narration: >
+      One more theorem connects Genesis to the engine's canonical monograph. If a relation is irreflexive, and it relates a to b, then a and b are different.
+      It is called irrefl witness ne, and it depends on no axioms. Two countermodels show both inputs are needed. On one point with a self relation,
+      the law fails, so the law is needed. On two points with an empty relation, there is no exhibit, so the exhibit is needed. And the direction
+      of the edge, forward, backward or both, is an extra input. The Witnessed Difference Programme states the same result as its proposition C H zero one P zero two.
+
+  - id: s082
+    chapter: "8. What was declared"
+    visual:
+      kind: table
+      heading: "Evidence grades used in levels/"
+      columns: ["Grade", "Meaning"]
+      wrap: [32, 40]
+      rows:
+        - ["NATIVE SEALED", "a theorem at the sealed tag"]
+        - ["SEALED SUPPLEMENTARY", "sealed, but outside the core derivation"]
+        - ["ABSENT / METHODOLOGICAL FENCE", "deliberately not claimed"]
+        - ["POST-SEAL THEOREM / GATED", "proved later, at f1d56c01"]
+        - ["FINITE COMPUTATION / LOCAL RECEIPT", "a bounded run, not a proof"]
+      caption: "Axiom census: 1,314 reports at the seal, 1,530 later; no Classical.choice, no sorryAx."
+    narration: >
+      The levels folder grades every claim with one of five labels. Native sealed, a theorem at the sealed tag. Sealed supplementary.
+      Absent, a deliberate fence. Post seal, proved later. And finite computation, a bounded run rather than a proof. The axiom census shows
+      one thousand three hundred and fourteen reports at the seal and one thousand five hundred and thirty later, with no classical choice
+      and no unfinished proofs. One limit: printing axioms covers the theorems that were printed, not every definition.
+
+  - id: s083
+    chapter: "8. What was declared"
+    visual:
+      kind: table
+      heading: "Corrections made for this video"
+      columns: ["Was", "Now"]
+      wrap: [36, 36]
+      rows:
+        - ["cost_two_floor", "cost1_insufficient_general and deltaU0_valid"]
+        - ["closedRun Lean name listed as sealed", "bound sealed in §11(f); Lean name post-seal"]
+        - ["grammar from \"Section 343\"", "from lean4/Derivation/Basic.lean"]
+        - ["levels 00 to 21 \"formally mechanized\"", "only native sealed steps are"]
+        - ["demos \"PASSED CLEANLY\"", "supplied illustrations; no Cech cohomology computed"]
+    narration: >
+      The research for this video found several defects in the strand, and they were corrected. A theorem called cost two floor was cited, but no
+      such name exists. The real names are cost one insufficient general and delta U zero valid. A closure bound is in the sealed paper, but the Lean theorem cited for it was added
+      after the seal. The grammar cited a section three hundred and forty three that the paper does not have. The levels index said every level was mechanized,
+      which its own grade column contradicts. And two demos printed passed cleanly for illustrations that compute no cohomology.
+
+  - id: s090
+    chapter: "Closing"
+    visual:
+      kind: bullets
+      heading: "The narrowest defensible summary"
+      items:
+        - "An opaque seed generates nothing"
+        - "Admitted data stay indistinguishable until a form and an instance are admitted"
+        - "The first separation costs exactly two items"
+        - "The cheapest answers tie; uniqueness needs a further declared measure"
+        - "Lean in 19L57G1 checks the general statements; a bounded run checks the class counts"
+    narration: >
+      Here is the narrowest summary the evidence supports. An opaque seed generates nothing. Admitted data stay indistinguishable until a form
+      and an instance are admitted. The first required separation costs exactly two items. The cheapest answers tie under item count, and become unique
+      only under a further declared measure. Lean, in the external repository, checks the general statements, and a bounded enumeration checks the class counts.
+
+  - id: s091
+    chapter: "Closing"
+    visual:
+      kind: flow
+      heading: "Next"
+      nodes:
+        - {text: "000 Pre-Genesis", colour: muted}
+        - {text: "001 Genesis", colour: good}
+        - "002 S(n)"
+        - "010 MSS-N"
+      caption: "S(n) reads these admissions as a tower of stages with active obstructions."
+    narration: >
+      Next is S of n. That strand reads the same admissions as a tower of presentation stages, and counts at each stage which demands are still
+      unresolved. Keep the habit from this strand. Every time you see the word forced, look for the regime, the permitted changes, the cost,
+      the isomorphism convention, and the bounds. The curriculum file for this strand has exercises with answers for each of the eight parts.
+
+  - id: s099_closeout
+    chapter: "Final source closeout"
+    visual:
+      kind: bullets
+      heading: "Three independent statuses"
+      items:
+        - "Research: CLOSED_WITH_OPEN_OBSTRUCTIONS"
+        - "Alpha reference: READY_WITHIN_DECLARED_SCOPE"
+        - "Original seed gate: UNSATISFIED"
+    narration: >
+      The final source closes both continuations. The second run reports 288 bounded runs;
+      116 are not closed at that bound. Its final class census and open obligations remain
+      available in the current account. Live injection coverage and post-freeze comparison
+      are still unmet, and the input floor is not established. This update carries the
+      foundation forward within WDP and the engine; it does not restart a blind derivation.

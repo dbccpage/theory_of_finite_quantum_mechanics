@@ -3,18 +3,28 @@ node_id: FSP-REGGE-DEFICIT-ACTION
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is
-    epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its
-    convergence to the Einstein-Hilbert action under refinement is a literature result imported here.
+  source_statement: For any commutative ring and finite hinge set, the action S=sum_h A_h*(tau-sum_j theta_hj)
+    equals tau*sum_h A_h-sum_h A_h*sum_j theta_hj. For fixed deficits it is linear in the declared areas,
+    and splitting an area while keeping its deficit fixed preserves its contribution. Zero deficits imply
+    zero action. Declared integer data also show that zero total action need not mean zero deficits, and
+    changing areas can change the action on the same finite index set.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - Regge calculus (Regge 1961; Cheeger-Mueller-Schrader convergence)
-  source_bottleneck: Regge calculus carries no fermion-sign content in this package; Lorentzian signature,
-    convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).
+  source_bottleneck: 'Areas, angles and the full-turn parameter are declared algebraic data. Geometric
+    realizability, actual triangulation moves, Lorentzian signature, convergence to the Einstein-Hilbert
+    action, and fermion-sign consequences are not established. Original target retained as an obligation:
+    On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi
+    - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to
+    the Einstein-Hilbert action under refinement is a literature result imported here. Prior boundary:
+    Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence
+    conditions and any sign consequence need separate evidence (ledger GIN-C13).'
   source_refs:
   - dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md
   - papers/core/fsp/theory_of_finite_fsp.md
   - papers/core/fsp/the_problem_of_the_fermion_sign.md
+  - dag/derivations/independent/fsp-regge-deficit-action.md
+  - dag/research/campaign_fsp-regge-deficit-action_lean_replay.json
   paper_refs:
   - dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md
   source_claim_label: IMPORTED_ASSUMPTION
@@ -23,7 +33,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md
-    sha256: 41e4537320c8a4b8d479affc42288df4e4ac8a87c5f5d8333c9741aa47049554
+    sha256: 4cecd112e4a52c1f8db0c18dd6a40a2adb1cba07758a9416881508941ea693ea
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -31,9 +41,150 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_regge_deficit_action_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: action
+  line: 11
+  signature_excerpt: 'def action (hinges : Finset ι) (area deficit : ι → R) : R'
+  source: lean4/CampaignReggeFiniteAction.lean
+  repository: this_repository
+  source_sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: deficit_expansion
+  line: 14
+  signature_excerpt: |-
+    theorem deficit_expansion (hinges : Finset ι) (around : ι → Finset κ)
+        (area : ι → R) (angle : ι → κ → R) (fullTurn : R) :
+        action hinges area (fun h => fullTurn - ∑ j ∈ around h, angle h j) =
+          fullTurn * (∑ h ∈ hinges, area h) -
+            ∑ h ∈ hinges, area h * (∑ j ∈ around h, angle h j)
+  source: lean4/CampaignReggeFiniteAction.lean
+  repository: this_repository
+  source_sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: area_linearity
+  line: 25
+  signature_excerpt: |-
+    theorem area_linearity (hinges : Finset ι) (area other deficit : ι → R) (a b : R) :
+        action hinges (fun h => a * area h + b * other h) deficit =
+          a * action hinges area deficit + b * action hinges other deficit
+  source: lean4/CampaignReggeFiniteAction.lean
+  repository: this_repository
+  source_sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: flat_deficits_give_zero
+  line: 30
+  signature_excerpt: |-
+    theorem flat_deficits_give_zero (hinges : Finset ι) (area deficit : ι → R)
+        (flat : ∀ h ∈ hinges, deficit h = 0) : action hinges area deficit = 0
+  source: lean4/CampaignReggeFiniteAction.lean
+  repository: this_repository
+  source_sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: same_deficit_area_split
+  line: 36
+  signature_excerpt: |-
+    theorem same_deficit_area_split (area₁ area₂ deficit : R) :
+        area₁ * deficit + area₂ * deficit = (area₁ + area₂) * deficit
+  source: lean4/CampaignReggeFiniteAction.lean
+  repository: this_repository
+  source_sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: zero_action_does_not_imply_flat
+  line: 39
+  signature_excerpt: |-
+    theorem zero_action_does_not_imply_flat :
+        action ({0, 1} : Finset Nat) (fun _ => (1 : Int))
+          (fun h => if h = 0 then 1 else -1) = 0 ∧ (1 : Int) ≠ 0
+  source: lean4/CampaignReggeFiniteAction.lean
+  repository: this_repository
+  source_sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: declared_areas_change_action
+  line: 44
+  signature_excerpt: |-
+    theorem declared_areas_change_action :
+        action ({0} : Finset Nat) (fun _ => (1 : Int)) (fun _ => 1) = 1 ∧
+        action ({0} : Finset Nat) (fun _ => (2 : Int)) (fun _ => 1) = 2 ∧
+        (1 : Int) ≠ 2
+  source: lean4/CampaignReggeFiniteAction.lean
+  repository: this_repository
+  source_sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.deficit_expansion
+  availability: local
+  symbol: CampaignReggeFiniteAction.deficit_expansion
+  path: lean4/CampaignReggeFiniteAction.lean
+  repository: this_repository
+  sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
+  declaration_status: declaration_found_not_proof_checked
+  line: 14
+  role: source_lead_only
+- original_ref: lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.area_linearity
+  availability: local
+  symbol: CampaignReggeFiniteAction.area_linearity
+  path: lean4/CampaignReggeFiniteAction.lean
+  repository: this_repository
+  sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
+  declaration_status: declaration_found_not_proof_checked
+  line: 25
+  role: source_lead_only
+- original_ref: lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.flat_deficits_give_zero
+  availability: local
+  symbol: CampaignReggeFiniteAction.flat_deficits_give_zero
+  path: lean4/CampaignReggeFiniteAction.lean
+  repository: this_repository
+  sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
+  declaration_status: declaration_found_not_proof_checked
+  line: 30
+  role: source_lead_only
+- original_ref: lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.same_deficit_area_split
+  availability: local
+  symbol: CampaignReggeFiniteAction.same_deficit_area_split
+  path: lean4/CampaignReggeFiniteAction.lean
+  repository: this_repository
+  sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
+  declaration_status: declaration_found_not_proof_checked
+  line: 36
+  role: source_lead_only
+- original_ref: lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.zero_action_does_not_imply_flat
+  availability: local
+  symbol: CampaignReggeFiniteAction.zero_action_does_not_imply_flat
+  path: lean4/CampaignReggeFiniteAction.lean
+  repository: this_repository
+  sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
+  declaration_status: declaration_found_not_proof_checked
+  line: 39
+  role: source_lead_only
+- original_ref: lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.declared_areas_change_action
+  availability: local
+  symbol: CampaignReggeFiniteAction.declared_areas_change_action
+  path: lean4/CampaignReggeFiniteAction.lean
+  repository: this_repository
+  sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
+  declaration_status: declaration_found_not_proof_checked
+  line: 44
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -73,8 +224,6 @@ operad_slots:
     - Regge calculus (Regge 1961; Cheeger-Mueller-Schrader convergence)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

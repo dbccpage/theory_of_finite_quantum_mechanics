@@ -1,0 +1,88 @@
+{
+  "baseline": "dd3d9583c49d3a318eb5a04c30a0704a852fe618",
+  "removed_files": [
+    {
+      "path": "omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/domains/physics/code/cdt_susy_witten_evaluator.py",
+      "reason": "Assigns sign=1 and residual=0; purported Super-WDW solver returns a branch-selected constant formula."
+    },
+    {
+      "path": "omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/domains/physics/tests/test_cdt_susy_witten.py",
+      "reason": "Tests asserted the withdrawn manufactured physics verdicts. Assigns sign=1 and residual=0; purported Super-WDW solver returns a branch-selected constant formula."
+    },
+    {
+      "path": "omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/domains/physics/code/cdt_topological_charge_evaluator.py",
+      "reason": "Constructs target-charge matrices and assigns WDW defect from is_tearing, without solving the displayed constraint."
+    },
+    {
+      "path": "omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/domains/physics/tests/test_cdt_topological_charge.py",
+      "reason": "Tests asserted the withdrawn manufactured physics verdicts. Constructs target-charge matrices and assigns WDW defect from is_tearing, without solving the displayed constraint."
+    },
+    {
+      "path": "omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/domains/physics/code/cdt_monte_carlo_sampler.py",
+      "reason": "Labels a three-variable quadratic potential as the Regge action and changes simplex counters without triangulation moves."
+    },
+    {
+      "path": "omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/domains/physics/tests/test_cdt_monte_carlo_sampler.py",
+      "reason": "Tests asserted the withdrawn manufactured physics verdicts. Labels a three-variable quadratic potential as the Regge action and changes simplex counters without triangulation moves."
+    },
+    {
+      "path": "omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/domains/physics/code/cdt_kd_doubling_evaluator.py",
+      "reason": "Computes a nonzero commutator and overwrites its residual with zero for the FLAT_SIMPLEX label. Boundary-matrix functionality remains in higher_order_regge_cohomology."
+    },
+    {
+      "path": "omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/domains/physics/tests/test_cdt_kd_doubling.py",
+      "reason": "Tests asserted the withdrawn manufactured physics verdicts. Computes a nonzero commutator and overwrites its residual with zero for the FLAT_SIMPLEX label. Boundary-matrix functionality remains in higher_order_regge_cohomology."
+    },
+    {
+      "path": "omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/domains/physics/code/cdt_fermion_sign_evaluator.py",
+      "reason": "Manufactures opposite-sign determinants and certifies a sign bound that its zero-average-sign example violates. Finite sign pairing is retained in Rust."
+    },
+    {
+      "path": "omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/domains/physics/tests/test_cdt_fermion_sign.py",
+      "reason": "Tests asserted the withdrawn manufactured physics verdicts. Manufactures opposite-sign determinants and certifies a sign bound that its zero-average-sign example violates. Finite sign pairing is retained in Rust."
+    },
+    {
+      "path": "omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/domains/ansi_sql/code/chiral_superconductor_evaluator.py",
+      "reason": "Chern numbers, surface modes and cancelling inflow are prescribed; no BdG eigensystem or Berry-curvature calculation establishes them. Lean restates supplied cancellation premises."
+    },
+    {
+      "path": "omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/domains/ansi_sql/code/chiral_superconductor_bisimulation_bridge.py",
+      "reason": "Chern numbers, surface modes and cancelling inflow are prescribed; no BdG eigensystem or Berry-curvature calculation establishes them. Lean restates supplied cancellation premises."
+    },
+    {
+      "path": "omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/domains/ansi_sql/databases/chiral_superconductor_schema.sql",
+      "reason": "Chern numbers, surface modes and cancelling inflow are prescribed; no BdG eigensystem or Berry-curvature calculation establishes them. Lean restates supplied cancellation premises."
+    },
+    {
+      "path": "omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/domains/ansi_sql/lean4/ChiralSuperconductorCore.lean",
+      "reason": "Chern numbers, surface modes and cancelling inflow are prescribed; no BdG eigensystem or Berry-curvature calculation establishes them. Lean restates supplied cancellation premises."
+    },
+    {
+      "path": "omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/domains/ansi_sql/tests/test_chiral_superconductor_sql_bisimulation.py",
+      "reason": "Chern numbers, surface modes and cancelling inflow are prescribed; no BdG eigensystem or Berry-curvature calculation establishes them. Lean restates supplied cancellation premises."
+    },
+    {
+      "path": "omega_engine_education/documentation/003_minimal_symbol_system_n_mssn/domains/ansi_sql/code/kitaev_honeycomb_bisimulation_bridge.py",
+      "reason": "Emits braiding/bisimulation certification from a phase copied from its expected answer and a parity routine that counts eigenvalue signs rather than computing a Pfaffian. Link and plaquette computations remain."
+    }
+  ],
+  "renamed_files": [
+    {
+      "from": "code/rust/src/feynman_matrix_m_theory.rs",
+      "to": "code/rust/src/finite_algebra.rs"
+    },
+    {
+      "from": "code/tests/rust/test_feynman_matrix_models.rs",
+      "to": "code/tests/rust/test_finite_algebra.rs"
+    },
+    {
+      "from": "lean4/MssnFeynmanMatrix.lean",
+      "to": "lean4/MssnFiniteAlgebra.lean"
+    },
+    {
+      "from": "domains/ansi_sql/tests/test_kitaev_honeycomb_sql_bisimulation.py",
+      "to": "domains/ansi_sql/tests/test_honeycomb_flux.py"
+    }
+  ],
+  "initial_review_baseline": "bf0dde5a93a9b9ffeca2dfc592584a4530c1ab0f"
+}
