@@ -1475,3 +1475,6 @@ lean_lib CampaignQcvImportNoisyReversibleLimits where
 
 lean_lib CampaignAuthRiceTheoremImport where
   roots := #[`CampaignAuthRiceTheoremImport]
+
+lean_lib CampaignOpsAxis1WellfoundedAdmission where
+  roots := #[`CampaignOpsAxis1WellfoundedAdmission]
