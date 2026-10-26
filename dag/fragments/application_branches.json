@@ -222,13 +222,15 @@
       "id": "MUB-PRIME-POWER-CONSTRUCTION",
       "stage": "MUTUALLY_UNBIASED_BASES",
       "status": "OPEN",
-      "source_status": "Dimension-2 Gaussian-integer bases Z, X and Y; the two-element character sends 1+1 to 1. Larger prime powers stay open.",
+      "source_status": "Dimension-2 Gaussian-integer bases Z, X and Y (characteristic two). For every odd prime power q a complete q+1 family is constructed over any commutative domain with a star ring structure, given a nontrivial unitary additive character of F_q as a parameter (lean4/MubPrimePowerOddCharacteristic.lean). Characteristic two beyond dimension 2, and the existence of the character over the concrete complex carrier, stay open.",
       "statement": "Construct and verify a complete d+1 MUB family for the stated prime-power carrier, explicitly handling finite-field arithmetic, character sums and normalization.",
       "source": [
         "dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md",
         "papers/core/mub6/README.md",
         "dag/derivations/independent/mub-prime-power-construction.md",
-        "dag/research/campaign_mub-prime-power-construction_lean_replay.json"
+        "dag/research/campaign_mub-prime-power-construction_lean_replay.json",
+        "dag/derivations/independent/mub-prime-power-construction-odd.md",
+        "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json"
       ],
       "lean": [
         "lean4/CampaignMubPrimePowerConstruction.lean::i_squared",
@@ -237,11 +239,16 @@
         "lean4/CampaignMubPrimePowerConstruction.lean::basis_orthogonal",
         "lean4/CampaignMubPrimePowerConstruction.lean::cross_unbiased",
         "lean4/CampaignMubPrimePowerConstruction.lean::char_values",
-        "lean4/CampaignMubPrimePowerConstruction.lean::char_of_double"
+        "lean4/CampaignMubPrimePowerConstruction.lean::char_of_double",
+        "lean4/MubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.mub_family",
+        "lean4/MubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.weil_sum_mul_star",
+        "lean4/MubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.basis_unbiased",
+        "lean4/MubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.basis_orthogonal",
+        "lean4/MubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.card_bases"
       ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "This is the dimension-2 characteristic-two family only. It does not construct a complete family for any larger prime power, does not treat odd characteristic, does not run a general character sum, and does not infer a dimension-six family from this carrier.",
+      "bottleneck": "The characteristic-two family is dimension 2 only. For odd characteristic the construction is now general: for every finite field F with 2 ≠ 0, every commutative domain R with a star ring structure, and every nontrivial additive character ψ : F → R with star (ψ t) = ψ (−t), the q+1 bases indexed by Option F (the standard basis and x ↦ ψ(a x² + b x)) are pairwise orthogonal within a basis, have nonzero norms, and satisfy |⟨u, v⟩|² · q = ‖u‖² ‖v‖² across bases, with q+1 = card (Option F) (mub_family, card_bases). The vectors are left unnormalised, so normalisation is the statement about norms, not a division. What remains: a complete family for characteristic two beyond dimension 2 (which needs the Galois-ring or symplectic-spread construction, not quadratic phases), the instantiation of ψ over the concrete complex or cyclotomic carrier the node names (ψ is a parameter here), and the dimension-six question, which this node does not address.",
       "tags": [
         "application-branch",
         "TFQ-0403"

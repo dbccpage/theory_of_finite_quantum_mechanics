@@ -1284,6 +1284,12 @@ lean_lib CampaignPgwWdpHandoffToL1 where
 lean_lib CampaignMubPrimePowerConstruction where
   roots := #[`CampaignMubPrimePowerConstruction]
 
+
+-- Campaign: MUB-PRIME-POWER-CONSTRUCTION (odd characteristic). Not a default target:
+-- build with `lake build CampaignMubPrimePowerOdd`.
+lean_lib CampaignMubPrimePowerOdd where
+  roots := #[`MubPrimePowerOddCharacteristic]
+
 -- Campaign: MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE. Not a default target.
 lean_lib CampaignMajOpenLindbladTransferEnvelope where
   roots := #[`CampaignMajOpenLindbladTransferEnvelope]
