@@ -202,7 +202,7 @@ Lean: `lean4/GenesisCompTM.lean::step_fwd`, `lean4/GenesisCompTM.lean::step_bwd`
 `lean4/GenesisCompTM.lean::card_sym`, `lean4/GenesisCompTM.lean::ruleList`,
 `lean4/GenesisCompTM.lean::mem_ruleList`, `lean4/GenesisCompTM.lean::reach_ruleList_iff`.
 
-### 1.7 A universal machine with finitely many marks
+### 1.7 One machine for every program, with finitely many marks
 
 DAG nodes: `COMP-C6-EVAL-HAS-A-CODE` `COMP-C6-TM2-OUTPUT-FORM` `COMP-C6-TM0-HALTING-EQUIVALENCE` `COMP-C6-FINITE-MARKS`
 

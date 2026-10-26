@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from prose_proofs import load_nodes, proof_sections, section_errors
+from prose_proofs import ROOT, heading_anchor, load_nodes, proof_sections, render_index, section_errors
 
 
 def test_every_proof_section_names_a_proved_node_and_resolves():
@@ -30,3 +30,13 @@ def test_section_rules(tmp_path: Path):
     errs2 = " ".join(section_errors(sections[1], nodes, tmp_path))
     assert "no *Proof.*" in errs2 and "does not resolve" in errs2 and "cites none" in errs2
     assert "takes no proof" in " ".join(section_errors(sections[2], nodes, tmp_path))
+
+
+def test_index_from_nodes_to_sections_is_current():
+    assert (ROOT / "dag" / "prose_proofs.md").read_text(encoding="utf-8") == render_index()
+
+
+def test_heading_anchor():
+    seen = {}
+    assert heading_anchor(" 1.4 Which maps descend to $p$?", seen) == "14-which-maps-descend-to-p"
+    assert heading_anchor(" 1.4 Which maps descend to $p$?", seen) == "14-which-maps-descend-to-p-1"
