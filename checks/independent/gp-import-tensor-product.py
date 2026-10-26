@@ -8,6 +8,9 @@ from __future__ import annotations
 import itertools
 import sympy as sp
 
+BOOLS = (False, True)
+POINTS = tuple(itertools.product(BOOLS, repeat=2))
+
 
 def delta(i, q):
     return sp.Integer(1) if i == q else sp.Integer(0)
@@ -23,90 +26,98 @@ def dump_right(u, v, a, b):
     return sp.expand(u[a] * (v[False] + v[True]))
 
 
+def vec(f, t):
+    return {False: f, True: t}
+
+
+def add(x, y):
+    return vec(x[False] + y[False], x[True] + y[True])
+
+
+def scale(c, x):
+    return vec(c * x[False], c * x[True])
+
+
+def basis(i):
+    return vec(delta(i, False), delta(i, True))
+
+
+def laws(embed, u1, u2, v1, v2, c):
+    """Yield (name, lhs - rhs) for additivity and homogeneity in each argument."""
+    for a, b in POINTS:
+        yield "add_left", embed(add(u1, u2), v1, a, b) - embed(u1, v1, a, b) - embed(u2, v1, a, b)
+        yield "add_right", embed(u1, add(v1, v2), a, b) - embed(u1, v1, a, b) - embed(u1, v2, a, b)
+        yield "smul_left", embed(scale(c, u1), v1, a, b) - c * embed(u1, v1, a, b)
+        yield "smul_right", embed(u1, scale(c, v1), a, b) - c * embed(u1, v1, a, b)
+
+
 def main() -> None:
     failures = 0
     checks = 0
-    uf, ut, vf, vt = sp.symbols("uf ut vf vt")
-    u = {False: uf, True: ut}
-    v = {False: vf, True: vt}
 
-    for a, b in itertools.product((False, True), repeat=2):
+    def expect(ok):
+        nonlocal failures, checks
         checks += 1
-        if tensor(u, v, a, b) != u[a] * v[b]:
+        if not ok:
             failures += 1
-        expanded = sp.expand(
-            uf * (vf * delta((False, False), (a, b)) + vt * delta((False, True), (a, b)))
-            + ut * (vf * delta((True, False), (a, b)) + vt * delta((True, True), (a, b)))
+
+    uf, ut, wf, wt, vf, vt, xf, xt, c = sp.symbols("uf ut wf wt vf vt xf xt c")
+    u, w, v, x = vec(uf, ut), vec(wf, wt), vec(vf, vt), vec(xf, xt)
+
+    # Bilinearity in both arguments, with symbolic integer coordinates and scalar.
+    for embed in (tensor, dump_right):
+        for _, diff in laws(embed, u, w, v, x, c):
+            expect(sp.expand(diff) == 0)
+
+    # Coordinate formulas.
+    for a, b in POINTS:
+        expect(tensor(u, v, a, b) == sp.expand(u[a] * v[b]))
+        want = sp.Integer(0) if b else sp.expand(u[a] * (vf + vt))
+        expect(sp.expand(dump_right(u, v, a, b) - want) == 0)
+
+    # Uniqueness: a map with the four laws is fixed by its values on delta pairs.
+    # Expanding u and v on the deltas and inserting the identity tag delta (i, j)
+    # gives the pointwise product at every point.
+    for a, b in POINTS:
+        expanded = sum(
+            u[i] * v[j] * delta((i, j), (a, b)) for i, j in POINTS
         )
-        checks += 1
-        if sp.expand(expanded - u[a] * v[b]) != 0:
-            failures += 1
-        checks += 1
-        if b is False:
-            expect = sp.expand(u[a] * (v[False] + v[True]))
-        else:
-            expect = sp.Integer(0)
-        if sp.expand(dump_right(u, v, a, b) - expect) != 0:
-            failures += 1
+        expect(sp.expand(expanded - u[a] * v[b]) == 0)
 
-    basis = {
-        False: {False: sp.Integer(1), True: sp.Integer(0)},
-        True: {False: sp.Integer(0), True: sp.Integer(1)},
-    }
-    checks += 1
-    if tensor(basis[False], basis[True], False, True) != 1:
-        failures += 1
-    checks += 1
-    if dump_right(basis[False], basis[True], False, True) != 0:
-        failures += 1
-    checks += 1
-    if dump_right(basis[False], basis[True], False, True) == tensor(
-        basis[False], basis[True], False, True
-    ):
-        failures += 1
+    # Tags on delta pairs: identity tag for tensor, collapsed tag for dump-right.
+    collapsed = 0
+    for i, j in POINTS:
+        for a, b in POINTS:
+            expect(tensor(basis(i), basis(j), a, b) == delta((i, j), (a, b)))
+            expect(dump_right(basis(i), basis(j), a, b) == delta((i, False), (a, b)))
+        if any(dump_right(basis(i), basis(j), a, b) != tensor(basis(i), basis(j), a, b) for a, b in POINTS):
+            collapsed += 1
 
-    for i, j, a, b in itertools.product((False, True), repeat=4):
-        checks += 1
-        got = dump_right(basis[i], basis[j], a, b)
-        expect = delta((i, False), (a, b))
-        if got != expect:
-            failures += 1
-        checks += 1
-        if tensor(basis[i], basis[j], a, b) != delta((i, j), (a, b)):
-            failures += 1
+    # Witness values, computed rather than printed as constants.
+    witness_tensor = tensor(basis(False), basis(True), False, True)
+    witness_dump = dump_right(basis(False), basis(True), False, True)
+    expect(witness_tensor == 1)
+    expect(witness_dump == 0)
+    expect(witness_dump != witness_tensor)
 
+    # Integer samples for both maps and all four laws.
     coords = (-2, -1, 0, 1, 2)
     samples = 0
-    for values in itertools.product(coords, repeat=4):
-        left = {False: sp.Integer(values[0]), True: sp.Integer(values[1])}
-        right = {False: sp.Integer(values[2]), True: sp.Integer(values[3])}
-        other = {False: sp.Integer(values[3]), True: sp.Integer(values[2])}
-        scale = sp.Integer(values[0])
-        for a, b in itertools.product((False, True), repeat=2):
-            summed = {False: left[False] + other[False], True: left[True] + other[True]}
-            checks += 1
-            if dump_right(summed, right, a, b) != dump_right(left, right, a, b) + dump_right(
-                other, right, a, b
-            ):
-                failures += 1
-            checks += 1
-            if tensor(summed, right, a, b) != tensor(left, right, a, b) + tensor(other, right, a, b):
-                failures += 1
-            scaled = {False: scale * left[False], True: scale * left[True]}
-            checks += 1
-            if dump_right(scaled, right, a, b) != scale * dump_right(left, right, a, b):
-                failures += 1
-            checks += 1
-            if tensor(right, scaled, a, b) != scale * tensor(right, left, a, b):
-                failures += 1
+    for vals in itertools.product(coords, repeat=4):
+        p = vec(sp.Integer(vals[0]), sp.Integer(vals[1]))
+        q = vec(sp.Integer(vals[2]), sp.Integer(vals[3]))
+        r = vec(sp.Integer(vals[3]), sp.Integer(vals[0]))
+        k = sp.Integer(vals[1] - vals[2])
+        for embed in (tensor, dump_right):
+            for _, diff in laws(embed, p, r, q, p, k):
+                expect(diff == 0)
         samples += 1
 
-    point_count = 2 * 2
-    checks += 1
-    if point_count != 4:
-        failures += 1
-
-    print(f"checks={checks} failures={failures} samples={samples} witness_dump=0 witness_tensor=1 points=4")
+    print(
+        f"checks={checks} failures={failures} samples={samples} "
+        f"witness_dump={witness_dump} witness_tensor={witness_tensor} "
+        f"points={len(POINTS)} collapsed_delta_pairs={collapsed}"
+    )
     if failures:
         raise SystemExit(1)
 
