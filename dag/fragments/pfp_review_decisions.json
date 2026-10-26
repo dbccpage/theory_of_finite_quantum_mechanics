@@ -949,14 +949,17 @@
     },
     {
       "node_id": "L1-IMP-ORTHOGONAL-ADDITIVITY",
-      "review": "dag/results/L1-IMP-ORTHOGONAL-ADDITIVITY/reviews/20261020_born_boundary_audit/delivery_review_result.json",
+      "review": "dag/research/pr440_statement_review_20261026.json",
       "scope_effect": "statement_narrowed",
-      "statement": "For a sector-additive rational Gram matrix, the sum of each off-diagonal pair is zero and the quadratic readout equals the sum of the diagonal squares. Symmetry of the matrix is a further hypothesis before each off-diagonal entry is zero. On the 2 by 2 integer matrix with entries 1, 1, -1 and 1, the off-diagonal pair sums to 0, neither off-diagonal entry is 0, and for every integer pair a, b the quadratic form equals a*a + b*b, which equals the sum of the forms on (a, 0) and (0, b). Probability additive on arbitrary orthogonal frames, and projection measures, stay supplied.",
-      "bottleneck": "The 2 by 2 matrix is one witness that a sector-additive form can keep a nonzero off-diagonal entry when the pair sums to zero. Frame additivity on arbitrary orthogonal frames, projection measures, and Gleason-type uniqueness stay supplied. Sector additivity of the quadratic readout on a general carrier remains the hypothesis transcribed from l1 additivity. AuthorityEffect: None.",
-      "reason": "The standing text keeps the sector-form pair sum and diagonal readout, and adds one 2 by 2 integer witness whose off-diagonal entries are not zero. Frame additivity on arbitrary orthogonal frames stays supplied.",
+      "reason": "Correct the missing symmetry premise and add one nonsymmetric coefficient-matrix counterexample; preserve CONDITIONAL status and historical review provenance.",
       "superseded_by": [
         "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form"
-      ]
+      ],
+      "extra_reviews": [
+        "dag/results/L1-IMP-ORTHOGONAL-ADDITIVITY/reviews/20261020_born_boundary_audit/delivery_review_result.json"
+      ],
+      "statement": "For a sector-additive rational coefficient matrix, the sum of each off-diagonal pair is zero and the quadratic readout equals the sum of the diagonal squares. Symmetry of the matrix is a further hypothesis before each off-diagonal entry is zero. On the 2 by 2 integer matrix with entries 1, 1, -1 and 1, the off-diagonal pair sums to 0, neither off-diagonal entry is 0, and for every integer pair a, b the quadratic form equals a*a + b*b, which equals the sum of the forms on (a, 0) and (0, b). Probability additive on arbitrary orthogonal frames, and projection measures, stay supplied.",
+      "bottleneck": "The 2 by 2 matrix is one witness that a sector-additive form can keep a nonzero off-diagonal entry when the pair sums to zero. Frame additivity on arbitrary orthogonal frames, projection measures, and Gleason-type uniqueness stay supplied. Sector additivity of the quadratic readout on a general carrier remains the hypothesis transcribed from l1 additivity. AuthorityEffect: None."
     },
     {
       "node_id": "L1-IMP-SQRT-FIELD",
@@ -1254,8 +1257,8 @@
       "review": "dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/reviews/20261021_batch01a_audit/delivery_review_result.json",
       "scope_effect": "status_lowered",
       "status": "OPEN",
-      "statement": "Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; finite fields/rings (unit circle of order p -+ 1, native table only), cyclotomic extensions, completion and continuity are not treated.",
-      "bottleneck": "Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved.",
+      "statement": "Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; a general finite-field/ring classification, cyclotomic extensions, completion and continuity remain open. Separate modulo-7 result: On the integers modulo 7, with product (a, b) * (c, d) = (a*c - b*d, a*d + b*c), the pairs (x, y) with x*x + y*y = 1 are exactly the powers g^0 through g^7, in exponent order, for g = (2, 2): (1, 0), (2, 2), (0, 1), (5, 2), (6, 0), (5, 5), (0, 6) and (2, 5). The next power g^8 is (1, 0), and g^1 through g^7 all differ from (1, 0). The count 8 equals 7 + 1 and is not 4.",
+      "bottleneck": "Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved. Only the explicit modulo-7 carrier and its stated operations are covered. The Nat subtraction encoding agrees with integer subtraction only on the bounded residue domain. Selection of C or U(1), general prime or ring classification, cyclotomic fields, completion and continuity remain open; the older Gaussian-rational torsion result is retained separately.",
       "reason": "The node is a pointer to QM_028/QM_062; its cited Lean witnesses are fixed small instances and a Boolean flag. The only general fact established here is the torsion of the unit Gaussian rationals (mu_4), which does not select C or U(1).",
       "second_review": "Fresh-context same-model review (final pass) recorded in the batch second_reviews.json; not a human-independent review."
     },

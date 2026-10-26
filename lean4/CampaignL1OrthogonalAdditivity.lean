@@ -1,5 +1,5 @@
 -- Campaign: L1-IMP-ORTHOGONAL-ADDITIVITY. Not a default target.
--- One 2 by 2 integer Gram matrix. Arbitrary orthogonal frames stay outside.
+-- One 2 by 2 integer coefficient matrix. Arbitrary orthogonal frames stay outside.
 
 namespace CampaignL1OrthogonalAdditivity
 

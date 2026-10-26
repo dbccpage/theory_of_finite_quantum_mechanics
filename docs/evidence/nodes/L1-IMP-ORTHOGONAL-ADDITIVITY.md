@@ -4,15 +4,15 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade:
 
 ## Statement
 
-> For a sector-additive rational Gram matrix, the sum of each off-diagonal pair is zero and the quadratic readout equals the sum of the diagonal squares. Symmetry of the matrix is a further hypothesis before each off-diagonal entry is zero. On the 2 by 2 integer matrix with entries 1, 1, -1 and 1, the off-diagonal pair sums to 0, neither off-diagonal entry is 0, and for every integer pair a, b the quadratic form equals a*a + b*b, which equals the sum of the forms on (a, 0) and (0, b). Probability additive on arbitrary orthogonal frames, and projection measures, stay supplied.
+> For a sector-additive rational coefficient matrix, the sum of each off-diagonal pair is zero and the quadratic readout equals the sum of the diagonal squares. Symmetry of the matrix is a further hypothesis before each off-diagonal entry is zero. On the 2 by 2 integer matrix with entries 1, 1, -1 and 1, the off-diagonal pair sums to 0, neither off-diagonal entry is 0, and for every integer pair a, b the quadratic form equals a*a + b*b, which equals the sum of the forms on (a, 0) and (0, b). Probability additive on arbitrary orthogonal frames, and projection measures, stay supplied.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 11
-- cited Lean, Rust or Python symbols found in their in-repo files: 16
-- distinct cited Lean declarations covered by a current replay receipt: 14
+- counted in-repo evidence files: 13
+- cited Lean, Rust or Python symbols found in their in-repo files: 18
+- distinct cited Lean declarations covered by a current replay receipt: 16
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 1
@@ -33,14 +33,14 @@ The 2 by 2 matrix is one witness that a sector-additive form can keep a nonzero 
 
 ## Source status
 
-Orthogonality of the sector basis derived from sector additivity of the readout alone in dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form (SectorFormUniqueness.offdiag_pair_sum_eq_zero, offdiag_eq_zero, eq_diagonal_of_sectorAdditive, qf_eq_sum_diag_sq_of_sectorAdditive; SectorFormHermitian.offdiag_eq_zero with the two directions 1 and i, and imagLeak12 showing the second direction is needed). Frame additivity on arbitrary orthogonal frames is not derived. Earlier: Thm 6 assumptions 4 and 7: orthogonal additivity; projection-measure / frame-function structure
+Sector additivity over disjoint supports gives off-diagonal pair-sum cancellation and the diagonal quadratic readout. Entrywise off-diagonal zero additionally requires symmetry; the complex Hermitian theorem uses Hermitian symmetry and both real and imaginary sector directions. Arbitrary orthogonal-frame additivity and projection-measure structure remain supplied. Earlier sector-form source and prior reviews remain cited.
 
 ## Review
 
-- PFP review: [dag/results/L1-IMP-ORTHOGONAL-ADDITIVITY/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-IMP-ORTHOGONAL-ADDITIVITY/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `CONDITIONAL`; qualifies for E4: yes.
-  - narrowest claim: Exact projector resolution of identity, quadratic frame totals and quartic basis dependence, with generic orthogonal-frame algebra in Lean.
-  - does not support: Prove source/array refinement and the full frame-law uniqueness theorem; a few frame values neither derive orthogonality nor prove Gleason.
-  - next test: Prove source/array refinement and the full frame-law uniqueness theorem; a few frame values neither derive orthogonality nor prove Gleason.
+- PFP review: [dag/research/pr440_statement_review_20261026.json](../../../dag/research/pr440_statement_review_20261026.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `CONDITIONAL`; qualifies for E4: yes.
+  - narrowest claim: The integer coefficient matrix \[\[1,1\],\[-1,1\]\] has nonzero off-diagonal entries whose sum is zero, and its quadratic form equals a*a+b*b and the sum of its two axis readouts for every integer a,b.
+  - does not support: One nonsymmetric coefficient matrix; no Gram-matrix or arbitrary orthogonal-frame/projection-measure theorem. General sector additivity remains supplied. Entrywise off-diagonal zero needs symmetry (and in the Hermitian setting the stated real/imaginary sector hypotheses).
+  - next test: Derive rather than assume arbitrary-frame probability additivity and the projection-measure hypotheses.
 
 ## Evidence items
 
@@ -49,17 +49,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/CampaignL1OrthogonalAdditivity.lean`
 
 - file: [lean4/CampaignL1OrthogonalAdditivity.lean](../../../lean4/CampaignL1OrthogonalAdditivity.lean)
-- sha256 (`bytes`): `4cd851daef44f1583b0de85c2cf7729cb4c959c52568265be656c6ec62dd0421`
-- cited in: node.lean, node.source, receipt dag/research/campaign_l1-imp-orthogonal-additivity_lean_replay.json (CampaignL1OrthogonalAdditivity)
+- sha256 (`bytes`): `50db47282d0bc3fedfe87161c63890be81b0c21a5708f1fc9f2514e6fa6370d2`
+- cited in: node.lean, node.source, receipt dag/research/campaign_l1-imp-orthogonal-additivity_lean_replay.json (CampaignL1OrthogonalAdditivity), receipt dag/research/pr440_review_lean_replay.json (CampaignL1OrthogonalAdditivity)
 - replay: `verified`
-  - receipt [dag/research/campaign_l1-imp-orthogonal-additivity_lean_replay.json](../../../dag/research/campaign_l1-imp-orthogonal-additivity_lean_replay.json) (module `CampaignL1OrthogonalAdditivity`): recorded sha256 `4cd851daef44f1583b0de85c2cf7729cb4c959c52568265be656c6ec62dd0421` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/campaign_l1-imp-orthogonal-additivity_lean_replay.json](../../../dag/research/campaign_l1-imp-orthogonal-additivity_lean_replay.json) (module `CampaignL1OrthogonalAdditivity`): recorded sha256 `50db47282d0bc3fedfe87161c63890be81b0c21a5708f1fc9f2514e6fa6370d2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/pr440_review_lean_replay.json](../../../dag/research/pr440_review_lean_replay.json) (module `CampaignL1OrthogonalAdditivity`): recorded sha256 `50db47282d0bc3fedfe87161c63890be81b0c21a5708f1fc9f2514e6fa6370d2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build CampaignL1OrthogonalAdditivity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `CampaignL1OrthogonalAdditivity.axisSum` | yes | yes | yes | propext | `#print axioms CampaignL1OrthogonalAdditivity.axisSum` |
 | `CampaignL1OrthogonalAdditivity.entriesNotZero` | yes | yes | yes | none | `#print axioms CampaignL1OrthogonalAdditivity.entriesNotZero` |
+| `CampaignL1OrthogonalAdditivity.negCross` | yes | yes | yes | propext | `#print axioms CampaignL1OrthogonalAdditivity.negCross` |
 | `CampaignL1OrthogonalAdditivity.pairSum` | yes | yes | yes | none | `#print axioms CampaignL1OrthogonalAdditivity.pairSum` |
+| `CampaignL1OrthogonalAdditivity.qf` | yes | yes | yes | none | `#print axioms CampaignL1OrthogonalAdditivity.qf` |
 | `CampaignL1OrthogonalAdditivity.readout` | yes | yes | yes | propext | `#print axioms CampaignL1OrthogonalAdditivity.readout` |
 
 - counts toward the grade: yes
@@ -194,7 +197,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/l1-imp-orthogonal-additivity.py`
 
 - file: [checks/independent/l1-imp-orthogonal-additivity.py](../../../checks/independent/l1-imp-orthogonal-additivity.py)
-- sha256 (`bytes`): `4706587ab3aec62b016a1b3099552d9fd24e9345418bbbc57bc5f6272ac8605b`
+- sha256 (`bytes`): `53301605a494e593942ec185a5e0fa8d9be8d6ce4faabf827ea7566ba433fd67`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -209,7 +212,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/l1-imp-orthogonal-additivity.md`
 
 - file: [dag/derivations/independent/l1-imp-orthogonal-additivity.md](../../../dag/derivations/independent/l1-imp-orthogonal-additivity.md)
-- sha256 (`lf-normalised`): `01662431ac263370e0b508b2c904844d915710e6a4b18f149a9113801a03e38f`
+- sha256 (`lf-normalised`): `966c3c7a5ee5448793a70c3d11d89099a9c99d4cd46297dfe516096ebd956889`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/pr440_review_lean_replay.json`
+
+- file: [dag/research/pr440_review_lean_replay.json](../../../dag/research/pr440_review_lean_replay.json)
+- sha256 (`lf-normalised`): `ead716df6b94f34704480ae27c98dc04f67bdadb667463e1d6a831f04bc12a52`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/pr440_statement_review_20261026.json`
+
+- file: [dag/research/pr440_statement_review_20261026.json](../../../dag/research/pr440_statement_review_20261026.json)
+- sha256 (`lf-normalised`): `4f5a86e040e2b2505abe883699560466c5dca6810408ee462b0de026486aedc8`
 - cited in: node.source
 - counts toward the grade: yes
 
