@@ -782,8 +782,10 @@
     {
       "node_id": "GP-IMPORT-CONTINUOUS-TIME",
       "review": "dag/results/GP-IMPORT-CONTINUOUS-TIME/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Imported node; the review adds Boolean and complex square-root controls. A later discrete-time Stone spec run constructs the Q-parameter group.",
+      "scope_effect": "statement_narrowed",
+      "statement": "On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).",
+      "bottleneck": "Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.",
+      "reason": "Boolean toggle has no square root on the two labels, and two Gaussian-integer interpolants square to the scale-4 swap and differ at one input. Continuous time and Stone's theorem stay imported.",
       "superseded_by": [
         "dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec"
       ]

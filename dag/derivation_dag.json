@@ -6770,7 +6770,7 @@
       "stage": "L1_TO_L2",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "imported / refused on this host",
-      "statement": "Continuous time, topology, a one-parameter unitary group and Stone's theorem. The two-state toggle has no report-level square root; after complex coefficients, interpolants exist at scale 4 and are not unique.",
+      "statement": "On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).",
       "source": [
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/gap_register.yaml#GAP-F001-S000-008",
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/continuum_price_ledger.yaml#PRICE-HD-03",
@@ -6778,8 +6778,17 @@
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/finite_hilbert_boundary_from_primitive_difference.md:156"
       ],
       "lean": [
-        "lean4/H016ContinuousDynamicsFork.lean::toggle",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries"
+        "lean4/CampaignGpImportContinuousTime.lean::toggle_images",
+        "lean4/CampaignGpImportContinuousTime.lean::no_toggle_square_root",
+        "lean4/CampaignGpImportContinuousTime.lean::gAdd_coords",
+        "lean4/CampaignGpImportContinuousTime.lean::gMul_coords",
+        "lean4/CampaignGpImportContinuousTime.lean::swap_exchanges",
+        "lean4/CampaignGpImportContinuousTime.lean::scale4_swap",
+        "lean4/CampaignGpImportContinuousTime.lean::interp_twice_is_scaled_swap",
+        "lean4/CampaignGpImportContinuousTime.lean::interpNeg_twice_is_scaled_swap",
+        "lean4/CampaignGpImportContinuousTime.lean::witness_interp",
+        "lean4/CampaignGpImportContinuousTime.lean::witness_neg",
+        "lean4/CampaignGpImportContinuousTime.lean::interpolants_differ"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
@@ -6791,7 +6800,7 @@
         "one-parameter group: assumption",
         "Stone's theorem: import"
       ],
-      "bottleneck": "Finite substitutes: exact rational Cayley transform in SO(8,Q); hyperoctahedral signed permutations with irreversible monotone residue.",
+      "bottleneck": "Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.",
       "tags": [],
       "see_also": [
         "FQ-DISCRETE-TIME-STONE-AMBIGUITY",
@@ -6807,8 +6816,8 @@
         "narrowest_claim": "Complete Boolean square-root obstruction and both exact complex unitary square roots of toggle; generic projector-square algebra and Boolean enumeration in Lean.",
         "does_not_support": "Supply topology, continuous time and the one-parameter group; invoke Stone only under its hypotheses. Square roots alone do not define continuous dynamics.",
         "next_test": "Supply topology, continuous time and the one-parameter group; invoke Stone only under its hypotheses. Square roots alone do not define continuous dynamics.",
-        "scope_effect": "consistent",
-        "reason": "Imported node; the review adds Boolean and complex square-root controls. A later discrete-time Stone spec run constructs the Q-parameter group.",
+        "scope_effect": "statement_narrowed",
+        "reason": "Boolean toggle has no square root on the two labels, and two Gaussian-integer interpolants square to the scale-4 swap and differ at one input. Continuous time and Stone's theorem stay imported.",
         "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "Continuous time, topology, a one-parameter unitary group and Stone's theorem. The two-state toggle has no report-level square root; after complex coefficients, interpolants exist at scale 4 and are not unique.",
         "prior_bottleneck": "Finite substitutes: exact rational Cayley transform in SO(8,Q); hyperoctahedral signed permutations with irreversible monotone residue.",
@@ -57691,12 +57700,21 @@
       ],
       "id": "TFQ-1034",
       "lean4": [
-        "lean4/H016ContinuousDynamicsFork.lean::toggle",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries"
+        "lean4/CampaignGpImportContinuousTime.lean::toggle_images",
+        "lean4/CampaignGpImportContinuousTime.lean::no_toggle_square_root",
+        "lean4/CampaignGpImportContinuousTime.lean::gAdd_coords",
+        "lean4/CampaignGpImportContinuousTime.lean::gMul_coords",
+        "lean4/CampaignGpImportContinuousTime.lean::swap_exchanges",
+        "lean4/CampaignGpImportContinuousTime.lean::scale4_swap",
+        "lean4/CampaignGpImportContinuousTime.lean::interp_twice_is_scaled_swap",
+        "lean4/CampaignGpImportContinuousTime.lean::interpNeg_twice_is_scaled_swap",
+        "lean4/CampaignGpImportContinuousTime.lean::witness_interp",
+        "lean4/CampaignGpImportContinuousTime.lean::witness_neg",
+        "lean4/CampaignGpImportContinuousTime.lean::interpolants_differ"
       ],
       "local_id": "GP-IMPORT-CONTINUOUS-TIME",
       "name": "gp-import-continuous-time",
-      "obligation": "Finite substitutes: exact rational Cayley transform in SO(8,Q); hyperoctahedral signed permutations with irreversible monotone residue.",
+      "obligation": "Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.",
       "parent_id": "TFQ-0303",
       "pfp_review_refs": [
         "dag/results/GP-IMPORT-CONTINUOUS-TIME/reviews/20261019_l1_import_audit/delivery_review_result.json"
@@ -57709,7 +57727,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "L1_TO_L2",
-      "summary": "Continuous time, topology, a one-parameter unitary group and Stone's theorem. The two-state toggle has no report-level square root; after complex coefficients, interpolants exist at scale 4 and are not unique.",
+      "summary": "On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).",
       "uuid": "4f332701-1c0f-5bf1-bc19-0ca0668d4b60"
     },
     {
