@@ -1510,3 +1510,7 @@ lean_lib CampaignL1OrthogonalAdditivity where
 -- Reviewed campaign module; non-default target.
 lean_lib CampaignFqGapTensorUniqueness where
   roots := #[`CampaignFqGapTensorUniqueness]
+
+-- Campaign: L1-GS001-GAUGE-L1. Not a default target.
+lean_lib CampaignL1Gs001GaugeL1 where
+  roots := #[`CampaignL1Gs001GaugeL1]

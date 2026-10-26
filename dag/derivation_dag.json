@@ -2672,15 +2672,21 @@
       "stage": "L1_EMERGENCE",
       "status": "OPEN",
       "source_status": "Tier-1 direction independence (Lemma 4.1), gauge proportionality (Corollary 2), single-orbit uniform collapse (Theorem 4.2), and ENC-0523 drop-one counterexamples mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm",
-      "statement": "A faithful, edge-additive, maximal bounded-linear symmetry on the gauge presentation gives weighted l1 as the outer aggregation. Alternative route to l1 to L1-GS000-EDGEWISE-L1, with a different hypothesis set.",
+      "statement": "On two integer coordinates, for all integers x, y, and k and every coordinate swap and pair of coordinate signs, the aggregate |x| + |y| is unchanged by that signed permutation, equals |x| + |0| plus |0| + |y|, and after scaling both coordinates by k equals |k| times (|x| + |y|). The eight signed permutations send (1, 2) to (1, 2), (-1, 2), (1, -2), (-1, -2), (2, 1), (2, -1), (-2, 1), and (-2, -1), and these eight pairs are distinct, so equal images of (1, 2) force equal bit choices. For natural weights w1 and w2, w1 |x| + w2 |y| is unchanged by swapping the two coordinates for every integer pair if and only if w1 = w2, and in that case it equals w1 times (|x| + |y|). The weights 1 and 2 give 1 on (1, 0) and 2 on (0, 1). The pairs (3, 4) and (5, 0) both have squared length 25, and their aggregates are 7 and 5.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/007_m_compatible_gauge_classification"
       ],
       "lean": [
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gs001_replica_and_phi1_quotient_invariance",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gs001_and_wdp_ch08_replica_extensivity_vs_homogeneity",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gs001_maximal_symmetry_direction_independence_and_gauge_proportionality",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gs001_maximal_symmetry_direction_independence_and_gauge_proportionality"
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.signed_permutation_gauge_shadow",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.signed_permutation_preserves_l1",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.edge_additive",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.absolutely_homogeneous",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.eight_images_of_one_two",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.faithful_on_one_two",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.swap_invariant_weighted_iff",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.equal_weight_is_scaled_l1",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.unequal_weights_separate_axes",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.equal_squared_length_splits_l1"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_wdp/src/gauge_classification.rs::standard_l1",
@@ -2691,7 +2697,7 @@
         "sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Lean states intermediate steps only: under explicit norming, homogeneity and orbit hypotheses, the aggregate is constant on unit vectors and the edge weights are orbit-constant. The conclusion that the outer aggregation is weighted l1 is not derived in Lean.",
+      "bottleneck": "Two integer coordinates only. A faithful, edge-additive, maximal bounded-linear symmetry on a general gauge presentation is not derived, and weighted l1 is not obtained as that symmetry outer aggregation. Route L1-R-GS001 from L1-OBSERVER-AXIOMS-H1-H5 stays GAP_NO_DERIVATION. The conditional norming package in gs001_maximal_symmetry_direction_independence_and_gauge_proportionality remains a hypothesis package.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/L1-GS001-GAUGE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json",
@@ -2704,7 +2710,7 @@
         "does_not_support": "Establish the actual maximal bounded-linear symmetry and faithful edge-additive hypotheses; do not infer them from an eight-element test.",
         "next_test": "Establish the actual maximal bounded-linear symmetry and faithful edge-additive hypotheses; do not infer them from an eight-element test.",
         "scope_effect": "status_lowered",
-        "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+        "reason": "2026-10-26 status audit kept this node OPEN. The stored statement is now the two-coordinate signed-permutation shadow in CampaignL1Gs001GaugeL1. The general maximal bounded-linear classification stays outside that shadow.",
         "prior_status": "PROVED_LEAN",
         "prior_statement": "A faithful, edge-additive, maximal bounded-linear symmetry on the gauge presentation gives weighted l1 as the outer aggregation. Alternative route to l1 to L1-GS000-EDGEWISE-L1, with a different hypothesis set.",
         "prior_bottleneck": "None (Tier-1 direction independence, gauge proportionality, single-orbit uniformity, and ENC-0523 drop-one counterexamples mechanized in gs001_maximal_symmetry_direction_independence_and_gauge_proportionality).",
