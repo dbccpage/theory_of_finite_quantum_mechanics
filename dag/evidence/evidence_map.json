@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "b71f6cd664e83d5a8304033ab7e2180da026ee83abf4713c128a0c99dc3f7c3a"
+  "sha256_lf": "b79afeade2ee71963e2db9ec54e8324e2a140388361730abe307239684832858"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -111,6 +111,11 @@
    "sha256": "c34d80dd31d3b6b62f4773165707bfd5c67a3de6834a1941bfc5e7dadbf45760",
    "sha256_basis": "bytes",
    "size": 2096
+  },
+  "checks/independent/fsp-cobordism-intrinsic-sign.py": {
+   "sha256": "f3b7bf730dfeca78e102054fbae9b6df8493110d91ebce7567f75db85535f078",
+   "sha256_basis": "bytes",
+   "size": 1613
   },
   "checks/independent/fsp-imaginary-mu-real-det.py": {
    "sha256": "ac19770608212101081358398a29af59f440a541d91f29fe233e5eaf62c2d81d",
@@ -1263,9 +1268,9 @@
    "size": 9170
   },
   "dag/derivation_dag.json": {
-   "sha256": "b71f6cd664e83d5a8304033ab7e2180da026ee83abf4713c128a0c99dc3f7c3a",
+   "sha256": "b79afeade2ee71963e2db9ec54e8324e2a140388361730abe307239684832858",
    "sha256_basis": "lf-normalised",
-   "size": 4827831
+   "size": 4832002
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -4913,9 +4918,9 @@
    "size": 2208
   },
   "dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md": {
-   "sha256": "d815b611a72cffeb553d0280b69ab0409c48f5864f5102a995065c9f60b9b6c3",
+   "sha256": "15963c8fc5bdd48d164afa863774a7d0d7d189c9af1c6ad907443d156389e290",
    "sha256_basis": "lf-normalised",
-   "size": 2117
+   "size": 4639
   },
   "dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md": {
    "sha256": "41e4537320c8a4b8d479affc42288df4e4ac8a87c5f5d8333c9741aa47049554",
@@ -6242,6 +6247,11 @@
    "sha256_basis": "lf-normalised",
    "size": 2791
   },
+  "dag/derivations/independent/fsp-cobordism-intrinsic-sign.md": {
+   "sha256": "768e44a827dd6b8baa016d96bf0a57ac0bbb0e04c421608cadfec664397cd236",
+   "sha256_basis": "lf-normalised",
+   "size": 3163
+  },
   "dag/derivations/independent/fsp-hubbard-protected-representations.md": {
    "sha256": "cbc138ed8d9302fac11dc94b96435772faf042807c3289d2dd28fbf288636575",
    "sha256_basis": "lf-normalised",
@@ -6901,6 +6911,11 @@
    "sha256": "1986022b5843176eff3f3a1e12d586b038e088877b01f8f8df8e480abcb00807",
    "sha256_basis": "lf-normalised",
    "size": 3294
+  },
+  "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json": {
+   "sha256": "b1188edbf5ceb3ed8b2778e25a3b454a1b8782633884ccec804ff3ec5da3f1b8",
+   "sha256_basis": "lf-normalised",
+   "size": 9356
   },
   "dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json": {
    "sha256": "b4ddd39181ee572d67f0648be9b86b1691f35d210e34d4ba6e25572f19bf145c",
@@ -8118,9 +8133,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "sha256": "6075b115040adf14363dbbb34ce08b12a01f55d1743c53605ea75e2053d12898",
    "sha256_basis": "lf-normalised",
-   "size": 232565
+   "size": 234861
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -8831,6 +8846,11 @@
    "sha256": "135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56",
    "sha256_basis": "bytes",
    "size": 2274
+  },
+  "lean4/CampaignSignedTriangleSwitching.lean": {
+   "sha256": "dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1",
+   "sha256_basis": "bytes",
+   "size": 2463
   },
   "lean4/CampaignSnE08WeightedL1Duality.lean": {
    "sha256": "f35d7b06b68886a27305b2120f72b1336115f3bcdb587ce5ba50827131e8c687",
@@ -249327,17 +249347,471 @@
    "absent_notes": [],
    "dependents": 9,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 3,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 7,
+    "lean_receipt_backed": 12,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 12
    },
    "flags": [],
-   "grade": "E1",
+   "grade": "E3",
    "id": "FSP-COBORDISM-INTRINSIC-SIGN",
    "items": [
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (CampaignSignedTriangleSwitching)"
+     ],
+     "command": "cd lean4 && lake build CampaignSignedTriangleSwitching",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignSignedTriangleSwitching.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json#0:CampaignSignedTriangleSwitching",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignSignedTriangleSwitching.Signs",
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (CampaignSignedTriangleSwitching)"
+     ],
+     "command": "cd lean4 && lake build CampaignSignedTriangleSwitching",
+     "command_note": "then, in a scratch file that imports CampaignSignedTriangleSwitching: #print axioms CampaignSignedTriangleSwitching.Signs",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignSignedTriangleSwitching.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json#0:CampaignSignedTriangleSwitching",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignSignedTriangleSwitching.Signs",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignSignedTriangleSwitching.balanced_negative_edges_are_removable",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (CampaignSignedTriangleSwitching)",
+      "record TFQ-1211"
+     ],
+     "command": "cd lean4 && lake build CampaignSignedTriangleSwitching",
+     "command_note": "then, in a scratch file that imports CampaignSignedTriangleSwitching: #print axioms CampaignSignedTriangleSwitching.balanced_negative_edges_are_removable",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignSignedTriangleSwitching.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json#0:CampaignSignedTriangleSwitching",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignSignedTriangleSwitching.balanced_negative_edges_are_removable",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignSignedTriangleSwitching.edge_product_is_cycle_sign",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (CampaignSignedTriangleSwitching)",
+      "record TFQ-1211"
+     ],
+     "command": "cd lean4 && lake build CampaignSignedTriangleSwitching",
+     "command_note": "then, in a scratch file that imports CampaignSignedTriangleSwitching: #print axioms CampaignSignedTriangleSwitching.edge_product_is_cycle_sign",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignSignedTriangleSwitching.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json#0:CampaignSignedTriangleSwitching",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignSignedTriangleSwitching.edge_product_is_cycle_sign",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignSignedTriangleSwitching.explicit_negative_cycle",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (CampaignSignedTriangleSwitching)",
+      "record TFQ-1211"
+     ],
+     "command": "cd lean4 && lake build CampaignSignedTriangleSwitching",
+     "command_note": "then, in a scratch file that imports CampaignSignedTriangleSwitching: #print axioms CampaignSignedTriangleSwitching.explicit_negative_cycle",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignSignedTriangleSwitching.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json#0:CampaignSignedTriangleSwitching",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignSignedTriangleSwitching.explicit_negative_cycle",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignSignedTriangleSwitching.negative_cycle_obstruction",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (CampaignSignedTriangleSwitching)",
+      "record TFQ-1211"
+     ],
+     "command": "cd lean4 && lake build CampaignSignedTriangleSwitching",
+     "command_note": "then, in a scratch file that imports CampaignSignedTriangleSwitching: #print axioms CampaignSignedTriangleSwitching.negative_cycle_obstruction",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignSignedTriangleSwitching.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json#0:CampaignSignedTriangleSwitching",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignSignedTriangleSwitching.negative_cycle_obstruction",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignSignedTriangleSwitching.parity",
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (CampaignSignedTriangleSwitching)"
+     ],
+     "command": "cd lean4 && lake build CampaignSignedTriangleSwitching",
+     "command_note": "then, in a scratch file that imports CampaignSignedTriangleSwitching: #print axioms CampaignSignedTriangleSwitching.parity",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignSignedTriangleSwitching.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json#0:CampaignSignedTriangleSwitching",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignSignedTriangleSwitching.parity",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignSignedTriangleSwitching.parity_invariant",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (CampaignSignedTriangleSwitching)",
+      "record TFQ-1211"
+     ],
+     "command": "cd lean4 && lake build CampaignSignedTriangleSwitching",
+     "command_note": "then, in a scratch file that imports CampaignSignedTriangleSwitching: #print axioms CampaignSignedTriangleSwitching.parity_invariant",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignSignedTriangleSwitching.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json#0:CampaignSignedTriangleSwitching",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignSignedTriangleSwitching.parity_invariant",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignSignedTriangleSwitching.positive",
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (CampaignSignedTriangleSwitching)"
+     ],
+     "command": "cd lean4 && lake build CampaignSignedTriangleSwitching",
+     "command_note": "then, in a scratch file that imports CampaignSignedTriangleSwitching: #print axioms CampaignSignedTriangleSwitching.positive",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignSignedTriangleSwitching.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json#0:CampaignSignedTriangleSwitching",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignSignedTriangleSwitching.positive",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignSignedTriangleSwitching.positive_switching_iff",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (CampaignSignedTriangleSwitching)",
+      "record TFQ-1211"
+     ],
+     "command": "cd lean4 && lake build CampaignSignedTriangleSwitching",
+     "command_note": "then, in a scratch file that imports CampaignSignedTriangleSwitching: #print axioms CampaignSignedTriangleSwitching.positive_switching_iff",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignSignedTriangleSwitching.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json#0:CampaignSignedTriangleSwitching",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignSignedTriangleSwitching.positive_switching_iff",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignSignedTriangleSwitching.sign",
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (CampaignSignedTriangleSwitching)"
+     ],
+     "command": "cd lean4 && lake build CampaignSignedTriangleSwitching",
+     "command_note": "then, in a scratch file that imports CampaignSignedTriangleSwitching: #print axioms CampaignSignedTriangleSwitching.sign",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignSignedTriangleSwitching.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json#0:CampaignSignedTriangleSwitching",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignSignedTriangleSwitching.sign",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignSignedTriangleSwitching.switched",
+     "cited_in": [
+      "receipt dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (CampaignSignedTriangleSwitching)"
+     ],
+     "command": "cd lean4 && lake build CampaignSignedTriangleSwitching",
+     "command_note": "then, in a scratch file that imports CampaignSignedTriangleSwitching: #print axioms CampaignSignedTriangleSwitching.switched",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignSignedTriangleSwitching.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json#0:CampaignSignedTriangleSwitching",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignSignedTriangleSwitching.switched",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignSignedTriangleSwitching.switching_normal_form",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (CampaignSignedTriangleSwitching)",
+      "record TFQ-1211"
+     ],
+     "command": "cd lean4 && lake build CampaignSignedTriangleSwitching",
+     "command_note": "then, in a scratch file that imports CampaignSignedTriangleSwitching: #print axioms CampaignSignedTriangleSwitching.switching_normal_form",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignSignedTriangleSwitching.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json#0:CampaignSignedTriangleSwitching",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignSignedTriangleSwitching.switching_normal_form",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "record TFQ-1211"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/fsp-cobordism-intrinsic-sign.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
     {
      "canonical_symbol": null,
      "cited_in": [
@@ -249355,6 +249829,54 @@
      "generated": true,
      "kind": "paper",
      "path": "dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/derivations/independent/fsp-cobordism-intrinsic-sign.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json",
      "receipts": [],
      "replay": "n/a",
      "resolution": "present",
@@ -249436,7 +249958,7 @@
      "where": null
     }
    ],
-   "next_step": "cite a Lean, Rust or Python symbol that exists in an in-repo file",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-1211"
    ],
@@ -316343,6 +316865,28 @@
    "axiom_audit_passed": true,
    "axioms_itemised": true,
    "axioms_standard": true,
+   "axioms_union": [],
+   "built_successfully": true,
+   "checked_at": "2026-10-26T02:31:20.677927+00:00",
+   "dag_node": "FSP-COBORDISM-INTRINSIC-SIGN",
+   "decl_count": 12,
+   "exit_code": 0,
+   "id": "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json#0:CampaignSignedTriangleSwitching",
+   "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": null,
+   "module": "CampaignSignedTriangleSwitching",
+   "path": "lean4/CampaignSignedTriangleSwitching.lean",
+   "receipt_file": "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json",
+   "receipt_file_sha256": "b1188edbf5ceb3ed8b2778e25a3b454a1b8782633884ccec804ff3ec5da3f1b8",
+   "recorded_sha256": "dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
    "axioms_union": [
     "Classical.choice",
     "Quot.sound",
@@ -329946,7 +330490,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "6075b115040adf14363dbbb34ce08b12a01f55d1743c53605ea75e2053d12898",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -329972,7 +330516,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "6075b115040adf14363dbbb34ce08b12a01f55d1743c53605ea75e2053d12898",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -329998,7 +330542,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "6075b115040adf14363dbbb34ce08b12a01f55d1743c53605ea75e2053d12898",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330024,7 +330568,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "6075b115040adf14363dbbb34ce08b12a01f55d1743c53605ea75e2053d12898",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330050,7 +330594,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "6075b115040adf14363dbbb34ce08b12a01f55d1743c53605ea75e2053d12898",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330076,7 +330620,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "6075b115040adf14363dbbb34ce08b12a01f55d1743c53605ea75e2053d12898",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330102,7 +330646,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "6075b115040adf14363dbbb34ce08b12a01f55d1743c53605ea75e2053d12898",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330128,7 +330672,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "6075b115040adf14363dbbb34ce08b12a01f55d1743c53605ea75e2053d12898",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330154,7 +330698,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "6075b115040adf14363dbbb34ce08b12a01f55d1743c53605ea75e2053d12898",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330180,7 +330724,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "6075b115040adf14363dbbb34ce08b12a01f55d1743c53605ea75e2053d12898",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330206,7 +330750,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "6075b115040adf14363dbbb34ce08b12a01f55d1743c53605ea75e2053d12898",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330232,7 +330776,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "6075b115040adf14363dbbb34ce08b12a01f55d1743c53605ea75e2053d12898",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330258,7 +330802,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "6075b115040adf14363dbbb34ce08b12a01f55d1743c53605ea75e2053d12898",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330284,7 +330828,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "6075b115040adf14363dbbb34ce08b12a01f55d1743c53605ea75e2053d12898",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330310,7 +330854,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "6075b115040adf14363dbbb34ce08b12a01f55d1743c53605ea75e2053d12898",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330912,9 +331456,9 @@
  "summary": {
   "by_grade": {
    "E0": 153,
-   "E1": 209,
+   "E1": 208,
    "E2": 35,
-   "E3": 528,
+   "E3": 529,
    "E4": 0
   },
   "by_status": {
@@ -330934,16 +331478,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 37,
   "e3_nodes_with_test_but_no_review": 39,
   "lean_declarations_in_repo": {
-   "distinct": 2121,
+   "distinct": 2128,
    "no_receipt": 38,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 2060,
-   "replay_verified_and_declaration_itemised": 1993,
+   "replay_verified": 2067,
+   "replay_verified_and_declaration_itemised": 2000,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 2440
+   "present": 2447
   },
   "mismatch_nodes": 190,
   "mismatches_by_kind": {
@@ -330964,7 +331508,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 620,
+  "receipts_indexed": 621,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
@@ -331024,9 +331568,9 @@
    },
    "FERMION_SIGN": {
     "E0": 0,
-    "E1": 17,
+    "E1": 16,
     "E2": 6,
-    "E3": 18,
+    "E3": 19,
     "E4": 0
    },
    "FINITE_GAUGE": {
@@ -331243,9 +331787,9 @@
    },
    "OPEN": {
     "E0": 21,
-    "E1": 64,
+    "E1": 63,
     "E2": 6,
-    "E3": 84,
+    "E3": 85,
     "E4": 0
    },
    "PROVED_LEAN": {
