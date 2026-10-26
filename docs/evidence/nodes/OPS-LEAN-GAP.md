@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Missing: a Lean proof of any item listed in the statement. The Lean file lean4/LggrFiniteResults.lean covers only the statements of nodes OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among these rows. This one parity box does not establish the listed global-section/NCF equivalences, strong-contextuality criterion, Vorobev theorem, no-signalling coboundary equivalence, rational normalization or Rust Scenario refinement. The Lean sixteen lemma is arithmetic, not a type-cardinality theorem. The original OPS obligation remains OPEN.
+Missing: Lean proofs of the unresolved global-section/NCF, strong-contextuality, Vorobev, no-signalling, rational-normalization and Rust-refinement items listed first in the statement. The separate four-variable parity obstruction and arithmetic product are already proved in CampaignOpsLeanGap. The Lean file lean4/LggrFiniteResults.lean covers only the statements of nodes OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among these rows. This one parity box does not establish the listed global-section/NCF equivalences, strong-contextuality criterion, Vorobev theorem, no-signalling coboundary equivalence, rational normalization or Rust Scenario refinement. The Lean sixteen lemma is arithmetic, not a type-cardinality theorem. The original OPS obligation remains OPEN.
 
 ## Source status
 
@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md)
-- sha256 (`lf-normalised`): `fb81e0a8b8a83f02e645f11b0cfc1e5aca8bbc3bc0eafaaec8b96b58efa1a597`
+- sha256 (`lf-normalised`): `42b1b4fe0f7a8fd46efe131f4aa8e237262e5d2dc26829550a41d211ed851b1b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2520
 - counts toward the grade: no

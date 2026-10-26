@@ -133,3 +133,5 @@ PR #434 applies the other exact Lean hash from the user's two-proof approval, re
 PR #435 retains L2D and its original OPEN target under the user-approved exact source pin in `dag/research/approved_pr435_exact_pin_20261026.json`.
 
 PR #439 retains L1D and its original OPEN target under the user-approved exact source pin in `dag/research/approved_pr439_exact_pin_20261026.json`.
+
+PR #440 retains L2D and CONDITIONAL under the user-approved exact source pin in `dag/research/approved_pr440_exact_pin_20261026.json`.
