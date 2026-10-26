@@ -8,7 +8,7 @@ The project does not claim to derive quantum mechanics. It records how far finit
 
 ## Results, with exact scope
 
-Each row is a theorem with its hypotheses named. CONDITIONAL means the Lean proof takes those hypotheses as inputs; nothing here derives them. The current status of each named node is in the generated table under Repository facts.
+Each row is a kernel-checked result with its hypotheses named, or a repository milestone. CONDITIONAL means the Lean proof takes those hypotheses as inputs; nothing here derives them. The current status of each named node is in the generated table under Repository facts.
 
 | Result | Scope as recorded | Evidence |
 |---|---|---|
