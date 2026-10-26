@@ -11,15 +11,15 @@
 
 ## Statement
 
-As the ledger states them for the Rust module empirical_presheaf. (B15) The l1 defect receipt has zero duality gap: <phi*, e> + y0 equals the defect, with the sup norm of phi* at most 1 and A^T phi* + y0 <= 0, and replay rejects tampering and shape errors. (B17) verify_noncontextual_fraction and verify_l1_defect_receipt rebuild the linear programme, verify the embedded solution as its certificate, and bind primal, dual and value to the receipt's part, functional and fraction; the pivot trace is not bound. (B16) Every global and local section count is a checked fold against MAX_GLOBAL_ASSIGNMENTS = 2^20 returning EnumerationLimit, and dense allocations are bounded by MAX_LP_ENTRIES = 2^22 returning LpSizeLimit, with nothing of either size allocated or enumerated before the refusal: 64 binary singletons have 2^64 assignments and one context of 21 binary measurements has 2^21 sections, both above 2^20, while ten binary singletons give a 20 x 1024 incidence inside both ceilings. (B9, shape) The whole declared cochain is shape-checked before any incidence is read. Recomputed here: the ceiling arithmetic, and a zero-gap primal and dual pair for the PR box and the noisy boxes in the independent script's own solver, which does not test the Rust verifiers.
+In Lean, maxGlobal is 2^20 and equals 1048576, and maxLp is 2^22 and equals 4194304. Then 2^64 > maxGlobal, 2^21 = 2097152, and 2^21 > maxGlobal. Also 10 * 2 = 20, 2^10 = 1024, 20 * 1024 = 20480, 2^10 < maxGlobal, and 20 * 1024 < maxLp. Not in this statement: a zero duality gap, a dual inequality, tamper or shape rejection, a rebuilt linear programme, a singleton census, and any Rust refusal.
 
 ## Governing obligation
 
-The computing tests are Rust tests of the source repository. The in-repo copy of the module (code/rust/src/sheaf_theory/empirical_presheaf) uses omega_solvers, an external crate that is not a member of the code/rust workspace (cargo metadata --no-deps lists no such package), and the source test file was not imported. These tests are not run here.
+The Lean statement is the narrowed ceiling arithmetic above. The Rust receipt replay, tamper rejection, shape check, zero-gap dual certificate, PR box, noisy boxes, and the functions verify_noncontextual_fraction and verify_l1_defect_receipt are not run here. The in-repo module uses omega_solvers, an external crate that is not a workspace member.
 
 ## Source status
 
-Ledger rows L035-B15, L035-B16 and L035-B17 (and the shape clause of L035-B9): computed by the Rust tests convex_hull_distance_receipt_replays_and_rejects_shape_errors, tampered_receipts_are_rejected_by_replay, pr1080_embedded_lp_corruption_is_not_silently_accepted, pr1080_oversized_global_carrier_is_refused_without_overflow and pr1080_disconnected_cochain_shape_is_still_checked. Held at CONDITIONAL because those tests are not run in this repository.
+Ledger rows L035-B15, L035-B16 and L035-B17, and the shape clause of L035-B9, stay outside this statement. The Rust tests that name them are not run in this repository. Narrowed to the ceiling counts G = 2^20 and L = 2^22, checked in Lean 4.35.0 with no axioms. Held at CONDITIONAL because those Rust tests are not run here.
 
 ## Routes
 
@@ -30,7 +30,7 @@ See also: `OPS-NOISY-PR-NCF`, `OPS-CECH-COBOUNDARY`.
 ## Non-claims
 
 - The source note and its claim ledger are copies of FOC-035 from another repository; this paper restates one ledger row at the status its evidence supports here.
-- A Lean reference is listed only on a PROVED_LEAN node, and its statement is narrower than the ledger row where the node says so.
+- Lean references identify checked statements. PROVED_LEAN nodes cite the finite-results module; the named OPS-RUST-RECEIPTS-AND-LIMITS ceiling example may cite its campaign module while remaining CONDITIONAL. A citation does not promote a node.
 - A Rust test of the source repository is not run in this repository.
 - An imported assumption is not a result of this repository.
 - A gap route marks a link that no source derives.
@@ -41,5 +41,11 @@ See also: `OPS-NOISY-PR-NCF`, `OPS-CECH-COBOUNDARY`.
 - Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B16`
 - Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B17`
 - Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.6`
-- Repository: `checks/independent/foc035_observer_presheaf.py`
+- Repository: `lean4/CampaignOpsRustReceiptsAndLimits.lean`
+- Repository: `checks/independent/ops-rust-receipts-and-limits.py`
 - Repository: `dag/derivations/35_foc035_observer_presheaf/tfq_2519_ops_rust_receipts_and_limits.md`
+- Repository: `dag/derivations/independent/ops-rust-receipts-and-limits.md`
+- Repository: `dag/research/foc035_observer_presheaf_lean_replay.json`
+- Repository: `dag/research/campaign_ops-rust-receipts-and-limits_lean_replay.json`
+- Repository: `dag/research/pr_392_scope_review.json`
+- Repository: `dag/research/pr_392_round2_replay.json`

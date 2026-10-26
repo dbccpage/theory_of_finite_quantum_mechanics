@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2501_ops_pushforward_functor_lean.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2501_ops_pushforward_functor_lean.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2501_ops_pushforward_functor_lean.md)
-- sha256 (`lf-normalised`): `e0667df1655dc43f0c4174bdf29575478afc90d7647a83743d9f584f9ec249bb`
+- sha256 (`lf-normalised`): `5da6b952869fc9c452b4977e6d2db1e2894bb0e2a1424e7450617e331d2f2f28`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2501
 - counts toward the grade: no
@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/foc035_observer_presheaf_lean_replay.json`
 
 - file: [dag/research/foc035_observer_presheaf_lean_replay.json](../../../dag/research/foc035_observer_presheaf_lean_replay.json)
-- sha256 (`lf-normalised`): `09f47dd198695244ec6ebdb8b5e77041757000553d9fdd8529a470ceb05a168b`
+- sha256 (`lf-normalised`): `5810e04e569b5ed7611d007c1497d7d4ee0dac3acec079a3509e4f1d2ad8944d`
 - cited in: node.source
 - counts toward the grade: yes
 

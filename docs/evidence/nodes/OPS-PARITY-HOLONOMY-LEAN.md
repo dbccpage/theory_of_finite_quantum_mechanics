@@ -63,7 +63,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md)
-- sha256 (`lf-normalised`): `d10490a21b9a9a0ed425c04bb05429f73112b74eb0feece23861a3a9186b38b6`
+- sha256 (`lf-normalised`): `b6df913a86558949ad88a71e7f8dc768f2e8c9b8df55c44a38b55dcc13f62fff`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2502
 - counts toward the grade: no
@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/foc035_observer_presheaf_lean_replay.json`
 
 - file: [dag/research/foc035_observer_presheaf_lean_replay.json](../../../dag/research/foc035_observer_presheaf_lean_replay.json)
-- sha256 (`lf-normalised`): `09f47dd198695244ec6ebdb8b5e77041757000553d9fdd8529a470ceb05a168b`
+- sha256 (`lf-normalised`): `5810e04e569b5ed7611d007c1497d7d4ee0dac3acec079a3509e4f1d2ad8944d`
 - cited in: node.source
 - counts toward the grade: yes
 

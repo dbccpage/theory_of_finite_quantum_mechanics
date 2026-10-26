@@ -1206,7 +1206,7 @@ This stage records open steps and named imports from the Genesis admission gate 
 
 ## FOC-035 observer presheaf
 
-This stage maps the claim ledger of FOC-035 to nodes at the status the evidence supports in this repository. Lean-checked rows keep only the narrowed statements of `lean4/LggrFiniteResults.lean`. Rows computed by a Rust test stay conditional, because that test needs an external crate and is not run here. Instance values are recomputed by an exact independent script, and the Python gate and one repaired test run here. Cited results are imported assumptions. A gap route marks a link that no source derives. See the [branch fragment](../fragments/foc035_observer_presheaf.json).
+This stage maps the claim ledger of FOC-035 to nodes at the status the evidence supports in this repository. PROVED_LEAN rows keep the narrowed statements of `lean4/LggrFiniteResults.lean`; the fixed-ceiling campaign example retains CONDITIONAL despite its scoped Lean references. Rows computed by a Rust test stay conditional, because that test needs an external crate and is not run here. Instance values are recomputed by an exact independent script, and the Python gate and one repaired test run here. Cited results are imported assumptions. A gap route marks a link that no source derives. See the [branch fragment](../fragments/foc035_observer_presheaf.json).
 
 ### OBSERVER_PRESHEAF (33 derivations)
 

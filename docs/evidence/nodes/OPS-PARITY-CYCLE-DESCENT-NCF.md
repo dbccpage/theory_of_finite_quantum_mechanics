@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `dag/test_foc035_observer_presheaf.py`
 
 - file: [dag/test_foc035_observer_presheaf.py](../../../dag/test_foc035_observer_presheaf.py)
-- sha256 (`bytes`): `17b962ed09fd6127e11d44e3bbc0524f076a9bd85a316992a4e2612ae66a15ee`
+- sha256 (`bytes`): `a6ef3d2de18f783960c87ac49fee3467ae4e5ef18ac598ee533c0fa907ada1c7`
 - cited in: node.source
 - check: `python -m pytest dag/test_foc035_observer_presheaf.py`
 - counts toward the grade: yes
@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2511_ops_parity_cycle_descent_ncf.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2511_ops_parity_cycle_descent_ncf.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2511_ops_parity_cycle_descent_ncf.md)
-- sha256 (`lf-normalised`): `0e25b0366199eede0d1ba0178576ab9355b3105e38e8433d29446bb0a4140d65`
+- sha256 (`lf-normalised`): `10a67427df7b0c433a7fdbefd788b00a8d30101c1bbd586c805585291d00f0fa`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2511
 - counts toward the grade: no

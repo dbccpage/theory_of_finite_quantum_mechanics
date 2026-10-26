@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2514_ops_vorobev_theorem.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2514_ops_vorobev_theorem.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2514_ops_vorobev_theorem.md)
-- sha256 (`lf-normalised`): `6abe94d7e2bafe79f5b36482047981474f10b46433c9673e0ed3a97566d14aa0`
+- sha256 (`lf-normalised`): `f0266a1b8c160e10262faffb7feb6e3b94d0cbcfb4fdd40cfcbd0cd1a43ca591`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2514
 - counts toward the grade: no

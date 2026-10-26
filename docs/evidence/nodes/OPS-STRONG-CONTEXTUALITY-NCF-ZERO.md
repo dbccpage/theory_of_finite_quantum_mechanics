@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2504_ops_strong_contextuality_ncf_zero.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2504_ops_strong_contextuality_ncf_zero.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2504_ops_strong_contextuality_ncf_zero.md)
-- sha256 (`lf-normalised`): `9745ed1f20b4629a6f7549f23e26ef686c10da9ca7ded580fe1a02f6bdffd648`
+- sha256 (`lf-normalised`): `7a8eb277bc60e1c1f754b28a7e8c2ffd6dad58034764a85eb1f8ad8938564fcc`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2504
 - counts toward the grade: no
