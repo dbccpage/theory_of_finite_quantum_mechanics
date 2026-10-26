@@ -4,7 +4,7 @@ Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `OPEN`. Evidence grade
 
 ## Statement
 
-> For the additive group Z2 with trivial Z2 coefficient action, the Boolean 3-cochain omega(a,b,c)=a*b*c is normalized and satisfies the cocycle identity. Every normalized 2-cochain beta has coboundary zero at (1,1,1), whereas omega is one there. Thus omega is not a normalized coboundary, and normalized 2-cochain rephasing leaves a negative sign at that triple.
+> Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout.
 
 ## Grade
 
@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md`
 
 - file: [dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md](../../../dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md)
-- sha256 (`lf-normalised`): `bc4cf4b2fc61cdfd3b1e35d9943f514e08563a8c2168c65d39acd676935f54b5`
+- sha256 (`lf-normalised`): `0c807dcd6c58902afd7202e7d1105255616a76fe8a5fb2bf13599338fd4a9b66`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1210
 - counts toward the grade: no

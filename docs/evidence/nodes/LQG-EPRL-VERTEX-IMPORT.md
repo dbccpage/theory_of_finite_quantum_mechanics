@@ -4,7 +4,7 @@ Stage: [LOOP_QUANTUM_GRAVITY](../stages/LOOP_QUANTUM_GRAVITY.md). Status: `IMPOR
 
 ## Statement
 
-> For rational gamma and rational k, the imported Euclidean labels are j+ = |1 + gamma| k / 2 and j- = |1 - gamma| k / 2. When 0 \< gamma \< 1 they equal (1 + gamma) k / 2 and (1 - gamma) k / 2, their sum is k, and their difference is gamma k. When gamma \> 1 they equal (1 + gamma) k / 2 and (gamma - 1) k / 2, their difference is k, and their sum is gamma k. At gamma = 1/2 and k = 2 the labels are 3/2 and 1/2, the sum is 2, and the difference is 1, which is not 2. At gamma = 3 and k = 2 the labels are 4 and 2, the difference is 2, and the sum is 6, which is not 2. At gamma = 1 and k = 2 the labels are 2 and 0, and both the sum and the difference equal 2. The imported Lorentzian pair is (n, rho) = (2 k, 2 gamma k), with rho = gamma n = 2 gamma (n / 2). At gamma = 1/2 and k = 2 this pair is (4, 2), the index j = n / 2 equals 2, and gamma j equals 1, so rho = 2 gamma j rather than gamma j. The number of unordered pairs among five indices is 10. A Spin(4) 15j contraction, booster factors, a continuum Lie-group representation, a spin-network boundary space, a sum over spins, a continuum limit, a semiclassical limit, and a cosmological constant stay imported and are not constructed. The finite cyclotomic amplitudes named by TFQ-0198 are not identified with an EPRL-FK vertex.
+> Imported construction, audited against Engle, Livine, Pereira and Rovelli (2008, arXiv:0711.0146, Section III eqs. (18)-(22), (27)-(30) pp. 6-9 and Section IV eqs. (24)-(25) p. 8) and Freidel and Krasnov (2008, arXiv:0708.1595, Section II.C Lemmas 2.1-2.4 pp. 10-12 and Section V eqs. (80)-(91) pp. 24-27): for a four-simplex with ten triangle spins k_ab and five tetrahedral SU(2) intertwiners i_a, the Euclidean EPRL vertex amplitude embeds each SU(2) representation k into Spin(4) = SU(2)_+ x SU(2)_- at j^+- = |1 +- gamma| k / 2 (so k = j^+ + j^- for 0 \< gamma \< 1 and k = j^+ - j^- for gamma \> 1, eqs. (18)-(20)) and contracts the resulting boosters with the Spin(4) 15j symbol (eqs. (29)-(30)), while the Lorentzian vertex embeds k into the SL(2,C) unitary principal series at (n, rho) = (2k, 2 gamma k) in EPRL's integer-n convention (eq. (24) p. 8, often written (j, gamma j) when indexing by half-integer spin j = n/2 = k). It requires continuum Lie-group representations, the boundary Hilbert space of spin networks and sums over spins whose convergence and continuum limit are open research questions. The repository has finite cyclotomic amplitudes (TFQ-0198) that it refuses to identify with a continuum spin foam.
 
 ## Grade
 
@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md`
 
 - file: [dag/derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md](../../../dag/derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md)
-- sha256 (`lf-normalised`): `31869d6d8ab75ce88a5cd90d888816c5f094dbb116741cedab3fb9dfdbf49051`
+- sha256 (`lf-normalised`): `ec35f9d1661d84919f86c6919d8c8d5fbda220ec5090deceacfd74ca1033fdca`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2314
 - counts toward the grade: no

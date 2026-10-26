@@ -4,7 +4,7 @@ Stage: [MAJORANA](../stages/MAJORANA.md). Status: `CONDITIONAL`. Evidence grade:
 
 ## Statement
 
-> For every natural number t, a 1-cochain is a function from Fin t to Bool. The coboundary d0 is the identity on those functions, and d1 sends each of them to the zero function Fin 1 to Bool. For every vertex function a, d1(d0(a)) equals that zero function. Every 1-cochain is a cocycle and is exact. A closed residual is a cocycle that is not exact, so no 1-cochain is a closed residual. In particular this holds for t = 1, t = 2, t = 3 and t = 4.
+> Given the recorded measurement that legacy tetron_carrier.py had dim H1 = 0 at T = 1..4, every closed residual on it was Exact, so its results support no statement about logical sectors and are superseded by the tetron-array family.
 
 ## Grade
 
@@ -113,7 +113,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md`
 
 - file: [dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md](../../../dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md)
-- sha256 (`lf-normalised`): `5fad50e8602759dba47d6ad4e9b68787dde0bac8391d9f7b61301db120c4e679`
+- sha256 (`lf-normalised`): `5d08f9be79faedf715f300204afa36e8012a6ddee7fbb25775d8dd2a96a093bb`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1154
 - counts toward the grade: no

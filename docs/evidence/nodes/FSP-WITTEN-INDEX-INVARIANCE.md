@@ -4,7 +4,7 @@ Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `IMPORTED_ASSUMPTION`.
 
 ## Statement
 
-> For every natural-number energy list P, every integer weight function w with w(0)=1, and all zero-mode multiplicities b and f, the difference of weighted sums over b zeros followed by P and f zeros followed by P equals b-f. It is independent of w.
+> On a finite-dimensional graded Hilbert space with an exact supercharge Q and H = {Q, Q^dagger}, positive-energy levels pair bosons with fermions, so W = Tr\[(-1)^F exp(-beta H)\] = n_B(E=0) - n_F(E=0) for every beta, and unbroken supersymmetry has ground energy 0.
 
 ## Grade
 
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md`
 
 - file: [dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md](../../../dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md)
-- sha256 (`lf-normalised`): `6646669abdb4ad61c5599986765bd28d887c5d8b4632e48af328e1a0f80a99c2`
+- sha256 (`lf-normalised`): `68cd6183c980a084269aea85084073decd3b7f6c3b09a402b7162c43b2542a84`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1206
 - counts toward the grade: no

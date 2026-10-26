@@ -4,7 +4,7 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `OPEN`. Evidence grade: 
 
 ## Statement
 
-> On this closed slice the record admission status is the string open. The direct candidate identifier is AIT-DTM0, its admission status is partial, its syntax-and-encoding status is partial, its execution-semantics status is partial, and its universality status is open. The direct candidate selected flag is false.
+> The recovered candidate record stays globally open: for AIT-DTM0 only syntax, execution semantics, adequacy and replay closure are partial and universality, extensionality, nontriviality and effective reduction are open, and PO-022, PO-023 and AIT-PACKET4 are open; the validator refuses any selection or admission.
 
 ## Grade
 
@@ -90,7 +90,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md`
 
 - file: [dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md](../../../dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md)
-- sha256 (`lf-normalised`): `6e9be85012000298cfdda54958c0d8881a97731d3851897128bb82e12305828f`
+- sha256 (`lf-normalised`): `f9deda59a120e2a25711eb02562378ad37a6a14621903fc4364f62167c7592a8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1362
 - counts toward the grade: no

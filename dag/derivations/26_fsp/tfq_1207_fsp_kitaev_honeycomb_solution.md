@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X.
+Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace).
 
 ### Governing Obligation
 This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed. Original target retained as an obligation: Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace). Prior boundary: A sign-free sampling claim for this representation is not made or checked here; the gauge projection and flux-sector sum must be kept explicit.
 
 ### Witness Audit
-Cited KitaevHoneycombCore.lean::kitaev_honeycomb_exact_majorana_solution does not exist; the module states u*u = 1 for u in {1, -1}, Int commutativity, and routing rfl facts. KitaevHoneycombEvaluator is absent from kitaev_honeycomb_evaluator.py; the bisimulation bridge tests are finite fixtures. Campaign result: On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X. This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.
+Cited KitaevHoneycombCore.lean::kitaev_honeycomb_exact_majorana_solution does not exist; the module states u*u = 1 for u in {1, -1}, Int commutativity, and routing rfl facts. KitaevHoneycombEvaluator is absent from kitaev_honeycomb_evaluator.py; the bisimulation bridge tests are finite fixtures. Campaign result: Kitaev (2006): in the four-Majorana representation of the honeycomb model, the plaquette fluxes W_p commute with H and with each other, and in each flux sector H is quadratic in the c Majoranas with a static Z2 gauge field (after projection to the physical subspace). This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.
 
 ---
 

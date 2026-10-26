@@ -4,7 +4,7 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `OPEN`. Evidence grade: **E3**. 
 
 ## Statement
 
-> Narrowed in Lean 4 to a six-label model. Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll and Impose are the indices 0, 1, 2, 3, 4 and 5, and each index returns its label. A guard that accepts a natural number exactly when it is strictly less than 6 accepts each of those six indices and refuses 6. A guard that accepts exactly when the number is strictly less than 7 accepts 6. The Alpha harness, a seventh sealed constructor, a seal amendment, and a theorem that every lift factors through the six kinds stay open.
+> Driver B, a lift that needs a new sealed Event kind, is retained as OPEN (AE-DRIVER-B-OPEN) and is successor research S3. The Alpha harness has exactly the six sealed Event kinds (Supply, AdmitDatum, AdmitForm, AdmitInst, AdmitRuleAll, Impose), and append_sealed_event refuses a seventh constructor (SeventhEventError), so no lift beyond the six kinds can be admitted through the slice.
 
 ## Grade
 
@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0503_driver_b_seventh_event.md`
 
 - file: [dag/derivations/02_genesis/tfq_0503_driver_b_seventh_event.md](../../../dag/derivations/02_genesis/tfq_0503_driver_b_seventh_event.md)
-- sha256 (`lf-normalised`): `74f1b4e68ac4e8c9e5077d211aa51bbf96175c5648d3cef7364fafb37c815c7e`
+- sha256 (`lf-normalised`): `3521bdbc16c377925a56ad820d09abf73f95c57e04a5d5055dee048bf27b0016`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0503
 - counts toward the grade: no

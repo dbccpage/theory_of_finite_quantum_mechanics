@@ -4,7 +4,7 @@ Stage: [MAJORANA](../stages/MAJORANA.md). Status: `OPEN`. Evidence grade: **E3**
 
 ## Statement
 
-> Narrowed boundary, status left OPEN. For the integer envelope f(T) = 4 + T^3 and the comparison 3 T^2, f(1) = 5 which is greater than 3, f(2) = 12 which equals 12, and f(3) = 31 which is greater than 27. The value 12 is positive, and 0 is strictly below 12, so a positive envelope value does not force a transfer defect to be positive.
+> For four MZMs under a Lindblad braiding model with gap Delta, length L/xi and poisoning rate Gamma_qp \> 0, the trace-norm transfer defect obeys Delta_transfer(T) \<= min(1, C_LZ (hbar/(Delta T))^2 + (Delta/hbar) e^{-L/xi} T + 1 - e^{-Gamma_qp T}) for T \>\> hbar/Delta, and that envelope has a positive minimum.
 
 ## Grade
 
@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md`
 
 - file: [dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md](../../../dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md)
-- sha256 (`lf-normalised`): `2b9116f9a4c03618fc7b165fcc9cacd802f6c43536198eaf61b538af2debd6a8`
+- sha256 (`lf-normalised`): `1e1772868d9a5b576692d328a393f8247df33d0054417b045b09de35d61a2e2e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1177
 - counts toward the grade: no

@@ -10,7 +10,7 @@
 
 ## 1. Abstract & Formal Statement
 
-For every integer pair A and B, A + B equals (A + B) * 1. The sum 3 + 4 equals 7, and 7 differs from 0. The sum of squares 3 * 3 + 4 * 4 equals 25, and 5 * 5 equals 25. The sum of fourth products 3 * 3 * 3 * 3 + 4 * 4 * 4 * 4 equals 337. The product (3 * 3) * (3 * 3 * 3 * 3 + 4 * 4 * 4 * 4) differs from (3 * 3 * 3 * 3) * (5 * 5). The product 3 * (3 * 3 + 4 * 4) differs from (3 * 3) * (3 + 4). For every integer quadruple a, b, r and s, (r * a - s * b) * (r * a - s * b) + (s * a + r * b) * (s * a + r * b) equals (r * r + s * s) * (a * a + b * b). At a = 3, b = 4, r = 3 and s = 4, both sides equal 625.
+Born-quadratic uniqueness (Gleason) is imported; L^p pairings for p != 2 are valid in L1 measure theory. The dedicated 204 slot is empty.
 
 ### Governing Obligation
 Gleason uniqueness, frame-function, effect, continuity and dimension hypotheses, and L^p pairings in measure theory stay imported. The integer sum identity, the rotation identity, and the two splits of the pair (3, 4) are one finite case. Bare normalization does not select a quadratic pairing.

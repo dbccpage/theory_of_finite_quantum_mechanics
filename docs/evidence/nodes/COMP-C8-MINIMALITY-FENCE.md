@@ -4,7 +4,7 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `OPEN`. Evidence grade: 
 
 ## Statement
 
-> Mark A is the number 1, mark B is the number 2, and the blank is the number 0. The word mark A then mark B, followed by one blank cell, equals the list whose entries are 1, then 2, then 0. The blank differs from mark A, and the blank differs from mark B.
+> Two separated marks code the words of any finite alphabet and a blank is a third symbol, but the composite machine M0 is not minimal and no smallest general-purpose machine is claimed; small-machine records are literature only.
 
 ## Grade
 
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md`
 
 - file: [dag/derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md](../../../dag/derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md)
-- sha256 (`lf-normalised`): `a6d0ff20bccfdfffc0080748db3d390ae5f5238a7b2f46e1262429e1e996bbf4`
+- sha256 (`lf-normalised`): `3a47ead888cc8dc984faceb7569a82b192577845f1f054b7341a62dadf1ba6a7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1313
 - counts toward the grade: no

@@ -4,7 +4,7 @@ Stage: [CAUSAL_QFT](../stages/CAUSAL_QFT.md). Status: `IMPORTED_ASSUMPTION`. Evi
 
 ## Statement
 
-> On the four-point strict order with the ordered relations 0\<2, 1\<2 and 1\<3, the scan of all 64 triples holds, no point is related to itself, there are exactly 3 ordered relations, and exactly 3 of the 6 unordered pairs are spacelike: {0,1}, {0,3} and {2,3}. For the integer matrices A=\[\[1,2\],\[3,4\]\], B=\[\[5,6\],\[7,8\]\], X=\[\[0,1\],\[1,0\]\] and Z=\[\[1,0\],\[0,-1\]\], both (A tensor I)(I tensor B) and (I tensor B)(A tensor I) equal A tensor B, whose sixteen entries sum to 260. The products (X tensor I)(Z tensor I) and (Z tensor I)(X tensor I) differ, their (0,2) entries are -1 and 1, and XZ+ZX is the zero matrix. The determinants are det A = -2, det B = -2, det X = -1 and det Z = -1. A net of unital star-algebras indexed by continuum regions, and a Minkowski light cone, stay imported. This record does not import CausalOrder.lean and does not transport these finite counts to a continuum net.
+> Imported structure: a spacetime with a causal order, and a family of unital star-algebras A(O) indexed by regions O with isotony (O1 inside O2 gives A(O1) inside A(O2)) and commutation of A(O1) and A(O2) when O1 and O2 are spacelike separated. The repository has finite strict posets (lean4/CausalOrder.lean) and finite matrix algebras, but no net over regions of a continuum and no Minkowski light cone; DS-QM033-064-074-083-QHELD-CONTINUUM records the light-cone causality as an external L2 lift.
 
 ## Grade
 
@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md`
 
 - file: [dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md](../../../dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md)
-- sha256 (`lf-normalised`): `6386188f7d0c019a214834dcf05f7d45e8be9f5e05d3024e02620f3cdfcf35cd`
+- sha256 (`lf-normalised`): `b8e523ee7931c9d4ef552d69c2129a7ff8eab7313a73fd593e45868a2943f045`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2103
 - counts toward the grade: no

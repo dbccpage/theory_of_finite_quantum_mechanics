@@ -4,7 +4,7 @@ Stage: [GENESIS_TO_HIGHER](../stages/GENESIS_TO_HIGHER.md). Status: `OPEN`. Evid
 
 ## Statement
 
-> Narrowed boundary, status left OPEN. On the triangle with vertices 0, 1 and 2, the edges are (0, 1), (0, 2) and (1, 2). The target of (0, 2) equals the target of (1, 2), the target of (0, 1) equals the source of (1, 2), and the source of (0, 1) equals the source of (0, 2). The reach map sends 0 and 1 to 0, and the pair (0, 0) differs from the edge (0, 1). For two edges labeled 0 and 1, the source map sends both to 0 and the target map sends both to 1, so the two source values agree and the two target values agree.
+> No construction turns PGW-GO-ADMISSION-GATE into a finite semi-simplicial set or a finite globular set. That gate keeps a two-valued admission record with a reached result: reaching leaves not-admitted, and admission is not one of the four kinds of change. A finite semi-simplicial set of dimension at most N is finite sets X_0, ..., X_N and face maps d_i from X_n to X_{n-1} such that d_i composed with d_j equals d_{j-1} composed with d_i whenever i \< j. It carries no degeneracy maps. A finite globular set is finite sets with source and target maps s, t from X_{n+1} to X_n such that s composed with s equals s composed with t, and t composed with t equals t composed with s. Neither family is defined from the admission record.
 
 ## Grade
 
@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/34_genesis_to_higher/tfq_2400_gth_shadow.md`
 
 - file: [dag/derivations/34_genesis_to_higher/tfq_2400_gth_shadow.md](../../../dag/derivations/34_genesis_to_higher/tfq_2400_gth_shadow.md)
-- sha256 (`lf-normalised`): `e287b997595f96acd93c91b01e7e9de5113f6387ce4c73a99f7d38bbe2eaa3b0`
+- sha256 (`lf-normalised`): `c79368ac1ee13fe598f30bd079ef772999a30b7c678f799ab9a06fa58365f13e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2400
 - counts toward the grade: no

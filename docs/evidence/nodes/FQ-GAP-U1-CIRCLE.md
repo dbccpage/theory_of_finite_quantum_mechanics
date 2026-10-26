@@ -4,7 +4,7 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 
 ## Statement
 
-> For every integer a, b and d, the equations 5*(a*a - b*b) = 3*(d*d) and a*a + b*b = d*d hold together only when a = 0, b = 0 and d = 0. For every natural number a and b, 5*a*a = 4*b*b holds only when b = 0. The identity 3*3 + 4*4 = 5*5 holds.
+> The circle group U(1) is not constructed on the finite host; continuity of a one-parameter phase group remains a hypothesis. In Q(i), u=(3+4i)/5 has no square root and n -\> u^n is injective, so no homomorphism (Q,+) -\> U(1)(Q(i)) sends 1 to u.
 
 ## Grade
 
@@ -62,7 +62,7 @@ Projective Cayley compactification P^1(Q) \<-\> S^1(Q), 5-adic half-angle obstru
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: The rational Cayley parametrization satisfies the unit-circle equation on retained points, with exact inverse t=y/(x+1), and a general cleared identity. The square-root equations force a^2=4/5; bounded powers are computed exactly.
   - does not support: Prove 4/5 is not a rational square, full power-map injectivity, and the additive-Q homomorphism obstruction without bounded-search substitution; compact continuous U(1) remains imported.
   - next test: Prove 4/5 is not a rational square, full power-map injectivity, and the additive-Q homomorphism obstruction without bounded-search substitution; compact continuous U(1) remains imported.

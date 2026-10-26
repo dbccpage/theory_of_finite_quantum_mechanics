@@ -4,7 +4,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 ## Statement
 
-> Each sign squares to 1. The pairs (1, 1) and (1, -1) differ, and each of their coordinates is a sign. The integer pair 0, 1 has square norm 1, and the product of that pair with itself is the pair -1, 0, which differs from the pair 1, 0. The map sending 0 to 1, 1 to 2 and 2 to 0 returns 2 at the second step from 0 and returns 0 at the third step from 0.
+> The circle group U(1) as phase group. The leftover (1,1) vs (1,-1) is already seen over {+1,-1}, so it does not select the circle. Under the extra 'not of exponent two' the sign group is excluded; Gaussian units and a three-cycle meet the extra. The circle itself and continuity of a one-parameter phase group stay hypotheses.
 
 ## Grade
 
@@ -37,7 +37,7 @@ Lean-checked finite sign, pair and cycle examples; U(1), continuity and the circ
 
 ## Review
 
-- PFP review: [dag/research/pr_391_current_scope_review.json](../../../dag/research/pr_391_current_scope_review.json); file present and sha256 matches the node's record: yes; verdict `scoped_sign_pair_cycle_result_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/research/pr_391_current_scope_review.json](../../../dag/research/pr_391_current_scope_review.json); file present and sha256 matches the node's record: yes; verdict `scoped_sign_pair_cycle_result_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Each sign squares to 1. The pairs (1, 1) and (1, -1) differ, and each of their coordinates is a sign. The integer pair 0, 1 has square norm 1, and the product of that pair with itself is the pair -1, 0, which differs from the pair 1, 0. The map sending 0 to 1, 1 to 2 and 2 to 0 returns 2 at the second step from 0 and returns 0 at the third step from 0.
   - does not support: The circle group U(1), a continuous one-parameter phase group, and a selector for that circle remain imported. The sign, Gaussian-integer pair and three-cycle examples neither construct U(1) nor rule it out.
   - next test: Keep the circle and continuity imports explicit; any broader construction needs a separate statement-level review.
@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1030_gp_import_circle_u1.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1030_gp_import_circle_u1.md](../../../dag/derivations/08_l1_to_l2/tfq_1030_gp_import_circle_u1.md)
-- sha256 (`lf-normalised`): `2719e60d733bdfaef6a6b561466da5696165f334bc64c8a35972a9f59ea73ecf`
+- sha256 (`lf-normalised`): `29b2b9ca72c8ef56436e6bf76c79c9d848b9109c7a152ce06d604f4cb3ed633e`
 - generated view: listed, not counted
 - cited in: record TFQ-1030
 - counts toward the grade: no

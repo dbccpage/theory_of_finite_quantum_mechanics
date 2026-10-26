@@ -4,7 +4,7 @@ Stage: [FINITE_QM_DYNAMICS](../stages/FINITE_QM_DYNAMICS.md). Status: `CONDITION
 
 ## Statement
 
-> The integers 3, 4 and 5 satisfy 3 * 3 + 4 * 4 = 5 * 5. For all natural numbers a and b, if 5 * a * a = 4 * b * b then a = 0 and b = 0.
+> Continuous time and the Stone theorem are not constructed: strong continuity, one-parameter group and generator selection are priced interfaces; rational entries alone do not imply infinite order. Causal order between events is also admitted externally (GAP-C1000-001, declared_assumption, non-blocking): Q(zeta_n) carriers supply no relation between spacetime events.
 
 ## Grade
 
@@ -43,7 +43,7 @@ Carrier-level specification kernel-checked in dag/results/FQ-GAP-STONE-CONTINUOU
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: All-integer modulo-four aliasing is kernel checked; exact modulo-eight controls distinguish declared half-step tags.
   - does not support: Supply topology, strong continuity, actual exponentials and generator domains before invoking Stone; finite tags do not prove existence.
   - next test: Supply topology, strong continuity, actual exponentials and generator domains before invoking Stone; finite tags do not prove existence.
