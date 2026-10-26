@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "b71f6cd664e83d5a8304033ab7e2180da026ee83abf4713c128a0c99dc3f7c3a"
+  "sha256_lf": "029c72e36372da8a1a7808551729912739da1651edc51e2f091880ed0d3b6674"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -1263,9 +1263,9 @@
    "size": 9170
   },
   "dag/derivation_dag.json": {
-   "sha256": "b71f6cd664e83d5a8304033ab7e2180da026ee83abf4713c128a0c99dc3f7c3a",
+   "sha256": "029c72e36372da8a1a7808551729912739da1651edc51e2f091880ed0d3b6674",
    "sha256_basis": "lf-normalised",
-   "size": 4827831
+   "size": 4831266
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -6882,6 +6882,11 @@
    "sha256_basis": "lf-normalised",
    "size": 3332
   },
+  "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json": {
+   "sha256": "ff2be4819b7ce65f3b7daf5f6d805a34f14bf69073bc26261b18c0631f0b81fb",
+   "sha256_basis": "lf-normalised",
+   "size": 8575
+  },
   "dag/research/campaign_fq-gap-continuum-hilbert-lift_lean_replay.json": {
    "sha256": "22d9ee8f914ff5b16d50b1068cba31fff30f4390675874dba5062514ffdf6ad2",
    "sha256_basis": "lf-normalised",
@@ -8118,9 +8123,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "sha256": "1318bf17908d43a1ca91d5f1458eed27adfcf35226ad03dfe991e383663788c9",
    "sha256_basis": "lf-normalised",
-   "size": 232565
+   "size": 234022
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -8551,6 +8556,11 @@
    "sha256": "1682fea96d404920c81783da2d5f2370df71a1b323468f725e077f45b78a3412",
    "sha256_basis": "bytes",
    "size": 13168
+  },
+  "lean4/CampaignDsQm062U1Residues.lean": {
+   "sha256": "98e2fe43c0863eba70d486731439c6ae7407c7a130390c7d7eb00b0462435179",
+   "sha256_basis": "bytes",
+   "size": 3640
   },
   "lean4/CampaignFqGapContinuumHilbertLift.lean": {
    "sha256": "553d4dbe9de7fe4be1fd0c58d4ac71ff381ec730f55b8339a7811c68bc290894",
@@ -102736,16 +102746,991 @@
    "dependents": 74,
    "facts": {
     "cited_code_files_not_tests": 0,
-    "counted_files": 2,
-    "lean_receipt_backed": 1,
+    "counted_files": 3,
+    "lean_receipt_backed": 29,
     "qualifying_reviews": 1,
     "runnable_tests": 0,
-    "symbols_found": 3
+    "symbols_found": 31
    },
    "flags": [],
    "grade": "E3",
    "id": "DS-QM062-U1-RESIDUES-IMPORT",
    "items": [
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.alias4",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.alias4",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.alias4",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.cu",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.cu",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.cu",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.eye_entries",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.eye_entries",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.eye_entries",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.fourth",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.fourth",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.fourth",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.jay2Ne",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.jay2Ne",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.jay2Ne",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.jay2_entries",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.jay2_entries",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.jay2_entries",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.jay3Ne",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.jay3Ne",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.jay3Ne",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.jay3_entries",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.jay3_entries",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.jay3_entries",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.jayNe",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.jayNe",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.jayNe",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.jay_entries",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.jay_entries",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.jay_entries",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.mod_succ",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.mod_succ",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.mod_succ",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.pow1",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.pow1",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.pow1",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.pow2",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.pow2",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.pow2",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.pow3",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.pow3",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.pow3",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.pow4",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.pow4",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.pow4",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.pow_eye",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.pow_eye",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.pow_eye",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.pow_period",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.pow_period",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.pow_period",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.pow_rep",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.pow_rep",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.pow_rep",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.rem0",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.rem0",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.rem0",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.rem1",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.rem1",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.rem1",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.rem2",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.rem2",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.rem2",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.rem3",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.rem3",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.rem3",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.rem4",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.rem4",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.rem4",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.rep_eye",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.rep_eye",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.rep_eye",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.rep_step",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.rep_step",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.rep_step",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.sq",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.sq",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.sq",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.stepBack",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.stepBack",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.stepBack",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm062U1Residues.stepNeg",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm062U1Residues",
+     "command_note": "then, in a scratch file that imports CampaignDsQm062U1Residues: #print axioms CampaignDsQm062U1Residues.stepNeg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm062U1Residues.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm062U1Residues.stepNeg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
     {
      "canonical_symbol": null,
      "cited_in": [
@@ -103019,7 +104004,7 @@
      "review": "dag/results/DS-QM062-U1-RESIDUES-IMPORT/reviews/20261019_resources_audit/review_result.json",
      "review_file_ok": true,
      "review_sha256": "2b5279854fde33dac7bf0efd76ee6564be6d5d88ed279c57be4c384c3a47b90d",
-     "scope_effect": "consistent",
+     "scope_effect": "statement_narrowed",
      "source": "pfp_review",
      "verdict": "scoped_result_or_obstruction_reviewed"
     }
@@ -316251,6 +317236,31 @@
     "propext"
    ],
    "built_successfully": true,
+   "checked_at": "2026-10-26T07:32:10Z",
+   "dag_node": "DS-QM062-U1-RESIDUES-IMPORT",
+   "decl_count": 28,
+   "exit_code": 0,
+   "id": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json#0:CampaignDsQm062U1Residues",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignDsQm062U1Residues",
+   "path": "lean4/CampaignDsQm062U1Residues.lean",
+   "receipt_file": "dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json",
+   "receipt_file_sha256": "ff2be4819b7ce65f3b7daf5f6d805a34f14bf69073bc26261b18c0631f0b81fb",
+   "recorded_sha256": "98e2fe43c0863eba70d486731439c6ae7407c7a130390c7d7eb00b0462435179",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": true,
    "checked_at": "2026-10-25T21:41:06.515997+00:00",
    "dag_node": "FQ-GAP-CONTINUUM-HILBERT-LIFT",
    "decl_count": 6,
@@ -329946,7 +330956,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "1318bf17908d43a1ca91d5f1458eed27adfcf35226ad03dfe991e383663788c9",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -329972,7 +330982,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "1318bf17908d43a1ca91d5f1458eed27adfcf35226ad03dfe991e383663788c9",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -329998,7 +331008,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "1318bf17908d43a1ca91d5f1458eed27adfcf35226ad03dfe991e383663788c9",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330024,7 +331034,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "1318bf17908d43a1ca91d5f1458eed27adfcf35226ad03dfe991e383663788c9",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330050,7 +331060,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "1318bf17908d43a1ca91d5f1458eed27adfcf35226ad03dfe991e383663788c9",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330076,7 +331086,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "1318bf17908d43a1ca91d5f1458eed27adfcf35226ad03dfe991e383663788c9",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330102,7 +331112,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "1318bf17908d43a1ca91d5f1458eed27adfcf35226ad03dfe991e383663788c9",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330128,7 +331138,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "1318bf17908d43a1ca91d5f1458eed27adfcf35226ad03dfe991e383663788c9",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330154,7 +331164,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "1318bf17908d43a1ca91d5f1458eed27adfcf35226ad03dfe991e383663788c9",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330180,7 +331190,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "1318bf17908d43a1ca91d5f1458eed27adfcf35226ad03dfe991e383663788c9",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330206,7 +331216,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "1318bf17908d43a1ca91d5f1458eed27adfcf35226ad03dfe991e383663788c9",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330232,7 +331242,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "1318bf17908d43a1ca91d5f1458eed27adfcf35226ad03dfe991e383663788c9",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330258,7 +331268,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "1318bf17908d43a1ca91d5f1458eed27adfcf35226ad03dfe991e383663788c9",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330284,7 +331294,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "1318bf17908d43a1ca91d5f1458eed27adfcf35226ad03dfe991e383663788c9",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330310,7 +331320,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "1318bf17908d43a1ca91d5f1458eed27adfcf35226ad03dfe991e383663788c9",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330934,16 +331944,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 37,
   "e3_nodes_with_test_but_no_review": 39,
   "lean_declarations_in_repo": {
-   "distinct": 2121,
+   "distinct": 2149,
    "no_receipt": 38,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 2060,
-   "replay_verified_and_declaration_itemised": 1993,
+   "replay_verified": 2088,
+   "replay_verified_and_declaration_itemised": 2021,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 2440
+   "present": 2468
   },
   "mismatch_nodes": 190,
   "mismatches_by_kind": {
@@ -330964,7 +331974,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 620,
+  "receipts_indexed": 621,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
