@@ -1486,3 +1486,6 @@ lean_lib CampaignTfq0183FourModeDisk where
 lean_lib «CampaignFiniteGroupPachner» where
   srcDir := "."
   roots := #[`CampaignFiniteGroupPachner]
+
+lean_lib CampaignL1OrthogonalAdditivity where
+  roots := #[`CampaignL1OrthogonalAdditivity]

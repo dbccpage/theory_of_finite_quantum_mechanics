@@ -1,0 +1,63 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-26T18:17:45Z",
+  "source_base": "4ead062a413c848c68bab12ac20879c077320f9d",
+  "result": "Narrowed to one 2 by 2 integer Gram matrix with entries 1, 1, -1 and 1. The off-diagonal pair sums to 0, neither off-diagonal entry is 0, and the quadratic form of every integer pair (a, b) equals a*a + b*b, matching the sum of the two axis forms. The lake build of CampaignL1OrthogonalAdditivity exited 0 in 26.154 seconds, with the module job at 2.0s. pairSum and entriesNotZero have empty axiom lists. readout and axisSum depend only on propext. The node stays CONDITIONAL.",
+  "proof_boundary": "This receipt records that lean4/CampaignL1OrthogonalAdditivity.lean type-checks and which axioms its print-axioms lines report. The recorded matrix is the 2 by 2 integer witness. Arbitrary orthogonal frames, projection measures, and Gleason-type uniqueness stay outside this module. The node stays CONDITIONAL.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "lakefile_sha256": "199af8fc890456b949fc8a00b25d27e702d4b491cb19377f2f983ecd4050ed44",
+    "library": "CampaignL1OrthogonalAdditivity (lean_lib in lean4/lakefile.lean; not a default target)",
+    "build_directory": "lean4/b (lakefile buildDir)",
+    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run). The module imports no package.",
+    "command": "cd lean4 && lake build CampaignL1OrthogonalAdditivity",
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "results": [
+      {
+        "module": "CampaignL1OrthogonalAdditivity",
+        "dag_node": "L1-IMP-ORTHOGONAL-ADDITIVITY",
+        "source": "lean4/CampaignL1OrthogonalAdditivity.lean",
+        "sha256": "4cd851daef44f1583b0de85c2cf7729cb4c959c52568265be656c6ec62dd0421",
+        "sha256_after_build": "4cd851daef44f1583b0de85c2cf7729cb4c959c52568265be656c6ec62dd0421",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 26.154,
+        "module_job_ms": 2000,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignL1OrthogonalAdditivity.pairSum",
+          "CampaignL1OrthogonalAdditivity.entriesNotZero",
+          "CampaignL1OrthogonalAdditivity.readout",
+          "CampaignL1OrthogonalAdditivity.axisSum"
+        ],
+        "axioms": {
+          "CampaignL1OrthogonalAdditivity.pairSum": [],
+          "CampaignL1OrthogonalAdditivity.entriesNotZero": [],
+          "CampaignL1OrthogonalAdditivity.readout": ["propext"],
+          "CampaignL1OrthogonalAdditivity.axisSum": ["propext"]
+        },
+        "output": "'CampaignL1OrthogonalAdditivity.pairSum' does not depend on any axioms\n'CampaignL1OrthogonalAdditivity.entriesNotZero' does not depend on any axioms\n'CampaignL1OrthogonalAdditivity.readout' depends on axioms: [propext]\n'CampaignL1OrthogonalAdditivity.axisSum' depends on axioms: [propext]\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/l1-imp-orthogonal-additivity.py"
+    ],
+    "exit_code": 0,
+    "output": "matrix=[[1,1],[-1,1]] pair_sum=0 entries_nonzero=true census_a=-8..8 census_b=-8..8 failures=0\nL1-IMP-ORTHOGONAL-ADDITIVITY INDEPENDENT CHECKER PASSED: checks=869 failed=0\n"
+  }
+}
