@@ -1460,3 +1460,6 @@ lean_lib CampaignMajImportKitaevChain where
 
 lean_lib CampaignFspThetaTermComplexWeight where
   roots := #[`CampaignFspThetaTermComplexWeight]
+
+lean_lib CampaignMub6WeylHeisenbergD6 where
+  roots := #[`CampaignMub6WeylHeisenbergD6]
