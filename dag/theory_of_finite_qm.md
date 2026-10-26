@@ -11422,9 +11422,9 @@ Obligation: The location counts are declared; nothing here says how many repair 
 - DAG node: `QCV-IMPORT-THRESHOLD-THEOREM`
 - Paper: [derivation](derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md)
 
-The fault-tolerance threshold theorems (Shor 1996; Aharonov and Ben-Or 1997; Kitaev 1997; Knill, Laflamme and Zurek 1998; Aliferis, Gottesman and Preskill 2006) are cited under each theorem's own noise, locality and overhead hypotheses; they are not re-proved.
+The integer map t sends each integer n to 2*n*n. It sends 0 to 0, 1 to 2, 2 to 8 and 8 to 128, and three applications of t starting at 1 yield 128. The scale products 2*0 and 2*1 equal 0 and 2.
 
-Obligation: Exact constants and noise hypotheses of each theorem are not reproduced; the finite recurrence in QCV-Q2 is the only part checked.
+Obligation: The fault-tolerance threshold theorems of Shor, Aharonov and Ben-Or, Kitaev, Knill, Laflamme and Zurek, and Aliferis, Gottesman and Preskill stay cited under each theorem's own noise, locality and overhead hypotheses. This integer orbit does not state those theorems, supplies no noise model, and identifies no code constant. The rational concatenation recurrence and its dichotomy stay on the concatenation-threshold record.
 
 ### TFQ-1319 Concatenation recurrence p(k+1) = c*p(k)^2: exact closed form and threshold dichotomy over the rationals
 

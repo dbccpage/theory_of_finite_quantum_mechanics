@@ -1466,3 +1466,6 @@ lean_lib CampaignMub6WeylHeisenbergD6 where
 
 lean_lib CampaignMub6FiniteCornerReduction where
   roots := #[`CampaignMub6FiniteCornerReduction]
+
+lean_lib CampaignQcvImportThresholdTheorem where
+  roots := #[`CampaignQcvImportThresholdTheorem]
