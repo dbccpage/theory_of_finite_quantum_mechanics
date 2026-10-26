@@ -917,6 +917,12 @@ lean_lib CampaignL1SectorSymmetry where
 lean_lib FableGleasonRun2 where
   roots := #[`BornGaussianRationalFrameObstruction, `BornGaussianFrameRays]
 
+-- Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON (frame functions on all rational rays of Q^3 and the
+-- residue-mod-2 class ansatz on Q(i)^3). Not a default target:
+-- build with `lake build CampaignFqGapBornGleasonRays`.
+lean_lib CampaignFqGapBornGleasonRays where
+  roots := #[`BornRationalRayObstruction, `BornGaussianMod2ClassRigidity]
+
 -- Derivation Campaign: PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT
 lean_lib CampaignPgwPresentationLift where
   roots := #[`CampaignPgwPresentationLift]
