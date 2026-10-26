@@ -1448,3 +1448,6 @@ lean_lib CampaignDsQm043DecoherenceFunctional where
 
 lean_lib CampaignDsQm062U1Residues where
   roots := #[`CampaignDsQm062U1Residues]
+
+lean_lib CampaignDsCptpCompletePositivity where
+  roots := #[`CampaignDsCptpCompletePositivity]
