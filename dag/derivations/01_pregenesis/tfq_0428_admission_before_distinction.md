@@ -39,7 +39,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust two-flag admission model; Genesis admission events are step in 000_genesis_19l57g1/code/rust/src/admission.rs`
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py::single_admission_report`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py)
+- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py::single_admission_report` (private upstream source, not in this repository)
 
 ---
 

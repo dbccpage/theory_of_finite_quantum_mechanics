@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md`
 
 - file: [dag/derivations/06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md](../../../dag/derivations/06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md)
-- sha256 (`lf-normalised`): `de528eb117f82196581677615c3e97e52bf84a0c2553c9f3c4d5661de228359f`
+- sha256 (`lf-normalised`): `b262d6cfce94adde436be3f8110f127f74bee18e2dc967911866f8c4173168f1`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0549
 - counts toward the grade: no
@@ -61,9 +61,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/simplicial.py::gauss_law_solvable`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/simplicial.py::rp2_torsion_witness`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/simplicial.py::verify_nilpotence`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/simplicial.py::gauss_law_solvable`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/simplicial.py::rp2_torsion_witness`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/simplicial.py::verify_nilpotence`
 
 ## Absences recorded by the TFQ records
 

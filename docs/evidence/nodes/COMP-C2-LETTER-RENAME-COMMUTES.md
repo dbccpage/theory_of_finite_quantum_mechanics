@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1287_comp_c2_letter_rename_commutes.md`
 
 - file: [dag/derivations/29_computation/tfq_1287_comp_c2_letter_rename_commutes.md](../../../dag/derivations/29_computation/tfq_1287_comp_c2_letter_rename_commutes.md)
-- sha256 (`lf-normalised`): `4d7972f430d77e5435956fec6f92c23f3eac76d05ed6f8b3bfb83f49b8ab48ab`
+- sha256 (`lf-normalised`): `67665836ac1633749a5e086bb1df31b85b5a2bf538572e38289c5e831e2e9255`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1287
 - counts toward the grade: no

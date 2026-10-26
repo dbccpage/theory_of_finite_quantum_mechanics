@@ -107,7 +107,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0485_go_h3_twin_fills_holonomy.md`
 
 - file: [dag/derivations/02_genesis/tfq_0485_go_h3_twin_fills_holonomy.md](../../../dag/derivations/02_genesis/tfq_0485_go_h3_twin_fills_holonomy.md)
-- sha256 (`lf-normalised`): `257e7c2a7170646a8c9b63ec18f36ddb3ddfb4cbeb3dcb03406f2d59d7a21def`
+- sha256 (`lf-normalised`): `fbaefe33f36d5bd3b31ad8c933b0ad6b0563d223ef6b12c893c67e554095a7db`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0485
 - counts toward the grade: no
@@ -137,9 +137,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfifth/told.py::decides`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfifth/told.py::rank`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfourth/state.py::balances`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfifth/told.py::decides`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfifth/told.py::rank`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfourth/state.py::balances`
 
 ## Absences recorded by the TFQ records
 

@@ -105,7 +105,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md`
 
 - file: [dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md](../../../dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md)
-- sha256 (`lf-normalised`): `eb15b4d71b12c6c9d05c7da6d73b97207d9b483eccf968a6030a53ce4e1e4905`
+- sha256 (`lf-normalised`): `65434c07e7d5bf338c12ee6f0fabead0c1f1e72f296b0b63be0e76edd6589848`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0544
 - counts toward the grade: no
@@ -121,9 +121,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs::FenchelDualityReceipt`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py::finite_quotient_l1`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::exact_quotient_l1`
+- `external:upstream/omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs::FenchelDualityReceipt`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py::finite_quotient_l1`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::exact_quotient_l1`
 
 ## Routes
 

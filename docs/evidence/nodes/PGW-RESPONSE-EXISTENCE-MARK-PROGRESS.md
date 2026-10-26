@@ -61,7 +61,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0445_response_existence_mark_progress.md`
 
 - file: [dag/derivations/02_genesis/tfq_0445_response_existence_mark_progress.md](../../../dag/derivations/02_genesis/tfq_0445_response_existence_mark_progress.md)
-- sha256 (`lf-normalised`): `3c3591f8d075565e39d784bdda8f7127c20f8e4b5548804018a8476fc5778343`
+- sha256 (`lf-normalised`): `c71680fc99c4e78c0d8feecc720716bdf5bee2ece47022713663ed0b11b9e10e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0445
 - counts toward the grade: no
@@ -84,7 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py::python_replay`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py::python_replay`
 
 ## Absences recorded by the TFQ records
 
