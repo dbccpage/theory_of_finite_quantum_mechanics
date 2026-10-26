@@ -1442,3 +1442,6 @@ lean_lib CampaignGpImportContinuumHilbert where
 
 lean_lib CampaignDsContinuousTimeExpGenerator where
   roots := #[`CampaignDsContinuousTimeExpGenerator]
+
+lean_lib CampaignDsQm043DecoherenceFunctional where
+  roots := #[`CampaignDsQm043DecoherenceFunctional]

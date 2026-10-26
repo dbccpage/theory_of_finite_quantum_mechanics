@@ -127,8 +127,10 @@
     {
       "node_id": "DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT",
       "review": "dag/results/DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT/reviews/20261019_dynamics_audit/review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Imported-assumption statement stands; the review adds Gram-table positivity and completeness separation controls."
+      "scope_effect": "statement_narrowed",
+      "reason": "An integer Gram value is a square, so it is at least 0, and the table with entries a*a, a*b, b*b has determinant 0. The pair 1, 1 separates a cleared sum 1 from a cleared square-sum 1, and the pair 3, 4 separates them in the other direction. The trace formula stays imported.",
+      "statement": "For each integer n, the product n * n is at least 0, and (-n) * (-n) equals n * n. For each integer quadruple a, b, x and y, the product (a * x + b * y) * (a * x + b * y) is at least 0. For each integer a, the product a * a is at least 0. For each integer pair a and b, (a * b) * (a * b) equals a * a * (b * b), the difference of those two products is 0, and a * a + b * b is at least 0. The pair 1, 1 has sum equal to 2 * 1 and square-sum 2. The product 2 * 2 equals 4, and 2 differs from 4. The square of the sum 1 + 1 equals 4, and 4 equals 4 * 1. At the integers 1, 1, 1 and 1, the square (1 * 1 + 1 * 1) * (1 * 1 + 1 * 1) equals 4, and 1 * 1 * 1 * 1 + 2 * 1 * 1 * 1 * 1 + 1 * 1 * 1 * 1 equals 4. The pair 3, 4 has square-sum 25, and 5 * 5 equals 25, so the square-sum equals 5 * 5. The sum 3 + 4 equals 7, the product 7 * 7 equals 49, and 49 differs from 25.",
+      "bottleneck": "The formula D_jk = Tr(C_j rho C_k^dagger), a density operator, class operators, and a bridge from finite transport stay imported. Positive semidefiniteness and trace one for a general history model stay imported. The integer Gram square, the determinant identity, and the cleared witnesses (1, 1) over 2 and (3, 4) over 5 are one finite case."
     },
     {
       "node_id": "DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY",

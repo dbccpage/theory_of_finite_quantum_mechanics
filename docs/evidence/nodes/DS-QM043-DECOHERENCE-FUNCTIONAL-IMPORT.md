@@ -4,15 +4,15 @@ Stage: [FINITE_QM_DYNAMICS](../stages/FINITE_QM_DYNAMICS.md). Status: `IMPORTED_
 
 ## Statement
 
-> D_jk = Tr(C_j rho C_k^dagger) is imported with no representation bridge to the programme; positive semidefiniteness (rho\>=0) and trace-one (completeness) are standard consequences under imported premises.
+> For each integer n, the product n * n is at least 0, and (-n) * (-n) equals n * n. For each integer quadruple a, b, x and y, the product (a * x + b * y) * (a * x + b * y) is at least 0. For each integer a, the product a * a is at least 0. For each integer pair a and b, (a * b) * (a * b) equals a * a * (b * b), the difference of those two products is 0, and a * a + b * b is at least 0. The pair 1, 1 has sum equal to 2 * 1 and square-sum 2. The product 2 * 2 equals 4, and 2 differs from 4. The square of the sum 1 + 1 equals 4, and 4 equals 4 * 1. At the integers 1, 1, 1 and 1, the square (1 * 1 + 1 * 1) * (1 * 1 + 1 * 1) equals 4, and 1 * 1 * 1 * 1 + 2 * 1 * 1 * 1 * 1 + 1 * 1 * 1 * 1 equals 4. The pair 3, 4 has square-sum 25, and 5 * 5 equals 25, so the square-sum equals 5 * 5. The sum 3 + 4 equals 7, the product 7 * 7 equals 49, and 49 differs from 25.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
-- distinct cited Lean declarations covered by a current replay receipt: 2
+- counted in-repo evidence files: 2
+- cited Lean, Rust or Python symbols found in their in-repo files: 22
+- distinct cited Lean declarations covered by a current replay receipt: 22
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -30,7 +30,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-No bridge from finite transport to the functional.
+The formula D_jk = Tr(C_j rho C_k^dagger), a density operator, class operators, and a bridge from finite transport stay imported. Positive semidefiniteness and trace one for a general history model stay imported. The integer Gram square, the determinant identity, and the cleared witnesses (1, 1) over 2 and (3, 4) over 5 are one finite case.
 
 ## Source status
 
@@ -38,7 +38,7 @@ No bridge from finite transport to the functional.
 
 ## Review
 
-- PFP review: [dag/results/DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Actual class-operator Gram tables are positive semidefinite, and exact controls separate class completeness, Kraus completeness, diagonal trace and global weight.
   - does not support: Justify the class-operator family, density and physical history normalization, and formalize the native Gram-table bridge. No general decoherence functional is derived.
   - next test: Justify the class-operator family, density and physical history normalization, and formalize the native Gram-table bridge. No general decoherence functional is derived.
@@ -46,6 +46,40 @@ No bridge from finite transport to the functional.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignDsQm043DecoherenceFunctional.lean`
+
+- file: [lean4/CampaignDsQm043DecoherenceFunctional.lean](../../../lean4/CampaignDsQm043DecoherenceFunctional.lean)
+- sha256 (`bytes`): `77246f908d3a9d244469f1b66b37372e97ca22707aee46f851507e27bee2e373`
+- cited in: node.lean, receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)
+- replay: `verified`
+  - receipt [dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json](../../../dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json) (module `CampaignDsQm043DecoherenceFunctional`): recorded sha256 `77246f908d3a9d244469f1b66b37372e97ca22707aee46f851507e27bee2e373` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignDsQm043DecoherenceFunctional`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignDsQm043DecoherenceFunctional.classSeparates` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.classSeparates` |
+| `CampaignDsQm043DecoherenceFunctional.classSum` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.classSum` |
+| `CampaignDsQm043DecoherenceFunctional.diagNonneg` | yes | yes | yes | propext | `#print axioms CampaignDsQm043DecoherenceFunctional.diagNonneg` |
+| `CampaignDsQm043DecoherenceFunctional.fiveSquare` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.fiveSquare` |
+| `CampaignDsQm043DecoherenceFunctional.gramAtOnes` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.gramAtOnes` |
+| `CampaignDsQm043DecoherenceFunctional.gramDet` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsQm043DecoherenceFunctional.gramDet` |
+| `CampaignDsQm043DecoherenceFunctional.gramProd` | yes | yes | yes | propext | `#print axioms CampaignDsQm043DecoherenceFunctional.gramProd` |
+| `CampaignDsQm043DecoherenceFunctional.gramValueNonneg` | yes | yes | yes | propext | `#print axioms CampaignDsQm043DecoherenceFunctional.gramValueNonneg` |
+| `CampaignDsQm043DecoherenceFunctional.halfClass` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.halfClass` |
+| `CampaignDsQm043DecoherenceFunctional.halfDenom` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.halfDenom` |
+| `CampaignDsQm043DecoherenceFunctional.halfGlobal` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.halfGlobal` |
+| `CampaignDsQm043DecoherenceFunctional.halfGlobalOne` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.halfGlobalOne` |
+| `CampaignDsQm043DecoherenceFunctional.halfSeparates` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.halfSeparates` |
+| `CampaignDsQm043DecoherenceFunctional.halfSquares` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.halfSquares` |
+| `CampaignDsQm043DecoherenceFunctional.krausHolds` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.krausHolds` |
+| `CampaignDsQm043DecoherenceFunctional.krausSquares` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.krausSquares` |
+| `CampaignDsQm043DecoherenceFunctional.negMulNeg` | yes | yes | yes | propext | `#print axioms CampaignDsQm043DecoherenceFunctional.negMulNeg` |
+| `CampaignDsQm043DecoherenceFunctional.sevenSquare` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.sevenSquare` |
+| `CampaignDsQm043DecoherenceFunctional.squareNonneg` | yes | yes | yes | propext | `#print axioms CampaignDsQm043DecoherenceFunctional.squareNonneg` |
+| `CampaignDsQm043DecoherenceFunctional.traceSquaresNonneg` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsQm043DecoherenceFunctional.traceSquaresNonneg` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
