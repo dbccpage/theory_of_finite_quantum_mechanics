@@ -1,21 +1,13 @@
 #!/usr/bin/env python3
-"""Independent exact-rational and GF(2) verification for TFQ-0183.
+"""Separate exact-rational and GF(2) synthetic fixtures for TFQ-0183.
 
-Verifies:
-1. build_tetron_array (code/rust/src/majorana/tetron.rs):
-   exact GF(2) chain-complex construction C_2 -> C_1 -> C_0 across Disk, Cylinder,
-   and Torus topologies for R, C in 2..4, verifying d1 . d0 == 0 (mod 2),
-   rank_GF2(d0) = |C_0| - 1, rank_GF2(d1), Euler characteristic chi, and
-   dim H_1(GF(2)) == expected_dim_h1 (0, 1, 2) as well as closed logical
-   representatives along Row and Column axes.
-2. LocalMajoranaNoise (code/rust/src/majorana/pauli_noise.rs) and
-   DeterministicRationalNoiseGenerator (code/python/src/majorana/majorana_noise_sweep.py):
-   exact skew-symmetry K^T = -K, zero diagonal, zero trace, and quadratic form
-   v^T K v = 0 over Q^{2n x 2n}.
-3. noise_mc_planar_grid (code/rust/src/majorana/noise_mc.rs):
-   deterministic LCG Bernoulli edge sampling and 3-way GF2ScheduleStatus partition
-   conservation (Exact + ClosedResidual + OpenObstruction == trials) with
-   authority_effect == "None".
+Recomputes finite grid chain complexes, selected rational skew-matrix identities,
+LCG range conditions and supplied status-count normalization. It does not import,
+execute or compare the Rust/Python production implementations named by the
+research target. The LCG check does not establish Bernoulli sampling, and supplied
+count conservation does not establish an actual GF2ScheduleStatus partition.
+Only the explicitly narrowed finite examples are supported; no native runtime,
+sampler outcome or physical Majorana claim follows.
 """
 
 from __future__ import annotations

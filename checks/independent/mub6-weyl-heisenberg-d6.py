@@ -1,4 +1,8 @@
-"""Integer-pair clock and shift at dimension 6, checked again by polynomial remainder."""
+"""Integer-pair clock and shift at dimension 6, with polynomial scalar sanity checks.
+
+The matrix equality checks share the integer-pair computation; applying the
+polynomial map to equal results is not an independent polynomial-matrix oracle.
+"""
 
 from __future__ import annotations
 

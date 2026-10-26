@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/mub6-weyl-heisenberg-d6.py`
 
 - file: [checks/independent/mub6-weyl-heisenberg-d6.py](../../../checks/independent/mub6-weyl-heisenberg-d6.py)
-- sha256 (`bytes`): `16fb3ceb86f4aae2f90754bdfa0b1802d23e209474e9656685e12e1d79423c51`
+- sha256 (`bytes`): `be2f11c024631e0f2d30c198d0e72fb0386e339ad74dc4cf99ce8eac7d372b3f`
 - cited in: record TFQ-1223
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

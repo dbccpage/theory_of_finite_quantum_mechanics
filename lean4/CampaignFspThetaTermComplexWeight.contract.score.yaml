@@ -1,0 +1,194 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/CampaignFspThetaTermComplexWeight.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/CampaignFspThetaTermComplexWeight.lean",
+      "sha256": "7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e"
+    },
+    "boundaries": [
+      "The record is this four-index Gaussian-integer table. It does not introduce an exponential, a real angle, a plaquette sum, or a Monte Carlo sampler. The source sentence that an added term i theta Q_top multiplies a Boltzmann weight by a complex phase, and that a positive-weight sampler fails for a nonzero angle outside a discrete set, stays an imported reading. AuthorityEffect is None.",
+      "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+    ],
+    "contract_urn": "urn:tfqm:review:20261026:CampaignFspThetaTermComplexWeight",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_fsp-theta-term-complex-weight_lean_replay.json",
+        "sha256": "cf77597f6b4f6336fe25d2f53b904d8d1f72fda45e3ed560ee1f3ec54cdad1fb"
+      },
+      {
+        "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+        "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+      }
+    ],
+    "owned_invariants": [
+      "For angle indices 0, 1, 2 and 3, one quarter turn of the Gaussian integer (1, 0) by the pair (0, -1) yields (1, 0), (0, -1), (-1, 0) and (0, 1), and the fourth turn returns to (1, 0). That turn is multiplication by (0, -1), and (1, 0) times (0, -1) is (0, -1). Charge 0 keeps the weight (1, 0) at each of those four indices. Charge 1 uses the quarter-turn value. The second coordinate at charge 1 is 0, -1, 0 and 1, hence nonzero at indices 1 and 3. At index 2 with charge 1 the first coordinate is -1, so that pair is not positive in the first coordinate. Among the four charge-1 pairs, only index 0 has a positive first coordinate and second coordinate 0."
+    ],
+    "purpose": "For angle indices 0, 1, 2 and 3, one quarter turn of the Gaussian integer (1, 0) by the pair (0, -1) yields (1, 0), (0, -1), (-1, 0) and (0, 1), and the fourth turn returns to (1, 0). That turn is multiplication by (0, -1), and (1, 0) times (0, -1) is (0, -1). Charge 0 keeps the weight (1, 0) at each of those four indices. Charge 1 uses the quarter-turn value. The second coordinate at charge 1 is 0, -1, 0 and 1, hence nonzero at indices 1 and 3. At index 2 with charge 1 the first coordinate is -1, so that pair is not positive in the first coordinate. Among the four charge-1 pairs, only index 0 has a positive first coordinate and second coordinate 0.",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "mulNegI",
+      "gMul",
+      "quarter",
+      "weight",
+      "quarter0",
+      "quarter1",
+      "quarter2",
+      "quarter3",
+      "quarter4",
+      "mulNegI_eq_gMul",
+      "phaseProduct",
+      "weight00",
+      "weight10",
+      "weight20",
+      "weight30",
+      "weight01",
+      "weight11",
+      "weight21",
+      "weight31",
+      "im01",
+      "im11",
+      "im21",
+      "im31",
+      "im11_ne",
+      "im31_ne",
+      "re21",
+      "notPositive21",
+      "positive01",
+      "charge1PositiveOnlyAtZero"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 3101,
+      "original_paths": [
+        "lean4/CampaignFspThetaTermComplexWeight.contract.score.yaml#qm-open-pr-review-20261026-7077123bd408"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspThetaTermComplexWeight.lean\",\n    \"sha256\": \"7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e\"\n  },\n  \"boundaries\": [\n    \"The record is this four-index Gaussian-integer table. It does not introduce an exponential, a real angle, a plaquette sum, or a Monte Carlo sampler. The source sentence that an added term i theta Q_top multiplies a Boltzmann weight by a complex phase, and that a positive-weight sampler fails for a nonzero angle outside a discrete set, stays an imported reading. AuthorityEffect is None.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review:20261026:CampaignFspThetaTermComplexWeight\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-theta-term-complex-weight_lean_replay.json\",\n      \"sha256\": \"cf77597f6b4f6336fe25d2f53b904d8d1f72fda45e3ed560ee1f3ec54cdad1fb\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_upper_campaign_review_20261026.md\",\n      \"sha256\": \"0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"For angle indices 0, 1, 2 and 3, one quarter turn of the Gaussian integer (1, 0) by the pair (0, -1) yields (1, 0), (0, -1), (-1, 0) and (0, 1), and the fourth turn returns to (1, 0). That turn is multiplication by (0, -1), and (1, 0) times (0, -1) is (0, -1). Charge 0 keeps the weight (1, 0) at each of those four indices. Charge 1 uses the quarter-turn value. The second coordinate at charge 1 is 0, -1, 0 and 1, hence nonzero at indices 1 and 3. At index 2 with charge 1 the first coordinate is -1, so that pair is not positive in the first coordinate. Among the four charge-1 pairs, only index 0 has a positive first coordinate and second coordinate 0.\"\n  ],\n  \"purpose\": \"For angle indices 0, 1, 2 and 3, one quarter turn of the Gaussian integer (1, 0) by the pair (0, -1) yields (1, 0), (0, -1), (-1, 0) and (0, 1), and the fourth turn returns to (1, 0). That turn is multiplication by (0, -1), and (1, 0) times (0, -1) is (0, -1). Charge 0 keeps the weight (1, 0) at each of those four indices. Charge 1 uses the quarter-turn value. The second coordinate at charge 1 is 0, -1, 0 and 1, hence nonzero at indices 1 and 3. At index 2 with charge 1 the first coordinate is -1, so that pair is not positive in the first coordinate. Among the four charge-1 pairs, only index 0 has a positive first coordinate and second coordinate 0.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"mulNegI\",\n    \"gMul\",\n    \"quarter\",\n    \"weight\",\n    \"quarter0\",\n    \"quarter1\",\n    \"quarter2\",\n    \"quarter3\",\n    \"quarter4\",\n    \"mulNegI_eq_gMul\",\n    \"phaseProduct\",\n    \"weight00\",\n    \"weight10\",\n    \"weight20\",\n    \"weight30\",\n    \"weight01\",\n    \"weight11\",\n    \"weight21\",\n    \"weight31\",\n    \"im01\",\n    \"im11\",\n    \"im21\",\n    \"im31\",\n    \"im11_ne\",\n    \"im31_ne\",\n    \"re21\",\n    \"notPositive21\",\n    \"positive01\",\n    \"charge1PositiveOnlyAtZero\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignFspThetaTermComplexWeight.lean",
+          "sha256": "7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e"
+        },
+        "boundaries": [
+          "The record is this four-index Gaussian-integer table. It does not introduce an exponential, a real angle, a plaquette sum, or a Monte Carlo sampler. The source sentence that an added term i theta Q_top multiplies a Boltzmann weight by a complex phase, and that a positive-weight sampler fails for a nonzero angle outside a discrete set, stays an imported reading. AuthorityEffect is None.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "contract_urn": "urn:tfqm:review:20261026:CampaignFspThetaTermComplexWeight",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-theta-term-complex-weight_lean_replay.json",
+            "sha256": "cf77597f6b4f6336fe25d2f53b904d8d1f72fda45e3ed560ee1f3ec54cdad1fb"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+            "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+          }
+        ],
+        "owned_invariants": [
+          "For angle indices 0, 1, 2 and 3, one quarter turn of the Gaussian integer (1, 0) by the pair (0, -1) yields (1, 0), (0, -1), (-1, 0) and (0, 1), and the fourth turn returns to (1, 0). That turn is multiplication by (0, -1), and (1, 0) times (0, -1) is (0, -1). Charge 0 keeps the weight (1, 0) at each of those four indices. Charge 1 uses the quarter-turn value. The second coordinate at charge 1 is 0, -1, 0 and 1, hence nonzero at indices 1 and 3. At index 2 with charge 1 the first coordinate is -1, so that pair is not positive in the first coordinate. Among the four charge-1 pairs, only index 0 has a positive first coordinate and second coordinate 0."
+        ],
+        "purpose": "For angle indices 0, 1, 2 and 3, one quarter turn of the Gaussian integer (1, 0) by the pair (0, -1) yields (1, 0), (0, -1), (-1, 0) and (0, 1), and the fourth turn returns to (1, 0). That turn is multiplication by (0, -1), and (1, 0) times (0, -1) is (0, -1). Charge 0 keeps the weight (1, 0) at each of those four indices. Charge 1 uses the quarter-turn value. The second coordinate at charge 1 is 0, -1, 0 and 1, hence nonzero at indices 1 and 3. At index 2 with charge 1 the first coordinate is -1, so that pair is not positive in the first coordinate. Among the four charge-1 pairs, only index 0 has a positive first coordinate and second coordinate 0.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "mulNegI",
+          "gMul",
+          "quarter",
+          "weight",
+          "quarter0",
+          "quarter1",
+          "quarter2",
+          "quarter3",
+          "quarter4",
+          "mulNegI_eq_gMul",
+          "phaseProduct",
+          "weight00",
+          "weight10",
+          "weight20",
+          "weight30",
+          "weight01",
+          "weight11",
+          "weight21",
+          "weight31",
+          "im01",
+          "im11",
+          "im21",
+          "im31",
+          "im11_ne",
+          "im31_ne",
+          "re21",
+          "notPositive21",
+          "positive01",
+          "charge1PositiveOnlyAtZero"
+        ]
+      },
+      "sha256": "aa95baeb177fe1b5e4ab1d76249a424bfee0d2476c4ae6fc4b42d1d73efd8d8c"
+    }
+  ],
+  "current_contract": "aa95baeb177fe1b5e4ab1d76249a424bfee0d2476c4ae6fc4b42d1d73efd8d8c",
+  "current_scoring": "c48b5e790653f88eb51c3964bd96f41cc604f197b5390420ad4c137319546f41",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2584,
+      "original_paths": [
+        "lean4/CampaignFspThetaTermComplexWeight.contract.score.yaml#qm-open-pr-review-20261026-7077123bd408"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFspThetaTermComplexWeight.lean\",\n    \"sha256\": \"7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e\"\n  },\n  \"assessment_id\": \"qm-open-pr-review-20261026-7077123bd408\",\n  \"basis\": {\n    \"G1\": \"Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.\",\n    \"G2\": \"Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.\",\n    \"G3\": \"Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.\",\n    \"G4\": \"Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.\",\n    \"G5\": \"Inspected 89 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T15:48:22.636056+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-theta-term-complex-weight_lean_replay.json\",\n      \"sha256\": \"cf77597f6b4f6336fe25d2f53b904d8d1f72fda45e3ed560ee1f3ec54cdad1fb\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_upper_campaign_review_20261026.md\",\n      \"sha256\": \"0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.\",\n  \"open_higher_grade_findings\": [\n    \"The record is this four-index Gaussian-integer table. It does not introduce an exponential, a real angle, a plaquette sum, or a Monte Carlo sampler. The source sentence that an added term i theta Q_top multiplies a Boltzmann weight by a complex phase, and that a positive-weight sampler fails for a nonzero angle outside a discrete set, stays an imported reading. AuthorityEffect is None.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignFspThetaTermComplexWeight.lean",
+          "sha256": "7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e"
+        },
+        "assessment_id": "qm-open-pr-review-20261026-7077123bd408",
+        "basis": {
+          "G1": "Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.",
+          "G2": "Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.",
+          "G3": "Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.",
+          "G4": "Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.",
+          "G5": "Inspected 89 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T15:48:22.636056+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-theta-term-complex-weight_lean_replay.json",
+            "sha256": "cf77597f6b4f6336fe25d2f53b904d8d1f72fda45e3ed560ee1f3ec54cdad1fb"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+            "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.",
+        "open_higher_grade_findings": [
+          "The record is this four-index Gaussian-integer table. It does not introduce an exponential, a real angle, a plaquette sum, or a Monte Carlo sampler. The source sentence that an added term i theta Q_top multiplies a Boltzmann weight by a complex phase, and that a positive-weight sampler fails for a nonzero angle outside a discrete set, stays an imported reading. AuthorityEffect is None.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "c48b5e790653f88eb51c3964bd96f41cc604f197b5390420ad4c137319546f41"
+    }
+  ]
+}

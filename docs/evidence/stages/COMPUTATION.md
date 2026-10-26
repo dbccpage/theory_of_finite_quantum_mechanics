@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 82. Grades: E1 8, E2 3, E3 71. Statuses: PROVED_LEAN 43, COMPUTATIONALLY_CHECKED 9, CONDITIONAL 3, DEFINITION 9, IMPORTED_ASSUMPTION 5, OPEN 13.
+Nodes: 82. Grades: E1 6, E2 3, E3 73. Statuses: PROVED_LEAN 43, COMPUTATIONALLY_CHECKED 9, CONDITIONAL 3, DEFINITION 9, IMPORTED_ASSUMPTION 5, OPEN 13.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
