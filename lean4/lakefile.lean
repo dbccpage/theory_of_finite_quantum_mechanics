@@ -921,7 +921,7 @@ lean_lib FableGleasonRun2 where
 -- residue-mod-2 class ansatz on Q(i)^3). Not a default target:
 -- build with `lake build CampaignFqGapBornGleasonRays`.
 lean_lib CampaignFqGapBornGleasonRays where
-  roots := #[`BornRationalRayObstruction, `BornGaussianMod2ClassRigidity]
+  roots := #[`CampaignBornRationalRayObstruction, `CampaignBornGaussianMod2ClassRigidity]
 
 -- Derivation Campaign: PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT
 lean_lib CampaignPgwPresentationLift where

@@ -1,5 +1,5 @@
 """Independent check for the residue-modulo-2 class rigidity on Q(i)^3
-(FQ-GAP-BORN-UNIQUENESS-GLEASON, module BornGaussianMod2ClassRigidity).
+(FQ-GAP-BORN-UNIQUENESS-GLEASON, module CampaignBornGaussianMod2ClassRigidity).
 
 Exact integer and rational arithmetic only; no repository imports; no floats.
 

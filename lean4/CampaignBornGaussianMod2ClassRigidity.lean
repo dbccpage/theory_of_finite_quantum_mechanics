@@ -25,7 +25,7 @@ were found by an exact search (`checks/independent/fq-gap-born-uniqueness-gleaso
 and are re-verified here by the kernel.
 
 This closes the modulo-`2` ansatz only.  Whether every frame function on `ℚ(i)³` rays is
-quadratic remains undecided here; see `BornRationalRayObstruction` for the contrasting `ℚ³`
+quadratic remains undecided here; see `CampaignBornRationalRayObstruction` for the contrasting `ℚ³`
 case.  Nothing here is a statement about physics.
 -/
 
