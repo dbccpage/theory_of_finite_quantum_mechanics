@@ -1395,3 +1395,7 @@ lean_lib CampaignGpImportComplexField where
 -- Campaign: GP-IMPORT-CIRCLE-U1. Not a default target.
 lean_lib CampaignGpImportCircleU1 where
   roots := #[`CampaignGpImportCircleU1]
+
+-- Campaign: FQ-GAP-C500-ORIGINAL-TARGETS. Not a default target.
+lean_lib CampaignFqGapC500OriginalTargets where
+  roots := #[`CampaignFqGapC500OriginalTargets]

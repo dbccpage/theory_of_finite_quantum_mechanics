@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-For each of ten C500 blocks the original target contract remains open; closure is recorded only for a scoped statement backed by evidence files (open or invalid bet clauses listed per block, e.g. M2, M5, M7, J1, J2 in Block 10).
+For every natural number k, the numerals from 276 + 25 * k through 300 + 25 * k are a run of 25, and the next run starts at the next numeral. The ten runs for k from 1 through 10 begin at 301 and end at 550, covering 250 numerals, and 10 * 25 = 250. The ten clause-list lengths 0, 2, 4, 2, 4, 1, 1, 1, 1, 5 sum to 21, and the last length 5 is strictly greater than each earlier length. The five labels M2, M5, M7, J1 and J2 are pairwise distinct.
 
 ### Governing Obligation
-Scoped resolution is narrower than the original targets; map per-block clauses before citing any C500 target as discharged.
+Not run here: a fresh reading of each original target contract, the evidence files named beside the ten blocks, and any claim that a scoped receipt discharges a block. The gap-register titles say the original contracts remain open. These counts of register names do not discharge a block.
 
 ### Source Status
 GAP-C500-B01..B10 RESOLVED_WITH_SCOPED_EVIDENCE: "original target contract remains open"
@@ -27,8 +27,15 @@ GAP-C500-B01..B10 RESOLVED_WITH_SCOPED_EVIDENCE: "original target contract remai
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_minkowski_sqrt_decoherence_and_scoped_custody_witness`
-- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_c500_ten_blocks_and_custody_axiom_audit_certificate`
+- `lean4/CampaignFqGapC500OriginalTargets.lean::spanLen`
+- `lean4/CampaignFqGapC500OriginalTargets.lean::abut`
+- `lean4/CampaignFqGapC500OriginalTargets.lean::tenRunEndpoints`
+- `lean4/CampaignFqGapC500OriginalTargets.lean::tenRunCover`
+- `lean4/CampaignFqGapC500OriginalTargets.lean::clauseCountsLength`
+- `lean4/CampaignFqGapC500OriginalTargets.lean::clauseCountSum`
+- `lean4/CampaignFqGapC500OriginalTargets.lean::lastClauseCountStrict`
+- `lean4/CampaignFqGapC500OriginalTargets.lean::block10ClauseCount`
+- `lean4/CampaignFqGapC500OriginalTargets.lean::block10ClausesNodup`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`
