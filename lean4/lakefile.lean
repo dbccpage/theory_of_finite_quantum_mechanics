@@ -1469,3 +1469,6 @@ lean_lib CampaignMub6FiniteCornerReduction where
 
 lean_lib CampaignQcvImportThresholdTheorem where
   roots := #[`CampaignQcvImportThresholdTheorem]
+
+lean_lib CampaignQcvImportNoisyReversibleLimits where
+  roots := #[`CampaignQcvImportNoisyReversibleLimits]
