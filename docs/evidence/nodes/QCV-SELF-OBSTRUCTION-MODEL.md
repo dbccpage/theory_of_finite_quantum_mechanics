@@ -105,7 +105,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivation_dag.json`
 
 - file: [dag/derivation_dag.json](../../../dag/derivation_dag.json)
-- sha256 (`lf-normalised`): `8faed8a97f52fa891cdfd33fa6f10ea8b6474f66515e7e3de07ae470d0703854`
+- sha256 (`lf-normalised`): `a38edc0f3609c4a3dfb00c284242024b7da7568a9375ec8935820fb022b5faec`
 - generated view: listed, not counted
 - cited in: node.source
 - counts toward the grade: no
