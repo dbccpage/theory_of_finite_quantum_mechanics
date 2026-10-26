@@ -1,0 +1,188 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/CampaignDfmRefinementLimit.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/CampaignDfmRefinementLimit.lean",
+      "sha256": "b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb"
+    },
+    "boundaries": [
+      "The complete metric, group topology, refinement family and geometric local bound are supplied. Smooth-field existence, arbitrary triangulation refinements, patching, physical locality and continuum dynamics are not derived; the original node and physical bridge remain OPEN."
+    ],
+    "contract_urn": "urn:tfqm:continuum-two:dfm-continuum-refinement-limit:CampaignDfmRefinementLimit",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json",
+        "sha256": "7b9cbf2a84505205171e31fe5a3d7478173ef2011e41d80638a39f3dd5bb3e97"
+      },
+      {
+        "path": "dag/derivations/independent/dfm-continuum-refinement-limit.md",
+        "sha256": "199f91dcd9bb26c55240196ad66dba656b26070a5f921f08f97bf1cef4a8066b"
+      },
+      {
+        "path": "docs/overclaim/reviews/2026-10-26_dfm-continuum-refinement-limit.md",
+        "sha256": "69d64cfbab080df756a001bea59f2301af95fe02e962a49df3d2717c6611f86f"
+      }
+    ],
+    "owned_invariants": [
+      "In a supplied complete metric topological group with d(ab,cd) <= d(a,c)+d(b,d), binary edge split errors bounded by C*q^depth, C >= 0 and 0 <= q < 1/2, yield unique transport limits with error at most C*q^depth*(2*q)^n/(1-2*q). The limits respect binary composition and compatible endpoint gauges. Continuous parameterized edge families with a common C and q converge uniformly to continuous limiting transports. At q=1/2, the additive edge values depth/2^depth have shrinking split defects but root transport n, with no limit."
+    ],
+    "purpose": "In a supplied complete metric topological group with d(ab,cd) <= d(a,c)+d(b,d), binary edge split errors bounded by C*q^depth, C >= 0 and 0 <= q < 1/2, yield unique transport limits with error at most C*q^depth*(2*q)^n/(1-2*q). The limits respect binary composition and compatible endpoint gauges. Continuous parameterized edge families with a common C and q converge uniformly to continuous limiting transports. At q=1/2, the additive edge values depth/2^depth have shrinking split defects but root transport n, with no limit.",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "Word",
+      "transport",
+      "EndpointGauge",
+      "EndpointGauge.dress",
+      "transport_dress",
+      "step_bound",
+      "Controlled",
+      "Controlled.exists_limit",
+      "Controlled.limit",
+      "Controlled.tendsto_limit",
+      "Controlled.error_bound",
+      "Controlled.limit_unique",
+      "Controlled.limit_split",
+      "Controlled.dressed_tendsto",
+      "uniform_refinement_limit",
+      "continuous_transport",
+      "continuous_refinement_limit",
+      "criticalEdge",
+      "critical_transport",
+      "critical_split_defect",
+      "critical_no_limit"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 2889,
+      "original_paths": [
+        "lean4/CampaignDfmRefinementLimit.contract.score.yaml#continuum-two-CampaignDfmRefinementLimit"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignDfmRefinementLimit.lean\",\n    \"sha256\": \"b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb\"\n  },\n  \"boundaries\": [\n    \"The complete metric, group topology, refinement family and geometric local bound are supplied. Smooth-field existence, arbitrary triangulation refinements, patching, physical locality and continuum dynamics are not derived; the original node and physical bridge remain OPEN.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:continuum-two:dfm-continuum-refinement-limit:CampaignDfmRefinementLimit\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json\",\n      \"sha256\": \"7b9cbf2a84505205171e31fe5a3d7478173ef2011e41d80638a39f3dd5bb3e97\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/dfm-continuum-refinement-limit.md\",\n      \"sha256\": \"199f91dcd9bb26c55240196ad66dba656b26070a5f921f08f97bf1cef4a8066b\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-26_dfm-continuum-refinement-limit.md\",\n      \"sha256\": \"69d64cfbab080df756a001bea59f2301af95fe02e962a49df3d2717c6611f86f\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"In a supplied complete metric topological group with d(ab,cd) <= d(a,c)+d(b,d), binary edge split errors bounded by C*q^depth, C >= 0 and 0 <= q < 1/2, yield unique transport limits with error at most C*q^depth*(2*q)^n/(1-2*q). The limits respect binary composition and compatible endpoint gauges. Continuous parameterized edge families with a common C and q converge uniformly to continuous limiting transports. At q=1/2, the additive edge values depth/2^depth have shrinking split defects but root transport n, with no limit.\"\n  ],\n  \"purpose\": \"In a supplied complete metric topological group with d(ab,cd) <= d(a,c)+d(b,d), binary edge split errors bounded by C*q^depth, C >= 0 and 0 <= q < 1/2, yield unique transport limits with error at most C*q^depth*(2*q)^n/(1-2*q). The limits respect binary composition and compatible endpoint gauges. Continuous parameterized edge families with a common C and q converge uniformly to continuous limiting transports. At q=1/2, the additive edge values depth/2^depth have shrinking split defects but root transport n, with no limit.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"Word\",\n    \"transport\",\n    \"EndpointGauge\",\n    \"EndpointGauge.dress\",\n    \"transport_dress\",\n    \"step_bound\",\n    \"Controlled\",\n    \"Controlled.exists_limit\",\n    \"Controlled.limit\",\n    \"Controlled.tendsto_limit\",\n    \"Controlled.error_bound\",\n    \"Controlled.limit_unique\",\n    \"Controlled.limit_split\",\n    \"Controlled.dressed_tendsto\",\n    \"uniform_refinement_limit\",\n    \"continuous_transport\",\n    \"continuous_refinement_limit\",\n    \"criticalEdge\",\n    \"critical_transport\",\n    \"critical_split_defect\",\n    \"critical_no_limit\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDfmRefinementLimit.lean",
+          "sha256": "b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb"
+        },
+        "boundaries": [
+          "The complete metric, group topology, refinement family and geometric local bound are supplied. Smooth-field existence, arbitrary triangulation refinements, patching, physical locality and continuum dynamics are not derived; the original node and physical bridge remain OPEN."
+        ],
+        "contract_urn": "urn:tfqm:continuum-two:dfm-continuum-refinement-limit:CampaignDfmRefinementLimit",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json",
+            "sha256": "7b9cbf2a84505205171e31fe5a3d7478173ef2011e41d80638a39f3dd5bb3e97"
+          },
+          {
+            "path": "dag/derivations/independent/dfm-continuum-refinement-limit.md",
+            "sha256": "199f91dcd9bb26c55240196ad66dba656b26070a5f921f08f97bf1cef4a8066b"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-26_dfm-continuum-refinement-limit.md",
+            "sha256": "69d64cfbab080df756a001bea59f2301af95fe02e962a49df3d2717c6611f86f"
+          }
+        ],
+        "owned_invariants": [
+          "In a supplied complete metric topological group with d(ab,cd) <= d(a,c)+d(b,d), binary edge split errors bounded by C*q^depth, C >= 0 and 0 <= q < 1/2, yield unique transport limits with error at most C*q^depth*(2*q)^n/(1-2*q). The limits respect binary composition and compatible endpoint gauges. Continuous parameterized edge families with a common C and q converge uniformly to continuous limiting transports. At q=1/2, the additive edge values depth/2^depth have shrinking split defects but root transport n, with no limit."
+        ],
+        "purpose": "In a supplied complete metric topological group with d(ab,cd) <= d(a,c)+d(b,d), binary edge split errors bounded by C*q^depth, C >= 0 and 0 <= q < 1/2, yield unique transport limits with error at most C*q^depth*(2*q)^n/(1-2*q). The limits respect binary composition and compatible endpoint gauges. Continuous parameterized edge families with a common C and q converge uniformly to continuous limiting transports. At q=1/2, the additive edge values depth/2^depth have shrinking split defects but root transport n, with no limit.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "Word",
+          "transport",
+          "EndpointGauge",
+          "EndpointGauge.dress",
+          "transport_dress",
+          "step_bound",
+          "Controlled",
+          "Controlled.exists_limit",
+          "Controlled.limit",
+          "Controlled.tendsto_limit",
+          "Controlled.error_bound",
+          "Controlled.limit_unique",
+          "Controlled.limit_split",
+          "Controlled.dressed_tendsto",
+          "uniform_refinement_limit",
+          "continuous_transport",
+          "continuous_refinement_limit",
+          "criticalEdge",
+          "critical_transport",
+          "critical_split_defect",
+          "critical_no_limit"
+        ]
+      },
+      "sha256": "d10809aa228a20b439fc128a12d2e8995e395f218c536b3f513412b131d492d9"
+    }
+  ],
+  "current_contract": "d10809aa228a20b439fc128a12d2e8995e395f218c536b3f513412b131d492d9",
+  "current_scoring": "436c767942ccac217f8c5551e951dedec58a1cef942dc99fdd4b886dc7c6b135",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2822,
+      "original_paths": [
+        "lean4/CampaignDfmRefinementLimit.contract.score.yaml#continuum-two-CampaignDfmRefinementLimit"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignDfmRefinementLimit.lean\",\n    \"sha256\": \"b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb\"\n  },\n  \"assessment_id\": \"continuum-two-CampaignDfmRefinementLimit\",\n  \"basis\": {\n    \"G1\": \"Every advertised model-specific claim is mapped to the current source and replay; the new conditional theorem is fully covered; original broad obligations and node status remain explicit. Human review remains pending.\",\n    \"G2\": \"The Lean kernel checks the declared symbolic/finite structures; independent computations use exact integer, symbolic or finite data without floating-point certificates.\",\n    \"G3\": \"All explicit proof declarations are audited against the three standard allowed axioms; no admissions or custom axioms. Independent scripts fail explicitly on a mismatch and make no remote calls.\",\n    \"G4\": \"Exact-source compilation, full explicit declaration audits and independent checks are recorded. Exhaustive mutation coverage and a full repository workspace build are not established.\",\n    \"G5\": \"Small namespaced modules and bounded audit scripts with declared imports. No production lifetime, global performance or physical-model claim. Foundational completeness/compactness/measure-theory inputs are explicit.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T16:58:45.264511+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json\",\n      \"sha256\": \"7b9cbf2a84505205171e31fe5a3d7478173ef2011e41d80638a39f3dd5bb3e97\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/dfm-continuum-refinement-limit.md\",\n      \"sha256\": \"199f91dcd9bb26c55240196ad66dba656b26070a5f921f08f97bf1cef4a8066b\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-26_dfm-continuum-refinement-limit.md\",\n      \"sha256\": \"69d64cfbab080df756a001bea59f2301af95fe02e962a49df3d2717c6611f86f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"Research-domain convergence or measure-extension theorem with explicit infinite objects and hypotheses; no production architecture claim.\",\n  \"open_higher_grade_findings\": [\n    \"The complete metric, group topology, refinement family and geometric local bound are supplied. Smooth-field existence, arbitrary triangulation refinements, patching, physical locality and continuum dynamics are not derived; the original node and physical bridge remain OPEN.\",\n    \"The scoped proof remains below the repository L4 floor and requires its own explicit exact-source exception.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDfmRefinementLimit.lean",
+          "sha256": "b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb"
+        },
+        "assessment_id": "continuum-two-CampaignDfmRefinementLimit",
+        "basis": {
+          "G1": "Every advertised model-specific claim is mapped to the current source and replay; the new conditional theorem is fully covered; original broad obligations and node status remain explicit. Human review remains pending.",
+          "G2": "The Lean kernel checks the declared symbolic/finite structures; independent computations use exact integer, symbolic or finite data without floating-point certificates.",
+          "G3": "All explicit proof declarations are audited against the three standard allowed axioms; no admissions or custom axioms. Independent scripts fail explicitly on a mismatch and make no remote calls.",
+          "G4": "Exact-source compilation, full explicit declaration audits and independent checks are recorded. Exhaustive mutation coverage and a full repository workspace build are not established.",
+          "G5": "Small namespaced modules and bounded audit scripts with declared imports. No production lifetime, global performance or physical-model claim. Foundational completeness/compactness/measure-theory inputs are explicit."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T16:58:45.264511+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json",
+            "sha256": "7b9cbf2a84505205171e31fe5a3d7478173ef2011e41d80638a39f3dd5bb3e97"
+          },
+          {
+            "path": "dag/derivations/independent/dfm-continuum-refinement-limit.md",
+            "sha256": "199f91dcd9bb26c55240196ad66dba656b26070a5f921f08f97bf1cef4a8066b"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-26_dfm-continuum-refinement-limit.md",
+            "sha256": "69d64cfbab080df756a001bea59f2301af95fe02e962a49df3d2717c6611f86f"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Research-domain convergence or measure-extension theorem with explicit infinite objects and hypotheses; no production architecture claim.",
+        "open_higher_grade_findings": [
+          "The complete metric, group topology, refinement family and geometric local bound are supplied. Smooth-field existence, arbitrary triangulation refinements, patching, physical locality and continuum dynamics are not derived; the original node and physical bridge remain OPEN.",
+          "The scoped proof remains below the repository L4 floor and requires its own explicit exact-source exception."
+        ],
+        "profile": "Symbolic/Formal",
+        "schema_version": "2.0.0",
+        "score_token": "L3D"
+      },
+      "sha256": "436c767942ccac217f8c5551e951dedec58a1cef942dc99fdd4b886dc7c6b135"
+    }
+  ]
+}

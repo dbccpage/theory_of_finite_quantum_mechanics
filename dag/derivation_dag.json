@@ -4112,9 +4112,13 @@
       "stage": "L1_TO_L2",
       "status": "OPEN",
       "source_status": "Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, split-real zero-divisor exclusion, non-abelian Pauli exclusion, and Gaussian-integer cx ring injectivity) mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm",
-      "statement": "Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; finite fields/rings (unit circle of order p -+ 1, native table only), cyclotomic extensions, completion and continuity are not treated.",
+      "statement": "Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; a general finite-field/ring classification, cyclotomic extensions, completion and continuity remain open. Separate modulo-7 result: On the integers modulo 7, with product (a, b) * (c, d) = (a*c - b*d, a*d + b*c), the pairs (x, y) with x*x + y*y = 1 are exactly the powers g^0 through g^7, in exponent order, for g = (2, 2): (1, 0), (2, 2), (0, 1), (5, 2), (6, 0), (5, 5), (0, 6) and (2, 5). The next power g^8 is (1, 0), and g^1 through g^7 all differ from (1, 0). The count 8 equals 7 + 1 and is not 4.",
       "source": [
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/121_the_finite_qm_ingredient_ladder/qm_121_the_finite_qm_ingredient_ladder_claim_ledger.md#C10"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/121_the_finite_qm_ingredient_ladder/qm_121_the_finite_qm_ingredient_ladder_claim_ledger.md#C10",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean",
+        "checks/independent/l1-u1-selector-other-segment.py",
+        "dag/derivations/independent/l1-u1-selector-other-segment.md",
+        "dag/research/pr435_review_lean_replay.json"
       ],
       "lean": [
         "lean4/H011U1SelectorBoundary.lean::selector_not_free",
@@ -4122,7 +4126,20 @@
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity"
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step1",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step2",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step3",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step4",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step5",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step6",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step7",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step8",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.norms",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.solutions_iff",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.eight_distinct",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.eight",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.earlier_ne_one",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.not_axis"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs",
@@ -4134,7 +4151,7 @@
         "sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved.",
+      "bottleneck": "Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved. Only the explicit modulo-7 carrier and its stated operations are covered. The Nat subtraction encoding agrees with integer subtraction only on the bounded residue domain. Selection of C or U(1), general prime or ring classification, cyclotomic fields, completion and continuity remain open; the older Gaussian-rational torsion result is retained separately.",
       "tags": [
         "cross-segment"
       ],
@@ -18639,12 +18656,16 @@
       "id": "DFM-CONTINUUM-INTERFACE",
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
-      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
-      "statement": "A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations.",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement. Current controlled continuum theorem kernel-checked separately; the broader node remains OPEN.",
+      "statement": "A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations. Conditional continuum result: In a supplied complete metric topological group with d(ab,cd) <= d(a,c)+d(b,d), binary edge split errors bounded by C*q^depth, C >= 0 and 0 <= q < 1/2, yield unique transport limits with error at most C*q^depth*(2*q)^n/(1-2*q). The limits respect binary composition and compatible endpoint gauges. Continuous parameterized edge families with a common C and q converge uniformly to continuous limiting transports. At q=1/2, the additive edge values depth/2^depth have shrinking split defects but root transport n, with no limit.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md",
         "dag/research/electroweak_dfm_weinberg_finite_map.md",
-        "papers/ravera_dfm_dossier.md"
+        "papers/ravera_dfm_dossier.md",
+        "lean4/CampaignDfmRefinementLimit.lean",
+        "checks/independent/dfm-continuum-refinement-limit.py",
+        "dag/derivations/independent/dfm-continuum-refinement-limit.md",
+        "dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json"
       ],
       "lean": [
         "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.dressed_chord_formula",
@@ -18657,11 +18678,25 @@
         "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.Dependency.Plan.changed_label",
         "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees_on_superset",
         "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.witness_plan_evaluate",
-        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.outer_in_footprint"
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.outer_in_footprint",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.critical_transport",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.critical_split_defect",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.critical_no_limit",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.uniform_refinement_limit",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.continuous_refinement_limit",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.step_bound",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.exists_limit",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.error_bound",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.limit_split",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.dressed_tendsto"
       ],
       "rust": [],
-      "imported_structure": [],
-      "bottleneck": "Finite witness, not a continuum theorem: on the supplied rooted tree root-p-a, root-b with chord a-b, the dressed chord is U(root-b)^{-1} U(a-b) U(p-a) U(root-p). Outer labels 2 and 5 with the other three labels trivial give dressed chords 2 and 5, while every edge incident to {a, b} is unchanged. A refinement family, compatibility maps, a topology and a convergence theorem are still required before transporting finite identities to smooth gauge theory. Smooth-field existence, continuum patching and continuum dynamics stay open.",
+      "imported_structure": [
+        "complete metric topological group with the stated product-distance estimate",
+        "supplied binary edge-label family with C >= 0, q >= 0, 2*q < 1 and uniform split-defect bound",
+        "compatible endpoint gauges; for continuity, a parameter topology and continuous edge maps with common constants"
+      ],
+      "bottleneck": "New conditional result: In a supplied complete metric topological group with d(ab,cd) <= d(a,c)+d(b,d), binary edge split errors bounded by C*q^depth, C >= 0 and 0 <= q < 1/2, yield unique transport limits with error at most C*q^depth*(2*q)^n/(1-2*q). The limits respect binary composition and compatible endpoint gauges. Continuous parameterized edge families with a common C and q converge uniformly to continuous limiting transports. At q=1/2, the additive edge values depth/2^depth have shrinking split defects but root transport n, with no limit. Remaining obligation: The complete metric, group topology, refinement family and geometric local bound are supplied. Smooth-field existence, arbitrary triangulation refinements, patching, physical locality and continuum dynamics are not derived; the original node and physical bridge remain OPEN. Earlier finite witness boundary (historical): Finite witness, not a continuum theorem: on the supplied rooted tree root-p-a, root-b with chord a-b, the dressed chord is U(root-b)^{-1} U(a-b) U(p-a) U(root-p). Outer labels 2 and 5 with the other three labels trivial give dressed chords 2 and 5, while every edge incident to {a, b} is unchanged. A refinement family, compatibility maps, a topology and a convergence theorem are still required before transporting finite identities to smooth gauge theory. Smooth-field existence, continuum patching and continuum dynamics stay open.",
       "tags": [
         "application-branch",
         "TFQ-0401",
@@ -28636,26 +28671,44 @@
       "id": "LQG-CONTINUUM-LIMIT-GAP",
       "stage": "LOOP_QUANTUM_GRAVITY",
       "status": "OPEN",
-      "source_status": "Finite census and Q(sqrt 2) dimension identities checked in Lean 4.35.0 on 2026-10-24. Node stays OPEN. No continuum limit, semiclassical limit, or physical cosmological constant is derived. Earlier audit against arXiv:1205.2019 Part V and TFQ-0104/TFQ-0105 was on 2026-10-22.",
-      "statement": "No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recoupling tables of the repository, or from the exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit.",
+      "source_status": "Finite census and Q(sqrt 2) dimension identities checked in Lean 4.35.0 on 2026-10-24. Node stays OPEN. No continuum limit, semiclassical limit, or physical cosmological constant is derived. Earlier audit against arXiv:1205.2019 Part V and TFQ-0104/TFQ-0105 was on 2026-10-22. The supplied-family projective probability extension is separately kernel-checked; no physical LQG continuum claim follows.",
+      "statement": "No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recoupling tables of the repository, or from the exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit. Separate conditional mathematical result: For a supplied finite discrete label alphabet and normalized nonnegative probability laws on every finite set of natural-number coordinates, compatibility under coordinate restriction is equivalent to existence of an infinite projective-limit measure. Under compatibility, that probability measure is unique. Every countable family of measurable finite-window constraints having mass one in its finite law holds almost everywhere simultaneously in the limit, and at least one satisfying infinite configuration exists. The theorem specializes to the three level-two spin labels Fin 3 and arbitrary predicates on their finite windows.",
       "source": [
         "dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md",
         "lean4/CampaignLqgContinuumLimitGap.lean",
         "dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json",
         "dag/derivations/independent/lqg-continuum-limit-gap.md",
         "checks/independent/lqg-continuum-limit-gap.py",
-        "code/rust/src/general_relativity/spin_foam.rs"
+        "code/rust/src/general_relativity/spin_foam.rs",
+        "lean4/CampaignLqgProjectiveLimit.lean",
+        "checks/independent/lqg-projective-limit.py",
+        "dag/derivations/independent/lqg-projective-limit.md",
+        "dag/research/campaign_lqg-projective-limit_lean_replay.json"
       ],
       "lean": [
         "lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_admissible_count",
         "lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_tuple_census",
         "lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_dimension_truncation",
         "lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_counts_do_not_select_a_scale",
-        "lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_free_positive_scale"
+        "lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_free_positive_scale",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.spin_constraints_ae",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.spin_labels_extension",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.countable_constraints",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.constraints_have_configuration",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.projective_of_limit",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.exists_limit_iff_projective",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.empty_stage",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.content_sigma_subadditive",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.limit_marginals",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.limit_unique"
       ],
       "rust": [],
-      "imported_structure": [],
-      "bottleneck": "The census and the two dimension identities do not discharge a continuum limit, a semiclassical limit, or a physical cosmological constant. No sequence of triangulations and no Einstein equation is constructed. Routes FRO-R-LQG-CONTINUUM-LIMIT-GAP and FRO-R-BACK-LQG-LIMIT-TO-TFQ0105 stay GAP_NO_DERIVATION. The broader audit sentence, that no source read for this change derives a limit, is not discharged in full.",
+      "imported_structure": [
+        "supplied finite discrete label alphabet and product measurable structure",
+        "normalized nonnegative finite laws compatible under all finite coordinate restrictions",
+        "countably many supplied finite-window constraints with probability one"
+      ],
+      "bottleneck": "The alphabet, discrete topology, product measurable structure, compatible finite probability laws and full-mass constraint premises are supplied. Physical LQG or complex spin-foam amplitudes are not shown to satisfy them. No triangulation refinement, manifold, semiclassical geometry, Einstein dynamics or physical cosmological constant is derived; the original node and physical routes remain OPEN/GAP. Earlier finite-census boundary: The census and the two dimension identities do not discharge a continuum limit, a semiclassical limit, or a physical cosmological constant. No sequence of triangulations and no Einstein equation is constructed. Routes FRO-R-LQG-CONTINUUM-LIMIT-GAP and FRO-R-BACK-LQG-LIMIT-TO-TFQ0105 stay GAP_NO_DERIVATION. The broader audit sentence, that no source read for this change derives a limit, is not discharged in full.",
       "tags": [
         "frontier-branch",
         "frontier:loop_quantum_gravity",
@@ -36589,7 +36642,7 @@
       ],
       "output": "DFM-CONTINUUM-INTERFACE",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Specify a refinement family, compatibility maps and convergence theorem before transporting finite identities to smooth gauge theory.",
+      "mechanism": "Connect the supplied controlled binary refinement model and its metric limit to smooth gauge fields, patching, locality and dynamics; this physical bridge remains underived.",
       "source": []
     },
     {
@@ -41357,7 +41410,7 @@
       ],
       "output": "LQG-CONTINUUM-LIMIT-GAP",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "No source derives a limit."
+      "mechanism": "A supplied compatible finite-label probability family has an infinite measure limit, but no route from the recoupling or EPRL inputs to continuum spacetime or a semiclassical limit is established."
     },
     {
       "id": "FRO-R-BACK-CT-INTEROP-TO-TENSOR",
@@ -41411,7 +41464,7 @@
       ],
       "output": "TFQ-0105",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "The trunk record TFQ-0105 states that no continuum limit and no physical cosmological constant are discharged by the level-2 recoupling table. No source supplies a limit statement that would change this."
+      "mechanism": "The supplied-family projective probability measure does not identify a physical cosmological constant, derive the Einstein equation or establish the physical continuum limit required by TFQ-0105. That target-specific connection remains underived."
     },
     {
       "id": "GTH-R-GTH-SHADOW",
@@ -56887,7 +56940,11 @@
         "L1-U1-SELECTOR-OTHER-SEGMENT"
       ],
       "f004_refs": [
-        "dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md"
+        "dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean",
+        "checks/independent/l1-u1-selector-other-segment.py",
+        "dag/derivations/independent/l1-u1-selector-other-segment.md",
+        "dag/research/pr435_review_lean_replay.json"
       ],
       "id": "TFQ-1003",
       "lean4": [
@@ -56896,11 +56953,24 @@
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity"
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step1",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step2",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step3",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step4",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step5",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step6",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step7",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step8",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.norms",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.solutions_iff",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.eight_distinct",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.eight",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.earlier_ne_one",
+        "lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.not_axis"
       ],
       "local_id": "L1-U1-SELECTOR-OTHER-SEGMENT",
       "name": "l1-u1-selector-other-segment",
-      "obligation": "Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved.",
+      "obligation": "Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved. Only the explicit modulo-7 carrier and its stated operations are covered. The Nat subtraction encoding agrees with integer subtraction only on the bounded residue domain. Selection of C or U(1), general prime or ring classification, cyclotomic fields, completion and continuity remain open; the older Gaussian-rational torsion result is retained separately.",
       "parent_id": "TFQ-0312",
       "pfp_review_refs": [
         "dag/results/L1-U1-SELECTOR-OTHER-SEGMENT/reviews/20261021_batch01a_audit/delivery_review_result.json"
@@ -56918,7 +56988,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "L1_TO_L2",
-      "summary": "Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; finite fields/rings (unit circle of order p -+ 1, native table only), cyclotomic extensions, completion and continuity are not treated.",
+      "summary": "Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; a general finite-field/ring classification, cyclotomic extensions, completion and continuity remain open. Separate modulo-7 result: On the integers modulo 7, with product (a, b) * (c, d) = (a*c - b*d, a*d + b*c), the pairs (x, y) with x*x + y*y = 1 are exactly the powers g^0 through g^7, in exponent order, for g = (2, 2): (1, 0), (2, 2), (0, 1), (5, 2), (6, 0), (5, 5), (0, 6) and (2, 5). The next power g^8 is (1, 0), and g^1 through g^7 all differ from (1, 0). The count 8 equals 7 + 1 and is not 4.",
       "uuid": "c4828dd4-6aac-54c5-ae75-507da476dcce"
     },
     {
@@ -63561,7 +63631,9 @@
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md",
         "dag/research/electroweak_dfm_weinberg_finite_map.md",
-        "papers/ravera_dfm_dossier.md"
+        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/independent/dfm-continuum-refinement-limit.md",
+        "dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json"
       ],
       "id": "TFQ-0401",
       "lean4": [
@@ -63569,20 +63641,31 @@
         "lean4/CampaignDfmContinuumInterface.lean::not_star_local",
         "lean4/CampaignDfmContinuumInterface.lean::witness_two_ne_five",
         "lean4/CampaignDfmContinuumInterface.lean::witness_star_agrees",
-        "lean4/CampaignDfmContinuumInterface.lean::outer_misses_star"
+        "lean4/CampaignDfmContinuumInterface.lean::outer_misses_star",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.critical_transport",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.critical_split_defect",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.critical_no_limit",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.uniform_refinement_limit",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.continuous_refinement_limit",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.step_bound",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.exists_limit",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.error_bound",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.limit_split",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.dressed_tendsto"
       ],
       "local_id": "DFM-CONTINUUM-INTERFACE",
       "name": "Dressing-field continuum and physical interpretation obligations",
-      "obligation": "Finite witness, not a continuum theorem: on the supplied rooted tree root-p-a, root-b with chord a-b, the dressed chord is U(root-b)^{-1} U(a-b) U(p-a) U(root-p). Outer labels 2 and 5 with the other three labels trivial give dressed chords 2 and 5, while every edge incident to {a, b} is unchanged. A refinement family, compatibility maps, a topology and a convergence theorem are still required before transporting finite identities to smooth gauge theory. Smooth-field existence, continuum patching and continuum dynamics stay open.",
+      "obligation": "The complete metric, group topology, refinement family and geometric local bound are supplied. Smooth-field existence, arbitrary triangulation refinements, patching, physical locality and continuum dynamics are not derived; the original node and physical bridge remain OPEN.",
       "parent_id": "TFQ-0400",
       "python": [
-        "checks/independent/dfm-continuum-interface.py"
+        "checks/independent/dfm-continuum-interface.py",
+        "checks/independent/dfm-continuum-refinement-limit.py"
       ],
       "record_status": "GAP",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "DRESSING_FIELD",
-      "summary": "A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations. A supplied rooted tree on four vertices shows the dressed chord is not a function of the closed star.",
+      "summary": "A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations. A supplied rooted tree on four vertices shows the dressed chord is not a function of the closed star. In a supplied complete metric topological group with d(ab,cd) <= d(a,c)+d(b,d), binary edge split errors bounded by C*q^depth, C >= 0 and 0 <= q < 1/2, yield unique transport limits with error at most C*q^depth*(2*q)^n/(1-2*q). The limits respect binary composition and compatible endpoint gauges. Continuous parameterized edge families with a common C and q converge uniformly to continuous limiting transports. At q=1/2, the additive edge values depth/2^depth have shrinking split defects but root transport n, with no limit.",
       "uuid": "bc218cca-9cda-5513-aa3e-2655ca2c514b"
     },
     {
@@ -73912,20 +73995,35 @@
         "LQG-CONTINUUM-LIMIT-GAP"
       ],
       "f004_refs": [
-        "dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md"
+        "dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md",
+        "dag/derivations/independent/lqg-projective-limit.md",
+        "dag/research/campaign_lqg-projective-limit_lean_replay.json"
       ],
       "id": "TFQ-2315",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.spin_constraints_ae",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.spin_labels_extension",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.countable_constraints",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.constraints_have_configuration",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.projective_of_limit",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.exists_limit_iff_projective",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.empty_stage",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.content_sigma_subadditive",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.limit_marginals",
+        "lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.limit_unique"
+      ],
       "local_id": "LQG-CONTINUUM-LIMIT-GAP",
       "name": "Gap: no route from finite recoupling to a continuum or semiclassical limit",
-      "obligation": "Recorded as an explicit non-claim.",
+      "obligation": "The alphabet, discrete topology, product measurable structure, compatible finite probability laws and full-mass constraint premises are supplied. Physical LQG or complex spin-foam amplitudes are not shown to satisfy them. No triangulation refinement, manifold, semiclassical geometry, Einstein dynamics or physical cosmological constant is derived; the original node and physical routes remain OPEN/GAP.",
       "parent_id": "TFQ-2314",
-      "python": [],
+      "python": [
+        "checks/independent/lqg-projective-limit.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "frontier_branches",
       "stage": "LOOP_QUANTUM_GRAVITY",
-      "summary": "No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recoupling tables of the repository, or from the exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit.",
+      "summary": "No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recoupling tables of the repository, or from the exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit. Separate conditional mathematical result: For a supplied finite discrete label alphabet and normalized nonnegative probability laws on every finite set of natural-number coordinates, compatibility under coordinate restriction is equivalent to existence of an infinite projective-limit measure. Under compatibility, that probability measure is unique. Every countable family of measurable finite-window constraints having mass one in its finite law holds almost everywhere simultaneously in the limit, and at least one satisfying infinite configuration exists. The theorem specializes to the three level-two spin labels Fin 3 and arbitrary predicates on their finite windows.",
       "uuid": "b7b24330-ba22-52d9-94db-79067f4f113d"
     },
     {
