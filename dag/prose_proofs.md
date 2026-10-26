@@ -103,21 +103,21 @@ status are not claimed as proved and have no proof section.
 
 ## L1_EMERGENCE
 
-0 of 1 with a prose proof.
+1 of 1 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `L1-FRAMEWORK-KKT-CERT` | PROVED_LEAN | *none yet* |
+| `L1-FRAMEWORK-KKT-CERT` | PROVED_LEAN | [genesis_proofs: 6.2 Weighted $\ell^1$ duality](../papers/genesis/genesis_proofs.md#62-weighted-ell1-duality) |
 
 ## L1_TO_L2
 
-0 of 3 with a prose proof.
+3 of 3 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `L1-QM020-THM1-DIRECT-NORMALIZATION` | PROVED_LEAN | *none yet* |
-| `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT` | PROVED_LEAN | *none yet* |
-| `L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE` | PROVED_LEAN | *none yet* |
+| `L1-QM020-THM1-DIRECT-NORMALIZATION` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.5 Normalization is redundant after the ray quotient](../papers/core/finite_quantum_mechanics_proofs.md#15-normalization-is-redundant-after-the-ray-quotient) |
+| `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.6 The $\ell^1$ additivity defect](../papers/core/finite_quantum_mechanics_proofs.md#16-the-ell1-additivity-defect) |
+| `L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.3 Interference does not descend to the phase-blind quotient](../papers/core/finite_quantum_mechanics_proofs.md#13-interference-does-not-descend-to-the-phase-blind-quotient) |
 
 ## FINITE_QM_CORE
 
@@ -141,7 +141,7 @@ status are not claimed as proved and have no proof section.
 | `FQ-SORKIN-READOUT-CLASS-QM208` | COMPUTATIONALLY_CHECKED | [finite_quantum_mechanics_proofs: 2.1 The Sorkin term of a polynomial readout](../papers/core/finite_quantum_mechanics_proofs.md#21-the-sorkin-term-of-a-polynomial-readout) |
 | `FQ-TSIRELSON-SOS-Q-SQRT2` | COMPUTATIONALLY_CHECKED | [finite_quantum_mechanics_proofs: 3.3 Tsirelson's bound and its attainment over $\mathbb Q(\sqrt2)$](../papers/core/finite_quantum_mechanics_proofs.md#33-tsirelsons-bound-and-its-attainment-over-mathbb-qsqrt2) |
 | `GP-DROP-ONE-CENSUS` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 7. Three supplied structures that the Gaussian carrier lacks](../papers/core/finite_quantum_mechanics_proofs.md#7-three-supplied-structures-that-the-gaussian-carrier-lacks) |
-| `GP-FIN-GAUSS-MATRIX-ALGEBRA` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.6 Linear maps on Gaussian report vectors are Gaussian matrices](../papers/core/finite_quantum_mechanics_proofs.md#16-linear-maps-on-gaussian-report-vectors-are-gaussian-matrices) |
+| `GP-FIN-GAUSS-MATRIX-ALGEBRA` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.7 Linear maps on Gaussian report vectors are Gaussian matrices](../papers/core/finite_quantum_mechanics_proofs.md#17-linear-maps-on-gaussian-report-vectors-are-gaussian-matrices) |
 
 ## FINITE_QM_STRUCTURE
 
@@ -189,78 +189,78 @@ status are not claimed as proved and have no proof section.
 
 ## IMPLEMENTATION
 
-0 of 4 with a prose proof.
+2 of 4 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `IMPL-FSP-SWITCHING-NORMAL-FORM-NF002` | PROVED_LEAN | *none yet* |
-| `IMPL-LGGR-FINITE-RESULTS-LEAN` | PROVED_LEAN | *none yet* |
+| `IMPL-FSP-SWITCHING-NORMAL-FORM-NF002` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.1 The switching normal form of an edge signing](../papers/core/fermion_sign_and_majorana_proofs.md#11-the-switching-normal-form-of-an-edge-signing) |
+| `IMPL-LGGR-FINITE-RESULTS-LEAN` | PROVED_LEAN | [frontier_finite_targets_proofs: 5.2 Parity cycles: holonomy, sections and joint measures](../papers/core/frontier_finite_targets_proofs.md#52-parity-cycles-holonomy-sections-and-joint-measures) |
 | `IMPL-THYMUS-SCREENING-SOUNDNESS` | PROVED_LEAN | *none yet* |
 | `PGW-PFP-CARRIER-ORIGIN-NILPOTENCY` | PROVED_LEAN | *none yet* |
 
 ## FINITE_QCD
 
-0 of 1 with a prose proof.
+1 of 1 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `TFQ-0016` | PROVED_LEAN | *none yet* |
+| `TFQ-0016` | PROVED_LEAN | [dressing_field_proofs: 2.1 The Borel factorization and the two-stage dressing](../papers/core/dressing_field_proofs.md#21-the-borel-factorization-and-the-two-stage-dressing); [dressing_field_proofs: 2.2 Discrete curvature and the Bianchi identity](../papers/core/dressing_field_proofs.md#22-discrete-curvature-and-the-bianchi-identity) |
 
 ## DRESSING_FIELD
 
-0 of 11 with a prose proof.
+11 of 11 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `DFM-BOOST-PLANE-LEAN` | PROVED_LEAN | *none yet* |
-| `DFM-CABIBBO-CP-PHASE-ZERO` | PROVED_LEAN | *none yet* |
-| `DFM-CKM-CYCLE-COUNT` | PROVED_LEAN | *none yet* |
-| `DFM-EW-DOUBLET-REDUCTION` | PROVED_LEAN | *none yet* |
-| `DFM-GENERAL-GRAPH-DRESSING` | PROVED_LEAN | *none yet* |
-| `DFM-HIERARCHICAL-BOREL` | PROVED_LEAN | *none yet* |
-| `DFM-JARLSKOG-QUARTET-INVARIANCE` | PROVED_LEAN | *none yet* |
-| `DFM-SM-ANOMALY-NC-THREE` | PROVED_LEAN | *none yet* |
-| `DFM-TREE-CHANGE` | PROVED_LEAN | *none yet* |
-| `DFM-TREE-CHORD-COORDINATES` | PROVED_LEAN | *none yet* |
-| `DFM-WEINBERG-PROJECTORS-RHO` | PROVED_LEAN | *none yet* |
+| `DFM-BOOST-PLANE-LEAN` | PROVED_LEAN | [dressing_field_proofs: 3.5 Boosts of the Minkowski plane](../papers/core/dressing_field_proofs.md#35-boosts-of-the-minkowski-plane) |
+| `DFM-CABIBBO-CP-PHASE-ZERO` | PROVED_LEAN | [dressing_field_proofs: 3.4 Quark mixing: cycle count, rephasing invariance and two generations](../papers/core/dressing_field_proofs.md#34-quark-mixing-cycle-count-rephasing-invariance-and-two-generations) |
+| `DFM-CKM-CYCLE-COUNT` | PROVED_LEAN | [dressing_field_proofs: 3.4 Quark mixing: cycle count, rephasing invariance and two generations](../papers/core/dressing_field_proofs.md#34-quark-mixing-cycle-count-rephasing-invariance-and-two-generations) |
+| `DFM-EW-DOUBLET-REDUCTION` | PROVED_LEAN | [dressing_field_proofs: 3.1 Dressing a Higgs doublet on a rational sphere](../papers/core/dressing_field_proofs.md#31-dressing-a-higgs-doublet-on-a-rational-sphere) |
+| `DFM-GENERAL-GRAPH-DRESSING` | PROVED_LEAN | [dressing_field_proofs: 1.1 Neutralization and closed walks](../papers/core/dressing_field_proofs.md#11-neutralization-and-closed-walks) |
+| `DFM-HIERARCHICAL-BOREL` | PROVED_LEAN | [dressing_field_proofs: 2.1 The Borel factorization and the two-stage dressing](../papers/core/dressing_field_proofs.md#21-the-borel-factorization-and-the-two-stage-dressing); [dressing_field_proofs: 2.2 Discrete curvature and the Bianchi identity](../papers/core/dressing_field_proofs.md#22-discrete-curvature-and-the-bianchi-identity) |
+| `DFM-JARLSKOG-QUARTET-INVARIANCE` | PROVED_LEAN | [dressing_field_proofs: 3.4 Quark mixing: cycle count, rephasing invariance and two generations](../papers/core/dressing_field_proofs.md#34-quark-mixing-cycle-count-rephasing-invariance-and-two-generations) |
+| `DFM-SM-ANOMALY-NC-THREE` | PROVED_LEAN | [dressing_field_proofs: 3.3 Anomaly polynomials as functions of the number of colours](../papers/core/dressing_field_proofs.md#33-anomaly-polynomials-as-functions-of-the-number-of-colours) |
+| `DFM-TREE-CHANGE` | PROVED_LEAN | [dressing_field_proofs: 1.1 Neutralization and closed walks](../papers/core/dressing_field_proofs.md#11-neutralization-and-closed-walks) |
+| `DFM-TREE-CHORD-COORDINATES` | PROVED_LEAN | [dressing_field_proofs: 1.1 Neutralization and closed walks](../papers/core/dressing_field_proofs.md#11-neutralization-and-closed-walks) |
+| `DFM-WEINBERG-PROJECTORS-RHO` | PROVED_LEAN | [dressing_field_proofs: 3.2 Weinberg projectors and $\rho=1$](../papers/core/dressing_field_proofs.md#32-weinberg-projectors-and-rho1) |
 
 ## FERMION_SIGN
 
-0 of 5 with a prose proof.
+5 of 5 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `FSP-INVOLUTION-PAIR-CANCELLATION` | PROVED_LEAN | *none yet* |
-| `FSP-MERON-CHARACTER-CANCELLATION` | PROVED_LEAN | *none yet* |
-| `FSP-PACHNER-INVARIANCE-CLAIM` | PROVED_LEAN | *none yet* |
-| `FSP-SWITCHING-NORMAL-FORM` | PROVED_LEAN | *none yet* |
-| `FSP-U1-WILSON-ACTION` | PROVED_LEAN | *none yet* |
+| `FSP-INVOLUTION-PAIR-CANCELLATION` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.3 Sign-reversing involutions](../papers/core/fermion_sign_and_majorana_proofs.md#13-sign-reversing-involutions) |
+| `FSP-MERON-CHARACTER-CANCELLATION` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.2 Meron flips: the orbit sign sum](../papers/core/fermion_sign_and_majorana_proofs.md#12-meron-flips-the-orbit-sign-sum) |
+| `FSP-PACHNER-INVARIANCE-CLAIM` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.5 Flat-connection counts under the 4D Pachner moves](../papers/core/fermion_sign_and_majorana_proofs.md#15-flat-connection-counts-under-the-4d-pachner-moves) |
+| `FSP-SWITCHING-NORMAL-FORM` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.1 The switching normal form of an edge signing](../papers/core/fermion_sign_and_majorana_proofs.md#11-the-switching-normal-form-of-an-edge-signing) |
+| `FSP-U1-WILSON-ACTION` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.4 The U(1) Wilson action](../papers/core/fermion_sign_and_majorana_proofs.md#14-the-u1-wilson-action) |
 
 ## TENSOR_COMPOSITION
 
-0 of 7 with a prose proof.
+7 of 7 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `TENSOR-ASSUMPTION-COUNTERMODELS` | PROVED_LEAN | *none yet* |
-| `TENSOR-BINARY-EFFECT-INTERVAL` | PROVED_LEAN | *none yet* |
-| `TENSOR-CONE-ORBIT-KERNEL` | PROVED_LEAN | *none yet* |
-| `TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION` | PROVED_LEAN | *none yet* |
-| `TENSOR-FINITE-POVM-AVAILABILITY` | PROVED_LEAN | *none yet* |
-| `TENSOR-GENERATED-EFFECT-CONE` | PROVED_LEAN | *none yet* |
-| `TENSOR-TOMOGRAPHIC-COORDINATES` | PROVED_LEAN | *none yet* |
+| `TENSOR-ASSUMPTION-COUNTERMODELS` | PROVED_LEAN | [tensor_composition_proofs: 4.1 Countermodels](../papers/core/tensor_composition_proofs.md#41-countermodels) |
+| `TENSOR-BINARY-EFFECT-INTERVAL` | PROVED_LEAN | [tensor_composition_proofs: 3.1 Valid effects are the interval $[0,I]$](../papers/core/tensor_composition_proofs.md#31-valid-effects-are-the-interval-0i) |
+| `TENSOR-CONE-ORBIT-KERNEL` | PROVED_LEAN | [tensor_composition_proofs: 2.1 A cone fixed by seeds and transports](../papers/core/tensor_composition_proofs.md#21-a-cone-fixed-by-seeds-and-transports) |
+| `TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION` | PROVED_LEAN | [tensor_composition_proofs: 2.2 One calibrated controlled shift forces PSD](../papers/core/tensor_composition_proofs.md#22-one-calibrated-controlled-shift-forces-psd) |
+| `TENSOR-FINITE-POVM-AVAILABILITY` | PROVED_LEAN | [tensor_composition_proofs: 3.3 Finite tests are POVMs](../papers/core/tensor_composition_proofs.md#33-finite-tests-are-povms) |
+| `TENSOR-GENERATED-EFFECT-CONE` | PROVED_LEAN | [tensor_composition_proofs: 3.2 The generated effect cone is PSD](../papers/core/tensor_composition_proofs.md#32-the-generated-effect-cone-is-psd) |
+| `TENSOR-TOMOGRAPHIC-COORDINATES` | PROVED_LEAN | [tensor_composition_proofs: 1.1 Tomographic coordinates for the composite](../papers/core/tensor_composition_proofs.md#11-tomographic-coordinates-for-the-composite) |
 
 ## MAJORANA
 
-0 of 5 with a prose proof.
+4 of 5 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
 | `MAJ-ENVELOPE-NAT-ARITHMETIC` | PROVED_LEAN | *none yet* |
-| `MAJ-GIN-INVOLUTION-PAIR-CANCEL` | PROVED_LEAN | *none yet* |
-| `MAJ-KITAEV-EDGE-INDEX-DISJOINT` | PROVED_LEAN | *none yet* |
-| `MAJ-TRICHOTOMY-PAIRWISE-EXCLUSION` | PROVED_LEAN | *none yet* |
-| `MAJ-TRIVIAL-H1-NO-CLOSED` | PROVED_LEAN | *none yet* |
+| `MAJ-GIN-INVOLUTION-PAIR-CANCEL` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.3 Sign-reversing involutions](../papers/core/fermion_sign_and_majorana_proofs.md#13-sign-reversing-involutions) |
+| `MAJ-KITAEV-EDGE-INDEX-DISJOINT` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 2.2 Edge Majorana indices of the Kitaev chain](../papers/core/fermion_sign_and_majorana_proofs.md#22-edge-majorana-indices-of-the-kitaev-chain) |
+| `MAJ-TRICHOTOMY-PAIRWISE-EXCLUSION` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 2.1 The residual trichotomy](../papers/core/fermion_sign_and_majorana_proofs.md#21-the-residual-trichotomy) |
+| `MAJ-TRIVIAL-H1-NO-CLOSED` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 2.1 The residual trichotomy](../papers/core/fermion_sign_and_majorana_proofs.md#21-the-residual-trichotomy) |
 
 ## MUTUALLY_UNBIASED_BASES
 
@@ -353,53 +353,53 @@ status are not claimed as proved and have no proof section.
 
 ## CONSTRUCTOR_THEORY
 
-0 of 3 with a prose proof.
+3 of 3 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `CT-ENTANGLING-PHASE-FINITE-TARGET` | PROVED_LEAN | *none yet* |
-| `CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS` | PROVED_LEAN | *none yet* |
-| `CT-QUBIT-NO-CLONING-FINITE-TARGET` | PROVED_LEAN | *none yet* |
+| `CT-ENTANGLING-PHASE-FINITE-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 1.3 A diagonal phase that entangles](../papers/core/frontier_finite_targets_proofs.md#13-a-diagonal-phase-that-entangles) |
+| `CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS` | PROVED_LEAN | [frontier_finite_targets_proofs: 1.1 Separating two attributes through a report map](../papers/core/frontier_finite_targets_proofs.md#11-separating-two-attributes-through-a-report-map) |
+| `CT-QUBIT-NO-CLONING-FINITE-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 1.2 Which sets of Pauli eigenstates can be cloned](../papers/core/frontier_finite_targets_proofs.md#12-which-sets-of-pauli-eigenstates-can-be-cloned) |
 
 ## CAUSAL_QFT
 
-0 of 6 with a prose proof.
+6 of 6 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `CQFT-FINITE-POSET-NET-TARGET` | PROVED_LEAN | *none yet* |
-| `CQFT-FINITE-STRICT-POSET-SPACELIKE` | PROVED_LEAN | *none yet* |
-| `CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET` | PROVED_LEAN | *none yet* |
-| `CQFT-NO-SIGNALLING-PRODUCT-LEAN` | PROVED_LEAN | *none yet* |
-| `CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET` | PROVED_LEAN | *none yet* |
-| `CQFT-RS-FINITE-CYCLICITY-TARGET` | PROVED_LEAN | *none yet* |
+| `CQFT-FINITE-POSET-NET-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 2.2 Isotony and locality for site-factorized operators](../papers/core/frontier_finite_targets_proofs.md#22-isotony-and-locality-for-site-factorized-operators) |
+| `CQFT-FINITE-STRICT-POSET-SPACELIKE` | PROVED_LEAN | [frontier_finite_targets_proofs: 2.1 The spacelike relation](../papers/core/frontier_finite_targets_proofs.md#21-the-spacelike-relation) |
+| `CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 2.6 Ordering fractions, the grid, and covering relations](../papers/core/frontier_finite_targets_proofs.md#26-ordering-fractions-the-grid-and-covering-relations) |
+| `CQFT-NO-SIGNALLING-PRODUCT-LEAN` | PROVED_LEAN | [frontier_finite_targets_proofs: 2.3 Product tables do not signal](../papers/core/frontier_finite_targets_proofs.md#23-product-tables-do-not-signal) |
+| `CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 2.5 Ordered products along linear extensions](../papers/core/frontier_finite_targets_proofs.md#25-ordered-products-along-linear-extensions) |
+| `CQFT-RS-FINITE-CYCLICITY-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 2.4 Cyclic and separating vectors in finite dimension](../papers/core/frontier_finite_targets_proofs.md#24-cyclic-and-separating-vectors-in-finite-dimension) |
 
 ## ADS_CFT
 
-0 of 3 with a prose proof.
+2 of 3 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET` | PROVED_LEAN | *none yet* |
+| `ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 3.1 The six-qubit perfect tensor](../papers/core/frontier_finite_targets_proofs.md#31-the-six-qubit-perfect-tensor) |
 | `ADS-HAPPY-ENTROPY-MINCUT-TARGET` | PROVED_LEAN | *none yet* |
-| `ADS-LOGICAL-RECONSTRUCTION-TARGET` | PROVED_LEAN | *none yet* |
+| `ADS-LOGICAL-RECONSTRUCTION-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 3.2 Reconstruction of logical operators on three qubits](../papers/core/frontier_finite_targets_proofs.md#32-reconstruction-of-logical-operators-on-three-qubits) |
 
 ## LOOP_QUANTUM_GRAVITY
 
-0 of 4 with a prose proof.
+1 of 4 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
 | `LQG-6J-EXACT-AND-PENTAGON-TARGET` | PROVED_LEAN | *none yet* |
-| `LQG-AREA-SPECTRUM-EXACT-TARGET` | PROVED_LEAN | *none yet* |
+| `LQG-AREA-SPECTRUM-EXACT-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 4.1 Degeneracy of the area spectrum for small puncture sets](../papers/core/frontier_finite_targets_proofs.md#41-degeneracy-of-the-area-spectrum-for-small-puncture-sets) |
 | `LQG-PR-ALLOWED-REGION-TARGET` | PROVED_LEAN | *none yet* |
 | `LQG-TV-LEVEL2-PENTAGON-TARGET` | PROVED_LEAN | *none yet* |
 
 ## OBSERVER_PRESHEAF
 
-0 of 2 with a prose proof.
+2 of 2 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `OPS-PARITY-HOLONOMY-LEAN` | PROVED_LEAN | *none yet* |
-| `OPS-PUSHFORWARD-FUNCTOR-LEAN` | PROVED_LEAN | *none yet* |
+| `OPS-PARITY-HOLONOMY-LEAN` | PROVED_LEAN | [frontier_finite_targets_proofs: 5.2 Parity cycles: holonomy, sections and joint measures](../papers/core/frontier_finite_targets_proofs.md#52-parity-cycles-holonomy-sections-and-joint-measures) |
+| `OPS-PUSHFORWARD-FUNCTOR-LEAN` | PROVED_LEAN | [frontier_finite_targets_proofs: 5.1 Pushforward is functorial](../papers/core/frontier_finite_targets_proofs.md#51-pushforward-is-functorial) |
