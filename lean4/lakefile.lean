@@ -1433,3 +1433,6 @@ lean_lib CampaignGpImportTensorProduct where
 
 lean_lib CampaignGpImportCptpClass where
   roots := #[`CampaignGpImportCptpClass]
+
+lean_lib CampaignGpImportContinuousTime where
+  roots := #[`CampaignGpImportContinuousTime]
