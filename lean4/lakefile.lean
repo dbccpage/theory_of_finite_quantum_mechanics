@@ -1399,3 +1399,8 @@ lean_lib CampaignGpImportComplexField where
 -- Campaign: GP-IMPORT-CIRCLE-U1. Not a default target.
 lean_lib CampaignGpImportCircleU1 where
   roots := #[`CampaignGpImportCircleU1]
+
+/-- Untwisted finite-group 4D Pachner invariance; independent non-default target. -/
+lean_lib «CampaignFiniteGroupPachner» where
+  srcDir := "."
+  roots := #[`CampaignFiniteGroupPachner]

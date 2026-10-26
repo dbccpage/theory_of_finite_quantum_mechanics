@@ -3,25 +3,36 @@ node_id: FSP-PACHNER-INVARIANCE-CLAIM
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Claimed: a discrete topological partition function on 4D triangulations is invariant
-    under the 1-5, 2-4 and 3-3 Pachner moves; the source names no state-sum model, and the Regge action
-    itself is not Pachner invariant.'
+  source_statement: For every finite group G, the untwisted flat-connection count on the canonical 4D
+    1-5, 2-4 and 3-3 Pachner pairs, divided by |G| to the number of interior vertices, agrees for every
+    fixed flat common boundary. The normalized total counts also agree for every finite compatible exterior
+    family represented by dependent pairs, with the same outside-vertex count.
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: []
-  source_bottleneck: Fix a state-sum model (for example a Crane-Yetter type sum) and check its move invariance;
-    nothing here bears on fermion signs.
+  declared_assumptions:
+  - supplied finite group G and group axioms
+  - untwisted flat-connection counting model with one factor |G| per interior vertex
+  - canonical 4D Pachner facet pairs and finite compatible exterior configurations represented by dependent
+    pairs
+  source_bottleneck: 'Construct flat fillings by group potentials and boundary triangle cancellation;
+    count them with interior-vertex normalization and sum over the declared exterior family. Remaining
+    scope: The supplied finite group, untwisted flat-connection model, canonical local complexes and compatible
+    finite exterior interface are explicit. No general triangulation/gluing-equivalence or PL-homeomorphism
+    library is formalized; no Regge, twisted/Crane-Yetter, fermion-sign or continuum conclusion follows.
+    Human review remains pending. Historical unnamed partition-function claim remains unsupported.'
   source_refs:
   - dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md
   - papers/core/fsp/theory_of_finite_fsp.md
+  - dag/derivations/independent/fsp-pachner-invariance-claim.md
+  - dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json
   paper_refs:
   - dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md
-  source_claim_label: OPEN
+  source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md
-    sha256: fa67a2e467d0c126ad137131c195a0696ccbba529bdf46c39524c64a7b82a393
+    sha256: fbf1d99a504872b1e468b96813aee7127f12c0ef16466b4b13048ce1cebbd07c
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -29,9 +40,444 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_pachner_invariance_claim_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: oneFillingEquiv
+  line: 253
+  signature_excerpt: 'def oneFillingEquiv (b : BoundaryOne (G'
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Vertex
+  line: 17
+  signature_excerpt: abbrev Vertex
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: facetFace
+  line: 28
+  signature_excerpt: 'def facetFace (p : Nat) (left : Bool) (s : Finset Vertex) : Prop'
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: localFacets
+  line: 322
+  signature_excerpt: 'def localFacets (p : Nat) (left : Bool) : Finset (Finset Vertex)'
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: edgeOne
+  line: 19
+  signature_excerpt: 'def edgeOne (i j : Vertex) : Prop'
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triangleOne
+  line: 20
+  signature_excerpt: 'def triangleOne (i j k : Vertex) : Prop'
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: edgeTwo
+  line: 21
+  signature_excerpt: 'def edgeTwo (i j : Vertex) : Prop'
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triangleTwo
+  line: 22
+  signature_excerpt: 'def triangleTwo (i j k : Vertex) : Prop'
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triangleBoundary
+  line: 26
+  signature_excerpt: 'def triangleBoundary (i j k : Vertex) : Prop'
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triangleLeft
+  line: 24
+  signature_excerpt: 'def triangleLeft (i j k : Vertex) : Prop'
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triangleRight
+  line: 25
+  signature_excerpt: 'def triangleRight (i j k : Vertex) : Prop'
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Connection
+  line: 87
+  signature_excerpt: '@[ext] structure Connection'
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: FlatOn
+  line: 94
+  signature_excerpt: 'def FlatOn (T : Vertex → Vertex → Vertex → Prop) (c : Connection G) : Prop'
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: BoundaryOne
+  line: 101
+  signature_excerpt: abbrev BoundaryOne
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Coloring
+  line: 97
+  signature_excerpt: 'def Coloring (E : Vertex → Vertex → Prop) (T : Vertex → Vertex → Vertex → Prop)'
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: BoundaryTwo
+  line: 102
+  signature_excerpt: abbrev BoundaryTwo
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: face_is_in_a_facet
+  line: 326
+  signature_excerpt: |-
+    theorem face_is_in_a_facet (p : Nat) (left : Bool) (s : Finset Vertex) :
+        facetFace p left s ↔ ∃ f ∈ localFacets p left, s ⊆ f
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: local_facets_have_five_vertices
+  line: 330
+  signature_excerpt: |-
+    theorem local_facets_have_five_vertices (p : Nat) (left : Bool)
+        (s : Finset Vertex) (h : s ∈ localFacets p left) : s.card = 5
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: facet_counts
+  line: 335
+  signature_excerpt: |-
+    theorem facet_counts :
+        (localFacets 1 true).card = 1 ∧ (localFacets 1 false).card = 5 ∧
+        (localFacets 2 true).card = 2 ∧ (localFacets 2 false).card = 4 ∧
+        (localFacets 3 true).card = 3 ∧ (localFacets 3 false).card = 3
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: one_boundary_skeleton
+  line: 61
+  signature_excerpt: |-
+    theorem one_boundary_skeleton :
+        (∀ i j : Vertex, (facetFace 1 true {i,j} ∧ facetFace 1 false {i,j}) ↔ edgeOne i j) ∧
+        (∀ i j k : Vertex, (facetFace 1 true {i,j,k} ∧ facetFace 1 false {i,j,k}) ↔
+          triangleOne i j k)
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: two_boundary_skeleton
+  line: 66
+  signature_excerpt: |-
+    theorem two_boundary_skeleton :
+        (∀ i j : Vertex, (facetFace 2 true {i,j} ∧ facetFace 2 false {i,j}) ↔ edgeTwo i j) ∧
+        (∀ i j k : Vertex, (facetFace 2 true {i,j,k} ∧ facetFace 2 false {i,j,k}) ↔
+          triangleTwo i j k)
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: three_boundary_skeleton
+  line: 71
+  signature_excerpt: |-
+    theorem three_boundary_skeleton :
+        (∀ i j : Vertex, facetFace 3 true {i,j} ∧ facetFace 3 false {i,j}) ∧
+        (∀ i j k : Vertex, (facetFace 3 true {i,j,k} ∧ facetFace 3 false {i,j,k}) ↔
+          triangleBoundary i j k)
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: nonflat_boundary_has_no_extension
+  line: 157
+  signature_excerpt: |-
+    theorem nonflat_boundary_has_no_extension
+        (E : Vertex → Vertex → Prop) (T S : Vertex → Vertex → Vertex → Prop)
+        (b : Connection G) (hbad : ¬ FlatOn T b)
+        (hfaces : ∀ i j k, T i j k → S i j k ∧ E i j ∧ E j k ∧ E i k) :
+        ¬ ∃ c : Connection G, FlatOn S c ∧
+          (∀ i j, E i j → c.edge i j = b.edge i j)
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pachner_one_five
+  line: 354
+  signature_excerpt: 'theorem pachner_one_five [Fintype G] (b : BoundaryOne (G'
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pachner_two_four
+  line: 359
+  signature_excerpt: 'theorem pachner_two_four [Fintype G] (b : BoundaryTwo (G'
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pachner_three_three
+  line: 364
+  signature_excerpt: 'theorem pachner_three_three [Fintype G] (b : BoundaryThree (G'
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: glued_one_five
+  line: 376
+  signature_excerpt: |-
+    theorem glued_one_five [Fintype G] {X : Type*} [Fintype X]
+        (b : X → BoundaryOne (G
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: glued_two_four
+  line: 387
+  signature_excerpt: |-
+    theorem glued_two_four [Fintype G] {X : Type*} [Fintype X]
+        (b : X → BoundaryTwo (G
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: glued_three_three
+  line: 395
+  signature_excerpt: |-
+    theorem glued_three_three [Fintype G] {X : Type*} [Fintype X]
+        (b : X → BoundaryThree (G
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: unnormalized_one_five_iff
+  line: 312
+  signature_excerpt: 'theorem unnormalized_one_five_iff [Fintype G] (b : BoundaryOne (G'
+  source: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  source_sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.face_is_in_a_facet
+  availability: local
+  symbol: CampaignFiniteGroupPachner.face_is_in_a_facet
+  path: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  declaration_status: declaration_found_not_proof_checked
+  line: 326
+  role: source_lead_only
+- original_ref: lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.local_facets_have_five_vertices
+  availability: local
+  symbol: CampaignFiniteGroupPachner.local_facets_have_five_vertices
+  path: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  declaration_status: declaration_found_not_proof_checked
+  line: 330
+  role: source_lead_only
+- original_ref: lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.facet_counts
+  availability: local
+  symbol: CampaignFiniteGroupPachner.facet_counts
+  path: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  declaration_status: declaration_found_not_proof_checked
+  line: 335
+  role: source_lead_only
+- original_ref: lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.one_boundary_skeleton
+  availability: local
+  symbol: CampaignFiniteGroupPachner.one_boundary_skeleton
+  path: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  declaration_status: declaration_found_not_proof_checked
+  line: 61
+  role: source_lead_only
+- original_ref: lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.two_boundary_skeleton
+  availability: local
+  symbol: CampaignFiniteGroupPachner.two_boundary_skeleton
+  path: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  declaration_status: declaration_found_not_proof_checked
+  line: 66
+  role: source_lead_only
+- original_ref: lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.three_boundary_skeleton
+  availability: local
+  symbol: CampaignFiniteGroupPachner.three_boundary_skeleton
+  path: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  declaration_status: declaration_found_not_proof_checked
+  line: 71
+  role: source_lead_only
+- original_ref: lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.nonflat_boundary_has_no_extension
+  availability: local
+  symbol: CampaignFiniteGroupPachner.nonflat_boundary_has_no_extension
+  path: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  declaration_status: declaration_found_not_proof_checked
+  line: 157
+  role: source_lead_only
+- original_ref: lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.oneFillingEquiv
+  availability: local
+  symbol: CampaignFiniteGroupPachner.oneFillingEquiv
+  path: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  declaration_status: declaration_found_not_proof_checked
+  line: 253
+  role: source_lead_only
+- original_ref: lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.pachner_one_five
+  availability: local
+  symbol: CampaignFiniteGroupPachner.pachner_one_five
+  path: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  declaration_status: declaration_found_not_proof_checked
+  line: 354
+  role: source_lead_only
+- original_ref: lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.pachner_two_four
+  availability: local
+  symbol: CampaignFiniteGroupPachner.pachner_two_four
+  path: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  declaration_status: declaration_found_not_proof_checked
+  line: 359
+  role: source_lead_only
+- original_ref: lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.pachner_three_three
+  availability: local
+  symbol: CampaignFiniteGroupPachner.pachner_three_three
+  path: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  declaration_status: declaration_found_not_proof_checked
+  line: 364
+  role: source_lead_only
+- original_ref: lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.glued_one_five
+  availability: local
+  symbol: CampaignFiniteGroupPachner.glued_one_five
+  path: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  declaration_status: declaration_found_not_proof_checked
+  line: 376
+  role: source_lead_only
+- original_ref: lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.glued_two_four
+  availability: local
+  symbol: CampaignFiniteGroupPachner.glued_two_four
+  path: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  declaration_status: declaration_found_not_proof_checked
+  line: 387
+  role: source_lead_only
+- original_ref: lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.glued_three_three
+  availability: local
+  symbol: CampaignFiniteGroupPachner.glued_three_three
+  path: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  declaration_status: declaration_found_not_proof_checked
+  line: 395
+  role: source_lead_only
+- original_ref: lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.unnormalized_one_five_iff
+  availability: local
+  symbol: CampaignFiniteGroupPachner.unnormalized_one_five_iff
+  path: lean4/CampaignFiniteGroupPachner.lean
+  repository: this_repository
+  sha256: e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca
+  declaration_status: declaration_found_not_proof_checked
+  line: 312
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -50,7 +496,11 @@ operad_slots:
     mining_status: UNREVIEWED
     carrier: null
     coefficient_ring: null
-    assumptions: []
+    assumptions:
+    - supplied finite group G and group axioms
+    - untwisted flat-connection counting model with one factor |G| per interior vertex
+    - canonical 4D Pachner facet pairs and finite compatible exterior configurations represented by dependent
+      pairs
     source_pins: []
     public_input: {}
   slot_m2_layer1_forward_morphisms:
@@ -66,11 +516,13 @@ operad_slots:
     mining_status: UNREVIEWED
     certificate_predicates: []
     anchors: []
-    unpaid_imports: []
+    unpaid_imports:
+    - supplied finite group G and group axioms
+    - untwisted flat-connection counting model with one factor |G| per interior vertex
+    - canonical 4D Pachner facet pairs and finite compatible exterior configurations represented by dependent
+      pairs
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

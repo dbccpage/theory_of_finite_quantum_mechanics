@@ -3944,22 +3944,47 @@
     {
       "id": "FSP-PACHNER-INVARIANCE-CLAIM",
       "stage": "FERMION_SIGN",
-      "status": "OPEN",
-      "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-050 claims PROVED_LEAN; audited status OPEN",
-      "statement": "Claimed: a discrete topological partition function on 4D triangulations is invariant under the 1-5, 2-4 and 3-3 Pachner moves; the source names no state-sum model, and the Regge action itself is not Pachner invariant.",
+      "status": "PROVED_LEAN",
+      "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-050 claims PROVED_LEAN; audited status PROVED_LEAN",
+      "statement": "For every finite group G, the untwisted flat-connection count on the canonical 4D 1-5, 2-4 and 3-3 Pachner pairs, divided by |G| to the number of interior vertices, agrees for every fixed flat common boundary. The normalized total counts also agree for every finite compatible exterior family represented by dependent pairs, with the same outside-vertex count.",
       "source": [
         "dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-pachner-invariance-claim.md",
+        "dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.face_is_in_a_facet",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.local_facets_have_five_vertices",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.facet_counts",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.one_boundary_skeleton",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.two_boundary_skeleton",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.three_boundary_skeleton",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.nonflat_boundary_has_no_extension",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.oneFillingEquiv",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.pachner_one_five",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.pachner_two_four",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.pachner_three_three",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.glued_one_five",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.glued_two_four",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.glued_three_three",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.unnormalized_one_five_iff"
+      ],
       "rust": [],
-      "imported_structure": [],
-      "bottleneck": "Fix a state-sum model (for example a Crane-Yetter type sum) and check its move invariance; nothing here bears on fermion signs.",
+      "imported_structure": [
+        "supplied finite group G and group axioms",
+        "untwisted flat-connection counting model with one factor |G| per interior vertex",
+        "canonical 4D Pachner facet pairs and finite compatible exterior configurations represented by dependent pairs"
+      ],
+      "bottleneck": "Construct flat fillings by group potentials and boundary triangle cancellation; count them with interior-vertex normalization and sum over the declared exterior family. Remaining scope: The supplied finite group, untwisted flat-connection model, canonical local complexes and compatible finite exterior interface are explicit. No general triangulation/gluing-equivalence or PL-homeomorphism library is formalized; no Regge, twisted/Crane-Yetter, fermion-sign or continuum conclusion follows. Human review remains pending. Historical unnamed partition-function claim remains unsupported.",
       "tags": [
         "application-branch",
         "source-corpus",
         "TFQ-1214",
         "FSP-DERIV-050"
+      ],
+      "see_also": [
+        "FSP-REGGE-DEFICIT-ACTION"
       ]
     },
     {
@@ -10125,14 +10150,15 @@
     {
       "id": "APP-R-FSP-PACHNER-INVARIANCE-CLAIM",
       "inputs": [
-        "FSP-REGGE-DEFICIT-ACTION"
+        "DFM-GROUP-CONNECTION"
       ],
       "output": "FSP-PACHNER-INVARIANCE-CLAIM",
-      "status": "GAP_NO_DERIVATION",
-      "mechanism": "Fix a state-sum model (for example a Crane-Yetter type sum) and check its move invariance; nothing here bears on fermion signs.",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Construct flat fillings by group potentials and boundary triangle cancellation; count them with interior-vertex normalization and sum over the declared exterior family. Remaining scope: The supplied finite group, untwisted flat-connection model, canonical local complexes and compatible finite exterior interface are explicit. No general triangulation/gluing-equivalence or PL-homeomorphism library is formalized; no Regge, twisted/Crane-Yetter, fermion-sign or continuum conclusion follows. Human review remains pending. Historical unnamed partition-function claim remains unsupported.",
       "source": [
         "dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md",
-        "papers/core/fsp/theory_of_finite_fsp.md"
+        "papers/core/fsp/theory_of_finite_fsp.md",
+        "dag/derivations/independent/fsp-pachner-invariance-claim.md"
       ]
     },
     {
@@ -16415,12 +16441,12 @@
       "id": "TFQ-1214",
       "uuid": "f484bc36-e1ec-5c89-92ad-bbe142989a70",
       "local_id": "FSP-PACHNER-INVARIANCE-CLAIM",
-      "name": "Pachner-move invariance of a triangulation sum (unsupported)",
+      "name": "Untwisted finite-group state sum under 4D Pachner moves",
       "stage": "FERMION_SIGN",
-      "parent_id": "TFQ-1212",
-      "record_status": "OPEN_OBLIGATION",
-      "summary": "Claimed: a discrete topological partition function on 4D triangulations is invariant under the 1-5, 2-4 and 3-3 Pachner moves; the source names no state-sum model, and the Regge action itself is not Pachner invariant.",
-      "obligation": "Fix a state-sum model (for example a Crane-Yetter type sum) and check its move invariance; nothing here bears on fermion signs.",
+      "parent_id": "TFQ-0397",
+      "record_status": "PROVED_LEAN",
+      "summary": "For every finite group G, the untwisted flat-connection count on the canonical 4D 1-5, 2-4 and 3-3 Pachner pairs, divided by |G| to the number of interior vertices, agrees for every fixed flat common boundary. The normalized total counts also agree for every finite compatible exterior family represented by dependent pairs, with the same outside-vertex count.",
+      "obligation": "Construct flat fillings by group potentials and boundary triangle cancellation; count them with interior-vertex normalization and sum over the declared exterior family. Remaining scope: The supplied finite group, untwisted flat-connection model, canonical local complexes and compatible finite exterior interface are explicit. No general triangulation/gluing-equivalence or PL-homeomorphism library is formalized; no Regge, twisted/Crane-Yetter, fermion-sign or continuum conclusion follows. Human review remains pending. Historical unnamed partition-function claim remains unsupported.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "FSP-PACHNER-INVARIANCE-CLAIM"
@@ -16429,11 +16455,31 @@
       "coda_atlas_paths": [],
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md",
-        "papers/core/fsp/theory_of_finite_fsp.md:694-706"
+        "papers/core/fsp/theory_of_finite_fsp.md:694-706",
+        "dag/derivations/independent/fsp-pachner-invariance-claim.md",
+        "dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-pachner-invariance-claim.py"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.face_is_in_a_facet",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.local_facets_have_five_vertices",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.facet_counts",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.one_boundary_skeleton",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.two_boundary_skeleton",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.three_boundary_skeleton",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.nonflat_boundary_has_no_extension",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.oneFillingEquiv",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.pachner_one_five",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.pachner_two_four",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.pachner_three_three",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.glued_one_five",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.glued_two_four",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.glued_three_three",
+        "lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.unnormalized_one_five_iff"
+      ]
     },
     {
       "id": "TFQ-1215",

@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md`
 
 - file: [dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md](../../../dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md)
-- sha256 (`lf-normalised`): `41e4537320c8a4b8d479affc42288df4e4ac8a87c5f5d8333c9741aa47049554`
+- sha256 (`lf-normalised`): `71e5be635ecee1ee99f379a4143f68be556313436db92398b8f606fc889eae7f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1212
 - counts toward the grade: no
@@ -70,7 +70,6 @@ Incoming (1):
 
 - `APP-R-FSP-REGGE-DEFICIT-ACTION` `CONDITIONAL_ON_IMPORT`: [PGW-WDP-DEGREE-K-TORSION-BALANCE](PGW-WDP-DEGREE-K-TORSION-BALANCE.md) (PROVED_PROSE), [FSP-COBORDISM-INTRINSIC-SIGN](FSP-COBORDISM-INTRINSIC-SIGN.md) (OPEN)
 
-Outgoing (2):
+Outgoing (1):
 
 - `APP-R-FSP-DISCRETE-WDW-CONSTRAINT` `GAP_NO_DERIVATION`: [FSP-DISCRETE-WDW-CONSTRAINT](FSP-DISCRETE-WDW-CONSTRAINT.md) (OPEN)
-- `APP-R-FSP-PACHNER-INVARIANCE-CLAIM` `GAP_NO_DERIVATION`: [FSP-PACHNER-INVARIANCE-CLAIM](FSP-PACHNER-INVARIANCE-CLAIM.md) (OPEN)
