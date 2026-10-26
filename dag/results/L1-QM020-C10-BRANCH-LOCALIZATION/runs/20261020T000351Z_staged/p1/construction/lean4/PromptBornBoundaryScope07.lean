@@ -1,3 +1,0 @@
-import PromptBornBoundaries
-#print axioms QuantumMechanics.PromptBornBoundaries.branch_law
-#print axioms QuantumMechanics.PromptBornBoundaries.branch_control

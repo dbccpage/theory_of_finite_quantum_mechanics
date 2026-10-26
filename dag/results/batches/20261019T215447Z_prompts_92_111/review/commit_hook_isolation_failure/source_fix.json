@@ -1,9 +1,0 @@
-{
-  "subject": "code/python/tests/test_qm_atlas_loc.py",
-  "before_sha256": "77db201b890567f87d71f504853a998d8d9004739c0df813e5d165150d164db2",
-  "after_sha256": "0b0bb0ad75079a0d46236747fa4ea3d48a88206de1820893bfef0250f4d69a4e",
-  "exact_insertion_before": "    config = tmp_path / \"empty_git_config\"",
-  "inserted_text": "    # Hooks export repository-local Git variables. Without clearing them, a\n    # fixture's git-init/commit may target the real repository instead.\n    names = subprocess.check_output(\n        [\"git\", \"rev-parse\", \"--local-env-vars\"], cwd=REPO_ROOT, text=True,\n    ).splitlines()\n    for name in names:\n        monkeypatch.delenv(name, raising=False)\n",
-  "stage_or_mathematical_source_changes": 0,
-  "purpose": "Isolate fixture Git commands under both ordinary pytest and a real pre-commit hook environment."
-}

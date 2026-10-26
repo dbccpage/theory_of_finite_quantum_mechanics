@@ -1,3 +1,0 @@
-import PromptBornBoundaries
-#print axioms QuantumMechanics.PromptBornBoundaries.redundancy_law
-#print axioms QuantumMechanics.PromptBornBoundaries.redundancy_control
