@@ -1457,3 +1457,6 @@ lean_lib CampaignDsQm204BornUniqueness where
 
 lean_lib CampaignMajImportKitaevChain where
   roots := #[`CampaignMajImportKitaevChain]
+
+lean_lib CampaignFspThetaTermComplexWeight where
+  roots := #[`CampaignFspThetaTermComplexWeight]

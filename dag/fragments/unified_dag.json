@@ -4624,8 +4624,8 @@
       "stage": "FERMION_SIGN",
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "Adding S_theta = i theta Q_top with real lattice charge Q_top multiplies the Boltzmann weight by exp(-i theta Q_top), which is nonreal unless theta Q_top lies in pi Z for every configuration, so positive-weight importance sampling is lost for generic theta != 0.",
-      "obligation": "Severity of the resulting sign problem is phenomenology from the literature; the checkout has no theta-term model.",
+      "statement": "For angle indices 0, 1, 2 and 3, one quarter turn of the Gaussian integer (1, 0) by the pair (0, -1) yields (1, 0), (0, -1), (-1, 0) and (0, 1), and the fourth turn returns to (1, 0). That turn is multiplication by (0, -1), and (1, 0) times (0, -1) is (0, -1). Charge 0 keeps the weight (1, 0) at each of those four indices. Charge 1 uses the quarter-turn value. The second coordinate at charge 1 is 0, -1, 0 and 1, hence nonzero at indices 1 and 3. At index 2 with charge 1 the first coordinate is -1, so that pair is not positive in the first coordinate. Among the four charge-1 pairs, only index 0 has a positive first coordinate and second coordinate 0.",
+      "obligation": "The record is this four-index Gaussian-integer table. It does not introduce an exponential, a real angle, a plaquette sum, or a Monte Carlo sampler. The source sentence that an added term i theta Q_top multiplies a Boltzmann weight by a complex phase, and that a positive-weight sampler fails for a nonzero angle outside a discrete set, stays an imported reading. AuthorityEffect is None.",
       "imported_structure": [
         "lattice topological charge Q_top and theta vacuum term (standard)"
       ],
@@ -4633,17 +4633,46 @@
         "FSP-U1-WILSON-ACTION"
       ],
       "parent_record": "TFQ-1196",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter0",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter1",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter2",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter3",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter4",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.mulNegI_eq_gMul",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.phaseProduct",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight00",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight10",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight20",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight30",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight01",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight11",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight21",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight31",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im01",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im11",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im21",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im31",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im11_ne",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im31_ne",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.re21",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.notPositive21",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.positive01",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.charge1PositiveOnlyAtZero"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-theta-term-complex-weight.py::check"
+      ],
       "external_witnesses": [
         "external:omega_quantum_physics::meron_source_field::topological_charge_action (cited by the source, not in this checkout)"
       ],
       "sources": [
         "papers/core/fsp/theory_of_finite_fsp.md:474-486",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md:448-468"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md:448-468",
+        "dag/derivations/independent/fsp-theta-term-complex-weight.md"
       ],
-      "audit": "Cited NonAbelianGaugeSigns.lean::topological_theta_sign_defect does not exist. The SU(2) theta = pi fixture lemmas (su2_action_gap_forces_weight_inequality: w0 != w0 + delta_S for delta_S > 0) are Nat arithmetic; ledger GIN-C9 withdraws their physical reading. The local evaluate_topological_charge symbol is absent from cdt_topological_charge_evaluator.py.",
+      "audit": "Cited NonAbelianGaugeSigns.lean::topological_theta_sign_defect does not exist. The local evaluate_topological_charge symbol is absent from cdt_topological_charge_evaluator.py. CampaignFspThetaTermComplexWeight.lean states only the four-index Gaussian-integer table in the statement. It does not state an exponential or a lattice topological charge.",
       "see_also": [],
       "uses": []
     },
