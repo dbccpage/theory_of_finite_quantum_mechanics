@@ -4,7 +4,7 @@
   "checked_at": "2026-10-26T19:45:08.126544+00:00",
   "source_base": "92a639ddc0676a202bee5c837c35a7460e55f2fe",
   "source_state": "Working tree of branch claude/project-thread-x6v0sk-mub; source identity is bound by SHA-256.",
-  "result": "Narrowed to odd characteristic, in full generality there: for every finite field F with 2 != 0, every commutative domain R with an involution, and every nontrivial unitary additive character psi : F -> R, the q + 1 bases (standard, and x -> psi(a x^2 + b x) for a in F) are pairwise orthogonal with norms 1 or q and satisfy |<u,v>|^2 q = ||u||^2 ||v||^2 across bases (MubPrimePowerOddCharacteristic.mub_family). The node stays OPEN because characteristic two (d = 2^k, k >= 2) is not constructed and the complex character instance is a parameter.",
+  "result": "Narrowed to odd characteristic, in full generality there: for every finite field F with 2 != 0, every commutative domain R with an involution, and every nontrivial unitary additive character psi : F -> R, the q + 1 bases (standard, and x -> psi(a x^2 + b x) for a in F) are pairwise orthogonal with norms 1 or q and satisfy |<u,v>|^2 q = ||u||^2 ||v||^2 across bases (CampaignMubPrimePowerOddCharacteristic.mub_family). The node stays OPEN because characteristic two (d = 2^k, k >= 2) is not constructed and the complex character instance is a parameter.",
   "proof_boundary": "The module type-checks with only propext, Classical.choice and Quot.sound. The character psi is a hypothesis (nontrivial, star psi(t) = psi(-t)); its existence over C (exp(2 pi i Tr(t)/p)) is standard but not constructed in Lean here. Vectors are unnormalised; the unbiasedness relation is stated with the norms, so no square roots appear. Characteristic two beyond dimension 2 is not treated.",
   "lean_replay": {
     "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
@@ -22,9 +22,9 @@
     "library": "CampaignMubPrimePowerOdd (lean_lib in lean4/lakefile.lean; not a default target)",
     "results": [
       {
-        "module": "MubPrimePowerOddCharacteristic",
+        "module": "CampaignMubPrimePowerOddCharacteristic",
         "dag_node": "MUB-PRIME-POWER-CONSTRUCTION",
-        "source": "lean4/MubPrimePowerOddCharacteristic.lean",
+        "source": "lean4/CampaignMubPrimePowerOddCharacteristic.lean",
         "sha256": "a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b",
         "sha256_after_build": "a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b",
         "source_unchanged_during_build": true,
@@ -97,7 +97,7 @@
             "Quot.sound"
           ]
         },
-        "output": "info: MubPrimePowerOddCharacteristic.lean:250:0: 'MubFable.PrimePowerOdd.sum_mulShift' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: MubPrimePowerOddCharacteristic.lean:251:0: 'MubFable.PrimePowerOdd.pair_std' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: MubPrimePowerOddCharacteristic.lean:252:0: 'MubFable.PrimePowerOdd.pair_qvec_same' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: MubPrimePowerOddCharacteristic.lean:253:0: 'MubFable.PrimePowerOdd.pair_std_qvec_mul_star' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: MubPrimePowerOddCharacteristic.lean:254:0: 'MubFable.PrimePowerOdd.weil_sum_mul_star' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: MubPrimePowerOddCharacteristic.lean:255:0: 'MubFable.PrimePowerOdd.pair_qvec_cross_mul_star' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: MubPrimePowerOddCharacteristic.lean:256:0: 'MubFable.PrimePowerOdd.basis_orthogonal' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: MubPrimePowerOddCharacteristic.lean:257:0: 'MubFable.PrimePowerOdd.basis_unbiased' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: MubPrimePowerOddCharacteristic.lean:258:0: 'MubFable.PrimePowerOdd.mub_family' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: MubPrimePowerOddCharacteristic.lean:259:0: 'MubFable.PrimePowerOdd.card_bases' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+        "output": "info: CampaignMubPrimePowerOddCharacteristic.lean:250:0: 'MubFable.PrimePowerOdd.sum_mulShift' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignMubPrimePowerOddCharacteristic.lean:251:0: 'MubFable.PrimePowerOdd.pair_std' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignMubPrimePowerOddCharacteristic.lean:252:0: 'MubFable.PrimePowerOdd.pair_qvec_same' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignMubPrimePowerOddCharacteristic.lean:253:0: 'MubFable.PrimePowerOdd.pair_std_qvec_mul_star' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignMubPrimePowerOddCharacteristic.lean:254:0: 'MubFable.PrimePowerOdd.weil_sum_mul_star' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignMubPrimePowerOddCharacteristic.lean:255:0: 'MubFable.PrimePowerOdd.pair_qvec_cross_mul_star' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignMubPrimePowerOddCharacteristic.lean:256:0: 'MubFable.PrimePowerOdd.basis_orthogonal' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignMubPrimePowerOddCharacteristic.lean:257:0: 'MubFable.PrimePowerOdd.basis_unbiased' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignMubPrimePowerOddCharacteristic.lean:258:0: 'MubFable.PrimePowerOdd.mub_family' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignMubPrimePowerOddCharacteristic.lean:259:0: 'MubFable.PrimePowerOdd.card_bases' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
       }
     ]
   },
