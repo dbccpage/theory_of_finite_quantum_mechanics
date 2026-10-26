@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Transition from the finite presented carrier (integer weights, finite report labels) to a continuous infinite-dimensional Hilbert space. QM_122 section 6 refuses it; QM_020 demotion box fences it.
+Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1.
 
 ### Governing Obligation
-The completion, its identification with l2 and the lift of bounded exact operators are recorded at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). What stays imported is the selection of the scalar field and of the l2 uniformity from finite-theory primitives, and the review of this node still asks for a verified topology, Cauchy completion and infinite-dimensional carrier.
+The transition from a finite presented carrier, with integer weights and finite report labels, to a continuous infinite-dimensional Hilbert space stays imported. Scalar-field selection, l2 uniformity, a verified topology, a Cauchy completion and the lift of bounded exact operators stay imported. The completion record sits at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). QM_122 section 6 refuses that transition, and the QM_020 demotion box fences it. The length-4 window and the finite power-of-four identity are one finite case.
 
 ### Source Status
 OPEN gap GAP-F001-S000-002 (continuum interface)
@@ -36,6 +36,17 @@ OPEN gap GAP-F001-S000-002 (continuum interface)
 ### Lean 4 Theorems
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_and_ds_imported_assumption_separation_certificates`
+- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.closedTail`
+- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.scaledTailIsOne`
+- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.sumDiff`
+- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.halves`
+- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.windowSquares`
+- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.windowSum`
+- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.windowScaled`
+- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.pow4Four`
+- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.windowIsSum`
+- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.squareDiffs`
+- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.noPositiveDoubleOfOne`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`
