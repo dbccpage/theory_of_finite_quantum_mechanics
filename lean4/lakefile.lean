@@ -1510,3 +1510,7 @@ lean_lib CampaignL1OrthogonalAdditivity where
 -- Reviewed campaign module; non-default target.
 lean_lib CampaignFqGapTensorUniqueness where
   roots := #[`CampaignFqGapTensorUniqueness]
+
+-- L1-WDP-CH08-C01-REPLICA-L1 scale count. Non-default target.
+lean_lib CampaignL1ReplicaScale where
+  roots := #[`CampaignL1ReplicaScale]
