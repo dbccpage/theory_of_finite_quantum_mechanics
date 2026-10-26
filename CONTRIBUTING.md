@@ -135,3 +135,5 @@ PR #435 retains L2D and its original OPEN target under the user-approved exact s
 PR #439 retains L1D and its original OPEN target under the user-approved exact source pin in `dag/research/approved_pr439_exact_pin_20261026.json`.
 
 PR #440 retains L2D and CONDITIONAL under the user-approved exact source pin in `dag/research/approved_pr440_exact_pin_20261026.json`.
+
+PR #442 retains L2D and CONDITIONAL under the user-approved exact source pin in `dag/research/approved_pr442_exact_pin_20261026.json`.
