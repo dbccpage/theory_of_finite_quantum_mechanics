@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; finite fields/rings (unit circle of order p -+ 1, native table only), cyclotomic extensions, completion and continuity are not treated.
+On the integers modulo 7, with product (a, b) * (c, d) = (a*c - b*d, a*d + b*c), the pairs (x, y) with x*x + y*y = 1 are exactly the eight powers of g = (2, 2): (1, 0), (2, 2), (0, 1), (5, 2), (6, 0), (5, 5), (0, 6) and (2, 5). The eighth power is (1, 0), and each of the seven earlier powers differs from (1, 0). The count 8 equals 7 + 1 and is not 4.
 
 ### Governing Obligation
-Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved.
+This record is the modulo-7 circle table above. Selection of C and U(1), the unit Gaussian rationals, the four torsion phases, every modulus other than 7, cyclotomic extensions, completion and continuity stay outside this record. The pointer target in QM_028 / QM_062 stays unresolved. AuthorityEffect: None.
 
 ### Source Status
 Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, split-real zero-divisor exclusion, non-abelian Pauli exclusion, and Gaussian-integer cx ring injectivity) mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
@@ -33,6 +33,14 @@ Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, s
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step1`
+- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step8`
+- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.norms`
+- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.solutions_iff`
+- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.eight_distinct`
+- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.eight`
+- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.earlier_ne_one`
+- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.not_axis`
 - `lean4/H011U1SelectorBoundary.lean::selector_not_free`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_u1_selector_layers_and_ring_iso`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle`

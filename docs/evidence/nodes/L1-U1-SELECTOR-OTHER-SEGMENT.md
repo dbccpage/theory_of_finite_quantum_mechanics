@@ -4,15 +4,15 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `OPEN`. Evidence grade: **E3**
 
 ## Statement
 
-> Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; finite fields/rings (unit circle of order p -+ 1, native table only), cyclotomic extensions, completion and continuity are not treated.
+> On the integers modulo 7, with product (a, b) * (c, d) = (a*c - b*d, a*d + b*c), the pairs (x, y) with x*x + y*y = 1 are exactly the eight powers of g = (2, 2): (1, 0), (2, 2), (0, 1), (5, 2), (6, 0), (5, 5), (0, 6) and (2, 5). The eighth power is (1, 0), and each of the seven earlier powers differs from (1, 0). The count 8 equals 7 + 1 and is not 4.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 20
-- distinct cited Lean declarations covered by a current replay receipt: 19
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 34
+- distinct cited Lean declarations covered by a current replay receipt: 33
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved.
+This record is the modulo-7 circle table above. Selection of C and U(1), the unit Gaussian rationals, the four torsion phases, every modulus other than 7, cyclotomic extensions, completion and continuity stay outside this record. The pointer target in QM_028 / QM_062 stays unresolved. AuthorityEffect: None.
 
 ## Source status
 
@@ -44,6 +44,34 @@ Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, s
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignL1U1SelectorOtherSegment.lean`
+
+- file: [lean4/CampaignL1U1SelectorOtherSegment.lean](../../../lean4/CampaignL1U1SelectorOtherSegment.lean)
+- sha256 (`bytes`): `2e1bf569100aacfe8ddc51540eafa0d198880599a0893ab62a8cc552f2fb815d`
+- cited in: node.lean, receipt dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json (CampaignL1U1SelectorOtherSegment), record TFQ-1003
+- replay: `verified`
+  - receipt [dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json](../../../dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json) (module `CampaignL1U1SelectorOtherSegment`): recorded sha256 `2e1bf569100aacfe8ddc51540eafa0d198880599a0893ab62a8cc552f2fb815d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignL1U1SelectorOtherSegment`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignL1U1SelectorOtherSegment.earlier_ne_one` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.earlier_ne_one` |
+| `CampaignL1U1SelectorOtherSegment.eight` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.eight` |
+| `CampaignL1U1SelectorOtherSegment.eight_distinct` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.eight_distinct` |
+| `CampaignL1U1SelectorOtherSegment.norms` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.norms` |
+| `CampaignL1U1SelectorOtherSegment.not_axis` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.not_axis` |
+| `CampaignL1U1SelectorOtherSegment.solutions_iff` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.solutions_iff` |
+| `CampaignL1U1SelectorOtherSegment.step1` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step1` |
+| `CampaignL1U1SelectorOtherSegment.step2` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step2` |
+| `CampaignL1U1SelectorOtherSegment.step3` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step3` |
+| `CampaignL1U1SelectorOtherSegment.step4` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step4` |
+| `CampaignL1U1SelectorOtherSegment.step5` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step5` |
+| `CampaignL1U1SelectorOtherSegment.step6` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step6` |
+| `CampaignL1U1SelectorOtherSegment.step7` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step7` |
+| `CampaignL1U1SelectorOtherSegment.step8` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step8` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
@@ -142,7 +170,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md](../../../dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md)
-- sha256 (`lf-normalised`): `c1e7086fadfc47e382a61f8f6333e8b6ffc07cee51e2016c307fc92dfdbbc381`
+- sha256 (`lf-normalised`): `c9d5858c649c0c15eaf5fca3a288d768987fdc4b91e8a15d5ec09e1d02caa372`
 - generated view: listed, not counted
 - cited in: record TFQ-1003
 - counts toward the grade: no

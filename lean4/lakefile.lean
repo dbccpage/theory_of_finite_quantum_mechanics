@@ -1486,3 +1486,6 @@ lean_lib CampaignTfq0183FourModeDisk where
 lean_lib «CampaignFiniteGroupPachner» where
   srcDir := "."
   roots := #[`CampaignFiniteGroupPachner]
+
+lean_lib CampaignL1U1SelectorOtherSegment where
+  roots := #[`CampaignL1U1SelectorOtherSegment]
