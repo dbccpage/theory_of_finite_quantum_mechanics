@@ -6238,21 +6238,28 @@
       "stage": "FINITE_QM_CORE",
       "status": "OPEN",
       "source_status": "GAP-C500-B01..B10 RESOLVED_WITH_SCOPED_EVIDENCE: \"original target contract remains open\"",
-      "statement": "For each of ten C500 blocks the original target contract remains open; closure is recorded only for a scoped statement backed by evidence files (open or invalid bet clauses listed per block, e.g. M2, M5, M7, J1, J2 in Block 10).",
+      "statement": "For every natural number k, the numerals from 276 + 25 * k through 300 + 25 * k are a run of 25, and the next run starts at the next numeral. The ten runs for k from 1 through 10 begin at 301 and end at 550, covering 250 numerals, and 10 * 25 = 250. The ten clause-list lengths 0, 2, 4, 2, 4, 1, 1, 1, 1, 5 sum to 21, and the last length 5 is strictly greater than each earlier length. The five labels M2, M5, M7, J1 and J2 are pairwise distinct.",
       "source": [
         "sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:660",
         "sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:1072"
       ],
       "lean": [
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_minkowski_sqrt_decoherence_and_scoped_custody_witness",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_c500_ten_blocks_and_custody_axiom_audit_certificate"
+        "lean4/CampaignFqGapC500OriginalTargets.lean::spanLen",
+        "lean4/CampaignFqGapC500OriginalTargets.lean::abut",
+        "lean4/CampaignFqGapC500OriginalTargets.lean::tenRunEndpoints",
+        "lean4/CampaignFqGapC500OriginalTargets.lean::tenRunCover",
+        "lean4/CampaignFqGapC500OriginalTargets.lean::clauseCountsLength",
+        "lean4/CampaignFqGapC500OriginalTargets.lean::clauseCountSum",
+        "lean4/CampaignFqGapC500OriginalTargets.lean::lastClauseCountStrict",
+        "lean4/CampaignFqGapC500OriginalTargets.lean::block10ClauseCount",
+        "lean4/CampaignFqGapC500OriginalTargets.lean::block10ClausesNodup"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche6_conditional_and_open_boundary_certificates_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Scoped resolution is narrower than the original targets; map per-block clauses before citing any C500 target as discharged.",
+      "bottleneck": "Not run here: a fresh reading of each original target contract, the evidence files named beside the ten blocks, and any claim that a scoped receipt discharges a block. The gap-register titles say the original contracts remain open. These counts of register names do not discharge a block.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/FQ-GAP-C500-ORIGINAL-TARGETS/reviews/20261019_next_ten_audit/review_result.json",
@@ -6260,12 +6267,12 @@
         "review_refs": [
           "dag/results/FQ-GAP-C500-ORIGINAL-TARGETS/reviews/20261019_next_ten_audit/review_result.json"
         ],
-        "verdict": "scoped_result_or_obstruction_reviewed",
-        "narrowest_claim": "The examined records do not discharge the original contracts; their scoped labels and partial evidence are retained without promotion.",
-        "does_not_support": "Original campaign completion, independent rerun of every cited finite computation, historical freeze certification, or proof that any open target is false.",
-        "next_test": "Compare every original target/clause row to raw bound sources and challenge omissions or status promotion.",
-        "scope_effect": "consistent",
-        "reason": "OPEN node; the review states the examined records do not discharge the original contracts.",
+        "verdict": "scoped_block_numeral_slice_reviewed",
+        "narrowest_claim": "For every natural number k, the numerals from 276 + 25 * k through 300 + 25 * k are a run of 25, and the next run starts at the next numeral. The ten runs for k from 1 through 10 begin at 301 and end at 550, covering 250 numerals, and 10 * 25 = 250. The ten clause-list lengths 0, 2, 4, 2, 4, 1, 1, 1, 1, 5 sum to 21, and the last length 5 is strictly greater than each earlier length. The five labels M2, M5, M7, J1 and J2 are pairwise distinct.",
+        "does_not_support": "A fresh reading of each original target contract, the evidence files named beside the ten blocks, or a claim that a scoped receipt discharges a block.",
+        "next_test": "Read each original target contract and the evidence files named beside the ten blocks before treating any block as discharged.",
+        "scope_effect": "statement_narrowed",
+        "reason": "Campaign narrowing records the ten target-numeral runs, the ten clause-list lengths, and the five Block 10 labels. Status stays OPEN. The original contracts are not run here.",
         "prior_status": "OPEN",
         "prior_statement": "For each of ten C500 blocks the original target contract remains open; closure is recorded only for a scoped statement backed by evidence files (open or invalid bet clauses listed per block, e.g. M2, M5, M7, J1, J2 in Block 10).",
         "prior_bottleneck": "Scoped resolution is narrower than the original targets; map per-block clauses before citing any C500 target as discharged.",
@@ -57381,12 +57388,19 @@
       ],
       "id": "TFQ-1025",
       "lean4": [
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_minkowski_sqrt_decoherence_and_scoped_custody_witness",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_c500_ten_blocks_and_custody_axiom_audit_certificate"
+        "lean4/CampaignFqGapC500OriginalTargets.lean::spanLen",
+        "lean4/CampaignFqGapC500OriginalTargets.lean::abut",
+        "lean4/CampaignFqGapC500OriginalTargets.lean::tenRunEndpoints",
+        "lean4/CampaignFqGapC500OriginalTargets.lean::tenRunCover",
+        "lean4/CampaignFqGapC500OriginalTargets.lean::clauseCountsLength",
+        "lean4/CampaignFqGapC500OriginalTargets.lean::clauseCountSum",
+        "lean4/CampaignFqGapC500OriginalTargets.lean::lastClauseCountStrict",
+        "lean4/CampaignFqGapC500OriginalTargets.lean::block10ClauseCount",
+        "lean4/CampaignFqGapC500OriginalTargets.lean::block10ClausesNodup"
       ],
       "local_id": "FQ-GAP-C500-ORIGINAL-TARGETS",
       "name": "fq-gap-c500-original-targets",
-      "obligation": "Scoped resolution is narrower than the original targets; map per-block clauses before citing any C500 target as discharged.",
+      "obligation": "Not run here: a fresh reading of each original target contract, the evidence files named beside the ten blocks, and any claim that a scoped receipt discharges a block. The gap-register titles say the original contracts remain open. These counts of register names do not discharge a block.",
       "parent_id": "TFQ-0007",
       "pfp_review_refs": [
         "dag/results/FQ-GAP-C500-ORIGINAL-TARGETS/reviews/20261019_next_ten_audit/review_result.json"
@@ -57399,7 +57413,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "FINITE_QM_CORE",
-      "summary": "For each of ten C500 blocks the original target contract remains open; closure is recorded only for a scoped statement backed by evidence files (open or invalid bet clauses listed per block, e.g. M2, M5, M7, J1, J2 in Block 10).",
+      "summary": "For every natural number k, the numerals from 276 + 25 * k through 300 + 25 * k are a run of 25, and the next run starts at the next numeral. The ten runs for k from 1 through 10 begin at 301 and end at 550, covering 250 numerals, and 10 * 25 = 250. The ten clause-list lengths 0, 2, 4, 2, 4, 1, 1, 1, 1, 5 sum to 21, and the last length 5 is strictly greater than each earlier length. The five labels M2, M5, M7, J1 and J2 are pairwise distinct.",
       "uuid": "1023f44d-959f-5b95-936e-8b99a9e18965"
     },
     {

@@ -1403,3 +1403,6 @@ lean_lib CampaignGpImportCircleU1 where
 -- Campaign: FQ-GAP-CUSTODY-AND-RECEIPTS. Not a default target.
 lean_lib CampaignFqGapCustodyAndReceipts where
   roots := #[`CampaignFqGapCustodyAndReceipts]
+
+lean_lib CampaignFqGapC500OriginalTargets where
+  roots := #[`CampaignFqGapC500OriginalTargets]
