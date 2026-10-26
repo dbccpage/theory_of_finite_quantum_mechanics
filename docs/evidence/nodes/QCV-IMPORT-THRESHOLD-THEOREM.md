@@ -4,7 +4,7 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `IMPORTED_ASSUMPTION`. E
 
 ## Statement
 
-> The integer map t sends each integer n to 2*n*n. It sends 0 to 0, 1 to 2, 2 to 8 and 8 to 128, and three applications of t starting at 1 yield 128. The scale products 2*0 and 2*1 equal 0 and 2.
+> The fault-tolerance threshold theorems (Shor 1996; Aharonov and Ben-Or 1997; Kitaev 1997; Knill, Laflamme and Zurek 1998; Aliferis, Gottesman and Preskill 2006) are cited under each theorem's own noise, locality and overhead hypotheses; they are not re-proved.
 
 ## Grade
 
@@ -89,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md`
 
 - file: [dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md](../../../dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md)
-- sha256 (`lf-normalised`): `ed2e6a4b76055d687ff13e0558e457df0a58eb1d178f22f3400c9e776d8d4fac`
+- sha256 (`lf-normalised`): `96e34a1970f3efff9dd255e815ee8c694f5c9c39206594fb45837ec142ba4d49`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1318
 - counts toward the grade: no

@@ -4,7 +4,7 @@ Stage: [MAJORANA](../stages/MAJORANA.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 ## Statement
 
-> For the 2 by 4 parity-check matrix over the two-element field with rows (1, 1, 0, 0) and (0, 1, 1, 1), among the 16 length-4 vectors labeled 0 through 15 with the least significant bit as coordinate 0, the vectors with syndrome (1, 0) are the labels 1, 6, 10 and 13. Their Hamming weights are 1, 2, 2 and 3, so the minimum weight is 1, and the single weight-1 vector in that list is label 1 with coordinates (1, 0, 0, 0). The vectors with syndrome (0, 0) are the labels 0, 7, 11 and 12.
+> Minimum-weight coset decoding of a binary linear code given by its matrix is NP-hard (Berlekamp, McEliece and van Tilborg 1978).
 
 ## Grade
 
@@ -89,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md`
 
 - file: [dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md](../../../dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md)
-- sha256 (`lf-normalised`): `aa52b250db021250757a0b96d865b1971f6659fd84ee253cedecb762adf04c6e`
+- sha256 (`lf-normalised`): `176c50469ad99b8712bfde39890c6f141f7d4f42ab337c65d6c361132ba52218`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1157
 - counts toward the grade: no

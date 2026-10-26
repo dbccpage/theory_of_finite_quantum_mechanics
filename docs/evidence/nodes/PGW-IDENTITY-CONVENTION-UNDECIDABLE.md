@@ -4,7 +4,7 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `CONDITIONAL`. Evidence gr
 
 ## Statement
 
-> For arbitrary observer families, equality of all observations is an equivalence relation. Forgetting observers preserves indistinguishability, an empty observer family identifies every pair, and adjoining an exact-identity observer makes indistinguishability equivalent to equality. The supplied inscription \`\<a\>\` after \`\<\>\` is new relative to the exact observer and not new relative to the empty observer family. No single proposition agrees with both novelty answers.
+> Whether \<a\> supplied after \<\> is a new state depends on an identity convention that no prompt had declared. Under the opaque convention a state is what the regime can tell apart, and with O empty \<\> and \<a\> are not told apart; under the exact-inscription convention a state is the inscription itself, the strings differ, and the regime has one more syntactic state. Trials 1 and 2 answered under the first convention and the full replay under the second, calling \<a\> a new state. The analysis keeps both branches and records the effect as undecidable until one convention is declared.
 
 ## Grade
 
@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md](../../../dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md)
-- sha256 (`lf-normalised`): `2bcfc5500511fb6620c8645c7a2babb96484e2ddf33b18ae29c1a4b9ac6247a9`
+- sha256 (`lf-normalised`): `8f4757a6b4462dd8ffc9648aaa0141d7303a8801ac9697b9a9694f32afee2e0b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0423
 - counts toward the grade: no

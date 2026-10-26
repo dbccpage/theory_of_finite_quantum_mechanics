@@ -10,7 +10,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Each sign squares to 1. The pairs (1, 1) and (1, -1) differ, and each of their coordinates is a sign. The integer pair 0, 1 has square norm 1, and the product of that pair with itself is the pair -1, 0, which differs from the pair 1, 0. The map sending 0 to 1, 1 to 2 and 2 to 0 returns 2 at the second step from 0 and returns 0 at the third step from 0.
+The circle group U(1) as phase group. The leftover (1,1) vs (1,-1) is already seen over {+1,-1}, so it does not select the circle. Under the extra 'not of exponent two' the sign group is excluded; Gaussian units and a three-cycle meet the extra. The circle itself and continuity of a one-parameter phase group stay hypotheses.
 
 ### Governing Obligation
 The circle group U(1), a continuous one-parameter phase group, and a selector for that circle remain imported. The sign, Gaussian-integer pair and three-cycle examples neither construct U(1) nor rule it out.

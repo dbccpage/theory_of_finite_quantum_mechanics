@@ -4,15 +4,15 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 ## Statement
 
-> For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1.
+> Hilbert tensor product as the unique way to combine systems. On Bool x Bool a bilinear integer-homogeneous Kronecker-normalized map equals the pointwise product; a weaker same-host combining interface has a rival (dump-the-right-report map).
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 24
-- distinct cited Lean declarations covered by a current replay receipt: 12
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 27
+- distinct cited Lean declarations covered by a current replay receipt: 15
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -36,7 +36,7 @@ imported; unique only on the named bilinear Kronecker interface
 
 ## Review
 
-- PFP review: [dag/results/GP-IMPORT-TENSOR-PRODUCT/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-TENSOR-PRODUCT/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/results/GP-IMPORT-TENSOR-PRODUCT/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-TENSOR-PRODUCT/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Exact tensor/dumpRight and norm-multiplicativity arrays, with generic bilinearity and a basis-collision control in Lean.
   - does not support: Refine the complete CombiningEmbed/Kronecker uniqueness theorem and justify the physical composition rule; weak tag interfaces do not select a Hilbert tensor product.
   - next test: Refine the complete CombiningEmbed/Kronecker uniqueness theorem and justify the physical composition rule; weak tag interfaces do not select a Hilbert tensor product.
@@ -83,6 +83,51 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Lean: `lean4/DerivationDagQMClosure.lean`
+
+- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
+- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
+- cited in: node.lean, record TFQ-1032
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build DerivationDagQMClosure`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/H014BilinearProduct.lean`
+
+- file: [lean4/H014BilinearProduct.lean](../../../lean4/H014BilinearProduct.lean)
+- sha256 (`bytes`): `fabd54a913240848de949fb629a744d82f0485b3a40aeba32fc1c39e55353cde`
+- cited in: node.lean, record TFQ-1032
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H014BilinearProduct`): recorded sha256 `fabd54a913240848de949fb629a744d82f0485b3a40aeba32fc1c39e55353cde` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build H014BilinearProduct`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `embed_eq_tensor` | yes | yes | yes | module-level | `#print axioms embed_eq_tensor` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/H014Interface.lean`
+
+- file: [lean4/H014Interface.lean](../../../lean4/H014Interface.lean)
+- sha256 (`bytes`): `320a143feb167f7665d81508f191954b270d47bfc9a14fab1d51fe6428e0fba0`
+- cited in: node.lean, record TFQ-1032
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H014Interface`): recorded sha256 `320a143feb167f7665d81508f191954b270d47bfc9a14fab1d51fe6428e0fba0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build H014Interface`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `two_combinings_share_interface_and_disagree` | yes | yes | yes | module-level | `#print axioms two_combinings_share_interface_and_disagree` |
+
+- counts toward the grade: yes
+
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
 
 - file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
@@ -93,7 +138,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1032_gp_import_tensor_product.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1032_gp_import_tensor_product.md](../../../dag/derivations/08_l1_to_l2/tfq_1032_gp_import_tensor_product.md)
-- sha256 (`lf-normalised`): `14ece2d6ead9477d4952ee293415920963f0230d6c5ce059cb11f3e1b3ee1ff8`
+- sha256 (`lf-normalised`): `7a1296cbee4c1b34682a2c622c1755ef43090c266c63aa03a27e80eb6610fa2f`
 - generated view: listed, not counted
 - cited in: record TFQ-1032
 - counts toward the grade: no

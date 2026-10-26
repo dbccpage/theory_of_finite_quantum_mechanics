@@ -4,7 +4,7 @@ Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `IMPORTE
 
 ## Statement
 
-> For every integer pair A and B, A + B equals (A + B) * 1. The sum 3 + 4 equals 7, and 7 differs from 0. The sum of squares 3 * 3 + 4 * 4 equals 25, and 5 * 5 equals 25. The sum of fourth products 3 * 3 * 3 * 3 + 4 * 4 * 4 * 4 equals 337. The product (3 * 3) * (3 * 3 * 3 * 3 + 4 * 4 * 4 * 4) differs from (3 * 3 * 3 * 3) * (5 * 5). The product 3 * (3 * 3 + 4 * 4) differs from (3 * 3) * (3 + 4). For every integer quadruple a, b, r and s, (r * a - s * b) * (r * a - s * b) + (s * a + r * b) * (s * a + r * b) equals (r * r + s * s) * (a * a + b * b). At a = 3, b = 4, r = 3 and s = 4, both sides equal 625.
+> Born-quadratic uniqueness (Gleason) is imported; L^p pairings for p != 2 are valid in L1 measure theory. The dedicated 204 slot is empty.
 
 ## Grade
 
@@ -36,7 +36,7 @@ QM_204 ledger: stub "Band slot reserved" (QM_204-C0); content carried by QM-210-
 
 ## Review
 
-- PFP review: [dag/results/DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Exact normalized alternative profiles, quadratic rotation identity and a genuine Born/quartic divergence are kernel/native checked on the declared rational carrier.
   - does not support: Supply frame-function/effect/continuity/dimension hypotheses and a uniqueness theorem. Bare normalization does not derive Born pairing.
   - next test: Supply frame-function/effect/continuity/dimension hypotheses and a uniqueness theorem. Bare normalization does not derive Born pairing.
@@ -112,7 +112,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1043_ds_qm204_born_uniqueness_import_boundary.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1043_ds_qm204_born_uniqueness_import_boundary.md](../../../dag/derivations/12_finite_qm_structure/tfq_1043_ds_qm204_born_uniqueness_import_boundary.md)
-- sha256 (`lf-normalised`): `a5fc7e2842c06a35317aa61b8431002b6446d1f7119d7293e1d8def64dd38c83`
+- sha256 (`lf-normalised`): `7d26895dad68025ab0e087835b36987ed690e332058c5a89cad070de0d7f70b7`
 - generated view: listed, not counted
 - cited in: record TFQ-1043
 - counts toward the grade: no

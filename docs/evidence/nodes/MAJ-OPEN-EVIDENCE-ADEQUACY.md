@@ -4,7 +4,7 @@ Stage: [MAJORANA](../stages/MAJORANA.md). Status: `OPEN`. Evidence grade: **E3**
 
 ## Statement
 
-> Narrowed boundary, status left OPEN. For the integer readings topo = (1, 0) and andreev = (1, 1), the difference is (0, -1). The first-coordinate map sends that difference to 0 and sends both readings to 1. The second-coordinate map sends the difference to -1, the topo reading to 0, and the andreev reading to 1, and those second coordinates differ.
+> Whether a declared laboratory protocol's measurement map M separates topological zero modes from trivial Andreev bound states, i.e. whether rho_topo - rho_ABS lies outside ker M.
 
 ## Grade
 
@@ -70,7 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1182_maj_open_evidence_adequacy.md`
 
 - file: [dag/derivations/28_majorana/tfq_1182_maj_open_evidence_adequacy.md](../../../dag/derivations/28_majorana/tfq_1182_maj_open_evidence_adequacy.md)
-- sha256 (`lf-normalised`): `fa767c974693eb47dc5dfe0c17b7f5d66bc6741068d8cc76daf811168083c071`
+- sha256 (`lf-normalised`): `cac2cb6ab95d9b010aa56a159172a6459bf4a0a42cab1781d492cfc5b357cf20`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1182
 - counts toward the grade: no

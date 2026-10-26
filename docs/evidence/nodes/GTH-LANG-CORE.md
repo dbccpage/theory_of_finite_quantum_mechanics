@@ -4,7 +4,7 @@ Stage: [GENESIS_TO_HIGHER](../stages/GENESIS_TO_HIGHER.md). Status: `OPEN`. Evid
 
 ## Statement
 
-> Narrowed boundary, status left OPEN. One regime carrier has data 1 and forms, instances, rules and requirements all 0, and the sum of those five slots is 1. The same carrier with its rule slot set to 1 differs from it, and that rule slot is 1. The reach map sends 0 and 1 to 0.
+> The priced admission language is not defined. The reading intended for its primitives, which this node does not derive, is: a two-valued admission record kept with a reached result (PGW-GO-ADMISSION-GATE); a regime as a tuple of admitted data, forms, instances, rules and requirements, with state change only through an admission event or impose, and with supply external (PG-GEN-REGIME-EVENTS); and the two boxed laws that S(n+1) may contain only structure forced by an unresolved obstruction at S(n), and that a realization has no authority to extend S(n) (PGW-SN-TWO-BOXED-LAWS). No syntax, no typing judgement and no deep embedding is given. Alphabet declarations of the MSS-N grammar are not a primitive derived from those three nodes.
 
 ## Grade
 
@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md`
 
 - file: [dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md](../../../dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md)
-- sha256 (`lf-normalised`): `410aa93d68fc2caa3b12fb9b3190f4ed11ad649859a3f998339b00e3f7609f36`
+- sha256 (`lf-normalised`): `69a8304450b5e09e013efa53d27c0ef7b35adac9f9f12f1e9143cab25fce4354`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2407
 - counts toward the grade: no

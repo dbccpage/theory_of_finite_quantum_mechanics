@@ -4,7 +4,7 @@ Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `IMPORTE
 
 ## Statement
 
-> For every integer n, the product n * n is at least 0, and (-n) * (-n) equals n * n. For every natural pair k and m, the product of the integer of k with the integer of m equals the integer of k * m. For every integer pair a and b, if a is at least 0 and b is at least 0, then a * b is at least 0. For every integer triple t, x and w, if t is at least 0, then t * ((x + w) * (x + w)) is at least 0. The sum 1 * (-1) + (-1) * 1 equals -2. For every integer t, t times that sum equals (-2) * t, and t * (-2) equals 2 * (-t). If t is greater than 0, then t * (-2) is less than 0 and -t is less than 0. The product 0 * (-2) equals 0. The sum of squares 0 * 0 + 1 * 1 + (-1) * (-1) + 0 * 0 equals 2.
+> Complete positivity (K tensor I \>= 0), Kraus/Choi/Stinespring forms and coherence transport above the classical kernel are imported; a positive map that is not completely positive shares the identity kernel (Rust test). Stinespring requires an extension (H063 header).
 
 ## Grade
 
@@ -38,7 +38,7 @@ Complete positivity of a tensor extension, Kraus, Choi and Stinespring forms, an
 
 ## Review
 
-- PFP review: [dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: A genuine Bell-input partial-transpose negative witness is computed entrywise and its positive-input and negative-output scalar forms are kernel checked.
   - does not support: Prove full transpose positivity, the native tensor-index transport and a full CP/Stinespring theorem. This counterexample does not derive the physical tensor product or channel law.
   - next test: Prove full transpose positivity, the native tensor-index transport and a full CP/Stinespring theorem. This counterexample does not derive the physical tensor product or channel law.

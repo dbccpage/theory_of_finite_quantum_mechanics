@@ -4,7 +4,7 @@ Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: 
 
 ## Statement
 
-> In the set of integer pairs (a, b) with product (a, b)*(c, d) = (a*c - b*d, a*d + b*c + b*d) and conjugate (a + b, -b), w = (0, 1) satisfies w*w = w - (1, 0), w*w*w = (-1, 0) and the sixth power of w is (1, 0). On 6 by 6 matrices over those pairs, shift X has a 1 at each (j+1 mod 6, j) and clock Z is diagonal with entry w^j. Then Z X = w X Z, while X Z and w Z X differ. For p, q, r, s from 0 through 5, the trace of the conjugate-transpose of X^p Z^q times X^r Z^s is (6, 0) when (p, q) = (r, s) and (0, 0) otherwise.
+> On C^6 with shift X|j\> = |j+1 mod 6\> and clock Z|j\> = w^j |j\>, w = exp(2 pi i/6), one has Z X = w X Z, and the 36 operators X^p Z^q are pairwise orthogonal for the trace pairing tr(A* B).
 
 ## Grade
 
@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1223_mub6_weyl_heisenberg_d6.md`
 
 - file: [dag/derivations/25_mub/tfq_1223_mub6_weyl_heisenberg_d6.md](../../../dag/derivations/25_mub/tfq_1223_mub6_weyl_heisenberg_d6.md)
-- sha256 (`lf-normalised`): `280be1029654fa9b71ca194cc61340bf22cd7fc4c88687e898b5998c67264605`
+- sha256 (`lf-normalised`): `e71bab8bb959f922b25e3494fa226aaffcacabce4a5cfca8a47f0e159b204545`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1223
 - counts toward the grade: no

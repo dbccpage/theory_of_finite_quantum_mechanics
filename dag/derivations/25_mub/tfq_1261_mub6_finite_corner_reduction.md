@@ -11,7 +11,7 @@
 
 ## 1. Abstract & Formal Statement
 
-For 3 by 3 integer matrices, let B have rows (1, 1, 0), (0, 1, 1) and (0, 0, 1), let E be the identity, and let C have rows (0, 1, 0), (0, 0, 1) and (1, 0, 0). The matrix with rows (1, -1, 1), (0, 1, -1) and (0, 0, 1) is a two-sided inverse of B. The matrix D with rows (1, -1, 0), (-1, 1, -1) and (-1, 0, 0) equals the negative of C times the transpose of E times the transpose of that inverse, and C times the transpose of E plus D times the transpose of B is the zero matrix. The same sum with the zero matrix in place of D is not the zero matrix.
+Using the external finite-corner classification of single 6x6 complex Hadamard matrices, quartet existence in C^6 is equivalent to raw quartet completion of some retained finite-corner reconstruction with D = -C E* (B^-1)*.
 
 ### Governing Obligation
 This record is that one integer block identity. It does not classify complex Hadamard matrices, does not list retained finite corners, and does not equate quartet existence with completion of an external reconstruction. The complex adjoint is not identified with this integer transpose. Exclusion over every retained reconstruction stays open. AuthorityEffect: None.

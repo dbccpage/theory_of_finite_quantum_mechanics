@@ -4,7 +4,7 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `OPEN`. Evidence grade: 
 
 ## Statement
 
-> Erasing the block \[1\] from the word \[1, 0\] by one hole replacement yields the fixed word \[0\]. Erasing the block \[2\] from the word \[2, 0\] by one hole replacement yields the same fixed word \[0\].
+> Adding erasing rules so that every halting word reduces to one fixed word should make Reach to that fixed word undecidable; this is not proved here.
 
 ## Grade
 
@@ -62,7 +62,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md`
 
 - file: [dag/derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md](../../../dag/derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md)
-- sha256 (`lf-normalised`): `d6bbc8073f84166f8078de1298aee81a316080c63492f4c3ecb0cd7990db16d3`
+- sha256 (`lf-normalised`): `877ac54aeb7b92ec57b919e55dde2099352e89f402fe0a473e4e02a302318c13`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1311
 - counts toward the grade: no

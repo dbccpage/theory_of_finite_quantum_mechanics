@@ -4,7 +4,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 ## Statement
 
-> On the two-label host, 2 \< 3 and 3 ≤ 2 fails, and no three pairwise distinct labels exist. Amplitudes 2 on the false label and 1 on the true label have squared weights 4 and 1. The unit effect pairs both readout orders with 5. The false-indicator pairs as 4 in the direct order and as 1 after swapping the effect.
+> Uniqueness of the Born quadratic form at dimension n \>= 3 needs Gleason-type hypotheses (noncontextuality, sigma-additivity, continuity). On the two-label host the dimension extra already fails; the weaker unit-effect contract has two disagreeing pairings (4 versus 1 on the false-indicator at amplitudes (2,1)).
 
 ## Grade
 
@@ -37,7 +37,7 @@ imported (OracleNeeded firewall, GTOC-8)
 
 ## Review
 
-- PFP review: [dag/results/GP-IMPORT-GLEASON/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-GLEASON/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_two_label_pairing_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/results/GP-IMPORT-GLEASON/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-GLEASON/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_two_label_pairing_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: On the two-label host, 2 \< 3 and 3 ≤ 2 fails, and no three pairwise distinct labels exist. Amplitudes 2 on the false label and 1 on the true label have squared weights 4 and 1. The unit effect pairs both readout orders with 5. The false-indicator pairs as 4 in the direct order and as 1 after swapping the effect.
   - does not support: Uniqueness of the Born quadratic form for dimension at least 3 under noncontextuality, sigma-additivity and continuity, or a refutation of that uniqueness.
   - next test: Admit the Gleason hypotheses and a host with at least three labels before treating Born uniqueness as derived.
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1031_gp_import_gleason.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1031_gp_import_gleason.md](../../../dag/derivations/08_l1_to_l2/tfq_1031_gp_import_gleason.md)
-- sha256 (`lf-normalised`): `a91bd8a6b227bb738181b77c091de89fe44d578efa6229d26d244f8615b94771`
+- sha256 (`lf-normalised`): `9e40dbf9a233ec56ad0b6a7b3a30b1986aca27ff47c768f220e3eae9dcf5a7da`
 - generated view: listed, not counted
 - cited in: record TFQ-1031
 - counts toward the grade: no
