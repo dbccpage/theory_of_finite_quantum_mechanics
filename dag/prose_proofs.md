@@ -200,38 +200,38 @@ status are not claimed as proved and have no proof section.
 
 ## FINITE_QCD
 
-0 of 1 with a prose proof.
+1 of 1 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `TFQ-0016` | PROVED_LEAN | *none yet* |
+| `TFQ-0016` | PROVED_LEAN | [dressing_field_proofs: 2.1 The Borel factorization and the two-stage dressing](../papers/core/dressing_field_proofs.md#21-the-borel-factorization-and-the-two-stage-dressing); [dressing_field_proofs: 2.2 Discrete curvature and the Bianchi identity](../papers/core/dressing_field_proofs.md#22-discrete-curvature-and-the-bianchi-identity) |
 
 ## DRESSING_FIELD
 
-0 of 11 with a prose proof.
+11 of 11 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `DFM-BOOST-PLANE-LEAN` | PROVED_LEAN | *none yet* |
-| `DFM-CABIBBO-CP-PHASE-ZERO` | PROVED_LEAN | *none yet* |
-| `DFM-CKM-CYCLE-COUNT` | PROVED_LEAN | *none yet* |
-| `DFM-EW-DOUBLET-REDUCTION` | PROVED_LEAN | *none yet* |
-| `DFM-GENERAL-GRAPH-DRESSING` | PROVED_LEAN | *none yet* |
-| `DFM-HIERARCHICAL-BOREL` | PROVED_LEAN | *none yet* |
-| `DFM-JARLSKOG-QUARTET-INVARIANCE` | PROVED_LEAN | *none yet* |
-| `DFM-SM-ANOMALY-NC-THREE` | PROVED_LEAN | *none yet* |
-| `DFM-TREE-CHANGE` | PROVED_LEAN | *none yet* |
-| `DFM-TREE-CHORD-COORDINATES` | PROVED_LEAN | *none yet* |
-| `DFM-WEINBERG-PROJECTORS-RHO` | PROVED_LEAN | *none yet* |
+| `DFM-BOOST-PLANE-LEAN` | PROVED_LEAN | [dressing_field_proofs: 3.5 Boosts of the Minkowski plane](../papers/core/dressing_field_proofs.md#35-boosts-of-the-minkowski-plane) |
+| `DFM-CABIBBO-CP-PHASE-ZERO` | PROVED_LEAN | [dressing_field_proofs: 3.4 Quark mixing: cycle count, rephasing invariance and two generations](../papers/core/dressing_field_proofs.md#34-quark-mixing-cycle-count-rephasing-invariance-and-two-generations) |
+| `DFM-CKM-CYCLE-COUNT` | PROVED_LEAN | [dressing_field_proofs: 3.4 Quark mixing: cycle count, rephasing invariance and two generations](../papers/core/dressing_field_proofs.md#34-quark-mixing-cycle-count-rephasing-invariance-and-two-generations) |
+| `DFM-EW-DOUBLET-REDUCTION` | PROVED_LEAN | [dressing_field_proofs: 3.1 Dressing a Higgs doublet on a rational sphere](../papers/core/dressing_field_proofs.md#31-dressing-a-higgs-doublet-on-a-rational-sphere) |
+| `DFM-GENERAL-GRAPH-DRESSING` | PROVED_LEAN | [dressing_field_proofs: 1.1 Neutralization and closed walks](../papers/core/dressing_field_proofs.md#11-neutralization-and-closed-walks) |
+| `DFM-HIERARCHICAL-BOREL` | PROVED_LEAN | [dressing_field_proofs: 2.1 The Borel factorization and the two-stage dressing](../papers/core/dressing_field_proofs.md#21-the-borel-factorization-and-the-two-stage-dressing); [dressing_field_proofs: 2.2 Discrete curvature and the Bianchi identity](../papers/core/dressing_field_proofs.md#22-discrete-curvature-and-the-bianchi-identity) |
+| `DFM-JARLSKOG-QUARTET-INVARIANCE` | PROVED_LEAN | [dressing_field_proofs: 3.4 Quark mixing: cycle count, rephasing invariance and two generations](../papers/core/dressing_field_proofs.md#34-quark-mixing-cycle-count-rephasing-invariance-and-two-generations) |
+| `DFM-SM-ANOMALY-NC-THREE` | PROVED_LEAN | [dressing_field_proofs: 3.3 Anomaly polynomials as functions of the number of colours](../papers/core/dressing_field_proofs.md#33-anomaly-polynomials-as-functions-of-the-number-of-colours) |
+| `DFM-TREE-CHANGE` | PROVED_LEAN | [dressing_field_proofs: 1.1 Neutralization and closed walks](../papers/core/dressing_field_proofs.md#11-neutralization-and-closed-walks) |
+| `DFM-TREE-CHORD-COORDINATES` | PROVED_LEAN | [dressing_field_proofs: 1.1 Neutralization and closed walks](../papers/core/dressing_field_proofs.md#11-neutralization-and-closed-walks) |
+| `DFM-WEINBERG-PROJECTORS-RHO` | PROVED_LEAN | [dressing_field_proofs: 3.2 Weinberg projectors and $\rho=1$](../papers/core/dressing_field_proofs.md#32-weinberg-projectors-and-rho1) |
 
 ## FERMION_SIGN
 
-4 of 5 with a prose proof.
+5 of 5 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
 | `FSP-INVOLUTION-PAIR-CANCELLATION` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.3 Sign-reversing involutions](../papers/core/fermion_sign_and_majorana_proofs.md#13-sign-reversing-involutions) |
-| `FSP-MERON-CHARACTER-CANCELLATION` | PROVED_LEAN | *none yet* |
+| `FSP-MERON-CHARACTER-CANCELLATION` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.2 Meron flips: the orbit sign sum](../papers/core/fermion_sign_and_majorana_proofs.md#12-meron-flips-the-orbit-sign-sum) |
 | `FSP-PACHNER-INVARIANCE-CLAIM` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.5 Flat-connection counts under the 4D Pachner moves](../papers/core/fermion_sign_and_majorana_proofs.md#15-flat-connection-counts-under-the-4d-pachner-moves) |
 | `FSP-SWITCHING-NORMAL-FORM` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.1 The switching normal form of an edge signing](../papers/core/fermion_sign_and_majorana_proofs.md#11-the-switching-normal-form-of-an-edge-signing) |
 | `FSP-U1-WILSON-ACTION` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.4 The U(1) Wilson action](../papers/core/fermion_sign_and_majorana_proofs.md#14-the-u1-wilson-action) |

@@ -81,9 +81,9 @@ This is the sign identity alone. Using it to drop meron sectors from a partition
 requires every configuration in a flip orbit to have the same weight magnitude, and requires
 observables to be orbit compatible. Those are separate hypotheses on the model.
 
-Lean: `lean4/MeronCharacter.lean::MeronCharacter.meron_orbit_cancels`,
-`lean4/MeronCharacter.lean::MeronCharacter.zero_meron_orbit_positive` and
-`lean4/MeronCharacter.lean::MeronCharacter.compression_preserves_partition`, by induction on the
+Lean: `lean4/MeronCharacter.lean::meron_orbit_cancels`,
+`lean4/MeronCharacter.lean::zero_meron_orbit_positive` and
+`lean4/MeronCharacter.lean::compression_preserves_partition`, by induction on the
 flag list with the orbit built by doubling, which is the same factorization.
 
 ### 1.3 Sign-reversing involutions
