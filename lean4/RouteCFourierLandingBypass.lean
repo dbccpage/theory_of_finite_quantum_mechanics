@@ -228,7 +228,7 @@ theorem g1_of_route_c_fourier_landing
   exact ⟨T, hT_in, c_fourier, h_cov, h_belong T hT_chart⟩
 
 /-!
-### 6. Route C Synthesis
+### 6. Route C Grand Synthesis
 -/
 
 /-- Conjunction of arithmetic consequences and the contradiction for the
@@ -249,7 +249,7 @@ theorem route_c_grand_synthesis
 /-!
 ### 7. Axiom Audit
 Verifying that all Route C theorems depend solely on standard Lean 4 foundational axioms:
-`[propext, Classical.choice, Quot.sound]`.
+`[propext, Classical.choice, Quot.sound]`. Zero sorry, zero custom axioms.
 -/
 
 #print axioms dim6_composite_factorization

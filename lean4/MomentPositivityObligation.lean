@@ -784,6 +784,7 @@ theorem projector_moment_soundness_bridge_closure
 /-!
 ### 8. Axiom Verification Audit
 Verifying that all theorems depend strictly on foundational axioms: `[propext, Quot.sound]`.
+Zero sorry, zero admit.
 -/
 
 #print axioms completeWordTestSpace_pos

@@ -42,7 +42,7 @@ This module formalizes Target B3 of the MUB(6) formal derivations program:
    - `CombinatorialBasisGluingBridge` connecting moduli closure to the global cover bridge.
    - Supporting lemmas linking discrete margins and holonomy obstructions to `mub6_grand_synthesis_no_complete_mub6_bridged`.
    - Sentry root detection and Branch A preclusion of 4-MUB extensions.
-7. **Synthesis Theorem (Target B3)**:
+7. **Master Synthesis Theorem (Target B3)**:
    - `target_b3_master_synthesis`:
      `h_closure → h_class → h_had → h_bridge → NoCompleteMUB6`.
    - `target_b3_comprehensive_integration`: complete bundle integrating all 7 components.
@@ -292,7 +292,7 @@ theorem canonicalModuliCoveringClosure : ModuliCoveringClosure where
     global_cross_section_obstruction C γ m h_hol
 
 /-!
-### 6. Supporting Lemmas Linking Obstructions to Synthesis
+### 6. Supporting Lemmas Linking Obstructions to Grand Synthesis
 -/
 
 /-- Supporting Lemma 1: Discrete margin implies pointwise non-extendibility across ℳ₆. -/
@@ -328,7 +328,7 @@ theorem continuous_chaining_obstruction_discharged
     ZeroRelVarietyEmpty w.triple ∧ ¬ HasFourthBasis w.triple :=
   h_closure.continuous_extension_obstruction_cover R w pt h_pt_eq h_pt_in
 
-/-- Supporting Lemma 4: Synthesis Tripod unification from covering closure. -/
+/-- Supporting Lemma 4: Grand Synthesis Tripod unification from covering closure. -/
 theorem closure_to_grand_synthesis_tripod
     (h_class : ClassificationExhaustivenessPremise)
     (h_had : TransitionHadamardProperty)
@@ -380,7 +380,7 @@ theorem moduli_point_sentry_branchA
     and Global Čech Holonomy Obstructions into Master Atlas Non-Extendibility.
     Under the declared classification premise, transition Hadamardness,
     and the combinatorial basis gluing bridge:
-    Under the hypotheses of this theorem, there is no complete set of 7 mutually unbiased bases in dimension 6:
+    There exists no complete set of 7 mutually unbiased bases in dimension 6:
       NoCompleteMUB6 (¬ CompleteMUB6).
     Epistemic Guardrails:
       AuthorityEffect: None. -/
@@ -394,7 +394,7 @@ theorem target_b3_master_synthesis
   exact moduli_closure_to_no_complete_mub6 h_class h_had h_bridge
 
 /-- **TARGET B3 COMPREHENSIVE MANIFOLD INTEGRATION RECORD**:
-    synthesis integrating:
+    Comprehensive synthesis integrating:
     1. Certified rational circulation and curvature thresholds:
        Γ = 12133 / 5000 > 0, ε_min = 12133 / 30000 > 0;
     2. Master unified moduli obstruction:

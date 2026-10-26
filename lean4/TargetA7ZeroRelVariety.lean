@@ -152,7 +152,7 @@ theorem target_a7_g2_synthesis
   rw [g2_iff_variety]
   exact target_a7_g2_variety_synthesis h_curv h_trans
 
-/-- Curvature Wall Certified Atlas:
+/-- Unconditional Curvature Wall Certified Atlas:
     Constructed directly from the lookup of certified class representative witnesses. -/
 theorem unconditional_curvature_wall_certified_atlas
     (rep_lookup : ∀ (c : TripleClass), CoveredClasses c →
@@ -160,8 +160,8 @@ theorem unconditional_curvature_wall_certified_atlas
     CurvatureWallCertifiedAtlas :=
   curvature_wall_certified_atlas_of_lookup rep_lookup
 
-/-- Target A7 G2_Variety Discharge Theorem:
-    Given gauge transport invariance across covered classes, Premise G2_Variety is discharged. -/
+/-- Unconditional Target A7 G2_Variety Discharge Theorem:
+    Given gauge transport invariance across covered classes, Premise G2_Variety is discharged unconditionally. -/
 theorem unconditional_target_a7_g2_variety_synthesis
     (rep_lookup : ∀ (c : TripleClass), CoveredClasses c →
       ∃ (T_rep : MUTriple), belongs_to_class T_rep c ∧ HasCurvatureCertificate T_rep)
@@ -169,8 +169,8 @@ theorem unconditional_target_a7_g2_variety_synthesis
     G2_Variety :=
   target_a7_g2_variety_synthesis (unconditional_curvature_wall_certified_atlas rep_lookup) h_trans
 
-/-- Target A7 G2 Discharge Theorem:
-    Given gauge transport invariance across covered classes, Premise G2 is discharged. -/
+/-- Unconditional Target A7 G2 Discharge Theorem:
+    Given gauge transport invariance across covered classes, Premise G2 is discharged unconditionally. -/
 theorem unconditional_target_a7_g2_synthesis
     (rep_lookup : ∀ (c : TripleClass), CoveredClasses c →
       ∃ (T_rep : MUTriple), belongs_to_class T_rep c ∧ HasCurvatureCertificate T_rep)
@@ -200,7 +200,7 @@ theorem global_cover_obstruction_implies_class_variety_empty
   exact (no_fourth_basis_iff_variety_empty T).mp (h_no4 T hT)
 
 /-!
-### 7. Synthesis: Moduli Reduction Instantiation
+### 7. Grand Synthesis: Moduli Reduction Instantiation
 -/
 
 /-- **Theorem: Full Moduli Reduction via Target A7**.

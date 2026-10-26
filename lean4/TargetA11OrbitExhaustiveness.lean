@@ -32,7 +32,7 @@ This module formalizes Target A11 of the MUB(6) formal derivations program:
    - `g1_bridge_to_global_cover`: Bridges MU triple transition matrices in known moduli directly
      to certified cells in `canonicalGlobalPartitionTree`.
    - `g1_bridge_from_classification_premise`: Unifies classification premise with constructive soundness.
-5. **Conditional Synthesis Theorems**:
+5. **Conditional Grand Synthesis Theorems**:
    - `target_a11_grand_synthesis`: Unifies Orbit Catalog Exhaustiveness with Target A10's
      constructive soundness `checkGlobalUnifiedCover_certified_sound`.
    - `target_a11_canonical_grand_synthesis`: Canonical synthesis from `ClassificationExhaustivenessPremise`.
@@ -313,7 +313,7 @@ theorem verified_tree_cell_non_extendible
 /-- **Premise G1 Discharged from Classification Premise**:
 Under the Beauchamp-Nicoara & Szöllősi classification closure premise,
 transition Hadamardness, atlas coverage of known moduli, and gauge invariance,
-Premise G1 holds. -/
+Premise G1 holds unconditionally. -/
 theorem g1_from_classification_premise
     (h_class : ClassificationExhaustivenessPremise)
     (h_had : TransitionHadamardProperty)
@@ -387,10 +387,10 @@ theorem no_complete_mub6_of_global_cover_bridge
   exact h_no4 h_has4
 
 /-!
-### 5. Conditional Synthesis Theorems
+### 5. Conditional Grand Synthesis Theorems
 -/
 
-/-- **TARGET A11 SYNTHESIS THEOREM**:
+/-- **TARGET A11 GRAND SYNTHESIS THEOREM**:
 Synthesizes Target A11 Orbit Catalog Exhaustiveness with Target A10 constructive soundness:
 Assuming:
 - `OrbitCatalogExhaustive ∧ TransitionHadamardProperty`
@@ -416,8 +416,8 @@ theorem target_a11_grand_synthesis
   exact target_a10_global_grand_synthesis_orbit canonicalGlobalPartitionTree
     canonical_global_partition_tree_verified pt h_pt h_exh h_had h_atlas h_gauge h_g2_var h_g3
 
-/-- **TARGET A11 CANONICAL SYNTHESIS THEOREM**:
-Specialized synthesis taking the Beauchamp-Nicoara & Szöllősi
+/-- **TARGET A11 CANONICAL GRAND SYNTHESIS THEOREM**:
+Specialized grand synthesis taking the Beauchamp-Nicoara & Szöllősi
 `ClassificationExhaustivenessPremise` directly as the input hypothesis:
 Under `ClassificationExhaustivenessPremise ∧ TransitionHadamardProperty`, atlas coverage,
 gauge invariance, G2 ZeroRel variety emptiness, and G3 combinatorial basis gluing,
@@ -480,7 +480,7 @@ theorem target_a11_no_fourth_basis_in_config
   obtain ⟨T, hT_in, c, hc_cov, hT_class⟩ := hG1 B hB_mu
   exact ⟨T, hT_in, h_g2 c hc_cov T hT_class⟩
 
-/-- **TARGET C3 SYNTHESIS THEOREM (POINTWISE)**:
+/-- **TARGET C3 UNCONDITIONAL GRAND SYNTHESIS THEOREM (POINTWISE)**:
 Under constructive orbit classification premise, Premise G1 is discharged, establishing
 `NoCompleteMUB6` for any point in the canonical global partition tree.
 Depends strictly on foundational axioms: [propext, Classical.choice, Quot.sound]. -/
@@ -495,7 +495,7 @@ theorem target_c3_unconditional_grand_synthesis
       ZeroRelVarietyEmpty pt.triple ∧ ¬ HasFourthBasis pt.triple ∧ NoCompleteMUB6 :=
   target_a11_canonical_grand_synthesis ⟨h_premise, h_had⟩ h_atlas h_gauge h_g2_var h_g3
 
-/-- **TARGET C3 NO-FOURTH-BASIS THEOREM (VIA BRIDGE)**:
+/-- **TARGET C3 UNCONDITIONAL NO-FOURTH-BASIS THEOREM (VIA BRIDGE)**:
 Under constructive orbit classification premise, every MU triple in dimension 6 admits
 no fourth mutually unbiased basis.
 Depends strictly on foundational axioms: [propext, Classical.choice, Quot.sound]. -/
@@ -520,7 +520,7 @@ theorem target_c3_grand_synthesis_of_branch_map
       ZeroRelVarietyEmpty pt.triple ∧ ¬ HasFourthBasis pt.triple ∧ NoCompleteMUB6 :=
   target_c3_unconditional_grand_synthesis (classification_exhaustiveness_premise M) h_had h_atlas h_gauge h_g2_var h_g3
 
-/-- Backward-compatible alias for synthesis taking an explicit premise parameter. -/
+/-- Backward-compatible alias for grand synthesis taking an explicit premise parameter. -/
 abbrev target_c3_unconditional_grand_synthesis_with_premise := target_c3_unconditional_grand_synthesis
 
 /-- Backward-compatible alias for no fourth basis theorem taking an explicit premise parameter. -/

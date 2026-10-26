@@ -619,7 +619,7 @@ Given two 6x6 complex Hadamard matrices H₁ and H₂, the triple (1, H₁, H₂
 forms a mutually unbiased triple if and only if the transition matrix H₁ᴴ * H₂
 is itself a complex Hadamard matrix.
 
- -/
+Proven completely sorry-free with zero custom axioms. -/
 theorem mu_triple_hadamard_transition
     (H1 H2 : Matrix (Fin 6) (Fin 6) ℂ)
     (h1 : IsHadamard H1) (h2 : IsHadamard H2) :

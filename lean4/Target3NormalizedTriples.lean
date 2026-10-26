@@ -22,7 +22,7 @@ This module formalizes Target 3 of the MUB(6) formalization program:
    - Characterization of regular corner charts (det ≠ 0) where corner inversion is non-degenerate.
 4. Gauge Invariance under Column Phasings and Permutations:
    - Invariance of the mutual unbiasedness condition under column diagonal phase matrices.
-5. Integration with Moduli Reduction & Synthesis:
+5. Integration with Moduli Reduction & Grand Synthesis:
    - Connection to ZeroRelVariety and ModuliReduction.
 6. Axiom Audit:
    - Verification that all theorems depend solely on standard foundational Lean 4 axioms:
@@ -154,7 +154,7 @@ def ColumnPhasesPreserveTransition
     (fun i j => K i j * phi_K j)
 
 /-!
-### 5. Synthesis: Regular Corner Reconstruction & Moduli Reduction
+### 5. Grand Synthesis: Regular Corner Reconstruction & Moduli Reduction
 -/
 
 /-- Structure capturing a regular corner chart witness on a concrete normalized triple. -/
@@ -182,7 +182,7 @@ def make_regular_corner_witness
   h_det := (regular_chart_iff_det_nonzero p).mp h_reg
 }
 
-/-- Synthesis Theorem for Target 3:
+/-- Master Synthesis Theorem for Target 3:
 Every concrete normalized triple with a regular corner chart isolates the singular locus
 and guarantees non-degenerate algebraic corner reconstruction. Under the moduli reduction
 hypotheses, this integrates cleanly into `moduli_reduction_grand_synthesis`. -/

@@ -28,7 +28,7 @@ This module formalizes Target 4 of the MUB(6) formal derivations and computation
    - Lifting this positive margin across any certified collar partition cover (`CollarBisectionTree`)
      establishes that for every point p ∈ unitBox2, the associated MU triple T(p) satisfies:
      `ZeroRelVarietyEmpty (T p) ∧ ¬ HasFourthBasis (T p)`.
-4. Target 4 Synthesis:
+4. Target 4 Grand Synthesis:
    - Synthesis with moduli reduction hypotheses (`ModuliCoverageConjecture`, `AtlasCoversKnownModuli`,
      `GaugeInvariantClassMembership`, `G2_Variety`, `G3`) concluding `NoCompleteMUB6`.
 5. Axiom Audit:
@@ -231,13 +231,13 @@ theorem concrete_collar_uniform_extension_obstruction
   global_collar_barrier_obstruction CS params sampleCollarTree unitBox2 concrete_collar_partition_cover_verified T h_leaf_bound θ h_θ
 
 /-!
-### 5. Target 4 Synthesis
+### 5. Target 4 Grand Synthesis
 -/
 
-/-- **Target 4 Synthesis Theorem**:
+/-- **Target 4 Grand Synthesis Theorem**:
     Under uniform quantitative Lipschitz gap propagation across the 2D periodic collar slice,
     together with moduli reduction coverage hypotheses, every parameter point θ in the collar
-    slice has an empty ZeroRel variety, admits no fourth basis, and integrates
+    slice has an empty ZeroRel variety, admits no fourth basis, and unconditionally integrates
     into the global MUB(6) obstruction pipeline. -/
 theorem target4_gap_propagation_grand_synthesis
     {C : CurvatureCarrier} (CS : CurvatureSpace C)

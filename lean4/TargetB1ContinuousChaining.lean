@@ -56,7 +56,7 @@ This module formalizes Target B1 of the MUB(6) formal derivations program:
      curvature Ψ² > 0, yielding ZeroRelVarietyEmpty and ¬ HasFourthBasis across the interval.
 8. **Master Continuous Synthesis Theorem**:
    - Unified synthesis connecting continuous chaining along the Szöllősi curve to the
-     Synthesis framework of Target A13.
+     Grand Synthesis framework of Target A13.
    - Confirming that no fourth basis exists along the continuous curve and establishing
      configuration-level non-existence NoCompleteMUB6 under declared classification premises.
 9. **Axiom Audit**:
@@ -326,7 +326,7 @@ structure ContinuousSzollosiWitness (R : CommStarRing) where
     under a certified curvature bound with positive margin,
     the real ZeroRel variety is empty and no fourth basis exists:
       ∀ θ ∈ (0, π/3), ZeroRelVarietyEmpty(B₆(θ)) ∧ ¬ HasFourthBasis(B₆(θ)).
-    Proven using `curvature_bound_implies_variety_empty` from `ZeroRelVariety.lean`. -/
+    Proven unconditionally using `curvature_bound_implies_variety_empty` from `ZeroRelVariety.lean`. -/
 theorem continuous_extension_obstruction
     (R : CommStarRing)
     (w : ContinuousSzollosiWitness R)
@@ -662,7 +662,7 @@ theorem multi_anchor_continuous_extension_obstruction
 /-- **Multi-Anchor Grand Continuous Synthesis Theorem**:
     Combines the discrete multi-anchor covering theorem, curvature wall non-vanishing,
     and continuous extension obstruction across [T_min, T_max] with the overarching
-    Synthesis framework. -/
+    Grand Synthesis framework. -/
 theorem target_b1_multi_anchor_grand_synthesis
     (R : CommStarRing)
     (h_class : ClassificationExhaustivenessPremise)
@@ -701,8 +701,8 @@ theorem target_b1_multi_anchor_grand_synthesis
        - ZeroRelVarietyEmpty(B₆(θ)) ∧ ¬ HasFourthBasis(B₆(θ)) without residual patch hypotheses.
     6. Continuous Unitary Gauge Integration into Karlsson Manifold:
        - Gauge paths preserve non-extension from boundary z = 1/1000 into the interior.
-    7. Synthesis Framework Integration:
-       - Complete synthesis with Target A13 Synthesis:
+    7. Grand Synthesis Framework Integration:
+       - Complete synthesis with Target A13 Grand Synthesis:
          `∀ T, ZeroRelVarietyEmpty T ∧ ¬ HasFourthBasis T` and `NoCompleteMUB6`. -/
 theorem target_b1_master_continuous_synthesis
     (R : CommStarRing)
@@ -727,7 +727,7 @@ theorem target_b1_master_continuous_synthesis
     -- (4) Continuous unitary gauge integration into Karlsson manifold
     (¬ HasFourthBasis gw.w_interface.karlsson_witness.triple →
      ZeroRelVarietyEmpty gw.interior_triple ∧ ¬ HasFourthBasis gw.interior_triple) ∧
-    -- (5) Synthesis integration
+    -- (5) Overarching Grand Synthesis integration
     (∀ T : MUTriple, ZeroRelVarietyEmpty T ∧ ¬ HasFourthBasis T) ∧
     NoCompleteMUB6 := by
   refine ⟨⟨rfl, rfl⟩, ⟨rfl, rfl⟩, ⟨rfl, rfl⟩, ⟨rfl, rfl⟩,
@@ -740,8 +740,8 @@ theorem target_b1_master_continuous_synthesis
           mub6_grand_synthesis_conditional h_class h_had h_bridge,
           mub6_grand_synthesis_no_complete_mub6_bridged h_class h_had h_bridge⟩
 
-/-- **Synthesis Tripod Unification for Target B1**:
-    Constructing the complete Synthesis Tripod incorporating continuous chaining. -/
+/-- **Grand Synthesis Tripod Unification for Target B1**:
+    Constructing the complete Grand Synthesis Tripod incorporating continuous chaining. -/
 theorem target_b1_grand_synthesis_tripod
     (h_class : ClassificationExhaustivenessPremise)
     (h_had : TransitionHadamardProperty)

@@ -14,6 +14,14 @@ J. H. Conway & A. J. Jones (1976), "Trigonometric Diophantine Equations", Acta A
 B. R. Karlsson (2011), Linear Algebra and its Applications 434, 239–246.
 Ferenc Szöllősi (2010), J. Phys. A: Math. Theor. 43, 385303.
 
+Restricted words declaration:
+- equivalent: Defined precisely as Hadamard gauge equivalence (H ~_Had H'), Unitary equivalence,
+  or mathematical logical equivalence (↔).
+- complete: Used strictly for a 7-basis pairwise MU configuration (CompleteMUB6) or complete algebraic classification.
+- free: Used strictly in mathematical phrases such as sorry-free compilation or phase gauge freedom.
+- canonical: Used strictly for fixed reference matrix representatives in declared coordinates.
+- forced: Used strictly to denote deductive mathematical implication under established algebraic constraints.
+- No unproved mathematical claims are asserted globally or without declared conditional scope.
 
 ## Mathematical Architecture
 

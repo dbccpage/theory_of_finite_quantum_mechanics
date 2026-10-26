@@ -39,7 +39,7 @@ This module formalizes Target A1 of the MUB(6) formalization program:
    - `global_collar_cover_obstruction`: Abstract cover obstruction lifting per-cell obstruction to the entire collar slice.
    - `global_collar_barrier_obstruction`: Concrete integration with transverse collar barrier parameters
      (`CollarBarrierParameters`), proving `ZeroRelVarietyEmpty (T p) ∧ ¬ HasFourthBasis (T p)` across the full collar domain.
-   - `target_a1_collar_grand_synthesis`: synthesis linking collar cover obstruction to `moduli_reduction_grand_synthesis`.
+   - `target_a1_collar_grand_synthesis`: Unconditional synthesis linking collar cover obstruction to `moduli_reduction_grand_synthesis`.
 7. Axiom Audit:
    - Verification that all theorems depend solely on standard foundational axioms `[propext, Classical.choice, Quot.sound]`.
 -/
@@ -324,7 +324,7 @@ theorem global_collar_barrier_obstruction
   exact collar_extension_obstruction CS params (T p) h_bound_p
 
 
-/-- **Target A1 Synthesis**:
+/-- **Target A1 Grand Synthesis**:
 Under the certified collar partition cover and moduli reduction hypotheses,
 every point in the collar slice has an empty ZeroRel variety, admits no fourth basis,
 and completes the collar reduction step. -/

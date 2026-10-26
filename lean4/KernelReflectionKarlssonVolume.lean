@@ -389,7 +389,7 @@ theorem karlsson_volume_moduli_reduction_step
     NoCompleteMUB6 :=
   moduli_reduction_grand_synthesis h_cov h_atlas h_gauge h_g2_var h_g3
 
-/-- Karlsson volume reduction step using `g3_theorem` to discharge Premise G3 constructively. -/
+/-- Karlsson volume master reduction step using `g3_theorem` to discharge Premise G3 constructively. -/
 theorem karlsson_volume_master_reduction_step
     (h_cov : ModuliCoverageConjecture)
     (h_atlas : AtlasCoversKnownModuli)
@@ -419,7 +419,7 @@ theorem karlsson_volume_no_complete_mub6
     NoCompleteMUB6 :=
   ModuliReduction.karlsson_volume_moduli_reduction_step h_cov h_atlas h_gauge h_g2_var h_g3
 
-/-- **Karlsson Volume Assembly**:
+/-- **Karlsson Volume Master Assembly**:
     Using `ModuliReduction.g3_theorem` to discharge Premise G3 constructively,
     reducing the terminal obstruction to G1 and G2. -/
 theorem karlsson_volume_master_assembly

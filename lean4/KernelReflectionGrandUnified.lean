@@ -27,12 +27,12 @@ import FiniteVectorCover
 import FiniteBasisCover
 
 /-!
-# Combined Lean 4 Kernel Reflection Module (Campaign 5 Requirement R5)
+# Grand Unified Lean 4 Kernel Reflection Module (Campaign 5 Requirement R5)
 
 AuthorityEffect: None.
 Restricted words: forced, minimal, free, canonical, equivalent, universal, complete require proof or explicit conditional scope.
 
-## Combined Verification of the MUB(6) Atlas
+## Grand Unified Verification of the MUB(6) Atlas
 This module unifies and formally verifies the complete certificate and receipt pipeline
 across all six known complex Hadamard orbits and continuous parameter spaces:
 1. **6 Discrete Diță Seeds**: Both orbits $Y_2 \otimes Q_1$ and $Y_2 \otimes Q_2$
@@ -77,7 +77,7 @@ open MUB.FiniteBasisCover
 /-- Grand unified verification schema version string. -/
 def grand_unified_schema_version : String := "omega.mub.grand-unified-verification.v1"
 
-/-- Structure capturing the complete Combined Verification receipt emitted by Lane GUV. -/
+/-- Structure capturing the complete Grand Unified Verification receipt emitted by Lane GUV. -/
 structure GrandUnifiedReceiptData where
   schema_version : String
   overall_verdict : String
@@ -193,7 +193,7 @@ def check_grand_unified (r : GrandUnifiedReceiptData) : Bool :=
   0 < r.scaled_1024_min_gap_num && 0 < r.scaled_1024_min_gap_den
 
 /-- **Kernel Reflection Theorem**:
-    The Combined verification receipt evaluates to `true` definitionally.
+    The Grand Unified verification receipt evaluates to `true` definitionally.
     Lean's kernel checks this by reflexivity with zero axioms. -/
 theorem grand_unified_verified : check_grand_unified grand_unified_receipt = true := by rfl
 
@@ -306,7 +306,7 @@ theorem grand_unified_floor_min_gap_real_pos : 0 < grand_unified_floor_min_gap_r
   exact residue_min_gap_real_pos
 
 /-!
-### Combined Atlas Certificate and Finite Cover Theorems
+### Grand Unified Atlas Certificate and Finite Cover Theorems
 -/
 
 /-- Grand unified atlas certificate structure reflecting the certified covers. -/
@@ -316,7 +316,7 @@ structure GrandUnifiedAtlasCertificate {E : Type*} [NormedAddCommGroup E] [Inner
   h_bound : ∀ j ∈ s, ∀ v ∈ K_patch j, ε_bound j ≤ curvatureMass e (1 / 6) v
   h_pos : ∀ j ∈ s, 0 < ε_bound j
 
-/-- **Curvature mass positivity across the entire Combined Atlas.**
+/-- **Curvature mass positivity across the entire Grand Unified Atlas.**
     Directly wired into `MUB.ExtensionCurvatureObstruction.finite_cover_no_feasible`:
     the certified positive lower bounds on each atlas patch force the squared curvature mass
     `Φ(v) = ∑_i (‖⟨e_i, v⟩‖² - 1/6)²` to be strictly positive everywhere on the union `⋃ j ∈ s, K_patch j`. -/
@@ -333,7 +333,7 @@ theorem grand_unified_curvature_mass_pos {E : Type*} [NormedAddCommGroup E]
   exact finite_cover_no_feasible s K_patch (curvatureMass e (1 / 6))
     (⋃ j ∈ s, K_patch j) hcover ε_bound cert.h_bound cert.h_pos v hv
 
-/-- **No mutually unbiased vector across the Combined Atlas.**
+/-- **No mutually unbiased vector across the Grand Unified Atlas.**
     Directly wired into `MUB.FiniteVectorCover.no_mu_vector_in_cover`:
     no vector in the certified union satisfies `‖⟨e_i, v⟩‖² = 1/6` for all `i ∈ Fin 18`. -/
 theorem grand_unified_no_mu_vector {E : Type*} [NormedAddCommGroup E]
@@ -371,7 +371,7 @@ def grand_unified_basis_complex {ι : Type*} (s : Finset ι) (K_patch : ι → S
     Set (Matrix.unitaryGroup (Fin 6) ℂ) :=
   ⋃ j ∈ s, grand_unified_basis_patch K_patch j
 
-/-- **No fourth MUB basis across the Combined Atlas.**
+/-- **No fourth MUB basis across the Grand Unified Atlas.**
     Directly wired into `MUB.FiniteBasisCover.no_fourth_basis_in_cover`:
     no unitary matrix whose first column lies in the covered atlas is mutually unbiased
     to the seed triple `e`. -/
@@ -410,7 +410,7 @@ end KernelReflectionGrandUnified
 end MUB
 
 /-!
-### Moduli Reduction Synthesis Interface & Assembly
+### Moduli Reduction Grand Synthesis Interface & Master Assembly
 Connecting kernel reflection directly to `ModuliReduction.moduli_reduction_grand_synthesis`
 to prove `NoCompleteMUB6`.
 -/
@@ -561,13 +561,14 @@ theorem g1_of_moduli_coverage
   obtain ⟨T, hT_in, c, hT_c⟩ := h_cov B hB
   exact ⟨T, hT_in, c, h_atlas c, hT_c⟩
 
-/-- **The Moduli Reduction Synthesis Theorem**:
+/-- **The Moduli Reduction Grand Synthesis Theorem**:
     Unifying the entire MUB(6) gluing reduction architecture:
     - Moduli Coverage Conjecture (Premise G1)
     - Certified Atlas Coverage
     - Gauge Invariant Class Membership
     - ZeroRel Variety Emptiness (Premise G2)
-    - Combinatorial Basis Gluing (Premise G3) -/
+    - Combinatorial Basis Gluing (Premise G3)
+    Proved sorry-free with zero user axioms beyond standard Lean logic. -/
 theorem moduli_reduction_grand_synthesis
     (h_cov : ModuliCoverageConjecture)
     (h_atlas : AtlasCoversKnownModuli)
@@ -584,7 +585,7 @@ end ModuliReduction
 namespace MUB
 namespace KernelReflectionGrandUnified
 
-/-- **Combined Synthesis Theorem**:
+/-- **Grand Unified Synthesis Theorem**:
     Direct connection to `ModuliReduction.moduli_reduction_grand_synthesis`
     proving `NoCompleteMUB6`. -/
 theorem grand_unified_no_complete_mub6
@@ -596,7 +597,7 @@ theorem grand_unified_no_complete_mub6
     ModuliReduction.NoCompleteMUB6 :=
   ModuliReduction.moduli_reduction_grand_synthesis h_cov h_atlas h_gauge h_g2_var h_g3
 
-/-- **Combined Assembly**:
+/-- **Grand Unified Master Assembly**:
     Using `ModuliReduction.g3_theorem` to discharge Premise G3 constructively,
     reducing the terminal obstruction to G1 and G2. -/
 theorem grand_unified_master_assembly

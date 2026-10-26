@@ -11,7 +11,7 @@ import PolynomialEncoding
 
 This module formalizes:
 1. Corner determinant decomposition for dephased 6x6 complex matrices.
-2. The Case Routing Proposition: every dephased complex Hadamard matrix
+2. The Master Case Routing Proposition: every dephased complex Hadamard matrix
    falls into either the Regular Corner branch (`cornerDet ≠ 0`) or the
    Degenerate Segre Cusp branch (`cornerDet = 0`).
    *Audit Note (F02/P1)*: `master_case_routing` is an exhaustive zero/nonzero corner
@@ -55,7 +55,7 @@ def IsRegularCorner (H : Matrix (Fin 6) (Fin 6) ℂ) : Prop :=
 def IsSingularCorner (H : Matrix (Fin 6) (Fin 6) ℂ) : Prop :=
   cornerDet H = 0
 
-/-- Case Routing Proposition (Zero/Nonzero Corner Split):
+/-- Master Case Routing Proposition (Zero/Nonzero Corner Split):
     Every dephased 6x6 complex matrix belongs to either the Regular Corner branch
     (`cornerDet H ≠ 0`) or the Singular Segre Cusp branch (`cornerDet H = 0`).
 
