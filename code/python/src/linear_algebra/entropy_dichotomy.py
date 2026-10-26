@@ -98,7 +98,7 @@ def rat(q: Q | int) -> str:
     return f"{parsed.numerator}/{parsed.denominator}"
 
 
-def _reject_float_list(value: list[Any], path: str) -> None:
+def _reject_float_list(value: list[Any] | tuple[Any, ...], path: str) -> None:
     for index, item in enumerate(value):
         reject_floats(item, f"{path}[{index}]")
 
@@ -108,9 +108,10 @@ def reject_floats(value: Any, path: str = "object") -> None:
         raise _ve(f"float leakage at {path}", path=path, received="float")
     if isinstance(value, dict):
         for key, item in value.items():
+            reject_floats(key, f"{path}.<key>")
             reject_floats(item, f"{path}.{key}")
         return
-    if isinstance(value, list):
+    if isinstance(value, (list, tuple)):
         _reject_float_list(value, path)
 
 
@@ -811,9 +812,9 @@ def entropy_verdict(case: dict[str, Any], *, approximation_k: int | None = None)
     An external verdict requires actually computing the interval for this input;
     a caller cannot obtain one by supplying an unrelated or invented enclosure.
     """
-    import cyclotomic_density
-    if cyclotomic_density.has_cyclotomic_entries(case):
-        return cyclotomic_density.entropy_verdict(case, approximation_k=approximation_k)
+    from . import cyclo_density
+    if cyclo_density.has_cyclotomic_entries(case):
+        return cyclo_density.entropy_verdict(case, approximation_k=approximation_k)
     matrix = validated_matrix(case)
     power_sum = sum((value * value for row in matrix for value in row), Q(0))
     purity = "PURE" if power_sum == 1 else "MIXED"
@@ -1064,9 +1065,9 @@ def entropy_interval(case: dict[str, Any], k: int) -> dict[str, Any]:
     """Return a rational enclosure of S with width <=2^-k, never membership."""
     if type(k) is not int or not 0 <= k <= MAX_K:
         raise RefusedAtBudget("approximation_k_max=32 exhausted or invalid precision")
-    import cyclotomic_density
-    if cyclotomic_density.has_cyclotomic_entries(case):
-        return cyclotomic_density.entropy_interval(case, k)
+    from . import cyclo_density
+    if cyclo_density.has_cyclotomic_entries(case):
+        return cyclo_density.entropy_interval(case, k)
     matrix = validated_matrix(case)
     coefficients = charpoly(matrix)
     return _entropy_interval_from_characteristic(coefficients, k)
@@ -1190,8 +1191,8 @@ def _interval_record(
 def _attach_embedding(result: dict[str, Any], cyclotomic_embedding: dict[str, Any] | None) -> None:
     if cyclotomic_embedding is None:
         return
-    import cyclotomic_density
-    result["root_isolation"] = cyclotomic_density.ROOT_ISOLATION
+    from . import cyclo_density
+    result["root_isolation"] = cyclo_density.ROOT_ISOLATION
     result["embedding"] = cyclotomic_embedding
 
 
@@ -1277,8 +1278,8 @@ def _check_sturm_accounting(interval: dict[str, Any]) -> tuple[int, int]:
     limit = interval.get("sturm_subdivision_limit")
     root_isolation = interval.get("root_isolation")
     if root_isolation == "EXACT_CYCLOTOMIC_REAL_STURM_SPECTRAL_CLUSTERS":
-        import cyclotomic_density
-        cyclotomic_density.validate_embedding(interval.get("embedding"))
+        from . import cyclo_density
+        cyclo_density.validate_embedding(interval.get("embedding"))
     _require_sturm_kind(interval, root_isolation)
     checked_used, _checked_limit = _require_sturm_counts(used, limit)
     return checked_used, _require_series_terms(interval.get("max_series_terms_used"))
@@ -1478,11 +1479,11 @@ def _interval_report(interface: Path | None, precision: int) -> dict[str, Any]:
 
 def _select_report(args: Any) -> dict[str, Any]:
     if args.spectral_roots:
-        import polynomial_roots
-        return polynomial_roots.report(args.interface)
+        from . import poly_roots
+        return poly_roots.report(args.interface)
     if args.cyclotomic_characteristic:
-        import cyclotomic_density
-        return cyclotomic_density.characteristic_report(args.interface)
+        from . import cyclo_density
+        return cyclo_density.characteristic_report(args.interface)
     if args.verdict_only:
         return _verdict_report(args.interface)
     if args.intervals is not None:

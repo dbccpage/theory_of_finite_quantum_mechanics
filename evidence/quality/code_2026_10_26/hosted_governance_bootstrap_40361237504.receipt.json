@@ -1,0 +1,46 @@
+{
+  "schema": "tfqm.hosted-governance-source-receipt.v1",
+  "AuthorityEffect": "None",
+  "reviewed_at": "2026-10-26",
+  "result": "SCOPED_GOVERNANCE_UNIT_TESTS_PASS; BOOTSTRAP_ACCEPTANCE_FAILED_AS_RECORDED",
+  "repository": "dbccpage/theory_of_finite_quantum_mechanics",
+  "pull_request": 430,
+  "run_id": 40361237504,
+  "job_id": 121706934604,
+  "run_url": "https://github.com/dbccpage/theory_of_finite_quantum_mechanics/actions/runs/40361237504",
+  "job_url": "https://github.com/dbccpage/theory_of_finite_quantum_mechanics/actions/runs/40361237504/job/121706934604",
+  "event": "pull_request",
+  "pull_request_head": "0c8a883b3122b0d20fd93a55df8f1cee964008fa",
+  "tested_checkout": "6b3c54cb2fda27b1bd47dacfe09da9c97c1bfbd3",
+  "tested_checkout_description": "GitHub synthetic merge of the PR head into main 948f4e7102e67661381afce3fd9ad3742b719536, recorded by the checkout step.",
+  "sources": [
+    {"path": "code/rust/src/governance/src/policy.rs", "sha256": "f4c3a5285558f2342671475a84c249e1dd37c6e26bc8877181adbf688a64e166", "git_blob_oid": "ead1287efe418c744a0c51ee50a8da1411bdd8bc"},
+    {"path": "code/rust/src/governance/src/verify.rs", "sha256": "a99fe98135e6594e49d5d636da52df40e94c04b382b2802fa5778e283d270abb", "git_blob_oid": "e4038a141b19b8bc86dfe8b88a51b7d9b566946f"}
+  ],
+  "binding_verification": "The auditor independently read current source SHA256 values and Git blob OIDs at the exact PR head. GitHub contents API at the logged synthetic merge commit returned identical blob OIDs for both sources. Source bytes were not changed to obtain this assessment.",
+  "retained_log": {"path": "evidence/quality/code_2026_10_26/hosted_governance_bootstrap_40361237504.log", "sha256": "3efe8cb4b438962865d7690f3cee8f299e08b00f1d666521c629bce8478be80a", "representation": "Complete gh CLI job-log output retained by parent with LF normalization, including GitHub step/timestamp prefixes and ANSI markers. This is not described as the byte-exact raw GitHub artifact."},
+  "independent_observation": "Auditor read retained log and independently queried gh run view explicit job-step metadata. The run and governance job concluded failure; successful unit/build steps are recorded separately below, not inferred from an overall green job.",
+  "scoped_steps": [
+    {"name": "Test the governance crate", "step_number": 6, "conclusion": "success", "command": "cargo test --locked --manifest-path \"$GOV_DIR/Cargo.toml\"", "GOV_DIR": "/home/runner/work/theory_of_finite_quantum_mechanics/theory_of_finite_quantum_mechanics/governance", "mode": "TFQM_GOVERNANCE=enforce", "library_tests": {"passed": 57, "failed": 0, "ignored": 0}, "binary_tests": {"passed": 10, "failed": 0, "ignored": 0}, "doc_tests": {"passed": 0, "failed": 0, "ignored": 1}, "log_lines": [337, 438]},
+    {"name": "Build governance-check", "step_number": 7, "conclusion": "success", "command": "cargo build --locked --release --manifest-path \"$GOV_DIR/Cargo.toml\" --bin governance-check"},
+    {"name": "Test the shared policy in the Python scripts", "step_number": 8, "conclusion": "success", "command": "python -I -X utf8 -m pytest scripts/test_governance_policy.py -q -p no:cacheprovider", "passed": 4, "warnings": 1, "warning": "Unknown pytest config option asyncio_mode"},
+    {"name": "Rust and Python agree on the governed population", "step_number": 9, "conclusion": "success", "method": "Existing governance-check list and score_scope_contracts.py population outputs compared with diff -u."}
+  ],
+  "named_boundary_tests_observed_ok": [
+    "policy::tests::reviewed_bounded_categories_keep_exact_path_and_digest_admission",
+    "policy::tests::support_exceptions_are_exact_and_fail_closed",
+    "policy::tests::support_exception_requires_review_metadata",
+    "verify::tests::support_pin_never_accepts_incomplete_or_grade_e",
+    "verify::tests::binding_mismatch_names_the_field",
+    "verify::tests::null_gate_is_incomplete",
+    "score::tests::completion_boundary_exhausts_every_gate_assignment"
+  ],
+  "bootstrap_acceptance": {"step_number": 10, "conclusion": "failure", "checked_sources": 8327, "passed": 178, "grandfathered": 8127, "boilerplate": 20, "failed": 2, "failures": [{"source": "code/rust/src/governance/src/policy.rs", "rule": "COMPLETENESS", "finding": "unassessed G4"}, {"source": "code/rust/src/governance/src/verify.rs", "rule": "COMPLETENESS", "finding": "unassessed G4"}], "log_lines": [510, 516], "scope": "Exactly the two explicitly incomplete bootstrap assessments caused rejection at this head. Subsequent assessment append is not retrospectively called a passing result for this run."},
+  "limits": [
+    "The run/job overall failed; full governed-source and contract-history poststeps were skipped. A subsequent enforcing CI run is still required.",
+    "67 executed Rust unit tests passed; one ignored documentation example is not counted as executed or passing.",
+    "No full Rust workspace, optional native dependency, publication suite, complete mutation campaign or physical correctness claim is established.",
+    "No local native/Lean build or provider call was made by this reviewer. Existing historical mutation/native receipts remain historical."
+  ],
+  "assessment_effect": "Supports appending G4=D and complete L4D for these two existing governance control-plane sources only. It does not raise the 33 bounded sources above honest L2/L3D, change policy or baseline, or authorize a bypass. Historical bootstrap-status and incomplete score records remain intact."
+}

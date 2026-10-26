@@ -153,7 +153,7 @@ pub struct PinnedBoilerplate {
 pub struct SupportException {
     /// Exact source digest admitted by the review.
     pub sha256: String,
-    /// One of build_registration, regression_test, source_archive, or finite_proof_example.
+    /// An explicitly admitted review category; every entry still binds one exact path and digest.
     pub category: String,
     /// User authorization and artifact-specific rationale.
     pub reason: String,
@@ -265,8 +265,9 @@ fn support_exception(path: &str, value: &Value) -> Result<SupportException, Poli
     if !is_sha256(sha256) || reason.trim().is_empty() {
         return Err(field("support_exceptions[]", "a valid source digest and nonempty review reason"));
     }
-    if !matches!(category, "build_registration" | "regression_test" | "source_archive" | "finite_proof_example") {
-        return Err(field("support_exceptions.category", "build_registration, regression_test, source_archive or finite_proof_example"));
+    if !matches!(category, "build_registration" | "regression_test" | "source_archive" | "finite_proof_example"
+        | "reviewed_bounded_research_runtime" | "reviewed_bounded_exact_helper" | "reviewed_test_harness") {
+        return Err(field("support_exceptions.category", "build_registration, regression_test, source_archive, finite_proof_example, reviewed_bounded_research_runtime, reviewed_bounded_exact_helper or reviewed_test_harness"));
     }
     if category == "finite_proof_example" {
         let lean_name = path.strip_prefix("lean4/").unwrap_or("");
@@ -726,6 +727,23 @@ pub(crate) mod tests {
         for path in ["../test.py", "/test.py", "code/*.py", "C:/test.py", "code//test.py"] {
             value["support_exceptions"] = serde_json::json!({path: pin});
             assert!(Policy::from_json(&value.to_string()).is_err(), "{path}");
+        }
+    }
+
+    #[test]
+    fn reviewed_bounded_categories_keep_exact_path_and_digest_admission() {
+        for category in ["reviewed_bounded_research_runtime", "reviewed_bounded_exact_helper", "reviewed_test_harness"] {
+            let mut value: Value = serde_json::from_str(POLICY).unwrap();
+            let pin = serde_json::json!({"sha256": "a".repeat(64), "category": category, "reason": "human-reviewed exact source"});
+            value["support_exceptions"] = serde_json::json!({"code/test.py": pin});
+            let policy = Policy::from_json(&value.to_string()).unwrap();
+            assert_eq!(policy.floor_for("code/test.py", &"a".repeat(64)).min_level, Level::L1);
+            assert_eq!(policy.floor_for("code/test.py", &"b".repeat(64)), policy.floor);
+            assert_eq!(policy.floor_for("code/other.py", &"a".repeat(64)), policy.floor);
+            for path in ["../test.py", "/test.py", "code/*.py", "C:/test.py", "code//test.py"] {
+                value["support_exceptions"] = serde_json::json!({path: pin});
+                assert!(Policy::from_json(&value.to_string()).is_err(), "{category}: {path}");
+            }
         }
     }
 
