@@ -1486,3 +1486,7 @@ lean_lib CampaignTfq0183FourModeDisk where
 lean_lib «CampaignFiniteGroupPachner» where
   srcDir := "."
   roots := #[`CampaignFiniteGroupPachner]
+
+-- Conditional continuum campaign: LQG-CONTINUUM-LIMIT-GAP. Non-default target.
+lean_lib CampaignLqgProjectiveLimit where
+  roots := #[`CampaignLqgProjectiveLimit]

@@ -11,14 +11,35 @@ target:
     = 0. The positive rationals 3, 729 and 19683 are pairwise distinct, and 1 is a positive rational distinct
     from all three, so these finite counts do not select a unique positive rational scale. A continuum
     limit, a semiclassical limit and a physical cosmological constant stay undischarged. The exact 6j
-    table, the area spectrum and the pentagon identity on all 19683 nine-tuples are not re-checked here.'
+    table, the area spectrum and the pentagon identity on all 19683 nine-tuples are not re-checked here.
+    Conditional continuum result: For a supplied finite discrete label alphabet and normalized nonnegative
+    probability laws on every finite set of natural-number coordinates, compatibility under coordinate
+    restriction is equivalent to existence of an infinite projective-limit measure. Under compatibility,
+    that probability measure is unique. Every countable family of measurable finite-window constraints
+    having mass one in its finite law holds almost everywhere simultaneously in the limit, and at least
+    one satisfying infinite configuration exists. The theorem specializes to the three level-two spin
+    labels Fin 3 and arbitrary predicates on their finite windows.'
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: []
-  source_bottleneck: The census and the two dimension identities do not discharge a continuum limit, a
-    semiclassical limit, or a physical cosmological constant. No sequence of triangulations and no Einstein
-    equation is constructed. Routes FRO-R-LQG-CONTINUUM-LIMIT-GAP and FRO-R-BACK-LQG-LIMIT-TO-TFQ0105
+  declared_assumptions:
+  - supplied finite discrete label alphabet and product measurable structure
+  - normalized nonnegative finite laws compatible under all finite coordinate restrictions
+  - countably many supplied finite-window constraints with probability one
+  source_bottleneck: 'New conditional result: For a supplied finite discrete label alphabet and normalized
+    nonnegative probability laws on every finite set of natural-number coordinates, compatibility under
+    coordinate restriction is equivalent to existence of an infinite projective-limit measure. Under compatibility,
+    that probability measure is unique. Every countable family of measurable finite-window constraints
+    having mass one in its finite law holds almost everywhere simultaneously in the limit, and at least
+    one satisfying infinite configuration exists. The theorem specializes to the three level-two spin
+    labels Fin 3 and arbitrary predicates on their finite windows. Remaining obligation: The alphabet,
+    discrete topology, product measurable structure, compatible finite probability laws and full-mass
+    constraint premises are supplied. Physical LQG or complex spin-foam amplitudes are not shown to satisfy
+    them. No triangulation refinement, manifold, semiclassical geometry, Einstein dynamics or physical
+    cosmological constant is derived; the original node and physical routes remain OPEN/GAP. Earlier finite
+    witness boundary (historical): The census and the two dimension identities do not discharge a continuum
+    limit, a semiclassical limit, or a physical cosmological constant. No sequence of triangulations and
+    no Einstein equation is constructed. Routes FRO-R-LQG-CONTINUUM-LIMIT-GAP and FRO-R-BACK-LQG-LIMIT-TO-TFQ0105
     stay GAP_NO_DERIVATION. The broader audit sentence, that no source read for this change derives a
-    limit, is not discharged in full.
+    limit, is not discharged in full.'
   source_refs:
   - dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md
   - lean4/CampaignLqgContinuumLimitGap.lean
@@ -26,6 +47,10 @@ target:
   - dag/derivations/independent/lqg-continuum-limit-gap.md
   - checks/independent/lqg-continuum-limit-gap.py
   - code/rust/src/general_relativity/spin_foam.rs
+  - lean4/CampaignLqgProjectiveLimit.lean
+  - checks/independent/lqg-projective-limit.py
+  - dag/derivations/independent/lqg-projective-limit.md
+  - dag/research/campaign_lqg-projective-limit_lean_replay.json
   paper_refs:
   - dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md
   source_claim_label: OPEN
@@ -34,7 +59,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md
-    sha256: ba2bfe51bdbb44d34f6ef39583cc8d5d7a7ba9406979e9723db277c4b67a74b7
+    sha256: 16a27f6a0bbbb114f8db554b45505d9afe333f4bf70641ad195fe92fc717b05b
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -66,6 +91,22 @@ operation_candidates:
   source: lean4/CampaignLqgContinuumLimitGap.lean
   repository: this_repository
   source_sha256: a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: limitMeasure
+  line: 62
+  signature_excerpt: 'noncomputable def limitMeasure : Measure (Config A)'
+  source: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  source_sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Config
+  line: 17
+  signature_excerpt: 'abbrev Config (A : Type*)'
+  source: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  source_sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
@@ -123,6 +164,134 @@ relation_candidates:
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
+- kind: theorem
+  name: spin_constraints_ae
+  line: 129
+  signature_excerpt: |-
+    theorem spin_constraints_ae
+        (laws : (I : Finset ℕ) → Measure (I → Fin 3))
+        [∀ I, IsProbabilityMeasure (laws I)]
+        (consistent : IsProjectiveMeasureFamily (α
+  source: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  source_sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: spin_labels_extension
+  line: 120
+  signature_excerpt: |-
+    theorem spin_labels_extension
+        (laws : (I : Finset ℕ) → Measure (I → Fin 3))
+        [∀ I, IsProbabilityMeasure (laws I)]
+        (consistent : IsProjectiveMeasureFamily (α
+  source: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  source_sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: countable_constraints
+  line: 84
+  signature_excerpt: |-
+    theorem countable_constraints (I : ℕ → Finset ℕ) (S : ∀ n, Set (I n → A))
+        (hS : ∀ n, MeasurableSet (S n)) (hprob : ∀ n, P (I n) (S n) = 1) :
+        ∀ᵐ ω ∂limitMeasure P hP, ∀ n, Finset.restrict (π
+  source: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  source_sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: constraints_have_configuration
+  line: 94
+  signature_excerpt: |-
+    theorem constraints_have_configuration (I : ℕ → Finset ℕ) (S : ∀ n, Set (I n → A))
+        (hS : ∀ n, MeasurableSet (S n)) (hprob : ∀ n, P (I n) (S n) = 1) :
+        ∃ ω : Config A, ∀ n, Finset.restrict (π
+  source: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  source_sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: projective_of_limit
+  line: 102
+  signature_excerpt: |-
+    theorem projective_of_limit (μ : Measure (Config A)) (hμ : IsProjectiveLimit μ P) :
+        IsProjectiveMeasureFamily (α
+  source: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  source_sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: exists_limit_iff_projective
+  line: 109
+  signature_excerpt: |-
+    theorem exists_limit_iff_projective :
+        (∃ μ : Measure (Config A), IsProjectiveLimit μ P) ↔
+          IsProjectiveMeasureFamily (α
+  source: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  source_sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: empty_stage
+  line: 26
+  signature_excerpt: |-
+    theorem empty_stage (s : ℕ → Set (Config A))
+        (hs : ∀ n, s n ∈ measurableCylinders (fun _ : ℕ => A))
+        (hanti : Antitone s) (hempty : ⋂ n, s n = ∅) : ∃ n, s n = ∅
+  source: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  source_sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: content_sigma_subadditive
+  line: 55
+  signature_excerpt: 'theorem content_sigma_subadditive : (projectiveFamilyContent hP).IsSigmaSubadditive'
+  source: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  source_sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: limit_marginals
+  line: 66
+  signature_excerpt: 'theorem limit_marginals : IsProjectiveLimit (limitMeasure P hP) P'
+  source: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  source_sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: limit_unique
+  line: 77
+  signature_excerpt: |-
+    theorem limit_unique (μ : Measure (Config A)) (hμ : IsProjectiveLimit μ P) :
+        μ = limitMeasure P hP
+  source: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  source_sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_admissible_count
   availability: local
@@ -169,6 +338,96 @@ source_bindings:
   declaration_status: declaration_found_not_proof_checked
   line: 84
   role: source_lead_only
+- original_ref: lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.spin_constraints_ae
+  availability: local
+  symbol: CampaignLqgProjectiveLimit.spin_constraints_ae
+  path: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  declaration_status: declaration_found_not_proof_checked
+  line: 129
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.spin_labels_extension
+  availability: local
+  symbol: CampaignLqgProjectiveLimit.spin_labels_extension
+  path: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  declaration_status: declaration_found_not_proof_checked
+  line: 120
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.countable_constraints
+  availability: local
+  symbol: CampaignLqgProjectiveLimit.countable_constraints
+  path: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  declaration_status: declaration_found_not_proof_checked
+  line: 84
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.constraints_have_configuration
+  availability: local
+  symbol: CampaignLqgProjectiveLimit.constraints_have_configuration
+  path: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  declaration_status: declaration_found_not_proof_checked
+  line: 94
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.projective_of_limit
+  availability: local
+  symbol: CampaignLqgProjectiveLimit.projective_of_limit
+  path: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  declaration_status: declaration_found_not_proof_checked
+  line: 102
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.exists_limit_iff_projective
+  availability: local
+  symbol: CampaignLqgProjectiveLimit.exists_limit_iff_projective
+  path: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  declaration_status: declaration_found_not_proof_checked
+  line: 109
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.empty_stage
+  availability: local
+  symbol: CampaignLqgProjectiveLimit.empty_stage
+  path: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  declaration_status: declaration_found_not_proof_checked
+  line: 26
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.content_sigma_subadditive
+  availability: local
+  symbol: CampaignLqgProjectiveLimit.content_sigma_subadditive
+  path: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  declaration_status: declaration_found_not_proof_checked
+  line: 55
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.limit_marginals
+  availability: local
+  symbol: CampaignLqgProjectiveLimit.limit_marginals
+  path: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  declaration_status: declaration_found_not_proof_checked
+  line: 66
+  role: source_lead_only
+- original_ref: lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.limit_unique
+  availability: local
+  symbol: CampaignLqgProjectiveLimit.limit_unique
+  path: lean4/CampaignLqgProjectiveLimit.lean
+  repository: this_repository
+  sha256: 44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5
+  declaration_status: declaration_found_not_proof_checked
+  line: 77
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -187,7 +446,10 @@ operad_slots:
     mining_status: UNREVIEWED
     carrier: null
     coefficient_ring: null
-    assumptions: []
+    assumptions:
+    - supplied finite discrete label alphabet and product measurable structure
+    - normalized nonnegative finite laws compatible under all finite coordinate restrictions
+    - countably many supplied finite-window constraints with probability one
     source_pins: []
     public_input: {}
   slot_m2_layer1_forward_morphisms:
@@ -203,7 +465,10 @@ operad_slots:
     mining_status: UNREVIEWED
     certificate_predicates: []
     anchors: []
-    unpaid_imports: []
+    unpaid_imports:
+    - supplied finite discrete label alphabet and product measurable structure
+    - normalized nonnegative finite laws compatible under all finite coordinate restrictions
+    - countably many supplied finite-window constraints with probability one
 stage_history: []
 open_obligations:
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
