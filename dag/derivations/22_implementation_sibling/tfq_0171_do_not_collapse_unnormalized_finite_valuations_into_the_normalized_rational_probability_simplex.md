@@ -40,6 +40,15 @@ In accordance with strict constructive principles:
   - `CampaignTfq0171ImplementationSibling.scaled_integer_grid_not_ordinary_rational_simplex_fence`
   - `CampaignTfq0171ImplementationSibling.sibling_modules_distinct_carrier_contracts_fence`
   - `CampaignTfq0171ImplementationSibling.tfq0171_unnormalized_valuation_and_simplex_scope_ledger_fence`
+- `lean4/CampaignTfq0171PositiveMass.lean`:
+  - `CampaignTfq0171PositiveMass.positivePairMassNotOne`
+  - `CampaignTfq0171PositiveMass.oneOneMass`
+  - `CampaignTfq0171PositiveMass.twoNotOne`
+  - `CampaignTfq0171PositiveMass.emptyMassNotOne`
+  - `CampaignTfq0171PositiveMass.halfPairSumsToOne`
+  - `CampaignTfq0171PositiveMass.oneOneNotUnit`
+  - `CampaignTfq0171PositiveMass.unnormalizedPairDiffers`
+  - `CampaignTfq0171PositiveMass.normalizeByTotal`
 - `lean4/H001ProbabilitySimplex.lean`:
   - `FableHilbertWalk20260819.H001.probability_simplex`
   - `FableHilbertWalk20260819.H001.double_not_normalized`
@@ -76,5 +85,6 @@ In accordance with strict constructive principles:
   - `lean4/H001ProbabilitySimplex.lean`
   - `lean4/H001Rats.lean`
   - `lean4/CampaignTfq0171ImplementationSibling.lean`
+  - `lean4/CampaignTfq0171PositiveMass.lean`
   - `code/rust/src/finite_probability/finite_valuation.rs`
   - `checks/independent/tfq-0171.py`
