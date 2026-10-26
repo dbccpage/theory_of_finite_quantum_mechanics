@@ -6681,7 +6681,7 @@
       "stage": "L1_TO_L2",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "imported; unique only on the named bilinear Kronecker interface",
-      "statement": "For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1.",
+      "statement": "Hilbert tensor product as the unique way to combine systems. On Bool x Bool a bilinear integer-homogeneous Kronecker-normalized map equals the pointwise product; a weaker same-host combining interface has a rival (dump-the-right-report map).",
       "source": [
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/gap_register.yaml#GAP-F001-S000-006",
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/continuum_price_ledger.yaml#PRICE-HD-04",
@@ -6724,7 +6724,7 @@
         "narrowest_claim": "Exact tensor/dumpRight and norm-multiplicativity arrays, with generic bilinearity and a basis-collision control in Lean.",
         "does_not_support": "Refine the complete CombiningEmbed/Kronecker uniqueness theorem and justify the physical composition rule; weak tag interfaces do not select a Hilbert tensor product.",
         "next_test": "Refine the complete CombiningEmbed/Kronecker uniqueness theorem and justify the physical composition rule; weak tag interfaces do not select a Hilbert tensor product.",
-        "scope_effect": "statement_narrowed",
+        "scope_effect": "caveat_added",
         "reason": "Finite Bool-by-Bool agreement and a dump-right rival are recorded; Hilbert-space uniqueness stays imported.",
         "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "Hilbert tensor product as the unique way to combine systems. On Bool x Bool a bilinear integer-homogeneous Kronecker-normalized map equals the pointwise product; a weaker same-host combining interface has a rival (dump-the-right-report map).",
@@ -6742,7 +6742,7 @@
       "stage": "L1_TO_L2",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "imported; no channel class defined on the finite host",
-      "statement": "On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair.",
+      "statement": "The class of completely positive trace-preserving maps. Collapse non-reversibility and failure of a same-basis isometry are not CPTP obstructions; exactly four reversible dilations of collapse exist under the declared convention that the ancilla starts at false.",
       "source": [
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/gap_register.yaml#GAP-F001-S000-007",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/finite_hilbert_boundary_from_primitive_difference.md:155",
@@ -6784,7 +6784,7 @@
         "narrowest_claim": "Four actual reversible dilation maps/inverses and exact reset-channel Choi/TP/action arrays, with generic inverse and reset trace identities in Lean.",
         "does_not_support": "Prove the native-array-to-channel/dilation refinement and classify arbitrary CPTP maps under admitted complex Hilbert structure. The ancilla convention is essential.",
         "next_test": "Prove the native-array-to-channel/dilation refinement and classify arbitrary CPTP maps under admitted complex Hilbert structure. The ancilla convention is essential.",
-        "scope_effect": "statement_narrowed",
+        "scope_effect": "caveat_added",
         "reason": "Boolean collapse, the integer mass image and four ancilla-false reversible dilations are recorded. The Hilbert-space channel class stays imported.",
         "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "The class of completely positive trace-preserving maps. Collapse non-reversibility and failure of a same-basis isometry are not CPTP obstructions; exactly four reversible dilations of collapse exist under the declared convention that the ancilla starts at false.",
@@ -6797,7 +6797,7 @@
       "stage": "L1_TO_L2",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "imported / refused on this host",
-      "statement": "On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).",
+      "statement": "Continuous time, topology, a one-parameter unitary group and Stone's theorem. The two-state toggle has no report-level square root; after complex coefficients, interpolants exist at scale 4 and are not unique.",
       "source": [
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/gap_register.yaml#GAP-F001-S000-008",
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/continuum_price_ledger.yaml#PRICE-HD-03",
@@ -6843,7 +6843,7 @@
         "narrowest_claim": "Complete Boolean square-root obstruction and both exact complex unitary square roots of toggle; generic projector-square algebra and Boolean enumeration in Lean.",
         "does_not_support": "Supply topology, continuous time and the one-parameter group; invoke Stone only under its hypotheses. Square roots alone do not define continuous dynamics.",
         "next_test": "Supply topology, continuous time and the one-parameter group; invoke Stone only under its hypotheses. Square roots alone do not define continuous dynamics.",
-        "scope_effect": "statement_narrowed",
+        "scope_effect": "caveat_added",
         "reason": "Boolean toggle has no square root on the two labels, and two Gaussian-integer interpolants square to the scale-4 swap and differ at one input. Continuous time and Stone's theorem stay imported.",
         "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "Continuous time, topology, a one-parameter unitary group and Stone's theorem. The two-state toggle has no report-level square root; after complex coefficients, interpolants exist at scale 4 and are not unique.",
@@ -6858,7 +6858,7 @@
       "stage": "L1_TO_L2",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "OPEN gap GAP-F001-S000-002 (continuum interface)",
-      "statement": "Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1.",
+      "statement": "Transition from the finite presented carrier (integer weights, finite report labels) to a continuous infinite-dimensional Hilbert space. QM_122 section 6 refuses it; QM_020 demotion box fences it.",
       "source": [
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/gap_register.yaml#GAP-F001-S000-002",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/finite_hilbert_boundary_from_primitive_difference.md:188"
@@ -6901,7 +6901,7 @@
         "narrowest_claim": "Exact truncation coordinates, norm, positive tail and successive difference controls; general finite recurrence identity and positivity interface in Lean.",
         "does_not_support": "Construct and verify the topology, Cauchy completion and infinite-dimensional Hilbert carrier. No finite truncation settles those imports.",
         "next_test": "Construct and verify the topology, Cauchy completion and infinite-dimensional Hilbert carrier. No finite truncation settles those imports.",
-        "scope_effect": "statement_narrowed",
+        "scope_effect": "caveat_added",
         "reason": "The length-4 window (8, 4, 2, 1) and the identity 3 * sumPow4 n + 1 = pow4 n are one finite case. Scalar-field selection, l2 uniformity and a Cauchy completion stay imported.",
         "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "Transition from the finite presented carrier (integer weights, finite report labels) to a continuous infinite-dimensional Hilbert space. QM_122 section 6 refuses it; QM_020 demotion box fences it.",
@@ -7194,7 +7194,7 @@
       "stage": "FINITE_QM_DYNAMICS",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "[CONDITIONAL — OracleNeeded(Convergence); REFUSED as finite] (QM-030-C7); QM-031-C16 [SCOPE FENCE / IMPORTED]",
-      "statement": "Toggle sends false to true and true to false. No map on the labels false and true squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). The matrix with rows ((1, 1), (1, -1)) and ((1, -1), (1, 1)) squares to the matrix with diagonal entries (0, 0) and off-diagonal entries (4, 0). The coordinatewise negation of that matrix squares to the same matrix and differs from it. For every integer t, (1 - t*t) * (1 - t*t) + 4 * (t*t) equals (1 + t*t) * (1 + t*t). The branch energy 2*k + 1 equals 1 at k = 0 and 3 at k = 1, and distinct integers have distinct branch energies. The integers -1, 1, 1 and -1 give the corner value (-1)*(-1) + 1*1 = 2. No integers a, b, c and d satisfy a + 1 = 0, b = 1, c = 1, d + 1 = 0 together with a*a + b*c = 0, a*b + b*d = 0, c*a + d*c = 0 and c*b + d*d = 0.",
+      "statement": "The one-parameter family T(t)=exp(tH), the generator H=log T and the continuum path integral need real/complex time, convergence and a measure; none is constructed from the finite transport calculus. Refused as finite.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/030_finite_weighted_transport_calculus/qm_030_finite_weighted_transport_calculus_claim_ledger.md#QM-030-C7",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/031_finite_path_sum_as_graded_transport/qm_031_finite_path_sum_as_graded_transport_claim_ledger.md#QM-031-C16"
@@ -7241,7 +7241,7 @@
         "narrowest_claim": "No Boolean report-map half-step exists, while two distinct normalized Q(i) amplitude half-steps square to swap and are unitary. The source scaled-root and report obstruction proofs are rechecked.",
         "does_not_support": "Construct a continuous-time group, analytic logarithms, generator selection, convergence and any continuum measure with their actual hypotheses. Discrete roots or injective branch tags do not supply those interfaces.",
         "next_test": "Construct a continuous-time group, analytic logarithms, generator selection, convergence and any continuum measure with their actual hypotheses. Discrete roots or injective branch tags do not supply those interfaces.",
-        "scope_effect": "statement_narrowed",
+        "scope_effect": "caveat_added",
         "reason": "Boolean toggle has no square root, two Gaussian matrices square to the scale-4 swap and differ, the Cayley polynomial holds for each integer, distinct integers have distinct odd branch energies, and no integer matrix shifts the identity onto the swap while squaring to zero. Continuous time, exp, log and a path-integral measure stay imported.",
         "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "The one-parameter family T(t)=exp(tH), the generator H=log T and the continuum path integral need real/complex time, convergence and a measure; none is constructed from the finite transport calculus. Refused as finite.",
@@ -7601,7 +7601,7 @@
       "stage": "FINITE_QM_DYNAMICS",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "[IMPORTED] SOURCE_ADMITTED; NO_LEAN (QM_043-C1); C2/C6 [STANDARD, CONDITIONAL, IMPORTED]",
-      "statement": "For each integer n, the product n * n is at least 0, and (-n) * (-n) equals n * n. For each integer quadruple a, b, x and y, the product (a * x + b * y) * (a * x + b * y) is at least 0. For each integer a, the product a * a is at least 0. For each integer pair a and b, (a * b) * (a * b) equals a * a * (b * b), the difference of those two products is 0, and a * a + b * b is at least 0. The pair 1, 1 has sum equal to 2 * 1 and square-sum 2. The product 2 * 2 equals 4, and 2 differs from 4. The square of the sum 1 + 1 equals 4, and 4 equals 4 * 1. At the integers 1, 1, 1 and 1, the square (1 * 1 + 1 * 1) * (1 * 1 + 1 * 1) equals 4, and 1 * 1 * 1 * 1 + 2 * 1 * 1 * 1 * 1 + 1 * 1 * 1 * 1 equals 4. The pair 3, 4 has square-sum 25, and 5 * 5 equals 25, so the square-sum equals 5 * 5. The sum 3 + 4 equals 7, the product 7 * 7 equals 49, and 49 differs from 25.",
+      "statement": "D_jk = Tr(C_j rho C_k^dagger) is imported with no representation bridge to the programme; positive semidefiniteness (rho>=0) and trace-one (completeness) are standard consequences under imported premises.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/043_gellmann_hartle_cochain_decoherence/qm_043_gellmann_hartle_cochain_decoherence_claim_ledger.md#QM_043-C1",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/043_gellmann_hartle_cochain_decoherence/qm_043_gellmann_hartle_cochain_decoherence_claim_ledger.md#QM_043-C2",
@@ -7657,7 +7657,7 @@
         "narrowest_claim": "Actual class-operator Gram tables are positive semidefinite, and exact controls separate class completeness, Kraus completeness, diagonal trace and global weight.",
         "does_not_support": "Justify the class-operator family, density and physical history normalization, and formalize the native Gram-table bridge. No general decoherence functional is derived.",
         "next_test": "Justify the class-operator family, density and physical history normalization, and formalize the native Gram-table bridge. No general decoherence functional is derived.",
-        "scope_effect": "statement_narrowed",
+        "scope_effect": "caveat_added",
         "reason": "An integer Gram value is a square, so it is at least 0, and the table with entries a*a, a*b, b*b has determinant 0. The pair 1, 1 separates a cleared sum 1 from a cleared square-sum 1, and the pair 3, 4 separates them in the other direction. The trace formula stays imported.",
         "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "D_jk = Tr(C_j rho C_k^dagger) is imported with no representation bridge to the programme; positive semidefiniteness (rho>=0) and trace-one (completeness) are standard consequences under imported premises.",
@@ -8011,7 +8011,7 @@
       "stage": "FINITE_QM_STRUCTURE",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "[IMPORTED] (QM-062-C9, C10); QM-207-C2 [PROVEN, CONDITIONAL]",
-      "statement": "For every natural number k, the remainder of k + 4 on division by 4 equals the remainder of k, the remainder of k + 1 equals the remainder of (the remainder of k, plus 1) on division by 4, the k-th right product by the matrix J equals the representative of the remainder of k, that product equals the identity matrix if and only if the remainder of k is 0, and the product at k + 4 equals the product at k. The identity matrix is the tuple (1, 0, 0, 1). The matrix J is the tuple (0, -1, 1, 0). Its square is the tuple (-1, 0, 0, -1). Its cube is the tuple (0, 1, -1, 0). The product of J with J equals the square, the product of the square with J equals the cube, and the product of the cube with J equals the identity. J, its square and its cube differ from the identity. The products at 1, 2, 3 and 4 equal J, the square, the cube and the identity. The remainders of 0, 1, 2, 3 and 4 on division by 4 are 0, 1, 2, 3 and 0. The integer 0 * 0 - 1 * 1 equals -1, and (-1) * (-1) equals 1.",
+      "statement": "Continuity of reversible dynamics and global field uniqueness across n (needs local tomography) are imported; the complex amplitude lift requires an explicit U(1) phase fiber and complex involution. The discrete shadow does not separate U(1) from Q/Z torsion (QM-062-C4).",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/062_the_u1_selector/qm_062_the_u1_selector_claim_ledger.md#QM-062-C4",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/062_the_u1_selector/qm_062_the_u1_selector_claim_ledger.md#QM-062-C9",
@@ -8073,7 +8073,7 @@
         "narrowest_claim": "Actual J powers show order-four periodicity on retained indices; modulo-four aliasing is kernel checked for every natural k.",
         "does_not_support": "Supply continuity/topology, local tomography and a real exclusion/selection theorem if a full U(1) carrier is wanted. No finite-order exclusion follows from unbounded multiples.",
         "next_test": "Supply continuity/topology, local tomography and a real exclusion/selection theorem if a full U(1) carrier is wanted. No finite-order exclusion follows from unbounded multiples.",
-        "scope_effect": "statement_narrowed",
+        "scope_effect": "caveat_added",
         "reason": "Right-multiplication by the integer matrix with rows (0, -1) and (1, 0) has order 4, and for every natural number k the power equals the representative of k modulo 4. The remainder of k + 4 equals the remainder of k. Continuity, local tomography and a phase fiber stay imported.",
         "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "Continuity of reversible dynamics and global field uniqueness across n (needs local tomography) are imported; the complex amplitude lift requires an explicit U(1) phase fiber and complex involution. The discrete shadow does not separate U(1) from Q/Z torsion (QM-062-C4).",
@@ -8685,7 +8685,7 @@
       "stage": "FINITE_QM_STRUCTURE",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "[SCOPE FENCE] CP / coherence transport is the non-forced lift (QM-082-C6); QM_083-C3 local positivity does not force CP",
-      "statement": "For every integer n, the product n * n is at least 0, and (-n) * (-n) equals n * n. For every natural pair k and m, the product of the integer of k with the integer of m equals the integer of k * m. For every integer pair a and b, if a is at least 0 and b is at least 0, then a * b is at least 0. For every integer triple t, x and w, if t is at least 0, then t * ((x + w) * (x + w)) is at least 0. The sum 1 * (-1) + (-1) * 1 equals -2. For every integer t, t times that sum equals (-2) * t, and t * (-2) equals 2 * (-t). If t is greater than 0, then t * (-2) is less than 0 and -t is less than 0. The product 0 * (-2) equals 0. The sum of squares 0 * 0 + 1 * 1 + (-1) * (-1) + 0 * 0 equals 2.",
+      "statement": "Complete positivity (K tensor I >= 0), Kraus/Choi/Stinespring forms and coherence transport above the classical kernel are imported; a positive map that is not completely positive shares the identity kernel (Rust test). Stinespring requires an extension (H063 header).",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/082_channels_as_stochastic_kernels_and_the_cptp_lift/qm_082_channels_as_stochastic_kernels_and_the_cptp_lift_claim_ledger.md#QM-082-C6",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/083_completely_positive_import_boundary/qm_083_completely_positive_import_boundary_claim_ledger.md#QM_083-C3",
@@ -8732,7 +8732,7 @@
         "narrowest_claim": "A genuine Bell-input partial-transpose negative witness is computed entrywise and its positive-input and negative-output scalar forms are kernel checked.",
         "does_not_support": "Prove full transpose positivity, the native tensor-index transport and a full CP/Stinespring theorem. This counterexample does not derive the physical tensor product or channel law.",
         "next_test": "Prove full transpose positivity, the native tensor-index transport and a full CP/Stinespring theorem. This counterexample does not derive the physical tensor product or channel law.",
-        "scope_effect": "statement_narrowed",
+        "scope_effect": "caveat_added",
         "reason": "A nonnegative integer times a square is at least 0. The pairing 1 * (-1) + (-1) * 1 equals -2, so for t greater than 0 the product t * (-2) is less than 0, while at t = 0 that product is 0. The sum of squares of 0, 1, -1 and 0 equals 2, and t * (-2) equals 2 * (-t). Complete positivity and Stinespring stay imported.",
         "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "Complete positivity (K tensor I >= 0), Kraus/Choi/Stinespring forms and coherence transport above the classical kernel are imported; a positive map that is not completely positive shares the identity kernel (Rust test). Stinespring requires an extension (H063 header).",
@@ -9371,7 +9371,7 @@
       "stage": "FINITE_QM_STRUCTURE",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "QM_204 ledger: stub \"Band slot reserved\" (QM_204-C0); content carried by QM-210-C3 and QM206-C5 [STANDARD]",
-      "statement": "For every integer pair A and B, A + B equals (A + B) * 1. The sum 3 + 4 equals 7, and 7 differs from 0. The sum of squares 3 * 3 + 4 * 4 equals 25, and 5 * 5 equals 25. The sum of fourth products 3 * 3 * 3 * 3 + 4 * 4 * 4 * 4 equals 337. The product (3 * 3) * (3 * 3 * 3 * 3 + 4 * 4 * 4 * 4) differs from (3 * 3 * 3 * 3) * (5 * 5). The product 3 * (3 * 3 + 4 * 4) differs from (3 * 3) * (3 + 4). For every integer quadruple a, b, r and s, (r * a - s * b) * (r * a - s * b) + (s * a + r * b) * (s * a + r * b) equals (r * r + s * s) * (a * a + b * b). At a = 3, b = 4, r = 3 and s = 4, both sides equal 625.",
+      "statement": "Born-quadratic uniqueness (Gleason) is imported; L^p pairings for p != 2 are valid in L1 measure theory. The dedicated 204 slot is empty.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/204_born_uniqueness_import_boundary/qm_204_born_uniqueness_import_boundary_claim_ledger.md#QM_204-C0",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/210_born_rule_postulate_and_state_effect_pairing/qm_210_born_rule_postulate_and_state_effect_pairing_claim_ledger.md#QM210-C3",
@@ -9410,7 +9410,7 @@
         "narrowest_claim": "Exact normalized alternative profiles, quadratic rotation identity and a genuine Born/quartic divergence are kernel/native checked on the declared rational carrier.",
         "does_not_support": "Supply frame-function/effect/continuity/dimension hypotheses and a uniqueness theorem. Bare normalization does not derive Born pairing.",
         "next_test": "Supply frame-function/effect/continuity/dimension hypotheses and a uniqueness theorem. Bare normalization does not derive Born pairing.",
-        "scope_effect": "statement_narrowed",
+        "scope_effect": "caveat_added",
         "reason": "Integer pair-sum, rotation, and the two splits of the pair (3, 4) are the finite case recorded here. Gleason uniqueness and L^p measure pairings stay imported.",
         "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "Born-quadratic uniqueness (Gleason) is imported; L^p pairings for p != 2 are valid in L1 measure theory. The dedicated 204 slot is empty.",
@@ -57939,7 +57939,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "L1_TO_L2",
-      "summary": "For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1.",
+      "summary": "Hilbert tensor product as the unique way to combine systems. On Bool x Bool a bilinear integer-homogeneous Kronecker-normalized map equals the pointwise product; a weaker same-host combining interface has a rival (dump-the-right-report map).",
       "uuid": "fdcb5ebc-d0d8-528f-bc38-fd79567a53d5"
     },
     {
@@ -57980,7 +57980,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "L1_TO_L2",
-      "summary": "On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair.",
+      "summary": "The class of completely positive trace-preserving maps. Collapse non-reversibility and failure of a same-basis isometry are not CPTP obstructions; exactly four reversible dilations of collapse exist under the declared convention that the ancilla starts at false.",
       "uuid": "5ee62308-5aef-54c9-8d0f-2858e661335c"
     },
     {
@@ -58021,7 +58021,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "L1_TO_L2",
-      "summary": "On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).",
+      "summary": "Continuous time, topology, a one-parameter unitary group and Stone's theorem. The two-state toggle has no report-level square root; after complex coefficients, interpolants exist at scale 4 and are not unique.",
       "uuid": "4f332701-1c0f-5bf1-bc19-0ca0668d4b60"
     },
     {
@@ -58064,7 +58064,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "L1_TO_L2",
-      "summary": "Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1.",
+      "summary": "Transition from the finite presented carrier (integer weights, finite report labels) to a continuous infinite-dimensional Hilbert space. QM_122 section 6 refuses it; QM_020 demotion box fences it.",
       "uuid": "f10a90e7-346e-5f4b-a005-dfe8d4c6c96e"
     },
     {
@@ -58243,7 +58243,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "FINITE_QM_DYNAMICS",
-      "summary": "Toggle sends false to true and true to false. No map on the labels false and true squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). The matrix with rows ((1, 1), (1, -1)) and ((1, -1), (1, 1)) squares to the matrix with diagonal entries (0, 0) and off-diagonal entries (4, 0). The coordinatewise negation of that matrix squares to the same matrix and differs from it. For every integer t, (1 - t*t) * (1 - t*t) + 4 * (t*t) equals (1 + t*t) * (1 + t*t). The branch energy 2*k + 1 equals 1 at k = 0 and 3 at k = 1, and distinct integers have distinct branch energies. The integers -1, 1, 1 and -1 give the corner value (-1)*(-1) + 1*1 = 2. No integers a, b, c and d satisfy a + 1 = 0, b = 1, c = 1, d + 1 = 0 together with a*a + b*c = 0, a*b + b*d = 0, c*a + d*c = 0 and c*b + d*d = 0.",
+      "summary": "The one-parameter family T(t)=exp(tH), the generator H=log T and the continuum path integral need real/complex time, convergence and a measure; none is constructed from the finite transport calculus. Refused as finite.",
       "uuid": "c01a836d-0b8f-52ea-b327-14751a54277e"
     },
     {
@@ -58361,7 +58361,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "FINITE_QM_STRUCTURE",
-      "summary": "For every integer pair A and B, A + B equals (A + B) * 1. The sum 3 + 4 equals 7, and 7 differs from 0. The sum of squares 3 * 3 + 4 * 4 equals 25, and 5 * 5 equals 25. The sum of fourth products 3 * 3 * 3 * 3 + 4 * 4 * 4 * 4 equals 337. The product (3 * 3) * (3 * 3 * 3 * 3 + 4 * 4 * 4 * 4) differs from (3 * 3 * 3 * 3) * (5 * 5). The product 3 * (3 * 3 + 4 * 4) differs from (3 * 3) * (3 + 4). For every integer quadruple a, b, r and s, (r * a - s * b) * (r * a - s * b) + (s * a + r * b) * (s * a + r * b) equals (r * r + s * s) * (a * a + b * b). At a = 3, b = 4, r = 3 and s = 4, both sides equal 625.",
+      "summary": "Born-quadratic uniqueness (Gleason) is imported; L^p pairings for p != 2 are valid in L1 measure theory. The dedicated 204 slot is empty.",
       "uuid": "a2c4c00e-e808-5bec-a212-0ab4d03a1c91"
     },
     {
