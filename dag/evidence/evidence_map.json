@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "244970a0ac9c56f16c1d31bcba646abc653e1f13429b827170fc00116d9a0fba"
+  "sha256_lf": "483c02960c728849273d695dec8a11303fda54029633b410b1972aca8c5b1487"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -1363,9 +1363,9 @@
    "size": 9170
   },
   "dag/derivation_dag.json": {
-   "sha256": "244970a0ac9c56f16c1d31bcba646abc653e1f13429b827170fc00116d9a0fba",
+   "sha256": "483c02960c728849273d695dec8a11303fda54029633b410b1972aca8c5b1487",
    "sha256_basis": "lf-normalised",
-   "size": 4930572
+   "size": 4932387
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -6552,6 +6552,11 @@
    "sha256_basis": "lf-normalised",
    "size": 2242
   },
+  "dag/derivations/independent/mub-prime-power-construction-odd.md": {
+   "sha256": "e80e8e33edd70a2b7379216a0660b3f6d5df26e28f7c0116a71af9b180a1b3ea",
+   "sha256_basis": "lf-normalised",
+   "size": 4922
+  },
   "dag/derivations/independent/mub-prime-power-construction.md": {
    "sha256": "d46d92da346abb519fd4cc96602f6f624bb0d1bf616963f4973a6208e5050064",
    "sha256_basis": "lf-normalised",
@@ -7336,6 +7341,11 @@
    "sha256": "887d95db7653b850296d2d03322ad2de6ffd4327b6a9197ea3a23ea9352f6c21",
    "sha256_basis": "lf-normalised",
    "size": 3555
+  },
+  "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json": {
+   "sha256": "dad4fca8640ba69ff32ee4d72cb34d3685c19b2dc88ef7788f97cb408d05fe41",
+   "sha256_basis": "lf-normalised",
+   "size": 7515
   },
   "dag/research/campaign_mub-prime-power-construction_lean_replay.json": {
    "sha256": "924d70ee83a46e14f69abab050d621fb2a576b10e6437b3b6765a964f4cca204",
@@ -8498,9 +8508,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "fa41b345c4802d744fa491f86204dec44b35d1881d0bff59ac07b3d0bc5458bc",
+   "sha256": "8ef616661ceec3638721a4603fc56c83076b8da99f7141bb9674e9199fbb4c1b",
    "sha256_basis": "lf-normalised",
-   "size": 270703
+   "size": 272092
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -9261,6 +9271,11 @@
    "sha256": "9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec",
    "sha256_basis": "bytes",
    "size": 2308
+  },
+  "lean4/CampaignMubPrimePowerOddCharacteristic.lean": {
+   "sha256": "a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b",
+   "sha256_basis": "bytes",
+   "size": 11682
   },
   "lean4/CampaignOpsAxis1WellfoundedAdmission.lean": {
    "sha256": "48ae845d90038e03dbf566d022128a9d2a282563a0beacd84c587f5e7faa1b4d",
@@ -219744,11 +219759,11 @@
    "dependents": 1,
    "facts": {
     "cited_code_files_not_tests": 1,
-    "counted_files": 5,
-    "lean_receipt_backed": 7,
+    "counted_files": 8,
+    "lean_receipt_backed": 17,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 7
+    "symbols_found": 17
    },
    "flags": [],
    "grade": "E3",
@@ -220091,6 +220106,403 @@
     {
      "canonical_symbol": null,
      "cited_in": [
+      "receipt dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json (CampaignMubPrimePowerOddCharacteristic)"
+     ],
+     "command": "cd lean4 && lake build CampaignMubPrimePowerOddCharacteristic",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMubPrimePowerOddCharacteristic.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json#0:CampaignMubPrimePowerOddCharacteristic",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": "MubFable.PrimePowerOdd.basis_orthogonal",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json (CampaignMubPrimePowerOddCharacteristic)"
+     ],
+     "command": "cd lean4 && lake build CampaignMubPrimePowerOddCharacteristic",
+     "command_note": "then, in a scratch file that imports CampaignMubPrimePowerOddCharacteristic: #print axioms MubFable.PrimePowerOdd.basis_orthogonal",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMubPrimePowerOddCharacteristic.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json#0:CampaignMubPrimePowerOddCharacteristic",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "MubFable.PrimePowerOdd.basis_orthogonal",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "MubFable.PrimePowerOdd.basis_unbiased",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json (CampaignMubPrimePowerOddCharacteristic)"
+     ],
+     "command": "cd lean4 && lake build CampaignMubPrimePowerOddCharacteristic",
+     "command_note": "then, in a scratch file that imports CampaignMubPrimePowerOddCharacteristic: #print axioms MubFable.PrimePowerOdd.basis_unbiased",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMubPrimePowerOddCharacteristic.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json#0:CampaignMubPrimePowerOddCharacteristic",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "MubFable.PrimePowerOdd.basis_unbiased",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "MubFable.PrimePowerOdd.card_bases",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json (CampaignMubPrimePowerOddCharacteristic)"
+     ],
+     "command": "cd lean4 && lake build CampaignMubPrimePowerOddCharacteristic",
+     "command_note": "then, in a scratch file that imports CampaignMubPrimePowerOddCharacteristic: #print axioms MubFable.PrimePowerOdd.card_bases",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMubPrimePowerOddCharacteristic.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json#0:CampaignMubPrimePowerOddCharacteristic",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "MubFable.PrimePowerOdd.card_bases",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "MubFable.PrimePowerOdd.mub_family",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json (CampaignMubPrimePowerOddCharacteristic)"
+     ],
+     "command": "cd lean4 && lake build CampaignMubPrimePowerOddCharacteristic",
+     "command_note": "then, in a scratch file that imports CampaignMubPrimePowerOddCharacteristic: #print axioms MubFable.PrimePowerOdd.mub_family",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMubPrimePowerOddCharacteristic.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json#0:CampaignMubPrimePowerOddCharacteristic",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "MubFable.PrimePowerOdd.mub_family",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "MubFable.PrimePowerOdd.pair_qvec_cross_mul_star",
+     "cited_in": [
+      "receipt dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json (CampaignMubPrimePowerOddCharacteristic)"
+     ],
+     "command": "cd lean4 && lake build CampaignMubPrimePowerOddCharacteristic",
+     "command_note": "then, in a scratch file that imports CampaignMubPrimePowerOddCharacteristic: #print axioms MubFable.PrimePowerOdd.pair_qvec_cross_mul_star",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMubPrimePowerOddCharacteristic.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json#0:CampaignMubPrimePowerOddCharacteristic",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "MubFable.PrimePowerOdd.pair_qvec_cross_mul_star",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "MubFable.PrimePowerOdd.pair_qvec_same",
+     "cited_in": [
+      "receipt dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json (CampaignMubPrimePowerOddCharacteristic)"
+     ],
+     "command": "cd lean4 && lake build CampaignMubPrimePowerOddCharacteristic",
+     "command_note": "then, in a scratch file that imports CampaignMubPrimePowerOddCharacteristic: #print axioms MubFable.PrimePowerOdd.pair_qvec_same",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMubPrimePowerOddCharacteristic.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json#0:CampaignMubPrimePowerOddCharacteristic",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "MubFable.PrimePowerOdd.pair_qvec_same",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "MubFable.PrimePowerOdd.pair_std",
+     "cited_in": [
+      "receipt dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json (CampaignMubPrimePowerOddCharacteristic)"
+     ],
+     "command": "cd lean4 && lake build CampaignMubPrimePowerOddCharacteristic",
+     "command_note": "then, in a scratch file that imports CampaignMubPrimePowerOddCharacteristic: #print axioms MubFable.PrimePowerOdd.pair_std",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMubPrimePowerOddCharacteristic.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json#0:CampaignMubPrimePowerOddCharacteristic",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "MubFable.PrimePowerOdd.pair_std",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "MubFable.PrimePowerOdd.pair_std_qvec_mul_star",
+     "cited_in": [
+      "receipt dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json (CampaignMubPrimePowerOddCharacteristic)"
+     ],
+     "command": "cd lean4 && lake build CampaignMubPrimePowerOddCharacteristic",
+     "command_note": "then, in a scratch file that imports CampaignMubPrimePowerOddCharacteristic: #print axioms MubFable.PrimePowerOdd.pair_std_qvec_mul_star",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMubPrimePowerOddCharacteristic.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json#0:CampaignMubPrimePowerOddCharacteristic",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "MubFable.PrimePowerOdd.pair_std_qvec_mul_star",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "MubFable.PrimePowerOdd.sum_mulShift",
+     "cited_in": [
+      "receipt dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json (CampaignMubPrimePowerOddCharacteristic)"
+     ],
+     "command": "cd lean4 && lake build CampaignMubPrimePowerOddCharacteristic",
+     "command_note": "then, in a scratch file that imports CampaignMubPrimePowerOddCharacteristic: #print axioms MubFable.PrimePowerOdd.sum_mulShift",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMubPrimePowerOddCharacteristic.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json#0:CampaignMubPrimePowerOddCharacteristic",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "MubFable.PrimePowerOdd.sum_mulShift",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "MubFable.PrimePowerOdd.weil_sum_mul_star",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json (CampaignMubPrimePowerOddCharacteristic)"
+     ],
+     "command": "cd lean4 && lake build CampaignMubPrimePowerOddCharacteristic",
+     "command_note": "then, in a scratch file that imports CampaignMubPrimePowerOddCharacteristic: #print axioms MubFable.PrimePowerOdd.weil_sum_mul_star",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMubPrimePowerOddCharacteristic.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json#0:CampaignMubPrimePowerOddCharacteristic",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "MubFable.PrimePowerOdd.weil_sum_mul_star",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
       "record TFQ-0403"
      ],
      "command": null,
@@ -220152,7 +220564,55 @@
      "file_exists": true,
      "generated": false,
      "kind": "paper",
+     "path": "dag/derivations/independent/mub-prime-power-construction-odd.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
      "path": "dag/derivations/independent/mub-prime-power-construction.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json",
      "receipts": [],
      "replay": "n/a",
      "resolution": "present",
@@ -339693,6 +340153,32 @@
    "axiom_audit_passed": true,
    "axioms_itemised": true,
    "axioms_standard": true,
+   "axioms_union": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": true,
+   "checked_at": "2026-10-26T21:10:48Z",
+   "dag_node": "MUB-PRIME-POWER-CONSTRUCTION",
+   "decl_count": 10,
+   "exit_code": 0,
+   "id": "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json#0:CampaignMubPrimePowerOddCharacteristic",
+   "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignMubPrimePowerOddCharacteristic",
+   "path": "lean4/CampaignMubPrimePowerOddCharacteristic.lean",
+   "receipt_file": "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json",
+   "receipt_file_sha256": "dad4fca8640ba69ff32ee4d72cb34d3685c19b2dc88ef7788f97cb408d05fe41",
+   "recorded_sha256": "a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
    "axioms_union": [],
    "built_successfully": true,
    "checked_at": "2026-10-25T17:23:08.638560+00:00",
@@ -352952,7 +353438,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fa41b345c4802d744fa491f86204dec44b35d1881d0bff59ac07b3d0bc5458bc",
+   "receipt_file_sha256": "8ef616661ceec3638721a4603fc56c83076b8da99f7141bb9674e9199fbb4c1b",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -352978,7 +353464,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fa41b345c4802d744fa491f86204dec44b35d1881d0bff59ac07b3d0bc5458bc",
+   "receipt_file_sha256": "8ef616661ceec3638721a4603fc56c83076b8da99f7141bb9674e9199fbb4c1b",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -353004,7 +353490,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fa41b345c4802d744fa491f86204dec44b35d1881d0bff59ac07b3d0bc5458bc",
+   "receipt_file_sha256": "8ef616661ceec3638721a4603fc56c83076b8da99f7141bb9674e9199fbb4c1b",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -353030,7 +353516,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fa41b345c4802d744fa491f86204dec44b35d1881d0bff59ac07b3d0bc5458bc",
+   "receipt_file_sha256": "8ef616661ceec3638721a4603fc56c83076b8da99f7141bb9674e9199fbb4c1b",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -353056,7 +353542,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fa41b345c4802d744fa491f86204dec44b35d1881d0bff59ac07b3d0bc5458bc",
+   "receipt_file_sha256": "8ef616661ceec3638721a4603fc56c83076b8da99f7141bb9674e9199fbb4c1b",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -353082,7 +353568,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fa41b345c4802d744fa491f86204dec44b35d1881d0bff59ac07b3d0bc5458bc",
+   "receipt_file_sha256": "8ef616661ceec3638721a4603fc56c83076b8da99f7141bb9674e9199fbb4c1b",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -353108,7 +353594,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fa41b345c4802d744fa491f86204dec44b35d1881d0bff59ac07b3d0bc5458bc",
+   "receipt_file_sha256": "8ef616661ceec3638721a4603fc56c83076b8da99f7141bb9674e9199fbb4c1b",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -353134,7 +353620,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fa41b345c4802d744fa491f86204dec44b35d1881d0bff59ac07b3d0bc5458bc",
+   "receipt_file_sha256": "8ef616661ceec3638721a4603fc56c83076b8da99f7141bb9674e9199fbb4c1b",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -353160,7 +353646,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fa41b345c4802d744fa491f86204dec44b35d1881d0bff59ac07b3d0bc5458bc",
+   "receipt_file_sha256": "8ef616661ceec3638721a4603fc56c83076b8da99f7141bb9674e9199fbb4c1b",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -353186,7 +353672,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fa41b345c4802d744fa491f86204dec44b35d1881d0bff59ac07b3d0bc5458bc",
+   "receipt_file_sha256": "8ef616661ceec3638721a4603fc56c83076b8da99f7141bb9674e9199fbb4c1b",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -353212,7 +353698,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fa41b345c4802d744fa491f86204dec44b35d1881d0bff59ac07b3d0bc5458bc",
+   "receipt_file_sha256": "8ef616661ceec3638721a4603fc56c83076b8da99f7141bb9674e9199fbb4c1b",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -353238,7 +353724,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fa41b345c4802d744fa491f86204dec44b35d1881d0bff59ac07b3d0bc5458bc",
+   "receipt_file_sha256": "8ef616661ceec3638721a4603fc56c83076b8da99f7141bb9674e9199fbb4c1b",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -353264,7 +353750,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fa41b345c4802d744fa491f86204dec44b35d1881d0bff59ac07b3d0bc5458bc",
+   "receipt_file_sha256": "8ef616661ceec3638721a4603fc56c83076b8da99f7141bb9674e9199fbb4c1b",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -353290,7 +353776,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fa41b345c4802d744fa491f86204dec44b35d1881d0bff59ac07b3d0bc5458bc",
+   "receipt_file_sha256": "8ef616661ceec3638721a4603fc56c83076b8da99f7141bb9674e9199fbb4c1b",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -353316,7 +353802,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "fa41b345c4802d744fa491f86204dec44b35d1881d0bff59ac07b3d0bc5458bc",
+   "receipt_file_sha256": "8ef616661ceec3638721a4603fc56c83076b8da99f7141bb9674e9199fbb4c1b",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -353996,16 +354482,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 23,
   "e3_nodes_with_test_but_no_review": 39,
   "lean_declarations_in_repo": {
-   "distinct": 2674,
+   "distinct": 2679,
    "no_receipt": 49,
    "replay_failed": 22,
    "replay_stale": 0,
-   "replay_verified": 2603,
-   "replay_verified_and_declaration_itemised": 2536,
+   "replay_verified": 2608,
+   "replay_verified_and_declaration_itemised": 2541,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 2930
+   "present": 2935
   },
   "mismatch_nodes": 204,
   "mismatches_by_kind": {
@@ -354026,7 +354512,7 @@
    "total": 220,
    "with_in_repo_lean": 220
   },
-  "receipts_indexed": 660,
+  "receipts_indexed": 661,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
