@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Standing text is one letter, no rewrite step, and length bound 1: (0) reaches itself, misses the empty word, and (0, 0) has length 2. A computable map from an input to a start word, one bound containing every halting start word, and a clash with normal-form reachability stay open. The older citations reachB_iff and nfReach_not_computable do not discharge this slice.
+The checked slice is one letter, no rewrite step, and length bound 1: (0) reaches itself, misses the empty word, and (0, 0) has length 2. A computable map from an input to a start word, one bound containing every halting start word, and a clash with normal-form reachability stay open. The older citations reachB_iff and nfReach_not_computable do not discharge this slice.
 
 ## Source status
 
@@ -74,7 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md`
 
 - file: [dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md](../../../dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md)
-- sha256 (`lf-normalised`): `7041ebf1b3d0ea428fdd560188c866ee87cc9bd0523b31987230e6a4016122ef`
+- sha256 (`lf-normalised`): `801fbd4fd5f2f3e24c58ed77f2a48c2b5051018751ce1276c9600db77be0fc85`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1295
 - counts toward the grade: no

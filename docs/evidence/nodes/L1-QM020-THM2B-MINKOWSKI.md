@@ -4,7 +4,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 ## Statement
 
-> Strict l^p (p\>1) subadditivity on disjoint supports follows from standard Minkowski / strict convexity. The paper cites it as standard analysis.
+> Strict l^p (p\>1) subadditivity for two nonzero vectors with disjoint supports follows from standard Minkowski / strict convexity. The paper cites it as standard analysis.
 
 ## Grade
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Real exponent p\>1, a Minkowski comparison on real vectors, strict convexity, roots, and transport past this Nat square, cubic, and one disjoint pair stay outside the standing text. A zero input is an equality case of the square expansion.
+Real exponent p\>1, a Minkowski comparison on real vectors, strict convexity, roots, and transport past this Nat square, cubic, and one disjoint pair stay outside the checked slice. A zero input is an equality case of the square expansion.
 
 ## Source status
 

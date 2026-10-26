@@ -37,6 +37,9 @@ imported / refused on this host
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- `lean4/H016ContinuousDynamicsFork.lean::FableHilbertWalk20260819.H016.no_report_half_step`
+- `lean4/H016ContinuousDynamicsFork.lean::FableHilbertWalk20260819.H016.continuous_dynamics_fork`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries`
 - `lean4/CampaignGpImportContinuousTime.lean::toggle_images`
 - `lean4/CampaignGpImportContinuousTime.lean::no_toggle_square_root`
 - `lean4/CampaignGpImportContinuousTime.lean::gAdd_coords`

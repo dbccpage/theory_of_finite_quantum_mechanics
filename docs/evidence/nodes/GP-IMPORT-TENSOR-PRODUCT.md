@@ -10,9 +10,9 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 24
-- distinct cited Lean declarations covered by a current replay receipt: 12
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 27
+- distinct cited Lean declarations covered by a current replay receipt: 15
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -83,6 +83,51 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Lean: `lean4/DerivationDagQMClosure.lean`
+
+- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
+- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
+- cited in: node.lean, record TFQ-1032
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build DerivationDagQMClosure`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/H014BilinearProduct.lean`
+
+- file: [lean4/H014BilinearProduct.lean](../../../lean4/H014BilinearProduct.lean)
+- sha256 (`bytes`): `fabd54a913240848de949fb629a744d82f0485b3a40aeba32fc1c39e55353cde`
+- cited in: node.lean, record TFQ-1032
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H014BilinearProduct`): recorded sha256 `fabd54a913240848de949fb629a744d82f0485b3a40aeba32fc1c39e55353cde` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build H014BilinearProduct`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `embed_eq_tensor` | yes | yes | yes | module-level | `#print axioms embed_eq_tensor` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/H014Interface.lean`
+
+- file: [lean4/H014Interface.lean](../../../lean4/H014Interface.lean)
+- sha256 (`bytes`): `320a143feb167f7665d81508f191954b270d47bfc9a14fab1d51fe6428e0fba0`
+- cited in: node.lean, record TFQ-1032
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H014Interface`): recorded sha256 `320a143feb167f7665d81508f191954b270d47bfc9a14fab1d51fe6428e0fba0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build H014Interface`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `two_combinings_share_interface_and_disagree` | yes | yes | yes | module-level | `#print axioms two_combinings_share_interface_and_disagree` |
+
+- counts toward the grade: yes
+
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
 
 - file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
@@ -93,7 +138,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1032_gp_import_tensor_product.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1032_gp_import_tensor_product.md](../../../dag/derivations/08_l1_to_l2/tfq_1032_gp_import_tensor_product.md)
-- sha256 (`lf-normalised`): `cf8bee3ea5b4ae34f451543aef1586ef81fb5abb41c22a43c2806a49a43bc4c9`
+- sha256 (`lf-normalised`): `7a1296cbee4c1b34682a2c622c1755ef43090c266c63aa03a27e80eb6610fa2f`
 - generated view: listed, not counted
 - cited in: record TFQ-1032
 - counts toward the grade: no

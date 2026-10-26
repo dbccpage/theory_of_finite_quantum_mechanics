@@ -11,7 +11,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Two separated marks code the words of any finite alphabet and a blank is a third symbol, but the composite machine M0 is not minimal and no smallest general-purpose machine is claimed; small-machine records are literature only.
+Two separated marks code the words of any finite alphabet and a blank is a third symbol, but minimality of the composite machine M0 is not claimed and no smallest general-purpose machine is claimed; small-machine records are literature only.
 
 ### Governing Obligation
 Simulation of a machine over a coded alphabet by a machine over the two marks and a blank stays open, and it is required before any minimality sentence. A sentence that composite machine M0 is not a smallest general-purpose machine stays open. Small-machine records stay literature only.

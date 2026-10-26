@@ -716,7 +716,7 @@
       "parent_id": "TFQ-0426",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "On a two-value carrier, replay is the left fold of supplyDiamond, which keeps the value, and designateA, which sets the value true, starting from false. A one-step trace that is valid at a declared context s' need not be valid at a different replayed value s: when s differs from s' there is a trace valid at s' and not at s. A contract on this carrier preserves trace validity at replay(H) if and only if it accepts a context binding only when the context equals replay(H). The history consisting of supplyDiamond replays to false and the only-diamond answer on it is verified; the history supplyDiamond then designateA replays to true and the only-diamond answer on it is retracted.",
+      "summary": "A trace that starts from a declared context s′ and takes steps valid relative to s′ need not be valid relative to the actual replayed state s ≠ s′: ValidTrace(τ | s′) does not imply ValidTrace(τ | s). Trial 2's Result 15 is the example, with internally consistent reasoning from the stale premise s′ = {<>} after Prompt 12 had designated <a> as current. A sound execution contract therefore accepts a context binding C(s′) only when s′ = Replay(H). The analysis calls this a clean theorem target and gives no proof. The Prompt 17 contrast fits it: a truncated window answered Verified and the full replay Retracted, each right for the history it received, which the appended analysis calls an information boundary rather than a reasoning failure.",
       "obligation": "Define a trace semantics in which ValidTrace(τ | s′) is checkable, and make the verifier reconstruct Replay(H) and accept a declared context s′ only when s′ = Replay(H) before certifying any step taken from s′.",
       "imports": [],
       "fence": "The two-value carrier is not the sealed Genesis event grammar, and ValidTrace here is not the Rust certifies predicate. Trial 2 Result 15, Prompt 12, and the Prompt 17 window are not instantiated. A general trace semantics for arbitrary regimes stays open.",
@@ -9891,7 +9891,7 @@
         "Finite-dimensional convex (linear-programming) strong duality, REF-MATH-005 Rockafellar Convex Analysis, specialized to the declared weighted graph complex (assumption)",
         "Attainment hypothesis: repair space finite-dimensional over R or C and J a norm, not a seminorm (assumption)"
       ],
-      "fence": "Standing text is the integer triangle coboundary: linearity, residual identity under a vertex shift, and minimum absolute residual sum 2 for delta = (1, 1, 0) and for each integer coboundary shift of that one triple. Representative independence for a general cost, attainment on a real or complex repair space, weighted duality on an arbitrary complex, rational repairs, and a general coefficient field stay open. The weak direction of the duality is not imported (WDP-CH04-P07, TFQ-0348, Lean dual_certificate_lower_bound), and C01 is not shown for arbitrary coefficient spaces.",
+      "fence": "The checked slice is the integer triangle coboundary: linearity, residual identity under a vertex shift, and minimum absolute residual sum 2 for delta = (1, 1, 0) and for each integer coboundary shift of that one triple. Representative independence for a general cost, attainment on a real or complex repair space, weighted duality on an arbitrary complex, rational repairs, and a general coefficient field stay open. The weak direction of the duality is not imported (WDP-CH04-P07, TFQ-0348, Lean dual_certificate_lower_bound), and C01 is not shown for arbitrary coefficient spaces.",
       "witnesses": {
         "lean": [
           {
@@ -10855,7 +10855,7 @@
       "prerequisites": [
         "TFQ-0553"
       ],
-      "summary": "For arbitrary types X, R and D, a report r:X→R and a decision d:X→D admit a unique decoder on the actual image of r exactly when d is constant on every fibre of r. Equal reports with unequal decisions remain an obstruction after every report-only postprocessor. The joint report (r,d) is sufficient for d.",
+      "summary": "GEN-WDP-03: with actual cases X, a declared evaluation report E: X → Reports and a protected admission or permission decision A: X → Decisions, a decoder on the actual image of E exists exactly when E(x) = E(y) implies A(x) = A(y); necessity applies the decoder to equal reports, sufficiency assigns each occupied report the decision of any representative, and equal reports with unequal decisions forbid every decoder and every report-only postprocessor. GEN-WDP-06 records that event multisets can lose final state, final states can lose occurrence counts, and fresh hashes can bind false receipts. This is the fibre criterion of the S(n)/MSS-N hand-off (TFQ-0338) and of WDP adapter descent (TFQ-0553), so a protected question passes from the realized report to a WDP observer exactly when it is constant on the fibres of the declared report.",
       "obligation": "Keep declared report and decision assumptions explicit; no permission or physical authenticity follows from this factorization criterion.",
       "imports": [
         "Declared report map from the S(n)/MSS-N realized report image to the WDP observer presentation, with the protected decision on the actual cases (assumption)"
@@ -10931,7 +10931,7 @@
           "root": "local",
           "path": "dag/derivations/independent/pgw-wdp-bridge-report-fiber-observer.md",
           "lines": "5",
-          "quote": "For arbitrary types X, R and D, a report r:X→R and a decision d:X→D admit a unique decoder on the actual image of r exactly when d is constant on every fibre of r. Equal reports with unequal decisions remain an obstruction after every report-only postprocessor. The joint report (r,d) is sufficient for d."
+          "quote": "GEN-WDP-03: with actual cases X, a declared evaluation report E: X → Reports and a protected admission or permission decision A: X → Decisions, a decoder on the actual image of E exists exactly when E(x) = E(y) implies A(x) = A(y); necessity applies the decoder to equal reports, sufficiency assigns each occupied report the decision of any representative, and equal reports with unequal decisions forbid every decoder and every report-only postprocessor. GEN-WDP-06 records that event multisets can lose final state, final states can lose occurrence counts, and fresh hashes can bind false receipts. This is the fibre criterion of the S(n)/MSS-N hand-off (TFQ-0338) and of WDP adapter descent (TFQ-0553), so a protected question passes from the realized report to a WDP observer exactly when it is constant on the fibres of the declared report."
         },
         {
           "root": "local",

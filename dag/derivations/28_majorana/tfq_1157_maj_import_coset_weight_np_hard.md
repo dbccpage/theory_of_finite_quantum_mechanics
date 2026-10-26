@@ -11,7 +11,7 @@
 
 ## 1. Abstract & Formal Statement
 
-For the 2 by 4 parity-check matrix over the two-element field with rows (1, 1, 0, 0) and (0, 1, 1, 1), among the 16 length-4 vectors labeled 0 through 15 with the least significant bit as coordinate 0, the vectors with syndrome (1, 0) are the labels 1, 6, 10 and 13. Their Hamming weights are 1, 2, 2 and 3, so the minimum weight is 1, and the single weight-1 vector in that list is label 1 with coordinates (1, 0, 0, 0). The vectors with syndrome (0, 0) are the labels 0, 7, 11 and 12.
+Minimum-weight coset decoding of a binary linear code given by its matrix is NP-hard (Berlekamp, McEliece and van Tilborg 1978).
 
 ### Governing Obligation
 Berlekamp, McEliece and van Tilborg 1978 remains an imported literature claim. No reduction is formalized. The 2 by 4 enumeration is one matrix and one syndrome and does not discharge hardness for a general binary matrix.

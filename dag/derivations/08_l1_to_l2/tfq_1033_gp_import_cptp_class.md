@@ -34,6 +34,8 @@ imported; no channel class defined on the finite host
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- `lean4/H015CollapseDilations.lean::four_reversible_dilations_of_collapse`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries`
 - `lean4/CampaignGpImportCptpClass.lean::collapse_both_false`
 - `lean4/CampaignGpImportCptpClass.lean::collapse_labels_agree`
 - `lean4/CampaignGpImportCptpClass.lean::collapse_no_two_sided_inverse`

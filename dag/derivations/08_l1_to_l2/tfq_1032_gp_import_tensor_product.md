@@ -33,6 +33,9 @@ imported; unique only on the named bilinear Kronecker interface
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- `lean4/H014BilinearProduct.lean::embed_eq_tensor`
+- `lean4/H014Interface.lean::two_combinings_share_interface_and_disagree`
+- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
 - `lean4/CampaignGpImportTensorProduct.lean::tensor_pointwise`
 - `lean4/CampaignGpImportTensorProduct.lean::embed_eq_tensor`
 - `lean4/CampaignGpImportTensorProduct.lean::dumpRight_false_coord`

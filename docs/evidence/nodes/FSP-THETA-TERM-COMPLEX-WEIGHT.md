@@ -4,7 +4,7 @@ Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `IMPORTED_ASSUMPTION`.
 
 ## Statement
 
-> For angle indices 0, 1, 2 and 3, one quarter turn of the Gaussian integer (1, 0) by the pair (0, -1) yields (1, 0), (0, -1), (-1, 0) and (0, 1), and the fourth turn returns to (1, 0). That turn is multiplication by (0, -1), and (1, 0) times (0, -1) is (0, -1). Charge 0 keeps the weight (1, 0) at each of those four indices. Charge 1 uses the quarter-turn value. The second coordinate at charge 1 is 0, -1, 0 and 1, hence nonzero at indices 1 and 3. At index 2 with charge 1 the first coordinate is -1, so that pair is not positive in the first coordinate. Among the four charge-1 pairs, only index 0 has a positive first coordinate and second coordinate 0.
+> Adding S_theta = i theta Q_top with real lattice charge Q_top multiplies the Boltzmann weight by exp(-i theta Q_top), which is nonreal unless theta Q_top lies in pi Z for every configuration, so positive-weight importance sampling is lost for generic theta != 0.
 
 ## Grade
 
@@ -96,7 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md`
 
 - file: [dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md](../../../dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md)
-- sha256 (`lf-normalised`): `47c8be251c0322568587f7f846d6e531e3eb74ca6df5e8355ca05c5395d9342a`
+- sha256 (`lf-normalised`): `62cbe6f9d7fcbafbac10425deff9700d43b72a7c611acc130b6cc7af58258286`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1198
 - counts toward the grade: no
