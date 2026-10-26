@@ -31,7 +31,8 @@ def certify(rho,alice,bob):
     pairs=born_pairs(rho,alice,bob)
     e=tuple(row[0]-row[1]-row[2]+row[3] for row in pairs)
     decision=construct_extension(pairs)
+    supported=sum(all(pairs[2*x+y][2*((m>>x)&1)+((m>>(2+y))&1)]>0 for x in range(2) for y in range(2)) for m in range(16))
     return {'pairs':[[str(p) for p in row] for row in pairs], 'correlations':list(map(str,e)),
             'chsh':str(e[0]+e[1]+e[2]-e[3]),'minimum_probability':str(min(p for row in pairs for p in row)),
-            'support_assignments':sum(all(pairs[2*x+y][2*((m>>x)&1)+((m>>(2+y))&1)]>0 for x in range(2) for y in range(2)) for m in range(16)),
+            'support_assignments':supported,'locally_supported_assignments':supported,
             'separator_lower':str(decision.analysis.common_lower),'separator_upper':str(decision.analysis.common_upper),'violating_mask':decision.violating_mask}

@@ -6,7 +6,7 @@ Origin: lean4/CoboundaryHolonomy.lean theorem coboundary_triangle_holonomy_zero
 Claim: urn:omega:fqm:obstruction:triangle-coboundary:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/tests/test_obstruction_calc.py.
-Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 5; AST Sonar cognitive complexity max 5; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 5.
+Gate 5: earlier measurements are retained in contract history; the changed source requires a fresh structural assessment.
 Scope Fence: face_obstruction returns the sum of successive differences around
 a length-3 rational triple after that cycle sum agrees with the reading
 (v1 - v0) - (v2 - v0) + (v2 - v1). certified_obstruction checks (0, 1/2, 3/5)
@@ -59,11 +59,16 @@ def _require_three(vertices: tuple[object, ...]) -> tuple[object, ...]:
 
 
 def _require_value(value: object, index: int) -> Fraction:
-    if isinstance(value, float):
+    if issubclass(type(value), float):
         raise _fail("float refused at the vertex boundary", index=index, received="float")
     if type(value) is bool:
         raise _fail("boolean refused where a rational vertex was required", index=index)
-    if isinstance(value, Fraction):
+    if type(value) in (int, Fraction):
+        numerator = value if type(value) is int else value.numerator
+        denominator = 1 if type(value) is int else value.denominator
+        if max(numerator.bit_length(), denominator.bit_length()) > 1024:
+            raise _fail("exact scalar exceeds the 1024-bit limit", index=index)
+    if type(value) is Fraction:
         vertex = value
     elif type(value) is int:
         vertex = Fraction(value)

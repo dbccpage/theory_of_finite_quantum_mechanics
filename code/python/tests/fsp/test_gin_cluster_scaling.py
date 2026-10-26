@@ -7,12 +7,13 @@ Tests:
 3. Exact destructive sign cancellation on cluster involution pairs.
 4. Equivalence between GIN inverted lookup and linear scan baseline.
 5. Adversarial defect detection: corrupted spectator modes and broken weight symmetries.
-6. Benchmark scaling performance: asserting positive speedup factor on large lattices.
+6. Benchmark timings are observations; deterministic candidate work checks pruning.
 """
 
 from __future__ import annotations
 
 import sys
+import math
 from pathlib import Path
 
 import pytest
@@ -131,8 +132,8 @@ def test_adversarial_corrupted_spectator_detection():
     assert corrupted_partner is None, "GIN falsely paired a configuration with corrupted spectator modes"
 
 
-def test_scaling_speedup_ratio_on_16x16():
-    """Asserts that GIN index yields a statistically significant speedup (> 3.0x) over linear scan at M=5000."""
+def test_scaling_speedup_ratio_on_16x16(record_property):
+    """Record host timing without treating a one-shot ratio as a statistical claim."""
     dp = run_single_scaling_benchmark(
         lattice_dim=16,
         num_configs=5000,
@@ -141,4 +142,40 @@ def test_scaling_speedup_ratio_on_16x16():
     )
     assert dp.all_exact_cancellations is True
     assert dp.max_cancellation_defect < 1e-12
-    assert dp.speedup_factor > 2.0, f"Expected speedup > 2.0x, got {dp.speedup_factor}x"
+    assert math.isfinite(dp.speedup_factor) and dp.speedup_factor > 0
+    record_property("observed_speedup", dp.speedup_factor)
+
+
+def test_singleton_still_must_satisfy_remaining_required_modes():
+    gin = GinClusterPostingIndex(total_modes=2)
+    for cid, occupied in [(1, {1}), (2, {2}), (3, {2})]:
+        gin.index_configuration(cid, occupied, 1.0, 1)
+    assert gin.query_by_modes({1, 2}, set()) == set()
+
+
+def test_postings_prune_candidate_comparisons_on_declared_ensemble():
+    class CountedConfigurations(dict):
+        reads = 0
+        def __getitem__(self, key):
+            self.reads += 1
+            return super().__getitem__(key)
+
+    cluster = LargeLatticeHubbardCluster(L=16)
+    configs, queries = generate_large_lattice_ensemble(cluster, num_pairs=2500, seed=101)
+    gin = GinClusterPostingIndex(total_modes=cluster.total_modes)
+    for cid, occupied, weight, sign in configs:
+        gin.index_configuration(cid, occupied, weight, sign)
+    gin.cfg_modes = CountedConfigurations(gin.cfg_modes)
+    indexed, linear = 0, 0
+    for cid, modes in queries[:50]:
+        gin.cfg_modes.reads = 0
+        partner = gin.find_involution_partner_gin(cid, modes)
+        indexed += gin.cfg_modes.reads
+        gin.cfg_modes.reads = 0
+        baseline = gin.find_involution_partner_linear(cid, modes)
+        linear += gin.cfg_modes.reads
+        assert partner == baseline == cid + 1
+    # A deterministic regression budget for this seeded ensemble, not an
+    # asymptotic complexity theorem or a wall-clock speed guarantee.
+    assert indexed <= 100
+    assert linear > 10 * indexed

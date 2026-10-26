@@ -1,0 +1,101 @@
+........................................................................ [  2%]
+........................................................................ [  5%]
+........................................................................ [  8%]
+........................................................................ [ 10%]
+..................................................................F..... [ 13%]
+........................................................................ [ 16%]
+........................................................................ [ 18%]
+........................................................................ [ 21%]
+........................................................................ [ 24%]
+........................................................................ [ 26%]
+........................................................................ [ 29%]
+...................s.................................................... [ 32%]
+........................................................................ [ 35%]
+............................................................ [ 37%]
+........................................................................ [ 39%]
+......................................................... [ 42%]
+........................................................................ [ 44%]
+........................................................................ [ 47%]
+........................................................................ [ 50%]
+........................................................................ [ 52%]
+........................................................................ [ 55%]
+........................................................................ [ 58%]
+........................................................................ [ 60%]
+.......................................................... [ 63%]
+........................................................................ [ 65%]
+........................................................................ [ 68%]
+........................................................................ [ 71%]
+........................................................................ [ 73%]
+........................................................................ [ 76%]
+........................................................................ [ 79%]
+........................................................................ [ 81%]
+........................................................................ [ 84%]
+................................s....................................... [ 87%]
+..........................................................F............. [ 90%]
+........................................................... [ 92%]
+........................................................................ [ 94%]
+........................................................................ [ 97%]
+....................................... [ 99%]
+.......................                                                  [100%]
+=================================== FAILURES ===================================
+_____________________ test_scaling_speedup_ratio_on_16x16 ______________________
+
+    def test_scaling_speedup_ratio_on_16x16():
+        """Asserts that GIN index yields a statistically significant speedup (> 3.0x) over linear scan at M=5000."""
+        dp = run_single_scaling_benchmark(
+            lattice_dim=16,
+            num_configs=5000,
+            num_queries=50,
+            seed=101,
+        )
+        assert dp.all_exact_cancellations is True
+        assert dp.max_cancellation_defect < 1e-12
+>       assert dp.speedup_factor > 2.0, f"Expected speedup > 2.0x, got {dp.speedup_factor}x"
+E       AssertionError: Expected speedup > 2.0x, got 1.94x
+E       assert 1.94 > 2.0
+E        +  where 1.94 = ScalingDataPoint(lattice_dim=16, num_sites=256, total_modes=512, num_configs=5000, num_benchmark_queries=50, gin_index..._query=253.29, speedup_factor=1.94, max_cancellation_defect=0.0, all_exact_cancellations=True, memory_estimate_mb=9.92).speedup_factor
+
+code/python/tests/fsp/test_gin_cluster_scaling.py:144: AssertionError
+_______________ test_qm_atlas_all_65_questions_and_loc_verifier ________________
+
+    def test_qm_atlas_all_65_questions_and_loc_verifier() -> None:
+        atlas = build_qm_question_atlas()
+        assert len(atlas) == 65
+    
+        suite_report = run_textbook_atlas()
+        assert suite_report["total_questions"] == 65
+        assert suite_report["all_textbook_problems_verified"] is True
+        assert suite_report["all_65_verified"] is True
+    
+        loc_report = verify_qm_atlas_loc(REPO_ROOT)
+>       assert loc_report["all_passed"] is True, f"LOC verifier errors: {loc_report}"
+E       AssertionError: LOC verifier errors: {'authority_effect': 'None', 'all_passed': False, 'total_questions': 65, 'verified_links': 403, 'verified_window_symbols': 196, 'rust_python_parity': True, 'missing_q_ids': [], 'loc_errors': [], 'window_symbol_errors': ["phase_scope.py (../code/python/src/qm/phase_scope.py#L1-L56): symbol 'certify' not found in line window"], 'symbol_errors': [], 'forbidden_hits': []}
+E       assert False is True
+
+code/python/tests/test_qm_atlas_loc.py:111: AssertionError
+=============================== warnings summary ===============================
+code/python/tests/test_hostile_dimension_fuzzing.py::TestBoundariesHostileFuzzing::test_boundaries_conforming_latency
+code/python/tests/test_hostile_dimension_fuzzing.py::TestBoundariesHostileFuzzing::test_boundaries_huge_matrix_timeout_measurement
+code/python/tests/test_hostile_dimension_fuzzing.py::TestBoundariesHostileFuzzing::test_boundaries_pathological_scalar_fuzzing
+code/python/tests/test_hostile_dimension_fuzzing.py::TestCabelloHostileFuzzing::test_cabello_combinatorial_budget_gate_vs_timeout
+code/python/tests/test_hostile_dimension_fuzzing.py::TestCabelloHostileFuzzing::test_cabello_conforming_system_latency
+code/python/tests/test_hostile_dimension_fuzzing.py::TestCabelloHostileFuzzing::test_cabello_hostile_combinatorial_timeout_measurement
+code/python/tests/test_hostile_dimension_fuzzing.py::TestCabelloHostileFuzzing::test_cabello_hostile_dimension_and_orthogonality_fuzzing
+code/python/tests/test_hostile_dimension_fuzzing.py::TestCabelloHostileFuzzing::test_cabello_hostile_negative_radius_boundaries
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=38395) is multi-threaded, use of fork() may lead to deadlocks in the child.
+    self.pid = os.fork()
+
+code/python/tests/test_qm122_dual.py::test_mutation_suite_kills_dual_export_and_harness
+  qinit_0.py:13: DeprecationWarning: __package__ != __spec__.parent
+
+code/python/tests/test_qm122_dual.py::test_mutation_suite_kills_dual_export_and_harness
+  qinit_1.py:13: DeprecationWarning: __package__ != __spec__.parent
+
+code/python/tests/test_qm122_dual.py::test_mutation_suite_kills_dual_export_and_harness
+  qinit_2.py:13: DeprecationWarning: __package__ != __spec__.parent
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED code/python/tests/fsp/test_gin_cluster_scaling.py::test_scaling_speedup_ratio_on_16x16
+FAILED code/python/tests/test_qm_atlas_loc.py::test_qm_atlas_all_65_questions_and_loc_verifier
+2 failed, 2668 passed, 2 skipped, 11 warnings, 87 subtests passed in 221.97s (0:03:41)

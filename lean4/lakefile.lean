@@ -1481,3 +1481,8 @@ lean_lib CampaignOpsAxis1WellfoundedAdmission where
 
 lean_lib CampaignTfq0183FourModeDisk where
   roots := #[`CampaignTfq0183FourModeDisk]
+
+/-- Untwisted finite-group 4D Pachner invariance; independent non-default target. -/
+lean_lib «CampaignFiniteGroupPachner» where
+  srcDir := "."
+  roots := #[`CampaignFiniteGroupPachner]

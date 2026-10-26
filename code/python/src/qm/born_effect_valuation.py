@@ -79,18 +79,25 @@ def psd_certificate(E):
     if kind=='psd':return {'status':'psd','terms':[(str(d),list(map(str,w))) for d,w in data],'reconstructs':verify_gram(symmetric_part(E),data)}
     return {'status':'not_psd','witness':list(map(str,data)),'value':str(quadratic_form(E,data))}
 def is_psd(E):return gram_decomposition(symmetric_part(matrix(E)))[0]=='psd'
-def extension_layer(matrix,identity,add,sub,scale,is_psd,psd_certificate,order_unit_bound):
-    """Scalar-agnostic effect and extension layer shared by the rational and Gaussian-rational carriers; valuations and bounds are real (Fraction)."""
-    def is_effect(E):E=matrix(E);return is_psd(E) and is_psd(sub(identity(len(E)),E))
+def extension_layer(matrix,identity,add,sub,scale,is_psd,psd_certificate,order_unit_bound,
+                    is_carrier=lambda A: True, project=lambda A: A):
+    """Shared effect/extension layer with an explicit carrier and projection.
+
+    The rational model uses its whole matrix space and quadratic preorder.
+    The Hermitian model admits only Hermitian effects and extends through the
+    Hermitian projection. Valuations and bounds are real Fractions.
+    """
+    def is_effect(E):E=matrix(E);return is_carrier(E) and is_psd(E) and is_psd(sub(identity(len(E)),E))
     def effect_certificate(E):
         E=matrix(E);lower=psd_certificate(E);upper=psd_certificate(sub(identity(len(E)),E))
-        return {'lower':lower,'upper':upper,'is_effect':lower['status']=='psd' and upper['status']=='psd'}
+        carrier=is_carrier(E)
+        return {'lower':lower,'upper':upper,'is_carrier':carrier,'is_effect':carrier and lower['status']=='psd' and upper['status']=='psd'}
     def midpoint(A,t):
         A=matrix(A);t=_q(t)
         if t<=0:raise ValueError('positive bound required')
         return scale(1/(2*t),add(A,scale(t,identity(len(A)))))
     def extend(valuation,A,t=None):
-        A=matrix(A);t=Q(order_unit_bound(A)+1) if t is None else _q(t)
+        A=project(matrix(A));t=Q(order_unit_bound(A)+1) if t is None else _q(t)
         return 2*t*_q(valuation(midpoint(A,t)))-t
     def extension_consistency(valuation,A,bounds):
         values=[extend(valuation,A,t) for t in bounds]

@@ -196,7 +196,7 @@ def test_negative_boundary_failures() -> None:
 
 def test_integration_matches_cited_left_inverse() -> None:
     root = Path(__file__).resolve().parents[3]
-    note = (root / "papers" / "core" / "mub6" / "artifacts" / "knowledge" / "category_moore_penrose_least_squares_annihilation.md").read_text(encoding="utf-8")
+    note = (root / "papers" / "core" / "mub6" / "documentation" / "category_moore_penrose_least_squares_annihilation.md").read_text(encoding="utf-8")
     paper = (root / "papers" / "core" / "mub6" / "mub6.md").read_text(encoding="utf-8")
     assert "(J^T J)^{-1} J^T" in note
     assert "preconditioner is not defined there" in paper
@@ -228,7 +228,7 @@ def test_end_to_end_public_contract() -> None:
 
 def test_origin_resolves_in_repo() -> None:
     root = Path(__file__).resolve().parents[3]
-    note = (root / "papers" / "core" / "mub6" / "artifacts" / "knowledge" / "category_moore_penrose_least_squares_annihilation.md").read_text(encoding="utf-8")
+    note = (root / "papers" / "core" / "mub6" / "documentation" / "category_moore_penrose_least_squares_annihilation.md").read_text(encoding="utf-8")
     paper = (root / "papers" / "core" / "mub6" / "mub6.md").read_text(encoding="utf-8")
     assert "(J^T J)^{-1} J^T" in note
     assert "preconditioner is not defined there" in paper

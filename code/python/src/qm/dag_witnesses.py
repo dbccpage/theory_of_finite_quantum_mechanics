@@ -125,6 +125,7 @@ def _release(
         if indegree[target] == 0:
             released.append(target)
     ready.extend(sorted(released))
+    ready.sort()
 
 
 def _kahn(vertices: tuple[int, ...], edges: tuple[tuple[int, int], ...]) -> tuple[int, ...]:

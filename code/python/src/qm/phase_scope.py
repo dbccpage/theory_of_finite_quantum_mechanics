@@ -1,6 +1,19 @@
 """Exact local operations for ten scoped PFP steps; no completion/status oracle."""
 from fractions import Fraction as Q
+import re
 from pathlib import Path
+
+def _exact(value):
+    if type(value) not in (int, Q, str):
+        raise TypeError('exact integer, Fraction or rational text required')
+    if type(value) is str and (len(value) > 1024 or re.fullmatch(r'[+-]?[0-9]+(?:/[0-9]+)?', value) is None):
+        raise ValueError('bounded integer or numerator/denominator text required')
+    if type(value) is int and value.bit_length() > 1024:
+        raise ValueError('integer exceeds 1024-bit limit')
+    q=Q(value)
+    if max(q.numerator.bit_length(),q.denominator.bit_length()) > 1024:
+        raise ValueError('rational exceeds 1024-bit limit')
+    return q
 
 
 def binary_ray(x,y):
@@ -13,12 +26,24 @@ def probe(a,b,c,d,x,y):
 
 
 def evaluate(kind,values,root=None):
+    if type(values) not in (list, tuple) or len(values)>64:
+        raise ValueError('bounded sequence required')
     if kind in ('corpus','custody'):
-        data=(Path(root)/values[0]).read_bytes()
+        if root is None or len(values)!=1 or type(values[0]) is not str:
+            raise ValueError('declared root and one relative path required')
+        relative=Path(values[0])
+        if relative.is_absolute() or '..' in relative.parts or '\\' in values[0] or ':' in values[0]:
+            raise ValueError('relative path below the declared root required')
+        base=Path(root).resolve();path=(base/relative).resolve()
+        if not path.is_relative_to(base):raise ValueError('path escapes the declared root')
+        if not path.is_file():raise ValueError('regular file required')
+        with path.open('rb') as stream:
+            data=stream.read((16<<20)+1)
+        if len(data)>(16<<20):raise ValueError('file exceeds 16 MiB input budget')
         # These are literal byte counts, not an axiom or proof audit.
         return list(map(str,[len(data),data.count(b'\n'),data.count(b'sorry'),
                              data.count(b'Classical.choice'),data.count(b'axiom')]))
-    xs=[Q(v) for v in values]
+    xs=[_exact(v) for v in values]
     if kind=='continuum':
         a,b,l=xs;out=[2*a,2*b,l*l-l-1,(2*l-1)**2, Q(5)]
     elif kind=='tensor':
