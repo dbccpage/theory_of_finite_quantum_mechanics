@@ -20,21 +20,18 @@ Under the default floor, `L4D`, `L4C` and `L5A+` pass. `L4E`, `L3A` and any scor
 
 **Reviewed finite-proof examples (2026-10-25).** The user authorized 31 exact campaign-module hashes: the initial 30 in `../dag/research/approved_finite_proof_exceptions_2026_10_25.json` and the additional PR #373 pin in `../dag/research/approved_pr_373_finite_proof_exception_2026_10_25.json`. Their category is `finite_proof_example`, restricted to a single `lean4/Campaign*.lean` module path. The modules retain honest L1–L3/D scores and their open or conditional research boundaries. Each exception requires its exact digest, a completed score and grade D or better. A changed digest or an unlisted source uses the ordinary L4/D floor. The baseline and all node statuses are unchanged.
 
-**Reviewed conditional proof and checker (2026-10-26).** Direct human approval
-covers the two exact PR433 sources in the
-[approval record](../docs/maintenance/pr433_exact_source_approval_20261026.json).
-The proof's existing `finite_proof_example` category is a legacy technical
-Campaign-module admission identifier here, not a mathematical classification:
-this is a conditional **infinite-limit theorem** with supplied metric,
-completeness and refinement hypotheses. Its score remains L3D and the physical
-continuum target remains OPEN. This one approved pin does not automatically
-admit any other conditional proof.
-
-The exact finite checker uses the existing `reviewed_test_harness` category at
-L3D. It remains outside the governed source populations; those populations are
-not expanded. All prior pins and all source/history, E/incomplete-score and
-ordinary-floor refusals remain intact. No parser, category allowlist, verifier,
-baseline, score or new gate is changed by these two pins.
+**Reviewed conditional continuum proof (2026-10-26).** The direct user reply
+“Approve these two exact pins” covers the two Lean sources in the
+[recorded proposal](../dag/research/approved_continuum_two_pin_proposal_2026_10_26.md).
+This PR applies only the DFM proof hash through the existing `finite_proof_example`
+category, retaining L3D and OPEN. That historical category identifier does not
+assert that this conditional infinite-limit theorem is finite. The metric,
+completeness and refinement hypotheses remain supplied. Its bounded Python
+checker is outside the governed population and needs no exception. All prior
+main pins, source/history checks, grade requirements, baseline and floor remain
+unchanged. The [authorization](../dag/research/approved_pr_433_continuum_exception_2026_10_26.json)
+and [current review scope](../docs/maintenance/pr433_integration_scope.md) distinguish
+current policy from the retained earlier review records.
 
 **Grandfathering.** No existing source had a completed score when this was introduced, so the floor applies to new and changed files. [`baseline.json`](baseline.json) lists every source that lacked a completed in-floor score on 2026-10-22, with the SHA-256 of its bytes then and its first deficit. A listed file with unchanged bytes is exempt. Changing it removes the exemption: the changed file must then meet the floor. The baseline only shrinks (see below).
 
@@ -133,5 +130,3 @@ Run `governance-check baseline --write` after bringing grandfathered files up to
 | [`schema/contract-score.v1.json`](schema/contract-score.v1.json) | JSON Schema of a companion. |
 | [`hook/build.rs`](hook/build.rs) | The canonical build hook. |
 | `code/rust/src/governance/` | The `governance` crate: score vocabulary (`score.rs`), policy and baseline (`policy.rs`), companion view (`descriptor.rs`), verifiers (`verify.rs`), repository access (`repo.rs`), build-script support (`buildtime.rs`), and the `governance-check` binary. |
-
-The approved PR #433 conditional continuum module `CampaignDfmRefinementLimit` retains L3D under its exact-source `finite_proof_example` pin. This historical category is a legacy technical identifier, not mathematical finiteness or a generic conditional-proof exemption. Current direct approval covers only this proof and its bounded checker: [exact approval](../docs/maintenance/pr433_exact_source_approval_20261026.json), [integration limits](../docs/maintenance/pr433_integration_scope.md). No physical continuum result or node-status promotion follows.
