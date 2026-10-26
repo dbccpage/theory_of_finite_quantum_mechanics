@@ -39,8 +39,8 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/OeWdp/GenesisIncidence.lean::filled_rational_betti`](../../../lean4/Imported/OeWdp/GenesisIncidence.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::cycle_construction`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs)
-- [`omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::homology`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs)
+- `omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::cycle_construction` (private upstream source, not in this repository)
+- `omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::homology` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - `missing obligation: no Python implementation of the incidence reading or its homology`

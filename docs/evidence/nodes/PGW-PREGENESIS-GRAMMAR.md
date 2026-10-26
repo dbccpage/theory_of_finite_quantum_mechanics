@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md](../../../dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md)
-- sha256 (`lf-normalised`): `6f4b79054ea35db790b18f65fc7ba9c0b405c05ccfce5b424979aa14f92c9b42`
+- sha256 (`lf-normalised`): `7af474a89ed417f1e4c52c43d41d36466aaabeec3f15e4e9e255b9f382c280fa`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0417
 - counts toward the grade: no
@@ -61,8 +61,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_education/documentation/000_oepregen/code/check_pre_genesis.py::validate_cases`
-- `external:the_symbol_game/omega_engine_education/documentation/000_oepregen/code/tests/test_pre_genesis_grammar.py::test_four_state_separation`
+- `external:upstream/omega_engine_education/documentation/000_oepregen/code/check_pre_genesis.py::validate_cases`
+- `external:upstream/omega_engine_education/documentation/000_oepregen/code/tests/test_pre_genesis_grammar.py::test_four_state_separation`
 
 ## Absences recorded by the TFQ records
 

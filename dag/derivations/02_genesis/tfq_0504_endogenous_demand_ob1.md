@@ -46,7 +46,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean demand generator for the harness; Generator.generation_never_dries concerns the reflective composite (TFQ-0487)`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Outside`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs)
+- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Outside` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - [`checks/independent/pgw-endogenous-demand-ob1.py`](../../../checks/independent/pgw-endogenous-demand-ob1.py)

@@ -63,7 +63,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0437_collection_extensionality.md`
 
 - file: [dag/derivations/02_genesis/tfq_0437_collection_extensionality.md](../../../dag/derivations/02_genesis/tfq_0437_collection_extensionality.md)
-- sha256 (`lf-normalised`): `fb598b409c6aefe9ed3aa9cb7d0460c74f43b3bf5ceb98b7832ee1bcbf385689`
+- sha256 (`lf-normalised`): `b1c01e21611a0cedbf5237a379719d7a295c29b810c0f77471e517c8347ea4a5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0437
 - counts toward the grade: no
@@ -86,7 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::Regime`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::Regime`
 
 ## Absences recorded by the TFQ records
 

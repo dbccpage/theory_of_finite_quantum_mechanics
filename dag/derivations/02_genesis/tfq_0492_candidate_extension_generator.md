@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean::two_rule`](../../../lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Proposal`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs)
+- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Proposal` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - [`github:dbccpage/19L57G1@85a83ae7c/research/alpha_engine/driver_a.py::apply_licensed`](https://github.com/dbccpage/19L57G1/blob/85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/driver_a.py)

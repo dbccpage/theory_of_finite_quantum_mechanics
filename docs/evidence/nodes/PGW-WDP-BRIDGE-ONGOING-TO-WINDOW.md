@@ -104,7 +104,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md`
 
 - file: [dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md](../../../dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md)
-- sha256 (`lf-normalised`): `706c722efc543c124452ad15093cf45454b64747aaccea17b949893df8ec3cb6`
+- sha256 (`lf-normalised`): `d8cc24365d84b221627c60d9cb46f12881e1c18b90af9b6458cbba7204b682e2`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0555
 - counts toward the grade: no
@@ -148,7 +148,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/genesis_ongoing_adapter.rs::GenesisOngoingAdapter`
+- `external:upstream/omega_engine/crates_rs/omega_wdp/src/genesis_ongoing_adapter.rs::GenesisOngoingAdapter`
 
 ## Routes
 

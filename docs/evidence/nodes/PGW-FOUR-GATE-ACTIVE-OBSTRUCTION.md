@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md`
 
 - file: [dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md](../../../dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md)
-- sha256 (`lf-normalised`): `b6fd928b7e77834d9cb43a485516f8a384550404bd4d20ca6b150da28786eeaa`
+- sha256 (`lf-normalised`): `1c91621fa0c53f50420bdb2ed3b7f1b5e7e03fee69fc48ffff22fab1f81b38c5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0493
 - counts toward the grade: no
@@ -93,7 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/primitive_passage.py::obst_p`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/primitive_passage.py::obst_p`
 
 ## Absences recorded by the TFQ records
 

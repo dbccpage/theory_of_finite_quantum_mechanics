@@ -50,7 +50,7 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean::normal_preserves_round_sums`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_wdp/src/genesis_ongoing_adapter.rs::GenesisOngoingAdapter`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine/crates_rs/omega_wdp/src/genesis_ongoing_adapter.rs)
+- `omega_engine/crates_rs/omega_wdp/src/genesis_ongoing_adapter.rs::GenesisOngoingAdapter` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - [`checks/independent/pgw-wdp-bridge-ongoing-to-window.py::main`](../../../checks/independent/pgw-wdp-bridge-ongoing-to-window.py)

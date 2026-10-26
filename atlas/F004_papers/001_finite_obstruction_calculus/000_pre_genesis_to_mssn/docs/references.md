@@ -23,10 +23,10 @@ their historic review documents are not part of the public package.
 
 ## Provenance of the HoTT interpretation
 
-- The [S(n) account at the pinned revision](https://github.com/dbccpage/the_symbol_game/blob/d1d2f034198a72b730320a69691e63351557c019/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/source_archive/000_sn/paper.md#decoupling-construction-stage-n-from-homotopy-truncation-depth-j)
+- The S(n) account at the pinned revision
   distinguishes construction stage from homotopy truncation depth and requires
   a supplied realization before considering its Postnikov stages.
-- The [MSS-N account at the pinned revision](https://github.com/dbccpage/the_symbol_game/blob/d1d2f034198a72b730320a69691e63351557c019/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/source_archive/000_mssn/paper.md#22-homotopy-type-theory-hott-lens-types-paths-and-directions)
+- The MSS-N account at the pinned revision
   introduces HoTT explicitly as one of three mathematical lenses.
 - The corrected walkthrough withdraws the inference from inverse carrier maps
   to univalence. The Pre-Genesis trial record supplies no derivation of HoTT.

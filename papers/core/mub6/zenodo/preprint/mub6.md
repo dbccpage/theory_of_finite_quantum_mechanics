@@ -1034,9 +1034,9 @@ checks all 493 file members. Digest agreement establishes the corresponding
 byte or normalization commitment, rather than theorem validity.
 
 The research source snapshot is pinned at
-[commit 2d03b504106356593d76f5a6bafc259019d52247](https://github.com/dbccpage/the_symbol_game/tree/2d03b504106356593d76f5a6bafc259019d52247).
-The [Lean source package](https://github.com/dbccpage/the_symbol_game/tree/2d03b504106356593d76f5a6bafc259019d52247/lean4/research_programs/mub6)
-and [Rust workspace](https://github.com/dbccpage/the_symbol_game/tree/2d03b504106356593d76f5a6bafc259019d52247/omega_engine/crates_rs)
+commit 2d03b504106356593d76f5a6bafc259019d52247.
+The Lean source package
+and Rust workspace
 are external research materials. The preprint ZIP does not bundle those trees,
 their dependencies or a new axiom census. Its integrity check verifies only the
 delivered manuscript package. The historical research archive and receipt

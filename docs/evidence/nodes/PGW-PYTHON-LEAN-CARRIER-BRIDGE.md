@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0499_python_lean_carrier_bridge.md`
 
 - file: [dag/derivations/02_genesis/tfq_0499_python_lean_carrier_bridge.md](../../../dag/derivations/02_genesis/tfq_0499_python_lean_carrier_bridge.md)
-- sha256 (`lf-normalised`): `c0ab564eee839cc2e3bc58f5c1381339622f4d6a9a238502743bb5c61e81535d`
+- sha256 (`lf-normalised`): `904afe91e471d24d6daee6002bfcb03806805c0c609f9278bb97da76a83d022a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0499
 - counts toward the grade: no
@@ -124,8 +124,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::replay`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/replay.rs::replay`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::replay`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/replay.rs::replay`
 
 ## Routes
 

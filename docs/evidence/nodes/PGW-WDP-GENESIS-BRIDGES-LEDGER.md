@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md`
 
 - file: [dag/derivations/06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md](../../../dag/derivations/06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md)
-- sha256 (`lf-normalised`): `103e4c74a5fa40654374ac47d4563c11b42f07c0f25bc16d940361435fa66d0d`
+- sha256 (`lf-normalised`): `fedd252b814dc1fdb26c1b6bd4e49741578cca6374405da5663b36adaed0934a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0554
 - counts toward the grade: no
@@ -97,8 +97,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/rust/src/foundational_bridges.rs::apartness_witness`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/foundational_bridges.py::apartness_witness`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/rust/src/foundational_bridges.rs::apartness_witness`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/foundational_bridges.py::apartness_witness`
 
 ## Routes
 

@@ -263,7 +263,7 @@ cargo test -j 1 --offline --locked -p omega_quantum_physics --test ancilla_capac
 ```
 
 Use the shared target cache when running in a worktree. The
-[qualification receipt](https://github.com/dbccpage/the_symbol_game/blob/cd6205a801c4fa2e640e805ac556e704b6b51054/_intelligence/primitive_qm_eight_hour/ancilla_capacity_2026-10-11.json)
+qualification receipt
 records exact commands, outputs and source hashes. **AC1–AC5 are written proofs,
 not new Lean theorems; finite test cases do not establish their unrestricted
 quantifiers.** The finite spectral theorem and the usual matrix tensor/partial

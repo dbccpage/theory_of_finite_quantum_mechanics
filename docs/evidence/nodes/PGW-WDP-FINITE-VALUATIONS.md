@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0552_wdp_finite_valuations.md`
 
 - file: [dag/derivations/06_wdp/tfq_0552_wdp_finite_valuations.md](../../../dag/derivations/06_wdp/tfq_0552_wdp_finite_valuations.md)
-- sha256 (`lf-normalised`): `5efad9227df52e3ad6c798f77f87592e77d39042af507e3606d969e3071f3fb7`
+- sha256 (`lf-normalised`): `22f2a7e6376eb8f4561144cc1007231e388df0acc91d5f8d5f305ef73ee4976a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0552
 - counts toward the grade: no
@@ -84,9 +84,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/rust/src/foundational_bridges.rs::MultiplicityDistribution`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/probability.py::disjoint_additivity`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/probability.py::event_probability`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/rust/src/foundational_bridges.rs::MultiplicityDistribution`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/probability.py::disjoint_additivity`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/probability.py::event_probability`
 
 ## Routes
 

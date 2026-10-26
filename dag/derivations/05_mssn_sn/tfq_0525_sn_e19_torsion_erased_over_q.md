@@ -33,7 +33,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean statement of E19; MssnSmithNormalForm.lean checks supplied invariant-factor records only`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine_education/documentation/003_oemssn/code/rust/src/smith_normal_form.rs::compute_integral_homology`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/003_oemssn/code/rust/src/smith_normal_form.rs)
+- `omega_engine_education/documentation/003_oemssn/code/rust/src/smith_normal_form.rs::compute_integral_homology` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - `missing obligation: no Python check of E19 in the S(n) strand`
