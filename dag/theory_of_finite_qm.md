@@ -141,7 +141,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0064` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0065` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0066` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-0067` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED), `FQ-COMMUTATOR-TRACE-OBSTRUCTION` (PROVED_LEAN) | `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-COMMUTATOR-TRACE-OBSTRUCTION`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0067` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED), `FQ-COMMUTATOR-TRACE-OBSTRUCTION` (PROVED_PROSE) | `FQ-QM207-231-FINITE-MAP-CONTROLS`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-COMMUTATOR-TRACE-OBSTRUCTION`: scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0068` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0069` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0070` | `FINITE_QED` | `COMPUTATIONAL_CONTROL` | `FQ-QM207-231-FINITE-MAP-CONTROLS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
@@ -308,7 +308,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0231` | `ENGINE_CUSTODY` | `SOURCE_RECORD` | `TFQ-0231` (SOURCE_RECORD) | - |
 | `TFQ-0232` | `ENGINE_CUSTODY` | `SOURCE_RECORD` | `TFQ-0232` (SOURCE_RECORD) | - |
 | `TFQ-0233` | `ENGINE_CUSTODY` | `OPEN_OBLIGATION` | `TFQ-0233` (OPEN) | - |
-| `TFQ-0234` | `FINITE_QM_CORE` | `SOURCE_RECORD` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_LEAN), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_integer_result_reviewed / caveat_added |
+| `TFQ-0234` | `FINITE_QM_CORE` | `SOURCE_RECORD` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_PROSE), `FQ-GAP-CONTINUUM-HILBERT-LIFT` (CONDITIONAL) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-GAP-CONTINUUM-HILBERT-LIFT`: scoped_integer_result_reviewed / caveat_added |
 | `TFQ-0235` | `FINITE_QM_DYNAMICS` | `SOURCE_RECORD` | `DS-QM021-IDEMPOTENT-CONDITIONING` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0236` | `FINITE_QM_DYNAMICS` | `SOURCE_RECORD` | `DS-QM021-IDEMPOTENT-CONDITIONING` (COMPUTATIONALLY_CHECKED), `DS-QM030-PROJECTION-POSTULATE-AND-BORN-PAIRING-IMPORT` (IMPORTED_ASSUMPTION) | `DS-QM021-IDEMPOTENT-CONDITIONING`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM030-PROJECTION-POSTULATE-AND-BORN-PAIRING-IMPORT`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0237` | `FINITE_QM_DYNAMICS` | `OPEN_OBLIGATION` | `TFQ-0237` (OPEN) | - |
@@ -369,7 +369,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0292` | `L1_TO_L2` | `GAP` | `L1-IMP-SQRT-FIELD` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0293` | `L1_TO_L2` | `GAP` | `L1-IMP-COMPLEX-FIELD` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0294` | `L1_TO_L2` | `GAP` | `L1-IMP-U1-PHASES` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `L1-IMP-U1-PHASES`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / caveat_added |
-| `TFQ-0295` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_LEAN), `FQ-BORN-NORMALIZATION-REDUNDANCY` (PROVED_LEAN) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent; `FQ-BORN-NORMALIZATION-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0295` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_PROSE), `FQ-BORN-NORMALIZATION-REDUNDANCY` (PROVED_LEAN) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-BORN-NORMALIZATION-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0296` | `L1_TO_L2` | `GAP` | `L1-IMP-HILBERT-INNER-PRODUCT` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0297` | `FINITE_HILBERT` | `OPEN_OBLIGATION` | `TFQ-0297` (OPEN) | - |
 | `TFQ-0298` | `FINITE_HILBERT` | `OPEN_OBLIGATION` | `TFQ-0298` (OPEN) | - |
@@ -378,8 +378,8 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0301` | `L1_TO_L2` | `GAP` | `L1-IMP-HAAR-INDEPENDENT-PHASES` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0302` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM5-PHASE-AVERAGED-SHADOW` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0303` | `L1_TO_L2` | `GAP` | `L1-IMP-LINEAR-ISOMETRIC-DYNAMICS` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0304` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM7-REPRESENTATION-CAPACITY` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0305` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM6-P1-SCOPE-FENCE` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0304` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM7-REPRESENTATION-CAPACITY` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
+| `TFQ-0305` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM6-P1-SCOPE-FENCE` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0306` | `L1_TO_L2` | `GAP` | `L1-QM122-BORN-PAIRING-NONUNIQUE` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0307` | `FINITE_HILBERT` | `GAP` | `L1-QM020-THM6-P2-GLEASON` (IMPORTED_ASSUMPTION), `FQ-GAP-BORN-UNIQUENESS-GLEASON` (CONDITIONAL) | `L1-QM020-THM6-P2-GLEASON`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-BORN-UNIQUENESS-GLEASON`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0308` | `FINITE_HILBERT` | `OPEN_OBLIGATION` | `TFQ-0308` (OPEN) | - |
@@ -392,7 +392,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0315` | `FINITE_HILBERT` | `SOURCE_RECORD` | `TFQ-0315` (SOURCE_RECORD) | - |
 | `TFQ-0316` | `FINITE_HILBERT` | `SOURCE_RECORD` | `TFQ-0316` (SOURCE_RECORD) | - |
 | `TFQ-0317` | `FINITE_HILBERT` | `OPEN_OBLIGATION` | `FQ-BORN-NORMALIZATION-REDUNDANCY` (PROVED_LEAN), `L1-QM020-THM1-DIRECT-NORMALIZATION` (PROVED_LEAN) | `FQ-BORN-NORMALIZATION-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent; `L1-QM020-THM1-DIRECT-NORMALIZATION`: scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0318` | `FINITE_HILBERT` | `OPEN_OBLIGATION` | `L1-IMP-SQRT-FIELD` (IMPORTED_ASSUMPTION), `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_LEAN) | `L1-IMP-SQRT-FIELD`: scoped_result_or_obstruction_reviewed / consistent; `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0318` | `FINITE_HILBERT` | `OPEN_OBLIGATION` | `L1-IMP-SQRT-FIELD` (IMPORTED_ASSUMPTION), `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_PROSE) | `L1-IMP-SQRT-FIELD`: scoped_result_or_obstruction_reviewed / consistent; `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0319` | `FINITE_OBSTRUCTION` | `OPEN_OBLIGATION` | `TFQ-0319` (OPEN) | - |
 | `TFQ-0320` | `FINITE_OBSTRUCTION` | `SOURCE_RECORD` | `TFQ-0320` (SOURCE_RECORD) | - |
 | `TFQ-0321` | `FINITE_OBSTRUCTION` | `OPEN_OBLIGATION` | `TFQ-0321` (OPEN) | - |
@@ -425,11 +425,11 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0348` | `WDP` | `SOURCE_RECORD` | `PG-WDP-QUOTIENT-EXACT-SEQUENCE` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0349` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-WDP-WINDOW-PHI1-GAMMA2` (DEFINITION), `PG-WDP-DEGREE1-WINDOW` (DEFINITION) | `L1-WDP-WINDOW-PHI1-GAMMA2`: scoped_result_or_obstruction_reviewed / consistent; `PG-WDP-DEGREE1-WINDOW`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0350` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-CHAIN-D1D0-AXIOM` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0351` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-FRAMEWORK-KKT-CERT` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0351` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-FRAMEWORK-KKT-CERT` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0352` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-OBSERVER-AXIOMS-H1-H5` (ADMITTED_PRIMITIVE) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0353` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-GS000-EDGEWISE-L1` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0354` | `L1_EMERGENCE` | `GAP` | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED` (CONDITIONAL), `L1-WDP-WINDOW-PHI1-GAMMA2` (DEFINITION), `L1-GS000-EDGEWISE-L1` (COMPUTATIONALLY_CHECKED) | `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-WDP-WINDOW-PHI1-GAMMA2`: scoped_result_or_obstruction_reviewed / consistent; `L1-GS000-EDGEWISE-L1`: scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-0355` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_LEAN), `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009` (OPEN), `L1-IMP-HILBERT-INNER-PRODUCT` (CONDITIONAL) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / consistent; `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-IMP-HILBERT-INNER-PRODUCT`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0355` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` (PROVED_PROSE), `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009` (OPEN), `L1-IMP-HILBERT-INNER-PRODUCT` (CONDITIONAL) | `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009`: scoped_result_or_obstruction_reviewed / status_lowered; `L1-IMP-HILBERT-INNER-PRODUCT`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0356` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-GS001-GAUGE-L1` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0357` | `L1_EMERGENCE` | `SOURCE_RECORD` | `L1-WDP-CH08-C01-REPLICA-L1` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0358` | `L1_EMERGENCE` | `OPEN_OBLIGATION` | `L1-WDP-WITNESS-MASS` (DEFINITION) | scoped_result_or_obstruction_reviewed / consistent |
@@ -471,7 +471,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0394` | `PREGENESIS` | `OPEN_OBLIGATION` | `PG-PRIMDIFF-AXIOMS` (DEFINITION) | scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0395` | `PREGENESIS` | `OPEN_OBLIGATION` | `PG-ADMISSION-FLOOR` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0396` | `GENESIS` | `GAP` | `TFQ-0396` (OPEN) | - |
-| `TFQ-1000` | `L1_TO_L2` | `PROVED_LEAN` | `L1-OPERATOR-LIFT-TRACE-EMBED-013` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-1000` | `L1_TO_L2` | `COMPUTATIONAL_CONTROL` | `L1-OPERATOR-LIFT-TRACE-EMBED-013` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-1001` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `L1-IMP-SECTOR-SYMMETRY-LAW` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-1002` | `L1_TO_L2` | `DEFINITION` | `L1-WDP-REALIFICATION-J` (DEFINITION) | scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-1003` | `L1_TO_L2` | `OPEN_OBLIGATION` | `L1-U1-SELECTOR-OTHER-SEGMENT` (OPEN) | scoped_result_or_obstruction_reviewed / status_lowered |
@@ -4041,12 +4041,12 @@ Obligation: Import Born uniqueness and do not read it off redundant normalizatio
 
 - UUID: `7f4af5da-eff0-51ec-a57c-c890c8909a56`
 - Parent: `TFQ-0005`
-- Status: `PROVED_LEAN`
-- DAG node: `L1-OPERATOR-LIFT-TRACE-EMBED-013` (`PROVED_LEAN`)
+- Status: `COMPUTATIONAL_CONTROL`
+- DAG node: `L1-OPERATOR-LIFT-TRACE-EMBED-013` (`COMPUTATIONALLY_CHECKED`)
 
 For integer lists v the diagonal trace norm equals sum |v_i| (trace_norm_eq_mass). Scaling by c != 0 keeps the normalized absolute weights and, for |c|>1, raises the mass. Reconstruction without an admitted mass returns failure. The real operator embedding is not constructed in Lean. C05: the trace embedding carries no physical state or quantum claim.
 
-Obligation: Banach-space embedding, injectivity and the fibre statements are prose-only.
+Obligation: Lean states only that the diagonal trace norm of an integer list is the sum of absolute values (trace_norm_eq_mass). The scaling and reconstruction clauses are native checks; the Banach-space embedding, injectivity and fibre statements are not formalised.
 
 ### TFQ-1001 l1-imp-sector-symmetry-law
 

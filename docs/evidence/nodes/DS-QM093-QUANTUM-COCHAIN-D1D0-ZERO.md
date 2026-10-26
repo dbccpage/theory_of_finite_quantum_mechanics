@@ -1,10 +1,10 @@
 # DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO
 
-Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Full conjugated arrays, composition control and trace-pairing/coboundary identities are checked exactly with a general rational conditional kernel identity.
+> For M_2 packets, trace cyclicity gives d1_Q d0_Q = 0 (Born/trace invariance under exact unitary gauge); Born is a defect face at C^2, invariance not selection; classical gluing fails for contextual observables (Phi_Q\>0). Packet-specific.
 
 ## Grade
 
@@ -15,12 +15,12 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 0 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: Formalize the array-to-matrix interpretation, full complex unitary packet and contextual gluing/physical readout. Gauge invariance alone is not selection. The broader source statement is kept in pfp_review.prior_statement.
+Lean states only the scalar telescoping identity (fj - fi) + (fk - fj) - (fk - fi) = 0. The M_2 trace-cyclicity statement is checked natively on fixed matrices.
 
 ## Source status
 
@@ -36,7 +36,7 @@ Unmet after the PFP review: Formalize the array-to-matrix interpretation, full c
 
 ## Review
 
-- PFP review: [dag/results/DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Full conjugated arrays, composition control and trace-pairing/coboundary identities are checked exactly with a general rational conditional kernel identity.
   - does not support: Formalize the array-to-matrix interpretation, full complex unitary packet and contextual gluing/physical readout. Gauge invariance alone is not selection.
   - next test: Formalize the array-to-matrix interpretation, full complex unitary packet and contextual gluing/physical readout. Gauge invariance alone is not selection.
@@ -108,8 +108,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (2):
 
-- `DS-R-COCHAIN-D1D0` `DERIVED_LEAN`: [L1-CHAIN-D1D0-AXIOM](L1-CHAIN-D1D0-AXIOM.md) (ADMITTED_PRIMITIVE)
-- `DS-R-D1D0-COCHAIN` `DERIVED_LEAN`: [L1-CHAIN-D1D0-AXIOM](L1-CHAIN-D1D0-AXIOM.md) (ADMITTED_PRIMITIVE)
+- `DS-R-COCHAIN-D1D0` `COMPUTED`: [L1-CHAIN-D1D0-AXIOM](L1-CHAIN-D1D0-AXIOM.md) (ADMITTED_PRIMITIVE)
+- `DS-R-D1D0-COCHAIN` `COMPUTED`: [L1-CHAIN-D1D0-AXIOM](L1-CHAIN-D1D0-AXIOM.md) (ADMITTED_PRIMITIVE)
 
 Outgoing (1):
 

@@ -1,10 +1,10 @@
 # DS-QM070-PRODUCT-NONFACTORIZATION
 
-Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Actual marginals, normalized product reconstruction, signed residuals and Phi are checked; residual and zero-defect polynomials are general over Q in Lean.
+> For a finite nonnegative joint table w on A x B with W\>0, the product defect Phi(w) vanishes iff w factors through its marginals. Phi is basis-relative and does not see entanglement (Bell state and the classical mixture share the (1/2,0,0,1/2) table).
 
 ## Grade
 
@@ -15,12 +15,12 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 0 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: Formalize arbitrary finite table reconstruction and justify any tensor/basis/quantum coherence lift; a product defect of diagonals does not test entanglement. The broader source statement is kept in pfp_review.prior_statement.
+Lean states the 2x2 case only: a product table has determinant 0 and the identity table does not factor. The iff for general A x B is not in Lean.
 
 ## Source status
 
@@ -36,7 +36,7 @@ Unmet after the PFP review: Formalize arbitrary finite table reconstruction and 
 
 ## Review
 
-- PFP review: [dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Actual marginals, normalized product reconstruction, signed residuals and Phi are checked; residual and zero-defect polynomials are general over Q in Lean.
   - does not support: Formalize arbitrary finite table reconstruction and justify any tensor/basis/quantum coherence lift; a product defect of diagonals does not test entanglement.
   - next test: Formalize arbitrary finite table reconstruction and justify any tensor/basis/quantum coherence lift; a product defect of diagonals does not test entanglement.
@@ -113,10 +113,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (2):
 
-- `DS-R-PRODUCT-DEFECT` `DERIVED_LEAN`: [FQ-CARRIER-CONTRACT-V2](FQ-CARRIER-CONTRACT-V2.md) (DEFINITION)
-- `DS-R-PRODUCT-FROM-WEIGHTS` `DERIVED_LEAN`: [L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED](L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED.md) (CONDITIONAL)
+- `DS-R-PRODUCT-DEFECT` `COMPUTED`: [FQ-CARRIER-CONTRACT-V2](FQ-CARRIER-CONTRACT-V2.md) (DEFINITION)
+- `DS-R-PRODUCT-FROM-WEIGHTS` `COMPUTED`: [L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED](L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED.md) (CONDITIONAL)
 
 Outgoing (2):
 
 - `DS-R-PRODUCT-TO-ENTANGLEMENT` `DERIVED_LEAN`: [DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS](DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS.md) (PROVED_LEAN)
-- `DS-R-QUBIT` `DERIVED_LEAN`: [DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED](DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED.md) (PROVED_LEAN)
+- `DS-R-QUBIT` `GAP_NO_DERIVATION`: [DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED](DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED.md) (OPEN)

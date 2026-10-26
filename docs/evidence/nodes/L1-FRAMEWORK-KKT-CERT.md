@@ -4,7 +4,7 @@ Stage: [L1_EMERGENCE](../stages/L1_EMERGENCE.md). Status: `PROVED_LEAN`. Evidenc
 
 ## Statement
 
-> A finite primal-dual certificate (potential h, annihilating dual witness) certifies l1 optimality of the quotient residual. Lean covers integer-list instances; the real-vector statement is prose.
+> For integer lists of equal length: if a dual vector z is annihilated by every coboundary (z . (coboundary p') = 0 for all p'), satisfies the capacity bound |z_i| \<= w_i, and closes the gap (sum w_i |r_i| = z . omega), then r has minimal weighted l1 norm among all omega + coboundary(p').
 
 ## Grade
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Integer-list scope. The 3-step iterator in the same paper is REFUTED per its ledger.
+Stated over integer lists in lean4/Imported/L1ObstructionFramework/lp_general_certificate.lean (general_finite_certificate_optimality). The real-vector version is weak LP duality and is not in Lean. The 3-step iterator in the same paper is REFUTED per its ledger.
 
 ## Source status
 
@@ -36,7 +36,7 @@ Thm 4.2 finite KKT certificate; Lean general_finite_certificate_optimality (inte
 
 ## Review
 
-- PFP review: [dag/results/L1-FRAMEWORK-KKT-CERT/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-FRAMEWORK-KKT-CERT/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/L1-FRAMEWORK-KKT-CERT/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-FRAMEWORK-KKT-CERT/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Exact supplied primal/dual certificate predicates for a triangle, with accepted and capacity/divergence/gap failures; generic rational bound-to-optimality implication in Lean.
   - does not support: Prove representation refinement to the external arbitrary-list integer certificate and arbitrary real-vector attainment. A valid numeric triangle certificate does not establish unrestricted dual attainment.
   - next test: Prove representation refinement to the external arbitrary-list integer certificate and arbitrary real-vector attainment. A valid numeric triangle certificate does not establish unrestricted dual attainment.
@@ -135,4 +135,4 @@ Incoming (1):
 
 Outgoing (1):
 
-- `L1-R-DENSITY-LIFT-PUB009` `DERIVED_LEAN`: [L1-DENSITY-LIFT-SIGNED-SQRT-PUB009](L1-DENSITY-LIFT-SIGNED-SQRT-PUB009.md) (PROVED_LEAN)
+- `L1-R-DENSITY-LIFT-PUB009` `GAP_NO_DERIVATION`: [L1-DENSITY-LIFT-SIGNED-SQRT-PUB009](L1-DENSITY-LIFT-SIGNED-SQRT-PUB009.md) (OPEN)

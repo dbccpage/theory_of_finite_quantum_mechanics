@@ -46,10 +46,8 @@ The 20261019 scope audit remains a determinant obstruction on a supplied rationa
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CoupledRelationalProjectors.lean::QuantumMechanics.CoupledRelationalProjectors.coupled_bipartite_and_tripartite_relational_master_certificate`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_tensor_uniqueness_min_vs_max_tensor_and_covariance`
-- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure`
 - `lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.outerDet`
 - `lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityDet`
 - `lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityNotOuter`

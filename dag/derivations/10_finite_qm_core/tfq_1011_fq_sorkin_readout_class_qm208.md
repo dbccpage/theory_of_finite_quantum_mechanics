@@ -33,7 +33,6 @@ QM-208 table row: exact finite invariant; residual "add-then-square composition 
 ### Lean 4 Theorems
 - `lean4/FiniteQM.lean::qzeta12_rational_readout_cone_and_galois_selection`
 - `lean4/FiniteQM.lean::born_trace_vs_quartic_readout_and_three_ray_positivity_gap`
-- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_quantum_physics/src/everett.rs::sorkin_3slit_i3`

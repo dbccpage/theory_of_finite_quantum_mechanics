@@ -1,10 +1,10 @@
 # DS-QM102-SYNDROME-CAPACITY-BOUND
 
-Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Complete retained repetition-code error tables and zero-syndrome logical controls are exact; the distance arithmetic and three-bit correction statement are kernel checked.
+> An error syndrome is a coboundary defect s = delta^1 e and the guaranteed-correctable weight is t = floor((d-1)/2) via cochain homology distance. The proof supports the lower bound direction only; an upper-bound reading would be a different statement. Local syndrome zeroing does not prevent logical errors (C3).
 
 ## Grade
 
@@ -15,12 +15,12 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 0 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: Prove the arbitrary code/homology distance and decoder transport under the actual error model. A guaranteed-correctable lower bound is not a general upper-bound theorem. The broader source statement is kept in pfp_review.prior_statement.
+Checked exhaustively for the three-bit repetition code. The general bound t = floor((d - 1)/2) is not in Lean.
 
 ## Source status
 
@@ -36,7 +36,7 @@ Quantum Hamming / syndrome capacity bounds for \[\[5,1,3\]\] (1+3*5=16=2^4) and 
 
 ## Review
 
-- PFP review: [dag/results/DS-QM102-SYNDROME-CAPACITY-BOUND/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM102-SYNDROME-CAPACITY-BOUND/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM102-SYNDROME-CAPACITY-BOUND/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM102-SYNDROME-CAPACITY-BOUND/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Complete retained repetition-code error tables and zero-syndrome logical controls are exact; the distance arithmetic and three-bit correction statement are kernel checked.
   - does not support: Prove the arbitrary code/homology distance and decoder transport under the actual error model. A guaranteed-correctable lower bound is not a general upper-bound theorem.
   - next test: Prove the arbitrary code/homology distance and decoder transport under the actual error model. A guaranteed-correctable lower bound is not a general upper-bound theorem.
@@ -98,7 +98,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `DS-R-CAPACITY` `DERIVED_LEAN`: [DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE](DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE.md) (PROVED_LEAN)
+- `DS-R-CAPACITY` `COMPUTED`: [DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE](DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE.md) (OPEN)
 
 Outgoing (3):
 

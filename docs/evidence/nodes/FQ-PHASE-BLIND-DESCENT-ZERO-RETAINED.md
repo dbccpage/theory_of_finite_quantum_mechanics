@@ -1,10 +1,10 @@
 # FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED
 
-Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Exact integer population descent iff every row is sparse is rechecked generally. The all-ones zero-cancellation control is explicit; native cross-term differences are 4abxy and 4cdxy.
+> A matrix A descends through the phase-blind population report iff every row has at most one nonzero entry, provided the quotient retains the zero vector as a distinct output; without the retained zero point the claim is false on projective space (A = \[\[1,1\],\[1,1\]\]).
 
 ## Grade
 
@@ -15,12 +15,12 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 0 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: Prove the advertised normalized/projective characterization, with its exact carrier and retained-zero convention, separately; do not promote the stronger-looking target wording from the integer theorem. The broader source statement is kept in pfp_review.prior_statement.
+Lean states the 2x2 integer case (descent_compatible_iff_row_sparse). The n x n statement is not in Lean; the all-ones counterexample on projective space is a native check.
 
 ## Source status
 
@@ -36,7 +36,7 @@ General-n row-sparsity characterization and projective-zero counterexample mecha
 
 ## Review
 
-- PFP review: [dag/results/FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact integer population descent iff every row is sparse is rechecked generally. The all-ones zero-cancellation control is explicit; native cross-term differences are 4abxy and 4cdxy.
   - does not support: Prove the advertised normalized/projective characterization, with its exact carrier and retained-zero convention, separately; do not promote the stronger-looking target wording from the integer theorem.
   - next test: Prove the advertised normalized/projective characterization, with its exact carrier and retained-zero convention, separately; do not promote the stronger-looking target wording from the integer theorem.
@@ -113,7 +113,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `FQ-R-DESCENT` `DERIVED_LEAN`: [FQ-PHASE-FIBER-QUOTIENT](FQ-PHASE-FIBER-QUOTIENT.md) (PROVED_LEAN)
+- `FQ-R-DESCENT` `COMPUTED`: [FQ-PHASE-FIBER-QUOTIENT](FQ-PHASE-FIBER-QUOTIENT.md) (PROVED_LEAN)
 
 Outgoing (0):
 

@@ -1,26 +1,26 @@
 # FQ-QM207-231-FINITE-MAP-CONTROLS
 
-Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: The selected rational energy polynomial, exact minimizer and virial identity are kernel/native checked for all rational z where stated.
+> Twenty-five finite-map controls QM-207..QM-231 (phase fiber, readout, context parity, frame function, clock tower, Symanzik/BPHZ, Dirac Ward-Takahashi, vacuum polarization, Kravchuk/hydrogen, Page-Wootters/Tsirelson/Wigner, electroweak, QCD beta0, Regge, Conf_2 spin-statistics, Dirac-Coulomb/helium, tree-level QED, PPN, GHZ/Mermin, Chern parity) each compute an exact finite invariant over Q or Q(zeta_N) and name the completion step and residual import in its own row. They are on main (PR #1132 merged, 5c6706eba; QM-226..231 added by bfa800fe2, 3c3042143, 0c3532f3b). Each row lists what is NOT derived (e.g. non-triviality of tau, second measurement context, Gleason positivity closure, Stone strong continuity, Feynman-parameter measure, UV subtraction).
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
-- distinct cited Lean declarations covered by a current replay receipt: 4
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 3
+- distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 0 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -29,7 +29,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: Derive the variational functional from the actual Hamiltonian/ansatz and audit the remaining finite-map rows and their residual imports. No batch closure of all25 controls, QED/QCD/gravity or physical spectrum is claimed. The broader source statement is kept in pfp_review.prior_statement.
+The 25 controls are exact native computations. Lean restates three of them (a helium variational identity, a Conf_2 character count, one Klein-Nishina ratio).
 
 ## Source status
 
@@ -37,7 +37,7 @@ Finite rational/integer control invariants for QM-207..231 mechanized across Fin
 
 ## Review
 
-- PFP review: [dag/results/FQ-QM207-231-FINITE-MAP-CONTROLS/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/FQ-QM207-231-FINITE-MAP-CONTROLS/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-QM207-231-FINITE-MAP-CONTROLS/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/FQ-QM207-231-FINITE-MAP-CONTROLS/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: The selected rational energy polynomial, exact minimizer and virial identity are kernel/native checked for all rational z where stated.
   - does not support: Derive the variational functional from the actual Hamiltonian/ansatz and audit the remaining finite-map rows and their residual imports. No batch closure of all25 controls, QED/QCD/gravity or physical spectrum is claimed.
   - next test: Derive the variational functional from the actual Hamiltonian/ansatz and audit the remaining finite-map rows and their residual imports. No batch closure of all25 controls, QED/QCD/gravity or physical spectrum is claimed.
@@ -45,21 +45,6 @@ Finite rational/integer control invariants for QM-207..231 mechanized across Fin
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
-
-### Lean: `lean4/DerivationDagQMClosure.lean`
-
-- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
-- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
-- cited in: node.lean
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build DerivationDagQMClosure`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.fq_qm207_231_finite_map_controls_master_certificate` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_qm207_231_finite_map_controls_master_certificate` |
-
-- counts toward the grade: yes
 
 ### Lean: `lean4/FiniteQFTAndGravity.lean`
 
@@ -408,7 +393,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `FQ-R-QM207-231` `DERIVED_LEAN`: [FQ-DECLARED-QUANTUM-INTERFACE](FQ-DECLARED-QUANTUM-INTERFACE.md) (IMPORTED_ASSUMPTION), [FQ-CARRIER-CONTRACT-V2](FQ-CARRIER-CONTRACT-V2.md) (DEFINITION)
+- `FQ-R-QM207-231` `COMPUTED`: [FQ-DECLARED-QUANTUM-INTERFACE](FQ-DECLARED-QUANTUM-INTERFACE.md) (IMPORTED_ASSUMPTION), [FQ-CARRIER-CONTRACT-V2](FQ-CARRIER-CONTRACT-V2.md) (DEFINITION)
 
 Outgoing (0):
 

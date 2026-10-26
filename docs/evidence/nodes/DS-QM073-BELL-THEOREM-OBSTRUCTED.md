@@ -1,22 +1,22 @@
 # DS-QM073-BELL-THEOREM-OBSTRUCTED
 
-Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Actual contextual arrays and all marginal residuals are computed; 4v readout and the v=1 algebraic countermodel are kernel checked.
+> Bell theorem is obstructed clause by clause with three named admissions; no derivation of quantum violation or of the Tsirelson bound from the finite tables.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 5
-- distinct cited Lean declarations covered by a current replay receipt: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 4
+- distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Unmet after the PFP review: Admit or derive the global-joint, quantum operator/tensor, measurement and source assumptions separately before claiming a Bell/quantum/Tsirelson derivation. The broader source statement is kept in pfp_review.prior_statement.
+A record of three admissions, not a theorem. The cited Lean has finite CHSH identities and a Boolean conjunction.
 
 ## Source status
 
@@ -36,7 +36,7 @@ P8-C9 (PL-GTOC-20) diagonal exchange suppression in characteristic-zero integral
 
 ## Review
 
-- PFP review: [dag/results/DS-QM073-BELL-THEOREM-OBSTRUCTED/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM073-BELL-THEOREM-OBSTRUCTED/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM073-BELL-THEOREM-OBSTRUCTED/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM073-BELL-THEOREM-OBSTRUCTED/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Actual contextual arrays and all marginal residuals are computed; 4v readout and the v=1 algebraic countermodel are kernel checked.
   - does not support: Admit or derive the global-joint, quantum operator/tensor, measurement and source assumptions separately before claiming a Bell/quantum/Tsirelson derivation.
   - next test: Admit or derive the global-joint, quantum operator/tensor, measurement and source assumptions separately before claiming a Bell/quantum/Tsirelson derivation.
@@ -56,7 +56,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates` |
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm073_bell_chsh_pythagorean_tsirelson_vs_pr_box_and_local_bound` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm073_bell_chsh_pythagorean_tsirelson_vs_pr_box_and_local_bound` |
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm073_diagonal_exchange_suppression_and_bell_three_clause_obstruction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm073_diagonal_exchange_suppression_and_bell_three_clause_obstruction` |
@@ -112,7 +111,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `DS-R-BELL-THEOREM` `DERIVED_LEAN`: [DS-QM073-FINITE-CHSH-AND-PR-BOX](DS-QM073-FINITE-CHSH-AND-PR-BOX.md) (PROVED_LEAN), [DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED](DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED.md) (PROVED_LEAN)
+- `DS-R-BELL-THEOREM` `GAP_NO_DERIVATION`: [DS-QM073-FINITE-CHSH-AND-PR-BOX](DS-QM073-FINITE-CHSH-AND-PR-BOX.md) (COMPUTATIONALLY_CHECKED), [DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED](DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED.md) (OPEN)
 
 Outgoing (0):
 

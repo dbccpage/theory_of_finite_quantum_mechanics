@@ -1,6 +1,6 @@
 # [TFQ-1000] L1-OPERATOR-LIFT-TRACE-EMBED-013
 
-> **Stage**: `L1_TO_L2` | **Status**: `PROVED_LEAN` | **DAG node**: `L1-OPERATOR-LIFT-TRACE-EMBED-013` (`PROVED_LEAN`)  
+> **Stage**: `L1_TO_L2` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `L1-OPERATOR-LIFT-TRACE-EMBED-013` (`COMPUTATIONALLY_CHECKED`)  
 > **UUID**: `7f4af5da-eff0-51ec-a57c-c890c8909a56`  
 > **Parent Derivation**: [TFQ-0005](../07_l1_emergence/tfq_0005_declared_l1_sector_weights.md)
 
@@ -13,7 +13,7 @@
 For integer lists v the diagonal trace norm equals sum |v_i| (trace_norm_eq_mass). Scaling by c != 0 keeps the normalized absolute weights and, for |c|>1, raises the mass. Reconstruction without an admitted mass returns failure. The real operator embedding is not constructed in Lean. C05: the trace embedding carries no physical state or quantum claim.
 
 ### Governing Obligation
-Banach-space embedding, injectivity and the fibre statements are prose-only.
+Lean states only that the diagonal trace norm of an integer list is the sum of absolute values (trace_norm_eq_mass). The scaling and reconstruction clauses are native checks; the Banach-space embedding, injectivity and fibre statements are not formalised.
 
 ### Source Status
 013 C01-C03, C06 [PROVED] finite integer lists; C05 [NEGATIVE BOUNDARY]

@@ -10,9 +10,9 @@ Stage: [WDP](../stages/WDP.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 6
-- cited Lean, Rust or Python symbols found in their in-repo files: 22
-- distinct cited Lean declarations covered by a current replay receipt: 22
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 20
+- distinct cited Lean declarations covered by a current replay receipt: 20
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 3
 - recorded statement-match reviews that qualify: 1
@@ -20,7 +20,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-- `receipt_names_uncited_module`: a replay receipt names this node for lean4/WdpQuotientSequence.lean, but the node's lean, rust and source fields do not cite it. A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence).
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -45,22 +45,6 @@ WDP-CH04-P03 FINITE_PROVED (P); P04/P05 FINITE_PROVED (P; C)
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/DerivationDagQMClosure.lean`
-
-- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
-- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
-- cited in: node.lean
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build DerivationDagQMClosure`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` |
-| `QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` |
-
-- counts toward the grade: yes
-
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean`
 
 - file: [lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean)
@@ -83,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/WdpQuotientSequence.lean](../../../lean4/WdpQuotientSequence.lean)
 - sha256 (`bytes`): `2ee150c2744e6b60bf7d2db1c630bd44d1a62fd76aae37e510d24788a46db866`
-- cited in: receipt dag/research/pfp_batch01_lean_replay.json (WdpQuotientSequence)
+- cited in: node.lean, receipt dag/research/pfp_batch01_lean_replay.json (WdpQuotientSequence)
 - replay: `verified`
   - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `WdpQuotientSequence`): recorded sha256 `2ee150c2744e6b60bf7d2db1c630bd44d1a62fd76aae37e510d24788a46db866` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build WdpQuotientSequence`

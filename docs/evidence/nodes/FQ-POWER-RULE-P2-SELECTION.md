@@ -1,10 +1,10 @@
 # FQ-POWER-RULE-P2-SELECTION
 
-Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: The real power equation (3/5)^p+(4/5)^p=1 iff p=2 is kernel checked. Integer p=1..8 reproduce actual shared-ray context weights; mixed-sign p=1 supplies a retained counterexample to unrestricted Sorkin vanishing.
+> Within the declared positive-power family P_p(i) = |c_i|^p / sum_j |c_j|^p on two rational orthonormal contexts sharing a ray (psi = (1,1,0), (3,4,5) rotation), context-independence holds iff (3/5)^p + (4/5)^p = 1, whose unique positive solution is p = 2. Classifies the power family; not a Gleason theorem. Sorkin I3 does not select p (vanishes at p=1 and p=2).
 
 ## Grade
 
@@ -15,12 +15,12 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 0 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -29,7 +29,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: The power-law family, real exponentiation and the real orthonormal contexts are admitted; formal transport of the concrete context normalization to the Real.rpow equation remains a separate bridge. No unrestricted readout uniqueness or Gleason theorem follows. The broader source statement is kept in pfp_review.prior_statement.
+The real equation (3/5)^p + (4/5)^p = 1 iff p = 2 is stated in lean4/PromptStructure.lean (power_real_unique). The step that context-independence on the declared pair of contexts is equivalent to this equation is checked natively for integer p = 1..8, not in Lean.
 
 ## Source status
 
@@ -37,7 +37,7 @@ paper s11.6 (proof in supplement s11.58); rational controls in Rust
 
 ## Review
 
-- PFP review: [dag/results/FQ-POWER-RULE-P2-SELECTION/reviews/20261019_structure_audit/review_result.json](../../../dag/results/FQ-POWER-RULE-P2-SELECTION/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-POWER-RULE-P2-SELECTION/reviews/20261019_structure_audit/review_result.json](../../../dag/results/FQ-POWER-RULE-P2-SELECTION/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: The real power equation (3/5)^p+(4/5)^p=1 iff p=2 is kernel checked. Integer p=1..8 reproduce actual shared-ray context weights; mixed-sign p=1 supplies a retained counterexample to unrestricted Sorkin vanishing.
   - does not support: The power-law family, real exponentiation and the real orthonormal contexts are admitted; formal transport of the concrete context normalization to the Real.rpow equation remains a separate bridge. No unrestricted readout uniqueness or Gleason theorem follows.
   - next test: The power-law family, real exponentiation and the real orthonormal contexts are admitted; formal transport of the concrete context normalization to the Real.rpow equation remains a separate bridge. No unrestricted readout uniqueness or Gleason theorem follows.
@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1012_fq_power_rule_p2_selection.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1012_fq_power_rule_p2_selection.md](../../../dag/derivations/10_finite_qm_core/tfq_1012_fq_power_rule_p2_selection.md)
-- sha256 (`lf-normalised`): `4c9078682a7210979bc1d6827d622979d9014693e48a1ad9de49dbf3ea24cd16`
+- sha256 (`lf-normalised`): `cdd7c9e7f67a1e27f951963d3daca515dfe97c41024c4ef75e5d25b19c0e6f87`
 - generated view: listed, not counted
 - cited in: record TFQ-1012
 - counts toward the grade: no
@@ -95,7 +95,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `FQ-R-POWER-RULE` `DERIVED_LEAN`: [FQ-DECLARED-QUANTUM-INTERFACE](FQ-DECLARED-QUANTUM-INTERFACE.md) (IMPORTED_ASSUMPTION)
+- `FQ-R-POWER-RULE` `COMPUTED`: [FQ-DECLARED-QUANTUM-INTERFACE](FQ-DECLARED-QUANTUM-INTERFACE.md) (IMPORTED_ASSUMPTION)
 
 Outgoing (1):
 

@@ -4,7 +4,7 @@ Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_
 
 ## Statement
 
-> Reviewed scope: Actual subset solution counts and five-context witnesses are exact; global signed-parity obstruction and each explicit dropped-context witness are kernel checked.
+> The six signed parity contexts of the Mermin-Peres square have no global assignment: for every assignment of the nine entries in F2, the row parities and column parities cannot equal the declared values 0, 0, 0, 0, 0, 1, because the sum of the row parities equals the sum of the column parities.
 
 ## Grade
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Unmet after the PFP review: Transport the enumeration to a fully formal incidence/cochain object and any physical observable realization. This finite parity packet does not derive Hilbert space or quantum mechanics. The broader source statement is kept in pfp_review.prior_statement.
+In Lean: no assignment in F2 satisfies the six parity constraints (ds_qm120_mermin_peres_f2_no_global_section, mermin_peres_parity_obstruction). Satisfiability of each single context and each five-context subset is a native check and is not part of this statement. It derives neither QM nor Hilbert space.
 
 ## Source status
 

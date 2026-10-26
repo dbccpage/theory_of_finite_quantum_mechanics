@@ -1,10 +1,10 @@
 # DS-QM080-IMPORT-FREE-TRACE-NORM-CORE
 
-Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Two-coordinate quotient shift invariance, dual upper bound and existence of a bounded attaining rational witness are kernel checked with exact controls.
+> Quotient invariance of the trace-distance defect (Thm 4), finite convex duality (Thm 5) and existence of bounded dual witnesses (Thm 6) hold over any finite-dimensional normed space; identifying the dual with the trace-zero ball and the matrix lift need the spectral theorem (imported).
 
 ## Grade
 
@@ -15,11 +15,12 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
+- `computational_no_runnable_test`: 0 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 - `receipt_not_current`: lean4/DualWitness.lean: replay failed against 1 receipt(s). A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit.
 
 ## Imported structure
@@ -28,7 +29,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Bottleneck
 
-Unmet after the PFP review: Prove arbitrary finite-dimensional normed-space duality and the matrix/spectral lift separately. This coordinate result is not the original general theorem. The broader source statement is kept in pfp_review.prior_statement.
+Lean states the two-coordinate case of the duality and a discrete dual-witness bound. Theorems 4 to 6 for an arbitrary finite-dimensional normed space are not in Lean.
 
 ## Source status
 
@@ -36,7 +37,7 @@ Unmet after the PFP review: Prove arbitrary finite-dimensional normed-space dual
 
 ## Review
 
-- PFP review: [dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Two-coordinate quotient shift invariance, dual upper bound and existence of a bounded attaining rational witness are kernel checked with exact controls.
   - does not support: Prove arbitrary finite-dimensional normed-space duality and the matrix/spectral lift separately. This coordinate result is not the original general theorem.
   - next test: Prove arbitrary finite-dimensional normed-space duality and the matrix/spectral lift separately. This coordinate result is not the original general theorem.
@@ -122,7 +123,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `DS-R-TRACE-NORM-CORE-FROM-CARRIER` `DERIVED_LEAN`: [FQ-CARRIER-CONTRACT-V2](FQ-CARRIER-CONTRACT-V2.md) (DEFINITION), [DS-QM081-STOCHASTIC-L1-CONTRACTION](DS-QM081-STOCHASTIC-L1-CONTRACTION.md) (PROVED_LEAN)
+- `DS-R-TRACE-NORM-CORE-FROM-CARRIER` `COMPUTED`: [FQ-CARRIER-CONTRACT-V2](FQ-CARRIER-CONTRACT-V2.md) (DEFINITION), [DS-QM081-STOCHASTIC-L1-CONTRACTION](DS-QM081-STOCHASTIC-L1-CONTRACTION.md) (PROVED_LEAN)
 
 Outgoing (0):
 

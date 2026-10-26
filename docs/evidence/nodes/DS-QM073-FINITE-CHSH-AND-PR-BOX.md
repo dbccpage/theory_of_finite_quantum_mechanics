@@ -1,10 +1,10 @@
 # DS-QM073-FINITE-CHSH-AND-PR-BOX
 
-Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Every deterministic row, weighted correlation and PR entry is exact; deterministic CHSH and generic convex absolute bound are kernel checked.
+> Bare joint tables are always separable (P8-C3); under a single global joint table the finite CHSH bound is 2; the PR box reaches 4 and has no joint table. The load-bearing hypothesis is the existence of one global joint table. Tsirelson ceiling is not derived (P8-C8 OPEN).
 
 ## Grade
 
@@ -15,12 +15,12 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 1 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Unmet after the PFP review: Formalize the concrete table-to-general convex theorem transport and any full Fine converse or quantum realization. Product/separable for a bare classical table has a different meaning from quantum separability. The broader source statement is kept in pfp_review.prior_statement.
+Lean checks that every deterministic +/-1 assignment has CHSH value of square 4 and the PR-box value 4. The bound 2 for a single joint table follows by convexity, which is not in Lean; separability of bare tables is a native check.
 
 ## Source status
 
@@ -36,7 +36,7 @@ P8-C3 single-table local rank-1 decomposition, P8-C6 16-vertex deterministic CHS
 
 ## Review
 
-- PFP review: [dag/results/DS-QM073-FINITE-CHSH-AND-PR-BOX/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM073-FINITE-CHSH-AND-PR-BOX/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM073-FINITE-CHSH-AND-PR-BOX/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM073-FINITE-CHSH-AND-PR-BOX/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Every deterministic row, weighted correlation and PR entry is exact; deterministic CHSH and generic convex absolute bound are kernel checked.
   - does not support: Formalize the concrete table-to-general convex theorem transport and any full Fine converse or quantum realization. Product/separable for a bare classical table has a different meaning from quantum separability.
   - next test: Formalize the concrete table-to-general convex theorem transport and any full Fine converse or quantum realization. Product/separable for a bare classical table has a different meaning from quantum separability.
@@ -134,9 +134,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `DS-R-ENTANGLEMENT-TO-BELL` `DERIVED_LEAN`: [DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS](DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS.md) (PROVED_LEAN)
+- `DS-R-ENTANGLEMENT-TO-BELL` `COMPUTED`: [DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS](DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS.md) (PROVED_LEAN)
 
 Outgoing (2):
 
-- `DS-R-BELL-THEOREM` `DERIVED_LEAN`: [DS-QM073-BELL-THEOREM-OBSTRUCTED](DS-QM073-BELL-THEOREM-OBSTRUCTED.md) (PROVED_LEAN)
-- `DS-R-BELL-TO-NOSIGNALING` `DERIVED_LEAN`: [DS-QM074-NO-SIGNALING-MARGINAL](DS-QM074-NO-SIGNALING-MARGINAL.md) (PROVED_LEAN)
+- `DS-R-BELL-THEOREM` `GAP_NO_DERIVATION`: [DS-QM073-BELL-THEOREM-OBSTRUCTED](DS-QM073-BELL-THEOREM-OBSTRUCTED.md) (OPEN)
+- `DS-R-BELL-TO-NOSIGNALING` `COMPUTED`: [DS-QM074-NO-SIGNALING-MARGINAL](DS-QM074-NO-SIGNALING-MARGINAL.md) (COMPUTATIONALLY_CHECKED)

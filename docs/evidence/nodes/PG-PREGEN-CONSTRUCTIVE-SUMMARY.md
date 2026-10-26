@@ -20,7 +20,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-- `receipt_names_uncited_module`: a replay receipt names this node for lean4/PregenConstructive.lean, but the node's lean, rust and source fields do not cite it. A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence).
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/PregenConstructive.lean](../../../lean4/PregenConstructive.lean)
 - sha256 (`bytes`): `6b600af885a14319d1f3cca3afa4631bb388eb8b88aa9b4993d31643538d28d9`
-- cited in: receipt dag/research/pfp_batch01_lean_replay.json (PregenConstructive)
+- cited in: node.lean, receipt dag/research/pfp_batch01_lean_replay.json (PregenConstructive)
 - replay: `verified`
   - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `PregenConstructive`): recorded sha256 `6b600af885a14319d1f3cca3afa4631bb388eb8b88aa9b4993d31643538d28d9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build PregenConstructive`

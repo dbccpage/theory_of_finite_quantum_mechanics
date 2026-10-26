@@ -11,8 +11,8 @@ Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `COMPUTA
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 7
-- distinct cited Lean declarations covered by a current replay receipt: 6
+- cited Lean, Rust or Python symbols found in their in-repo files: 6
+- distinct cited Lean declarations covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -56,7 +56,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm080_090_093_094_101_102_206_207_structure_and_qec_bounds` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm080_090_093_094_101_102_206_207_structure_and_qec_bounds` |
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm090_093_and_207_211_tier3_survival_rebit_tomography_and_five_import_cascade` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm090_093_and_207_211_tier3_survival_rebit_tomography_and_five_import_cascade` |
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm206_207_211_non_full_non_faithful_descent_and_five_import_independence` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm206_207_211_non_full_non_faithful_descent_and_five_import_independence` |
@@ -122,7 +121,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md](../../../dag/derivations/12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md)
-- sha256 (`lf-normalised`): `0e985eccce97ba21082d266f3b7fa70d7b6a38de3fcb687f9899dd425757d90c`
+- sha256 (`lf-normalised`): `f5356ece83164f387483e017e1eb9d108dd7a4a252cb9f453e6564ed37d264ec`
 - generated view: listed, not counted
 - cited in: record TFQ-1042
 - counts toward the grade: no

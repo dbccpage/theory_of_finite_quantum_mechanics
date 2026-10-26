@@ -20,7 +20,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-- `receipt_names_uncited_module`: a replay receipt names this node for lean4/SnOffImageRefusal.lean, but the node's lean, rust and source fields do not cite it. A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence).
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/SnOffImageRefusal.lean](../../../lean4/SnOffImageRefusal.lean)
 - sha256 (`bytes`): `fd9d0acd0e1a3985cc23bc94ceff041a7e80a5ae6c1845c3d6ff9a252629d972`
-- cited in: receipt dag/research/pfp_batch01_lean_replay.json (SnOffImageRefusal)
+- cited in: node.lean, receipt dag/research/pfp_batch01_lean_replay.json (SnOffImageRefusal)
 - replay: `verified`
   - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `SnOffImageRefusal`): recorded sha256 `fd9d0acd0e1a3985cc23bc94ceff041a7e80a5ae6c1845c3d6ff9a252629d972` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SnOffImageRefusal`

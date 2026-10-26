@@ -10,9 +10,9 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_LEAN`. Evidence grade:
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 14
-- distinct cited Lean declarations covered by a current replay receipt: 14
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 13
+- distinct cited Lean declarations covered by a current replay receipt: 13
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -20,7 +20,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-- `receipt_names_uncited_module`: a replay receipt names this node for lean4/PhaseBlindFiber.lean, but the node's lean, rust and source fields do not cite it. A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence).
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -44,21 +44,6 @@ QM_122 ledger LEAN4_PROOF; file headers: 'Candidate only. Not PROVEN' (H013 head
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
-
-### Lean: `lean4/DerivationDagQMClosure.lean`
-
-- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
-- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
-- cited in: node.lean
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build DerivationDagQMClosure`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition` |
-
-- counts toward the grade: yes
 
 ### Lean: `lean4/H008PhaseBlindPresentation.lean`
 
@@ -95,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/PhaseBlindFiber.lean](../../../lean4/PhaseBlindFiber.lean)
 - sha256 (`bytes`): `302e3a2da088ad7de12570522d30a4bbd1f5c03099a22d4b7ff6be6baa75ad6d`
-- cited in: receipt dag/research/pfp_batch01_lean_replay.json (PhaseBlindFiber)
+- cited in: node.lean, receipt dag/research/pfp_batch01_lean_replay.json (PhaseBlindFiber)
 - replay: `verified`
   - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `PhaseBlindFiber`): recorded sha256 `302e3a2da088ad7de12570522d30a4bbd1f5c03099a22d4b7ff6be6baa75ad6d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build PhaseBlindFiber`
@@ -154,9 +139,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `L1-R-PHASE-BLIND-INTERFERENCE` `DERIVED_LEAN`: [L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY](L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY.md) (PROVED_LEAN), [L1-IMP-U1-PHASES](L1-IMP-U1-PHASES.md) (IMPORTED_ASSUMPTION)
+- `L1-R-PHASE-BLIND-INTERFERENCE` `DERIVED_LEAN`: [L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY](L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY.md) (PROVED_PROSE), [L1-IMP-U1-PHASES](L1-IMP-U1-PHASES.md) (IMPORTED_ASSUMPTION)
 
 Outgoing (2):
 
-- `L1-R-MNC-LEFTOVER` `DERIVED_LEAN`: [L1-QM122-LEFTOVER-MNC-NOT-RECOVERED](L1-QM122-LEFTOVER-MNC-NOT-RECOVERED.md) (PROVED_LEAN)
+- `L1-R-MNC-LEFTOVER` `GAP_NO_DERIVATION`: [L1-QM122-LEFTOVER-MNC-NOT-RECOVERED](L1-QM122-LEFTOVER-MNC-NOT-RECOVERED.md) (OPEN)
 - `X-R-PHASE-BLIND-TO-FQ-FIBER` `DERIVED_LEAN`: [FQ-PHASE-FIBER-QUOTIENT](FQ-PHASE-FIBER-QUOTIENT.md) (PROVED_LEAN)

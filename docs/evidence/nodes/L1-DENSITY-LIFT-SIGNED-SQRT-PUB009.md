@@ -1,10 +1,10 @@
 # L1-DENSITY-LIFT-SIGNED-SQRT-PUB009
 
-Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Exact signed-square density projectors, overlap/Xi², zero-mass refusal, saturation and positive-support controls; general normalized Cauchy algebra and zero-weight strictness counterexample in Lean.
+> For an l1 residual v with mass M(v) \> 0, psi(v)_i = sgn(v_i) sqrt(|v_i| / M(v)) gives the rank-one real projector rho(v) = psi psi^T, a real L2 lift. The alignment statistic Xi = (1/2) ||rho(h*) - rho(phi*)||_tr is strictly below 1 by complementary slackness. Xi depends on coordinate order and is undefined at zero residual. It does not derive QM.
 
 ## Grade
 
@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 1
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -29,7 +29,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: Prove the full real-square-root/trace-distance transport and conditional KKT overlap theorem under positive weights. Only Xi² is reported; no fabricated decimal Xi or unconditional Xi\<1 is admitted. The broader source statement is kept in pfp_review.prior_statement.
+The bound Xi \< 1 is not in Lean. The cited Lean states only that a sum of squared differences of three integers is nonnegative and vanishes on a constant triple. The construction of psi(v) and rho(v) is a definition.
 
 ## Source status
 
@@ -37,7 +37,7 @@ PUB-009 signed-sqrt lift and Cauchy-Schwarz Xi bound mechanized in DerivationDag
 
 ## Review
 
-- PFP review: [dag/results/L1-DENSITY-LIFT-SIGNED-SQRT-PUB009/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-DENSITY-LIFT-SIGNED-SQRT-PUB009/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/L1-DENSITY-LIFT-SIGNED-SQRT-PUB009/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-DENSITY-LIFT-SIGNED-SQRT-PUB009/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact signed-square density projectors, overlap/Xi², zero-mass refusal, saturation and positive-support controls; general normalized Cauchy algebra and zero-weight strictness counterexample in Lean.
   - does not support: Prove the full real-square-root/trace-distance transport and conditional KKT overlap theorem under positive weights. Only Xi² is reported; no fabricated decimal Xi or unconditional Xi\<1 is admitted.
   - next test: Prove the full real-square-root/trace-distance transport and conditional KKT overlap theorem under positive weights. Only Xi² is reported; no fabricated decimal Xi or unconditional Xi\<1 is admitted.
@@ -104,8 +104,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `L1-R-DENSITY-LIFT-PUB009` `DERIVED_LEAN`: [L1-QM002-O022A-PHI1-QUOTIENT](L1-QM002-O022A-PHI1-QUOTIENT.md) (PROVED_LEAN), [L1-FRAMEWORK-KKT-CERT](L1-FRAMEWORK-KKT-CERT.md) (PROVED_LEAN), [L1-IMP-SQRT-FIELD](L1-IMP-SQRT-FIELD.md) (IMPORTED_ASSUMPTION)
+- `L1-R-DENSITY-LIFT-PUB009` `GAP_NO_DERIVATION`: [L1-QM002-O022A-PHI1-QUOTIENT](L1-QM002-O022A-PHI1-QUOTIENT.md) (OPEN), [L1-FRAMEWORK-KKT-CERT](L1-FRAMEWORK-KKT-CERT.md) (PROVED_LEAN), [L1-IMP-SQRT-FIELD](L1-IMP-SQRT-FIELD.md) (IMPORTED_ASSUMPTION)
 
 Outgoing (1):
 
-- `L1-R-QM003-C17-FACTORIZATION` `DERIVED_LEAN`: [L1-QM003-C17-COMPOSABLE-FACTORIZATION](L1-QM003-C17-COMPOSABLE-FACTORIZATION.md) (PROVED_LEAN)
+- `L1-R-QM003-C17-FACTORIZATION` `COMPUTED`: [L1-QM003-C17-COMPOSABLE-FACTORIZATION](L1-QM003-C17-COMPOSABLE-FACTORIZATION.md) (COMPUTATIONALLY_CHECKED)

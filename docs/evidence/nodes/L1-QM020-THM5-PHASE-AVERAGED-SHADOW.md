@@ -1,10 +1,10 @@
 # L1-QM020-THM5-PHASE-AVERAGED-SHADOW
 
-Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Complete3-sector phase-conjugation mean, diagonal map and64 exact scalar readouts, with scalar cross cancellation in Lean.
+> Under a chosen Hilbert lift with independent Haar-uniform phases, E |\<u, psi(theta)\>|^2 = sum |u_gamma|^2 w_gamma. Worked replay w=(2,1,1) gives 37/16. Rust replaces Haar by a declared finite phase group (decided for n \<= 3). The paper says it must not be upgraded without full Hilbert and Haar discharge.
 
 ## Grade
 
@@ -15,12 +15,12 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 0 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -30,7 +30,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: Supply Haar measure, independence and Hilbert/source refinement. A finite polynomial-moment identity is not a continuum integration construction. The broader source statement is kept in pfp_review.prior_statement.
+Lean states the two-sector sign average ((a1+a2)^2 + (a1-a2)^2 + (-a1+a2)^2 + (-a1-a2)^2)/4 = a1^2 + a2^2 and the 2x2 diagonal pinching. Haar measure and independent continuous phases are not constructed; the worked value 37/16 is a native replay.
 
 ## Source status
 
@@ -38,7 +38,7 @@ Finite sign-group phase-averaging cross-term cancellation mechanized in Derivati
 
 ## Review
 
-- PFP review: [dag/results/L1-QM020-THM5-PHASE-AVERAGED-SHADOW/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM020-THM5-PHASE-AVERAGED-SHADOW/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/L1-QM020-THM5-PHASE-AVERAGED-SHADOW/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM020-THM5-PHASE-AVERAGED-SHADOW/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Complete3-sector phase-conjugation mean, diagonal map and64 exact scalar readouts, with scalar cross cancellation in Lean.
   - does not support: Supply Haar measure, independence and Hilbert/source refinement. A finite polynomial-moment identity is not a continuum integration construction.
   - next test: Supply Haar measure, independence and Hilbert/source refinement. A finite polynomial-moment identity is not a continuum integration construction.
@@ -102,7 +102,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `L1-R-THM5` `DERIVED_LEAN`: [L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY](L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY.md) (PROVED_LEAN), [L1-IMP-HILBERT-INNER-PRODUCT](L1-IMP-HILBERT-INNER-PRODUCT.md) (CONDITIONAL), [L1-IMP-HAAR-INDEPENDENT-PHASES](L1-IMP-HAAR-INDEPENDENT-PHASES.md) (IMPORTED_ASSUMPTION)
+- `L1-R-THM5` `COMPUTED`: [L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY](L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY.md) (PROVED_PROSE), [L1-IMP-HILBERT-INNER-PRODUCT](L1-IMP-HILBERT-INNER-PRODUCT.md) (CONDITIONAL), [L1-IMP-HAAR-INDEPENDENT-PHASES](L1-IMP-HAAR-INDEPENDENT-PHASES.md) (IMPORTED_ASSUMPTION)
 
 Outgoing (0):
 

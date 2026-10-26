@@ -470,8 +470,11 @@
     {
       "node_id": "FQ-COMMUTATOR-TRACE-OBSTRUCTION",
       "review": "dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/reviews/20261019_dynamics_audit/review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Review kernel-checks the obstruction for arbitrary n > 0 over Q, which is stronger than the 2x2 scope the statement admits."
+      "scope_effect": "status_lowered",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "statement": "In nonzero finite dimension, trace cyclicity gives tr[A,B] = 0 while tr(lambda I) = n lambda, so [A,B] = lambda I forces lambda = 0: canonical [X,P] = i hbar I has no finite-dimensional representation. Lean covers 2x2 integer matrices; Rust covers d=3 over Q(zeta_24).",
+      "bottleneck": "The n x n argument is the prose proof in the statement and needs a scalar field in which n is nonzero (characteristic 0 suffices). Lean states only the 2x2 case (wintner_wielandt_dim2_obstruction over Z, weyl_heisenberg_finite_trace_obstruction over Q, tr_comm2_vanishes); Rust checks d = 3 over Q(zeta_24).",
+      "status": "PROVED_PROSE"
     },
     {
       "node_id": "FQ-CONTEXTUALITY-CECH-F2",
@@ -927,8 +930,10 @@
     {
       "node_id": "L1-FRAMEWORK-KKT-CERT",
       "review": "dag/results/L1-FRAMEWORK-KKT-CERT/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Cited general_finite_certificate_optimality is the integer-list certificate; the statement already says the real-vector form is prose."
+      "scope_effect": "statement_narrowed",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The statement is the exact content of the cited Lean.",
+      "statement": "For integer lists of equal length: if a dual vector z is annihilated by every coboundary (z . (coboundary p') = 0 for all p'), satisfies the capacity bound |z_i| <= w_i, and closes the gap (sum w_i |r_i| = z . omega), then r has minimal weighted l1 norm among all omega + coboundary(p').",
+      "bottleneck": "Stated over integer lists in lean4/Imported/L1ObstructionFramework/lp_general_certificate.lean (general_finite_certificate_optimality). The real-vector version is weak LP duality and is not in Lean. The 3-step iterator in the same paper is REFUTED per its ledger."
     },
     {
       "node_id": "L1-GS000-EDGEWISE-L1",
@@ -1025,8 +1030,11 @@
     {
       "node_id": "L1-OPERATOR-LIFT-TRACE-EMBED-013",
       "review": "dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/reviews/20261020_born_boundary_audit/delivery_review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Cited trace_norm_eq_mass states the integer-list identity; the statement already says the real operator embedding is not constructed."
+      "scope_effect": "status_lowered",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "statement": "For integer lists v the diagonal trace norm equals sum |v_i| (trace_norm_eq_mass). Scaling by c != 0 keeps the normalized absolute weights and, for |c|>1, raises the mass. Reconstruction without an admitted mass returns failure. The real operator embedding is not constructed in Lean. C05: the trace embedding carries no physical state or quantum claim.",
+      "bottleneck": "Lean states only that the diagonal trace norm of an integer list is the sum of absolute values (trace_norm_eq_mass). The scaling and reconstruction clauses are native checks; the Banach-space embedding, injectivity and fibre statements are not formalised.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "L1-QM002-O022A-PHI1-QUOTIENT",
@@ -1091,8 +1099,11 @@
     {
       "node_id": "L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY",
       "review": "dag/results/L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY/reviews/20261020_born_boundary_audit/delivery_review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Statement is conditional on a supplied lift and already says existence of the lift needs square roots and a complex structure."
+      "scope_effect": "status_lowered",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "statement": "Given a supplied lift c with |c_i|^2 = w_i (for example c_i = sqrt(w_i) e^{i theta_i}), |c_i|^2 / sum |c|^2 = w_i / sum w. So the Born-form probability of the lift equals the l1 normalization, and the lift is redundant for probability. Existence of the lift requires square roots (not available over Q in general) and a complex structure.",
+      "bottleneck": "The identity is the substitution |c_i|^2 = w_i in numerator and denominator, so it holds whenever sum w is nonzero. No cited Lean declaration states it: the cited Lean concerns a 2x2 discrete density with a two-outcome POVM and diagonal expectations on three sectors.",
+      "status": "PROVED_PROSE"
     },
     {
       "node_id": "L1-QM020-THM5-PHASE-AVERAGED-SHADOW",
@@ -1106,10 +1117,11 @@
     {
       "node_id": "L1-QM020-THM6-P1-SCOPE-FENCE",
       "review": "dag/results/L1-QM020-THM6-P1-SCOPE-FENCE/reviews/20261020_born_boundary_audit/delivery_review_result.json",
-      "scope_effect": "statement_narrowed",
-      "statement": "Two exact positive normalized atom maps (a quadratic and a quartic rule) share additive cell structure and disagree on a concrete cell; the normalization identity and the disagreement are kernel-checked on the stated numerals. This is a scope statement: additive weights alone do not force the quadratic Born form.",
-      "bottleneck": "Unmet after the PFP review: Specify and prove additional frame/affinity/phase hypotheses for uniqueness. Finite cell additivity alone is insufficient. The broader source statement is kept in pfp_review.prior_statement.",
-      "reason": "The earlier True stub is replaced by a numeric Lean example (qm020_thm6_p1_scope_fence); the review supports two positive normalized atom maps and a concrete disagreement."
+      "scope_effect": "status_lowered",
+      "statement": "Additive sector weights alone do not force the quadratic Born form: other normalized maps from the same weights give the same additive structure. This is a scope statement.",
+      "bottleneck": "Lean checks two numerical identities, 1^2 + 0^2 = 1^4 + 0^4 and (1^2 + 1^2)^2 != 1^4 + 1^4, which show a quadratic and a quartic rule agreeing on one cell and disagreeing on another. That the quartic rule is a normalized map with the same additive structure is a native check.",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "L1-QM020-THM6-P2-GLEASON",
@@ -1120,8 +1132,11 @@
     {
       "node_id": "L1-QM020-THM7-REPRESENTATION-CAPACITY",
       "review": "dag/results/L1-QM020-THM7-REPRESENTATION-CAPACITY/reviews/20261020_born_boundary_audit/delivery_review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Capacity statement explicitly not a derivation of physical dynamics; the review confirms rotation, norm and sign-dependent arrays."
+      "scope_effect": "status_lowered",
+      "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+      "statement": "The Hilbert lift is probability-redundant (Thm 4) but dynamics-capable: it can host interference and reversible linear dynamics that l1 weights alone cannot. This is a capacity statement about the representation, not a derivation that physical dynamics are linear or unitary.",
+      "bottleneck": "Lean states one separation: two diagonal states with the same weights have the same plus/minus expectation at zero coherence and different ones at nonzero coherence c (qm020_thm7_representation_capacity). The capacity statement about reversible linear dynamics is not formalised.",
+      "status": "COMPUTATIONALLY_CHECKED"
     },
     {
       "node_id": "L1-QM121-LADDER-RUNGS-2-6",

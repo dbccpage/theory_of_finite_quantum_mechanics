@@ -10,9 +10,9 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `PROVED_LEAN`. Evidence gr
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 6
-- cited Lean, Rust or Python symbols found in their in-repo files: 16
-- distinct cited Lean declarations covered by a current replay receipt: 16
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 15
+- distinct cited Lean declarations covered by a current replay receipt: 15
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 1
@@ -20,7 +20,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-- `receipt_names_uncited_module`: a replay receipt names this node for lean4/AdmissionFloor.lean, but the node's lean, rust and source fields do not cite it. A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence).
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -49,7 +49,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/AdmissionFloor.lean](../../../lean4/AdmissionFloor.lean)
 - sha256 (`bytes`): `6974f4c9df701c53aac00d5831e99669b5f2810c7a2e1587763cc6ed1324a717`
-- cited in: receipt dag/research/pfp_batch01_lean_replay.json (AdmissionFloor)
+- cited in: node.lean, receipt dag/research/pfp_batch01_lean_replay.json (AdmissionFloor)
 - replay: `verified`
   - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `AdmissionFloor`): recorded sha256 `6974f4c9df701c53aac00d5831e99669b5f2810c7a2e1587763cc6ed1324a717` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build AdmissionFloor`
@@ -67,21 +67,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `AdmissionFloor.one_point_cut_count` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdmissionFloor.one_point_cut_count` |
 | `AdmissionFloor.pointed_relation_independence` | yes | yes | yes | none | `#print axioms AdmissionFloor.pointed_relation_independence` |
 | `AdmissionFloor.two_point_cut_count` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdmissionFloor.two_point_cut_count` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/DerivationDagQMClosure.lean`
-
-- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
-- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
-- cited in: node.lean
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build DerivationDagQMClosure`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` |
 
 - counts toward the grade: yes
 

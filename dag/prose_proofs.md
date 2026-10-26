@@ -103,47 +103,30 @@ status are not claimed as proved and have no proof section.
 
 ## L1_EMERGENCE
 
-0 of 5 with a prose proof.
+0 of 1 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
 | `L1-FRAMEWORK-KKT-CERT` | PROVED_LEAN | *none yet* |
-| `L1-GS000-EDGEWISE-L1` | PROVED_LEAN | *none yet* |
-| `L1-GS001-GAUGE-L1` | PROVED_LEAN | *none yet* |
-| `L1-QM002-O022A-PHI1-QUOTIENT` | PROVED_LEAN | *none yet* |
-| `L1-WDP-CH08-C01-REPLICA-L1` | PROVED_LEAN | *none yet* |
 
 ## L1_TO_L2
 
-0 of 16 with a prose proof.
+0 of 3 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `L1-DENSITY-LIFT-SIGNED-SQRT-PUB009` | PROVED_LEAN | *none yet* |
-| `L1-OPERATOR-LIFT-TRACE-EMBED-013` | PROVED_LEAN | *none yet* |
-| `L1-QM003-C17-COMPOSABLE-FACTORIZATION` | PROVED_LEAN | *none yet* |
-| `L1-QM020-C10-BRANCH-LOCALIZATION` | PROVED_LEAN | *none yet* |
 | `L1-QM020-THM1-DIRECT-NORMALIZATION` | PROVED_LEAN | *none yet* |
 | `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT` | PROVED_LEAN | *none yet* |
-| `L1-QM020-THM3-ROW-SPARSITY` | PROVED_LEAN | *none yet* |
-| `L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY` | PROVED_LEAN | *none yet* |
-| `L1-QM020-THM5-PHASE-AVERAGED-SHADOW` | PROVED_LEAN | *none yet* |
-| `L1-QM020-THM6-P1-SCOPE-FENCE` | PROVED_LEAN | *none yet* |
-| `L1-QM020-THM7-REPRESENTATION-CAPACITY` | PROVED_LEAN | *none yet* |
-| `L1-QM121-LADDER-RUNGS-2-6` | PROVED_LEAN | *none yet* |
-| `L1-QM122-BORN-PAIRING-NONUNIQUE` | PROVED_LEAN | *none yet* |
-| `L1-QM122-CIRCLE-SELECTOR-BOUNDARY` | PROVED_LEAN | *none yet* |
-| `L1-QM122-LEFTOVER-MNC-NOT-RECOVERED` | PROVED_LEAN | *none yet* |
 | `L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE` | PROVED_LEAN | *none yet* |
 
 ## FINITE_QM_CORE
 
-18 of 18 with a prose proof.
+17 of 17 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
 | `FQ-BELL-CLASSICAL-JOINT-EXTENSION` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 3.1 A common joint law bounds CHSH by 2](../papers/core/finite_quantum_mechanics_proofs.md#31-a-common-joint-law-bounds-chsh-by-2) |
-| `FQ-BELL-RATIONAL-VIOLATION-14-5` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 3.2 A rational quantum model with $S=14/5$](../papers/core/finite_quantum_mechanics_proofs.md#32-a-rational-quantum-model-with-s145) |
+| `FQ-BELL-RATIONAL-VIOLATION-14-5` | COMPUTATIONALLY_CHECKED | [finite_quantum_mechanics_proofs: 3.2 A rational quantum model with $S=14/5$](../papers/core/finite_quantum_mechanics_proofs.md#32-a-rational-quantum-model-with-s145) |
 | `FQ-BORN-NORMALIZATION-REDUNDANCY` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.5 Normalization is redundant after the ray quotient](../papers/core/finite_quantum_mechanics_proofs.md#15-normalization-is-redundant-after-the-ray-quotient) |
 | `FQ-CABELLO-NO-INTEGER-FRAME` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 2.4 No integer frame function on the Cabello rays](../papers/core/finite_quantum_mechanics_proofs.md#24-no-integer-frame-function-on-the-cabello-rays) |
 | `FQ-CONTEXTUALITY-CECH-F2` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 3.4 Contextuality as a degree-one obstruction over $\mathbb F_2$](../papers/core/finite_quantum_mechanics_proofs.md#34-contextuality-as-a-degree-one-obstruction-over-mathbb-f_2) |
@@ -151,51 +134,45 @@ status are not claimed as proved and have no proof section.
 | `FQ-ENTROPY-DICHOTOMY-BAKER` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 5.1 Purity and transcendence of von Neumann entropy](../papers/core/finite_quantum_mechanics_proofs.md#51-purity-and-transcendence-of-von-neumann-entropy) |
 | `FQ-GLEASON-D2-RATIONAL-PLANE-OBSTRUCTION` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 2.3 Gleason fails on the rational plane](../papers/core/finite_quantum_mechanics_proofs.md#23-gleason-fails-on-the-rational-plane) |
 | `FQ-INTERFERENCE-NONDESCENT` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.3 Interference does not descend to the phase-blind quotient](../papers/core/finite_quantum_mechanics_proofs.md#13-interference-does-not-descend-to-the-phase-blind-quotient) |
-| `FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.4 Which linear maps descend to populations](../papers/core/finite_quantum_mechanics_proofs.md#14-which-linear-maps-descend-to-populations) |
+| `FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED` | COMPUTATIONALLY_CHECKED | [finite_quantum_mechanics_proofs: 1.4 Which linear maps descend to populations](../papers/core/finite_quantum_mechanics_proofs.md#14-which-linear-maps-descend-to-populations) |
 | `FQ-PHASE-FIBER-QUOTIENT` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.2 The phase-blind fibre](../papers/core/finite_quantum_mechanics_proofs.md#12-the-phase-blind-fibre) |
-| `FQ-POWER-RULE-P2-SELECTION` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 2.2 The power rule on a Pythagorean context selects $p=2$](../papers/core/finite_quantum_mechanics_proofs.md#22-the-power-rule-on-a-pythagorean-context-selects-p2) |
+| `FQ-POWER-RULE-P2-SELECTION` | COMPUTATIONALLY_CHECKED | [finite_quantum_mechanics_proofs: 2.2 The power rule on a Pythagorean context selects $p=2$](../papers/core/finite_quantum_mechanics_proofs.md#22-the-power-rule-on-a-pythagorean-context-selects-p2) |
 | `FQ-PRIMDIFF-QUOTIENT-KERNEL` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.1 The quotient of a primitive difference](../papers/core/finite_quantum_mechanics_proofs.md#11-the-quotient-of-a-primitive-difference) |
-| `FQ-SORKIN-READOUT-CLASS-QM208` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 2.1 The Sorkin term of a polynomial readout](../papers/core/finite_quantum_mechanics_proofs.md#21-the-sorkin-term-of-a-polynomial-readout) |
-| `FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 2.5 The trace norm on trace-zero differences](../papers/core/finite_quantum_mechanics_proofs.md#25-the-trace-norm-on-trace-zero-differences) |
-| `FQ-TSIRELSON-SOS-Q-SQRT2` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 3.3 Tsirelson's bound and its attainment over $\mathbb Q(\sqrt2)$](../papers/core/finite_quantum_mechanics_proofs.md#33-tsirelsons-bound-and-its-attainment-over-mathbb-qsqrt2) |
+| `FQ-SORKIN-READOUT-CLASS-QM208` | COMPUTATIONALLY_CHECKED | [finite_quantum_mechanics_proofs: 2.1 The Sorkin term of a polynomial readout](../papers/core/finite_quantum_mechanics_proofs.md#21-the-sorkin-term-of-a-polynomial-readout) |
+| `FQ-TSIRELSON-SOS-Q-SQRT2` | COMPUTATIONALLY_CHECKED | [finite_quantum_mechanics_proofs: 3.3 Tsirelson's bound and its attainment over $\mathbb Q(\sqrt2)$](../papers/core/finite_quantum_mechanics_proofs.md#33-tsirelsons-bound-and-its-attainment-over-mathbb-qsqrt2) |
 | `GP-DROP-ONE-CENSUS` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 7. Three supplied structures that the Gaussian carrier lacks](../papers/core/finite_quantum_mechanics_proofs.md#7-three-supplied-structures-that-the-gaussian-carrier-lacks) |
 | `GP-FIN-GAUSS-MATRIX-ALGEBRA` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.6 Linear maps on Gaussian report vectors are Gaussian matrices](../papers/core/finite_quantum_mechanics_proofs.md#16-linear-maps-on-gaussian-report-vectors-are-gaussian-matrices) |
 
 ## FINITE_QM_STRUCTURE
 
-25 of 30 with a prose proof.
+22 of 25 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
 | `DS-QM060-SUPERPOSITION-QUOTIENT-FIBER` | PROVED_LEAN | [finite_quantum_foundations_proofs: 1.1 Phase lies in the fibre and returns as a cross term](../papers/foundations/finite_quantum_foundations_proofs.md#11-phase-lies-in-the-fibre-and-returns-as-a-cross-term) |
 | `DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE` | PROVED_LEAN | [finite_quantum_foundations_proofs: 1.2 Total weight does not compute the interfered weight](../papers/foundations/finite_quantum_foundations_proofs.md#12-total-weight-does-not-compute-the-interfered-weight) |
-| `DS-QM063-HOLONOMY-COHERENT-INTENSITY` | PROVED_LEAN | [finite_quantum_foundations_proofs: 1.3 Holonomy and two-path intensity](../papers/foundations/finite_quantum_foundations_proofs.md#13-holonomy-and-two-path-intensity) |
-| `DS-QM064-074-083-ANNEX-REDIRECT-ROWS` | PROVED_LEAN | [finite_quantum_foundations_proofs: 1.4 Gauge invariance of triangle holonomy, and two annex identities](../papers/foundations/finite_quantum_foundations_proofs.md#14-gauge-invariance-of-triangle-holonomy-and-two-annex-identities) |
-| `DS-QM070-PRODUCT-NONFACTORIZATION` | PROVED_LEAN | [finite_quantum_foundations_proofs: 2.1 Product tables](../papers/foundations/finite_quantum_foundations_proofs.md#21-product-tables) |
+| `DS-QM063-HOLONOMY-COHERENT-INTENSITY` | COMPUTATIONALLY_CHECKED | [finite_quantum_foundations_proofs: 1.3 Holonomy and two-path intensity](../papers/foundations/finite_quantum_foundations_proofs.md#13-holonomy-and-two-path-intensity) |
+| `DS-QM064-074-083-ANNEX-REDIRECT-ROWS` | COMPUTATIONALLY_CHECKED | [finite_quantum_foundations_proofs: 1.4 Gauge invariance of triangle holonomy, and two annex identities](../papers/foundations/finite_quantum_foundations_proofs.md#14-gauge-invariance-of-triangle-holonomy-and-two-annex-identities) |
+| `DS-QM070-PRODUCT-NONFACTORIZATION` | COMPUTATIONALLY_CHECKED | [finite_quantum_foundations_proofs: 2.1 Product tables](../papers/foundations/finite_quantum_foundations_proofs.md#21-product-tables) |
 | `DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS` | PROVED_LEAN | [finite_quantum_foundations_proofs: 2.2 Entanglement witnesses are sound](../papers/foundations/finite_quantum_foundations_proofs.md#22-entanglement-witnesses-are-sound) |
-| `DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED` | PROVED_LEAN | [finite_quantum_foundations_proofs: 1.5 Populations do not see coherence](../papers/foundations/finite_quantum_foundations_proofs.md#15-populations-do-not-see-coherence) |
-| `DS-QM073-BELL-THEOREM-OBSTRUCTED` | PROVED_LEAN | *none yet* |
-| `DS-QM073-FINITE-CHSH-AND-PR-BOX` | PROVED_LEAN | [finite_quantum_foundations_proofs: 2.3 Bare tables, CHSH and the PR box](../papers/foundations/finite_quantum_foundations_proofs.md#23-bare-tables-chsh-and-the-pr-box) |
-| `DS-QM074-NO-SIGNALING-MARGINAL` | PROVED_LEAN | [finite_quantum_foundations_proofs: 2.4 Local operations do not signal](../papers/foundations/finite_quantum_foundations_proofs.md#24-local-operations-do-not-signal) |
-| `DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION` | PROVED_LEAN | [finite_quantum_foundations_proofs: 3.2 Half trace norm on diagonal states, and its scale](../papers/foundations/finite_quantum_foundations_proofs.md#32-half-trace-norm-on-diagonal-states-and-its-scale) |
-| `DS-QM080-IMPORT-FREE-TRACE-NORM-CORE` | PROVED_LEAN | [finite_quantum_foundations_proofs: 3.1 The $\ell^1$ core of trace distance](../papers/foundations/finite_quantum_foundations_proofs.md#31-the-ell1-core-of-trace-distance) |
-| `DS-QM081-CPTP-MONOTONE-NOT-SELECTING` | PROVED_LEAN | [finite_quantum_foundations_proofs: 3.2 Half trace norm on diagonal states, and its scale](../papers/foundations/finite_quantum_foundations_proofs.md#32-half-trace-norm-on-diagonal-states-and-its-scale) |
+| `DS-QM073-FINITE-CHSH-AND-PR-BOX` | COMPUTATIONALLY_CHECKED | [finite_quantum_foundations_proofs: 2.3 Bare tables, CHSH and the PR box](../papers/foundations/finite_quantum_foundations_proofs.md#23-bare-tables-chsh-and-the-pr-box) |
+| `DS-QM074-NO-SIGNALING-MARGINAL` | COMPUTATIONALLY_CHECKED | [finite_quantum_foundations_proofs: 2.4 Local operations do not signal](../papers/foundations/finite_quantum_foundations_proofs.md#24-local-operations-do-not-signal) |
+| `DS-QM080-IMPORT-FREE-TRACE-NORM-CORE` | COMPUTATIONALLY_CHECKED | [finite_quantum_foundations_proofs: 3.1 The $\ell^1$ core of trace distance](../papers/foundations/finite_quantum_foundations_proofs.md#31-the-ell1-core-of-trace-distance) |
+| `DS-QM081-CPTP-MONOTONE-NOT-SELECTING` | PROVED_LEAN | *none yet* |
 | `DS-QM081-STOCHASTIC-L1-CONTRACTION` | PROVED_LEAN | [finite_quantum_foundations_proofs: 3.3 Stochastic matrices contract $\ell^1$](../papers/foundations/finite_quantum_foundations_proofs.md#33-stochastic-matrices-contract-ell1) |
-| `DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL` | PROVED_LEAN | [finite_quantum_foundations_proofs: 3.4 The population shadow of a channel](../papers/foundations/finite_quantum_foundations_proofs.md#34-the-population-shadow-of-a-channel) |
+| `DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL` | COMPUTATIONALLY_CHECKED | [finite_quantum_foundations_proofs: 3.4 The population shadow of a channel](../papers/foundations/finite_quantum_foundations_proofs.md#34-the-population-shadow-of-a-channel) |
 | `DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY` | PROVED_LEAN | *none yet* |
-| `DS-QM090-093-QM-UNIQUENESS-TIER3` | PROVED_LEAN | *none yet* |
-| `DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO` | PROVED_LEAN | [finite_quantum_foundations_proofs: 3.5 Cochains on quantum packets](../papers/foundations/finite_quantum_foundations_proofs.md#35-cochains-on-quantum-packets) |
-| `DS-QM094-EVERETT-RELATIVE-STATE-CONTACT` | PROVED_LEAN | [finite_quantum_foundations_proofs: 3.6 Relative states with orthogonal records](../papers/foundations/finite_quantum_foundations_proofs.md#36-relative-states-with-orthogonal-records) |
-| `DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE` | PROVED_LEAN | *none yet* |
-| `DS-QM102-SYNDROME-CAPACITY-BOUND` | PROVED_LEAN | [finite_quantum_foundations_proofs: 4.1 Syndromes and the correctable weight](../papers/foundations/finite_quantum_foundations_proofs.md#41-syndromes-and-the-correctable-weight) |
-| `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` | PROVED_LEAN | [finite_quantum_foundations_proofs: 4.2 Kinematical shadows of lattice gauge theory and Regge calculus](../papers/foundations/finite_quantum_foundations_proofs.md#42-kinematical-shadows-of-lattice-gauge-theory-and-regge-calculus) |
+| `DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO` | COMPUTATIONALLY_CHECKED | [finite_quantum_foundations_proofs: 3.5 Cochains on quantum packets](../papers/foundations/finite_quantum_foundations_proofs.md#35-cochains-on-quantum-packets) |
+| `DS-QM094-EVERETT-RELATIVE-STATE-CONTACT` | COMPUTATIONALLY_CHECKED | [finite_quantum_foundations_proofs: 3.6 Relative states with orthogonal records](../papers/foundations/finite_quantum_foundations_proofs.md#36-relative-states-with-orthogonal-records) |
+| `DS-QM102-SYNDROME-CAPACITY-BOUND` | COMPUTATIONALLY_CHECKED | [finite_quantum_foundations_proofs: 4.1 Syndromes and the correctable weight](../papers/foundations/finite_quantum_foundations_proofs.md#41-syndromes-and-the-correctable-weight) |
+| `DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS` | COMPUTATIONALLY_CHECKED | [finite_quantum_foundations_proofs: 4.2 Kinematical shadows of lattice gauge theory and Regge calculus](../papers/foundations/finite_quantum_foundations_proofs.md#42-kinematical-shadows-of-lattice-gauge-theory-and-regge-calculus) |
 | `DS-QM120-MERMIN-PERES-F2-OBSTRUCTION` | PROVED_LEAN | [finite_quantum_foundations_proofs: 2.5 Mermin–Peres: locally satisfiable, globally not](../papers/foundations/finite_quantum_foundations_proofs.md#25-merminperes-locally-satisfiable-globally-not) |
 | `DS-QM212-MAJORANA-PROBLEM` | PROVED_LEAN | [finite_quantum_foundations_proofs: 4.3 Majorana operators](../papers/foundations/finite_quantum_foundations_proofs.md#43-majorana-operators) |
-| `FQ-BUSCH-EFFECT-FRAME` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 8.4 An informationally complete four-outcome POVM, and positivity at real places](../papers/core/finite_quantum_mechanics_proofs.md#84-an-informationally-complete-four-outcome-povm-and-positivity-at-real-places) |
+| `FQ-BUSCH-EFFECT-FRAME` | COMPUTATIONALLY_CHECKED | [finite_quantum_mechanics_proofs: 8.4 An informationally complete four-outcome POVM, and positivity at real places](../papers/core/finite_quantum_mechanics_proofs.md#84-an-informationally-complete-four-outcome-povm-and-positivity-at-real-places) |
 | `FQ-FIVE-IMPORT-PROXY-SEPARATION` | PROVED_LEAN | *none yet* |
-| `FQ-QM207-231-FINITE-MAP-CONTROLS` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 8.5 The helium variational bound](../papers/core/finite_quantum_mechanics_proofs.md#85-the-helium-variational-bound) |
+| `FQ-QM207-231-FINITE-MAP-CONTROLS` | COMPUTATIONALLY_CHECKED | [finite_quantum_mechanics_proofs: 8.5 The helium variational bound](../papers/core/finite_quantum_mechanics_proofs.md#85-the-helium-variational-bound) |
 | `FQ-TENSOR-LU-RIVAL-EXCLUSION` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 8.3 Tensor product versus a bilinear rival](../papers/core/finite_quantum_mechanics_proofs.md#83-tensor-product-versus-a-bilinear-rival) |
-| `FQ-U1-TRANSPORT-N-TORSION` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 8.2 $\mu_N$-valued gauge fields on a finite graph](../papers/core/finite_quantum_mechanics_proofs.md#82-mu_n-valued-gauge-fields-on-a-finite-graph) |
+| `FQ-U1-TRANSPORT-N-TORSION` | COMPUTATIONALLY_CHECKED | [finite_quantum_mechanics_proofs: 8.2 $\mu_N$-valued gauge fields on a finite graph](../papers/core/finite_quantum_mechanics_proofs.md#82-mu_n-valued-gauge-fields-on-a-finite-graph) |
 | `FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 8.1 The clock-and-shift representation is irreducible](../papers/core/finite_quantum_mechanics_proofs.md#81-the-clock-and-shift-representation-is-irreducible) |
 
 ## FINITE_QM_DYNAMICS
@@ -205,19 +182,17 @@ status are not claimed as proved and have no proof section.
 | Node | Status | Prose proof |
 |---|---|---|
 | `DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 4.4 The off-diagonal term of a global weight](../papers/core/finite_quantum_mechanics_proofs.md#44-the-off-diagonal-term-of-a-global-weight) |
-| `FQ-COMMUTATOR-TRACE-OBSTRUCTION` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 4.1 No finite-dimensional canonical commutation relation](../papers/core/finite_quantum_mechanics_proofs.md#41-no-finite-dimensional-canonical-commutation-relation) |
-| `FQ-DISCRETE-DYNAMICS-DICHOTOMY` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 4.2 The Pythagorean rotation has infinite order](../papers/core/finite_quantum_mechanics_proofs.md#42-the-pythagorean-rotation-has-infinite-order) |
-| `FQ-DISCRETE-TIME-STONE-AMBIGUITY` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 4.3 Discrete time does not determine a generator](../papers/core/finite_quantum_mechanics_proofs.md#43-discrete-time-does-not-determine-a-generator) |
-| `FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 4.5 Branch counting reproduces only rational weights](../papers/core/finite_quantum_mechanics_proofs.md#45-branch-counting-reproduces-only-rational-weights) |
+| `FQ-COMMUTATOR-TRACE-OBSTRUCTION` | PROVED_PROSE | [finite_quantum_mechanics_proofs: 4.1 No finite-dimensional canonical commutation relation](../papers/core/finite_quantum_mechanics_proofs.md#41-no-finite-dimensional-canonical-commutation-relation) |
+| `FQ-DISCRETE-DYNAMICS-DICHOTOMY` | COMPUTATIONALLY_CHECKED | [finite_quantum_mechanics_proofs: 4.2 The Pythagorean rotation has infinite order](../papers/core/finite_quantum_mechanics_proofs.md#42-the-pythagorean-rotation-has-infinite-order) |
+| `FQ-DISCRETE-TIME-STONE-AMBIGUITY` | COMPUTATIONALLY_CHECKED | [finite_quantum_mechanics_proofs: 4.3 Discrete time does not determine a generator](../papers/core/finite_quantum_mechanics_proofs.md#43-discrete-time-does-not-determine-a-generator) |
+| `FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY` | COMPUTATIONALLY_CHECKED | [finite_quantum_mechanics_proofs: 4.5 Branch counting reproduces only rational weights](../papers/core/finite_quantum_mechanics_proofs.md#45-branch-counting-reproduces-only-rational-weights) |
 
 ## IMPLEMENTATION
 
-0 of 6 with a prose proof.
+0 of 4 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `FQ-IMPL-REALIFICATION-ADAPTER` | PROVED_LEAN | *none yet* |
-| `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` | PROVED_LEAN | *none yet* |
 | `IMPL-FSP-SWITCHING-NORMAL-FORM-NF002` | PROVED_LEAN | *none yet* |
 | `IMPL-LGGR-FINITE-RESULTS-LEAN` | PROVED_LEAN | *none yet* |
 | `IMPL-THYMUS-SCREENING-SOUNDNESS` | PROVED_LEAN | *none yet* |
