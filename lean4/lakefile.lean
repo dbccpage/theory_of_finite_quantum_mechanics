@@ -1436,3 +1436,6 @@ lean_lib CampaignGpImportCptpClass where
 
 lean_lib CampaignGpImportContinuousTime where
   roots := #[`CampaignGpImportContinuousTime]
+
+lean_lib CampaignGpImportContinuumHilbert where
+  roots := #[`CampaignGpImportContinuumHilbert]
