@@ -1424,3 +1424,6 @@ lean_lib CampaignReggeFiniteAction where
 
 lean_lib CampaignConstraintKernelProjector where
   roots := #[`CampaignConstraintKernelProjector]
+
+lean_lib CampaignMajImportCosetWeight where
+  roots := #[`CampaignMajImportCosetWeight]

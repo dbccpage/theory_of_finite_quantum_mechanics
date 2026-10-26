@@ -10668,7 +10668,7 @@ For all sizes the torus distance is min(rows, cols), the cylinder distance is ro
 
 Obligation: Prove the distance formulas (e.g. by a cut argument on the dual grid); the source gives a one-sentence traversal argument for additivity only.
 
-### TFQ-1157 Coset-weight decoding is NP-hard for general binary codes
+### TFQ-1157 One 2 by 4 parity-check coset has minimum weight 1
 
 - UUID: `11ab146a-92b3-575f-b7b1-e2a119aa7eaf`
 - Parent: `TFQ-1140`
@@ -10676,9 +10676,9 @@ Obligation: Prove the distance formulas (e.g. by a cut argument on the dual grid
 - DAG node: `MAJ-IMPORT-COSET-WEIGHT-NP-HARD`
 - Paper: [derivation](derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md)
 
-Minimum-weight coset decoding of a binary linear code given by its matrix is NP-hard (Berlekamp, McEliece and van Tilborg 1978).
+For the 2 by 4 parity-check matrix over the two-element field with rows (1, 1, 0, 0) and (0, 1, 1, 1), among the 16 length-4 vectors labeled 0 through 15 with the least significant bit as coordinate 0, the vectors with syndrome (1, 0) are the labels 1, 6, 10 and 13. Their Hamming weights are 1, 2, 2 and 3, so the minimum weight is 1, and the single weight-1 vector in that list is label 1 with coordinates (1, 0, 0, 0). The vectors with syndrome (0, 0) are the labels 0, 7, 11 and 12.
 
-Obligation: Literature result; no reduction is formalized or replayed here.
+Obligation: Berlekamp, McEliece and van Tilborg 1978 remains an imported literature claim. No reduction is formalized. The 2 by 4 enumeration is one matrix and one syndrome and does not discharge hardness for a general binary matrix.
 
 ### TFQ-1158 Computing Phi1 is coset-leader decoding of im d0
 
