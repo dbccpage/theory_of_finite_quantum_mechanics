@@ -45,7 +45,7 @@ The Lean bianchi_loop is h1 h2 h2^{-1} h1^{-1} = I in the 2x2 boost plane, true 
 - `code/python/src/qm/ravera_dfm.py::verify_pillar9_cartan_regge_lorentz_tetrad_dfm`
 
 ### Cited by the source, not in this checkout
-- `external:the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/ravera_dfm_finite_to_continuum.rs (implementation behind the local re-export shim code/rust/src/qm/campaigns/ravera_dfm.rs; not in this checkout)`
+- `external:upstream/omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/ravera_dfm_finite_to_continuum.rs (implementation behind the local re-export shim code/rust/src/qm/campaigns/ravera_dfm.rs; not in this checkout)`
 
 ---
 

@@ -5,7 +5,7 @@ Difference Programme — From Finite Distinction to Witnessed Measurement*.
 The reference edition is the author-supplied working draft, version 2.4.0,
 dated 2026-10-09. The [edition record](../manifests/monograph_reference.json)
 binds the exact manuscript bytes used for this route. The
-[immutable reference edition](https://github.com/dbccpage/the_symbol_game/blob/a25f42a7997ba8be6b982eb21ac3365c32e98f17/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md)
+immutable reference edition
 is retrieved from commit `a25f42a7997ba8be6b982eb21ac3365c32e98f17`. Its Git blob bytes
 match the SHA-256 in the edition record.
 

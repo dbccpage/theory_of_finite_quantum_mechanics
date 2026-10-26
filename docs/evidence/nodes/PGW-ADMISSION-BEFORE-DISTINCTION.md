@@ -60,7 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md](../../../dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md)
-- sha256 (`lf-normalised`): `c52c04485174aad9e13bda04b1b984a6f9c31f9dcab7d9514438842a1c1189f6`
+- sha256 (`lf-normalised`): `d5da4ab360772a16e7ebed730c3d3a9551ff173ceccc1014c29ed1eb0b9e41ae`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0428
 - counts toward the grade: no
@@ -90,7 +90,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py::single_admission_report`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py::single_admission_report`
 
 ## Absences recorded by the TFQ records
 

@@ -140,7 +140,7 @@ def query_openrouter(
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://github.com/dbccpage/the_symbol_game",
+        "HTTP-Referer": "private-upstream",
         "X-Title": "Symbol Game Blind Cluster Recovery",
     }
 

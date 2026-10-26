@@ -62,7 +62,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0477_go_reach_ceiling.md`
 
 - file: [dag/derivations/02_genesis/tfq_0477_go_reach_ceiling.md](../../../dag/derivations/02_genesis/tfq_0477_go_reach_ceiling.md)
-- sha256 (`lf-normalised`): `2006a89e8a795ee247b2b19ab0207e06f77491d144a77f32ce7d436a5b4a95e4`
+- sha256 (`lf-normalised`): `e7ca1f937d261a1e64f0b4c30d5e2234c5fa2236ea7e637c8baca9413714edc8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0477
 - counts toward the grade: no
@@ -85,7 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/xry/explore.py::explore`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/xry/explore.py::explore`
 
 ## Absences recorded by the TFQ records
 

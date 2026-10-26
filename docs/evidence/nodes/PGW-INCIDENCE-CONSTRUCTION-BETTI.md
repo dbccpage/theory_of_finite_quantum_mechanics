@@ -70,7 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0460_incidence_construction_betti.md`
 
 - file: [dag/derivations/02_genesis/tfq_0460_incidence_construction_betti.md](../../../dag/derivations/02_genesis/tfq_0460_incidence_construction_betti.md)
-- sha256 (`lf-normalised`): `7c82bc67c3c89e4d585d7c22b7909abc31818274b3290889847221305af780f1`
+- sha256 (`lf-normalised`): `bc50401b9256554eafccda01928e502d71d354efe59dff15f7a89c8f869f9949`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0460
 - counts toward the grade: no
@@ -93,8 +93,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::cycle_construction`
-- `external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::homology`
+- `external:upstream/omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::cycle_construction`
+- `external:upstream/omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::homology`
 
 ## Absences recorded by the TFQ records
 

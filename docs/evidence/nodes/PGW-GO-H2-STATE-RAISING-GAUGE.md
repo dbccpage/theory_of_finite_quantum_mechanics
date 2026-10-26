@@ -93,7 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0484_go_h2_state_raising_gauge.md`
 
 - file: [dag/derivations/02_genesis/tfq_0484_go_h2_state_raising_gauge.md](../../../dag/derivations/02_genesis/tfq_0484_go_h2_state_raising_gauge.md)
-- sha256 (`lf-normalised`): `bc41539e0e5bc8f32012d0e9b153afe08c4554726a0f741f8da1f6348aed2c8a`
+- sha256 (`lf-normalised`): `051f02d309be6af34689e016f9206f199098f247e065b80e76e4ba60b44c0ebe`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0484
 - counts toward the grade: no
@@ -109,8 +109,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentythird/state.py::around`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentythird/state.py::raise_term`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentythird/state.py::around`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentythird/state.py::raise_term`
 
 ## Absences recorded by the TFQ records
 
