@@ -2,7 +2,7 @@ Status: AI-drafted, awaiting human review.
 
 # OPS-LEAN-GAP
 
-Node status stays OPEN. The standing text is one box of four Boolean parity constraints. Equivalences for the noncontextual fraction, Vorob'ev's theorem, and a link to a Rust scenario stay outside this note.
+The original list of OPS Lean obligations remains OPEN. This separate four-variable parity box does not replace those targets or establish the noncontextual-fraction equivalences, Vorob'ev theorem or a Rust-scenario refinement.
 
 ## The four constraints
 
@@ -19,11 +19,15 @@ Each variable occurs in exactly two of the left-hand sides, so the exclusive-or 
 
 ## The census
 
-There are 2 * 2 * 2 * 2 = 16 assignments. None of them meets all four constraints.
+The independent checker enumerates all four-variable Boolean assignments and counts 16. The Lean declaration `sixteen` proves the arithmetic identity 2 * 2 * 2 * 2 = 16; it does not state a type-cardinality theorem. `noAssignment` quantifies over all four Boolean variables and rules out the four constraints simultaneously.
+
+## Independent review controls
+
+Integer sums modulo two provide a separate route to each Boolean exclusive-or. The checker computes its assignment count and solution count. As negative controls, each three-constraint subsystem has two solutions, and changing the odd right-hand side to false gives two common solutions. These show that the obstruction depends on the full stated box, rather than an empty or broken search. The printed results are taken from the enumeration and both normal and optimized Python runs use explicit failure checks.
 
 ## What is proved
 
-The exclusive-or identity for the four left-hand sides, the exclusive-or of the four right-hand sides, the refusal of every assignment, and the count 16.
+The exclusive-or identity for the four left-hand sides, the exclusive-or of the four right-hand sides, the refusal of every assignment, and the arithmetic product 2 * 2 * 2 * 2 = 16. The independent enumeration supplies the assignment count.
 
 ## What is assumed
 

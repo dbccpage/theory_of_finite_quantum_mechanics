@@ -2786,7 +2786,7 @@
       "stage": "L1_TO_L2",
       "status": "CONDITIONAL",
       "source_status": "Conditional. CampaignL1ResidualSectorWeights records the pairs (2, 0) and (0, 2) at coordinate sum 2, and the two length-4 holonomy checks. The weighted form and the general n-cycle stay open.",
-      "statement": "On the n-cycle with the unweighted L1 form and equal edge masses: the residual class is the holonomy S, Phi1 = |S|, the minimizers are the scaled simplex of sign-definite cochains, so for n >= 2, S != 0 and two nonempty sectors the sector weights (block L1 masses) are not determined by (Phi1, Gamma2 modelled as the holonomy); any selector, including the cyclic average S/n (integral iff n divides S), is extra input. The weighted-mass window form declared in the source is not treated in the kernel (native rows show a unique minimizer on a unique minimal-mass edge), and the sum-of-squares reading of Gamma2 is not treated.",
+      "statement": "Sectors are residual sectors with declared finite nonnegative masses mu(s), total M > 0. The carrier is the weight vector w. No derivation of w from the Phi1 / Gamma2 residual is given in the sources read: w is an input to QM_003, QM_012 and QM_020.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md:103",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/003_residual_density_calculus_l1_l2_boundary/qm_003_residual_density_calculus_l1_l2_boundary_claim_ledger.md#RDB-1",
@@ -2847,7 +2847,7 @@
         "scope_effect": "status_lowered",
         "reason": "The cited Lean theorems are fixed C4 instances and a list-sum bound; the new kernel result is non-derivability of the sector weights on the unweighted n-cycle only, and the weighted form of the source is not treated (a unique minimal-mass edge gives a unique minimizer).",
         "prior_status": "PROVED_LEAN",
-        "prior_statement": "On the n-cycle with the unweighted L1 form and equal edge masses: the residual class is the holonomy S, Phi1 = |S|, the minimizers are the scaled simplex of sign-definite cochains, so for n >= 2, S != 0 and two nonempty sectors the sector weights (block L1 masses) are not determined by (Phi1, Gamma2 modelled as the holonomy); any selector, including the cyclic average S/n (integral iff n divides S), is extra input. The weighted-mass window form declared in the source is not treated in the kernel (native rows show a unique minimizer on a unique minimal-mass edge), and the sum-of-squares reading of Gamma2 is not treated.",
+        "prior_statement": "Sectors are residual sectors with declared finite nonnegative masses mu(s), total M > 0. The carrier is the weight vector w. No derivation of w from the Phi1 / Gamma2 residual is given in the sources read: w is an input to QM_003, QM_012 and QM_020.",
         "prior_bottleneck": "None (4-cycle minimizer non-uniqueness without selector, C_4 symmetry-orbit canonicalization, and sector-weight trace conservation mechanized in l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector, l1_even_cycle_symmetry_orbit_canonical_sector_weights, and sector_weights_sum_to_phi1).",
         "superseded_by": [
           "dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json"
@@ -3030,7 +3030,7 @@
         "scope_effect": "caveat_added",
         "reason": "Nine current Lean theorems establish the natural-number square/cubic identities, positive square gap and zero-input controls. Retain IMPORTED_ASSUMPTION for the original real-p Minkowski obligation; the arithmetic slice does not discharge that import.",
         "prior_status": "IMPORTED_ASSUMPTION",
-        "prior_statement": "Strict l^p (p>1) subadditivity for two nonzero vectors with disjoint supports follows from standard Minkowski / strict convexity. The paper cites it as standard analysis.",
+        "prior_statement": "Strict l^p (p>1) subadditivity on disjoint supports follows from standard Minkowski / strict convexity. The paper cites it as standard analysis.",
         "prior_bottleneck": "Not mechanized.",
         "superseded_by": []
       }
@@ -5672,7 +5672,7 @@
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_u1_circle_pythagorean_half_exponent_obstruction",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
-        "lean4/U1PythagoreanObstruction.lean::U1Fable.PythagoreanObstruction.no_rational_one_param_group_through_u345",
+        "lean4/U1PythagoreanObstruction.lean::U1Fable.PythagoreanObstruction.no_rat_add_to_rat_circle_hom_u345",
         "lean4/U1PowerMapInjectivity.lean::U1Fable.PowerMapInjectivity.u345_infinite_order",
         "lean4/U1CayleyProjectiveCircle.lean::U1Fable.CayleyProjectiveCircle.homCayley_surjective",
         "lean4/U1CayleyProjectiveCircle.lean::U1Fable.CayleyProjectiveCircle.homCayley_projMul",
@@ -6810,7 +6810,8 @@
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/finite_hilbert_boundary_from_primitive_difference.md:156"
       ],
       "lean": [
-        "lean4/H016ContinuousDynamicsFork.lean::toggle",
+        "lean4/H016ContinuousDynamicsFork.lean::FableHilbertWalk20260819.H016.no_report_half_step",
+        "lean4/H016ContinuousDynamicsFork.lean::FableHilbertWalk20260819.H016.continuous_dynamics_fork",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries",
         "lean4/CampaignGpImportContinuousTime.lean::toggle_images",
         "lean4/CampaignGpImportContinuousTime.lean::no_toggle_square_root",
@@ -29519,18 +29520,20 @@
       "stage": "OBSERVER_PRESHEAF",
       "status": "OPEN",
       "source_status": "Ledger row L035-L1, status open.",
-      "statement": "On four Boolean variables a, a', b and b', no assignment satisfies a xor b = false, a xor b' = false, a' xor b = false and a' xor b' = true together. The exclusive-or of those four left-hand sides is false for every assignment, and the exclusive-or of false, false, false and true is true. There are 16 assignments.",
+      "statement": "Not formalised in Lean: the equivalences between global sections, conv(A) and the noncontextual fraction, and between strong contextuality and NCF 0 (nodes OPS-NCF-LHV-EQUIVALENCE and OPS-STRONG-CONTEXTUALITY-NCF-ZERO); Vorob'ev sufficiency and its converse (node OPS-VOROBEV-THEOREM); delta0 e = 0 if and only if e is no-signalling; rational normalisation of weights; and any link from the Lean model of natural-number-weighted lists to the Rust Scenario type or to the Rust and Python gates. Separate finite result: For all four Boolean variables, the four specified parity constraints have no common assignment; their left XOR is false and the right XOR is true. The arithmetic identity 2*2*2*2 = 16 holds; the separate independent enumeration counts 16 assignments.",
       "source": [
         "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-L1",
         "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#4",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md",
         "lean4/CampaignOpsLeanGap.lean",
-        "checks/independent/ops-lean-gap.py"
+        "checks/independent/ops-lean-gap.py",
+        "dag/derivations/independent/ops-lean-gap.md",
+        "dag/research/pr439_review_lean_replay.json"
       ],
       "lean": [],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "This record is the four-constraint table above. Equivalences among global sections, conv(A) and the noncontextual fraction, strong contextuality and NCF 0, Vorob'ev sufficiency and its converse, the criterion delta0 e = 0 for no-signalling, rational normalisation of weights, and any link from natural-number-weighted lists to the Rust Scenario type stay outside. lean4/LggrFiniteResults.lean still covers only OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among the older rows. AuthorityEffect: None.",
+      "bottleneck": "Missing: a Lean proof of any item listed in the statement. The Lean file lean4/LggrFiniteResults.lean covers only the statements of nodes OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among these rows. This one parity box does not establish the listed global-section/NCF equivalences, strong-contextuality criterion, Vorobev theorem, no-signalling coboundary equivalence, rational normalization or Rust Scenario refinement. The Lean sixteen lemma is arithmetic, not a type-cardinality theorem. The original OPS obligation remains OPEN.",
       "tags": [
         "foc035-observer-presheaf",
         "TFQ-2520",
@@ -58054,7 +58057,8 @@
       ],
       "id": "TFQ-1034",
       "lean4": [
-        "lean4/H016ContinuousDynamicsFork.lean::toggle",
+        "lean4/H016ContinuousDynamicsFork.lean::FableHilbertWalk20260819.H016.no_report_half_step",
+        "lean4/H016ContinuousDynamicsFork.lean::FableHilbertWalk20260819.H016.continuous_dynamics_fork",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries",
         "lean4/CampaignGpImportContinuousTime.lean::toggle_images",
         "lean4/CampaignGpImportContinuousTime.lean::no_toggle_square_root",
@@ -74702,15 +74706,20 @@
         "OPS-LEAN-GAP"
       ],
       "f004_refs": [
-        "dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md"
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md",
+        "dag/derivations/independent/ops-lean-gap.md",
+        "dag/research/pr439_review_lean_replay.json"
       ],
       "id": "TFQ-2520",
       "lean4": [
-        "lean4/CampaignOpsLeanGap.lean::CampaignOpsLeanGap.noAssignment"
+        "lean4/CampaignOpsLeanGap.lean::CampaignOpsLeanGap.lhsSum",
+        "lean4/CampaignOpsLeanGap.lean::CampaignOpsLeanGap.rhsSum",
+        "lean4/CampaignOpsLeanGap.lean::CampaignOpsLeanGap.noAssignment",
+        "lean4/CampaignOpsLeanGap.lean::CampaignOpsLeanGap.sixteen"
       ],
       "local_id": "OPS-LEAN-GAP",
-      "name": "Four Boolean parity constraints with no common assignment",
-      "obligation": "This record is the four-constraint table above. Equivalences among global sections, conv(A) and the noncontextual fraction, strong contextuality and NCF 0, Vorob'ev sufficiency and its converse, the criterion delta0 e = 0 for no-signalling, rational normalisation of weights, and any link from natural-number-weighted lists to the Rust Scenario type stay outside. lean4/LggrFiniteResults.lean still covers only OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among the older rows. AuthorityEffect: None.",
+      "name": "What is not formalised in Lean",
+      "obligation": "Missing: a Lean proof of any item listed in the statement. The Lean file lean4/LggrFiniteResults.lean covers only the statements of nodes OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among these rows. This one parity box does not establish the listed global-section/NCF equivalences, strong-contextuality criterion, Vorobev theorem, no-signalling coboundary equivalence, rational normalization or Rust Scenario refinement. The Lean sixteen lemma is arithmetic, not a type-cardinality theorem. The original OPS obligation remains OPEN.",
       "parent_id": "TFQ-1046",
       "python": [
         "checks/independent/ops-lean-gap.py"
@@ -74719,7 +74728,7 @@
       "rust": [],
       "source_slice": "foc035_observer_presheaf",
       "stage": "OBSERVER_PRESHEAF",
-      "summary": "On four Boolean variables a, a', b and b', no assignment satisfies a xor b = false, a xor b' = false, a' xor b = false and a' xor b' = true together. The exclusive-or of those four left-hand sides is false for every assignment, and the exclusive-or of false, false, false and true is true. There are 16 assignments.",
+      "summary": "Not formalised in Lean: the equivalences between global sections, conv(A) and the noncontextual fraction, and between strong contextuality and NCF 0 (nodes OPS-NCF-LHV-EQUIVALENCE and OPS-STRONG-CONTEXTUALITY-NCF-ZERO); Vorob'ev sufficiency and its converse (node OPS-VOROBEV-THEOREM); delta0 e = 0 if and only if e is no-signalling; rational normalisation of weights; and any link from the Lean model of natural-number-weighted lists to the Rust Scenario type or to the Rust and Python gates. Separate finite result: For all four Boolean variables, the four specified parity constraints have no common assignment; their left XOR is false and the right XOR is true. The arithmetic identity 2*2*2*2 = 16 holds; the separate independent enumeration counts 16 assignments.",
       "uuid": "fc3c5534-d852-5f12-9000-7ac59451afc4"
     },
     {

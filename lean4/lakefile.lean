@@ -1487,5 +1487,6 @@ lean_lib «CampaignFiniteGroupPachner» where
   srcDir := "."
   roots := #[`CampaignFiniteGroupPachner]
 
+-- Reviewed finite campaign: OPS-LEAN-GAP. Non-default target.
 lean_lib CampaignOpsLeanGap where
   roots := #[`CampaignOpsLeanGap]

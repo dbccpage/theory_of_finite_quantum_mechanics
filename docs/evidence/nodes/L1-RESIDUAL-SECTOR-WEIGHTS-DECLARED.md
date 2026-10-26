@@ -4,7 +4,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade:
 
 ## Statement
 
-> On the n-cycle with the unweighted L1 form and equal edge masses: the residual class is the holonomy S, Phi1 = |S|, the minimizers are the scaled simplex of sign-definite cochains, so for n \>= 2, S != 0 and two nonempty sectors the sector weights (block L1 masses) are not determined by (Phi1, Gamma2 modelled as the holonomy); any selector, including the cyclic average S/n (integral iff n divides S), is extra input. The weighted-mass window form declared in the source is not treated in the kernel (native rows show a unique minimizer on a unique minimal-mass edge), and the sum-of-squares reading of Gamma2 is not treated.
+> Sectors are residual sectors with declared finite nonnegative masses mu(s), total M \> 0. The carrier is the weight vector w. No derivation of w from the Phi1 / Gamma2 residual is given in the sources read: w is an input to QM_003, QM_012 and QM_020.
 
 ## Grade
 

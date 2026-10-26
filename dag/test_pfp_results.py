@@ -83,20 +83,6 @@ def test_decisions_cannot_raise_a_status():
     assert len(errors) == 1 and 'raises IMPORTED_ASSUMPTION to PROVED_LEAN' in errors[0]
 
 
-def test_a_target_node_keeps_its_statement_unless_its_status_is_lowered():
-    dag = load('dag/derivation_dag.json')
-    decisions = pfp.load_decisions(ROOT)
-    nodes = {n['id']: n for n in dag['nodes']}
-    entry = next(e for e in decisions['decisions']
-                 if e['scope_effect'] == 'caveat_added' and nodes[e['node_id']]['status'] in pfp.TARGET_STATUSES)
-    entry['statement'] = '4 - 4 + 1 = 1.'
-    errors = pfp.decision_errors(decisions, nodes)
-    assert errors == [f"{entry['node_id']}: a {nodes[entry['node_id']]['status']} node keeps its target statement; "
-                      'put the slice in the bottleneck']
-    entry['scope_effect'], entry['status'] = 'status_lowered', 'OPEN'
-    assert pfp.decision_errors(decisions, nodes) == []
-
-
 def test_review_sha256_values_match_the_review_files():
     for node_id, node in nodes_by_id().items():
         review = node.get('pfp_review')

@@ -31,3 +31,5 @@ The receipt lists empty axiom lists for all four declarations. That is inside th
 
 ## Scanner output
 No HIGH or MEDIUM findings. Three LOW findings sit on other nodes whose evidence hashes moved with the tensor-receipt pin: R10 on TENSOR-ASSUMPTION-COUNTERMODELS, and R5 numbers `20261019`, `1/2` and `1/4` in notes this PR does not edit. They are not claims of OPS-LEAN-GAP. No baseline edit.
+
+Review correction: the FULL wording above applies only to the finite parity equations. `sixteen` proves an arithmetic product, not a type-cardinality theorem; the actual 16-assignment count is independently enumerated. The original OPS gap list is restored in the current node. This pre-repair observation is superseded for scope and checker output by `docs/overclaim/reviews/2026-10-26_review-pr-439.md` and `dag/research/pr439_review_lean_replay.json`.

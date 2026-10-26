@@ -11,7 +11,7 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 11
-- cited Lean, Rust or Python symbols found in their in-repo files: 14
+- cited Lean, Rust or Python symbols found in their in-repo files: 15
 - distinct cited Lean declarations covered by a current replay receipt: 8
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
@@ -43,7 +43,6 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - `broken_reference`: symbol U1Fable.ChebyshevCauchyBridge.taylor_circle_norm_defect_identity not found in lean4/U1ChebyshevCauchyBridge.lean. A cited in-repo path or symbol cannot be found in this checkout.
 - `broken_reference`: symbol U1Fable.CyclotomicTorsionTower.ratPhaseQuot_divisible not found in lean4/U1CyclotomicTorsionTower.lean. A cited in-repo path or symbol cannot be found in this checkout.
 - `broken_reference`: symbol U1Fable.PhaseSynthesis.u1_phase_completion_synthesis not found in lean4/U1PhaseSynthesis.lean. A cited in-repo path or symbol cannot be found in this checkout.
-- `broken_reference`: symbol U1Fable.PythagoreanObstruction.no_rational_one_param_group_through_u345 not found in lean4/U1PythagoreanObstruction.lean. A cited in-repo path or symbol cannot be found in this checkout.
 - `broken_reference`: symbol U1Fable.QuadraticTowerAndCayleyStone.chebT2Pow_succ not found in lean4/U1QuadraticTowerAndCayleyStone.lean. A cited in-repo path or symbol cannot be found in this checkout.
 - `broken_reference`: symbol U1Fable.QuadraticTowerAndCayleyStone.u345_k2_double_angle_recovery not found in lean4/U1QuadraticTowerAndCayleyStone.lean. A cited in-repo path or symbol cannot be found in this checkout.
 
@@ -214,7 +213,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `U1Fable.PythagoreanObstruction.no_rational_one_param_group_through_u345` | yes | no | no | - | `#print axioms U1Fable.PythagoreanObstruction.no_rational_one_param_group_through_u345` |
+| `U1Fable.PythagoreanObstruction.no_rat_add_to_rat_circle_hom_u345` | yes | yes | yes | - | `#print axioms U1Fable.PythagoreanObstruction.no_rat_add_to_rat_circle_hom_u345` |
 
 - counts toward the grade: yes
 

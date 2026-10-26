@@ -123,3 +123,5 @@ These apply to every contribution. They are the reason the project keeps its lab
 - Support for the research is welcome but never required: [Buy Me a Coffee](https://buymeacoffee.com/ooutwire).
 
 The separately reviewed PR #421 adds one exact finite-group Pachner proof pin at L3D. Its explicitly revised finite-group statement alone is PROVED_LEAN; general triangulation, Regge and physical claims remain outside scope. Current authority is recorded in dag/research/current_review_pr421_finite_proof_authority_2026_10_26.json.
+
+The human also approved 33 exact-source maintenance pins (18 bounded implementations and 15 harnesses), retaining completed L2/L3D scores. See the [exact authority and list](evidence/quality/code_2026_10_26/approved_scoped_exceptions_20261026.json) and [governance limits](governance/README.md). Unlisted/changed hashes, grade E and incomplete scores remain blocked; the global L4/D floor and baseline are unchanged. Native/publication failures are not waived.

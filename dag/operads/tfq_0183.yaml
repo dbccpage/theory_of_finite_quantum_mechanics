@@ -3,14 +3,17 @@ node_id: TFQ-0183
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: The counts are 4 modes, 4 channels and 1 island. Then 4 - 4 + 1 = 1. With those counts,
-    (4 - 1) - (4 - 1) = 0. Also (1 + 1) mod 2 = 0, 4 * 2 = 8 and 8 mod 2 = 0. The mode count 4 is not
-    2.
+  source_statement: Tetron wording in the crate outruns the diagnostic fence and must not be promoted.
+    src/tetron.rs says a tetron is a 2-cell, one superconducting island with four Majorana zero modes,
+    and it assigns C0 to modes, C1 to parity channels, and C2 to islands. src/lib.rs, which owns the crate
+    fence, says the playground does not claim physical Majorana modes. The obligation is to keep the tetron
+    array inside the GF(2) schedule and to withhold any hardware reading. Noise modules noise_mc.rs and
+    pauli_noise.rs are present in the source list; their sweeps are not an authority terminal either.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: The 1-by-1 disk cell arithmetic above is the narrowed statement. A superconducting
-    device, a physical Majorana zero mode, noise sweeps as an authority terminal, the GF(2) matrix rank
-    of any larger grid, and the crate fence in lib.rs stay outside this statement. Do not promote tetron.rs
+  source_bottleneck: The 1-by-1 disk cell arithmetic above is the checked slice. A superconducting device,
+    a physical Majorana zero mode, noise sweeps as an authority terminal, the GF(2) matrix rank of any
+    larger grid, and the crate fence in lib.rs stay outside the checked slice. Do not promote tetron.rs
     physical wording past the GF(2) diagnostic fence in lib.rs.
   source_refs:
   - dag/derivations/22_implementation_sibling/tfq_0183_do_not_promote_tetron_rs_physical_wording_past_the_gf_2_diagnostic_fence_in.md
@@ -40,6 +43,53 @@ source_provenance:
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates:
 - kind: def
+  name: evaluateTetronWordingUnderFence
+  line: 110
+  signature_excerpt: |-
+    def evaluateTetronWordingUnderFence (hasCrateGf2Fence : Bool) (authorityEffectNone : Bool) :
+        TetronClaimScope
+  source: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: TetronClaimScope
+  line: 105
+  signature_excerpt: |-
+    inductive TetronClaimScope
+      | Gf2ChainComplexDiagnosticOnly
+      | PhysicalMajoranaHardwareClaim
+      deriving DecidableEq, Repr
+
+    def evaluateTetronWordingUnderFence (hasCrateGf2Fence : Bool) (authorityEffectNone : Bool) :
+        TetronClaimScope
+  source: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: classifyNoiseSweepModule
+  line: 134
+  signature_excerpt: 'def classifyNoiseSweepModule (authorityEffectNone : Bool) : SweepTerminalStatus'
+  source: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: SweepTerminalStatus
+  line: 129
+  signature_excerpt: |-
+    inductive SweepTerminalStatus
+      | DiagnosticSweepNotAuthorityTerminal
+      | SovereignAuthorityTerminal
+      deriving DecidableEq, Repr
+
+    def classifyNoiseSweepModule (authorityEffectNone : Bool) : SweepTerminalStatus
+  source: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  status: source_candidate_requires_semantic_review
+- kind: def
   name: modeCount
   line: 7
   signature_excerpt: 'def modeCount : Nat'
@@ -64,6 +114,157 @@ operation_candidates:
   source_sha256: a9707fa9a9a1bce5aff6abd591c2bc20d1dedf7f3ad18768b2dd99730313d0ec
   status: source_candidate_requires_semantic_review
 relation_candidates:
+- kind: theorem
+  name: tetron_disk_cylinder_torus_euler_and_betti_formulas
+  line: 55
+  signature_excerpt: |-
+    theorem tetron_disk_cylinder_torus_euler_and_betti_formulas (r c : Int) :
+        ((r + 1) * (c + 1) - ((r + 1) * c + r * (c + 1)) + r * c) = 1 ∧
+        1 - ((r + 1) * (c + 1) - ((r + 1) * c + r * (c + 1)) + r * c) = 0 ∧
+        ((r + 1) * c - (2 * r + 1) * c + r * c) = 0 ∧
+        1 - ((r + 1) * c - (2 * r + 1) * c + r * c) = 1 ∧
+        (r * c - 2 * r * c + r * c) = 0 ∧
+        2 - (r * c - 2 * r * c + r * c) = 2
+  source: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tetron_boundary_squares_to_zero_over_gf2
+  line: 67
+  signature_excerpt: |-
+    theorem tetron_boundary_squares_to_zero_over_gf2 :
+        (1 + 1) % 2 = 0 ∧
+        (Bool.xor true true) = false ∧
+        (Bool.xor false false) = false
+  source: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tetron_gf2_ranks_and_first_betti_numbers
+  line: 77
+  signature_excerpt: |-
+    theorem tetron_gf2_ranks_and_first_betti_numbers (r c : Int) :
+        (((r + 1) * c + r * (c + 1) - r * c) - ((r + 1) * (c + 1) - 1)) = 0 ∧
+        (((2 * r + 1) * c - r * c) - ((r + 1) * c - 1)) = 1 ∧
+        ((2 * r * c - (r * c - 1)) - (r * c - 1)) = 2
+  source: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: local_majorana_noise_skew_symmetry_and_zero_diagonal
+  line: 87
+  signature_excerpt: |-
+    theorem local_majorana_noise_skew_symmetry_and_zero_diagonal (k x y : ℚ) :
+        (0 : ℚ) + 0 = 0 ∧
+        k + (-k) = 0 ∧
+        x * (0 * x + k * y) + y * (-k * x + 0 * y) = 0 ∧
+        (4 * (4 - 1) / 2 : Nat) = 6
+  source: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: noise_mc_schedule_partition_conservation
+  line: 97
+  signature_excerpt: |-
+    theorem noise_mc_schedule_partition_conservation (c_exact c_closed c_open : ℚ)
+        (h : c_exact + c_closed + c_open ≠ 0) :
+        c_exact / (c_exact + c_closed + c_open) + c_closed / (c_exact + c_closed + c_open) +
+          c_open / (c_exact + c_closed + c_open) = 1 ∧
+        (12 / 20 : ℚ) + 5 / 20 + 3 / 20 = 1
+  source: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tetron_hardware_reading_withheld_by_gf2_diagnostic_fence
+  line: 121
+  signature_excerpt: |-
+    theorem tetron_hardware_reading_withheld_by_gf2_diagnostic_fence :
+        evaluateTetronWordingUnderFence true true =
+          TetronClaimScope.Gf2ChainComplexDiagnosticOnly ∧
+        evaluateTetronWordingUnderFence true true ≠
+          TetronClaimScope.PhysicalMajoranaHardwareClaim
+  source: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: noise_sweeps_are_not_authority_terminals_fence
+  line: 143
+  signature_excerpt: |-
+    theorem noise_sweeps_are_not_authority_terminals_fence :
+        classifyNoiseSweepModule true =
+          SweepTerminalStatus.DiagnosticSweepNotAuthorityTerminal ∧
+        classifyNoiseSweepModule true ≠
+          SweepTerminalStatus.SovereignAuthorityTerminal
+  source: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: missing_tetron_carrier_py_recorded_and_repaired_fence
+  line: 162
+  signature_excerpt: |-
+    theorem missing_tetron_carrier_py_recorded_and_repaired_fence :
+        repoTfq0183PythonStatus.legacyTetronCarrierPyPresent = false ∧
+        repoTfq0183PythonStatus.majoranaNoiseSweepPyPresent = true ∧
+        repoTfq0183PythonStatus.independentCheckerPresent = true
+  source: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: gf2_cell_incidence_is_not_superconducting_device_proof_fence
+  line: 181
+  signature_excerpt: |-
+    theorem gf2_cell_incidence_is_not_superconducting_device_proof_fence :
+        tetronCrateModel.checksGf2BoundaryZero = true ∧
+        tetronCrateModel.computesGf2BettiDimH1 = true ∧
+        tetronCrateModel.modelsSuperconductingGap = false ∧
+        tetronCrateModel.provesPhysicalMajoranaZeroModes = false
+  source: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tfq0183_tetron_gf2_diagnostic_and_noise_scope_ledger_fence
+  line: 204
+  signature_excerpt: |-
+    theorem tfq0183_tetron_gf2_diagnostic_and_noise_scope_ledger_fence :
+        tfq0183RepoLedger.certifiesGf2TetronHomology = true ∧
+        tfq0183RepoLedger.certifiesSkewSymmetricNoiseInvariants = true ∧
+        tfq0183RepoLedger.keepsTetronInsideGf2DiagnosticFence = true ∧
+        tfq0183RepoLedger.withholdsHardwareReading = true ∧
+        tfq0183RepoLedger.treatsNoiseSweepsAsAuthorityTerminal = false ∧
+        tfq0183RepoLedger.promotesTetronWordingPastFence = false
+  source: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  source_sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: counts
   line: 11
@@ -117,6 +318,96 @@ relation_candidates:
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
+- original_ref: lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_disk_cylinder_torus_euler_and_betti_formulas
+  availability: local
+  symbol: CampaignTfq0183ImplementationSibling.tetron_disk_cylinder_torus_euler_and_betti_formulas
+  path: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  declaration_status: declaration_found_not_proof_checked
+  line: 55
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_boundary_squares_to_zero_over_gf2
+  availability: local
+  symbol: CampaignTfq0183ImplementationSibling.tetron_boundary_squares_to_zero_over_gf2
+  path: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  declaration_status: declaration_found_not_proof_checked
+  line: 67
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_gf2_ranks_and_first_betti_numbers
+  availability: local
+  symbol: CampaignTfq0183ImplementationSibling.tetron_gf2_ranks_and_first_betti_numbers
+  path: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  declaration_status: declaration_found_not_proof_checked
+  line: 77
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.local_majorana_noise_skew_symmetry_and_zero_diagonal
+  availability: local
+  symbol: CampaignTfq0183ImplementationSibling.local_majorana_noise_skew_symmetry_and_zero_diagonal
+  path: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  declaration_status: declaration_found_not_proof_checked
+  line: 87
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.noise_mc_schedule_partition_conservation
+  availability: local
+  symbol: CampaignTfq0183ImplementationSibling.noise_mc_schedule_partition_conservation
+  path: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  declaration_status: declaration_found_not_proof_checked
+  line: 97
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_hardware_reading_withheld_by_gf2_diagnostic_fence
+  availability: local
+  symbol: CampaignTfq0183ImplementationSibling.tetron_hardware_reading_withheld_by_gf2_diagnostic_fence
+  path: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  declaration_status: declaration_found_not_proof_checked
+  line: 121
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.noise_sweeps_are_not_authority_terminals_fence
+  availability: local
+  symbol: CampaignTfq0183ImplementationSibling.noise_sweeps_are_not_authority_terminals_fence
+  path: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  declaration_status: declaration_found_not_proof_checked
+  line: 143
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.missing_tetron_carrier_py_recorded_and_repaired_fence
+  availability: local
+  symbol: CampaignTfq0183ImplementationSibling.missing_tetron_carrier_py_recorded_and_repaired_fence
+  path: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  declaration_status: declaration_found_not_proof_checked
+  line: 162
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.gf2_cell_incidence_is_not_superconducting_device_proof_fence
+  availability: local
+  symbol: CampaignTfq0183ImplementationSibling.gf2_cell_incidence_is_not_superconducting_device_proof_fence
+  path: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  declaration_status: declaration_found_not_proof_checked
+  line: 181
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tfq0183_tetron_gf2_diagnostic_and_noise_scope_ledger_fence
+  availability: local
+  symbol: CampaignTfq0183ImplementationSibling.tfq0183_tetron_gf2_diagnostic_and_noise_scope_ledger_fence
+  path: lean4/CampaignTfq0183ImplementationSibling.lean
+  repository: this_repository
+  sha256: 5863604b1487ea865ef8a8a4c70645b0f3d2a6a36cdc15be9125be4d72c08262
+  declaration_status: declaration_found_not_proof_checked
+  line: 204
+  role: source_lead_only
 - original_ref: lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.counts
   availability: local
   symbol: CampaignTfq0183FourModeDisk.counts

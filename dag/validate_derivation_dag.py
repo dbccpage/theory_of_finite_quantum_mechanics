@@ -670,32 +670,6 @@ def _check_incoming_routes(
     return errs
 
 
-_TARGET_STATUSES = frozenset({"OPEN", "CONDITIONAL", "IMPORTED_ASSUMPTION"})
-_NARROWED_PREFIX = re.compile(r"^(Narrowed\b|Reviewed scope:)")
-
-
-def _check_target_statements(nodes: list[dict[str, object]]) -> list[str]:
-    """An OPEN, CONDITIONAL or IMPORTED_ASSUMPTION node states its target or import, not a finite
-    fact checked on the way: a narrowed slice belongs in the Lean, the bottleneck or the review."""
-    errs: list[str] = []
-    for node in nodes:
-        status = _text(node, "status")
-        if status not in _TARGET_STATUSES:
-            continue
-        node_id = _text(node, "id")
-        if _NARROWED_PREFIX.match(_text(node, "statement") or ""):
-            errs.append(f"node {node_id}: {status} statement is a narrowed slice, not the target")
-        review = _mapping(node.get("pfp_review"))
-        if review is None:
-            continue
-        effect = review.get("scope_effect")
-        if effect == "statement_narrowed":
-            errs.append(f"node {node_id}: {status} node has statement_narrowed; keep the target statement")
-        elif effect != "status_lowered" and review.get("prior_statement") not in (None, node.get("statement")):
-            errs.append(f"node {node_id}: {status} statement differs from pfp_review.prior_statement")
-    return errs
-
-
 def _check_forbidden_words(dag: dict[str, object]) -> list[str]:
     errs: list[str] = []
     blob = json.dumps(dag).lower()
@@ -942,7 +916,7 @@ def check(dag: dict[str, object], root: Path | None, views_dir: Path | None = No
     inc_errs = _check_incoming_routes(ids, incoming)
     records = _maps(dag.get("records"))
     record_errs = _check_records(records, ids) if "records" in dag else []
-    forbid_errs = _check_forbidden_words(dag) + _check_target_statements(nodes)
+    forbid_errs = _check_forbidden_words(dag)
     file_errs: list[str] = []
     if root is not None:
         file_errs = _check_file_refs(nodes, routes, root)

@@ -11,7 +11,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 24
+- cited Lean, Rust or Python symbols found in their in-repo files: 25
 - distinct cited Lean declarations covered by a current replay receipt: 12
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
@@ -109,7 +109,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `toggle` | yes | yes | no | - | `#print axioms toggle` |
+| `FableHilbertWalk20260819.H016.continuous_dynamics_fork` | yes | yes | yes | - | `#print axioms FableHilbertWalk20260819.H016.continuous_dynamics_fork` |
+| `FableHilbertWalk20260819.H016.no_report_half_step` | yes | yes | yes | - | `#print axioms FableHilbertWalk20260819.H016.no_report_half_step` |
 
 - counts toward the grade: yes
 
@@ -123,7 +124,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1034_gp_import_continuous_time.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1034_gp_import_continuous_time.md](../../../dag/derivations/08_l1_to_l2/tfq_1034_gp_import_continuous_time.md)
-- sha256 (`lf-normalised`): `07a5e5f6f3642cdf9b0534bc4752443b5dbf8be07f8d2b12b75d122917b8e41a`
+- sha256 (`lf-normalised`): `09d4a0c0c06397a15b50afc482ab0e1ec742c0dfb174ddcbc2e3534ea721bab6`
 - generated view: listed, not counted
 - cited in: record TFQ-1034
 - counts toward the grade: no
