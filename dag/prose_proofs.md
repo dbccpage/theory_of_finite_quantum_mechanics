@@ -238,17 +238,17 @@ status are not claimed as proved and have no proof section.
 
 ## TENSOR_COMPOSITION
 
-0 of 7 with a prose proof.
+7 of 7 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `TENSOR-ASSUMPTION-COUNTERMODELS` | PROVED_LEAN | *none yet* |
-| `TENSOR-BINARY-EFFECT-INTERVAL` | PROVED_LEAN | *none yet* |
-| `TENSOR-CONE-ORBIT-KERNEL` | PROVED_LEAN | *none yet* |
-| `TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION` | PROVED_LEAN | *none yet* |
-| `TENSOR-FINITE-POVM-AVAILABILITY` | PROVED_LEAN | *none yet* |
-| `TENSOR-GENERATED-EFFECT-CONE` | PROVED_LEAN | *none yet* |
-| `TENSOR-TOMOGRAPHIC-COORDINATES` | PROVED_LEAN | *none yet* |
+| `TENSOR-ASSUMPTION-COUNTERMODELS` | PROVED_LEAN | [tensor_composition_proofs: 4.1 Countermodels](../papers/core/tensor_composition_proofs.md#41-countermodels) |
+| `TENSOR-BINARY-EFFECT-INTERVAL` | PROVED_LEAN | [tensor_composition_proofs: 3.1 Valid effects are the interval $[0,I]$](../papers/core/tensor_composition_proofs.md#31-valid-effects-are-the-interval-0i) |
+| `TENSOR-CONE-ORBIT-KERNEL` | PROVED_LEAN | [tensor_composition_proofs: 2.1 A cone fixed by seeds and transports](../papers/core/tensor_composition_proofs.md#21-a-cone-fixed-by-seeds-and-transports) |
+| `TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION` | PROVED_LEAN | [tensor_composition_proofs: 2.2 One calibrated controlled shift forces PSD](../papers/core/tensor_composition_proofs.md#22-one-calibrated-controlled-shift-forces-psd) |
+| `TENSOR-FINITE-POVM-AVAILABILITY` | PROVED_LEAN | [tensor_composition_proofs: 3.3 Finite tests are POVMs](../papers/core/tensor_composition_proofs.md#33-finite-tests-are-povms) |
+| `TENSOR-GENERATED-EFFECT-CONE` | PROVED_LEAN | [tensor_composition_proofs: 3.2 The generated effect cone is PSD](../papers/core/tensor_composition_proofs.md#32-the-generated-effect-cone-is-psd) |
+| `TENSOR-TOMOGRAPHIC-COORDINATES` | PROVED_LEAN | [tensor_composition_proofs: 1.1 Tomographic coordinates for the composite](../papers/core/tensor_composition_proofs.md#11-tomographic-coordinates-for-the-composite) |
 
 ## MAJORANA
 
