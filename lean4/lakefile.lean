@@ -1454,3 +1454,30 @@ lean_lib CampaignDsCptpCompletePositivity where
 
 lean_lib CampaignDsQm204BornUniqueness where
   roots := #[`CampaignDsQm204BornUniqueness]
+
+lean_lib CampaignMajImportKitaevChain where
+  roots := #[`CampaignMajImportKitaevChain]
+
+lean_lib CampaignFspThetaTermComplexWeight where
+  roots := #[`CampaignFspThetaTermComplexWeight]
+
+lean_lib CampaignMub6WeylHeisenbergD6 where
+  roots := #[`CampaignMub6WeylHeisenbergD6]
+
+lean_lib CampaignMub6FiniteCornerReduction where
+  roots := #[`CampaignMub6FiniteCornerReduction]
+
+lean_lib CampaignQcvImportThresholdTheorem where
+  roots := #[`CampaignQcvImportThresholdTheorem]
+
+lean_lib CampaignQcvImportNoisyReversibleLimits where
+  roots := #[`CampaignQcvImportNoisyReversibleLimits]
+
+lean_lib CampaignAuthRiceTheoremImport where
+  roots := #[`CampaignAuthRiceTheoremImport]
+
+lean_lib CampaignOpsAxis1WellfoundedAdmission where
+  roots := #[`CampaignOpsAxis1WellfoundedAdmission]
+
+lean_lib CampaignTfq0183FourModeDisk where
+  roots := #[`CampaignTfq0183FourModeDisk]

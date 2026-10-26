@@ -3,18 +3,25 @@ node_id: FSP-THETA-TERM-COMPLEX-WEIGHT
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Adding S_theta = i theta Q_top with real lattice charge Q_top multiplies the Boltzmann
-    weight by exp(-i theta Q_top), which is nonreal unless theta Q_top lies in pi Z for every configuration,
-    so positive-weight importance sampling is lost for generic theta != 0.
+  source_statement: For angle indices 0, 1, 2 and 3, one quarter turn of the Gaussian integer (1, 0) by
+    the pair (0, -1) yields (1, 0), (0, -1), (-1, 0) and (0, 1), and the fourth turn returns to (1, 0).
+    That turn is multiplication by (0, -1), and (1, 0) times (0, -1) is (0, -1). Charge 0 keeps the weight
+    (1, 0) at each of those four indices. Charge 1 uses the quarter-turn value. The second coordinate
+    at charge 1 is 0, -1, 0 and 1, hence nonzero at indices 1 and 3. At index 2 with charge 1 the first
+    coordinate is -1, so that pair is not positive in the first coordinate. Among the four charge-1 pairs,
+    only index 0 has a positive first coordinate and second coordinate 0.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - lattice topological charge Q_top and theta vacuum term (standard)
-  source_bottleneck: Severity of the resulting sign problem is phenomenology from the literature; the
-    checkout has no theta-term model.
+  source_bottleneck: The record is this four-index Gaussian-integer table. It does not introduce an exponential,
+    a real angle, a plaquette sum, or a Monte Carlo sampler. The source sentence that an added term i
+    theta Q_top multiplies a Boltzmann weight by a complex phase, and that a positive-weight sampler fails
+    for a nonzero angle outside a discrete set, stays an imported reading. AuthorityEffect is None.
   source_refs:
   - dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md
   - papers/core/fsp/theory_of_finite_fsp.md
   - papers/core/fsp/the_problem_of_the_fermion_sign.md
+  - dag/derivations/independent/fsp-theta-term-complex-weight.md
   paper_refs:
   - dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md
   source_claim_label: IMPORTED_ASSUMPTION
@@ -23,7 +30,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md
-    sha256: a1f146ef22167ae88cdbe416433f8f44bfe77aec1b0b2dca2cccc68610836b93
+    sha256: 47c8be251c0322568587f7f846d6e531e3eb74ca6df5e8355ca05c5395d9342a
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -31,9 +38,526 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_theta_term_complex_weight_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: quarter
+  line: 13
+  signature_excerpt: |-
+    def quarter : Nat → Int × Int
+      | 0 => (1, 0)
+      | n + 1 => mulNegI (quarter n)
+
+    def weight (k q : Nat) : Int × Int
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mulNegI
+  line: 7
+  signature_excerpt: 'def mulNegI (p : Int × Int) : Int × Int'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gMul
+  line: 10
+  signature_excerpt: 'def gMul (a b c d : Int) : Int × Int'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: weight
+  line: 17
+  signature_excerpt: 'def weight (k q : Nat) : Int × Int'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: quarter0
+  line: 20
+  signature_excerpt: 'theorem quarter0 : quarter 0 = (1, 0)'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: quarter1
+  line: 21
+  signature_excerpt: 'theorem quarter1 : quarter 1 = (0, -1)'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: quarter2
+  line: 22
+  signature_excerpt: 'theorem quarter2 : quarter 2 = (-1, 0)'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: quarter3
+  line: 23
+  signature_excerpt: 'theorem quarter3 : quarter 3 = (0, 1)'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: quarter4
+  line: 24
+  signature_excerpt: 'theorem quarter4 : quarter 4 = (1, 0)'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: mulNegI_eq_gMul
+  line: 26
+  signature_excerpt: 'theorem mulNegI_eq_gMul (a b : Int) : mulNegI (a, b) = gMul a b 0 (-1)'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: phaseProduct
+  line: 30
+  signature_excerpt: 'theorem phaseProduct : gMul 1 0 0 (-1) = (0, -1)'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: weight00
+  line: 32
+  signature_excerpt: 'theorem weight00 : weight 0 0 = (1, 0)'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: weight10
+  line: 33
+  signature_excerpt: 'theorem weight10 : weight 1 0 = (1, 0)'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: weight20
+  line: 34
+  signature_excerpt: 'theorem weight20 : weight 2 0 = (1, 0)'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: weight30
+  line: 35
+  signature_excerpt: 'theorem weight30 : weight 3 0 = (1, 0)'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: weight01
+  line: 37
+  signature_excerpt: 'theorem weight01 : weight 0 1 = (1, 0)'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: weight11
+  line: 38
+  signature_excerpt: 'theorem weight11 : weight 1 1 = (0, -1)'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: weight21
+  line: 39
+  signature_excerpt: 'theorem weight21 : weight 2 1 = (-1, 0)'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: weight31
+  line: 40
+  signature_excerpt: 'theorem weight31 : weight 3 1 = (0, 1)'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: im01
+  line: 42
+  signature_excerpt: 'theorem im01 : (weight 0 1).2 = 0'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: im11
+  line: 43
+  signature_excerpt: 'theorem im11 : (weight 1 1).2 = -1'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: im21
+  line: 44
+  signature_excerpt: 'theorem im21 : (weight 2 1).2 = 0'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: im31
+  line: 45
+  signature_excerpt: 'theorem im31 : (weight 3 1).2 = 1'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: im11_ne
+  line: 47
+  signature_excerpt: 'theorem im11_ne : (weight 1 1).2 ≠ 0'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: im31_ne
+  line: 48
+  signature_excerpt: 'theorem im31_ne : (weight 3 1).2 ≠ 0'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: re21
+  line: 50
+  signature_excerpt: 'theorem re21 : (weight 2 1).1 = -1'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: notPositive21
+  line: 52
+  signature_excerpt: 'theorem notPositive21 : ¬ (weight 2 1).1 > 0'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: positive01
+  line: 54
+  signature_excerpt: 'theorem positive01 : (weight 0 1).1 > 0 ∧ (weight 0 1).2 = 0'
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: charge1PositiveOnlyAtZero
+  line: 56
+  signature_excerpt: |-
+    theorem charge1PositiveOnlyAtZero :
+        ((weight 0 1).1 > 0 ∧ (weight 0 1).2 = 0) ∧
+          ¬ ((weight 1 1).1 > 0 ∧ (weight 1 1).2 = 0) ∧
+          ¬ ((weight 2 1).1 > 0 ∧ (weight 2 1).2 = 0) ∧
+          ¬ ((weight 3 1).1 > 0 ∧ (weight 3 1).2 = 0)
+  source: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  source_sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter0
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.quarter0
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 20
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter1
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.quarter1
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 21
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter2
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.quarter2
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 22
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter3
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.quarter3
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 23
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter4
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.quarter4
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 24
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.mulNegI_eq_gMul
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.mulNegI_eq_gMul
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 26
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.phaseProduct
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.phaseProduct
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 30
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight00
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.weight00
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 32
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight10
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.weight10
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 33
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight20
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.weight20
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 34
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight30
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.weight30
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 35
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight01
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.weight01
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 37
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight11
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.weight11
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 38
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight21
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.weight21
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 39
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight31
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.weight31
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 40
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im01
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.im01
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 42
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im11
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.im11
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 43
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im21
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.im21
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 44
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im31
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.im31
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 45
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im11_ne
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.im11_ne
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 47
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im31_ne
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.im31_ne
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 48
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.re21
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.re21
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 50
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.notPositive21
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.notPositive21
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 52
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.positive01
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.positive01
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 54
+  role: source_lead_only
+- original_ref: lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.charge1PositiveOnlyAtZero
+  availability: local
+  symbol: CampaignFspThetaTermComplexWeight.charge1PositiveOnlyAtZero
+  path: lean4/CampaignFspThetaTermComplexWeight.lean
+  repository: this_repository
+  sha256: 7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e
+  declaration_status: declaration_found_not_proof_checked
+  line: 56
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -73,8 +597,6 @@ operad_slots:
     - lattice topological charge Q_top and theta vacuum term (standard)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
