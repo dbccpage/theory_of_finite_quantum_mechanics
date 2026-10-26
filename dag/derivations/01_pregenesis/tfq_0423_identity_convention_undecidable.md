@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-For arbitrary observer families, equality of all observations is an equivalence relation. Forgetting observers preserves indistinguishability, an empty observer family identifies every pair, and adjoining an exact-identity observer makes indistinguishability equivalent to equality. The supplied inscription `<a>` after `<>` is new relative to the exact observer and not new relative to the empty observer family. No single proposition agrees with both novelty answers.
+Whether <a> supplied after <> is a new state depends on an identity convention that no prompt had declared. Under the opaque convention a state is what the regime can tell apart, and with O empty <> and <a> are not told apart; under the exact-inscription convention a state is the inscription itself, the strings differ, and the regime has one more syntactic state. Trials 1 and 2 answered under the first convention and the full replay under the second, calling <a> a new state. The analysis keeps both branches and records the effect as undecidable until one convention is declared.
 
 ### Governing Obligation
 Keep the observer family and identity convention declared; no preferred convention, computability theorem or authority grant follows.

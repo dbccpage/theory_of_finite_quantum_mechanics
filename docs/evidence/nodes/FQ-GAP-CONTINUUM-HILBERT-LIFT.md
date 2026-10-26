@@ -4,7 +4,7 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 
 ## Statement
 
-> No integer a satisfies 2 * a = 1. For every integer t, 4 * (t * t - t - 1) + 5 = (2 * t - 1) * (2 * t - 1). For every integer n, n * n is not 5. For every integer t, t * t - t - 1 is not 0.
+> The transition from the finite presented carrier (integer weights, finite report labels) to a continuous infinite-dimensional Hilbert space is not constructed in any source; QM_122 s6 refuses it. M_n(Z\[i\]) is recovered for finite report sets but is not M_n(C): Z\[i\] is not a field and a self-adjoint Gaussian-integer matrix need not have a Gaussian-integer eigenvalue (GAP-F001-S000-009). Construction half (split 2026-10-21): FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION records the completion once the scalar field and the l2 uniformity are supplied; this node keeps the selection of those two hypotheses, which no source derives.
 
 ## Grade
 
@@ -38,7 +38,7 @@ Split on 2026-10-21: the construction (completion, embeddings, l2 model, intrins
 
 ## Review
 
-- PFP review: [dag/research/pr_374_current_scope_review.json](../../../dag/research/pr_374_current_scope_review.json); file present and sha256 matches the node's record: yes; verdict `scoped_integer_result_reviewed`; scope effect `statement_narrowed`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [dag/research/pr_374_current_scope_review.json](../../../dag/research/pr_374_current_scope_review.json); file present and sha256 matches the node's record: yes; verdict `scoped_integer_result_reviewed`; scope effect `caveat_added`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: No integer a satisfies 2 * a = 1. For every integer t, 4 * (t * t - t - 1) + 5 = (2 * t - 1) * (2 * t - 1). For every integer n, n * n is not 5. For every integer t, t * t - t - 1 is not 0.
   - does not support: Scalar-field selection, a Gaussian-integer matrix eigenvalue, choice of l2 uniformity or an infinite-dimensional Hilbert completion.
   - next test: Replay the submitted integer proofs and independent audit on their current source hashes.

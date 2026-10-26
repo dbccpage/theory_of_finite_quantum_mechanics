@@ -10,7 +10,7 @@
 
 ## 1. Abstract & Formal Statement
 
-The named untyped-row numerals satisfy 48 - 24 = 24. The named coverage numerals satisfy 53 - 22 = 31 and 22 < 53.
+Receipt and custody items: 48 (ledger) vs 24 (GAP-FQM-002 text) untyped claim rows; GAP-FQM-017 QM_208-211 claim maps point at nonexistent *_lib libraries (tautology tests); GAP-FQM-019 eight claims need a Mathlib build to promote; GAP-FQM-020 QM_122 axiom report covers 22 of 53 files and hides a Classical.choice dependency (H019.basisGen8_eval_pos); GAP-FQM-022 QM_122 provenance cites nonexistent sources; QM_020 and QM_080 are published (Zenodo) and not free to rewrite; README states the code-companion --check fails on the current tree.
 
 ### Governing Obligation
 Not run here: a recount of the ledger rows behind the numeral 48, a check that the GAP-FQM-002 text says 24, a search for the QM_208-211 libraries, the eight Mathlib claims of GAP-FQM-019, the Classical.choice dependency named H019.basisGen8_eval_pos, the GAP-FQM-022 provenance pointers, the Zenodo status of QM_020 and QM_080, and the README code-companion check. A stale receipt over H000..H018 coexists with Lean headers that say Candidate only. The three Nat identities do not discharge that inventory.

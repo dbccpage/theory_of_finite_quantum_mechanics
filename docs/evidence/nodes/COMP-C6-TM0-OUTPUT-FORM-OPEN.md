@@ -4,7 +4,7 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `OPEN`. Evidence grade: 
 
 ## Statement
 
-> For every natural number v, writing v into the blank cell that is not halted and holds 0 equals the halted cell that holds v. For every natural number v and every natural number n, evalConst v n equals v, and the value written into that blank cell equals evalConst v n.
+> The tape of the halting TM0 configuration of M0 from initCfg0 should read the value of Code.eval c n; Mathlib gives this only existentially through TM2to1.tr_eval and is not composed here.
 
 ## Grade
 
@@ -63,7 +63,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1307_comp_c6_tm0_output_form_open.md`
 
 - file: [dag/derivations/29_computation/tfq_1307_comp_c6_tm0_output_form_open.md](../../../dag/derivations/29_computation/tfq_1307_comp_c6_tm0_output_form_open.md)
-- sha256 (`lf-normalised`): `50fca16fdff948b7a56ed360e85d2f0e31338f297b81d16c215340d1c29dc160`
+- sha256 (`lf-normalised`): `a1683fe17347fbb864ebc6e071c15b5a97c70ff265cc74354908b71239175e0d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1307
 - counts toward the grade: no

@@ -4,7 +4,7 @@ Stage: [LOOP_QUANTUM_GRAVITY](../stages/LOOP_QUANTUM_GRAVITY.md). Status: `OPEN`
 
 ## Statement
 
-> On labels {0, 1, 2} the level-2 admissibility predicate (each label at most 2, the three triangle inequalities, even sum, and sum at most 4) accepts exactly 10 ordered triples: (0,0,0), (0,1,1), (0,2,2), (1,0,1), (1,1,0), (1,1,2), (1,2,1), (2,0,2), (2,1,1), (2,2,0). The witness (0,0,1) is excluded. The same label set has 3^6 = 729 six-tuples and 3^9 = 19683 nine-tuples. In Q(sqrt 2) the quantum dimensions d_0 = 1, d_1 = sqrt(2), d_2 = 1 satisfy d_1^2 - d_0 = d_2 and d_1 d_2 - d_1 = 0. The positive rationals 3, 729 and 19683 are pairwise distinct, and 1 is a positive rational distinct from all three, so these finite counts do not select a unique positive rational scale. A continuum limit, a semiclassical limit and a physical cosmological constant stay undischarged. The exact 6j table, the area spectrum and the pentagon identity on all 19683 nine-tuples are not re-checked here.
+> No source read for this change derives a continuum limit, a semiclassical limit or a physical cosmological constant from the finite recoupling tables of the repository, or from the exact finite targets of this stage. The fences of TFQ-0104 and TFQ-0105 say so; this node records the gap so that the exact 6j, area and pentagon checks are not read as steps toward a limit.
 
 ## Grade
 
@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md`
 
 - file: [dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md](../../../dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md)
-- sha256 (`lf-normalised`): `ba2bfe51bdbb44d34f6ef39583cc8d5d7a7ba9406979e9723db277c4b67a74b7`
+- sha256 (`lf-normalised`): `8d5c94eeb400b130c53d529eb2a71ef51d57115d02fd83ebebc081ea9ec819ab`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2315
 - counts toward the grade: no

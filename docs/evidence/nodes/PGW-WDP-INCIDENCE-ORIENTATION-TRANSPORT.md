@@ -4,7 +4,7 @@ Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E3**. [Evidenc
 
 ## Statement
 
-> Narrowed in Lean 4 to one triangle. Incidence edges (01, 02, 12) reorder to (01, 12, 02) by sending (a, b, c) to (a, c, b). The face column (1, -1, 1) becomes (1, 1, -1), and the incidence boundary of that column is (0, 0, 0). Dot products with the incidence columns, read in the order 01, 12, 02, equal the coboundary (f1 - f0, f2 - f1, f2 - f0). The evaluation x01 + x12 - x02 vanishes on every such coboundary, agrees with the cyclic sum that stores edge 20 as the negation of edge 02, and sends (1, 1, 0) to 2. The unit-weight residual of (1, 1, 0) equals 2 at vertex values (0, 1, 0) and is at least 2 for every integer vertex triple. A transport for every window quantity, a derivation of the WDP window from Genesis admission, and the external orientation test stay open.
+> GenesisIncidence.lean reads the declared incidence complex on vertices 0, 1, 2 with signed boundary maps on the edge basis (01, 02, 12), the admitted face 012 entering as the column (1, −1, 1), and establishes that the boundary of that face has zero boundary (boundary_boundary_filled). The WDP window instead uses coboundaries with the simplicial edge order (01, 12, 02), d₀f = (f₁ − f₀, f₂ − f₁, f₂ − f₀) and d₁x = x₀₁ + x₁₂ − x₀₂ (Obstruction.lean), while the cyclic presentation (01, 12, 20) negates the reversed component. The monograph states that every window quantity is invariant once the cochain is transported with its edges, but no declared map takes the GenesisIncidence chains, with their edge order and boundary convention, to the WDP cochain window.
 
 ## Grade
 
@@ -114,7 +114,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0543_wdp_incidence_orientation_transport.md`
 
 - file: [dag/derivations/06_wdp/tfq_0543_wdp_incidence_orientation_transport.md](../../../dag/derivations/06_wdp/tfq_0543_wdp_incidence_orientation_transport.md)
-- sha256 (`lf-normalised`): `5008f939cebd0feff96e4c0caaf98547850efdc8c3b63849c78eda14d0957b2f`
+- sha256 (`lf-normalised`): `ec85a88a2bfb3998b4580379a1789645f3789cf0eb1d38a14c6d936b5fd1834f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0543
 - counts toward the grade: no

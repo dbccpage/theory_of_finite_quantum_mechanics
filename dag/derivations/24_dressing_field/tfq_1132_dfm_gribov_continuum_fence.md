@@ -11,7 +11,7 @@
 
 ## 1. Abstract & Formal Statement
 
-For the rational matrices I = diag(1, 1, 1), Omega1 = diag(1, -1, -1), H23 with ones in positions (2, 3) and (3, 2), and H12 with ones in positions (1, 2) and (2, 1), H23^2 = diag(0, 1, 1), H12^2 = diag(1, 1, 0), Omega1^2 = I, the product of Omega1's diagonal entries is 1, Tr(I) = 3, Tr(Omega1) = -1, Tr(I H23^2) = 2, Tr(Omega1 H23^2) = -2, and Tr(Omega1 H12^2) = 0, so those two Omega1 forms differ. Continuum Gribov-Singer, a Faddeev-Popov operator spectrum, ghost-free quantization, and a Yang-Mills mass gap stay unproved.
+Statements about the continuum Gribov-Singer obstruction, the Gribov horizon of the Faddeev-Popov operator, ghost-free continuum quantization, or the Yang-Mills mass gap are not established by the finite diamond checks.
 
 ### Governing Obligation
 The recorded comparison is this pair of quadratic forms on two generators of one diagonal matrix. A refinement family of lattices, an operator spectrum, and a limit theorem stay open before any continuum transport.

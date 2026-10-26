@@ -4,7 +4,7 @@ Stage: [WDP](../stages/WDP.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [
 
 ## Statement
 
-> On integer triples, the triangle coboundary is d0(f0, f1, f2) = (f1 - f0, f2 - f1, f2 - f0). For all integer vertex triples f and g, d0(f0 + g0, f1 + g1, f2 + g2) equals the componentwise sum of d0(f) and d0(g), and (delta + d0(g)) - d0(f + g) equals delta - d0(f). The sum of absolute residual entries is unchanged by that shift. For delta = (1, 1, 0), every integer repair has absolute residual sum at least 2, and the repair (0, 1, 0) has absolute residual sum 2. For every integer vertex triple g, delta + d0(g) has absolute residual sum at least 2 at every integer repair, and the repair (g0, 1 + g1, g2) has absolute residual sum 2.
+> WDP-CH04-P01: Φ_J(\[δ\]) = inf_f J(δ − d₀f) is independent of the representative, because δ' = δ + d₀g turns the infimum into one over h = f − g, a bijection of C⁰. WDP-CH04-P02 (conditional): when the repair space is finite-dimensional over ℝ or ℂ and J is a norm, the infimum is attained after quotienting ker d₀; the hypotheses cannot be dropped silently for seminorms or infinite carriers. WDP-CH04-C01 (conditional): with positive weights w, Φ_{1,w}(\[δ\]) = max{⟨y, δ⟩ : d₀*y = 0, |y_e| ≤ w_e}, an imported finite-dimensional convex-duality result (REF-MATH-005, Rockafellar, Convex Analysis) specialized to the declared weighted graph complex. In code, finite_quotient_l1 minimizes over an explicit candidate list, and exact_quotient_l1 solves the weighted ℓ¹ programme over Fraction and reports a value only after an independent certificate check.
 
 ## Grade
 
@@ -105,7 +105,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md`
 
 - file: [dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md](../../../dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md)
-- sha256 (`lf-normalised`): `048d5052f4687a6fbb459f6d8a78ff8ceb9ce6872cc29516bdd0e16f5d62618c`
+- sha256 (`lf-normalised`): `b36b7b03c877882e1630a5fa809b2f45a4851d2cfa5f22beb5877e69b0bfc5fd`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0544
 - counts toward the grade: no

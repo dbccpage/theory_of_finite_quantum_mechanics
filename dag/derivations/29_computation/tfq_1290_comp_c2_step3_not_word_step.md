@@ -11,7 +11,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Appending 1 takes the list [0] to [0, 1] by one hole replacement of an empty block. Appending the block [0, 1] takes [0, 1] to [0, 1, 0, 1] by one hole replacement of an empty block. Deleting a final 1 takes [0, 1] to [0] by one hole replacement of the block [1]. The map sending 1 to 0 and every other natural number to itself sends both 0 and 1 to 0.
+Genesis Step3 acts on states of a finite term set, a finite assertion set and two named terms by add-term, add-assertion and identify (a non-injective merge); no word encoding of these states under which each move is a word step is proved or claimed.
 
 ### Governing Obligation
 Still open: an encoding of every Genesis Step3 state, with a finite term set, a finite assertion set and two named terms, under which add-term, add-assertion and identify are word steps, or a demonstration that none exists.

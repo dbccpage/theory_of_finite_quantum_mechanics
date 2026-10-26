@@ -4,7 +4,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `CONDITIONAL`. Evidence grade:
 
 ## Statement
 
-> Narrowed boundary, status left CONDITIONAL. The sector-weight pairs (2, 0) and (0, 2) both have coordinate sum 2 and differ. For length 4 and holonomy 2, no natural number k satisfies 4 * k = 2. For length 4 and holonomy 4, 4 * 1 = 4.
+> On the n-cycle with the unweighted L1 form and equal edge masses: the residual class is the holonomy S, Phi1 = |S|, the minimizers are the scaled simplex of sign-definite cochains, so for n \>= 2, S != 0 and two nonempty sectors the sector weights (block L1 masses) are not determined by (Phi1, Gamma2 modelled as the holonomy); any selector, including the cyclic average S/n (integral iff n divides S), is extra input. The weighted-mass window form declared in the source is not treated in the kernel (native rows show a unique minimizer on a unique minimal-mass edge), and the sum-of-squares reading of Gamma2 is not treated.
 
 ## Grade
 

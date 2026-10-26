@@ -11,7 +11,7 @@
 
 ## 1. Abstract & Formal Statement
 
-For every natural number t, a 1-cochain is a function from Fin t to Bool. The coboundary d0 is the identity on those functions, and d1 sends each of them to the zero function Fin 1 to Bool. For every vertex function a, d1(d0(a)) equals that zero function. Every 1-cochain is a cocycle and is exact. A closed residual is a cocycle that is not exact, so no 1-cochain is a closed residual. In particular this holds for t = 1, t = 2, t = 3 and t = 4.
+Given the recorded measurement that legacy tetron_carrier.py had dim H1 = 0 at T = 1..4, every closed residual on it was Exact, so its results support no statement about logical sectors and are superseded by the tetron-array family.
 
 ### Governing Obligation
 Standing text is the identity coboundary on functions Fin t to Bool: d1 after d0 is the zero function on one coordinate, every 1-cochain is exact, and none is a closed residual, including the sizes t = 1, 2, 3 and 4. The recorded measurement that tetron_carrier.py had dim H1 = 0 at those sizes is not in this checkout. A logical-sector reading of that missing file, and a comparison with the tetron-array family, stay open. The older citation legacy_carrier_obstruction assumes trivial first cohomology and does not discharge this slice.

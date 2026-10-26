@@ -11,7 +11,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Narrowed boundary, status left OPEN. For the integer readings topo = (1, 0) and andreev = (1, 1), the difference is (0, -1). The first-coordinate map sends that difference to 0 and sends both readings to 1. The second-coordinate map sends the difference to -1, the topo reading to 0, and the andreev reading to 1, and those second coordinates differ.
+Whether a declared laboratory protocol's measurement map M separates topological zero modes from trivial Andreev bound states, i.e. whether rho_topo - rho_ABS lies outside ker M.
 
 ### Governing Obligation
 No laboratory protocol, device model, density operator, or measurement map from a physical apparatus is supplied. These two coordinate maps are not that protocol. Whether any declared laboratory map separates topological zero modes from Andreev bound states stays open.

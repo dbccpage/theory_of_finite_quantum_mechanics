@@ -4,7 +4,7 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `OPEN`. Evidence grade: **E3**. 
 
 ## Statement
 
-> Narrowed in Lean 4 to five records on the declared bound line: rounds at most 15, nodes at most 250, data below 4, and items at most 2. The record (15, 250, 3, 2) is inside. The record (16, 250, 3, 2) is outside. The record (15, 251, 3, 2) is outside. The record (15, 250, 4, 2) is outside. The record (15, 250, 3, 3) is outside. The census of stopped runs, leftovers H-2 to H-9, and whether the augmentation sequence is unbounded stay open.
+> Challenge 4 was run to declared bounds only (fifteen rounds, a node guard of 250 per run, growth below four data, two items): 11,266 nodes stopped at the guard and 368 at the bound, and 116 runs are not closed. Attempt two's leftovers H-2 to H-9 remain: the 970 refused same demands (H-2), the twenty-eight merges rung two's observable budget refused (H-3), the 482 regimes above the brute-force key limit (H-4), a distance on adjacency (H-5), a reading of carrying forward that admits switch (H-6), the forty-four closed runs with switch cycles UNDECIDED under ONE VALUE PER NODE (H-7), why E1 and E5 share one run under mu2 (H-8), and five data (H-9). Whether the augmentation sequence is unbounded is unresolved in the sealed paper (question 7): with the external continuation policy every requested depth tried was reached and every supplied demand has a response (mark_progress), and no unboundedness claim is made.
 
 ## Grade
 
@@ -92,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0501_runs_past_declared_bounds.md`
 
 - file: [dag/derivations/02_genesis/tfq_0501_runs_past_declared_bounds.md](../../../dag/derivations/02_genesis/tfq_0501_runs_past_declared_bounds.md)
-- sha256 (`lf-normalised`): `6cc3def643cea5a97af2005ebedb58381af668e588848b94803ba2b82d5a963c`
+- sha256 (`lf-normalised`): `83c350693a1c4c83e1d5bde0b68e0cf314dd6f50552ffefa6a213f3ea31bd6ff`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0501
 - counts toward the grade: no

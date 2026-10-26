@@ -4,7 +4,7 @@ Stage: [DRESSING_FIELD](../stages/DRESSING_FIELD.md). Status: `OPEN`. Evidence g
 
 ## Statement
 
-> For U = \[\[0, -1\], \[1, 0\]\] over Q, U^2 = -I, U^4 = I, and U^T U = I. For each t in {0, 1, 2, 3}, (U^{t+1})^T U U^t = I. For psi = (3/5, 4/5), psi·psi = 1 and (U^t)^T (U^t psi) = psi for each such t, while the first components of U psi and of U^2 psi differ from 3/5. A continuous-time reading, a Stone generator, and a Wheeler-DeWitt constraint stay unproved. For a supplied group-valued schedule, cumulative transport transforms by inverse terminal frame and initial frame, and a periodic frame cancels all edges iff total transport is identity. Normalized cycle blocks are identity on interior edges and total transport on the closing edge. A checked positive-period constructor returns a closure certificate or a distinct zero-period/nonclosure error. Supplied group actions admit an invertible change of history coordinates preserving the evolution law.
+> Reading the finite clock-dressed history as emergent time evolution for a reparameterization-invariant physical system, or as a Wheeler-DeWitt constraint, is outside the finite intertwining identity.
 
 ## Grade
 
@@ -92,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md](../../../dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md)
-- sha256 (`lf-normalised`): `4cd0117afb03cbe6ed819e6ea826a506b5700e991e385487081465811cdc2210`
+- sha256 (`lf-normalised`): `869f9b2cf483ae2598756ade13ba79b17e251b0bb0f5637a0831400d2889982b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1117
 - counts toward the grade: no

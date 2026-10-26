@@ -48,6 +48,8 @@ STATUS_RANK = {
     'OPEN': 0, 'SOURCE_RECORD': 0, 'IMPORTED_ASSUMPTION': 1, 'ADMITTED_PRIMITIVE': 1, 'CONDITIONAL': 2,
     'DEFINITION': 2, 'COMPUTATIONALLY_CHECKED': 3, 'PROVED_PROSE': 4, 'PROVED_LEAN': 5,
 }
+# A node with one of these statuses states a target or an import; a narrowed slice never replaces it.
+TARGET_STATUSES = ('OPEN', 'CONDITIONAL', 'IMPORTED_ASSUMPTION')
 ROUTE_RANK = {'GAP_NO_DERIVATION': 0, 'RECORD_PARENT': 0, 'CONDITIONAL_ON_IMPORT': 1, 'COMPUTED': 2,
               'DERIVED_PROSE': 3, 'DERIVED_LEAN': 4}
 ROUTE_FOR_STATUS = {'OPEN': 'GAP_NO_DERIVATION', 'CONDITIONAL': 'CONDITIONAL_ON_IMPORT',
@@ -135,6 +137,9 @@ def decision_errors(decisions: dict, nodes: dict) -> list[str]:
             errors.append(f'{nid}: status override but scope_effect {entry["scope_effect"]}')
         if entry['scope_effect'] == 'statement_narrowed' and 'statement' not in entry:
             errors.append(f'{nid}: statement_narrowed without a statement')
+        status = entry.get('status', nodes[nid]['status']) if nid in nodes else None
+        if entry['scope_effect'] == 'statement_narrowed' and status in TARGET_STATUSES:
+            errors.append(f'{nid}: a {status} node keeps its target statement; put the slice in the bottleneck')
     return errors
 
 

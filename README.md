@@ -42,7 +42,7 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | Nodes with executed review results | 177 nodes, 208 review directories | `dag/results/*/reviews/` |
 | Review directories with a supports / does_not_support / narrowest_claim boundary | 176 | `dag/results/*/reviews/*/*.json` |
 | P4 mutations rejected, as recorded in review records (`rejected_P4_mutations`, one value per directory) | 47271 | `dag/results/*/reviews/*/*.json` |
-| PFP review outcomes on DAG nodes | 177 nodes carry `pfp_review`; scope_effect: consistent 59, caveat_added 18, statement_narrowed 75, status_lowered 25 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
+| PFP review outcomes on DAG nodes | 177 nodes carry `pfp_review`; scope_effect: consistent 59, caveat_added 28, statement_narrowed 65, status_lowered 25 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Outside-corpus records audited | 266 records from 8 corpora | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
 | Of those, claimed `PROVED_LEAN` by their source | 173: kept 87, refuted 2, recorded lower 84 (OPEN 38, IMPORTED_ASSUMPTION 17, COMPUTATIONALLY_CHECKED 14, PROVED_PROSE 8, DEFINITION 5, CONDITIONAL 2) | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
 | Tracked `.lean` files | lean4 1054, papers 59, code 66, dag 2428, other 10 (the `dag` files are run snapshots) | `git ls-files` |
@@ -55,7 +55,7 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | `admit` used as a tactic | lean4 0, papers 0, code 0 (identifiers named `admit`: 156) | `git ls-files '*.lean'` |
 | Python test functions (`def test_`) | 6793 (plus 4049 in `dag/results` snapshots) | `git ls-files '*.py'` |
 | Rust test functions (`#[test]`) | 7050 (plus 7995 in `dag/results` snapshots) | `git ls-files '*.rs'` |
-| Contract/score companions | combined_files = 9015, all_passed = true | `python -I -X utf8 scripts/contract_scores.py check` |
+| Contract/score companions | could not parse output (exit 1) | `python -I -X utf8 scripts/contract_scores.py check` |
 
 Counts of test functions and files are inventory counts, not pass results. Status labels are the DAG's own; the legend is in `dag/derivation_dag.json` (`status_legend`).
 
