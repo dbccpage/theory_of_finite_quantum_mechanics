@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `dag/test_foc035_observer_presheaf.py`
 
 - file: [dag/test_foc035_observer_presheaf.py](../../../dag/test_foc035_observer_presheaf.py)
-- sha256 (`bytes`): `a6ef3d2de18f783960c87ac49fee3467ae4e5ef18ac598ee533c0fa907ada1c7`
+- sha256 (`bytes`): `ba1cc9c7e9c5e2b6ef68242bef585dff7781fee2e9f9f8a31fb593d4f5446c23`
 - cited in: node.source
 - check: `python -m pytest dag/test_foc035_observer_presheaf.py`
 - counts toward the grade: yes
@@ -72,22 +72,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2507_ops_arc_cover_nge_witness.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2507_ops_arc_cover_nge_witness.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2507_ops_arc_cover_nge_witness.md)
-- sha256 (`lf-normalised`): `bdd0204fd223a167b9de101bb745c1f127d83b5a39e206a7645cb5a82995f057`
+- sha256 (`lf-normalised`): `ca367cf87a3eeb26591f18aa6911256905d24fb7c06dda5d5f644c69e7ceb628`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2507
 - counts toward the grade: no
 
-### Documents and data: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md`
+### Documents and data: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md`
 
-- file: [sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md](../../../sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md)
+- file: [sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md)
 - sha256 (`lf-normalised`): `da99779add73314574622d0db46ea4dfbc9b66c4938caf29ab98590033592ab4`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md`
+### Documents and data: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md`
 
-- file: [sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
-- sha256 (`lf-normalised`): `649532625cf9e8ec085a420fd1bad9227fcc4dae9f06ba02be1eb19f497e3ec7`
+- file: [sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md](../../../sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md)
+- sha256 (`lf-normalised`): `ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb`
 - cited in: node.source
 - counts toward the grade: yes
 

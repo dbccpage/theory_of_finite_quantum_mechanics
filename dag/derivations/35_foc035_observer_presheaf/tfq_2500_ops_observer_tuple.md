@@ -38,6 +38,6 @@ See also: `PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY`, `L1-OBSERVER-AXIOMS-H1-H5`.
 
 ## Sources
 
-- Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-A1`
-- Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.1-1.2`
+- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-A1`
+- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.1-1.2`
 - Repository: `dag/derivations/35_foc035_observer_presheaf/tfq_2500_ops_observer_tuple.md`

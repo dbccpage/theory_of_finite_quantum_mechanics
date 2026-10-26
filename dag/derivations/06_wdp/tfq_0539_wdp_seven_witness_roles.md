@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 - `omega_engine/crates_rs/omega_wdp/src/observer.rs::adapt_quotient` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/observer.py::adapt_quotient` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py::adapt_quotient`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py)
 
 ---
 
@@ -49,6 +49,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:566-599`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:601-609`
+  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:566-599`
+  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:601-609`
   - `omega_engine_education/documentation/006_oewdp/levels/level_01_witness_function.md:123-159`

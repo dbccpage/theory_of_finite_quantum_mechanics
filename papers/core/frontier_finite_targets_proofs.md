@@ -16,7 +16,7 @@ The derivation DAG (`dag/derivation_dag.json`) has frontier branches in which a 
 literature is reduced to a finite statement that can be checked exactly. The record derivations are
 in `dag/derivations/30_constructor_theory/`, `31_causal_qft/`, `32_ads_cft/` and
 `33_loop_quantum_gravity/`, and the observer-presheaf results come from the LGGR note recorded
-under `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/`.
+under `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/`.
 This note gives written proofs for the frontier nodes recorded as proved in Lean. Each section
 states one result, proves it, and names the Lean declarations that check it. The DAG identifier
 is on the line beginning *DAG node*.

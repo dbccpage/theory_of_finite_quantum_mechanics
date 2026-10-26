@@ -55,8 +55,8 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1039-1044`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1045-1053`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:599-606`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1039-1044`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1045-1053`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:599-606`
   - `dag/derivations/independent/pgw-runs-past-declared-bounds.md:5`
   - `dag/research/campaign_pgw-runs-past-declared-bounds_lean_replay.json:6`

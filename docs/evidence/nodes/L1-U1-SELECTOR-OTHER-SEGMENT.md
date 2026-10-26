@@ -32,7 +32,7 @@ Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclot
 
 ## Source status
 
-Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, split-real zero-divisor exclusion, non-abelian Pauli exclusion, and Gaussian-integer cx ring injectivity) mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
+Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, split-real zero-divisor exclusion, non-abelian Pauli exclusion, and Gaussian-integer cx ring injectivity) mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics
 
 ## Review
 
@@ -159,9 +159,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust, record TFQ-1003
 - counts toward the grade: no
 
-### Rust: `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs`
+### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs)
+- file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust, record TFQ-1003
 
@@ -181,7 +181,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md](../../../dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md)
-- sha256 (`lf-normalised`): `584cceb995b82dc577c4a6f103667e01fc67be6b8516c65e879f1d095027eb5d`
+- sha256 (`lf-normalised`): `09b0f20d3cd3e6fa3fd854340c23669ef2b0863406a62ba1eb86ccc9b2d24191`
 - generated view: listed, not counted
 - cited in: record TFQ-1003
 - counts toward the grade: no

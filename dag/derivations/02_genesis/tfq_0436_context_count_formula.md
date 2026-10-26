@@ -35,12 +35,12 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/Genesis19l57g1/Paper.lean::contextWords_nodup`](../../../lean4/Imported/Genesis19l57g1/Paper.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::a_binary_form_over_two_data_has_five_contexts` (private upstream source, not in this repository)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::contexts` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs::a_binary_form_over_two_data_has_five_contexts`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs::contexts`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs)
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::contexts` (private upstream source, not in this repository)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py::python_replay` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py::contexts`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/reproduce.py::python_replay`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/reproduce.py)
 
 ---
 
@@ -53,6 +53,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:258-261`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/fixtures/historical_claim_ledger.md:26`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:603-604`
+  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:258-261`
+  - `atlas/papers/finite_obstruction_calculus/genesis/code/fixtures/historical_claim_ledger.md:26`
+  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:603-604`

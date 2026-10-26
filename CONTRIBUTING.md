@@ -83,6 +83,22 @@ If you do not use Lean, a precise paper derivation with an independent SymPy che
 
 Read [`REVIEWING.md`](REVIEWING.md). In short: choose a node (the example list and the issue label `review-needed` are good places to start), read its statement, its Lean declaration, its independent check and its derivation note, and open a *Derivation review* issue with a verdict on the statement, the proof and the prose. The maintainer records it, and you are credited in [`docs/reviewers.md`](docs/reviewers.md) if you wish. A review does not need a pull request.
 
+## Naming
+
+Every name says what the thing is, in plain English, so a reader never needs a lookup table.
+
+- **Folders and files:** lowercase `snake_case` words that describe the content, for example `education/witnessed_difference_programme/` and `papers/core/finite_quantum_mechanics_proofs.md`. Use a two-digit prefix only when it gives the reading order (`01_experiment_design.md`).
+- **No opaque codes.** Don't use serial or catalogue codes such as `F004_`, `H052`, `PAPER000` or `tfq_1019_`, internal project or product names, or abbreviations a reader can't expand. A record that needs a timestamp starts its folder name with one (`20261026T120000Z_scope_audit`).
+- **DAG node ids** stay as they are, `UPPER-KEBAB-CASE` (`FQ-GAP-TENSOR-UNIQUENESS`), because they are stable public references. A file about one node is named after the node id in `snake_case`.
+- **Code:** use each language's convention, with descriptive names and no project prefix:
+  - Python modules, functions and variables in `snake_case`, classes in `PascalCase`.
+  - Rust crates and modules in `snake_case`, such as `quantum_physics` (not `omega_quantum_physics`).
+  - Lean modules and namespaces in `UpperCamelCase`, such as `CyclotomicTowerDirected` (not `H052CyclotomicTowerDirected`), and theorems in `snake_case`.
+- **Renames** update every reference in the same pull request, so links, imports and builds keep working.
+- **Provenance records** (`PROVENANCE.json`, `IMPORT_PROVENANCE.json`) keep the exact source paths of copied files, because they are custody facts. Nothing else cites a source repository's paths when a copy exists here.
+
+Some older names still break this rule, for example the `tfq_NNNN_` derivation pages and the `H0NN` and `Campaign` prefixes of Lean modules. They are being renamed in stages.
+
 ## Honesty rules
 
 These apply to every contribution. They are the reason the project keeps its labels low.

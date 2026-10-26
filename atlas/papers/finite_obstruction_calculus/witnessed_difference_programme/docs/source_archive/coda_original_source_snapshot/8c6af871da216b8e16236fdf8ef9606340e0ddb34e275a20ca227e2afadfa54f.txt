@@ -1,0 +1,2002 @@
+# 005 Wd5 Finite Witness History Integral
+
+## 000_WITNESSED_DIFFERENCE Monograph Series (005_wd5_finite_witness_history_integral)
+
+**Date:** 2026-07-29 · **Version:** v1.0  
+**License:** Creative Commons Attribution 4.0 International (CC-BY-4.0)  
+**Status:** RELEASED  
+**Authority:** `AuthorityEffect::None`  
+
+## Mechanism inventory
+
+| Slot | Value / Description |
+| --- | --- |
+| **Primitive Differences** | $\delta c = \text{{defect mass}}$ |
+| **Carriers / Structure** | Finite Graph 0-Cochain / Hilbert Space |
+| **Cochain complex** | $C^0 \to C^1 \to C^2$ |
+| **Coboundary maps** | $\delta^0, \delta^1$ |
+| **ZeroRel** | Preserved under $L_1$ quotient |
+| **Licensed repairs** | None |
+| **Quotient / Q1** | Banach Quotient |
+| **Residuals** | $\delta c \neq 0$ boundary defect |
+| **Witnesses** | Replayable Python / Rust Certifiers |
+| **Observers / profiles** | Operational Observer |
+| **Anomalons** | None |
+| **CompletionLaw** | Finite Cochain Completion |
+| **Terminal / route** | Route to Anomalon Estate |
+| **AuthorityEffect** | None |
+
+## Paper 005 — The Finite Witness-History Integral
+
+> **Legacy Paper Metadata**: `LegacyPaperId: 086` | `Sequence: wd-5` | `Ordinal: 005`
+
+What is the most general compositional weighting of finite EPK histories?
+
+**Version:** v0.1 (Pre-Print) — **OUTLINE, NOT DRAFTED**
+**Date:** 2026-07-20
+**Programme:** `000_wd0_witnessed_difference_programme` (The Witnessed Difference Programme)
+**Sequence position:** WD-5 — supplies the weight-system classification consumed by WD-6
+**AuthorityEffect:** `None`
+
+> **Status.** This document is a structural outline. No section below is a
+> drafted proof, and no claim in it is established. The claim ledger types every
+> substantive row ``OPEN`` or `[CONJECTURE]`. Its purpose is to fix the
+> statement, the proof strategy, the falsifiers, and the non-claims before any
+> mathematics is written.
+
+> **Naming fence — the word "integral" (added 2026-07-20).** The title's
+> "integral" is a **name for a finite coarse-graining sum**, not an analytic
+> object. Every sum in this paper is a $\bigoplus$ over a **finite** index set:
+> $\Omega(a,b)$ is finite by §4's length bound, and a coarse-graining class
+> $\mathcal C \subseteq \Omega$ is finite because $\Omega$ is. **No measure, no
+> $\sigma$-algebra, no limit, no convergence criterion, no dominated-convergence
+> theorem, no completeness of any carrier, and no continuum of histories is
+> constructed, assumed, or claimed anywhere below** (non-claim `WD5-N7`). Where
+> an infinite sum *does* appear — the Kleene star $\bigoplus_{n\ge0}$ in §6 T1 —
+> it is flagged in place as a **separate object with its own unpaid hypothesis**,
+> not as the finite $Z$ of §4. A reader who finds an unflagged limit, measure, or
+> convergence claim in a WD-5 draft has found a defect; report it.
+
+> **Coefficient-carrier fence (added 2026-07-20; count corrected in the
+> 2026-07-20 repair pass).** "Finite" in this paper applies to the **path system
+> and its index sets — never to the coefficient semiring $R$**. **Four of the five
+> target families are infinite — only F1 (the Boolean semiring, two elements) is
+> finite — and all four are continuum-cardinality: F2's $\mathbb R\cup\{+\infty\}$,
+> F3's $\mathbb R_{\ge0}$, F4's $\mathbb R,\mathbb C,\mathbb H$, F5's $\mathbb Q_p$.
+> F4 and F5 are additionally analytic completions of a countable field against a
+> valuation** ($\mathbb R$ against the archimedean absolute value and $\mathbb Q_p$
+> against the $p$-adic one). $\mathbb C$ is a degree-$2$ **field** extension of
+> $\mathbb R$; $\mathbb H$ is **not a field extension at all** but a $4$-dimensional
+> **central division algebra** over $\mathbb R$ — it is noncommutative, so no field
+> extension of $\mathbb R$ is isomorphic to it. *(Corrected in the 2026-07-20
+> cycle-2 repair pass, which found this fence calling both "finite extensions of
+> $\mathbb R$".)* **The continuum line therefore sits between F1 and F2, not between
+> F3 and F4** — so §9's Route A ("accept F1–F3") is *not* the finite-honest zone;
+> it is finite only at F1. $\beta\in\mathbb R_{\ge0}$ and $e^{-\beta\mathcal A}$
+> carry the same import — and note F3 is the carrier the current EPK already runs
+> on. A classification over such carriers is a classification of *weight systems on
+> a finite path system*, not a finite classification; the distinction is priced in
+> §15 and fenced at `WD5-N13`.
+
+> **Numbering bridge — legacy paper labels (added 2026-07-21).** This paper cites
+> its antecedents by the corpus's **legacy global numbers** ("Paper 020", "001m",
+> and so on). Those numbers are no longer directory names: the published corpus was
+> reorganized into programme folders that renumber each paper **programme-locally**
+> and lowercase every name. The legacy labels remain the corpus's working
+> vocabulary and are **not** renumbered here — one dictionary is preferable to a
+> mass rewrite that would break every existing cross-reference. The authoritative
+> map is the generated index `omega_engine/research/published/_index.md`; the
+> entries this paper actually uses are, all relative to
+> `omega_engine/research/published/`:
+>
+> | Legacy label | Current location |
+> |---|---|
+> | 001 | `004_projection_obstruction/000_projection_obstruction_for_factorized_states_nonlinear_dynamics_conditional_l1_diagn` |
+> | 001a | `004_projection_obstruction/covering_edge_descent_to_functorial_presheaves` |
+> | 001h | `004_projection_obstruction/003_projection_to_cochain_and_higher_cells` |
+> | 001m | `004_projection_obstruction/005_projection_memory_curvature` |
+> | 020 | `008_engine_runtime/019_lggr_i_evaluated_path_kernels` |
+> | 025 | `008_engine_runtime/021_lggr_iii_epk_gtla_overlay` |
+> | 057 | `quantum_foundations/p07_entanglement_separability/qm_072_bit_shadow_and_qubit` |
+> | 058 | `quantum_foundations/p07_entanglement_separability/qm_073_correlation_separability_finite_bell` |
+> | 061 | `quantum_foundations/p06_superposition_interference/qm_063_holonomy_structured_superposition` |
+> | QM_111 | `quantum_foundations/qm_111_finite_path_sum_as_graded_transport` |
+> | QM_061 | `quantum_foundations/qm_061_interference_as_the_non_l1_resource_and_the_buildability_set_s` |
+> | Paper 086 (this paper) | `000_wd0_witnessed_difference_programme/005_wd5_finite_witness_history_integral` |
+>
+> The programme-local ids in that table (`004_`, `006_`, …) are **not** the legacy
+> numbers and must not be read as them: Paper 020 is programme paper `004_` of
+> `006_ai_evaluation`, which is also why its Lean library is `PaperAE004` and Paper
+> 025's is `PaperAE006`. **`pub-010` is left unresolved here**: WD-5 uses it only
+> inside a quotation of `ENC-1135`'s own provenance note, and this pass did not
+> independently establish which published paper it names.
+>
+> **Lean citations are by module name, never by filesystem path** (`PL-WDP005-8`).
+> The `lean4/` tree was likewise reorganized into programme folders, so a path is a
+> perishable locator while a module name is stable under `srcDir` moves; the
+> authority for a module name is `omega_engine/lean4/lakefile.lean`.
+
+
+1. Abstract (target lead sentence)
+
+
+*Target payoff sentence — to be drafted to this specification:*
+
+> Weightings of finite evaluated-path histories that are multiplicative under
+> concatenation and additive under coarse-graining are exactly the recognizable
+> series of a semiring-valued weighted automaton; we classify which semirings
+> survive the further symmetry, reversibility, and normalization axioms, and we
+> prove that no weighting valued in a zerosumfree semiring — the
+> $\ell^{1}$ obstruction tally among them — can produce cancellation, hence none
+> can produce **destructive** interference *in the only sense this paper defines*,
+> namely vanishing of the total weight of a coarse-graining class.
+
+**Drafting constraint (hygiene Part A).** The first line states the result in the
+language of weighted automata and semirings — not in the language of obstruction
+calculus, and emphatically not in the language of quantum mechanics. A reader who
+has never opened Paper 000 must be able to evaluate the claim, and a reader who
+knows Schützenberger's theory must be able to see immediately which part is
+transport and which part is new.
+
+**Three concessions the abstract must carry, not bury (added 2026-07-20; a third
+added in the 2026-07-20 repair pass).**
+(i) The "$\ell^{1}$ obstruction tally among them" clause states an instance the
+corpus has **already mechanized** (`ENC-1135`); the abstract must say so and
+claim only the generalization to an arbitrary zerosumfree semiring — see the
+priority fence at §6 T5. The same fence records that the *composition law* of T1
+and the *nonnegative-carrier* rule behind §9's fork are likewise already
+published — the composition law at source as Paper 020's `ENC-0020` with its
+matrix reading `ENC-0018`, re-exported role-locally as `ENC-0807`, and already
+mechanized over an arbitrary commutative semiring as `ENC-1128`; the
+nonnegative-carrier rule as `ENC-0811`, with its cancelling counterpart
+`ENC-0812` (`WDP005-C18`). *(Cycle-1 named only `ENC-0807`/`ENC-0811`; the rest were
+added in the 2026-07-20 cycle-2 repair pass.)* (ii) The word *integral* names a
+**finite $\bigoplus$**, and the classification's target carriers are not finite —
+only F1 is — both fenced in the header and to be visible in the abstract rather
+than discovered at §15. (iii) **"Interference" is not a primitive of this paper.**
+WD-5 declares **no readout or intensity functional** on weights, so the only
+notion available to it is *destructive interference := vanishing of the total
+weight of a coarse-graining class*. That is **not** `ENC-1135`'s notion, which is
+the quadratic readout $\mathcal I(c) = \lvert\sum_s c_s\rvert^{2}$ on a declared
+amplitude carrier. Neither notion is the other's, the abstract must say
+"destructive" and must not drop it, and no sentence may slide from one to the
+other (`WDP005-C19`).
+
+2. Why a researcher should care
+
+
+The corpus has, for several papers, been accumulating reasons to move from states
+to *histories*: composition curvature (001a), the projection-to-cochain adapter
+with its spatial/history bigrading (001h), the exact semigroup defect (001m), and
+WD-5's history differential. Each of these says that a retained representation is
+not closed, and each of them points in the same direction.
+
+Pointing is not arriving. The temptation at this exact juncture is to write down
+a sum over histories with complex weights, call it a path integral, and declare
+that quantum mechanics has been recovered from obstruction calculus. That step
+would be unearned, and this paper exists to make it impossible to take by
+accident.
+
+The practical payoff is a **typed menu of weight systems**. Every later claim of
+the form "the history sum behaves like $X$" must name which family on that menu
+it is using and what that family costs. WD-6 receives the menu; it does not get
+to invent an entry.
+
+3. The motivating result, and exactly what it does not supply
+
+
+Paper 001m proves the following. Let $X$ be a Banach space, $A \in \mathcal{L}(X)$,
+$T_t = e^{tA}$, let $\Pi$ be a local $C^{3}$ retraction onto a split embedded
+submanifold $M \subset X$, and set $S_t = \Pi T_t|_{M}$. Then at $m \in M$, for
+sufficiently small $t, s \geq 0$,
+
+$$
+S_{t+s}(m) - S_t\bigl(S_s(m)\bigr)
+\;=\; ts\,\mathcal{K}_{\Pi,A}(m) \;+\; O\bigl(ts(t+s)\bigr).
+$$
+
+The coefficient $\mathcal{K}_{\Pi,A}(m)$ is tangent, and $\mathcal{K}_{\Pi,A}(m) \neq 0$
+forces $S_{t+s}(m) \neq S_t(S_s(m))$ for all small positive $t, s$.
+
+*Claim type:* `[STANDARD → WDP005-C3]` — Paper 001m Theorem 3.1 and Corollary 3.2,
+cited verbatim and **not reproved here**. **Typing note (repaired 2026-07-20).**
+At source both carry 001m's own type `[PROVEN, CONDITIONAL]` — *proved there from
+the hypotheses displayed in the statement*, namely $A \in \mathcal L(X)$ bounded,
+$\Pi \in C^{3}$, and $0 \le t,s \le \varepsilon$. `[STANDARD]` here is a statement
+about WD-5's *relation* to the result — external input, cited and not reproved,
+carrying no WD-5 proof obligation — and **not** a promotion to unconditional
+standing: the hypotheses travel with it, as does 001m's bounded-generator
+`[SCOPE FENCE / OBSTRUCTION]` below. WD-5's closed type set has no
+`[PROVEN, CONDITIONAL]` slot, so the conditionality is carried in the annotation
+and in ledger row `WDP005-C3` rather than in the tag. The defect is 001m's
+$\mathfrak M_{t,s}(m) := S_{t+s}(m) - S_t(S_s(m))$; 001m states the remainder as
+the explicit bound $\lVert R_{t,s}(m)\rVert \le C\,ts(t+s)$, of which the
+$O(ts(t+s))$ above is the standard abbreviation.
+
+> **Inherited scope fence — bounded generator.** Paper 001m carries a
+> `[SCOPE FENCE / OBSTRUCTION]` on exactly this theorem: it is a
+> **bounded-generator** theorem and *does not extend* merely by replacing
+> $A \in \mathcal L(X)$ with the generator of a $C_0$-semigroup. WD-5 imports the
+> theorem with that fence intact and may not lift it. Note also that $X$ is a
+> **Banach space** and $\Pi$ a $C^3$ retraction: §3's motivation is a
+> **continuum-antecedent** import, not a finite result, and none of §4–§8 inherits
+> either finiteness *from* it or licence to use it as a finite object.
+
+**What this licenses.** A projected state may fail to be dynamically sufficient.
+An exact retained description must then do one of three things: add history,
+enlarge the state, or change the projection.
+
+**What this does not license.** Nothing in the above supplies a weight, a sum, a
+measure, a phase, an amplitude, an interference term, or a Born rule. It
+motivates a *histories programme*; it does not supply a *path integral*. The two
+are separated by every one of the nine steps in §5, and the paper must never
+write a sentence in which the separation is blurred. This is the single most
+likely place for the corpus to deceive itself, and §9 is dedicated to it.
+
+*Claim type:* `[INTERPRETIVE → WDP005-C11]` — that a nonzero semigroup defect
+*motivates* a histories programme without *supplying* a path integral, a weight,
+a measure, a phase, or a probability rule is a methodological reading of
+`WDP005-C3`, not a consequence of it: the mathematics permits the programme, it does
+not force it.
+
+4. Setting
+
+
+Let $G = (\mathsf{S}, E)$ be a finite directed graph on a finite state set
+$\mathsf{S}$. For $a, b \in \mathsf{S}$ let $\Omega(a,b)$ denote the finite set of
+directed paths $a \to b$ of bounded length, and let $\Omega = \bigsqcup_{a,b}\Omega(a,b)$.
+Concatenation
+
+$$
+\ast : \Omega(a,b) \times \Omega(b,c) \longrightarrow \Omega(a,c)
+$$
+
+is associative with identities the empty paths $\mathrm{id}_a$; that is, the
+**unbounded** path set $\Omega^{\mathrm{all}} = \bigsqcup_{a,b}\Omega^{\mathrm{all}}(a,b)$
+is the free category on $G$, and the length-bounded $\Omega$ fixed in the
+declaration below is that free category **truncated** — a *partial* structure,
+**not itself a category**, unless composition is restricted or $G$ is acyclic
+(`WDP005-C15`, falsifier `WD5-F6`).
+
+*Claim type:* `[STANDARD → WDP005-C1]` — elementary, **and only for the unbounded
+path set**: it is the *all*-paths statement that is standard. Truncation is
+``OPEN``; see `WDP005-C15`/`WD5-F6`. Cite, do not claim. *(Repaired 2026-07-20: the
+row previously asserted the free-category property of the **bounded-length**
+paths, which §4's own finiteness declaration contradicts — concatenating two
+length-$L$ paths gives length $2L$.)*
+
+> **Finiteness declaration (added 2026-07-20; the hypothesis the whole paper
+> rests on).** Fix once and for all a **length bound** $L \in \mathbb N$ and set
+> $\Omega := \bigsqcup_{a,b} \Omega_{\le L}(a,b)$, the paths of edge-length at
+> most $L$. Then $\lvert\Omega\rvert \le \lvert\mathsf S\rvert \cdot
+> \sum_{n=0}^{L} \lvert E\rvert^{\,n} < \infty$, so **every $\bigoplus$ in this
+> paper is a finite indexed sum in the algebraic sense: an $L$-fold iterate of the
+> binary $\oplus$, requiring no order of summation, no summability hypothesis, and
+> no completeness of $R$.** Truncation is *not* a convenience: dropping it makes
+> $\Omega(a,b)$ infinite whenever $G$ has a directed cycle, and every sum in §5
+> step 4, §6 T1, and §6 T3 then becomes an object this paper has not defined.
+> **The bound $L$, its uniformity across $(a,b)$, and whether the truncated
+> $\Omega$ is closed under $\ast$ are all undischarged** — concatenating two
+> length-$L$ paths gives length $2L$, so $\Omega_{\le L}$ is a *partial* category,
+> not the free one, unless the composition law is restricted or $G$ is acyclic.
+> That reconciliation is `PL-WDP005-1`, and it gates the meaning of $\ast$ in §5
+> step 3. *Claim type:* `[OPEN → WDP005-C15]`.
+
+An **admissible history** is a path passing the EPK evaluator gate
+$\mathbf{1}_{\mathrm{EvalPass}}(\gamma) \in \{0,1\}$. The Evaluated Path Kernel of
+Paper 020 (encyclopedia entry `ENC-0019`) is
+
+$$
+Z_\theta(b \mid a) \;=\; \sum_{\gamma \in \Omega(a,b)}
+\mathbf{1}_{\mathrm{EvalPass}}(\gamma)\, e^{-\beta \mathcal{A}[\gamma]},
+\qquad \mathcal{A}[\gamma] \in \mathbb{R}_{\geq 0},\ \beta \geq 0,
+$$
+
+a $\mathbf{Kl}(W)$-morphism valued in the nonnegative reals. **This is a
+partition function, not an amplitude:** it carries no normalization, no phase, no
+interference, and no Born rule. That observation is the seed of §6 T5.
+
+*Claim type:* `[DEFINITION → WDP005-C2]`, imported from Paper 020 / `ENC-0019`.
+**Not `[STANDARD]`:** `ENC-0019` is `kind: definition`, `status: DEFINED`, with
+its single Lean obligation ("$Z_\theta$ is a $\mathbf{Kl}(W)$-morphism")
+`NOT-STARTED`. So the $\mathbf{Kl}(W)$-morphism property is a *definitional
+reading* the corpus has recorded and not yet mechanized, and WD-5 must cite it as
+such rather than lean on it as a theorem. Note the sum above is finite exactly
+because $\Omega(a,b)$ is — `ENC-0019` says "finite path sets" — so it inherits
+the §4 finiteness declaration and adds nothing analytic beyond the real
+exponential, priced in §15.
+
+**What §4 imports from Paper 020, and what it does *not* thereby exhaust (added
+2026-07-20 cycle-2 repair pass).** The typing above is about `ENC-0019` alone, and
+the earlier passes let it stand as though `ENC-0019` were the whole of Paper 020's
+bearing on this paper. **It is not.** The *definition* WD-5 imports here is
+`ENC-0019` (`DEFINED`, Lean obligation `NOT-STARTED`); the *theorem* WD-5 restates
+at §6 T1 is Paper 020's `ENC-0020` — "Composition = Kleisli composition",
+`PROVED-PROSE` under G1–G3, `MECHANIZED-PARTIAL` — and the matrix reading T1's
+statement relies on is Paper 020's `ENC-0018`, whose own
+$\mathbf{Kl}(W)\simeq\mathbf{Mat}(\mathbb R_{\ge0})$ obligation is `NOT-STARTED`.
+Both are `uses:` dependencies of `ENC-0020` and are the corpus's nearest prior art
+for T1. **Citing `ENC-0019` here does not discharge the priority obligation on
+T1**; that lives at §6 T5 fence (v), §10, and `WDP005-C18`. The demotion recorded in
+`WDP005-C2` is a statement about this definition's status, not a statement that
+Paper 020 offers WD-5 nothing but a definition.
+
+A **weight system** is a map $w : \Omega \to R$ into a semiring
+$(R, \oplus, \otimes, 0_R, 1_R)$, optionally equipped with an involutive
+antiautomorphism $(-)^{\dagger} : R \to R$.
+
+Call $R$ **zerosumfree** (equivalently *antinegative*, *positive*) if
+
+$$
+x \oplus y = 0_R \;\Longrightarrow\; x = 0_R \ \text{and}\ y = 0_R .
+$$
+
+The Boolean semiring, the tropical semiring $(\mathbb{R}\cup\{+\infty\}, \min, +)$,
+and $(\mathbb{R}_{\geq 0}, +, \times)$ are zerosumfree. No ring with $1_R \neq 0_R$ is.
+
+*Claim type:* `[DEFINITION]` for zerosumfreeness; the four examples are
+`[STANDARD]` and were re-derived in the 2026-07-20 producer pass rather than
+transcribed. Boolean: $x \vee y = 0 \Rightarrow x = y = 0$ (all four cases).
+Tropical: $0_R = +\infty$, $1_R = 0$, and $\min(x,y) = +\infty \Rightarrow x = y =
++\infty$. Nonnegative reals: $x + y = 0$ with $x,y \ge 0 \Rightarrow x = y = 0$.
+Ring with $1_R \neq 0_R$: $1_R \oplus (-1_R) = 0_R$ while $1_R \neq 0_R$ and
+$-1_R \neq 0_R$ (since $-1_R = 0_R$ would give $1_R = 0_R$) — so **the failure of
+zerosumfreeness in a ring is witnessed by a single explicit pair, not by an
+appeal to genericity.** That witness is the entire content of §9 Route B.
+
+**Interpretive fence.** Writing $\gamma \ast \gamma'$ already presupposes a
+carrier, an adjacency, a direction on each edge, and a sequential order on the
+steps of a history. WD-0 established that none of these is selectable from bare
+non-sameness. They are therefore **imports**, priced in §15, and they are *not*
+silently granted as free structure anywhere in §6–§8.
+
+5. The nine-step construction (the programme spine)
+
+
+The move from "histories are needed" to "quantum mechanics" decomposes into nine
+steps. Naming them separately is the paper's main hygienic device.
+
+| Step | Content | Scope |
+|---|---|---|
+| 1 | **History carrier.** Use the finite EPK path system to define admissible histories and their composition | WD-5 |
+| 2 | **Abstract weights.** Assign weights in a *declared* semiring or involutive algebra | WD-5 |
+| 3 | **Composition law.** Sequential composition multiplies weights: $w(\gamma \ast \gamma') = w(\gamma) \otimes w(\gamma')$ | WD-5 |
+| 4 | **Coarse-graining law.** Alternative histories combine by the addition: $W(\mathcal{C}) = \bigoplus_{\gamma \in \mathcal{C}} w(\gamma)$ | WD-5 |
+| 5 | **Obstruction action.** Define a local history functional from projection, composition, and witness defects | WD-5 |
+| 6 | **Representation theorem.** Classify weight systems satisfying the declared composition, symmetry, reversibility, and normalization axioms | WD-5 |
+| 7 | **Quantum gate.** Determine whether those axioms force complex phases and interference, or leave classical / non-Archimedean / other alternatives open | **WD-6** |
+| 8 | **Probability gate.** Derive or explicitly import the rule mapping amplitudes to observed frequencies | **WD-6** |
+| 9 | **Continuum boundary.** Only after the finite theorem is complete, study limits and measures | **WD-6 and later** |
+
+**Scope declaration.** Steps 7, 8, and 9 are *out of scope for WD-5*. This paper
+must not adjudicate whether complex amplitudes are forced, must not derive or
+assume the Born rule, and must not take a continuum limit. WD-5's deliverable is
+the **classification (step 6) and the no-go (§6 T5)** — not the selection of
+quantum theory. Any draft sentence that reaches into steps 7–9 is a defect, and
+reviewers should treat it as one.
+
+*Claim type:* the nine-step table is a `[DEFINITION]` — an operational
+decomposition this paper declares in order to fence itself, **not** a theorem
+that the move to quantum mechanics factors in exactly this way and no other. The
+scope declaration is likewise an operational rule. Neither is proved, and neither
+should be read as a result about the space of possible derivations. Note step 9
+is named *"Continuum boundary"* and is assigned to "WD-6 and later" — so **every
+measure, limit, and convergence question in the programme is deferred by this
+table, and none of §6–§8 may quietly draw on one.**
+
+6. Theorem targets
+
+
+Stated as targets. None is proved here.
+
+### T1 — Representation theorem (semiring-valued finite history theorem)
+
+Let $w : \Omega \to R$ satisfy multiplicativity under concatenation (step 3),
+$w(\mathrm{id}_a) = 1_R$, and additivity under coarse-graining (step 4). Then $w$
+is determined by the edge-weight matrix $M \in R^{\mathsf{S}\times\mathsf{S}}$,
+$M_{ab} = w(a \to b)$, and the coarse weight of the $n$-step histories from $a$ to
+$b$ is the matrix power
+
+$$
+W_n(b \mid a) \;=\; \bigl(M^{\otimes n}\bigr)_{ab},
+\qquad
+Z(b \mid a) \;=\; \Bigl(\bigoplus_{n \geq 0} M^{\otimes n}\Bigr)_{ab} = (M^{\ast})_{ab}
+$$
+
+whenever the Kleene star $M^{\ast}$ exists in $R$. Equivalently: compositional
+weightings of finite histories are exactly the $R$-recognizable series on $G$.
+
+**This is the first rigorous target of the paper, and it is a semiring-valued
+finite history theorem — not a quantum path integral claim.** It is expected to
+be `[STANDARD]` in weighted-automata theory; the contribution is the transport
+and the typing, not the theorem.
+
+*Claim type:* `[OPEN → WDP005-C4]`, expected `[STANDARD]` once located; `PL-WDP005-2`.
+
+> **Two different objects, and the paper must not conflate them (added
+> 2026-07-20).** $W_n$ and the **truncated** weight
+> $Z_{\le L}(b\mid a) = \bigl(\bigoplus_{n=0}^{L} M^{\otimes n}\bigr)_{ab}$ are
+> finite $\oplus$-iterates and are exactly the objects §4 defines. The
+> **starred** $Z = \bigl(\bigoplus_{n\ge0} M^{\otimes n}\bigr)_{ab} = (M^{\ast})_{ab}$
+> displayed above is **not** that object: $\bigoplus_{n \ge 0}$ is an infinite
+> indexed sum, which a bare semiring cannot evaluate. It acquires a meaning only
+> under one of two *separately declared and separately priced* hypotheses:
+>
+> 1. **Nilpotence.** $M^{\otimes n} = 0$ for all $n > N$ — equivalently $G$ is
+>    acyclic — in which case $\bigoplus_{n\ge0}$ collapses to the finite
+>    $\bigoplus_{n=0}^{N}$ and **no hypothesis on $R$ is needed at all**. This is
+>    the honest finite route, and it is the case the §8 fixture realizes.
+> 2. **A star structure on $R$.** $R$ is a Conway / complete / $\omega$-complete
+>    star-semiring carrying a primitive $(-)^{\ast}$ satisfying
+>    $x^{\ast} = 1_R \oplus x\otimes x^{\ast}$. This is an **additional algebraic
+>    import**, and in the archetypal analytic instance $R = (\mathbb R_{\ge0},+,\times)$
+>    it is a *convergence* hypothesis — $(1-x)^{-1}$ for $x<1$ — i.e. exactly the
+>    analysis the finite programme has not earned.
+>
+> The clause "whenever the Kleene star exists in $R$" names the gap but does not
+> discharge it, and **which of the two routes T1 is stated over changes what T1
+> says.** Under §4's length bound the paper is committed to route 1 or to the
+> truncated sum; the starred form must therefore be either (a) restricted to
+> acyclic $G$, (b) restated as $Z_{\le L}$, or (c) promoted to a *second*,
+> explicitly star-semiring-hypothesised theorem. Choosing among these is
+> `PL-WDP005-1` together with `PL-WDP005-2`; §10's Kleene-algebra bullet is its
+> literature home. *Claim type:* `[OPEN → WDP005-C15]`. **No draft may write $Z$ and
+> $Z_{\le L}$ with the same symbol.**
+
+### T2 — Obstruction action and its cohomological criterion
+
+Define a local history functional $\mathcal{A} : \Omega \to (\mathbb{R}, +)$ by
+summing, along a history, local contributions drawn from the projection defect
+(001), the composition curvature $K$ of 001a, the semigroup-defect coefficient
+$\mathcal{K}_{\Pi,A}$ of 001m, and witness non-congruence receipts.
+
+**(a) Additivity.** $\mathcal{A}[\gamma \ast \gamma'] = \mathcal{A}[\gamma] + \mathcal{A}[\gamma']$,
+so $\mathcal{A}$ is a functor $\Omega \to (\mathbb{R},+)$, i.e. a $1$-cocycle in the
+history direction of the 001h bigrading, and $w = e^{-\beta\mathcal{A}}$ then
+satisfies step 3 automatically.
+
+**(b) History-dependence criterion.** All histories $a \to b$ carry equal weight
+if and only if $\mathcal{A}$ is exact, $\mathcal{A} = d_{\mathrm{hist}} f$ for a
+potential $f$ on states. Hence
+
+$$
+[\mathcal{A}] \neq 0 \ \text{in}\ H^{1}_{\mathrm{hist}}
+\quad\Longleftrightarrow\quad
+\text{the weighting is genuinely history-dependent.}
+$$
+
+T2(b) is what converts 001m's motivation into a statement with a criterion
+attached. It says *when* history must be retained. It does not say what the
+weights are.
+
+*Claim types:* T2(a) `[OPEN → WDP005-C5]`, `PL-WDP005-3`; T2(b) `[OPEN → WDP005-C6]`,
+`PL-WDP005-4`.
+
+> **Cohomological-phrasing caution (added 2026-07-20 — the sharpest inherited
+> risk in the paper).** The **coboundary** half of T2(b) — "$\mathcal A$ is
+> constant on $\Omega(a,b)$ for all $a,b$ iff $\mathcal A = d_{\mathrm{hist}} f$
+> for a potential $f$ on states" — is a statement about a single map and is
+> meaningful as soon as $d_{\mathrm{hist}}$ is defined. The **cohomological**
+> half — "$[\mathcal A] \neq 0$ in $H^{1}_{\mathrm{hist}}$" — is not: an $H^{1}$
+> exists only if $\operatorname{im} d^{0}_{\mathrm{hist}} \subseteq \ker
+> d^{1}_{\mathrm{hist}}$, i.e. only if the square-zero law holds where it is used.
+> **WD-5, this paper's declared supplier of $d_{\mathrm{hist}}$, types that law
+> ``OPEN`` and expects it REFUTED** (`WDP005-C6`), and records separately that a
+> curved differential has **no cohomology at all** — $d^{2}\neq0$ gives
+> $\operatorname{im} d \not\subseteq \ker d$, so $\ker d/\operatorname{im} d$ is
+> undefined (`WDP005-C14`, `[STANDARD]`). If WD-5's expectation is borne out, the
+> $H^{1}_{\mathrm{hist}}$ phrasing of T2(b) is **malformed rather than false** —
+> a strictly worse outcome, and one no proof of T2(b) can detect from inside.
+>
+> The draft must therefore (i) state T2(b) primarily in **coboundary form**, and
+> (ii) present the $H^{1}$ reading as *conditional on WD-5 discharging
+> `PL-WDP005-4` in the positive on the bidegrees T2(b) uses*, never as the
+> statement itself. Until then the words *exact*, *cocycle*, *class*, and
+> $H^{1}_{\mathrm{hist}}$ carry no established cohomological content in this
+> paper. This is folded into `PL-WDP005-4`.
+
+### T3 — Coarse-graining law
+
+Characterize the partitions $\mathcal{P}$ of the admissible history set for which
+the induced assignment $\mathcal{C} \mapsto \bigoplus_{\gamma\in\mathcal{C}} w(\gamma)$
+is again a weight system on the quotient path system — i.e. for which
+coarse-graining commutes with composition. Call such a partition **consistent**.
+
+This is the abstract shadow of the consistency condition of the
+consistent/decoherent-histories programme, stated over an arbitrary semiring and
+*without* assuming a complex carrier. §10 must situate this carefully and must
+not claim their theorem.
+
+*Claim type:* `[OPEN → WDP005-C7]`, `PL-WDP005-5`. The partition $\mathcal P$ is a
+partition of a **finite** set (§4), so "$\bigoplus_{\gamma\in\mathcal C}$" is a
+finite iterate and T3 imports nothing analytic; the decoherence functional it
+shadows does not enjoy that property, which is part of why T3 cannot recover it.
+
+### T4 — Weight-system classification
+
+Under steps 3–4 together with declared symmetry (invariance under a stated
+automorphism group of the path system), reversibility
+($w(\gamma^{\mathrm{rev}}) = w(\gamma)^{\dagger}$), normalization, and a
+nondegeneracy condition, classify the admissible $R$ up to isomorphism. The
+target partition:
+
+| Family | Representative | Character |
+|---|---|---|
+| F1 | Boolean semiring | Reachability only; no magnitude |
+| F2 | Tropical / idempotent, $(\min,+)$ | Optimization; least-action selection, no superposition |
+| F3 | $(\mathbb{R}_{\geq 0}, +, \times)$ | Partition function / stochastic; the current EPK |
+| F4 | Involutive rings with additive inverses (real, complex, quaternionic) | Cancellation available |
+| F5 | Non-Archimedean valued fields ($p$-adic and friends) | Cancellation available, different metric |
+
+**T4 is the load-bearing deliverable.** T1–T3 are the machinery; T4 is what WD-6
+consumes. Its hard part is *exhaustiveness*, and the claim must be weakened to a
+classification of systems inside a declared axiom set if exhaustiveness cannot be
+proved. See the ledger row `WD5-L4`.
+
+*Claim type:* `[OPEN → WDP005-C8]`, `PL-WDP005-6`. **The table is a target partition,
+not a result, and it is not yet a partition:** F4 and F5 both provide additive
+inverses and are distinguished by *metric* rather than by algebra, so "up to
+isomorphism" does not separate them without a declared valuation; and $\mathbb R
+\subset \mathbb C \subset \mathbb H$ — a chain of **$\mathbb R$-subalgebras**, not
+of field extensions, since $\mathbb H$ is noncommutative, and one whose second
+inclusion $\mathbb C\hookrightarrow\mathbb H$ is **non-canonical** (every purely
+imaginary unit quaternion determines one) — makes the F4 row a family of three
+non-isomorphic carriers listed as one entry *(chain description corrected in the
+2026-07-20 cycle-2 repair pass, which found it written as a tower of field
+extensions)*. Fixing whether F1–F5 are five
+classes, five representatives, or five *examples* is part of `PL-WDP005-6` and must
+be settled before "exhaustive" is used of them. Per the coefficient-carrier fence
+in the header, **every carrier in F2–F5 is infinite** — F1's Boolean semiring,
+with two elements, is the only finite one — and all four infinite families are
+continuum-cardinality, with F4 and F5 additionally analytic completions. So T4 as
+drawn classifies over continuum carriers **from F2 onward**, even though the path
+system is finite. *(Repaired 2026-07-20: this note previously located the
+continuum line at F3|F4.)*
+
+### T5 — Phase-insufficiency no-go (foregrounded)
+
+Let $R$ be zerosumfree and let $\gamma_1, \gamma_2$ be histories with
+$w(\gamma_1), w(\gamma_2) \neq 0_R$. Then
+
+$$
+w(\gamma_1) \oplus w(\gamma_2) \;\neq\; 0_R .
+$$
+
+Consequently no coarse-graining of nonzero-weight alternatives can vanish: **a
+zerosumfree weight system admits no cancellation, hence no destructive
+interference.**
+
+*Claim type:* `[OPEN → WDP005-C9]`, `PL-WDP005-7`. The two-history form displayed is
+immediate from the definition; the form actually needed downstream is the
+**finite** extension — $\bigoplus_{i=1}^{k} x_i = 0_R$ with some $x_i \neq 0_R$ is
+impossible — which is an induction on $k$ and is finite because $\mathcal C$ is
+(§4). Support lemma `WD5-L5`. No infinite coarse-graining is claimed and none
+would be meaningful here.
+
+**Corollary (the $\ell^{1}$ tally cannot interfere).** The obstruction tally that
+sums nonnegative magnitudes of defects is valued in $(\mathbb{R}_{\geq 0},+,\times)$,
+which is zerosumfree. Therefore the EPK as presently defined — and any weighting
+that factors through nonnegative magnitudes — *cannot by itself generate
+cancellation, hence no **destructive** interference in this paper's sense
+(vanishing of the total weight)*, at any $\beta$, for any action, on any finite
+path system. It says nothing about `ENC-1135`'s $\lvert\sum_s c_s\rvert^{2}$
+notion, which WD-5 has no functional to express (`WDP005-C19`).
+
+> **Scope fence (added 2026-07-20).** T5 and this corollary are claims about
+> **weightings that factor through nonnegative magnitudes**, and nothing more.
+> They are **not** claims about the Anomalon corpus at large, which already
+> carries an additive-inverse-bearing carrier at $\delta 8$: published Paper 058
+> §4 runs on signed scalars $a_i, b_j \in \{+1,-1\}$, and its §5.4 executes
+> $c = -c \Rightarrow c = 0$ in an integral domain with $+1 \neq -1$. Reading T5
+> as "the corpus cannot express cancellation" is therefore **false**. The honest
+> statement is that cancellation is unavailable *to the nonnegative tally* and
+> must be purchased by moving to a carrier with additive inverses — which the
+> corpus has already done at $\delta 8$, and which Paper 057 §4 prices as cheap
+> at the finite $\mathbb{Z}/n$ grade.
+
+> **Priority fence — the $\ell^{1}$ half is not new (added 2026-07-20; extended
+> beyond the $\ell^{1}$ instance in the 2026-07-20 repair pass).** The
+> corollary's content for the nonnegative tally is **already a mechanized corpus
+> result**, and WD-5 must cite it rather than re-announce it. Specifically:
+> `ENC-1135` (`status: MECHANIZED`) carries
+> `L1_cannot_compute_interference` — *no function of the $\ell^{1}$ / diagonal
+> weights computes the interfered outcome* — in Lean module
+> `QM.InterferenceBuildability`, with the explicit witness pair $(1,1)$ vs
+> $(1,-1)$: identical $\ell^{1}$ data $(1,1)$, interfered outcomes $4$ and $0$,
+> cross terms $+2$ and $-2$. `ENC-1135` itself records that this is **pub-010
+> Theorem 7 re-packaged, "not a novel result"**. Paper 057 §4 Q2 cites it as the
+> corpus's standing boundary, and Paper 061 Corollary 3.3 proves an
+> $\ell^{1}$-nonfactorization of the same shape by a holonomy argument, with
+> difference $4\sqrt{w_p w_q} > 0$.
+>
+> **What is therefore left to T5, stated exactly.** (i) `L1_cannot_compute_interference`
+> is a **non-computability** statement — no $f$ recovers the coherent outcome from
+> the diagonal data — whereas T5 is a **non-cancellation** statement about the
+> semiring's own $\oplus$; neither implies the other formally. (ii) T5 is stated
+> over an **arbitrary zerosumfree semiring**, covering Boolean and tropical
+> carriers to which the $\ell^{1}$ witness does not apply, and it is that
+> generality WD-6 consumes. (iii) The $\ell^{1}$ corollary is the **specialization
+> of T5 to $R = (\mathbb R_{\ge0},+,\times)$** and, in that instance alone, is a
+> re-derivation of already-mechanized corpus content. Non-claim `WD5-N12`; ledger
+> row `WDP005-C16`. §10 must carry all three citations.
+>
+> **(iv) The two "interference"s are different objects, and neither is the
+> other's (added in the repair pass).** WD-5 declares **no readout, intensity, or
+> probability functional on weights anywhere** — §4 gives only $w:\Omega\to R$ and
+> the coarse sum $\bigoplus$. So the *only* meaning "destructive interference" can
+> carry in this paper is the one T5 supplies: **vanishing of the total weight of a
+> coarse-graining class**, $\bigoplus_{\gamma\in\mathcal C} w(\gamma) = 0_R$ with
+> some $w(\gamma)\neq 0_R$. `ENC-1135`'s interference is a **different object**:
+> the quadratic readout $\mathcal I(c) = \lvert\sum_s c_s\rvert^{2}$ on a declared
+> $\mathbb C/U(1)$ amplitude carrier, whose $\ell^{1}$ layer is the diagonal Born
+> weights $\lvert c_s\rvert^{2}$. It is therefore **not enough** to say
+> "non-computability $\neq$ non-cancellation": **neither notion of interference is
+> the other's**, and no WD-5 sentence may pass between them. A draft that writes
+> bare "interference" where it means "vanishing of $\bigoplus$" has committed the
+> defect this fence exists to stop, and a draft that drops the word *destructive*
+> has committed it twice — the referent is missing *and* the qualifier is gone.
+> Acquiring `ENC-1135`'s notion would require declaring a readout functional,
+> which is step 8 and belongs to WD-6. Claim row `WDP005-C19` `[INTERPRETIVE]`.
+>
+> **(v) Nearer corpus neighbours, previously omitted (added in the cycle-1 repair
+> pass; corrected and extended in the cycle-2 repair pass).** The priority
+> concession above was scoped to the $\ell^{1}$ instance and understated the
+> corpus's prior art on the *other* two load-bearing pieces. The cycle-1 pass then
+> named **Paper 025** as the nearest neighbour of T1. **That was wrong, and it was
+> wrong in a way the corpus itself flags:** `ENC-0807`'s own Proof Pointer reads
+> *"This theorem is inherited from Paper 020. The unweighted form is `ENC-0020`."*
+> Paper 025 is a **role-local re-export**; the source is **Paper 020**, which WD-5
+> §4 already imports for `ENC-0019`. The neighbours, in order of nearness:
+>
+> - **`ENC-0020` — "Composition = Kleisli composition"** (`kind: proposition`,
+>   `status: PROVED-PROSE`, `conditional_on` **G1** (disjoint-boundary gluing iso),
+>   **G2** (action additivity), **G3** (evaluator factorization);
+>   `lean_status: MECHANIZED-PARTIAL`). It states
+>   $$Z_\theta(S_c\mid S_a) = \sum_{S_b\in\mathsf B} Z_\theta(S_c\mid S_b)\, Z_\theta(S_b\mid S_a)$$
+>   **over WD-5 §4's own objects** — the finite path sets $\Omega(S_a,S_b)$, the
+>   gate $\mathbf 1_{\mathrm{EvalPass}}$, and the Gibbs weight $e^{-\beta\mathcal A}$
+>   — and identifies it as **matrix multiplication over the nonnegative semiring**.
+>   Lean: `PaperAE004.kernel_pair_sum_reindexing_under_G1_G2_G3` (rowwise finite
+>   reindexing) and `PaperAE004.kernel_composition_under_G1_G2_G3` (the Cartesian
+>   product-of-sums bridge to the boundary-row matrix product), both axiom-audited
+>   2026-06-20 to depend only on `propext`. **This — not `ENC-0807` — is the nearest
+>   corpus prior art for T1**, and it is prior art on the exact carrier §4 imports.
+> - **`ENC-0018` — "Weighted Kleisli category"** (`kind: definition`,
+>   `status: DEFINED`) supplies the **matrix-representation half** T1 leans on:
+>   $W$ is the free $\mathbb R_{\ge0}$-semimodule monad on $\mathbf{FinSet}$, a
+>   $\mathbf{Kl}(W)$-morphism is a kernel, and Kleisli composition **is** matrix
+>   multiplication over the semiring,
+>   $(K\circ_K L)(c\mid a) = \sum_b K(c\mid b)\,L(b\mid a)$. **Its single Lean
+>   obligation — the free $\mathbb R_{\ge0}$-semimodule monad together with
+>   $\mathbf{Kl}(W)\simeq\mathbf{Mat}(\mathbb R_{\ge0})$ — is `NOT-STARTED`.** So the
+>   matrix-representation reading is **prose in the corpus too**: WD-5 must cite it
+>   as a recorded definitional reading and may not describe it as mechanized. (Both
+>   `ENC-0020` and `ENC-0807` inherit that gap: each says explicitly that the full
+>   categorical $\mathbf{Kl}(W)$ object and the equivalence with
+>   $\mathbf{Mat}(\mathbb R_{\ge0})$ are **not** formalized, which is precisely why
+>   both carry `MECHANIZED-PARTIAL` rather than `MECHANIZED`.)
+> - **`ENC-0807` — Layer-Local EPK Composition** (`kind: theorem`,
+>   `status: PROVED-PROSE`, `lean_status: MECHANIZED-PARTIAL`, conditional on
+>   G1–G4). Paper 025 §3 states, on the declared clean locus,
+>   $Z_\theta(S_c\mid S_a) = \sum_b Z_\theta(S_c\mid S_b)\, Z_\theta(S_b\mid S_a)$
+>   and names it **"a finite semiring-matrix law"** over
+>   $\mathrm{Kl}(W) \simeq \mathrm{Mat}(\mathbb R_{\ge0})$. This is T1's content in
+>   the corpus, over the very carrier §4 imports — but it is the **role-local
+>   re-export**, not the source: `ENC-0807` `uses` `ENC-0020`, its Proof Pointer
+>   says the theorem *"is inherited from Paper 020"*, and
+>   `PaperAE006.L025_02_LayerLocalComposition` **wraps** Paper 020's
+>   proposal-weighted theorem *"without adding hypotheses"*, stated over
+>   $\mathbb Z$, so the $\mathbb R_{\ge0}$ display is inherited as prose. What
+>   `ENC-0807` adds over `ENC-0020` is the G4 proposal-weighted extension and the
+>   GTLA role-local application — **not** the composition law. *(Reframed in the
+>   cycle-2 repair pass, which found this bullet presenting the re-export as the
+>   nearest neighbour.)*
+> - **`ENC-0811` — EPK Signed-Ledger Obstruction to Plain Nonnegative Laxity**
+>   (`status: MECHANIZED`). Over the plain nonnegative Kleisli carrier,
+>   $d < 0 \Rightarrow \neg\exists\, n:\mathbb N,\ (n:\mathbb Z) = d$ — Lean module
+>   `PaperAE006.L025_06_SignedLedgerObstruction`, theorems
+>   `PaperAE006.negative_signed_defect_has_no_plain_nonnegative_cell` and
+>   `PaperAE006.local_green_global_red_defect_has_no_plain_nonnegative_cell`. This
+>   is the **EPK-setting form of T5's corollary and of §9's Route A/B fork**: a
+>   nonnegative carrier cannot hold signed content, so the signed thing goes in a
+>   ledger or a new carrier must be declared. **It is already mechanized, while
+>   WD-5's version is ``OPEN``.**
+> - **`ENC-0812` — EPK Aggregate Cancellation Does Not Imply Pointwise Zero**
+>   (`kind: lemma`, `status: MECHANIZED`; Paper 025 §4 Lemma 4.3; Lean module
+>   `PaperAE006.L025_07_AggregateCancellation`, theorems
+>   `PaperAE006.aggregate_zero_does_not_imply_pointwise_zero` and
+>   `PaperAE006.paper020_negative_positive_defects_cancel_but_are_nonzero`, with the
+>   witness inherited from Paper 020: $d_{\mathrm{Neg}} = -1$, $d_{\mathrm{Pos}} = +1$,
+>   $d_{\mathrm{Neg}} + d_{\mathrm{Pos}} = 0$, **both nonzero**). *Added in the
+>   cycle-2 repair pass.* This is the **EPK-native mechanized form of the cancelling
+>   witness §8 item 4 exhibits over $\mathbb C$**, and of the *"cancellation arrives
+>   with the additive inverses"* half of §9's Route A/B fork: it is exactly the
+>   configuration T5 forbids in a zerosumfree carrier, executed in the corpus's own
+>   EPK setting rather than borrowed from a quantum amplitude example. Note it is
+>   also the **converse-facing** statement to `ENC-0811`: `ENC-0811` says the
+>   nonnegative carrier *cannot hold* the signed defect, `ENC-0812` says that once
+>   the signed carrier is granted, aggregate zero *no longer certifies* pointwise
+>   zero. WD-5 claims neither.
+> - **`ENC-1128` — Finite Path-Sum Equals Matrix Power** (`kind: theorem`,
+>   `status: MECHANIZED`; QM_111 `PATHSUM-MXP-001`; Lean module `QM.FinitePathSum`,
+>   `pathSum_eq_matpow` and `matpow_compose`, **general over any finite index type
+>   (`Fintype`) and any `CommSemiring`**, axiom-clean on the standard Mathlib set).
+>   *Added in the cycle-2 repair pass; found only by the systematic sweep, since it
+>   sits in the `quantum` layer rather than the `epk` one.* It states
+>   $(M^{n})(b\mid a) = \sum_{a=v_0\to\cdots\to v_n=b}\ \prod_{i} M(v_i\mid v_{i-1})$
+>   with Chapman–Kolmogorov $M^{m+n} = M^{m}M^{n}$, and fences itself as the
+>   **finite shadow of the Feynman path-sum — no continuum, no measure**, which is
+>   WD-5's own naming fence stated by another paper. **This materially narrows what
+>   T1 can claim.** The cycle-1 text said what remains WD-5's is *"the
+>   arbitrary-semiring statement"*; over a **commutative** semiring the matrix-power
+>   half of T1 is **already mechanized**. What survives as WD-5's is therefore only
+>   (a) the **representation/uniqueness direction** — that multiplicativity,
+>   unit-normalization, and coarse-grain additivity *force* $w$ to be given by an
+>   edge matrix, which `ENC-1128` does not state; (b) the **noncommutative** case,
+>   which matters exactly for T4's F4 row where $\mathbb H$ lives; and (c) the
+>   truncation/star reconciliation (`WDP005-C15`). Adjacent in the same family:
+>   `ENC-1072` (`PATHSUM-001`, `MECHANIZED`) states the sliced composition
+>   $Z(c\mid a) = \sum_b Z(c\mid b)Z(b\mid a)$ on a graded transport category and
+>   records that **full multi-slice associativity requires a richer semiring**, a
+>   caution T1 must answer rather than assume; `ENC-1069` (`PATHSUM-CORE-001`,
+>   `MECHANIZED`, Mathlib-free) carries the semiring path-sum distributivity
+>   together with $\operatorname{im}d^{0}\subseteq\ker d^{1}$ and *coboundary
+>   $\Rightarrow$ trivial holonomy*, which is **T2(b)'s coboundary criterion in a
+>   neighbouring setting**; and `ENC-1074` (`PATHSUM-002`, `MECHANIZED`) is a
+>   $3{:}1$ **overcount counterexample** showing the grade is necessary — a live
+>   hazard for T1's coarse-graining, not a citation of convenience.
+>
+> WD-5 therefore claims novelty for **none** of: the composition law (`ENC-0020`,
+> with its matrix reading `ENC-0018` and its role-local re-export `ENC-0807`); the
+> finite path-sum/matrix-power identity over a commutative semiring (`ENC-1128`);
+> the nonnegative-carrier / no-signed-content rule (`ENC-0811`); or the
+> signed-cancellation witness (`ENC-0812`). Claim row `WDP005-C18` `[STANDARD]`,
+> mirroring `WDP005-C16`; non-claim `WD5-N12`, extended. §10 must carry every one of
+> these citations, and `PL-WDP005-2` must record Paper 025's **`PL-025-8`** —
+> *"Transport to a general commutative semiring is expected but unproved"* — as the
+> corpus's **pre-existing registration of the general-semiring-transport clause the
+> two obligations share** *(scoped 2026-07-21: `PL-025-8` is not the same obligation
+> as `PL-WDP005-2` taken whole — see §10's `PL-025-8` bullet)*, noting that
+> `ENC-1128` already discharges the *matrix-power* half of that transport in a
+> different (non-EPK) setting while `PL-025-8`'s own object, the $\exp$-weighted
+> $\mathrm{Mat}(\mathbb R_{\ge0})$ EPK kernel, remains open.
+>
+> **Method note, recorded because two successive passes failed here.** Both earlier
+> sweeps cited the entry they were handed and stopped. The pointer that would have
+> caught it was **inside the entry already cited**: `ENC-0807`'s Proof Pointer names
+> `ENC-0020`, and `ENC-0020` names `ENC-0018` and `ENC-0019`. **Any future priority
+> sweep for this paper must chase every `uses:` field and every "inherited from" /
+> "the unweighted form is" pointer transitively, and must search outside the `epk`
+> layer** — `ENC-1128`, the arbitrary-`CommSemiring` result, is filed under
+> `quantum`.
+
+**Stop condition.** This is exactly programme stop condition 5 (*phase loss*):
+**"If the history functional factors only through nonnegative magnitudes, it
+cannot explain interference without a new carrier."** *(That sentence is the
+charter's, quoted verbatim; WD-5 may not restate it in its own voice without the
+qualifier below.)* Proving T5 fires that stop condition and is a *successful*
+outcome, not a failure. It tells WD-6 that **destructive** interference — in
+WD-5's only sense, vanishing of the total weight of a coarse-graining class — is
+not free: it must be bought with a carrier in F4 or F5, and the purchase must be
+priced (`WDP005-C19`).
+
+7. Proof strategy — three independent levels
+
+
+| Level | Instrument | Purpose |
+|---|---|---|
+| L1 | Semiring and free-category argument in prose | Human-checkable; establishes T1, T2, T5 |
+| L2 | Lean 4 development over finite path systems and an abstract semiring | Mechanized; guards against a definitional slip, particularly in the zerosumfree hypothesis of T5 |
+| L3 | Executable enumerator over small path systems and a fixed list of semirings | Empirical; confirms non-cancellation in F1–F3 and exhibits cancellation in F4 |
+
+**L2 placement.** Per repository convention, any Lean development belongs under
+`omega_engine/lean4/` and nowhere else.
+
+*Claim type (L2):* `[OPEN → WDP005-C12]`, `PL-WDP005-8` — that T1, T2(a), and T5 are
+mechanizable over finite path systems and an abstract semiring is a target, not a
+report; no WD-5 Lean development exists.
+
+**L3 is the hygiene-mandated worked example** (Part A, item 4). It must produce
+numbers a reader can reproduce.
+
+*Claim type (L3):* `[OPEN → WDP005-C13]`, `PL-WDP005-9` — see §8; the enumeration over
+small path systems and F1–F4 has not been run.
+
+**A note on difficulty asymmetry.** T5 is expected to be nearly immediate once
+stated; T4 is expected to be hard and may not close. The paper must be structured
+so that a reader who finds T5 obvious still finds T4 and T2(b) worth reading, and
+so that failure of T4 does not invalidate T5.
+
+8. Worked example (required, not yet built)
+
+
+*Specification for the example that must exist before this paper ships:*
+
+*Claim type:* `[OPEN → WDP005-C13]`, `PL-WDP005-9` — the enumerator and the reported
+values do not yet exist; only the graph-determined path counts below are stated.
+
+Take the diamond path system: states $\mathsf{S} = \{a, m_1, m_2, b\}$ with edges
+$a \to m_1$, $a \to m_2$, $m_1 \to b$, $m_2 \to b$, so that $\lvert\Omega(a,b)\rvert = 2$
+at length $2$. Assign the two histories distinct obstruction actions
+$\mathcal{A}[\gamma_1] \neq \mathcal{A}[\gamma_2]$ derived from a declared local
+defect, and verify T2(b) by computing $[\mathcal{A}] \in H^{1}_{\mathrm{hist}}$
+explicitly — subject to the cohomological-phrasing caution at T2(b): if WD-5's
+square-zero law fails there is no $H^{1}_{\mathrm{hist}}$ to compute in, and the
+fixture must instead exhibit $\mathcal A$ as a non-coboundary directly, by
+showing $\mathcal A[\gamma_1] \neq \mathcal A[\gamma_2]$ while any potential $f$
+on states would force $\mathcal A[\gamma_1] = f(b) - f(a) = \mathcal A[\gamma_2]$.
+
+> **Enumeration of the fixture, independently re-derived 2026-07-20.** The
+> diamond is fully determined by the four edges above, so its path counts are a
+> matter of arithmetic and are stated here rather than deferred. Writing $M$ for
+> the $\{0,1\}$ adjacency matrix on $(a,m_1,m_2,b)$:
+>
+> | edge-length $n$ | paths in $G$ | paths $a \to b$ | $(M^{n})_{ab}$ |
+> |---|---|---|---|
+> | $0$ | $4$ (the identities $\mathrm{id}_a,\mathrm{id}_{m_1},\mathrm{id}_{m_2},\mathrm{id}_b$) | $0$ | $0$ |
+> | $1$ | $4$ (the edges) | $0$ | $0$ |
+> | $2$ | $2$ ($a\,m_1\,b$ and $a\,m_2\,b$) | $\mathbf 2$ | $2$ |
+> | $3$ | $0$ | $0$ | $0$ |
+> | $4$ | $0$ | $0$ | $0$ |
+>
+> so $\lvert\Omega\rvert = 4+4+2 = 10$ and $M^{3} = 0$ **identically** — $M$ is
+> nilpotent of index $3$, because $a$ is a source and $b$ a sink and the graph is
+> acyclic of depth $2$.
+>
+> **Two consequences the draft must state.** (1) $M^{\ast} = I \oplus M \oplus
+> M^{2}$ is a **finite** sum, so on this fixture the Kleene star of T1 exists in
+> *every* semiring with **no completeness, convergence, or star-structure
+> hypothesis whatever** — route 1 of the T1 caution. (2) Precisely because of
+> that, **the diamond does not exercise the star hypothesis at all**: **two of the
+> five rows ($n=3,4$) are empty, and only $n=2$ carries an $a\to b$ history.**
+> *(Repaired 2026-07-20: this sentence previously read "three of the five
+> requested length rows are vacuous", which is false on the table above under
+> either reading — the rows with no path at all are $n=3,4$, two of them, and the
+> rows with no $a\to b$ history are $n=0,1,3,4$, four of them.)* A fixture that
+> tests T1's second
+> route must contain a **directed cycle** (a self-loop at $m_1$ is the minimal
+> such), at which point $\Omega(a,b)$ is infinite without §4's length bound and
+> the star becomes a real hypothesis on $R$. **`PL-WDP005-9` covers both fixtures**;
+> reporting only the diamond would leave T1's load-bearing hypothesis untested.
+
+Then compute $Z(b \mid a)$ in each of four weight systems — Boolean, tropical
+$(\min,+)$, $(\mathbb{R}_{\geq 0},+,\times)$ at a stated $\beta$, and $\mathbb{C}$
+with a stated phase assignment — and report:
+
+1. the enumerated history counts at each length up to $4$;
+2. the four values of $Z(b\mid a)$, exactly;
+3. that the first three are nonzero whenever both histories have nonzero weight
+   (T5 in the concrete);
+
+4. that a phase assignment exists making the fourth vanish.
+
+Item 4 is a **demonstration that a new carrier is sufficient for cancellation**.
+It is **not** a claim that the complex carrier is selected, forced, or preferred.
+That question is step 7 and belongs to WD-6. The paper must state this
+immediately below the computation, in the same subsection, not in a distant
+caveats section.
+
+> **The four $Z$ values are deliberately not stated here.** They are functions of
+> $\beta$, of the two declared actions, and of the declared phase assignment —
+> none of which this outline fixes — so quoting them would be quoting an
+> uncomputed result. Fixing those parameters and reporting the values exactly is
+> `PL-WDP005-9`. What *is* fixed, and is therefore stated above, is the path
+> enumeration, which depends on the graph alone.
+>
+> **Item 4 needs no search.** Cancellation over $\mathbb C$ on this fixture is
+> witnessed by one assignment: give the three edges $a\to m_1$, $m_1 \to b$,
+> $a \to m_2$ weight $1$ and the edge $m_2 \to b$ weight $e^{i\pi} = -1$; then
+> $w(\gamma_1) = 1$, $w(\gamma_2) = -1$, and $Z(b\mid a) = 1 \oplus (-1) = 0$
+> while both histories carry nonzero weight — the exact configuration T5 forbids
+> in F1–F3. Note this is **the same $(1,-1)$ witness already mechanized** as
+> `cMinus` in Lean module `QM.InterferenceBuildability` (`ENC-1135`), so item 4
+> should be reported as a *re-exhibition on the diamond carrier*, not as a new
+> construction. A phase is not even needed: any carrier with additive inverses
+> does it, which is precisely why item 4 proves **sufficiency and nothing about
+> selection**.
+>
+> **A nearer, EPK-native mechanized form of the same witness (added in the
+> 2026-07-20 cycle-2 repair pass).** `QM.InterferenceBuildability` is the *quantum*
+> home of the $(1,-1)$ pair. The corpus also carries it **inside the EPK setting
+> §4 imports**: `ENC-0812` — *EPK Aggregate Cancellation Does Not Imply Pointwise
+> Zero*, `kind: lemma`, `status: MECHANIZED`, Paper 025 §4 Lemma 4.3 — exhibits
+> signed evaluator defects $d_{\mathrm{Neg}} = -1$ and $d_{\mathrm{Pos}} = +1$ with
+> $d_{\mathrm{Neg}} + d_{\mathrm{Pos}} = 0$ while **both are nonzero**, in Lean
+> module `PaperAE006.L025_07_AggregateCancellation`
+> (`PaperAE006.aggregate_zero_does_not_imply_pointwise_zero`;
+> `PaperAE006.paper020_negative_positive_defects_cancel_but_are_nonzero`), with the
+> witness inherited from Paper 020's `L020_02_DeltaPartition`. That is item 4's
+> configuration — a vanishing $\bigoplus$ over nonzero summands — already
+> mechanized on obstruction data rather than on amplitudes. **The draft must cite
+> `ENC-0812` alongside `ENC-1135` at item 4 and claim novelty for neither**
+> (`WDP005-C18`). A related Paper 020 entry sharpens the reading in the other
+> direction: `ENC-0851` (*EPK EGD-Zero Gate and Cancellation Separation*,
+> `MECHANIZED`, Lean module `PaperAE004.L020_10_EGDZeroGate`) proves that **zero signed mean
+> defect is strictly weaker than pointwise ZDR** — the two-trace sample
+> $(1,1,0)/(0,0,1)$ has $\sum\Delta_E = 0$ but $\mathrm{EGD} = 2$ — i.e. that a
+> vanishing aggregate is not an all-clear. Together these say the corpus already
+> knows both halves: cancellation is available once inverses are, and a cancelled
+> aggregate certifies nothing pointwise.
+
+9. The honest fork: where cancellation could enter
+
+
+If T5 holds, exactly three routes remain open, and the paper's job is to name
+them rather than to choose among them:
+
+**Route A — accept F1–F3.** The history weighting stays zerosumfree. Then the
+corpus has a classical, optimization-theoretic, or stochastic histories calculus.
+This is a coherent and defensible outcome. It is also the outcome under which
+programme stop condition 3 (*classical shadow*) becomes live for WD-6.
+
+**Route B — import a signed or complex carrier.** Move to F4. Cancellation
+becomes available immediately, but the additive inverses were *declared*, not
+derived. If the declaration is equivalent to complex Hilbert structure, phase, or
+Born probabilities, programme stop condition 4 (*hidden Hilbert import*) fires and
+any subsequent result is a reconstruction *relative to that axiom*.
+
+**Route C — construct signs from the obstruction structure.** Attempt to derive an
+orientation on defects such that the tally is naturally signed rather than
+$\ell^{1}$. This is the only route that would be a derivation rather than an
+import, and it is the one the corpus would most like to be true. **It is
+therefore the one most in need of adversarial review.** The paper must state
+plainly that Route C is unproven, and the ledger must carry it as a conjecture
+(`WDP005-C10`) with an explicit possibility of being false.
+
+> **Route C must confront the corpus's nearest apparent counterexample — and it
+> is not one (added 2026-07-20 repair pass).** Paper 025 §4 defines a **signed**
+> evaluator residual on the *same* $\mathbf 1_{\mathrm{EvalPass}}$ gate that §4
+> imports: $\Delta_E = E(\gamma_2 \star \gamma_1) - E(\gamma_2)E(\gamma_1)$, with
+> $\Delta_E \in \{-1,0,+1\}$ for binary evaluators and the safety-critical case
+> $\Delta_E = -1$. A reader will reasonably ask whether this is Route C already
+> executed: a sign, on obstruction data, from the declared gate.
+>
+> **It is not, and the paper must say why.** The sign enters through the
+> **subtraction**, and subtraction is an **imported additive-inverse carrier**:
+> $\Delta_E$ is valued in $\mathbb Z$, not in the $\mathbb R_{\ge0}$ /
+> $\mathrm{Kl}(W)$ carrier the gate itself lives in. Paper 025 §13.3 draws exactly
+> this conclusion — because $\Delta_E$ can be negative and $\mathrm{Kl}(W)$ is
+> nonnegative, the honest object is a **signed loss ledger**, not a nonnegative
+> $2$-cell — and `ENC-0811` mechanizes the obstruction ($d<0 \Rightarrow
+> \neg\exists\,n:\mathbb N,\ (n:\mathbb Z)=d$). So $\Delta_E$ is evidence **for
+> `WD5-L6` and for Route B**, not for Route C: it shows the corpus *buying* signs
+> by moving carrier, precisely the purchase Route C proposes to avoid. A Route C
+> construction that reaches for $\Delta_E$ has taken Route B and mislabelled it —
+> **the exact failure this section exists to prevent.**
+>
+> **And what Route B buys is already mechanized (added 2026-07-20 cycle-2 repair
+> pass).** Once the signed carrier is granted, the corpus *immediately* exhibits
+> the cancellation Route A cannot have: `ENC-0812` (*EPK Aggregate Cancellation
+> Does Not Imply Pointwise Zero*, `status: MECHANIZED`, Paper 025 §4 Lemma 4.3,
+> Lean module `PaperAE006.L025_07_AggregateCancellation`) gives signed evaluator
+> defects $d_{\mathrm{Neg}} = -1$, $d_{\mathrm{Pos}} = +1$ summing to $0$ **with
+> both nonzero** — a vanishing aggregate over nonzero summands, on the same
+> evaluator data, and the exact configuration T5 forbids in a zerosumfree carrier.
+> The A/B fork is therefore **not** a choice between a proved side and a
+> speculative one: **both sides are already mechanized in the corpus** —
+> `ENC-0811` that the nonnegative carrier cannot hold the signed defect, `ENC-0812`
+> that the signed carrier cancels — and only **Route C is genuinely open.** WD-5
+> claims novelty for neither side of the fork (`WDP005-C18`); its contribution at §9
+> is the *typing* of the fork, not either branch. Note also the moral `ENC-0812`
+> attaches to its own witness — an aggregate zero is not a pointwise no-defect
+> certificate — which is the **converse warning to T5**: T5 says a zerosumfree
+> carrier cannot reach $0_R$ from nonzero summands; `ENC-0812` says that in a
+> carrier that can, reaching $0$ tells you nothing about the summands. A draft that
+> reads T5's no-go as an endorsement of aggregate readouts has inverted both.
+
+*Claim types:* Route C `[CONJECTURE → WDP005-C10]`, `PL-WDP005-7`; the enumeration of
+the three routes as exhaustive-given-T5 `[INTERPRETIVE]`, non-claim `WD5-N10`.
+**Route B's witness is one line** (§4: $1_R \oplus (-1_R) = 0_R$ in any ring with
+$1_R \neq 0_R$), which is exactly why Route B is cheap and why presenting it as
+Route C would be the paper's characteristic failure. Note also that the corpus
+has *already taken* Route B at $\delta 8$ (Paper 058 §4/§5.4), so Route B is not
+hypothetical — what remains genuinely open is only Route C.
+
+**The paper must not present Route B as Route C.** Doing so is the principal
+self-deception this outline exists to prevent, and it is the exact analogue of
+WD-0's "enriched single primitive" trap.
+
+10. Related work (to be written — nearest neighbours)
+
+
+At minimum the drafted paper must situate itself against:
+
+- **Schützenberger, formal power series and weighted automata.** Recognizable
+  series over a semiring, and the matrix representation of a multiplicative
+  weighting on a free monoid. T1 is expected to be a transport of this theory to
+  the EPK path system. The paper must **cite rather than claim** it; this is a
+  `[STANDARD]` typing, not `[PROVEN]`. The standard references (Berstel–Reutenauer;
+  the Droste–Kuich–Vogler handbook) must be given — and **the Droste–Kuich–Vogler
+  handbook is already cited inside this corpus**, in Paper 025's bibliography
+  ("semiring matrices / weighted relations"). This literature is therefore not
+  external-only to Anomalon, and WD-5 must not present it as a first contact
+  (added 2026-07-20 repair pass).
+
+- **Kleene algebra.** The star operation $M^{\ast} = \bigoplus_{n\ge0} M^{\otimes n}$
+  and the conditions under which it exists; the correct home for the truncation
+  hypothesis in §4.
+
+- **The consistent / decoherent histories programme** (Griffiths; Omnès;
+  Gell-Mann–Hartle). This is a **genuine neighbour and must be handled with care.**
+  Their decoherence functional is a coarse-graining consistency condition on a
+  weight system that is *already complex-valued and already Hilbert-carried*.
+  WD-5's T3 abstracts the consistency condition to an arbitrary semiring and
+  therefore cannot recover their results, does not reprove them, and does not
+  compete with them. Precisely: they **assume** the carrier that steps 7–9 would
+  have to earn. Saying so accurately is more valuable to this paper than any
+  claimed overlap.
+
+- **Tropical and idempotent semirings** (min-plus algebra; Maslov dequantization).
+  Family F2, and the corpus's most credible *non-quantum* alternative. If the
+  axioms of T4 admit F2, the programme has a least-action histories calculus and
+  no **destructive** interference (F2 is zerosumfree, so T5 applies), and that
+  must be reported as a live outcome rather than a disappointment. Note F2 is
+  also **infinite** — $\mathbb R\cup\{+\infty\}$ is continuum-cardinality — so
+  admitting it does not keep the coefficients finite (header fence, `WD5-N13`).
+
+- **Feynman's path sum.** The target this paper deliberately does **not** claim.
+  Cited to state the gap: Feynman's construction presupposes complex amplitudes
+  and a measure; WD-5 supplies neither and asserts neither.
+
+- **Anomalon antecedents.** Paper 020 — **and Paper 020 supplies far more to this
+  paper than `ENC-0019`; the next bullet is its own** *(repaired 2026-07-20
+  cycle-2 repair pass, which found this bullet naming only the `DEFINED`
+  definition and thereby understating Paper 020's prior art on exactly the claim
+  under the T1 fence)*. `ENC-0019` (the EPK as a nonnegative
+  $\mathbf{Kl}(W)$-morphism — a `DEFINED` definition with its Lean obligation
+  `NOT-STARTED`, not a theorem) is the **definition** WD-5 §4 imports; the
+  **theorem** WD-5 T1 restates is Paper 020's `ENC-0020`, and the matrix reading
+  it needs is Paper 020's `ENC-0018`. Also: 001a (composition curvature $K$; precisely
+  $\bigl(d_1(d_0 s)\bigr)_{c,b,a} = K_{c,b,a}(s(c))$ for every section $s$, of
+  which "$d_1 d_0 = K$" is the shorthand); 001h (spatial/history bigrading);
+  001m (the semigroup defect of §3, under its bounded-generator scope fence);
+  WD-5 (the history differential $d_{\mathrm{hist}}$ used in T2(b) — **an outline
+  that expects $d_{\mathrm{hist}}^{2}=0$ to be refuted**); WD-0 (the injection
+  classification against which §15 audits this paper's imports); and — added in
+  the 2026-07-20 repair pass — **Paper 025 with `ENC-0807` and `ENC-0811`**, the
+  next bullet, which are nearer to T1 and to §9's fork than any of the above.
+
+- **Paper 020 (`008_engine_runtime/019_lggr_i_evaluated_path_kernels`) — the
+  nearest published neighbour of T1, and the one two successive sweeps missed
+  (added 2026-07-20 cycle-2 repair pass).** §4 already imports Paper 020 for
+  `ENC-0019`. It also, in the *same* §I.1.1 / §3 material, contains the theorem T1
+  restates and the definition T1's matrix form needs.
+
+  - **`ENC-0020` — "Composition = Kleisli composition."** `kind: proposition`,
+    `status: PROVED-PROSE`, `conditional_on` **G1** (disjoint-boundary gluing iso
+    $\Omega(S_a,S_c)\cong\bigsqcup_{S_b\in\mathsf B}\Omega(S_b,S_c)\times\Omega(S_a,S_b)$),
+    **G2** (action additivity), **G3** (evaluator factorization
+    $\mathbf 1_{\mathrm{EvalPass}}(\gamma_2\star\gamma_1) = \mathbf 1_{\mathrm{EvalPass}}(\gamma_2)\mathbf 1_{\mathrm{EvalPass}}(\gamma_1)$);
+    `lean_status: MECHANIZED-PARTIAL`. It states
+    $Z_\theta(S_c\mid S_a) = \sum_{S_b\in\mathsf B} Z_\theta(S_c\mid S_b) Z_\theta(S_b\mid S_a)$
+    **over WD-5 §4's own objects** and identifies it as matrix multiplication over
+    the nonnegative semiring. Lean:
+    `PaperAE004.kernel_pair_sum_reindexing_under_G1_G2_G3` and
+    `PaperAE004.kernel_composition_under_G1_G2_G3`, axiom-audited 2026-06-20 to
+    `propext` only. Paper 020's own Appendix A row A3 types it
+    `[PROVEN, CONDITIONAL + G1,G2,G3]`, with **G1 named as the load-bearing
+    structural hypothesis**, and the entry records that G1 was itself
+    *asserted, not constructed* (backlog `MAJOR-4-G1`) before being narrowed to a
+    one-hit separating cut. WD-5 must carry that provenance, not just the identity.
+
+  - **`ENC-0018` — "Weighted Kleisli category."** `kind: definition`,
+    `status: DEFINED`. $\mathbf{Kl}(W)$ composition **is** matrix multiplication
+    over $(\mathbb R_{\ge0},+,\times)$,
+    $(K\circ_K L)(c\mid a) = \sum_b K(c\mid b)L(b\mid a)$. **Its one Lean
+    obligation — the free $\mathbb R_{\ge0}$-semimodule monad and
+    $\mathbf{Kl}(W)\simeq\mathbf{Mat}(\mathbb R_{\ge0})$ — is `NOT-STARTED`**, so
+    the matrix-representation reading T1 relies on is **prose in the corpus too**;
+    it must not be cited as mechanized. Its spine banner also fences $W$ as the
+    free-semimodule monad, **not** the distribution/Giry monad — the category is
+    substochastic and non-normalized, which is the same "partition function, not
+    amplitude" point §4 makes, made first and elsewhere.
+
+  - `ENC-0851` — *EPK EGD-Zero Gate and Cancellation Separation*, `MECHANIZED`,
+    Paper 020 §1.5.4, Lean module `PaperAE004.L020_10_EGDZeroGate`: **zero signed mean
+    defect is strictly weaker than pointwise ZDR** (witness $(1,1,0)$/$(0,0,1)$ —
+    $\sum\Delta_E = 0$ but $\mathrm{EGD} = 2$). The converse-facing caution to T5:
+    a vanishing aggregate certifies nothing pointwise. Cited at §8.
+
+  - **Consequence for `PL-WDP005-2`.** The literature search that obligation
+    schedules must begin **inside the corpus**, at `ENC-0020`/`ENC-0018`, before it
+    reaches Schützenberger.
+
+- **Paper 025 (`008_engine_runtime/021_lggr_iii_epk_gtla_overlay`) — the
+  role-local re-export of the above, and the home of §9's Route A/B fork (added
+  2026-07-20 cycle-1 repair pass; header corrected in cycle-2, which found it
+  calling Paper 025 "the nearest published neighbour of T1" when `ENC-0807`'s own
+  Proof Pointer says the theorem "is inherited from Paper 020" and names
+  `ENC-0020` as the unweighted form).** Paper 025 generalizes the Paper 020 /
+  `ENC-0019` EPK that §4 imports, so it too is nearer to WD-5 than the external
+  literature above — but it is **not** nearer than its own source.
+
+  - **`ENC-0807` — Layer-Local EPK Composition.** `kind: theorem`,
+    `status: PROVED-PROSE`, `lean_status: MECHANIZED-PARTIAL`, conditional on
+    G1–G4 (one-hit boundary factorization; cost/risk additivity; evaluator gates
+    multiply; proposal-continuation boundary-sufficiency for the weighted form).
+    Paper 025 §3 states, verbatim,
+    $Z_\theta(S_c\mid S_a) = \sum_b Z_\theta(S_c\mid S_b) Z_\theta(S_b\mid S_a)$,
+    calls it **"a finite semiring-matrix law"**, and places it in
+    $\mathrm{Kl}(W)\simeq\mathrm{Mat}(\mathbb R_{\ge0})$. This is T1's content
+    published over the carrier §4 imports — **but by inheritance**: `ENC-0807`
+    `uses: [ENC-0020, ENC-0107, ENC-0805]`, its Proof Pointer states *"This theorem
+    is inherited from Paper 020. The unweighted form is `ENC-0020`"*, and
+    `PaperAE006.L025_02_LayerLocalComposition` **wraps** Paper 020's
+    proposal-weighted theorem *"without adding hypotheses"*, stated over
+    $\mathbb Z$. What `ENC-0807` genuinely adds is the **G4 proposal-weighted
+    extension** and the **GTLA role-local application**, neither of which is T1.
+    WD-5 must cite it and claim no novelty for the composition law
+    *(re-scoped in the cycle-2 repair pass)*.
+
+  - **`ENC-0811` — EPK Signed-Ledger Obstruction to Plain Nonnegative Laxity.**
+    `status: MECHANIZED`: over the plain nonnegative Kleisli carrier,
+    $d<0 \Rightarrow \neg\exists\, n:\mathbb N,\ (n:\mathbb Z)=d$, in Lean module
+    `PaperAE006.L025_06_SignedLedgerObstruction`. **This is the EPK-setting form of
+    T5's corollary and of §9's Route A/B fork — already mechanized, while WD-5's
+    is ``OPEN``.**
+
+  - **`ENC-0812` — EPK Aggregate Cancellation Does Not Imply Pointwise Zero**
+    (added 2026-07-20 cycle-2 repair pass; **from the same Paper 025 §4 the
+    $\Delta_E$ discussion below already cites**, and omitted from the cycle-1
+    enumeration of that section). `kind: lemma`, `status: MECHANIZED`, Paper 025 §4
+    Lemma 4.3, Lean module `PaperAE006.L025_07_AggregateCancellation`
+    (`PaperAE006.aggregate_zero_does_not_imply_pointwise_zero`,
+    `PaperAE006.paper020_negative_positive_defects_cancel_but_are_nonzero`), witness
+    $d_{\mathrm{Neg}} = -1$, $d_{\mathrm{Pos}} = +1$, sum $0$, **both nonzero**.
+    **This is the EPK-native mechanized form of §8 item 4's cancelling witness**
+    (which the paper otherwise attributes only to `cMinus` in
+    `QM.InterferenceBuildability` — true, but farther from §4's setting) **and of
+    the "cancellation arrives with the additive inverses" half of §9's fork.**
+    Cited at §8 and §9; claim row `WDP005-C18`.
+
+  - **`PL-025-8` — overlapping, not identical (scope corrected 2026-07-21).**
+    Paper 025's Claim Ledger row B2 records that its identity is mechanized over
+    $\mathbb Z$ while displayed over $\mathrm{Mat}(\mathbb R_{\ge0})$, and registers
+    *"Transport to a general commutative semiring is expected but unproved"* as
+    **`PL-025-8`**. Earlier passes wrote that this is *"the same obligation as
+    `PL-WDP005-2`"*. **That is an overstatement and is withdrawn.** Read at source,
+    `PL-025-8`'s object is the **mechanization of Paper 025's real-coefficient EPK
+    kernel** — the $\exp(-\lambda C - \mu R)$ / $\mathrm{Mat}(\mathbb R_{\ge0})$
+    carrier of its §2–§3 — *or*, as an alternative route to the same closure, a
+    proven transport of the integer semiring-matrix identity to a general
+    commutative semiring; Paper 025 lists it among its `OracleNeeded` items on
+    exactly that reading. `PL-WDP005-2`'s object is T1: which of three theorems T1
+    states, and the representation/uniqueness direction, the noncommutative
+    carriers, and the truncation/star reconciliation (`WDP005-C15`). **The two
+    coincide only on the general-semiring-transport clause**, which is why
+    `PL-WDP005-2` is a **second registration of a standing corpus obligation on that
+    clause** and not a newly noticed gap there — and why it is **not** a duplicate
+    of `PL-025-8` as a whole. `PL-025-8`'s own object, the $\exp$-weighted
+    $\mathrm{Mat}(\mathbb R_{\ge0})$ EPK kernel, remains open and is **not**
+    discharged by anything in WD-5; `ENC-1128` discharges only the matrix-power
+    half of the shared clause, and in a different (non-EPK) setting. Neither
+    obligation is retired, renumbered, or absorbed into the other, and WD-5 does
+    not adjudicate Paper 025's registration. This restatement is the weaker,
+    better-supported reading and matches what §6 T5 fence (v) and `WDP005-C18` already
+    say; the flat "same obligation" phrasing survives only in the dated cycle-1
+    changelog entry below, as a record of what that pass believed.
+
+  - Claim row `WDP005-C18` `[STANDARD]`; non-claim `WD5-N12`; §6 T5 priority fence
+    (v).
+
+- **The corpus's finite path-sum family (`quantum` layer) — prior art on T1's
+  matrix form over an *arbitrary commutative semiring*, and on T2(b)'s coboundary
+  criterion (added 2026-07-20 cycle-2 repair pass; found only by a layer-crossing
+  sweep — these entries are filed under `quantum`, not `epk`, which is why two
+  EPK-scoped sweeps missed them).**
+
+  - **`ENC-1128` — Finite Path-Sum Equals Matrix Power** (`PATHSUM-MXP-001`,
+    QM_111; `kind: theorem`, `status: MECHANIZED`; Lean module `QM.FinitePathSum`,
+    `pathSum_eq_matpow`, `matpow_compose`, `matpow_compose_apply`, `pathSum_compose`;
+    **general over any `Fintype` index and any `CommSemiring`**, axiom-clean on the
+    standard Mathlib set). $(M^{n})(b\mid a)$ **is** the sum over length-$n$ paths of
+    the product of edge weights, with Chapman–Kolmogorov $M^{m+n}=M^{m}M^{n}$; the
+    entry fences itself as **the finite shadow of the Feynman path-sum, with no
+    continuum and no measure** — WD-5's own naming fence, stated first and
+    elsewhere. **This narrows T1's residual novelty**: the matrix-power half of T1
+    over a commutative semiring is already mechanized, so what remains WD-5's is
+    the **representation/uniqueness direction** (that the step-3/step-4 axioms
+    *force* an edge matrix), the **noncommutative** carriers T4's F4 row needs, and
+    the truncation/star reconciliation (`WDP005-C15`). §10 must say so and T1 must not
+    be introduced as the corpus's first general-semiring path-sum.
+
+  - **`ENC-1072`** (`PATHSUM-001`/`FEYNMAN-001`, `MECHANIZED`) states the sliced
+    composition $Z(c\mid a) = \sum_b Z(c\mid b) Z(b\mid a)$ on a graded transport
+    category and records that **full multi-slice associativity requires a richer
+    semiring** (its `FWSemiring` is right-distributable only). T1 asserts a
+    two-operation semiring with distributivity; this entry is the corpus's evidence
+    that the associativity T1 wants is **not** free at that strength, and
+    `PL-WDP005-2` must answer it rather than assume past it.
+
+  - **`ENC-1069`** (`PATHSUM-CORE-001`, `MECHANIZED`, Mathlib-free, axiom-free for
+    its core theorems) carries semiring path-sum distributivity together with
+    $\operatorname{im}d^{0}\subseteq\ker d^{1}$ and **coboundary $\Rightarrow$
+    trivial holonomy**. That is **T2(b)'s coboundary criterion in a neighbouring
+    setting**, and it is worth noting that this entry gets $H^1$ only by *assuming*
+    $d^{1}d^{0}=0$ as a hypothesis — the very law WD-5 expects refuted. It is
+    therefore support for T2(b)'s **coboundary** form and **not** for its
+    $H^{1}_{\mathrm{hist}}$ restatement.
+
+  - **`ENC-1074`** (`PATHSUM-002`, `MECHANIZED`) is a $3{:}1$ **overcount
+    counterexample**: the ungraded fiber decomposition gives $3w_{ab}w_{bc}$ while
+    the cochain norms stay zero, showing **the grade is necessary, not cosmetic**.
+    This is a live hazard for T3's coarse-graining, not a decorative citation: a
+    consistent-partition characterization that does not track the grade can
+    overcount.
+
+  - None of these four is claimed by WD-5, and none is an EPK result — they sit on
+    a different carrier and are cited as **prior art and as cautions**, not as
+    support for any WD-5 target.
+
+- **The corpus's existing $\ell^{1}$ boundary — the nearest neighbour to T5, and
+  the one a first draft is most likely to omit.** `ENC-1135` / QM_061,
+  `status: MECHANIZED`: `L1_cannot_compute_interference` in Lean module
+  `QM.InterferenceBuildability`, witness $(1,1)$ vs $(1,-1)$, itself recorded
+  there as **pub-010 Theorem 7 re-packaged and explicitly "not a novel result"**.
+  Paper 057 §4 Q2 cites it as the standing price of the $\ell^{2}$ readout and
+  prices a *finite* $\mathbb Z/n$ phase alphabet as the cheap sub-door. Paper 061
+  Corollary 3.3 ($\ell^{1}$ nonfactorization via relative loop holonomy,
+  difference $4\sqrt{w_p w_q} > 0$) proves a same-shaped no-go over a declared
+  $U(1)$ connection. **The paper must cite all three at T5 and claim only the
+  semiring-level generality** — see the priority fence at T5 and `WDP005-C16`.
+
+- **WD-6's overlapping T5 — ownership settled at WD-6, recorded here
+  (description corrected 2026-07-21).** `006_wd6_quantum_reconstruction_or_classical_no_go`
+  states a target also numbered T5 with the same content (*zerosumfree $\Rightarrow$
+  no destructive interference*). WD-5 previously described WD-6 as opening
+  `PL-WDP005-5` **"to prove and mechanize it"**. **That description is superseded.**
+  WD-6's 2026-07-20 producer pass issued an explicit ownership ruling ("do not
+  re-litigate in a draft"): per the programme sequence — WD-5 **produces** the
+  weight-system menu, WD-6 **consumes** it — **WD-5 owns this theorem**, and
+  `PL-WDP005-5` was restated in place as a *consumption* obligation: cite WD-5's T5 at
+  whatever status `PL-WDP005-7` (prose, including the finite $k$-fold extension) and
+  `PL-WDP005-8` (Lean) reach, carry the *destructive* qualifier, and do **not**
+  re-prove or re-mechanize it there. WD-6 records the same conclusion at its
+  non-claim `WD6-N29`, and its claim row `WDP005-C12` now points its upgrade path at
+  WD-5. WD-6 additionally registered WD-5's stale description as **"registered, not
+  fixed"**, being outside WD-6's write scope; this bullet is that repair, made in
+  WD-5's own file. It remains **one obligation with two registrations, not two
+  results**, and neither paper may count it twice. **Nothing is retired:**
+  `PL-WDP005-5` stands as WD-6's consumption obligation, `PL-WDP005-7` and `PL-WDP005-8`
+  stand as WD-5's, and WD-5 still does not unilaterally retire, renumber, or
+  absorb `PL-WDP005-5`.
+
+**Anticipated referee objection, to be answered in-paper:** *"T1 is just weighted
+automata and T5 is a one-line observation about positive semirings."* Both charges
+are correct and neither is damaging. The contribution is (i) T2(b)'s
+history-dependence criterion linking 001m's defect to a coboundary test —
+cohomological only if WD-5's square-zero law survives — (ii) T4's classification,
+and (iii) the fact that T5's one line is *load-bearing for the whole corpus* — it
+is the formal reason the EPK cannot become a path integral by tuning $\beta$. The
+paper must be structured so a reader who grants T1 and T5 immediately still finds
+the contribution intact.
+
+**A second referee objection, which the corpus itself supplies:** *"the $\ell^{1}$
+half of T5 is already mechanized as `L1_cannot_compute_interference`, and that is
+itself a repackaging of pub-010 Theorem 7."* This charge is also correct, and the
+paper must **concede it in the abstract, not in a footnote**. The reply is that
+T5 generalizes from the $\ell^{1}$ tally to an arbitrary zerosumfree semiring —
+picking up the Boolean and tropical carriers, where no amplitude, no diagonal
+Born data, and no $(1,\pm1)$ witness exists — and changes the statement from
+non-computability to non-cancellation, **which is a change of object and not
+merely of strength: `ENC-1135`'s interference is the quadratic readout
+$\lvert\sum_s c_s\rvert^{2}$, and WD-5 declares no readout functional at all
+(`WDP005-C19`).** That generalization is what WD-6 consumes; the $\mathbb R_{\ge0}$
+instance is a citation. **The same reply does not cover T1 or §9's fork:** there
+the corpus's prior art is `ENC-0020` and `ENC-0018` from Paper 020, their
+role-local re-export `ENC-0807`, the arbitrary-`CommSemiring` `ENC-1128`, and
+`ENC-0811`/`ENC-0812` (previous bullets), and WD-5 concedes those outright rather
+than generalizing them (`WDP005-C18`). **In particular the "generalize to an
+arbitrary semiring" reply is *not* available at T1**, because `ENC-1128` already
+holds the matrix-power identity over an arbitrary commutative semiring; T1's
+residual is the representation direction, the noncommutative case, and the
+truncation/star reconciliation *(added 2026-07-20 cycle-2 repair pass)*.
+
+11. Falsifiability
+
+
+> **This paper fails if** a weight system satisfying the declared composition,
+> coarse-graining, symmetry, reversibility, and normalization axioms is exhibited
+> that lies outside the T4 families, refuting exhaustiveness; or if a weighting
+> valued in a zerosumfree semiring is exhibited that produces destructive
+> interference between two nonzero-weight histories, refuting T5; or if the
+> obstruction action of T2 is shown non-additive under concatenation, which would
+> break step 3 and with it the entire compositional frame.
+
+> **This paper is also falsified — in the malformedness direction — if** the
+> truncated path system $\Omega_{\le L}$ is shown not to be closed under $\ast$
+> under any admissible reading of §4's length bound, so that "the free category,
+> truncated" names no category and T1 has no domain (`WD5-F6`); or if
+> $H^{1}_{\mathrm{hist}}$ is shown not to exist on the bidegrees T2(b) uses,
+> because WD-5 refutes $d_{\mathrm{hist}}^{2}=0$ there, so that T2(b)'s
+> cohomological phrasing has no referent (`WD5-F7`). Neither is a refutation of a
+> theorem; each is a demonstration that a statement was **malformed rather than
+> false**, which is the worse outcome and the one this outline exists to catch
+> early.
+
+12. What this paper does NOT claim
+
+
+- It does **not** derive quantum mechanics, complex amplitudes, phase,
+  interference, superposition, or the Born rule.
+
+- It does **not** claim the EPK is, becomes, or approximates a path integral.
+- It does **not** claim that the nonzero semigroup defect of 001m implies a
+  histories *integral*. It implies only that an exact retained description must
+  add history, enlarge the state, or change the projection.
+
+- It does **not** reprove, extend, or contradict the consistent-histories
+  programme. It abstracts one of its conditions to a setting that assumes strictly
+  less.
+
+- It does **not** select among the T4 families. Selection is step 7 and belongs to
+  WD-6.
+
+- It does **not** claim the obstruction action of T2 is unique, canonical, or the
+  only additive functional available.
+
+- It does **not** take a continuum limit, construct a measure on a history space,
+  or claim any limit exists. That is step 9.
+
+- It does **not** claim the classification extends to infinite path systems.
+  Finiteness of $\mathsf{S}$ and of $\Omega$ is a live hypothesis, not a
+  convenience.
+
+- It does **not** claim that the ordering on histories, the adjacency, or the two
+  semiring operations are derived. They are imports, priced in §15.
+
+- It does **not** claim novelty for the $\ell^{1}$ half of T5. What is already
+  mechanized in the corpus is that **interference is not computable from the
+  $\ell^{1}$ data** — `ENC-1135`'s `L1_cannot_compute_interference` in Lean module
+  `QM.InterferenceBuildability`, itself pub-010 Theorem 7 repackaged: no function
+  $f$ satisfies $\lvert\sum_s c_s\rvert^{2} = f(\ell^{1}(c))$, witnessed by
+  $(1,1)$ vs $(1,-1)$. That is **non-computability, not non-production**, and this
+  bullet previously said "cannot produce interference", which re-blurs the exact
+  distinction `WDP005-C19` exists to keep: `ENC-1135`'s statement is about what a
+  *readout* can be recovered from, WD-5's T5 is about what the semiring's own
+  $\oplus$ can reach. Neither implies the other, and neither notion of
+  interference is the other's. WD-5 claims only the generalization to an arbitrary
+  zerosumfree semiring and the change of object from non-computability to
+  non-cancellation. *(Wording corrected 2026-07-20 cycle-2 repair pass.)*
+
+- It does **not** claim novelty for **T1's composition law**, for the **finite
+  path-sum / matrix-power identity**, for the **nonnegative-carrier /
+  no-signed-content rule** behind §9's fork, or for the **signed-cancellation
+  witness**. All are published corpus results. **Paper 020:** `ENC-0020`
+  ("Composition = Kleisli composition", `PROVED-PROSE` under G1–G3,
+  `MECHANIZED-PARTIAL`, Lean `PaperAE004.kernel_composition_under_G1_G2_G3`) states
+  $Z_\theta(S_c\mid S_a) = \sum_{S_b} Z_\theta(S_c\mid S_b)Z_\theta(S_b\mid S_a)$
+  over WD-5 §4's own objects, and `ENC-0018` supplies the matrix reading of
+  $\mathbf{Kl}(W)$ — **whose own Lean obligation
+  $\mathbf{Kl}(W)\simeq\mathbf{Mat}(\mathbb R_{\ge0})$ is `NOT-STARTED`, so WD-5
+  does not claim that reading is mechanized either.** **Paper 025:** `ENC-0807`
+  (the role-local re-export of `ENC-0020`, `PROVED-PROSE` under G1–G4),
+  `ENC-0811` (`MECHANIZED`, `PaperAE006.L025_06_SignedLedgerObstruction`), and
+  `ENC-0812` (`MECHANIZED`, Lemma 4.3, `PaperAE006.L025_07_AggregateCancellation`:
+  $-1 + 1 = 0$ with both nonzero). **`quantum` layer:** `ENC-1128`
+  (`MECHANIZED`, `pathSum_eq_matpow` over any `Fintype` and any `CommSemiring`),
+  which means the *arbitrary-semiring* form of T1's matrix half is **also** not
+  WD-5's. The general-semiring transport of the EPK kernel is registered as
+  `PL-025-8` (`WDP005-C18`; Paper 025 rows added 2026-07-20 cycle-1, Paper 020 and
+  `quantum` rows added cycle-2).
+
+- It does **not** define, possess, or claim any **readout, intensity, or
+  probability functional** on weights, and therefore does not speak to
+  `ENC-1135`'s $\lvert\sum_s c_s\rvert^{2}$ notion of interference. WD-5's only
+  notion is *destructive interference := vanishing of the total weight of a
+  coarse-graining class*; neither notion is the other's (`WDP005-C19`).
+
+- It does **not** claim the Kleene star $\bigoplus_{n\ge0} M^{\otimes n}$ exists,
+  converges, or is well defined in a general semiring. Where it appears it is
+  hypothesised, and the hypothesis is unpaid; the finite object the paper owns is
+  the truncated $Z_{\le L}$.
+
+- It does **not** claim that its classification is a classification *for*
+  structure, or that a verdict reached inside a real-scaled, semiring-equipped
+  metatheory is a verdict about what that metatheory represents. See §15 and
+  `PL-WDP005-11`.
+
+13. Consequences for the programme
+
+
+If T1–T5 hold, WD-6 inherits a sharply constrained question. It may not ask "does
+the history sum give quantum mechanics?"; it must ask:
+
+> Which additional principle moves the weight system from the zerosumfree families
+> F1–F3 into F4 or F5, and what does that principle cost?
+
+*Claim type:* `[CONJECTURE → WDP005-C14]` — that WD-6's admissible starting points
+are *exactly* the T4 families, so that any **destructive**-interference claim must
+name an F4 or F5 carrier and price it, follows only if T4 is exhaustive
+(`WDP005-C8`) and T5 holds (`WDP005-C9`). Both are ``OPEN``, and the qualifier is
+`WDP005-C19`'s.
+
+Three programme stop conditions become simultaneously armed:
+
+- **Stop condition 5 (phase loss)** — fired by T5 itself. **Destructive**
+  interference — in WD-5's only sense, vanishing of the total weight of a
+  coarse-graining class — requires a new carrier; the finite obstruction tally
+  will not produce it. The qualifier is load-bearing and may not be dropped: T5
+  establishes no-cancellation, and WD-5 declares no readout functional, so it says
+  nothing about `ENC-1135`'s $\lvert\sum_s c_s\rvert^{2}$ notion (`WDP005-C19`).
+
+- **Stop condition 3 (classical shadow)** — live on Route A. If a classical
+  stochastic or tropical model satisfies every axiom WD-6 proposes, WD-6 has not
+  derived quantum theory.
+
+- **Stop condition 4 (hidden Hilbert import)** — live on Route B. If the
+  cancellation-enabling axiom is equivalent to complex Hilbert structure, the
+  result is a reconstruction relative to that axiom and must be labelled as one.
+
+This is a good outcome for the programme. A classification plus a no-go is a
+firmer foundation than an unearned derivation, and it makes WD-6's success
+condition checkable in advance.
+
+14. Open obligations
+
+
+| Id | Obligation |
+|---|---|
+| PL-WDP005-1 | Fix the formal definition of the history carrier: the truncation hypothesis on $\Omega$ (the bound $L$, its uniformity in $(a,b)$, and whether $\Omega_{\le L}$ is closed under $\ast$ or only a partial category), the status of the EvalPass gate, and whether histories are paths or equivalence classes of paths |
+| PL-WDP005-2 | State and prove T1; determine by literature search which part is `[STANDARD]` and cite it rather than claim it. **Decide, and state, whether T1 is a theorem about the truncated $Z_{\le L}$ (finite, no hypothesis on $R$), about acyclic $G$ (star collapses by nilpotence), or about a declared Conway/complete star-semiring (an additional and, over $\mathbb R_{\ge0}$, analytic import); the three are different theorems.** **Prior registration (added 2026-07-20 cycle-1 repair pass; corrected and extended cycle-2): the corpus already holds T1's composition identity — at source as Paper 020's `ENC-0020` ("Composition = Kleisli composition", `PROVED-PROSE` under G1–G3, `MECHANIZED-PARTIAL` via `PaperAE004.kernel_pair_sum_reindexing_under_G1_G2_G3` and `PaperAE004.kernel_composition_under_G1_G2_G3`, axiom-audited to `propext`), with its matrix reading in `ENC-0018` (`DEFINED`, and whose $\mathbf{Kl}(W)\simeq\mathbf{Mat}(\mathbb R_{\ge0})$ obligation is `NOT-STARTED`), and as the role-local re-export `ENC-0807` (Paper 025 §3's "finite semiring-matrix law", `PROVED-PROSE` under G1–G4, mechanized over $\mathbb Z$ via `PaperAE006.L025_02_LayerLocalComposition`, whose Proof Pointer states the theorem "is inherited from Paper 020"). The cycle-1 entry named only `ENC-0807`; the source is `ENC-0020`. Paper 025 already registers the EPK-kernel general-semiring transport as `PL-025-8` ("Transport to a general commutative semiring is expected but unproved"), so `PL-WDP005-2` is a **second registration of a standing corpus obligation on that clause**, not a newly noticed gap there. *(Scoped 2026-07-21: the two obligations overlap on that clause only — `PL-025-8`'s own object is the mechanization of Paper 025's real-coefficient $\exp$-weighted $\mathrm{Mat}(\mathbb R_{\ge0})$ EPK kernel, which remains open and which nothing in WD-5 discharges. Neither is retired, renumbered, or absorbed; see §10's `PL-025-8` bullet.)* **And the literature search this obligation schedules must start inside the corpus, not at Schützenberger:** `ENC-1128` (`MECHANIZED`, `pathSum_eq_matpow`/`matpow_compose` in Lean module `QM.FinitePathSum`) already holds $(M^{n})(b\mid a)$ = length-$n$ path sum with Chapman–Kolmogorov **over any `Fintype` index and any `CommSemiring`**, so the executor must not state T1's residual as "the arbitrary-semiring statement". The residual is (a) the **representation/uniqueness direction** — that step 3 + step 4 + $w(\mathrm{id}_a)=1_R$ *force* the edge-matrix form — (b) the **noncommutative** carriers T4's F4 row requires, and (c) the truncation/star reconciliation (`WDP005-C15`). The executor must also answer `ENC-1072`'s recorded caution that **full multi-slice associativity requires a richer semiring than right-distributivity**, and must cite `ENC-0020`, `ENC-0018`, `ENC-1128`, `ENC-0807`, and `PL-025-8` rather than re-announce any of them (`WDP005-C18`)** |
+| PL-WDP005-3 | Construct the obstruction action explicitly from the 001 / 001a / 001m / WD-5 defect data and prove T2(a) additivity |
+| PL-WDP005-4 | Prove T2(b), the history-dependence criterion, against WD-5's history differential — **in coboundary form first**, and adopt the $H^{1}_{\mathrm{hist}}$ phrasing only if WD-5 discharges `PL-WDP005-4` in the positive on the bidegrees used, since WD-5 types $d_{\mathrm{hist}}^{2}=0$ ``OPEN`` and expects it refuted, and a curved differential has no cohomology (`WDP005-C14`) |
+| PL-WDP005-5 | Characterize consistent coarse-grainings (T3) and state precisely the relationship to the decoherence functional without overclaiming it |
+| PL-WDP005-6 | Declare the full axiom set (symmetry, reversibility, normalization, nondegeneracy) *before* stating T4; then prove T4 or weaken it to a classification of known systems |
+| PL-WDP005-7 | Prove T5 (including the finite $k$-fold extension) and state its $\ell^{1}$ corollary **as a citation of the already-mechanized `L1_cannot_compute_interference` (`ENC-1135`, Lean module `QM.InterferenceBuildability`) rather than as a WD-5 result**; determine whether Route C (derived signs) is viable or refutable |
+| PL-WDP005-8 | Mechanize T1, T2(a), and T5 in Lean 4 under `omega_engine/lean4/`, citing developments by **Lean module name** rather than by filesystem path; do not re-mechanize the $\ell^{1}$ instance already carried by `QM.InterferenceBuildability` |
+| PL-WDP005-9 | Build the L3 enumerator and the §8 diamond worked example, including the exact reported values once $\beta$, the two actions, and the phase assignment are declared; **and a second fixture containing a directed cycle**, without which T1's star hypothesis is never exercised (the diamond has $M^{3}=0$, so its star is finite in every semiring) |
+| PL-WDP005-10 | Audit every §4 and §5 import against WD-0's T4 injection list and publish the resulting import ledger row-by-row |
+| PL-WDP005-11 | Establish that the weight-system classification survives once the **structured metatheory it is proved inside** — a declared semiring with two operations and distributivity, a real scale parameter $\beta$ with the real exponential, and the ambient finite combinatorics in which $M^{\ast}$ is formed — is itself accounted for rather than presupposed; **or** reformulate the T4/T5 verdict to state its boundary explicitly (boundary fence `WD5-L8`, Claim Ledger §2a — a standing fence with no upgrade path, not a support lemma; non-claim `WD5-N11`; claim row `WDP005-C17`; §15 closing paragraph). Parallel to WD-0's PL-WD0-8, WD-1's PL-WD1-11, WD-2's PL-WD2-12, WD-3's PL-WD3-11, WD-4's PL-WD4-11, and WD-5's PL-WDP005-13. **Not discharged by `PL-WDP005-10`:** locating an import on WD-0's list prices it; it does not establish that a classification proved inside the resulting metatheory is a classification *for* structure |
+
+15. Genesis-bias audit (mandatory before drafting)
+
+
+Per the programme charter and the repository's Genesis Bias doctrine, this paper
+must answer, for its own construction:
+
+- **Where does the ordering on histories come from?** This is the sharpest
+  question this paper faces. Step 3 — "sequential composition multiplies weights"
+  — presupposes that the steps of a history are *sequentially ordered*, that
+  $\gamma \ast \gamma'$ is distinguishable from $\gamma' \ast \gamma$, and that
+  "before" and "after" are already available. WD-0's T3 proved that no linear
+  order, orientation, directed adjacency, or clock successor is selectable from
+  bare non-sameness. The order is therefore an **import**, and the paper must
+  locate it on WD-0's T4 injection list by name and say which item it is. A
+  histories calculus that quietly helps itself to time has assumed the very thing
+  the programme set out to construct.
+
+- Where does the directed graph $G$ come from, and what makes an edge directed?
+- What makes two histories *alternatives* — coarse-grainable together — rather
+  than unrelated occurrences? Step 4 presupposes a notion of "same endpoints,
+  different route" that is not given by the carrier.
+
+- What licenses a semiring at all? $\oplus$ and $\otimes$ are **two distinct
+  declared operations**. Nothing in the difference calculus supplies one, let
+  alone two, let alone the distributivity between them. Distributivity is the
+  hinge on which T1 turns and it is assumed, not derived.
+
+- What supplies the finiteness of $\mathsf{S}$ and the length truncation on $\Omega$?
+- What licenses $\beta \in \mathbb{R}_{\geq 0}$ and the real exponential in
+  $e^{-\beta\mathcal{A}}$? This presupposes an ordered field, a scale, and a metric
+  magnitude — and the charter's typing discipline states explicitly that a
+  primitive distinction is not yet a metric magnitude.
+
+- What licenses the ambient combinatorics in which $M^{\ast}$ is formed?
+
+- What licenses the **finiteness** the title leans on? The length bound $L$ is
+  declared, not derived; §4 says so. And "finite" applies to the index sets only:
+  **four of the five T4 families are infinite, all four of continuum cardinality —
+  F2's $\mathbb R\cup\{+\infty\}$, F3's $\mathbb R_{\ge0}$, F4's
+  $\mathbb R,\mathbb C,\mathbb H$, F5's $\mathbb Q_p$ — and only F1's two-element
+  Boolean semiring is finite**; F4 and F5 are additionally analytic completions.
+  A "finite witness-history integral" valued in any of F2–F5 is finite in its
+  *index* and continuum in its *coefficients*, and the draft must say so in the
+  abstract. *(Repaired 2026-07-20: this row previously named only F4 and F5,
+  which misplaces the continuum line at F3|F4 — it sits at F1|F2, and the EPK's
+  own $\mathbb R_{\ge0}$ is already past it.)*
+
+The last two are not rhetorical. A classification proved *inside* a structured
+metatheory, using a real-valued scale parameter, does not establish a
+classification *for* structure or a derivation of magnitude. The paper must state
+this boundary explicitly rather than let it pass.
+
+This boundary — *a weight-system classification reached inside a metatheory that
+was already equipped with two distributing operations, a real scale, and ambient
+finite combinatorics does not establish a classification of weightings for
+structure, nor a derivation of magnitude* — is now tracked as obligation
+**`PL-WDP005-11`** (§14) with boundary fence **`WD5-L8`** (Claim Ledger §2a) and
+non-claim **`WD5-N11`**, rather than left as prose alone; parallel to WD-0's
+PL-WD0-8, WD-1's PL-WD1-11, WD-2's PL-WD2-12, WD-3's PL-WD3-11, WD-4's PL-WD4-11,
+and WD-5's PL-WDP005-13. The audit's other rows — the origin of the ordering on
+histories and of the directed graph $G$, what makes two histories *alternatives*,
+what licenses the two semiring operations and the distributivity between them,
+what supplies finiteness and the length truncation, and what licenses $\beta$ and
+the real exponential — are the same boundary applied to the individual imports,
+and each is priced in `PL-WDP005-1` and `PL-WDP005-10` rather than derived. The fence is
+**standing**: discharging `PL-WDP005-11` either exhibits the accounting, which
+narrows what the fence excludes, or states the boundary in the paper's own voice.
+Neither outcome retires it.
+
+
+Changelog
+
+- **2026-07-20 — paper-hygiene producer pass (Stage 1, `/paper-improver`).**
+  Version deliberately **not** bumped: the paper remains
+  `v0.1 (Pre-Print) — OUTLINE`, per the programme's uniform pre-print rule; this
+  entry dates the pass instead.
+
+  **Part-A rubric — verified present, not manufactured.** Lead sentence (§1 with
+  its drafting constraint), why-care (§2), related work (§10), worked-example
+  specification (§8), falsifiability (§11), does-not-claim box (§12) all already
+  existed in outline-appropriate form and were retained. §10 was **extended**,
+  not rewritten, with three corpus antecedents it was missing and one cross-paper
+  duplication (below). §11 and §12 gained rows for defects found this pass.
+
+  **Part-B claim typing.** Inline `*Claim type:*` notes were keyed to the Claim
+  Ledger rows at §3, §4 (three places), T1, T2, T3, T4, and T5, so prose and
+  ledger can be diffed. *(The repair pass added the missing keys — see its entry
+  below.)* Types are held to the closed set {`DEFINITION`, `OPEN`, `CONJECTURE`,
+  `INTERPRETIVE`, `STANDARD`}; **no bare `[SCOPE FENCE]` tag is minted** — the
+  **only** occurrences of that bracketed string in the paper are §3's quotation of
+  001m's own `[SCOPE FENCE / OBSTRUCTION]` and this changelog's reference to it.
+  *(Corrected 2026-07-20 repair pass: this sentence previously said the one such
+  string was "in §6" and was "pre-existing". Both were wrong — no bracketed
+  `[SCOPE FENCE]` string occurs in §6, and §6 T5's two fence blocks are prose
+  headings stamped "added 2026-07-20", i.e. minted in this same pass, not
+  inherited.)* WD-5's scope and novelty fences live in the non-claim rows
+  `WD5-N1 … WD5-N14` *(corrected 2026-07-20 repair pass from `… WD5-N13`, an
+  off-by-one against the ledger, which has run to `WD5-N14` since this pass minted
+  it)* and in support lemma `WD5-L4`. **One demotion:** `WDP005-C2`
+  (the EPK as a $\mathbf{Kl}(W)$-morphism) `[STANDARD]` → `[DEFINITION]`, because
+  `ENC-0019` is `kind: definition`, `status: DEFINED`, with its single Lean
+  obligation `NOT-STARTED` — it is a recorded definitional reading, not a
+  theorem. No target was found wearing a "Theorem": §6 declares T1–T5 as targets
+  and §6's preamble says "None is proved here".
+
+  **Finiteness and analysis honesty (the pass's main substantive work).** Two
+  fences were added to the header — a **naming fence** stating that "integral" is
+  a name for a finite $\bigoplus$ and that no measure, limit, convergence
+  criterion, or continuum of histories is constructed or assumed; and a
+  **coefficient-carrier fence** stating that "finite" applies to the index sets
+  and never to $R$, since **F2–F5 are all continuum carriers** and $\mathbb Q_p$
+  is an analytic completion *(as written in this pass the fence said "three of
+  the five ... are infinite" and named only F4 and F5; the repair pass corrected
+  the count to four and moved the continuum line from F3|F4 to F1|F2)*. §4 gained
+  an explicit finiteness declaration fixing the
+  length bound $L$ and recording that $\Omega_{\le L}$ is a *partial* category
+  unless $G$ is acyclic or composition is restricted.
+
+  **Defects found and repaired, each after independent re-derivation:**
+
+  - **T1 conflated two objects (structural).** §4 truncates $\Omega$ by a length
+    bound, making every sum finite; T1 nonetheless displayed
+    $Z = \bigl(\bigoplus_{n\ge0} M^{\otimes n}\bigr)_{ab}$, an **infinite**
+    indexed sum a bare semiring cannot evaluate. The hedge "whenever the Kleene
+    star exists in $R$" names the gap without discharging it. A caution now
+    separates the truncated $Z_{\le L}$ from the starred $Z$ and states the two
+    hypotheses that make the latter meaningful — nilpotence of $M$ (no hypothesis
+    on $R$) or a declared Conway/complete star-semiring (an extra import, and
+    over $\mathbb R_{\ge0}$ a convergence hypothesis). `PL-WDP005-2` now requires the
+    draft to say which theorem it is proving.
+
+  - **T2(b)'s $H^{1}_{\mathrm{hist}}$ may have no referent.** WD-5, the declared
+    supplier of $d_{\mathrm{hist}}$, types $d_{\mathrm{hist}}^{2}=0$ ``OPEN`` and
+    **expects it refuted** (`WDP005-C6`), and records that a curved differential has
+    no cohomology (`WDP005-C14`). T2(b) is now to be stated in **coboundary form**
+    with the cohomological reading conditional on `PL-WDP005-4`; otherwise it is
+    malformed rather than false. Recorded as falsifier `WD5-F7`.
+
+  - **Priority: the $\ell^{1}$ half of T5 is already mechanized.** `ENC-1135`
+    (`status: MECHANIZED`) carries `L1_cannot_compute_interference` in Lean module
+    `QM.InterferenceBuildability` with the $(1,1)$ vs $(1,-1)$ witness, and records
+    itself as pub-010 Theorem 7 repackaged, "not a novel result"; Paper 057 §4 Q2
+    and Paper 061 Corollary 3.3 are the adjacent corpus statements. A priority
+    fence at T5, a second anticipated-referee objection in §10, non-claim
+    `WD5-N12`, and ledger row `WDP005-C16` now confine WD-5's claim to the
+    semiring-level generalization.
+
+  - **§8's fixture does not exercise T1's hypothesis.** The diamond's adjacency
+    satisfies $M^{3}=0$, so its Kleene star is finite in *every* semiring. A
+    cyclic second fixture was added to `PL-WDP005-9`.
+
+  - **Cross-paper duplication.** WD-6 states a target also numbered T5 with the
+    same content and opens `PL-WDP005-5` for it. Recorded in §10 as one obligation
+    with two registrations; WD-5 does not unilaterally retire `PL-WDP005-5`.
+
+  - **Inherited fence carried.** §3 now states 001m's own
+    `[SCOPE FENCE / OBSTRUCTION]`: Theorem 3.1 is a **bounded-generator** theorem
+    and does not extend to $C_0$-semigroup generators, and its Banach/$C^{3}$
+    setting is a continuum-antecedent import.
+
+  **Added this pass:** boundary fence **`WD5-L8`** (Claim Ledger §2a — entered
+  directly as a fence, *not* as a support lemma, following the classification the
+  WD-4 and WD-5 passes established) and obligation **`PL-WDP005-11`** (§14) tracking
+  the metatheoretic boundary that §15 previously carried as prose alone, with
+  non-claim home **`WD5-N11`** and claim row **`WDP005-C17`**. `PL-WDP005-10` was ruled
+  out as its discharger and the reason recorded in place. Falsifiers `WD5-F6`,
+  `WD5-F7` and claim rows `WDP005-C15`, `WDP005-C16`, `WDP005-C17` are new; no id was
+  retired or reused, and the support ledger still runs `WD5-L1 … WD5-L7`, seven
+  rows, each a genuine mathematical statement with a real upgrade target.
+
+  **Arithmetic standing (as claimed in this pass — and the claim was false; see
+  the repair entry below).** The following anchors were re-derived: the diamond's
+  $\lvert\Omega(a,b)\rvert = 2$ at length $2$; the full length profile
+  $(4,4,2,0,0)$ with $\lvert\Omega\rvert = 10$; $M^{3}=0$ (nilpotency index $3$);
+  the four zerosumfreeness verdicts (Boolean, tropical with $0_R = +\infty$,
+  $\mathbb R_{\ge0}$, and the failure in any ring with $1_R \neq 0_R$ via the
+  explicit pair $1_R \oplus (-1_R) = 0_R$); the cancelling complex assignment
+  $1 \oplus (-1) = 0$ for §8 item 4; the counts $9$ steps / $5$ families /
+  $11$ obligations; and 001m Theorem 3.1's statement, sign convention
+  $\mathfrak M_{t,s}(m) := S_{t+s}(m)-S_t(S_s(m))$, and remainder bound
+  $\lVert R_{t,s}(m)\rVert \le C\,ts(t+s)$, checked at source. **This pass then
+  certified that "every numeric and combinatorial anchor ... was correct as
+  written; none required numerical correction". That blanket certification was
+  false**, and is retracted: two counting statements it covered were wrong (the
+  coefficient-carrier fence's "three of the five ... are infinite", and §8's
+  "three of the five requested length rows are vacuous"). Both are corrected in
+  the repair entry below. The lesson recorded here for future passes: **a
+  blanket "all anchors verified" is not a verification and must not be written**;
+  state which statement was checked and how. The four $Z(b\mid a)$ values and the
+  §8 length-4 table remain deliberately unstated in the parameter-dependent part —
+  computing them is `PL-WDP005-9`, and quoting an uncomputed result is the defect
+  that rejected an earlier paper in this programme.
+
+  Producer role, `AuthorityEffect: None`. This pass certifies nothing about
+  itself; an independent adversary (`/paper-adversary`) evaluates it separately.
+
+- **2026-07-20 — repair pass (cycle 1 of 3), producer role.** Version unchanged
+  (`v0.1 (Pre-Print) — OUTLINE`). Applied against three blocking findings and six
+  factual-error advisories from an independent adversary review of the pass above.
+  Nothing is promoted, no obligation beyond those named is opened, and this entry
+  certifies nothing — a fresh adversary re-audits it.
+
+  **F1 — prior art omitted (blocking).** The pass above swept for priority and
+  found `ENC-1135`, but missed two nearer neighbours, both from **Paper 025**, the
+  direct generalization of the Paper 020 / `ENC-0019` EPK that §4 imports.
+  `ENC-0807` (`theorem`, `PROVED-PROSE`, `MECHANIZED-PARTIAL`, conditional on
+  G1–G4) is Paper 025 §3's verbatim
+  $Z_\theta(S_c\mid S_a) = \sum_b Z_\theta(S_c\mid S_b)Z_\theta(S_b\mid S_a)$,
+  called there **"a finite semiring-matrix law"** on
+  $\mathrm{Kl}(W)\simeq\mathrm{Mat}(\mathbb R_{\ge0})$ — **T1's content, already
+  published**. `ENC-0811` (`MECHANIZED`, Lean module
+  `PaperAE006.L025_06_SignedLedgerObstruction`) is the EPK-setting form of T5's
+  corollary and of §9's Route A/B fork, **already mechanized while WD-5's is
+  ``OPEN``**. Paper 025 also already cites the Droste–Kuich–Vogler handbook that
+  §10 treated as external-only, and already registers the general-semiring
+  transport as **`PL-025-8`** — the same obligation as `PL-WDP005-2`. Added: §10's
+  Paper 025 bullet; the §6 T5 priority fence item (v); claim row **`WDP005-C18`**
+  `[STANDARD]` mirroring `WDP005-C16`; §12 non-claim bullet; `PL-WDP005-2`'s prior
+  registration note. **§9 Route C** now confronts Paper 025's signed evaluator
+  residual $\Delta_E = E(\gamma_2\star\gamma_1) - E(\gamma_2)E(\gamma_1) \in
+  \{-1,0,+1\}$: it is signed and built on the same $\mathbf 1_{\mathrm{EvalPass}}$
+  gate §4 imports, but its sign enters by $\mathbb Z$-subtraction — an imported
+  additive-inverse carrier — so it is evidence **for `WD5-L6` and for Route B**,
+  not for Route C.
+
+  **F2 — false arithmetic in the headline fence (blocking).** The
+  coefficient-carrier fence said *"Three of the five target families of §6 T4 are
+  infinite and two are analytic completions"*. **Four of five are infinite**: only
+  F1, the Boolean semiring with two elements, is finite, and F2's
+  $\mathbb R\cup\{+\infty\}$, F3's $\mathbb R_{\ge0}$, F4's
+  $\mathbb R,\mathbb C,\mathbb H$ and F5's $\mathbb Q_p$ are all
+  continuum-cardinality. The error mislocated the continuum line at F3|F4 when it
+  sits at **F1|F2**, and so flattered §9's Route A ("accept F1–F3") as the
+  finite-honest zone — it is not; F3 is the carrier the current EPK already runs
+  on. Corrected at all five propagation sites: the fence itself, `WD5-N13`, T4's
+  claim-type note, the Claim Ledger's §1 *Finiteness standing* and §7, and the
+  global proof ledger's Paper 086 finiteness caution — plus, for internal
+  consistency, §15's finiteness row, the Claim Ledger's §5 *Root cost*, this
+  changelog's own description of the fence, and the proof ledger's `PL-WDP005-6`.
+
+  **F3 — untyped interpretive bridge (blocking).** §1's target payoff read
+  *"...can produce cancellation, hence none can produce interference"*, and §13's
+  stop-condition-5 gloss dropped the qualifier too, whereas T5 establishes only
+  **destructive** interference. Worse, *interference* had **no referent in WD-5**:
+  the paper declares no readout or intensity functional on weights, while
+  `ENC-1135`'s interference is the quadratic readout
+  $\lvert\sum_s c_s\rvert^{2}$. "Destructive" is restored in both places, and new
+  claim row **`WDP005-C19`** `[INTERPRETIVE]` records that WD-5 *defines* destructive
+  interference as vanishing of the total weight of a coarse-graining class,
+  declares no readout functional, and that **neither notion of interference is the
+  other's** — it is not enough to say "non-computability $\neq$ non-cancellation".
+  Fence item (iv) at §6 T5; §1 concession (iii); §12 non-claim bullet. Four
+  further bare uses were swept for consistency with that fence: the $\ell^{1}$
+  corollary at T5, the stop-condition paragraph at T5, §10's tropical bullet, and
+  §13's `WDP005-C14` note. **Not swept, deliberately:** the charter's stop-condition-5
+  sentence quoted verbatim at T5 (a quotation is not WD-5's voice; a note now says
+  WD-5 may not restate it without the qualifier), §5's step-7 row (which names
+  WD-6's question, not a WD-5 claim), and §4's observation that the EPK carries no
+  interference (a statement about the object, not a consequence of T5).
+
+  **Factual-error advisories.** (N1) `WDP005-C1` asserted that the **bounded-length**
+  paths form a free category — contradicted by §4's own declaration that
+  $\Omega_{\le L}$ is *partial* (length $L \ast$ length $L = 2L$); the standard
+  fact is about **all** paths, and both the row and §4's "free category …
+  truncated" now say so and point at `WDP005-C15`/`WD5-F6`. (N2) §8's *"three of the
+  five requested length rows are vacuous"* was false under either reading —
+  **two** rows ($n=3,4$) are empty and **four** ($n=0,1,3,4$) carry no $a\to b$
+  history; replaced, and the same sentence corrected in the global ledger's
+  `PL-WDP005-9`. (N3) The Claim Ledger's *"All seventeen rows are now keyed inline"*
+  was false — thirteen were; `WDP005-C11` … `WDP005-C14` are now keyed at §3, §7 (L2 and
+  L3), §8, and §13, and the ledger states the count it can support. (N4) This
+  changelog's non-claim range was off by one (`WD5-N13` → `WD5-N14`). (N5) Its
+  `[SCOPE FENCE]` sentence was wrong on both counts — corrected in place. (N6)
+  §5's compound `[DEFINITION / OPERATIONAL RULE]` tag, outside the declared closed
+  set and carrying no ledger id, is folded to `[DEFINITION]`. (N8) `WDP005-C3` types
+  001m Theorem 3.1 `[STANDARD]` while at source it is `[PROVEN, CONDITIONAL]`; §3
+  and the ledger row now state that `[STANDARD]` describes WD-5's *relation* to
+  the result (cited, not reproved) and that the hypotheses — $A\in\mathcal L(X)$
+  bounded, $\Pi\in C^3$, $0\le t,s\le\varepsilon$ — travel with it unlifted.
+
+  **Ledger arithmetic after this pass.** §1 now runs `WDP005-C1 … WDP005-C19`, nineteen
+  rows (two new: `WDP005-C18`, `WDP005-C19`); non-claims run `WD5-N1 … WD5-N14`,
+  unchanged in count, with `WD5-N12` extended in place; falsifiers `WD5-F1 …
+  WD5-F7`, unchanged; the support ledger still runs `WD5-L1 … WD5-L7`, seven rows,
+  with `WD5-L8` the standing fence outside it. Obligations remain
+  `PL-WDP005-1 … PL-WDP005-11`, **eleven — no obligation was minted this pass**. No id
+  was retired or reused.
+
+- **2026-07-20 — repair pass (cycle 2 of 3), producer role.** Version unchanged
+  (`v0.1 (Pre-Print) — OUTLINE`). A **second independent adversary** rejected the
+  pass above. F2 and F3 were confirmed discharged and are untouched here; **the
+  prior-art sweep failed twice** and is the whole subject of this entry. Nothing is
+  promoted, no obligation is minted, retired, or renumbered, and this entry
+  certifies nothing.
+
+  **A-1 — the nearest prior art for T1 is Paper 020, not Paper 025 (blocking, and
+  the second consecutive failure on the same axis).** The producer pass cited
+  `ENC-1135` and stopped; the cycle-1 repair added Paper 025's
+  `ENC-0807`/`ENC-0811` and stopped. **`ENC-0807`'s own Proof Pointer says the
+  theorem "is inherited from Paper 020" and names `ENC-0020` as the unweighted
+  form** — the pointer was inside the entry cycle-1 had already read. Added at
+  every locus that carried `ENC-0807`/`ENC-0811`:
+
+  - **`ENC-0020` — "Composition = Kleisli composition"**, `kind: proposition`,
+    `status: PROVED-PROSE`, `conditional_on` G1–G3, `lean_status:
+    MECHANIZED-PARTIAL`, Lean `PaperAE004.kernel_pair_sum_reindexing_under_G1_G2_G3`
+    and `PaperAE004.kernel_composition_under_G1_G2_G3` (axiom-audited 2026-06-20 to
+    `propext`). It states $Z_\theta(S_c\mid S_a) = \sum_{S_b} Z_\theta(S_c\mid S_b)Z_\theta(S_b\mid S_a)$
+    over **WD-5 §4's own objects** — $\Omega(S_a,S_b)$, $\mathbf 1_{\mathrm{EvalPass}}$,
+    $e^{-\beta\mathcal A}$ — and identifies it as matrix multiplication over the
+    nonnegative semiring.
+
+  - **`ENC-0018` — "Weighted Kleisli category"**, `DEFINED`, supplying the
+    matrix-representation half. **Its $\mathbf{Kl}(W)\simeq\mathbf{Mat}(\mathbb R_{\ge0})$
+    obligation is `NOT-STARTED`**, now stated wherever the matrix reading is used:
+    that reading is prose in the corpus too, and WD-5 must not cite it as
+    mechanized.
+
+  - **Two false superlatives corrected.** §10's bullet header called Paper 025
+    "the nearest published neighbour of T1"; the Claim Ledger §5 table called its
+    two rows "two nearer neighbours than any row above" when the rows above
+    include Paper 020 / `ENC-0019`. Both replaced.
+
+  - **§4's `WDP005-C2` note and §10's antecedents bullet repaired.** Both presented
+    Paper 020 as supplying only a `DEFINED` definition, which understates its prior
+    art on exactly the claim under the T1 fence. §4 now separates the *definition*
+    imported (`ENC-0019`) from the *theorem* restated (`ENC-0020`) and the *matrix
+    reading* relied on (`ENC-0018`); §10 carries a Paper 020 bullet of its own.
+
+  **A-2 — `ENC-0812` added (blocking).** *EPK Aggregate Cancellation Does Not Imply
+  Pointwise Zero*, `MECHANIZED`, Paper 025 **§4 Lemma 4.3** — the same §4 the
+  paper already cites for $\Delta_E$ — Lean `PaperAE006.L025_07_AggregateCancellation`
+  (`aggregate_zero_does_not_imply_pointwise_zero`;
+  `paper020_negative_positive_defects_cancel_but_are_nonzero`), witness
+  $d_{\mathrm{Neg}} = -1$, $d_{\mathrm{Pos}} = +1$, sum $0$, both nonzero. This is
+  the **EPK-native mechanized form of §8 item 4's cancelling witness** (previously
+  attributed only to `cMinus` in `QM.InterferenceBuildability` — true, but farther)
+  **and of the "cancellation arrives with the additive inverses" half of §9's
+  fork**. Added at §8, §9, §10, §12, and `WDP005-C18` / Claim Ledger §5.
+
+  **Found by the mandated systematic sweep, beyond both findings.** A
+  layer-crossing search (`Kleisli`, `Kl(W)`, `semiring`, `aggregate cancellation`,
+  `pointwise zero`, `signed`, `nonnegative`, `interference`) over
+  `encyclopedia/entries/` surfaced a family the two EPK-scoped sweeps could not
+  have reached, because it is filed under `quantum`:
+
+  - **`ENC-1128` — Finite Path-Sum Equals Matrix Power**, `MECHANIZED`,
+    [index:index:FinitePathSum.lean](omega_engine/research/_indexes/_master_index.yaml) (`pathSum_eq_matpow`, `matpow_compose`),
+    **general over any `Fintype` index and any `CommSemiring`**, axiom-clean. This
+    **materially narrows T1**: the paper repeatedly said what remains WD-5's is
+    "the arbitrary-semiring statement", and over a commutative semiring the
+    matrix-power half is already mechanized. T1's residual is now stated as (a) the
+    representation/uniqueness direction, (b) the noncommutative carriers F4 needs,
+    and (c) the truncation/star reconciliation.
+
+  - **`ENC-1072`** (`MECHANIZED`) records that **full multi-slice associativity
+    requires a richer semiring** than right-distributivity — a caution `PL-WDP005-2`
+    must answer. **`ENC-1069`** (`MECHANIZED`, Mathlib-free) carries coboundary
+    $\Rightarrow$ trivial holonomy and $\operatorname{im}d^{0}\subseteq\ker d^{1}$,
+    i.e. **T2(b)'s coboundary criterion in a neighbouring setting** — and gets
+    $H^{1}$ only by *assuming* the square-zero law WD-5 expects refuted.
+    **`ENC-1074`** (`MECHANIZED`) is a $3{:}1$ ungraded **overcount
+    counterexample**, a live hazard for T3.
+
+  - **`ENC-0851`** (Paper 020 §1.5.4, `MECHANIZED`, `PaperAE004/L020_10_EGDZeroGate.lean`):
+    zero signed mean defect is strictly weaker than pointwise ZDR. Added at §8 and
+    §10 as the converse-facing caution to T5.
+
+  **Advisory fixes.** (N-a) §12's $\ell^{1}$ non-claim said the already-mechanized
+  result is that the nonnegative tally "cannot **produce** interference";
+  `ENC-1135` mechanizes **non-computability** (interference is not an $\ell^{1}$
+  functional), not non-production — this re-blurred the distinction `WDP005-C19`
+  exists to keep, and is rewritten. (N-b) The header fence called $\mathbb C$ *and*
+  $\mathbb H$ "finite extensions of $\mathbb R$"; $\mathbb H$ is a **noncommutative
+  $4$-dimensional central division algebra**, not a field extension. T4's
+  "$\mathbb R\subset\mathbb C\subset\mathbb H$" is now typed as a chain of
+  **$\mathbb R$-subalgebras** with the **non-canonical** $\mathbb C\hookrightarrow\mathbb H$.
+  Both corrected. (N-c, N-d, N-e, N-g) are Claim Ledger repairs; see that file.
+
+  **What this pass did not do.** No version bump, no promotion, no re-typing of any
+  claim row, and **no change to the obligation set — `PL-WDP005-1 … PL-WDP005-11` stand
+  at eleven**, all `OPEN / NOT-STARTED`, all `AuthorityEffect: None`. Claim rows,
+  non-claims, and falsifiers are unchanged in count: `WDP005-C1 … WDP005-C19`,
+  `WD5-N1 … WD5-N14`, `WD5-F1 … WD5-F7`, `WD5-L1 … WD5-L7` plus the standing fence
+  `WD5-L8`. `WDP005-C18` and `WD5-N12` were **extended in place**, not replaced. No
+  other paper's files or ledger rows were edited. Producer role,
+  `AuthorityEffect: None`; this entry certifies nothing about itself and a fresh
+  adversary re-audits it.
+
+- **2026-07-21 — rename-breakage repair pass (Stage 1, `/paper-improver`), producer
+  role.** Version unchanged (`v0.1 (Pre-Print) — OUTLINE`), per the programme's
+  uniform pre-print rule. **No mathematics was touched.** Four corpus-wide renames
+  had landed under this paper since its last pass — the published corpus was
+  reindexed to programme-local ascending ids and lowercased throughout, and the
+  `lean4/` tree was reorganized into programme folders via Lake `srcDir` (module
+  names unchanged). This pass re-resolved every citation against the tree and
+  repaired the locators that had died. Nothing is promoted, **no obligation is
+  minted, retired, renumbered, or re-typed**, and this entry certifies nothing
+  about itself.
+
+  **What was verified, and how much of it.** Every distinct citation was opened,
+  not sampled: **14 of 14 distinct `ENC-####` ids** (the paper and ledger carry 267
+  `ENC-` occurrences, which resolve to 14 ids) — all exist, and each was checked
+  against its entry's `kind`, `status`, `lean_status`, `conditional_on`, and
+  `uses:` fields as this paper reports them; **all agreed, and no ENC id is dead.**
+  **18 of 18 distinct Lean theorem/definition names** cited were located in the
+  Lean sources by name. **All Lean *module-name* citations resolve** under the
+  post-reorg `lakefile.lean` (`QM`, `PaperAE004`, `PaperAE006`, and the namespaces
+  they declare). The sibling-paper ledger ids were resolved in their own files
+  (`WDP005-C6`, `WDP005-C14`, `PL-WDP005-4`, `PL-WDP005-13`, `WD5-L9`, `PL-WD0-8`, `WD0-L4`,
+  `PL-WD1-11`, `PL-WD2-12`, `PL-WD3-11`, `PL-WD4-11`, `WD4-L9`, `PL-025-8`,
+  `PL-WDP005-5`), as were 001m Theorem 3.1's statement, hypotheses, remainder bound
+  and scope fence; Paper 020 Appendix A row A3; Paper 025 §3's "finite
+  semiring-matrix law" and §4 Lemma 4.3; Paper 057 §4 Q1/Q2; Paper 058 §4.1/§5.4;
+  and Paper 061 Corollary 3.3's difference $4\sqrt{w_pw_q}>0$. The ledger's own
+  count invariants were re-derived mechanically and **all hold**: nineteen claim
+  rows, seven support lemmas, fourteen non-claims, seven falsifiers, eleven
+  obligations, and the §7 Type-column enumeration (`[STANDARD]` ×4,
+  `[DEFINITION]` ×1, ``OPEN`` ×10, `[CONJECTURE]` ×2, `[INTERPRETIVE]` ×2 =
+  nineteen). No typing position carries a `[PROVEN…]` tag.
+
+  **Dead locators found and repaired (eight).** *Lean filesystem paths, killed by
+  the `lean4/` programme-folder reorg* — the files exist and the theorems are
+  intact; only the paths had rotted. Each is replaced by the **module name**, which
+  is what `PL-WDP005-8` already required and which is stable under `srcDir` moves:
+  [index:index:FinitePathSum.lean](omega_engine/research/_indexes/_master_index.yaml) to `QM.FinitePathSum`;
+  `PaperAE004/L020_10_EGDZeroGate.lean` to `PaperAE004.L020_10_EGDZeroGate`;
+  `QM/FinitePathSumReplay.lean` to `QM.FinitePathSumReplay`;
+  `QM/FiniteFeynmanShadow.lean` to `QM.FiniteFeynmanShadow`;
+  `QM/UngradedOvercount.lean` to `QM.UngradedOvercount`; and
+  `OmegaCore/SemiringTransportKernel.lean` to
+  **`OmegaCosmology.Primitives.SemiringTransportKernel`** — that last one was wrong
+  in the *library*, not merely the directory, and the same stale path is carried by
+  `ENC-1069` itself (recorded below, not repaired here). *Published-corpus
+  directory names, killed by the reindex and the lowercase sweep* — §10's bullet
+  headers cited Paper 020 and Paper 025 by dead directory strings carrying the old
+  global numbers and Title Case; both now carry their current programme-local
+  directories.
+
+  **Numbering bridge added (header).** The paper cites its antecedents by legacy
+  global numbers (001, 001a, 001h, 001m, 020, 025, 057, 058, 061, QM_111, QM_061),
+  which are no longer directory names. Rather than renumber — which would break
+  every existing cross-reference — one dictionary now maps each label this paper
+  actually uses to its current location, anchored to the generated index
+  `omega_engine/research/published/_index.md`, with a warning that the
+  programme-local ids in that table are **not** the legacy numbers. `pub-010` is
+  left explicitly unresolved: WD-5 uses it only inside a quotation of `ENC-1135`'s
+  own provenance note, and this pass did not establish which paper it names.
+
+  **`PL-WDP005-5` — stale description corrected (§10; ledger §5).** WD-5 said WD-6
+  "opens `PL-WDP005-5` to prove and mechanize it". **WD-6's 2026-07-20 producer pass
+  superseded that**: it ruled that WD-5 owns T5 and restated `PL-WDP005-5` in place as
+  a *consumption* obligation, recording the same at `WD6-N29` and repointing
+  `WDP005-C12`'s upgrade path at WD-5 — and it registered WD-5's stale description as
+  **"registered, not fixed"**, being outside WD-6's write scope. This pass is that
+  repair, made **only in WD-5's own files**. **No cross-paper conflict was resolved
+  unilaterally and nothing was retired:** `PL-WDP005-5` stands as WD-6's consumption
+  obligation, `PL-WDP005-7`/`PL-WDP005-8` stand as WD-5's, and it remains one obligation
+  with two registrations.
+
+  **`PL-025-8` — collision claim withdrawn as an overstatement (§10, §6 T5 fence
+  (v), §14 `PL-WDP005-2`).** Three loci said `PL-025-8` is *"the same obligation as
+  `PL-WDP005-2`"*. Read at source, it is not: `PL-025-8`'s object is the mechanization
+  of Paper 025's real-coefficient $\exp$-weighted $\mathrm{Mat}(\mathbb R_{\ge0})$
+  EPK kernel (with general-semiring transport offered as an alternative route to
+  the same closure), while `PL-WDP005-2`'s object is T1 — which of three theorems T1
+  states, plus the representation direction, the noncommutative carriers, and the
+  truncation/star reconciliation. **They overlap on the general-semiring-transport
+  clause and nowhere else.** The flat identity claim contradicted this paper's own
+  more careful statements at `WDP005-C18` and at the T5 fence, which already recorded
+  that `PL-025-8`'s own object *remains open*. The weaker, better-supported reading
+  now stands at all three loci; **neither obligation is retired, renumbered, or
+  absorbed**, and WD-5 does not adjudicate Paper 025's registration.
+
+  **Deliberately not edited.** The dated 2026-07-20 changelog and repair-pass
+  entries (in this file and in the ledger) still contain the pre-repair phrasings —
+  three dead Lean paths and the two superseded "same obligation" sentences. They
+  are records of what those passes did and believed; rewriting them would falsify
+  history. Every one of them is superseded by the live text above.
+
+  **Recorded, not repaired — outside this paper's write scope.** `ENC-1069`'s
+  `sources` and `lean_refs` point at
+  [index:index:SemiringTransportKernel.lean](omega_engine/research/_indexes/_master_index.yaml), which does not exist
+  (the file is `OmegaCosmology/Primitives/SemiringTransportKernel.lean`, a
+  different library); `ENC-1135`'s `lean_refs` reads
+  [index:index:interferencebuildability.lean](omega_engine/research/_indexes/_master_index.yaml), wrong in both case and directory. The
+  **global proof ledger's** `proof_ledger_20260720.md` Paper 086 block carries the
+  same three dead Lean paths and the same superseded `PL-WDP005-5` description. None
+  is edited here: the encyclopedia entries are another surface's, and that ledger
+  is a dated record.
+
+  **No new proof obligation was opened, and no `proof_ledger_20260721.md` was
+  created.** Every defect this pass found was a locator or a scope overstatement,
+  not a mathematical gap; none closes a gap or upgrades a conditional, so logging
+  one would be manufacturing. Obligations stand at `PL-WDP005-1 … PL-WDP005-11`, eleven,
+  all `OPEN / NOT-STARTED`. **No build was run** — this pass compiled nothing and
+  claims nothing about the Lean developments' green status beyond the presence of
+  the named declarations in the sources. Producer role, `AuthorityEffect: None`;
+  an independent adversary (`/paper-adversary`) evaluates this pass separately.
+
+> **Pedagogical Crosswalk Notice:** Streamlined pedagogical exposition for this kernel is provided under [`100_mathematical_foundations/`](../100_mathematical_foundations/). This monograph remains the primary mathematical home under `AuthorityEffect: None`.
+
+<!-- claim-id-body-index:begin -->
+
+Claim-ID body index (packaging)
+
+| ID | Home |
+|---|---|
+| `WDP005-C1` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C2` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C3` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C4` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C5` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C6` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C7` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C8` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C9` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C10` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C11` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C12` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C13` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C14` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C15` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C16` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C17` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C18` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WDP005-C19` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-L1` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-L2` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-L3` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-L4` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-L5` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-L6` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-L7` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-N1` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-N2` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-N3` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-N4` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-N5` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-N6` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-N7` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-N8` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-N9` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-N10` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-N11` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-N12` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-N13` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `WD5-N14` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+| `Consumed` | sibling `005_wd5_finite_witness_history_integral_claim_ledger.md` |
+
+<!-- claim-id-body-index:end -->

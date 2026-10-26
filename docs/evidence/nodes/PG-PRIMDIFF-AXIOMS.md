@@ -10,7 +10,7 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `DEFINITION`. Evidence gra
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
+- counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 22
 - distinct cited Lean declarations covered by a current replay receipt: 22
 - counted in-repo runnable tests: 0
@@ -133,6 +133,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0394
 - counts toward the grade: no
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
+- sha256 (`lf-normalised`): `e411f9eace9de18c2583922d16d85be03fcbe4c35976ca3d7a33a0c3cfdea143`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
+- sha256 (`lf-normalised`): `1596c27b09af32aec26710dacafcbe1dcb5081bc06d35d094b4c0b0353932e64`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0394_primitive_axiom_list_underived.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0394_primitive_axiom_list_underived.md](../../../dag/derivations/01_pregenesis/tfq_0394_primitive_axiom_list_underived.md)
@@ -147,20 +161,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9`
 - generated view: listed, not counted
 - cited in: record TFQ-0344 (shared)
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ## Absences recorded by the TFQ records

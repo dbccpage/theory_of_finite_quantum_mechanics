@@ -1,6 +1,6 @@
 # Provenance & Axiom Census — MajoranaCore (PO-026)
 
-**Paper ID:** PO-026 (`002_projection_obstruction/026_microsoft_majorana_problem`)  
+**Paper ID:** PO-026 (`projection_obstruction/026_microsoft_majorana_problem`)  
 **Title:** The Majorana Problem: Finite Parity Schedules, Ising Algebra, and What Hardware Claims Do Not Discharge  
 **Toolchain:** Lean (version 4.34.0, x86_64-w64-windows-gnu), Lake version 5.0.0-src+293d5d0  
 **Authority:** `AuthorityEffect: None`  

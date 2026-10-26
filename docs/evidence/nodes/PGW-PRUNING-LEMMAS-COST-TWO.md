@@ -10,13 +10,13 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 5
+- counted in-repo evidence files: 6
+- cited Lean, Rust or Python symbols found in their in-repo files: 9
 - distinct cited Lean declarations covered by a current replay receipt: 5
-- counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo runnable tests: 1
+- counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add a recorded statement-match review
 
 ## Flags
 
@@ -89,36 +89,46 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs`
+### Rust: `atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/enumeration.rs`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
+- file: [atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/enumeration.rs](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/enumeration.rs)
+- sha256 (`bytes`): `a829a2a7ef365ce27b07cbd4d2fc3069f7b0653ce7a2a82fd3e5cd437407708a`
+- cited in: node.rust, record TFQ-0446
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `iter_cost2_deltas` (rust_symbol) | yes | yes | yes | - | - |
+| `pruned_and_unpruned_agree_on_valid_deltas` (rust_test) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
+### Python: `atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
+- sha256 (`bytes`): `856ce42faba2dc2ae1217207ecc8af893eac29b50ae8a374dc06d2ba22c957bb`
+- cited in: record TFQ-0446
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `iter_cost2_deltas` (python_symbol) | yes | yes | yes | - | - |
+| `iter_full_deltas` (python_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt)
+- sha256 (`lf-normalised`): `8e0a3f2333e9ae5740b26c59f88fd41cd1ee9c9b92ca4f0a19dad53747ddf3cd`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0446_pruning_lemmas_cost_two.md`
 
 - file: [dag/derivations/02_genesis/tfq_0446_pruning_lemmas_cost_two.md](../../../dag/derivations/02_genesis/tfq_0446_pruning_lemmas_cost_two.md)
-- sha256 (`lf-normalised`): `e6df18da599af4a69c9a9b5471219d6ac60dbd39e99d996eb3e0c7a06906daad`
+- sha256 (`lf-normalised`): `23f5188cbc3fd45baffdc85574a710648d1d6cf3bcfabee089f47b8792ab6cae`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0446
 - counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### External sources
-
-Named by the node; not in this repository and not checked here.
-
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::iter_cost2_deltas`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::iter_full_deltas`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::iter_cost2_deltas`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::pruned_and_unpruned_agree_on_valid_deltas`
 
 ## Routes
 

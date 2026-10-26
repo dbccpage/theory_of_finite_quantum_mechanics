@@ -1,6 +1,6 @@
 # QM-212 Dressed Graph Polynomials and the Rational QED g-2 Enclosure: the Finite Map
 
-**Scope:** research note for `006_finite_qm`; not part of the manuscript, not a claim promotion. Companion to `phase_fiber_holonomy_bridge_finite_map.md` and `004_general_relativity/003_relational_point_coincidence_and_witnessed_difference`.
+**Scope:** research note for `finite_quantum_mechanics`; not part of the manuscript, not a claim promotion. Companion to `phase_fiber_holonomy_bridge_finite_map.md` and `general_relativity/relational_point_coincidence_and_witnessed_difference`.
 **Code:** `python/finite_qm/use_cases/dressed_qed_g2_control.py`, tests in `tests/e2e/test_e2e_dressed_qed_g2_control.py` (8 tests), and `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs`.
 **Status marks used:** PROVED (argument given here, finite and checkable), COMPUTED (exact rational and cyclotomic arithmetic over Q and Q(ζ₁₂), replayable), IMPORTED (added structure that nothing finite here produces), CONJECTURED (none in this note).
 

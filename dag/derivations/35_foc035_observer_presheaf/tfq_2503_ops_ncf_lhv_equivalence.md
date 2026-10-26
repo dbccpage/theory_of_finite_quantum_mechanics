@@ -39,7 +39,7 @@ See also: `FQ-BELL-CLASSICAL-JOINT-EXTENSION`.
 
 - `external:arXiv:1705.07918`: S. Abramsky, R. S. Barbosa and S. Mansfield, The contextual fraction as a measure of contextuality, Physical Review Letters 119 (2017) 050504, arXiv:1705.07918.
 - `external:arXiv:1102.0264`: S. Abramsky and A. Brandenburger, The sheaf-theoretic structure of non-locality and contextuality, New Journal of Physics 13 (2011) 113036, arXiv:1102.0264.
-- Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B2`
-- Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2`
+- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B2`
+- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2`
 - Repository: `checks/independent/foc035_observer_presheaf.py`
 - Repository: `dag/derivations/35_foc035_observer_presheaf/tfq_2503_ops_ncf_lhv_equivalence.md`

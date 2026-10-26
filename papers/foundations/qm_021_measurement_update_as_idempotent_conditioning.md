@@ -7,10 +7,10 @@
 
 The standalone manuscript is retired. Its surviving mathematical content is merged beside normalized weights into Finite Quantum Mechanics:
 
-- **Source Notes:** [`../006_finite_qm/finite_quantum_mechanics_source_notes.md#1112-measurement-update-as-idempotent-conditioning-qm-021-merged-and-retired`](../006_finite_qm/finite_quantum_mechanics_source_notes.md#1112-measurement-update-as-idempotent-conditioning-qm-021-merged-and-retired) (§11.12).
+- **Source Notes:** [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1112-measurement-update-as-idempotent-conditioning-qm-021-merged-and-retired`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1112-measurement-update-as-idempotent-conditioning-qm-021-merged-and-retired) (§11.12).
 - **Certified Rust Implementation:** `omega_engine/crates_rs/omega_quantum_physics/src/sector_conditioning.rs` (`sector_conditioning::{condition, sector_probability, luders_update, sector_projector}`).
-- **Integration Tests:** `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/tests/measurement_conditioning.rs`.
-- **Consolidated Claims:** [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (IDs `021:QM-021-C1` through `021:QM-021-C12`).
+- **Integration Tests:** `sources/atlas/papers/finite_quantum_mechanics/native/tests/measurement_conditioning.rs`.
+- **Consolidated Claims:** [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (IDs `021:QM-021-C1` through `021:QM-021-C12`).
 
 ## Retained Mathematical Formulation
 

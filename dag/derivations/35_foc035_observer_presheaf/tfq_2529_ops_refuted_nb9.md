@@ -35,6 +35,6 @@ Ledger row L035-C4: refuted (cited). The refutation is recorded in the Argon syn
 
 ## Sources
 
-- Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C4`
-- Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#0`
+- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-C4`
+- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#0`
 - Repository: `dag/derivations/35_foc035_observer_presheaf/tfq_2529_ops_refuted_nb9.md`

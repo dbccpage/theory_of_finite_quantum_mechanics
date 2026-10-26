@@ -114,7 +114,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1220_fsp_master_dichotomy_refuted.md`
 
 - file: [dag/derivations/26_fsp/tfq_1220_fsp_master_dichotomy_refuted.md](../../../dag/derivations/26_fsp/tfq_1220_fsp_master_dichotomy_refuted.md)
-- sha256 (`lf-normalised`): `2789e1bfe1e43f830a94834f9de7fb801b04d6807a458d5a66ecf34b843b1c1f`
+- sha256 (`lf-normalised`): `72fb615eb2f8c0acd4a8756d8d3c0f1b94a76921e06069db743df10d22fa045d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1220
 - counts toward the grade: no
@@ -136,7 +136,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
 
 - file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `ad94021f09fb60b94e1a91553294c46ef5d3903f8093297b6289f124386e7178`
+- sha256 (`lf-normalised`): `5a72c2f6006ea18c3362f0a63e8525b65d41898e8f1bd437b7e4c2e368c7e102`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -10,13 +10,13 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `OPEN`. Evidence grade: **
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 18
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 20
 - distinct cited Lean declarations covered by a current replay receipt: 14
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 1
+- counted in-repo Rust or Python files that are not tests: 3
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add an in-repo Rust or Python runnable test (3 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -74,12 +74,29 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs`
+### Rust: `atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/certification.rs`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
+- file: [atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/certification.rs](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/certification.rs)
+- sha256 (`bytes`): `7f4c3644fa58c2ae38411c8258d17bdbe74bd8d992da18bf3110099c3ffa2aaf`
+- cited in: node.rust, record TFQ-0427
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `certifies` (rust_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
+### Python: `atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py)
+- sha256 (`bytes`): `6a7fd2ba9688d47e9291514c623a811cde3c6b9e8fda1d12a608dc9bb0b1f3c2`
+- cited in: record TFQ-0427
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `certify` (python_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
 
 ### Python: `checks/independent/pgw-context-fidelity.py`
 
@@ -96,7 +113,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md](../../../dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md)
-- sha256 (`lf-normalised`): `41b06b975e73a2079521bff63fdf58fa56e9434bad5fd57f3640b5780a8be886`
+- sha256 (`lf-normalised`): `00c0240fbe653cd36a7b59295f2d7f36e6ff8796a1fb3b3b40224b93bcd25ef1`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0427
 - counts toward the grade: no
@@ -121,13 +138,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
 - cited in: node.source
 - counts toward the grade: no
-
-### External sources
-
-Named by the node; not in this repository and not checked here.
-
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::certify`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs::certifies`
 
 ## Routes
 

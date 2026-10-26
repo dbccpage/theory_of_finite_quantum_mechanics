@@ -38,8 +38,8 @@ This note records the finite-to-continuum derivation and computational closure (
 
 ## Verification Anchors
 
-- **Python reference use case:** `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/foundational_derivation_closure_control.py` (`evaluate_foundational_derivation_closure_control`)
-- **Python e2e test suite:** `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/tests/e2e/test_e2e_foundational_derivation_closure_control.py` (`5 passed`)
+- **Python reference use case:** `sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/foundational_derivation_closure_control.py` (`evaluate_foundational_derivation_closure_control`)
+- **Python e2e test suite:** `sources/atlas/papers/finite_quantum_mechanics/tests/e2e/test_e2e_foundational_derivation_closure_control.py` (`5 passed`)
 - **Rust compiled implementation & unit test:** `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/foundational_derivation_closure.rs` (`evaluate_qm219_foundational_derivation_closure`, `test_qm219_foundational_derivation_closure_control`)
-- **Lean 4 mechanization over `Rat`:** `lean4/FiniteQM.lean` and `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/FiniteQM.lean` (`degree4_unit_sphere_basis_identity`, `p4_eq_one_sub_two_p22_on_unit_sphere`, `quadratic_readout_selected_in_sym_deg4_class`, `qzeta12_rational_readout_cone_and_galois_selection`, `born_trace_vs_quartic_readout_and_three_ray_positivity_gap`, `five_import_mutual_independence`)
+- **Lean 4 mechanization over `Rat`:** `lean4/FiniteQM.lean` and `sources/atlas/papers/finite_quantum_mechanics/lean/FiniteQM.lean` (`degree4_unit_sphere_basis_identity`, `p4_eq_one_sub_two_p22_on_unit_sphere`, `quadratic_readout_selected_in_sym_deg4_class`, `qzeta12_rational_readout_cone_and_galois_selection`, `born_trace_vs_quartic_readout_and_three_ray_positivity_gap`, `five_import_mutual_independence`)
 

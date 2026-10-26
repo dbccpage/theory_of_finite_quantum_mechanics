@@ -11,7 +11,7 @@ sys.path.insert(0, str(ROOT / 'dag'))
 import sync_foc035_observer_presheaf as sync  # noqa: E402
 import validate_derivation_dag as validator  # noqa: E402
 
-LEDGER = ROOT / 'sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md'
+LEDGER = ROOT / 'sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md'
 NOTE = LEDGER.with_name('lggr_and_the_quantum_observer_presheaf.md')
 EXPECTED_STATUS = {
     'DEFINITION': {'OPS-OBSERVER-TUPLE'},

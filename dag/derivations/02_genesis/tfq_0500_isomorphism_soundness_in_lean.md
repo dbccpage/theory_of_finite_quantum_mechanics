@@ -39,11 +39,11 @@ In accordance with strict constructive principles:
 - [`lean4/CampaignPgwIsomorphismSoundnessInLean.lean::pgwIsoSwapInvolutive`](../../../lean4/CampaignPgwIsomorphismSoundnessInLean.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::canonical_bruteforce` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs::canonical_bruteforce`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs)
 
 ### Python Oracles & Numerical Evaluators
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py::canonical_bruteforce`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py)
 - [`checks/independent/pgw-isomorphism-soundness-in-lean.py::main`](../../../checks/independent/pgw-isomorphism-soundness-in-lean.py)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::canonical_bruteforce` (private upstream source, not in this repository)
 
 ---
 
@@ -56,8 +56,8 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:60`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt:379`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1045-1059`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:60`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:379`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1045-1059`
   - `dag/derivations/independent/pgw-isomorphism-soundness-in-lean.md:5`
   - `dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json:6`

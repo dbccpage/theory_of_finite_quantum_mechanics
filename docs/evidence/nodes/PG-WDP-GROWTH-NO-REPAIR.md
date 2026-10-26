@@ -10,7 +10,7 @@ Stage: [WDP](../stages/WDP.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
+- counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 14
 - distinct cited Lean declarations covered by a current replay receipt: 14
 - counted in-repo runnable tests: 0
@@ -102,19 +102,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
+- sha256 (`lf-normalised`): `1596c27b09af32aec26710dacafcbe1dcb5081bc06d35d094b4c0b0353932e64`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md`
 
 - file: [dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md](../../../dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md)
 - sha256 (`lf-normalised`): `6b435bb1723d6faae4828b1c28409220469504c82b119f60d2b15a2e2d5fdab4`
 - generated view: listed, not counted
 - cited in: record TFQ-0346 (shared)
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ## Routes

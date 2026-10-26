@@ -1,7 +1,7 @@
 # Claim Ledger — The Majorana Problem (`the_majorana_problem.md`)
 
-**Series Key:** `002_projection_obstruction/026_microsoft_majorana_problem`  
-**Live directory:** `009_ms_majorana`. The series key above is the historical package id.  
+**Series Key:** `projection_obstruction/026_microsoft_majorana_problem`  
+**Live directory:** `majorana`. The series key above is the historical package id.  
 **Paper:** `the_majorana_problem.md`  
 **Ledger Date:** 2026-09-19  
 **Version:** `v1.1.0`  

@@ -10,13 +10,13 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `DEFINITION`. Evidence gra
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 1
+- counted in-repo evidence files: 2
+- cited Lean, Rust or Python symbols found in their in-repo files: 2
 - distinct cited Lean declarations covered by a current replay receipt: 1
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -57,10 +57,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Python: `atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py](../../../atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py)
+- sha256 (`bytes`): `570c898692c070d22f655f96d74e0e468e1f4905ea52f917d28237056b7589c1`
+- cited in: record TFQ-0428
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `single_admission_report` (python_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md](../../../dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md)
-- sha256 (`lf-normalised`): `d5da4ab360772a16e7ebed730c3d3a9551ff173ceccc1014c29ed1eb0b9e41ae`
+- sha256 (`lf-normalised`): `7981a5661464dfe945dda5b552eb2f77527eec29b2e47f0ca8c1d25ea120aef5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0428
 - counts toward the grade: no
@@ -86,15 +98,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: no
 
-### External sources
-
-Named by the node; not in this repository and not checked here.
-
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py::single_admission_report`
-
 ## Absences recorded by the TFQ records
 
-- TFQ-0428 rust: no Rust two-flag admission model; Genesis admission events are step in 000_genesis_19l57g1/code/rust/src/admission.rs
+- TFQ-0428 rust: no Rust two-flag admission model; Genesis admission events are step in genesis/code/rust/src/admission.rs
 
 ## Routes
 

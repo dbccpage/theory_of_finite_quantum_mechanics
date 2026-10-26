@@ -10,13 +10,13 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 6
 - distinct cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -32,7 +32,7 @@ proj_ofR9_false and proj_ofR9_true hold by rfl, so the embedding statements are 
 
 ## Source status
 
-001_genesis_ongoing_h3v7n5qf paper/ninth/claim_ledger.md D16 and D17; lean4/Ninth/State.lean
+genesis_ongoing paper/ninth/claim_ledger.md D16 and D17; lean4/Ninth/State.lean
 
 ## Review
 
@@ -74,19 +74,32 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Python: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/ninth/state.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/ninth/state.py](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/ninth/state.py)
+- sha256 (`bytes`): `9d9d54ab7b8a81bcb2e47472bccce13c61e6d7dd09268053cbaecc0ea821e3fc`
+- cited in: record TFQ-0480
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `of_s` (python_symbol) | yes | yes | yes | - | - |
+| `swap` (python_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/ninth/claim_ledger.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/ninth/claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/ninth/claim_ledger.md)
+- sha256 (`lf-normalised`): `24295ce3672d36f7ef252a5424d183eda4a8b13949bb3df5f5ee4ad1fc6d789c`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/02_genesis/tfq_0480_go_two_relations_swap.md`
 
 - file: [dag/derivations/02_genesis/tfq_0480_go_two_relations_swap.md](../../../dag/derivations/02_genesis/tfq_0480_go_two_relations_swap.md)
-- sha256 (`lf-normalised`): `4550e14d735e398245b1631a119f316f08ef1c4c386872e47f8e34263452ba0b`
+- sha256 (`lf-normalised`): `368fe19011e086b0e21228d9dc4d995a96343601b6a763cd96e39410264658ca`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0480
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/ninth/claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/ninth/claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### Documents and data: `omega_engine_education/documentation/005_oegenong/genesis_ongoing.md`
@@ -95,13 +108,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
 - cited in: node.source
 - counts toward the grade: no
-
-### External sources
-
-Named by the node; not in this repository and not checked here.
-
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/ninth/state.py::of_s`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/ninth/state.py::swap`
 
 ## Absences recorded by the TFQ records
 

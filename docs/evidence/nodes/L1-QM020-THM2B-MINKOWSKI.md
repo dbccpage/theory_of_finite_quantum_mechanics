@@ -101,10 +101,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: no
 
-### Documents and data: `sources/atlas/F004_papers/006_finite_qm/claims/claim_ledger.yaml`
+### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/claims/claim_ledger.yaml](../../../sources/atlas/F004_papers/006_finite_qm/claims/claim_ledger.yaml)
-- sha256 (`lf-normalised`): `9db8daae54ec82cab13d7f63cd24d21a793017302b9e8553255fe0c64881f4c7`
+- file: [sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml)
+- sha256 (`lf-normalised`): `0d891e04d6b8ff46e95360a919f7c2a64074a2d4f9732a2e481f868e41c385a7`
 - cited in: node.source
 - counts toward the grade: yes
 

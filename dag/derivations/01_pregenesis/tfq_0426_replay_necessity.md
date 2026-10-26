@@ -38,11 +38,11 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/Genesis19l57g1/Paper000.lean::no_factor_through_common_view`](../../../lean4/Imported/Genesis19l57g1/Paper000.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs::factor` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs::factor`](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs)
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py::history_auditor` (private upstream source, not in this repository)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py::history_auditor`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py)
 
 ---
 

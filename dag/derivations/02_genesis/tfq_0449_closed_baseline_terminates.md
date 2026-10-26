@@ -36,11 +36,11 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean::closedRun_round_bound_from_empty`](../../../lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs::closed_system_baseline_reading_f` (private upstream source, not in this repository)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs::closed_system_baseline_reading_l` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/tree.rs::closed_system_baseline_reading_f`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/tree.rs)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/tree.rs::closed_system_baseline_reading_l`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/tree.rs)
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::build_tree` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/engine.py::build_tree`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/engine.py)
 
 ---
 
@@ -53,6 +53,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:517-522`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:494-497`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:506-515`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:517-522`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:494-497`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:506-515`

@@ -86,7 +86,7 @@ date: 2026-09-05
 
 - Dual-home Lean 4 mechanization (`lean4/DerivationDagQMClosure.lean` mirrored byte-for-byte with `lean4/DerivationDagQMClosure.lean`): added Section 21 (Tranche 17: `gs003_coordinate_l1_weighted_sum_and_orbit_collapse`, `gs001_maximal_symmetry_direction_independence_and_gauge_proportionality`, `wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation`, `l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure`), Section 22 (Tranche 18: `ds_qm063_tree_gauge_triviality_vertex_repair_and_l1_non_factorization`, `ds_qm072_bit_shadow_q1_q4_obstruction_and_p7_c10_bloch_refutation`, `ds_qm073_bare_table_separability_single_joint_bound_and_pr_box_obstruction`, `ds_qm090_093_o022_registry_minimality_and_tier3_pr_box_bridge`), Section 23 (Tranche 19: `ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity`, `ds_qm094_everett_reduced_state_overlap_isometric_refinement_and_collapse_refutation`, `ds_qm101_threshold_repair_image_monotonicity_and_nogo_suppression_corollary`, `ds_qm206_four_tier_cochain_exactness_holonomy_invariance_and_nonfull_nonfaithful_descent`), Section 24 (Tranche 20: `ds_qm032_feynman_refinement_compatibility_terminalizer_and_two_slice_action`, `ds_qm033_hermitian_graph_schrodinger_mass_conservation_and_lggr_holonomy`, `ds_qm073_diagonal_exchange_suppression_and_bell_three_clause_obstruction`, `ds_qm090_093_and_207_211_tier3_survival_rebit_tomography_and_five_import_cascade`), and Section 25 (Tranche 21: `pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl`, `l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector`, `l1_qm122_leftover_mnc_eight_extra_finish_table_and_dilation_classifications`, `fq_embedding_relativity_and_entropy_baker_dichotomy_closure`), bringing the module to 112 kernel-checked theorems with zero `sorryAx` and promoting 23 derivation-DAG nodes (`PG-WDP-GENESIS-BRIDGE-OBLIGATIONS`, `L1-GS000-EDGEWISE-L1`, `L1-GS001-GAUGE-L1`, `L1-WDP-CH08-C01-REPLICA-L1`, `L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED`, `L1-QM020-C10-BRANCH-LOCALIZATION`, `L1-U1-SELECTOR-OTHER-SEGMENT`, `L1-QM122-LEFTOVER-MNC-NOT-RECOVERED`, `FQ-GAP-REAL-EMBEDDING-CHOICE`, `FQ-ENTROPY-DICHOTOMY-BAKER`, `DS-QM032-CONTINUUM-LIMIT-CONDITIONAL`, `DS-QM033-SCHRODINGER-DISCRETE-COCHAIN`, `DS-QM062-U1-SELECTOR-LAYERS`, `DS-QM063-HOLONOMY-COHERENT-INTENSITY`, `DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED`, `DS-QM073-FINITE-CHSH-AND-PR-BOX`, `DS-QM073-BELL-THEOREM-OBSTRUCTED`, `DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY`, `DS-QM090-093-QM-UNIQUENESS-TIER3`, `DS-QM094-EVERETT-RELATIVE-STATE-CONTACT`, `DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE`, `DS-QM206-BOUNDARY-SYNTHESIS`, `DS-QM207-211-FIVE-IMPORT-CASCADE`) to `PROVED_LEAN` (`125 PROVED_LEAN` nodes and `141 DERIVED_LEAN` routes across 177 nodes and 172 routes, clearing all `CONDITIONAL` nodes across 8 of the 10 stages).
 - Dual-home Rust witness module (`native/src/derivation_dag_witnesses.rs` mirrored byte-for-byte with `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs` and `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`): added Family 26 (`verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness`), Family 27 (`verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_closure_witness`), Family 28 (`verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness`), Family 29 (`verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness`), and Family 30 (`verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness`), bringing the master derivation-DAG receipt to 30 exact rational/integer witness families.
-- Manuscript, claim ledger, and E2E parity test: updated §13.8.8 (`Pre-genesis to finite-QM derivation DAG mechanization`) in `finite_quantum_mechanics.md`, updated `FQM-DAG1` in `finite_quantum_mechanics_claim_ledger.md`, and extended `tests/e2e/test_e2e_foundational_derivation_closure_control.py` to enforce byte-identical parity between `006_finite_qm` and the workspace Lean/Rust crates.
+- Manuscript, claim ledger, and E2E parity test: updated §13.8.8 (`Pre-genesis to finite-QM derivation DAG mechanization`) in `finite_quantum_mechanics.md`, updated `FQM-DAG1` in `finite_quantum_mechanics_claim_ledger.md`, and extended `tests/e2e/test_e2e_foundational_derivation_closure_control.py` to enforce byte-identical parity between `finite_quantum_mechanics` and the workspace Lean/Rust crates.
 
 ## 2026-10-15 — Publication review of the paper and its source notes
 
@@ -142,7 +142,7 @@ carries is the author's decision; this entry changes neither.
   (and the byte-identical paper mirror `lean4/FiniteQM.lean`) to 61
   machine-checked theorems with zero `sorryAx`, added the standalone core-Lean
   module `lean4/quantum_mechanics/AtomicDiracLambHartreeFock.lean` (mirrored to
-  `006_finite_qm/lean/AtomicDiracLambHartreeFock.lean`, 4 theorems, zero `sorryAx`),
+  `finite_quantum_mechanics/lean/AtomicDiracLambHartreeFock.lean`, 4 theorems, zero `sorryAx`),
   added the standalone core-Lean module `lean4/FiniteQFTAndGravity.lean`
   (mirrored to `lean4/FiniteQFTAndGravity.lean`, 64 theorems, zero `sorryAx`),
   and extended `lean4/RaveraDfmFiniteToContinuum.lean`
@@ -1592,10 +1592,10 @@ v0.10.0 (2026-09-05) — The stubs deleted, an e2e suite found
 
 **132 pure-stub Lean files deleted**, discharging
 `GAP-FQM-001`. Four whole programmes were 100% stubs and went entirely:
-`003_quantum_foundations` (66 files, 801 declarations), `001_finite_obstruction_
-calculus` (41 / 1,545), `004_general_relativity` (2 / 67) and
+`quantum_foundations` (66 files, 801 declarations), `001_finite_obstruction_
+calculus` (41 / 1,545), `general_relativity` (2 / 67) and
 `005_mind_and_consciousness` (6 / 36); plus 17 stub files inside `000_coda` and
-`002_projection_obstruction`. 143 files with real content remain across three
+`projection_obstruction`. 143 files with real content remain across three
 programmes, and every lakefile and import aggregator was kept — 33 files that
 look empty are infrastructure, not stubs, and deleting them would have broken
 builds.
@@ -1610,7 +1610,7 @@ longer offers a green build in place of a proof; the inventory now records
 `no_lean_file` for 64 sources instead of a stub count.
 
 **`GAP-FQM-005` discharged — an end-to-end suite existed all along.** A 170-test,
-3,331-line, five-tier suite sat at `003_quantum_foundations/tests/e2e/`, outside
+3,331-line, five-tier suite sat at `quantum_foundations/tests/e2e/`, outside
 every paper package, run by nothing. It is now `code/tests/e2e/` and the
 application's suite runs it: **311 passed**, up from 141. Tier 4 executes real
 quantum scenarios — a discrete Mach–Zehnder interferometer, a Sorkin 3-slit
@@ -1933,7 +1933,7 @@ from a quotation of a claim is not a test.
 v0.3.0 (2026-09-04) — Whole corpus: all 67 sources
 ---------------------------------------------------
 
-Repeated the intake pass over **every** package in `003_quantum_foundations`, up
+Repeated the intake pass over **every** package in `quantum_foundations`, up
 from 21 to **67**. Still copied, never moved; no source was modified or deleted.
 
 **Totals moved:** 22,147 lines of prose (from 9,070); **782 claims** (from 309);
@@ -2024,7 +2024,7 @@ published papers are now inside and neither is free to rewrite.
 v0.2.0 (2026-09-04) — Extended to sources 000–035
 --------------------------------------------------
 
-Repeated the intake pass over every `003_quantum_foundations` package up to and
+Repeated the intake pass over every `quantum_foundations` package up to and
 including `035_hamiltonian_generator_admission`: **21 sources**, up from 10.
 Eleven added — 011, 012, 020, 021, 028, 030, 031, 032, 033, 034, 035 — covering
 states and measurement, phase, and dynamics. Still copied, never moved; no source
@@ -2095,7 +2095,7 @@ Created `apps/finite_qm/` as a working application, deliberately outside
 
 **Consolidated in (copied, not moved — originals untouched):**
 
-- The ten packages of `coda_atlas/F004_papers/003_quantum_foundations/`
+- The ten packages of `sources/atlas/papers/quantum_foundations/`
   (000–008, 010): 4,287 lines of prose across 8 real papers, plus 2 redirect
   stubs (003 absorbed into 004, 007 into 006 in the 2026-07-31 packaging merge).
   Contribution: **196 claim rows** and 15 author-recorded upgrade paths.
@@ -2116,7 +2116,7 @@ judged:
   `assert mod is not None or True`, importing `qmNNN_lib/` directories that **do
   not exist**. Ten of the eleven test files in the tree are this tautology.
 - `001_.../evidence/execution_receipt.json` reports Lean `PASS` at
-  `lean4/research_programs/003_quantum_foundations/003_qf001_witness.lean`, a
+  `lean4/research_programs/quantum_foundations/003_qf001_witness.lean`, a
   path absent from this repository, and `PASS (60/60 claim bijection)` against a
   ledger holding 45 rows. That receipt asserts an outcome it never computed.
 

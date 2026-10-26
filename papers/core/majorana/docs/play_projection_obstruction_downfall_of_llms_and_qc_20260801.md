@@ -4,7 +4,7 @@
 **Genre:** imaginative / operator play — **not** a paper edit, **not** PROVED, **not** GlobalGreen  
 **AuthorityEffect:** None (and that is the point)  
 **Anchors (read-only):**
-- `004_projection_obstruction/000_projection_obstruction` — your first spine (product projection → residual; cochain only after declared observer + adapter)
+- `004_projection_obstruction/projection_obstruction_paper` — your first spine (product projection → residual; cochain only after declared observer + adapter)
 - `qm_100` public “Show the Packet” — formal possibility ⇏ physical authority
 - `omega_majorana` toys — torus \(d=2,t=0\), LGGR, refuse incomplete packets
 
@@ -220,7 +220,7 @@ If you want the *feeling* of the downfall in code, not more prose:
 3. **Side-by-side** Deutsch-slogan string vs `QCRealizationPacket` blank fields → hard refuse.  
 4. **Holonomy play** — discrete parallel transport residual on a plaquette (representation change, not “curvature of reality”).
 
-None of that updates `000_projection_obstruction.md`. All of that *plays* it.
+None of that updates `projection_obstruction_paper.md`. All of that *plays* it.
 
 ---
 

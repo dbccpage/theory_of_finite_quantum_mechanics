@@ -10,13 +10,13 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 3
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 5
 - distinct cited Lean declarations covered by a current replay receipt: 3
-- counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo runnable tests: 1
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add a recorded statement-match review
 
 ## Flags
 
@@ -59,34 +59,44 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/separability.rs`
+### Rust: `atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/separability.rs`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/separability.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
+- file: [atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/separability.rs](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/separability.rs)
+- sha256 (`bytes`): `2682476247f2d37a2af6afd02449d47bd3968765f2ddce116c3279445371841a`
+- cited in: node.rust, record TFQ-0439
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `challenge2_collapse_is_total_in_both_readings` (rust_test) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
+### Python: `atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py)
+- sha256 (`bytes`): `78443d67e613d9cc9924538fe2e0a5acaf81f4654440bfe8586e16652f0317ba`
+- cited in: record TFQ-0439
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `separable` (python_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt)
+- sha256 (`lf-normalised`): `8e0a3f2333e9ae5740b26c59f88fd41cd1ee9c9b92ca4f0a19dad53747ddf3cd`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0439_challenge3_current_regime_fails.md`
 
 - file: [dag/derivations/02_genesis/tfq_0439_challenge3_current_regime_fails.md](../../../dag/derivations/02_genesis/tfq_0439_challenge3_current_regime_fails.md)
-- sha256 (`lf-normalised`): `8d57ad1d6aca40f90599f195bafcfc426889cad34dd0d1a7b190cbd8db54fa7a`
+- sha256 (`lf-normalised`): `bb5a83b544974e3541fe849f7fe4382e891460c6d643b779c5c3ab932046b4d2`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0439
 - counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### External sources
-
-Named by the node; not in this repository and not checked here.
-
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::separable`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/separability.rs::challenge2_collapse_is_total_in_both_readings`
 
 ## Routes
 

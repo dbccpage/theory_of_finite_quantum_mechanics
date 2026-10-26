@@ -10,13 +10,13 @@ Stage: [WDP](../stages/WDP.md). Status: `DEFINITION`. Evidence grade: **E3**. [E
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 3
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -65,19 +65,31 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
+### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py)
+- sha256 (`bytes`): `e19980ee60160a7e6efd6d2b01583c5815904b2b67700756d463834a9639b5a7`
+- cited in: record TFQ-0550
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `succession_classification` (python_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- sha256 (`lf-normalised`): `753d1c99c799f84f9a71912b98082d590c89c531f980c112b62ee2a86ab2726b`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/06_wdp/tfq_0550_wdp_succession_strict_order.md`
 
 - file: [dag/derivations/06_wdp/tfq_0550_wdp_succession_strict_order.md](../../../dag/derivations/06_wdp/tfq_0550_wdp_succession_strict_order.md)
-- sha256 (`lf-normalised`): `5ee0d915d3d0a6cbbe960f0da95dd4ec30b3d31cafa3c8a5274bdc0564e05339`
+- sha256 (`lf-normalised`): `cacf95a3c3c4d08053edfbf13f96a8632f172dcdbe367f3809e499970143e102`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0550
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### Documents and data: `omega_engine_education/documentation/006_oewdp/levels/level_05_retention_discrete_succession.md`
@@ -92,7 +104,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 Named by the node; not in this repository and not checked here.
 
 - `external:upstream/omega_engine/crates_rs/omega_wdp/src/relational_retention.rs::RelationalRetentionPacket`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/relational_retention.py::succession_classification`
 
 ## Routes
 

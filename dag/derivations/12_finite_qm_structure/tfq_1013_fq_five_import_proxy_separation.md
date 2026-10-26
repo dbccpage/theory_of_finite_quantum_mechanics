@@ -49,5 +49,5 @@ QM-219; paper s13.8.2 corrects the proposed five-import boundary: not proved ind
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:380`
-  - `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332`
+  - `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md:380`
+  - `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md:1332`

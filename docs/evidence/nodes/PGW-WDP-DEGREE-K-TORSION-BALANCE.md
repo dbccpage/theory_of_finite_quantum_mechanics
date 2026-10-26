@@ -1,6 +1,6 @@
 # PGW-WDP-DEGREE-K-TORSION-BALANCE
 
-Stage: [WDP](../stages/WDP.md). Status: `PROVED_PROSE`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [WDP](../stages/WDP.md). Status: `PROVED_PROSE`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [WDP](../stages/WDP.md). Status: `PROVED_PROSE`. Evidence grade: **E0**. 
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
+- counted in-repo evidence files: 2
+- cited Lean, Rust or Python symbols found in their in-repo files: 3
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
 
 ## Flags
 
-- `proved_prose_no_in_repo_document`: no in-repo non-generated document among the counted sources. PROVED_PROSE with no in-repo source document cited.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -42,28 +42,34 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/simplicial.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/simplicial.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/simplicial.py)
+- sha256 (`bytes`): `d0ef42d42be42024c1d214899cf0e575b5e2d8a4e63cc4dcf46234af8e06fe5d`
+- cited in: record TFQ-0549
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `gauss_law_solvable` (python_symbol) | yes | yes | yes | - | - |
+| `rp2_torsion_witness` (python_symbol) | yes | yes | yes | - | - |
+| `verify_nilpotence` (python_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- sha256 (`lf-normalised`): `753d1c99c799f84f9a71912b98082d590c89c531f980c112b62ee2a86ab2726b`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md`
 
 - file: [dag/derivations/06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md](../../../dag/derivations/06_wdp/tfq_0549_wdp_degree_k_torsion_balance.md)
-- sha256 (`lf-normalised`): `b262d6cfce94adde436be3f8110f127f74bee18e2dc967911866f8c4173168f1`
+- sha256 (`lf-normalised`): `23fd328ffb8619339b13bfa26fbbe611e767bc9894fe86e52e5d849a2987c8bd`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0549
 - counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### External sources
-
-Named by the node; not in this repository and not checked here.
-
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/simplicial.py::gauss_law_solvable`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/simplicial.py::rp2_torsion_witness`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/simplicial.py::verify_nilpotence`
 
 ## Absences recorded by the TFQ records
 

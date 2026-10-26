@@ -10,7 +10,7 @@ Stage: [L1_EMERGENCE](../stages/L1_EMERGENCE.md). Status: `OPEN`. Evidence grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
+- counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 11
 - distinct cited Lean declarations covered by a current replay receipt: 10
 - counted in-repo runnable tests: 0
@@ -32,7 +32,7 @@ Two integer coordinates only. A faithful, edge-additive, maximal bounded-linear 
 
 ## Source status
 
-Tier-1 direction independence (Lemma 4.1), gauge proportionality (Corollary 2), single-orbit uniform collapse (Theorem 4.2), and ENC-0523 drop-one counterexamples mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
+Tier-1 direction independence (Lemma 4.1), gauge proportionality (Corollary 2), single-orbit uniform collapse (Theorem 4.2), and ENC-0523 drop-one counterexamples mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics
 
 ## Review
 
@@ -98,9 +98,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
-### Rust: `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs`
+### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs)
+- file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust
 
@@ -110,19 +110,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `atlas/papers/projection_obstruction/m_compatible_gauge_classification`
+
+- file: [atlas/papers/projection_obstruction/m_compatible_gauge_classification](../../../atlas/papers/projection_obstruction/m_compatible_gauge_classification)
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0356_keep_the_m_compatible_gauge_route_to_weighted_l1_on_its_own_hypothesis.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0356_keep_the_m_compatible_gauge_route_to_weighted_l1_on_its_own_hypothesis.md](../../../dag/derivations/07_l1_emergence/tfq_0356_keep_the_m_compatible_gauge_route_to_weighted_l1_on_its_own_hypothesis.md)
 - sha256 (`lf-normalised`): `5825aea62937e055e1b3686055c0ede7cabf845f58e78b41f0c2c6b724163bf9`
 - generated view: listed, not counted
 - cited in: record TFQ-0356
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/007_m_compatible_gauge_classification`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/007_m_compatible_gauge_classification`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ## Absences recorded by the TFQ records

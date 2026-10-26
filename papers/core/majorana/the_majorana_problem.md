@@ -5,7 +5,7 @@
 **Date:** 2026-09-19  
 **License:** Creative Commons Attribution 4.0 International (CC-BY-4.0)  
 **Status:** Master Monograph Volume (v1.1.0)  
-**Series:** Projection Obstruction 026 (`002_projection_obstruction/026_microsoft_majorana_problem`)  
+**Series:** Projection Obstruction 026 (`projection_obstruction/026_microsoft_majorana_problem`)  
 **Authority:** `AuthorityEffect: None`  
 **Primary Reference:** `sealed-derivation-v1` (commit `3100c4e`)  
 

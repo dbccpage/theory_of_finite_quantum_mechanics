@@ -34,7 +34,7 @@ Authorization Incompleteness Theorem.
 ## PO-000 authorization boundary
 
 **Source:**
-`coda_university/coda_research/002_projection_obstruction/000_projection_obstruction/lean4/po000_authorization_boundary.lean`
+`coda_university/coda_research/projection_obstruction/projection_obstruction_paper/lean4/po000_authorization_boundary.lean`
 
 The source proves the report/fiber obstruction in Bool-valued form:
 if `p x = p y` and independently supplied `valid x != valid y`, then no
@@ -54,10 +54,10 @@ claims. Paper 0 is not modified.
 
 **Sources:**
 
-- `coda_university/coda_research/002_projection_obstruction/022_finite_presentation_calculus_for_computation/finite_presentation_calculus_for_computation.md`
-- `coda_university/coda_research/002_projection_obstruction/023_halting_as_a_non_faithful_quotient/halting_as_a_non_faithful_quotient.md`
-- `lean4/coda_research/002_projection_obstruction/022_finite_presentation_calculus_for_computation/finite_presentation_calculus_for_computation.lean`
-- `lean4/coda_research/002_projection_obstruction/023_halting_as_a_non_faithful_quotient/halting_as_a_non_faithful_quotient.lean`
+- `coda_university/coda_research/projection_obstruction/022_finite_presentation_calculus_for_computation/finite_presentation_calculus_for_computation.md`
+- `coda_university/coda_research/projection_obstruction/023_halting_as_a_non_faithful_quotient/halting_as_a_non_faithful_quotient.md`
+- `lean4/coda_research/projection_obstruction/022_finite_presentation_calculus_for_computation/finite_presentation_calculus_for_computation.lean`
+- `lean4/coda_research/projection_obstruction/023_halting_as_a_non_faithful_quotient/halting_as_a_non_faithful_quotient.lean`
 
 PO-022 frames finite presentations, typed transition dispositions,
 replay, and a bounded Turing-simulation target. PO-023 applies the P0
@@ -83,7 +83,7 @@ claim that a richer terminal defeats undecidability.
 ## FOC-028 authority-and-computation scope fence
 
 **Source:**
-`coda_university/coda_research/001_finite_obstruction_calculus/028_finite_authority_and_non_terminal_computation/finite_authority_and_non_terminal_computation.md`
+`coda_university/coda_research/finite_obstruction_calculus/028_finite_authority_and_non_terminal_computation/finite_authority_and_non_terminal_computation.md`
 
 FOC-028 explicitly audits its own `halting_does_not_imply_authority`
 Lean name: the cited result is an inhabitation fact over a Boolean record
@@ -143,7 +143,7 @@ goals, and its sealed figures are not replayed here.
 ## Authority firewall
 
 **Source:**
-`coda_university/coda_research/001_finite_obstruction_calculus/027_the_authority_firewall_a_machine_checked_separation_of_evidence_from_authority_in_finite_systems/`
+`coda_university/coda_research/finite_obstruction_calculus/027_the_authority_firewall_a_machine_checked_separation_of_evidence_from_authority_in_finite_systems/`
 
 The paper gives a type-design separation between residual evidence and
 authority terminals. Its own scope ledger leaves verifier soundness as

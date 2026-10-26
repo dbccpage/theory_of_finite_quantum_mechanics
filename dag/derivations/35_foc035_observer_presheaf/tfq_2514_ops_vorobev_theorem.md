@@ -40,6 +40,6 @@ Ledger row L035-B13: proved (sketch) + computed, with the theorem cited. The DOI
 ## Sources
 
 - `external:doi:10.1137/1107014`: N. N. Vorob'ev, Consistent families of measures and their extensions, Theory of Probability and its Applications 7 (1962) 147-163, doi:10.1137/1107014.
-- Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B13`
-- Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.5`
+- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B13`
+- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.5`
 - Repository: `dag/derivations/35_foc035_observer_presheaf/tfq_2514_ops_vorobev_theorem.md`

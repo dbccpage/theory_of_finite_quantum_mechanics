@@ -3,7 +3,7 @@
 2026-10-11. Written proofs and exact native implementations.
 `realizes: null`; `authority_effect: None`; `genesis_effect: None`.
 
-PO-000 [Proposition E.7](../../002_projection_obstruction/000_projection_obstruction/projection_obstruction.md#e7-a-sharp-quantitative-obstruction-from-central-weights)
+PO-000 [Proposition E.7](../../projection_obstruction/projection_obstruction_paper/projection_obstruction.md#e7-a-sharp-quantitative-obstruction-from-central-weights)
 bounds extension purity by the squared central weights and pure-marginal trace
 distance by one minus the largest central weight. Attainment there needs a
 sufficiently large available simple ancilla. This note removes that size

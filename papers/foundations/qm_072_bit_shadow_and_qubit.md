@@ -32,7 +32,7 @@ Paper 7 — The Bit-Shadow and the Qubit
 GTOC Foundations — Physics-Contact Extension. The Two-Locus One-Edge Carrier, the Three Minimality Splits, Exchange on a Pair of Bit-Shadows, and the Itemized Bit→Qubit Import Price List
 
 **Date:** 2026-07-17 · **Version:** v1.0 · **Series:** GTOC Foundations, Physics-Contact Extension
-**Claim ledger:** [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (IDs `072:P7-C1` through `072:P7-C10`)
+**Claim ledger:** [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (IDs `072:P7-C1` through `072:P7-C10`)
 **Degree:** δ7 (consumes δ0–δ6; cites δ3)
 **Requires:** Paper 0 (δ0: minimal carriers, $Q^1$ relational, the triangle §7.6, exhibition-relative residuality §7.5), Paper 2 (δ2: weights; the repaired R1/R2a/R2b pricing of §6), Paper 3 (δ3: the Two Scalar Symmetric-Exchange Characters Theorem, K9-conditional), Paper 6 (δ6: the 𝔻 bit-shadow, channels, capacity).
 **Main claim:** the goal prompt's target identity — "$\mathbb{D}$-as-carrier **=** the obstruction-qubit" — is **corrected, not executed**: what the two-locus one-edge carrier supports is the **bit-shadow** (the external review's ruling — "the $\mathbb{D}$ object is bit-like, not qubit-like" — is adopted and *derived*, not merely deferred to). Three theorem-grade findings replace the identity. **(1) The minimality split:** "smallest carrier with $\Phi_1 > 0$" is ambiguous three ways, and the three answers differ — the single cut carries *difference* (δ0, trivially); the two-locus one-edge carrier carries **repair-family-relative** residual only (over an assignment family full for the cut, every pattern on it is removable — this one-edge tree has no parity obstruction — so its $\Phi_1 > 0$ is Adm-relative, the Paper 000b $Q^1_O$ situation); the **odd triangle** (Paper 0 §7.6) is the least such carrier — least-ness forward-logged, PL-GTOC-7(c) — with a parity-**forced** non-removable pattern. The goal prompt's minimality claim holds only in the second, declared-relative sense, and the correction is recorded. **(2) The exchange dichotomy on a pair:** two K9-saturated indistinguishable bit-shadows already carry exactly two coherent scalar exchange characters (Paper 3 §4.4 at $|W| = 2$) — the transport-level Bose/Fermi split needs no quantum import. **(3) The bit→qubit price list:** four itemized imports separate the bit-shadow from the qubit — the phase fiber (QM_060/ENC-1129; with the finite-phase sub-door R2a-cheap and full $U(1)$ continuity-priced per QM_062), the interference/ℓ² readout (mechanized boundary ENC-1135), contextual multi-window structure (whose parity core is already finite — QM_120 — but whose operator provenance is imported), and continuous reversible dynamics (QM_062's named residual import). Superposition is obstructed at every derived degree as the R1 added fiber, exactly priced.
@@ -244,15 +244,15 @@ Claim-ID body index (packaging)
 
 | ID | Home |
 |---|---|
-| `P7-C1` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `072:P7-C1`) |
-| `P7-C2` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `072:P7-C2`) |
-| `P7-C3` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `072:P7-C3`) |
-| `P7-C4` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `072:P7-C4`) |
-| `P7-C5` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `072:P7-C5`) |
-| `P7-C6` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `072:P7-C6`) |
-| `P7-C7` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `072:P7-C7`) |
-| `P7-C8` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `072:P7-C8`) |
-| `P7-C9` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `072:P7-C9`) |
-| `P7-C10` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `072:P7-C10`) |
+| `P7-C1` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `072:P7-C1`) |
+| `P7-C2` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `072:P7-C2`) |
+| `P7-C3` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `072:P7-C3`) |
+| `P7-C4` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `072:P7-C4`) |
+| `P7-C5` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `072:P7-C5`) |
+| `P7-C6` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `072:P7-C6`) |
+| `P7-C7` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `072:P7-C7`) |
+| `P7-C8` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `072:P7-C8`) |
+| `P7-C9` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `072:P7-C9`) |
+| `P7-C10` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `072:P7-C10`) |
 
 <!-- claim-id-body-index:end -->

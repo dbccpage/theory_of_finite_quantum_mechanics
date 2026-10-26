@@ -40,7 +40,7 @@ In accordance with strict constructive principles:
 - `missing obligation: the H3V7N5QF package holds no Rust`
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/fifteenth/admission.py::admission_of_reaching` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/fifteenth/admission.py::admission_of_reaching`](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/fifteenth/admission.py)
 
 ---
 
@@ -53,6 +53,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/fifteenth/claim_ledger.md:22`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/fifteenth/claim_ledger.md:37`
+  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/fifteenth/claim_ledger.md:22`
+  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/fifteenth/claim_ledger.md:37`
   - `omega_engine_education/documentation/005_oegenong/levels/level_15_admission_record_boundary.md:38`

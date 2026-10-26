@@ -39,8 +39,8 @@ In accordance with strict constructive principles:
 - `omega_engine/crates_rs/omega_wdp/src/retention.rs::compute_exact_behavioral_quotient` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/observer.py::RetentionPacket` (private upstream source, not in this repository)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/retention_choices.py::greatest_forward_relation` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py::RetentionPacket`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py)
+- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/retention_choices.py::greatest_forward_relation`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/retention_choices.py)
 
 ---
 
@@ -54,6 +54,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:765-786`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:809-813`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md:61`
+  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:765-786`
+  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:809-813`
+  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md:61`

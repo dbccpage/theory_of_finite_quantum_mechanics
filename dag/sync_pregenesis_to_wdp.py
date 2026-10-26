@@ -311,7 +311,7 @@ def render_jsonl_record(r, manifest, by_id, records_by_id, node_ids):
     else:
         dag_ids = [node_id(r), ROUTE_PREFIX + r['name'].upper()]
     f004 = sorted({e['path'] for e in [*r['sources'], *[w for t, _ in TIERS for w in r['witnesses'][t]]]
-                   if 'absent' not in e and e['root'] == 'symbol_game' and 'F004_papers' in e['path']})
+                   if 'absent' not in e and e['root'] == 'symbol_game' and 'papers' in e['path']})
     record = {
         'coda_atlas_ids': r.get('coda_atlas_ids', []),
         'coda_atlas_paths': r.get('coda_atlas_paths', []),

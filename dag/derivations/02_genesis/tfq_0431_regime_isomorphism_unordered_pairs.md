@@ -41,11 +41,11 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::Iso`](../../../lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::find_iso` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs::find_iso`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs)
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::find_iso` (private upstream source, not in this repository)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_mathematics.py::test_unordered_requirement_identifies_unary_endpoint_responses` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py::find_iso`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/iso.py)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_mathematics.py::test_unordered_requirement_identifies_unary_endpoint_responses`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_mathematics.py)
 
 ---
 
@@ -59,6 +59,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:206-212`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:168-173`
+  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:206-212`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:168-173`
   - `lean4/Imported/Genesis19l57g1/Derivation/IsoCanon.lean:44-47`

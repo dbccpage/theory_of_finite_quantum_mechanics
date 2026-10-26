@@ -36,10 +36,10 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean statement of the responder's minimum, cost or tie (S-3)`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::min_responses` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs::min_responses`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs)
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::min_responses` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py::min_responses`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
 
 ---
 
@@ -52,6 +52,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1081-1084`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:217-223`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1054-1059`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1081-1084`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:217-223`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1054-1059`

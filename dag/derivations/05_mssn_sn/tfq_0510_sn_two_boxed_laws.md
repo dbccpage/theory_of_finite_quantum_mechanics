@@ -58,4 +58,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `omega_engine_education/documentation/002_oesn/sn.md:26-30`
   - `omega_engine_education/documentation/002_oesn/curriculum.md:26-33`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/source_archive/000_sn/paper_claim_ledger.md:8`
+  - `atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/source_archive/000_sn/paper_claim_ledger.md:8`

@@ -10,13 +10,13 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `DEFINITION`. Evidence grade: **
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 5
 - distinct cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -74,10 +74,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Python: `atlas/papers/finite_obstruction_calculus/genesis/code/derivation/primitive_passage.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/code/derivation/primitive_passage.py](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/primitive_passage.py)
+- sha256 (`bytes`): `ce263503fd67c4c3740db26796f42e3e011b67cf4a9d6383aa7093a2a1435531`
+- cited in: record TFQ-0493
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `obst_p` (python_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md`
 
 - file: [dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md](../../../dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md)
-- sha256 (`lf-normalised`): `1c91621fa0c53f50420bdb2ed3b7f1b5e7e03fee69fc48ffff22fab1f81b38c5`
+- sha256 (`lf-normalised`): `efe260a136c7f63e929ce77dba1ef1f55c3c2d6ba9db2e64426cba449021b1a7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0493
 - counts toward the grade: no
@@ -88,12 +100,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
 - cited in: node.source
 - counts toward the grade: no
-
-### External sources
-
-Named by the node; not in this repository and not checked here.
-
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/primitive_passage.py::obst_p`
 
 ## Absences recorded by the TFQ records
 

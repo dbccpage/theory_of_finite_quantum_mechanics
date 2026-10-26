@@ -5,7 +5,7 @@
 
 > **Historical record (2026-09-25).** The paths in this note describe an
 > earlier layout. The deposit now sits at
-> `omega_engine_atlas/coda_atlas/F004_papers/010_mub6` in the source monorepo.
+> `sources/atlas/papers/mub6` in the source monorepo.
 > Current replay commands are in [the README](README.md) and section 6 of
 > [the paper](papers/paper.md).
 

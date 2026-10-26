@@ -10,13 +10,13 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `OPEN`. Evidence grade: **E3**. 
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 21
+- counted in-repo evidence files: 6
+- cited Lean, Rust or Python symbols found in their in-repo files: 23
 - distinct cited Lean declarations covered by a current replay receipt: 20
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 1
+- counted in-repo Rust or Python files that are not tests: 3
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add an in-repo Rust or Python runnable test (3 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -76,12 +76,29 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs`
+### Rust: `atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs`
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
+- file: [atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs)
+- sha256 (`bytes`): `f64df9adecf931d7b57907b47c03240742cd710230500c561b4ce14bba7c4d8f`
+- cited in: node.rust, record TFQ-0497
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `contexts` (rust_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
+### Python: `atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py)
+- sha256 (`bytes`): `78443d67e613d9cc9924538fe2e0a5acaf81f4654440bfe8586e16652f0317ba`
+- cited in: record TFQ-0497
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `separable` (python_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
 
 ### Python: `checks/independent/pgw-context-decision-procedure.py`
 
@@ -95,10 +112,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt)
+- sha256 (`lf-normalised`): `7e774b9a5cd0b326f884716c49a18055df522968e659438910dceeaa332b73ad`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/02_genesis/tfq_0497_context_decision_procedure.md`
 
 - file: [dag/derivations/02_genesis/tfq_0497_context_decision_procedure.md](../../../dag/derivations/02_genesis/tfq_0497_context_decision_procedure.md)
-- sha256 (`lf-normalised`): `829f81725a9b84a0670d179dd6f515afb1e0ff7697b6cee067ff1f1775aef592`
+- sha256 (`lf-normalised`): `1cb7ae2ad3b79091afe32e598a5b2c0a29bb3bd1f407a86bcb7c196990d97aeb`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0497
 - counts toward the grade: no
@@ -109,20 +133,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `36b426be2b4a346e353993091ed47d351606bfebd15f58877e9f13e14f424224`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### External sources
-
-Named by the node; not in this repository and not checked here.
-
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::separable`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::contexts`
 
 ## Routes
 

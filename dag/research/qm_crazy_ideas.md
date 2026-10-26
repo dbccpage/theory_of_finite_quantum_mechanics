@@ -196,7 +196,7 @@ These are falsifiers for the **speculations**, not for quantum mechanics.
 - `claims/claim_ledger.yaml` (header; 000:QMC-T1..T6 ASSERTED; 001:QM-001-C1/C2; 002:C1/C3/C7; 060:QM-060-C4)
 - `claims/source_inventory.yaml` (header; SRC-000..003 sample; `authority_effect: None`)
 - `sources/` listing: retained `060_superposition_as_the_quotient_fiber/` (MixingObstruction + local lakefile) and `122_finite_hilbert_boundary_from_primitive_difference/` only
-- `research/` listing (source-paper tree; **no** `finite_qm_roadmaps/` before this write; `coda_atlas/F004_papers` not present here)
+- `research/` listing (source-paper tree; **no** `finite_qm_roadmaps/` before this write; `coda_atlas/papers` not present here)
 - `research/004_general_obstruction_management_calculus/general_obstruction_management_calculus.md`
 - `research/090_interpretations_as_authority_shadows/interpretations_as_authority_shadows.md`
 - `research/092_qm_typed_authority_boundary_suite/qm_typed_authority_boundary_suite.md` (header)

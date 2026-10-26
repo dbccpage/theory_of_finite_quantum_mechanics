@@ -1,0 +1,326 @@
+{
+  "schema": "wdp-witnessed-reasoning-verification-v1",
+  "date": "2026-10-16",
+  "base_commit": "600de4d3c0eb44da1b637f564e649f8c8003ffb8",
+  "authority_effect": "None",
+  "status": "SCOPED_PASS",
+  "scope": "Abstract Lean calculus; Python finite search, graph decoder and certificate checkers; freshly compiled selected Rust certificate module.",
+  "limits": [
+    "No executable-to-Lean refinement proof",
+    "No full omega_wdp crate or historical Mathlib monograph build claimed",
+    "Strict planner retains 43 unavailable external citations, excluded from the new theorem evidence",
+    "Repository Lean pin is 4.34.0; local targeted build used installed 4.34.1",
+    "No empirical adequacy, full programme completion, or Zenodo publication claim"
+  ],
+  "input_bindings": {
+    "atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md": "8fdd73ff147abefb3c521ee9dc38bbfa05768178fcc0eb6a70f795aa9e9dfa39",
+    "atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md": "124b15a3b0a94ca75e98e7af5c4a7d3fad0bca06564a9953e16010569bcbe9d7",
+    "atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/derivations/witnessed_reasoning_calculus.md": "1e99b39177375d53ad95d3220552aac7728e4f3b02a352feafbeb80b213ca21b",
+    "atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/reasoning.py": "8383b5558e079928942bee0098bca287f6ffe3b8027f8bf997bcb6de09e5cea8",
+    "atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_reasoning.py": "7f1f64b6b4ba4daf4453ff1410bdccc308f73b008f13cf9d4f1feba9ed8f05ba",
+    "atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/tests/python/unit_tests/test_paper_contract.py": "a9166fa001aac5adea9a4bd3311d9683cf56546eb1c02b62cfd3c014dda31bc8",
+    "atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/scripts/check_paper_contract.py": "ba5fd8239865f835770ba6ec9b68b6d159b3b6a3095df455f3aa77b5324f3d99",
+    "lean4/lakefile.lean": "85a4e471cb0d4c09e3a54fade3b15239072fb12d3f70ca618216d061fba17596",
+    "lean4/lean-toolchain": "8733782dc070a99b312039cda424f601b80f3be6f6f512627da5ba25adc27632",
+    "lean4/research_programs/wdp_reasoning/WitnessedReasoning.lean": "f063fd17bccdcfe8d5fea07a0032a3bc171c35b2a4dae76879fbf0b14c71eda0",
+    "lean4/research_programs/wdp_reasoning/ReasoningAxioms.lean": "3478e5702a14e75a0824563206dc52fd6a095556c99d192f887dc5880f0cda4f",
+    "omega_engine/crates_rs/omega_wdp/src/witnessed_reasoning.rs": "ce2fe633cddd1bad4e4c4c94916e726e29b5a8b550239f19f3f1ccbdbb2c83da",
+    "omega_engine/crates_rs/tests/omega_wdp/witnessed_reasoning.rs": "356d754dec1f13adbc1d8b7c4bcd6eba8b0fdf6437327eae1a098b0af7dfe0d6",
+    "omega_engine/crates_rs/omega_wdp/Cargo.toml": "9cff985656a8ff87bfbb3bdce1636c8b03e5a45f90e4e64195728cb005fd8725",
+    "omega_engine/crates_rs/omega_wdp/src/lib.rs": "0372d1d2686c6d8dc5e908a5a94e30117196d3e3206ffe42f91dfc32e7aa0d51",
+    "omega_engine_atlas/coda_atlas/F004_papers/plans/goal_dag.py": "0329ffd027c0a71a29d8d64c02f6f7aeab299961ace5b86af04dbf5db4f27fd2",
+    "omega_engine_atlas/coda_atlas/F004_papers/plans/test_goal_dag.py": "9fd08a3288648912b50c93465f7466587d61e8370047cd3f8e08981017d777e7",
+    "omega_engine_atlas/coda_atlas/F004_papers/plans/goal_dag.jsonl": "09c82a8f813353e3624b0f8957ce9cc3980ce5c42191096e1daa104d7afafdec",
+    "omega_engine_atlas/coda_atlas/F004_papers/plans/implementation_links.py": "06c35a6b54b2d569dced58344f091f244a95d2b0301b59e7cf7bece484fdc377",
+    "omega_engine_atlas/coda_atlas/F004_papers/plans/wdp_rust_routes.jsonl": "06795df7261462227e8f45c64b79290eb04222dad51ac531ea89c4fc10e3dc1e",
+    "omega_engine_atlas/coda_atlas/F004_papers/plans/paper_math_dags/paper_dag.jsonl": "274ddecec59394cfdae78785faa99e45dbe562f9103f2c6d00a3329997a28c38"
+  },
+  "checks": [
+    {
+      "id": "python",
+      "command": [
+        "C:/Users/a343o/source/repos/the_symbol_game/.venv/Scripts/python.exe",
+        "-m",
+        "pytest",
+        "-o",
+        "addopts=",
+        "-p",
+        "no:cacheprovider",
+        "--basetemp",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\wdp-reasoning-verification\\final-python-temp",
+        "code/unit_tests/test_reasoning.py",
+        "code/tests/python/unit_tests/test_paper_contract.py",
+        "-q"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\omega_engine_atlas\\coda_atlas\\papers\\finite_obstruction_calculus\\witnessed_difference_programme",
+      "exit_code": 0,
+      "output_sha256": "b172bbe520a7e3923aeb3dbed69278ed1f4489c96e1e18a7ae1a1c3db705033d",
+      "result_tail": [
+        "........................................................................ [ 92%]",
+        "......                                                                   [100%]",
+        "78 passed in 61.75s (0:01:01)"
+      ],
+      "note": "Completed run on unchanged final inputs; retained through planner retry."
+    },
+    {
+      "id": "planner-tests",
+      "command": [
+        "C:/Users/a343o/source/repos/the_symbol_game/.venv/Scripts/python.exe",
+        "-m",
+        "pytest",
+        "-o",
+        "addopts=",
+        "-o",
+        "faulthandler_timeout=45",
+        "-p",
+        "no:cacheprovider",
+        "--basetemp",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\wdp-reasoning-verification\\planner-fresh-3",
+        "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\omega_engine_atlas\\coda_atlas\\papers\\plans\\test_goal_dag.py",
+        "-q"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "output_sha256": "c8f03fd276ad177835a33fb1c6d87fa0a560083d541135b0c5e5f9f3a2d74583",
+      "result_tail": [
+        "........................................................................ [ 94%]",
+        "....                                                                     [100%]",
+        "76 passed in 133.56s (0:02:13)"
+      ],
+      "note": "Completed run on unchanged final inputs; retained through planner retry."
+    },
+    {
+      "id": "planner",
+      "command": [
+        "C:/Users/a343o/source/repos/the_symbol_game/.venv/Scripts/python.exe",
+        "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\omega_engine_atlas\\coda_atlas\\papers\\plans\\goal_dag.py",
+        "check"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "0c8fab28cc889cd91744114ed2c8037df06d283575d293629515306a5b4508f3",
+      "result_tail": [
+        "  unverified REV-SMRM-P2-NUMERAL: external:wdp-product-notes@2026-10-07:wdp/product_notes/self_maintaining_reasoning_machine.md",
+        "  unverified REV-SMRM-P3-MINE: external:wdp-product-notes@2026-10-07:wdp/product_notes/self_maintaining_reasoning_machine.md",
+        "  unverified REV-SMRM-P4-FUTURE: external:wdp-product-notes@2026-10-07:wdp/product_notes/self_maintaining_reasoning_machine.md",
+        "  unverified WDP-CHS-O03: external:wdp-product-notes@2026-10-07:wdp/product_notes/self_maintaining_reasoning_machine.md",
+        "  unverified WDP-CHS-O03-CONTROL: external:wdp-product-notes@2026-10-07:wdp/product_notes/self_maintaining_reasoning_machine.md",
+        "PASS"
+      ],
+      "note": "Assembled from the completed invocation after receipt-directory absence prevented its final write; no check rerun is claimed."
+    },
+    {
+      "id": "planner-strict",
+      "command": [
+        "C:/Users/a343o/source/repos/the_symbol_game/.venv/Scripts/python.exe",
+        "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\omega_engine_atlas\\coda_atlas\\papers\\plans\\goal_dag.py",
+        "check",
+        "--strict"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "output_sha256": "a0d03de7c391408c82c4849f6119ed9c71d44c84072aa4e31cf0388e4c3277a8",
+      "result_tail": [
+        "  unverified REV-SMRM-P2-NUMERAL: external:wdp-product-notes@2026-10-07:wdp/product_notes/self_maintaining_reasoning_machine.md",
+        "  unverified REV-SMRM-P3-MINE: external:wdp-product-notes@2026-10-07:wdp/product_notes/self_maintaining_reasoning_machine.md",
+        "  unverified REV-SMRM-P4-FUTURE: external:wdp-product-notes@2026-10-07:wdp/product_notes/self_maintaining_reasoning_machine.md",
+        "  unverified WDP-CHS-O03: external:wdp-product-notes@2026-10-07:wdp/product_notes/self_maintaining_reasoning_machine.md",
+        "  unverified WDP-CHS-O03-CONTROL: external:wdp-product-notes@2026-10-07:wdp/product_notes/self_maintaining_reasoning_machine.md",
+        "FAIL"
+      ],
+      "note": "Assembled from the completed invocation after receipt-directory absence prevented its final write; no check rerun is claimed."
+    },
+    {
+      "id": "lean-version",
+      "command": [
+        "C:/Users/a343o/.elan/toolchains/leanprover--lean4---v4.34.1/bin/lean.exe",
+        "--version"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "caa538834571fbbf53913bbde24b9fd3d9deac746137443a1c712d820e6a5b38",
+      "result_tail": [
+        "Lean (version 4.34.1, x86_64-w64-windows-gnu, commit 5045d0056413266e57c625dcd7c365b10e377c52, Release)"
+      ],
+      "note": "Assembled from the completed invocation after receipt-directory absence prevented its final write; no check rerun is claimed."
+    },
+    {
+      "id": "lean-build",
+      "command": [
+        "C:/Users/a343o/.elan/toolchains/leanprover--lean4---v4.34.1/bin/lake.exe",
+        "build",
+        "WdpReasoning"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "91bf5d4fceff2d1df69e28180d121f4087edeee0171a99c287bf1ce3926e5675",
+      "result_tail": [
+        "info: research_programs/wdp_reasoning/ReasoningAxioms.lean:13:0: 'WitnessedReasoning.theory_weakening' does not depend on any axioms",
+        "info: research_programs/wdp_reasoning/ReasoningAxioms.lean:14:0: 'WitnessedReasoning.report_collision' does not depend on any axioms",
+        "info: research_programs/wdp_reasoning/ReasoningAxioms.lean:15:0: 'WitnessedReasoning.processing_preserves_collision' does not depend on any axioms",
+        "info: research_programs/wdp_reasoning/ReasoningAxioms.lean:16:0: 'WitnessedReasoning.history_collision' depends on axioms: [Quot.sound]",
+        "info: research_programs/wdp_reasoning/ReasoningAxioms.lean:17:0: 'WitnessedReasoning.constant_question_needs_no_injective_report' does not depend on any axioms",
+        "Build completed successfully (4 jobs)."
+      ],
+      "note": "Assembled from the completed invocation after receipt-directory absence prevented its final write; no check rerun is claimed."
+    },
+    {
+      "id": "lean-axioms",
+      "command": [
+        "C:/Users/a343o/.elan/toolchains/leanprover--lean4---v4.34.1/bin/lake.exe",
+        "env",
+        "lean",
+        "research_programs/wdp_reasoning/ReasoningAxioms.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "533cd1dc341f28fce5fad884ab6d9f036ce3cfe7ae3644c2d547b3ee7e6b0590",
+      "result_tail": [
+        "'WitnessedReasoning.derivation_substitution' does not depend on any axioms",
+        "'WitnessedReasoning.theory_weakening' does not depend on any axioms",
+        "'WitnessedReasoning.report_collision' does not depend on any axioms",
+        "'WitnessedReasoning.processing_preserves_collision' does not depend on any axioms",
+        "'WitnessedReasoning.history_collision' depends on axioms: [Quot.sound]",
+        "'WitnessedReasoning.constant_question_needs_no_injective_report' does not depend on any axioms"
+      ],
+      "note": "Assembled from the completed invocation after receipt-directory absence prevented its final write; no check rerun is claimed."
+    },
+    {
+      "id": "rust-version",
+      "command": [
+        "C:/Users/a343o/source/repos/.rustup/toolchains/stable-x86_64-pc-windows-msvc/bin/rustc.exe",
+        "--version"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "8dc912acd5bfeafc70b01b1d2a2afb0844afa02f5dba2f1ae8d5c212d005afb6",
+      "result_tail": [
+        "rustc 1.99.0 (b940084d7 2026-09-28)"
+      ],
+      "note": "Assembled from the completed invocation after receipt-directory absence prevented its final write; no check rerun is claimed."
+    },
+    {
+      "id": "rust-module",
+      "command": [
+        "C:/Users/a343o/source/repos/.rustup/toolchains/stable-x86_64-pc-windows-msvc/bin/rustc.exe",
+        "--edition=2021",
+        "--crate-type=lib",
+        "--crate-name=omega_wdp",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\wdp-reasoning-verification\\selected_module.rs",
+        "--out-dir",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\wdp-reasoning-verification"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result_tail": [],
+      "note": "Assembled from the completed invocation after receipt-directory absence prevented its final write; no check rerun is claimed."
+    },
+    {
+      "id": "rust-test-build",
+      "command": [
+        "C:/Users/a343o/source/repos/.rustup/toolchains/stable-x86_64-pc-windows-msvc/bin/rustc.exe",
+        "--edition=2021",
+        "--test",
+        "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\omega_engine\\crates_rs\\tests\\omega_wdp\\witnessed_reasoning.rs",
+        "--extern",
+        "omega_wdp=C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\wdp-reasoning-verification\\libomega_wdp.rlib",
+        "-o",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\wdp-reasoning-verification\\witnessed_reasoning_tests.exe"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result_tail": [],
+      "note": "Assembled from the completed invocation after receipt-directory absence prevented its final write; no check rerun is claimed."
+    },
+    {
+      "id": "rust-tests",
+      "command": [
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\wdp-reasoning-verification\\witnessed_reasoning_tests.exe"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "2e6c3c741afe3566dd7684c8bb62f5f41b56185ea91a418f682fbdada285aa69",
+      "result_tail": [
+        "running 2 tests",
+        "test stale_cyclic_forged_and_ill_typed_certificates_refuse ... ok",
+        "test all_two_atom_theories_match_valuations ... ok",
+        "",
+        "test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s",
+        ""
+      ],
+      "note": "Assembled from the completed invocation after receipt-directory absence prevented its final write; no check rerun is claimed."
+    },
+    {
+      "id": "ruff",
+      "command": [
+        "C:/Users/a343o/source/repos/the_symbol_game/.venv/Scripts/python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\omega_engine_atlas\\coda_atlas\\papers\\finite_obstruction_calculus\\witnessed_difference_programme\\code\\witnessed_difference\\reasoning.py",
+        "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\omega_engine_atlas\\coda_atlas\\papers\\finite_obstruction_calculus\\witnessed_difference_programme\\code\\unit_tests\\test_reasoning.py"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "result_tail": [
+        "All checks passed!"
+      ],
+      "note": "Assembled from the completed invocation after receipt-directory absence prevented its final write; no check rerun is claimed."
+    },
+    {
+      "id": "contract-inspect",
+      "command": [
+        "C:/Users/a343o/source/repos/the_symbol_game/.venv/Scripts/python.exe",
+        "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\omega_engine_atlas\\coda_atlas\\papers\\finite_obstruction_calculus\\witnessed_difference_programme\\scripts\\check_paper_contract.py",
+        "inspect"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "1dce3c55ed9e38ed6b0748161960b9cb5e6cbd12821fa91469f21b3c6e23e629",
+      "result_tail": [
+        "  \"sections\": 439,",
+        "  \"equations\": 5412,",
+        "  \"canonical_claims\": 154,",
+        "  \"supplement_claims\": 9,",
+        "  \"issues\": []",
+        "}"
+      ],
+      "note": "Assembled from the completed invocation after receipt-directory absence prevented its final write; no check rerun is claimed."
+    },
+    {
+      "id": "republication-checklist",
+      "command": [
+        "C:/Users/a343o/source/repos/the_symbol_game/.venv/Scripts/python.exe",
+        "-m",
+        "omega_engine_operations.use_cases.cicd.republication_checklist_gate"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "29f77566e93d881fa87f63bb4120f5f3671a2aafc3480f55aca099502426fedd",
+      "result_tail": [
+        "Checks Verified    : 52 / 52",
+        "Dual-Home Parity   : PASS",
+        "Runtime Bindings   : PASS",
+        "AuthorityEffect    : None",
+        "======================================================================",
+        ""
+      ],
+      "note": "Assembled from the completed invocation after receipt-directory absence prevented its final write; no check rerun is claimed."
+    }
+  ]
+}

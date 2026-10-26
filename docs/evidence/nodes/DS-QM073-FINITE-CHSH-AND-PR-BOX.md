@@ -32,7 +32,7 @@ Lean checks that every deterministic +/-1 assignment has CHSH value of square 4 
 
 ## Source status
 
-P8-C3 single-table local rank-1 decomposition, P8-C6 16-vertex deterministic CHSH ceiling (|S|=2), P8-C7 PR-box S=4 non-extension, and P8-C8 rational/Tsirelson CHSH hierarchy (100 \< 196 \< 200 \< 400) mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
+P8-C3 single-table local rank-1 decomposition, P8-C6 16-vertex deterministic CHSH ceiling (|S|=2), P8-C7 PR-box S=4 non-extension, and P8-C8 rational/Tsirelson CHSH hierarchy (100 \< 196 \< 200 \< 400) mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics
 
 ## Review
 
@@ -98,9 +98,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
-### Rust: `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs`
+### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs)
+- file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust
 
@@ -127,7 +127,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0259 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm
+- TFQ-0259 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
 - TFQ-0259 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/finite_chsh_correlations.rs
 
 ## Routes

@@ -53,7 +53,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `papers/core/fsp/theory_of_finite_fsp.md`
 
 - file: [papers/core/fsp/theory_of_finite_fsp.md](../../../papers/core/fsp/theory_of_finite_fsp.md)
-- sha256 (`lf-normalised`): `ad94021f09fb60b94e1a91553294c46ef5d3903f8093297b6289f124386e7178`
+- sha256 (`lf-normalised`): `5a72c2f6006ea18c3362f0a63e8525b65d41898e8f1bd437b7e4c2e368c7e102`
 - cited in: node.source
 - counts toward the grade: yes
 

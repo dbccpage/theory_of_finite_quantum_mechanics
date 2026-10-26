@@ -117,22 +117,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md](../../../dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md)
-- sha256 (`lf-normalised`): `c99c94736ad492c2402a68b32b651b9112c8628b4ba629d2e00dba13f908b4c8`
+- sha256 (`lf-normalised`): `3ad368064d38d9f624e7cd0f1e313f8e53c164e214d45cc56109de54205d5b2d`
 - generated view: listed, not counted
 - cited in: record TFQ-1010
 - counts toward the grade: no
 
-### Documents and data: `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml`
+### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml](../../../sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml)
-- sha256 (`lf-normalised`): `16a418a93748cef695fad3c1fab0fd14dd95c6985b23ee8a814b171eca60a445`
+- file: [sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
+- sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md`
+### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md](../../../sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md)
-- sha256 (`lf-normalised`): `5e43f206b08726fd4b27888d6fed3f211aac8398d5f8bf3dce712c415d7d81cc`
+- file: [sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
 

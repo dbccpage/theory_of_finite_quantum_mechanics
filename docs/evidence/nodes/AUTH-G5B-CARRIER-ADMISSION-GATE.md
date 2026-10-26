@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `papers/foundations/authorization_incompleteness/goals.yaml`
 
 - file: [papers/foundations/authorization_incompleteness/goals.yaml](../../../papers/foundations/authorization_incompleteness/goals.yaml)
-- sha256 (`lf-normalised`): `1968556bd399e43405dd7959cf6b093d9de580b8b01c6294ed8a8c5ffe81a990`
+- sha256 (`lf-normalised`): `152c4e028f62066572a61a1c2feca2468a0e8670388c426114f1d2d60917bf17`
 - cited in: node.source
 - counts toward the grade: yes
 

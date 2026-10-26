@@ -10,7 +10,7 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_PROSE`. Evidence grade: 
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
+- counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 16
 - distinct cited Lean declarations covered by a current replay receipt: 16
 - counted in-repo runnable tests: 0
@@ -89,10 +89,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0453
 - counts toward the grade: yes
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt)
+- sha256 (`lf-normalised`): `8e0a3f2333e9ae5740b26c59f88fd41cd1ee9c9b92ca4f0a19dad53747ddf3cd`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md`
 
 - file: [dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md](../../../dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md)
-- sha256 (`lf-normalised`): `a28c93e15feb3cf995bdc2940c724c4c8179e071c3daf6727c41b1c708d10b70`
+- sha256 (`lf-normalised`): `2898392be06e9e1584fc41755cd1c1d4edb9dcba9c57a19ab00ba87485756776`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0453
 - counts toward the grade: no
@@ -103,13 +110,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `a3de462e1958dc96ae0cf6e7c93caf7e1b162842bdd7142c52178499dfc41dd6`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
 
 ## Absences recorded by the TFQ records
 

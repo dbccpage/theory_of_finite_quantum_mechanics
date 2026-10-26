@@ -48,8 +48,8 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust transport between the GenesisIncidence boundary convention and the WDP coboundary window`
 
 ### Python Oracles & Numerical Evaluators
+- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_obstruction.py::test_reversed_edge_orientation_changes_signs_not_the_signature`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_obstruction.py)
 - [`checks/independent/pgw-wdp-incidence-orientation-transport.py::main`](../../../checks/independent/pgw-wdp-incidence-orientation-transport.py)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_obstruction.py::test_reversed_edge_orientation_changes_signs_not_the_signature` (private upstream source, not in this repository)
 
 ---
 
@@ -64,6 +64,6 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `lean4/Imported/OeWdp/GenesisIncidence.lean:19-23`
   - `lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean:291-293`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:1478-1483`
+  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1478-1483`
   - `dag/derivations/independent/pgw-wdp-incidence-orientation-transport.md:5`
   - `dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json:6`

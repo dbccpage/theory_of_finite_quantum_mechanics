@@ -7,10 +7,10 @@
 
 The standalone manuscript is retired. The actual text contained no matrix-versus-differential-equation correspondence (the title was an unfulfilled promise). Its single surviving mathematical contribution—a concrete $3 \times 3$ Gaussian-integer matrix example illustrating observer information loss—is merged into the matrix/observer foundations:
 
-- **Source Notes:** [`../006_finite_qm/finite_quantum_mechanics_source_notes.md#1120-trace-zero-matrices-and-a-non-zero-commutator`](../006_finite_qm/finite_quantum_mechanics_source_notes.md#1120-trace-zero-matrices-and-a-non-zero-commutator) (§11.20).
+- **Source Notes:** [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1120-trace-zero-matrices-and-a-non-zero-commutator`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1120-trace-zero-matrices-and-a-non-zero-commutator) (§11.20).
 - **Exact Implementation:** `omega_engine/crates_rs/omega_quantum_physics` (`su_n::GellMannBasis`, `exact_field::matrix::{trace, commutator}`).
 - **Integration Tests:** `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/tests/representation/gell_mann_basis.rs`.
-- **Claims & Witnesses:** Tracked in [`../006_finite_qm/finite_quantum_mechanics_source_notes.md#1120-trace-zero-matrices-and-a-non-zero-commutator`](../006_finite_qm/finite_quantum_mechanics_source_notes.md#1120-trace-zero-matrices-and-a-non-zero-commutator) (§11.20) and derivation record `dag_pregenesis_to_finite_qm/theory_of_finite_qm.md` (TFQ-0249, `QM_040-C1` through `QM_040-C6`).
+- **Claims & Witnesses:** Tracked in [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1120-trace-zero-matrices-and-a-non-zero-commutator`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1120-trace-zero-matrices-and-a-non-zero-commutator) (§11.20) and derivation record `dag_pregenesis_to_finite_qm/theory_of_finite_qm.md` (TFQ-0249, `QM_040-C1` through `QM_040-C6`).
 
 ## Retained Mathematical Content
 

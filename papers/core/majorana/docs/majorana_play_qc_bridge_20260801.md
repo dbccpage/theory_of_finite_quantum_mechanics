@@ -30,7 +30,7 @@
 > Declared finite \((C^\bullet,d)\) over \(\mathbb{F}_2\) with \(d_1 d_0=0\), residual \(r\in C^1\):  
 > Exact / ClosedResidual / OpenObstruction are **diagnostic schedule labels**, receipt tag `omega.majorana-gf2-receipt.v1`, `authority_effect: "None"`.
 
-## Bridge to `003_quantum_foundations` QC papers
+## Bridge to `quantum_foundations` QC papers
 
 Trend focus and programme README list fault-tolerance + qubit foundations. Map **honestly**:
 
@@ -69,7 +69,7 @@ cargo test -j 1 -p omega_majorana play_surface_ -- --nocapture
 
 ## Paper anchor
 
-- **QM_212** — `003_quantum_foundations/qm_212_microsoft_majorana_problem/`  
+- **QM_212** — `quantum_foundations/qm_212_microsoft_majorana_problem/`  
   Estate rewrite of archive Majorana TQC note; defines the **Microsoft Majorana Problem** as the packet gap between hardware narratives and declared GF(2)/Ising algebra.
 
 ## Next play (optional, Auth=None)

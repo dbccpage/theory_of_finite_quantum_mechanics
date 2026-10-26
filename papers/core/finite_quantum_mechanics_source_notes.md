@@ -1545,7 +1545,7 @@ an external `L^2` observer projection, has no finite content.
 
 ### 11.30 Product non-factorization in bipartite systems (QM-070 merged into QM-071 and retired)
 
-**Original paper in the paper archive:** [Product non-factorization as a bipartite obstruction](sources/original_papers/070_product_non_factorization_as_a_bipartite_obstruction/product_non_factorization_as_a_bipartite_obstruction.md); consolidated living home at [Consolidated Account](../../003_quantum_foundations/qm_071_entanglement_as_a_separability_obstruction.md).
+**Original paper in the paper archive:** [Product non-factorization as a bipartite obstruction](sources/original_papers/070_product_non_factorization_as_a_bipartite_obstruction/product_non_factorization_as_a_bipartite_obstruction.md); consolidated living home at [Consolidated Account](../../quantum_foundations/qm_071_entanglement_as_a_separability_obstruction.md).
 
 The paper defined the product defect of a finite joint weight table,
 `delta_prod(w) = w - w_A (x) w_B / W`, and its `l1` mass `Phi(w)`. It stated that
@@ -1600,7 +1600,7 @@ gluing is not addressed. Standalone draft QM-070 is retired.
 
 ### 11.31 Consolidated Account: Classical Independence, Finite-Catalogue Hull Obstruction, and Quantum Separability (QM-071 consolidated with QM-070)
 
-**Original paper in the paper archive:** [Entanglement as a separability obstruction](sources/original_papers/071_entanglement_as_a_separability_obstruction/entanglement_as_a_separability_obstruction.md); consolidated living home at [Consolidated Account](../../003_quantum_foundations/qm_071_entanglement_as_a_separability_obstruction.md).
+**Original paper in the paper archive:** [Entanglement as a separability obstruction](sources/original_papers/071_entanglement_as_a_separability_obstruction/entanglement_as_a_separability_obstruction.md); consolidated living home at [Consolidated Account](../../quantum_foundations/qm_071_entanglement_as_a_separability_obstruction.md).
 
 The consolidated account unifies the classical independence diagnostic of QM-070
 with the convex-hull witness theorem of QM-071, replacing the old toy quantum
@@ -1650,7 +1650,7 @@ functional via `omega_solvers::solver_convex_finite_hull`.
   of bipartite Hermitian matrices; relaxing convexity to linear combinations would make
   Bell states pass the linear representability test and erase entanglement.
 - Standalone drafts QM-070 and QM-071 are retired into redirect stubs; the consolidated
-  account is published in `003_quantum_foundations/qm_071_entanglement_as_a_separability_obstruction.md`.
+  account is published in `quantum_foundations/qm_071_entanglement_as_a_separability_obstruction.md`.
 
 **What stays outside.** General separability over the continuous manifold of
 unrestricted product states in arbitrary dimension (known to be NP-hard),
@@ -3142,7 +3142,7 @@ it is evidence about a device.
 | C8 parity as a `Z_2` observable commuting with a declared Hamiltonian (fence) | `majorana_fock_algebra::{FockCarrier, first_anticommutation_failure}` | for 1 to 4 modes the Majoranas are Hermitian with `{g_a, g_b} = 2 delta_ab I`, and the `c_j` satisfy the canonical anticommutation relations; without the `Z` strings the first failure is `(gamma_1, gamma_3)`; the parity is `(-1)^N`, anticommutes with every Majorana and commutes with every bilinear; the declared chain is Hermitian and commutes with the parity at all 27 points of `t, Delta, mu in {-1, 1/2, 2}` on two modes and at a point on three |
 | C6 the Kitaev chain is an imported model (fence) | `FockCarrier::{kitaev_chain, restrict_to_sector}`, `exact_field::{elimination::rank, ordered::hermitian_is_positive_semidefinite}` | at `t = Delta`, `mu = 0` the chain equals `i t sum_j gamma_(2j) gamma_(2j+1)` for 2 to 4 modes and `t = 1, 2/3, -3`, and exactly the two end Majoranas commute with it; on three modes its spectrum is `-2, 0, 2` with multiplicities `2, 4, 2`, and the ground space holds one state of each parity; at `mu = 1/2` or `Delta = 1/2` the end Majorana does not commute with the chain, and on two modes the odd ground energy is exactly `-1` while the even one lies strictly below it |
 | C7 Ising fusion and specialized braid identities (fence) | `FockCarrier::braid_unitary`, `omega_fusion_categories::fusion_ring::FusionTable`, `close_under_multiplication` (a helper declared in the test) | the braid unitaries `((1 + i)/2)(I + gamma_(a+1) gamma_a)` are unitary of order 4, square to `i gamma_(a+1) gamma_a`, satisfy the braid and far-commutation relations and conserve parity for 2 and 3 modes; on the even sector of two modes they are `R' = diag(1, i)`, `F R' F` and `R'`, the source's `R` and `F R F` times `e^(i pi/8)`, with `F^2 = I`; the images are finite groups of order 96 (with 4 scalars) on that sector and 768 on the whole two-mode Fock space; the declared fusion table is unital, commutative and associative in all 81 cases, and three mutated tables fail at the expected law; `2L` copies of `sigma` have `2^(L-1)` fusion paths to each of `1` and `psi`, the dimensions of the two parity sectors, for `L = 1..5` |
-| C13 the retracted tetron carrier | `omega_homology::matrix_reduction::rank_z2` | the carrier of `omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/majorana/carriers/tetron_carrier.py` (source 212's `carriers/tetron_carrier.py`), rebuilt, has graph cycle rank `T - 1` and `dim H^1 = 0` over `F_2` for `T = 1..4`: every cycle it has is filled |
+| C13 the retracted tetron carrier | `omega_homology::matrix_reduction::rank_z2` | the carrier of `sources/atlas/papers/majorana/code/majorana/carriers/tetron_carrier.py` (source 212's `carriers/tetron_carrier.py`), rebuilt, has graph cycle rank `T - 1` and `dim H^1 = 0` over `F_2` for `T = 1..4`: every cycle it has is filled |
 | C2 to C4, C11, C12, C14, C15 `GF(2)` trichotomy, rejection cases, local/global parity obstruction, tetron homology, distances, `Phi1` | `omega_majorana::{classify, gf2_terminalizer, lggr, tetron, harmonic}` | that crate's own tests, not rerun here; see QM_120 for the parity packet |
 
 **Corrections and scope.**
@@ -4062,7 +4062,7 @@ representations or the existence of a normalized seed over arbitrary $K$.
 ## 9. Historical package map and evidence-record guidance
 
 ```text
-omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/
+sources/atlas/papers/finite_quantum_mechanics/
 ├── finite_quantum_mechanics.md              the main paper (.tex and .pdf are built from it)
 ├── finite_quantum_mechanics_source_notes.md this supplement
 ├── finite_quantum_mechanics_change_log.md

@@ -1,6 +1,6 @@
 # Gaps and Research Effort — Master Table
 
-**Scope:** Master inventory of open research problems, continuum interfaces, and formalization targets across the `006_finite_qm` estate.  
+**Scope:** Master inventory of open research problems, continuum interfaces, and formalization targets across the `finite_quantum_mechanics` estate.  
 **Target:** `qm_gaps_and_effort.md`  
 **Updated:** 2026-10-11  
 

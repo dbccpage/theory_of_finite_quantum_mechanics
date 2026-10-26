@@ -41,11 +41,11 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/PreGenesisToMssn/Observation.lean::collapsed_quotient_barrier`](../../../lean4/Imported/PreGenesisToMssn/Observation.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs::factor` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs::factor`](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs)
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py::quotient_factor` (private upstream source, not in this repository)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py::quotient_factor`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/tests/test_genesis_checks.py)
 
 ---
 
@@ -58,6 +58,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:118-133`
+  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:118-133`
   - `omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:283-305`
   - `omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:81-88`

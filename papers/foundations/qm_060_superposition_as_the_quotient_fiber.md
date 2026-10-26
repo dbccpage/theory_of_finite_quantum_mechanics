@@ -34,7 +34,7 @@ series: "qm / QM ingredient ladder"
 companions:
 - "pub-010 Born Normalization … Redundancy (the lift, row-sparsity, and cross term this paper reads)"
 - "QM_070 Product Non-Factorization (the phase-blind quotient)"
-mechanization: "MECHANIZED (ENC-1129: lean4/research_programs/003_quantum_foundations/003_qm_phase_fiber_interference.lean, lean4/shared_kernel/primitive_difference.lean; QM.PhaseFiber.SuperpositionState.lggr_non_factorization)"
+mechanization: "MECHANIZED (ENC-1129: lean4/research_programs/quantum_foundations/003_qm_phase_fiber_interference.lean, lean4/shared_kernel/primitive_difference.lean; QM.PhaseFiber.SuperpositionState.lggr_non_factorization)"
 
 ---
 
@@ -238,14 +238,14 @@ Claim-ID body index (packaging)
 
 | ID | Home |
 |---|---|
-| `QM-060-C1` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `060:QM-060-C1`) |
-| `QM-060-C2` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `060:QM-060-C2`) |
-| `QM-060-C3` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `060:QM-060-C3`) |
-| `QM-060-C4` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `060:QM-060-C4`) |
-| `QM-060-C5` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `060:QM-060-C5`) |
-| `QM-060-C6` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `060:QM-060-C6`) |
-| `QM-060-C7` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `060:QM-060-C7`) |
-| `QM-060-C8` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `060:QM-060-C8`) |
-| `QM-060-C9` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `060:QM-060-C9`) |
+| `QM-060-C1` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `060:QM-060-C1`) |
+| `QM-060-C2` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `060:QM-060-C2`) |
+| `QM-060-C3` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `060:QM-060-C3`) |
+| `QM-060-C4` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `060:QM-060-C4`) |
+| `QM-060-C5` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `060:QM-060-C5`) |
+| `QM-060-C6` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `060:QM-060-C6`) |
+| `QM-060-C7` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `060:QM-060-C7`) |
+| `QM-060-C8` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `060:QM-060-C8`) |
+| `QM-060-C9` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `060:QM-060-C9`) |
 
 <!-- claim-id-body-index:end -->

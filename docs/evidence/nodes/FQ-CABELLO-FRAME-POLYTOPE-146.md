@@ -78,15 +78,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1016_fq_cabello_frame_polytope_146.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1016_fq_cabello_frame_polytope_146.md](../../../dag/derivations/10_finite_qm_core/tfq_1016_fq_cabello_frame_polytope_146.md)
-- sha256 (`lf-normalised`): `57454763f5eac6e513d4d6b42f520e2da685d31aebe5a6147092d4ff26425648`
+- sha256 (`lf-normalised`): `312faced347471d98487a90255ad55eff2c2b1af53dc6b4850d3adbb34c3e813`
 - generated view: listed, not counted
 - cited in: record TFQ-1016
 - counts toward the grade: no
 
-### Documents and data: `sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md`
+### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md](../../../sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md)
-- sha256 (`lf-normalised`): `5e43f206b08726fd4b27888d6fed3f211aac8398d5f8bf3dce712c415d7d81cc`
+- file: [sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md](../../../sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md)
+- sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -899,40 +899,40 @@ Claim-ID body index (packaging)
 
 | ID | Home |
 |---|---|
-| `QM-093-C1` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C1`) |
-| `QM-093-C2` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C2`) |
-| `QM-093-C3` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C3`) |
-| `QM-093-C4` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C4`) |
-| `QM-093-C5` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C5`) |
-| `QM-093-C6` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C6`) |
-| `QM-093-C7` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C7`) |
-| `QM-093-C8` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C8`) |
-| `QM-093-C9` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C9`) |
-| `QM-093-C10` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C10`) |
-| `QM-093-C11` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C11`) |
-| `QM-093-C12` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C12`) |
-| `QM-093-C13` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C13`) |
-| `QM-093-C14` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C14`) |
-| `QM-093-C15` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C15`) |
-| `QM-093-C16` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C16`) |
-| `QM-093-C17` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C17`) |
-| `QM-093-C18` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C18`) |
-| `QM-093-C19` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C19`) |
-| `QM-093-C20` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C20`) |
-| `QM-093-C21` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C21`) |
-| `QM-093-C22` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C22`) |
-| `QM-093-C23` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `093:QM-093-C23`) |
-| `ENC` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.41) |
-| `ENC-1063` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.41) |
-| `ENC-1064` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.41) |
-| `ENC-1068` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.41) |
-| `ENC-1070` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.41) |
-| `ENC-1072` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.41) |
-| `ENC-1073` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.41) |
-| `ENC-1075` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.41) |
-| `ENC-0247` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.41) |
-| `ENC-1055` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.41) |
-| `ENC-1078` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.41) |
-| `ENC-1079` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.41) |
+| `QM-093-C1` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C1`) |
+| `QM-093-C2` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C2`) |
+| `QM-093-C3` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C3`) |
+| `QM-093-C4` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C4`) |
+| `QM-093-C5` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C5`) |
+| `QM-093-C6` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C6`) |
+| `QM-093-C7` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C7`) |
+| `QM-093-C8` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C8`) |
+| `QM-093-C9` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C9`) |
+| `QM-093-C10` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C10`) |
+| `QM-093-C11` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C11`) |
+| `QM-093-C12` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C12`) |
+| `QM-093-C13` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C13`) |
+| `QM-093-C14` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C14`) |
+| `QM-093-C15` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C15`) |
+| `QM-093-C16` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C16`) |
+| `QM-093-C17` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C17`) |
+| `QM-093-C18` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C18`) |
+| `QM-093-C19` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C19`) |
+| `QM-093-C20` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C20`) |
+| `QM-093-C21` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C21`) |
+| `QM-093-C22` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C22`) |
+| `QM-093-C23` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `093:QM-093-C23`) |
+| `ENC` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.41) |
+| `ENC-1063` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.41) |
+| `ENC-1064` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.41) |
+| `ENC-1068` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.41) |
+| `ENC-1070` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.41) |
+| `ENC-1072` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.41) |
+| `ENC-1073` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.41) |
+| `ENC-1075` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.41) |
+| `ENC-0247` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.41) |
+| `ENC-1055` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.41) |
+| `ENC-1078` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.41) |
+| `ENC-1079` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.41) |
 
 <!-- claim-id-body-index:end -->

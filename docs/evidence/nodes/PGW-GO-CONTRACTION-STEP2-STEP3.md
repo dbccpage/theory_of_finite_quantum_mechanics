@@ -10,13 +10,13 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
+- counted in-repo evidence files: 6
+- cited Lean, Rust or Python symbols found in their in-repo files: 6
 - distinct cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -32,7 +32,7 @@ The Lean names run opposite to the derivation numbers (Step3 is the second seed'
 
 ## Source status
 
-001_genesis_ongoing_h3v7n5qf paper/second/claim_ledger.md D5 and paper/third/claim_ledger.md D5; lean4/Second/Carry.lean, lean4/Third/Step.lean
+genesis_ongoing paper/second/claim_ledger.md D5 and paper/third/claim_ledger.md D5; lean4/Second/Carry.lean, lean4/Third/Step.lean
 
 ## Review
 
@@ -74,26 +74,50 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Python: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/second/reach.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/second/reach.py](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/second/reach.py)
+- sha256 (`bytes`): `961d2ad0323f9ed5939089a1d5653cab1ce6549d4001fb834581d7eae7e934db`
+- cited in: record TFQ-0478
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `carrying_map` (python_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
+### Python: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/third/reach.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/third/reach.py](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/third/reach.py)
+- sha256 (`bytes`): `1dda0ce25f95722cf7e212b063b3f25f985edb92fe99d537d10d200045103ae1`
+- cited in: record TFQ-0478
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `embedding` (python_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/second/claim_ledger.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/second/claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/second/claim_ledger.md)
+- sha256 (`lf-normalised`): `4fe64144a7b8389c0720d6dd57974282e7112487608aea21e47b243eb62e5c8a`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/third/claim_ledger.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/third/claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/third/claim_ledger.md)
+- sha256 (`lf-normalised`): `ba648ff3183dbc72eb805e09e3f1d3a96c977ba87f6e3133d72bb3afb5abd5da`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/02_genesis/tfq_0478_go_contraction_step2_step3.md`
 
 - file: [dag/derivations/02_genesis/tfq_0478_go_contraction_step2_step3.md](../../../dag/derivations/02_genesis/tfq_0478_go_contraction_step2_step3.md)
-- sha256 (`lf-normalised`): `012c4bf609cb5bbd6b1b2ca8f57de005ccb10c83b7eda98f25d012993216c974`
+- sha256 (`lf-normalised`): `56d4704730b0ac7ea5010afb2a18458ecd80f0ab15ba44c7e6c9f4031099df72`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0478
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/second/claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/second/claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/third/claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/third/claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### Documents and data: `omega_engine_education/documentation/005_oegenong/levels/level_06_stage_embeddings.md`
@@ -102,13 +126,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
 - cited in: node.source
 - counts toward the grade: no
-
-### External sources
-
-Named by the node; not in this repository and not checked here.
-
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/second/reach.py::carrying_map`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/third/reach.py::embedding`
 
 ## Absences recorded by the TFQ records
 

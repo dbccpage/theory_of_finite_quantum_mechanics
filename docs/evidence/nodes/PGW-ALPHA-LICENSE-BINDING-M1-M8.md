@@ -1,6 +1,6 @@
 # PGW-ALPHA-LICENSE-BINDING-M1-M8
 
-Stage: [IMPLEMENTATION](../stages/IMPLEMENTATION.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [IMPLEMENTATION](../stages/IMPLEMENTATION.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E1**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [IMPLEMENTATION](../stages/IMPLEMENTATION.md). Status: `COMPUTATIONALLY_C
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
+- counted in-repo evidence files: 1
 - cited Lean, Rust or Python symbols found in their in-repo files: 0
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: cite a Lean, Rust or Python symbol that exists in an in-repo file
 
 ## Flags
 
@@ -43,19 +43,19 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt)
+- sha256 (`lf-normalised`): `c613e357809438876d1fcec34ea896548f17f4e9d4ea7f21048fafe9451651ac`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/04_authorization/tfq_0505_alpha_license_binding_m1_m8.md`
 
 - file: [dag/derivations/04_authorization/tfq_0505_alpha_license_binding_m1_m8.md](../../../dag/derivations/04_authorization/tfq_0505_alpha_license_binding_m1_m8.md)
-- sha256 (`lf-normalised`): `5dec3cd308ec162211242cc0b954d1cb3c3cb328e661394901505d2489f2cbaf`
+- sha256 (`lf-normalised`): `7ebca68994c6b82f695988263be3fb6047ce959ad05d3db676b4fdfff7fb1e05`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0505
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/closeout.txt`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources

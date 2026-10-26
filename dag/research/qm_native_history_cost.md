@@ -12,14 +12,14 @@ recovering all native history information from a finite groupoid label.
 
 ## 1. Source, admission and horizon
 
-The preserved [twenty-fifth seed](../../001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/prompt/twentyfifth/seed_prompt.md)
+The preserved [twenty-fifth seed](../../finite_obstruction_calculus/genesis_ongoing/prompt/twentyfifth/seed_prompt.md)
 defines addition/removal of an assertion as increment/decrement of its
 multiplicity. It explicitly asks for **100 changes along each alternative**.
 Its chosen readings and source functions are in
-[`twentyfifth/state.py`](../../001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfifth/state.py),
+[`twentyfifth/state.py`](../../finite_obstruction_calculus/genesis_ongoing/code/twentyfifth/state.py),
 which imports the four assertion changes through
-[`ninth/changes.py`](../../001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/ninth/changes.py)
-from [`eighth/changes.py`](../../001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/eighth/changes.py).
+[`ninth/changes.py`](../../finite_obstruction_calculus/genesis_ongoing/code/ninth/changes.py)
+from [`eighth/changes.py`](../../finite_obstruction_calculus/genesis_ongoing/code/eighth/changes.py).
 Removal is enabled only when the selected multiplicity is positive. Diagonal
 assertions are allowed. Filling data is carried unchanged by these two events.
 
@@ -80,7 +80,7 @@ test's coverage of all future programs.
 **Contextual quotient boundary.** If price is among the protected questions,
 even the empty two-sided context distinguishes every pair $h^j,h^k$, $j\ne k$.
 Consequently the greatest question-preserving contextual congruence in
-[GEN-WDP-72](../../001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/derivations/generative_histories_contextual_compression_derivation.md)
+[GEN-WDP-72](../../finite_obstruction_calculus/witnessed_difference_programme/docs/derivations/generative_histories_contextual_compression_derivation.md)
 has infinitely many classes on this one hom-set in the unbounded closure. This
 is a concrete failure of the finite-index premise, not a failure of that
 congruence theorem. The WDP source-reflection obligation O02 must name which
@@ -187,7 +187,7 @@ they cannot automatically be faithful linearizations of all Source-25 histories.
 
 ## 5. Genesis/S(n), FSP and MUB6 consequences
 
-For the [S(n)/MSS-N bridge](../../001_finite_obstruction_calculus/001_sn_mssn/README.md),
+For the [S(n)/MSS-N bridge](../../finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/README.md),
 this makes the choice of recovery contract concrete. A finite label cannot
 have a retraction recovering every protected historical price in this family.
 That does not disprove a retraction on a finite declared stage, and a formal

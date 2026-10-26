@@ -39,7 +39,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust statement of RegimeExt; the Rust regime stores instances, rules and requirements as BTreeSet collections, so list order does not arise there`
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::Regime` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py::Regime`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py)
 
 ---
 
@@ -52,6 +52,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:114-123`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:123-126`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:272-277`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:114-123`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:123-126`
+  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:272-277`

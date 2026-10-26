@@ -22,7 +22,7 @@ outputs without the disconnected scalar prelude.
 In [the reference engines](../tests/legacy/e2e/conftest.py),
 `probability_quadratic_from_complex` forms a weighted path sum and calls
 `norm_sq`. Its third-order cancellation therefore checks the consequence of
-an explicitly chosen square. The [legacy cochain implementation](../../009_ms_majorana/code/tests/support/finite_qm/use_cases/cochain.py)
+an explicitly chosen square. The [legacy cochain implementation](../../majorana/code/tests/support/finite_qm/use_cases/cochain.py)
 itself says that it neither derives the packet nor selects the weights. Its
 obstruction classifier uses a floating-point LP with tolerance `1e-9`.
 The exact rational/cyclotomic engine calculations and the numerical classifier
@@ -93,20 +93,20 @@ third-order question has exact minimax error $2/9$ because its two values are
 $0$ and $4/9$. These are sharp uncertainty bounds about an omitted model
 choice, not experimental error estimates for a chosen quantum theory.
 
-This is the [WDP protected-question fiber criterion](../../001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md)
+This is the [WDP protected-question fiber criterion](../../finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
 (GEN-WDP-03) applied to declared mathematical realizations. Retaining a
 readout tag repairs this particular loss but does not determine which tag
 nature uses. Excluding the quartic and linear alternatives requires stated
 premises with an independent justification.
 
-The [S(n)/MSS-N architecture](../../001_finite_obstruction_calculus/001_sn_mssn/README.md)
+The [S(n)/MSS-N architecture](../../finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/README.md)
 does not permit a property of a chosen realization to create a native Genesis
 stage. This control consequently supports GEN-WDP-O04's open reconstruction
 obligation. It neither admits a carrier from the opaque `<>` inscription nor
 derives complex scalars, reversible history quotients, state/effect spaces,
 tensor composition or physical process availability. The conditional positive
 trace and central purification results in
-[PO-000 Appendix E](../../002_projection_obstruction/000_projection_obstruction/projection_obstruction.md)
+[PO-000 Appendix E](../../projection_obstruction/projection_obstruction_paper/projection_obstruction.md)
 can be used after their respective algebraic and operational premises are
 supplied; they do not remove this earlier bridge obligation.
 

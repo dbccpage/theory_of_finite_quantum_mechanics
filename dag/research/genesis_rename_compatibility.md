@@ -28,7 +28,7 @@ explicit axiom audit. The comparison checks theorem headers after removing
 comments and normalising whitespace; it does not prove compiler equivalence.
 
 The archived file under
-`atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean`
+`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean`
 remains immutable. Its recorded direct-build failure remains historical evidence;
 that file is not the maintained compatibility entry point. The campaign's separate
 `CampaignGenesisOngoingRename` port and its existing receipts are also retained.

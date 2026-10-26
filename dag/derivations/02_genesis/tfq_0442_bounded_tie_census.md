@@ -36,12 +36,12 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean census of the bounded tie classes; reading-F non-uniqueness has no Lean statement`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::sealed_challenge3_reading_f` (private upstream source, not in this repository)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::sealed_challenge3_reading_l` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs::sealed_challenge3_reading_f`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs::sealed_challenge3_reading_l`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs)
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::min_responses` (private upstream source, not in this repository)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py::python_replay` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py::min_responses`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/reproduce.py::python_replay`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/reproduce.py)
 
 ---
 
@@ -54,6 +54,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:305-318`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/paper.md:326-328`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:305-318`
+  - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:326-328`
   - `omega_engine_education/documentation/001_oegen/genesis.md:19`

@@ -39,8 +39,8 @@ In accordance with strict constructive principles:
 - `missing obligation: the H3V7N5QF package holds no Rust`
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/ninth/state.py::of_s` (private upstream source, not in this repository)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/ninth/state.py::swap` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/ninth/state.py::of_s`](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/ninth/state.py)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/ninth/state.py::swap`](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/ninth/state.py)
 
 ---
 
@@ -53,6 +53,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/ninth/claim_ledger.md:75`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/ninth/claim_ledger.md:76`
+  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/ninth/claim_ledger.md:75`
+  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/ninth/claim_ledger.md:76`
   - `omega_engine_education/documentation/005_oegenong/genesis_ongoing.md:108-110`

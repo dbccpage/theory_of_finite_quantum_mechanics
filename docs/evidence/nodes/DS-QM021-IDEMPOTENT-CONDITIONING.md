@@ -93,9 +93,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0235 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm
+- TFQ-0235 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
 - TFQ-0235 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/measurement.rs
-- TFQ-0236 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm
+- TFQ-0236 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
 - TFQ-0236 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/exact_instrument.rs
 - TFQ-0236 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/instruments.rs
 - TFQ-0236 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/measurement.rs

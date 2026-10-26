@@ -47,8 +47,8 @@ In accordance with strict constructive principles:
 - `omega_engine/crates_rs/omega_local_green_global_red_lggr/src/ledger.rs::register_stabilized_family` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
+- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py)
 - [`checks/independent/pgw-wdp-handoff-to-l1.py::main`](../../../checks/independent/pgw-wdp-handoff-to-l1.py)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature` (private upstream source, not in this repository)
 
 ---
 
@@ -61,7 +61,7 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:1487-1498`
+  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1487-1498`
   - `omega_engine_education/documentation/007_oelggr/local_green_global_red_foundational_series.md:147-161`
   - `omega_engine_education/documentation/007_oelggr/curriculum/1000_local_green_global_red_foundations/concepts/lesson_1000_01_local_green_global_red_foundations.md:116-120`
   - `dag/derivations/independent/pgw-wdp-handoff-to-l1.md:5`

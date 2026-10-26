@@ -10,7 +10,7 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `PROVED_LEAN`. Evidence gr
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
+- counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 14
 - distinct cited Lean declarations covered by a current replay receipt: 14
 - counted in-repo runnable tests: 0
@@ -108,6 +108,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
+- sha256 (`lf-normalised`): `a4a7d840b11e912896032aebc9ead95f7978c0e6f60656f44645c6d8fadf593b`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0365_collapsed_observation_barrier.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0365_collapsed_observation_barrier.md](../../../dag/derivations/01_pregenesis/tfq_0365_collapsed_observation_barrier.md)
@@ -116,21 +123,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0365
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/paper.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
 ## Absences recorded by the TFQ records
 
 - TFQ-0365 lean4: declaration obligation: collapsed_observation_barrier stays tied to equal profiles and does not invent a separating tag
-- TFQ-0365 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
+- TFQ-0365 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean
 - TFQ-0365 python: missing obligation: a counterexample beside preservation.refine where equal reports yield no separating function
-- TFQ-0365 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/preservation.py
+- TFQ-0365 python: no local python twin located for atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/preservation.py
 - TFQ-0365 rust: missing obligation: a quotient-barrier check in crate pre_mssn_preservation
-- TFQ-0365 rust: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs
+- TFQ-0365 rust: no local rust twin located for atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs
 
 ## Routes
 

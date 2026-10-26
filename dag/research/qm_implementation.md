@@ -1,11 +1,11 @@
 # Implementation roadmap
 
-**Scope:** Implementation and verification census across the `006_finite_qm` estate.  
+**Scope:** Implementation and verification census across the `finite_quantum_mechanics` estate.  
 **Target:** `qm_implementation.md`  
 **Target:** `qm_implementation.md`  
 **Updated:** 2026-10-11  
 
-This document provides a technical census of the computational kernels, compiled Rust crates, Lean 4 formalizations, and test verification suites across the `006_finite_qm` estate.
+This document provides a technical census of the computational kernels, compiled Rust crates, Lean 4 formalizations, and test verification suites across the `finite_quantum_mechanics` estate.
 
 ## Standing
 
@@ -24,7 +24,7 @@ After relocation and facade withdrawal:
 - **Withdrawn application facades:** legacy `code/` directory is absent. `LOCAL_SOURCE_RELOCATION_SUPERSESSION.json` records status `FACADES_WITHDRAWN_CUSTODY_PRESERVED`, 49 withdrawn facades, destinations unchanged. Callers must import the recorded destination.
 - **Rust:** Canonical finite-QM implementations live in `omega_engine/crates_rs/omega_quantum_physics/src/finite_qm/` (continuum, MUB, Gleason, CPTP, dynamics, Weyl, …). `omega_engine/crates_rs/omega_finite_qm` is a backwards-compatible `pub use` facade. `omega_engine/code_rs/src/lib.rs` is `pub use omega_finite_qm::*` plus local C750/C1000 modules and a PyO3 bridge. Cited `omega_engine/code_rs/src/continuum.rs` is absent; exact-rational Wintner–Wielandt is `omega_quantum_physics::finite_qm::continuum`.
 - **Lean:** `lean4/quantum_mechanics/` is one flat PascalCase library (toolchain `leanprover/lean4:v4.33.1`). Opened listing: **154 `*.lean` files counting `lakefile.lean`**, plus `lake-manifest.json` / `lean-toolchain`. README still says 122 library modules. Do not write “154 plus lakefile.” `evidence/lake_replay_20260905.json` application row: 152 lean files / 154 jobs. `lakefile.lean` roots `FiniteQm.C750.B01.{Definitions,Reduction,Purity,AxiomCensus}`, but `lean4/quantum_mechanics/FiniteQm/` does not exist. Those four files live only at `campaigns/c750/block_01/lean4/FiniteQm/C750/B01/`.
-- **Retained sources:** `sources/` holds verbatim QM_060 and QM_122 only. `coda_atlas/F004_papers` is retired. `research/` holds the source-paper tree. Generated ledgers keep historical origin strings; `consolidate_sources` cannot rebuild without the corpus.
+- **Retained sources:** `sources/` holds verbatim QM_060 and QM_122 only. `coda_atlas/papers` is retired. `research/` holds the source-paper tree. Generated ledgers keep historical origin strings; `consolidate_sources` cannot rebuild without the corpus.
 - **Paper layout (§6) is stale:** it still draws legacy `code/` with `consolidate_sources.py`, `cochain.py`, `density_matrix.py`. Live paths are the crate and `omega_engine/code`.
 
 `foundations.py` is an explicit re-export facade over `rungs.py`, `discrete_walk_engines.py`, `advanced_targets.py`, and domain primitives. Paper Rung 1–8 still names `code/foundations.py`.
@@ -40,7 +40,7 @@ After relocation and facade withdrawal:
 - `test_cptp_channels_stinespring.py`: **pins** `choi_theorem_ported_lean is False` and depolarizing p=1/7 dilation conductor 28. That is an honesty pin, not a Choi theorem.
 - `test_lean_replay.py`: application Lean is one flat PascalCase directory with no subdirectories (`application_lean_replay.validate_layout`); zero `: True := by trivial`; no `sorry`. Receipt source-byte hashes must still match. C750 B01 modules are therefore **outside** the application library the replay validator will accept.
 - `test_mub_source_snapshot.py` points at `omega_engine/crates_rs/omega_finite_qm/src/mub`. That directory is absent. `SOURCE_SNAPSHOT.json` lives at `omega_engine/crates_rs/omega_quantum_physics/src/finite_qm/mub/` with status `UNINTEGRATED_SOURCE_SNAPSHOT`. The test as written cannot bind the live snapshot without a path repair.
-- `test_withdrawn_rows.py` pins the 31 audit-refuted packaging repairs against `coda_atlas/F004_papers/003_quantum_foundations`, and **skips** when that tree is gone. After F004 retirement the withdrawal pins do not currently fire against `research/`.
+- `test_withdrawn_rows.py` pins the 31 audit-refuted packaging repairs against `sources/atlas/papers/quantum_foundations`, and **skips** when that tree is gone. After F004 retirement the withdrawal pins do not currently fire against `research/`.
 - `test_gap_register.py` validates only `gaps:` types in `{open_bridge, continuum_interface, evidence_vacuum, triage_required, missing_implementation, false_receipt}`. YAML-nested `GAP-C1000-*` (`declared_assumption` / `proved_theorem` / `open_question`) are not in that list and would be rejected if moved into `gaps:`.
 
 **Finite computation, not uniqueness.**

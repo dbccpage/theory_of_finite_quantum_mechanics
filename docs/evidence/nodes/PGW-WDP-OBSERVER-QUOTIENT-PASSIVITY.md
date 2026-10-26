@@ -10,13 +10,13 @@ Stage: [WDP](../stages/WDP.md). Status: `DEFINITION`. Evidence grade: **E3**. [E
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 3
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 6
 - distinct cited Lean declarations covered by a current replay receipt: 3
-- counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo runnable tests: 1
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add a recorded statement-match review
 
 ## Flags
 
@@ -80,19 +80,45 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
+### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py)
+- sha256 (`bytes`): `49232555ff35e0baf85bf8e7f00e55a2b60ba574d6d1c29a9317ac12b7cae0ac`
+- cited in: record TFQ-0553
+- check: `python -m pytest atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py::test_passivity_can_be_strict_and_core_identifications_survive`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `test_passivity_can_be_strict_and_core_identifications_survive` (python_test) | yes | yes | yes | - | `python -m pytest atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py::test_passivity_can_be_strict_and_core_identifications_survive` |
+
+- counts toward the grade: yes
+
+### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quotient_observer.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quotient_observer.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/quotient_observer.py)
+- sha256 (`bytes`): `037619f360a6fa6dce659c386938e6acddff57536f2d6fe363ee479c4f08adfc`
+- cited in: record TFQ-0553
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `check_passivity` (python_symbol) | yes | yes | yes | - | - |
+| `make_linear_quotient_observer` (python_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- sha256 (`lf-normalised`): `753d1c99c799f84f9a71912b98082d590c89c531f980c112b62ee2a86ab2726b`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/06_wdp/tfq_0553_wdp_observer_quotient_passivity.md`
 
 - file: [dag/derivations/06_wdp/tfq_0553_wdp_observer_quotient_passivity.md](../../../dag/derivations/06_wdp/tfq_0553_wdp_observer_quotient_passivity.md)
-- sha256 (`lf-normalised`): `34d4bd6731ede43a7644e13e007ffffa468111d86587daa1e1a8c31321e686ca`
+- sha256 (`lf-normalised`): `1fef38d3dc07e355ad65a0f627b2ffe7ad30611eac7a42fb7b268f86301f468f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0553
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### Documents and data: `omega_engine_education/documentation/006_oewdp/levels/level_09_behavioral_quotients_finite_states.md`
@@ -107,9 +133,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 Named by the node; not in this repository and not checked here.
 
 - `external:upstream/omega_engine/crates_rs/omega_category_theory/src/finite_partial_structure.rs::descend`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_quotient_observer.py::test_passivity_can_be_strict_and_core_identifications_survive`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/quotient_observer.py::check_passivity`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/quotient_observer.py::make_linear_quotient_observer`
 
 ## Routes
 

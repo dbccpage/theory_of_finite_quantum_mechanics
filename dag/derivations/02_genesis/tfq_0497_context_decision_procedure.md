@@ -41,11 +41,11 @@ In accordance with strict constructive principles:
 - [`lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.witness_sound`](../../../lean4/CampaignGenesisContextDecision.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::contexts` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs::contexts`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs)
 
 ### Python Oracles & Numerical Evaluators
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py::separable`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/observe.py)
 - [`checks/independent/pgw-context-decision-procedure.py::main`](../../../checks/independent/pgw-context-decision-procedure.py)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::separable` (private upstream source, not in this repository)
 
 ---
 
@@ -58,7 +58,7 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:1073-1076`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:484`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt:171-175`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:1073-1076`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:484`
+  - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:171-175`
   - `dag/derivations/independent/pgw-context-decision-procedure.md:5-8`

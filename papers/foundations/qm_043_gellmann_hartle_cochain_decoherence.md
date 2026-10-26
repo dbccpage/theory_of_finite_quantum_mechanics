@@ -320,7 +320,7 @@ The finite history results are implemented and certified in sovereign Rust crate
 3. **The narrowest defensible claim:**
    - In any finite-dimensional operator model, the Gell-Mann–Hartle history matrix is positive semidefinite; its real off-diagonal parts control probability sum-rule discrepancies via $\mu(S) - \sum_{j \in S} D_{jj} = 2 \sum_{j < k, j,k \in S} \operatorname{Re} D_{jk}$; and medium decoherence is the minimal condition preserved under tensor product composition.
 4. **The next test needed:**
-   - Lean 4 mechanization of the Diósi tensor composition counterexample and the exact coarse-graining residual expansion in `omega_engine/lean4/research_programs/003_quantum_foundations/`.
+   - Lean 4 mechanization of the Diósi tensor composition counterexample and the exact coarse-graining residual expansion in `omega_engine/lean4/research_programs/quantum_foundations/`.
 
 ---
 

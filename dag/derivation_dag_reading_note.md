@@ -6,7 +6,7 @@ This directory holds `derivation_dag.json`, a derivation graph that starts at th
 
 ## Model and shape
 
-- The format is the one in `010_mub6/research/derivation_dag_20261011.json`. The path `omega_engine_woland/tests/mub6` named in the request does not exist on main, so that file is the model.
+- The format is the one in `mub6/research/derivation_dag_20261011.json`. The path `omega_engine_woland/tests/mub6` named in the request does not exist on main, so that file is the model.
 - Nodes carry id, stage, status, source_status, statement, source (file:line or ledger row), lean, rust, imported_structure, bottleneck and tags.
 - A route lists the inputs it needs together and one output. Routes with one output are alternatives. A route with status `GAP_NO_DERIVATION` carries no source: it marks a link that no record derives.
 - Node statuses are ADMITTED_PRIMITIVE, DEFINITION, PROVED_PROSE, PROVED_LEAN, COMPUTATIONALLY_CHECKED, CONDITIONAL, IMPORTED_ASSUMPTION, OPEN, REFUTED and SOURCE_RECORD. Route statuses are DERIVED_PROSE, DERIVED_LEAN, COMPUTED, CONDITIONAL_ON_IMPORT, GAP_NO_DERIVATION and RECORD_PARENT.
@@ -48,7 +48,7 @@ Run order after an edit: `sync_pfp_results.py`, `sync_unified_dag.py`, `sync_app
 - MSSN_SN and WDP: the S(n) presentation carrier and the Witnessed Difference Programme window (Phi1, Gamma2).
 - L1_EMERGENCE: the observer axioms, the L1 weights and the residual-sector declaration.
 - L1_TO_L2: QM_020 theorems 1 to 7, the imports the lift needs (square root, complex field, U(1) phases, inner product, orthogonal additivity, phase-averaged shadows, isometric dynamics), and what QM_122 recovers.
-- FINITE_QM_CORE, FINITE_QM_DYNAMICS and FINITE_QM_STRUCTURE: `006_finite_qm` and the 003 papers after QM_020 (path sums, measurement update, product defect, Bell and CHSH, trace norm, authority boundary, contextuality, the five-import cascade).
+- FINITE_QM_CORE, FINITE_QM_DYNAMICS and FINITE_QM_STRUCTURE: `finite_quantum_mechanics` and the 003 papers after QM_020 (path sums, measurement update, product defect, Bell and CHSH, trace norm, authority boundary, contextuality, the five-import cascade).
 - IMPLEMENTATION: Rust and Lean artifacts in `omega_quantum_physics` and the other crates.
 
 ## Gaps on the path from `<>`

@@ -1,0 +1,1822 @@
+# 006 Wd6 Quantum Reconstruction Or Classical No Go
+
+## 000_WITNESSED_DIFFERENCE Monograph Series (006_wd6_quantum_reconstruction_or_classical_no_go)
+
+**Date:** 2026-07-29 · **Version:** v1.0  
+**License:** Creative Commons Attribution 4.0 International (CC-BY-4.0)  
+**Status:** RELEASED  
+**Authority:** `AuthorityEffect::None`  
+
+## Mechanism inventory
+
+| Slot | Value / Description |
+| --- | --- |
+| **Primitive Differences** | $\delta c = \text{{defect mass}}$ |
+| **Carriers / Structure** | Finite Graph 0-Cochain / Hilbert Space |
+| **Cochain complex** | $C^0 \to C^1 \to C^2$ |
+| **Coboundary maps** | $\delta^0, \delta^1$ |
+| **ZeroRel** | Preserved under $L_1$ quotient |
+| **Licensed repairs** | None |
+| **Quotient / Q1** | Banach Quotient |
+| **Residuals** | $\delta c \neq 0$ boundary defect |
+| **Witnesses** | Replayable Python / Rust Certifiers |
+| **Observers / profiles** | Operational Observer |
+| **Anomalons** | None |
+| **CompletionLaw** | Finite Cochain Completion |
+| **Terminal / route** | Route to Anomalon Estate |
+| **AuthorityEffect** | None |
+
+## Paper 006 — Quantum Reconstruction or Classical No-Go
+
+> **Legacy Paper Metadata**: `LegacyPaperId: 087` | `Ordinal: 006`
+
+Which additional principles, if any, select complex quantum theory?
+
+**Version:** v0.1 (Pre-Print) — **OUTLINE, NOT DRAFTED**
+**Date:** 2026-07-20
+**Programme:** `000_wd0_witnessed_difference_programme` (The Witnessed Difference Programme)
+**Sequence position:** WD-6 — consumes WD-5; the programme's quantum stop-condition test
+**AuthorityEffect:** `None`
+
+> **Status.** This document is a structural outline. No section below is a
+> drafted proof, and no claim in it is established. The claim ledger types every
+> substantive row ``OPEN`` or `[CONJECTURE]`. Its purpose is to fix the
+> comparison class, the discriminator gate, the verdict criteria, the falsifiers,
+> and the non-claims **before** any mathematics is written.
+
+> **Founding concession (read this first).** The obstruction architecture this
+> programme has built to date is **pre-quantum, or substrate-general**. Paper
+> 001G exhibits a purely *classical stochastic* model carrying the same
+> projection / blind-direction / residual-ledger logic, and Paper 001H's
+> even-parity example is likewise classical. It therefore follows immediately
+> that **no theorem using only the present residual structure can derive quantum
+> mechanics.** This paper opens from that concession rather than working toward
+> it, and the expected outcome of the paper is a no-go, not a reconstruction.
+>
+> **Forward reference (2026-07-24).** The numbered QM home for cohomology
+> **admission** and shared-skeleton **non-selection** is **QM_091**
+> (`quantum_foundations/p01_hilbert_space/qm_091_hilbert_space_cochains_qm_cohomology/`).
+> QM_091 does **not** close WD-6's classical-countermodel or contextuality/$H^1$
+> gates; those obligations remain OPEN until discharged here. WD-5 and WD-5/9
+> are not upgraded by this pointer beyond navigation.
+
+> **Prior-art fence (added 2026-07-20 producer pass; load-bearing).** WD-6 is
+> **not** the corpus's first pass at the quantum boundary, and several objects it
+> proposes to compute are **already published, and in four cases already
+> mechanized, elsewhere in this corpus**. In particular: the **finite CHSH bound**
+> $|S| \le 2$ is Paper 058 Theorem 4.2, with the deterministic-local form
+> mechanized as `QM.CHSH.chsh_le_two` / `chsh_eq_two` (Lean module
+> `QM.CHSHLocalBound`); the **PR-box exceedance** $S = 4$ is *exhibited at the
+> derived layer with no quantum import* in Paper 058 §5.1; **contextuality as a
+> finite cochain obstruction** is `ENC-1143` (`MECHANIZED`, modules
+> `QM.MerminPeresF2Cochain`, `QM.MerminPeresCochainObstruction`,
+> `QM.ParityContextObstruction`); **normalization does not select Born** is
+> `ENC-1070` (`MECHANIZED`, module `QM.PairingNonSelection`) together with
+> `QM.BornQuadraticCountermodel`; and a **GPT-shaped comparison audit** over
+> classical simplex / square-bit GPT / Spekkens toy / real / complex / quaternionic
+> pairings is QM_101. WD-6 therefore claims novelty for **none** of these; it
+> consumes them at their published statuses and reproves none. See §10 and
+> non-claims `WD6-N24 … WD6-N28`.
+
+
+1. Abstract (target lead sentence)
+
+
+*Target payoff sentence — to be drafted to this specification:*
+
+> Within a declared comparison class of generalized probabilistic theories, we
+> exhibit a classical simplex model satisfying every axiom the Witnessed
+> Difference chain has stated through WD-5; consequently that axiom set
+> characterizes a general operational theory and not quantum theory, and we give
+> the explicit discriminator suite *(discounted against the corpus antecedents of
+> §10)* — noncommuting contexts, phase-sensitive interference, a composition law,
+> a Born map, a quantum bound, and classical exclusion — that any future WD axiom
+> must clear before the word "quantum" may be used.
+
+**Drafting constraint (hygiene Part A).** The first line states the result in the
+language of generalized probabilistic theories (GPTs) and convex operational
+frameworks — not in the language of obstruction calculus, cochains, or witness
+receipts. A reader who has never opened a WD paper, and who works in quantum
+foundations, must be able to evaluate the claim and locate the countermodel.
+
+**Second drafting constraint.** The abstract must contain the word "no-go" and
+must not contain the phrase "derivation of quantum mechanics" except under
+negation. The title is honest on purpose.
+
+2. The founding negative fact
+
+
+The corpus already supplies its own counterexample. This section states it before
+any positive machinery is introduced.
+
+**2.1 The classical shadow is already published.** Paper 001G
+(`002_projection_residuals_ai_governance`) constructs a finite binary state
+space, a declared lossy observer (the factorizing dashboard
+$\Pi_{\mathrm{fact}}(p) = \bigotimes_{v} p_v$), a vector residual ledger
+$r_e(p) = p_{uv} - p_u \otimes p_v$, and a replayable update under which every
+one-node marginal is exactly preserved while every edge receipt is nonzero. The
+whole projection / blindness / residual-tally apparatus runs to completion. The
+model is a classical probability distribution on $\{-1,+1\}^{N}$ throughout. No
+Hilbert space, no amplitude, no phase, no noncommutativity appears anywhere.
+
+**2.2 The higher-degree example is classical too.** Paper 001H's even-parity
+distribution, uniform on $\{000, 011, 101, 110\}$, has vanishing pair cumulants
+and a nonzero triple cumulant. It is a protected higher-order interaction
+invisible to every lower-degree cell — and it is an ordinary classical
+distribution.
+
+**2.3 The consequence.** Let $\mathcal{A}_{\le 6}$ denote the axiom set stated by
+WD-0 through WD-5 together with the 000/001-family results those papers consume.
+If a classical model satisfies $\mathcal{A}_{\le 6}$, then
+
+$$
+\mathcal{A}_{\le 6} \;\nvdash\; \text{quantum theory},
+$$
+
+for the elementary reason that a satisfiable-by-classical axiom set has a
+classical model in its model class. §§2.1–2.2 make it overwhelmingly likely that
+such a model exists; §8 is the obligation to *build it explicitly* rather than
+assert it.
+
+**2.4 What is therefore forbidden in this paper.** No section may present a
+residual, a nonzero $H^1$ class, a normalized weight profile, an interference-like
+cancellation, or a witness receipt as evidence of quantum structure. Each of
+these is demonstrably available classically, and the paper's job is to say so.
+
+**2.5 The boundary of the negative result, stated here as §15 requires** *(added
+2026-07-20 producer pass; a **pointer**, not a discharge of `PL-WDP006-13`)*. The
+no-go of §2.3 and §7 is **class-relative**. It is reached inside a metatheory
+already equipped with real vector spaces, an ordered field, convexity — hence a
+shared randomness source — outcome probabilities stable under repetition, a
+declared composition primitive, and the ambient set theory and finite-dimensional
+linear algebra in which $\Omega_A$, $\otimes_{\min}$, and $\check{H}^1$ are formed.
+**None of that is supplied by Primitive Difference.** A verdict reached inside such
+a metatheory is a verdict about *what is available in it*; it is not a verdict
+about structure, and it is not a result about reality. §4.5 states the same fence
+for the GPT class specifically; §15 states it for the whole construction; the
+standing form is boundary fence `WD6-L9` (Claim Ledger §2a), its permanent
+non-claim home is `WD6-N19`, and the obligation to either account for it or
+reformulate the verdict around it is `PL-WDP006-13`. **This paragraph satisfies §15's
+placement requirement; it does not discharge the obligation.**
+
+3. Why a researcher should care
+
+
+Three constituencies.
+
+**Quantum foundations.** The reconstruction programme has a clear standard of
+success — Hardy (2001), Chiribella–D'Ariano–Perinotti (2011), Masanes–Müller
+(2011) each isolate a small set of operational axioms whose model class is
+finite-dimensional quantum theory and nothing else. A new "difference-first" or
+"obstruction-first" framework that claims quantum content owes the same standard.
+This paper supplies the measuring stick and applies it to its own programme
+first.
+
+**The Anomalon corpus.** The corpus has repeatedly brushed against quantum
+language — $\ell^1$ sector weights, Born normalization, cochain phases,
+interference-shaped cancellation. Paper 010 already drew one firewall (Born
+*normalization* is a free re-encoding; Born *uniqueness* is an import typed
+`OracleNeeded`). This paper is the systematic version of that firewall, applied
+to the whole WD chain rather than one theorem.
+
+**Anyone building an operational framework.** The two verdict criteria in §7 are
+framework-independent. They apply verbatim to any programme that derives a
+formalism from an information-theoretic, relational, or agent-relative starting
+point.
+
+The practical payoff is a **six-gate checklist** (§5) plus a **countermodel
+protocol** (§8). Together they convert "does this derive QM?" from a rhetorical
+question into a decidable one, relative to a declared comparison class
+*(discounted against the corpus antecedents of §10)*.
+
+4. Setting — the comparison class
+
+
+The no-go is worthless without a stated class of alternatives. This paper fixes
+the class before stating any theorem.
+
+**4.1 Single systems.** A *system* is a triple $A = (V_A, V_A^{+}, u_A)$ where
+$V_A$ is a finite-dimensional real vector space, $V_A^{+} \subseteq V_A$ is a
+closed generating pointed convex cone, and $u_A \in (V_A)^{*}$ is a strictly
+positive *unit effect*. The state space is the compact convex set
+
+$$
+\Omega_A \;=\; \{\, \omega \in V_A^{+} \;:\; u_A(\omega) = 1 \,\},
+$$
+
+and the effect space is
+
+$$
+E_A \;=\; \{\, e \in (V_A^{+})^{*} \;:\; 0 \le e \le u_A \,\}.
+$$
+
+A *measurement* is a finite family $\{e_i\} \subseteq E_A$ with
+$\sum_i e_i = u_A$; outcome probabilities are $e_i(\omega)$.
+
+**4.2 Composition.** A composition rule assigns to each pair $A, B$ a system
+$AB$ satisfying the no-signalling sandwich
+
+$$
+\Omega_A \otimes_{\min} \Omega_B \;\subseteq\; \Omega_{AB} \;\subseteq\; \Omega_A \otimes_{\max} \Omega_B .
+$$
+
+Fixing where in this sandwich a theory sits is *itself* a discriminator (gate D3)
+and is not determined by single-system structure.
+
+**4.3 The distinguished members of the class.**
+
+| Model | State space | Position in the class |
+|---|---|---|
+| $\mathsf{Cl}_n$ — classical | Simplex $\Delta_{n-1}$ | $\otimes_{\min} = \otimes_{\max}$; every measurement jointly measurable |
+| $\mathsf{Q}_d$ — complex quantum | $\{\rho \in \mathcal{B}(\mathbb{C}^{d}) : \rho \ge 0,\ \operatorname{tr}\rho = 1\}$ | Strictly between $\otimes_{\min}$ and $\otimes_{\max}$; locally tomographic |
+| $\mathsf{Q}^{\mathbb{R}}_d$ — real quantum | Real symmetric density matrices | Fails local tomography |
+| $\mathsf{Q}^{\mathbb{H}}_d$ — quaternionic | Quaternionic density matrices | Fails standard composition |
+| $\mathsf{Box}$ — Boxworld | Hypercube / max tensor product | Supports PR boxes; $\mathrm{CHSH} = 4$ |
+| $\mathsf{Sq}$ — squit / polygon theories | Regular $n$-gon state spaces | Interpolates classical ↔ quantum-like |
+| $\mathsf{Stoch}$ — the corpus model | Classical joint distributions with a declared lossy projection | **Papers 001G, 001H live here** |
+
+**4.4 The point of the table.** The WD chain must be located in this table. The
+founding negative fact of §2 places it, as of today, in the last row: a classical
+simplex theory with extra declared bookkeeping. Extra bookkeeping on a simplex is
+still a simplex.
+
+*Claim type:* `WDP006-C4` `[STANDARD]` — the §4 formalism is imported from the GPT
+literature, not constructed here.
+
+**4.4a Corpus antecedent — this comparison audit has been run before (added
+2026-07-20 producer pass).** QM_101 (*State–Effect Pairing Audit*) already grades
+a declared list of candidate state/effect pairings — **classical
+$\mathbb{R}^2$ simplex, square-bit GPT, Spekkens toy, real Hilbert (rebit),
+complex Hilbert, quaternionic, and a nonlinear negative control** — by seven
+uniform finite checks (normalization; positivity; no-signalling / marginal
+consistency *where composition is declared*; transport coherence; local-to-global
+terminal agreement; quotient non-promotion; finite replay), and reports as its
+**headline non-result** that *the compatibility skeleton does not uniquely select
+Born*, machine-checked as `compatible_not_unique` and `born_not_selected` in Lean
+module `QM.PairingNonSelection` (`ENC-1070`, `MECHANIZED`). QM_101 cites the same
+GPT vocabulary this section imports (Barnum–Barrett–Leifer–Wilce 2007) and the
+same reconstruction neighbours (Hardy; CDP; Spekkens).
+
+**How far that antecedent actually reaches** *(narrowed 2026-07-21 repair pass;
+the earlier text read "the §4.3 table is therefore a re-presentation, in a
+different indexing, of a comparison class the corpus already carries", which
+overstated QM_101 — against this paper's own interest, since overstating a
+neighbour is a drafting defect in either direction, per §10)*. QM_101 already
+audits a candidate list of state/effect **pairings** by uniform finite checks; it
+declares no cone ordering — the GPT cone **vocabulary** it does reuse appears in
+the square-bit row, and that row is itself `refused` — no composition sandwich,
+and refuses its composite rows for want of a declared composition rule. §4.2's
+sandwich and the $\mathsf{Box}$ / $\mathsf{Sq}$ rows have no QM_101 antecedent
+(see ledger §8.3). What §4.4a
+supports is therefore narrower: the *practice* of grading a declared candidate
+list against uniform finite checks is not new to this corpus, and the row-by-row
+overlap between §4.3's members and QM_101's registry is real — but §4.1–§4.2's
+cone, convexity, and $\otimes_{\min}/\otimes_{\max}$ apparatus is not QM_101's,
+and QM_101's own §"related work" states it "asks which pairings are
+terminal-compatible, not which GPT axioms force QM." Claim row `WDP006-C19`
+`[STANDARD]`; non-claim `WD6-N24`.
+
+Separately, QM_121 (*The Finite QM Ingredient Ladder*) already assembles the
+corpus's own answer to "how far does classical $\ell^1$ obstruction geometry climb
+toward quantum theory, and where must it import" — six rungs (probability as
+$\ell^1$ normalization; the diagonal density; the stochastic-kernel channel; the
+path-sum as matrix power; superposition as the phase-blind quotient fiber;
+interference as the non-$\ell^1$ resource) with an explicit **imported ceiling**
+of exactly three items: the $\mathbb{C}/U(1)$ phase carrier, Born-quadratic
+uniqueness (Gleason), and the continuum. Its ladder diagram runs
+$L^1(E) \to \Delta(E) \to \mathrm{Diag}(\Delta(E))$ — the classical shadow through
+the probability **simplex**. WD-6 must be read as *stress-testing the WD chain
+against* that ladder, not as introducing it. Claim row `WDP006-C20` `[STANDARD]`.
+
+**4.5 Interpretive fence.** The GPT class is not neutral ground. It presupposes
+real vector spaces, convexity (hence free mixing, hence shared randomness),
+repeatable preparations, and outcome probabilities. A programme starting from
+Primitive Difference has not earned any of these. §14 treats this as a
+genesis-bias obligation, not a footnote. The consequence is stated bluntly here:
+**a no-go proved inside the GPT class is a no-go about the GPT class**, and the
+paper must not let it read as a no-go about reality.
+
+5. The quantum discriminator gate
+
+
+The suite is assembled here **for the WD chain specifically**. As §10 records, the
+corpus already covers most of this ground under other indexings and in a different
+logical role: Paper 057 §4's Q1–Q4 (Q1 ↔ D2b, Q4 ↔ D2c, Q2 ↔ D4, Q3 ↔ D1, with
+D2a supplied instead by Paper 058 §4's signed scalars and no Q row answering to
+D6) is a **price list of unpaid imports**, not a necessity gate on axiom sets, so
+the correspondence is **partial, not an exact re-indexing**; QM_121's six-rung
+ladder with its three-item imported ceiling is the corpus's own closest statement
+of the project. What is WD-6's is the assembly, the D2a/D2b/D2c split, and D6 as
+an explicit gate — not the idea of a gate list, and not the paper's shipped
+result, which is T2 (§6).
+
+> **Definition (Quantum Discriminator Suite).** Let $\mathcal{A}$ be a proposed
+> axiom set and $\mathrm{Mod}(\mathcal{A})$ its model class inside the comparison
+> class of §4. $\mathcal{A}$ *selects quantum theory* only if it explains or
+> uniquely forces every gate below.
+
+| Gate | Requirement | What a failure means |
+|---|---|---|
+| **D1** — Noncommuting contexts | $\mathcal{A}$ forces the existence of measurements with no joint refinement; equivalently $\Omega$ is not a simplex | Classical theory survives; a simplex admits a joint distribution for every measurement family |
+| **D2a** — Additive inverses | $\mathcal{A}$ forces a carrier admitting destructive cancellation | Magnitude-only weights cannot interfere (Lemma L1, §6). **Already paid at $\delta 8$** — Paper 058 §4 signed scalars |
+| **D2b** — Phase group action | $\mathcal{A}$ forces a phase group acting on the carrier | Paper 057 §4 Q1 prices a **finite** $\mathbb{Z}/n$ cyclotomic alphabet as R2a-cheap. A destructive-cancellation witness at $\Delta\alpha = \pi$ is in Lean module `QM.InterferenceHolonomyZn` (`witness_destructive`) — **but stated over $\mathbb{C}$ with `Real.pi`, and that module declares no finite $\mathbb{Z}/n$ carrier at all, so it is a numerical instance of one continuum identity and mechanizes nothing finite-carrier-only: see the import note in §5.2** *(narrowed 2026-07-21 repair pass; the earlier cell called it "the $n = 2$ sample")* |
+| **D2c** — Continuum of settings | $\mathcal{A}$ forces a continuum of relative-phase settings | A **separate and more expensive** purchase (Paper 057 Q4 continuity), not required for interference as such |
+| **D3** — State-composition law | $\mathcal{A}$ pins $\Omega_{AB}$ at the quantum point of the §4.2 sandwich | Underdetermined composition admits $\mathsf{Box}$ and $\mathsf{Cl}$ alike |
+| **D4** — Probabilities and the Born map | $\mathcal{A}$ forces the quadratic form $p(e \mid \rho) = \operatorname{tr}(E\rho)$, not merely a normalized weight profile | Normalization alone is free (Paper 010, Thms 1 and 4) |
+| **D5** — A specifically quantum bound or phenomenon | $\mathcal{A}$ forces contextuality *and the quantum value of the bound* — e.g. $\mathrm{CHSH} \le 2\sqrt{2}$, not $4$ | Nonzero obstruction without a bound is satisfied by super-quantum theories |
+| **D6** — Classical exclusion | Every classical stochastic model satisfying the earlier WD obstruction axioms is provably outside $\mathrm{Mod}(\mathcal{A})$ | Stop condition 3 fires; the result is an operational theory, not QM |
+
+**5.1 D5 is the gate people miss.** Sheaf-theoretic contextuality
+(Abramsky–Brandenburger) identifies contextuality with a nonvanishing obstruction
+to a global section of the presheaf of empirical distributions over a measurement
+cover. The obstruction being *nonzero* is necessary for quantumness but nowhere
+near sufficient: PR boxes are strongly contextual and reach $\mathrm{CHSH} = 4$,
+which quantum theory cannot. The programme's cohomological instincts therefore
+buy it *at most* the necessary half of D5.
+
+**5.1a The corpus already owns both halves of the CHSH arithmetic (added
+2026-07-20 producer pass; this materially narrows what WD-6 may claim at D5).**
+Three published results stand here and must be cited rather than re-announced.
+
+* **The finite CHSH bound is a published theorem.** Paper 058 §4.2: for every
+  exhibited single-global-joint-table model over four sign-valued windows,
+  $-2 \le E(0,0)+E(0,1)+E(1,0)-E(1,1) \le +2$, typed
+  `[PROVEN, per-exhibition, CONDITIONAL on the scalar package]` with Lean target
+  `PL-GTOC-19`. Its **deterministic-local core is already mechanized**:
+  `QM.CHSH.chsh_le_two` and the tightness witness `QM.CHSH.chsh_eq_two` in Lean
+  module `QM.CHSHLocalBound` (`by decide` over the sixteen $\pm1$ assignments).
+  Paper 058 §4.3 names the *entire* content of the bound as its hypothesis — **one
+  exhibited weight family over joint assignments of all four windows** — which is
+  precisely what §8.2's CHSH row must declare and does not yet.
+
+* **The PR-box exceedance is already exhibited at the derived layer, with no
+  quantum import.** Paper 058 §5.1 displays four normalized derived-scalar pairwise
+  tables — $(\tfrac12,0,0,\tfrac12)$ on $(a_0,b_0),(a_0,b_1),(a_1,b_0)$ and
+  $(0,\tfrac12,\tfrac12,0)$ on $(a_1,b_1)$ — giving $S = 1+1+1-(-1) = 4$ with no
+  joint extension, and records that "PR-box" is *an external name for the displayed
+  pairwise-table pattern; no physical box, no non-signalling principle, and no
+  operational theory is imported*. So the corpus reaches $\mathrm{CHSH} = 4$
+  classically, before any of §4's apparatus.
+
+* **Tsirelson is already priced, and this paper's earlier phrasing of the frontier
+  was wrong.** Paper 058 §5.2 grades the **value** $2\sqrt{2}$ as *R2a-cheap* — in
+  058's own words **"a quadratic irrational — one algebraic extension"**; the
+  earlier gloss "a radical over the derived scalars" was this paper's wording, not
+  058's, and is withdrawn — and the **structure attaining** it as Q-priced.
+  **The attaining price is five itemized structural imports, not two** *(corrected
+  2026-07-21 repair pass; the earlier "(Q1 phase fiber + Q2 $\ell^2$ readout)"
+  understated it)*. Paper 058 §5.2 lists: (1) a complex amplitude carrier (Q1);
+  (2) tensor composition — the declared linear rule for composites (V3); (3) an
+  entangled state vector, i.e. a non-separable vector in that tensor product;
+  (4) incompatible local effects — non-commuting observables on each side; and
+  (5) the Born pairing, yielding the probabilities that form the pairwise tables.
+  Only after all five are paid do tables reaching $\lvert S\rvert = 2\sqrt{2}$
+  become available; 058's own §5 import ledger row records the price as
+  **"Q1+Q2 (+Q4)"**, with the ceiling itself **not derived in either direction**
+  but cited as imported mathematics. Paper 058 therefore records this price at
+  **two granularities** — the five itemized structural imports of §5.2 and the
+  import-ledger row's compressed "Q1+Q2 (+Q4)" — so the two counts are the same
+  price stated coarsely and finely, not a conflict. An earlier draft of this section
+  said "deriving the *value* $2\sqrt{2}$ from residual data is the genuine
+  frontier." **That is withdrawn as mislocating the difficulty.** The frontier is a
+  principle that forces the *attaining structure* — a theory that both fails the
+  joint-table facet and respects the ceiling — not the numeral. Claim row
+  `WDP006-C21` `[STANDARD]`; correction recorded in the Claim Ledger §7.
+
+Consequently D5's *necessary* half is not merely instinct in this corpus: it is
+`ENC-1143`, the Mermin–Peres square realized as a finite $\mathbb{F}_2$
+PrimitiveDifference cochain obstruction — every context individually satisfiable,
+every five-context subset satisfiable, no global noncontextual assignment —
+`MECHANIZED` and axiom-free in Lean modules `QM.MerminPeresF2Cochain`,
+`QM.MerminPeresCochainObstruction`, and `QM.ParityContextObstruction`, with
+`QM.GHZNoLocal` and `QM.NoSignallingMarginal` alongside. `ENC-1143` carries its own
+load-bearing scope fence — it is *the finite obstruction-calculus translation of a
+known proof*, and does **not** discover contextuality, derive quantum mechanics or
+Hilbert space, or mint authority (`StructureDerived \nRightarrow \mathrm{IsAuth}`,
+`ENC-1063`). **WD-6 inherits that fence unlifted.** What remains genuinely open at
+D5 is stated in §12 and is not attempted here. Claim row `WDP006-C22` `[STANDARD]`;
+non-claims `WD6-N25`, `WD6-N26`.
+
+**5.2 D2a–D2c do not force $\mathbb{C}$.** Cancellation requires additive
+inverses; relative-phase sensitivity requires a phase group action. Neither
+forces the complex field: real quantum theory has both, and is a distinct theory.
+In the established reconstructions it is *local tomography* ($d_{AB} = d_A d_B$)
+that excludes $\mathsf{Q}^{\mathbb{R}}$, not interference. Any WD argument
+concluding "therefore $\mathbb{C}$" from interference alone is wrong, and the
+paper must say so by name.
+
+Nor does the phase group have to be continuous. Paper 057 §4 Q1 prices a finite
+$\mathbb{Z}/n$ cyclotomic alphabet as an **R2a-cheap** import — finite,
+non-continuum. Continuity is a separate and dearer purchase (Paper 057's Q4, this
+paper's D2c). Demanding a continuum of phase settings as a precondition for
+interference — as an earlier draft of D2 did — overstates the price by conflating
+D2b with D2c.
+
+> **Citation repair and an import, both added 2026-07-20 producer pass.**
+> *(i) Stale path.* The earlier text cited [index:index:InterferenceHolonomyZn.lean](omega_engine/research/_indexes/_master_index.yaml).
+> The `lean4/` tree has been reorganized into `00N_programme/` folders, so that
+> path no longer resolves; per repository convention the development is cited by
+> **Lean module name**, `QM.InterferenceHolonomyZn` (namespace
+> `QM.InterferenceHolonomy`), and every Lean citation in this paper now uses module
+> names.
+> *(ii) What the module actually mechanizes, and the carrier it does it over.* The
+> module proves the cross-term identity `cross_eq_cos`,
+> $\lVert r_a e^{i\alpha_a} + r_b e^{i\alpha_b}\rVert^2 - \lVert r_a e^{i\alpha_a}\rVert^2
+>
+> * \lVert r_b e^{i\alpha_b}\rVert^2 = 2 r_a r_b \cos(\alpha_a - \alpha_b)$, and the
+> two witnesses `witness_constructive` ($\Delta\alpha = 0$, cross $+2$) and
+> `witness_destructive` ($\Delta\alpha = \pi$, cross $-2$). **These are stated over
+> $\mathbb{C}$ (`Complex.exp`, `Complex.normSq`) and over $\mathbb{R}$ (`Real.pi`,
+> `Real.cos`).**
+> *Strengthened 2026-07-21 repair pass — the earlier note called the witnesses
+> "the $n = 2$ sample of the roots-of-unity family", which is still too generous
+> to D2b.* **The module contains no finite $\mathbb{Z}/n$ carrier at all.** There
+> is no `ZMod n`, no roots-of-unity type, and no cyclotomic alphabet anywhere in
+> it: `cross_eq_cos` quantifies over **real** phases `αa αb : ℝ`, and even
+> `cross_rootsOfUnity_refinement` — the theorem whose *name* says roots of unity —
+> takes an arbitrary real sequence `h : ℕ → ℝ` and forms `2πh(n)/n`, with no
+> integrality and no finite group in sight. The "$\mathbb{Z}_n$ shadow" exists
+> only in the file's docstring. The module's **only** finite structure is the sign
+> index `Fin k → Bool` of `holonomy_resource_injective`, whose phases are still
+> real (`Real.cos (if s i then Real.pi else 0)` over `r r' : Fin k → ℝ`) — a
+> two-valued holonomy label, not an algebraic $\mathbb{Z}/n$ carrier, so it leaves
+> the fence intact. So D2b's mechanized content is **weaker** than "the
+> $n = 2$ sample inside an imported complex carrier": it is **one continuum
+> identity, of which $\Delta\alpha = \pi$ is a numerical instance**. The sentence
+> "a finite $\mathbb{Z}/n$ alphabet already yields full destructive cancellation at
+> $\theta = \pi$" therefore has **no mechanized finite-carrier content whatever**,
+> and is *not* a finite-carrier result. The complex carrier and the real $\pi$ are
+> **declared imports at this step**, priced as Paper 057's Q1/Q2 and Paper 010's
+> Hilbert lift — they are not derived by D2b, and D2b must not be read as deriving
+> them. This makes §5.2's fence stronger, not weaker, and it widens what falsifier
+> `WD6-F8` would have to exhibit.
+> *(iii) The module's theorems **named** $\mathbb{Z}_n \to U(1)$ point the other
+> way.* `cross_Zn_to_U1_refinement` and `cross_rootsOfUnity_refinement` are
+> **limit** statements over a real sequence: as the phase argument converges, the
+> sampled cross terms converge to the continuum cross term. That is a certificate
+> of descent *into* D2c, not evidence that D2c is unnecessary — and, per (ii), the
+> "$\mathbb{Z}_n$" in their names is docstring vocabulary, not a hypothesis either
+> theorem carries.
+> *(iv) Paper 057's counterweight, recorded.* Paper 057 §4 Q1 states that finite
+> phases "**genuinely fall short of the qubit's $U(1)$, which costs continuity
+> (Q4)**", citing QM_062's honest gap that the abstract phase-group shadow cannot
+> separate $U(1)$ from the torsion shadow $\mathbb{Q}/\mathbb{Z}$. D2b/D2c is
+> therefore the right split **for interference as such**, and is *not* a claim that
+> a finite alphabet reaches the qubit. Claim row `WDP006-C23` `[STANDARD]`; non-claim
+> `WD6-N27`.
+
+**5.2a The $\mathbb{C}$-selection question is already sharpened in the corpus.**
+`ENC-1136` (`MECHANIZED`; Lean modules `QM.ForceComplexCarrier`, `QM.U1Selector`,
+`QM.U1AngleAddition`, `QM.U1TorsionExclusion`) establishes a **conditional
+forcing** of $\mathbb{C}/U(1)$: a global-phase-invariant interference cross term
+requires a genuine involution; the abelian order-unbounded phase fiber excludes
+real-signed ($\mathbb{Z}/2$) and quaternionic ($Q_8$ non-abelian); and the
+generator of continuous reversible pairing-preserving two-level transport is a
+complex structure $J^2 = -I$. **The residue that stays imported is named there:
+continuity of reversible dynamics, and global field-uniqueness across $n$ (local
+tomography; Renou et al. 2021).** This confirms §5.2's warning from the other
+direction — the corpus's own $\mathbb{C}$-selection is conditional on exactly the
+local-tomography ingredient §5.2 identifies — and it means WD-6 supplies no new
+information about D2 beyond locating it. Claim row `WDP006-C23`.
+
+**How much "forcing" that is, in the module's own words** *(added 2026-07-22
+producer pass; this is the single sentence in this paper most exposed to
+Born/reconstruction overclaim, so the primary source is quoted rather than
+paraphrased)*. `QM.ForceComplexCarrier` defines the hypothesis under which the
+siblings are excluded as `FCAI := IsAbelian ∧ OrderUnbounded`, and its own
+docstring fences the result: **"`FCAI` does not uniquely characterize ℂ … So FCAI
+EXCLUDES the discrete (`ℝ`-signed) and non-abelian (`ℍ`) carriers, and ℂ ADMITS
+it; it does NOT single ℂ out among abelian-unbounded carriers.
+Uniqueness-among-FCAI is NOT established."** The module exhibits an inhabiting
+witness of `FCAI` — `QM.ForceComplexCarrier.ProdCyc` — which its docstring calls
+the $U(1)$-torsion shadow and labels $\mathbb{Q}/\mathbb{Z}$, and which it records
+**"is NOT `ℂ` nor even `U(1)`"**; the same docstring states that `FCAI` is "a
+property shared by a **whole class** of abelian groups of unbounded order",
+naming every $\prod_n \mathbb{Z}/(k_n)$ with $k_n \to \infty$.
+
+*(Two corrections entered in repair cycle 1, both against this paper's own
+interest.* **(a)** *`ProdCyc` is **not** $\mathbb{Q}/\mathbb{Z}$, and WD-6 should
+not have repeated that label in its own voice. The module defines `ProdCyc` as the
+**full direct product** $\prod_{n\ge0}\mathbb{Z}/(n+1)$ on `Nat → Nat`, which is
+**not a torsion group** — $f(n) = 1$ for every $n$ has infinite order, since
+$f^m = 1$ would need $(n+1) \mid m$ for every $n$ — whereas
+$\mathbb{Q}/\mathbb{Z} \cong \bigoplus_n \mathbb{Z}/n$ is torsion. The module
+applies the $\mathbb{Q}/\mathbb{Z}$ label to `ColimCyc`, the colimit, which it
+never builds as a group. The identification is therefore the module's, is loose,
+and is reported here rather than adopted. **The fence is unaffected, and if
+anything wider**: the exhibited witness is a strictly larger group than
+$\mathbb{Q}/\mathbb{Z}$ and is not even torsion, so the carriers satisfying `FCAI`
+are not confined to the torsion shadow, and `FCAI` singles out $\mathbb{C}$ even
+less than the $\mathbb{Q}/\mathbb{Z}$ reading suggested.* **(b)** *An earlier draft of this
+paragraph said "what closes the gap to $\mathbb{C}/U(1)$ **is** the continuity
+import" and that $\mathbb{Q}/\mathbb{Z}$ "is **exactly** the carrier that survives
+without it". Both are withdrawn. The first asserts that a named import **suffices**,
+which no module here proves — `QM.U1Torsion.kernel_infinite` shows a period lattice
+is infinite, which is not a uniqueness result — and it also under-counts, naming one
+import where two are recorded. The second is a **uniqueness** claim inside the very
+paragraph whose purpose is to transmit that uniqueness is not established, and it
+contradicts the sentence above it.)*
+
+So the mechanized content is an **exclusion of two named siblings, not a selection
+of $\mathbb{C}$**. What `ENC-1136` names as the residual imports are continuity of
+reversible dynamics and global field-uniqueness across $n$ (local tomography); **the
+corpus does not mechanize that those imports suffice**, and `ProdCyc` is one of an
+unbounded family of carriers that survive without them. This is the same
+non-separation §5.2 note (iv) attributes to QM_062 — in note (iv)'s wording, that
+the abstract phase-group shadow cannot separate $U(1)$ from the torsion shadow
+$\mathbb{Q}/\mathbb{Z}$ — and note (iv) claims non-separation, not uniqueness,
+which is the reading that stands. Per (a) above the surviving class is in fact
+**wider** than that torsion framing, which strengthens the non-separation rather
+than qualifying it. The exclusion module carries the same fence in its own routing
+header, recording that `QM.U1Torsion` "**is not a verdict that `ℂ`/`U(1)` is
+forced**" — and `kernel_infinite` is stated *about* `Complex.exp`, so it
+presupposes the complex carrier and cannot be evidence for it. Read with that
+fence, "conditional forcing" means *forcing conditional on continuity and local
+tomography*, and **must not be read as "the corpus derives the complex field"**.
+Non-claim `WD6-N27`; the standing non-claim that WD-6 does not derive quantum
+mechanics (§12) is unaffected and unlifted.
+
+**5.3 D4 is already firewalled — and the firewall is already mechanized.** Paper
+010 established that Born *normalization* is a redundant re-encoding of given
+$\ell^1$ weights (`ENC-0312`, Theorem 1; Theorem 4), and that Born *uniqueness*
+rests on imported Hilbert, projection, and Gleason-type assumptions typed
+`OracleNeeded` (`ENC-0317`, `status: CONDITIONAL`, `lean_status:
+MECHANIZED-PARTIAL`, with the seven imported assumptions listed verbatim). WD-6
+does not reopen either result. Its D4 question is strictly: *does anything in
+WD-0 … WD-5 discharge that oracle?* The default expected answer is no, and the
+burden is on any claimant.
+
+Two further mechanized results already occupy this gate and must be cited
+(added 2026-07-20 producer pass):
+
+* **`ENC-1070` — pairing non-selection** (`MECHANIZED`, Lean module
+  `QM.PairingNonSelection`). **The entry's statement and its mechanized content
+  are not the same size, and this paper must cite them separately** *(separated
+  2026-07-22 producer pass; the earlier text stated the entry's wording and
+  attached the Lean theorem names to it in one breath)*. `ENC-1070`'s **Statement**
+  and **Hypotheses** sections say LT-K quantifies over "the O024 compatibility
+  skeleton (positivity, normalization, transport, gluing)" and that LT-Q concerns
+  $[0,1]$ **probability** content. What the Lean **mechanizes** is thinner on both
+  counts: the module defines `Pairing := Nat × Nat` and
+  `Compatible total p := p.1 + p.2 = total` — **normalization to a fixed total and
+  nothing else**, over $\mathbb{N}$, where the module's own docstring records that
+  "positivity is free over `ℕ`"; **no transport and no gluing predicate occurs
+  anywhere in the module**. So `compatible_not_unique` is the statement that
+  $(1,1)$ and $(2,0)$ are distinct pairs of naturals summing to $2$, and
+  `born_not_selected` that $(2,0)$ is such a pair and is not $(1,1)$. Likewise
+  `pairing state effect := state * effect` is $\mathbb{N}$-valued, so
+  `probability_is_pairing_relative` ($1\cdot1 \neq 1\cdot2$) and
+  `no_probability_without_pairing` (multiplication is not independent of its second
+  argument) carry **no $[0,1]$ content**: "probability" is a name in that module,
+  not a bounded quantity. **This narrows the antecedent, and does not weaken WD-6's
+  use of it** — D4's failure column needs exactly "a normalization-only skeleton
+  fails to single out one pairing", which is precisely the thin reading, and the
+  thin reading is the mechanized one. The reconciliation of `ENC-1070`'s prose with
+  its Lean is that entry's obligation and is registered here as a cross-entry
+  observation, **not** minted as a WD-6 obligation (§6's ownership discipline).
+  Claim row `WDP006-C24`; ledger §7.
+
+* **`QM.BornQuadraticCountermodel`** (cited in `ENC-0317`): the power family
+  $P_p(c)_i = c_i^{\,p}/\sum_j c_j^{\,p}$ normalizes for **every** $p$
+  (`powProb_sums_to_one`) — *whenever $\sum_j c_j^{\,p} \neq 0$, which is the
+  theorem's stated hypothesis `hS` and was unstated here before the 2026-07-22
+  producer pass* — and $p = 2$ differs from $p = 4$ on the witness $(1,2)$
+  (`born_not_forced_by_normalization`). Carrier $\mathbb{Q}$ over `Fin n`; the
+  witness is `![1, 2]`, giving $(1/5, 4/5)$ against $(1/17, 16/17)$.
+
+So "normalization alone is free" — the failure-meaning column of D4 — is not an
+observation this paper contributes; it is a machine-checked corpus result with two
+independent countermodels. Claim row `WDP006-C24` `[STANDARD]`; non-claim `WD6-N28`.
+`ENC-0317` further records that Gleason's **non-contextuality** hypothesis is
+exactly the contextuality `ENC-1143` makes obstruction-explicit, so D4 and D5 are
+coupled in this corpus at a named point rather than independent gates — a fact
+§5's table does not currently reflect and which any future draft must state.
+
+6. Theorem targets
+
+
+Stated as targets. None is proved here.
+
+### T1 — Embedding of the WD-5 weight systems
+
+The classification of finite witness-history weight systems produced by WD-5
+(`005_wd5_finite_witness_history_integral`) determines, for each weight system
+$(S, \Phi)$, a system $A(S,\Phi)$ in the comparison class of §4, functorially in
+the declared composition of histories.
+
+*Status note:* WD-5 is itself an outline. T1 is conditional on WD-5 delivering a
+classification at all, and this dependency must be stated wherever T1 is cited.
+
+### T2 — Classical shadow (the expected verdict)
+
+There exists a classical model $\mathcal{C} \in \mathsf{Cl}$, equipped with a
+declared lossy projection and a residual ledger, satisfying every axiom in
+$\mathcal{A}_{\le 6}$. Consequently $\mathcal{A}_{\le 6}$ does not select quantum
+theory, and programme **stop condition 3** fires.
+
+### T3 — Discriminator adequacy
+
+The suite D1–D6 is *adequate*: an axiom set clearing all six gates over the §4
+comparison class has model class $\{\mathsf{Q}_d\}$ up to the declared
+equivalence. Equivalently, D1–D6 admits no non-quantum model.
+
+T3 is the hard half of the paper and may well be false as stated — the gates were
+assembled by inspection of what discriminates in practice, not derived. If T3
+fails, the honest repair is to demote D1–D6 from *sufficient* to *necessary*: a
+screening filter that no candidate may skip, rather than a characterization.
+
+### T4 — Import detection
+
+There is a decision criterion identifying, for an axiom $\alpha$, whether
+$\alpha$ is equivalent over the comparison class to complex Hilbert structure,
+to a phase group action, or to the quadratic Born form. An axiom flagged by the
+criterion converts any downstream result into a **reconstruction relative to that
+import** (stop condition 4).
+
+### T5 — Phase necessity from the WD-5 carrier
+
+Let $\Phi : \mathrm{Hist} \to S$ be a WD-5 history weight functional valued in a
+semiring $S$. If $S$ is *zerosumfree* — i.e. $a + b = 0$ implies $a = b = 0$ —
+then for every finite history set $H$ with some $\Phi(h) \neq 0$,
+
+$$
+\sum_{h \in H} \Phi(h) \;\neq\; 0 .
+$$
+
+Hence no destructive interference is expressible, and gate D2 fails **for that
+carrier**. Corollary: interference requires the WD-5 carrier to admit additive
+inverses at minimum, and phase-sensitivity requires a phase group acting on $S$.
+This is programme **stop condition 5** made into a lemma.
+
+> **Scope correction (2026-07-20).** An earlier draft said D2 fails
+> *unconditionally*. That is **false as a statement about the corpus.** T5's
+> hypothesis is zerosumfreeness of $S$, and the published corpus already supplies
+> a carrier that violates it: Paper 058 §4.1 runs on signed scalars valued in
+> $\{+1,-1\}$, and §5.4 executes $c = -c \Rightarrow c = 0$ in an integral domain
+> with $+1 \neq -1$ (registered as `PL-GTOC-20`; the weaker "commutative ring with
+> $2 \neq 0$" form is false, $\mathbb{Z}/4$ being the standing countermodel) — an
+> additive-inverse-bearing carrier at $\delta 8$. T5 is therefore scoped to the
+> WD-5 semiring functional and says nothing about $\delta 8$ or above.
+
+> **Ownership ruling (added 2026-07-20 producer pass; do not re-litigate in a
+> draft).** WD-5 states a target **also numbered T5, with the same content**, and
+> opens `PL-WD5-7` (prove it, including the finite $k$-fold extension) and
+> `PL-WD5-8` (mechanize it). WD-5's global-ledger block records the duplication and
+> declines to resolve it unilaterally. Per the programme sequence — WD-5 produces
+> the weight-system menu, WD-6 consumes it — and per §6's own closing line that
+> "T1 and T5 are infrastructure … the paper ships on T2", **WD-5 owns this
+> theorem.** `PL-WDP006-5` is accordingly restated as a *consumption* obligation:
+> cite WD-5's T5 at whatever status `PL-WD5-7`/`PL-WD5-8` reach, and **do not
+> re-prove or re-mechanize it here**. This is one obligation with two
+> registrations, not two results, and must not be double-counted. WD-6 edits no
+> WD-5 file. Claim row `WDP006-C12` is unchanged in content; its upgrade path now
+> points at WD-5. Non-claim `WD6-N29`.
+
+> **Second priority caution on T5 (added 2026-07-20 producer pass).** The
+> $\ell^1$ instance of the phase no-go is **already mechanized in this corpus** and
+> may not be re-announced by either paper: `ENC-1135`
+> (`L1_cannot_compute_interference`, Lean module `QM.InterferenceBuildability`),
+> with the witness $(1,1)$ versus $(1,-1)$ — identical $\ell^1$ data $(1,1)$,
+> interfered outcomes $4$ and $0$, cross terms $+2$ and $-2$ — and `ENC-1135`
+> records itself as **pub-010 Theorem 7 repackaged, "not a novel result"**. Note
+> also that `ENC-1135`'s *interference* is a **different object** from the
+> semiring-sum notion T5 uses: it is the quadratic readout
+> $\mathcal{I}(c) = \lvert\sum_s c_s\rvert^2$, whereas T5's is *vanishing of a
+> coarse-graining total in $S$*. Neither notion is the other's, and every statement
+> of T5's consequence in a draft must carry the qualifier **destructive**.
+> *(Carrier corrected 2026-07-22 producer pass; the earlier text said this readout
+> runs "on a declared $\mathbb{C}/U(1)$ amplitude carrier".* **It does not.** *The
+> module's amplitudes are the two-field structure `Amp` with `c0 c1 : Int`, and its
+> own docstring says the **integer signs model the $\{0,\pi\}$ relative phase** —
+> `interfered a := (c0 + c1) * (c0 + c1)` over $\mathbb{Z}$, with no `Complex`
+> anywhere in the file. $\mathbb{C}/U(1)$ appears in that module only in its
+> firewall note, naming the phase-bearing carrier as **an import the file does not
+> derive** — the opposite role from "the carrier it runs on". The correction cuts
+> the same way as §5.2's: it makes the fence stronger, because the $\ell^1$
+> no-go is mechanized over an even cheaper carrier than the paper had conceded.)*
+
+### T6 — Contextuality correspondence (or its failure)
+
+Either (a) the WD residual $H^1$ admission gate of Paper 001H and the
+Abramsky–Brandenburger sheaf obstruction agree on a common measurement-cover
+host, or (b) they do not, and the discrepancy is exhibited. Both outcomes are
+publishable; (a) is *positioning*, not a quantum result, because the AB framework
+also hosts classical and super-quantum empirical models.
+
+**T2 is the load-bearing result.** T1 and T5 are infrastructure; T3 and T4 are the
+gate's own justification; T6 is positioning. The paper ships on T2.
+
+7. The two verdict criteria (the honest fork)
+
+
+The paper must state these as its own binding decision rules, in this form, before
+any result is reported.
+
+> **Verdict rule 1 (classical shadow — charter stop condition 3).**
+> If a classical stochastic model satisfies every proposed axiom, the result is a
+> **general operational theory, not a derivation of quantum mechanics**. The word
+> "quantum" may not appear in the conclusion, the abstract, or the title except
+> under negation.
+
+> **Verdict rule 2 (hidden import — charter stop condition 4).**
+> If Hilbert space, complex amplitudes, a phase group, or the Born quadratic form
+> is inserted in an axiom under a new name, the result is a **reconstruction
+> relative to that import, not a derivation from Primitive Difference**. The
+> import must be named, typed, and priced in the claim ledger at the point of
+> insertion.
+
+These are §8 items 3 and 4 of the programme charter
+(`research/published/000_wd0_witnessed_difference_programme/000_wd0_witnessed_difference_programme.md`
+— *path corrected 2026-07-22 producer pass; the earlier citation read
+`programs/000_wd0_witnessed_difference_programme/…`, and no `programs/` directory exists
+anywhere in the repository, so that citation resolved to nothing*). Per that
+charter, proving one of them is a **successful outcome, not a failed programme**.
+The title of this paper reflects that: a no-go is fully acceptable and, given §2,
+is the expected result.
+
+**7.1 The renaming failure mode, concretely.** Axioms that have historically
+smuggled the import include: "the state space is self-dual"; "every pure state is
+connected to every other by a continuous reversible transformation"; "the
+composite is locally tomographic and every state has a purification"; "sectors
+carry a $U(1)$-valued weight". None of these is dishonest *if declared*. All of
+them are dishonest if presented as consequences of difference.
+
+8. Worked example — the classical countermodel (required, not yet built)
+
+
+*Specification for the artifact that must exist before this paper ships. Without
+it, T2 is an assertion and the paper has no result.*
+
+**8.1 The construction.** Build $\mathcal{C}$ explicitly:
+
+1. **Carrier.** $N = 4$ binary nodes; state space the simplex
+   $\Delta(\{-1,+1\}^{4})$.
+
+2. **State.** The 001G disjoint-pair correlated state at $\varepsilon = 1/2$, on
+   two disjoint pairs; and separately the 001H even-parity state on
+   $\{000, 011, 101, 110\}$ for the higher-degree cell.
+
+3. **Observer.** The factorizing dashboard $\Pi_{\mathrm{fact}}$ of 001G §1.
+4. **Residual ledger.** The vector receipts $r_e(p) = p_{uv} - p_u \otimes p_v$.
+5. **Cochain lift.** The 001H relative projection-to-cochain adapter applied to
+   the above, including the **degree-2** cell for the parity state.
+   *(Corrected 2026-07-20 producer pass from "degree-3 cell": 001H Definition 6.1
+   attaches connected $k$-body cumulants to $(k-1)$-cells, and 001H §7's bidegree
+   table places "triple connected cumulants" at bidegree $(2,0)$. The triple
+   cumulant is a **3-body** quantity living on a **2-cell**; "degree-3 cell" was an
+   off-by-one against the source's own convention. 001H's own §6.1 heading reads "A
+   degree-one detector can miss a degree-two cell".)*
+
+6. **Weight system.** The WD-5 history weight $\Phi$ instantiated on this model,
+   valued in the nonnegative reals.
+
+**8.1a Two carriers, not one — a specification gap found this pass.** Item 1
+declares $N = 4$ binary nodes with state space $\Delta(\{-1,+1\}^{4})$ (sixteen
+vertices, dimension fifteen), while item 2's 001H parity state lives on **three**
+nodes ($\{-1,+1\}^{3}$, eight strings, support four). $\mathcal{C}$ is therefore
+two models, and §8.2's rows do not say which one each is computed on. Any row
+mentioning a bipartition, a measurement cover, or CHSH is **unstated** until this
+is fixed. Obligation `PL-WDP006-3`.
+
+**8.2 What must be verified and reported as numbers.**
+
+| Quantity | Expected value | Purpose | Standing |
+|---|---|---|---|
+| Edge $\ell^1$ receipt at $\varepsilon = 1/2$ | $1/2$ | Residual apparatus is live | **Re-derived this pass** — 001G's receipt is $r = \tfrac{\varepsilon}{4}(1,-1,-1,1)$, so $\lVert r\rVert_1 = \lvert\varepsilon\rvert$ |
+| Edge total variation | $1/4$ | Same | **Re-derived this pass** — $\mathrm{TV} = \tfrac12\lVert r\rVert_1 = \lvert\varepsilon\rvert/2$ |
+| Incident tally over $N/2$ edges | $N/4$ | 001G's **replayable witness** reproduced (*not* its $\Omega(N)$ density-to-tally theorem, which is a different statement) | **Re-derived this pass** — $J_{\ell^1} = (N/2)\lvert\varepsilon\rvert$; at $N = 4$, $\varepsilon = 1/2$ the value is exactly $1$ |
+| Pair cumulants of the parity state | $0$ | Higher-degree protection is live | **Re-derived this pass** by enumeration over all eight three-bit strings |
+| Triple cumulant of the parity state | nonzero | Same | **Re-derived this pass** — $\kappa_{123} = 1$ in $\pm1$ coordinates; $\max_w \lvert p_{123}(w) - (p_1\otimes p_2\otimes p_3)(w)\rvert = 1/8$ |
+| Degree-1 obstruction class | *expected* nonzero — **not a value** | The cochain gate fires | **NOT COMPUTABLE AS STATED.** See 8.2a |
+| $\max$ CHSH over all measurements on $\mathcal{C}$ | $\le 2$ | **D5 fails**: no quantum bound | **NOT COMPUTABLE AS STATED** (no bipartition, no settings — §8.1a); the *bound itself* is Paper 058 Thm 4.2 + `QM.CHSH.chsh_le_two`, not a WD-6 result. See 8.2b |
+| Global section over any measurement cover | exists | **D1 fails**: no contextuality | **NOT COMPUTABLE AS STATED** — no measurement cover is declared (§15) |
+| Joint measurability of all effect families | holds | **D1 fails**: simplex | `[STANDARD]` for a simplex; a citation, not a computation |
+| Cancellation in $\sum_h \Phi(h)$ | impossible *for a zerosumfree $S$* | **D2a fails** for that carrier: T5. Not a claim about $\delta 8$ — see the §6 scope correction | Consumes WD-5's T5 (`PL-WD5-7`/`PL-WD5-8`); **not re-proved here** |
+| Born quadratic form recoverable | no | **D4 fails** | Consumes `ENC-0317` + `ENC-1070` + `QM.BornQuadraticCountermodel`; a citation, not a computation |
+
+**8.2a The degree-1 obstruction row imports an $H^1$ that 001H declines to
+supply** (added 2026-07-20 producer pass; the layering restated 2026-07-21 repair
+pass, the earlier version having collapsed two stages into one). 001H Proposition
+4.2 layers the availability in **two** stages, and the row fails at the first.
+*Stage one — is there an $H^1$ at all?* A specified $C^2$ and $d_1$ plus the chain
+law $d_1 d_0 = 0$ give $B^1 = \operatorname{im} d_0 \subseteq Z^1 = \ker d_1$, and
+**that** is what makes $H^1 := Z^1/B^1$ *defined*. *Stage two — does this cochain
+have a class in it?* Closure $d_1\omega^{\mathfrak O}(m) = 0$ is an **additional**
+condition, required not for $H^1$ to exist but for the induced projection cochain
+to **determine a class in** it; 001H states that a non-closed record "has no $H^1$
+class in this complex". The §8.2 row is blocked at stage one — no $C^2$, no $d_1$,
+no chain law is supplied — so the stage-two question of closure does not yet
+arise. 001H's own claim `H-B5` —
+"*this paper supplies a $d_0$, $d_1$, exactness witness, or nontrivial $H^1$ class
+for every projection residual*" — is typed **`[NON-CLAIM]`**, with `PL-001H-3`
+open. 001H states expressly that "a non-closed edge record is an active closure
+failure, **not** an $H^1$ class". Downstream, WD-5 types $d_{\mathrm{hist}}^{2}=0$
+``OPEN`` and **expects it refuted** (`WD5-C6`), recording separately that a curved
+differential has no cohomology at all (`WD5-C14`). Therefore, until `PL-001H-3` and
+`PL-WD5-4` close **positively**, the words *closed*, *exact*, *class*, and $H^1$
+carry no established content in this paper, and the row above is an **expectation
+with an unpaid hypothesis**, not a number a checker could report. Claim row
+`WDP006-C25` ``OPEN``; non-claim `WD6-N30`; falsifier `WD6-F6`.
+
+**8.2b The CHSH row is a re-registration, and is under-specified** (added
+2026-07-20 producer pass). Two separate problems.
+*(i) Priority.* The bound is not WD-6's. Paper 058 Theorem 4.2 proves
+$\lvert S \rvert \le 2$ for exhibited single-global-joint-table models
+(`[PROVEN, per-exhibition, CONDITIONAL]`, Lean target `PL-GTOC-19`), and its
+deterministic-local core is mechanized as `QM.CHSH.chsh_le_two` with tightness
+`QM.CHSH.chsh_eq_two`. A producer-pass enumeration over all sixteen $\pm1$
+assignments confirms the attained value set is exactly $\{-2,+2\}$ — the bound is
+tight and no intermediate value occurs — matching Paper 058's own proof, which
+notes one bracket is $\pm 2$ and the other vanishes.
+*(ii) Under-specification.* "$\max$ CHSH over all measurements on $\mathcal{C}$"
+presupposes a bipartition of the four nodes into $A$ and $B$, two setting choices
+per side, and an effect family per setting. §8.1 declares **none** of these, and
+the parity carrier of item 2 has an odd node count admitting no balanced
+bipartition at all. As written the row names no computation. Fixing it is
+`PL-WDP006-3` before `PL-WDP006-4`. Furthermore, Paper 058 §5.1 shows the *derived layer
+itself* reaches $S = 4$ once the single-joint-table hypothesis is dropped, so a
+reported "$\le 2$" is a statement about that hypothesis and must say so, or it will
+read as a property of classicality that it is not.
+
+**8.3 The verdict computation.** $\mathcal{C}$ must be checked against
+$\mathcal{A}_{\le 6}$ axiom by axiom, with a table row per axiom and an explicit
+satisfaction witness. If every row is satisfied, verdict rule 1 fires and the
+paper's result is the no-go. If some row fails, that axiom is the *first candidate
+quantum discriminator in the whole programme*, and the paper's obligation shifts
+to §7.1: check whether that axiom is a renamed import before celebrating it.
+
+**8.4 This is the reproducibility anchor.** It is small enough to print in full
+and to check by hand, and it is executable (§9, level L3).
+
+9. Proof strategy — three independent levels
+
+
+Following WD-0's methodological claim: the same statement is established three
+ways, and agreement between the three is itself evidence.
+
+| Level | Instrument | Purpose |
+|---|---|---|
+| L1 | Convex-geometry argument in prose over §4 | Human-checkable; establishes T2 and T5 by direct construction |
+| L2 | Lean 4 development over finite types | Mechanizes T5 (zerosumfree ⇒ no cancellation) and the simplex global-section lemma |
+| L3 | Executable checker | Enumerates measurements on $\mathcal{C}$, computes CHSH, computes the Čech obstruction over a declared measurement cover, and verifies every §8.2 row |
+
+**L2 placement, and the citation convention.** Per repository convention, any Lean
+development belongs under `omega_engine/lean4/` and nowhere else. **Cite it by
+Lean module name, never by filesystem path** (added 2026-07-20 producer pass): the
+tree is organized into `00N_programme/` source directories, so legacy
+a legacy path such as [index:index:InterferenceHolonomyZn.lean](omega_engine/research/_indexes/_master_index.yaml) no longer resolves —
+the file is at [index:index:InterferenceHolonomyZn.lean](omega_engine/research/_indexes/_master_index.yaml) —
+while the module name `QM.InterferenceHolonomyZn` is stable. *(Placeholder
+repaired 2026-07-22 producer pass: this sentence previously illustrated the
+convention with the metasyntactic name `QM.Foo`, which resolves to no file in
+`lean_lib QM`. Neither a reader nor an automated anchor checker can distinguish a
+deliberately generic example from a real citation. The convention is now
+illustrated with the real module whose stale path §5.2 actually repaired.)* Note
+also that a module name and the namespace inside it need not agree — module
+`QM.CHSHLocalBound` opens namespace `QM.CHSH`, module
+`QM.InterferenceHolonomyZn` opens namespace `QM.InterferenceHolonomy`, and module
+`QM.MerminPeresF2Cochain` opens namespace `QM.MerminPeresF2` *(third instance
+added 2026-07-22 producer pass)* — so a
+theorem must be cited as *module + fully-qualified name*.
+
+**L2 is largely pre-empted, and must not be re-spent** (added 2026-07-20 producer
+pass). Of the two jobs §9 assigns to L2: **T5 belongs to WD-5** (`PL-WD5-8`; see
+the §6 ownership ruling) and its $\ell^1$ instance is already mechanized as
+`QM.InterferenceBuildability`; and the **simplex/global-section side of D1** is
+adjacent to already-mechanized corpus work — `QM.CHSHLocalBound` for the bound,
+`QM.MerminPeresCochainObstruction` for the no-global-assignment shape,
+`QM.NoSignallingMarginal` for the marginal conditions. What is *not* mechanized
+anywhere is the statement L2 would actually need: **that a simplex state space
+admits a joint distribution for every finite measurement family** (support lemma
+`WD6-L2`). That single lemma, and nothing broader, is L2's honest scope.
+
+**L3 is the hygiene-mandated worked example** (Part A, item 4). It must produce
+numbers a reader can reproduce, and it must report a *failure* — a CHSH value at
+or below the classical bound — as its headline output.
+
+**Asymmetry of difficulty, stated honestly.** L1–L3 establish a no-go, which
+requires exhibiting one model. Establishing T3 (adequacy) would require ruling
+out every non-quantum model, and no level above is adequate to that. The paper
+must not present its three-level agreement as evidence for T3.
+
+10. Related work (to be written — nearest neighbours)
+
+
+The drafted paper must situate itself against the following, with these
+characterizations. Mischaracterizing any of them is a drafting defect.
+
+* **Rovelli, *Relational Quantum Mechanics*** (arXiv: `quant-ph/9609002`,
+  <https://arxiv.org/abs/quant-ph/9609002>). Rejects observer-independent states:
+  state assignments are relative to a physical system. Crucially, it **retains
+  the quantum formalism** rather than deriving it, and treats all physical
+  systems symmetrically — it does **not** derive observers or consciousness from
+  bare difference. Nearest relative to the WD observer hierarchy in *posture*;
+  supplies no derivation the programme could inherit.
+
+* **Fuchs, Mermin, Schack, *An Introduction to QBism***
+  (arXiv: `1311.5253`, <https://arxiv.org/abs/1311.5253>). Quantum states and
+  probabilities are agent-relative commitments — personalist Bayesian degrees of
+  belief. Directly relevant to the programme's witness-relative framing, but
+  agent-relativity alone **does not derive Hilbert space**: QBism takes the
+  formalism as given and reinterprets it. Any WD claim that observer-relativity
+  yields quantum structure must explain what it adds beyond QBism, which does not
+  make that claim.
+
+* **Abramsky, Brandenburger, *The Sheaf-Theoretic Structure of Non-Locality and
+  Contextuality*** (arXiv: `1102.0264`, <https://arxiv.org/abs/1102.0264>).
+  Identifies contextuality with the obstruction to a global section of a presheaf
+  of empirical distributions over a measurement cover, with a cohomological
+  ($\check{H}^1$) witness. **The closest established mathematical neighbour to the
+  cohomological side of this programme.** Requires a measurement cover and an
+  empirical model as host structure — neither of which the WD chain currently
+  supplies — and, per §5.1, hosts classical and super-quantum models as readily as
+  quantum ones.
+
+* **Chiribella, D'Ariano, Perinotti, *Informational derivation of Quantum
+  Theory*** (arXiv: `1011.6451`, <https://arxiv.org/abs/1011.6451>). Derives
+  finite-dimensional quantum theory from an operational-probabilistic framework
+  plus informational axioms (causality, perfect distinguishability, ideal
+  compression, local distinguishability, pure conditioning) with **purification
+  doing the decisive work**. This is the **benchmark WD-6 must be measured
+  against**: it demonstrates the level of discriminator required to select
+  quantum theory from a strictly larger class, and it names the axiom carrying
+  the weight rather than distributing it rhetorically.
+
+**Corpus antecedents — the nearest neighbours are inside this repository, and the
+first draft of §10 missed all but one of them** (added 2026-07-20 producer pass; a
+corpus-wide sweep of `research/encyclopedia/entries/` across *every* layer and of
+`research/published/` across *every* programme). These are consumed at their
+published statuses; WD-6 reproves none of them and claims novelty for none.
+
+* **QM_101, *State–Effect Pairing Audit*.** Grades classical $\mathbb{R}^2$
+  simplex, square-bit GPT, Spekkens toy, real Hilbert (rebit), complex Hilbert,
+  quaternionic, and a nonlinear negative control by seven uniform finite checks
+  (normalization; positivity; no-signalling / marginal consistency where
+  composition is declared; transport coherence; local-to-global terminal
+  agreement; quotient non-promotion; finite replay), and machine-checks the
+  headline non-result that the compatibility skeleton **does not uniquely select
+  Born**. *Narrowed 2026-07-21 repair pass — the earlier bullet read "this is §4's
+  comparison class and §5's D4, already published", which overstated it.* QM_101
+  already audits a candidate list of state/effect **pairings** by uniform finite
+  checks; it declares no cone ordering, no composition sandwich, and refuses its
+  composite rows for want of a declared composition rule. §4.2's sandwich and the
+  $\mathsf{Box}$ / $\mathsf{Sq}$ rows have no QM_101 antecedent (see ledger §8.3).
+  Its solid contact with WD-6 is at **D4** — Born non-selection, mechanized as
+  `ENC-1070` — and at the practice of grading a declared candidate list; not at
+  §4.1–§4.2's cone/convexity/sandwich apparatus. Cites the same GPT vocabulary
+  (Barnum–Barrett–Leifer–Wilce 2007) and the same reconstruction neighbours
+  (Hardy; CDP; Spekkens) §10 names as external.
+
+* **QM_121, *The Finite QM Ingredient Ladder*.** The corpus's own account of how
+  far classical $\ell^1$ obstruction geometry climbs and where it must import, with
+  the imported ceiling fixed at exactly three items — the $\mathbb{C}/U(1)$ phase
+  carrier, Born-quadratic uniqueness (Gleason), and the continuum. Its open
+  research obligations `OB-U1` and `OB-BORN` are WD-6's D2 and D4 under other
+  names. **This is the closest existing statement of WD-6's own project.**
+
+* **Paper 058, *GTOC Entanglement* §§3–5.** Universal separability of bare tables;
+  the **finite CHSH bound** $\lvert S\rvert \le 2$ (Theorem 4.2, `PL-GTOC-19`); the
+  **PR-box facet $S = 4$ exhibited at the derived layer with no quantum import**
+  (§5.1); Tsirelson priced as *value cheap, attaining structure Q-priced* (§5.2);
+  diagonal suppression under the alternating character (§5.4, `PL-GTOC-20`).
+  **Supplies §8.2's CHSH row and §5.1's PR-box observation outright.**
+
+* **Paper 057, *GTOC Qubit* §4.** The itemized bit-to-qubit price list Q1 (phase
+  fiber), Q2 (interference / $\ell^2$ readout), Q3 (window algebra), Q4
+  (continuous reversible dynamics), with the finite-$\mathbb{Z}/n$ R2a sub-door.
+  *Corrected 2026-07-21 repair pass — the earlier bullet read "this is D2a/D2b/D2c
+  with a different indexing"; the correspondence is only partial.* **Q1 and Q4 are
+  D2b and D2c under a different indexing; D2a is Paper 058 §4's signed scalars,
+  and Q2/Q3 correspond to D4 and D1 rather than to the D2 cluster.** The logical
+  roles differ as well: Q1–Q4 is a **price list of unpaid imports** — 057 §4 states
+  that the qubit interface "is available only after Q1–Q4 … are paid; none is paid
+  here" — whereas D1–D6 is proposed as a **necessity gate on a candidate axiom
+  set**. A price list records what a construction has bought; a gate records what
+  an axiom set must force. Paper 057 carries the counterweight that finite phases
+  fall short of $U(1)$.
+
+* **`ENC-1143` (QM_120), Mermin–Peres contextuality as a PrimitiveDifference
+  cochain obstruction.** `MECHANIZED`, axiom-free; Lean modules
+  `QM.MerminPeresF2Cochain`, `QM.MerminPeresCochainObstruction`,
+  `QM.ParityContextObstruction`. Local green / global red over six contexts — in
+  module `QM.MerminPeresCochainObstruction`, namespace `QM.MerminPeres`:
+  `QM.MerminPeres.local_contexts_individually_satisfiable`,
+  `QM.MerminPeres.every_five_context_subset_satisfiable`,
+  `QM.MerminPeres.mermin_peres_no_global_assignment`. *(Qualified in repair cycle 1;
+  these three were first written as bare names directly after a module list ending
+  `QM.ParityContextObstruction`, so the nearest module was the wrong one — and the
+  namespace is `QM.MerminPeres`, not the module name.)* **The corpus
+  already realizes the Abramsky–Brandenburger-shaped obstruction as a finite
+  cochain construction**, with its own fence that this discovers nothing about
+  quantum mechanics. *(Restated 2026-07-22 producer pass. The earlier text called
+  it "an $\mathbb{F}_2$ parity class that is a **cocycle** and not a coboundary".
+  Only the second half is mechanized, and §8.2a's own two-stage standard — applied
+  there to the WD host — must be applied here too.* `QM.MerminPeresF2Cochain`
+  *declares a $d_0$ (the context-incidence map), a `target` sign vector, and a
+  parity functional `ell` that annihilates $\operatorname{im} d_0$
+  (`ell_d0_eq_false`) while `ell target = true`; `target_not_in_image` concludes
+  $\text{target} \notin \operatorname{im} d_0$ — that is exactly **not a
+  coboundary**, proved by a separating functional.* **The module declares no $C^2$
+  and no $d_1$**, *so there is no differential for `target` to be closed under and
+  the cocycle half is not mechanized; by §8.2a's stage one the quotient
+  $H^1 := Z^1/B^1$ is not formed here either. This is a correction to WD-6's
+  description of a neighbour, not to `ENC-1143`, whose own statement WD-6 does not
+  edit; it neither strengthens nor weakens WD-6, which claims no priority here.)*
+  Bears directly on T6, which must be restated as "*how does the WD
+  $H^1$ gate relate to `ENC-1143`?*" before it reaches the external framework —
+  and the restatement must not presuppose that either side has an $H^1$.
+
+* **`ENC-1136` (QM_062), the $U(1)/\mathbb{C}$ selector.** `MECHANIZED`
+  conditional forcing of $\mathbb{C}/U(1)$ (modules `QM.ForceComplexCarrier`,
+  `QM.U1Selector`, `QM.U1AngleAddition`, `QM.U1TorsionExclusion`), with continuity
+  and global field-uniqueness (local tomography; Renou et al. 2021) named as the
+  residual imports. **§5.2's "interference does not force $\mathbb{C}$" is the
+  corpus's own position, already sharpened.**
+
+* **`ENC-1070` (`QM.PairingNonSelection`) and `QM.BornQuadraticCountermodel`.**
+  Two independent mechanized countermodels to Born selection. **D4's failure column
+  is a machine-checked corpus result.**
+
+* **`ENC-1135` (`QM.InterferenceBuildability`) and `ENC-0317` / `ENC-0312`
+  (Paper 010).** The $\ell^1$-non-computability of interference and the
+  Born-normalization / Born-uniqueness split. `ENC-1135` records itself as *pub-010
+  Theorem 7 repackaged, "not a novel result"* — a precedent WD-6 follows.
+
+* **`ENC-1123` (QM_070) and `ENC-1124` (QM_071).** The product-defect
+  factorization criterion and entanglement-witness soundness relative to a
+  **declared** product family — the corpus's standing discipline that
+  composition-relative diagnoses are family-relative, which §4.2's sandwich
+  discussion should adopt rather than restate.
+
+* **`ENC-1127` (QM_082).** A CPTP channel's **classical shadow** is an ordinary
+  column-stochastic kernel preserving the simplex (`QM.StochasticChannel`). The
+  phrase "classical shadow" in §2 has a published referent in this corpus.
+
+* **`ENC-1063`, authority non-promotion.** `StructureDerived \nRightarrow
+  \mathrm{IsAuth}`, mechanized. Inherited unlifted; §12's authority non-claim is
+  this entry.
+
+Secondary, cited for the comparison class and the gates:
+
+* Hardy, *Quantum Theory From Five Reasonable Axioms* (arXiv: `quant-ph/0101012`)
+  — the simplicity axiom and the continuity of reversible transformations.
+
+* Barrett, *Information processing in generalized probabilistic theories*
+  (arXiv: `quant-ph/0508211`) — the GPT formalism and Boxworld.
+
+* Masanes, Müller, *A derivation of quantum theory from physical requirements*
+  (arXiv: `1004.1483`).
+
+* Popescu, Rohrlich (1994) — PR boxes; $\mathrm{CHSH} = 4$ under no-signalling.
+* Tsirelson (1980) — the quantum bound $2\sqrt{2}$.
+* Kochen, Specker (1967) — contextuality for $\dim \ge 3$.
+* Anomalon Paper 010 — Born normalization redundancy; Born uniqueness typed
+  `OracleNeeded`.
+
+* Anomalon Papers 001G, 001H — the classical shadow of §2.
+
+**What WD-6 adds beyond these, stated plainly** *(restated 2026-07-20 producer
+pass; the earlier version over-credited items (i) and (iii))*. Against CDP the
+honest position is: *nothing yet*. WD-6 supplies no new axiom, no new
+discriminator, and no new reconstruction. The three candidate contributions must
+each be discounted against the corpus antecedents above:
+
+* **(i) The discriminator suite D1–D6 as a portable screening filter.** Discounted
+  substantially. Paper 057 §4's Q1–Q4 price list and QM_121's six-rung ladder with
+  its three-item imported ceiling cover most of the same ground — the 057
+  correspondence only partially, and in a different logical role, per the Paper 057
+  bullet above — and QM_101 already runs a comparison audit over a GPT-shaped
+  candidate list. What survives as WD-6's is the **assembly for the WD chain
+  specifically**, the D2a/D2b/D2c split, and D6 (classical exclusion) as an
+  explicit gate — not the idea of a gate list.
+
+* **(ii) The explicit classical countermodel of §8.** Survives as the paper's real
+  candidate contribution, *conditional on §8 being built* — it does not exist yet
+  (`PL-WDP006-3`), and §8.1a records that it is currently two under-specified models
+  rather than one.
+
+* **(iii) The T5 phase-carrier lemma.** **Withdrawn as a WD-6 contribution.** T5
+  belongs to WD-5 (§6 ownership ruling), and its $\ell^1$ instance is already
+  mechanized as `ENC-1135`, itself self-described as pub-010 Theorem 7 repackaged.
+
+If a referee judges (i) folklore and (ii) elementary, **the paper's contribution
+is the no-go**, and that is an acceptable outcome the paper declares in advance
+rather than defends after the fact. Claim rows `WDP006-C19` … `WDP006-C24`; non-claims
+`WD6-N24` … `WD6-N29`.
+
+11. Falsifiability
+
+
+> **This paper fails if** an axiom in $\mathcal{A}_{\le 6}$ is exhibited that no
+> classical simplex model satisfies, and that axiom is shown by the §7.1 criterion
+> not to be a renamed Hilbert, phase, or Born import — in which case the WD chain
+> has a genuine quantum discriminator and T2 is false; or if the countermodel
+> $\mathcal{C}$ of §8 cannot be constructed for a reason other than an
+> unstated-axiom defect; or if T5 is refuted by a zerosumfree semiring exhibiting
+> destructive cancellation; or if the discriminator suite D1–D6 is shown
+> non-adequate by a non-quantum model clearing all six gates (which refutes T3
+> but *strengthens* the paper's caution, and must be reported as such).
+
+**Added 2026-07-20 producer pass.** The paper additionally fails if:
+
+> **`WD6-F6`** — 001H's `PL-001H-3` closes *negatively*, or WD-5's expectation that
+> $d_{\mathrm{hist}}^{2}=0$ is refuted is confirmed, so that no $H^1$ exists on the
+> host §8.1 item 5 declares. Then §8.2's "degree-1 obstruction class" row is
+> **malformed rather than false** — a strictly worse outcome — and T6 must be
+> restated without cohomological vocabulary before it is attempted.
+>
+> **`WD6-F7`** — the corpus antecedents of §10 are shown to already settle T2 for
+> the *stated* content of Papers 000, 001G, 001H, and 010, so that WD-6's §8
+> countermodel adds nothing beyond re-presentation. This does not refute the no-go;
+> it reduces the paper to a citation, and must be reported that way rather than
+> defended.
+>
+> **`WD6-F8`** — a finite-carrier-only development is exhibited in which the D2b
+> destructive-cancellation witness is proved **without** the complex carrier and
+> the real $\pi$ that `QM.InterferenceHolonomyZn` uses. That would strengthen D2b,
+> refute the §5.2 import note, and require re-pricing Paper 057's Q1.
+
+12. What this paper does NOT claim
+
+
+This list is deliberately longer than its counterparts elsewhere in the
+programme. WD-6 is the paper most at risk of overclaim in the entire corpus, and
+the risk is not symmetric: an overclaim here would retroactively contaminate every
+earlier WD result.
+
+* It does **not** derive quantum mechanics. It argues the opposite.
+* It does **not** claim quantum mechanics is underivable in principle — only that
+  the *present* WD axiom set does not derive it.
+
+* It does **not** claim the WD programme is refuted. A no-go is a charter-declared
+  success condition.
+
+* It does **not** claim that nonzero residuals, nonzero obstruction classes, or
+  nonvanishing $H^1$ are quantum, quantum-like, or evidence of quantum structure.
+  §2 establishes that all of them are available classically.
+
+* It does **not** claim interference forces the complex field. Real quantum
+  theory is a standing counterexample (§5.2).
+
+* It does **not** re-derive, strengthen, or weaken Paper 010's Born normalization
+  result, and it does **not** discharge Paper 010's `OracleNeeded` Born-uniqueness
+  import.
+
+* It does **not** claim contextuality has been derived from the WD chain, nor that
+  the WD $H^1$ gate *is* the Abramsky–Brandenburger obstruction. T6 leaves both
+  outcomes open.
+
+* It does **not** claim to have derived a Tsirelson-type bound, and explicitly
+  does not attempt one.
+
+* It does **not** claim the discriminator suite D1–D6 is complete, canonical, or
+  sufficient. T3 is ``OPEN`` and may be false.
+
+* It does **not** claim the §4 comparison class is exhaustive of physically
+  possible theories. It is a *declared* class; theories outside it are unpriced,
+  not excluded.
+
+* It does **not** claim the GPT framework is neutral or assumption-free. §4.5 and
+  §14 state the opposite.
+
+* It does **not** derive probability, convexity, real vector spaces, tensor
+  products, measurement covers, or repeatable preparation. All are imported.
+
+* It does **not** claim any observer, agent, or witness in the WD hierarchy is
+  conscious, nor that observer-relativity supplies quantum structure.
+
+* It does **not** claim priority over, improvement upon, or disagreement with
+  Rovelli, QBism, Abramsky–Brandenburger, or CDP. It positions relative to them
+  and, in the CDP case, concedes the benchmark is unmet.
+
+* It does **not** mint, upgrade, or transfer authority. `AuthorityEffect: None`.
+* It does **not** license any physical, cosmological, or interpretational
+  conclusion about the world. The countermodel is a mathematical object.
+
+* It does **not** claim the classical countermodel $\mathcal{C}$ describes any
+  real system.
+
+* It does **not** establish anything about infinite-dimensional systems,
+  continuous-variable theories, or field theory. Finiteness is a live hypothesis.
+
+* It does **not** claim that "not derivable from the present axioms" means "not
+  real". Per the charter, unwitnessed is not nonexistent.
+
+**Added 2026-07-20 producer pass — priority and boundary non-claims.**
+
+* It does **not** claim the §4 comparison class is new to this corpus. QM_101
+  already audits classical simplex, square-bit GPT, Spekkens toy, real, complex,
+  and quaternionic pairings; QM_121 already runs the ladder through
+  $L^1 \to \Delta \to \mathrm{Diag}(\Delta)$. (`WD6-N24`)
+
+* It does **not** claim the finite CHSH bound $\lvert S\rvert \le 2$, nor the
+  PR-box exceedance $S = 4$, as WD-6 results. Both are Paper 058 (§4.2, §5.1); the
+  deterministic-local core of the bound is mechanized as `QM.CHSH.chsh_le_two`.
+  (`WD6-N25`)
+
+* It does **not** claim priority for realizing contextuality as a finite cochain
+  obstruction. That is `ENC-1143` / QM_120, `MECHANIZED`, and WD-6 inherits its
+  scope fence unlifted. (`WD6-N26`)
+
+* It does **not** claim that a finite $\mathbb{Z}/n$ phase alphabet reaches the
+  qubit, and it does **not** claim the D2b destructive-cancellation witness is a
+  finite-carrier result: the mechanized witness is stated over $\mathbb{C}$ with
+  `Real.pi`, and that carrier is a **declared import at that step**. (`WD6-N27`)
+
+* It does **not** claim "normalization alone does not select Born" as a WD-6
+  observation. That is `ENC-0317`, `ENC-1070` (`QM.PairingNonSelection`), and
+  `QM.BornQuadraticCountermodel`. (`WD6-N28`)
+
+* It does **not** own T5. WD-5 does (`PL-WD5-7`, `PL-WD5-8`); `PL-WDP006-5` is a
+  consumption obligation, and the two registrations are one obligation, not two
+  results. (`WD6-N29`)
+
+* It does **not** claim that any $H^1$ class, degree-1 obstruction class, or
+  Čech obstruction is available on the §8 host. 001H declines to supply
+  $d_0$, $d_1$, or a class (`H-B5` `[NON-CLAIM]`, `PL-001H-3` open), and WD-5 types
+  $d_{\mathrm{hist}}^{2}=0$ ``OPEN`` and expects it refuted. (`WD6-N30`)
+
+* It does **not** claim that a class-relative negative verdict reached inside a
+  metatheory already equipped with real vector spaces, convexity, outcome
+  probabilities, and finite-dimensional linear algebra is a verdict about what that
+  metatheory represents. Permanent home of boundary fence `WD6-L9` (Claim Ledger
+  §2a); obligation `PL-WDP006-13`; claim row `WDP006-C26`. (`WD6-N19`, extended)
+
+13. Consequences for the programme
+
+
+If T2 holds — the expected case:
+
+> The Witnessed Difference chain, through WD-5, describes a **general operational
+> theory of retained representation and its residuals**. It is substrate-general:
+> classical stochastic systems are models of it. Quantum theory, if it is ever to
+> be reached from this direction, requires a further constitutive act not yet
+> named — minimally a carrier admitting cancellation and a phase action (T5), a
+> composition rule pinned strictly inside the no-signalling sandwich (D3), and a
+> principle fixing the *value* of the quantum bound (D5).
+
+Stop conditions **3** and **4** are the two this paper is built to decide;
+**neither verdict is delivered** — T2 is ``OPEN`` (`WDP006-C6`), $\mathcal{A}_{\le 6}$
+does not exist (`PL-WDP006-1`), and nothing about T2 was checked. Stop condition **5**
+is carried by **WD-5's** T5 (`PL-WD5-7`/`PL-WD5-8`), not by a lemma of this paper
+(`WD6-N29`); WD-6 consumes it as a constraint on the admissible weight carriers.
+
+WD-5 (`004_wd4_self_witnessing_and_the_awareness_boundary`) inherits an important
+negative: since the chain is substrate-general through WD-6, no self-witnessing
+result downstream may appeal to quantum structure for its content.
+
+**Downstream citation rule.** Any later WD paper citing WD-6 must cite the no-go,
+not the discriminator suite, as WD-6's result. Citing D1–D6 as though the gates
+had been *cleared* is the specific misuse this paper exists to prevent.
+
+14. Open obligations
+
+
+| Id | Obligation |
+|---|---|
+| PL-WDP006-1 | Enumerate $\mathcal{A}_{\le 6}$ — the complete, explicit axiom list stated by WD-0 through WD-5 — as a single normative table. Nothing else in this paper is statable until this exists |
+| PL-WDP006-2 | Fix and justify the §4 comparison class; state what it excludes and why |
+| PL-WDP006-3 | Construct the classical countermodel $\mathcal{C}$ of §8 and verify it against every row of PL-WDP006-1 |
+| PL-WDP006-4 | Compute and report every §8.2 numeric row. **Restated 2026-07-20:** the CHSH row is *not* a WD-6 computation — it consumes Paper 058 Theorem 4.2 and `QM.CHSH.chsh_le_two`, and cannot be evaluated until `PL-WDP006-3` fixes a bipartition and a setting family (§8.1a, §8.2b). The "degree-1 obstruction class" row is blocked on `PL-001H-3` and `PL-WD5-4` (§8.2a) |
+| PL-WDP006-5 | **Restated 2026-07-20 (ownership ruling, §6): consume WD-5's T5 — do not re-prove and do not re-mechanize it.** WD-5 owns the theorem and registers it as `PL-WD5-7` (prose, including the finite $k$-fold extension) and `PL-WD5-8` (Lean). WD-6's obligation is to cite it at whatever status those reach, to carry the *destructive* qualifier, and to cite the already-mechanized $\ell^1$ instance `ENC-1135` (`QM.InterferenceBuildability`) rather than re-announce it. This is one obligation with two registrations; do not double-count |
+| PL-WDP006-6 | Settle T1 — the WD-5 weight system to GPT embedding — conditional on WD-5 delivering a classification |
+| PL-WDP006-7 | Attempt T3 (discriminator adequacy); if it fails, demote D1–D6 to *necessary-only* and rewrite §5 accordingly |
+| PL-WDP006-8 | Formulate T4's import-detection criterion precisely enough to apply mechanically to a candidate axiom |
+| PL-WDP006-9 | Settle T6: establish or refute the correspondence between the 001H $H^1$ gate and the Abramsky–Brandenburger obstruction, on a stated common host |
+| PL-WDP006-10 | Build the L3 executable checker; report the CHSH and Čech computations |
+| PL-WDP006-11 | Audit every prior WD and 000/001-family paper for quantum-suggestive language and file a correction ledger where the language outruns the classical content |
+| PL-WDP006-12 | Complete the §15 genesis-bias audit before drafting, not after |
+| PL-WDP006-13 | *(First minted 2026-07-20 producer pass; drawn from §15's last two questions and its closing paragraph, and from non-claim `WD6-N19`, which until this pass carried no PL id.)* Establish that the no-go survives once the **structured metatheory it is proved inside** — the ambient set theory and finite-dimensional real linear algebra in which $\Omega_A$, $\otimes_{\min}$, and $\check{H}^1$ are formed; the real ordered field; convexity, hence a shared randomness source; outcome probabilities stable under repetition, hence a clock and a cross-trial identity criterion, both refused at WD-0 — is itself accounted for rather than presupposed; **or** reformulate the §7 verdict so it states its boundary explicitly, in §2 and again in the conclusion, as §15 demands. See boundary fence `WD6-L9` (Claim Ledger §2a), non-claim `WD6-N19`, claim row `WDP006-C26` |
+
+15. Genesis-bias audit (mandatory before drafting)
+
+
+Per the programme charter and the repository's Genesis Bias doctrine, this paper
+must answer, for its own construction:
+
+* Where does the real vector space $V_A$ come from? What in Primitive Difference
+  supplies a field, let alone an ordered one?
+
+* Where does **convexity** come from? Mixing $\lambda \omega_1 + (1-\lambda)\omega_2$
+  presupposes a shared randomness source and an agent free to consult it. Neither
+  is derived.
+
+* Where do **probabilities** come from? The GPT framework assumes outcome
+  frequencies exist and are stable under repetition. Repetition presupposes
+  re-preparable systems, hence a clock and an identity criterion across trials —
+  both refused at WD-0.
+
+* Where does the **measurement cover** come from? Both the AB framework and gate
+  D1 require a declared family of contexts. Nothing in the WD chain constructs
+  one.
+
+* Where does the **tensor product** come from? §4.2 presupposes that "two
+  systems" is already meaningful — a composition primitive, not a derived one.
+
+* What licenses the ambient set theory and finite-dimensional linear algebra in
+  which $\Omega_A$, $\otimes_{\min}$, and $\check{H}^1$ are formed?
+
+The last two questions are not rhetorical. **A no-go proved inside the GPT class
+establishes only that the WD axioms fail to select quantum theory *within that
+class*.** It does not establish that quantum theory is underivable, and it does
+not establish that the GPT class is the right arena. The paper must state this
+boundary in its own §2 and again in its conclusion, rather than let a
+class-relative negative result read as an absolute one.
+
+**Antecedent-domain declaration** *(extended 2026-07-20 producer pass — the
+earlier list was incomplete, which is the one way this declaration can fail)*.
+This paper's antecedent domain is: finite real linear algebra, convex geometry,
+classical probability, the complex carrier and the real $\pi$ used by the D2b
+witness (§5.2), and the published Anomalon Papers **000, 001G, 001H, 010, 057,
+058, and the QM series QM_101, QM_070, QM_071, QM_082, QM_061, QM_121, QM_062,
+QM_120**, together with the encyclopedia entries `ENC-0312`, `ENC-0317`,
+`ENC-1063`, `ENC-1070`, `ENC-1123`, `ENC-1124`, `ENC-1127`, `ENC-1135`,
+`ENC-1136`, and `ENC-1143`. Every one of these is imported. None is derived from
+Primitive Difference. The programme's honesty depends on this list being complete
+and visible, not on it being short.
+
+**The boundary, and its obligation** *(added 2026-07-20 producer pass)*. The last
+two questions above are not rhetorical, and §15's closing paragraph is not a
+caveat — it is a **standing restriction on how every verdict in this paper may be
+read**, and until this pass it carried no obligation id. It now has one:
+**`PL-WDP006-13`** (§14), with boundary fence **`WD6-L9`** in the Claim Ledger §2a and
+permanent non-claim home **`WD6-N19`**. The fence has **no upgrade path** and is
+therefore not a support lemma: discharging `PL-WDP006-13` either exhibits the
+accounting, which narrows what the fence excludes, or states the boundary
+explicitly, which puts the fence in the paper's own voice. Neither outcome retires
+it. **Every existing obligation was checked and ruled out as its discharger** —
+see the Claim Ledger §2a for the itemized list. This is the paper's deepest
+honesty risk, parallel to WD-0's `PL-WD0-8`, WD-1's `PL-WD1-11`, WD-2's
+`PL-WD2-12`, WD-3's `PL-WD3-11`, WD-4's `PL-WD4-11`, WD-5's `PL-WD5-13`, and
+WD-5's `PL-WD5-11`, each of which has the same standing.
+
+Changelog
+
+* **2026-07-20 — paper-hygiene producer pass (Stage 1, `/paper-improver`).**
+  Version deliberately **not** bumped: the paper remains
+  `v0.1 (Pre-Print) — OUTLINE, NOT DRAFTED`, per the programme's uniform pre-print
+  rule; this entry dates the pass instead.
+
+  **Part-A rubric — verified present, not manufactured.** Lead sentence (§1 with
+  its two drafting constraints), why-care (§3), related work (§10),
+  worked-example specification (§8), falsifiability (§11), and does-not-claim box
+  (§12) all already existed in outline-appropriate form and were retained. §10 was
+  **extended, not rewritten**, with eleven corpus antecedents it was missing; §11
+  and §12 gained rows for defects found this pass.
+
+  **Part-B claim typing.** Types are held to the closed set {`DEFINITION`, `OPEN`,
+  `CONJECTURE`, `INTERPRETIVE`, `STANDARD`}. **No bare `[SCOPE FENCE]` tag is
+  minted** — the sole occurrence of that bracketed string anywhere in the paper is
+  this sentence's own reference to it; scope and novelty fences live in the
+  non-claim rows
+  `WD6-N1 … WD6-N30`, in the §2a boundary fence `WD6-L9`, and in the cost rows of
+  the Claim Ledger §5. No target was found wearing a "Theorem": §6 declares T1–T6
+  as *targets* and says "None is proved here". Eight claim rows were added
+  (`WDP006-C19 … WDP006-C26`), all `[STANDARD]` except `WDP006-C25` and `WDP006-C26`, both
+  ``OPEN``; **no row was promoted**.
+
+  **The prior-art sweep is the pass's main substantive work.** A corpus-wide sweep
+  — all thirteen encyclopedia layers, not one, plus all ten published programmes —
+  found that WD-6 had cited exactly **one** corpus antecedent (Paper 010) while
+  eleven others bear directly on its gates. The decisive ones sit outside the
+  layers a topic-scoped search would reach: `ENC-1143` under `quantum`, and the
+  **finite CHSH bound and PR-box exceedance, which are in `published/` and have no
+  encyclopedia entry at all** (`PL-GTOC-19` is `NOT-STARTED`). A word-boundary
+  search for "CHSH" across `entries/` returns **zero** true hits — the two apparent
+  hits are the substring inside "Bana**chSh**adow" — while `published/` carries the
+  bound as a theorem. A future sweep for this paper must search `published/` as
+  well as `entries/`, and must not treat an empty `entries/` result as a novelty
+  signal.
+
+  **Defects found and repaired, each after independent re-derivation:**
+
+  * **Off-by-one cell degree (§8.1 item 5).** "degree-3 cell" for the parity
+    state, corrected to **degree-2**: 001H Definition 6.1 attaches connected
+    $k$-body cumulants to $(k-1)$-cells and §7's bidegree table puts triple
+    cumulants at $(2,0)$; 001H's own heading reads "a degree-one detector can miss
+    a degree-two cell".
+
+  * **Mislocated frontier (§5.1).** "Deriving the value $2\sqrt{2}$ … is the
+    genuine frontier" withdrawn: Paper 058 §5.2 grades the *value* R2a-cheap and
+    the *attaining structure* Q-priced, so the frontier is a principle forcing the
+    structure, not the numeral.
+
+  * **Stale Lean path (§5.2).** [index:index:InterferenceHolonomyZn.lean](omega_engine/research/_indexes/_master_index.yaml) replaced by
+    the module name `QM.InterferenceHolonomyZn`; a module-vs-namespace note added
+    to §9 (module `QM.CHSHLocalBound` opens namespace `QM.CHSH`).
+
+  * **Two uncomputable §8.2 rows.** The "degree-1 obstruction class" row imports an
+    $H^1$ that 001H explicitly declines to supply (`H-B5` `[NON-CLAIM]`,
+    `PL-001H-3` open) and that WD-5 expects refuted (`WD5-C6`); the CHSH row names
+    no computation because §8.1 declares no bipartition and no settings. Both
+    re-marked, with §8.2a and §8.2b added.
+
+  * **Two carriers presented as one (§8.1a).** Item 1's four-node model and item
+    2's three-node parity state are different carriers; §8.2's rows did not say
+    which.
+
+  * **Silent complex import at D2b (§5.2).** The mechanized destructive witness is
+    stated over $\mathbb{C}$ with `Real.pi`/`Real.cos`. Named and priced as an
+    import; **not** silently repaired.
+
+  * **Over-credited contributions (§10).** Contribution (iii), the T5 lemma,
+    withdrawn to WD-5; contribution (i) discounted against Paper 057's Q1–Q4 and
+    QM_121's ladder.
+
+  **Ledgers.** `PL-WDP006-5` restated as a *consumption* obligation per the
+  cross-paper ownership ruling (WD-5 owns T5); **no WD-5 file was edited**.
+  `PL-WDP006-4` restated. One obligation minted: **`PL-WDP006-13`**, the metatheoretic
+  boundary, whose ruled-out set is itemized in the Claim Ledger §2a. Obligations
+  now run `PL-WDP006-1 … PL-WDP006-13`, all `OPEN / NOT-STARTED`, all
+  `AuthorityEffect: None`. Registered in
+  `research/encyclopedia/proof_ledgers/proof_ledger_20260720.md` under
+  `## Paper 087 (WD-6)`.
+
+  **Arithmetic.** Every concrete numeric anchor the paper states was re-derived by
+  explicit enumeration this pass; the enumerations are itemized in the Claim
+  Ledger **§8.1** and, separately, the statements that were **not** checked in
+  Claim Ledger **§8.2** *(pointer corrected 2026-07-21 repair pass from "§7",
+  which is the Corrections section)*. No blanket correctness certification is made.
+
+* **2026-07-21 — adversary repair pass (cycle 1 of 3; producer role).** An
+  independent adversary rejected the 2026-07-20 pass with three blocking findings
+  and three further repairs. Version **not** bumped: still
+  `v0.1 (Pre-Print) — OUTLINE, NOT DRAFTED`. **No obligation, claim row,
+  non-claim, or falsifier was minted, retired, renumbered, or re-typed**;
+  obligations stand at `PL-WDP006-1 … PL-WDP006-13`, claim rows at `WDP006-C1 … WDP006-C26`,
+  non-claims at `WD6-N1 … WD6-N30`, falsifiers at `WD6-F1 … WD6-F8`, all
+  `AuthorityEffect: None`. What changed:
+
+  * **Un-discounted survivals (blocking).** The 2026-07-20 pass added the §10
+    discount but left four earlier sentences stating the un-discounted position.
+    §5's heading lost "(core deliverable)"; its "principal contribution … stands
+    independently" claim is replaced by the assembly-only statement; §1's abstract
+    target and §3's "decidable" payoff now carry the §10 discount qualifier.
+
+  * **§13 read T2 as established and re-asserted T5 (blocking).** The sentence
+    stood outside the "If T2 holds" block quote with no conditional over it. It now
+    states that **neither** stop-condition verdict is delivered — T2 is ``OPEN``,
+    $\mathcal{A}_{\le 6}$ does not exist, nothing about T2 was checked — and that
+    stop condition 5 is carried by WD-5's T5, not by a lemma of this paper.
+
+  * **QM_101 overstated against this paper's own interest (§4.4a, §10).** Its
+    seven uniform checks contain no cone ordering, no convexity, and no
+    $\otimes_{\min}/\otimes_{\max}$ sandwich; "composite local tomography" appears
+    only in the *Checks Not Declared* column of a single row, and the square-bit
+    and quaternionic rows are `refused` precisely *because* no composition rule
+    was declared. §4.2's sandwich and the $\mathsf{Box}$/$\mathsf{Sq}$ rows have
+    no QM_101 antecedent. **Mischaracterizing a neighbour is a §10 drafting defect
+    in either direction, including in one's own disfavour.**
+
+  * **Paper 057 correspondence overstated (§10).** "This is D2a/D2b/D2c with a
+    different indexing" is only partial: Q1↔D2b and Q4↔D2c hold; D2a is Paper 058
+    §4's signed scalars; Q2 and Q3 sit at D4 and D1. The logical roles differ too —
+    a price list of unpaid imports is not a necessity gate on axiom sets.
+
+  * **Tsirelson import price understated (§5.1a).** Paper 058 §5.2 itemizes
+    **five** structural imports for the attaining structure, not two, and grades
+    the value as "a quadratic irrational — one algebraic extension"; this paper's
+    "radical over the derived scalars" gloss is withdrawn.
+
+  * **D2b's mechanized content is weaker than previously conceded (§5.2).**
+    `QM.InterferenceHolonomyZn` contains **no finite $\mathbb{Z}/n$ carrier at
+    all** — no `ZMod n`, no roots-of-unity type; `cross_eq_cos` quantifies over
+    real phases. The witnesses are numerical instances of one continuum identity.
+    This strengthens the §5.2 fence.
+
+  * **$H^1$ layering restated (§8.2a).** 001H Proposition 4.2 is two-stage:
+    $C^2$ + $d_1$ + the chain law *define* $H^1$; closure is an **additional**
+    condition for a cochain to determine a class *in* it. The §8.2 row fails at
+    stage one.
+
+  * **Two dangling pointers fixed.** §5.1a's "Claim Ledger §6" → §7; this
+    changelog's "Claim Ledger §7" → §8.1 / §8.2.
+
+  * **Registered, not fixed:** WD-5 carries a stale description of `PL-WDP006-5`
+    ("opens `PL-WDP006-5` to prove and mechanize it"), which the 2026-07-20 ownership
+    ruling superseded. That is outside WD-6's write scope; it is registered as a
+    cross-paper reconciliation item in the global ledger block. **No WD-5 file was
+    edited.**
+
+* **2026-07-21 — adversary repair pass (cycle 2 of 3; producer role).** The cycle-1
+  re-audit discharged every earlier finding and left exactly **one** blocking item:
+  the withdrawn phrasing *"the same instrument at a different indexing"* had
+  survived at two sites. Version **not** bumped: still
+  `v0.1 (Pre-Print) — OUTLINE, NOT DRAFTED`. **Nothing was minted, retired,
+  renumbered, promoted, or re-typed**; obligations stand at `PL-WDP006-1 …
+  PL-WDP006-13`, claim rows at `WDP006-C1 … WDP006-C26`, non-claims at `WD6-N1 …
+  WD6-N30`, falsifiers at `WD6-F1 … WD6-F8`, all `AuthorityEffect: None`. **This
+  note is not an acceptance and not a self-certification;** a fresh adversary
+  re-audits it. What changed:
+
+  * **A false cross-reference in §5 (blocking).** §5 asserted that the corpus
+    "already carries the same instrument at a different indexing" and attributed
+    that assertion to §10 — while §10's corrected Paper 057 bullet records the
+    **opposite**, that the correspondence is only partial. A deferral is sound
+    only when the deferred-to text supports the deferring sentence; here §5
+    asserted P, cited §10 for P, and §10 recorded ¬P. Deferral was therefore not
+    sufficient and the sentence is **reconciled, not merely re-pointed**: §5 now
+    states the itemized correspondence (Q1 ↔ D2b, Q4 ↔ D2c, Q2 ↔ D4, Q3 ↔ D1,
+    D2a from Paper 058 §4's signed scalars, **no Q row answering to D6**) and the
+    role difference — a four-item **price list of unpaid imports** is not a
+    six-gate necessity list at another indexing.
+
+  * **§10 bullet (i) contradicted its own section (blocking, missed in cycle 1).**
+    The same withdrawn phrasing survived inside §10 itself, so the bullet asserting
+    "same instrument at a different indexing" sat directly above the Paper 057
+    bullet withdrawing exactly that reading. Bullet (i) now says the antecedents
+    **cover most of the same ground**, with the 057 correspondence explicitly
+    partial and in a different logical role, cross-referenced to the bullet below
+    it. Verified by grep: **zero live occurrences of the withdrawn phrasing remain**
+    in the paper, the Claim Ledger, or the global-ledger Paper 087 block; the
+    surviving occurrences are the three quoting it *as withdrawn* (§4.4a's
+    narrowing note, §10's Paper 057 correction, this changelog's cycle-1 entry).
+
+  * **§4.4a — QM_101's cone vocabulary (advisory).** Added the half-clause the
+    Claim Ledger's `WDP006-C19` already carried: the GPT cone **vocabulary** QM_101
+    does reuse appears in the square-bit row, and that row is itself `refused`.
+    Stating the overlap only in the ledger left the paper's own §10 either-direction
+    rule under-served.
+
+  * **§5.1a — the two Tsirelson granularities (advisory).** Paper 058 records the
+    attaining price twice: five itemized structural imports in §5.2 and the
+    compressed import-ledger row **"Q1+Q2 (+Q4)"**. Noted as one price stated
+    coarsely and finely, so the counts are not read as conflicting.
+
+  * **§5.2 — the module's only finite structure (advisory).** `Fin k → Bool`, the
+    sign index of `holonomy_resource_injective`, over phases that are still real
+    (`Real.cos (if s i then Real.pi else 0)` on `r r' : Fin k → ℝ`). A two-valued
+    holonomy label is not an algebraic $\mathbb{Z}/n$ carrier, so the §5.2 fence is
+    left intact rather than weakened.
+
+  * **Unchanged by design.** No WD-5 file was edited; no ledger row above the
+    `## Paper 087 (WD-6)` heading was touched; no obligation or claim row was added.
+
+* **2026-07-22 — Lean-statement audit pass (Stage 1, `/paper-improver`; producer
+  role).** Version **not** bumped: still `v0.1 (Pre-Print) — OUTLINE, NOT DRAFTED`.
+  **Nothing was minted, retired, renumbered, promoted, or re-typed**; obligations
+  stand at `PL-WDP006-1 … PL-WDP006-13`, claim rows at `WDP006-C1 … WDP006-C26`, non-claims at
+  `WD6-N1 … WD6-N30`, falsifiers at `WD6-F1 … WD6-F8`, all
+  `AuthorityEffect: None`. **This note is not an acceptance and not a
+  self-certification;** an independent adversary and a separate proof sign-off
+  grade it. **No build was run** — see Claim Ledger §11.2.
+
+  **Method, and why it differs from the earlier passes.** The 2026-07-20 pass
+  recorded (Claim Ledger §8.2) that Lean citations were verified by confirming
+  "the module exists … and that the named theorem and namespace appear in the
+  file". That is name resolution, and name resolution is not verification: a
+  theorem name can appear in a file while quantifying over a predicate far thinner
+  than the prose attached to it. This pass **opened every cited Lean module and
+  read the statement and the proof term**, then checked the paper's
+  characterization against what the declaration actually says.
+
+  **Defects found and repaired:**
+
+  * **A placeholder module name in a published paper (§9).** The citation
+    convention was illustrated with `QM.Foo` / [index:index:Foo.lean](omega_engine/research/_indexes/_master_index.yaml). No such module
+    exists in `lean_lib QM`. Metasyntactic or not, a bare `QM.Foo` is
+    indistinguishable from a real anchor to a reader or a checker. Replaced by
+    the real module whose stale path §5.2 repaired, `QM.InterferenceHolonomyZn`.
+
+  * **`ENC-1070`'s entry prose is wider than its Lean (§5.3).** The entry's
+    Statement and Hypotheses quantify LT-K over a compatibility skeleton of
+    "positivity, normalization, transport, gluing" and LT-Q over $[0,1]$
+    probability content. The module mechanizes `Compatible total p := p.1 + p.2 =
+    total` over $\mathbb{N}$ — normalization alone, positivity free by the
+    carrier, **no transport and no gluing predicate present** — and its `pairing`
+    is $\mathbb{N}$-valued multiplication, so no $[0,1]$ quantity occurs. The
+    paper now cites entry-statement and mechanized-content separately. **This
+    narrows an antecedent and does not weaken WD-6's D4 use of it**, which needs
+    only the thin reading. The paper's own Claim Ledger row `WDP006-C19` already
+    carried the accurate mechanized core; §5.3 did not.
+
+  * **`ENC-1135`'s carrier misnamed (§6).** The $\ell^1$ interference no-go was
+    described as running "on a declared $\mathbb{C}/U(1)$ amplitude carrier". The
+    module's amplitudes are `Amp` with `c0 c1 : Int`; $\mathbb{C}/U(1)$ appears in
+    that file only as a **named import it does not derive**. Corrected — which
+    strengthens the fence, the no-go being mechanized over a cheaper carrier than
+    the paper had conceded.
+
+  * **`ENC-1143` described as a cocycle (§10).** `QM.MerminPeresF2Cochain`
+    declares $d_0$, a `target`, and a separating parity functional, and proves
+    $\text{target} \notin \operatorname{im} d_0$ — **not a coboundary**. It
+    declares **no $C^2$ and no $d_1$**, so the cocycle half is not mechanized and
+    no $H^1$ is formed. §8.2a already holds the WD host to exactly this two-stage
+    standard; the standard is now applied to the neighbour as well.
+
+  * **The $\mathbb{C}$-forcing sentence was under-fenced (§5.2a).** *Stated
+    precisely, because the opposite overstatement is available and would be unfair
+    to the frozen text:* §5.2a **already** said "conditional forcing", **already**
+    named both residual imports verbatim (continuity of reversible dynamics; global
+    field-uniqueness across $n$ / local tomography, Renou et al. 2021), and sat
+    under §5.2 note (iv), which **already** recorded QM_062's non-separation gap.
+    The prior state was **under-fenced, not unfenced.** What was genuinely absent
+    is the module's own `FCAI` docstring — that `FCAI` "does not uniquely
+    characterize ℂ", that "Uniqueness-among-FCAI is NOT established", and that its
+    exhibited witness "is NOT `ℂ` nor even `U(1)`". Quoted in place, so that
+    "conditional forcing" cannot be read as a derivation of the complex field.
+
+  * **A dead path citation (§7).** The programme charter was cited at
+    `programs/000_wd0_witnessed_difference_programme/…`; no `programs/` directory exists in the
+    repository. Repointed to `research/published/000_wd0_witnessed_difference_programme/…`.
+
+  * **A missing hypothesis (§5.3).** `powProb_sums_to_one` carries the
+    nonvanishing-denominator hypothesis `hS`, which the paper's "normalizes for
+    every $p$" had dropped.
+
+  **Verified accurate and deliberately left alone** — these were checked against
+  the source and needed no edit: `QM.CHSH.chsh_le_two` / `chsh_eq_two` (`by decide`,
+  deterministic-local, tightness witness) and the §8.2b enumeration claim that the
+  attained value set is exactly $\{-2,+2\}$, re-derived independently this pass;
+  the whole §5.2 note on `QM.InterferenceHolonomyZn`, including "no `ZMod n`, no
+  roots-of-unity type", `cross_eq_cos` over real phases, `cross_rootsOfUnity_refinement`
+  taking an arbitrary `h : ℕ → ℝ`, and `Fin k → Bool` as the module's only finite
+  structure — every clause confirmed against the file; the `QM.InterferenceBuildability`
+  numbers $(1,1)$ vs $(1,-1)$, interfered $4$ and $0$, cross $+2$ and $-2$;
+  `ENC-0317`'s `CONDITIONAL` status with **seven** `conditional_on` entries and
+  `MECHANIZED-PARTIAL` Lean status; `ENC-1136`'s two `conditional_on` residues;
+  and WD-5's status as an outline owning T5 via `PL-WD5-7` / `PL-WD5-8`.
+
+  **Cross-paper item now closed by the other paper, recorded additively.** The
+  2026-07-21 cycle-1 entry above registered, as unfixable from here, that WD-5
+  carried a stale description of `PL-WDP006-5` ("opens `PL-WDP006-5` to prove and
+  mechanize it"). **That entry was true when written and is left exactly as
+  written.** As of this pass WD-5 has repaired it in its own voice — WD-5 §10 now
+  reads "WD-5 previously described WD-6 as opening `PL-WDP006-5` 'to prove and
+  mechanize it'. That description is superseded", with the matching correction at
+  its ledger `R11`. The reconciliation item is therefore discharged **by WD-5, not
+  by WD-6**. No WD-5 file was edited in this pass either.
+
+  **Reported, not repaired — outside this paper's write scope.** The encyclopedia
+  entries this paper cites record their `lean_refs` overwhelmingly in **path**
+  form, and at base revision `51ef3d5a1` **every such path is dead**: they use the
+  pre-reorg `lean4/QM/…` or `omega_engine/lean4/QM/…` shape, while the files live
+  under `lean4/quantum_foundations/QM/`. Every target still exists, so the
+  refs are stale rather than dangling — except `ENC-1063`, whose ref also names
+  the wrong library (`OmegaCore/`; the file is at `OmegaCosmology/Primitives/`),
+  and `ENC-1135`, whose ref is additionally lower-cased. `ENC-0312` alone uses the
+  stable `Module.declaration` form and is unaffected — which is the same
+  convention §9 of this paper already mandates. The itemized per-entry table, with
+  its counts flagged falsifiable at that revision, is Claim Ledger §11.3. Fixing
+  entries is the encyclopedia's write scope, not WD-6's; **no entry was edited.**
+
+  **Repair cycle 1 (same date, producer role) — what an independent evaluator
+  caught in the pass above.** The evaluator returned REJECT UNTIL PATCHED with two
+  blocking findings, both in text this pass *introduced*, and four non-blocking.
+  Version still **not** bumped. **Nothing was minted, retired, renumbered,
+  promoted, or re-typed**; obligation, claim-row, non-claim and falsifier ranges
+  are unchanged.
+
+  * **The audit table fell into the trap it was auditing (blocking).** Claim Ledger
+    §11.1 stamped `MATCH` on four anchors that resolve to nothing —
+    `QM.U1AngleAddition.phase_add`, `QM.U1TorsionExclusion.kernel_infinite`,
+    `QM.GHZNoLocal.ghz_no_local`, and a Mermin–Peres block elided with a leading
+    `…` under a `QM.MerminPeresF2.` row. Each was formed by appending the
+    declaration to the **module** name: the exact module≠namespace error §9 warns
+    about and this same pass added a third worked example of. The correct
+    namespaces are `QM.U1Transport`, `QM.U1Torsion`, `QM.GHZ`, and `QM.MerminPeres`.
+    **The statement content in every one of those rows was read correctly and is
+    unchanged; only the names were wrong** — but a row asserting "statement read"
+    while naming a non-existent declaration launders a name-resolution failure as a
+    statement audit, which is the failure this pass exists to eliminate. Two further
+    rows were fully qualified, and the same defect in §10's new parenthetical —
+    three bare Mermin–Peres names sitting after a module list ending
+    `QM.ParityContextObstruction` — was qualified.
+
+  * **The new §5.2a paragraph contradicted itself (blocking).** It said
+    $\mathbb{Q}/\mathbb{Z}$ "is **exactly** the carrier that survives" without the
+    continuity import — a **uniqueness** claim inside the paragraph whose whole
+    purpose is transmitting that uniqueness is *not* established, and contradicted
+    by its own preceding sentence and by the module's "a property shared by a whole
+    class of abelian groups of unbounded order". It also said continuity **is** what
+    "closes the gap" to $\mathbb{C}/U(1)$ — asserting that a named import
+    *suffices*, which nothing in `QM.ForceComplexCarrier`, `QM.U1Selector`,
+    `QM.U1AngleAddition` or `QM.U1TorsionExclusion` proves, and under-counting two
+    named imports as one. Both withdrawn.
+
+  * **`ProdCyc` is not $\mathbb{Q}/\mathbb{Z}$ — a mathematical error inherited by
+    name-resolution (non-blocking).** The module defines `ProdCyc` as the **full
+    direct product** $\prod_{n\ge0}\mathbb{Z}/(n+1)$, which is **not torsion**,
+    while labelling it the "$U(1)$-torsion shadow $\mathbb{Q}/\mathbb{Z}$"; the
+    $\mathbb{Q}/\mathbb{Z}$ label properly belongs to `ColimCyc`, the colimit, which
+    the module never builds as a group. This pass reported the label once and then
+    **adopted it in WD-6's own voice** — resolving the name without reading the
+    definition, precisely the defect being audited. Now kept strictly attributed,
+    with the discrepancy stated. The fence is unaffected and **wider**: a larger
+    class survives `FCAI`.
+
+  * **`ENC-1070` routed, not narrated (non-blocking).** The entry/Lean parity
+    finding was recorded as prose in §11.4; prose is not a typed route. Emitted as a
+    `ClaimLedgerRepair` to `/omega-math-dev` at Claim Ledger §11.5,
+    `AuthorityEffect: None`, no entry edited, no `PL-` id minted.
+
+  * **An unsupported historical claim withdrawn (non-blocking).** The assertion that
+    "a downstream sweep did in fact read `QM.Foo` as a cited anchor of this paper"
+    has **no artifact in this repository** and is withdrawn from §9 and from Claim
+    Ledger §7. The `QM.Foo` defect stands on indistinguishability alone, which
+    suffices for it.
+
+  * **One row said both (non-blocking).** `WDP006-C22`'s claim column still read
+    "non-coboundary parity **class**" while its import column now records that no
+    $H^1$ is formed. Corrected to "parity **cochain**"; Id and Type unchanged.
+
+  **Unchanged by design in this cycle.** No `.lean` file, no encyclopedia entry, no
+  WD-5 / WD-5 / WD-7 / WD-0…WD-5 file, and no global proof-ledger row was edited. No
+  count of this document was added to its own prose.
+
+<!-- claim-id-body-index:begin -->
+
+Claim-ID body index (packaging)
+
+| ID | Home |
+|---|---|
+| `WDP006-C1` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C2` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C3` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C4` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C5` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C6` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C7` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C8` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C9` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C10` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C11` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C12` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C13` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C14` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C15` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C16` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C17` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C18` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C19` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C20` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C21` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C22` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C23` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C24` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C25` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WDP006-C26` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-L1` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-L2` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-L3` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-L4` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-L5` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-L6` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-L7` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-L8` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N1` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N2` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N3` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N4` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N5` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N6` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N7` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N8` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N9` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N10` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N11` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N12` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N13` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N14` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N15` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N16` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N17` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N18` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N19` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N20` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N21` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N22` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N23` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N24` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N25` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N26` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N27` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N28` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N29` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `WD6-N30` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `Anchor` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `QM.CHSH.chsh_le_two` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `QM.CHSH.chsh_eq_two` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `QM.CHSH.neg_two_le_chsh` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `QM.InterferenceHolonomy.cross_eq_cos` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `QM.compatible_not_unique` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `QM.born_not_selected` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `QM.BornQuadraticCountermodel.powProb_sums_to_one` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `QM.InterferenceBuildability.L1_cannot_compute_interference` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `QM.MerminPeresF2.target_not_in_image` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `QM.U1Selector.J_sq` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `QM.StochasticChannel.stochastic_preserves_simplex` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `QM.Foo` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `Entry` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `ENC-0312` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `ENC-0317` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `ENC-1063` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `ENC-1070` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `ENC-1123` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `ENC-1124` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `ENC-1127` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `ENC-1135` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `ENC-1136` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+| `ENC-1143` | sibling `006_wd6_quantum_reconstruction_or_classical_no_go_claim_ledger.md` |
+
+<!-- claim-id-body-index:end -->

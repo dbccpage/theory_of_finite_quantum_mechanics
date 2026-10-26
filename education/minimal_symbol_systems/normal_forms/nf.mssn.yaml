@@ -1,0 +1,157 @@
+schema_version: smplx.nf.contract.v0
+schema_ref: ../../014_normal_forms/contracts_normal_forms/normal_form_contract_schema.yaml
+contract_kind: normal_form_contract
+identity:
+  id: nf.mssn
+  name: Minimal Symbol System Normal Form
+  short_name: MSSNF
+  version: v0
+  theory_status: proposed
+  contract_status: draft
+  verification_status: absent
+  family: shape
+  status: draft
+classification:
+  hierarchy_level: normal_form
+  subject_kind:
+  - glyph_inscription
+  - mssn_ladder_state
+  - level_presentation
+  - level_lift_transition
+  data_posture: in_motion
+  mathematical_posture: operational
+purpose:
+  excludes_anomaly: smuggled ambient container, untyped alphabet expansion, unverified level lift, unwitnessed diagonal self-loop under Rent Rule, and unearned semantic truth attribution
+  preserves_invariant: admitted inscriptions use a declared alphabet and public grammar; an explicit old-language inclusion and restriction satisfy r_N o ell_N = id; relational endpoint constraints belong to a separately declared interpretation
+  protected_skeleton:
+  - level_index_n
+  - active_alphabet_a_n
+  - declared_start_profile
+  - rent_rule_witness
+  - syntactic_firewall_receipt
+  - retraction_image
+  erased_structure: []
+  non_claims:
+  - does not assert empirical truth, physical measurement, or semantic validity of parsed expressions (e.g. 1 > 2 parses syntactically; truth evaluation belongs to downstream model checkers)
+  - does not authorize downstream bytecode execution or automated policy actions
+  - does not assume general context-free grammar equivalence is decidable
+  - does not claim an infinite universe without explicit inductive constructor derivation
+  - does not imply a single blanket monolithic parser or default union grammar over all starts
+definition:
+  source: atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md
+  formal_statement: >-
+    This proposed contract requires a declared alphabet and public start, exact
+    full-input recognition, and a separately declared interpretation. The fixed
+    38-glyph inventory belongs to raw_glyphs; other profiles explicitly extend
+    it with separators or finite Unicode tokens. Alphabet index, Genesis stage,
+    and MSS atlas row are independent. For alphabet inclusion A_N subset A_(N+1),
+    language inclusion ell_N and restriction r_N(M) = M intersect A_N* satisfy
+    r_N(ell_N(L)) = L for languages L subset A_N*. A partial word decoder instead
+    fixes old words and refuses words outside the old image. Relational
+    irreflexivity is an optional semantic obligation, not forced by a glyph index.
+    The current grammar checker does not implement all obligations of this contract.
+  quadrilateral:
+    qualifies_as_true_normal_form: false
+    qualification_gap: reconstruction_is_split_extension_and_parser_retraction_not_relational_project_join
+    anomaly_exclusion: 'Smuggled ambient containers, untyped profile guessing, uncertified diagonal self-loops, and unearned semantic truth attribution.'
+    lossless_join:
+      status: retraction_agreement
+      statement: 'For language inclusion, r_N(ell_N(L)) = L. This restricts a set of words; it does not erase letters within a word or prove AST preservation.'
+    dependency_preservation:
+      status: profile_and_level_bound
+      statement: 'Level N alphabet A_N, declared start symbol, and rent rules are bound before intake; input cannot enlarge its active terminal set during parsing.'
+    syntactic_decision:
+      status: declaration_plus_grammar_decidable
+      statement: 'Decidable by standard CFG recognition over A_N and budget bounds (65536 bytes, 4096 nodes, depth 32).'
+declarations_required:
+- level_index_n: declared alphabet index, separate from Genesis stage and atlas row
+- active_alphabet: list of terminals in A_N
+- declared_start_profile: one of the 22 public starts in mssn.ebnf or 6 retained profiles
+- rent_policy: unconstrained or diagonal_avoidance_irreflexive
+- firewall_status: syntax_only
+- resource_limits:
+    max_bytes: 65536
+    max_nodes: 4096
+    max_depth: 32
+evidence_required:
+- submitted_wire_bytes
+- parsed_ast_or_token_stream
+- restriction_image_under_prior_level
+- rent_rule_witness_pair: required when the explicitly declared relational policy demands an irreflexive witness
+validation_criteria:
+- input contains only terminals declared in active_alphabet A_N
+- pre-genesis is not a parsed string or a formal carrier in this contract
+- input is fully consumed by declared start profile without trailing characters or whitespace
+- AST node count, byte length, and recursion depth remain within declared resource limits
+- under diagonal_avoidance_irreflexive, relational endpoints must be distinct (a != b in a < b)
+- language restriction r_N recovers an included old language; any word decoder is specified separately
+- parser acceptance emits UNVERIFIED semantic status across external evaluator interfaces
+proof_obligations:
+- id: mssn.split_extension_retraction
+  status: theorem_shaped
+  ref: atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md
+  section: 13.1 (chain-retraction obstruction)
+- id: mssn.rent_rule_diagonal_avoidance
+  status: theorem_shaped
+  ref: atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md
+  section: 15 (repair obligations; no general diagonal-avoidance theorem claimed)
+- id: mssn.syntactic_firewall_soundness
+  status: theorem_shaped
+  ref: atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md
+  section: 14 (grammar recognition and its semantic limits)
+- id: mssn.radical_void_container_refusal
+  status: theorem_shaped
+  ref: atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md
+  section: 1 (input distinctions; no object-level void-generation theorem)
+terminal_routes:
+- AcceptMSSN
+- RejectSmuggledContainer
+- RejectUndeclaredTerminal
+- RejectParseFailure
+- RejectBudgetOverflow
+- RejectDiagonalSelfLoop
+- RejectUncertifiedLift
+- EscalateToSemanticEvaluator
+terminal_route_map:
+  AcceptMSSN: Preserve
+  RejectSmuggledContainer: Refuse
+  RejectUndeclaredTerminal: Reject
+  RejectParseFailure: Reject
+  RejectBudgetOverflow: BudgetUnknown
+  RejectDiagonalSelfLoop: Reject
+  RejectUncertifiedLift: Refuse
+  EscalateToSemanticEvaluator: Escalate
+certification:
+  certificate_required: true
+  certificate_kind: mssn_conformance_certificate
+  obstruction_class_required: true
+  loss_ledger_required: false
+  verifier_required: true
+  loss_ledger_trigger_id: null
+authorization:
+  authorized_by: null
+  certified_implies_authorized: false
+failure_modes:
+- symptom: empty string epsilon submitted at Level -1 where void is required
+  diagnosis: smuggled container trap
+  terminal: RejectSmuggledContainer
+- symptom: terminal character outside active initial segment A_N encountered
+  diagnosis: undeclared terminal expansion
+  terminal: RejectUndeclaredTerminal
+- symptom: adjacent glyphs submitted to glyph_path (e.g. a0)
+  diagnosis: profile tokenization violation
+  terminal: RejectParseFailure
+- symptom: self-loop relational claim submitted (e.g. a < a or a > a)
+  diagnosis: diagonal violation under irreflexive rent rule
+  terminal: RejectDiagonalSelfLoop
+- symptom: lifted expression restricted to prior level does not equal original
+  diagnosis: split extension failure
+  terminal: RejectUncertifiedLift
+- symptom: syntactically valid expression assumed empirically true without evaluation
+  diagnosis: syntactic firewall violation
+  terminal: EscalateToSemanticEvaluator
+references:
+- atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md
+- ../grammar/mssn.ebnf
+- ../../030_the_symbol_game_proposal_fidelity_protocol_pfp/grammar/README.md
+- ../../014_normal_forms/contracts_normal_forms/normal_form_contract_schema.yaml

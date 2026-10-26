@@ -1,0 +1,700 @@
+{
+  "schema": "wdp-executable-refinement-v1",
+  "authority_effect": "None",
+  "status": "SCOPED_PASS",
+  "base_commit": "8ac5da188390a93252614dfbb707f15d2c4fba42",
+  "python": {
+    "executable": "C:\\Users\\a343o\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "input_bindings": {
+    "atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/scripts/verify_reasoning_refinement.py": "31a72cca1186111beaeb77b9852a802042ee25e1bb8f2d7c7a7dc0576450df0a",
+    "atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/reasoning.py": "8383b5558e079928942bee0098bca287f6ffe3b8027f8bf997bcb6de09e5cea8",
+    "atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/reasoning_refinement.py": "58df3d492fc73bab38a7e1a7bb0cdf0f63d64d54a3b9b11b8863a4445768c57d",
+    "lean4/lakefile.lean": "159a89da24a72c8eac976aa36e9619caaa21fc8b722694d746a21bef56354e9b",
+    "lean4/lean-toolchain": "8733782dc070a99b312039cda424f601b80f3be6f6f512627da5ba25adc27632",
+    "lean4/research_programs/wdp_reasoning/ExecutableReasoning.lean": "45e84a8230275c507a559e30a2321fa2a01614460d64dceb03f5c3772bce9206",
+    "lean4/research_programs/wdp_reasoning/ReasoningAxioms.lean": "3478e5702a14e75a0824563206dc52fd6a095556c99d192f887dc5880f0cda4f",
+    "lean4/research_programs/wdp_reasoning/RefinementAxioms.lean": "09ac0b21525cbf7cd67af904346d7a44060296734cb7a55a68ccf82a30805df1",
+    "lean4/research_programs/wdp_reasoning/WitnessedReasoning.lean": "f063fd17bccdcfe8d5fea07a0032a3bc171c35b2a4dae76879fbf0b14c71eda0",
+    "omega_engine/crates_rs/omega_wdp/src/witnessed_reasoning.rs": "ce2fe633cddd1bad4e4c4c94916e726e29b5a8b550239f19f3f1ccbdbb2c83da",
+    "omega_engine/crates_rs/omega_wdp/src/witnessed_reasoning_replay.rs": "ffb869c3e720a2d7ce8ac0e7c3ebdc6fde8539291a2693bd4373b4f327448504",
+    "omega_engine/crates_rs/omega_wdp/src/examples/witnessed_reasoning_replay.rs": "b03478093837008d594c89afde5a2f4ec15b533d575ee21feb1f691351eb36b8",
+    "omega_engine/crates_rs/tests/omega_wdp/witnessed_reasoning.rs": "356d754dec1f13adbc1d8b7c4bcd6eba8b0fdf6437327eae1a098b0af7dfe0d6",
+    "omega_engine/crates_rs/tests/omega_wdp/witnessed_reasoning_replay.rs": "0db5b12bbb57779928bb95c6eabb683f23fda7df4a3d4709beca13c7b2ee1b89"
+  },
+  "checks": [
+    {
+      "id": "lean-version",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "--version"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "caa538834571fbbf53913bbde24b9fd3d9deac746137443a1c712d820e6a5b38"
+    },
+    {
+      "id": "lean-build",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lake.exe",
+        "build",
+        "WdpReasoning"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "e22bcbe19249208a03837e1a6453c6ca132994147e4dc2f82f3389604a45179c"
+    },
+    {
+      "id": "axioms",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lake.exe",
+        "env",
+        "lean",
+        "research_programs/wdp_reasoning/RefinementAxioms.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "dcece46a81d2d74fff911a2ac0a3314240be3879c88fd5984c45b5017abded8a"
+    },
+    {
+      "id": "python-two-atom-0",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-two-atom-0.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "01e7488b66905c00a109292026cfe3f8fb6a5eb6fe8b6935464c8c9893d8bf46",
+      "source_sha256": "ccb5a205a8c8f89684b7914477618bebeab6a7d6dcb90919458a5e435fb8b483",
+      "theorems_checked": 128
+    },
+    {
+      "id": "python-two-atom-128",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-two-atom-128.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "8d575a9f77e6a95a4fb5f49d4e674b34618ae85f6cc6d9ba056f36b9f8daae8f",
+      "source_sha256": "a93cded4a4a37dfa972dc63652d049e969046be879fd58e0bb35ebc62530b366",
+      "theorems_checked": 128
+    },
+    {
+      "id": "python-two-atom-256",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-two-atom-256.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "4defb4d4286e996b0a8aadbf18ba9d1ccb00c0ebfe720d4ed091ca12af76cfa1",
+      "source_sha256": "b04b9d4965794ae697ae361b9ba9fed0f7d1abf6ae0dd78a16a79330b1296b93",
+      "theorems_checked": 128
+    },
+    {
+      "id": "python-two-atom-384",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-two-atom-384.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "a4412075db18857852a27e3035c013fde276a12c2e3f85e997326ff62275e899",
+      "source_sha256": "1692de4d114efd3038df74c3ab7d890351fc59a3799ece510108a9ee8f24d34e",
+      "theorems_checked": 128
+    },
+    {
+      "id": "python-two-atom-512",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-two-atom-512.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "159c0e4afc4670226ba7f4a8903d285b2f89d199a72ec6009582cc3e065bc09b",
+      "source_sha256": "d055247db6bfd37dd7bb7c29c21fb530f5af52f45d4d1c2439a788429ff4ab99",
+      "theorems_checked": 128
+    },
+    {
+      "id": "python-two-atom-640",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-two-atom-640.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "fa3644bb3a1f196405d6a8ff45e0ea26e5fd512e4e14e6e0c25baeca167eaf9c",
+      "source_sha256": "3a6db9cd7c99631b3c1aef66b3cf0e73a5bab8ee9997f825ad1e58f761ba7ac0",
+      "theorems_checked": 128
+    },
+    {
+      "id": "python-two-atom-768",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-two-atom-768.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "fbf8e2f214b7935d05f4c3d5e28f9bb04450abfa81412184c2e97d06986716fe",
+      "source_sha256": "5c29cd3bc737e272a144433544598f35749e810237ad33e4009c48629c97d025",
+      "theorems_checked": 128
+    },
+    {
+      "id": "python-two-atom-896",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-two-atom-896.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "d720faec4e20d678402d066deb2536b60590b091ac1fbcdc46a09553ba929064",
+      "source_sha256": "a0afc694994b311b762806316b35480436eeb28cf6784f2b55b428194e6ff96c",
+      "theorems_checked": 128
+    },
+    {
+      "id": "python-two-atom-1024",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-two-atom-1024.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "b23201464fa3658916035b950386ede8010c424bb795565acea3fc26401da30b",
+      "source_sha256": "4c03359d77e4c922442e07e32244eb3fd3760211f50abb4c9e988e1816d7da21",
+      "theorems_checked": 128
+    },
+    {
+      "id": "python-two-atom-1152",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-two-atom-1152.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "4b1830cc09f9616dfe0932063c74a9fcc7621286b877a5f27aeec6aed7f8873c",
+      "source_sha256": "bc2d90dc1319bb15bd8e20855cf70b8ffc9bea8e700177f055e4b6db8a62400d",
+      "theorems_checked": 128
+    },
+    {
+      "id": "python-two-atom-1280",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-two-atom-1280.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "8a3035e5ceb8df0a26a4d5928639abc1e93913c029014ad3502ee6b171be9ade",
+      "source_sha256": "562c7ff0b38d77a2525cb7dae1fe67e0203811f534695a0fbaefd61853043157",
+      "theorems_checked": 128
+    },
+    {
+      "id": "python-two-atom-1408",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-two-atom-1408.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "1a81735f51795ee00ddba0580adf5f8f6b186accbc1461f211e112546c19e314",
+      "source_sha256": "b1107e59a6a6ba4fc9b305aff848dfca9466ec0002afd550f9f1eb8f0522e584",
+      "theorems_checked": 128
+    },
+    {
+      "id": "python-two-atom-1536",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-two-atom-1536.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "2c37fe021dc22a564fe462ff7e27b2aa222347b6b2f461bb06e39b66640ba700",
+      "source_sha256": "600ff621417acf74662482c6e21239f5c521f032bc19ca7fbeacac9b2731dcf5",
+      "theorems_checked": 128
+    },
+    {
+      "id": "python-two-atom-1664",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-two-atom-1664.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "9a630a35af51c8e8c96e3e165562103311cdb9db90769c0e6f6d3cf72b12f879",
+      "source_sha256": "1228457dc4b6209d2cdfea14bbef82c58a333d976b67dfb0a41780c118b176ac",
+      "theorems_checked": 128
+    },
+    {
+      "id": "python-two-atom-1792",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-two-atom-1792.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "ffa0589a961b96ac21ec46087e61b3c385de7123a7a1a29ee729935abe3f53ff",
+      "source_sha256": "43f68cca71f7d107ed6ea4f888a3f7aa4dd9e973f78b70400be0d161f11d73f1",
+      "theorems_checked": 128
+    },
+    {
+      "id": "python-two-atom-1920",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-two-atom-1920.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "f811209f223f3d13421a75b147f99e0884b922093815134f1e209217234efd29",
+      "source_sha256": "6360e67a5728ba48fdbe1a3471db4a7c4eab06eaadf72e4a8e99a8ef51e64d34",
+      "theorems_checked": 128
+    },
+    {
+      "id": "python-all-two-vertex-graphs",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-all-two-vertex-graphs.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "dc49926fca84e4323920691995218521ba0a88707cb2faa75ab4ab8b9970b5a0",
+      "source_sha256": "38db19310b54fc6218ab3f891eac8fcea0477d1204ca08b22285f2b8b8298926",
+      "theorems_checked": 64
+    },
+    {
+      "id": "python-unicode",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-unicode.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "ddb11daeaad98f1b8d70c2057d681ceeced946949fe7498cbf52eccfd4533ed7",
+      "source_sha256": "73171e25731fb8fd35d7cd75aa120839ad9515dadcb32200570db18300b95ee0",
+      "theorems_checked": 1
+    },
+    {
+      "id": "python-reject-forward",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-reject-forward.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 1,
+      "expected_rejection": true,
+      "output_sha256": "e380cd7ad3cb9baf8b33e94a4f2312dd072e2994203277d30553c7e3cdda69e8",
+      "source_sha256": "1f5de1e474a9c6883e068cf04b798c06032395b9c5642b8631c0968510c472fa",
+      "theorems_checked": 0
+    },
+    {
+      "id": "python-reject-missing-premise",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-reject-missing-premise.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 1,
+      "expected_rejection": true,
+      "output_sha256": "aa56693b00c9477b98823e854c943b0908899c270afb0d76bb8e770e1d9c6de4",
+      "source_sha256": "c8fbb8b0c43a522ecec4e1aad67e2bdf3367d14e086d7733e4f70c369af6ae3d",
+      "theorems_checked": 0
+    },
+    {
+      "id": "python-reject-forged-fact",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-reject-forged-fact.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 1,
+      "expected_rejection": true,
+      "output_sha256": "51293c9ed1b2c86ab29e10edb13413f13c262cf60aa3d251a45da677ae10eb52",
+      "source_sha256": "3d8791b1b00636fbcc37e75fa75e81c27674706eddd8e9d6c8324e03096dac43",
+      "theorems_checked": 0
+    },
+    {
+      "id": "python-reject-empty",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-reject-empty.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 1,
+      "expected_rejection": true,
+      "output_sha256": "22999593c20f685eaf9881508bd03ba3a379f30230b16e6c6232af2f12064956",
+      "source_sha256": "6c8694141dd8b0f3b0fb15a01aee7d62111d3ad94827d11fdd7a1594d567de71",
+      "theorems_checked": 0
+    },
+    {
+      "id": "python-reject-rule-index",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-reject-rule-index.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 1,
+      "expected_rejection": true,
+      "output_sha256": "62a800a6f7661bd468bf54b4bce2ae780ab6bfe73dd1914886f4e2ccb38527cd",
+      "source_sha256": "de3082260d5e55b49a0172f0007e5b68f608acee2b2e65d0c0e64150c9984dc1",
+      "theorems_checked": 0
+    },
+    {
+      "id": "python-reject-wrong-goal",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-reject-wrong-goal.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 1,
+      "expected_rejection": true,
+      "output_sha256": "cfa2a6004de661acd93b77d4ef57b85f6038c76dd5e7c72f980bbaff27664168",
+      "source_sha256": "98401e4bfc9c12a1bebe01bfc8a7ff87599baaa6739012d6fb1b620d87b0a089",
+      "theorems_checked": 0
+    },
+    {
+      "id": "python-reject-carrier",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-reject-carrier.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 1,
+      "expected_rejection": true,
+      "output_sha256": "915aa590aa519326d323067aef61da98df5c671293d337537af8dde0ad0d45ef",
+      "source_sha256": "95fe62eab080be8601b87fe666082c9e0be3dd6ca8876ed03e67715d9572d082",
+      "theorems_checked": 0
+    },
+    {
+      "id": "python-reject-closure",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-reject-closure.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 1,
+      "expected_rejection": true,
+      "output_sha256": "92ec8eece5ebcdc6c006b556f7e1071555b0f9b404693bd726ee970d33d36b4f",
+      "source_sha256": "9c20ce41b9a2ebcc6b5154694dbeb11a96460674aad3a97d30ee964437ff402a",
+      "theorems_checked": 0
+    },
+    {
+      "id": "python-reject-model-goal",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-reject-model-goal.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 1,
+      "expected_rejection": true,
+      "output_sha256": "231252f5a310b2ae74d55bd4a6c0c3dff6b701fda0b12e3ce129b5722798ad25",
+      "source_sha256": "5c6ac6645d98c20cf53b577e2466fe153253cfd3dc6af85e835ee60a3ceb081d",
+      "theorems_checked": 0
+    },
+    {
+      "id": "python-reject-model-facts",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\python-reject-model-facts.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 1,
+      "expected_rejection": true,
+      "output_sha256": "6e7bcf6642a23fc82a69acbd69d29d30e50a153463ac4a2eeecce9b49a8c6726",
+      "source_sha256": "f422b4e40c9d004ba3a7a4e607d515267e99d48b924b5c7f5ccb9331daf4263f",
+      "theorems_checked": 0
+    },
+    {
+      "id": "python-live-adapter",
+      "status": "KERNEL_ACCEPTED",
+      "judgment": "derivable",
+      "source_sha256": "73171e25731fb8fd35d7cd75aa120839ad9515dadcb32200570db18300b95ee0",
+      "theory_digest": "46f1a6295850d61da3c4c24ee1f21e94728fec0bf08ea2fbf48c041ab9c54015",
+      "goal": 1,
+      "output_sha256": "ddb11daeaad98f1b8d70c2057d681ceeced946949fe7498cbf52eccfd4533ed7"
+    },
+    {
+      "id": "rust-version",
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\.rustup\\toolchains\\stable-x86_64-pc-windows-msvc\\bin\\rustc.exe",
+        "--version"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "8dc912acd5bfeafc70b01b1d2a2afb0844afa02f5dba2f1ae8d5c212d005afb6"
+    },
+    {
+      "id": "rust-module",
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\.rustup\\toolchains\\stable-x86_64-pc-windows-msvc\\bin\\rustc.exe",
+        "--edition=2021",
+        "--crate-type=lib",
+        "--crate-name=omega_wdp",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\selected_native.rs",
+        "--out-dir",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "rust-build-witnessed_reasoning",
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\.rustup\\toolchains\\stable-x86_64-pc-windows-msvc\\bin\\rustc.exe",
+        "--edition=2021",
+        "--test",
+        "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\omega_engine\\crates_rs\\tests\\omega_wdp\\witnessed_reasoning.rs",
+        "--extern",
+        "omega_wdp=C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\libomega_wdp.rlib",
+        "-o",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\witnessed_reasoning_tests.exe"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "rust-test-witnessed_reasoning",
+      "command": [
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\witnessed_reasoning_tests.exe"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "e574ceba233d7b96a4d39f2b7f4f3ecb5b3ec18a7e110d90559fd7001b9f701c"
+    },
+    {
+      "id": "rust-build-witnessed_reasoning_replay",
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\.rustup\\toolchains\\stable-x86_64-pc-windows-msvc\\bin\\rustc.exe",
+        "--edition=2021",
+        "--test",
+        "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\omega_engine\\crates_rs\\tests\\omega_wdp\\witnessed_reasoning_replay.rs",
+        "--extern",
+        "omega_wdp=C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\libomega_wdp.rlib",
+        "-o",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\witnessed_reasoning_replay_tests.exe"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "rust-test-witnessed_reasoning_replay",
+      "command": [
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\witnessed_reasoning_replay_tests.exe"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "ddcde23d1b4cccf49297c30ed41d0a1c6d239b53c248c936ae928cde659fac5d"
+    },
+    {
+      "id": "rust-emitter-build",
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\.rustup\\toolchains\\stable-x86_64-pc-windows-msvc\\bin\\rustc.exe",
+        "--edition=2021",
+        "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\omega_engine\\crates_rs\\omega_wdp\\src\\examples\\witnessed_reasoning_replay.rs",
+        "--extern",
+        "omega_wdp=C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\libomega_wdp.rlib",
+        "-o",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\native_replay.exe"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "rust-emitter",
+      "command": [
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\native_replay.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\native-corpus"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "1508e618fbca3039644a604b0d1d825d1ea290aaa00d2796229325eaaf2e9e58"
+    },
+    {
+      "id": "native-accept_duplicate",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\native-accept_duplicate.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "cc0f8a072b816c7fe8a091015359cdb7d2105c93f8e4abf03c6deb98ed4bc00f",
+      "source_sha256": "126fd8e7cfcfda6b739ef5e66fe188b7de3114b83a8801a1e21b8754cd0256bd",
+      "theorems_checked": 1
+    },
+    {
+      "id": "native-accept_empty_premise",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\native-accept_empty_premise.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "cc0f8a072b816c7fe8a091015359cdb7d2105c93f8e4abf03c6deb98ed4bc00f",
+      "source_sha256": "3ed344a7460b7d6fee0b04833fe74ea1612ceaa838f9a9630e2b5e601448e932",
+      "theorems_checked": 1
+    },
+    {
+      "id": "native-accept_model",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\native-accept_model.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "f13f9172ad95363e77dbb486e8c1c0378fee3392ba7575340215c6ec22e1d134",
+      "source_sha256": "59e8275e066c310ddf64812b3f093041049e8d9bc0adaca8cd0dda227c745bb4",
+      "theorems_checked": 1
+    },
+    {
+      "id": "native-accept_proof",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\native-accept_proof.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 0,
+      "expected_rejection": false,
+      "output_sha256": "cc0f8a072b816c7fe8a091015359cdb7d2105c93f8e4abf03c6deb98ed4bc00f",
+      "source_sha256": "0eb3f03f7743bb704f14d8d43cd5ef2d28df9b80158b7a933fa0c17ad77442b1",
+      "theorems_checked": 1
+    },
+    {
+      "id": "native-reject_closure",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\native-reject_closure.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 1,
+      "expected_rejection": true,
+      "output_sha256": "dbfd202cdc965894e72225c3be93ceff8b0fd53f5b272b6b2597ae62b86cafc5",
+      "source_sha256": "0d50dbc1a14142286cfe02664506507970f1f65c7fa5fffe27ef4523dce386ef",
+      "theorems_checked": 0
+    },
+    {
+      "id": "native-reject_fact",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\native-reject_fact.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 1,
+      "expected_rejection": true,
+      "output_sha256": "b263a55fbdd06ca9a29ebf4c3bdaff18e7d9d7e5028189ab08f3d920b928a09c",
+      "source_sha256": "c2d9f361c5fb1eb1785e60858c706f6c692c798c5ea19ddcaded5dc1b40a196b",
+      "theorems_checked": 0
+    },
+    {
+      "id": "native-reject_forward",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\native-reject_forward.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 1,
+      "expected_rejection": true,
+      "output_sha256": "1be47b851315b10e696a8ec0d0234451cd540281fb39443a430c1d112a3798fb",
+      "source_sha256": "2772284b103d8547f821da7cbddf8648a2e06731cbb29ffbeecc2af3784d8f73",
+      "theorems_checked": 0
+    },
+    {
+      "id": "native-reject_goal",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\native-reject_goal.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 1,
+      "expected_rejection": true,
+      "output_sha256": "80127413b18357cbd1383feb7a1bd5cee81379698fc7ff44da5abe524c1f6cb6",
+      "source_sha256": "7e702eacb9f6a2f155c0baa55ee56ccc6c5335d1f883452c0098cd5ffdfe7129",
+      "theorems_checked": 0
+    },
+    {
+      "id": "native-reject_length",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\native-reject_length.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 1,
+      "expected_rejection": true,
+      "output_sha256": "555593159b1d3315a8f2302299cf55f72b713ec854ff063c6c7dd428075c3a22",
+      "source_sha256": "2f5c63dad5277a6622fd0a271375193614c2b513fcd409ce2502a954ba1b4186",
+      "theorems_checked": 0
+    },
+    {
+      "id": "native-reject_rule",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\native-reject_rule.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 1,
+      "expected_rejection": true,
+      "output_sha256": "8529706c3a396f1e3bdf08eee69f14cc67a293996ee66bd1f95737fd819bd014",
+      "source_sha256": "cbc4adc4a5dff0a52d39ba0ba4d03a4d9263186f4245f2154e7b870eb758cadc",
+      "theorems_checked": 0
+    },
+    {
+      "id": "native-reject_source",
+      "command": [
+        "C:\\Users\\a343o\\.elan\\toolchains\\leanprover--lean4---v4.34.1\\bin\\lean.exe",
+        "C:\\Users\\a343o\\.codex\\visualizations\\2026\\10\\16\\01a145cd-4246-7653-965f-396e1a731f67\\pr1148-review\\verified\\native-reject_source.lean"
+      ],
+      "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\222a\\the_symbol_game\\lean4",
+      "exit_code": 1,
+      "expected_rejection": true,
+      "output_sha256": "eb0a3bc2fd0060009a0c3451eeb0f06aa104a0310f480445c0ad292cabc691d2",
+      "source_sha256": "ed44faf14f8658b9c81df791bac18f285cf942a859d238be8e8fedb961e35ac8",
+      "theorems_checked": 0
+    }
+  ],
+  "python_kernel_cases": 2048,
+  "graph_kernel_cases": 64,
+  "python_mutation_refusals": 10,
+  "native_kernel_cases": 11,
+  "formal_declarations": 17,
+  "limits": [
+    "Lean executable checker refinement is proved for arbitrary finite inputs",
+    "Python/Rust serializers and source semantics are tested, not formally verified",
+    "Foreign solver termination and completeness are not formally refined here",
+    "Selected Rust modules only; no full crate or historical Mathlib build",
+    "Toolchain/runtime and compiler trust remain explicit; no publication or authority claim"
+  ]
+}

@@ -7,8 +7,8 @@ Part of the [evidence map](README.md). AuthorityEffect: None. Generated; every f
 | `proved_lean_below_e3`: PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt | 0 |
 | `proved_lean_external_only`: PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout | 0 |
 | `receipt_not_current`: A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit | 33 |
-| `computational_no_runnable_test`: COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited | 160 |
-| `proved_prose_no_in_repo_document`: PROVED_PROSE with no in-repo source document cited | 12 |
+| `computational_no_runnable_test`: COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited | 157 |
+| `proved_prose_no_in_repo_document`: PROVED_PROSE with no in-repo source document cited | 4 |
 | `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 52 |
 | `receipt_names_uncited_module`: A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) | 11 |
 
@@ -64,7 +64,7 @@ A replay receipt exists for a cited Lean file, but its sha256 no longer matches 
 | [DS-QM080-IMPORT-FREE-TRACE-NORM-CORE](nodes/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 0 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
 | [TFQ-0316](nodes/TFQ-0316.md) | FINITE_HILBERT | `SOURCE_RECORD` | E1 | 0 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
 
-## `computational_no_runnable_test` (160)
+## `computational_no_runnable_test` (157)
 
 COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Ordered by downstream nodes, most first.
 
@@ -72,18 +72,17 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 |---|---|---|---|---|---|
 | [PG-GEN-COLLAPSE-AND-FIRST-SEPARATION](nodes/PG-GEN-COLLAPSE-AND-FIRST-SEPARATION.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 711 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [L1-GS000-EDGEWISE-L1](nodes/L1-GS000-EDGEWISE-L1.md) | L1_EMERGENCE | `COMPUTATIONALLY_CHECKED` | E3 | 461 | 2 in-repo Rust or Python symbol(s) cited, none a test |
-| [PGW-CLOSED-BASELINE-TERMINATES](nodes/PGW-CLOSED-BASELINE-TERMINATES.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 138 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [PGW-GENESIS-THREE-AXIS-VERDICT](nodes/PGW-GENESIS-THREE-AXIS-VERDICT.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E0 | 126 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [PGW-RUNG0-INHERITANCE-REPLAY](nodes/PGW-RUNG0-INHERITANCE-REPLAY.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 125 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [PGW-GENESIS-THREE-AXIS-VERDICT](nodes/PGW-GENESIS-THREE-AXIS-VERDICT.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E2 | 126 | 4 in-repo Rust or Python symbol(s) cited, none a test |
+| [PGW-RUNG0-INHERITANCE-REPLAY](nodes/PGW-RUNG0-INHERITANCE-REPLAY.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 125 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [PGW-FORCED-CENSUS-COLUMN](nodes/PGW-FORCED-CENSUS-COLUMN.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 111 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM062-U1-SELECTOR-LAYERS](nodes/DS-QM062-U1-SELECTOR-LAYERS.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 69 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM063-HOLONOMY-COHERENT-INTENSITY](nodes/DS-QM063-HOLONOMY-COHERENT-INTENSITY.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 54 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM070-PRODUCT-NONFACTORIZATION](nodes/DS-QM070-PRODUCT-NONFACTORIZATION.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 50 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [PGW-RUNG2B-STAKE-MENU](nodes/PGW-RUNG2B-STAKE-MENU.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E0 | 44 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [PGW-RUNG2B-STAKE-MENU](nodes/PGW-RUNG2B-STAKE-MENU.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E1 | 44 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0125](nodes/TFQ-0125.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 40 | 3 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0126](nodes/TFQ-0126.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 39 | 3 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0127](nodes/TFQ-0127.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 38 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0129](nodes/TFQ-0129.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 34 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0129](nodes/TFQ-0129.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 34 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0166](nodes/TFQ-0166.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 32 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [COMP-C1-FIRST-SEPARATION-REPLAY](nodes/COMP-C1-FIRST-SEPARATION-REPLAY.md) | COMPUTATION | `COMPUTATIONALLY_CHECKED` | E3 | 30 | 6 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0131](nodes/TFQ-0131.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 30 | 1 in-repo Rust or Python symbol(s) cited, none a test |
@@ -95,7 +94,7 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [TFQ-0020](nodes/TFQ-0020.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 22 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0021](nodes/TFQ-0021.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 21 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0022](nodes/TFQ-0022.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 20 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0133](nodes/TFQ-0133.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 20 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0133](nodes/TFQ-0133.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 20 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0023](nodes/TFQ-0023.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 19 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM073-FINITE-CHSH-AND-PR-BOX](nodes/DS-QM073-FINITE-CHSH-AND-PR-BOX.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 17 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM102-SYNDROME-CAPACITY-BOUND](nodes/DS-QM102-SYNDROME-CAPACITY-BOUND.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 16 | 0 in-repo Rust or Python symbol(s) cited, none a test |
@@ -115,17 +114,17 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [AUTH-TC0-TAPE-CONTROL-TYPING](nodes/AUTH-TC0-TAPE-CONTROL-TYPING.md) | COMPUTATION | `COMPUTATIONALLY_CHECKED` | E3 | 8 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM030-GRADED-PATHSUM](nodes/DS-QM030-GRADED-PATHSUM.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 8 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [AUTH-TC2-FINITE-TRANSITION-CONTRACT](nodes/AUTH-TC2-FINITE-TRANSITION-CONTRACT.md) | COMPUTATION | `COMPUTATIONALLY_CHECKED` | E3 | 7 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0146](nodes/TFQ-0146.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 7 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0146](nodes/TFQ-0146.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 7 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [L1-QM122-CIRCLE-SELECTOR-BOUNDARY](nodes/L1-QM122-CIRCLE-SELECTOR-BOUNDARY.md) | L1_TO_L2 | `COMPUTATIONALLY_CHECKED` | E3 | 6 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0137](nodes/TFQ-0137.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 6 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL](nodes/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 5 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0147](nodes/TFQ-0147.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 5 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0147](nodes/TFQ-0147.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 5 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0154](nodes/TFQ-0154.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 5 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM030-TRANSFER-OPERATOR-SHADOW](nodes/DS-QM030-TRANSFER-OPERATOR-SHADOW.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 4 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM090-092-AUTHORITY-FIREWALL](nodes/DS-QM090-092-AUTHORITY-FIREWALL.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 4 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [FQ-DISCRETE-DYNAMICS-DICHOTOMY](nodes/FQ-DISCRETE-DYNAMICS-DICHOTOMY.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 4 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [FQ-IMPL-REALIFICATION-ADAPTER](nodes/FQ-IMPL-REALIFICATION-ADAPTER.md) | IMPLEMENTATION | `COMPUTATIONALLY_CHECKED` | E3 | 4 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [PGW-ALPHA-LICENSE-BINDING-M1-M8](nodes/PGW-ALPHA-LICENSE-BINDING-M1-M8.md) | IMPLEMENTATION | `COMPUTATIONALLY_CHECKED` | E0 | 4 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [PGW-ALPHA-LICENSE-BINDING-M1-M8](nodes/PGW-ALPHA-LICENSE-BINDING-M1-M8.md) | IMPLEMENTATION | `COMPUTATIONALLY_CHECKED` | E1 | 4 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0034](nodes/TFQ-0034.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 4 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0148](nodes/TFQ-0148.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 4 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM021-IDEMPOTENT-CONDITIONING](nodes/DS-QM021-IDEMPOTENT-CONDITIONING.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 3 | 0 in-repo Rust or Python symbol(s) cited, none a test |
@@ -144,8 +143,8 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [TFQ-0036](nodes/TFQ-0036.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0045](nodes/TFQ-0045.md) | FINITE_TOPOLOGICAL | `COMPUTATIONALLY_CHECKED` | E0 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0049](nodes/TFQ-0049.md) | FINITE_TOPOLOGICAL | `COMPUTATIONALLY_CHECKED` | E1 | 2 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0134](nodes/TFQ-0134.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0150](nodes/TFQ-0150.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0134](nodes/TFQ-0134.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0150](nodes/TFQ-0150.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0189](nodes/TFQ-0189.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 2 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM032-FINITE-FEYNMAN-SHADOW](nodes/DS-QM032-FINITE-FEYNMAN-SHADOW.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO](nodes/DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
@@ -163,8 +162,8 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [TFQ-0138](nodes/TFQ-0138.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 1 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0140](nodes/TFQ-0140.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 1 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0151](nodes/TFQ-0151.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 1 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0155](nodes/TFQ-0155.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0160](nodes/TFQ-0160.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0155](nodes/TFQ-0155.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0160](nodes/TFQ-0160.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0193](nodes/TFQ-0193.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 1 | 5 in-repo Rust or Python symbol(s) cited, none a test |
 | [AUTHF-REPLAY-SUBSTITUTIONS](nodes/AUTHF-REPLAY-SUBSTITUTIONS.md) | COMPUTATION | `COMPUTATIONALLY_CHECKED` | E3 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM032-CONTINUUM-LIMIT-CONDITIONAL](nodes/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 0 | 1 in-repo Rust or Python symbol(s) cited, none a test |
@@ -190,33 +189,31 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [MUB6-SZOLLOSI-FULLBOX-UNRESOLVED](nodes/MUB6-SZOLLOSI-FULLBOX-UNRESOLVED.md) | MUTUALLY_UNBIASED_BASES | `COMPUTATIONALLY_CHECKED` | E3 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [MUB6-SZOLLOSI-SPECIAL-POINT-PAIRS](nodes/MUB6-SZOLLOSI-SPECIAL-POINT-PAIRS.md) | MUTUALLY_UNBIASED_BASES | `COMPUTATIONALLY_CHECKED` | E2 | 0 | 2 in-repo Rust or Python symbol(s) cited, none a test |
 | [PG-GEN-SAMENESS-REFINEMENTS](nodes/PG-GEN-SAMENESS-REFINEMENTS.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [PGW-BOUNDED-TIE-CENSUS](nodes/PGW-BOUNDED-TIE-CENSUS.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [PGW-BRANCH-TREES-AND-ROLES](nodes/PGW-BRANCH-TREES-AND-ROLES.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [PGW-PFP-C4-CERTIFICATE](nodes/PGW-PFP-C4-CERTIFICATE.md) | IMPLEMENTATION | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0041](nodes/TFQ-0041.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0047](nodes/TFQ-0047.md) | FINITE_TOPOLOGICAL | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0051](nodes/TFQ-0051.md) | FINITE_TOPOLOGICAL | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0128](nodes/TFQ-0128.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0130](nodes/TFQ-0130.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0132](nodes/TFQ-0132.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0135](nodes/TFQ-0135.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0128](nodes/TFQ-0128.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0130](nodes/TFQ-0130.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0132](nodes/TFQ-0132.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0135](nodes/TFQ-0135.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0136](nodes/TFQ-0136.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0139](nodes/TFQ-0139.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0141](nodes/TFQ-0141.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0142](nodes/TFQ-0142.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0143](nodes/TFQ-0143.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0145](nodes/TFQ-0145.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0139](nodes/TFQ-0139.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0141](nodes/TFQ-0141.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0142](nodes/TFQ-0142.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0143](nodes/TFQ-0143.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0145](nodes/TFQ-0145.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0152](nodes/TFQ-0152.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0153](nodes/TFQ-0153.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0156](nodes/TFQ-0156.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0157](nodes/TFQ-0157.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0158](nodes/TFQ-0158.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0159](nodes/TFQ-0159.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0161](nodes/TFQ-0161.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0156](nodes/TFQ-0156.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0157](nodes/TFQ-0157.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0158](nodes/TFQ-0158.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0159](nodes/TFQ-0159.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0161](nodes/TFQ-0161.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0162](nodes/TFQ-0162.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 2 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0163](nodes/TFQ-0163.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0164](nodes/TFQ-0164.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0165](nodes/TFQ-0165.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0163](nodes/TFQ-0163.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0164](nodes/TFQ-0164.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0165](nodes/TFQ-0165.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0168](nodes/TFQ-0168.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 3 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0169](nodes/TFQ-0169.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0170](nodes/TFQ-0170.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 3 in-repo Rust or Python symbol(s) cited, none a test |
@@ -231,20 +228,12 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [TFQ-0194](nodes/TFQ-0194.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 3 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0196](nodes/TFQ-0196.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 0 | 5 in-repo Rust or Python symbol(s) cited, none a test |
 
-## `proved_prose_no_in_repo_document` (12)
+## `proved_prose_no_in_repo_document` (4)
 
 PROVED_PROSE with no in-repo source document cited. Ordered by downstream nodes, most first.
 
 | Node | Stage | Status | Grade | Downstream | Detail |
 |---|---|---|---|---|---|
-| [PGW-NO-ENDOGENOUS-DEMAND-GENERATOR](nodes/PGW-NO-ENDOGENOUS-DEMAND-GENERATOR.md) | GENESIS | `PROVED_PROSE` | E3 | 136 | no in-repo non-generated document among the counted sources |
-| [PGW-IDENTITY-IS-INDEX-NOT-PROFILE](nodes/PGW-IDENTITY-IS-INDEX-NOT-PROFILE.md) | GENESIS | `PROVED_PROSE` | E3 | 134 | no in-repo non-generated document among the counted sources |
-| [PGW-SEALED-TERMINAL-STATEMENT](nodes/PGW-SEALED-TERMINAL-STATEMENT.md) | GENESIS | `PROVED_PROSE` | E0 | 133 | no in-repo non-generated document among the counted sources |
-| [PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE](nodes/PGW-SN4-POLICY-CLOSURE-CYCLE-SPACE.md) | MSSN_SN | `PROVED_PROSE` | E3 | 27 | no in-repo non-generated document among the counted sources |
-| [PGW-WDP-FAILED-SAMENESS](nodes/PGW-WDP-FAILED-SAMENESS.md) | WDP | `PROVED_PROSE` | E0 | 10 | no in-repo non-generated document among the counted sources |
-| [PGW-WDP-DEGREE-K-TORSION-BALANCE](nodes/PGW-WDP-DEGREE-K-TORSION-BALANCE.md) | WDP | `PROVED_PROSE` | E0 | 8 | no in-repo non-generated document among the counted sources |
-| [PGW-SN-POSTNIKOV-REFUSAL](nodes/PGW-SN-POSTNIKOV-REFUSAL.md) | MSSN_SN | `PROVED_PROSE` | E0 | 7 | no in-repo non-generated document among the counted sources |
-| [PGW-WDP-TRICHOTOMY-BOUNDS](nodes/PGW-WDP-TRICHOTOMY-BOUNDS.md) | WDP | `PROVED_PROSE` | E3 | 2 | no in-repo non-generated document among the counted sources |
 | [PGW-SN-E18-L1-TIES-L2-CENTER](nodes/PGW-SN-E18-L1-TIES-L2-CENTER.md) | MSSN_SN | `PROVED_PROSE` | E0 | 0 | no in-repo non-generated document among the counted sources |
 | [PGW-SN-E19-TORSION-ERASED-OVER-Q](nodes/PGW-SN-E19-TORSION-ERASED-OVER-Q.md) | MSSN_SN | `PROVED_PROSE` | E0 | 0 | no in-repo non-generated document among the counted sources |
 | [PGW-SN-E20-OBSERVER-COMPLETION](nodes/PGW-SN-E20-OBSERVER-COMPLETION.md) | MSSN_SN | `PROVED_PROSE` | E0 | 0 | no in-repo non-generated document among the counted sources |
@@ -259,18 +248,18 @@ A cited in-repo path or symbol cannot be found in this checkout. Ordered by down
 | [PG-PRIMDIFF-AXIOMS](nodes/PG-PRIMDIFF-AXIOMS.md) | PREGENESIS | `DEFINITION` | E3 | 500 | path not found: code/python/src/majorana/tests/unit/test_primitive_difference.py |
 | [TFQ-0125](nodes/TFQ-0125.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 40 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/finite_qm_engine.py |
 | [TFQ-0127](nodes/TFQ-0127.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 38 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/operational_axiom_selection.py |
-| [TFQ-0129](nodes/TFQ-0129.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 34 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/born_normalization.py |
+| [TFQ-0129](nodes/TFQ-0129.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 34 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/born_normalization.py |
 | [TFQ-0320](nodes/TFQ-0320.md) | FINITE_OBSTRUCTION | `SOURCE_RECORD` | E0 | 32 | path not found: code/python/src/majorana/tests/unit/test_primitive_difference.py |
 | [TFQ-0131](nodes/TFQ-0131.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 30 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
-| [TFQ-0206](nodes/TFQ-0206.md) | ENGINE_CUSTODY | `SOURCE_RECORD` | E0 | 27 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
+| [TFQ-0206](nodes/TFQ-0206.md) | ENGINE_CUSTODY | `SOURCE_RECORD` | E1 | 27 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 | [TFQ-0207](nodes/TFQ-0207.md) | ENGINE_CUSTODY | `OPEN` | E1 | 26 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 | [TFQ-0208](nodes/TFQ-0208.md) | ENGINE_CUSTODY | `OPEN` | E0 | 25 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 | [TFQ-0215](nodes/TFQ-0215.md) | ENGINE_CUSTODY | `OPEN` | E1 | 18 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/cptp_channel.py |
 | [TFQ-0144](nodes/TFQ-0144.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 9 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/busch_effects.py |
-| [TFQ-0146](nodes/TFQ-0146.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 7 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/cptp_channel.py |
+| [TFQ-0146](nodes/TFQ-0146.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 7 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/cptp_channel.py |
 | [TFQ-0226](nodes/TFQ-0226.md) | ENGINE_CUSTODY | `OPEN` | E1 | 7 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 | [TFQ-0137](nodes/TFQ-0137.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 6 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/discrete_dynamics.py |
-| [TFQ-0147](nodes/TFQ-0147.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 5 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/cptp_channels_stinespring.py |
+| [TFQ-0147](nodes/TFQ-0147.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 5 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/cptp_channels_stinespring.py |
 | [TFQ-0149](nodes/TFQ-0149.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 3 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/simplicial_complex_qm.py |
 | [TFQ-0176](nodes/TFQ-0176.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 3 | path not found: code/python/src/mub/mub_verify/a1_collar_swarm.py |
 | [TFQ-0230](nodes/TFQ-0230.md) | ENGINE_CUSTODY | `SOURCE_RECORD` | E1 | 3 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
@@ -292,19 +281,19 @@ A cited in-repo path or symbol cannot be found in this checkout. Ordered by down
 | [TFQ-0151](nodes/TFQ-0151.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 1 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/discrete_walk_engines.py |
 | [TFQ-0315](nodes/TFQ-0315.md) | FINITE_HILBERT | `SOURCE_RECORD` | E1 | 1 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 | [L1-QM121-LADDER-RUNGS-2-6](nodes/L1-QM121-LADDER-RUNGS-2-6.md) | L1_TO_L2 | `COMPUTATIONALLY_CHECKED` | E3 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
-| [TFQ-0130](nodes/TFQ-0130.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/higher_dim_entanglement.py |
-| [TFQ-0130](nodes/TFQ-0130.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/quantum_protocols.py |
-| [TFQ-0135](nodes/TFQ-0135.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/contextuality_f2.py |
-| [TFQ-0135](nodes/TFQ-0135.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/mermin_peres.py |
+| [TFQ-0130](nodes/TFQ-0130.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/higher_dim_entanglement.py |
+| [TFQ-0130](nodes/TFQ-0130.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/quantum_protocols.py |
+| [TFQ-0135](nodes/TFQ-0135.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/contextuality_f2.py |
+| [TFQ-0135](nodes/TFQ-0135.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/mermin_peres.py |
 | [TFQ-0136](nodes/TFQ-0136.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/quantum_correlation.py |
 | [TFQ-0136](nodes/TFQ-0136.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/tensor_commuting_correlation_frontier.py |
 | [TFQ-0152](nodes/TFQ-0152.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/stabilizer_codes.py |
-| [TFQ-0159](nodes/TFQ-0159.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/composition_tensor_mub.py |
+| [TFQ-0159](nodes/TFQ-0159.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/composition_tensor_mub.py |
 | [TFQ-0162](nodes/TFQ-0162.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/branch_finegraining.py |
 | [TFQ-0162](nodes/TFQ-0162.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/everett_tree.py |
-| [TFQ-0163](nodes/TFQ-0163.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/cancellation_certificates.py |
-| [TFQ-0163](nodes/TFQ-0163.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/interference.py |
-| [TFQ-0165](nodes/TFQ-0165.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E0 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/tower_topological_completion.py |
+| [TFQ-0163](nodes/TFQ-0163.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/cancellation_certificates.py |
+| [TFQ-0163](nodes/TFQ-0163.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/interference.py |
+| [TFQ-0165](nodes/TFQ-0165.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/tower_topological_completion.py |
 | [TFQ-0182](nodes/TFQ-0182.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 0 | path not found: code/python/src/majorana/majorana/core/gf2_diagnostic.py |
 | [TFQ-0289](nodes/TFQ-0289.md) | FINITE_HILBERT | `SOURCE_RECORD` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |
 | [TFQ-0316](nodes/TFQ-0316.md) | FINITE_HILBERT | `SOURCE_RECORD` | E1 | 0 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py |

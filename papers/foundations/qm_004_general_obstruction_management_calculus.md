@@ -7,10 +7,10 @@
 
 The standalone manuscript is retired. Its surviving mathematical content is merged into the shared finite-obstruction quotient treatment:
 
-- **Canonical Monograph:** [`../001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md#chapter-04`](../001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md#chapter-04) (Chapter 4, §4.2.2).
-- **Source Notes:** [`../006_finite_qm/finite_quantum_mechanics_source_notes.md#114-residual-density-across-the-l1l2-boundary-qm-003-and-qm-004-absorbed-and-retired`](../006_finite_qm/finite_quantum_mechanics_source_notes.md#114-residual-density-across-the-l1l2-boundary-qm-003-and-qm-004-absorbed-and-retired) (§11.4).
-- **Native Rust Tests:** `006_finite_qm/native/tests/obstruction_management_firewall.rs` and `006_finite_qm/native/tests/residual_density_boundary.rs`.
-- **Consolidated Claims:** [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (IDs `004:QM-004-C1` through `004:QM-004-C24`).
+- **Canonical Monograph:** [`../finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#chapter-04`](../finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#chapter-04) (Chapter 4, §4.2.2).
+- **Source Notes:** [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#114-residual-density-across-the-l1l2-boundary-qm-003-and-qm-004-absorbed-and-retired`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#114-residual-density-across-the-l1l2-boundary-qm-003-and-qm-004-absorbed-and-retired) (§11.4).
+- **Native Rust Tests:** `finite_quantum_mechanics/native/tests/obstruction_management_firewall.rs` and `finite_quantum_mechanics/native/tests/residual_density_boundary.rs`.
+- **Consolidated Claims:** [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (IDs `004:QM-004-C1` through `004:QM-004-C24`).
 
 ## Retained Mathematical Formulation
 

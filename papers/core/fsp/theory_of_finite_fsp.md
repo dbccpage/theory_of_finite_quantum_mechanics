@@ -3,7 +3,7 @@
 **AuthorityEffect:** None.  
 **Document Identity:** `theory_of_finite_fsp`  
 **Target Output DAG:** [`theory_of_finite_fsp.jsonl`](theory_of_finite_fsp.jsonl)  
-**Atlas Primary Floor:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp)  
+**Atlas Primary Floor:** [`sources/atlas/papers/fermion_sign_problem/`](file:///c:sources/atlas/papers/fermion_sign_problem)  
 **Total Derivations:** 56 nodes across 14 systematic stages (Zero Cycles, Rooted at Pre-Genesis).  
 
 ---
@@ -56,7 +56,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Admits the irreflexive relation R = {(a, b)}, yielding the directed 1-simplex edge e = (a -> b) with trivial automorphism Aut(D2) = {id}. Computes the oriented boundary partial_1(e) = b - a != 0. Under reversal rev(e) = (b -> a), derives the sign-flip identity partial_1(rev(e)) = -partial_1(e), establishing the combinatorial geometric precursor to fermionic antisymmetry on discrete 1-chains.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_boson_germ.py::directed_d2_boundary`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_boson_germ.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/fermion_boson_germ.py::directed_d2_boundary`](file:///c:sources/atlas/papers/fermion_sign_problem/code/fermion_boson_germ.py)
   * **Rust:** [`omega_quantum_physics::pauli_spin_statistics_graph::directed_edge_boundary`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`GenesisFspBridge.lean::directed_d2_boundary_sign_flip`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -69,7 +69,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Admits the symmetric relation Rsym = {(a, b), (b, a)}, constructing the unoriented link S2 with automorphism group Aut(S2) = Z2. Shows in this model that transposition leaves the link invariant tau(S2) = S2. The derivation derives the coexistence of both directed D2 and symmetric S2 branches, establishing the structural bifurcated germ that separates fermionic signed carriers from bosonic permutation invariants.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_boson_germ.py::symmetric_s2_link`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_boson_germ.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/fermion_boson_germ.py::symmetric_s2_link`](file:///c:sources/atlas/papers/fermion_sign_problem/code/fermion_boson_germ.py)
   * **Rust:** [`omega_quantum_physics::pauli_spin_statistics_graph::symmetric_link_invariance`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`GenesisFspBridge.lean::symmetric_s2_exchange_invariant`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -82,7 +82,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Shows in this model that any operational evaluator testing only symmetric graph invariants (e.g. edge counts, degree profiles, or unoriented connectivity) is completely blind to the orientation difference between D2 and rev(D2). Shows that detecting the relative orientation sign requires explicit coupling to an oriented cochain differential d0, formalizing observer blindness to bare fermionic phases.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_boson_germ.py::test_swap_blindness`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_boson_germ.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/fermion_boson_germ.py::test_swap_blindness`](file:///c:sources/atlas/papers/fermion_sign_problem/code/fermion_boson_germ.py)
   * **Rust:** [`omega_quantum_physics::pauli_spin_statistics_graph::evaluator_orientation_blindness`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`GenesisFspBridge.lean::swap_invariant_blind`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -111,7 +111,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Formulates the S(n) discrete four-layer architecture, defining simplicial complexes equipped with discrete coboundary operators delta^k. Derives the discrete 4D Bianchi identity delta^2 = 0 on combinatorial cell complexes, establishing the exact topological nilpotency condition required to prevent anomalous boundary curvature generation on discrete spacetime triangulations.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/regge_pachner_wdw.py::discrete_bianchi_identity`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/regge_pachner_wdw.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/regge_pachner_wdw.py::discrete_bianchi_identity`](file:///c:sources/atlas/papers/fermion_sign_problem/code/regge_pachner_wdw.py)
   * **Rust:** [`omega_quantum_physics::finite_spinfoam::discrete_bianchi_4d`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`ReggePachnerWdw.lean::discrete_bianchi_nilpotency`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -140,7 +140,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Constructs the finite rational cochain complex C^0 -> C^1 -> C^2 over Q. Defines d0 as the vertex-to-edge coboundary (gauge repair) and d1 as the edge-to-face coboundary (curvature detector). Derives the exact nilpotency d1 o d0 = 0 without continuum approximations, establishing the algebraic framework where gauge transformations cannot induce curvature defects.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_sign_nf_evaluator.py::cochain_nilpotency_check`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_sign_nf_evaluator.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/fermion_sign_nf_evaluator.py::cochain_nilpotency_check`](file:///c:sources/atlas/papers/fermion_sign_problem/code/fermion_sign_nf_evaluator.py)
   * **Rust:** [`omega_quantum_physics::cochain_repair_code::d1_d0_nilpotency`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`FermionSignCore.lean::d1_circ_d0_eq_zero`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -153,7 +153,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Defines the Banach quotient vector space Q^1 = C^1 / im(d0) equipped with the quotient L^1 norm Phi1(q) = inf_{c0} ||c1 - d0 c0||_1. Shows in this model that Phi1 evaluates the exact minimal defect mass of an equivalence class under gauge repairs, providing a scale-independent objective measure of unremovable topological and sign obstructions on finite graphs.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_sign_nf_evaluator.py::compute_phi1_norm`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_sign_nf_evaluator.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/fermion_sign_nf_evaluator.py::compute_phi1_norm`](file:///c:sources/atlas/papers/fermion_sign_problem/code/fermion_sign_nf_evaluator.py)
   * **Rust:** [`omega_certifiers::phi1::compute_exact_phi1`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`FermionSignCore.lean::phi1_quotient_norm_def`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -179,7 +179,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Derives the deterministic routing theorem for cochain configurations: every state resolves into exactly one of five terminal states: ExactRepair, ExactCancellation, StabilizedSurvivor, OpenSignObstruction, or SplitBrainRefusal. Establishes the terminalizer as an idempotent projection that halts without cycles and classifies all sign residuals fail-closed.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_sign_nf_evaluator.py::terminalize`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_sign_nf_evaluator.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/fermion_sign_nf_evaluator.py::terminalize`](file:///c:sources/atlas/papers/fermion_sign_problem/code/fermion_sign_nf_evaluator.py)
   * **Rust:** [`omega_majorana::gf2_terminalizer::terminalize_cochain`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`NormalFormLaws.lean::terminal_routing_exhaustiveness`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -263,7 +263,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Constructs the CAR algebra generated by creation and annihilation operators satisfying {ci, cj^dagger} = delta_ij I and {ci, cj} = 0. Realizes this algebra on the exterior Fock space F_-(V) = bigwedge(V). Derives the nilpotency (ci)^2 = 0, formalizing Pauli exclusion and Slater determinant antisymmetry on finite spatial mode lattices.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermionic_hamiltonian.py::FermionicFockSpace`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermionic_hamiltonian.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/fermionic_hamiltonian.py::FermionicFockSpace`](file:///c:sources/atlas/papers/fermion_sign_problem/code/fermionic_hamiltonian.py)
   * **Rust:** [`omega_majorana::majorana_fock_algebra::MajoranaFockAlgebra`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`FermionSignCore.lean::car_algebra_anticommutation_relations`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -276,7 +276,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Establishes the exact non-local Jordan-Wigner bijection cj = (prod_{k < j} -sigma_k^z) sigma_j^- mapping 1D spin-1/2 Pauli operators to fermionic operators. Shows in this model that the non-local string factor prod_{k < j} -sigma_k^z converts local bosonic commutators into fermionic anticommutators, revealing the non-local cochain string required to represent fermions in spin systems.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermionic_hamiltonian.py::jordan_wigner_transform`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermionic_hamiltonian.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/fermionic_hamiltonian.py::jordan_wigner_transform`](file:///c:sources/atlas/papers/fermion_sign_problem/code/fermionic_hamiltonian.py)
   * **Rust:** [`omega_quantum_physics::pauli_spin_statistics_graph::jordan_wigner_string`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`FermionSignCore.lean::jordan_wigner_parity_string_bijection`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -289,7 +289,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Decomposes complex fermions into self-adjoint Majorana operators gamma_{2j-1} = cj + cj^dagger, gamma_{2j} = -i(cj - cj^dagger) satisfying {gamma_a, gamma_b} = 2 delta_ab I. Shows in this model that the 2N Majorana operators generate the real Clifford algebra Cl(2N). Constructs the fermion parity grading operator P = (-1)^N = prod_j (i gamma_{2j-1} gamma_{2j}), proving superselection.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/ising_majorana_braiding.py::MajoranaOperatorSet`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/ising_majorana_braiding.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/ising_majorana_braiding.py::MajoranaOperatorSet`](file:///c:sources/atlas/papers/fermion_sign_problem/code/ising_majorana_braiding.py)
   * **Rust:** [`omega_majorana::majorana_fock_algebra::MajoranaCliffordGrading`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`MajoranaGinCore.lean::majorana_clifford_anticommutation`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -302,7 +302,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Shows in this model that the kinematic CAR algebra does not uniquely select a dynamical Hamiltonian: H = 0, free hopping tight-binding networks, and strongly interacting Fermi-Hubbard models all satisfy identical anticommutation relations. Demonstrates that physical Hamiltonians require explicit admission of conservation laws and spatial locality rather than deductive emergence from CAR alone.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermionic_hamiltonian.py::verify_hamiltonian_car_compatibility`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermionic_hamiltonian.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/fermionic_hamiltonian.py::verify_hamiltonian_car_compatibility`](file:///c:sources/atlas/papers/fermion_sign_problem/code/fermionic_hamiltonian.py)
   * **Rust:** [`omega_quantum_physics::quantum_hamiltonian::car_non_uniqueness_proof`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`FermionSignCore.lean::car_hamiltonian_non_uniqueness`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -318,7 +318,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Expands the thermal partition function Z = Tr(exp(-beta H)) using symmetric Trotter slicing into discrete path sums sum_gamma w(gamma) (-1)^pi(gamma). Shows in this model that exchange of fermion coordinates along worldline braids generates the permutation parity sign (-1)^pi(gamma) in accordance with the permutation group signature sgn(pi).
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_sign_nf_evaluator.py::trotter_path_sum`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_sign_nf_evaluator.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/fermion_sign_nf_evaluator.py::trotter_path_sum`](file:///c:sources/atlas/papers/fermion_sign_problem/code/fermion_sign_nf_evaluator.py)
   * **Rust:** [`omega_quantum_physics::signed_sampling::trotter_permutation_parity`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`FermionSignCore.lean::trotter_path_permutation_parity_sign`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -344,7 +344,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Shows in this model that estimating fermionic observables <A> = <A Sign>_bosonic / <Sign>_bosonic requires Monte Carlo sample size N_samples >= (sigma_A / epsilon)^2 exp(2 beta N delta_f) to reach precision epsilon. Shows that the relative statistical error diverges exponentially in the system size and inverse temperature, causing catastrophic cancellation in statistical sampling.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/gin_cluster_scaling_benchmark.py::variance_blowup_simulation`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/gin_cluster_scaling_benchmark.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/gin_cluster_scaling_benchmark.py::variance_blowup_simulation`](file:///c:sources/atlas/papers/fermion_sign_problem/code/gin_cluster_scaling_benchmark.py)
   * **Rust:** [`omega_quantum_physics::signed_sampling::sample_complexity_variance_bound`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`FermionSignCore.lean::monte_carlo_sample_complexity_exponential_bound`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -357,7 +357,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Shows in this model that sign negativity is a property of a declared computational basis rather than the intrinsic state. Demonstrates that the 3-site spinless fermion triangle with nearest-neighbor hopping exhibits severe sign frustration in the real-space occupation basis, yet is solved exactly in O(N^3) time by transforming to the single-particle momentum eigenmode basis.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermionic_hamiltonian.py::test_triangle_basis_solvability`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermionic_hamiltonian.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/fermionic_hamiltonian.py::test_triangle_basis_solvability`](file:///c:sources/atlas/papers/fermion_sign_problem/code/fermionic_hamiltonian.py)
   * **Rust:** [`omega_quantum_physics::quantum_hamiltonian::frustrated_triangle_exact_diagonalization`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`FrustratedSpectrumObstruction.lean::representation_dependent_sign_solvability`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -370,7 +370,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Formulates the Troyer-Wiese theorem as an energy-threshold decision problem under a controlled polynomial approximation promise. Shows in this model that deciding ground-state energy bounds for general signed models is NP-hard by reduction from classical spin-glass models. Concludes that a generic polynomial-time algorithm eliminating the sign problem for all models would imply P = NP.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/bqnf_sign_evaluator.py::verify_troyer_wiese_reduction`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/bqnf_sign_evaluator.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/bqnf_sign_evaluator.py::verify_troyer_wiese_reduction`](file:///c:sources/atlas/papers/fermion_sign_problem/code/bqnf_sign_evaluator.py)
   * **Rust:** [`omega_majorana::hard_invariants::troyer_wiese_hardness_reduction`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`HaltingQuotient.lean::troyer_wiese_np_hardness`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -386,7 +386,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Defines an exact sign-eliminating involution as a bijective map Xi: C -> C satisfying Xi o Xi = id, Xi(c) != c (fixed-point-free), w(Xi(c)) = w(c) (weight-preserving), and sgn(Xi(c)) = -sgn(c) (sign-reversing). Shows in this model that under such an involution, the total negative path weight cancels identically: sum_{c in C} w(c) sgn(c) = 0, restoring exact positivity.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_sign_nf_evaluator.py::test_involution_cancellation`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_sign_nf_evaluator.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/fermion_sign_nf_evaluator.py::test_involution_cancellation`](file:///c:sources/atlas/papers/fermion_sign_problem/code/fermion_sign_nf_evaluator.py)
   * **Rust:** [`omega_majorana::lggr::involution_cancellation_certifier`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`MeronClusterInvolution.lean::involution_cancellation_theorem`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -399,7 +399,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Derives the Meron Cluster Theorem for lattice fermion models. Decomposes spacetime path configurations into independent clusters carrying topological half-vortex charges Q_c in {+1/2, -1/2}. Shows that non-zero topological winding forces exact pairwise cancellation within clusters unless the meron total charge is neutral, eliminating the sign problem in O(V) cluster time.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/gin_cluster_scaling_benchmark.py::meron_cluster_cancellation`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/gin_cluster_scaling_benchmark.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/gin_cluster_scaling_benchmark.py::meron_cluster_cancellation`](file:///c:sources/atlas/papers/fermion_sign_problem/code/gin_cluster_scaling_benchmark.py)
   * **Rust:** [`omega_quantum_physics::meron_spatial_source::meron_cluster_positivity`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`MeronCharacter.lean::meron_topological_cluster_cancellation`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -412,7 +412,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Constructs the Generalized Inverted Index (GIN) streaming engine for CT-AUX auxiliary-field quantum Monte Carlo. Maps fermion modes to inverted posting lists of occupied configurations, proving that spectator-preserving involution partner queries resolve via posting list intersections. Establishes exact non-divergent matrix update routines for multi-orbital models.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/ct_aux_streaming_gin_engine.py::CtAuxStreamingGinEngine`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/ct_aux_streaming_gin_engine.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/ct_aux_streaming_gin_engine.py::CtAuxStreamingGinEngine`](file:///c:sources/atlas/papers/fermion_sign_problem/code/ct_aux_streaming_gin_engine.py)
   * **Rust:** [`omega_majorana::harmonic::gin_posting_list_intersection`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`FermionGinCore.lean::gin_posting_query_soundness`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -425,7 +425,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Constructs Bounded Quotient Normal Forms (BQNF) for signed cochain packets over finite Abelian groups. Shows in this model that quotienting path amplitudes by the coboundary lattice reduces signed configuration spaces to minimal canonical coset representatives, establishing a decidable normal form criterion for verifying sign cancellation in polynomial algebra.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/bqnf_sign_evaluator.py::canonical_bqnf_reduction`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/bqnf_sign_evaluator.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/bqnf_sign_evaluator.py::canonical_bqnf_reduction`](file:///c:sources/atlas/papers/fermion_sign_problem/code/bqnf_sign_evaluator.py)
   * **Rust:** [`omega_majorana::hard_invariants::bqnf_canonical_packet`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`BqnfSignPacket.lean::bqnf_canonical_reduction_confluence`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -438,7 +438,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Derives the Determinant Positivity Theorem for repulsive Fermi-Hubbard models at half-filling on bipartite lattices. Uses the particle-hole transformation c_{i,down} -> (-1)^i c_{i,down}^dagger to prove that the fermion determinants for spin-up and spin-down satisfy det(M_up) = det(M_down)^*, yielding non-negative determinant products det(M_up) det(M_down) >= 0.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_sign_nf_evaluator.py::test_hubbard_determinant_positivity`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fermion_sign_nf_evaluator.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/fermion_sign_nf_evaluator.py::test_hubbard_determinant_positivity`](file:///c:sources/atlas/papers/fermion_sign_problem/code/fermion_sign_nf_evaluator.py)
   * **Rust:** [`omega_quantum_physics::quantum_channel::bipartite_hubbard_determinant_positivity`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`FermionSignCore.lean::bipartite_hubbard_determinant_positivity`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -480,7 +480,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Introduces the topological vacuum term S_theta = i theta Q_top, where Q_top = (1/2pi) sum_p sin(F_p) is the lattice topological charge. Shows in this model that for non-zero theta != 0, the Boltzmann weight exp(-S_gauge - S_theta) acquires an imaginary phase exp(-i theta Q_top), creating a severe topological sign problem in standard Monte Carlo simulations.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/cdt_topological_charge_evaluator.py::evaluate_topological_charge`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/cdt_topological_charge_evaluator.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/cdt_topological_charge_evaluator.py::evaluate_topological_charge`](file:///c:sources/atlas/papers/fermion_sign_problem/code/cdt_topological_charge_evaluator.py)
   * **Rust:** [`omega_quantum_physics::meron_source_field::topological_charge_action`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`NonAbelianGaugeSigns.lean::topological_theta_sign_defect`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -493,7 +493,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Formalizes the Callan-Harvey chiral anomaly inflow mechanism on a finite slab lattice with boundaries. Shows in this model that the non-invariance of the 2D boundary fermion determinant under chiral rotations delta_alpha log det(D_boundary) = (i/2pi) oint A exactly cancels against the bulk 3D Chern-Simons cochain variation, preserving global gauge invariance without anomalies.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/chiral_anomaly_inflow.py::ChiralAnomalyInflowEvaluator`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/chiral_anomaly_inflow.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/chiral_anomaly_inflow.py::ChiralAnomalyInflowEvaluator`](file:///c:sources/atlas/papers/fermion_sign_problem/code/chiral_anomaly_inflow.py)
   * **Rust:** [`omega_quantum_physics::spin_structure_obstruction::chiral_anomaly_inflow`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`ChiralAnomalyInflow.lean::chiral_anomaly_inflow_cancellation`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -509,7 +509,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Constructs lattice SU(2) gauge theory with link variables U_mu(x) in SU(2). Computes non-Abelian plaquette holonomies and Wilson loop traces. Couples Majorana fermions in the adjoint representation, proving that the adjoint representation is strictly real, which ensures under declared conditions that the fermion determinant det(D_adj) is real for any gauge configuration.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/su2_lattice_gauge.py::Su2LatticeGauge`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/su2_lattice_gauge.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/su2_lattice_gauge.py::Su2LatticeGauge`](file:///c:sources/atlas/papers/fermion_sign_problem/code/su2_lattice_gauge.py)
   * **Rust:** [`omega_lie_theory::cayley_unitary::su2_link_holonomy`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`NonAbelianGaugeSigns.lean::su2_adjoint_fermion_real_determinant`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -522,7 +522,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Formulates lattice QCD with SU(3) color gauge fields and staggered quarks at non-zero chemical potential mu != 0. Derives the fundamental complex conjugation identity det(D(mu))^* = det(D(-mu)). Shows that for mu != 0, gamma5-Hermiticity is broken (gamma5 D(mu) gamma5 = D(-mu)^dagger), making det(D(mu)) complex and driving the dense quark sign problem.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/su3_polyakov_loop.py::evaluate_su3_chemical_potential`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/su3_polyakov_loop.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/su3_polyakov_loop.py::evaluate_su3_chemical_potential`](file:///c:sources/atlas/papers/fermion_sign_problem/code/su3_polyakov_loop.py)
   * **Rust:** [`omega_quantum_physics::quantum_channel::su3_staggered_dirac_determinant`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`NonAbelianGaugeSigns.lean::su3_chemical_potential_complex_determinant`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -535,7 +535,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Analyzes the center symmetry Z3 of SU(3) lattice gauge theory. Computes Polyakov loop holonomies L(x) = Tr prod_t U_0(x, t). Shows in this model that physical color-singlet baryon states have zero triality (3-quark composites), and shows in this model that integrating over Z3 center phases induces destructive interference among fractional quark paths, canceling fractional charge signs.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/su3_baryon_triality.py::BaryonTrialityEvaluator`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/su3_baryon_triality.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/su3_baryon_triality.py::BaryonTrialityEvaluator`](file:///c:sources/atlas/papers/fermion_sign_problem/code/su3_baryon_triality.py)
   * **Rust:** [`omega_quantum_physics::quantum_state::baryon_triality_center_projection`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`NonAbelianGaugeSigns.lean::baryon_triality_center_symmetry_projection`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -548,7 +548,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Formulates the sign-free dual route for lattice QCD: setting mu = i mu_I with real mu_I. Shows in this model that for purely imaginary chemical potential, the Dirac operator satisfies gamma5 D(i mu_I) gamma5 = D(i mu_I)^dagger, restoring exact reality and positivity det(D(i mu_I)) >= 0. Establishes the Roberge-Weiss periodic phase transition and analytic continuation framework.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/su3_polyakov_loop.py::roberge_weiss_analytic_continuation`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/su3_polyakov_loop.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/su3_polyakov_loop.py::roberge_weiss_analytic_continuation`](file:///c:sources/atlas/papers/fermion_sign_problem/code/su3_polyakov_loop.py)
   * **Rust:** [`omega_quantum_physics::quantum_channel::roberge_weiss_imaginary_mu`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`NonAbelianGaugeSigns.lean::imaginary_chemical_potential_positivity`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -564,7 +564,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Constructs the 2D N=1 Wess-Zumino model on a finite lattice. Formulates the discrete supercharge operators Q1, Q2 satisfying {Qa, Qb} = 2 delta_ab H. Shows in this model that the Hamiltonian H is positive semidefinite H >= 0 and that all non-zero energy eigenstates occur in exact boson-fermion partner pairs with identical masses, formalizing lattice supersymmetry.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/cdt_susy_witten_evaluator.py::WessZuminoLatticeEvaluator`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/cdt_susy_witten_evaluator.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/cdt_susy_witten_evaluator.py::WessZuminoLatticeEvaluator`](file:///c:sources/atlas/papers/fermion_sign_problem/code/cdt_susy_witten_evaluator.py)
   * **Rust:** [`omega_quantum_physics::quantum_hamiltonian::wess_zumino_supercharge_closure`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`NonAbelianGaugeSigns.lean::susy_supercharge_positive_hamiltonian`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -577,7 +577,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Derives the Nicolai Map Theorem for off-shell supersymmetric lattice models. Defines the non-linear bosonic transformation xi(x) = -partial_mu partial_mu phi + W'(phi). Shows in this model that the Jacobian determinant det(partial xi / partial phi) exactly equals the fermionic determinant det(D_fermion), transforming the interacting partition function into a free Gaussian Gaussian measure with zero sign problem.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/cdt_susy_witten_evaluator.py::nicolai_map_jacobian_identity`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/cdt_susy_witten_evaluator.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/cdt_susy_witten_evaluator.py::nicolai_map_jacobian_identity`](file:///c:sources/atlas/papers/fermion_sign_problem/code/cdt_susy_witten_evaluator.py)
   * **Rust:** [`omega_quantum_physics::quantum_channel::nicolai_map_jacobian_identity`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`NonAbelianGaugeSigns.lean::nicolai_map_exact_sign_elimination`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -590,7 +590,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Calculates the Witten index W = Tr[(-1)^F exp(-beta H)] = n_B^(E=0) - n_F^(E=0). Shows in this model that all states with E > 0 contribute identically zero to W due to boson-fermion pairing, making W independent of beta. Shows in this model that unbroken supersymmetry forces the vacuum energy density to vanish identically delta c_SUSY = 0, certifying complete absence of vacuum energy divergence.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/cdt_susy_witten_evaluator.py::evaluate_witten_index`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/cdt_susy_witten_evaluator.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/cdt_susy_witten_evaluator.py::evaluate_witten_index`](file:///c:sources/atlas/papers/fermion_sign_problem/code/cdt_susy_witten_evaluator.py)
   * **Rust:** [`omega_quantum_physics::quantum_state::witten_index_invariance`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`NonAbelianGaugeSigns.lean::witten_index_beta_independence`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -606,7 +606,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Constructs the 2D Kitaev honeycomb spin-1/2 Hamiltonian with bond-dependent directional couplings K_x, K_y, K_z. Maps spin operators to four Majorana fermions per site c, b_x, b_y, b_z. Shows in this model that the Z2 plaquette fluxes W_p commute with H and each other, reducing the interacting spin model to a quadratic, sign-free free Majorana Hamiltonian in a static gauge background.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/kitaev_honeycomb_evaluator.py::KitaevHoneycombEvaluator`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/kitaev_honeycomb_evaluator.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/kitaev_honeycomb_evaluator.py::KitaevHoneycombEvaluator`](file:///c:sources/atlas/papers/fermion_sign_problem/code/kitaev_honeycomb_evaluator.py)
   * **Rust:** [`omega_majorana::sparse_kitaev::solve_kitaev_honeycomb_majorana`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`KitaevHoneycombCore.lean::kitaev_honeycomb_exact_majorana_solution`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -619,7 +619,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Formulates the nu = 1/m Laughlin fractional quantum Hall state on finite torus geometries. Computes the Berry phase acquired when adiabatic exchange of two quasi-hole excitations is performed. Shows in this model that the statistical exchange phase is exactly theta = pi / m, demonstrating fractional anyonic statistics interpolating continuously between bosons and fermions.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fqh_laughlin_braiding.py::LaughlinAnyonBraidingEvaluator`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fqh_laughlin_braiding.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/fqh_laughlin_braiding.py::LaughlinAnyonBraidingEvaluator`](file:///c:sources/atlas/papers/fermion_sign_problem/code/fqh_laughlin_braiding.py)
   * **Rust:** [`omega_quantum_physics::anyonic_braiding::laughlin_statistical_phase`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`FqhLaughlinBraiding.lean::laughlin_fractional_exchange_phase`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -632,7 +632,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Constructs the non-Abelian Fibonacci anyon category with fusion rules tau (x) tau = 1 (+) tau. Solves the pentagon and hexagon equations, obtaining exact rational quantum dimensions d_tau = (1 + sqrt(5))/2 and F, R braiding matrices. Shows in this model that dense braiding of three Fibonacci anyons forms general topological quantum gates without sign degradation.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fibonacci_anyon_braiding.py::FibonacciAnyonBraiding`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/fibonacci_anyon_braiding.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/fibonacci_anyon_braiding.py::FibonacciAnyonBraiding`](file:///c:sources/atlas/papers/fermion_sign_problem/code/fibonacci_anyon_braiding.py)
   * **Rust:** [`omega_majorana::multiqubit_braid::fibonacci_braiding_unitary`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`FibonacciAnyonBraiding.lean::fibonacci_anyon_fusion_pentagon_solution`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -645,7 +645,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Formulates topological BF theory on finite cell complexes with 1-form gauge field A and 2-form gauge field B. Computes the linking number and 3-loop braiding invariant of vortex surfaces. Shows in this model that the Postnikov class in H^3(G, A) governs the cancellation of higher 2-group sign anomalies, eliminating non-trivial sign phases in knotted worldsheets.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/higher_2group_gauge_bf.py::Higher2GroupBfEvaluator`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/higher_2group_gauge_bf.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/higher_2group_gauge_bf.py::Higher2GroupBfEvaluator`](file:///c:sources/atlas/papers/fermion_sign_problem/code/higher_2group_gauge_bf.py)
   * **Rust:** [`omega_quantum_physics::gauge_cochain_complex::bf_theory_linking_number`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`Higher2GroupBraiding.lean::higher_2group_anomaly_cancellation`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -658,7 +658,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Computes the 5D cobordism group Omega_5^Spin(B Z2) controlling global Witten anomalies and Dai-Freed anomaly signs. Shows in this model that any isolated 4D boundary fermion theory with non-zero cobordism invariant exp(i 2pi eta) != 1 possesses an intrinsic, unremovable fermion sign problem that can only be cured by coupling to a 5D topological bulk cochain.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/cobordism_5d_higher_anomaly.py::Cobordism5dEvaluator`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/cobordism_5d_higher_anomaly.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/cobordism_5d_higher_anomaly.py::Cobordism5dEvaluator`](file:///c:sources/atlas/papers/fermion_sign_problem/code/cobordism_5d_higher_anomaly.py)
   * **Rust:** [`omega_quantum_physics::spin_structure_obstruction::cobordism_5d_eta_invariant`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`Cobordism5dAnomaly.lean::cobordism_5d_anomaly_sign_classification`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -674,7 +674,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Formulates discrete 4D simplicial gravity on triangulated pseudo-Riemannian manifolds. Assigns squared edge lengths s_ij to 1-simplices and defines the deficit angle epsilon_h around 2-simplex hinges h as 2pi - sum_{sigma > h} theta_{h,sigma}. Shows in this model that the discrete Regge action S_Regge = sum_h A_h epsilon_h reproduces the Einstein-Hilbert action in the continuum limit.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/regge_pachner_wdw.py::ReggeTriangulationEvaluator`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/regge_pachner_wdw.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/regge_pachner_wdw.py::ReggeTriangulationEvaluator`](file:///c:sources/atlas/papers/fermion_sign_problem/code/regge_pachner_wdw.py)
   * **Rust:** [`omega_quantum_physics::quantum_regge_bridge::regge_deficit_angle_curvature`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`ReggePachnerWdw.lean::regge_deficit_angle_action_identity`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -687,7 +687,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Formulates the discrete Wheeler-DeWitt (WDW) Hamiltonian constraint operator H_perp on spatial triangulations. Shows in this model that physical quantum gravity states satisfy the formal constraint H_perp |Psi> = 0, reflecting invariance under normal hypersurface deformations. Shows that the discrete WDW operator is non-negative and acts as a projection on diffeomorphism-invariant states.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/regge_pachner_wdw.py::evaluate_wdw_constraint`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/regge_pachner_wdw.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/regge_pachner_wdw.py::evaluate_wdw_constraint`](file:///c:sources/atlas/papers/fermion_sign_problem/code/regge_pachner_wdw.py)
   * **Rust:** [`omega_quantum_physics::quantum_regge_bridge::wheeler_dewitt_constraint_projector`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`ReggePachnerWdw.lean::wheeler_dewitt_constraint_null_kernel`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -700,7 +700,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Implements the elementary Pachner bistellar moves (1 -> 5, 2 -> 4, and 3 -> 3) on 4D triangulations. Shows in this model that the discrete topological partition function is invariant under all Pachner moves, establishing that the path integral over triangulations depends only on the manifold topology and is independent of the choice of triangulation.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/regge_pachner_wdw.py::execute_pachner_moves`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/regge_pachner_wdw.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/regge_pachner_wdw.py::execute_pachner_moves`](file:///c:sources/atlas/papers/fermion_sign_problem/code/regge_pachner_wdw.py)
   * **Rust:** [`omega_quantum_physics::finite_spinfoam::pachner_move_invariance`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`ReggePachnerWdw.lean::pachner_move_topological_invariance`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -713,7 +713,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Formulates Causal Dynamical Triangulations (CDT) by enforcing a strict global proper-time foliation Sigma x [0, 1]. Shows in this model that the causality condition forbids spatial branching and wormhole creation, preventing negative Lorentzian path-sum cancellations and resulting in a sign-free positive transfer matrix that yields a macroscopic 4D de Sitter universe.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/cdt_fermion_sign_evaluator.py::CdtFermionSignEvaluator`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/cdt_fermion_sign_evaluator.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/cdt_fermion_sign_evaluator.py::CdtFermionSignEvaluator`](file:///c:sources/atlas/papers/fermion_sign_problem/code/cdt_fermion_sign_evaluator.py)
   * **Rust:** [`omega_quantum_physics::finite_spinfoam::cdt_causal_transfer_matrix`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`ReggePachnerWdw.lean::cdt_causal_foliation_positivity`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -726,7 +726,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Couples Dirac-Kähler fermions to discrete triangulations by identifying fermion components with differential forms in bigwedge(T*M). Shows in this model that the geometric Dirac-Kähler operator generates 2^(D/2) fermion flavors on simplicial lattices. Solves the boundary fermion sign problem in spinfoam models by proving that EPRL-FK boundary state contractions yield non-negative spin network weights.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/cdt_kd_doubling_evaluator.py::CdtKdDoublingEvaluator`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/cdt_kd_doubling_evaluator.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/cdt_kd_doubling_evaluator.py::CdtKdDoublingEvaluator`](file:///c:sources/atlas/papers/fermion_sign_problem/code/cdt_kd_doubling_evaluator.py)
   * **Rust:** [`omega_quantum_physics::lattice_dirac_doubling::dirac_kahler_spinfoam_coupling`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`ReggePachnerWdw.lean::dirac_kahler_fermion_positivity`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -742,7 +742,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Constructs the 3D X-cube fracton model on cubic lattices with vertex term A_v = prod_{e in v} sigma_e^x and three cross terms B_v^xy, B_v^yz, B_v^zx. Shows in this model that all Hamiltonian terms commute [A_v, B_v^ab] = 0. Shows that ground states possess sub-extensive topological degeneracy 2^(2Lx + 2Ly + 2Lz - 3) protected by subsystem symmetries.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/foliated_fracton_2gauge_defects.py::XCubeModelEvaluator`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/foliated_fracton_2gauge_defects.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/foliated_fracton_2gauge_defects.py::XCubeModelEvaluator`](file:///c:sources/atlas/papers/fermion_sign_problem/code/foliated_fracton_2gauge_defects.py)
   * **Rust:** [`omega_majorana::hard_invariants::xcube_fracton_stabilizer`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`FoliatedFracton2Gauge.lean::xcube_model_exact_solvability`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -755,7 +755,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Derives the mobility classification for X-cube excitations: isolated fractons are completely immobile (0D), composite dipole pairs form lineons mobile strictly along 1D lattice axes, and corner excitations form planons mobile within 2D planes. Shows in this model that sub-dimensional conservation laws prevent unconstrained worldline braiding, strictly suppressing sign-inducing braids.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/foliated_fracton_2gauge_defects.py::test_mobility_constraints`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/foliated_fracton_2gauge_defects.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/foliated_fracton_2gauge_defects.py::test_mobility_constraints`](file:///c:sources/atlas/papers/fermion_sign_problem/code/foliated_fracton_2gauge_defects.py)
   * **Rust:** [`omega_majorana::hard_invariants::subdimensional_mobility_proof`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`FoliatedFracton2Gauge.lean::fracton_subdimensional_mobility_constraints`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -768,7 +768,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Analyzes the fermion sign problem for mobile lineons moving along the 1D intersection lines (hinges) of orthogonal foliation leaves. Shows in this model that because lineons cannot bypass each other in 1D without direct collision, their worldlines cannot perform non-trivial spatial permutations, proving the exact elimination of the sign problem in foliated fracton architectures.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/foliated_fracton_2gauge_defects.py::test_hinge_sign_elimination`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/foliated_fracton_2gauge_defects.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/foliated_fracton_2gauge_defects.py::test_hinge_sign_elimination`](file:///c:sources/atlas/papers/fermion_sign_problem/code/foliated_fracton_2gauge_defects.py)
   * **Rust:** [`omega_majorana::lggr::hinge_lineon_sign_elimination`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`FoliatedFracton2Gauge.lean::hinge_lineon_fermion_sign_elimination`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 
@@ -784,7 +784,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Derivation Summary (~500 chars):**
   > Establishes the Master Theorem for the Finite Fermion Sign Problem: derives the exact dichotomy that any finite quantum system either admits a certified topological involution Xi eliminating all negative weights in polynomial time, or constitutes an NP-hard general sign obstruction under the Troyer-Wiese reduction. Unifies all 55 preceding derivations across the verified triad.
 - **Verification Triad:**
-  * **Python:** [`omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/tests/e2e/test_monograph_derivation_walk_e2e.py::test_master_fsp_synthesis_e2e`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/tests/e2e/test_monograph_derivation_walk_e2e.py)
+  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/tests/e2e/test_monograph_derivation_walk_e2e.py::test_master_fsp_synthesis_e2e`](file:///c:sources/atlas/papers/fermion_sign_problem/code/tests/e2e/test_monograph_derivation_walk_e2e.py)
   * **Rust:** [`omega_majorana::lib::master_fsp_theory_verifier`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
   * **Lean 4:** [`FermionSignAll.lean::master_finite_fermion_sign_problem_theorem`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
 

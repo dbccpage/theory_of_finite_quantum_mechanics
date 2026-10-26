@@ -100,7 +100,7 @@ For $M = M_0 + M_1 Y + M_2\,(I(I+1) - Y^2/4)$ the octet relation $2(M_N + M_\Xi)
 From the repository root:
 
 ```text
-cd omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm
+cd sources/atlas/papers/finite_quantum_mechanics
 python3 -m pytest tests/e2e/test_e2e_qed_weak_hadronic_control.py -q
 cd ../../../../../omega_engine/crates_rs
 cargo test -j 1 -p omega_quantum_physics --lib -- qed_weak_hadronic

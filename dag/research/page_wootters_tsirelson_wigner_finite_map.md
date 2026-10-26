@@ -27,6 +27,6 @@ This note records the finite-to-continuum decomposition of three foundational qu
 
 ## Verification Anchors
 
-- **Python reference use case:** `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/page_wootters_tsirelson_wigner_control.py` (`evaluate_page_wootters_tsirelson_wigner_control`)
-- **Python e2e test suite:** `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/tests/e2e/test_e2e_page_wootters_tsirelson_wigner_control.py` (`6 passed`)
+- **Python reference use case:** `sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/page_wootters_tsirelson_wigner_control.py` (`evaluate_page_wootters_tsirelson_wigner_control`)
+- **Python e2e test suite:** `sources/atlas/papers/finite_quantum_mechanics/tests/e2e/test_e2e_page_wootters_tsirelson_wigner_control.py` (`6 passed`)
 - **Rust compiled implementation & unit test:** `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/page_wootters_tsirelson_wigner.rs` (`evaluate_qm218_page_wootters_tsirelson_wigner`, `test_qm218_page_wootters_tsirelson_wigner_control`), re-exported from `quantum_import_finite_maps`

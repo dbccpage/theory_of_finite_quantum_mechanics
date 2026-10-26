@@ -10,7 +10,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `DEFINITION`. Evidence grade: 
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
+- counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 18
 - distinct cited Lean declarations covered by a current replay receipt: 18
 - counted in-repo runnable tests: 0
@@ -112,19 +112,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust, record TFQ-1002
 - counts toward the grade: no
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_qm_realification_bridge.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_qm_realification_bridge.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_qm_realification_bridge.md)
+- sha256 (`lf-normalised`): `70fa234b9178029397a5419f36517a4f54cbcd823659ba1f69ff38d14a6e5ff5`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md](../../../dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md)
-- sha256 (`lf-normalised`): `211c7110913b4dc9a180ab3ab6cd050f5406095f5cec23b71514ea03d0190218`
+- sha256 (`lf-normalised`): `5de2af4ee8bb15dec12aedc100defde70d26d23709d0e5a6a9a0354e2bddd955`
 - generated view: listed, not counted
 - cited in: record TFQ-1002
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_qm_realification_bridge.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_qm_realification_bridge.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ## Routes

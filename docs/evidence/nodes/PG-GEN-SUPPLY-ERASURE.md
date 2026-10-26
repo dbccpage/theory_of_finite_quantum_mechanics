@@ -129,14 +129,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pg-gen-supply-erasure.md`
 
 - file: [dag/derivations/independent/pg-gen-supply-erasure.md](../../../dag/derivations/independent/pg-gen-supply-erasure.md)
-- sha256 (`lf-normalised`): `125f661fc6acf060ee4939ef9ac1c759a7d4ddd0f71920dcc3e8bf0a173b741f`
+- sha256 (`lf-normalised`): `add9d5680c4e88f25cd10db8bb36c3c02f858cab3e166a4aa6317b6611f878f2`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `sources/atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
+### Documents and data: `sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
 
-- file: [sources/atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml](../../../sources/atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml)
-- sha256 (`lf-normalised`): `2bfb4441352c4206cbd84f3e500e4c3ba817364aff49623a001087ecf12df5a6`
+- file: [sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml](../../../sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml)
+- sha256 (`lf-normalised`): `bb38e1e763dba36d1194fde3c597b73c19f651ec9b4137eeb694fd92fed6f8fb`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -149,10 +149,10 @@ Named by the node; not in this repository and not checked here.
 ## Absences recorded by the TFQ records
 
 - TFQ-0386 lean4: declaration obligation: erase_replay against ledger row WDP-P000-013, education filter file left unread
-- TFQ-0386 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Erasure.lean
-- TFQ-0386 python: missing obligation: a replay filter in 000_genesis_19l57g1/code/derivation/engine.py, listed and not opened, that drops supply events and compares regimes
+- TFQ-0386 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Erasure.lean
+- TFQ-0386 python: missing obligation: a replay filter in genesis/code/derivation/engine.py, listed and not opened, that drops supply events and compares regimes
 - TFQ-0386 rust: missing obligation: replay.rs must show supply-deletion leaves the core regime unchanged, file listed and not opened
-- TFQ-0386 rust: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/replay.rs
+- TFQ-0386 rust: no local rust twin located for atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/replay.rs
 
 ## Routes
 

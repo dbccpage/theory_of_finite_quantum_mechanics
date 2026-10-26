@@ -10,7 +10,7 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
+- counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
 - distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
@@ -83,6 +83,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/claim_ledger.md)
+- sha256 (`lf-normalised`): `34530ca3f714274f7f03a1cd5dffcdd1fb76e50ec20749a03a72956e5f93fd1c`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/02_genesis/tfq_0387_irreflexive_endpoints_distinct.md`
 
 - file: [dag/derivations/02_genesis/tfq_0387_irreflexive_endpoints_distinct.md](../../../dag/derivations/02_genesis/tfq_0387_irreflexive_endpoints_distinct.md)
@@ -91,20 +98,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0387
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
 ## Absences recorded by the TFQ records
 
 - TFQ-0387 lean4: declaration obligation: given_distinct and irreflexive_endpoints, with bra left undecided
-- TFQ-0387 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Paper.lean
-- TFQ-0387 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Basic.lean
-- TFQ-0387 python: missing obligation: a seed checker under 001_genesis_ongoing_h3v7n5qf/code that accepts arb, rejects xrx, and leaves bra unset
-- TFQ-0387 rust: missing obligation: no Rust seed module was listed under 001_genesis_ongoing_h3v7n5qf; the ban on xrx still needs a carrier there or an explicit absence
+- TFQ-0387 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Basic.lean
+- TFQ-0387 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean
+- TFQ-0387 python: missing obligation: a seed checker under genesis_ongoing/code that accepts arb, rejects xrx, and leaves bra unset
+- TFQ-0387 rust: missing obligation: no Rust seed module was listed under genesis_ongoing; the ban on xrx still needs a carrier there or an explicit absence
 
 ## Routes
 

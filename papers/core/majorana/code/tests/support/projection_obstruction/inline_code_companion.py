@@ -1,9 +1,9 @@
 """
-Inline Code Companion for PO-000 (000_projection_obstruction.md)
+Inline Code Companion for PO-000 (projection_obstruction_paper.md)
 =================================================================
 
 This module extracts and packages all inline Python code snippets embedded
-in the PO-000 manuscript (000_projection_obstruction.md) into clean, standalone,
+in the PO-000 manuscript (projection_obstruction_paper.md) into clean, standalone,
 executable functions for automated verification and reviewer evaluation.
 """
 

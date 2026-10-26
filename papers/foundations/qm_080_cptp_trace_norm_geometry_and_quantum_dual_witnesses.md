@@ -49,7 +49,7 @@ This paper identifies $\ell^1(E; \text{trace norm})$ as the obstruction geometry
 **Scope:** conditional finite-dimensional trace-distance obstruction geometry.
 **Main claim:** trace-distance local gauge plus replica-extensive edge aggregation yields $\ell^1(E;\mathrm{trace})$, with quotient dual witnesses given by divergence-free observable circulations bounded in the trace-distance dual norm.
 **Non-claim:** CPTP monotonicity alone does not select the trace norm; no derivation of quantum mechanics, Born rule, or universal quantum metric is claimed.
-**Mechanization:** MECHANIZED (ENC-0225: `lean4/research_programs/003_quantum_foundations/003_qm_trace_zero_duality.lean`, `lean4/shared_kernel/primitive_difference.lean`; `TraceZeroDuality.signWitness_value`)
+**Mechanization:** MECHANIZED (ENC-0225: `lean4/research_programs/quantum_foundations/003_qm_trace_zero_duality.lean`, `lean4/shared_kernel/primitive_difference.lean`; `TraceZeroDuality.signWitness_value`)
 
 > **Demotion (per corpus audit):** CPTP monotonicity is **CPTP-compatible**, not
 > CPTP-selecting. CPTP monotonicity is *necessary* but *not sufficient* to make
@@ -1112,29 +1112,29 @@ Claim-ID body index (packaging)
 
 | ID | Home |
 |---|---|
-| `C1` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `080:C1`) |
-| `C2` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `080:C2`) |
-| `C3` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `080:C3`) |
-| `C4` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `080:C4`) |
-| `C5` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `080:C5`) |
-| `C6` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `080:C6`) |
-| `C7` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `080:C7`) |
-| `C8` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `080:C8`) |
-| `C9` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `080:C9`) |
-| `C10` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `080:C10`) |
-| `C11` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `080:C11`) |
-| `C12` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `080:C12`) |
-| `C13` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `080:C13`) |
-| `C14` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `080:C14`) |
-| `C15` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `080:C15`) |
-| `R1` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.36) |
-| `R2` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.36) |
-| `R3` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.36) |
-| `R4` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.36) |
-| `R5` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.36) |
-| `R7` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.36) |
-| `R8` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.36) |
-| `R10` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.36) |
-| `R6` | [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) (§11.36) |
+| `C1` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `080:C1`) |
+| `C2` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `080:C2`) |
+| `C3` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `080:C3`) |
+| `C4` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `080:C4`) |
+| `C5` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `080:C5`) |
+| `C6` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `080:C6`) |
+| `C7` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `080:C7`) |
+| `C8` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `080:C8`) |
+| `C9` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `080:C9`) |
+| `C10` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `080:C10`) |
+| `C11` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `080:C11`) |
+| `C12` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `080:C12`) |
+| `C13` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `080:C13`) |
+| `C14` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `080:C14`) |
+| `C15` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `080:C15`) |
+| `R1` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.36) |
+| `R2` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.36) |
+| `R3` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.36) |
+| `R4` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.36) |
+| `R5` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.36) |
+| `R7` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.36) |
+| `R8` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.36) |
+| `R10` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.36) |
+| `R6` | [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) (§11.36) |
 
 <!-- claim-id-body-index:end -->

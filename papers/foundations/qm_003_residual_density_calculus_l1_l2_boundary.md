@@ -7,13 +7,13 @@
 
 Residual Density Calculus is retired as a standalone paper; its mathematical content was absorbed into:
 
-- **Canonical Monograph:** [`../001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md#chapter-04`](../001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md#chapter-04) (Chapter 4, §4.2.2).
+- **Canonical Monograph:** [`../finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#chapter-04`](../finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#chapter-04) (Chapter 4, §4.2.2).
 - **Companion Paper:** [`qm_004_general_obstruction_management_calculus.md`](qm_004_general_obstruction_management_calculus.md).
 - **Encyclopedia Entry:** [`omega_engine_library/coda_library/encyclopedia/entries/quantum/enc-1111-residual-density-representation-bridge.md`](../../../../omega_engine_library/coda_library/encyclopedia/entries/quantum/enc-1111-residual-density-representation-bridge.md) (ENC-1111: Residual Density Representation Bridge).
-- **Source Notes:** [`../006_finite_qm/finite_quantum_mechanics_source_notes.md#114-residual-density-across-the-l1l2-boundary`](../006_finite_qm/finite_quantum_mechanics_source_notes.md#114-residual-density-across-the-l1l2-boundary) (§11.4).
-- **Rust Implementation:** `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/campaigns/residual_density_calculus.rs`.
-- **Integration Tests:** `omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/tests/residual_density_boundary.rs`.
-- **Consolidated Claims:** [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (IDs `003:QM-003-C1` through `003:QM-003-C18` / `RDB-01` through `RDB-13b`).
+- **Source Notes:** [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#114-residual-density-across-the-l1l2-boundary`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#114-residual-density-across-the-l1l2-boundary) (§11.4).
+- **Rust Implementation:** `sources/atlas/papers/finite_quantum_mechanics/native/src/campaigns/residual_density_calculus.rs`.
+- **Integration Tests:** `sources/atlas/papers/finite_quantum_mechanics/native/tests/residual_density_boundary.rs`.
+- **Consolidated Claims:** [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (IDs `003:QM-003-C1` through `003:QM-003-C18` / `RDB-01` through `RDB-13b`).
 
 ## Substantive Mathematical Content
 

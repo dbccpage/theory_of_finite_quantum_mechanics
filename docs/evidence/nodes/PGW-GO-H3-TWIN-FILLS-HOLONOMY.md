@@ -10,13 +10,13 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 6
+- counted in-repo evidence files: 9
+- cited Lean, Rust or Python symbols found in their in-repo files: 9
 - distinct cited Lean declarations covered by a current replay receipt: 6
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -32,7 +32,7 @@ The ranks come from research/twentyfifth/scratch_rank.py, which labels itself sc
 
 ## Source status
 
-001_genesis_ongoing_h3v7n5qf paper/twentyfourth/claim_ledger.md D2 and D4, paper/twentyfifth/claim_ledger.md D4, D6 and D7; lean4_core/Twentyfourth and Twentyfifth
+genesis_ongoing paper/twentyfourth/claim_ledger.md D2 and D4, paper/twentyfifth/claim_ledger.md D4, D6 and D7; lean4_core/Twentyfourth and Twentyfifth
 
 ## Review
 
@@ -104,42 +104,59 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Python: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfifth/told.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfifth/told.py](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfifth/told.py)
+- sha256 (`bytes`): `57117378b52d703d4e87e147f28bab3f674f1bee1bb441aecb01f5234a237ffb`
+- cited in: record TFQ-0485
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `decides` (python_symbol) | yes | yes | yes | - | - |
+| `rank` (python_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
+### Python: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfourth/state.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfourth/state.py](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfourth/state.py)
+- sha256 (`bytes`): `fb475699dcb8105f7f31273322af46202f82907f93c1dc03d6cda217dabefdd3`
+- cited in: record TFQ-0485
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `balances` (python_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/claim_ledger.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/claim_ledger.md)
+- sha256 (`lf-normalised`): `0ad9844d2a72386cc8fe11716177f0e34739b8da51a628fc15c5f227a174de3d`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfourth/claim_ledger.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfourth/claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfourth/claim_ledger.md)
+- sha256 (`lf-normalised`): `944082e39e6e9a2434ed0be8206b9731233731ecf3ccdc908d222d0b997cfcfe`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/twentyfifth/reading_the_seed.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/twentyfifth/reading_the_seed.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/twentyfifth/reading_the_seed.md)
+- sha256 (`lf-normalised`): `01c934e8579575e2e090a55fc70d524efde43dd1286704bb9c90578c0bb51d95`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/02_genesis/tfq_0485_go_h3_twin_fills_holonomy.md`
 
 - file: [dag/derivations/02_genesis/tfq_0485_go_h3_twin_fills_holonomy.md](../../../dag/derivations/02_genesis/tfq_0485_go_h3_twin_fills_holonomy.md)
-- sha256 (`lf-normalised`): `fbaefe33f36d5bd3b31ad8c933b0ad6b0563d223ef6b12c893c67e554095a7db`
+- sha256 (`lf-normalised`): `d38769ea23510b025a408fd025967ecba6df2b58264cf30e50c2c6b9216b1fd5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0485
 - counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/twentyfifth/claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/twentyfifth/claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/twentyfourth/claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/twentyfourth/claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/research/twentyfifth/reading_the_seed.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/research/twentyfifth/reading_the_seed.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### External sources
-
-Named by the node; not in this repository and not checked here.
-
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfifth/told.py::decides`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfifth/told.py::rank`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfourth/state.py::balances`
 
 ## Absences recorded by the TFQ records
 

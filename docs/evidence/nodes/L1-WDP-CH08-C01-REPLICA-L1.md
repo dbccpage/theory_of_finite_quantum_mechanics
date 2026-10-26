@@ -4,13 +4,13 @@ Stage: [L1_EMERGENCE](../stages/L1_EMERGENCE.md). Status: `OPEN`. Evidence grade
 
 ## Statement
 
-> l1 appears when aggregation over independent replicas is required to be extensive. WDP 8.5 states that l2 is not excluded by this argument. The checked slice, with status left OPEN, is this Nat arithmetic. For all natural numbers c, a, and b, c * a + c * b equals c * (a + b), and (c * a) * (c * a) + (c * b) * (c * b) equals (c * c) * (a * a + b * b). On a = 3 and b = 4, a + b = 7, a * a + b * b = 25, 5 * 5 = 25, (a + b) * (a + b) = 49, and 25 is not 49. On c = 2, c * (a + b) = 14, (c * a) * (c * a) + (c * b) * (c * b) = 100, c * (a * a + b * b) = 50, and 100 is not 50. Deriving l1 from replica extensivity, and a reading that l2 is excluded, stay outside this count.
+> l1 appears when aggregation over independent replicas is required to be extensive. WDP 8.5 states that l2 is not excluded by this argument.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
+- counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 26
 - distinct cited Lean declarations covered by a current replay receipt: 25
 - counted in-repo runnable tests: 0
@@ -28,11 +28,11 @@ None recorded.
 
 ## Bottleneck
 
-The Nat count in the statement is the checked slice. No classification is formalised. Deriving l1 from replica extensivity, and a reading that l2 is excluded, stay outside this count. The older citation wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation records finite-sum additivity and the closed facts (2*3)^2+(2*4)^2=100 and 3^2+4^2=5^2, and does not discharge the open reading.
+No classification is formalised. The cited Lean contains additivity of finite sums and the numerical example 3^2 + 4^2 = 5^2 with (2*3)^2 + (2*4)^2 = 100, which illustrates the extensive/homogeneous distinction but does not derive l1 from replica extensivity.
 
 ## Source status
 
-Replica extensivity of L1 and L2^2 (WDP 8.5 non-exclusion by extensivity alone), degree-1 homogeneity separation (100 != 50), and disjoint-support norm separation (5 != 3+4) mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
+Replica extensivity of L1 and L2^2 (WDP 8.5 non-exclusion by extensivity alone), degree-1 homogeneity separation (100 != 50), and disjoint-support norm separation (5 != 3+4) mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics
 
 ## Review
 
@@ -120,9 +120,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
-### Rust: `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs`
+### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs)
+- file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust
 
@@ -132,26 +132,26 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- sha256 (`lf-normalised`): `753d1c99c799f84f9a71912b98082d590c89c531f980c112b62ee2a86ab2726b`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
+- sha256 (`lf-normalised`): `1596c27b09af32aec26710dacafcbe1dcb5081bc06d35d094b4c0b0353932e64`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0357_record_replica_extensivity_as_a_reason_l1_appears_and_keep_squared_l2.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0357_record_replica_extensivity_as_a_reason_l1_appears_and_keep_squared_l2.md](../../../dag/derivations/07_l1_emergence/tfq_0357_record_replica_extensivity_as_a_reason_l1_appears_and_keep_squared_l2.md)
 - sha256 (`lf-normalised`): `29c45e7a39f746201fd50195b2e291818a9959a9dee748a81f7c01459a6389ce`
 - generated view: listed, not counted
 - cited in: record TFQ-0357
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ## Routes

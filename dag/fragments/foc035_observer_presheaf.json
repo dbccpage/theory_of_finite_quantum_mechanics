@@ -31,8 +31,8 @@
       "source_status": "Ledger row L035-A1, status cited: the row cites the repository's own chapter-10 definitions. This node records the tuple as a definition, which is what Definition A1 of the note is.",
       "statement": "Definition A1 of the source note. Fix a finite set M of measurements with finite outcome sets and a cover C of M by maximal contexts, and write E(U) for the set of outcome assignments on U. An observer tuple is O = (K, Adm, norm, Term, L). K = (M, C, E). Adm is the convex hull conv(A) of the vectors (delta_g restricted to C) over all contexts C, for g in E(M). The norm is the l1 norm on the stacked context distributions. Term maps the defect and the claim to a status: defect 0 gives ExactRepair, defect above 0 with a support-level global section gives ClosedResidual, and otherwise OpenObstruction. L is the diagnostic layer. The defect of a claim e = (e_C), one distribution per context, is Delta_O(e) = min over p in Adm of the l1 norm of (e - p). The five components are a projection of the four packets of WDP chapter 10 (presentation, memory, evaluator, policy) and of the chapter 15 grade. The monograph defines no five-tuple of its own; the ledger row records a search for \"5-tuple\" that returned nothing.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-A1",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.1-1.2",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-A1",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.1-1.2",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2500_ops_observer_tuple.md"
       ],
       "lean": [],
@@ -59,8 +59,8 @@
       "source_status": "Ledger row L035-B1: proved + computed + Lean-checked for pushforward of finitely supported natural-number-weighted measures only. The Lean module is on main; this change did not rebuild it. The ledger records elaboration under Lean 4.34.0 with axioms propext and Quot.sound only, and this repository pins Lean 4.35.0.",
       "statement": "In Lean (LggrFiniteResults), a finitely supported measure with natural-number weights is a list of (value, weight) pairs, and pushforward along f maps each value by f and keeps its weight. Then: push of the identity is the identity (push_id); push along g after f equals push along the composite (push_comp); total mass is unchanged (mass_push); and the weight at b of push f p equals the mass of the entries of p whose image is b (weightAt_push). The note reads marginalisation of a context distribution as such a pushforward along the restriction map, so these are the identity and composition laws of the functor from the opposite of the context poset to probability vectors (Lemma B2). That reading is not a Lean statement. Not covered: rational weights, normalisation to probability vectors, the context poset, and the Rust types. The ledger row states the same narrowing.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B1",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.1",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B1",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.1",
         "lean4/LggrFiniteResults.lean",
         "checks/independent/foc035_observer_presheaf.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2501_ops_pushforward_functor_lean.md",
@@ -94,8 +94,8 @@
       "source_status": "Ledger row L035-B11: proved + computed + Lean-checked for the two clauses above, any n >= 1; the arc-cover and noncontextual-fraction clauses stay computed (node OPS-PARITY-CYCLE-DESCENT-NCF). The Lean module is on main; this change did not rebuild it. The ledger records Lean 4.34.0 with axioms propext and Quot.sound only.",
       "statement": "In Lean (LggrFiniteResults), take a length n > 0 and edge parities b : Nat -> Bool. Let holonomy b k be the exclusive or of b 0, ..., b (k-1), and call g a section when, for every i < n, the exclusive or of g i and g ((i+1) mod n) equals b i. Then (section_exists_iff_holonomy_zero) a section exists if and only if holonomy b n = false. Further (no_joint_measure_when_holonomy_one), if holonomy b n = true then no finitely supported natural-weight measure on assignments Nat -> Bool with positive total mass has, for every i < n, zero pushforward weight on every pair of values (g i, g ((i+1) mod n)) whose exclusive or differs from b i. These are the clause \"G(e) is nonempty iff the holonomy h is 0\" and the clause \"holonomy 1 forbids a positive-mass joint measure with parity-supported marginals\" of Proposition B6. Not in Lean: the arc-cover clause, the noncontextual-fraction clause and the Cech-cohomology reading.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B11",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B11",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4",
         "lean4/LggrFiniteResults.lean",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md",
         "dag/research/foc035_observer_presheaf_lean_replay.json"
@@ -127,8 +127,8 @@
       "source_status": "Ledger row L035-B2: proved + computed. The note gives a direct proof of the clause; the equivalence with the local-hidden-variable condition is the statement of Abramsky and Brandenburger, whose publisher record was not checked by the note. The instance values are recomputed here by an exact script, not by the Rust tests.",
       "statement": "Proposition B3(1). For an empirical model e = (e_C) on a finite scenario, let A be the matrix whose column g, for g in E(M), is the stacked vector of the point masses of g restricted to each context, and let NCF(e) = max of the sum of lambda_g over lambda >= 0 with A lambda <= e. Then these are equivalent: e has a global section (a probability vector d on E(M) with marginal e_C on every context C); e lies in conv(A); NCF(e) = 1. This is the local-hidden-variable condition. Instances recomputed exactly: the mixture (1/2)(delta_g1 + delta_g2), with g1 = (0,0,0,0) and g2 = (1,0,0,1) on (a, a', b, b'), has NCF 1; the noisy PR box (1 - lam) PR + lam U at lam = 1/2 has NCF 1 and a distribution as a global section.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B2",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B2",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2",
         "checks/independent/foc035_observer_presheaf.py",
         "external:arXiv:1705.07918",
         "external:arXiv:1102.0264",
@@ -157,8 +157,8 @@
       "source_status": "Ledger row L035-B4: proved + computed. The instance values are recomputed here by an exact script.",
       "statement": "Proposition B3(3). Write G(e) for the set of g in E(M) with e_C(g restricted to C) > 0 for every context C. Then e is strongly contextual (G(e) is empty) if and only if NCF(e) = 0: if lambda_g > 0 is feasible then e_C(g|C) >= lambda_g > 0 for every C, so g is in G(e); conversely g in G(e) makes lambda = (min over C of e_C(g|C)) delta_g feasible with positive weight. Instance recomputed exactly: the PR box on the Bell scenario (contexts ab, ab', a'b, a'b', each uniform on the two outcome pairs with parity 0, 0, 0, 1) has |G| = 0 and NCF 0. The four parity constraints x_a + x_b = 0, x_a + x_b' = 0, x_a' + x_b = 0 and x_a' + x_b' = 1 sum to 0 = 1 modulo 2, so none of the 16 assignments satisfies all.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B4",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B4",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2",
         "checks/independent/foc035_observer_presheaf.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2504_ops_strong_contextuality_ncf_zero.md"
       ],
@@ -185,8 +185,8 @@
       "source_status": "Ledger row L035-B5: computed by the Rust tests noisy_pr_box_has_exact_noncontextual_fraction_two_lambda and tampered_receipts_are_rejected_by_replay, which are not run here. This node is COMPUTATIONALLY_CHECKED on the strength of checks/independent/foc035_observer_presheaf.py, which restates the box, solves each linear programme exactly and re-verifies the answer with an explicit primal and dual certificate; it does not run the Rust code.",
       "statement": "On the Bell scenario let the noisy PR box be e_lam = (1 - lam) PR + lam U, where U puts 1/4 on every local outcome pair. The exact noncontextual fraction is 1/2 at lam = 1/4 and 1 at lam = 1/2, which is 2 lam at both points. The l1 defect to conv(A) is positive at lam = 1/4 and 0 at lam = 1/2, and the global support has 16 elements at both points. The closed form 2 lam for every lam below 1/2 is not claimed.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B5",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B5",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2",
         "checks/independent/foc035_observer_presheaf.py",
         "dag/test_foc035_observer_presheaf.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2505_ops_noisy_pr_ncf.md"
@@ -216,8 +216,8 @@
       "source_status": "Ledger row L035-B6: proved + computed. The statement here is about the set-level family S. The Rust classify_cover reading (the DescentOutcome variants read from finite_report_descent.rs) is not run here.",
       "statement": "Proposition B4(1). Let S(U) be the set of assignments s on U whose restriction to every maximal context C inside U lies in the support of e_C; then S(M) = G(e). Over the cover of M by its maximal contexts, every matching family (s_C in S(C), agreeing on overlaps) glues to exactly one element of S(M). So a descent classifier on that cover reports no NoGlobalExtension, its fibers are in bijection with G(e), and strong contextuality appears as zero matching families, not as a failed gluing. Instances recomputed exactly: the PR box has 0 matching families; the noisy PR box at lam = 1/2 has 16, each with exactly one gluing.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B6",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.3",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B6",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.3",
         "checks/independent/foc035_observer_presheaf.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2506_ops_maximal_cover_descent.md"
       ],
@@ -242,8 +242,8 @@
       "source_status": "Ledger row L035-B7: computed by the Rust test a_noncontextual_model_can_still_fail_descent_on_an_arc_cover, not run here. The counts are recomputed by checks/independent/foc035_observer_presheaf.py by enumerating the families and the gluings.",
       "statement": "Existence witness. On the Bell scenario let e = (1/2)(delta_g1 + delta_g2) with g1 = (a, a', b, b') = (0,0,0,0) and g2 = (1,0,0,1). Then NCF(e) = 1 and G(e) has 2 elements. Over the arc cover {a, a', b}, {a', b, b'}, which omits the context {a, b'}, there are 4 matching families; 2 of them have exactly one gluing in S(M) and 2 have none. So a noncontextual model can have matching families without a global extension on a cover that omits a context.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B7",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.3",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B7",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.3",
         "checks/independent/foc035_observer_presheaf.py",
         "dag/test_foc035_observer_presheaf.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2507_ops_arc_cover_nge_witness.md"
@@ -271,8 +271,8 @@
       "source_status": "Ledger row L035-B8: proved, from rows B6 and B7.",
       "statement": "Consequence of nodes OPS-MAXIMAL-COVER-DESCENT and OPS-ARC-COVER-NGE-WITNESS. A descent outcome NoGlobalExtension on a matching family is a statement about the chosen cover, not about the model: on the maximal cover it never occurs, and on the arc cover above it occurs for a model with NCF 1. Strong contextuality is G(e) empty, reported as NCF 0 with a Bell functional as the replayable witness. So the note's local-green-global-red event (a matching family over a cover of M whose descent outcome is NoGlobalExtension) is evidence that the cover's local checks do not reach the global object, and not evidence that no global object exists.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B8",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.3",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B8",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.3",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2508_ops_nge_not_contextuality.md"
       ],
       "lean": [],
@@ -296,8 +296,8 @@
       "source_status": "Ledger row L035-B9: proved + computed. The instance values are recomputed here by an exact script. The Rust tests, including the shape checks of the ledger row, are not run here (node OPS-RUST-RECEIPTS-AND-LIMITS).",
       "statement": "Proposition B5. Let N be the nerve of the maximal-context cover and take cochains valued in the presheaf U -> Q^E(U), with (delta0 alpha)_(C,C') the restriction of alpha_C to the overlap minus the restriction of alpha_C', and delta1 the alternating sum of restrictions on triples. Then delta1 delta0 = 0; for an empirical model e read as a 0-cochain, delta0 e = 0 if and only if e is no-signalling; and Phi_1([omega]) = min over alpha of the l1 norm of (omega - delta0 alpha) is unchanged by omega -> omega - delta0 beta. Instances recomputed exactly: the Bell nerve has four edges (a 4-cycle) and no triple, so delta1 delta0 = 0 is vacuous there; on the cover {0,1}, {0,2}, {0,3} (one nerve triple, overlap {0}) delta1 delta0 alpha = 0 for a non-constant alpha while a 1-cochain supported on one pair has delta1 beta = [1, 0]; delta0 e = 0 for the PR box and is nonzero at the pair (0,1) for a model whose a-marginal differs between the contexts ab and ab'; the unit cochain (1, 1) on the first edge of the Bell nerve has Phi_1 = 2, by the value 2 at alpha = 0 and a dual witness of sup norm 1 that annihilates delta0, and Phi_1 is again 2 after adding delta0 of a coboundary.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B9",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B9",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4",
         "checks/independent/foc035_observer_presheaf.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2509_ops_cech_coboundary.md"
       ],
@@ -327,8 +327,8 @@
       "source_status": "Ledger row L035-B10: proved; narrowed in the ledger from a stronger earlier sentence.",
       "statement": "Every no-signalling model, the PR box included, has delta0 e = 0 (node OPS-CECH-COBOUNDARY). So the test delta0 e = 0 does not separate contextual from noncontextual no-signalling models. This is a statement about the test, not about the class of e: in the unaugmented complex H^0 = ker delta0, so distinct no-signalling models are distinct classes. What the class lacks is an invariant that separates conv(A) from its complement; that separation is a positivity constraint. The earlier sentence that the class \"carries no information about probabilistic contextuality\" is narrowed to this.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B10",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B10",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2510_ops_zero_cocycle_blind.md"
       ],
       "lean": [],
@@ -352,8 +352,8 @@
       "source_status": "Ledger row L035-B11, the clauses that stay computed: the Rust test parity_cycles_holonomy_decides_descent_and_strong_contextuality is not run here. The 56 cases are recomputed by checks/independent/foc035_observer_presheaf.py.",
       "statement": "For n = 3, 4, 5 and every one of the 2^n parity-target vectors t on the n-cycle of binary measurements (contexts {m_i, m_(i+1 mod n)}, each distribution uniform on the two pairs with x_i xor x_(i+1) = t_i), let h be the exclusive or of the t_i. Then |G| is 2 if h = 0 and 0 if h = 1; the arc cover {m_0, ..., m_(n-2)}, {m_1, ..., m_(n-1)} has exactly 2 matching families, both with one gluing if h = 0 and both without a gluing if h = 1; and NCF is 1 if h = 0 and 0 if h = 1. That is 8 + 16 + 32 = 56 cases.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B11",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B11",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4",
         "checks/independent/foc035_observer_presheaf.py",
         "dag/test_foc035_observer_presheaf.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2511_ops_parity_cycle_descent_ncf.md"
@@ -383,8 +383,8 @@
       "source_status": "Ledger row L035-B3: cited + computed. The external identifier was checked against the arXiv record (title and journal reference). The instance is recomputed by an exact script; the equivalence itself is not re-proved.",
       "statement": "Assumed from Abramsky and Brandenburger (New Journal of Physics 13 (2011) 113036, arXiv:1102.0264), as the note cites it and does not prove it: an empirical model is no-signalling if and only if it has a signed global section, a function d on E(M) with values in Q, sum 1 and the given marginals. Instance recomputed exactly: the PR box, which is no-signalling, has a signed global section found by exact linear algebra, with sum 1, all 16 marginal equations satisfied and at least one negative entry.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B3",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B3",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2",
         "checks/independent/foc035_observer_presheaf.py",
         "external:arXiv:1102.0264",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2512_ops_no_signalling_signed_section.md"
@@ -415,8 +415,8 @@
       "source_status": "Ledger row L035-B12: cited. The external identifier was checked against the arXiv record. Not computed here.",
       "statement": "Assumed from Abramsky, Mansfield and Barbosa (EPTCS 95 (2012) 1-14, arXiv:1111.3620), as the note cites it: the Z2 holonomy witness of parity constraints can be silent where the linear-programming witness is not, that is, it has false negatives on other families of scenarios. The note does not compute such a family and does not claim the behaviour away.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B12",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B12",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4",
         "external:arXiv:1111.3620",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2513_ops_z2_witness_false_negatives.md"
       ],
@@ -444,8 +444,8 @@
       "source_status": "Ledger row L035-B13: proved (sketch) + computed, with the theorem cited. The DOI was checked against the Crossref record (title, volume, pages, year). The computed instances are in nodes OPS-VOROBEV-PATH-INSTANCE and OPS-TEST-482-REPAIR.",
       "statement": "Assumed from Vorob'ev (Theory of Probability and its Applications 7 (1962) 147-163, doi:10.1137/1107014), as the note states it: if the hypergraph (M, C) is GYO-acyclic (it reduces to nothing by removing ears and absorbed vertices, equivalently it has a join tree), then every no-signalling model has a global section given on a join tree T by d(g) = (product over C of e_C(g|C)) / (product over the edges (C, C') of T of e_(C intersect C')(g|C intersect C')), with 0/0 = 0. The note gives an induction sketch, not a full proof. The converse (for every non-acyclic hypergraph some no-signalling family has no global section) is not implemented; the PR box on the 4-cycle is one instance.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B13",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.5",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B13",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.5",
         "external:doi:10.1137/1107014",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2514_ops_vorobev_theorem.md"
       ],
@@ -473,8 +473,8 @@
       "source_status": "Ledger row L035-B13, the computed part: the Rust test vorobev_product_formula_glues_acyclic_covers_and_refuses_cycles is not run here. The instance is recomputed by checks/independent/foc035_observer_presheaf.py.",
       "statement": "On the path cover {0,1}, {1,2}, {2,3} of four binary measurements, with parity targets 0, 1, 1, the product formula of node OPS-VOROBEV-THEOREM (join-tree edges ({0,1},{1,2}) and ({1,2},{2,3})) gives a probability distribution on the 16 assignments whose three marginals equal the three given tables exactly, and NCF is 1. The GYO reduction empties the three-context path and the two-context path and does not empty the Bell 4-cycle or a triangle. This is one instance of the cited theorem, not a check of it.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B13",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.5",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B13",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.5",
         "checks/independent/foc035_observer_presheaf.py",
         "dag/test_foc035_observer_presheaf.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2515_ops_vorobev_path_instance.md"
@@ -502,8 +502,8 @@
       "source_status": "Ledger row L035-B14: computed by the repaired test of the source repository (20 tests run there with unittest, exit 0). That test is not run here. The instances are recomputed by checks/independent/foc035_observer_presheaf.py, which restates the tables, the GYO reduction and the exhaustion.",
       "statement": "The instances that the repaired Test 482 of the source repository checks: a GYO reduction accepts the path cover {ab, bc} and rejects the triangle cover {ab, bc, ac}; two rational tables on the path (p_ab with entries 1/2, 1/6, 1/12, 1/4 and p_bc with entries 1/3, 1/4, 1/6, 1/4) agree on the overlap and glue by the product formula p_ab p_bc / p_b to a joint of total mass 1 that reproduces both tables exactly; and the constraints a = b, b = c, a != c of the triangle parity cover have no compatible assignment among the eight. The earlier version of the source test assigned the literal True and asserted it, so it verified nothing. The source test itself is not imported (see the bottleneck).",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B14",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.5",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B14",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.5",
         "checks/independent/foc035_observer_presheaf.py",
         "dag/test_foc035_observer_presheaf.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md"
@@ -529,8 +529,8 @@
       "source_status": "Ledger row L035-A2: computed (K row; first receipt of the Adm row) + proved (second receipt of the Adm row) + derived by hand (norm and Term rows). The Rust receipts are not run here; the defects 2 and 0 are recomputed by the independent check.",
       "statement": "Lemma A2. Let O' leave one of K, Adm, norm, Term undeclared, and require that an evaluation's receipt for a claim agree across every admissible completion of the undeclared component. Then no evaluation of O' meets that requirement: for each of the four components there are two admissible completions, agreeing elsewhere, whose receipts for one claim differ. Witnesses on the PR box (Bell scenario, parity targets 0, 0, 0, 1): K, the Bell cover gives defect 2 and the acyclic sub-cover {ab, ab'} gives defect 0; Adm, the noncontextual polytope gives 2 and the no-signalling polytope gives 0, because the PR box is no-signalling; norm, the l1 norm gives 2 and twice the l1 norm gives 4; Term, with defect 2 and empty global support the rule of the note gives OpenObstruction and the rule \"defect below 3 gives ExactRepair\" gives ExactRepair. The lemma does not say that no function from claims to receipts exists; any one completion defines a function. The layer has no row, because Definition A1 fixes it to diagnostic.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-A2",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.3",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-A2",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.3",
         "checks/independent/foc035_observer_presheaf.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2517_ops_underdetermination.md"
       ],
@@ -557,9 +557,9 @@
       "source_status": "Ledger rows L035-A3 and L035-A4: computed + by construction, by the Rust tests an_undeclared_observer_component_is_refused_before_any_arithmetic, pr1080_blank_observer_fields_are_refused, pr1080_receipt_does_not_accept_an_unsupported_observer_profile and evaluation_receipts_carry_the_terminal_token_and_no_authority. Held at CONDITIONAL because those tests are not run in this repository.",
       "statement": "As the note states it for the Rust evaluator evaluate_l1_claim (Policy A2' and the profile binding): before any arithmetic it refuses an undeclared, empty or whitespace component with UndeclaredObserverComponent(name), and a component the evaluator does not implement with UnsupportedObserverComponent { component, declared }. The kernel must equal the label of the scenario under evaluation (for the Bell scenario \"support presheaf over the maximal-context cover {0,2}|{0,3}|{1,2}|{1,3} with arities 2,2,2,2\"); the other four components must equal the constants for the noncontextual polytope, the l1 norm, the terminal rule and the diagnostic layer. A supported tuple yields a receipt with authority_effect None, the terminal token and the typed profile. The refusal is a policy invariant by construction; the note does not derive it from Lemma A2.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-A3",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-A4",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.2-1.3",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-A3",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-A4",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.2-1.3",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2518_ops_observer_declaration_refusal.md",
         "lean4/CampaignOpsObserverDeclarationRefusal.lean",
         "checks/independent/ops-observer-declaration-refusal.py",
@@ -592,10 +592,10 @@
       "source_status": "Ledger rows L035-B15, L035-B16 and L035-B17, and the shape clause of L035-B9, stay outside this statement. The Rust tests that name them are not run in this repository. Narrowed to the ceiling counts G = 2^20 and L = 2^22, checked in Lean 4.35.0 with no axioms. Held at CONDITIONAL because those Rust tests are not run here.",
       "statement": "As the ledger states them for the Rust module empirical_presheaf. (B15) The l1 defect receipt has zero duality gap: <phi*, e> + y0 equals the defect, with the sup norm of phi* at most 1 and A^T phi* + y0 <= 0, and replay rejects tampering and shape errors. (B17) verify_noncontextual_fraction and verify_l1_defect_receipt rebuild the linear programme, verify the embedded solution as its certificate, and bind primal, dual and value to the receipt's part, functional and fraction; the pivot trace is not bound. (B16) Every global and local section count is a checked fold against MAX_GLOBAL_ASSIGNMENTS = 2^20 returning EnumerationLimit, and dense allocations are bounded by MAX_LP_ENTRIES = 2^22 returning LpSizeLimit, with nothing of either size allocated or enumerated before the refusal: 64 binary singletons have 2^64 assignments and one context of 21 binary measurements has 2^21 sections, both above 2^20, while ten binary singletons give a 20 x 1024 incidence inside both ceilings. (B9, shape) The whole declared cochain is shape-checked before any incidence is read. Recomputed here: the ceiling arithmetic, and a zero-gap primal and dual pair for the PR box and the noisy boxes in the independent script's own solver, which does not test the Rust verifiers.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B15",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B16",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B17",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.6",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B15",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B16",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B17",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.6",
         "lean4/CampaignOpsRustReceiptsAndLimits.lean",
         "checks/independent/ops-rust-receipts-and-limits.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2519_ops_rust_receipts_and_limits.md",
@@ -648,8 +648,8 @@
       "source_status": "Ledger row L035-L1, status open.",
       "statement": "Not formalised in Lean: the equivalences between global sections, conv(A) and the noncontextual fraction, and between strong contextuality and NCF 0 (nodes OPS-NCF-LHV-EQUIVALENCE and OPS-STRONG-CONTEXTUALITY-NCF-ZERO); Vorob'ev sufficiency and its converse (node OPS-VOROBEV-THEOREM); delta0 e = 0 if and only if e is no-signalling; rational normalisation of weights; and any link from the Lean model of natural-number-weighted lists to the Rust Scenario type or to the Rust and Python gates. Separate finite result: For all four Boolean variables, the four specified parity constraints have no common assignment; their left XOR is false and the right XOR is true. The arithmetic identity 2*2*2*2 = 16 holds; the separate independent enumeration counts 16 assignments.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-L1",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#4",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-L1",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#4",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md",
         "lean4/CampaignOpsLeanGap.lean",
         "checks/independent/ops-lean-gap.py",
@@ -679,10 +679,10 @@
       "source_status": "Ledger rows L035-C8, L035-C9 and L035-C10: computed. The Python tests run in this repository under pytest. The expected verdicts are data in the JSON fixture.",
       "statement": "ThreeRoleGate(scope, admitted_roots) reads a packet (claim_id, scope, proposer, evaluator, authorizer, observer, authority_root, policy); each role binding is (identifier, principal) and the observer is the five-component declaration. Run here (code/python/tests/test_three_role_gate.py, 15 tests, 33 subtests, with a fixture of 17 cases): every fixture case yields its recorded verdict and reasons; every RefusalReason is reached by some fixture case; every verdict carries authority_effect None and GateVerdict refuses any other value; a missing field, an empty identifier, an unknown field or policy, a non-string value, and a missing or blank observer component are typed refusals, never a default; two identifiers on one principal give SHARED_PRINCIPAL, including the case (id-A/p1, id-B/p1, id-A/p2) that a count rule misses; a non-string mapping key at the top level, in a role binding or in the observer is a MALFORMED_PACKET refusal and is never coerced to a string; a self_attested_permitted policy gives SELF_ATTESTED, never ADMITTED_FOR_AUTHORIZATION.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C8",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C9",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C10",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.3",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-C8",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-C9",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-C10",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.3",
         "code/python/src/wdp/three_role_gate.py",
         "code/python/src/wdp/three_role_provenance_fixtures.json",
         "code/python/tests/test_three_role_gate.py",
@@ -715,8 +715,8 @@
       "source_status": "Ledger row L035-C6: proved + computed. The gate test runs here.",
       "statement": "Read as a provenance packet, the sentence \"I verified this and certify it\" is (p, p, p): one identifier and one principal in the proposer, evaluator and authorizer roles. All three pairs of roles coincide. The gate returns REJECTED with the reasons SELF_AUTHORIZATION, EVALUATOR_IS_PROPOSER and EVALUATOR_IS_AUTHORIZER, in that order (fixture case i_verified_this_and_certify_it; test test_self_certification_sentence_is_rejected_on_three_counts). The note's reading of this as a single-patch gluing on the role cover with no descent data is prose, and is not computed.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C6",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.2",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-C6",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.2",
         "code/python/src/wdp/three_role_gate.py",
         "code/python/src/wdp/three_role_provenance_fixtures.json",
         "code/python/tests/test_three_role_gate.py",
@@ -743,8 +743,8 @@
       "source_status": "Ledger row L035-C7, status proposed: the source states it; nothing here is audited. The grep over the source repository's rule and pattern folders is not reproducible from this repository.",
       "statement": "The note proposes AP_AB_UNADMITTED_SHEAF_BRIDGE as a candidate anti-pattern card, with the packet (p, p, p) as its fixture case. It records that neither this name nor RULE_AUTHORITY_SEPARATION_001 exists in the source repository; the nearest registered rule there is RULE_EVALUATOR_SUPREMACY_AUTHORITY_SEPARATION_001. Nothing is registered by this repository.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C7",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.2",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-C7",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.2",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2523_ops_ap_card_proposal.md"
       ],
       "lean": [],
@@ -768,8 +768,8 @@
       "source_status": "Ledger row L035-C1, status cited. Only a pinned copy of the Genesis claim ledger is in the source repository, and the note did not re-run it. This repository has not re-run it either.",
       "statement": "Axis 1 of WDP-CH14-T01 under the hypothesis that admission is the Genesis calculus, in which every AdmitInst depends on a previously admitted base datum: with no base instance no rule instance is admitted (the Genesis theorem collapsed_of_no_insts), so the process has nothing to certify. It says nothing about other shapes of admission. Imported by name: the theorem is Genesis's.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C1",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-C1",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md",
         "lean4/CampaignOpsAxis1WellfoundedAdmission.lean",
         "checks/independent/ops-axis1-wellfounded-admission.py",
@@ -802,8 +802,8 @@
       "source_status": "Ledger row L035-C2: by construction + cited. Lemma D, named in the monograph, has no statement in the source repository and nothing here rests on it.",
       "statement": "Axis 2. Let eval_n be the evaluator of a process on carrier K_n. The statement \"eval_n is sound\" relates eval_n to a standard of correctness for K_n; that standard is not an element of K_n, so the statement is a sentence of a carrier K_(n+1), and the output PASS of eval_n on it has no standing at K_(n+1) (ENC-0195, AuthorityEffect None). The level statement holds by construction of the carrier hierarchy. Imported: the strengthening by Tarski's undefinability theorem, which applies only when K_n interprets enough arithmetic, and the Genesis identifiers ENC-0118 and ENC-0195, cited by name.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C2",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-C2",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2525_ops_axis2_meta_carrier.md"
       ],
       "lean": [],
@@ -832,8 +832,8 @@
       "source_status": "Ledger row L035-C3: proved (conditional on (iii)) + cited. NS-14 and CL-13 are read from the Argon synthesis; their Lean sources are not in the source repository and were cited, not re-run.",
       "statement": "Axis 3 of WDP-CH14-T01 under three hypotheses. (i) NS-14: an injective renaming sigma of presentation tokens commutes with the transition step and with full-history replay. (ii) CL-13 (passage_charge_const): a quantity conserved by internal transitions is constant on reachable states and equals its genesis value. (iii) The verdict V reads a history only through a declared export Exp, so V = Vbar o Exp, with Exp(sigma(H)) = Exp(H) for every injective renaming sigma; this is the identical-accessible-exports premise of Proposition 3.1 of the Argon synthesis. Then V(sigma(H)) = V(H), because V(sigma(H)) = Vbar(Exp(sigma(H))) = Vbar(Exp(H)) = V(H). Without (iii) the statement is false (node OPS-REFUTED-AXIS3-WIDE). A drop in the internal defect Delta_O stays computable and renaming-invariant; whether a drop is a repair or a reinterpretation is a question about the grounding map of the tokens, which no export-reading verdict decides.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C3",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-C3",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md",
         "lean4/CampaignOpsAxis3Relabeling.lean",
         "checks/independent/ops-axis3-relabeling.py",
@@ -863,8 +863,8 @@
       "source_status": "Ledger row L035-C5: proved (conditional on (iii)), narrowed together with row C3.",
       "statement": "WDP-CH14-C01 (an unhosted token predictor cannot issue self-authorizing certificates) follows from Axes 2 and 3 for a process whose only outputs are receipt-free presentations and whose self-evaluation, if any, factors through its internal exports (premise (iii) of Axis 3). The nonclaim WDP-CH14-N03 is kept: a process coupled to a receipt-emitting oracle, as in WDP-CH15-D02, is outside the statement.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C5",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-C5",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2527_ops_regress_corollary.md"
       ],
       "lean": [],
@@ -890,8 +890,8 @@
       "source_status": "Ledger row L035-N3: refuted (the note's own earlier statement), found in the review of PR 1080 of the source repository. The countermodel is recomputed here.",
       "statement": "The earlier statement of Axis 3, \"V(sigma(H)) = V(H) for any verdict V that is a function of internal receipts and conserved charges\", is false. Countermodel: states a and b; sigma swaps them; the one transition swaps them, so hypothesis (i) holds; the only conserved charge is the constant 0, so (ii) holds; V(H) is \"the first token of H is a\". Then V((a)) = true and V(sigma((a))) = V((b)) = false. Recomputed by the independent check.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N3",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-N3",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
         "checks/independent/foc035_observer_presheaf.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2528_ops_refuted_axis3_wide.md"
       ],
@@ -916,8 +916,8 @@
       "source_status": "Ledger row L035-C4: refuted (cited). The refutation is recorded in the Argon synthesis and the Argon notebook review of 2026-10-15 of the source repository; it is cited, not re-run.",
       "statement": "NB-9, a commuting diagram together with an injective encoding offered as a certificate of semantic transport, is refuted by budgetSim_enc_injective: the square commutes through budget writes alone. It is not used. Its refutation removes the one internal object that could have been mistaken for grounding, so it does not weaken Axis 3.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C4",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#0",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-C4",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#0",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2529_ops_refuted_nb9.md"
       ],
       "lean": [],
@@ -941,9 +941,9 @@
       "source_status": "Ledger rows L035-N1 and L035-N8: refuted (the note's own earlier design and code). The failing run before the fix (2 failures) is recorded in the source repository and is not reproducible here.",
       "statement": "Two earlier designs of the Python gate failed. (N1) The count rule \"the number of principals is below the number of identifiers\" missed the case evaluator_also_proposer (identical bindings) and the case (id-A/p1, id-B/p1, id-A/p2), where two identifiers share a principal and a third principal exists; for both, the principals and the identifiers are 2 in number, so the rule does not fire. It was replaced by a pairwise check. (N8) A non-string key in a packet mapping reached the string join in _reject_unknown and escaped evaluate_mapping as a TypeError; it is now a MALFORMED_PACKET refusal at every level. The counts are recomputed by the independent check; the earlier code is not in this repository.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N1",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N8",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.3",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-N1",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-N8",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.3",
         "checks/independent/foc035_observer_presheaf.py",
         "code/python/tests/test_three_role_gate.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2530_ops_refuted_earlier_gate.md"
@@ -970,11 +970,11 @@
       "source_status": "Ledger rows L035-N4 to L035-N7: refuted (the note's own earlier code and text), found in the review of PR 1080 of the source repository; repaired by rows A2, A3, A4, B9, B16 and B17. The earlier head is not in this repository, so the defects are not reproduced here.",
       "statement": "At head 0a0502646 of the source repository the following were wrong. (N4) Scenario::section_count multiplied arities without a check, and the limit was compared afterwards: 64 binary singletons (2^64 assignments) wrapped to 0 in a release build, so global_support returned an empty support and is_strongly_contextual returned true. (N5) ObserverDraft::declare accepted empty and whitespace strings, and the five strings were free text copied into the receipt: a norm \"L2\", a terminal \"always OpenObstruction\" and a layer \"authoritative\" each yielded the l1 value, ExactRepair and authority None. (N6) Proposition A2 claimed that no claim-to-receipt function exists, carried a layer row whose second completion was not an observer, and said the refusal test dropped five components when it dropped two; and verify_noncontextual_fraction read only lp.value from the embedded solution. (N7) delta0 checked only the number of entries, delta1 and flatten1 ignored extraneous keys and pairs outside every triple, and the only delta1 delta0 = 0 test ran on the Bell nerve, which has no triple. Recomputed here: 2^64 is 0 modulo 2^64.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N4",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N5",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N6",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N7",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.2-2.6",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-N4",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-N5",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-N6",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-N7",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.2-2.6",
         "checks/independent/foc035_observer_presheaf.py",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2531_ops_refuted_earlier_rust.md"
       ],
@@ -1005,8 +1005,8 @@
       "source_status": "Ledger row L035-N2: negative evidence recorded as computed (read). Held as SOURCE_RECORD, not REFUTED: it records an absence in another repository, and no claim of this repository is refuted by it. The git log is not reproducible from this repository.",
       "statement": "The LGGR test of PR 1050 of the source repository was not on its main branch at commit ae38eaa89 and is not cited by the note or its ledger. The row records a git log over the normal-forms test folder of that repository.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N2",
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#0",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-N2",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#0",
         "dag/derivations/35_foc035_observer_presheaf/tfq_2532_ops_pr1050_absence.md"
       ],
       "lean": [],
@@ -1034,7 +1034,7 @@
       "status": "RECORD_PARENT",
       "mechanism": "Reading-order attachment. The tuple is the note's projection of the four packets of WDP chapter 10; the route is not a derivation.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.1"
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.1"
       ]
     },
     {
@@ -1079,7 +1079,7 @@
       "status": "DERIVED_PROSE",
       "mechanism": "Proposition B3(1) of the note, a direct argument from the definition of Adm as conv(A) and of NCF as a linear programme.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2"
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2"
       ]
     },
     {
@@ -1091,7 +1091,7 @@
       "status": "DERIVED_PROSE",
       "mechanism": "Proposition B3(3) of the note, from the definition of the global support G(e) and of NCF.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2"
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.2"
       ]
     },
     {
@@ -1115,7 +1115,7 @@
       "status": "DERIVED_PROSE",
       "mechanism": "Proposition B4(1) of the note: a matching family over the maximal contexts defines one assignment, which is in S(M).",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.3"
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.3"
       ]
     },
     {
@@ -1140,7 +1140,7 @@
       "status": "DERIVED_PROSE",
       "mechanism": "Consequence stated in the note after Proposition B4.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.3"
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.3"
       ]
     },
     {
@@ -1152,7 +1152,7 @@
       "status": "DERIVED_PROSE",
       "mechanism": "Proposition B5 of the note; the cancellation of delta1 delta0 uses the composition law of Lemma B2. The Lean statement covers natural-number weights only, so the rational case rests on the prose proof.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4"
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4"
       ]
     },
     {
@@ -1174,7 +1174,7 @@
       "status": "DERIVED_PROSE",
       "mechanism": "Section 2.4 of the note: every no-signalling model has delta0 e = 0, and the PR box is contextual and no-signalling.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4"
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#2.4"
       ]
     },
     {
@@ -1251,7 +1251,7 @@
       "status": "DERIVED_PROSE",
       "mechanism": "Lemma A2 of the note: two admissible completions with different receipts for one claim, tabulated for four components.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.3"
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.3"
       ]
     },
     {
@@ -1263,7 +1263,7 @@
       "status": "RECORD_PARENT",
       "mechanism": "Reading-order attachment. The refusal is a policy of the Rust evaluator, tested by Rust tests that are not run here.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-A3"
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-A3"
       ]
     },
     {
@@ -1276,7 +1276,7 @@
       "status": "RECORD_PARENT",
       "mechanism": "Reading-order attachment. The claims are about the Rust receipts and verifiers, tested by Rust tests that are not run here.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-B17"
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-B17"
       ]
     },
     {
@@ -1339,7 +1339,7 @@
       "status": "RECORD_PARENT",
       "mechanism": "Reading-order attachment. The note proposes the card name with the packet (p, p, p) as its fixture case.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C7"
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-C7"
       ]
     },
     {
@@ -1369,7 +1369,7 @@
       "status": "CONDITIONAL_ON_IMPORT",
       "mechanism": "Hypothesis (iii) is the observer-quotient reading of WDP chapter 10; hypotheses (i) and (ii) are cited from the Argon synthesis, not re-run.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1"
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1"
       ]
     },
     {
@@ -1382,7 +1382,7 @@
       "status": "CONDITIONAL_ON_IMPORT",
       "mechanism": "The note's argument for WDP-CH14-C01 from Axes 2 and 3, conditional on (iii). Both inputs are not results of this repository.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1"
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1"
       ]
     },
     {
@@ -1394,7 +1394,7 @@
       "status": "DERIVED_PROSE",
       "mechanism": "The countermodel in the note, recomputed in the independent script.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1",
         "checks/independent/foc035_observer_presheaf.py"
       ]
     },
@@ -1407,7 +1407,7 @@
       "status": "RECORD_PARENT",
       "mechanism": "Reading-order attachment. The refutation is cited from the Argon synthesis.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C4"
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-C4"
       ]
     },
     {
@@ -1432,7 +1432,7 @@
       "status": "RECORD_PARENT",
       "mechanism": "Reading-order attachment. The defects are recorded by the review of PR 1080 of the source repository.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N4"
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-N4"
       ]
     },
     {
@@ -1444,7 +1444,7 @@
       "status": "RECORD_PARENT",
       "mechanism": "Reading-order attachment to the LGGR thread.",
       "source": [
-        "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-N2"
+        "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-N2"
       ]
     }
   ],

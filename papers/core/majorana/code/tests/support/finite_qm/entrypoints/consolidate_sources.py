@@ -1,7 +1,7 @@
 """Rebuild the consolidated claim ledger and source inventory from the F004 sources.
 
 This is the application's intake stage. It reads every numbered package under
-`coda_atlas/F004_papers/003_quantum_foundations/`, normalises their several
+`sources/atlas/papers/quantum_foundations/`, normalises their several
 claim-table schemas into one, and records what each source's Lean and Python trees
 mechanically support *today*. Evidence is heterogeneous: some sources retain
 central `True` scaffolds, while Papers 020, 060, 061, and 122 carry substantive
@@ -34,13 +34,13 @@ from omega_engine_projects.ms_majorana.code.tests.support.finite_qm.use_cases im
 
 APP_ROOT = (_Path(__file__).resolve().parents[4] / "apps" / "finite_qm")
 REPO_ROOT = APP_ROOT.parents[1]
-QF = REPO_ROOT / "coda_atlas/F004_papers/003_quantum_foundations"
+QF = REPO_ROOT / "sources/atlas/papers/quantum_foundations"
 
-# Every paper directory in 003_quantum_foundations. `None` means "take them all";
+# Every paper directory in quantum_foundations. `None` means "take them all";
 # the consolidation is no longer a prefix of the corpus, it is the corpus.
 SOURCE_KEYS = None
 
-# Papers in 003_quantum_foundations with a public Zenodo deposit. A published
+# Papers in quantum_foundations with a public Zenodo deposit. A published
 # source is not free to rewrite: a rewrite forks from the public record rather
 # than replacing it.
 PUBLISHED = {
@@ -359,7 +359,7 @@ def build_inventory() -> dict:
             {
                 "source_id": f"SRC-{d.name[:3]}",
                 "title": title_for(d.name),
-                "origin": f"coda_atlas/F004_papers/003_quantum_foundations/{d.name}",
+                "origin": f"sources/atlas/papers/quantum_foundations/{d.name}",
                 "paper": paper.name if paper else None,
                 "paper_lines": len(paper.read_text(encoding="utf-8").splitlines()) if paper else 0,
                 "paper_sha256": hashlib.sha256(paper.read_bytes()).hexdigest() if paper else None,
@@ -844,7 +844,7 @@ def emit_markdown(
         "the generator.",
         "",
         f"**Sources:** all {source_count} numbered packages of "
-        "`coda_atlas/F004_papers/003_quantum_foundations/`, plus the code and gap register of "
+        "`sources/atlas/papers/quantum_foundations/`, plus the code and gap register of "
         "`coda_atlas/F001_quantum/S000_finite_quantum_mechanics/`.",
         "",
         "## Read this first",
@@ -922,7 +922,7 @@ def emit_markdown(
         out += [
             f"### SRC-{src[:3]} -- {title_for(src)}",
             "",
-            f"`coda_atlas/F004_papers/003_quantum_foundations/{src}`",
+            f"`sources/atlas/papers/quantum_foundations/{src}`",
             "",
             "| ID | Claim | Type | Evidence | Source status |",
             "| --- | --- | --- | --- | --- |",

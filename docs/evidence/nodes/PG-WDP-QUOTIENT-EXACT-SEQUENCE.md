@@ -10,7 +10,7 @@ Stage: [WDP](../stages/WDP.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
+- counted in-repo evidence files: 6
 - cited Lean, Rust or Python symbols found in their in-repo files: 20
 - distinct cited Lean declarations covered by a current replay receipt: 20
 - counted in-repo runnable tests: 0
@@ -124,6 +124,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
+- sha256 (`lf-normalised`): `1596c27b09af32aec26710dacafcbe1dcb5081bc06d35d094b4c0b0353932e64`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/06_wdp/tfq_0345_on_a_declared_window_with_d1_d0_0_compute_q1_kappa1.md`
 
 - file: [dag/derivations/06_wdp/tfq_0345_on_a_declared_window_with_d1_d0_0_compute_q1_kappa1.md](../../../dag/derivations/06_wdp/tfq_0345_on_a_declared_window_with_d1_d0_0_compute_q1_kappa1.md)
@@ -138,13 +145,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `478378ffe76020913f8376bd706b37f2f09c292bf0d10965241a002bea1581c3`
 - generated view: listed, not counted
 - cited in: record TFQ-0348
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ## Routes

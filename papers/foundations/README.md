@@ -13,8 +13,8 @@
 All active quantum foundation manuscripts sit **flat** under this programme directory (`{qm_stem}.md`). Obsolete nested phase folders (`p00_` through `p11_`) and standalone claim ledgers have been retired and consolidated:
 
 * **Active Manuscripts:** Flat `{qm_stem}.md` files.
-* **Consolidated Claim Authority:** All operational finite QM claim entries (IDs `000:` through `122:`) are recorded in the central repository ledger: [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml).
-* **Source Notes & Derivation Record:** [`../006_finite_qm/finite_quantum_mechanics_source_notes.md`](../006_finite_qm/finite_quantum_mechanics_source_notes.md) and [`dag_pregenesis_to_finite_qm/theory_of_finite_qm.md`](dag_pregenesis_to_finite_qm/theory_of_finite_qm.md).
+* **Consolidated Claim Authority:** All operational finite QM claim entries (IDs `000:` through `122:`) are recorded in the central repository ledger: [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml).
+* **Source Notes & Derivation Record:** [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md) and [`dag_pregenesis_to_finite_qm/theory_of_finite_qm.md`](dag_pregenesis_to_finite_qm/theory_of_finite_qm.md).
 * **Subdirectories:**
   * `_code/`: Concrete numerical toys, test harnesses, and executable Python verifiers.
   * `_evidence/`: Historical claim cross-walks, claim maps, and audit matrices.

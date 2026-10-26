@@ -44,9 +44,9 @@ In accordance with strict constructive principles:
 - `missing obligation: the H3V7N5QF package holds no Rust`
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfifth/told.py::decides` (private upstream source, not in this repository)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfifth/told.py::rank` (private upstream source, not in this repository)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfourth/state.py::balances` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfifth/told.py::decides`](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfifth/told.py)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfifth/told.py::rank`](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfifth/told.py)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfourth/state.py::balances`](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/code/twentyfourth/state.py)
 
 ---
 
@@ -59,6 +59,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/twentyfourth/claim_ledger.md:63`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/twentyfifth/claim_ledger.md:68`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/research/twentyfifth/reading_the_seed.md:104-107`
+  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfourth/claim_ledger.md:63`
+  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentyfifth/claim_ledger.md:68`
+  - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/research/twentyfifth/reading_the_seed.md:104-107`

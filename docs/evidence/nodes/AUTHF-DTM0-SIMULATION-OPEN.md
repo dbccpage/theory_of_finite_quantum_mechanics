@@ -65,7 +65,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json`
 
 - file: [papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json](../../../papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json)
-- sha256 (`lf-normalised`): `8f951b3afd30a62ffe0a6e667b8a171ee513e821cb75bc3aaa0552eca0c39f29`
+- sha256 (`lf-normalised`): `4af4d2ba26a0ea47b0f184523a2d7238d4e91d317cb526968e5ebe9bcbb1d102`
 - cited in: node.source
 - counts toward the grade: yes
 

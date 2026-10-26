@@ -100,11 +100,11 @@ def _resolve_po000_package_root(start: Path) -> Path:
             p
             / "published"
             / "004_projection_obstruction"
-            / "000_projection_obstruction"
+            / "projection_obstruction_paper"
         )
         if published.is_dir() and (published / "code").is_dir():
             return published
-        if (p / "000_projection_obstruction.md").exists() and (p / "code").is_dir():
+        if (p / "projection_obstruction_paper.md").exists() and (p / "code").is_dir():
             return p
         if (p / "crates").is_dir() and ((p / "_tests_unit").is_dir() or (p / "tests").is_dir()):
             return p
@@ -118,7 +118,7 @@ def _resolve_po000_package_root(start: Path) -> Path:
             start.parents[2]
             / "published"
             / "004_projection_obstruction"
-            / "000_projection_obstruction"
+            / "projection_obstruction_paper"
         )
     return start
 
@@ -222,11 +222,11 @@ def _resolve_required_source_paths(pkg_root: Path, lib_dir_name: str) -> set[str
 
 REQUIRED_SOURCE_PATHS = _resolve_required_source_paths(_pkg_root, _lib_dir_name)
 REQUIRED_PUBLICATION_PATHS = {
-    "000_projection_obstruction.md",
+    "projection_obstruction_paper.md",
     "000_projection_obstruction_claim_ledger.md",
     "000_projection_obstruction_change_log.md",
-    "000_projection_obstruction.pdf",
-    "000_projection_obstruction.tex",
+    "projection_obstruction_paper.pdf",
+    "projection_obstruction_paper.tex",
     "PO000_ENVIRONMENT_RECEIPT.json",
     "PO000_REPRODUCTION_REQUIREMENTS.txt",
     "PO000_LEAN_axiom_report.txt",
@@ -474,7 +474,7 @@ def verify_document(data: Any, package_root: Path) -> list[str]:
         errors.append("promotion_eligible must be false")
 
     root = package_root.resolve()
-    pub_root = root if (root / "000_projection_obstruction.md").exists() else root.parent
+    pub_root = root if (root / "projection_obstruction_paper.md").exists() else root.parent
     req_pub = {p for p in REQUIRED_PUBLICATION_PATHS if (pub_root / p).exists()}
     req_src = {p for p in REQUIRED_SOURCE_PATHS if (root / p).exists()}
     errors.extend(

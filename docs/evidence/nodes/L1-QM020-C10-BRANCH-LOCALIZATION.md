@@ -32,7 +32,7 @@ Interpretive readings (branch localization, many worlds) are not formalised. The
 
 ## Source status
 
-Z-decoherence pinching off-diagonal annihilation, Hadamard branch indistinguishability under diagonal shadows, and X-observable trace separation (2 != -2) mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
+Z-decoherence pinching off-diagonal annihilation, Hadamard branch indistinguishability under diagonal shadows, and X-observable trace separation (2 != -2) mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics
 
 ## Review
 
@@ -76,9 +76,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust, record TFQ-1004
 - counts toward the grade: no
 
-### Rust: `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs`
+### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs)
+- file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust, record TFQ-1004
 
@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1004_l1_qm020_c10_branch_localization.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1004_l1_qm020_c10_branch_localization.md](../../../dag/derivations/08_l1_to_l2/tfq_1004_l1_qm020_c10_branch_localization.md)
-- sha256 (`lf-normalised`): `d295103855ed68c63034ceb7a47bf1abb62c7056544d8b94dfe9054198269aeb`
+- sha256 (`lf-normalised`): `4e4fd7e9be22e3f75bf71450e54debe2c076e13e75be26cec21f19da51d08338`
 - generated view: listed, not counted
 - cited in: record TFQ-1004
 - counts toward the grade: no

@@ -16,7 +16,7 @@ Branch-localization and many-worlds readings of the lifted phases are conjecture
 Interpretive readings (branch localization, many worlds) are not formalised. The cited Lean has 2x2 pinching and sign identities, which bear on dephasing but not on the readings.
 
 ### Source Status
-Z-decoherence pinching off-diagonal annihilation, Hadamard branch indistinguishability under diagonal shadows, and X-observable trace separation (2 != -2) mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
+Z-decoherence pinching off-diagonal annihilation, Hadamard branch indistinguishability under diagonal shadows, and X-observable trace separation (2 != -2) mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics
 
 ---
 
@@ -37,7 +37,7 @@ Z-decoherence pinching off-diagonal annihilation, Hadamard branch indistinguisha
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness`
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness`
 - `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness`
-- `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness`
+- `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness`
 
 ---
 

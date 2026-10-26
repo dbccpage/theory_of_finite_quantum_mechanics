@@ -93,15 +93,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1014_fq_gleason_d2_rational_plane_obstruction.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1014_fq_gleason_d2_rational_plane_obstruction.md](../../../dag/derivations/10_finite_qm_core/tfq_1014_fq_gleason_d2_rational_plane_obstruction.md)
-- sha256 (`lf-normalised`): `d64f0a18f6c0305485afcb08a20aba5d1f3bb77cfc70eb8e97087329e172da94`
+- sha256 (`lf-normalised`): `8cd76ccfede6b23a6c8ea9676a22d04cb337338365c9b281c90c15f052366d65`
 - generated view: listed, not counted
 - cited in: record TFQ-1014
 - counts toward the grade: no
 
-### Documents and data: `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml`
+### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml](../../../sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml)
-- sha256 (`lf-normalised`): `16a418a93748cef695fad3c1fab0fd14dd95c6985b23ee8a814b171eca60a445`
+- file: [sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
+- sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -7,11 +7,11 @@
 
 The standalone manuscript is retired. Its surviving mathematical content is preserved as completed infrastructure in the finite quantum mechanics monograph and codebase:
 
-- **Canonical Monograph:** [`../006_finite_qm/finite_quantum_mechanics.md#117-the-quantum-deformation-complex-tangent-gauge-directions-and-operational-residuals`](../006_finite_qm/finite_quantum_mechanics.md#117-the-quantum-deformation-complex-tangent-gauge-directions-and-operational-residuals) (§11.7).
-- **Source Notes:** [`../006_finite_qm/finite_quantum_mechanics_source_notes.md#115-a-finite-m_2-state-effect-model-qm-005-consolidated-and-retired`](../006_finite_qm/finite_quantum_mechanics_source_notes.md#115-a-finite-m_2-state-effect-model-qm-005-consolidated-and-retired) (§11.5).
-- **Certified Rust Verifiers:** `omega_engine/crates_rs/omega_quantum_physics/src/gauge_cochain_complex.rs` and `006_finite_qm/native/src/m2_quantum_packet.rs`.
-- **Integration Tests:** `006_finite_qm/native/tests/finite_m2_packet.rs`.
-- **Consolidated Claims:** [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (IDs `005:QM-005-C1` through `005:QM-005-C14`).
+- **Canonical Monograph:** [`../finite_quantum_mechanics/finite_quantum_mechanics.md#117-the-quantum-deformation-complex-tangent-gauge-directions-and-operational-residuals`](../finite_quantum_mechanics/finite_quantum_mechanics.md#117-the-quantum-deformation-complex-tangent-gauge-directions-and-operational-residuals) (§11.7).
+- **Source Notes:** [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#115-a-finite-m_2-state-effect-model-qm-005-consolidated-and-retired`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#115-a-finite-m_2-state-effect-model-qm-005-consolidated-and-retired) (§11.5).
+- **Certified Rust Verifiers:** `omega_engine/crates_rs/omega_quantum_physics/src/gauge_cochain_complex.rs` and `finite_quantum_mechanics/native/src/m2_quantum_packet.rs`.
+- **Integration Tests:** `finite_quantum_mechanics/native/tests/finite_m2_packet.rs`.
+- **Consolidated Claims:** [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (IDs `005:QM-005-C1` through `005:QM-005-C14`).
 
 ## Retained Mathematical Formulation
 

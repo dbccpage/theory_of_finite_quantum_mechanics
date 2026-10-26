@@ -83,7 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md`
 
 - file: [papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md](../../../papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md)
-- sha256 (`lf-normalised`): `4ca81b6ae8e724b54c7abf43ea951c119c2cff31a375e45cd7d79299adc7f70c`
+- sha256 (`lf-normalised`): `71cd507642cce8ef451189097acd333162642eeb85345ffa304bff305a620697`
 - cited in: node.source
 - counts toward the grade: yes
 

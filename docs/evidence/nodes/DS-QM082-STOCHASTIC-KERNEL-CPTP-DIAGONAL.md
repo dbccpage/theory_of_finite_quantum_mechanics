@@ -107,7 +107,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0265 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm
+- TFQ-0265 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
 - TFQ-0265 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/exact_channel.rs
 - TFQ-0265 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_channel.rs
 

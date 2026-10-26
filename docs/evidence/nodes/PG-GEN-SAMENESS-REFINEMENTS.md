@@ -10,7 +10,7 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `COMPUTATIONALLY_CHECKED`. Evide
 
 Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
+- counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 0
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
@@ -82,6 +82,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md)
+- sha256 (`lf-normalised`): `d8c3f8489c516b84e95d515cf5eff9f58d5dc30596b716d3f5ac0500e4e0abde`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
+- sha256 (`lf-normalised`): `e411f9eace9de18c2583922d16d85be03fcbe4c35976ca3d7a33a0c3cfdea143`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/02_genesis/tfq_0391_sameness_refinement_ledgers.md`
 
 - file: [dag/derivations/02_genesis/tfq_0391_sameness_refinement_ledgers.md](../../../dag/derivations/02_genesis/tfq_0391_sameness_refinement_ledgers.md)
@@ -90,27 +104,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0391
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/CLAUDE.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/CLAUDE.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
 ## Absences recorded by the TFQ records
 
 - TFQ-0391 lean4: missing declaration obligation: row ids in the four later claim ledgers were not read
-- TFQ-0391 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Sixteenth/State.lean
-- TFQ-0391 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Twentieth/Order.lean
-- TFQ-0391 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Twentyfirst/Refusal.lean
-- TFQ-0391 python: missing obligation: do not import a sameness refinement into 001_genesis_ongoing_h3v7n5qf/code until the four unread claim ledgers are inventoried
+- TFQ-0391 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Sixteenth/State.lean
+- TFQ-0391 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Twentieth/Order.lean
+- TFQ-0391 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Twentyfirst/Refusal.lean
+- TFQ-0391 python: missing obligation: do not import a sameness refinement into genesis_ongoing/code until the four unread claim ledgers are inventoried
 - TFQ-0391 rust: missing obligation: no Rust sameness crate was listed; do not add one from the unread ledgers
 
 ## Routes

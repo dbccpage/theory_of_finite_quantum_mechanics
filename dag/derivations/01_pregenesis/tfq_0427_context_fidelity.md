@@ -35,11 +35,11 @@ In accordance with strict constructive principles:
 - [`lean4/CampaignPgwContextFidelity.lean::stale_not_transferred`](../../../lean4/CampaignPgwContextFidelity.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs::certifies` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/certification.rs::certifies`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/certification.rs)
 
 ### Python Oracles & Numerical Evaluators
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py::certify`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/derivation/model.py)
 - [`checks/independent/pgw-context-fidelity.py::main`](../../../checks/independent/pgw-context-fidelity.py)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::certify` (private upstream source, not in this repository)
 
 ---
 

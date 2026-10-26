@@ -31,7 +31,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Gleason is cited, not proved here. GleasonTheorem.lean states it is NOT a proof of Gleason's theorem. native/src/campaigns/born_gleason.rs exists under 006_finite_qm (accept dim3 / refuse dim2 / refuse real scalars per ledger; test names not checked).
+Gleason is cited, not proved here. GleasonTheorem.lean states it is NOT a proof of Gleason's theorem. native/src/campaigns/born_gleason.rs exists under finite_quantum_mechanics (accept dim3 / refuse dim2 / refuse real scalars per ledger; test names not checked).
 
 ## Source status
 

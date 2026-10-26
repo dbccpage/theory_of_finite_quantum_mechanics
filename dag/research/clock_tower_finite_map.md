@@ -1,6 +1,6 @@
 # QM-211 Continuous Unitary Dynamics: the Finite Map
 
-**Scope:** research note for `006_finite_qm`; not part of the manuscript, not a claim promotion. Companion to `phase_fiber_holonomy_bridge_finite_map.md`.
+**Scope:** research note for `finite_quantum_mechanics`; not part of the manuscript, not a claim promotion. Companion to `phase_fiber_holonomy_bridge_finite_map.md`.
 **Code:** `python/finite_qm/use_cases/clock_tower_control.py`, tests in `tests/e2e/test_e2e_clock_tower_control.py` (6 tests).
 **Status marks used:** PROVED (argument given here, finite and checkable), COMPUTED (exact arithmetic in Q(ζ₂₄), replayable), IMPORTED (added structure that nothing finite here produces), CONJECTURED (none in this note).
 
@@ -69,4 +69,4 @@ Section 13.8, where complex phase and continuous dynamics are said to belong to 
 - Supports: over Q(ζ₂₄), the finite spectral theorem holds exactly for F₄, X₄ and Z₃ with the stated multiplicities; the square roots in the algebra of U number 2^{occupied}; clocks refine exactly along divisibility; the stochastic swap has a unitary half step over Q(i) and no real or stochastic one.
 - Does not support: Stone's theorem; any derivation of continuity, of a generator with a unit, or of a preferred tower; independence of QM-211.
 - Narrowest claim: on the declared finite carriers the QM-211 import splits into an exactly computed clock tower, an imported two-step completion (direct limit, then metric), and the imported strong continuity and unit.
-- Next test: `cd omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm && PYTHONPATH=python python3 -m pytest tests/e2e/test_e2e_clock_tower_control.py -q -p no:cacheprovider` (expect 6 passed).
+- Next test: `cd sources/atlas/papers/finite_quantum_mechanics && PYTHONPATH=python python3 -m pytest tests/e2e/test_e2e_clock_tower_control.py -q -p no:cacheprovider` (expect 6 passed).

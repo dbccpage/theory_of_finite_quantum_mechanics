@@ -37,7 +37,7 @@ Paper 8 — Correlation, Separability, and Finite Bell Bounds (The Entanglement 
 GTOC Foundations — Physics-Contact Extension. Composite Carriers, the Product Defect, Universal Separability of Bare Tables, the Finite CHSH Bound, and the Priced Doors to Violation
 
 **Date:** 2026-07-17 · **Version:** v1.0 · **Series:** GTOC Foundations, Physics-Contact Extension
-**Claim ledger:** [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (IDs `073:P8-C1` through `073:P8-C11`)
+**Claim ledger:** [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (IDs `073:P8-C1` through `073:P8-C11`)
 **Degree:** δ8 (consumes δ0–δ7; cites δ3)
 **Requires:** Paper 2 (δ2: pair-families, slice-tallies via the repaired block machinery, signed counts — scalar package PL-GTOC-12), Paper 3 (δ3: exchange characters, K9-conditional), Paper 6 (δ6: the product-defect surrogate, §6.2 there), Paper 7 (δ7: bit-shadows; the Q1–Q4 price list). Corpus floor: QM_070 (ENC-1123, mechanized), QM_071 (ENC-1124, mechanized), QM_120 (ENC-1143, mechanized).
 **Main claim:** composite carriers and their joint weight tables are δ2/δ8-derivable, and on them three exact results hold. **(1) The product defect is derived and per-exhibition checkable** — $\delta_{\mathrm{prod}}(a,b) = w(a,b) - w_A(a)w_B(b)/W$ with $\ell^1$ mass $\Phi$, and $\Phi = 0 \Leftrightarrow$ factorization is the corpus's mechanized theorem (QM_070) *at exactly this series' scalar grade* — but, per the external review's firewall and QM_070's own fence, **the product defect is correlation, not entanglement**. **(2) Universal separability of bare tables (theorem):** every exhibited normalized nonnegative joint table is a convex combination of point product tables — so at the unrestricted bare-table grade *nothing is entangled*: the separability obstruction relative to the full exhibited point-product family is **empty**, and entanglement proper is definable only *relative to a declared restricted product family* (QM_071's soundness machinery, adopted) or on richer carriers behind the Q1/Q2 imports. The classically famous fact that a Bell-state descent and a classical mixture share the table $(\tfrac12, 0, 0, \tfrac12)$ is exhibited as the witness. **(3) The finite CHSH bound (theorem):** for exhibited weight families over joint assignments of four sign-valued windows, the CHSH combination of correlators lies in $[-2, +2]$ — an $\ell^1$, rational-arithmetic, per-exhibition theorem. The violation doors are each priced: dropping the single-global-joint-table hypothesis (the LGGR/no-global-section structure, whose parity core is mechanized in QM_120), the phase/ℓ² imports (Q1/Q2 — with the *value* $2\sqrt2$ R2a-cheap but the *structure* attaining it Q-priced), and the declared tensor-composition rule. Bell's theorem proper (locality, measurement independence, continuum observables) is obstructed clause by clause. Under the alternating exchange character, **diagonal suppression** is derived (a $\mathrm{char} \neq 2$ cancellation fact); full antisymmetrized entanglement structure is a Q1 import.
@@ -264,16 +264,16 @@ Claim-ID body index (packaging)
 
 | ID | Home |
 |---|---|
-| `P8-C1` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `073:P8-C1`) |
-| `P8-C2` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `073:P8-C2`) |
-| `P8-C3` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `073:P8-C3`) |
-| `P8-C4` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `073:P8-C4`) |
-| `P8-C5` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `073:P8-C5`) |
-| `P8-C6` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `073:P8-C6`) |
-| `P8-C7` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `073:P8-C7`) |
-| `P8-C8` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `073:P8-C8`) |
-| `P8-C9` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `073:P8-C9`) |
-| `P8-C10` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `073:P8-C10`) |
-| `P8-C11` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `073:P8-C11`) |
+| `P8-C1` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `073:P8-C1`) |
+| `P8-C2` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `073:P8-C2`) |
+| `P8-C3` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `073:P8-C3`) |
+| `P8-C4` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `073:P8-C4`) |
+| `P8-C5` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `073:P8-C5`) |
+| `P8-C6` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `073:P8-C6`) |
+| `P8-C7` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `073:P8-C7`) |
+| `P8-C8` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `073:P8-C8`) |
+| `P8-C9` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `073:P8-C9`) |
+| `P8-C10` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `073:P8-C10`) |
+| `P8-C11` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `073:P8-C11`) |
 
 <!-- claim-id-body-index:end -->

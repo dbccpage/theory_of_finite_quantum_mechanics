@@ -10,7 +10,7 @@ Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
+- counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
@@ -58,19 +58,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt)
+- sha256 (`lf-normalised`): `8e0a3f2333e9ae5740b26c59f88fd41cd1ee9c9b92ca4f0a19dad53747ddf3cd`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0513_sn2_opaque_collapse.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0513_sn2_opaque_collapse.md](../../../dag/derivations/05_mssn_sn/tfq_0513_sn2_opaque_collapse.md)
-- sha256 (`lf-normalised`): `80887fc83b9af02b1d7ff7cc9c33f08de8b94e1f2db0da1c830f9f87bc1f11d2`
+- sha256 (`lf-normalised`): `a7a93e2843f67775d421154ddb7e51fb5376d71953384c843995ddc7a7e50bc8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0513
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### Documents and data: `omega_engine_education/documentation/002_oesn/levels/level_02_relational_pairings.md`

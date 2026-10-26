@@ -46,8 +46,8 @@ In accordance with strict constructive principles:
 - `omega_engine/crates_rs/omega_wdp/src/proposal_admission_bridge.rs::ProposalAdmissionModel` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
+- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py::decision_decoder`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py)
 - [`checks/independent/pgw-wdp-bridge-report-fiber-observer.py`](../../../checks/independent/pgw-wdp-bridge-report-fiber-observer.py)
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py::decision_decoder` (private upstream source, not in this repository)
 
 ---
 
@@ -60,8 +60,8 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md:14-17`
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md:64-92`
+  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md:14-17`
+  - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md:64-92`
   - `omega_engine_education/documentation/006_oewdp/levels/level_22_genesis_to_wdp_bridges.md:81-92`
   - `dag/derivations/independent/pgw-wdp-bridge-report-fiber-observer.md:5`
   - `dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json:7`

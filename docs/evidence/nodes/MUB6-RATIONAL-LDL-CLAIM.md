@@ -53,21 +53,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `papers/core/mub6/completion_supplement.md`
 
 - file: [papers/core/mub6/completion_supplement.md](../../../papers/core/mub6/completion_supplement.md)
-- sha256 (`lf-normalised`): `6c3f07aac0ef34108428da1b10b4bb763393366278309798c82e2449d57f5d5b`
+- sha256 (`lf-normalised`): `2436eaf1ff552dee22fa7539ba2e9b76d8999bcf3ee4f183db06a8d2563109e0`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `papers/core/mub6/theory_of_finite_mub6.jsonl`
 
 - file: [papers/core/mub6/theory_of_finite_mub6.jsonl](../../../papers/core/mub6/theory_of_finite_mub6.jsonl)
-- sha256 (`lf-normalised`): `79a8e74d457a2c236999a6a1dcd1ff010f0f878b245c205f5f049add18ae2234`
+- sha256 (`lf-normalised`): `815b535641140895e823e99e201cf3314a9054db022f5a0c35be601a18663839`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `papers/core/mub6/theory_of_finite_mub6.md`
 
 - file: [papers/core/mub6/theory_of_finite_mub6.md](../../../papers/core/mub6/theory_of_finite_mub6.md)
-- sha256 (`lf-normalised`): `4df95e7f697d7ab11bfa44f282353267197198f74bcfb535e5f10c18ffbeabf5`
+- sha256 (`lf-normalised`): `b515bf981d6c3a339c2b0a7937d54d9deb05f3b53186c584b83f5fa3419dc902`
 - cited in: node.source
 - counts toward the grade: yes
 

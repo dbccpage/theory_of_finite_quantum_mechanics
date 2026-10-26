@@ -36,10 +36,10 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/Genesis19l57g1/Paper000.lean::single_admission_does_not_separate`](../../../lean4/Imported/Genesis19l57g1/Paper000.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `missing obligation: no Rust two-flag admission model; Genesis admission events are step in 000_genesis_19l57g1/code/rust/src/admission.rs`
+- `missing obligation: no Rust two-flag admission model; Genesis admission events are step in genesis/code/rust/src/admission.rs`
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py::single_admission_report` (private upstream source, not in this repository)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py::single_admission_report`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/genesis_checks.py)
 
 ---
 

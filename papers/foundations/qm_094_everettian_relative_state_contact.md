@@ -33,7 +33,7 @@ L1 branch weights, L2 record coherence, decoherent descent, and the limits of ho
 
 **Series role:** supplementary quantum-contact paper; not a new GTOC degree
 **Date:** 2026-07-17 · **Version:** v1.0
-**Claim ledger:** [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (IDs `094:QCE-C1` through `094:QCE-C12`)
+**Claim ledger:** [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (IDs `094:QCE-C1` through `094:QCE-C12`)
 **Terminal:** conditional finite relative-state mathematics; `OpenObstruction` for Everettian ontology, preferred basis, and probability interpretation
 **Authority effect:** `None`
 **Depends on:** [`qm_063_holonomy_structured_superposition.md`](qm_063_holonomy_structured_superposition.md), [`qm_072_bit_shadow_and_qubit.md`](qm_072_bit_shadow_and_qubit.md), [`qm_073_correlation_separability_finite_bell.md`](qm_073_correlation_separability_finite_bell.md), [`qm_020_born_normalization_and_conditional_hilbert_lift.md`](qm_020_born_normalization_and_conditional_hilbert_lift.md), [`qm_091_deutsch_everett_wolfram_promotion_error.md`](qm_091_deutsch_everett_wolfram_promotion_error.md), and [`qm_003_residual_density_calculus_l1_l2_boundary.md`](qm_003_residual_density_calculus_l1_l2_boundary.md)
@@ -774,17 +774,17 @@ Claim-ID body index (packaging)
 
 | ID | Home |
 |---|---|
-| `QCE-C1` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `094:QCE-C1`) |
-| `QCE-C2` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `094:QCE-C2`) |
-| `QCE-C3` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `094:QCE-C3`) |
-| `QCE-C4` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `094:QCE-C4`) |
-| `QCE-C5` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `094:QCE-C5`) |
-| `QCE-C6` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `094:QCE-C6`) |
-| `QCE-C7` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `094:QCE-C7`) |
-| `QCE-C8` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `094:QCE-C8`) |
-| `QCE-C9` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `094:QCE-C9`) |
-| `QCE-C10` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `094:QCE-C10`) |
-| `QCE-C11` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `094:QCE-C11`) |
-| `QCE-C12` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `094:QCE-C12`) |
+| `QCE-C1` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `094:QCE-C1`) |
+| `QCE-C2` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `094:QCE-C2`) |
+| `QCE-C3` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `094:QCE-C3`) |
+| `QCE-C4` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `094:QCE-C4`) |
+| `QCE-C5` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `094:QCE-C5`) |
+| `QCE-C6` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `094:QCE-C6`) |
+| `QCE-C7` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `094:QCE-C7`) |
+| `QCE-C8` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `094:QCE-C8`) |
+| `QCE-C9` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `094:QCE-C9`) |
+| `QCE-C10` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `094:QCE-C10`) |
+| `QCE-C11` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `094:QCE-C11`) |
+| `QCE-C12` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `094:QCE-C12`) |
 
 <!-- claim-id-body-index:end -->

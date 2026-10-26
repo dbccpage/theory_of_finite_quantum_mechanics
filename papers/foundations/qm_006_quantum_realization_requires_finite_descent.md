@@ -7,9 +7,9 @@
 
 The standalone manuscript is retired and dropped from the active derivation stack. Its substantive ingredients already belong to QM-001, QM-005, and the transport papers:
 
-- **Canonical Monograph:** [`../001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md#chapter-04`](../001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md#chapter-04) (Chapter 4, §4.2.2).
-- **Source Notes:** [`../006_finite_qm/finite_quantum_mechanics_source_notes.md#116-conditions-required-for-a-finite-quantum-realization-qm-006-dropped-from-active-derivation-stack`](../006_finite_qm/finite_quantum_mechanics_source_notes.md#116-conditions-required-for-a-finite-quantum-realization-qm-006-dropped-from-active-derivation-stack) (§11.6).
-- **Consolidated Claims:** [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (IDs `006:QM-006-C1` through `006:QM-006-C30`).
+- **Canonical Monograph:** [`../finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#chapter-04`](../finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#chapter-04) (Chapter 4, §4.2.2).
+- **Source Notes:** [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#116-conditions-required-for-a-finite-quantum-realization-qm-006-dropped-from-active-derivation-stack`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#116-conditions-required-for-a-finite-quantum-realization-qm-006-dropped-from-active-derivation-stack) (§11.6).
+- **Consolidated Claims:** [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (IDs `006:QM-006-C1` through `006:QM-006-C30`).
 
 ## Retained Mathematical Formulation
 

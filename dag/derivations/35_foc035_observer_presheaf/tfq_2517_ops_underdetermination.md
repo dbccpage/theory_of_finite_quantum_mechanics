@@ -37,7 +37,7 @@ See also: `OPS-STRONG-CONTEXTUALITY-NCF-ZERO`.
 
 ## Sources
 
-- Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-A2`
-- Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.3`
+- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-A2`
+- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#1.3`
 - Repository: `checks/independent/foc035_observer_presheaf.py`
 - Repository: `dag/derivations/35_foc035_observer_presheaf/tfq_2517_ops_underdetermination.md`

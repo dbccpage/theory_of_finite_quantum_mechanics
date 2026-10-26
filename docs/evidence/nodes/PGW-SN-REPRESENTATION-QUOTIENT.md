@@ -10,7 +10,7 @@ Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
+- counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 3
 - distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
@@ -66,19 +66,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md)
+- sha256 (`lf-normalised`): `9a158b9d0ff649003d49451c72430178a3dad4bef457930e25e18113c2b2b0d9`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0521_sn_representation_quotient.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0521_sn_representation_quotient.md](../../../dag/derivations/05_mssn_sn/tfq_0521_sn_representation_quotient.md)
-- sha256 (`lf-normalised`): `175a9094a1d0add0f69661d374334d90a3bda8c0cd6fbfd6244b2163da7ce373`
+- sha256 (`lf-normalised`): `c4f729693c199c9ac2c16f5ba3aa362305c579de053a53e33e33f05ab2bde6e1`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0521
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/complex_tensor_balancing.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/complex_tensor_balancing.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### Documents and data: `omega_engine_education/documentation/002_oesn/reading_guide.md`

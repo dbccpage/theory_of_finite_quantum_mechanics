@@ -10,7 +10,7 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `OPEN`. Evidence grade: **E3**. 
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
+- counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 8
 - distinct cited Lean declarations covered by a current replay receipt: 7
 - counted in-repo runnable tests: 0
@@ -76,10 +76,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt`
+
+- file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt)
+- sha256 (`lf-normalised`): `7e774b9a5cd0b326f884716c49a18055df522968e659438910dceeaa332b73ad`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/02_genesis/tfq_0502_stream_at_four_items.md`
 
 - file: [dag/derivations/02_genesis/tfq_0502_stream_at_four_items.md](../../../dag/derivations/02_genesis/tfq_0502_stream_at_four_items.md)
-- sha256 (`lf-normalised`): `89060e5b9d1c9f12722a8194549206ae07ebddb8e9039e6b0b5b49f7e39a3c27`
+- sha256 (`lf-normalised`): `da5be7d8d51ba2423da7297b6fbbee16f09a316fc7f1634d5187e16eea89c30f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0502
 - counts toward the grade: no
@@ -97,13 +104,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `ffe53dba59438bacc9ada9367b76c4a7cd4266c08f5cfee36fd917fb7732847a`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/continuation.txt`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
 
 ### External sources
 

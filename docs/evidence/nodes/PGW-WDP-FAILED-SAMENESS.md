@@ -1,6 +1,6 @@
 # PGW-WDP-FAILED-SAMENESS
 
-Stage: [WDP](../stages/WDP.md). Status: `PROVED_PROSE`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [WDP](../stages/WDP.md). Status: `PROVED_PROSE`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,19 +8,19 @@ Stage: [WDP](../stages/WDP.md). Status: `PROVED_PROSE`. Evidence grade: **E0**. 
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 2
 - distinct cited Lean declarations covered by a current replay receipt: 0
-- counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo runnable tests: 1
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
 
 ## Flags
 
-- `proved_prose_no_in_repo_document`: no in-repo non-generated document among the counted sources. PROVED_PROSE with no in-repo source document cited.
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -49,19 +49,44 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
+### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py)
+- sha256 (`bytes`): `9ca5d16f10b21ab8f112233a29f3239b7cf38fa7eae04a23b000d2cd56c0611e`
+- cited in: record TFQ-0536
+- check: `python -m pytest atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py::test_primitive_difference_and_triangle_identity`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `test_primitive_difference_and_triangle_identity` (python_test) | yes | yes | yes | - | `python -m pytest atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py::test_primitive_difference_and_triangle_identity` |
+
+- counts toward the grade: yes
+
+### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/ground.py`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/ground.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/ground.py)
+- sha256 (`bytes`): `9e0f14edbfb258210fbb6e7e77ca1aca2464b8aaa38e3949c9a92d91952f961d`
+- cited in: record TFQ-0536
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `primitive_difference` (python_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
+- sha256 (`lf-normalised`): `753d1c99c799f84f9a71912b98082d590c89c531f980c112b62ee2a86ab2726b`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/06_wdp/tfq_0536_wdp_failed_sameness.md`
 
 - file: [dag/derivations/06_wdp/tfq_0536_wdp_failed_sameness.md](../../../dag/derivations/06_wdp/tfq_0536_wdp_failed_sameness.md)
-- sha256 (`lf-normalised`): `f515981e038c55d1f7a7bff87dc8acc12d27bbe778958560a2a135183a0efd13`
+- sha256 (`lf-normalised`): `83c686c1ae4fec0d09c8ecce784fc310555c4dad859414cc20b23eac064fabe8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0536
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### Documents and data: `omega_engine_education/documentation/006_oewdp/levels/level_00_admitted_cut.md`
@@ -76,8 +101,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 Named by the node; not in this repository and not checked here.
 
 - `external:upstream/omega_engine/crates_rs/omega_wdp/src/difference.rs::primitive_difference`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py::test_primitive_difference_and_triangle_identity`
-- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/ground.py::primitive_difference`
 
 ## Absences recorded by the TFQ records
 

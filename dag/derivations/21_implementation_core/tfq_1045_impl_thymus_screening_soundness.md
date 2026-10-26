@@ -46,4 +46,4 @@ MECHANIZED in ThymusScreening.lean (empty axiom report) with Rust witness
 
 - **Cited Sources**:
   - `lean4/Imported/OePfp/ThymusScreening.lean`
-  - `sources/atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`
+  - `sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`

@@ -10,7 +10,7 @@ Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E3**. [Evidenc
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 8
+- counted in-repo evidence files: 9
 - cited Lean, Rust or Python symbols found in their in-repo files: 32
 - distinct cited Lean declarations covered by a current replay receipt: 31
 - counted in-repo runnable tests: 0
@@ -32,7 +32,7 @@ O01..O05 remain open in the register. CampaignPgwWdpBridgeObligations records th
 
 ## Source status
 
-GEN-WDP-O01..O05 five-obligation Genesis-to-WDP bridge gate, GEN-WDP-46/70 observer completion dimension decomposition, GEN-WDP-42/45 two-event causal diamond price-curl flatness vs assertion-fee curl, and GEN-WDP-68 rational scalar norm obstruction mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm
+GEN-WDP-O01..O05 five-obligation Genesis-to-WDP bridge gate, GEN-WDP-46/70 observer completion dimension decomposition, GEN-WDP-42/45 two-event causal diamond price-curl flatness vs assertion-fee curl, and GEN-WDP-68 rational scalar norm obstruction mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics
 
 ## Review
 
@@ -148,9 +148,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
-### Rust: `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs`
+### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs)
+- file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust
 
@@ -164,6 +164,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [checks/independent/pg-wdp-genesis-bridge-obligations.py](../../../checks/independent/pg-wdp-genesis-bridge-obligations.py)
 - sha256 (`bytes`): `2f064918320e3bf12e04d3702d29335b693d89183030474ab9365f3dd93c632a`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md`
+
+- file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md)
+- sha256 (`lf-normalised`): `e411f9eace9de18c2583922d16d85be03fcbe4c35976ca3d7a33a0c3cfdea143`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -181,13 +188,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `c73e22aad58838d6fddae46fd9b2789df0daa1c6a051aa0c5c238f8f44c636d4`
 - cited in: node.source
 - counts toward the grade: yes
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs/genesis_bridge_register.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
 
 ### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/plans/goal_dag.jsonl`
 

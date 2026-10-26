@@ -7,12 +7,12 @@
 
 The standalone manuscript is retired. Its surviving mathematical content is merged into the shared finite-obstruction quotient treatment alongside QM-000:
 
-- **Canonical Monograph:** [`../001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md#chapter-04`](../001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md#chapter-04) (Chapter 4, §4.2.1 and §4.3).
-- **Source Notes:** [`../006_finite_qm/finite_quantum_mechanics_source_notes.md#113-a-finite-banach-quotient-model-of-repair-qm-002-merged-and-retired`](../006_finite_qm/finite_quantum_mechanics_source_notes.md#113-a-finite-banach-quotient-model-of-repair-qm-002-merged-and-retired) (§11.3).
+- **Canonical Monograph:** [`../finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#chapter-04`](../finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#chapter-04) (Chapter 4, §4.2.1 and §4.3).
+- **Source Notes:** [`../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#113-a-finite-banach-quotient-model-of-repair-qm-002-merged-and-retired`](../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#113-a-finite-banach-quotient-model-of-repair-qm-002-merged-and-retired) (§11.3).
 - **Lean 4 Mechanization:** [`lean4/CofiberBanachQuotient.lean`](../../lean4/CofiberBanachQuotient.lean) (`phi1_eq_quotient_norm`, `quotient_norm_eq_zero_iff_exact_repair`).
 - **Certified Rust Solvers:** `omega_engine/crates_rs/omega_solvers/src/data_repair_packet.rs` (`RepairPacket::quotient_norm`).
 - **Integration Tests:** `omega_engine/crates_rs/tests/omega_quantum_physics/foundations/repair_cofiber_banach_shadow.rs`.
-- **Consolidated Claims:** [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (IDs `002:QM-002-C1` through `002:QM-002-C10`).
+- **Consolidated Claims:** [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (IDs `002:QM-002-C1` through `002:QM-002-C10`).
 
 ## Retained Mathematical Formulation
 

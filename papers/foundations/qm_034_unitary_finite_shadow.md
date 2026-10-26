@@ -73,6 +73,6 @@ Claim-ID body index (packaging)
 
 | ID | Home |
 |---|---|
-| `QM_034-C0` | [`../006_finite_qm/claims/claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) (ID `034:QM_034-C0`) |
+| `QM_034-C0` | [`../finite_quantum_mechanics/claims/claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) (ID `034:QM_034-C0`) |
 
 <!-- claim-id-body-index:end -->

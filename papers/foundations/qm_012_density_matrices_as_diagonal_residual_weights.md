@@ -219,17 +219,17 @@ Claim-ID body index (packaging)
 
 | ID | Home |
 |---|---|
-| `QM-012-C1` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-012-C2` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-012-C3` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-012-C4` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-012-C5` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-012-C6` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-012-C7` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-012-C8` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-012-C9` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-012-C10` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-012-C11` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
-| `QM-012-C12` | [`claim_ledger.yaml`](../006_finite_qm/claims/claim_ledger.yaml) |
+| `QM-012-C1` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-012-C2` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-012-C3` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-012-C4` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-012-C5` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-012-C6` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-012-C7` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-012-C8` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-012-C9` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-012-C10` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-012-C11` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
+| `QM-012-C12` | [`claim_ledger.yaml`](../finite_quantum_mechanics/claims/claim_ledger.yaml) |
 
 <!-- claim-id-body-index:end -->

@@ -32,7 +32,7 @@ Unmet after the PFP review: Formalize the coefficient-to-real embedding homomorp
 
 ## Source status
 
-H060 2D pure-state Gram total positivity under every real embedding vs conductor-5 mixed witness W5 = diag(-2+sqrt(5), 3-sqrt(5)) Galois conjugate sign flip (evalAtS(9)=(1,3) \> 0 vs evalAtS(-9)=(-17,21)) and phi(120)/2 = 16 real embeddings mechanized in DerivationDagQMClosure.lean, H060EmbeddingRelativity.lean, and 006_finite_qm
+H060 2D pure-state Gram total positivity under every real embedding vs conductor-5 mixed witness W5 = diag(-2+sqrt(5), 3-sqrt(5)) Galois conjugate sign flip (evalAtS(9)=(1,3) \> 0 vs evalAtS(-9)=(-17,21)) and phi(120)/2 = 16 real embeddings mechanized in DerivationDagQMClosure.lean, H060EmbeddingRelativity.lean, and finite_quantum_mechanics
 
 ## Review
 
@@ -113,9 +113,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust, record TFQ-1022
 - counts toward the grade: no
 
-### Rust: `sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs`
+### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs)
+- file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
 - sha256 (`bytes`): `38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a`
 - cited in: node.rust, record TFQ-1022
 
@@ -128,15 +128,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_1022_fq_gap_real_embedding_choice.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_1022_fq_gap_real_embedding_choice.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_1022_fq_gap_real_embedding_choice.md)
-- sha256 (`lf-normalised`): `88ccf03fe39fe895df23b56dad6ff1c261e166abcabd4bc359f139816e162b4c`
+- sha256 (`lf-normalised`): `769d836661e9d21547966e4f30e95da3a8bf31a7cc20f1b0b3c4e34b2df29193`
 - generated view: listed, not counted
 - cited in: record TFQ-1022
 - counts toward the grade: no
 
-### Documents and data: `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml`
+### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml`
 
-- file: [sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml](../../../sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml)
-- sha256 (`lf-normalised`): `16a418a93748cef695fad3c1fab0fd14dd95c6985b23ee8a814b171eca60a445`
+- file: [sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/gap_register.yaml)
+- sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
 - cited in: node.source
 - counts toward the grade: yes
 

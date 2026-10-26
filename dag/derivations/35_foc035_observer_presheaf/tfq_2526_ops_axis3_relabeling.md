@@ -37,8 +37,8 @@ See also: `PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY`.
 
 ## Sources
 
-- Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-C3`
-- Repository: `sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1`
+- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-C3`
+- Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1`
 - Repository: `dag/derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md`
 - Repository: `lean4/CampaignOpsAxis3Relabeling.lean`
 - Repository: `checks/independent/ops-axis3-relabeling.py`
