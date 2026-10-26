@@ -36,7 +36,6 @@ Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, s
 - `lean4/H011U1SelectorBoundary.lean::selector_not_free`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_u1_selector_layers_and_ring_iso`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle`
-- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity`
 - `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step1`
 - `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step2`

@@ -1,6 +1,6 @@
 # L1-OPERATOR-LIFT-TRACE-EMBED-013
 
-Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -15,12 +15,12 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 0 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Banach-space embedding, injectivity and the fibre statements are prose-only.
+Lean states only that the diagonal trace norm of an integer list is the sum of absolute values (trace_norm_eq_mass). The scaling and reconstruction clauses are native checks; the Banach-space embedding, injectivity and fibre statements are not formalised.
 
 ## Source status
 
@@ -36,7 +36,7 @@ Banach-space embedding, injectivity and the fibre statements are prose-only.
 
 ## Review
 
-- PFP review: [dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact diagonal/singular-value mass, nonzero-scale invariance and declared-mass reconstruction controls; generic absolute scaling and sign-loss statements in Lean.
   - does not support: Construct the real Banach/operator embedding and exact signed-data reconstruction contract. Retain sign data separately; probability weights plus mass cannot recover signs.
   - next test: Construct the real Banach/operator embedding and exact signed-data reconstruction contract. Retain sign data separately; probability weights plus mass cannot recover signs.
@@ -85,7 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1000_l1_operator_lift_trace_embed_013.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1000_l1_operator_lift_trace_embed_013.md](../../../dag/derivations/08_l1_to_l2/tfq_1000_l1_operator_lift_trace_embed_013.md)
-- sha256 (`lf-normalised`): `d48aedf432a3cca2373cd55892719c9bf7cfd2e64a2efca29499a5280355ae37`
+- sha256 (`lf-normalised`): `d62fd846edd8c2b4c0bdcf55e9315aa7fee93724ae3b8ec9f6d99e25f231adc9`
 - generated view: listed, not counted
 - cited in: record TFQ-1000
 - counts toward the grade: no
@@ -101,7 +101,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `L1-R-TRACE-EMBED` `DERIVED_LEAN`: [L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED](L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED.md) (CONDITIONAL)
+- `L1-R-TRACE-EMBED` `COMPUTED`: [L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED](L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED.md) (CONDITIONAL)
 
 Outgoing (0):
 

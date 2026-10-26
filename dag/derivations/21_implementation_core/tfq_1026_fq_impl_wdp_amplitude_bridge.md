@@ -1,6 +1,6 @@
 # [TFQ-1026] FQ-IMPL-WDP-AMPLITUDE-BRIDGE
 
-> **Stage**: `IMPLEMENTATION_CORE` | **Status**: `PROVED_LEAN` | **DAG node**: `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (`PROVED_LEAN`)  
+> **Stage**: `IMPLEMENTATION_CORE` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (`COMPUTATIONALLY_CHECKED`)  
 > **UUID**: `4d1a57cd-1d47-594f-9462-b64f8e6aedaa`  
 > **Parent Derivation**: [TFQ-1027](tfq_1027_fq_impl_realification_adapter.md)
 
@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Reviewed scope: Exact bounded phase/holonomy/readout controls and a general positive-power mod5 residue induction are retained with literal gauge/norm kernel identities.
+omega_wdp amplitude_bridge.rs is the only artifact for WDP-CH19-P11/P12: with unit phase u=(3+4i)/5, integer edge cochains give transports u^{a_e}; adding a coboundary conjugates transports and leaves cycle holonomy unchanged; both readouts N(z1+z2) and N(z1+z2)^2 are common-phase invariant and left free; no homomorphism (Q,+) -> U(1)(Q(i)) sends 1 to u, and u^n != 1 for every n >= 1 (certified via (3+4i)^n mod 5).
 
 ### Governing Obligation
-Unmet after the PFP review: Formalize the Gaussian numerator/denominator transport and the rational-additive-group obstruction to a homomorphism sending1 to this u. Do not infer a preferred readout or a general phase-selection theorem. The broader source statement is kept in pfp_review.prior_statement.
+The claims are about a Rust artifact and are backed by its native exact tests. The cited Lean is integer arithmetic (3^2 + 4^2 = 5^2 and similar) and does not state the claims.
 
 ### Source Status
 "Executable finite evidence; AuthorityEffect: None" for WDP-CH19-P11 and P12; residual WDP-CH19-O03 open

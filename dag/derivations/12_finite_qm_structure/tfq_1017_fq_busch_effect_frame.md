@@ -1,6 +1,6 @@
 # [TFQ-1017] FQ-BUSCH-EFFECT-FRAME
 
-> **Stage**: `FINITE_QM_STRUCTURE` | **Status**: `PROVED_LEAN` | **DAG node**: `FQ-BUSCH-EFFECT-FRAME` (`PROVED_LEAN`)  
+> **Stage**: `FINITE_QM_STRUCTURE` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `FQ-BUSCH-EFFECT-FRAME` (`COMPUTATIONALLY_CHECKED`)  
 > **UUID**: `2a9f3b16-5f95-5f31-ac50-1d14d908072f`  
 > **Parent Derivation**: [TFQ-1009](../10_finite_qm_core/tfq_1009_fq_declared_quantum_interface.md)
 
@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Reviewed scope: Exact six-effect readouts and reconstruction, plus a finite-probe-versus-PSD counterexample, are native/kernel checked at the stated scalar/coordinate scopes.
+At declared real places, an informationally-complete POVM family and a polyhedral frame cone are distinguished (busch_ic_povm_vs_polyhedral_frame_cone); Galois-conjugate negativity versus SOS total positivity is witnessed (galois_conjugate_negativity_vs_sos_total_positivity). Busch-type effect hypotheses are explicit.
 
 ### Governing Obligation
-Unmet after the PFP review: Prove full effect positivity, matrix/trace transport, arbitrary Busch hypotheses and the separate real-place/Galois/SOS claims. Finite informational completeness alone is not full positivity or Born uniqueness. The broader source statement is kept in pfp_review.prior_statement.
+Lean evaluates fixed rational traces, determinants, Bloch sums and minors for the declared effects and frame cone. No general Busch-type theorem is stated.
 
 ### Source Status
 H058 theorem family (38 theorems); Rust exact effects at declared cyclotomic real places
@@ -34,7 +34,6 @@ H058 theorem family (38 theorems); Rust exact effects at declared cyclotomic rea
 - `lean4/FiniteQM.lean::busch_ic_povm_vs_polyhedral_frame_cone`
 - `lean4/FiniteQM.lean::galois_conjugate_negativity_vs_sos_total_positivity`
 - `lean4/H058EffectFrameBusch.lean::two_mul_half`
-- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_quantum_physics/src/busch_effects.rs::EffectAlgebra`

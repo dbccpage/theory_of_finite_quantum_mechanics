@@ -4,7 +4,7 @@ Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_
 
 ## Statement
 
-> Reviewed scope: Exact tensor/right-Z and dump/right-Z arrays plus the genuine report-action non-descent witness are native/kernel checked.
+> On Bool x Bool a bilinear, integer-homogeneous, Kronecker-normalized combining rule equals the pointwise product (bilinear_product_unique_on_bool_prod); the weaker interface has a dump-the-right-report rival u boxtimes v = (\<0|v\>+\<1|v\>) u, which fails local-unitary covariance (rival_fails_local_unitary_covariance).
 
 ## Grade
 
@@ -29,7 +29,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: Transport to the original abstract bilinear Kronecker interface, full local-unitary group and physical tensor/basis/inner-product admission. The rival counterexample alone does not derive the tensor product. The broader source statement is kept in pfp_review.prior_statement.
+Stated in H014BilinearProduct.lean, H014Interface.lean and H062CompositionTensorMub.lean. The setting is two Boolean factors; larger factor sets are not covered.
 
 ## Source status
 
@@ -37,7 +37,7 @@ H062 / campaign C250 Block 05; ledger LEAN PROVED (RECEIPTED)
 
 ## Review
 
-- PFP review: [dag/results/FQ-TENSOR-LU-RIVAL-EXCLUSION/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/FQ-TENSOR-LU-RIVAL-EXCLUSION/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-TENSOR-LU-RIVAL-EXCLUSION/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/FQ-TENSOR-LU-RIVAL-EXCLUSION/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `PROVED_LEAN`; qualifies for E4: yes.
   - narrowest claim: Exact tensor/right-Z and dump/right-Z arrays plus the genuine report-action non-descent witness are native/kernel checked.
   - does not support: Transport to the original abstract bilinear Kronecker interface, full local-unitary group and physical tensor/basis/inner-product admission. The rival counterexample alone does not derive the tensor product.
   - next test: Transport to the original abstract bilinear Kronecker interface, full local-unitary group and physical tensor/basis/inner-product admission. The rival counterexample alone does not derive the tensor product.
@@ -108,7 +108,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md](../../../dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md)
-- sha256 (`lf-normalised`): `2f47b408c3146f8e355539eb3c2c4e0f1114c8630e7d27b0e9e1c657c92768ad`
+- sha256 (`lf-normalised`): `6e899decb4e1536117f78a9fa79bff99ab0035b72db8bf31256459e1d4cafe32`
 - generated view: listed, not counted
 - cited in: record TFQ-1018
 - counts toward the grade: no
@@ -135,5 +135,5 @@ Incoming (1):
 
 Outgoing (2):
 
-- `FQ-R-BELL-VIOLATION` `DERIVED_LEAN`: [FQ-BELL-RATIONAL-VIOLATION-14-5](FQ-BELL-RATIONAL-VIOLATION-14-5.md) (PROVED_LEAN)
+- `FQ-R-BELL-VIOLATION` `COMPUTED`: [FQ-BELL-RATIONAL-VIOLATION-14-5](FQ-BELL-RATIONAL-VIOLATION-14-5.md) (COMPUTATIONALLY_CHECKED)
 - `FQ-R-GAP-TENSOR` `CONDITIONAL_ON_IMPORT`: [FQ-GAP-TENSOR-UNIQUENESS](FQ-GAP-TENSOR-UNIQUENESS.md) (CONDITIONAL)

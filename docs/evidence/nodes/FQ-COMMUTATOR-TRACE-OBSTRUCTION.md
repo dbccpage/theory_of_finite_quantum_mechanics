@@ -1,6 +1,6 @@
 # FQ-COMMUTATOR-TRACE-OBSTRUCTION
 
-Stage: [FINITE_QM_DYNAMICS](../stages/FINITE_QM_DYNAMICS.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_DYNAMICS](../stages/FINITE_QM_DYNAMICS.md). Status: `PROVED_PROSE`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-General n is prose; Lean is 2x2 (integer/rational entries).
+The n x n argument is the prose proof in the statement and needs a scalar field in which n is nonzero (characteristic 0 suffices). Lean states only the 2x2 case (wintner_wielandt_dim2_obstruction over Z, weyl_heisenberg_finite_trace_obstruction over Q, tr_comm2_vanishes); Rust checks d = 3 over Q(zeta_24).
 
 ## Source status
 
@@ -36,7 +36,7 @@ paper s11/13; Wintner-Wielandt style; H056, H068
 
 ## Review
 
-- PFP review: [dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: The exact finite-dimensional scalar commutator obstruction is kernel checked for arbitrary n\>0 over Q.
   - does not support: Transport to other coefficient fields and domain/unbounded-operator settings with their actual hypotheses. The supplied finite matrix carrier is an assumption.
   - next test: Transport to other coefficient fields and domain/unbounded-operator settings with their actual hypotheses. The supplied finite matrix carrier is an assumption.
@@ -136,7 +136,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `FQ-R-COMMUTATOR` `DERIVED_LEAN`: [FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY](FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY.md) (PROVED_LEAN)
+- `FQ-R-COMMUTATOR` `DERIVED_PROSE`: [FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY](FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY.md) (PROVED_LEAN)
 
 Outgoing (2):
 

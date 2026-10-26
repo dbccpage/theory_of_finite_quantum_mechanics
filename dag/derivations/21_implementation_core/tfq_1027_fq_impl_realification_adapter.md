@@ -1,6 +1,6 @@
 # [TFQ-1027] FQ-IMPL-REALIFICATION-ADAPTER
 
-> **Stage**: `IMPLEMENTATION_CORE` | **Status**: `PROVED_LEAN` | **DAG node**: `FQ-IMPL-REALIFICATION-ADAPTER` (`PROVED_LEAN`)  
+> **Stage**: `IMPLEMENTATION_CORE` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `FQ-IMPL-REALIFICATION-ADAPTER` (`COMPUTATIONALLY_CHECKED`)  
 > **UUID**: `ede28733-9821-5833-8771-7cc0bfce6c1d`  
 > **Parent Derivation**: [TFQ-1007](../10_finite_qm_core/tfq_1007_fq_primdiff_quotient_kernel.md)
 
@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Reviewed scope: Actual scalar realification products, multiplication quotient, balancing kernel and normalization factor are exact; literal algebraic product/balancing identities are kernel checked.
+A declared finite complex realization over Q(i) is mapped to its balanced real tensor (realify operator/density, product operator/density), in both omega_wdp (Genesis side) and omega_quantum_physics (quantum owner). State admission stays with the quantum owner and balancing with the math owner; this is the Rust site where a Genesis result meets a declared complex structure, and the code states it chooses none.
 
 ### Governing Obligation
-Unmet after the PFP review: Prove the full operator/density adapter, balanced tensor metric and positivity/admission transport for arbitrary finite matrices. No derivation or selection of the complex structure is supplied. The broader source statement is kept in pfp_review.prior_statement.
+The claims describe Rust code and are backed by its native exact tests. The cited Lean is integer arithmetic and does not state the claims.
 
 ### Source Status
 module docs: "preserve a supplied operational model; they select no scalar/Born axioms from the primitive mark and grant no execution permission"

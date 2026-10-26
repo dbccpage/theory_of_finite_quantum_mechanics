@@ -11,8 +11,8 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 16
-- cited Lean, Rust or Python symbols found in their in-repo files: 36
-- distinct cited Lean declarations covered by a current replay receipt: 36
+- cited Lean, Rust or Python symbols found in their in-repo files: 35
+- distinct cited Lean declarations covered by a current replay receipt: 35
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -269,7 +269,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates` |
 | `QuantumMechanics.DerivationDagQMClosure.fq_gleason_d3_orthogonal_frame_additivity_eliminates_quartic_rival` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_gleason_d3_orthogonal_frame_additivity_eliminates_quartic_rival` |
 
@@ -341,7 +340,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (2):
 
-- `FQ-R-GAP-BORN-UNIQUENESS` `CONDITIONAL_ON_IMPORT`: [FQ-GLEASON-D2-RATIONAL-PLANE-OBSTRUCTION](FQ-GLEASON-D2-RATIONAL-PLANE-OBSTRUCTION.md) (PROVED_LEAN), [FQ-CABELLO-FRAME-POLYTOPE-146](FQ-CABELLO-FRAME-POLYTOPE-146.md) (COMPUTATIONALLY_CHECKED), [FQ-SORKIN-READOUT-CLASS-QM208](FQ-SORKIN-READOUT-CLASS-QM208.md) (PROVED_LEAN), [FQ-POWER-RULE-P2-SELECTION](FQ-POWER-RULE-P2-SELECTION.md) (PROVED_LEAN)
+- `FQ-R-GAP-BORN-UNIQUENESS` `CONDITIONAL_ON_IMPORT`: [FQ-GLEASON-D2-RATIONAL-PLANE-OBSTRUCTION](FQ-GLEASON-D2-RATIONAL-PLANE-OBSTRUCTION.md) (PROVED_LEAN), [FQ-CABELLO-FRAME-POLYTOPE-146](FQ-CABELLO-FRAME-POLYTOPE-146.md) (COMPUTATIONALLY_CHECKED), [FQ-SORKIN-READOUT-CLASS-QM208](FQ-SORKIN-READOUT-CLASS-QM208.md) (COMPUTATIONALLY_CHECKED), [FQ-POWER-RULE-P2-SELECTION](FQ-POWER-RULE-P2-SELECTION.md) (COMPUTATIONALLY_CHECKED)
 - `FRO-R-BACK-CT-PROBABILITY-TO-BORN` `GAP_NO_DERIVATION`: [CT-PROBABILITY-2016-SOURCE](CT-PROBABILITY-2016-SOURCE.md) (SOURCE_RECORD)
 
 Outgoing (0):

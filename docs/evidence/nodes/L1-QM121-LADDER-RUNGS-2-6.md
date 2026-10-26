@@ -1,25 +1,26 @@
 # L1-QM121-LADDER-RUNGS-2-6
 
-Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Complete retained stochastic path tables and matrix-power equality, diagonal action and exact two-phase readout, with finite composition algebra in Lean.
+> Ladder over QM_020 rung 1: diagonal density (2), channels as stochastic kernels (3), path-sum as matrix power (4), superposition phase content as quotient fiber U(1)^(|E_w|-1) (5), interference as non-l1 cross term (6). The ceiling of the ladder is the C/U(1) carrier, Born-quadratic uniqueness (Gleason) and the continuum / unitarity limit, all imported.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
-- distinct cited Lean declarations covered by a current replay receipt: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
+- `computational_no_runnable_test`: 1 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 - `broken_reference`: path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py. A cited in-repo path or symbol cannot be found in this checkout.
 
 ## Imported structure
@@ -30,7 +31,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Bottleneck
 
-Unmet after the PFP review: Prove arbitrary-rung/source representation refinements and discharge the admitted carrier, Born uniqueness and continuous/unitary limits. The broader source statement is kept in pfp_review.prior_statement.
+Lean checks fixed numerical instances of rungs 2 to 6 (one diagonal expectation, one diagonal matrix product, the Hadamard square, one cross-term inequality). The rungs as general statements are not in Lean; the ceiling imports stay imported.
 
 ## Source status
 
@@ -38,7 +39,7 @@ QM_121 rungs 2-6: rung 2 PROVED prose (ENC-1126); rungs 1 and 6 'MECHANIZED reus
 
 ## Review
 
-- PFP review: [dag/results/L1-QM121-LADDER-RUNGS-2-6/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM121-LADDER-RUNGS-2-6/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/L1-QM121-LADDER-RUNGS-2-6/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM121-LADDER-RUNGS-2-6/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Complete retained stochastic path tables and matrix-power equality, diagonal action and exact two-phase readout, with finite composition algebra in Lean.
   - does not support: Prove arbitrary-rung/source representation refinements and discharge the admitted carrier, Born uniqueness and continuous/unitary limits.
   - next test: Prove arbitrary-rung/source representation refinements and discharge the admitted carrier, Born uniqueness and continuous/unitary limits.
@@ -59,8 +60,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.l1_qm020_thm5_thm7_and_qm121_ladder_rungs_2_to_6_separation` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_qm020_thm5_thm7_and_qm121_ladder_rungs_2_to_6_separation` |
-| `QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` |
-| `QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` |
 | `QuantumMechanics.DerivationDagQMClosure.qm121_ladder_rungs_2_to_6_certificate` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.qm121_ladder_rungs_2_to_6_certificate` |
 
 - counts toward the grade: yes
@@ -131,7 +130,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `L1-R-LADDER` `DERIVED_LEAN`: [L1-QM020-THM1-DIRECT-NORMALIZATION](L1-QM020-THM1-DIRECT-NORMALIZATION.md) (PROVED_LEAN), [L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY](L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY.md) (PROVED_LEAN), [L1-QM020-THM7-REPRESENTATION-CAPACITY](L1-QM020-THM7-REPRESENTATION-CAPACITY.md) (PROVED_LEAN)
+- `L1-R-LADDER` `COMPUTED`: [L1-QM020-THM1-DIRECT-NORMALIZATION](L1-QM020-THM1-DIRECT-NORMALIZATION.md) (PROVED_LEAN), [L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY](L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY.md) (PROVED_PROSE), [L1-QM020-THM7-REPRESENTATION-CAPACITY](L1-QM020-THM7-REPRESENTATION-CAPACITY.md) (COMPUTATIONALLY_CHECKED)
 
 Outgoing (0):
 

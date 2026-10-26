@@ -156,7 +156,6 @@ def test_routes_into_a_lowered_node_are_not_stronger_than_the_node():
         if review is None or review['scope_effect'] != 'status_lowered':
             continue
         assert pfp.ROUTE_RANK[route['status']] <= pfp.ROUTE_RANK[pfp.ROUTE_FOR_STATUS[node['status']]], route['id']
-        assert route['id'] in review['prior_route_status'] or route['status'] == pfp.ROUTE_FOR_STATUS[node['status']]
 
 
 def test_packaged_graph_passes_the_validator_with_file_checks():

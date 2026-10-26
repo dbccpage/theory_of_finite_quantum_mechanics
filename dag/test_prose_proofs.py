@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from prose_proofs import covered_ids, lean_ref_resolves, proof_sections, section_errors
+from prose_proofs import ROOT, covered_ids, heading_anchor, lean_ref_resolves, proof_sections, render_index, section_errors
 
 
 def test_section_rules(tmp_path: Path):
@@ -62,3 +62,13 @@ def test_coverage_excludes_invalid_sections_and_fenced_examples(tmp_path: Path):
     nodes = {key: {"status": "PROVED_PROSE", "lean": []} for key in ("EXAMPLE", "INVALID", "VALID")}
     assert [s["ids"] for s in proof_sections(tmp_path)] == [["INVALID"], ["VALID"]]
     assert covered_ids(tmp_path, nodes) == {"VALID"}
+
+
+def test_index_from_nodes_to_sections_is_current():
+    assert (ROOT / "dag" / "prose_proofs.md").read_text(encoding="utf-8") == render_index()
+
+
+def test_heading_anchor():
+    seen = {}
+    assert heading_anchor(" 1.4 Which maps descend to $p$?", seen) == "14-which-maps-descend-to-p"
+    assert heading_anchor(" 1.4 Which maps descend to $p$?", seen) == "14-which-maps-descend-to-p-1"

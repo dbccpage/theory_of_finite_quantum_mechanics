@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Reviewed scope: Complete finite panel/predicate controls and mismatch witnesses are exact; zero in-panel false positives under the actual screened predicate is kernel checked.
+For a screening predicate d and a sealed panel, the screen admits the panel iff d holds on every panel member, and an admitted panel has no false positives under d.
 
 ### Governing Obligation
-Unmet after the PFP review: Bind an actual production detector, executed code and authenticated self-panel to these predicates, and state any out-of-panel assumptions. No generalization beyond the sealed panel or physical immune-system theorem is claimed. The broader source statement is kept in pfp_review.prior_statement.
+Stated in ThymusScreening.lean (thymus_admit_iff, self_panel_soundness). It concerns the repository's screening tool, not quantum mechanics.
 
 ### Source Status
 MECHANIZED in ThymusScreening.lean (empty axiom report) with Rust witness

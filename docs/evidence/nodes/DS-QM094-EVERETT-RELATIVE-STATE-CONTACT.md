@@ -1,10 +1,10 @@
 # DS-QM094-EVERETT-RELATIVE-STATE-CONTACT
 
-Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Actual relative-state density, partial trace and expectation controls are exact; the scalar orthogonality and absolute-bound identities are kernel checked.
+> Under an imported finite Hilbert/tensor/partial-trace package, orthogonal records make the reduced state diagonal; Phi_off bounds expectation differences; equal local L1 shadows can hide distinguishable coherent states. Holonomy alone selecting a branch basis is NoRule; relative-state representation does not entail many-worlds ontology (refused); Everettian probability from branch weights is an open obstruction.
 
 ## Grade
 
@@ -15,12 +15,12 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 4
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 1 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Unmet after the PFP review: Prove the full tensor/partial-trace coordinate bridge and justify a physical record basis/probability rule. No branch selection or many-worlds ontology follows. The broader source statement is kept in pfp_review.prior_statement.
+Checked on fixed exact matrices natively. The cited Lean has scalar identities only; the reduced-state statement is not in Lean.
 
 ## Source status
 
@@ -36,7 +36,7 @@ QCE-C1..C12 Everett relative-state reduced-density record-overlap formula (off-d
 
 ## Review
 
-- PFP review: [dag/results/DS-QM094-EVERETT-RELATIVE-STATE-CONTACT/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM094-EVERETT-RELATIVE-STATE-CONTACT/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM094-EVERETT-RELATIVE-STATE-CONTACT/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM094-EVERETT-RELATIVE-STATE-CONTACT/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Actual relative-state density, partial trace and expectation controls are exact; the scalar orthogonality and absolute-bound identities are kernel checked.
   - does not support: Prove the full tensor/partial-trace coordinate bridge and justify a physical record basis/probability rule. No branch selection or many-worlds ontology follows.
   - next test: Prove the full tensor/partial-trace coordinate bridge and justify a physical record basis/probability rule. No branch selection or many-worlds ontology follows.
@@ -112,7 +112,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `DS-R-EVERETT` `DERIVED_LEAN`: [DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE](DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE.md) (PROVED_LEAN), [DS-QM090-092-AUTHORITY-FIREWALL](DS-QM090-092-AUTHORITY-FIREWALL.md) (COMPUTATIONALLY_CHECKED)
+- `DS-R-EVERETT` `COMPUTED`: [DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE](DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE.md) (PROVED_LEAN), [DS-QM090-092-AUTHORITY-FIREWALL](DS-QM090-092-AUTHORITY-FIREWALL.md) (COMPUTATIONALLY_CHECKED)
 
 Outgoing (0):
 
