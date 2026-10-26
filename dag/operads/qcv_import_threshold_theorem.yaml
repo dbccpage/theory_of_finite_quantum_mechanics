@@ -3,14 +3,17 @@ node_id: QCV-IMPORT-THRESHOLD-THEOREM
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: The fault-tolerance threshold theorems (Shor 1996; Aharonov and Ben-Or 1997; Kitaev
-    1997; Knill, Laflamme and Zurek 1998; Aliferis, Gottesman and Preskill 2006) are cited under each
-    theorem's own noise, locality and overhead hypotheses; they are not re-proved.
+  source_statement: The integer map t sends each integer n to 2*n*n. It sends 0 to 0, 1 to 2, 2 to 8 and
+    8 to 128, and three applications of t starting at 1 yield 128. The scale products 2*0 and 2*1 equal
+    0 and 2.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - threshold theorems for concatenated codes under their stated noise models
-  source_bottleneck: Exact constants and noise hypotheses of each theorem are not reproduced; the finite
-    recurrence in QCV-Q2 is the only part checked.
+  source_bottleneck: The fault-tolerance threshold theorems of Shor, Aharonov and Ben-Or, Kitaev, Knill,
+    Laflamme and Zurek, and Aliferis, Gottesman and Preskill stay cited under each theorem's own noise,
+    locality and overhead hypotheses. This integer orbit does not state those theorems, supplies no noise
+    model, and identifies no code constant. The rational concatenation recurrence and its dichotomy stay
+    on the concatenation-threshold record.
   source_refs:
   - dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md
   - dag/research/quantum_computation_self_obstruction.md
@@ -22,7 +25,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md
-    sha256: cf8990b4134fb6ad97ce1fe7c7729fb396fece7854248748994a2d32a7156d82
+    sha256: ed2e6a4b76055d687ff13e0558e457df0a58eb1d178f22f3400c9e776d8d4fac
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -30,9 +33,188 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/computation_qcv_import_threshold_theorem_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: t
+  line: 6
+  signature_excerpt: 'def t (n : Int) : Int'
+  source: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  source_sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: t_spec
+  line: 8
+  signature_excerpt: 'theorem t_spec (n : Int) : t n = 2 * n * n'
+  source: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  source_sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: step_zero
+  line: 10
+  signature_excerpt: 'theorem step_zero : t 0 = 0'
+  source: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  source_sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: step_one
+  line: 12
+  signature_excerpt: 'theorem step_one : t 1 = 2'
+  source: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  source_sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: step_two
+  line: 14
+  signature_excerpt: 'theorem step_two : t 2 = 8'
+  source: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  source_sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: step_eight
+  line: 16
+  signature_excerpt: 'theorem step_eight : t 8 = 128'
+  source: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  source_sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: orbit_three
+  line: 18
+  signature_excerpt: 'theorem orbit_three : t (t (t 1)) = 128'
+  source: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  source_sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: mul_eight
+  line: 20
+  signature_excerpt: 'theorem mul_eight : 2 * 8 * 8 = 128'
+  source: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  source_sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: scale_zero
+  line: 22
+  signature_excerpt: 'theorem scale_zero : 2 * 0 = 0'
+  source: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  source_sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: scale_one
+  line: 24
+  signature_excerpt: 'theorem scale_one : 2 * 1 = 2'
+  source: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  source_sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignQcvImportThresholdTheorem.lean::t_spec
+  availability: local
+  symbol: t_spec
+  path: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  declaration_status: declaration_found_not_proof_checked
+  line: 8
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportThresholdTheorem.lean::step_zero
+  availability: local
+  symbol: step_zero
+  path: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  declaration_status: declaration_found_not_proof_checked
+  line: 10
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportThresholdTheorem.lean::step_one
+  availability: local
+  symbol: step_one
+  path: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  declaration_status: declaration_found_not_proof_checked
+  line: 12
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportThresholdTheorem.lean::step_two
+  availability: local
+  symbol: step_two
+  path: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  declaration_status: declaration_found_not_proof_checked
+  line: 14
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportThresholdTheorem.lean::step_eight
+  availability: local
+  symbol: step_eight
+  path: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  declaration_status: declaration_found_not_proof_checked
+  line: 16
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportThresholdTheorem.lean::orbit_three
+  availability: local
+  symbol: orbit_three
+  path: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  declaration_status: declaration_found_not_proof_checked
+  line: 18
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportThresholdTheorem.lean::mul_eight
+  availability: local
+  symbol: mul_eight
+  path: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  declaration_status: declaration_found_not_proof_checked
+  line: 20
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportThresholdTheorem.lean::scale_zero
+  availability: local
+  symbol: scale_zero
+  path: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  declaration_status: declaration_found_not_proof_checked
+  line: 22
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportThresholdTheorem.lean::scale_one
+  availability: local
+  symbol: scale_one
+  path: lean4/CampaignQcvImportThresholdTheorem.lean
+  repository: this_repository
+  sha256: e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d
+  declaration_status: declaration_found_not_proof_checked
+  line: 24
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -72,8 +254,6 @@ operad_slots:
     - threshold theorems for concatenated codes under their stated noise models
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
