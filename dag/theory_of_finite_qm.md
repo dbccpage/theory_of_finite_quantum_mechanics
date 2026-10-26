@@ -9134,9 +9134,9 @@ Obligation: This rules out one construction route only; it gives no upper bound 
 - DAG node: `MUB6-WEYL-HEISENBERG-D6`
 - Paper: [derivation](derivations/25_mub/tfq_1223_mub6_weyl_heisenberg_d6.md)
 
-On C^6 with shift X|j> = |j+1 mod 6> and clock Z|j> = w^j |j>, w = exp(2 pi i/6), one has Z X = w X Z, and the 36 operators X^p Z^q are pairwise orthogonal for the trace pairing tr(A* B).
+In the set of integer pairs (a, b) with product (a, b)*(c, d) = (a*c - b*d, a*d + b*c + b*d) and conjugate (a + b, -b), w = (0, 1) satisfies w*w = w - (1, 0), w*w*w = (-1, 0) and the sixth power of w is (1, 0). On 6 by 6 matrices over those pairs, shift X has a 1 at each (j+1 mod 6, j) and clock Z is diagonal with entry w^j. Then Z X = w X Z, while X Z and w Z X differ. For p, q, r, s from 0 through 5, the trace of the conjugate-transpose of X^p Z^q times X^r Z^s is (6, 0) when (p, q) = (r, s) and (0, 0) otherwise.
 
-Obligation: These standard identities are not checked in this checkout for d = 6; the source writes X Z = w Z X, which holds only under the opposite clock convention; no MUB count follows from them.
+Obligation: This record is the 6 by 6 integer-pair table above. It does not construct a complex exponential, does not identify w with exp(2 pi i / 6), and does not count mutually unbiased bases. The source commutation X Z = w Z X is the opposite clock convention. AuthorityEffect: None.
 
 ### TFQ-1224 Weyl-Heisenberg stabilizer classes over Z_6 and the three-basis claim
 
