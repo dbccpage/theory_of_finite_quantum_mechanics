@@ -149,7 +149,7 @@ def _validate_node_evidence(nodes, cited, root, errs):
         if n['status'] == 'PROVED_LEAN':
             if not n['lean'] or any(not x.startswith(LEAN_FILE + '::') for x in n['lean']):
                 errs.append(f'{nid}: PROVED_LEAN must cite declarations of {LEAN_FILE}')
-        elif n['id'] == 'OPS-RUST-RECEIPTS-AND-LIMITS':
+        elif nid == 'OPS-RUST-RECEIPTS-AND-LIMITS' and n['status'] == 'CONDITIONAL':
             if not n['lean'] or any(not x.startswith(CAMPAIGN_CEILING + '::') for x in n['lean']):
                 errs.append(f'{nid}: ceiling narrowing must cite declarations of {CAMPAIGN_CEILING}')
         elif n['lean']:
@@ -210,8 +210,9 @@ def render_paper(node: dict, record: dict, fragment: dict, paths: dict[str, str]
     out += ['', '## Non-claims', '',
             '- The source note and its claim ledger are copies of FOC-035 from another repository; this paper restates '
             'one ledger row at the status its evidence supports here.',
-            '- A Lean reference is listed only on a PROVED_LEAN node, and its statement is narrower than the ledger row '
-            'where the node says so.',
+            '- Lean references identify checked statements. PROVED_LEAN nodes cite the finite-results module; the '
+            'named OPS-RUST-RECEIPTS-AND-LIMITS ceiling example may cite its campaign module while remaining '
+            'CONDITIONAL. A citation does not promote a node.',
             '- A Rust test of the source repository is not run in this repository.',
             '- An imported assumption is not a result of this repository.',
             '- A gap route marks a link that no source derives.',
@@ -272,7 +273,8 @@ def generated_files(root: Path) -> dict[Path, bytes]:
     base = readme.partition(MARKER)[0].rstrip('\n')
     section = '\n\n' + MARKER + '\n\n## FOC-035 observer presheaf\n\n'
     section += ('This stage maps the claim ledger of FOC-035 to nodes at the status the evidence supports in this '
-                'repository. Lean-checked rows keep only the narrowed statements of `lean4/LggrFiniteResults.lean`. '
+                'repository. PROVED_LEAN rows keep the narrowed statements of `lean4/LggrFiniteResults.lean`; the '
+                'fixed-ceiling campaign example retains CONDITIONAL despite its scoped Lean references. '
                 'Rows computed by a Rust test stay conditional, because that test needs an external crate and is not '
                 'run here. Instance values are recomputed by an exact independent script, and the Python gate and '
                 'one repaired test run here. Cited results are imported assumptions. A gap route marks a link that no '

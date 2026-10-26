@@ -68,11 +68,16 @@ def test_statuses_follow_the_evidence():
             receipt = json.loads((ROOT / receipt_path).read_text(encoding='utf-8'))
             entry = receipt['lean_replay']['results'][0]
             assert entry['dag_node'] == nid
+            assert entry['source'] == sync.CAMPAIGN_CEILING
+            expected_audit = set(entry['anchors']) | {
+                'CampaignOpsRustReceiptsAndLimits.maxGlobal',
+                'CampaignOpsRustReceiptsAndLimits.maxLp',
+            }
+            assert set(entry['axioms']) == expected_audit
             assert entry['sha256'] == hashlib.sha256((ROOT / entry['source']).read_bytes()).hexdigest()
             assert entry['exit_code'] == 0 and entry['axiom_audit_passed']
             assert set(entry['anchors']) == {ref.split('::')[1] for ref in node['lean']}
-            assert all(set(axioms) <= {'propext', 'Classical.choice', 'Quot.sound'}
-                       for axioms in entry['axioms'].values())
+            assert all(not axioms for axioms in entry['axioms'].values())
         else:
             assert node['lean'] == [], nid
         if node['status'] == 'COMPUTATIONALLY_CHECKED':
@@ -147,3 +152,28 @@ def test_independent_check_recomputes_the_numbers():
     done = subprocess.run([sys.executable, '-I', '-X', 'utf8', str(script)], capture_output=True, text=True, timeout=600)
     assert done.returncode == 0, done.stdout[-800:] + done.stderr[-800:]
     assert '50 checks passed' in done.stdout
+
+
+def test_ceiling_witness_cannot_promote_status_or_cover_another_node():
+    graph = json.loads((ROOT / 'dag/derivation_dag.json').read_text(encoding='utf-8'))
+    cases = (
+        ('OPS-RUST-RECEIPTS-AND-LIMITS', 'OPEN', 'only PROVED_LEAN'),
+        ('OPS-RUST-RECEIPTS-AND-LIMITS', 'PROVED_LEAN', 'PROVED_LEAN must cite'),
+        ('OPS-REGRESS-COROLLARY', 'CONDITIONAL', 'only PROVED_LEAN'),
+    )
+    for node_id, status, expected in cases:
+        data = fragment()
+        ceiling = next(n for n in data['nodes'] if n['id'] == 'OPS-RUST-RECEIPTS-AND-LIMITS')
+        target = next(n for n in data['nodes'] if n['id'] == node_id)
+        target['status'] = status
+        target['lean'] = list(ceiling['lean'])
+        assert any(expected in error for error in sync.validate(data, graph, ROOT))
+
+
+def test_ceiling_witness_rejects_a_valid_but_unrelated_lean_module():
+    data = fragment()
+    graph = json.loads((ROOT / 'dag/derivation_dag.json').read_text(encoding='utf-8'))
+    ceiling = next(n for n in data['nodes'] if n['id'] == 'OPS-RUST-RECEIPTS-AND-LIMITS')
+    unrelated = next(n for n in data['nodes'] if n['status'] == 'PROVED_LEAN')
+    ceiling['lean'] = list(unrelated['lean'])
+    assert any('ceiling narrowing must cite' in error for error in sync.validate(data, graph, ROOT))

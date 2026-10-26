@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2529_ops_refuted_nb9.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2529_ops_refuted_nb9.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2529_ops_refuted_nb9.md)
-- sha256 (`lf-normalised`): `80ec8005013affd394551d9464aca98babe62a99db30eaff2132b56a6210150d`
+- sha256 (`lf-normalised`): `438ae54c366b9d70a6231a5ad6faca3394e8f236ed8ee00cd8f831d6eed461c5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2529
 - counts toward the grade: no

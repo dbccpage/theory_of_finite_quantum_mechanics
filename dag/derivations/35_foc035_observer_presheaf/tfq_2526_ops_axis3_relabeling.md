@@ -30,7 +30,7 @@ See also: `PGW-WDP-OBSERVER-QUOTIENT-PASSIVITY`.
 ## Non-claims
 
 - The source note and its claim ledger are copies of FOC-035 from another repository; this paper restates one ledger row at the status its evidence supports here.
-- A Lean reference is listed only on a PROVED_LEAN node, and its statement is narrower than the ledger row where the node says so.
+- Lean references identify checked statements. PROVED_LEAN nodes cite the finite-results module; the named OPS-RUST-RECEIPTS-AND-LIMITS ceiling example may cite its campaign module while remaining CONDITIONAL. A citation does not promote a node.
 - A Rust test of the source repository is not run in this repository.
 - An imported assumption is not a result of this repository.
 - A gap route marks a link that no source derives.

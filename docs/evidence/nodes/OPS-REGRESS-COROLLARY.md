@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2527_ops_regress_corollary.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2527_ops_regress_corollary.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2527_ops_regress_corollary.md)
-- sha256 (`lf-normalised`): `a6e6b18d8fb9d50e84cecc91aa1a63c81deb1c07a69edc9d61812eb0569ca3cf`
+- sha256 (`lf-normalised`): `a7738da6148d773e94bf464fed610d034c1882cc9e58cdb0f5a5edefb34c6b31`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2527
 - counts toward the grade: no
