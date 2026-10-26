@@ -3883,17 +3883,27 @@
       "stage": "FERMION_SIGN",
       "status": "OPEN",
       "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-047 claims PROVED_LEAN; audited status OPEN",
-      "statement": "Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout.",
+      "statement": "For every assignment of Boolean edge signs to a triangle and every Boolean vertex switching, the XOR of the three edge signs is invariant. A switching makes all three edge signs positive exactly when their XOR is zero. An explicit switching gives the normal form (0,0,parity), and the product of integer edge signs equals the sign of that parity. A negative-parity triangle is obstructed within this switching class, whereas a balanced triangle with two negative edges can be made positive.",
       "source": [
         "dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
         "papers/core/fsp/the_problem_of_the_fermion_sign.md",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md"
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md",
+        "dag/derivations/independent/fsp-cobordism-intrinsic-sign.md",
+        "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.parity_invariant",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.switching_normal_form",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.positive_switching_iff",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.negative_cycle_obstruction",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.edge_product_is_cycle_sign",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.explicit_negative_cycle",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.balanced_negative_edges_are_removable"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.",
+      "bottleneck": "Only diagonal vertex-sign switching on one three-cycle is classified. No spin bordism group, eta invariant, fermion representation, bulk cancellation or obstruction over all representations is computed. The original cobordism-based intrinsic-sign claim remains open. Original target retained as an obligation: Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout. Prior boundary: Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -10095,7 +10105,7 @@
       ],
       "output": "FSP-COBORDISM-INTRINSIC-SIGN",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.",
+      "mechanism": "Only diagonal vertex-sign switching on one three-cycle is classified. No spin bordism group, eta invariant, fermion representation, bulk cancellation or obstruction over all representations is computed. The original cobordism-based intrinsic-sign claim remains open. Original target retained as an obligation: Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout. Prior boundary: Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.",
       "source": [
         "dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -16363,8 +16373,8 @@
       "stage": "FERMION_SIGN",
       "parent_id": "TFQ-1210",
       "record_status": "OPEN_OBLIGATION",
-      "summary": "Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout.",
-      "obligation": "Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.",
+      "summary": "For every assignment of Boolean edge signs to a triangle and every Boolean vertex switching, the XOR of the three edge signs is invariant. A switching makes all three edge signs positive exactly when their XOR is zero. An explicit switching gives the normal form (0,0,parity), and the product of integer edge signs equals the sign of that parity. A negative-parity triangle is obstructed within this switching class, whereas a balanced triangle with two negative edges can be made positive.",
+      "obligation": "Only diagonal vertex-sign switching on one three-cycle is classified. No spin bordism group, eta invariant, fermion representation, bulk cancellation or obstruction over all representations is computed. The original cobordism-based intrinsic-sign claim remains open. Original target retained as an obligation: Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout. Prior boundary: Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "FSP-COBORDISM-INTRINSIC-SIGN"
@@ -16375,11 +16385,23 @@
         "dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md",
         "papers/core/fsp/theory_of_finite_fsp.md:652-665",
         "papers/core/fsp/the_problem_of_the_fermion_sign.md:829-853",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:32-32"
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:32-32",
+        "dag/derivations/independent/fsp-cobordism-intrinsic-sign.md",
+        "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-cobordism-intrinsic-sign.py"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.parity_invariant",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.switching_normal_form",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.positive_switching_iff",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.negative_cycle_obstruction",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.edge_product_is_cycle_sign",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.explicit_negative_cycle",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.balanced_negative_edges_are_removable"
+      ]
     },
     {
       "id": "TFQ-1212",

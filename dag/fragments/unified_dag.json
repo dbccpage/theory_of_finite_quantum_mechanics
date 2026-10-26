@@ -5172,25 +5172,37 @@
       "stage": "FERMION_SIGN",
       "status": "OPEN",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout.",
-      "obligation": "Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.",
+      "statement": "For every assignment of Boolean edge signs to a triangle and every Boolean vertex switching, the XOR of the three edge signs is invariant. A switching makes all three edge signs positive exactly when their XOR is zero. An explicit switching gives the normal form (0,0,parity), and the product of integer edge signs equals the sign of that parity. A negative-parity triangle is obstructed within this switching class, whereas a balanced triangle with two negative edges can be made positive.",
+      "obligation": "Only diagonal vertex-sign switching on one three-cycle is classified. No spin bordism group, eta invariant, fermion representation, bulk cancellation or obstruction over all representations is computed. The original cobordism-based intrinsic-sign claim remains open. Original target retained as an obligation: Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout. Prior boundary: Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.",
       "imported_structure": [],
       "parent_nodes": [
         "FSP-BF-2GROUP-SIGN-CLAIM"
       ],
       "parent_record": "TFQ-1210",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.parity_invariant",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.switching_normal_form",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.positive_switching_iff",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.negative_cycle_obstruction",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.edge_product_is_cycle_sign",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.explicit_negative_cycle",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.balanced_negative_edges_are_removable"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-cobordism-intrinsic-sign.py"
+      ],
       "external_witnesses": [
         "external:omega_quantum_physics::spin_structure_obstruction::cobordism_5d_eta_invariant (cited by the source, not in this checkout)"
       ],
       "sources": [
         "papers/core/fsp/theory_of_finite_fsp.md:652-665",
         "papers/core/fsp/the_problem_of_the_fermion_sign.md:829-853",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:32-32"
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:32-32",
+        "dag/derivations/independent/fsp-cobordism-intrinsic-sign.md",
+        "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json"
       ],
-      "audit": "Cited Cobordism5dAnomaly.lean::cobordism_5d_anomaly_sign_classification does not exist; the module evaluates a defined function mappingTorusHolonomy of a Nat field (1 at 0, -1 at 1) and a defect mass on it (GIN-C22 historical fixture). Cobordism5dEvaluator is absent from cobordism_5d_higher_anomaly.py.",
+      "audit": "Cited Cobordism5dAnomaly.lean::cobordism_5d_anomaly_sign_classification does not exist; the module evaluates a defined function mappingTorusHolonomy of a Nat field (1 at 0, -1 at 1) and a defect mass on it (GIN-C22 historical fixture). Cobordism5dEvaluator is absent from cobordism_5d_higher_anomaly.py. Current scoped campaign result: For every assignment of Boolean edge signs to a triangle and every Boolean vertex switching, the XOR of the three edge signs is invariant. A switching makes all three edge signs positive exactly when their XOR is zero. An explicit switching gives the normal form (0,0,parity), and the product of integer edge signs equals the sign of that parity. A negative-parity triangle is obstructed within this switching class, whereas a balanced triangle with two negative edges can be made positive. Only diagonal vertex-sign switching on one three-cycle is classified. No spin bordism group, eta invariant, fermion representation, bulk cancellation or obstruction over all representations is computed. The original cobordism-based intrinsic-sign claim remains open.",
       "see_also": [],
       "uses": []
     },

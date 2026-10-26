@@ -1412,3 +1412,6 @@ lean_lib CampaignGpImportGleason where
 
 lean_lib CampaignBfCocycleObstruction where
   roots := #[`CampaignBfCocycleObstruction]
+
+lean_lib CampaignSignedTriangleSwitching where
+  roots := #[`CampaignSignedTriangleSwitching]
