@@ -6672,16 +6672,25 @@
       "stage": "L1_TO_L2",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "imported; unique only on the named bilinear Kronecker interface",
-      "statement": "Hilbert tensor product as the unique way to combine systems. On Bool x Bool a bilinear integer-homogeneous Kronecker-normalized map equals the pointwise product; a weaker same-host combining interface has a rival (dump-the-right-report map).",
+      "statement": "For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1.",
       "source": [
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/gap_register.yaml#GAP-F001-S000-006",
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/continuum_price_ledger.yaml#PRICE-HD-04",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/finite_hilbert_boundary_from_primitive_difference.md:154"
       ],
       "lean": [
-        "lean4/H014BilinearProduct.lean::embed_eq_tensor",
-        "lean4/H014Interface.lean::two_combinings_share_interface_and_disagree",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels"
+        "lean4/CampaignGpImportTensorProduct.lean::tensor_pointwise",
+        "lean4/CampaignGpImportTensorProduct.lean::embed_eq_tensor",
+        "lean4/CampaignGpImportTensorProduct.lean::dumpRight_false_coord",
+        "lean4/CampaignGpImportTensorProduct.lean::dumpRight_true_coord",
+        "lean4/CampaignGpImportTensorProduct.lean::dumpRight_add_left",
+        "lean4/CampaignGpImportTensorProduct.lean::dumpRight_add_right",
+        "lean4/CampaignGpImportTensorProduct.lean::dumpRight_smul_left",
+        "lean4/CampaignGpImportTensorProduct.lean::dumpRight_smul_right",
+        "lean4/CampaignGpImportTensorProduct.lean::dumpRight_collapsed_tag",
+        "lean4/CampaignGpImportTensorProduct.lean::witness_tensor_one",
+        "lean4/CampaignGpImportTensorProduct.lean::witness_dump_zero",
+        "lean4/CampaignGpImportTensorProduct.lean::dumpRight_ne_tensor"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
@@ -6691,7 +6700,7 @@
       "imported_structure": [
         "tensor product combining rule: assumption"
       ],
-      "bottleneck": "Combining-systems uniqueness not derived; needs a second presented carrier (QM_122 7.1 item 1).",
+      "bottleneck": "The Hilbert-space tensor product is not derived as the unique way to combine systems. The agreement above uses additivity, integer homogeneity and the identity tag (i, j) on one Bool-by-Bool host. The dump-right map is a same-host rival whose tag collapses the second Boolean factor, so a weaker tag does not select the pointwise product. A second presented carrier and a physical composition rule stay imported (QM_122 7.1 item 1).",
       "tags": [],
       "see_also": [
         "FQ-GAP-TENSOR-UNIQUENESS"
@@ -6706,8 +6715,8 @@
         "narrowest_claim": "Exact tensor/dumpRight and norm-multiplicativity arrays, with generic bilinearity and a basis-collision control in Lean.",
         "does_not_support": "Refine the complete CombiningEmbed/Kronecker uniqueness theorem and justify the physical composition rule; weak tag interfaces do not select a Hilbert tensor product.",
         "next_test": "Refine the complete CombiningEmbed/Kronecker uniqueness theorem and justify the physical composition rule; weak tag interfaces do not select a Hilbert tensor product.",
-        "scope_effect": "consistent",
-        "reason": "Imported node; the review adds tensor/dumpRight arrays. The later tensor receipts supply composition results under explicit premises.",
+        "scope_effect": "statement_narrowed",
+        "reason": "Finite Bool-by-Bool agreement and a dump-right rival are recorded; Hilbert-space uniqueness stays imported.",
         "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "Hilbert tensor product as the unique way to combine systems. On Bool x Bool a bilinear integer-homogeneous Kronecker-normalized map equals the pointwise product; a weaker same-host combining interface has a rival (dump-the-right-report map).",
         "prior_bottleneck": "Combining-systems uniqueness not derived; needs a second presented carrier (QM_122 7.1 item 1).",
@@ -57625,13 +57634,22 @@
       ],
       "id": "TFQ-1032",
       "lean4": [
-        "lean4/H014BilinearProduct.lean::embed_eq_tensor",
-        "lean4/H014Interface.lean::two_combinings_share_interface_and_disagree",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels"
+        "lean4/CampaignGpImportTensorProduct.lean::tensor_pointwise",
+        "lean4/CampaignGpImportTensorProduct.lean::embed_eq_tensor",
+        "lean4/CampaignGpImportTensorProduct.lean::dumpRight_false_coord",
+        "lean4/CampaignGpImportTensorProduct.lean::dumpRight_true_coord",
+        "lean4/CampaignGpImportTensorProduct.lean::dumpRight_add_left",
+        "lean4/CampaignGpImportTensorProduct.lean::dumpRight_add_right",
+        "lean4/CampaignGpImportTensorProduct.lean::dumpRight_smul_left",
+        "lean4/CampaignGpImportTensorProduct.lean::dumpRight_smul_right",
+        "lean4/CampaignGpImportTensorProduct.lean::dumpRight_collapsed_tag",
+        "lean4/CampaignGpImportTensorProduct.lean::witness_tensor_one",
+        "lean4/CampaignGpImportTensorProduct.lean::witness_dump_zero",
+        "lean4/CampaignGpImportTensorProduct.lean::dumpRight_ne_tensor"
       ],
       "local_id": "GP-IMPORT-TENSOR-PRODUCT",
       "name": "gp-import-tensor-product",
-      "obligation": "Combining-systems uniqueness not derived; needs a second presented carrier (QM_122 7.1 item 1).",
+      "obligation": "The Hilbert-space tensor product is not derived as the unique way to combine systems. The agreement above uses additivity, integer homogeneity and the identity tag (i, j) on one Bool-by-Bool host. The dump-right map is a same-host rival whose tag collapses the second Boolean factor, so a weaker tag does not select the pointwise product. A second presented carrier and a physical composition rule stay imported (QM_122 7.1 item 1).",
       "parent_id": "TFQ-0006",
       "pfp_review_refs": [
         "dag/results/GP-IMPORT-TENSOR-PRODUCT/reviews/20261019_l1_import_audit/delivery_review_result.json"
@@ -57645,7 +57663,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "L1_TO_L2",
-      "summary": "Hilbert tensor product as the unique way to combine systems. On Bool x Bool a bilinear integer-homogeneous Kronecker-normalized map equals the pointwise product; a weaker same-host combining interface has a rival (dump-the-right-report map).",
+      "summary": "For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1.",
       "uuid": "fdcb5ebc-d0d8-528f-bc38-fd79567a53d5"
     },
     {
