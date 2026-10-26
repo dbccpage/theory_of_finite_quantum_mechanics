@@ -12634,7 +12634,7 @@
       "stage": "IMPLEMENTATION_SIBLING",
       "status": "OPEN",
       "source_status": "TFQ record_status GAP (source slice 06)",
-      "statement": "Unnormalized mass is a different carrier from the probability simplex. src/finite_valuation.rs states exact nonnegative Boolean valuations with no normalization requirement, and it admits an empty carrier that FinN refuses. src/lib.rs also declares signed_representation.rs, local_deterministic.rs, and marginal_compatibility.rs; those three bodies were not opened, so only the module declarations are in scope. The obligation is to keep an unnormalized valuation from standing in for a law that sums to one. H001ProbabilitySimplex.lean says its scaled integer grid is not the ordinary rational simplex.",
+      "statement": "For all natural numbers a and b, if a is at least 1 and b is at least 1, then a + b is not 1. The pair (1, 1) sums to 2, and 2 is not 1. The empty mass 0 is not 1. In the rationals, 1/2 + 1/2 = 1, the pair (1, 1) is not the pair (1/2, 1/2), and 1 + 1 is not 1. If a + b is positive, then a/(a + b) + b/(a + b) = 1. An unnormalized Boolean valuation on a general carrier, the Rust module contracts, and a ban on standing in for a unit-sum law stay outside this finite case.",
       "source": [
         "dag/derivations/22_implementation_sibling/tfq_0171_do_not_collapse_unnormalized_finite_valuations_into_the_normalized_rational_probability_simplex.md",
         "dag/derivations/independent/tfq-0171.md",
@@ -12659,7 +12659,15 @@
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.probability_simplex",
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.double_not_normalized",
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.signed_not_nonneg",
-        "lean4/H001Rats.lean::FableHilbertWalk20260819.H001Rats.qrel_equivalence"
+        "lean4/H001Rats.lean::FableHilbertWalk20260819.H001Rats.qrel_equivalence",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.positivePairMassNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.oneOneMass",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.twoNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.emptyMassNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.halfPairSumsToOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.oneOneNotUnit",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.unnormalizedPairDiffers",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.normalizeByTotal"
       ],
       "rust": [
         "code/rust/src/finite_probability/finite_valuation.rs::BooleanValuation::try_new",
@@ -12668,7 +12676,7 @@
         "code/rust/src/finite_probability/marginal_compatibility.rs::MarginalScenario::validate_probabilities"
       ],
       "imported_structure": [],
-      "bottleneck": "Do not collapse unnormalized finite valuations into the normalized rational probability simplex.",
+      "bottleneck": "Positive natural masses on two coordinates are separated from the unit sum, and dividing by a positive total returns a rational unit sum. The obligation to keep an unnormalized valuation from standing in for a law that sums to one, including the Rust files and an empty carrier refused by Fin n, remains open. AuthorityEffect: None.",
       "tags": [
         "unified-dag",
         "TFQ-0171",
@@ -48715,11 +48723,19 @@
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.probability_simplex",
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.double_not_normalized",
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.signed_not_nonneg",
-        "lean4/H001Rats.lean::FableHilbertWalk20260819.H001Rats.qrel_equivalence"
+        "lean4/H001Rats.lean::FableHilbertWalk20260819.H001Rats.qrel_equivalence",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.positivePairMassNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.oneOneMass",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.twoNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.emptyMassNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.halfPairSumsToOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.oneOneNotUnit",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.unnormalizedPairDiffers",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.normalizeByTotal"
       ],
       "local_id": "A06-006",
       "name": "Do not collapse unnormalized finite valuations into the normalized rational probability simplex",
-      "obligation": "Do not collapse unnormalized finite valuations into the normalized rational probability simplex.",
+      "obligation": "Positive natural masses on two coordinates are separated from the unit sum, and dividing by a positive total returns a rational unit sum. The obligation to keep an unnormalized valuation from standing in for a law that sums to one, including the Rust files and an empty carrier refused by Fin n, remains open. AuthorityEffect: None.",
       "parent_id": "TFQ-0167",
       "python": [
         "checks/independent/tfq-0171.py::run_all_checks"
@@ -48733,7 +48749,7 @@
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",
-      "summary": "Unnormalized mass is a different carrier from the probability simplex. src/finite_valuation.rs states exact nonnegative Boolean valuations with no normalization requirement, and it admits an empty carrier that FinN refuses. src/lib.rs also declares signed_representation.rs, local_deterministic.rs, and marginal_compatibility.rs; those three bodies were not opened, so only the module declarations are in scope. The obligation is to keep an unnormalized valuation from standing in for a law that sums to one. H001ProbabilitySimplex.lean says its scaled integer grid is not the ordinary rational simplex.",
+      "summary": "For all natural numbers a and b, if a is at least 1 and b is at least 1, then a + b is not 1. The pair (1, 1) sums to 2, and 2 is not 1. The empty mass 0 is not 1. In the rationals, 1/2 + 1/2 = 1, the pair (1, 1) is not the pair (1/2, 1/2), and 1 + 1 is not 1. If a + b is positive, then a/(a + b) + b/(a + b) = 1. An unnormalized Boolean valuation on a general carrier, the Rust module contracts, and a ban on standing in for a unit-sum law stay outside this finite case.",
       "uuid": "ad624434-8292-540c-b408-bc43541823ec"
     },
     {
