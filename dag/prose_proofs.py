@@ -3,7 +3,7 @@
 A proof section is the part of a Markdown file under papers/ that starts at a line
 "DAG node: `ID`" (one or more backticked node ids) and runs to the next heading or the next such
 line. It must contain a paragraph opening with "*Proof.*", and every Lean reference written as
-`lean4/<file>.lean::<name>` in it must match a declaration in this checkout. Comments, strings and fenced Markdown
+`lean4/<file>.lean::<name>` (or a `.lean` file under papers/) in it must match a declaration in this checkout. Comments, strings and fenced Markdown
 examples are excluded. These lexical checks establish neither compilation nor the validity of a
 mathematical argument; coverage counts only sections passing the structural checks.
 
@@ -31,7 +31,7 @@ PROOF_STATUSES = ("PROVED_LEAN", "PROVED_PROSE", "COMPUTATIONALLY_CHECKED")
 _NODE_LINE = re.compile(r"^DAG nodes?: (.+)$")
 _HEADING = re.compile(r"^#{1,6} ")
 _TICKED = re.compile(r"`([^`]+)`")
-_LEAN_REF = re.compile(r"`(lean4/[^`:]+\.lean)::([^`]+)`")
+_LEAN_REF = re.compile(r"`((?:lean4|papers)/[^`:]+\.lean)::([^`]+)`")
 
 
 def load_nodes(root: Path = ROOT) -> dict[str, dict]:
@@ -82,7 +82,8 @@ def lean_refs(text: str) -> list[tuple[str, str]]:
 
 def lean_ref_resolves(root: Path, path: str, name: str) -> bool:
     file = (root / path).resolve()
-    if ".." in Path(path).parts or not file.is_relative_to(root.resolve() / "lean4") or not file.is_file():
+    roots = (root.resolve() / "lean4", root.resolve() / "papers")
+    if ".." in Path(path).parts or not any(file.is_relative_to(p) for p in roots) or not file.is_file():
         return False
     declarations = declaration_names(file.read_text(encoding="utf-8"))
     if name in declarations:
