@@ -22276,18 +22276,27 @@
       "stage": "FERMION_SIGN",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-048 claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION",
-      "statement": "On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here.",
+      "statement": "For any commutative ring and finite hinge set, the action S=sum_h A_h*(tau-sum_j theta_hj) equals tau*sum_h A_h-sum_h A_h*sum_j theta_hj. For fixed deficits it is linear in the declared areas, and splitting an area while keeping its deficit fixed preserves its contribution. Zero deficits imply zero action. Declared integer data also show that zero total action need not mean zero deficits, and changing areas can change the action on the same finite index set.",
       "source": [
         "dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md",
+        "dag/derivations/independent/fsp-regge-deficit-action.md",
+        "dag/research/campaign_fsp-regge-deficit-action_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.deficit_expansion",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.area_linearity",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.flat_deficits_give_zero",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.same_deficit_area_split",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.zero_action_does_not_imply_flat",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.declared_areas_change_action"
+      ],
       "rust": [],
       "imported_structure": [
         "Regge calculus (Regge 1961; Cheeger-Mueller-Schrader convergence)"
       ],
-      "bottleneck": "Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).",
+      "bottleneck": "Areas, angles and the full-turn parameter are declared algebraic data. Geometric realizability, actual triangulation moves, Lorentzian signature, convergence to the Einstein-Hilbert action, and fermion-sign consequences are not established. Original target retained as an obligation: On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here. Prior boundary: Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -38077,7 +38086,7 @@
       ],
       "output": "FSP-REGGE-DEFICIT-ACTION",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).",
+      "mechanism": "Areas, angles and the full-turn parameter are declared algebraic data. Geometric realizability, actual triangulation moves, Lorentzian signature, convergence to the Einstein-Hilbert action, and fermion-sign consequences are not established. Original target retained as an obligation: On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here. Prior boundary: Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).",
       "source": [
         "dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -67152,20 +67161,31 @@
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md",
         "papers/core/fsp/theory_of_finite_fsp.md:668-680",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md:542-582"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md:542-582",
+        "dag/derivations/independent/fsp-regge-deficit-action.md",
+        "dag/research/campaign_fsp-regge-deficit-action_lean_replay.json"
       ],
       "id": "TFQ-1212",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.deficit_expansion",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.area_linearity",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.flat_deficits_give_zero",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.same_deficit_area_split",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.zero_action_does_not_imply_flat",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.declared_areas_change_action"
+      ],
       "local_id": "FSP-REGGE-DEFICIT-ACTION",
       "name": "Regge deficit angles and action",
-      "obligation": "Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).",
+      "obligation": "Areas, angles and the full-turn parameter are declared algebraic data. Geometric realizability, actual triangulation moves, Lorentzian signature, convergence to the Einstein-Hilbert action, and fermion-sign consequences are not established. Original target retained as an obligation: On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here. Prior boundary: Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).",
       "parent_id": "TFQ-0549",
-      "python": [],
+      "python": [
+        "checks/independent/fsp-regge-deficit-action.py"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "FERMION_SIGN",
-      "summary": "On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here.",
+      "summary": "For any commutative ring and finite hinge set, the action S=sum_h A_h*(tau-sum_j theta_hj) equals tau*sum_h A_h-sum_h A_h*sum_j theta_hj. For fixed deficits it is linear in the declared areas, and splitting an area while keeping its deficit fixed preserves its contribution. Zero deficits imply zero action. Declared integer data also show that zero total action need not mean zero deficits, and changing areas can change the action on the same finite index set.",
       "uuid": "bf1f062d-9a3a-55fb-b216-e5f4fac937de"
     },
     {

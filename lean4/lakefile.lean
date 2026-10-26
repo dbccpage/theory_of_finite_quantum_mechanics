@@ -1418,3 +1418,6 @@ lean_lib CampaignSignedTriangleSwitching where
 
 lean_lib CampaignIdentityConvention where
   roots := #[`CampaignIdentityConvention]
+
+lean_lib CampaignReggeFiniteAction where
+  roots := #[`CampaignReggeFiniteAction]

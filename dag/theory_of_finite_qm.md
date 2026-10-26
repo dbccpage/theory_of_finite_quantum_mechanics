@@ -10252,9 +10252,9 @@ Obligation: Only diagonal vertex-sign switching on one three-cycle is classified
 - DAG node: `FSP-REGGE-DEFICIT-ACTION`
 - Paper: [derivation](derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md)
 
-On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here.
+For any commutative ring and finite hinge set, the action S=sum_h A_h*(tau-sum_j theta_hj) equals tau*sum_h A_h-sum_h A_h*sum_j theta_hj. For fixed deficits it is linear in the declared areas, and splitting an area while keeping its deficit fixed preserves its contribution. Zero deficits imply zero action. Declared integer data also show that zero total action need not mean zero deficits, and changing areas can change the action on the same finite index set.
 
-Obligation: Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).
+Obligation: Areas, angles and the full-turn parameter are declared algebraic data. Geometric realizability, actual triangulation moves, Lorentzian signature, convergence to the Einstein-Hilbert action, and fermion-sign consequences are not established. Original target retained as an obligation: On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here. Prior boundary: Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).
 
 ### TFQ-1213 Discrete Wheeler-DeWitt constraint on triangulations
 
