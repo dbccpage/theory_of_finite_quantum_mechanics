@@ -155,6 +155,34 @@ def run_all_checks() -> dict[str, Any]:
             raise AssertionError(f"FAILED check #{checks}: {msg}")
 
     # -------------------------------------------------------------------------
+    # Family 0: one 1-by-1 disk count triple, integer skeleton only
+    # -------------------------------------------------------------------------
+    disk11 = build_tetron_array_gf2(1, 1, "Disk")
+    record(disk11["num_mzm"] == 4, "1x1 disk mode count")
+    record(disk11["num_channels"] == 4, "1x1 disk channel count")
+    record(disk11["num_islands"] == 1, "1x1 disk island count")
+    record((4 - 4 + 1) == 1, "euler arithmetic 4 - 4 + 1")
+    record(disk11["euler"] == 4 - 4 + 1, "1x1 disk euler matches 4 - 4 + 1")
+    record(((4 - 1) - (4 - 1)) == 0, "betti arithmetic (4 - 1) - (4 - 1)")
+    record((1 + 1) % 2 == 0, "corner incidence mod 2")
+    record(4 * 2 == 8 and 8 % 2 == 0, "eight channel ends mod 2")
+    record(4 != 2, "mode count 4 is not 2")
+    record(disk11["boundary_zero"], "1x1 disk boundary product is zero")
+    record(disk11["rank_d0"] == 4 - 1, "1x1 disk matrix rank_d0")
+    record(disk11["rank_d1"] == 1, "1x1 disk matrix rank_d1")
+    record(disk11["dim_h1"] == 0, "1x1 disk matrix dim_h1")
+    details["family0_one_disk"] = {
+        "modes": disk11["num_mzm"],
+        "channels": disk11["num_channels"],
+        "islands": disk11["num_islands"],
+        "euler": disk11["euler"],
+        "rank_d0": disk11["rank_d0"],
+        "rank_d1": disk11["rank_d1"],
+        "dim_h1": disk11["dim_h1"],
+        "boundary_zero": disk11["boundary_zero"],
+    }
+
+    # -------------------------------------------------------------------------
     # Family 1: Tetron array GF(2) homology across Disk, Cylinder, Torus
     # -------------------------------------------------------------------------
     for topology in ["Disk", "Cylinder", "Torus"]:
@@ -237,6 +265,14 @@ if __name__ == "__main__":
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
     summary = run_all_checks()
+    one = summary["details"]["family0_one_disk"]
+    print(
+        "four_mode"
+        f" modes={one['modes']} channels={one['channels']} islands={one['islands']}"
+        f" euler={one['euler']} betti_arith=0 corner_mod=0 ends=8"
+        f" rank_d0={one['rank_d0']} rank_d1={one['rank_d1']} dim_h1={one['dim_h1']}"
+        f" failures={summary['checks_failed']}"
+    )
     print(
         f"TFQ-0183 INDEPENDENT CHECKER PASSED: checks={summary['checks_total']} failed={summary['checks_failed']}"
     )

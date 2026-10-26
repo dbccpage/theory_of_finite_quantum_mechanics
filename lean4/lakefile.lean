@@ -1399,3 +1399,7 @@ lean_lib CampaignGpImportComplexField where
 -- Campaign: GP-IMPORT-CIRCLE-U1. Not a default target.
 lean_lib CampaignGpImportCircleU1 where
   roots := #[`CampaignGpImportCircleU1]
+
+-- Campaign: TFQ-0183. Not a default target.
+lean_lib CampaignTfq0183FourModeDisk where
+  roots := #[`CampaignTfq0183FourModeDisk]

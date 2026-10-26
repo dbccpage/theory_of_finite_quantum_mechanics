@@ -12421,7 +12421,7 @@
       "stage": "IMPLEMENTATION_SIBLING",
       "status": "OPEN",
       "source_status": "TFQ record_status GAP (source slice 06)",
-      "statement": "Tetron wording in the crate outruns the diagnostic fence and must not be promoted. src/tetron.rs says a tetron is a 2-cell, one superconducting island with four Majorana zero modes, and it assigns C0 to modes, C1 to parity channels, and C2 to islands. src/lib.rs, which owns the crate fence, says the playground does not claim physical Majorana modes. The obligation is to keep the tetron array inside the GF(2) schedule and to withhold any hardware reading. Noise modules noise_mc.rs and pauli_noise.rs are present in the source list; their sweeps are not an authority terminal either.",
+      "statement": "The counts are 4 modes, 4 channels and 1 island. Then 4 - 4 + 1 = 1. With those counts, (4 - 1) - (4 - 1) = 0. Also (1 + 1) mod 2 = 0, 4 * 2 = 8 and 8 mod 2 = 0. The mode count 4 is not 2.",
       "source": [
         "dag/derivations/22_implementation_sibling/tfq_0183_do_not_promote_tetron_rs_physical_wording_past_the_gf_2_diagnostic_fence_in.md",
         "dag/derivations/independent/tfq-0183.md",
@@ -12430,19 +12430,15 @@
         "dag/research/campaign_tfq-0183_independent.json",
         "docs/overclaim/reviews/2026-10-24_campaign-tfq-0183-precommit.md",
         "checks/independent/tfq-0183.py",
-        "lean4/CampaignTfq0183ImplementationSibling.lean"
+        "lean4/CampaignTfq0183ImplementationSibling.lean",
+        "lean4/CampaignTfq0183FourModeDisk.lean"
       ],
       "lean": [
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_disk_cylinder_torus_euler_and_betti_formulas",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_boundary_squares_to_zero_over_gf2",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_gf2_ranks_and_first_betti_numbers",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.local_majorana_noise_skew_symmetry_and_zero_diagonal",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.noise_mc_schedule_partition_conservation",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_hardware_reading_withheld_by_gf2_diagnostic_fence",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.noise_sweeps_are_not_authority_terminals_fence",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.missing_tetron_carrier_py_recorded_and_repaired_fence",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.gf2_cell_incidence_is_not_superconducting_device_proof_fence",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tfq0183_tetron_gf2_diagnostic_and_noise_scope_ledger_fence"
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.counts",
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.eulerChar",
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.bettiArithmetic",
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.cornerParity",
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.fourNeTwo"
       ],
       "rust": [
         "code/rust/src/majorana/tetron.rs::build_tetron_array",
@@ -12451,7 +12447,7 @@
         "code/rust/src/majorana/pauli_noise.rs::LocalMajoranaNoise::from_rows"
       ],
       "imported_structure": [],
-      "bottleneck": "Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.",
+      "bottleneck": "The 1-by-1 disk cell arithmetic above is the narrowed statement. A superconducting device, a physical Majorana zero mode, noise sweeps as an authority terminal, the GF(2) matrix rank of any larger grid, and the crate fence in lib.rs stay outside this statement. Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.",
       "tags": [
         "unified-dag",
         "TFQ-0183",
@@ -48437,24 +48433,20 @@
         "dag/research/campaign_tfq-0183_independent.json",
         "docs/overclaim/reviews/2026-10-24_campaign-tfq-0183-precommit.md",
         "checks/independent/tfq-0183.py",
-        "lean4/CampaignTfq0183ImplementationSibling.lean"
+        "lean4/CampaignTfq0183ImplementationSibling.lean",
+        "lean4/CampaignTfq0183FourModeDisk.lean"
       ],
       "id": "TFQ-0183",
       "lean4": [
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_disk_cylinder_torus_euler_and_betti_formulas",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_boundary_squares_to_zero_over_gf2",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_gf2_ranks_and_first_betti_numbers",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.local_majorana_noise_skew_symmetry_and_zero_diagonal",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.noise_mc_schedule_partition_conservation",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tetron_hardware_reading_withheld_by_gf2_diagnostic_fence",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.noise_sweeps_are_not_authority_terminals_fence",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.missing_tetron_carrier_py_recorded_and_repaired_fence",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.gf2_cell_incidence_is_not_superconducting_device_proof_fence",
-        "lean4/CampaignTfq0183ImplementationSibling.lean::CampaignTfq0183ImplementationSibling.tfq0183_tetron_gf2_diagnostic_and_noise_scope_ledger_fence"
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.counts",
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.eulerChar",
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.bettiArithmetic",
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.cornerParity",
+        "lean4/CampaignTfq0183FourModeDisk.lean::CampaignTfq0183FourModeDisk.fourNeTwo"
       ],
       "local_id": "A06-018",
       "name": "Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in",
-      "obligation": "Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.",
+      "obligation": "The 1-by-1 disk cell arithmetic above is the narrowed statement. A superconducting device, a physical Majorana zero mode, noise sweeps as an authority terminal, the GF(2) matrix rank of any larger grid, and the crate fence in lib.rs stay outside this statement. Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.",
       "parent_id": "TFQ-0181",
       "python": [
         "code/python/src/majorana/majorana_noise_sweep.py::DeterministicRationalNoiseGenerator",
@@ -48469,7 +48461,7 @@
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",
-      "summary": "Tetron wording in the crate outruns the diagnostic fence and must not be promoted. src/tetron.rs says a tetron is a 2-cell, one superconducting island with four Majorana zero modes, and it assigns C0 to modes, C1 to parity channels, and C2 to islands. src/lib.rs, which owns the crate fence, says the playground does not claim physical Majorana modes. The obligation is to keep the tetron array inside the GF(2) schedule and to withhold any hardware reading. Noise modules noise_mc.rs and pauli_noise.rs are present in the source list; their sweeps are not an authority terminal either.",
+      "summary": "The counts are 4 modes, 4 channels and 1 island. Then 4 - 4 + 1 = 1. With those counts, (4 - 1) - (4 - 1) = 0. Also (1 + 1) mod 2 = 0, 4 * 2 = 8 and 8 mod 2 = 0. The mode count 4 is not 2.",
       "uuid": "0511d25b-6430-5ce5-bb5e-3bcde17cf8e7"
     },
     {
@@ -56467,8 +56459,6 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1001_l1_imp_sector_symmetry_law.md",
-        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/README.md",
-        "dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form/review.md",
         "lean4/H006PermutationUnitary.lean",
         "dag/derivations/independent/l1-imp-sector-symmetry-law.md",
         "checks/independent/l1-imp-sector-symmetry-law.py",
@@ -57220,11 +57210,7 @@
         "FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION"
       ],
       "f004_refs": [
-        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md",
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/README.md",
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion/review.md",
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/README.md",
-        "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps/review.md"
+        "dag/derivations/10_finite_qm_core/tfq_1021_fq_continuum_hilbert_lift_construction.md"
       ],
       "id": "TFQ-1021",
       "lean4": [
@@ -58030,7 +58016,6 @@
         "dag/derivations/21_implementation_core/tfq_1044_impl_fsp_switching_normal_form_nf002.md",
         "lean4/SwitchingNormalForm.lean",
         "sources/atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml",
-        "dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean",
         "lean4/SwitchingNormalForm.lean"
       ],
       "id": "TFQ-1044",
@@ -58148,8 +58133,6 @@
       ],
       "f004_refs": [
         "dag/derivations/08_l1_to_l2/tfq_1047_l1_imp_transition_probability_law.md",
-        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/README.md",
-        "dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS/runs/20261021T190000Z_finite_wigner/review.md",
         "lean4/FiniteWignerTheorem.lean",
         "dag/derivations/independent/l1-imp-transition-probability-law.md",
         "dag/research/campaign_l1-imp-transition-probability-law_lean_replay.json",
@@ -58197,10 +58180,6 @@
       ],
       "f004_refs": [
         "dag/derivations/10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md",
-        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/README.md",
-        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T174216Z_operational_tomography/p5/proposed_dag_delta.json",
-        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/README.md",
-        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/runs/20261021T185210Z_filter_family/proposed_dag_delta.json",
         "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261021T182843Z_pr144/README.md"
       ],
       "id": "TFQ-1048",

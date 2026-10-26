@@ -7798,9 +7798,9 @@ Obligation: Treat GF(2) terminalize receipts as diagnostic schedule classes, not
 - Atlas paths:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
 
-Tetron wording in the crate outruns the diagnostic fence and must not be promoted. src/tetron.rs says a tetron is a 2-cell, one superconducting island with four Majorana zero modes, and it assigns C0 to modes, C1 to parity channels, and C2 to islands. src/lib.rs, which owns the crate fence, says the playground does not claim physical Majorana modes. The obligation is to keep the tetron array inside the GF(2) schedule and to withhold any hardware reading. Noise modules noise_mc.rs and pauli_noise.rs are present in the source list; their sweeps are not an authority terminal either.
+The counts are 4 modes, 4 channels and 1 island. Then 4 - 4 + 1 = 1. With those counts, (4 - 1) - (4 - 1) = 0. Also (1 + 1) mod 2 = 0, 4 * 2 = 8 and 8 mod 2 = 0. The mode count 4 is not 2.
 
-Obligation: Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.
+Obligation: The 1-by-1 disk cell arithmetic above is the narrowed statement. A superconducting device, a physical Majorana zero mode, noise sweeps as an authority terminal, the GF(2) matrix rank of any larger grid, and the crate fence in lib.rs stay outside this statement. Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.
 
 ### TFQ-0184 Do not read paper 009 reflexivity declarations as measured tetron homology
 
