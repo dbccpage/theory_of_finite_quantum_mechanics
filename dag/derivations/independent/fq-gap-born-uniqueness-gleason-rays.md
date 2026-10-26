@@ -51,7 +51,7 @@ Exact probes (not formalised, not claimed): the same elimination over frames wit
 
 ## 4. Relation between the two carriers
 
-Every real frame is a Q(i)-frame, so a frame function on Q(i)^3 restricts to one on Q^3. The exotic function of Section 2 is a class function modulo 4 on Z^3, whereas by Theorem C (and the mod-4 probe) no non-constant class function modulo 4 exists on Z[i]^3. So if the exotic function extends to Q(i)^3 at all, the extension is not a residue class function modulo 4. Exact linear algebra over Gaussian boxes of radius 2, with the real rays fixed to the exotic values and permutation/conjugation symmetry imposed, found no inconsistency and determined 60 non-real ray values (among them 1/2 on (1, -1-i, -1)); this is finite evidence only and decides nothing.
+Every real frame is a Q(i)-frame, so a frame function on Q(i)^3 restricts to one on Q^3. The exotic function of Section 2 is a class function modulo 4 on Z^3. Theorem C excludes only residue-class functions modulo 2 on Z[i]^3; the finite modulo-4 elimination of Section 3 is evidence, not a theorem, so whether an extension of the exotic function to Q(i)^3 could be a residue class function modulo 4 is not decided here. Exact linear algebra over Gaussian boxes of radius 2, with the real rays fixed to the exotic values and permutation/conjugation symmetry imposed, found no inconsistency and determined 60 non-real ray values (among them 1/2 on (1, -1-i, -1)); this is finite evidence only and decides nothing.
 
 ## What is proved
 
