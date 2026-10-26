@@ -1494,3 +1494,7 @@ lean_lib CampaignDfmRefinementLimit where
 -- Reviewed campaign module; non-default target.
 lean_lib CampaignLqgProjectiveLimit where
   roots := #[`CampaignLqgProjectiveLimit]
+
+-- Reviewed campaign module; non-default target.
+lean_lib CampaignL1U1SelectorOtherSegment where
+  roots := #[`CampaignL1U1SelectorOtherSegment]
