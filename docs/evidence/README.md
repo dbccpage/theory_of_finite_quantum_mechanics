@@ -6,7 +6,7 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
-The DAG has 925 nodes in 36 stages. Evidence grades: E0 152, E1 196, E2 35, E3 542.
+The DAG has 925 nodes in 36 stages. Evidence grades: E0 152, E1 195, E2 35, E3 543.
 
 ### What is proved here, what is imported, what is open
 
@@ -24,7 +24,7 @@ The DAG has 925 nodes in 36 stages. Evidence grades: E0 152, E1 196, E2 35, E3 5
 
 Of the 268 `PROVED_LEAN` nodes, 268 reach grade E3 or E4 (100 percent); 0 do not. The second group is listed in [mismatches](mismatches.md).
 
-Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 542 nodes at E3, 166 have a qualifying review, 37 of those cite in-repo Rust or Python code that is not a test, and 39 have a runnable test but no review.
+Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 543 nodes at E3, 166 have a qualifying review, 37 of those cite in-repo Rust or Python code that is not a test, and 39 have a runnable test but no review.
 
 ### Where the Lean evidence stands
 
@@ -42,9 +42,9 @@ The `lean` fields of nodes cite 2413 distinct Lean declarations that lie in file
 | `IMPORTED_ASSUMPTION` | 4 | 13 | 0 | 53 | 0 | 70 |
 | `ADMITTED_PRIMITIVE` | 0 | 0 | 0 | 3 | 0 | 3 |
 | `SOURCE_RECORD` | 52 | 28 | 0 | 1 | 0 | 81 |
-| `OPEN` | 21 | 60 | 6 | 87 | 0 | 174 |
+| `OPEN` | 21 | 59 | 6 | 88 | 0 | 174 |
 | `REFUTED` | 0 | 4 | 1 | 1 | 0 | 6 |
-| Total | 152 | 196 | 35 | 542 | 0 | 925 |
+| Total | 152 | 195 | 35 | 543 | 0 | 925 |
 
 ### Stage by evidence grade
 
@@ -83,7 +83,7 @@ The `lean` fields of nodes cite 2413 distinct Lean declarations that lie in file
 | [ADS_CFT](stages/ADS_CFT.md) | 5 | 1 | 0 | 7 | 0 | 13 | 3 | 0 |
 | [LOOP_QUANTUM_GRAVITY](stages/LOOP_QUANTUM_GRAVITY.md) | 8 | 2 | 0 | 6 | 0 | 16 | 4 | 0 |
 | [GENESIS_TO_HIGHER](stages/GENESIS_TO_HIGHER.md) | 0 | 10 | 0 | 2 | 0 | 12 | 0 | 0 |
-| [OBSERVER_PRESHEAF](stages/OBSERVER_PRESHEAF.md) | 0 | 23 | 4 | 6 | 0 | 33 | 2 | 0 |
+| [OBSERVER_PRESHEAF](stages/OBSERVER_PRESHEAF.md) | 0 | 22 | 4 | 7 | 0 | 33 | 2 | 0 |
 
 ## Evidence grades
 

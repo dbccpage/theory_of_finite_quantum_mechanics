@@ -13070,7 +13070,7 @@ As the ledger states them for the Rust module empirical_presheaf. (B15) The l1 d
 
 Obligation: The Lean statement is the narrowed ceiling arithmetic above. The Rust receipt replay, tamper rejection, shape check, zero-gap dual certificate, PR box, noisy boxes, and the functions verify_noncontextual_fraction and verify_l1_defect_receipt are not run here. The in-repo module uses omega_solvers, an external crate that is not a workspace member.
 
-### TFQ-2520 What is not formalised in Lean
+### TFQ-2520 Four Boolean parity constraints with no common assignment
 
 - UUID: `fc3c5534-d852-5f12-9000-7ac59451afc4`
 - Parent: `TFQ-1046`
@@ -13078,9 +13078,9 @@ Obligation: The Lean statement is the narrowed ceiling arithmetic above. The Rus
 - DAG node: `OPS-LEAN-GAP`
 - Paper: [derivation](derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md)
 
-Not formalised in Lean: the equivalences between global sections, conv(A) and the noncontextual fraction, and between strong contextuality and NCF 0 (nodes OPS-NCF-LHV-EQUIVALENCE and OPS-STRONG-CONTEXTUALITY-NCF-ZERO); Vorob'ev sufficiency and its converse (node OPS-VOROBEV-THEOREM); delta0 e = 0 if and only if e is no-signalling; rational normalisation of weights; and any link from the Lean model of natural-number-weighted lists to the Rust Scenario type or to the Rust and Python gates.
+On four Boolean variables a, a', b and b', no assignment satisfies a xor b = false, a xor b' = false, a' xor b = false and a' xor b' = true together. The exclusive-or of those four left-hand sides is false for every assignment, and the exclusive-or of false, false, false and true is true. There are 16 assignments.
 
-Obligation: Missing: a Lean proof of any item listed in the statement. The Lean file lean4/LggrFiniteResults.lean covers only the statements of nodes OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among these rows.
+Obligation: This record is the four-constraint table above. Equivalences among global sections, conv(A) and the noncontextual fraction, strong contextuality and NCF 0, Vorob'ev sufficiency and its converse, the criterion delta0 e = 0 for no-signalling, rational normalisation of weights, and any link from natural-number-weighted lists to the Rust Scenario type stay outside. lean4/LggrFiniteResults.lean still covers only OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among the older rows. AuthorityEffect: None.
 
 ### TFQ-2521 The three-role gate on a fixed fixture
 

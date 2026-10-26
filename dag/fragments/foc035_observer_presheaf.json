@@ -646,16 +646,18 @@
       "stage": "OBSERVER_PRESHEAF",
       "status": "OPEN",
       "source_status": "Ledger row L035-L1, status open.",
-      "statement": "Not formalised in Lean: the equivalences between global sections, conv(A) and the noncontextual fraction, and between strong contextuality and NCF 0 (nodes OPS-NCF-LHV-EQUIVALENCE and OPS-STRONG-CONTEXTUALITY-NCF-ZERO); Vorob'ev sufficiency and its converse (node OPS-VOROBEV-THEOREM); delta0 e = 0 if and only if e is no-signalling; rational normalisation of weights; and any link from the Lean model of natural-number-weighted lists to the Rust Scenario type or to the Rust and Python gates.",
+      "statement": "On four Boolean variables a, a', b and b', no assignment satisfies a xor b = false, a xor b' = false, a' xor b = false and a' xor b' = true together. The exclusive-or of those four left-hand sides is false for every assignment, and the exclusive-or of false, false, false and true is true. There are 16 assignments.",
       "source": [
         "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/claim_ledger.md#L035-L1",
         "sources/atlas/F004_papers/001_finite_obstruction_calculus/035_lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#4",
-        "dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md"
+        "dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md",
+        "lean4/CampaignOpsLeanGap.lean",
+        "checks/independent/ops-lean-gap.py"
       ],
       "lean": [],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Missing: a Lean proof of any item listed in the statement. The Lean file lean4/LggrFiniteResults.lean covers only the statements of nodes OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among these rows.",
+      "bottleneck": "This record is the four-constraint table above. Equivalences among global sections, conv(A) and the noncontextual fraction, strong contextuality and NCF 0, Vorob'ev sufficiency and its converse, the criterion delta0 e = 0 for no-signalling, rational normalisation of weights, and any link from natural-number-weighted lists to the Rust Scenario type stay outside. lean4/LggrFiniteResults.lean still covers only OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among the older rows. AuthorityEffect: None.",
       "tags": [
         "foc035-observer-presheaf",
         "TFQ-2520",
@@ -1950,17 +1952,21 @@
         "dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md"
       ],
       "id": "TFQ-2520",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignOpsLeanGap.lean::CampaignOpsLeanGap.noAssignment"
+      ],
       "local_id": "OPS-LEAN-GAP",
-      "name": "What is not formalised in Lean",
-      "obligation": "Missing: a Lean proof of any item listed in the statement. The Lean file lean4/LggrFiniteResults.lean covers only the statements of nodes OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among these rows.",
+      "name": "Four Boolean parity constraints with no common assignment",
+      "obligation": "This record is the four-constraint table above. Equivalences among global sections, conv(A) and the noncontextual fraction, strong contextuality and NCF 0, Vorob'ev sufficiency and its converse, the criterion delta0 e = 0 for no-signalling, rational normalisation of weights, and any link from natural-number-weighted lists to the Rust Scenario type stay outside. lean4/LggrFiniteResults.lean still covers only OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among the older rows. AuthorityEffect: None.",
       "parent_id": "TFQ-1046",
-      "python": [],
+      "python": [
+        "checks/independent/ops-lean-gap.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "foc035_observer_presheaf",
       "stage": "OBSERVER_PRESHEAF",
-      "summary": "Not formalised in Lean: the equivalences between global sections, conv(A) and the noncontextual fraction, and between strong contextuality and NCF 0 (nodes OPS-NCF-LHV-EQUIVALENCE and OPS-STRONG-CONTEXTUALITY-NCF-ZERO); Vorob'ev sufficiency and its converse (node OPS-VOROBEV-THEOREM); delta0 e = 0 if and only if e is no-signalling; rational normalisation of weights; and any link from the Lean model of natural-number-weighted lists to the Rust Scenario type or to the Rust and Python gates.",
+      "summary": "On four Boolean variables a, a', b and b', no assignment satisfies a xor b = false, a xor b' = false, a' xor b = false and a' xor b' = true together. The exclusive-or of those four left-hand sides is false for every assignment, and the exclusive-or of false, false, false and true is true. There are 16 assignments.",
       "uuid": "fc3c5534-d852-5f12-9000-7ac59451afc4"
     },
     {
