@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises.
+General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises. On integer coefficients, every 2 by 2 outer product of two vectors has determinant 0, and the matrix with entries 1, 0, 0 and 1 has determinant 1, so that matrix is not an outer product of two integer vectors.
 
 ### Governing Obligation
-The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional.
+The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional. The integer determinant split separates the matrix with entries 1, 0, 0 and 1 from the outer products of integer vectors. It does not select a tensor product, compare state or effect cones, or discharge the operational premises. AuthorityEffect: None.
 
 ### Source Status
 The 20261019 scope audit remains a determinant obstruction on a supplied rational host. TFQ-0410--TFQ-0412 verify general Lean tomography, Schmidt reachability and operational state-cone reconstruction. TFQ-0414--TFQ-0416 verify the generated effect cone, saturated binary interval and finite POVM corollaries. TFQ-0413 verifies assumption countermodels in Lean: full-cone duality, all-dimension cone separations, exact two-qubit calibration failures and hidden-coordinate tomography failure; external classification and primitive selection remain outside scope.
@@ -46,6 +46,9 @@ The 20261019 scope audit remains a determinant obstruction on a supplied rationa
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
+- `lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.outerDet`
+- `lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityDet`
+- `lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityNotOuter`
 - `lean4/CoupledRelationalProjectors.lean::QuantumMechanics.CoupledRelationalProjectors.coupled_bipartite_and_tripartite_relational_master_certificate`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_tensor_uniqueness_min_vs_max_tensor_and_covariance`
@@ -79,3 +82,7 @@ The 20261019 scope audit remains a determinant obstruction on a supplied rationa
   - `dag/derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md`
   - `dag/derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md`
   - `dag/research/tensor_countermodel_validation.json`
+  - `lean4/CampaignFqGapTensorUniqueness.lean`
+  - `dag/derivations/independent/fq-gap-tensor-uniqueness.md`
+  - `dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json`
+  - `checks/independent/fq-gap-tensor-uniqueness.py`

@@ -588,8 +588,10 @@
     {
       "node_id": "FQ-GAP-TENSOR-UNIQUENESS",
       "review": "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Review audits only a 2x2 coefficient host; the node text was rewritten from the later tensor receipts, which supersede it. The application sync owns the node text.",
+      "scope_effect": "statement_narrowed",
+      "statement": "General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises. On integer coefficients, every 2 by 2 outer product of two vectors has determinant 0, and the matrix with entries 1, 0, 0 and 1 has determinant 1, so that matrix is not an outer product of two integer vectors.",
+      "bottleneck": "The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional. The integer determinant split separates the matrix with entries 1, 0, 0 and 1 from the outer products of integer vectors. It does not select a tensor product, compare state or effect cones, or discharge the operational premises. AuthorityEffect: None.",
+      "reason": "The standing text keeps the operational premises as supplied, and adds the integer outer-product determinant on a 2 by 2 integer matrix. Tensor selection stays supplied.",
       "superseded_by": [
         "dag/research/tensor_composition_validation.json",
         "dag/research/tensor_formalization_validation.json",

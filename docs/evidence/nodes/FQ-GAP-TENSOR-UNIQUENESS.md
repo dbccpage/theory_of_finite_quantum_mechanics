@@ -4,19 +4,19 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 
 ## Statement
 
-> General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises.
+> General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises. On integer coefficients, every 2 by 2 outer product of two vectors has determinant 0, and the matrix with entries 1, 0, 0 and 1 has determinant 1, so that matrix is not an outer product of two integer vectors.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 8
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
-- distinct cited Lean declarations covered by a current replay receipt: 3
+- counted in-repo evidence files: 12
+- cited Lean, Rust or Python symbols found in their in-repo files: 8
+- distinct cited Lean declarations covered by a current replay receipt: 7
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -33,7 +33,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Bottleneck
 
-The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional.
+The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional. The integer determinant split separates the matrix with entries 1, 0, 0 and 1 from the outer products of integer vectors. It does not select a tensor product, compare state or effect cones, or discharge the operational premises. AuthorityEffect: None.
 
 ## Source status
 
@@ -41,7 +41,7 @@ The 20261019 scope audit remains a determinant obstruction on a supplied rationa
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: On the admitted 2x2 rational coefficient host every simple tensor has zero coefficient determinant; \[\[1,0\],\[0,1\]\] has determinant one and is not simple. Native norm multiplication is checked on retained inputs.
   - does not support: Formalize state/effect cones, covariance requirements, their min/max comparison and any uniqueness theorem; general tensor selection remains an import.
   - next test: Formalize state/effect cones, covariance requirements, their min/max comparison and any uniqueness theorem; general tensor selection remains an import.
@@ -49,6 +49,24 @@ The 20261019 scope audit remains a determinant obstruction on a supplied rationa
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignFqGapTensorUniqueness.lean`
+
+- file: [lean4/CampaignFqGapTensorUniqueness.lean](../../../lean4/CampaignFqGapTensorUniqueness.lean)
+- sha256 (`bytes`): `e49a61cbcdcbd8f885d757b2cb03962e3db9ec07a5dcb1573308d0ebd2f3a971`
+- cited in: node.lean, node.source, receipt dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json (CampaignFqGapTensorUniqueness), record TFQ-1019
+- replay: `verified`
+  - receipt [dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json](../../../dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json) (module `CampaignFqGapTensorUniqueness`): recorded sha256 `e49a61cbcdcbd8f885d757b2cb03962e3db9ec07a5dcb1573308d0ebd2f3a971` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignFqGapTensorUniqueness`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignFqGapTensorUniqueness.identityDet` | yes | yes | yes | propext | `#print axioms CampaignFqGapTensorUniqueness.identityDet` |
+| `CampaignFqGapTensorUniqueness.identityNotOuter` | yes | yes | yes | propext | `#print axioms CampaignFqGapTensorUniqueness.identityNotOuter` |
+| `CampaignFqGapTensorUniqueness.outerDet` | yes | yes | yes | propext | `#print axioms CampaignFqGapTensorUniqueness.outerDet` |
+| `CampaignFqGapTensorUniqueness.productsEq` | yes | yes | yes | propext | `#print axioms CampaignFqGapTensorUniqueness.productsEq` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/CoupledRelationalProjectors.lean`
 
@@ -96,10 +114,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust, record TFQ-1019
 - counts toward the grade: no
 
+### Python: `checks/independent/fq-gap-tensor-uniqueness.py`
+
+- file: [checks/independent/fq-gap-tensor-uniqueness.py](../../../checks/independent/fq-gap-tensor-uniqueness.py)
+- sha256 (`bytes`): `be370f021c3d2be68f061661be3de12ea9bebcf24632edaeb0d0e8ff9fb68476`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md](../../../dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md)
-- sha256 (`lf-normalised`): `1fda0a5a407c3168c4c8bd936049059514e100157f2594c4f2d96c5bae7d5f78`
+- sha256 (`lf-normalised`): `7e5f98cca988cd5b534bab6b35427012bb913330064dcf02df6a09f7fb5a6577`
 - generated view: listed, not counted
 - cited in: record TFQ-1019
 - counts toward the grade: no
@@ -144,6 +169,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: no
 
+### Documents and data: `dag/derivations/independent/fq-gap-tensor-uniqueness.md`
+
+- file: [dag/derivations/independent/fq-gap-tensor-uniqueness.md](../../../dag/derivations/independent/fq-gap-tensor-uniqueness.md)
+- sha256 (`lf-normalised`): `b3ad9cee9caf3c3767dc94e423239a35290d3d7a31be2fc81b8bf2b7fee7bb7c`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json`
+
+- file: [dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json](../../../dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json)
+- sha256 (`lf-normalised`): `a108cb228bfd1cde62d50ee423dc689fd0f6882042a7022c1ee71c9a8ff516ce`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/research/tensor_composition_validation.json`
 
 - file: [dag/research/tensor_composition_validation.json](../../../dag/research/tensor_composition_validation.json)
@@ -154,7 +193,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/tensor_countermodel_validation.json`
 
 - file: [dag/research/tensor_countermodel_validation.json](../../../dag/research/tensor_countermodel_validation.json)
-- sha256 (`lf-normalised`): `a6a47110139ebe60ab24bec3a504539758a29479eae47576eb5a35c36d8bbb78`
+- sha256 (`lf-normalised`): `bce60819d00a80712c1c88fdbab5501acfd16deaff79fc5fd42868000e4f1297`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -21485,9 +21485,9 @@
       "fully coherently calibrated reversible controlled shift",
       "effect and finite-test saturation for full measurement availability"
     ],
-    "statement": "General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises.",
+    "statement": "General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises. On integer coefficients, every 2 by 2 outer product of two vectors has determinant 0, and the matrix with entries 1, 0, 0 and 1 has determinant 1, so that matrix is not an outer product of two integer vectors.",
     "source_status": "The 20261019 scope audit remains a determinant obstruction on a supplied rational host. TFQ-0410--TFQ-0412 verify general Lean tomography, Schmidt reachability and operational state-cone reconstruction. TFQ-0414--TFQ-0416 verify the generated effect cone, saturated binary interval and finite POVM corollaries. TFQ-0413 verifies assumption countermodels in Lean: full-cone duality, all-dimension cone separations, exact two-qubit calibration failures and hidden-coordinate tomography failure; external classification and primitive selection remain outside scope.",
-    "bottleneck": "The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional.",
+    "bottleneck": "The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional. The integer determinant split separates the matrix with entries 1, 0, 0 and 1 from the outer products of integer vectors. It does not select a tensor product, compare state or effect cones, or discharge the operational premises. AuthorityEffect: None.",
     "source": [
       "dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md",
       "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
@@ -21497,7 +21497,11 @@
       "dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md",
       "dag/derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md",
       "dag/derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md",
-      "dag/research/tensor_countermodel_validation.json"
+      "dag/research/tensor_countermodel_validation.json",
+      "lean4/CampaignFqGapTensorUniqueness.lean",
+      "dag/derivations/independent/fq-gap-tensor-uniqueness.md",
+      "dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json",
+      "checks/independent/fq-gap-tensor-uniqueness.py"
     ],
     "see_also": [
       "TENSOR-ASSUMPTION-COUNTERMODELS",

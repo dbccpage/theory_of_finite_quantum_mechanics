@@ -1490,3 +1490,7 @@ lean_lib «CampaignFiniteGroupPachner» where
 -- Conditional continuum campaign: DFM-CONTINUUM-INTERFACE. Non-default target.
 lean_lib CampaignDfmRefinementLimit where
   roots := #[`CampaignDfmRefinementLimit]
+
+-- Campaign: FQ-GAP-TENSOR-UNIQUENESS. Not a default target.
+lean_lib CampaignFqGapTensorUniqueness where
+  roots := #[`CampaignFqGapTensorUniqueness]
