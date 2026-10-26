@@ -145,7 +145,7 @@ status are not claimed as proved and have no proof section.
 
 ## FINITE_QM_STRUCTURE
 
-22 of 25 with a prose proof.
+23 of 25 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
@@ -158,7 +158,7 @@ status are not claimed as proved and have no proof section.
 | `DS-QM073-FINITE-CHSH-AND-PR-BOX` | COMPUTATIONALLY_CHECKED | [finite_quantum_foundations_proofs: 2.3 Bare tables, CHSH and the PR box](../papers/foundations/finite_quantum_foundations_proofs.md#23-bare-tables-chsh-and-the-pr-box) |
 | `DS-QM074-NO-SIGNALING-MARGINAL` | COMPUTATIONALLY_CHECKED | [finite_quantum_foundations_proofs: 2.4 Local operations do not signal](../papers/foundations/finite_quantum_foundations_proofs.md#24-local-operations-do-not-signal) |
 | `DS-QM080-IMPORT-FREE-TRACE-NORM-CORE` | COMPUTATIONALLY_CHECKED | [finite_quantum_foundations_proofs: 3.1 The $\ell^1$ core of trace distance](../papers/foundations/finite_quantum_foundations_proofs.md#31-the-ell1-core-of-trace-distance) |
-| `DS-QM081-CPTP-MONOTONE-NOT-SELECTING` | PROVED_LEAN | *none yet* |
+| `DS-QM081-CPTP-MONOTONE-NOT-SELECTING` | PROVED_LEAN | [finite_quantum_foundations_proofs: 3.2 Half trace norm on diagonal states, and its scale](../papers/foundations/finite_quantum_foundations_proofs.md#32-half-trace-norm-on-diagonal-states-and-its-scale) |
 | `DS-QM081-STOCHASTIC-L1-CONTRACTION` | PROVED_LEAN | [finite_quantum_foundations_proofs: 3.3 Stochastic matrices contract $\ell^1$](../papers/foundations/finite_quantum_foundations_proofs.md#33-stochastic-matrices-contract-ell1) |
 | `DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL` | COMPUTATIONALLY_CHECKED | [finite_quantum_foundations_proofs: 3.4 The population shadow of a channel](../papers/foundations/finite_quantum_foundations_proofs.md#34-the-population-shadow-of-a-channel) |
 | `DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY` | PROVED_LEAN | *none yet* |

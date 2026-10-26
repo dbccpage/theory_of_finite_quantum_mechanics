@@ -119,7 +119,8 @@ Lean: `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosur
 
 ### 1.5 Populations do not see coherence
 
-DAG node: `DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED`
+The DAG node `DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED` is OPEN. This section proves the
+two-state example below and is not a proof of the node.
 
 **Proposition.** The states $\rho_\pm=\frac12\begin{pmatrix}1&\pm1\\\pm1&1\end{pmatrix}$ and their
 dephased mixture $\frac12(\rho_++\rho_-)=\frac12I$ have the same populations $(\frac12,\frac12)$.
@@ -285,7 +286,7 @@ Lean: `lean4/DualWitness.lean::dual_witness_certifies_trace_distance`,
 
 ### 3.2 Half trace norm on diagonal states, and its scale
 
-DAG nodes: `DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION`, `DS-QM081-CPTP-MONOTONE-NOT-SELECTING`
+DAG node: `DS-QM081-CPTP-MONOTONE-NOT-SELECTING`
 
 **Proposition.** (i) For diagonal states $\rho=\operatorname{diag}(p)$ and
 $\sigma=\operatorname{diag}(q)$, $\frac12\|\rho-\sigma\|_1=\frac12\sum_i|p_i-q_i|$, the total
@@ -298,7 +299,8 @@ $cD(Tx,Ty)\le cD(x,y)$, and $c_1D=c_2D$ at a point with $D>0$ forces $c_1=c_2$. 
 Monotonicity under CPTP maps therefore fixes a distinguishability measure at most up to the
 normalization, and the half trace norm is singled out only with further axioms (classical
 total-variation reduction among them). Other monotone measures, such as relative entropy, also
-exist.
+exist. The conditional selection of the half trace norm under those further axioms
+(`DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION`) is OPEN and is not proved here.
 
 Lean: `lean4/TraceZeroDuality.lean::scaleMetric_monotone`,
 `lean4/TraceZeroDuality.lean::monotone_metric_distinct`,
