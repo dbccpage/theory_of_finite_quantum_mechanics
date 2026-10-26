@@ -1424,3 +1424,33 @@ lean_lib CampaignReggeFiniteAction where
 
 lean_lib CampaignConstraintKernelProjector where
   roots := #[`CampaignConstraintKernelProjector]
+
+lean_lib CampaignMajImportCosetWeight where
+  roots := #[`CampaignMajImportCosetWeight]
+
+lean_lib CampaignGpImportTensorProduct where
+  roots := #[`CampaignGpImportTensorProduct]
+
+lean_lib CampaignGpImportCptpClass where
+  roots := #[`CampaignGpImportCptpClass]
+
+lean_lib CampaignGpImportContinuousTime where
+  roots := #[`CampaignGpImportContinuousTime]
+
+lean_lib CampaignGpImportContinuumHilbert where
+  roots := #[`CampaignGpImportContinuumHilbert]
+
+lean_lib CampaignDsContinuousTimeExpGenerator where
+  roots := #[`CampaignDsContinuousTimeExpGenerator]
+
+lean_lib CampaignDsQm043DecoherenceFunctional where
+  roots := #[`CampaignDsQm043DecoherenceFunctional]
+
+lean_lib CampaignDsQm062U1Residues where
+  roots := #[`CampaignDsQm062U1Residues]
+
+lean_lib CampaignDsCptpCompletePositivity where
+  roots := #[`CampaignDsCptpCompletePositivity]
+
+lean_lib CampaignDsQm204BornUniqueness where
+  roots := #[`CampaignDsQm204BornUniqueness]

@@ -322,12 +322,12 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0245` | `FINITE_QM_DYNAMICS` | `OPEN_OBLIGATION` | `DS-QM034-035-050-051-095-RESERVED-STUBS` (CONDITIONAL), `FQ-DISCRETE-DYNAMICS-DICHOTOMY` (PROVED_LEAN) | `DS-QM034-035-050-051-095-RESERVED-STUBS`: scoped_result_or_obstruction_reviewed / consistent; `FQ-DISCRETE-DYNAMICS-DICHOTOMY`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0246` | `FINITE_QM_DYNAMICS` | `OPEN_OBLIGATION` | `DS-QM034-035-050-051-095-RESERVED-STUBS` (CONDITIONAL), `FQ-GAP-STONE-CONTINUOUS-TIME` (CONDITIONAL), `FQ-DISCRETE-TIME-STONE-AMBIGUITY` (PROVED_LEAN) | `DS-QM034-035-050-051-095-RESERVED-STUBS`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-STONE-CONTINUOUS-TIME`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-DISCRETE-TIME-STONE-AMBIGUITY`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0247` | `FINITE_QM_DYNAMICS` | `SOURCE_RECORD` | `DS-QM041-HEISENBERG-PICTURE-FINITE` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-0248` | `FINITE_QM_DYNAMICS` | `SOURCE_RECORD` | `DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT` (IMPORTED_ASSUMPTION), `DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY` (PROVED_LEAN) | `DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0248` | `FINITE_QM_DYNAMICS` | `SOURCE_RECORD` | `DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT` (IMPORTED_ASSUMPTION), `DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY` (PROVED_LEAN) | `DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT`: scoped_result_or_obstruction_reviewed / statement_narrowed; `DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0249` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-0250` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM120-MERMIN-PERES-F2-OBSTRUCTION` (PROVED_LEAN), `FQ-CONTEXTUALITY-CECH-F2` (PROVED_LEAN) | `DS-QM120-MERMIN-PERES-F2-OBSTRUCTION`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-CONTEXTUALITY-CECH-F2`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0251` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM060-SUPERPOSITION-QUOTIENT-FIBER` (PROVED_LEAN), `FQ-PHASE-FIBER-QUOTIENT` (PROVED_LEAN) | `DS-QM060-SUPERPOSITION-QUOTIENT-FIBER`: scoped_result_or_obstruction_reviewed / consistent; `FQ-PHASE-FIBER-QUOTIENT`: scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-0252` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE` (PROVED_LEAN), `DS-QM061-BUILDABILITY-SET-S` (COMPUTATIONALLY_CHECKED), `FQ-INTERFERENCE-NONDESCENT` (PROVED_LEAN) | `DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM061-BUILDABILITY-SET-S`: scoped_result_or_obstruction_reviewed / status_lowered; `FQ-INTERFERENCE-NONDESCENT`: scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0253` | `FINITE_QM_STRUCTURE` | `OPEN_OBLIGATION` | `DS-QM062-U1-SELECTOR-LAYERS` (COMPUTATIONALLY_CHECKED), `DS-QM062-U1-RESIDUES-IMPORT` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `DS-QM062-U1-SELECTOR-LAYERS`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM062-U1-RESIDUES-IMPORT`: scoped_result_or_obstruction_reviewed / consistent; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0253` | `FINITE_QM_STRUCTURE` | `OPEN_OBLIGATION` | `DS-QM062-U1-SELECTOR-LAYERS` (COMPUTATIONALLY_CHECKED), `DS-QM062-U1-RESIDUES-IMPORT` (IMPORTED_ASSUMPTION), `FQ-GAP-U1-CIRCLE` (CONDITIONAL) | `DS-QM062-U1-SELECTOR-LAYERS`: scoped_result_or_obstruction_reviewed / status_lowered; `DS-QM062-U1-RESIDUES-IMPORT`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-GAP-U1-CIRCLE`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0254` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM063-HOLONOMY-COHERENT-INTENSITY` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0255` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM064-074-083-ANNEX-REDIRECT-ROWS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0256` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM070-PRODUCT-NONFACTORIZATION` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
@@ -340,8 +340,8 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0263` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY` (PROVED_LEAN), `DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION` (PROVED_LEAN), `DS-QM080-IMPORT-FREE-TRACE-NORM-CORE` (PROVED_LEAN) | `FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY`: scoped_result_or_obstruction_reviewed / statement_narrowed; `DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION`: scoped_result_or_obstruction_reviewed / statement_narrowed; `DS-QM080-IMPORT-FREE-TRACE-NORM-CORE`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0264` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM081-CPTP-MONOTONE-NOT-SELECTING` (PROVED_LEAN), `DS-QM081-STOCHASTIC-L1-CONTRACTION` (PROVED_LEAN) | `DS-QM081-CPTP-MONOTONE-NOT-SELECTING`: scoped_result_or_obstruction_reviewed / consistent; `DS-QM081-STOCHASTIC-L1-CONTRACTION`: scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0265` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-0266` | `FINITE_QM_STRUCTURE` | `GAP` | `DS-CPTP-COMPLETE-POSITIVITY-IMPORT` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-0267` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM064-074-083-ANNEX-REDIRECT-ROWS` (PROVED_LEAN), `DS-CPTP-COMPLETE-POSITIVITY-IMPORT` (IMPORTED_ASSUMPTION) | `DS-QM064-074-083-ANNEX-REDIRECT-ROWS`: scoped_result_or_obstruction_reviewed / statement_narrowed; `DS-CPTP-COMPLETE-POSITIVITY-IMPORT`: scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0266` | `FINITE_QM_STRUCTURE` | `GAP` | `DS-CPTP-COMPLETE-POSITIVITY-IMPORT` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-0267` | `FINITE_QM_STRUCTURE` | `SOURCE_RECORD` | `DS-QM064-074-083-ANNEX-REDIRECT-ROWS` (PROVED_LEAN), `DS-CPTP-COMPLETE-POSITIVITY-IMPORT` (IMPORTED_ASSUMPTION) | `DS-QM064-074-083-ANNEX-REDIRECT-ROWS`: scoped_result_or_obstruction_reviewed / statement_narrowed; `DS-CPTP-COMPLETE-POSITIVITY-IMPORT`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0268` | `FINITE_QM_INFORMATION` | `OPEN_OBLIGATION` | `FQ-ENTROPY-DICHOTOMY-BAKER` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0269` | `FINITE_QM_INFORMATION` | `SOURCE_RECORD` | `DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0270` | `FINITE_QM_INFORMATION` | `SOURCE_RECORD` | `DS-QM102-SYNDROME-CAPACITY-BOUND` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
@@ -503,18 +503,18 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1029` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-COMPLEX-FIELD` (IMPORTED_ASSUMPTION) | scoped_gaussian_integer_result_reviewed / statement_narrowed |
 | `TFQ-1030` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CIRCLE-U1` (IMPORTED_ASSUMPTION) | scoped_sign_pair_cycle_result_reviewed / statement_narrowed |
 | `TFQ-1031` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-GLEASON` (IMPORTED_ASSUMPTION) | scoped_two_label_pairing_reviewed / statement_narrowed |
-| `TFQ-1032` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-TENSOR-PRODUCT` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-1033` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CPTP-CLASS` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-1034` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CONTINUOUS-TIME` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-1035` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CONTINUUM-HILBERT` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / caveat_added |
+| `TFQ-1032` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-TENSOR-PRODUCT` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-1033` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CPTP-CLASS` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-1034` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CONTINUOUS-TIME` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
+| `TFQ-1035` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CONTINUUM-HILBERT` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1036` | `FINITE_QM_STRUCTURE` | `COMPUTATIONAL_CONTROL` | `GP-GAP-EXACT-DUALITY` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
 | `TFQ-1037` | `FINITE_QM_CORE` | `PROVED_LEAN` | `GP-FIN-GAUSS-MATRIX-ALGEBRA` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1038` | `FINITE_QM_CORE` | `PROVED_LEAN` | `GP-DROP-ONE-CENSUS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1039` | `FINITE_QM_DYNAMICS` | `COMPUTATIONAL_CONTROL` | `DS-QM030-TRANSFER-OPERATOR-SHADOW` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-1040` | `FINITE_QM_DYNAMICS` | `IMPORTED_ASSUMPTION` | `DS-CONTINUOUS-TIME-EXP-GENERATOR` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-1040` | `FINITE_QM_DYNAMICS` | `IMPORTED_ASSUMPTION` | `DS-CONTINUOUS-TIME-EXP-GENERATOR` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1041` | `FINITE_QM_STRUCTURE` | `COMPUTATIONAL_CONTROL` | `DS-QM206-BOUNDARY-SYNTHESIS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-1042` | `FINITE_QM_STRUCTURE` | `COMPUTATIONAL_CONTROL` | `DS-QM207-211-FIVE-IMPORT-CASCADE` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-1043` | `FINITE_QM_STRUCTURE` | `IMPORTED_ASSUMPTION` | `DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-1043` | `FINITE_QM_STRUCTURE` | `IMPORTED_ASSUMPTION` | `DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1044` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `IMPL-FSP-SWITCHING-NORMAL-FORM-NF002` (PROVED_LEAN) | reviewed_with_targeted_native_integration / consistent |
 | `TFQ-1045` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `IMPL-THYMUS-SCREENING-SOUNDNESS` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
 | `TFQ-1046` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `IMPL-LGGR-FINITE-RESULTS-LEAN` (PROVED_LEAN) | reviewed_with_targeted_native_integration / caveat_added |
@@ -4143,9 +4143,9 @@ Obligation: Uniqueness of the Born quadratic form for dimension at least 3, unde
 - Status: `IMPORTED_ASSUMPTION`
 - DAG node: `GP-IMPORT-TENSOR-PRODUCT` (`IMPORTED_ASSUMPTION`)
 
-Hilbert tensor product as the unique way to combine systems. On Bool x Bool a bilinear integer-homogeneous Kronecker-normalized map equals the pointwise product; a weaker same-host combining interface has a rival (dump-the-right-report map).
+For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1.
 
-Obligation: Combining-systems uniqueness not derived; needs a second presented carrier (QM_122 7.1 item 1).
+Obligation: The Hilbert-space tensor product is not derived as the unique way to combine systems. The agreement above uses additivity, integer homogeneity and the identity tag (i, j) on one Bool-by-Bool host. The dump-right map is a same-host rival whose tag collapses the second Boolean factor, so a weaker tag does not select the pointwise product. A second presented carrier and a physical composition rule stay imported (QM_122 7.1 item 1).
 
 ### TFQ-1033 gp-import-cptp-class
 
@@ -4154,9 +4154,9 @@ Obligation: Combining-systems uniqueness not derived; needs a second presented c
 - Status: `IMPORTED_ASSUMPTION`
 - DAG node: `GP-IMPORT-CPTP-CLASS` (`IMPORTED_ASSUMPTION`)
 
-The class of completely positive trace-preserving maps. Collapse non-reversibility and failure of a same-basis isometry are not CPTP obstructions; exactly four reversible dilations of collapse exist under the declared convention that the ancilla starts at false.
+On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair.
 
-Obligation: No derived channel class; QM_082 supplies stochastic-kernel population shadow only.
+Obligation: The class of completely positive trace-preserving maps on a Hilbert space is not derived. Choi positivity, Kraus form and a Stinespring realization of that class stay imported. The Boolean collapse, the integer mass image and the four ancilla-false reversible dilations are one finite case. This mass image is a stochastic-kernel population shadow in the sense of QM_082, and it is not that channel class.
 
 ### TFQ-1034 gp-import-continuous-time
 
@@ -4165,9 +4165,9 @@ Obligation: No derived channel class; QM_082 supplies stochastic-kernel populati
 - Status: `IMPORTED_ASSUMPTION`
 - DAG node: `GP-IMPORT-CONTINUOUS-TIME` (`IMPORTED_ASSUMPTION`)
 
-Continuous time, topology, a one-parameter unitary group and Stone's theorem. The two-state toggle has no report-level square root; after complex coefficients, interpolants exist at scale 4 and are not unique.
+On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).
 
-Obligation: Finite substitutes: exact rational Cayley transform in SO(8,Q); hyperoctahedral signed permutations with irreversible monotone residue.
+Obligation: Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.
 
 ### TFQ-1035 gp-import-continuum-hilbert
 
@@ -4176,9 +4176,9 @@ Obligation: Finite substitutes: exact rational Cayley transform in SO(8,Q); hype
 - Status: `IMPORTED_ASSUMPTION`
 - DAG node: `GP-IMPORT-CONTINUUM-HILBERT` (`IMPORTED_ASSUMPTION`)
 
-Transition from the finite presented carrier (integer weights, finite report labels) to a continuous infinite-dimensional Hilbert space. QM_122 section 6 refuses it; QM_020 demotion box fences it.
+Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1.
 
-Obligation: The completion, its identification with l2 and the lift of bounded exact operators are recorded at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). What stays imported is the selection of the scalar field and of the l2 uniformity from finite-theory primitives, and the review of this node still asks for a verified topology, Cauchy completion and infinite-dimensional carrier.
+Obligation: The transition from a finite presented carrier, with integer weights and finite report labels, to a continuous infinite-dimensional Hilbert space stays imported. Scalar-field selection, l2 uniformity, a verified topology, a Cauchy completion and the lift of bounded exact operators stay imported. The completion record sits at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). QM_122 section 6 refuses that transition, and the QM_020 demotion box fences it. The length-4 window and the finite power-of-four identity are one finite case.
 
 ### TFQ-1047 l1-imp-transition-probability-law
 
@@ -4882,9 +4882,9 @@ Obligation: Unmet after the PFP review: Formalize the full arbitrary finite acti
 - Status: `IMPORTED_ASSUMPTION`
 - DAG node: `DS-CONTINUOUS-TIME-EXP-GENERATOR` (`IMPORTED_ASSUMPTION`)
 
-The one-parameter family T(t)=exp(tH), the generator H=log T and the continuum path integral need real/complex time, convergence and a measure; none is constructed from the finite transport calculus. Refused as finite.
+Toggle sends false to true and true to false. No map on the labels false and true squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). The matrix with rows ((1, 1), (1, -1)) and ((1, -1), (1, 1)) squares to the matrix with diagonal entries (0, 0) and off-diagonal entries (4, 0). The coordinatewise negation of that matrix squares to the same matrix and differs from it. For every integer t, (1 - t*t) * (1 - t*t) + 4 * (t*t) equals (1 + t*t) * (1 + t*t). The branch energy 2*k + 1 equals 1 at k = 0 and 3 at k = 1, and distinct integers have distinct branch energies. The integers -1, 1, 1 and -1 give the corner value (-1)*(-1) + 1*1 = 2. No integers a, b, c and d satisfy a + 1 = 0, b = 1, c = 1, d + 1 = 0 together with a*a + b*c = 0, a*b + b*d = 0, c*a + d*c = 0 and c*b + d*d = 0.
 
-Obligation: Convergence oracle and generator selection are priced interfaces; no derivation.
+Obligation: The one-parameter family T(t) = exp(tH), the generator H = log T, and a continuum path integral stay imported. They still ask for real or complex time, a convergence oracle, and a measure, and none of those is constructed from the finite transport calculus. Generator selection among the odd branch energies stays a priced interface. The Boolean toggle, the two scale-4 matrices, the Cayley polynomial, the branch energies, and the absent nilpotent integer logarithm of the swap are one finite case.
 <!-- unified-dag:rows:FINITE_QM_DYNAMICS:end -->
 
 ## FINITE_QM_STRUCTURE
@@ -5247,9 +5247,9 @@ Obligation: Unmet after the PFP review: Prove each correctly specified physical 
 - Status: `IMPORTED_ASSUMPTION`
 - DAG node: `DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY` (`IMPORTED_ASSUMPTION`)
 
-Born-quadratic uniqueness (Gleason) is imported; L^p pairings for p != 2 are valid in L1 measure theory. The dedicated 204 slot is empty.
+For every integer pair A and B, A + B equals (A + B) * 1. The sum 3 + 4 equals 7, and 7 differs from 0. The sum of squares 3 * 3 + 4 * 4 equals 25, and 5 * 5 equals 25. The sum of fourth products 3 * 3 * 3 * 3 + 4 * 4 * 4 * 4 equals 337. The product (3 * 3) * (3 * 3 * 3 * 3 + 4 * 4 * 4 * 4) differs from (3 * 3 * 3 * 3) * (5 * 5). The product 3 * (3 * 3 + 4 * 4) differs from (3 * 3) * (3 + 4). For every integer quadruple a, b, r and s, (r * a - s * b) * (r * a - s * b) + (s * a + r * b) * (s * a + r * b) equals (r * r + s * s) * (a * a + b * b). At a = 3, b = 4, r = 3 and s = 4, both sides equal 625.
 
-Obligation: No derivation of quadratic uniqueness from L1 additivity.
+Obligation: Gleason uniqueness, frame-function, effect, continuity and dimension hypotheses, and L^p pairings in measure theory stay imported. The integer sum identity, the rotation identity, and the two splits of the pair (3, 4) are one finite case. Bare normalization does not select a quadratic pairing.
 <!-- unified-dag:rows:FINITE_QM_STRUCTURE:end -->
 
 ## FINITE_QM_INFORMATION
@@ -10668,7 +10668,7 @@ For all sizes the torus distance is min(rows, cols), the cylinder distance is ro
 
 Obligation: Prove the distance formulas (e.g. by a cut argument on the dual grid); the source gives a one-sentence traversal argument for additivity only.
 
-### TFQ-1157 Coset-weight decoding is NP-hard for general binary codes
+### TFQ-1157 One 2 by 4 parity-check coset has minimum weight 1
 
 - UUID: `11ab146a-92b3-575f-b7b1-e2a119aa7eaf`
 - Parent: `TFQ-1140`
@@ -10676,9 +10676,9 @@ Obligation: Prove the distance formulas (e.g. by a cut argument on the dual grid
 - DAG node: `MAJ-IMPORT-COSET-WEIGHT-NP-HARD`
 - Paper: [derivation](derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md)
 
-Minimum-weight coset decoding of a binary linear code given by its matrix is NP-hard (Berlekamp, McEliece and van Tilborg 1978).
+For the 2 by 4 parity-check matrix over the two-element field with rows (1, 1, 0, 0) and (0, 1, 1, 1), among the 16 length-4 vectors labeled 0 through 15 with the least significant bit as coordinate 0, the vectors with syndrome (1, 0) are the labels 1, 6, 10 and 13. Their Hamming weights are 1, 2, 2 and 3, so the minimum weight is 1, and the single weight-1 vector in that list is label 1 with coordinates (1, 0, 0, 0). The vectors with syndrome (0, 0) are the labels 0, 7, 11 and 12.
 
-Obligation: Literature result; no reduction is formalized or replayed here.
+Obligation: Berlekamp, McEliece and van Tilborg 1978 remains an imported literature claim. No reduction is formalized. The 2 by 4 enumeration is one matrix and one syndrome and does not discharge hardness for a general binary matrix.
 
 ### TFQ-1158 Computing Phi1 is coset-leader decoding of im d0
 

@@ -11,17 +11,21 @@
     {
       "node_id": "DS-CONTINUOUS-TIME-EXP-GENERATOR",
       "review": "dag/results/DS-CONTINUOUS-TIME-EXP-GENERATOR/reviews/20261019_structure_audit/review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Imported-assumption statement already refuses a finite construction; the review adds a Boolean no-half-step and two Q(i) roots, not more."
+      "scope_effect": "statement_narrowed",
+      "reason": "Boolean toggle has no square root, two Gaussian matrices square to the scale-4 swap and differ, the Cayley polynomial holds for each integer, distinct integers have distinct odd branch energies, and no integer matrix shifts the identity onto the swap while squaring to zero. Continuous time, exp, log and a path-integral measure stay imported.",
+      "statement": "Toggle sends false to true and true to false. No map on the labels false and true squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). The matrix with rows ((1, 1), (1, -1)) and ((1, -1), (1, 1)) squares to the matrix with diagonal entries (0, 0) and off-diagonal entries (4, 0). The coordinatewise negation of that matrix squares to the same matrix and differs from it. For every integer t, (1 - t*t) * (1 - t*t) + 4 * (t*t) equals (1 + t*t) * (1 + t*t). The branch energy 2*k + 1 equals 1 at k = 0 and 3 at k = 1, and distinct integers have distinct branch energies. The integers -1, 1, 1 and -1 give the corner value (-1)*(-1) + 1*1 = 2. No integers a, b, c and d satisfy a + 1 = 0, b = 1, c = 1, d + 1 = 0 together with a*a + b*c = 0, a*b + b*d = 0, c*a + d*c = 0 and c*b + d*d = 0.",
+      "bottleneck": "The one-parameter family T(t) = exp(tH), the generator H = log T, and a continuum path integral stay imported. They still ask for real or complex time, a convergence oracle, and a measure, and none of those is constructed from the finite transport calculus. Generator selection among the odd branch energies stays a priced interface. The Boolean toggle, the two scale-4 matrices, the Cayley polynomial, the branch energies, and the absent nilpotent integer logarithm of the swap are one finite case."
     },
     {
       "node_id": "DS-CPTP-COMPLETE-POSITIVITY-IMPORT",
       "review": "dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Imported statement is unchanged by the review (Bell-input partial-transpose witness); scope_review_v2.json corrects the zero-scale carrier to nonnegative rank at most one with the witness conditional on t > 0, which review_result.json does not carry (see the addendum folder).",
+      "scope_effect": "statement_narrowed",
+      "reason": "A nonnegative integer times a square is at least 0. The pairing 1 * (-1) + (-1) * 1 equals -2, so for t greater than 0 the product t * (-2) is less than 0, while at t = 0 that product is 0. The sum of squares of 0, 1, -1 and 0 equals 2, and t * (-2) equals 2 * (-t). Complete positivity and Stinespring stay imported.",
       "superseded_by": [
         "dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/scope_review_v2.json"
-      ]
+      ],
+      "statement": "For every integer n, the product n * n is at least 0, and (-n) * (-n) equals n * n. For every natural pair k and m, the product of the integer of k with the integer of m equals the integer of k * m. For every integer pair a and b, if a is at least 0 and b is at least 0, then a * b is at least 0. For every integer triple t, x and w, if t is at least 0, then t * ((x + w) * (x + w)) is at least 0. The sum 1 * (-1) + (-1) * 1 equals -2. For every integer t, t times that sum equals (-2) * t, and t * (-2) equals 2 * (-t). If t is greater than 0, then t * (-2) is less than 0 and -t is less than 0. The product 0 * (-2) equals 0. The sum of squares 0 * 0 + 1 * 1 + (-1) * (-1) + 0 * 0 equals 2.",
+      "bottleneck": "Complete positivity of a tensor extension, Kraus, Choi and Stinespring forms, and coherence transport above a classical kernel stay imported. The nonnegative product t * ((x + w) * (x + w)) for t at least 0, and the strict negative value t * (-2) for t greater than 0, are one finite scalar case. At t = 0 the product t * (-2) is 0."
     },
     {
       "node_id": "DS-QM021-IDEMPOTENT-CONDITIONING",
@@ -125,8 +129,10 @@
     {
       "node_id": "DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT",
       "review": "dag/results/DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT/reviews/20261019_dynamics_audit/review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Imported-assumption statement stands; the review adds Gram-table positivity and completeness separation controls."
+      "scope_effect": "statement_narrowed",
+      "reason": "An integer Gram value is a square, so it is at least 0, and the table with entries a*a, a*b, b*b has determinant 0. The pair 1, 1 separates a cleared sum 1 from a cleared square-sum 1, and the pair 3, 4 separates them in the other direction. The trace formula stays imported.",
+      "statement": "For each integer n, the product n * n is at least 0, and (-n) * (-n) equals n * n. For each integer quadruple a, b, x and y, the product (a * x + b * y) * (a * x + b * y) is at least 0. For each integer a, the product a * a is at least 0. For each integer pair a and b, (a * b) * (a * b) equals a * a * (b * b), the difference of those two products is 0, and a * a + b * b is at least 0. The pair 1, 1 has sum equal to 2 * 1 and square-sum 2. The product 2 * 2 equals 4, and 2 differs from 4. The square of the sum 1 + 1 equals 4, and 4 equals 4 * 1. At the integers 1, 1, 1 and 1, the square (1 * 1 + 1 * 1) * (1 * 1 + 1 * 1) equals 4, and 1 * 1 * 1 * 1 + 2 * 1 * 1 * 1 * 1 + 1 * 1 * 1 * 1 equals 4. The pair 3, 4 has square-sum 25, and 5 * 5 equals 25, so the square-sum equals 5 * 5. The sum 3 + 4 equals 7, the product 7 * 7 equals 49, and 49 differs from 25.",
+      "bottleneck": "The formula D_jk = Tr(C_j rho C_k^dagger), a density operator, class operators, and a bridge from finite transport stay imported. Positive semidefiniteness and trace one for a general history model stay imported. The integer Gram square, the determinant identity, and the cleared witnesses (1, 1) over 2 and (3, 4) over 5 are one finite case."
     },
     {
       "node_id": "DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY",
@@ -158,8 +164,10 @@
     {
       "node_id": "DS-QM062-U1-RESIDUES-IMPORT",
       "review": "dag/results/DS-QM062-U1-RESIDUES-IMPORT/reviews/20261019_resources_audit/review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Imported-assumption statement stands; the review adds order-four periodicity and modulo-four aliasing only."
+      "scope_effect": "statement_narrowed",
+      "reason": "Right-multiplication by the integer matrix with rows (0, -1) and (1, 0) has order 4, and for every natural number k the power equals the representative of k modulo 4. The remainder of k + 4 equals the remainder of k. Continuity, local tomography and a phase fiber stay imported.",
+      "statement": "For every natural number k, the remainder of k + 4 on division by 4 equals the remainder of k, the remainder of k + 1 equals the remainder of (the remainder of k, plus 1) on division by 4, the k-th right product by the matrix J equals the representative of the remainder of k, that product equals the identity matrix if and only if the remainder of k is 0, and the product at k + 4 equals the product at k. The identity matrix is the tuple (1, 0, 0, 1). The matrix J is the tuple (0, -1, 1, 0). Its square is the tuple (-1, 0, 0, -1). Its cube is the tuple (0, 1, -1, 0). The product of J with J equals the square, the product of the square with J equals the cube, and the product of the cube with J equals the identity. J, its square and its cube differ from the identity. The products at 1, 2, 3 and 4 equal J, the square, the cube and the identity. The remainders of 0, 1, 2, 3 and 4 on division by 4 are 0, 1, 2, 3 and 0. The integer 0 * 0 - 1 * 1 equals -1, and (-1) * (-1) equals 1.",
+      "bottleneck": "Continuity of reversible dynamics, global field uniqueness, local tomography, a U(1) phase fiber, a complex involution, and a separation of that fiber from Q/Z torsion stay imported. The integer matrix of order 4 and the remainder identity (k + 4) modulo 4 are one finite case. This case does not select a phase fiber."
     },
     {
       "node_id": "DS-QM062-U1-SELECTOR-LAYERS",
@@ -357,8 +365,10 @@
     {
       "node_id": "DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY",
       "review": "dag/results/DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY/reviews/20261019_boundaries_audit/review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Imported-assumption statement stands; the review adds alternative normalized profiles and a Born/quartic divergence."
+      "scope_effect": "statement_narrowed",
+      "statement": "For every integer pair A and B, A + B equals (A + B) * 1. The sum 3 + 4 equals 7, and 7 differs from 0. The sum of squares 3 * 3 + 4 * 4 equals 25, and 5 * 5 equals 25. The sum of fourth products 3 * 3 * 3 * 3 + 4 * 4 * 4 * 4 equals 337. The product (3 * 3) * (3 * 3 * 3 * 3 + 4 * 4 * 4 * 4) differs from (3 * 3 * 3 * 3) * (5 * 5). The product 3 * (3 * 3 + 4 * 4) differs from (3 * 3) * (3 + 4). For every integer quadruple a, b, r and s, (r * a - s * b) * (r * a - s * b) + (s * a + r * b) * (s * a + r * b) equals (r * r + s * s) * (a * a + b * b). At a = 3, b = 4, r = 3 and s = 4, both sides equal 625.",
+      "bottleneck": "Gleason uniqueness, frame-function, effect, continuity and dimension hypotheses, and L^p pairings in measure theory stay imported. The integer sum identity, the rotation identity, and the two splits of the pair (3, 4) are one finite case. Bare normalization does not select a quadratic pairing.",
+      "reason": "Integer pair-sum, rotation, and the two splits of the pair (3, 4) are the finite case recorded here. Gleason uniqueness and L^p measure pairings stay imported."
     },
     {
       "node_id": "DS-QM206-BOUNDARY-SYNTHESIS",
@@ -798,8 +808,10 @@
     {
       "node_id": "GP-IMPORT-CONTINUOUS-TIME",
       "review": "dag/results/GP-IMPORT-CONTINUOUS-TIME/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Imported node; the review adds Boolean and complex square-root controls. A later discrete-time Stone spec run constructs the Q-parameter group.",
+      "scope_effect": "statement_narrowed",
+      "statement": "On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).",
+      "bottleneck": "Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.",
+      "reason": "Boolean toggle has no square root on the two labels, and two Gaussian-integer interpolants square to the scale-4 swap and differ at one input. Continuous time and Stone's theorem stay imported.",
       "superseded_by": [
         "dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec"
       ]
@@ -807,19 +819,22 @@
     {
       "node_id": "GP-IMPORT-CONTINUUM-HILBERT",
       "review": "dag/results/GP-IMPORT-CONTINUUM-HILBERT/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "caveat_added",
-      "bottleneck": "The completion, its identification with l2 and the lift of bounded exact operators are recorded at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). What stays imported is the selection of the scalar field and of the l2 uniformity from finite-theory primitives, and the review of this node still asks for a verified topology, Cauchy completion and infinite-dimensional carrier.",
-      "reason": "Imported node; construction of the completion is now recorded at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION, the selection of field and uniformity stays imported.",
+      "scope_effect": "statement_narrowed",
+      "bottleneck": "The transition from a finite presented carrier, with integer weights and finite report labels, to a continuous infinite-dimensional Hilbert space stays imported. Scalar-field selection, l2 uniformity, a verified topology, a Cauchy completion and the lift of bounded exact operators stay imported. The completion record sits at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). QM_122 section 6 refuses that transition, and the QM_020 demotion box fences it. The length-4 window and the finite power-of-four identity are one finite case.",
+      "reason": "The length-4 window (8, 4, 2, 1) and the identity 3 * sumPow4 n + 1 = pow4 n are one finite case. Scalar-field selection, l2 uniformity and a Cauchy completion stay imported.",
       "superseded_by": [
         "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261020T230000Z_completion",
         "dag/results/FQ-GAP-CONTINUUM-HILBERT-LIFT/runs/20261021T003000Z_lift_steps"
-      ]
+      ],
+      "statement": "Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1."
     },
     {
       "node_id": "GP-IMPORT-CPTP-CLASS",
       "review": "dag/results/GP-IMPORT-CPTP-CLASS/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Imported node; the review adds four reversible dilations and reset-channel arrays."
+      "scope_effect": "statement_narrowed",
+      "statement": "On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair.",
+      "bottleneck": "The class of completely positive trace-preserving maps on a Hilbert space is not derived. Choi positivity, Kraus form and a Stinespring realization of that class stay imported. The Boolean collapse, the integer mass image and the four ancilla-false reversible dilations are one finite case. This mass image is a stochastic-kernel population shadow in the sense of QM_082, and it is not that channel class.",
+      "reason": "Boolean collapse, the integer mass image and four ancilla-false reversible dilations are recorded. The Hilbert-space channel class stays imported."
     },
     {
       "node_id": "GP-IMPORT-GLEASON",
@@ -844,14 +859,16 @@
     {
       "node_id": "GP-IMPORT-TENSOR-PRODUCT",
       "review": "dag/results/GP-IMPORT-TENSOR-PRODUCT/reviews/20261019_l1_import_audit/delivery_review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Imported node; the review adds tensor/dumpRight arrays. The later tensor receipts supply composition results under explicit premises.",
+      "scope_effect": "statement_narrowed",
+      "reason": "Finite Bool-by-Bool agreement and a dump-right rival are recorded; Hilbert-space uniqueness stays imported.",
       "superseded_by": [
         "dag/research/tensor_composition_validation.json",
         "dag/research/tensor_formalization_validation.json",
         "dag/research/tensor_measurement_validation.json",
         "dag/research/tensor_countermodel_validation.json"
-      ]
+      ],
+      "statement": "For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1.",
+      "bottleneck": "The Hilbert-space tensor product is not derived as the unique way to combine systems. The agreement above uses additivity, integer homogeneity and the identity tag (i, j) on one Bool-by-Bool host. The dump-right map is a same-host rival whose tag collapses the second Boolean factor, so a weaker tag does not select the pointwise product. A second presented carrier and a physical composition rule stay imported (QM_122 7.1 item 1)."
     },
     {
       "node_id": "IMPL-FSP-SWITCHING-NORMAL-FORM-NF002",
