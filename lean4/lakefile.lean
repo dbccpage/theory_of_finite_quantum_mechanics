@@ -1427,3 +1427,6 @@ lean_lib CampaignConstraintKernelProjector where
 
 lean_lib CampaignMajImportCosetWeight where
   roots := #[`CampaignMajImportCosetWeight]
+
+lean_lib CampaignGpImportTensorProduct where
+  roots := #[`CampaignGpImportTensorProduct]
