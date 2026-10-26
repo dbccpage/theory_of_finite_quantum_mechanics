@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "b71f6cd664e83d5a8304033ab7e2180da026ee83abf4713c128a0c99dc3f7c3a"
+  "sha256_lf": "f31fd2c5c58ffebe58099c64219d8bdc1bcb94a4f2cb1245f7fc82d493a81229"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -251,6 +251,11 @@
    "sha256": "5e7e78bc5a5cc333a82d61b0accf13134504983190c0d07fe50bce1792616d57",
    "sha256_basis": "bytes",
    "size": 4681
+  },
+  "checks/independent/pgw-identity-convention-undecidable.py": {
+   "sha256": "cdb0ef8292785b35a0ec2f28c112fab192b39f91be0d3da290b4ca5774a34b98",
+   "sha256_basis": "bytes",
+   "size": 2121
   },
   "checks/independent/pgw-isomorphism-soundness-in-lean.py": {
    "sha256": "d92aa771404c2b0b6f6da5dfbf2b471886ad3c9b6306a1a802cd549a2a69a0b7",
@@ -1263,9 +1268,9 @@
    "size": 9170
   },
   "dag/derivation_dag.json": {
-   "sha256": "b71f6cd664e83d5a8304033ab7e2180da026ee83abf4713c128a0c99dc3f7c3a",
+   "sha256": "f31fd2c5c58ffebe58099c64219d8bdc1bcb94a4f2cb1245f7fc82d493a81229",
    "sha256_basis": "lf-normalised",
-   "size": 4827831
+   "size": 4830582
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -1408,9 +1413,9 @@
    "size": 3983
   },
   "dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md": {
-   "sha256": "2400d95576a16f2deb78da2aa917ae5bbf0049d2822e54c608f76578e1bb356b",
+   "sha256": "2bcfc5500511fb6620c8645c7a2babb96484e2ddf33b18ae29c1a4b9ac6247a9",
    "sha256_basis": "lf-normalised",
-   "size": 2803
+   "size": 5011
   },
   "dag/derivations/01_pregenesis/tfq_0424_absence_of_rule_not_identification.md": {
    "sha256": "47ab796f80a455a1b12348ee222988f2da61eb43a7f0e77763844b6f79f48d32",
@@ -6447,6 +6452,11 @@
    "sha256_basis": "lf-normalised",
    "size": 4699
   },
+  "dag/derivations/independent/pgw-identity-convention-undecidable.md": {
+   "sha256": "f87209a164e7f316d94f594c94d2bc044d6db08e596368db6475bb9cf5514b27",
+   "sha256_basis": "lf-normalised",
+   "size": 3575
+  },
   "dag/derivations/independent/pgw-isomorphism-soundness-in-lean.md": {
    "sha256": "c3402ac66350da58e38708532e19f867114313383b42ca60ebbef9dc171ff771",
    "sha256_basis": "lf-normalised",
@@ -7091,6 +7101,11 @@
    "sha256": "a095915d09dfb0fc5a78521b450c76d709cba1b13663179d30ca7ab08c4fa804",
    "sha256_basis": "lf-normalised",
    "size": 11321
+  },
+  "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json": {
+   "sha256": "efda3ed2fccff1da587fae1da7078f45fa5afe4ec13f9ee9403bb5d5c70e433f",
+   "sha256_basis": "lf-normalised",
+   "size": 10356
   },
   "dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json": {
    "sha256": "dbfb0a49f4acb2876d1793dcb187c44353678e785409c3d15beca10ea6a89ab2",
@@ -8118,9 +8133,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "sha256": "e4a8c04e4ee0bff34c10825ea55391aaf7bd6f13812bd3924b1e64d219071a4f",
    "sha256_basis": "lf-normalised",
-   "size": 232565
+   "size": 234418
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -8671,6 +8686,11 @@
    "sha256": "be8ca950fdb9a59cdef48afeecf2caa751ce2959f8a09d0d757bc63098093d74",
    "sha256_basis": "bytes",
    "size": 1273
+  },
+  "lean4/CampaignIdentityConvention.lean": {
+   "sha256": "fa42557ad55d2b9150bea0a4c9d38a205d41e2d688115bb71091d0b96c6f8ff6",
+   "sha256_basis": "bytes",
+   "size": 2878
   },
   "lean4/CampaignInformationProductBoundary.lean": {
    "sha256": "1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d",
@@ -161786,23 +161806,543 @@
   },
   {
    "absent_notes": [
-    "TFQ-0423 lean4: no Lean statement of the opaque and exact-inscription identity conventions",
-    "TFQ-0423 python: no Python switch between identity conventions",
     "TFQ-0423 rust: no Rust switch between identity conventions"
    ],
    "dependents": 3,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 0,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 4,
+    "lean_receipt_backed": 14,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 14
    },
    "flags": [],
-   "grade": "E0",
+   "grade": "E3",
    "id": "PGW-IDENTITY-CONVENTION-UNDECIDABLE",
    "items": [
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (CampaignIdentityConvention)"
+     ],
+     "command": "cd lean4 && lake build CampaignIdentityConvention",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignIdentityConvention.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json#0:CampaignIdentityConvention",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignIdentityConvention.Indistinguishable",
+     "cited_in": [
+      "receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (CampaignIdentityConvention)"
+     ],
+     "command": "cd lean4 && lake build CampaignIdentityConvention",
+     "command_note": "then, in a scratch file that imports CampaignIdentityConvention: #print axioms CampaignIdentityConvention.Indistinguishable",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignIdentityConvention.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json#0:CampaignIdentityConvention",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignIdentityConvention.Indistinguishable",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignIdentityConvention.IsNew",
+     "cited_in": [
+      "receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (CampaignIdentityConvention)"
+     ],
+     "command": "cd lean4 && lake build CampaignIdentityConvention",
+     "command_note": "then, in a scratch file that imports CampaignIdentityConvention: #print axioms CampaignIdentityConvention.IsNew",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignIdentityConvention.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json#0:CampaignIdentityConvention",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignIdentityConvention.IsNew",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignIdentityConvention.adding_identity_separates",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (CampaignIdentityConvention)",
+      "record TFQ-0423"
+     ],
+     "command": "cd lean4 && lake build CampaignIdentityConvention",
+     "command_note": "then, in a scratch file that imports CampaignIdentityConvention: #print axioms CampaignIdentityConvention.adding_identity_separates",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignIdentityConvention.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json#0:CampaignIdentityConvention",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignIdentityConvention.adding_identity_separates",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignIdentityConvention.empty_family_identifies_all",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (CampaignIdentityConvention)",
+      "record TFQ-0423"
+     ],
+     "command": "cd lean4 && lake build CampaignIdentityConvention",
+     "command_note": "then, in a scratch file that imports CampaignIdentityConvention: #print axioms CampaignIdentityConvention.empty_family_identifies_all",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignIdentityConvention.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json#0:CampaignIdentityConvention",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignIdentityConvention.empty_family_identifies_all",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignIdentityConvention.exactObserver",
+     "cited_in": [
+      "receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (CampaignIdentityConvention)"
+     ],
+     "command": "cd lean4 && lake build CampaignIdentityConvention",
+     "command_note": "then, in a scratch file that imports CampaignIdentityConvention: #print axioms CampaignIdentityConvention.exactObserver",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignIdentityConvention.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json#0:CampaignIdentityConvention",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignIdentityConvention.exactObserver",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignIdentityConvention.exact_inscription_is_new",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (CampaignIdentityConvention)",
+      "record TFQ-0423"
+     ],
+     "command": "cd lean4 && lake build CampaignIdentityConvention",
+     "command_note": "then, in a scratch file that imports CampaignIdentityConvention: #print axioms CampaignIdentityConvention.exact_inscription_is_new",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignIdentityConvention.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json#0:CampaignIdentityConvention",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignIdentityConvention.exact_inscription_is_new",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignIdentityConvention.exact_observer_sees_new",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (CampaignIdentityConvention)",
+      "record TFQ-0423"
+     ],
+     "command": "cd lean4 && lake build CampaignIdentityConvention",
+     "command_note": "then, in a scratch file that imports CampaignIdentityConvention: #print axioms CampaignIdentityConvention.exact_observer_sees_new",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignIdentityConvention.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json#0:CampaignIdentityConvention",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignIdentityConvention.exact_observer_sees_new",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignIdentityConvention.forgetting_preserves_indistinguishability",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (CampaignIdentityConvention)",
+      "record TFQ-0423"
+     ],
+     "command": "cd lean4 && lake build CampaignIdentityConvention",
+     "command_note": "then, in a scratch file that imports CampaignIdentityConvention: #print axioms CampaignIdentityConvention.forgetting_preserves_indistinguishability",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignIdentityConvention.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json#0:CampaignIdentityConvention",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignIdentityConvention.forgetting_preserves_indistinguishability",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignIdentityConvention.no_convention_independent_answer",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (CampaignIdentityConvention)",
+      "record TFQ-0423"
+     ],
+     "command": "cd lean4 && lake build CampaignIdentityConvention",
+     "command_note": "then, in a scratch file that imports CampaignIdentityConvention: #print axioms CampaignIdentityConvention.no_convention_independent_answer",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignIdentityConvention.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json#0:CampaignIdentityConvention",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignIdentityConvention.no_convention_independent_answer",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignIdentityConvention.observational_equivalence",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (CampaignIdentityConvention)",
+      "record TFQ-0423"
+     ],
+     "command": "cd lean4 && lake build CampaignIdentityConvention",
+     "command_note": "then, in a scratch file that imports CampaignIdentityConvention: #print axioms CampaignIdentityConvention.observational_equivalence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignIdentityConvention.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json#0:CampaignIdentityConvention",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignIdentityConvention.observational_equivalence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignIdentityConvention.opaqueObserver",
+     "cited_in": [
+      "receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (CampaignIdentityConvention)"
+     ],
+     "command": "cd lean4 && lake build CampaignIdentityConvention",
+     "command_note": "then, in a scratch file that imports CampaignIdentityConvention: #print axioms CampaignIdentityConvention.opaqueObserver",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignIdentityConvention.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json#0:CampaignIdentityConvention",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignIdentityConvention.opaqueObserver",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignIdentityConvention.opaque_inscription_is_not_new",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (CampaignIdentityConvention)",
+      "record TFQ-0423"
+     ],
+     "command": "cd lean4 && lake build CampaignIdentityConvention",
+     "command_note": "then, in a scratch file that imports CampaignIdentityConvention: #print axioms CampaignIdentityConvention.opaque_inscription_is_not_new",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignIdentityConvention.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json#0:CampaignIdentityConvention",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignIdentityConvention.opaque_inscription_is_not_new",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignIdentityConvention.opaque_observer_sees_no_new",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (CampaignIdentityConvention)",
+      "record TFQ-0423"
+     ],
+     "command": "cd lean4 && lake build CampaignIdentityConvention",
+     "command_note": "then, in a scratch file that imports CampaignIdentityConvention: #print axioms CampaignIdentityConvention.opaque_observer_sees_no_new",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignIdentityConvention.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json#0:CampaignIdentityConvention",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignIdentityConvention.opaque_observer_sees_no_new",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignIdentityConvention.withIdentity",
+     "cited_in": [
+      "receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (CampaignIdentityConvention)"
+     ],
+     "command": "cd lean4 && lake build CampaignIdentityConvention",
+     "command_note": "then, in a scratch file that imports CampaignIdentityConvention: #print axioms CampaignIdentityConvention.withIdentity",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignIdentityConvention.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json#0:CampaignIdentityConvention",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignIdentityConvention.withIdentity",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "record TFQ-0423"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/pgw-identity-convention-undecidable.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
     {
      "canonical_symbol": null,
      "cited_in": [
@@ -161827,6 +162367,54 @@
      "symbol_declared": null,
      "symbol_exists": null,
      "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/derivations/independent/pgw-identity-convention-undecidable.md",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": "5"
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.source"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "paper",
+     "path": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": "7"
     },
     {
      "canonical_symbol": null,
@@ -161901,7 +162489,7 @@
      "where": "731-737"
     }
    ],
-   "next_step": "cite at least one in-repo file that bears on the statement",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-0423"
    ],
@@ -317332,6 +317920,28 @@
    "toolchain": "Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc)"
   },
   {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [],
+   "built_successfully": true,
+   "checked_at": "2026-10-26T02:34:11.300877+00:00",
+   "dag_node": "PGW-IDENTITY-CONVENTION-UNDECIDABLE",
+   "decl_count": 14,
+   "exit_code": 0,
+   "id": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json#0:CampaignIdentityConvention",
+   "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": null,
+   "module": "CampaignIdentityConvention",
+   "path": "lean4/CampaignIdentityConvention.lean",
+   "receipt_file": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json",
+   "receipt_file_sha256": "efda3ed2fccff1da587fae1da7078f45fa5afe4ec13f9ee9403bb5d5c70e433f",
+   "recorded_sha256": "fa42557ad55d2b9150bea0a4c9d38a205d41e2d688115bb71091d0b96c6f8ff6",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
    "admission_scan_passed": null,
    "axiom_audit_passed": true,
    "axioms_itemised": true,
@@ -329946,7 +330556,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "e4a8c04e4ee0bff34c10825ea55391aaf7bd6f13812bd3924b1e64d219071a4f",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -329972,7 +330582,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "e4a8c04e4ee0bff34c10825ea55391aaf7bd6f13812bd3924b1e64d219071a4f",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -329998,7 +330608,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "e4a8c04e4ee0bff34c10825ea55391aaf7bd6f13812bd3924b1e64d219071a4f",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330024,7 +330634,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "e4a8c04e4ee0bff34c10825ea55391aaf7bd6f13812bd3924b1e64d219071a4f",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330050,7 +330660,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "e4a8c04e4ee0bff34c10825ea55391aaf7bd6f13812bd3924b1e64d219071a4f",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330076,7 +330686,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "e4a8c04e4ee0bff34c10825ea55391aaf7bd6f13812bd3924b1e64d219071a4f",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330102,7 +330712,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "e4a8c04e4ee0bff34c10825ea55391aaf7bd6f13812bd3924b1e64d219071a4f",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330128,7 +330738,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "e4a8c04e4ee0bff34c10825ea55391aaf7bd6f13812bd3924b1e64d219071a4f",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330154,7 +330764,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "e4a8c04e4ee0bff34c10825ea55391aaf7bd6f13812bd3924b1e64d219071a4f",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330180,7 +330790,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "e4a8c04e4ee0bff34c10825ea55391aaf7bd6f13812bd3924b1e64d219071a4f",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330206,7 +330816,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "e4a8c04e4ee0bff34c10825ea55391aaf7bd6f13812bd3924b1e64d219071a4f",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330232,7 +330842,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "e4a8c04e4ee0bff34c10825ea55391aaf7bd6f13812bd3924b1e64d219071a4f",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330258,7 +330868,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "e4a8c04e4ee0bff34c10825ea55391aaf7bd6f13812bd3924b1e64d219071a4f",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330284,7 +330894,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "e4a8c04e4ee0bff34c10825ea55391aaf7bd6f13812bd3924b1e64d219071a4f",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330310,7 +330920,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "e4a8c04e4ee0bff34c10825ea55391aaf7bd6f13812bd3924b1e64d219071a4f",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330911,10 +331521,10 @@
  ],
  "summary": {
   "by_grade": {
-   "E0": 153,
+   "E0": 152,
    "E1": 209,
    "E2": 35,
-   "E3": 528,
+   "E3": 529,
    "E4": 0
   },
   "by_status": {
@@ -330934,16 +331544,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 37,
   "e3_nodes_with_test_but_no_review": 39,
   "lean_declarations_in_repo": {
-   "distinct": 2121,
+   "distinct": 2130,
    "no_receipt": 38,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 2060,
-   "replay_verified_and_declaration_itemised": 1993,
+   "replay_verified": 2069,
+   "replay_verified_and_declaration_itemised": 2002,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 2440
+   "present": 2449
   },
   "mismatch_nodes": 190,
   "mismatches_by_kind": {
@@ -330964,7 +331574,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 620,
+  "receipts_indexed": 621,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
@@ -331184,10 +331794,10 @@
     "E4": 0
    },
    "PREGENESIS": {
-    "E0": 8,
+    "E0": 7,
     "E1": 0,
     "E2": 0,
-    "E3": 23,
+    "E3": 24,
     "E4": 0
    },
    "TENSOR_COMPOSITION": {
@@ -331221,10 +331831,10 @@
     "E4": 0
    },
    "CONDITIONAL": {
-    "E0": 11,
+    "E0": 10,
     "E1": 1,
     "E2": 0,
-    "E3": 25,
+    "E3": 26,
     "E4": 0
    },
    "DEFINITION": {

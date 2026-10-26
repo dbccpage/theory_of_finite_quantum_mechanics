@@ -1509,9 +1509,9 @@ Obligation: Keep the presentation P and the internal quotient N as separate reco
 - Parent: `TFQ-0422`
 - Status: `SOURCE_RECORD`
 
-Whether <a> supplied after <> is a new state depends on an identity convention that no prompt had declared. Under the opaque convention a state is what the regime can tell apart, and with O empty <> and <a> are not told apart; under the exact-inscription convention a state is the inscription itself, the strings differ, and the regime has one more syntactic state. Trials 1 and 2 answered under the first convention and the full replay under the second, calling <a> a new state. The analysis keeps both branches and records the effect as undecidable until one convention is declared.
+For arbitrary observer families, equality of all observations is an equivalence relation. Forgetting observers preserves indistinguishability, an empty observer family identifies every pair, and adjoining an exact-identity observer makes indistinguishability equivalent to equality. The supplied inscription `<a>` after `<>` is new relative to the exact observer and not new relative to the empty observer family. No single proposition agrees with both novelty answers.
 
-Obligation: Require a declared identity convention before answering whether a supplied inscription is a new state, and report the opaque and exact-inscription answers as separate branches until one is declared.
+Obligation: Keep the observer family and identity convention declared; no preferred convention, computability theorem or authority grant follows.
 
 ### TFQ-0424 absence-of-rule-not-identification
 
