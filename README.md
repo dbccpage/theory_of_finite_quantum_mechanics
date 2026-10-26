@@ -8,7 +8,7 @@ The project does not claim to derive quantum mechanics. It records how far finit
 
 ## Results, with exact scope
 
-Each row is a kernel-checked result with its hypotheses named, or a repository milestone. CONDITIONAL means the Lean proof takes those hypotheses as inputs; nothing here derives them. The current status of each named node is in the generated table under Repository facts.
+Each row is a theorem with its hypotheses named. CONDITIONAL means the Lean proof takes those hypotheses as inputs; nothing here derives them. The current status of each named node is in the generated table under Repository facts.
 
 | Result | Scope as recorded | Evidence |
 |---|---|---|
@@ -155,7 +155,7 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | DAG validator | `nodes=925 routes=934 records=977 failures=0 (exit 0)` | `python -I -X utf8 dag/validate_derivation_dag.py --no-files` |
 | TFQ records | 977 | [`dag/theory_of_finite_qm.jsonl`](dag/theory_of_finite_qm.jsonl) |
 | Derivation papers | 1142 in 36 stage folders | [`dag/derivations`](dag/derivations) |
-| Lean references in DAG nodes | 2829 resolve to a file in this checkout, 0 do not (sibling or historical paths), 43 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
+| Lean references in DAG nodes | 2830 resolve to a file in this checkout, 0 do not (sibling or historical paths), 43 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Rust references in DAG nodes | 323 resolve to a file in this checkout, 628 do not, 2 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | PFP prompts / indexed operad collections | 925 / 925 | [`dag/prompts`](dag/prompts), [`dag/operads/index.json`](dag/operads/index.json) |
 | PFP stage per prompt | P0_MINE_OPERAD 748, P5_RECORD 177 | [`dag/operads/index.json`](dag/operads/index.json) |
@@ -173,9 +173,9 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | Axioms named in those receipts | propext 218, Quot.sound 165, Classical.choice 119; outside {propext, Classical.choice, Quot.sound}: none | same receipts |
 | `sorry` tokens outside comments and strings | lean4 0, papers 0, code 0 | `git ls-files '*.lean'` |
 | `admit` used as a tactic | lean4 0, papers 0, code 0 (identifiers named `admit`: 156) | `git ls-files '*.lean'` |
-| Python test functions (`def test_`) | 7346 (plus 4049 in `dag/results` snapshots) | `git ls-files '*.py'` |
+| Python test functions (`def test_`) | 7344 (plus 4049 in `dag/results` snapshots) | `git ls-files '*.py'` |
 | Rust test functions (`#[test]`) | 7101 (plus 7995 in `dag/results` snapshots) | `git ls-files '*.rs'` |
-| Contract/score companions | combined_files = 9041, all_passed = true | `python -I -X utf8 scripts/contract_scores.py check` |
+| Contract/score companions | combined_files = 9042, all_passed = true | `python -I -X utf8 scripts/contract_scores.py check` |
 
 Counts of test functions and files are inventory counts, not pass results. Status labels are the DAG's own; the legend is in `dag/derivation_dag.json` (`status_legend`).
 
@@ -192,7 +192,6 @@ Nodes named in this README:
 | `FQ-GAP-CONTINUUM-HILBERT-LIFT` | FINITE_QM_CORE | `CONDITIONAL` |
 | `L1-IMP-HILBERT-INNER-PRODUCT` | L1_TO_L2 | `CONDITIONAL` |
 | `L1-IMP-COMPLEX-FIELD` | L1_TO_L2 | `CONDITIONAL` |
-| `FQ-OPERATIONAL-LOCAL-TOMOGRAPHY` | FINITE_QM_CORE | `IMPORTED_ASSUMPTION` |
 | `FQ-GAP-STONE-CONTINUOUS-TIME` | FINITE_QM_DYNAMICS | `CONDITIONAL` |
 | `FQ-GAP-U1-CIRCLE` | FINITE_QM_CORE | `CONDITIONAL` |
 | `L1-IMP-LINEAR-ISOMETRIC-DYNAMICS` | L1_TO_L2 | `CONDITIONAL` |

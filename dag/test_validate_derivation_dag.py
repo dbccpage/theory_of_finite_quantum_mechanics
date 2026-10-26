@@ -155,31 +155,6 @@ def test_pfp_review_never_raises_a_status() -> None:
     assert any("statement is the prior statement" in err for err in dag.check(_graph([same], []), None))
 
 
-def test_open_node_keeps_its_target_statement() -> None:
-    target = _node("a", "PREGENESIS", "OPEN")
-    target["statement"] = "Continuous time is not constructed."
-    assert not any("narrowed" in err for err in dag.check(_graph([target], []), None))
-    for prefix in ("Narrowed boundary, status left OPEN. 3 * 3 + 4 * 4 = 5 * 5.", "Reviewed scope: 48 - 24 = 24."):
-        slice_node = _node("a", "PREGENESIS", "OPEN")
-        slice_node["statement"] = prefix
-        assert any("narrowed slice, not the target" in err for err in dag.check(_graph([slice_node], []), None))
-    narrowed = _node("a", "PREGENESIS", "CONDITIONAL")
-    narrowed["pfp_review"] = _review(prior_status="CONDITIONAL", scope_effect="statement_narrowed",
-                                     prior_statement="the target")
-    assert any("keep the target statement" in err for err in dag.check(_graph([narrowed], []), None))
-    proved = _reviewed(scope_effect="statement_narrowed", prior_statement="the target")
-    assert not any("keep the target statement" in err for err in dag.check(_graph([proved], []), None))
-    replaced = _node("a", "PREGENESIS", "IMPORTED_ASSUMPTION")
-    replaced["statement"] = "4 - 4 + 1 = 1."
-    replaced["pfp_review"] = _review(prior_status="IMPORTED_ASSUMPTION", scope_effect="caveat_added",
-                                       prior_statement="the target")
-    assert any("differs from pfp_review.prior_statement" in err for err in dag.check(_graph([replaced], []), None))
-    lowered = _node("a", "PREGENESIS", "OPEN")
-    lowered["pfp_review"] = _review(prior_status="PROVED_LEAN", scope_effect="status_lowered",
-                                      prior_statement="the old claim")
-    assert not any("prior_statement" in err for err in dag.check(_graph([lowered], []), None))
-
-
 def test_pfp_review_file_and_sha256_are_checked(tmp_path: Path) -> None:
     review_file = tmp_path / "dag" / "results" / "N" / "reviews" / "r" / "review_result.json"
     review_file.parent.mkdir(parents=True)

@@ -3,15 +3,16 @@ node_id: PGW-WDP-BRIDGE-ONGOING-TO-WINDOW
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Narrowed in Lean 4 to the carrier {0, 1}. The directed slots are e(0,0), e(1,1), e(0,1)
-    and e(1,0). The coboundary of vertex values (g0, g1) is (0, 0, g0 - g1, g1 - g0). The unbalanced mark
-    (0, 1, 0) has diagnostic e(0,1) + e(1,0) + e(0,0). That diagnostic is 0 on every coboundary and is
-    unchanged when a coboundary is added. If a nonzero integer b scales an integer slot difference onto
-    a coboundary, the difference is already the integer coboundary of (0, -d01). The table (1, 0, 0, -1)
-    has diagnostic 0 and is not a coboundary. The table (0, 1, 0, 0) has diagnostic 0 and is not a coboundary.
-    The one-arc table (0, 0, 1, 0) has diagnostic 1. The two-way table (0, 0, 1, 1) has arc sum 2 and
-    arc difference 0. A general carrier, an arbitrary marked family, the degree-1 window of TFQ-0004,
-    a continuous norm, and carrier-changing term operations stay open.
+  source_statement: 'GEN-WDP-07, a conditional theorem in the bridge register, fixes a carrier and marked
+    triples F, keeps the full directed integer table e(x, y) = M_r(x, y) − M_s(x, y) including loops and
+    independent reverse arcs, treats raising as e ↦ e + d₀g with (d₀g)(x, y) = g(x) − g(y), and uses the
+    marked diagnostic D_F(e)(x, y, z) = e(x, y) + e(y, z) + e(z, x). Cancellation gives D_F d₀ = 0, so
+    D_F(e + d₀g) = D_F e even for unbalanced triples, and rationalizing reflects integer repair equality.
+    This is a repair quotient with descending reports, not automatically cohomology: C¹/im d₀ differs
+    from ker D_F/im d₀, a filled mark may be unbalanced, triangle reports miss loops and two-way defects,
+    and antisymmetric simplicial coordinates need e(x, x) = 0 and e(x, y) + e(y, x) = 0. Term addition
+    and identification can fail to respect the quotient (source 23:D4), so carrier-changing operations
+    need new congruence proofs.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - Fixed carrier and declared marked triples F from the chosen Genesis Ongoing source contexts (assumption)
