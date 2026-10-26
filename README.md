@@ -85,6 +85,11 @@ Nodes named in this README:
 | `TFQ-0084` | FINITE_QG | `OPEN` |
 <!-- facts:end -->
 
+The generated node table is a selected set, not an exhaustive inventory of
+every node named in the selected results below. In particular,
+`FQ-OPERATIONAL-LOCAL-TOMOGRAPHY` is discussed with the complex-field selection
+result; the full node inventory is in the DAG.
+
 ## How claims are kept honest
 
 The project lowers its own labels when the evidence is thinner than the label. Recent examples:
@@ -92,7 +97,7 @@ The project lowers its own labels when the evidence is thinner than the label. R
 - **Outside-corpus audit ([#131](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/131)).** Records from the FSP, MUB(6), Majorana and DFM papers, the Authorization-Incompleteness package and the computation papers were folded into the DAG only after an audit. Each record keeps its `source_claimed_status` next to the audited `status`, with an `audit` note. Many `PROVED_LEAN` claims were recorded lower where the Lean covered only one fixed instance or was missing. The counts are in the facts table, and the records are in [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json).
 - **FSP "master theorem".** As stated, the claim that every finite system either has a polynomial-time sign-eliminating involution or is an NP-hard sign obstruction fails, because NP-hardness is a property of input families. It is recorded as `FSP-MASTER-DICHOTOMY-REFUTED`. Corpus reconciliation is in [#134](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/134).
 - **MUB(6).** The source's quartet-exclusion certificates (Positivstellensatz, SDP gap, Krawczyk cover, CAD and others) are recorded as `OPEN` claims, not results. `MUB6-MAX-MUB-SIX-EQUALS-THREE` stays `OPEN`, as it is in the literature. One source claim, `MUB6-AFFINE-FIBER-THIRD-BASIS`, is `REFUTED` by an explicit product triple.
-- **PFP reviews ([#133](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/133)).** The reviews of the staged prompt runs narrow or lower node statements where the kernel-checked Lean is a fixed instance. Folding them into the DAG is pending that PR, and the facts table reports it as pending until then.
+- **PFP reviews ([#133](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/133)).** Reviews of the staged prompt runs are incorporated into the DAG, with their scoped claims and limitations retained. The generated facts table reports the current `pfp_review` population and scope effects; its inventory is not a fresh independent replay of every review.
 - **Split labels.** When a construction is checked but the choice of its inputs is not, the node is split. `FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION` is `PROVED_LEAN` with named hypotheses. `FQ-GAP-CONTINUUM-HILBERT-LIFT`, which holds the selection of the scalar field and the ℓ² uniformity, stays `CONDITIONAL`.
 
 ## Selected results, with exact scope

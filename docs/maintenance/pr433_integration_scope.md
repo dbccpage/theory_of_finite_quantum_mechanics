@@ -22,6 +22,17 @@ or this final candidate's CI result. Current-owner checks and hosted CI are
 verified separately before merging. The older 32-failure census likewise binds
 its old base, not the repaired main.
 
+The retained two-paper proposal contains `/workspace/continuum-two/` links to
+author-local logs and a joint receipt; these are local-only and unavailable
+repository evidence. They are preserved verbatim so its historical hash and
+the referencing exception record remain coherent. The accessible committed
+records are the [annotated historical validation](../../dag/research/campaign_dfm-continuum-refinement-limit_integration_validation.json),
+[retained single-module replay](../../dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json)
+and [current contribution rule](../../CONTRIBUTING.md). No accessible full joint
+replay or local governance log is claimed. Original validation observation
+fields remain unchanged under an explicit additive pre-approval annotation;
+their unannotated bytes are recoverable from the exact original Git object.
+
 All prior maintenance/proof pins, the reviewed target-restoration fixes and
 metadata history are retained. Original research node and route statuses remain
 unchanged. The finite computations are controls; the infinite argument relies
