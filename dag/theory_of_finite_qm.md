@@ -503,9 +503,9 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1029` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-COMPLEX-FIELD` (IMPORTED_ASSUMPTION) | scoped_gaussian_integer_result_reviewed / statement_narrowed |
 | `TFQ-1030` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CIRCLE-U1` (IMPORTED_ASSUMPTION) | scoped_sign_pair_cycle_result_reviewed / statement_narrowed |
 | `TFQ-1031` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-GLEASON` (IMPORTED_ASSUMPTION) | scoped_two_label_pairing_reviewed / statement_narrowed |
-| `TFQ-1032` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-TENSOR-PRODUCT` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-1032` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-TENSOR-PRODUCT` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1033` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CPTP-CLASS` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
-| `TFQ-1034` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CONTINUOUS-TIME` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-1034` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CONTINUOUS-TIME` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1035` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CONTINUUM-HILBERT` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1036` | `FINITE_QM_STRUCTURE` | `COMPUTATIONAL_CONTROL` | `GP-GAP-EXACT-DUALITY` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
 | `TFQ-1037` | `FINITE_QM_CORE` | `PROVED_LEAN` | `GP-FIN-GAUSS-MATRIX-ALGEBRA` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
@@ -4143,9 +4143,9 @@ Obligation: Uniqueness of the Born quadratic form for dimension at least 3, unde
 - Status: `IMPORTED_ASSUMPTION`
 - DAG node: `GP-IMPORT-TENSOR-PRODUCT` (`IMPORTED_ASSUMPTION`)
 
-Hilbert tensor product as the unique way to combine systems. On Bool x Bool a bilinear integer-homogeneous Kronecker-normalized map equals the pointwise product; a weaker same-host combining interface has a rival (dump-the-right-report map).
+For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1.
 
-Obligation: Combining-systems uniqueness not derived; needs a second presented carrier (QM_122 7.1 item 1).
+Obligation: The Hilbert-space tensor product is not derived as the unique way to combine systems. The agreement above uses additivity, integer homogeneity and the identity tag (i, j) on one Bool-by-Bool host. The dump-right map is a same-host rival whose tag collapses the second Boolean factor, so a weaker tag does not select the pointwise product. A second presented carrier and a physical composition rule stay imported (QM_122 7.1 item 1).
 
 ### TFQ-1033 gp-import-cptp-class
 
@@ -4165,9 +4165,9 @@ Obligation: The class of completely positive trace-preserving maps on a Hilbert 
 - Status: `IMPORTED_ASSUMPTION`
 - DAG node: `GP-IMPORT-CONTINUOUS-TIME` (`IMPORTED_ASSUMPTION`)
 
-Continuous time, topology, a one-parameter unitary group and Stone's theorem. The two-state toggle has no report-level square root; after complex coefficients, interpolants exist at scale 4 and are not unique.
+On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).
 
-Obligation: Finite substitutes: exact rational Cayley transform in SO(8,Q); hyperoctahedral signed permutations with irreversible monotone residue.
+Obligation: Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.
 
 ### TFQ-1035 gp-import-continuum-hilbert
 
