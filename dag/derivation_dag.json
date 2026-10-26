@@ -2725,7 +2725,7 @@
       "stage": "L1_EMERGENCE",
       "status": "OPEN",
       "source_status": "Replica extensivity of L1 and L2^2 (WDP 8.5 non-exclusion by extensivity alone), degree-1 homogeneity separation (100 != 50), and disjoint-support norm separation (5 != 3+4) mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm",
-      "statement": "l1 appears when aggregation over independent replicas is required to be extensive. WDP 8.5 states that l2 is not excluded by this argument.",
+      "statement": "l1 appears when aggregation over independent replicas is required to be extensive. WDP 8.5 states that l2 is not excluded by this argument. The checked slice, with status left OPEN, is this Nat arithmetic. For all natural numbers c, a, and b, c * a + c * b equals c * (a + b), and (c * a) * (c * a) + (c * b) * (c * b) equals (c * c) * (a * a + b * b). On a = 3 and b = 4, a + b = 7, a * a + b * b = 25, 5 * 5 = 25, (a + b) * (a + b) = 49, and 25 is not 49. On c = 2, c * (a + b) = 14, (c * a) * (c * a) + (c * b) * (c * b) = 100, c * (a * a + b * b) = 50, and 100 is not 50. Deriving l1 from replica extensivity, and a reading that l2 is excluded, stay outside this count.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md#WDP-CH08-C01",
         "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/witnessed_difference_programme.md:2598"
@@ -2734,7 +2734,18 @@
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gs001_replica_and_phi1_quotient_invariance",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gs001_and_wdp_ch08_replica_extensivity_vs_homogeneity",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation"
+        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation",
+        "lean4/CampaignL1ReplicaScale.lean::CampaignL1ReplicaScale.scaleSum",
+        "lean4/CampaignL1ReplicaScale.lean::CampaignL1ReplicaScale.scaleSquares",
+        "lean4/CampaignL1ReplicaScale.lean::CampaignL1ReplicaScale.sampleSum",
+        "lean4/CampaignL1ReplicaScale.lean::CampaignL1ReplicaScale.sampleSquares",
+        "lean4/CampaignL1ReplicaScale.lean::CampaignL1ReplicaScale.sampleFive",
+        "lean4/CampaignL1ReplicaScale.lean::CampaignL1ReplicaScale.sampleSumSquare",
+        "lean4/CampaignL1ReplicaScale.lean::CampaignL1ReplicaScale.sampleSquaresNeSumSquare",
+        "lean4/CampaignL1ReplicaScale.lean::CampaignL1ReplicaScale.sampleScaledSum",
+        "lean4/CampaignL1ReplicaScale.lean::CampaignL1ReplicaScale.sampleScaledSquares",
+        "lean4/CampaignL1ReplicaScale.lean::CampaignL1ReplicaScale.sampleLinearScale",
+        "lean4/CampaignL1ReplicaScale.lean::CampaignL1ReplicaScale.sampleScaledNeLinear"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness",
@@ -2744,7 +2755,7 @@
         "sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "No classification is formalised. The cited Lean contains additivity of finite sums and the numerical example 3^2 + 4^2 = 5^2 with (2*3)^2 + (2*4)^2 = 100, which illustrates the extensive/homogeneous distinction but does not derive l1 from replica extensivity.",
+      "bottleneck": "The Nat count in the statement is the checked slice. No classification is formalised. Deriving l1 from replica extensivity, and a reading that l2 is excluded, stay outside this count. The older citation wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation records finite-sum additivity and the closed facts (2*3)^2+(2*4)^2=100 and 3^2+4^2=5^2, and does not discharge the open reading.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/L1-WDP-CH08-C01-REPLICA-L1/reviews/20261019_l1_import_audit/delivery_review_result.json",

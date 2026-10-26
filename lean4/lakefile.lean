@@ -1534,3 +1534,7 @@ lean_lib CampaignTfq0184CubicCount where
 -- Campaign: L1-GS001-GAUGE-L1. Not a default target.
 lean_lib CampaignL1Gs001GaugeL1 where
   roots := #[`CampaignL1Gs001GaugeL1]
+
+-- L1-WDP-CH08-C01-REPLICA-L1 scale count. Non-default target.
+lean_lib CampaignL1ReplicaScale where
+  roots := #[`CampaignL1ReplicaScale]
