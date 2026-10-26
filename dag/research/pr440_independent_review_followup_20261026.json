@@ -1,0 +1,337 @@
+{
+  "AuthorityEffect": "None",
+  "base": "1dcb89bf2b83181e082db17efaa840bfcf66bca6",
+  "changes": [
+    "Correct active sector-form route symmetry premise",
+    "Correct both active replay summaries to finite integer algebra and CONDITIONAL; retain all historical bytes",
+    "Append corrected 170-root registry invariant and rebound evidence records"
+  ],
+  "source_pin_unchanged": true,
+  "all_nodes_and_statuses_unchanged": true,
+  "checks": {
+    "sync-check-0": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pfp_results.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.253,
+      "output": "pfp results synchronized\n"
+    },
+    "sync-check-1": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.391,
+      "output": "unified DAG synchronized\n"
+    },
+    "sync-check-2": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_application_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.261,
+      "output": "application branches synchronized\n"
+    },
+    "sync-check-3": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pregenesis_to_wdp.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.437,
+      "output": "pregenesis-to-wdp fragment synchronized\n"
+    },
+    "sync-check-4": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_frontier_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.339,
+      "output": "frontier branches synchronized\n"
+    },
+    "sync-check-5": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_genesis_to_higher.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.231,
+      "output": "genesis-to-higher synchronized\n"
+    },
+    "sync-check-6": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_foc035_observer_presheaf.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.267,
+      "output": "foc035 observer presheaf synchronized\n"
+    },
+    "invariants": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--invariants"
+      ],
+      "exit_code": 0,
+      "seconds": 0.166,
+      "output": "unified invariants failures=0\n"
+    },
+    "views": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/render_dag_views.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.107,
+      "output": "views match derivation_dag.json\n"
+    },
+    "validator": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/validate_derivation_dag.py",
+        "--no-files"
+      ],
+      "exit_code": 0,
+      "seconds": 0.927,
+      "output": "nodes=925 routes=934 records=977 failures=0\n"
+    },
+    "facts-check": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 20.296,
+      "output": "README facts current\n"
+    },
+    "status": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_status.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 6.183,
+      "output": "generated status files are current (16 files checked)\n"
+    },
+    "receipt-check": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.093,
+      "output": "receipts current\n"
+    },
+    "evidence-check": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/evidence/build_evidence.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 6.715,
+      "output": "evidence map current\n"
+    },
+    "scope": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "review/pr439-20261026"
+      ],
+      "exit_code": 0,
+      "seconds": 3.233,
+      "output": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 2,\n    \"valid_contracts_and_scores\": 2,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 2\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 1,\n      \"Symbolic/Formal\": 1\n    },\n    \"completed_scores\": 2,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 2\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since review/pr439-20261026 (merge base 37b4b75c9d73), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n"
+    },
+    "history": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/contract_scores.py",
+        "check",
+        "--changed-since",
+        "review/pr439-20261026"
+      ],
+      "exit_code": 0,
+      "seconds": 3.566,
+      "output": "{\n  \"originals\": null,\n  \"combined_files\": 3,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n"
+    },
+    "overclaim": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "review/pr439-20261026",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "seconds": 6.46,
+      "output": "overclaim_scan: scope=changes since review/pr439-20261026 (merge base 37b4b75c9d73); HIGH=0 MEDIUM=0 LOW=4\n"
+    },
+    "tests": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "dag/test_tensor_countermodel_receipt.py",
+        "dag/test_tensor_measurement_receipt.py",
+        "dag/test_application_branches.py",
+        "dag/test_frontier_branches.py",
+        "dag/test_genesis_to_higher.py",
+        "dag/test_foc035_observer_presheaf.py",
+        "dag/evidence/test_evidence.py",
+        "scripts/test_governance_policy.py",
+        "scripts/test_overclaim_scan.py",
+        "scripts/auto/test_auto_checks.py",
+        "dag/test_unified_dag.py",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "seconds": 27.153,
+      "output": "........................................................................ [ 37%]\n........................................................................ [ 75%]\n...............................................                          [100%]\n191 passed in 26.74s\n"
+    },
+    "full-history": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/contract_scores.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 13.54,
+      "output": "{\n  \"originals\": 0,\n  \"combined_files\": 9052,\n  \"all_passed\": true,\n  \"errors\": []\n}\n"
+    },
+    "anti-pattern": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/auto/anti_pattern_lint.py",
+        "--changed-since",
+        "review/pr439-20261026"
+      ],
+      "exit_code": 0,
+      "seconds": 0.612,
+      "output": "anti_pattern_lint: 0 HIGH, 0 MEDIUM, 0 LOW (3 changed .lean/.py files since review/pr439-20261026 (Lean rules: added lines))\n"
+    },
+    "estate": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/auto/estate_audit.py",
+        "skills"
+      ],
+      "exit_code": 0,
+      "seconds": 0.112,
+      "output": "[LOW] MISSING_PATH .claude/skills/audit/SKILL.md:42: cited path .agents/agents/ does not exist\n[LOW] MISSING_PATH .claude/skills/audit/SKILL.md:42: cited path .claude/agents/ does not exist\n[LOW] MISSING_PATH .claude/skills/overclaim-hunter/SKILL.md:37: cited path docs/overclaim/report.md does not exist\nestate_audit: 0 HIGH, 0 MEDIUM, 3 LOW (13 skills)\n"
+    },
+    "readme-tests": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "dag/test_readme_facts.py",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "seconds": 7.237,
+      "output": ".....                                                                    [100%]\n5 passed in 6.96s\n"
+    },
+    "governance": {
+      "command": [
+        "/workspace/continuum-two/governance-target/release/governance-check",
+        "--root",
+        "/workspace/theory_of_finite_quantum_mechanics",
+        "check",
+        "--changed-since",
+        "review/pr439-20261026"
+      ],
+      "exit_code": 0,
+      "seconds": 1.416,
+      "output": "changed since review/pr439-20261026 (37b4b75c9d73011ed29d77302f35491806aeae53): 37 paths\nchecked 8332: 185 pass, 8127 grandfathered, 20 boilerplate, 0 failed\n"
+    }
+  }
+}

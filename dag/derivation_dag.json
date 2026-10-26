@@ -3540,10 +3540,15 @@
       "id": "L1-IMP-ORTHOGONAL-ADDITIVITY",
       "stage": "L1_TO_L2",
       "status": "CONDITIONAL",
-      "source_status": "Orthogonality of the sector basis derived from sector additivity of the readout alone in dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form (SectorFormUniqueness.offdiag_pair_sum_eq_zero, offdiag_eq_zero, eq_diagonal_of_sectorAdditive, qf_eq_sum_diag_sq_of_sectorAdditive; SectorFormHermitian.offdiag_eq_zero with the two directions 1 and i, and imagLeak12 showing the second direction is needed). Frame additivity on arbitrary orthogonal frames is not derived. Earlier: Thm 6 assumptions 4 and 7: orthogonal additivity; projection-measure / frame-function structure",
-      "statement": "Derived part (dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form): sector additivity of the quadratic readout on disjoint supports forces every off-diagonal Gram entry to vanish, so the sector basis is orthogonal for every sector-additive form and the readout is the diagonal sum; this couples the l1 additivity of sectors to the orthogonality of the selected form. Imported part: probability additive over arbitrary orthogonal frames and defined on projection measures / frames (Thm 6 assumptions 4 and 7), under which the quartic rival dies (H013FrameAdditivity) and without which two effect rules share the unit total and disagree (H013SameContract), remains supplied.",
+      "source_status": "Sector additivity over disjoint supports gives off-diagonal pair-sum cancellation and the diagonal quadratic readout. Entrywise off-diagonal zero additionally requires symmetry; the complex Hermitian theorem uses Hermitian symmetry and both real and imaginary sector directions. Arbitrary orthogonal-frame additivity and projection-measure structure remain supplied. Earlier sector-form source and prior reviews remain cited.",
+      "statement": "For a sector-additive rational coefficient matrix, the sum of each off-diagonal pair is zero and the quadratic readout equals the sum of the diagonal squares. Symmetry of the matrix is a further hypothesis before each off-diagonal entry is zero. On the 2 by 2 integer matrix with entries 1, 1, -1 and 1, the off-diagonal pair sums to 0, neither off-diagonal entry is 0, and for every integer pair a, b the quadratic form equals a*a + b*b, which equals the sum of the forms on (a, 0) and (0, b). Probability additive on arbitrary orthogonal frames, and projection measures, stay supplied.",
       "source": [
-        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md:780"
+        "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md:780",
+        "lean4/CampaignL1OrthogonalAdditivity.lean",
+        "checks/independent/l1-imp-orthogonal-additivity.py",
+        "dag/derivations/independent/l1-imp-orthogonal-additivity.md",
+        "dag/research/pr440_statement_review_20261026.json",
+        "dag/research/pr440_review_lean_replay.json"
       ],
       "lean": [
         "lean4/H013FrameAdditivity.lean",
@@ -3556,7 +3561,12 @@
         "lean4/SectorFormUniqueness.lean::InnerProductFable.SectorForm.qf_eq_sum_diag_sq_of_sectorAdditive",
         "lean4/SectorFormUniqueness.lean::InnerProductFable.SectorForm.l1_disjoint_additive",
         "lean4/SectorFormHermitian.lean::InnerProductFable.HermitianSectorForm.offdiag_eq_zero",
-        "lean4/SectorFormHermitian.lean::InnerProductFable.HermitianSectorForm.imagLeak12_imag_direction_not_additive"
+        "lean4/SectorFormHermitian.lean::InnerProductFable.HermitianSectorForm.imagLeak12_imag_direction_not_additive",
+        "lean4/CampaignL1OrthogonalAdditivity.lean::CampaignL1OrthogonalAdditivity.pairSum",
+        "lean4/CampaignL1OrthogonalAdditivity.lean::CampaignL1OrthogonalAdditivity.entriesNotZero",
+        "lean4/CampaignL1OrthogonalAdditivity.lean::CampaignL1OrthogonalAdditivity.readout",
+        "lean4/CampaignL1OrthogonalAdditivity.lean::CampaignL1OrthogonalAdditivity.axisSum",
+        "lean4/CampaignL1OrthogonalAdditivity.lean::CampaignL1OrthogonalAdditivity.negCross"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs",
@@ -3569,22 +3579,23 @@
         "sector additivity of the quadratic readout on disjoint supports: assumption (transcribed from l1 additivity)",
         "frame additivity on arbitrary orthogonal frames of the selected form and projection measures / frames beyond the sector basis: assumption"
       ],
-      "bottleneck": "Sector additivity of the quadratic readout is supplied as a law (transcribed from l1 additivity); frame additivity on arbitrary orthogonal frames of the selected form, as Gleason-type uniqueness needs, is not derived here (H013 headers say Candidate only).",
+      "bottleneck": "The 2 by 2 matrix is one witness that a sector-additive form can keep a nonzero off-diagonal entry when the pair sums to zero. Frame additivity on arbitrary orthogonal frames, projection measures, and Gleason-type uniqueness stay supplied. Sector additivity of the quadratic readout on a general carrier remains the hypothesis transcribed from l1 additivity. AuthorityEffect: None.",
       "tags": [
         "conditional-on-readout-laws"
       ],
       "pfp_review": {
-        "review": "dag/results/L1-IMP-ORTHOGONAL-ADDITIVITY/reviews/20261020_born_boundary_audit/delivery_review_result.json",
-        "review_sha256": "841648b501aeb854d66b132fc803d38baed4530bb0bcc8ee762a97672f696d32",
+        "review": "dag/research/pr440_statement_review_20261026.json",
+        "review_sha256": "4f5a86e040e2b2505abe883699560466c5dca6810408ee462b0de026486aedc8",
         "review_refs": [
-          "dag/results/L1-IMP-ORTHOGONAL-ADDITIVITY/reviews/20261020_born_boundary_audit/delivery_review_result.json"
+          "dag/results/L1-IMP-ORTHOGONAL-ADDITIVITY/reviews/20261020_born_boundary_audit/delivery_review_result.json",
+          "dag/research/pr440_statement_review_20261026.json"
         ],
         "verdict": "scoped_result_or_obstruction_reviewed",
-        "narrowest_claim": "Exact projector resolution of identity, quadratic frame totals and quartic basis dependence, with generic orthogonal-frame algebra in Lean.",
-        "does_not_support": "Prove source/array refinement and the full frame-law uniqueness theorem; a few frame values neither derive orthogonality nor prove Gleason.",
-        "next_test": "Prove source/array refinement and the full frame-law uniqueness theorem; a few frame values neither derive orthogonality nor prove Gleason.",
-        "scope_effect": "consistent",
-        "reason": "Review predates the sector-form run; current node text splits derived and imported parts and already cites it.",
+        "narrowest_claim": "The integer coefficient matrix [[1,1],[-1,1]] has nonzero off-diagonal entries whose sum is zero, and its quadratic form equals a*a+b*b and the sum of its two axis readouts for every integer a,b.",
+        "does_not_support": "One nonsymmetric coefficient matrix; no Gram-matrix or arbitrary orthogonal-frame/projection-measure theorem. General sector additivity remains supplied. Entrywise off-diagonal zero needs symmetry (and in the Hermitian setting the stated real/imaginary sector hypotheses).",
+        "next_test": "Derive rather than assume arbitrary-frame probability additivity and the projection-measure hypotheses.",
+        "scope_effect": "statement_narrowed",
+        "reason": "Correct the missing symmetry premise and add one nonsymmetric coefficient-matrix counterexample; preserve CONDITIONAL status and historical review provenance.",
         "prior_status": "CONDITIONAL",
         "prior_statement": "Derived part (dag/results/L1-IMP-HILBERT-INNER-PRODUCT/runs/20261021T013500Z_sector_form): sector additivity of the quadratic readout on disjoint supports forces every off-diagonal Gram entry to vanish, so the sector basis is orthogonal for every sector-additive form and the readout is the diagonal sum; this couples the l1 additivity of sectors to the orthogonality of the selected form. Imported part: probability additive over arbitrary orthogonal frames and defined on projection measures / frames (Thm 6 assumptions 4 and 7), under which the quartic rival dies (H013FrameAdditivity) and without which two effect rules share the unit total and disagree (H013SameContract), remains supplied.",
         "prior_bottleneck": "Sector additivity of the quadratic readout is supplied as a law (transcribed from l1 additivity); frame additivity on arbitrary orthogonal frames of the selected form, as Gleason-type uniqueness needs, is not derived here (H013 headers say Candidate only).",
@@ -32322,7 +32333,7 @@
         "lean4/SectorFormUniqueness.lean",
         "lean4/SectorFormHermitian.lean"
       ],
-      "note": "Holds once sector additivity of the quadratic readout is supplied; orthogonality of the sector basis follows without any symmetry assumption. Frame additivity beyond the sector basis is not covered."
+      "note": "Once sector additivity of the quadratic readout is supplied, off-diagonal pairs cancel and the readout is diagonal. Entrywise off-diagonal zero and sector-basis orthogonality additionally require symmetry; the Hermitian version uses its Hermitian and real/imaginary sector premises. Frame additivity beyond the sector basis remains supplied."
     },
     {
       "id": "FQ-R-CONTINUUM-HILBERT-LIFT-CONSTRUCTION",
@@ -53096,6 +53107,7 @@
       "obligation": "Import orthogonal frame additivity separately from additivity on one fixed sector basis.",
       "parent_id": "TFQ-0298",
       "pfp_review_refs": [
+        "dag/research/pr440_statement_review_20261026.json",
         "dag/results/L1-IMP-ORTHOGONAL-ADDITIVITY/reviews/20261020_born_boundary_audit/delivery_review_result.json"
       ],
       "python": [],

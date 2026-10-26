@@ -1502,3 +1502,7 @@ lean_lib CampaignL1U1SelectorOtherSegment where
 -- Reviewed campaign module; non-default target.
 lean_lib CampaignOpsLeanGap where
   roots := #[`CampaignOpsLeanGap]
+
+-- Reviewed campaign module; non-default target.
+lean_lib CampaignL1OrthogonalAdditivity where
+  roots := #[`CampaignL1OrthogonalAdditivity]

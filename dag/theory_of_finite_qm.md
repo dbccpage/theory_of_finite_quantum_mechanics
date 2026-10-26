@@ -373,7 +373,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-0296` | `L1_TO_L2` | `GAP` | `L1-IMP-HILBERT-INNER-PRODUCT` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0297` | `FINITE_HILBERT` | `OPEN_OBLIGATION` | `TFQ-0297` (OPEN) | - |
 | `TFQ-0298` | `FINITE_HILBERT` | `OPEN_OBLIGATION` | `TFQ-0298` (OPEN) | - |
-| `TFQ-0299` | `L1_TO_L2` | `GAP` | `L1-IMP-ORTHOGONAL-ADDITIVITY` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-0299` | `L1_TO_L2` | `GAP` | `L1-IMP-ORTHOGONAL-ADDITIVITY` (CONDITIONAL) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0300` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM3-ROW-SPARSITY` (PROVED_LEAN), `FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED` (PROVED_LEAN) | `L1-QM020-THM3-ROW-SPARSITY`: scoped_result_or_obstruction_reviewed / statement_narrowed; `FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED`: scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-0301` | `L1_TO_L2` | `GAP` | `L1-IMP-HAAR-INDEPENDENT-PHASES` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-0302` | `L1_TO_L2` | `SOURCE_RECORD` | `L1-QM020-THM5-PHASE-AVERAGED-SHADOW` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / statement_narrowed |
