@@ -514,7 +514,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1040` | `FINITE_QM_DYNAMICS` | `IMPORTED_ASSUMPTION` | `DS-CONTINUOUS-TIME-EXP-GENERATOR` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1041` | `FINITE_QM_STRUCTURE` | `COMPUTATIONAL_CONTROL` | `DS-QM206-BOUNDARY-SYNTHESIS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-1042` | `FINITE_QM_STRUCTURE` | `COMPUTATIONAL_CONTROL` | `DS-QM207-211-FIVE-IMPORT-CASCADE` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-1043` | `FINITE_QM_STRUCTURE` | `IMPORTED_ASSUMPTION` | `DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-1043` | `FINITE_QM_STRUCTURE` | `IMPORTED_ASSUMPTION` | `DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1044` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `IMPL-FSP-SWITCHING-NORMAL-FORM-NF002` (PROVED_LEAN) | reviewed_with_targeted_native_integration / consistent |
 | `TFQ-1045` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `IMPL-THYMUS-SCREENING-SOUNDNESS` (PROVED_LEAN) | reviewed_with_targeted_native_integration / statement_narrowed |
 | `TFQ-1046` | `IMPLEMENTATION_CORE` | `PROVED_LEAN` | `IMPL-LGGR-FINITE-RESULTS-LEAN` (PROVED_LEAN) | reviewed_with_targeted_native_integration / caveat_added |
@@ -5247,9 +5247,9 @@ Obligation: Unmet after the PFP review: Prove each correctly specified physical 
 - Status: `IMPORTED_ASSUMPTION`
 - DAG node: `DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY` (`IMPORTED_ASSUMPTION`)
 
-Born-quadratic uniqueness (Gleason) is imported; L^p pairings for p != 2 are valid in L1 measure theory. The dedicated 204 slot is empty.
+For every integer pair A and B, A + B equals (A + B) * 1. The sum 3 + 4 equals 7, and 7 differs from 0. The sum of squares 3 * 3 + 4 * 4 equals 25, and 5 * 5 equals 25. The sum of fourth products 3 * 3 * 3 * 3 + 4 * 4 * 4 * 4 equals 337. The product (3 * 3) * (3 * 3 * 3 * 3 + 4 * 4 * 4 * 4) differs from (3 * 3 * 3 * 3) * (5 * 5). The product 3 * (3 * 3 + 4 * 4) differs from (3 * 3) * (3 + 4). For every integer quadruple a, b, r and s, (r * a - s * b) * (r * a - s * b) + (s * a + r * b) * (s * a + r * b) equals (r * r + s * s) * (a * a + b * b). At a = 3, b = 4, r = 3 and s = 4, both sides equal 625.
 
-Obligation: No derivation of quadratic uniqueness from L1 additivity.
+Obligation: Gleason uniqueness, frame-function, effect, continuity and dimension hypotheses, and L^p pairings in measure theory stay imported. The integer sum identity, the rotation identity, and the two splits of the pair (3, 4) are one finite case. Bare normalization does not select a quadratic pairing.
 <!-- unified-dag:rows:FINITE_QM_STRUCTURE:end -->
 
 ## FINITE_QM_INFORMATION
