@@ -225,6 +225,36 @@ def run_all_checks() -> dict[str, Any]:
         "coordinates_per_vertex": 12,
     }
 
+    # -------------------------------------------------------------------------
+    # Family 5: positive natural masses are not a unit sum; division normalizes
+    # -------------------------------------------------------------------------
+    record(0 != 1, "empty mass is not 1")
+    record(1 + 1 == 2 and 2 != 1, "pair (1, 1) sums to 2")
+    record(Fraction(1) + Fraction(1) != Fraction(1), "rational 1 + 1 is not 1")
+    record(Fraction(1, 2) + Fraction(1, 2) == Fraction(1), "halves sum to 1")
+    record((Fraction(1), Fraction(1)) != (Fraction(1, 2), Fraction(1, 2)), "unnormalized pair differs")
+    record(0 + 1 == 1, "zero-plus-one is a unit and sits outside the positive-pair hypothesis")
+    positive_pairs = 0
+    normalized_pairs = 0
+    for a in range(0, 13):
+        for b in range(0, 13):
+            if a >= 1 and b >= 1:
+                positive_pairs += 1
+                record(a + b != 1 and a + b >= 2, f"positive masses {a}, {b}")
+            if a + b > 0:
+                normalized_pairs += 1
+                record(
+                    Fraction(a, a + b) + Fraction(b, a + b) == Fraction(1),
+                    f"division normalizes {a}, {b}",
+                )
+    record(0 + 0 == 0, "the zero total is excluded from division")
+    details["family5_positive_mass"] = {
+        "positive_pairs": positive_pairs,
+        "normalized_pairs": normalized_pairs,
+        "one_one_sum": 2,
+        "half_sum": "1",
+    }
+
     return {
         "node_id": "TFQ-0171",
         "passed": failed == 0,

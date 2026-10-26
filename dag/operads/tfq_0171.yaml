@@ -3,17 +3,17 @@ node_id: TFQ-0171
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Unnormalized mass is a different carrier from the probability simplex. src/finite_valuation.rs
-    states exact nonnegative Boolean valuations with no normalization requirement, and it admits an empty
-    carrier that FinN refuses. src/lib.rs also declares signed_representation.rs, local_deterministic.rs,
-    and marginal_compatibility.rs; those three bodies were not opened, so only the module declarations
-    are in scope. The obligation is to keep an unnormalized valuation from standing in for a law that
-    sums to one. H001ProbabilitySimplex.lean says its scaled integer grid is not the ordinary rational
-    simplex.
+  source_statement: For all natural numbers a and b, if a is at least 1 and b is at least 1, then a +
+    b is not 1. The pair (1, 1) sums to 2, and 2 is not 1. The empty mass 0 is not 1. In the rationals,
+    1/2 + 1/2 = 1, the pair (1, 1) is not the pair (1/2, 1/2), and 1 + 1 is not 1. If a + b is positive,
+    then a/(a + b) + b/(a + b) = 1. An unnormalized Boolean valuation on a general carrier, the Rust module
+    contracts, and a ban on standing in for a unit-sum law stay outside this finite case.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Do not collapse unnormalized finite valuations into the normalized rational probability
-    simplex.
+  source_bottleneck: 'Positive natural masses on two coordinates are separated from the unit sum, and
+    dividing by a positive total returns a rational unit sum. The obligation to keep an unnormalized valuation
+    from standing in for a law that sums to one, including the Rust files and an empty carrier refused
+    by Fin n, remains open. AuthorityEffect: None.'
   source_refs:
   - dag/derivations/22_implementation_sibling/tfq_0171_do_not_collapse_unnormalized_finite_valuations_into_the_normalized_rational_probability_simplex.md
   - dag/derivations/independent/tfq-0171.md
@@ -31,7 +31,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/22_implementation_sibling/tfq_0171_do_not_collapse_unnormalized_finite_valuations_into_the_normalized_rational_probability_simplex.md
-    sha256: 60c56fc5c778e04299fd6fc0b79e2aebf75dde704e9d323eb0acd4de4d56cb28
+    sha256: 3f968af7a45458b94d626c07850d8638e95001f4d308ebd198bb58c923c9969f
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -414,6 +414,90 @@ relation_candidates:
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
+- kind: theorem
+  name: positivePairMassNotOne
+  line: 10
+  signature_excerpt: 'theorem positivePairMassNotOne (a b : Nat) (ha : 1 ≤ a) (hb : 1 ≤ b) : a + b ≠ 1'
+  source: lean4/CampaignTfq0171PositiveMass.lean
+  repository: this_repository
+  source_sha256: 9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: oneOneMass
+  line: 16
+  signature_excerpt: 'theorem oneOneMass : (1 : Nat) + 1 = 2'
+  source: lean4/CampaignTfq0171PositiveMass.lean
+  repository: this_repository
+  source_sha256: 9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: twoNotOne
+  line: 19
+  signature_excerpt: 'theorem twoNotOne : (2 : Nat) ≠ 1'
+  source: lean4/CampaignTfq0171PositiveMass.lean
+  repository: this_repository
+  source_sha256: 9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: emptyMassNotOne
+  line: 22
+  signature_excerpt: 'theorem emptyMassNotOne : (0 : Nat) ≠ 1'
+  source: lean4/CampaignTfq0171PositiveMass.lean
+  repository: this_repository
+  source_sha256: 9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: halfPairSumsToOne
+  line: 25
+  signature_excerpt: 'theorem halfPairSumsToOne : ((1 : Rat) / 2) + ((1 : Rat) / 2) = 1'
+  source: lean4/CampaignTfq0171PositiveMass.lean
+  repository: this_repository
+  source_sha256: 9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: oneOneNotUnit
+  line: 28
+  signature_excerpt: 'theorem oneOneNotUnit : ((1 : Rat) + 1) ≠ 1'
+  source: lean4/CampaignTfq0171PositiveMass.lean
+  repository: this_repository
+  source_sha256: 9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: unnormalizedPairDiffers
+  line: 31
+  signature_excerpt: |-
+    theorem unnormalizedPairDiffers :
+        ((1 : Rat), (1 : Rat)) ≠ ((1 : Rat) / 2, (1 : Rat) / 2)
+  source: lean4/CampaignTfq0171PositiveMass.lean
+  repository: this_repository
+  source_sha256: 9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: normalizeByTotal
+  line: 37
+  signature_excerpt: |-
+    theorem normalizeByTotal (a b : Nat) (h : 0 < a + b) :
+        (a : Rat) / ((a + b : Nat) : Rat) + (b : Rat) / ((a + b : Nat) : Rat) = 1
+  source: lean4/CampaignTfq0171PositiveMass.lean
+  repository: this_repository
+  source_sha256: 9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: lean4/CampaignTfq0171ImplementationSibling.lean::CampaignTfq0171ImplementationSibling.boolean_valuation_empty_carrier_and_unnormalized_mass
   availability: local
@@ -540,6 +624,78 @@ source_bindings:
   sha256: adbbf94e6d8135f93c80b85e48e0bace3e265c082f158daff772b77963d23dee
   declaration_status: declaration_found_not_proof_checked
   line: 51
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.positivePairMassNotOne
+  availability: local
+  symbol: CampaignTfq0171PositiveMass.positivePairMassNotOne
+  path: lean4/CampaignTfq0171PositiveMass.lean
+  repository: this_repository
+  sha256: 9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18
+  declaration_status: declaration_found_not_proof_checked
+  line: 10
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.oneOneMass
+  availability: local
+  symbol: CampaignTfq0171PositiveMass.oneOneMass
+  path: lean4/CampaignTfq0171PositiveMass.lean
+  repository: this_repository
+  sha256: 9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18
+  declaration_status: declaration_found_not_proof_checked
+  line: 16
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.twoNotOne
+  availability: local
+  symbol: CampaignTfq0171PositiveMass.twoNotOne
+  path: lean4/CampaignTfq0171PositiveMass.lean
+  repository: this_repository
+  sha256: 9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18
+  declaration_status: declaration_found_not_proof_checked
+  line: 19
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.emptyMassNotOne
+  availability: local
+  symbol: CampaignTfq0171PositiveMass.emptyMassNotOne
+  path: lean4/CampaignTfq0171PositiveMass.lean
+  repository: this_repository
+  sha256: 9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18
+  declaration_status: declaration_found_not_proof_checked
+  line: 22
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.halfPairSumsToOne
+  availability: local
+  symbol: CampaignTfq0171PositiveMass.halfPairSumsToOne
+  path: lean4/CampaignTfq0171PositiveMass.lean
+  repository: this_repository
+  sha256: 9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18
+  declaration_status: declaration_found_not_proof_checked
+  line: 25
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.oneOneNotUnit
+  availability: local
+  symbol: CampaignTfq0171PositiveMass.oneOneNotUnit
+  path: lean4/CampaignTfq0171PositiveMass.lean
+  repository: this_repository
+  sha256: 9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18
+  declaration_status: declaration_found_not_proof_checked
+  line: 28
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.unnormalizedPairDiffers
+  availability: local
+  symbol: CampaignTfq0171PositiveMass.unnormalizedPairDiffers
+  path: lean4/CampaignTfq0171PositiveMass.lean
+  repository: this_repository
+  sha256: 9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18
+  declaration_status: declaration_found_not_proof_checked
+  line: 31
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.normalizeByTotal
+  availability: local
+  symbol: CampaignTfq0171PositiveMass.normalizeByTotal
+  path: lean4/CampaignTfq0171PositiveMass.lean
+  repository: this_repository
+  sha256: 9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18
+  declaration_status: declaration_found_not_proof_checked
+  line: 37
   role: source_lead_only
 - original_ref: code/rust/src/finite_probability/finite_valuation.rs::BooleanValuation::try_new
   availability: local

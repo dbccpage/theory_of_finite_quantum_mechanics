@@ -10,9 +10,9 @@ Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: 
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
-- cited Lean, Rust or Python symbols found in their in-repo files: 7
-- distinct cited Lean declarations covered by a current replay receipt: 7
+- counted in-repo evidence files: 8
+- cited Lean, Rust or Python symbols found in their in-repo files: 17
+- distinct cited Lean declarations covered by a current replay receipt: 17
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -28,11 +28,11 @@ None recorded.
 
 ## Bottleneck
 
-This is the dimension-2 characteristic-two family only. It does not construct a complete family for any larger prime power, does not treat odd characteristic, does not run a general character sum, and does not infer a dimension-six family from this carrier.
+The characteristic-two family is dimension 2 only. For odd characteristic the construction is now general: for every finite field F with 2 ≠ 0, every commutative domain R with a star ring structure, and every nontrivial additive character ψ : F → R with star (ψ t) = ψ (−t), the q+1 bases indexed by Option F (the standard basis and x ↦ ψ(a x² + b x)) are pairwise orthogonal within a basis, have nonzero norms, and satisfy |⟨u, v⟩|² · q = ‖u‖² ‖v‖² across bases, with q+1 = card (Option F) (mub_family, card_bases). The vectors are left unnormalised, so normalisation is the statement about norms, not a division. What remains: a complete family for characteristic two beyond dimension 2 (which needs the Galois-ring or symplectic-spread construction, not quadratic phases), the instantiation of ψ over the concrete complex or cyclotomic carrier the node names (ψ is a parameter here), and the dimension-six question, which this node does not address.
 
 ## Source status
 
-Dimension-2 Gaussian-integer bases Z, X and Y; the two-element character sends 1+1 to 1. Larger prime powers stay open.
+Dimension-2 Gaussian-integer bases Z, X and Y (characteristic two). For every odd prime power q a complete q+1 family of orthogonal, mutually unbiased vector families is constructed over any commutative domain with a star ring structure (bases of R^F when R is a field; spanning is not formalised), given a nontrivial unitary additive character of F_q as a parameter (lean4/CampaignMubPrimePowerOddCharacteristic.lean). Characteristic two beyond dimension 2, and the existence of the character over the concrete complex or cyclotomic carrier, stay open.
 
 ## Review
 
@@ -64,6 +64,30 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Lean: `lean4/CampaignMubPrimePowerOddCharacteristic.lean`
+
+- file: [lean4/CampaignMubPrimePowerOddCharacteristic.lean](../../../lean4/CampaignMubPrimePowerOddCharacteristic.lean)
+- sha256 (`bytes`): `a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b`
+- cited in: node.lean, receipt dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json (CampaignMubPrimePowerOddCharacteristic)
+- replay: `verified`
+  - receipt [dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json](../../../dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json) (module `CampaignMubPrimePowerOddCharacteristic`): recorded sha256 `a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignMubPrimePowerOddCharacteristic`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `MubFable.PrimePowerOdd.basis_orthogonal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.basis_orthogonal` |
+| `MubFable.PrimePowerOdd.basis_unbiased` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.basis_unbiased` |
+| `MubFable.PrimePowerOdd.card_bases` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.card_bases` |
+| `MubFable.PrimePowerOdd.mub_family` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.mub_family` |
+| `MubFable.PrimePowerOdd.pair_qvec_cross_mul_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.pair_qvec_cross_mul_star` |
+| `MubFable.PrimePowerOdd.pair_qvec_same` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.pair_qvec_same` |
+| `MubFable.PrimePowerOdd.pair_std` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.pair_std` |
+| `MubFable.PrimePowerOdd.pair_std_qvec_mul_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.pair_std_qvec_mul_star` |
+| `MubFable.PrimePowerOdd.sum_mulShift` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.sum_mulShift` |
+| `MubFable.PrimePowerOdd.weil_sum_mul_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.weil_sum_mul_star` |
+
+- counts toward the grade: yes
+
 ### Python: `checks/independent/mub-prime-power-construction.py`
 
 - file: [checks/independent/mub-prime-power-construction.py](../../../checks/independent/mub-prime-power-construction.py)
@@ -79,10 +103,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source, record TFQ-0403
 - counts toward the grade: no
 
+### Documents and data: `dag/derivations/independent/mub-prime-power-construction-odd.md`
+
+- file: [dag/derivations/independent/mub-prime-power-construction-odd.md](../../../dag/derivations/independent/mub-prime-power-construction-odd.md)
+- sha256 (`lf-normalised`): `e80e8e33edd70a2b7379216a0660b3f6d5df26e28f7c0116a71af9b180a1b3ea`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/independent/mub-prime-power-construction.md`
 
 - file: [dag/derivations/independent/mub-prime-power-construction.md](../../../dag/derivations/independent/mub-prime-power-construction.md)
 - sha256 (`lf-normalised`): `d46d92da346abb519fd4cc96602f6f624bb0d1bf616963f4973a6208e5050064`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json`
+
+- file: [dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json](../../../dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json)
+- sha256 (`lf-normalised`): `dad4fca8640ba69ff32ee4d72cb34d3685c19b2dc88ef7788f97cb408d05fe41`
 - cited in: node.source
 - counts toward the grade: yes
 
