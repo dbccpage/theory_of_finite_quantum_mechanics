@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0510_sn_two_boxed_laws.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0510_sn_two_boxed_laws.md](../../../dag/derivations/05_mssn_sn/tfq_0510_sn_two_boxed_laws.md)
-- sha256 (`lf-normalised`): `a8573d855e47b39af4e505f22158b0c047dd1693f77d1162b8ac0d5d88b3576c`
+- sha256 (`lf-normalised`): `0477cf5d3b6613c47ec8b313d107bbca8f0cb7d97bfaa8a62cc11c924e7fa713`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0510
 - counts toward the grade: no
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::evaluate_two_boxed_laws_gate`
+- `external:upstream/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::evaluate_two_boxed_laws_gate`
 
 ## Absences recorded by the TFQ records
 

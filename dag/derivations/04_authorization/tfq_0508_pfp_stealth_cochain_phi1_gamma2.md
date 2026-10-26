@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean statement of Φ₁, Γ₂ or Ξ`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs::PromptCochainEvaluator`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs)
+- `omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs::PromptCochainEvaluator` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - `missing obligation: the Python adapter finite_qm_cochain_judge.NativeCochainJudge delegates to the Rust evaluator (TFQ-0509)`

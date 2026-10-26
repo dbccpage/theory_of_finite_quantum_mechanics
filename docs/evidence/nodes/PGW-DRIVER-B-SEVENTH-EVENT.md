@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0503_driver_b_seventh_event.md`
 
 - file: [dag/derivations/02_genesis/tfq_0503_driver_b_seventh_event.md](../../../dag/derivations/02_genesis/tfq_0503_driver_b_seventh_event.md)
-- sha256 (`lf-normalised`): `3521bdbc16c377925a56ad820d09abf73f95c57e04a5d5055dee048bf27b0016`
+- sha256 (`lf-normalised`): `fca467a58de359e50200c188b5e7cdd771f4f0e39e14f528b1cb8a47dbbef0de`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0503
 - counts toward the grade: no
@@ -123,7 +123,7 @@ Named by the node; not in this repository and not checked here.
 
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/docs/ALPHA_HANDOFF.md:179-192`
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/harness.py::append_sealed_event`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/event.rs::Event`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/event.rs::Event`
 
 ## Routes
 

@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0492_candidate_extension_generator.md`
 
 - file: [dag/derivations/02_genesis/tfq_0492_candidate_extension_generator.md](../../../dag/derivations/02_genesis/tfq_0492_candidate_extension_generator.md)
-- sha256 (`lf-normalised`): `42bb4b69a23ce334694a0d52eb369bb77978061a7bca31b8d3e3f2f274e47040`
+- sha256 (`lf-normalised`): `569f3e97ce5b912e404db760f18a22ba176366a9d23b0e0ebaeb3aa56821cdc0`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0492
 - counts toward the grade: no
@@ -93,7 +93,7 @@ Named by the node; not in this repository and not checked here.
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/docs/ALPHA_HANDOFF.md:101-116`
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/driver_a.py::apply_licensed`
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/evaluate.py::evaluate`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Proposal`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Proposal`
 
 ## Routes
 

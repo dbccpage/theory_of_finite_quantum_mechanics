@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0440_mu1_minimum_not_unique_l.md`
 
 - file: [dag/derivations/02_genesis/tfq_0440_mu1_minimum_not_unique_l.md](../../../dag/derivations/02_genesis/tfq_0440_mu1_minimum_not_unique_l.md)
-- sha256 (`lf-normalised`): `e9b90f8d20933ff43fda7fd1e2d745dae506d4b157fc3ccd21da93ce926b6b58`
+- sha256 (`lf-normalised`): `9750a563f741b0091f189e77db53e8c0633458bf4599778764afebee13d94365`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0440
 - counts toward the grade: no
@@ -84,8 +84,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::min_responses`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::nothing_below_two_items_separates_the_target`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::min_responses`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::nothing_below_two_items_separates_the_target`
 
 ## Routes
 

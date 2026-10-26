@@ -153,7 +153,7 @@ def ref_string(entry, manifest, jsonl: bool = False) -> str:
     if entry['root'] == 'github19l':
         path = f'external:github.com/dbccpage/19L57G1@{manifest["external_roots"]["github19l"]["commit"]}/{path}'
     elif entry['root'] == 'symbol_game' and jsonl:
-        path = 'external:the_symbol_game/' + path
+        path = 'external:upstream/' + path
     if entry.get('symbol'):
         return path + '::' + entry['symbol']
     if entry.get('lines'):
@@ -167,8 +167,7 @@ def ref_url(entry, manifest, paper: str) -> str | None:
     if entry['root'] == 'local':
         return posixpath.relpath(entry['path'], posixpath.dirname(paper))
     if entry['root'] == 'symbol_game':
-        commit = manifest['external_roots']['symbol_game']['commit']
-        return f'https://github.com/dbccpage/the_symbol_game/blob/{commit}/{entry["path"]}'
+        return None  # private upstream: cited by path and commit, never linked
     commit = manifest['external_roots']['github19l']['commit']
     return f'https://github.com/dbccpage/19L57G1/blob/{commit}/{entry["path"]}'
 
@@ -361,7 +360,12 @@ def render_paper(r, manifest, all_paths, children, names):
         for e in r['witnesses'][tier]:
             url = ref_url(e, manifest, paper)
             label = ref_label(e, manifest)
-            items.append(f'- [`{label}`]({url})' if url else f'- `missing obligation: {label}`')
+            if url:
+                items.append(f'- [`{label}`]({url})')
+            elif 'absent' not in e and e['root'] == 'symbol_game':
+                items.append(f'- `{label}` (private upstream source, not in this repository)')
+            else:
+                items.append(f'- `missing obligation: {label}`')
         out += [f'### {heading}', *sorted(items), '']
     out += ['---', '', '## 4. Downstream Derivations (Outgoing DAG Links)', '']
     kids = children.get(r['id'], [])

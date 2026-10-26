@@ -813,7 +813,7 @@ half-filling; Claim MSP-28). No general or universal sign-problem solution is cl
 
 Paths are relative to the package root, which is
 `omega_engine_projects/fsp/meron_sign_problem/` in the source repository
-[dbccpage/the_symbol_game](https://github.com/dbccpage/the_symbol_game).
+dbccpage/the_symbol_game.
 
 - `code/meron_exact_model.py` and `code/meron_schema.sql`: the exact fixture,
   copied from `omega_engine_projects/fsp/code/sign_sql/exact_models.py` and
