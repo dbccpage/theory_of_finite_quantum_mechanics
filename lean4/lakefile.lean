@@ -1409,3 +1409,6 @@ lean_lib CampaignFqGapC500OriginalTargets where
 
 lean_lib CampaignGpImportGleason where
   roots := #[`CampaignGpImportGleason]
+
+lean_lib CampaignBfCocycleObstruction where
+  roots := #[`CampaignBfCocycleObstruction]

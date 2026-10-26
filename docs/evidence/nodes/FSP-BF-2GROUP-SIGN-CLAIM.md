@@ -1,22 +1,22 @@
 # FSP-BF-2GROUP-SIGN-CLAIM
 
-Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `OPEN`. Evidence grade: **E1**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout.
+> For the additive group Z2 with trivial Z2 coefficient action, the Boolean 3-cochain omega(a,b,c)=a*b*c is normalized and satisfies the cocycle identity. Every normalized 2-cochain beta has coboundary zero at (1,1,1), whereas omega is one there. Thus omega is not a normalized coboundary, and normalized 2-cochain rephasing leaves a negative sign at that triple.
 
 ## Grade
 
-Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
-- distinct cited Lean declarations covered by a current replay receipt: 0
+- counted in-repo evidence files: 7
+- cited Lean, Rust or Python symbols found in their in-repo files: 11
+- distinct cited Lean declarations covered by a current replay receipt: 11
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite a Lean, Rust or Python symbol that exists in an in-repo file
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.
+The result concerns the explicitly defined Z2 cochain model and normalized rephasings. It constructs no BF state sum, 2-group gauge dynamics, knotted-worldsheet amplitude or three-loop braiding observable. No general cancellation or sign-free theorem follows. Original target retained as an obligation: Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout. Prior boundary: Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.
 
 ## Source status
 
@@ -42,13 +42,59 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/CampaignBfCocycleObstruction.lean`
+
+- file: [lean4/CampaignBfCocycleObstruction.lean](../../../lean4/CampaignBfCocycleObstruction.lean)
+- sha256 (`bytes`): `882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc`
+- cited in: node.lean, receipt dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json (CampaignBfCocycleObstruction), record TFQ-1210
+- replay: `verified`
+  - receipt [dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json](../../../dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json) (module `CampaignBfCocycleObstruction`): recorded sha256 `882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignBfCocycleObstruction`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignBfCocycleObstruction.Normalized` | yes | yes | yes | none | `#print axioms CampaignBfCocycleObstruction.Normalized` |
+| `CampaignBfCocycleObstruction.coboundary` | yes | yes | yes | none | `#print axioms CampaignBfCocycleObstruction.coboundary` |
+| `CampaignBfCocycleObstruction.cocycle` | yes | yes | yes | none | `#print axioms CampaignBfCocycleObstruction.cocycle` |
+| `CampaignBfCocycleObstruction.cocycle_identity` | yes | yes | yes | none | `#print axioms CampaignBfCocycleObstruction.cocycle_identity` |
+| `CampaignBfCocycleObstruction.generator_sign_survives_rephasing` | yes | yes | yes | propext | `#print axioms CampaignBfCocycleObstruction.generator_sign_survives_rephasing` |
+| `CampaignBfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive` | yes | yes | yes | propext | `#print axioms CampaignBfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive` |
+| `CampaignBfCocycleObstruction.normalized_coboundary_at_generator` | yes | yes | yes | propext | `#print axioms CampaignBfCocycleObstruction.normalized_coboundary_at_generator` |
+| `CampaignBfCocycleObstruction.normalized_cocycle` | yes | yes | yes | none | `#print axioms CampaignBfCocycleObstruction.normalized_cocycle` |
+| `CampaignBfCocycleObstruction.not_a_normalized_coboundary` | yes | yes | yes | propext | `#print axioms CampaignBfCocycleObstruction.not_a_normalized_coboundary` |
+| `CampaignBfCocycleObstruction.rephase` | yes | yes | yes | none | `#print axioms CampaignBfCocycleObstruction.rephase` |
+| `CampaignBfCocycleObstruction.sign` | yes | yes | yes | none | `#print axioms CampaignBfCocycleObstruction.sign` |
+
+- counts toward the grade: yes
+
+### Python: `checks/independent/fsp-bf-2group-sign-claim.py`
+
+- file: [checks/independent/fsp-bf-2group-sign-claim.py](../../../checks/independent/fsp-bf-2group-sign-claim.py)
+- sha256 (`bytes`): `9b1b7c5b3a3ba2735ff1e5bfa6bcd9e918f84c2281b0fa8d1c214e1fc1cf84dc`
+- cited in: record TFQ-1210
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md`
 
 - file: [dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md](../../../dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md)
-- sha256 (`lf-normalised`): `57a38f1f8f37be33137d727759ba7de23ea512566bab52c947e8ee22035b75b3`
+- sha256 (`lf-normalised`): `bc4cf4b2fc61cdfd3b1e35d9943f514e08563a8c2168c65d39acd676935f54b5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1210
 - counts toward the grade: no
+
+### Documents and data: `dag/derivations/independent/fsp-bf-2group-sign-claim.md`
+
+- file: [dag/derivations/independent/fsp-bf-2group-sign-claim.md](../../../dag/derivations/independent/fsp-bf-2group-sign-claim.md)
+- sha256 (`lf-normalised`): `83f3aa9c7567ceab60d50adec7af32f9fdbb0dc6b69afebb759bbfe4ea0827fe`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json`
+
+- file: [dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json](../../../dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json)
+- sha256 (`lf-normalised`): `32863477287110540a374428dee4ee40cd271e0bfb3d087180df26adc18931c1`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `papers/core/fsp/the_problem_of_the_fermion_sign.md`
 

@@ -22199,17 +22199,26 @@
       "stage": "FERMION_SIGN",
       "status": "OPEN",
       "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-046 claims PROVED_LEAN; audited status OPEN",
-      "statement": "Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout.",
+      "statement": "For the additive group Z2 with trivial Z2 coefficient action, the Boolean 3-cochain omega(a,b,c)=a*b*c is normalized and satisfies the cocycle identity. Every normalized 2-cochain beta has coboundary zero at (1,1,1), whereas omega is one there. Thus omega is not a normalized coboundary, and normalized 2-cochain rephasing leaves a negative sign at that triple.",
       "source": [
         "dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
         "papers/core/fsp/the_problem_of_the_fermion_sign.md",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md"
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md",
+        "dag/derivations/independent/fsp-bf-2group-sign-claim.md",
+        "dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_cocycle",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.cocycle_identity",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_coboundary_at_generator",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.not_a_normalized_coboundary",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.generator_sign_survives_rephasing",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive"
+      ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.",
+      "bottleneck": "The result concerns the explicitly defined Z2 cochain model and normalized rephasings. It constructs no BF state sum, 2-group gauge dynamics, knotted-worldsheet amplitude or three-loop braiding observable. No general cancellation or sign-free theorem follows. Original target retained as an obligation: Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout. Prior boundary: Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -38017,7 +38026,7 @@
       ],
       "output": "FSP-BF-2GROUP-SIGN-CLAIM",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.",
+      "mechanism": "The result concerns the explicitly defined Z2 cochain model and normalized rephasings. It constructs no BF state sum, 2-group gauge dynamics, knotted-worldsheet amplitude or three-loop braiding observable. No general cancellation or sign-free theorem follows. Original target retained as an obligation: Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout. Prior boundary: Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.",
       "source": [
         "dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -67039,20 +67048,31 @@
         "dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md",
         "papers/core/fsp/theory_of_finite_fsp.md:639-651",
         "papers/core/fsp/the_problem_of_the_fermion_sign.md:733-828",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:29-31"
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:29-31",
+        "dag/derivations/independent/fsp-bf-2group-sign-claim.md",
+        "dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json"
       ],
       "id": "TFQ-1210",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_cocycle",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.cocycle_identity",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_coboundary_at_generator",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.not_a_normalized_coboundary",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.generator_sign_survives_rephasing",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive"
+      ],
       "local_id": "FSP-BF-2GROUP-SIGN-CLAIM",
       "name": "BF and 2-group anomaly sign cancellation (unsupported)",
-      "obligation": "Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.",
+      "obligation": "The result concerns the explicitly defined Z2 cochain model and normalized rephasings. It constructs no BF state sum, 2-group gauge dynamics, knotted-worldsheet amplitude or three-loop braiding observable. No general cancellation or sign-free theorem follows. Original target retained as an obligation: Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout. Prior boundary: Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.",
       "parent_id": "TFQ-1208",
-      "python": [],
+      "python": [
+        "checks/independent/fsp-bf-2group-sign-claim.py"
+      ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "FERMION_SIGN",
-      "summary": "Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout.",
+      "summary": "For the additive group Z2 with trivial Z2 coefficient action, the Boolean 3-cochain omega(a,b,c)=a*b*c is normalized and satisfies the cocycle identity. Every normalized 2-cochain beta has coboundary zero at (1,1,1), whereas omega is one there. Thus omega is not a normalized coboundary, and normalized 2-cochain rephasing leaves a negative sign at that triple.",
       "uuid": "529fa2a0-1b94-5ad2-9458-d1416ddeeffe"
     },
     {

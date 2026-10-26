@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout.
+For the additive group Z2 with trivial Z2 coefficient action, the Boolean 3-cochain omega(a,b,c)=a*b*c is normalized and satisfies the cocycle identity. Every normalized 2-cochain beta has coboundary zero at (1,1,1), whereas omega is one there. Thus omega is not a normalized coboundary, and normalized 2-cochain rephasing leaves a negative sign at that triple.
 
 ### Governing Obligation
-Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.
+The result concerns the explicitly defined Z2 cochain model and normalized rephasings. It constructs no BF state sum, 2-group gauge dynamics, knotted-worldsheet amplitude or three-loop braiding observable. No general cancellation or sign-free theorem follows. Original target retained as an obligation: Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout. Prior boundary: Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.
 
 ### Witness Audit
-Cited Higher2GroupBraiding.lean::higher_2group_anomaly_cancellation does not exist. Local lemmas return fields of a supplied StrictCrossedModule (peiffer_identity_holds) or evaluate defined sign tables (nontrivial_postnikov_has_negative_sign, higher_2double_restores_sign_positivity by dsimp); the doubled trace replaces a sign by its square, which changes the target (manuscript line 448).
+Cited Higher2GroupBraiding.lean::higher_2group_anomaly_cancellation does not exist. Local lemmas return fields of a supplied StrictCrossedModule (peiffer_identity_holds) or evaluate defined sign tables (nontrivial_postnikov_has_negative_sign, higher_2double_restores_sign_positivity by dsimp); the doubled trace replaces a sign by its square, which changes the target (manuscript line 448). Current scoped campaign result: For the additive group Z2 with trivial Z2 coefficient action, the Boolean 3-cochain omega(a,b,c)=a*b*c is normalized and satisfies the cocycle identity. Every normalized 2-cochain beta has coboundary zero at (1,1,1), whereas omega is one there. Thus omega is not a normalized coboundary, and normalized 2-cochain rephasing leaves a negative sign at that triple. The result concerns the explicitly defined Z2 cochain model and normalized rephasings. It constructs no BF state sum, 2-group gauge dynamics, knotted-worldsheet amplitude or three-loop braiding observable. No general cancellation or sign-free theorem follows.
 
 ---
 
@@ -28,13 +28,18 @@ Cited Higher2GroupBraiding.lean::higher_2group_anomaly_cancellation does not exi
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_cocycle`
+- `lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.cocycle_identity`
+- `lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_coboundary_at_generator`
+- `lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.not_a_normalized_coboundary`
+- `lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.generator_sign_survives_rephasing`
+- `lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/fsp-bf-2group-sign-claim.py`
 
 ### Cited by the source, not in this checkout
 - `external:omega_quantum_physics::gauge_cochain_complex::bf_theory_linking_number (cited by the source, not in this checkout)`
@@ -54,3 +59,5 @@ Cited Higher2GroupBraiding.lean::higher_2group_anomaly_cancellation does not exi
   - `papers/core/fsp/theory_of_finite_fsp.md:639-651`
   - `papers/core/fsp/the_problem_of_the_fermion_sign.md:733-828`
   - `papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:29-31`
+  - `dag/derivations/independent/fsp-bf-2group-sign-claim.md`
+  - `dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json`
