@@ -1,1 +1,0 @@
-First reviewed-harness attempt failed because the submitted S probe function shadows SymPy S. This is a host harness failure, not a failed submitted theorem. The exact failed script, builder and command outputs are preserved. The command receipt binds the historical script bytes by SHA-256; reviewed_attempt1.py preserves those bytes.

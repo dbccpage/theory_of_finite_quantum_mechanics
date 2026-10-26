@@ -1,3 +1,0 @@
-import PromptL1Imports
-#print axioms QuantumMechanics.PromptL1Imports.time_law
-#print axioms QuantumMechanics.PromptL1Imports.time_control

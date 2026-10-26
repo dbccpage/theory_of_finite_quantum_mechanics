@@ -1,3 +1,0 @@
-import PromptBornBoundaries
-#print axioms QuantumMechanics.PromptBornBoundaries.trace_law
-#print axioms QuantumMechanics.PromptBornBoundaries.trace_control

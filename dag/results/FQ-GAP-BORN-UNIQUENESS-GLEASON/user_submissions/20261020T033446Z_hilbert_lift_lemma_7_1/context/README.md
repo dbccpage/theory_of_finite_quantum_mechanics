@@ -1,1 +1,0 @@
-The prior discovery index is preserved byte for byte. Its relative links resolve from the task results root. inputs contains exact source snapshots of the earlier Hilbert review, not edited replacements.

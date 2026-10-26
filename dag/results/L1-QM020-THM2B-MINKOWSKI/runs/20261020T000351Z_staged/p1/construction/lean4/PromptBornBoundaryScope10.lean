@@ -1,3 +1,0 @@
-import PromptBornBoundaries
-#print axioms QuantumMechanics.PromptBornBoundaries.minkowski_law
-#print axioms QuantumMechanics.PromptBornBoundaries.minkowski_control

@@ -1,3 +1,0 @@
-import PromptBornBoundaries
-#print axioms QuantumMechanics.PromptBornBoundaries.capacity_law
-#print axioms QuantumMechanics.PromptBornBoundaries.capacity_control
