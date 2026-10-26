@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 580" width="100%" height="100%" style="background:#0b0f19; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <pattern id="grid6" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#1e293b" stroke-width="0.7" opacity="0.6"/>
+    </pattern>
+    <radialGradient id="bgGlow6" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#14532d" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0b0f19" stop-opacity="1"/>
+    </radialGradient>
+    <filter id="glowTeal" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#14b8a6"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#ef4444"/>
+    </marker>
+  </defs>
+
+  <rect width="940" height="580" fill="url(#bgGlow6)"/>
+  <rect width="940" height="580" fill="url(#grid6)"/>
+  <rect x="16" y="16" width="908" height="548" rx="12" fill="none" stroke="#334155" stroke-width="1.2"/>
+
+  <!-- Top Navigation Badges -->
+  <g transform="translate(32, 28)">
+    <rect x="0" y="0" width="130" height="26" rx="6" fill="#134e4a" fill-opacity="0.5" stroke="#14b8a6" stroke-width="1.2"/>
+    <text x="65" y="17" fill="#5eead4" font-size="11" font-weight="700" text-anchor="middle">Level 06: Letter D</text>
+
+    <rect x="140" y="0" width="150" height="26" rx="6" fill="#0284c7" fill-opacity="0.4" stroke="#38bdf8" stroke-width="1.2"/>
+    <text x="215" y="17" fill="#7dd3fc" font-size="11" font-weight="700" text-anchor="middle">Operation: Scale Descent</text>
+
+    <rect x="300" y="0" width="160" height="26" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="380" y="17" fill="#94a3b8" font-size="10.5" font-weight="600" text-anchor="middle">Reduction: ℚᵐ ↠ ℚⁿ (n ≤ m)</text>
+
+    <rect x="470" y="0" width="170" height="26" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="555" y="17" fill="#94a3b8" font-size="10.5" font-weight="600" text-anchor="middle">Law 6: LossLedger Mandatory</text>
+
+    <rect x="650" y="0" width="140" height="26" rx="6" fill="#7f1d1d" fill-opacity="0.3" stroke="#f87171" stroke-width="1"/>
+    <text x="720" y="17" fill="#fca5a5" font-size="10" font-weight="700" text-anchor="middle">AuthorityEffect: None</text>
+  </g>
+
+  <!-- Title & Formula Header -->
+  <text x="32" y="85" fill="#f8fafc" font-size="20" font-weight="800" letter-spacing="-0.02em">DDC Level 06 — Scale Descent (D): Dimension Truncation &amp; Loss Ledgers</text>
+  <text x="32" y="106" fill="#94a3b8" font-size="12">Projects fine representations into coarser scales; tracks all forgotten data into an explicit, auditable LossLedger.</text>
+
+  <!-- Left Card: Dimension Truncation & Dropped Tail -->
+  <g transform="translate(32, 126)">
+    <rect width="420" height="260" rx="10" fill="#0f172a" fill-opacity="0.8" stroke="#1e293b" stroke-width="1.2"/>
+    <rect x="12" y="12" width="220" height="20" rx="4" fill="#134e4a" fill-opacity="0.5"/>
+    <text x="20" y="26" fill="#2dd4bf" font-size="11" font-weight="700">DIMENSION PROJECTION (ℚᵐ ↠ ℚⁿ)</text>
+
+    <!-- Visual truncation of vector -->
+    <g transform="translate(25, 48)">
+      <!-- Rich Vector x in Q^m -->
+      <rect x="0" y="0" width="145" height="100" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.2"/>
+      <rect x="6" y="6" width="133" height="18" rx="3" fill="#312e81"/>
+      <text x="72" y="19" fill="#c7d2fe" font-size="9.5" font-weight="700" text-anchor="middle">Fine Vector x ∈ ℚᵐ</text>
+      <text x="14" y="42" fill="#34d399" font-family="monospace" font-size="9">x[0..n-1]: Retained</text>
+      <text x="14" y="58" fill="#f87171" font-family="monospace" font-size="9">x[n..m-1]: Dropped Tail</text>
+      <text x="14" y="86" fill="#94a3b8" font-size="8.5">m coordinates (rich)</text>
+
+      <!-- Descent operator arrow -->
+      <path d="M 155 50 L 195 50" stroke="#14b8a6" stroke-width="2.5" marker-end="url(#arrowTeal)"/>
+      <text x="175" y="42" fill="#2dd4bf" font-size="10" font-weight="800" text-anchor="middle">D</text>
+
+      <!-- Coarse Vector x_proj in Q^n -->
+      <g transform="translate(210, 0)">
+        <rect width="160" height="100" rx="6" fill="#042f2e" stroke="#14b8a6" stroke-width="1.5" filter="url(#glowTeal)"/>
+        <rect x="6" y="6" width="148" height="18" rx="3" fill="#115e59"/>
+        <text x="80" y="19" fill="#ccfbf1" font-size="9.5" font-weight="700" text-anchor="middle">Coarse Vector x↓ ∈ ℚⁿ</text>
+        <text x="14" y="42" fill="#34d399" font-family="monospace" font-size="9">x↓ = x[0..n-1]</text>
+        <text x="14" y="62" fill="#2dd4bf" font-size="8.5">n coordinates (coarse)</text>
+        <rect x="10" y="74" width="140" height="18" rx="3" fill="#0f766e" fill-opacity="0.3"/>
+        <text x="80" y="87" fill="#5eead4" font-size="8" font-weight="600" text-anchor="middle">Idempotent: D(D(x)) = D(x)</text>
+      </g>
+    </g>
+
+    <!-- Dropped Tail Loss Scalar formula bottom -->
+    <g transform="translate(25, 160)">
+      <rect width="370" height="85" rx="6" fill="#030712" stroke="#334155" stroke-width="1"/>
+      <text x="14" y="20" fill="#f8fafc" font-size="10.5" font-weight="700">Loss Scalar Formula (DDC-D-03):</text>
+      <text x="14" y="40" fill="#f87171" font-family="monospace" font-size="9.5">L(x) = ‖x_tail‖₁ = ∑_{j=n}^{m-1} |x_j|</text>
+      <text x="14" y="60" fill="#94a3b8" font-size="9">• Lossless iff <tspan fill="#34d399" font-weight="700">L(x) = 0</tspan> (all dropped coordinates zero)</text>
+      <text x="14" y="74" fill="#94a3b8" font-size="9">• Strict loss iff <tspan fill="#fca5a5" font-weight="700">L(x) &gt; 0</tspan> (non-zero tail forgotten)</text>
+    </g>
+  </g>
+
+  <!-- Right Card: Law 6 Loss Ledger Requirement -->
+  <g transform="translate(472, 126)">
+    <rect width="436" height="260" rx="10" fill="#0f172a" fill-opacity="0.8" stroke="#1e293b" stroke-width="1.2"/>
+    <rect x="12" y="12" width="220" height="20" rx="4" fill="#064e3b" fill-opacity="0.5"/>
+    <text x="20" y="26" fill="#34d399" font-size="11" font-weight="700">LAW 6: LOSS LEDGER MANDATE</text>
+
+    <!-- Law 6 Statement Box -->
+    <g transform="translate(20, 44)">
+      <rect width="396" height="74" rx="6" fill="#090d16" stroke="#059669" stroke-width="1"/>
+      <text x="14" y="20" fill="#6ee7b7" font-size="10.5" font-weight="700">Law 6 (Descent Loss Ledger Law):</text>
+      <text x="14" y="38" fill="#cbd5e1" font-size="9.5">Scale descent D must record all dropped coordinates into an</text>
+      <text x="14" y="54" fill="#34d399" font-size="10" font-weight="700">explicit, tamper-evident LossLedger L_adapter.</text>
+      <text x="14" y="68" fill="#94a3b8" font-size="8.5">Silent dimension truncation is strictly forbidden; forgotten data is audited.</text>
+    </g>
+
+    <!-- Ledger Schema Box -->
+    <g transform="translate(20, 126)">
+      <rect width="396" height="120" rx="6" fill="#042f2e" fill-opacity="0.3" stroke="#14b8a6" stroke-width="1.2"/>
+      <rect x="10" y="8" width="190" height="18" rx="3" fill="#115e59"/>
+      <text x="16" y="21" fill="#ccfbf1" font-size="9.5" font-weight="700">LOSS LEDGER DATA STRUCTURE</text>
+
+      <text x="14" y="44" fill="#cbd5e1" font-size="9">Field definitions in <tspan fill="#5eead4" font-weight="700">LossLedger</tspan>:</text>
+      
+      <circle cx="20" cy="60" r="3.5" fill="#14b8a6"/>
+      <text x="30" y="64" fill="#cbd5e1" font-size="8.5"><tspan fill="#5eead4" font-weight="600">dropped_dim:</tspan> Count of removed coordinates (m - n)</text>
+
+      <circle cx="20" cy="78" r="3.5" fill="#14b8a6"/>
+      <text x="30" y="82" fill="#cbd5e1" font-size="8.5"><tspan fill="#5eead4" font-weight="600">loss_scalar:</tspan> Exact rational ℓ¹ norm L(x) of the dropped tail</text>
+
+      <circle cx="20" cy="96" r="3.5" fill="#14b8a6"/>
+      <text x="30" y="100" fill="#cbd5e1" font-size="8.5"><tspan fill="#5eead4" font-weight="600">tail_vector:</tspan> Full array of dropped coordinates [x_n, ..., x_{m-1}]</text>
+
+      <circle cx="20" cy="114" r="3.5" fill="#14b8a6"/>
+      <text x="30" y="118" fill="#cbd5e1" font-size="8.5"><tspan fill="#5eead4" font-weight="600">is_lossless:</tspan> Strict boolean assertion (loss_scalar == 0)</text>
+    </g>
+  </g>
+
+  <!-- Bottom Panel: DescentReceipt Wire Format -->
+  <g transform="translate(32, 404)">
+    <rect width="876" height="144" rx="8" fill="#090d16" stroke="#1e293b" stroke-width="1.2"/>
+    <rect x="12" y="10" width="180" height="18" rx="3" fill="#1e293b"/>
+    <text x="18" y="23" fill="#94a3b8" font-size="10" font-weight="700">DESCENT RECEIPT &amp; AUDIT TRAIL</text>
+
+    <!-- Receipt JSON snippet left -->
+    <rect x="16" y="36" width="460" height="96" rx="5" fill="#030712" stroke="#334155" stroke-width="0.8"/>
+    <text x="26" y="52" fill="#a5b4fc" font-family="monospace" font-size="9.5">{</text>
+    <text x="40" y="68" fill="#93c5fd" font-family="monospace" font-size="9.5">"operation": <tspan fill="#2dd4bf">"D"</tspan>, "status": <tspan fill="#2dd4bf">"SCALE_DESCENT_RECORDED"</tspan>,</text>
+    <text x="40" y="84" fill="#93c5fd" font-family="monospace" font-size="9.5">"target_dim": <tspan fill="#f59e0b">2</tspan>, "loss_scalar": <tspan fill="#f87171">"1/2"</tspan>, "is_lossless": <tspan fill="#f87171">false</tspan>,</text>
+    <text x="40" y="100" fill="#93c5fd" font-family="monospace" font-size="9.5">"loss_ledger_id": <tspan fill="#5eead4">"LL-004"</tspan>, "authority_effect": <tspan fill="#f87171">"None"</tspan></text>
+    <text x="26" y="116" fill="#a5b4fc" font-family="monospace" font-size="9.5">}</text>
+
+    <!-- Mechanization box right -->
+    <g transform="translate(490, 36)">
+      <rect width="370" height="96" rx="5" fill="#042f2e" fill-opacity="0.3" stroke="#14b8a6" stroke-width="1"/>
+      <text x="14" y="20" fill="#5eead4" font-size="10.5" font-weight="700">Formal Theorems &amp; Invariants:</text>
+      <text x="14" y="38" fill="#ccfbf1" font-family="monospace" font-size="9">theorem Ddc.descent_idempotent : ∀ x n, D (D x n) n = D x n</text>
+      <text x="14" y="56" fill="#94a3b8" font-size="9">Lossless condition: <tspan fill="#cbd5e1" font-family="monospace">Ddc.descent_lossless_iff_zero_tail</tspan></text>
+      <text x="14" y="74" fill="#94a3b8" font-size="9">Tested in: <tspan fill="#f8fafc" font-family="monospace">code/tests/test_scale_descent.py</tspan></text>
+      <text x="14" y="88" fill="#94a3b8" font-size="9">Loss gate test: <tspan fill="#f8fafc" font-family="monospace">test_descent_with_loss_records_ledger()</tspan></text>
+    </g>
+  </g>
+</svg>

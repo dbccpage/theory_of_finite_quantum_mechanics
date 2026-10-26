@@ -1,4 +1,4 @@
-# [TFQ-1157] Coset-weight decoding is NP-hard for general binary codes
+# [TFQ-1157] One 2 by 4 parity-check coset has minimum weight 1
 
 > **Stage**: `MAJORANA` | **Status**: `IMPORTED_ASSUMPTION` | **DAG node**: `MAJ-IMPORT-COSET-WEIGHT-NP-HARD`  
 > **UUID**: `11ab146a-92b3-575f-b7b1-e2a119aa7eaf`  
@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-Minimum-weight coset decoding of a binary linear code given by its matrix is NP-hard (Berlekamp, McEliece and van Tilborg 1978).
+For the 2 by 4 parity-check matrix over the two-element field with rows (1, 1, 0, 0) and (0, 1, 1, 1), among the 16 length-4 vectors labeled 0 through 15 with the least significant bit as coordinate 0, the vectors with syndrome (1, 0) are the labels 1, 6, 10 and 13. Their Hamming weights are 1, 2, 2 and 3, so the minimum weight is 1, and the single weight-1 vector in that list is label 1 with coordinates (1, 0, 0, 0). The vectors with syndrome (0, 0) are the labels 0, 7, 11 and 12.
 
 ### Governing Obligation
-Literature result; no reduction is formalized or replayed here.
+Berlekamp, McEliece and van Tilborg 1978 remains an imported literature claim. No reduction is formalized. The 2 by 4 enumeration is one matrix and one syndrome and does not discharge hardness for a general binary matrix.
 
 ### Witness Audit
-No audit note.
+Lean length_sixteen, row1_matches, row2_matches, coset_is, coset_weights, min_weight_one, weight_one_labels, label_one_coordinates and kernel_is are decided with no axioms. They enumerate this one matrix on labels 0 through 15. They do not formalize a reduction.
 
 ---
 
@@ -31,13 +31,21 @@ No audit note.
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignMajImportCosetWeight.lean::length_sixteen`
+- `lean4/CampaignMajImportCosetWeight.lean::row1_matches`
+- `lean4/CampaignMajImportCosetWeight.lean::row2_matches`
+- `lean4/CampaignMajImportCosetWeight.lean::coset_is`
+- `lean4/CampaignMajImportCosetWeight.lean::coset_weights`
+- `lean4/CampaignMajImportCosetWeight.lean::min_weight_one`
+- `lean4/CampaignMajImportCosetWeight.lean::weight_one_labels`
+- `lean4/CampaignMajImportCosetWeight.lean::label_one_coordinates`
+- `lean4/CampaignMajImportCosetWeight.lean::kernel_is`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/maj-import-coset-weight-np-hard.py::main`
 
 ### Cited by the source, not in this checkout
 - *none*

@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 540" width="100%" height="100%" style="background:#0b0f19; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <defs>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1e293b" stroke-width="0.8" opacity="0.6"/>
+    </pattern>
+    <radialGradient id="bgGlow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#1e1b4b" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0b0f19" stop-opacity="1"/>
+    </radialGradient>
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glowRed" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f43f5e"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#c084fc"/>
+    </marker>
+  </defs>
+
+  <rect width="880" height="540" fill="url(#bgGlow)"/>
+  <rect width="880" height="540" fill="url(#grid)"/>
+  <rect x="16" y="16" width="848" height="508" rx="12" fill="none" stroke="#334155" stroke-width="1.2"/>
+
+  <!-- Top Banner / Header -->
+  <g transform="translate(32, 32)">
+    <rect x="0" y="0" width="86" height="24" rx="6" fill="#0284c7" fill-opacity="0.2" stroke="#38bdf8" stroke-width="1"/>
+    <text x="43" y="16" fill="#38bdf8" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="1">MSS-16</text>
+
+    <rect x="94" y="0" width="56" height="24" rx="6" fill="#6366f1" fill-opacity="0.2" stroke="#818cf8" stroke-width="1"/>
+    <text x="122" y="16" fill="#a5b4fc" font-size="11" font-weight="700" text-anchor="middle">S(16)</text>
+
+    <rect x="158" y="0" width="136" height="24" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="226" y="16" fill="#94a3b8" font-size="10" font-weight="500" text-anchor="middle">AuthorityEffect: None</text>
+
+    <text x="0" y="52" fill="#f8fafc" font-size="19" font-weight="700" letter-spacing="0.2">Level 16: Filtered Ind-Objects &amp; Colimit Preservation (MSS-16)</text>
+    <text x="0" y="71" fill="#94a3b8" font-size="12" font-weight="400">Infinite symbolic systems realized as filtered colimits MSS_inf = Ind-lim MSS_n, commuting diagrams</text>
+
+    <g transform="translate(530, 0)">
+      <rect x="0" y="0" width="286" height="74" rx="8" fill="#030712" stroke="#1e293b" stroke-width="1"/>
+      <text x="12" y="18" fill="#64748b" font-size="10" font-weight="600" text-transform="uppercase" letter-spacing="0.8">Wire Grammar Packet</text>
+      <text x="12" y="44" fill="#38bdf8" font-size="12" font-family="ui-monospace, monospace" font-weight="600">&lt;&lt;ind &lt;stages ...&gt; &lt;morphisms ...&gt; &lt;coherence&gt;&gt;&gt;</text>
+    </g>
+  </g>
+
+  <line x1="32" y1="120" x2="848" y2="120" stroke="#1e293b" stroke-width="1.2"/>
+
+  <!-- Center Visualization Canvas -->
+  <g transform="translate(32, 132)">
+    
+        <!-- Filtered Direct System Chain -->
+        <g transform="translate(30, 30)">
+          <rect x="0" y="0" width="760" height="220" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+          <text x="380" y="28" fill="#38bdf8" font-size="13" font-weight="700" text-anchor="middle">Filtered Direct Colimit Diagram: MSS_&#8734; = Ind-colim MSS_n</text>
+
+          <!-- Stage Nodes -->
+          <circle cx="80" cy="110" r="28" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
+          <text x="80" y="115" fill="#fff" font-size="11" font-weight="700" text-anchor="middle">MSS_0</text>
+
+          <circle cx="220" cy="110" r="28" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
+          <text x="220" y="115" fill="#fff" font-size="11" font-weight="700" text-anchor="middle">MSS_1</text>
+
+          <circle cx="360" cy="110" r="28" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
+          <text x="360" y="115" fill="#fff" font-size="11" font-weight="700" text-anchor="middle">MSS_2</text>
+
+          <circle cx="500" cy="110" r="28" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
+          <text x="500" y="115" fill="#fff" font-size="11" font-weight="700" text-anchor="middle">MSS_n</text>
+
+          <circle cx="670" cy="110" r="34" fill="#064e3b" stroke="#10b981" stroke-width="2.5" filter="url(#glowGreen)"/>
+          <text x="670" y="115" fill="#fff" font-size="12" font-weight="700" text-anchor="middle">MSS_&#8734;</text>
+
+          <!-- Connecting Morphism Arrows -->
+          <line x1="112" y1="110" x2="188" y2="110" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+          <text x="150" y="100" fill="#38bdf8" font-size="10" text-anchor="middle">f_{0,1}</text>
+
+          <line x1="252" y1="110" x2="328" y2="110" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+          <text x="290" y="100" fill="#38bdf8" font-size="10" text-anchor="middle">f_{1,2}</text>
+
+          <line x1="392" y1="110" x2="468" y2="110" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 3" marker-end="url(#arrow)"/>
+
+          <line x1="532" y1="110" x2="630" y2="110" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
+          <text x="580" y="100" fill="#10b981" font-size="11" font-weight="700" text-anchor="middle">&#953;_n</text>
+
+          <!-- Commutative Triangles Indicator -->
+          <path d="M 80 142 C 220 200, 500 200, 640 142" fill="none" stroke="#f59e0b" stroke-dasharray="4 4" stroke-width="1.5" marker-end="url(#arrowAmber)"/>
+          <text x="360" y="195" fill="#fbbf24" font-size="10" font-weight="600" text-anchor="middle">Commuting Coherence Condition: &#953;_n &#8728; f_{m,n} = &#953;_m</text>
+        </g>
+        
+  </g>
+
+  <!-- Bottom Footer -->
+  <g transform="translate(32, 468)">
+    <line x1="0" y1="0" x2="816" y2="0" stroke="#1e293b" stroke-width="1.2"/>
+    
+    <text x="0" y="22" fill="#64748b" font-size="10" font-weight="600" text-transform="uppercase" letter-spacing="0.5">Pipeline Evaluator:</text>
+    <text x="120" y="22" fill="#38bdf8" font-size="11" font-family="ui-monospace, monospace" font-weight="600">Evaluator::ColimitIsolator</text>
+
+    <text x="380" y="22" fill="#64748b" font-size="10" font-weight="600" text-transform="uppercase" letter-spacing="0.5">Primary Error:</text>
+    <text x="470" y="22" fill="#f43f5e" font-size="11" font-family="ui-monospace, monospace" font-weight="600">ERR_COLIMIT_INCOHERENCE</text>
+
+    <text x="0" y="44" fill="#64748b" font-size="10" font-weight="600" text-transform="uppercase" letter-spacing="0.5">Forcing Invariant:</text>
+    <text x="120" y="44" fill="#cbd5e1" font-size="11" font-weight="400">Infinite colimits lack modular encapsulation for domain-specific local dialect sub-languages; forced lift to MSS-17.</text>
+  </g>
+</svg>

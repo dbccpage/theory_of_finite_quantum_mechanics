@@ -3,15 +3,18 @@ node_id: MUB6-WEYL-HEISENBERG-D6
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: On C^6 with shift X|j> = |j+1 mod 6> and clock Z|j> = w^j |j>, w = exp(2 pi i/6),
-    one has Z X = w X Z, and the 36 operators X^p Z^q are pairwise orthogonal for the trace pairing tr(A*
-    B).
+  source_statement: In the set of integer pairs (a, b) with product (a, b)*(c, d) = (a*c - b*d, a*d +
+    b*c + b*d) and conjugate (a + b, -b), w = (0, 1) satisfies w*w = w - (1, 0), w*w*w = (-1, 0) and the
+    sixth power of w is (1, 0). On 6 by 6 matrices over those pairs, shift X has a 1 at each (j+1 mod
+    6, j) and clock Z is diagonal with entry w^j. Then Z X = w X Z, while X Z and w Z X differ. For p,
+    q, r, s from 0 through 5, the trace of the conjugate-transpose of X^p Z^q times X^r Z^s is (6, 0)
+    when (p, q) = (r, s) and (0, 0) otherwise.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
-  - Weyl-Heisenberg commutation and Hilbert-Schmidt orthogonality of displacement operators (standard)
-  source_bottleneck: These standard identities are not checked in this checkout for d = 6; the source
-    writes X Z = w Z X, which holds only under the opposite clock convention; no MUB count follows from
-    them.
+  - Complex exponential and its identification with the integer pair w (not constructed in this checkout)
+  source_bottleneck: 'This record is the 6 by 6 integer-pair table above. It does not construct a complex
+    exponential, does not identify w with exp(2 pi i / 6), and does not count mutually unbiased bases.
+    The source commutation X Z = w Z X is the opposite clock convention. AuthorityEffect: None.'
   source_refs:
   - dag/derivations/25_mub/tfq_1223_mub6_weyl_heisenberg_d6.md
   - papers/core/mub6/theory_of_finite_mub6.jsonl
@@ -24,7 +27,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/25_mub/tfq_1223_mub6_weyl_heisenberg_d6.md
-    sha256: 42914161de12fcd9ff1b4206dbfbcb02950bcbd5394b458c717ef80b69eb4619
+    sha256: 280be1029654fa9b71ca194cc61340bf22cd7fc4c88687e898b5998c67264605
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -32,9 +35,342 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/mutually_unbiased_bases_mub6_weyl_heisenberg_d6_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: rMul
+  line: 16
+  signature_excerpt: 'def rMul (x y : R) : R'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: w
+  line: 23
+  signature_excerpt: 'def w : R'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rSub
+  line: 15
+  signature_excerpt: 'def rSub (x y : R) : R'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rOne
+  line: 20
+  signature_excerpt: 'def rOne : R'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: R
+  line: 9
+  signature_excerpt: structure R
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: wpow
+  line: 25
+  signature_excerpt: |-
+    def wpow : Nat → R
+      | 0 => rOne
+      | n + 1 => rMul w (wpow n)
+
+    theorem w_sq : rMul w w = rSub w rOne
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rNegOne
+  line: 21
+  signature_excerpt: 'def rNegOne : R'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rConj
+  line: 18
+  signature_excerpt: 'def rConj (x : R) : R'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mAt
+  line: 75
+  signature_excerpt: |-
+    def mAt (A : Mat) : Fin 6 → Fin 6 → R
+      | 0, 0 => A.e00
+      | 0, 1 => A.e01
+      | 0, 2 => A.e02
+      | 0, 3 => A.e03
+      | 0, 4 => A.e04
+      | 0, 5 => A.e05
+      | 1, 0 => A.e10
+      | 1, 1 => A.e11
+      | 1, 2 => A.e12
+      | 1, 3 => A.e13
+      | 1, 4 => A.e14
+      | 1, 5 => A.e15
+      | 2, 0 => A.e20
+      | 2, 1 => A.e21
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: shiftX
+  line: 273
+  signature_excerpt: 'def shiftX : Mat'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rZero
+  line: 19
+  signature_excerpt: 'def rZero : R'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat
+  line: 35
+  signature_excerpt: structure Mat
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: clockZ
+  line: 311
+  signature_excerpt: 'def clockZ : Mat'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mMul
+  line: 154
+  signature_excerpt: 'def mMul (A B : Mat) : Mat'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mScale
+  line: 192
+  signature_excerpt: 'def mScale (c : R) (A : Mat) : Mat'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: dot6
+  line: 113
+  signature_excerpt: 'def dot6 (f : Fin 6 → R) : R'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: w_sq
+  line: 29
+  signature_excerpt: 'theorem w_sq : rMul w w = rSub w rOne'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: w_cube
+  line: 30
+  signature_excerpt: 'theorem w_cube : wpow 3 = rNegOne'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: w_six
+  line: 31
+  signature_excerpt: 'theorem w_six : wpow 6 = rOne'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: conj_pair
+  line: 32
+  signature_excerpt: 'theorem conj_pair (a b : Int) : rConj ⟨a, b⟩ = ⟨a + b, -b⟩'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: shift_entry
+  line: 399
+  signature_excerpt: |-
+    theorem shift_entry :
+        ∀ i j : Fin 6, mAt shiftX i j = if i.val = (j.val + 1) % 6 then rOne else rZero
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: clock_entry
+  line: 403
+  signature_excerpt: |-
+    theorem clock_entry :
+        ∀ i j : Fin 6, mAt clockZ i j = if i = j then wpow i.val else rZero
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: zx_eq
+  line: 407
+  signature_excerpt: 'theorem zx_eq : mMul clockZ shiftX = mScale w (mMul shiftX clockZ)'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: xz_ne
+  line: 410
+  signature_excerpt: 'theorem xz_ne : mMul shiftX clockZ ≠ mScale w (mMul clockZ shiftX)'
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: hs_orth
+  line: 856
+  signature_excerpt: |-
+    theorem hs_orth (p q r s : Fin 6) :
+        mTr (mMul (mAdj (mMul (mPow shiftX p.val) (mPow clockZ q.val)))
+                 (mMul (mPow shiftX r.val) (mPow clockZ s.val)))
+          = if p = r ∧ q = s then rSix else rZero
+  source: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  source_sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/CampaignMub6WeylHeisenbergD6.lean::w_sq
+  availability: local
+  symbol: w_sq
+  path: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  declaration_status: declaration_found_not_proof_checked
+  line: 29
+  role: source_lead_only
+- original_ref: lean4/CampaignMub6WeylHeisenbergD6.lean::w_cube
+  availability: local
+  symbol: w_cube
+  path: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  declaration_status: declaration_found_not_proof_checked
+  line: 30
+  role: source_lead_only
+- original_ref: lean4/CampaignMub6WeylHeisenbergD6.lean::w_six
+  availability: local
+  symbol: w_six
+  path: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  declaration_status: declaration_found_not_proof_checked
+  line: 31
+  role: source_lead_only
+- original_ref: lean4/CampaignMub6WeylHeisenbergD6.lean::conj_pair
+  availability: local
+  symbol: conj_pair
+  path: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  declaration_status: declaration_found_not_proof_checked
+  line: 32
+  role: source_lead_only
+- original_ref: lean4/CampaignMub6WeylHeisenbergD6.lean::shift_entry
+  availability: local
+  symbol: shift_entry
+  path: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  declaration_status: declaration_found_not_proof_checked
+  line: 399
+  role: source_lead_only
+- original_ref: lean4/CampaignMub6WeylHeisenbergD6.lean::clock_entry
+  availability: local
+  symbol: clock_entry
+  path: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  declaration_status: declaration_found_not_proof_checked
+  line: 403
+  role: source_lead_only
+- original_ref: lean4/CampaignMub6WeylHeisenbergD6.lean::zx_eq
+  availability: local
+  symbol: zx_eq
+  path: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  declaration_status: declaration_found_not_proof_checked
+  line: 407
+  role: source_lead_only
+- original_ref: lean4/CampaignMub6WeylHeisenbergD6.lean::xz_ne
+  availability: local
+  symbol: xz_ne
+  path: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  declaration_status: declaration_found_not_proof_checked
+  line: 410
+  role: source_lead_only
+- original_ref: lean4/CampaignMub6WeylHeisenbergD6.lean::hs_orth
+  availability: local
+  symbol: hs_orth
+  path: lean4/CampaignMub6WeylHeisenbergD6.lean
+  repository: this_repository
+  sha256: 7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe
+  declaration_status: declaration_found_not_proof_checked
+  line: 856
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -54,7 +390,7 @@ operad_slots:
     carrier: null
     coefficient_ring: null
     assumptions:
-    - Weyl-Heisenberg commutation and Hilbert-Schmidt orthogonality of displacement operators (standard)
+    - Complex exponential and its identification with the integer pair w (not constructed in this checkout)
     source_pins: []
     public_input: {}
   slot_m2_layer1_forward_morphisms:
@@ -71,11 +407,9 @@ operad_slots:
     certificate_predicates: []
     anchors: []
     unpaid_imports:
-    - Weyl-Heisenberg commutation and Hilbert-Schmidt orthogonality of displacement operators (standard)
+    - Complex exponential and its identification with the integer pair w (not constructed in this checkout)
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

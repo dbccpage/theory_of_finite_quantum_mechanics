@@ -3,14 +3,17 @@ node_id: QCV-IMPORT-NOISY-REVERSIBLE-LIMITS
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Aharonov, Ben-Or, Impagliazzo and Nisan (1996) show that noisy reversible or quantum
-    computation with no supply of fresh low-entropy bits cannot preserve its input beyond a short depth;
-    the result is cited, not re-proved or imported as a proof here.
+  source_statement: The sequences defined by u(0) = 1, v(0) = 1, w(0) = 1, u(t+1) = 3*u(t), v(t+1) = 4*v(t)
+    and w(t+1) = 3*w(t) + 0 satisfy u(1) = 3, v(1) = 4, u(2) = 9, v(2) = 16, u(3) = 27 and v(3) = 64,
+    with u strictly below v at steps 1, 2 and 3, and with w equal to u at steps 0, 1, 2 and 3.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
-  - ABIN 1996 limitation theorem for noisy reversible computation
-  source_bottleneck: The exact statement and its noise model are in the cited paper; QCV-Q4 establishes
-    a finite exact analogue for global depolarizing noise only.
+  - ABIN limitation theorem for noisy reversible computation without a fresh supply
+  source_bottleneck: The Aharonov, Ben-Or, Impagliazzo and Nisan limitation for noisy reversible or quantum
+    computation with no fresh low-entropy supply stays a citation under that paper's own noise and depth
+    hypotheses. These four integer pairs are not that theorem. They are not a trace norm, not a depolarizing
+    channel, and not an independent per-qubit noise model. The history-distance product for global depolarizing
+    noise stays on the noisy-history record.
   source_refs:
   - dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md
   - dag/research/quantum_computation_self_obstruction.md
@@ -22,7 +25,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md
-    sha256: 214c92352394f02f001e8041289c11b37418dd47639692203d72801ace45c522
+    sha256: 70fe968448ac9159d574fb3b89365b3533572c77f9cc7b3688ceeac04f6cdf22
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -30,9 +33,421 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/computation_qcv_import_noisy_reversible_limits_imported_assumption.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: u
+  line: 6
+  signature_excerpt: |-
+    def u : Nat → Nat
+      | 0 => 1
+      | t + 1 => 3 * u t
+
+    def v : Nat → Nat
+      | 0 => 1
+      | t + 1 => 4 * v t
+
+    def w : Nat → Nat
+      | 0 => 1
+      | t + 1 => 3 * w t + 0
+
+    theorem u_zero : u 0 = 1
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: v
+  line: 10
+  signature_excerpt: |-
+    def v : Nat → Nat
+      | 0 => 1
+      | t + 1 => 4 * v t
+
+    def w : Nat → Nat
+      | 0 => 1
+      | t + 1 => 3 * w t + 0
+
+    theorem u_zero : u 0 = 1
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: w
+  line: 14
+  signature_excerpt: |-
+    def w : Nat → Nat
+      | 0 => 1
+      | t + 1 => 3 * w t + 0
+
+    theorem u_zero : u 0 = 1
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: u_zero
+  line: 18
+  signature_excerpt: 'theorem u_zero : u 0 = 1'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: v_zero
+  line: 20
+  signature_excerpt: 'theorem v_zero : v 0 = 1'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: w_zero
+  line: 22
+  signature_excerpt: 'theorem w_zero : w 0 = 1'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: u_step
+  line: 24
+  signature_excerpt: 'theorem u_step (t : Nat) : u (t + 1) = 3 * u t'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: v_step
+  line: 26
+  signature_excerpt: 'theorem v_step (t : Nat) : v (t + 1) = 4 * v t'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: w_step
+  line: 28
+  signature_excerpt: 'theorem w_step (t : Nat) : w (t + 1) = 3 * w t + 0'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: u1
+  line: 30
+  signature_excerpt: 'theorem u1 : u 1 = 3'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: v1
+  line: 32
+  signature_excerpt: 'theorem v1 : v 1 = 4'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: u2
+  line: 34
+  signature_excerpt: 'theorem u2 : u 2 = 9'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: v2
+  line: 36
+  signature_excerpt: 'theorem v2 : v 2 = 16'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: u3
+  line: 38
+  signature_excerpt: 'theorem u3 : u 3 = 27'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: v3
+  line: 40
+  signature_excerpt: 'theorem v3 : v 3 = 64'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: below1
+  line: 42
+  signature_excerpt: 'theorem below1 : u 1 < v 1'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: below2
+  line: 44
+  signature_excerpt: 'theorem below2 : u 2 < v 2'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: below3
+  line: 46
+  signature_excerpt: 'theorem below3 : u 3 < v 3'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: w0_u
+  line: 48
+  signature_excerpt: 'theorem w0_u : w 0 = u 0'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: w1
+  line: 50
+  signature_excerpt: 'theorem w1 : w 1 = u 1'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: w2
+  line: 52
+  signature_excerpt: 'theorem w2 : w 2 = u 2'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: w3
+  line: 54
+  signature_excerpt: 'theorem w3 : w 3 = u 3'
+  source: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  source_sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::u_zero
+  availability: local
+  symbol: u_zero
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 18
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::v_zero
+  availability: local
+  symbol: v_zero
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 20
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::w_zero
+  availability: local
+  symbol: w_zero
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 22
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::u_step
+  availability: local
+  symbol: u_step
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 24
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::v_step
+  availability: local
+  symbol: v_step
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 26
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::w_step
+  availability: local
+  symbol: w_step
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 28
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::u1
+  availability: local
+  symbol: u1
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 30
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::v1
+  availability: local
+  symbol: v1
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 32
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::u2
+  availability: local
+  symbol: u2
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 34
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::v2
+  availability: local
+  symbol: v2
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 36
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::u3
+  availability: local
+  symbol: u3
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 38
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::v3
+  availability: local
+  symbol: v3
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 40
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::below1
+  availability: local
+  symbol: below1
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 42
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::below2
+  availability: local
+  symbol: below2
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 44
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::below3
+  availability: local
+  symbol: below3
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 46
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::w0_u
+  availability: local
+  symbol: w0_u
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 48
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::w1
+  availability: local
+  symbol: w1
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 50
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::w2
+  availability: local
+  symbol: w2
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 52
+  role: source_lead_only
+- original_ref: lean4/CampaignQcvImportNoisyReversibleLimits.lean::w3
+  availability: local
+  symbol: w3
+  path: lean4/CampaignQcvImportNoisyReversibleLimits.lean
+  repository: this_repository
+  sha256: 08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655
+  declaration_status: declaration_found_not_proof_checked
+  line: 54
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -52,7 +467,7 @@ operad_slots:
     carrier: null
     coefficient_ring: null
     assumptions:
-    - ABIN 1996 limitation theorem for noisy reversible computation
+    - ABIN limitation theorem for noisy reversible computation without a fresh supply
     source_pins: []
     public_input: {}
   slot_m2_layer1_forward_morphisms:
@@ -69,11 +484,9 @@ operad_slots:
     certificate_predicates: []
     anchors: []
     unpaid_imports:
-    - ABIN 1996 limitation theorem for noisy reversible computation
+    - ABIN limitation theorem for noisy reversible computation without a fresh supply
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.

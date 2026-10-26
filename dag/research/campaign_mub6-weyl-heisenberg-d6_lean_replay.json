@@ -1,0 +1,67 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-26T18:40:00Z",
+  "source_base": "4fea09ae176aae31115e38bb2b21819237055811",
+  "result": "Narrowed to the 6 by 6 integer-pair shift and clock. Z X = w X Z, X Z differs from w Z X, and the trace pairing of X^p Z^q is (6, 0) on the matching exponent and (0, 0) otherwise. The node stays IMPORTED_ASSUMPTION.",
+  "proof_boundary": "This receipt records that lean4/CampaignMub6WeylHeisenbergD6.lean type-checks with no Mathlib import. The proved arithmetic is the integer-pair product and conjugate, three powers of w, the shift and clock entries, one commutation identity, one opposite-convention inequality, and the trace pairing for exponents in 0..5. No complex exponential, no identification of w with exp(2 pi i / 6), and no count of mutually unbiased bases is in the module. The node stays IMPORTED_ASSUMPTION.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "lakefile_sha256": "a7272aa920aae009cefd4ae8d7b5f25620f53af119a398f7845d4d2c4de03004",
+    "library": "CampaignMub6WeylHeisenbergD6 (lean_lib in lean4/lakefile.lean; not a default target)",
+    "build_directory": "lean4/b (lakefile buildDir; removed with the worktree)",
+    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run)",
+    "command": "cd lean4 && lake build CampaignMub6WeylHeisenbergD6",
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "wall_clock_ms": 5903,
+    "module_job_ms": 2800,
+    "results": [
+      {
+        "module": "CampaignMub6WeylHeisenbergD6",
+        "dag_node": "MUB6-WEYL-HEISENBERG-D6",
+        "source": "lean4/CampaignMub6WeylHeisenbergD6.lean",
+        "sha256": "7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe",
+        "sha256_after_build": "7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "w_sq",
+          "w_cube",
+          "w_six",
+          "conj_pair",
+          "shift_entry",
+          "clock_entry",
+          "zx_eq",
+          "xz_ne",
+          "hs_orth"
+        ],
+        "axioms": {
+          "w_sq": [],
+          "w_cube": [],
+          "w_six": [],
+          "conj_pair": [],
+          "shift_entry": ["propext"],
+          "clock_entry": ["propext"],
+          "zx_eq": ["propext"],
+          "xz_ne": ["propext"],
+          "hs_orth": ["propext", "Classical.choice", "Quot.sound"]
+        },
+        "output": "info: CampaignMub6WeylHeisenbergD6.lean:862:0: 'CampaignMub6WeylHeisenbergD6.w_sq' does not depend on any axioms\ninfo: CampaignMub6WeylHeisenbergD6.lean:863:0: 'CampaignMub6WeylHeisenbergD6.w_cube' does not depend on any axioms\ninfo: CampaignMub6WeylHeisenbergD6.lean:864:0: 'CampaignMub6WeylHeisenbergD6.w_six' does not depend on any axioms\ninfo: CampaignMub6WeylHeisenbergD6.lean:865:0: 'CampaignMub6WeylHeisenbergD6.conj_pair' does not depend on any axioms\ninfo: CampaignMub6WeylHeisenbergD6.lean:866:0: 'CampaignMub6WeylHeisenbergD6.shift_entry' depends on axioms: [propext]\ninfo: CampaignMub6WeylHeisenbergD6.lean:867:0: 'CampaignMub6WeylHeisenbergD6.clock_entry' depends on axioms: [propext]\ninfo: CampaignMub6WeylHeisenbergD6.lean:868:0: 'CampaignMub6WeylHeisenbergD6.zx_eq' depends on axioms: [propext]\ninfo: CampaignMub6WeylHeisenbergD6.lean:869:0: 'CampaignMub6WeylHeisenbergD6.xz_ne' depends on axioms: [propext]\ninfo: CampaignMub6WeylHeisenbergD6.lean:870:0: 'CampaignMub6WeylHeisenbergD6.hs_orth' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": ["python", "-I", "-X", "utf8", "checks/independent/mub6-weyl-heisenberg-d6.py"],
+    "exit_code": 0,
+    "output": "mub6-weyl-heisenberg-d6 failures=0 operators=36 pairs=1296 comm_mismatch=0 opposite_mismatch=6 entry_fail=0 orth_fail=0\n"
+  }
+}

@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Born-quadratic uniqueness (Gleason) is imported; L^p pairings for p != 2 are valid in L1 measure theory. The dedicated 204 slot is empty.
+For every integer pair A and B, A + B equals (A + B) * 1. The sum 3 + 4 equals 7, and 7 differs from 0. The sum of squares 3 * 3 + 4 * 4 equals 25, and 5 * 5 equals 25. The sum of fourth products 3 * 3 * 3 * 3 + 4 * 4 * 4 * 4 equals 337. The product (3 * 3) * (3 * 3 * 3 * 3 + 4 * 4 * 4 * 4) differs from (3 * 3 * 3 * 3) * (5 * 5). The product 3 * (3 * 3 + 4 * 4) differs from (3 * 3) * (3 + 4). For every integer quadruple a, b, r and s, (r * a - s * b) * (r * a - s * b) + (s * a + r * b) * (s * a + r * b) equals (r * r + s * s) * (a * a + b * b). At a = 3, b = 4, r = 3 and s = 4, both sides equal 625.
 
 ### Governing Obligation
-No derivation of quadratic uniqueness from L1 additivity.
+Gleason uniqueness, frame-function, effect, continuity and dimension hypotheses, and L^p pairings in measure theory stay imported. The integer sum identity, the rotation identity, and the two splits of the pair (3, 4) are one finite case. Bare normalization does not select a quadratic pairing.
 
 ### Source Status
 QM_204 ledger: stub "Band slot reserved" (QM_204-C0); content carried by QM-210-C3 and QM206-C5 [STANDARD]
@@ -32,6 +32,14 @@ QM_204 ledger: stub "Band slot reserved" (QM_204-C0); content carried by QM-210-
 ### Lean 4 Theorems
 - `lean4/GleasonTheorem.lean::d2_binary_non_bornian_obstruction`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_and_fq_cptp_partial_transpose_born_lp_and_f64_diagnostic_firewall`
+- `lean4/CampaignDsQm204BornUniqueness.lean::CampaignDsQm204BornUniqueness.pairNorm`
+- `lean4/CampaignDsQm204BornUniqueness.lean::CampaignDsQm204BornUniqueness.denom34`
+- `lean4/CampaignDsQm204BornUniqueness.lean::CampaignDsQm204BornUniqueness.squares34`
+- `lean4/CampaignDsQm204BornUniqueness.lean::CampaignDsQm204BornUniqueness.fourths34`
+- `lean4/CampaignDsQm204BornUniqueness.lean::CampaignDsQm204BornUniqueness.quarticSeparates`
+- `lean4/CampaignDsQm204BornUniqueness.lean::CampaignDsQm204BornUniqueness.linearSeparates`
+- `lean4/CampaignDsQm204BornUniqueness.lean::CampaignDsQm204BornUniqueness.rot`
+- `lean4/CampaignDsQm204BornUniqueness.lean::CampaignDsQm204BornUniqueness.rotWitness`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

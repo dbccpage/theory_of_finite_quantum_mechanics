@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Hilbert tensor product as the unique way to combine systems. On Bool x Bool a bilinear integer-homogeneous Kronecker-normalized map equals the pointwise product; a weaker same-host combining interface has a rival (dump-the-right-report map).
+For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1.
 
 ### Governing Obligation
-Combining-systems uniqueness not derived; needs a second presented carrier (QM_122 7.1 item 1).
+The Hilbert-space tensor product is not derived as the unique way to combine systems. The agreement above uses additivity, integer homogeneity and the identity tag (i, j) on one Bool-by-Bool host. The dump-right map is a same-host rival whose tag collapses the second Boolean factor, so a weaker tag does not select the pointwise product. A second presented carrier and a physical composition rule stay imported (QM_122 7.1 item 1).
 
 ### Source Status
 imported; unique only on the named bilinear Kronecker interface
@@ -33,9 +33,18 @@ imported; unique only on the named bilinear Kronecker interface
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/H014BilinearProduct.lean::embed_eq_tensor`
-- `lean4/H014Interface.lean::two_combinings_share_interface_and_disagree`
-- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
+- `lean4/CampaignGpImportTensorProduct.lean::tensor_pointwise`
+- `lean4/CampaignGpImportTensorProduct.lean::embed_eq_tensor`
+- `lean4/CampaignGpImportTensorProduct.lean::dumpRight_false_coord`
+- `lean4/CampaignGpImportTensorProduct.lean::dumpRight_true_coord`
+- `lean4/CampaignGpImportTensorProduct.lean::dumpRight_add_left`
+- `lean4/CampaignGpImportTensorProduct.lean::dumpRight_add_right`
+- `lean4/CampaignGpImportTensorProduct.lean::dumpRight_smul_left`
+- `lean4/CampaignGpImportTensorProduct.lean::dumpRight_smul_right`
+- `lean4/CampaignGpImportTensorProduct.lean::dumpRight_collapsed_tag`
+- `lean4/CampaignGpImportTensorProduct.lean::witness_tensor_one`
+- `lean4/CampaignGpImportTensorProduct.lean::witness_dump_zero`
+- `lean4/CampaignGpImportTensorProduct.lean::dumpRight_ne_tensor`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

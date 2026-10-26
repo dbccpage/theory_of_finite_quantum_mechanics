@@ -1,0 +1,35 @@
+(* S(n) Presentation Grammar and Wire Token Definitions, Version 1.
+   AuthorityEffect: None. GenesisEffect: None.
+   Conforms to check_grammars.py EBNF subset. All productions defined here. *)
+
+(* Master presentation surface covering the later flat S(n) wire forms *)
+sn_presentation = ground_token | supplied_token | relation_token | section_lift | retraction_map | non_descent ;
+
+(* Stage S(0): Ground token; one opaque token, two ASCII bytes; no datum admission *)
+ground_token = "<>" ;
+
+(* Stage S(1): Supplied mark syntax; no admission is performed *)
+supplied_token = "<", glyph, ">" ;
+
+(* Stage S(2) and S(3): Retained pairs, directed cuts, and simplicial cuts *)
+relation_token = retained_pair | directed_cut | simplex_cut ;
+retained_pair = "<", glyph, glyph, ">" ;
+directed_cut = "<", glyph, "->", glyph, ">" ;
+simplex_cut = "[", glyph, ",", glyph, "]" ;
+
+(* Stage S(6): Section lift and retraction down-map *)
+section_lift = "u_", digits, "<", inner_body, ">" ;
+retraction_map = "r_", digits, "<", inner_body, ">" ;
+non_descent = "NON_DESCENT" ;
+
+(* Inner body inside lift or retraction enclosure *)
+inner_body = ( glyph, "->", glyph ) | ( glyph, ",", glyph ) | glyphs ;
+
+(* Terminals and character sets over Sigma36 *)
+glyph = lower_latin | digit ;
+glyphs = { glyph } ;
+
+digits = digit, { digit } ;
+digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+
+lower_latin = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" ;

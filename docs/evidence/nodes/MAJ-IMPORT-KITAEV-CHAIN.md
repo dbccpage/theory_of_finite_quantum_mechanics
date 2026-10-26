@@ -4,15 +4,15 @@ Stage: [MAJORANA](../stages/MAJORANA.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 ## Statement
 
-> The spinless p-wave Kitaev chain H = -sum(t c_j^dag c_{j+1} + Delta c_j c_{j+1} + h.c.) - mu sum(c_j^dag c_j - 1/2), its BdG spectrum, the phase region |mu| \< 2t with Delta nonzero, and the sweet-spot form H = -i t sum gamma_{2j} gamma_{2j+1} with free edge modes gamma_1, gamma_{2L} are imported models.
+> For every natural number L with 2 \<= L and every natural number j with 1 \<= j and j \<= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu \< (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu \< (2 * t) * (2 * t), and delta differs from 0.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
-- distinct cited Lean declarations covered by a current replay receipt: 3
+- counted in-repo evidence files: 5
+- cited Lean, Rust or Python symbols found in their in-repo files: 8
+- distinct cited Lean declarations covered by a current replay receipt: 7
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-No statement that a physical wire realizes this Hamiltonian without disorder or trivial subgap states is made or supported.
+The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.
 
 ## Source status
 
@@ -41,6 +41,24 @@ No recorded statement-match review.
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignMajImportKitaevChain.lean`
+
+- file: [lean4/CampaignMajImportKitaevChain.lean](../../../lean4/CampaignMajImportKitaevChain.lean)
+- sha256 (`bytes`): `4be2d26217c40beea3ab808e5140bd95ff3aef37867556343ea2d9c18b582585`
+- cited in: node.lean, receipt dag/research/campaign_maj-import-kitaev-chain_lean_replay.json (CampaignMajImportKitaevChain), record TFQ-1167
+- replay: `verified`
+  - receipt [dag/research/campaign_maj-import-kitaev-chain_lean_replay.json](../../../dag/research/campaign_maj-import-kitaev-chain_lean_replay.json) (module `CampaignMajImportKitaevChain`): recorded sha256 `4be2d26217c40beea3ab808e5140bd95ff3aef37867556343ea2d9c18b582585` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignMajImportKitaevChain`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignMajImportKitaevChain.edgeAbsent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajImportKitaevChain.edgeAbsent` |
+| `CampaignMajImportKitaevChain.edgeWitness` | yes | yes | yes | none | `#print axioms CampaignMajImportKitaevChain.edgeWitness` |
+| `CampaignMajImportKitaevChain.insidePoint` | yes | yes | yes | none | `#print axioms CampaignMajImportKitaevChain.insidePoint` |
+| `CampaignMajImportKitaevChain.outsidePoint` | yes | yes | yes | none | `#print axioms CampaignMajImportKitaevChain.outsidePoint` |
+
+- counts toward the grade: yes
 
 ### Lean: `papers/core/majorana/lean4/MajoranaCore.lean`
 
@@ -74,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md`
 
 - file: [dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md](../../../dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md)
-- sha256 (`lf-normalised`): `86a798d5e3c1fc5b7afd59a3d1d9b5d13c4fe917b6cd6cb75ddc858b81408a51`
+- sha256 (`lf-normalised`): `6e7890e727a3f97b52cc43d6dae878e6eb1c81b4d9bd51cd20e58e27017cdb4d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1167
 - counts toward the grade: no
