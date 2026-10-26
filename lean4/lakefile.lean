@@ -1415,3 +1415,6 @@ lean_lib CampaignBfCocycleObstruction where
 
 lean_lib CampaignSignedTriangleSwitching where
   roots := #[`CampaignSignedTriangleSwitching]
+
+lean_lib CampaignIdentityConvention where
+  roots := #[`CampaignIdentityConvention]

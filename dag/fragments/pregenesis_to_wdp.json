@@ -383,16 +383,58 @@
       "parent_id": "TFQ-0422",
       "pinned_parent": false,
       "prerequisites": [],
-      "summary": "Whether <a> supplied after <> is a new state depends on an identity convention that no prompt had declared. Under the opaque convention a state is what the regime can tell apart, and with O empty <> and <a> are not told apart; under the exact-inscription convention a state is the inscription itself, the strings differ, and the regime has one more syntactic state. Trials 1 and 2 answered under the first convention and the full replay under the second, calling <a> a new state. The analysis keeps both branches and records the effect as undecidable until one convention is declared.",
-      "obligation": "Require a declared identity convention before answering whether a supplied inscription is a new state, and report the opaque and exact-inscription answers as separate branches until one is declared.",
+      "summary": "For arbitrary observer families, equality of all observations is an equivalence relation. Forgetting observers preserves indistinguishability, an empty observer family identifies every pair, and adjoining an exact-identity observer makes indistinguishability equivalent to equality. The supplied inscription `<a>` after `<>` is new relative to the exact observer and not new relative to the empty observer family. No single proposition agrees with both novelty answers.",
+      "obligation": "Keep the observer family and identity convention declared; no preferred convention, computability theorem or authority grant follows.",
       "imports": [
         "A declared identity convention, opaque or exact-inscription, chosen by the host (assumption)"
       ],
-      "fence": "Records that the answer is relative to the convention; it does not choose one, and the three replies are behaviour of one unrecorded model, not evidence for either convention.",
+      "fence": "The observer family and interpretation of identity are declared. This is logical dependence on a convention, not a computability undecidability theorem, a preferred identity convention, or a replay of the historical model responses. It grants no operational or physical authority. Original target retained as an obligation: Whether <a> supplied after <> is a new state depends on an identity convention that no prompt had declared. Under the opaque convention a state is what the regime can tell apart, and with O empty <> and <a> are not told apart; under the exact-inscription convention a state is the inscription itself, the strings differ, and the regime has one more syntactic state. Trials 1 and 2 answered under the first convention and the full replay under the second, calling <a> a new state. The analysis keeps both branches and records the effect as undecidable until one convention is declared. Prior boundary: Records that the answer is relative to the convention; it does not choose one, and the three replies are behaviour of one unrecorded model, not evidence for either convention.",
       "witnesses": {
         "lean": [
           {
-            "absent": "no Lean statement of the opaque and exact-inscription identity conventions"
+            "root": "local",
+            "path": "lean4/CampaignIdentityConvention.lean",
+            "symbol": "CampaignIdentityConvention.observational_equivalence"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignIdentityConvention.lean",
+            "symbol": "CampaignIdentityConvention.forgetting_preserves_indistinguishability"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignIdentityConvention.lean",
+            "symbol": "CampaignIdentityConvention.empty_family_identifies_all"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignIdentityConvention.lean",
+            "symbol": "CampaignIdentityConvention.adding_identity_separates"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignIdentityConvention.lean",
+            "symbol": "CampaignIdentityConvention.exact_observer_sees_new"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignIdentityConvention.lean",
+            "symbol": "CampaignIdentityConvention.opaque_observer_sees_no_new"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignIdentityConvention.lean",
+            "symbol": "CampaignIdentityConvention.exact_inscription_is_new"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignIdentityConvention.lean",
+            "symbol": "CampaignIdentityConvention.opaque_inscription_is_not_new"
+          },
+          {
+            "root": "local",
+            "path": "lean4/CampaignIdentityConvention.lean",
+            "symbol": "CampaignIdentityConvention.no_convention_independent_answer"
           }
         ],
         "rust": [
@@ -402,7 +444,8 @@
         ],
         "python": [
           {
-            "absent": "no Python switch between identity conventions"
+            "root": "local",
+            "path": "checks/independent/pgw-identity-convention-undecidable.py"
           }
         ]
       },
@@ -424,13 +467,25 @@
           "path": "omega_engine_education/documentation/000_oepregen/02_trial_record.md",
           "lines": "43-53",
           "quote": "Which is right depends on a convention nobody had declared"
+        },
+        {
+          "root": "local",
+          "path": "dag/derivations/independent/pgw-identity-convention-undecidable.md",
+          "lines": "5",
+          "quote": "For arbitrary observer families, equality of all observations is an equivalence relation. Forgetting observers preserves indistinguishability, an empty observer family identifies every pair, and adjoining an exact-identity observer makes indistinguishability equivalent to equality. The supplied inscription `<a>` after `<>` is new relative to the exact observer and not new relative to the empty observer family. No single proposition agrees with both novelty answers."
+        },
+        {
+          "root": "local",
+          "path": "dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json",
+          "lines": "7",
+          "quote": "The observer family and interpretation of identity are declared. This is logical dependence on a convention, not a computability undecidability theorem, a preferred identity convention, or a replay of the historical model responses. It grants no operational or physical authority."
         }
       ],
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "dag": {
         "status": "CONDITIONAL",
-        "source_status": "v1 Red round item 1 (conditional verdict); 000_oepregen 03_results_and_arguments.md section 2 and 02_trial_record.md Prompt 12"
+        "source_status": "v1 Red round item 1 (conditional verdict); 000_oepregen 03_results_and_arguments.md section 2 and 02_trial_record.md Prompt 12; current Lean observer-family theorem and exact/empty-family inscription comparison, with original CONDITIONAL status retained"
       },
       "terminal": false
     },
