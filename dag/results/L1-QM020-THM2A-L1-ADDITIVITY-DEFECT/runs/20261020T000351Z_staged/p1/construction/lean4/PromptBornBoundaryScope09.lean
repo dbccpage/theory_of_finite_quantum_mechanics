@@ -1,3 +1,0 @@
-import PromptBornBoundaries
-#print axioms QuantumMechanics.PromptBornBoundaries.defect_law
-#print axioms QuantumMechanics.PromptBornBoundaries.defect_control

@@ -1,0 +1,87 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-26T19:35:20Z",
+  "source_base": "2bdd4226e5cee99de42593bed26eb248a7617a13",
+  "result": "Narrowed: for natural numbers a and b at least 1, a + b is not 1. The pair (1, 1) sums to 2. The empty mass 0 is not 1. In the rationals, 1/2 + 1/2 = 1, 1 + 1 is not 1, and (1, 1) is not (1/2, 1/2). If a + b is positive, a/(a + b) + b/(a + b) = 1. The node stays OPEN.",
+  "proof_boundary": "This receipt records that lean4/CampaignTfq0171PositiveMass.lean type-checks and which axioms its print-axioms lines report. The finite positive-mass separation is the claim. A general Boolean valuation, the Rust modules, and an empty carrier refused by Fin n stay outside this module. The node stays OPEN. The earlier CampaignTfq0171ImplementationSibling receipt is not replaced.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "lakefile_sha256": "8657ce94858c4ae3bef4883f8eede480f58c1f2afc223c8fab8d6075acea4031",
+    "library": "CampaignTfq0171PositiveMass (lean_lib in lean4/lakefile.lean; not a default target)",
+    "build_directory": "lean4/b (lakefile buildDir)",
+    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache. The module imports Mathlib tactics. The shared package tree was not written.",
+    "command": "cd lean4 && lake build CampaignTfq0171PositiveMass",
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "results": [
+      {
+        "module": "CampaignTfq0171PositiveMass",
+        "dag_node": "TFQ-0171",
+        "source": "lean4/CampaignTfq0171PositiveMass.lean",
+        "sha256": "9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18",
+        "sha256_after_build": "9ffd98adc3b85a15cd52180ef494fc3b3ce168644b045818c51d0464747b2a18",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 54.26,
+        "module_job_s": 26,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignTfq0171PositiveMass.positivePairMassNotOne",
+          "CampaignTfq0171PositiveMass.oneOneMass",
+          "CampaignTfq0171PositiveMass.twoNotOne",
+          "CampaignTfq0171PositiveMass.emptyMassNotOne",
+          "CampaignTfq0171PositiveMass.halfPairSumsToOne",
+          "CampaignTfq0171PositiveMass.oneOneNotUnit",
+          "CampaignTfq0171PositiveMass.unnormalizedPairDiffers",
+          "CampaignTfq0171PositiveMass.normalizeByTotal"
+        ],
+        "axioms": {
+          "CampaignTfq0171PositiveMass.positivePairMassNotOne": [],
+          "CampaignTfq0171PositiveMass.oneOneMass": [],
+          "CampaignTfq0171PositiveMass.twoNotOne": [],
+          "CampaignTfq0171PositiveMass.emptyMassNotOne": [],
+          "CampaignTfq0171PositiveMass.halfPairSumsToOne": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignTfq0171PositiveMass.oneOneNotUnit": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignTfq0171PositiveMass.unnormalizedPairDiffers": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignTfq0171PositiveMass.normalizeByTotal": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "output": "'CampaignTfq0171PositiveMass.positivePairMassNotOne' does not depend on any axioms\n'CampaignTfq0171PositiveMass.oneOneMass' does not depend on any axioms\n'CampaignTfq0171PositiveMass.twoNotOne' does not depend on any axioms\n'CampaignTfq0171PositiveMass.emptyMassNotOne' does not depend on any axioms\n'CampaignTfq0171PositiveMass.halfPairSumsToOne' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTfq0171PositiveMass.oneOneNotUnit' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTfq0171PositiveMass.unnormalizedPairDiffers' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignTfq0171PositiveMass.normalizeByTotal' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+      }
+    ]
+  },
+  "independent_check": {
+    "command": [
+      "python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/tfq-0171.py"
+    ],
+    "exit_code": 0,
+    "output": "TFQ-0171 INDEPENDENT CHECKER PASSED: checks=519 failed=0\n"
+  }
+}

@@ -1,3 +1,0 @@
-import PromptBornBoundaries
-#print axioms QuantumMechanics.PromptBornBoundaries.phases_law
-#print axioms QuantumMechanics.PromptBornBoundaries.phases_control

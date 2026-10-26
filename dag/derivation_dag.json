@@ -2672,15 +2672,21 @@
       "stage": "L1_EMERGENCE",
       "status": "OPEN",
       "source_status": "Tier-1 direction independence (Lemma 4.1), gauge proportionality (Corollary 2), single-orbit uniform collapse (Theorem 4.2), and ENC-0523 drop-one counterexamples mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm",
-      "statement": "A faithful, edge-additive, maximal bounded-linear symmetry on the gauge presentation gives weighted l1 as the outer aggregation. Alternative route to l1 to L1-GS000-EDGEWISE-L1, with a different hypothesis set.",
+      "statement": "On two integer coordinates, for all integers x, y, and k and every coordinate swap and pair of coordinate signs, the aggregate |x| + |y| is unchanged by that signed permutation, equals |x| + |0| plus |0| + |y|, and after scaling both coordinates by k equals |k| times (|x| + |y|). The eight signed permutations send (1, 2) to (1, 2), (-1, 2), (1, -2), (-1, -2), (2, 1), (2, -1), (-2, 1), and (-2, -1), and these eight pairs are distinct, so equal images of (1, 2) force equal bit choices. For natural weights w1 and w2, w1 |x| + w2 |y| is unchanged by swapping the two coordinates for every integer pair if and only if w1 = w2, and in that case it equals w1 times (|x| + |y|). The weights 1 and 2 give 1 on (1, 0) and 2 on (0, 1). The pairs (3, 4) and (5, 0) both have squared length 25, and their aggregates are 7 and 5.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/007_m_compatible_gauge_classification"
       ],
       "lean": [
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gs001_replica_and_phi1_quotient_invariance",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gs001_and_wdp_ch08_replica_extensivity_vs_homogeneity",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gs001_maximal_symmetry_direction_independence_and_gauge_proportionality",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gs001_maximal_symmetry_direction_independence_and_gauge_proportionality"
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.signed_permutation_gauge_shadow",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.signed_permutation_preserves_l1",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.edge_additive",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.absolutely_homogeneous",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.eight_images_of_one_two",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.faithful_on_one_two",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.swap_invariant_weighted_iff",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.equal_weight_is_scaled_l1",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.unequal_weights_separate_axes",
+        "lean4/CampaignL1Gs001GaugeL1.lean::CampaignL1Gs001GaugeL1.equal_squared_length_splits_l1"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_wdp/src/gauge_classification.rs::standard_l1",
@@ -2691,7 +2697,7 @@
         "sources/atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Lean states intermediate steps only: under explicit norming, homogeneity and orbit hypotheses, the aggregate is constant on unit vectors and the edge weights are orbit-constant. The conclusion that the outer aggregation is weighted l1 is not derived in Lean.",
+      "bottleneck": "Two integer coordinates only. A faithful, edge-additive, maximal bounded-linear symmetry on a general gauge presentation is not derived, and weighted l1 is not obtained as that symmetry outer aggregation. Route L1-R-GS001 from L1-OBSERVER-AXIOMS-H1-H5 stays GAP_NO_DERIVATION. The conditional norming package in gs001_maximal_symmetry_direction_independence_and_gauge_proportionality remains a hypothesis package.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/L1-GS001-GAUGE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json",
@@ -2704,7 +2710,7 @@
         "does_not_support": "Establish the actual maximal bounded-linear symmetry and faithful edge-additive hypotheses; do not infer them from an eight-element test.",
         "next_test": "Establish the actual maximal bounded-linear symmetry and faithful edge-additive hypotheses; do not infer them from an eight-element test.",
         "scope_effect": "status_lowered",
-        "reason": "2026-10-26 status audit: the status now matches what the cited Lean declarations state. The target statement is restored.",
+        "reason": "2026-10-26 status audit kept this node OPEN. The stored statement is now the two-coordinate signed-permutation shadow in CampaignL1Gs001GaugeL1. The general maximal bounded-linear classification stays outside that shadow.",
         "prior_status": "PROVED_LEAN",
         "prior_statement": "A faithful, edge-additive, maximal bounded-linear symmetry on the gauge presentation gives weighted l1 as the outer aggregation. Alternative route to l1 to L1-GS000-EDGEWISE-L1, with a different hypothesis set.",
         "prior_bottleneck": "None (Tier-1 direction independence, gauge proportionality, single-orbit uniformity, and ENC-0523 drop-one counterexamples mechanized in gs001_maximal_symmetry_direction_independence_and_gauge_proportionality).",
@@ -5215,7 +5221,9 @@
       "statement": "Born uniqueness of the quadratic form needs imported Hilbert space, projection lattices and Gleason-type assumptions, with dimension n >= 3; Gleason frame additivity at n >= 3 is verified only over orthogonal frames of specific finite ray sets. The three-label cardinality surrogate (3 <= |Q|) is false on Bool; the unit-effect contract already has two disagreeing pairings.",
       "source": [
         "sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:193",
-        "sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:345"
+        "sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:345",
+        "dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md",
+        "dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json"
       ],
       "lean": [
         "lean4/H017Gleason.lean::gleason_pack_uniqueness_still_imported",
@@ -5241,7 +5249,11 @@
         "lean4/BornHermitianTraceRepresentation.lean::BornFable.HermitianCarrier.born_rule",
         "lean4/BornHermitianTraceRepresentation.lean::BornFable.HermitianCarrier.state_valuation_correspondence",
         "lean4/BornGaussianRationalFrameObstruction.lean::BornFable.GaussianFrames.parity_class_function_is_third",
-        "lean4/BornGaussianFrameRays.lean::BornFable.GaussianFrames.frameFunction_smul"
+        "lean4/BornGaussianFrameRays.lean::BornFable.GaussianFrames.frameFunction_smul",
+        "lean4/CampaignBornRationalRayObstruction.lean::BornFable.RationalRays.exotic_frame_function",
+        "lean4/CampaignBornRationalRayObstruction.lean::BornFable.RationalRays.exotic_not_quadratic",
+        "lean4/CampaignBornRationalRayObstruction.lean::BornFable.RationalRays.exotic_values",
+        "lean4/CampaignBornGaussianMod2ClassRigidity.lean::BornFable.GaussianFrames.mod2_class_function_is_third"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness",
@@ -5255,7 +5267,7 @@
         "projection lattice (assumption, projection-lattice route only)",
         "Hilbert space (assumption)"
       ],
-      "bottleneck": "The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n >= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized. Gaussian-rational frame functions (Fable API run 20261022T193631Z, receipt dag/research/fable_gleason_run2_lean_replay.json): over Q(i)^3 a frame function on nonzero vectors is constant on rays (frameFunction_smul); and a frame function whose value on every Gaussian-integer vector with not all of a+b, c+d, e+g even depends only on ((a+b) mod 2, (c+d) mod 2, (e+g) mod 2) has the value 1/3 on all of those vectors (parity_class_function_is_third). That excludes only this (1+i)-parity-class ansatz: other parity-type constructions (for example residues modulo 2 in Z[i]) are not covered, the identification of the class with (1+i)-divisibility is not formalised, and the 1/3 is not stated outside those vectors. Existence of a non-quadratic frame function on Q(i)^3 rays and quadraticity of all of them both remain open.",
+      "bottleneck": "The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n >= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized. Gaussian-rational frame functions (Fable API run 20261022T193631Z, receipt dag/research/fable_gleason_run2_lean_replay.json): over Q(i)^3 a frame function on nonzero vectors is constant on rays (frameFunction_smul); and a frame function whose value on every Gaussian-integer vector with not all of a+b, c+d, e+g even depends only on ((a+b) mod 2, (c+d) mod 2, (e+g) mod 2) has the value 1/3 on all of those vectors (parity_class_function_is_third). That excludes only this (1+i)-parity-class ansatz: other parity-type constructions (for example residues modulo 2 in Z[i]) are not covered, the identification of the class with (1+i)-divisibility is not formalised, and the 1/3 is not stated outside those vectors. Campaign run (receipt dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json): over Q^3 the mod-4 function exotic(v) = (1 + sgn v)/3 on integer vectors not all even is a frame function on all rational rays, takes the values 0, 1/3, 2/3, and is not quadratic (CampaignBornRationalRayObstruction: exotic_frame_function, exotic_not_quadratic), so on the rational carrier frame additivity on all orthogonal triples does not select the Born form even among nonnegative frame functions; and over Q(i)^3 a frame function that is a residue-modulo-2 class function on (1+i)-primitive Gaussian-integer vectors is 1/3 there (CampaignBornGaussianMod2ClassRigidity: mod2_class_function_is_third, 56 explicit frames). Existence of a non-quadratic frame function on Q(i)^3 rays and quadraticity of all of them both remain open, as does whether the Q^3 function extends to Q(i)^3.",
       "tags": [],
       "see_also": [
         "GP-IMPORT-GLEASON",
@@ -5275,7 +5287,7 @@
         "reason": "Review predates four later Born runs; current statement and bottleneck already cite them.",
         "prior_status": "CONDITIONAL",
         "prior_statement": "Born uniqueness of the quadratic form needs imported Hilbert space, projection lattices and Gleason-type assumptions, with dimension n >= 3; Gleason frame additivity at n >= 3 is verified only over orthogonal frames of specific finite ray sets. The three-label cardinality surrogate (3 <= |Q|) is false on Bool; the unit-effect contract already has two disagreeing pairings.",
-        "prior_bottleneck": "The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n >= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized. Gaussian-rational frame functions (Fable API run 20261022T193631Z, receipt dag/research/fable_gleason_run2_lean_replay.json): over Q(i)^3 a frame function on nonzero vectors is constant on rays (frameFunction_smul); and a frame function whose value on every Gaussian-integer vector with not all of a+b, c+d, e+g even depends only on ((a+b) mod 2, (c+d) mod 2, (e+g) mod 2) has the value 1/3 on all of those vectors (parity_class_function_is_third). That excludes only this (1+i)-parity-class ansatz: other parity-type constructions (for example residues modulo 2 in Z[i]) are not covered, the identification of the class with (1+i)-divisibility is not formalised, and the 1/3 is not stated outside those vectors. Existence of a non-quadratic frame function on Q(i)^3 rays and quadraticity of all of them both remain open.",
+        "prior_bottleneck": "The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n >= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized. Gaussian-rational frame functions (Fable API run 20261022T193631Z, receipt dag/research/fable_gleason_run2_lean_replay.json): over Q(i)^3 a frame function on nonzero vectors is constant on rays (frameFunction_smul); and a frame function whose value on every Gaussian-integer vector with not all of a+b, c+d, e+g even depends only on ((a+b) mod 2, (c+d) mod 2, (e+g) mod 2) has the value 1/3 on all of those vectors (parity_class_function_is_third). That excludes only this (1+i)-parity-class ansatz: other parity-type constructions (for example residues modulo 2 in Z[i]) are not covered, the identification of the class with (1+i)-divisibility is not formalised, and the 1/3 is not stated outside those vectors. Campaign run (receipt dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json): over Q^3 the mod-4 function exotic(v) = (1 + sgn v)/3 on integer vectors not all even is a frame function on all rational rays, takes the values 0, 1/3, 2/3, and is not quadratic (CampaignBornRationalRayObstruction: exotic_frame_function, exotic_not_quadratic), so on the rational carrier frame additivity on all orthogonal triples does not select the Born form even among nonnegative frame functions; and over Q(i)^3 a frame function that is a residue-modulo-2 class function on (1+i)-primitive Gaussian-integer vectors is 1/3 there (CampaignBornGaussianMod2ClassRigidity: mod2_class_function_is_third, 56 explicit frames). Existence of a non-quadratic frame function on Q(i)^3 rays and quadraticity of all of them both remain open, as does whether the Q^3 function extends to Q(i)^3.",
         "superseded_by": [
           "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T004525Z_fable51_born",
           "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T162715Z_jordan_classical_qubit",
@@ -12645,7 +12657,7 @@
       "stage": "IMPLEMENTATION_SIBLING",
       "status": "OPEN",
       "source_status": "TFQ record_status GAP (source slice 06)",
-      "statement": "Unnormalized mass is a different carrier from the probability simplex. src/finite_valuation.rs states exact nonnegative Boolean valuations with no normalization requirement, and it admits an empty carrier that FinN refuses. src/lib.rs also declares signed_representation.rs, local_deterministic.rs, and marginal_compatibility.rs; those three bodies were not opened, so only the module declarations are in scope. The obligation is to keep an unnormalized valuation from standing in for a law that sums to one. H001ProbabilitySimplex.lean says its scaled integer grid is not the ordinary rational simplex.",
+      "statement": "For all natural numbers a and b, if a is at least 1 and b is at least 1, then a + b is not 1. The pair (1, 1) sums to 2, and 2 is not 1. The empty mass 0 is not 1. In the rationals, 1/2 + 1/2 = 1, the pair (1, 1) is not the pair (1/2, 1/2), and 1 + 1 is not 1. If a + b is positive, then a/(a + b) + b/(a + b) = 1. An unnormalized Boolean valuation on a general carrier, the Rust module contracts, and a ban on standing in for a unit-sum law stay outside this finite case.",
       "source": [
         "dag/derivations/22_implementation_sibling/tfq_0171_do_not_collapse_unnormalized_finite_valuations_into_the_normalized_rational_probability_simplex.md",
         "dag/derivations/independent/tfq-0171.md",
@@ -12670,7 +12682,15 @@
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.probability_simplex",
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.double_not_normalized",
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.signed_not_nonneg",
-        "lean4/H001Rats.lean::FableHilbertWalk20260819.H001Rats.qrel_equivalence"
+        "lean4/H001Rats.lean::FableHilbertWalk20260819.H001Rats.qrel_equivalence",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.positivePairMassNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.oneOneMass",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.twoNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.emptyMassNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.halfPairSumsToOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.oneOneNotUnit",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.unnormalizedPairDiffers",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.normalizeByTotal"
       ],
       "rust": [
         "code/rust/src/finite_probability/finite_valuation.rs::BooleanValuation::try_new",
@@ -12679,7 +12699,7 @@
         "code/rust/src/finite_probability/marginal_compatibility.rs::MarginalScenario::validate_probabilities"
       ],
       "imported_structure": [],
-      "bottleneck": "Do not collapse unnormalized finite valuations into the normalized rational probability simplex.",
+      "bottleneck": "Positive natural masses on two coordinates are separated from the unit sum, and dividing by a positive total returns a rational unit sum. The obligation to keep an unnormalized valuation from standing in for a law that sums to one, including the Rust files and an empty carrier refused by Fin n, remains open. AuthorityEffect: None.",
       "tags": [
         "unified-dag",
         "TFQ-0171",
@@ -12950,7 +12970,7 @@
       "stage": "IMPLEMENTATION_SIBLING",
       "status": "OPEN",
       "source_status": "TFQ record_status GAP (source slice 06)",
-      "statement": "Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap.",
+      "statement": "Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap. Narrowed in Lean 4 and an independent Python check to Nat arithmetic, with no status change. For every natural number n, the product n * n * n is at most n * n * n. For every natural number n at least 1, twice that cube equals (n - 1) * n * (2 * n - 1) plus n * (3 * n - 1), the product (n - 1) * n * (2 * n - 1) is strictly below twice the cube, and n * (3 * n - 1) is at least 2. At n = 4 the cube is 64, the sum 1 * 1 + 2 * 2 + 3 * 3 is 14, the quotient (3 * 4 * (2 * 4 - 1)) / 6 is 14, and 14 is strictly below 64. A measured tetron-homology reading of those count facts, custody of the README title, the F004 realization-packet gap, noise sweeps, and the evaluator role stay outside this arithmetic.",
       "source": [
         "dag/derivations/22_implementation_sibling/tfq_0184_do_not_read_paper_009_reflexivity_declarations_as_measured_tetron_homology.md",
         "dag/derivations/independent/tfq-0184.md",
@@ -12959,7 +12979,10 @@
         "dag/research/campaign_tfq-0184_independent.json",
         "docs/overclaim/reviews/2026-10-24_campaign-tfq-0184-precommit.md",
         "checks/independent/tfq-0184.py",
-        "lean4/CampaignTfq0184ImplementationSibling.lean"
+        "lean4/CampaignTfq0184ImplementationSibling.lean",
+        "lean4/CampaignTfq0184CubicCount.lean",
+        "dag/research/campaign_tfq-0184_cubic_count_lean_replay.json",
+        "docs/overclaim/reviews/2026-10-26_campaign-tfq-0184-cubic-count.md"
       ],
       "lean": [
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound",
@@ -12971,7 +12994,15 @@
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence",
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.majorana_evaluator_is_companion_control_not_gap_closure_fence",
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.wdp_carrier_manifest_homology_conversion_fence",
-        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence"
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.cubicReflexivity",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.eliminationSplit",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.gapAtLeastTwo",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.eliminationBelowTwiceCube",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourCube",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourSumOfSquares",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourClosedForm",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourCountBelowCube"
       ],
       "rust": [
         "code/rust/src/wdp/lib.rs::to_homology_carrier"
@@ -19060,13 +19091,15 @@
       "id": "MUB-PRIME-POWER-CONSTRUCTION",
       "stage": "MUTUALLY_UNBIASED_BASES",
       "status": "OPEN",
-      "source_status": "Dimension-2 Gaussian-integer bases Z, X and Y; the two-element character sends 1+1 to 1. Larger prime powers stay open.",
+      "source_status": "Dimension-2 Gaussian-integer bases Z, X and Y (characteristic two). For every odd prime power q a complete q+1 family of orthogonal, mutually unbiased vector families is constructed over any commutative domain with a star ring structure (bases of R^F when R is a field; spanning is not formalised), given a nontrivial unitary additive character of F_q as a parameter (lean4/CampaignMubPrimePowerOddCharacteristic.lean). Characteristic two beyond dimension 2, and the existence of the character over the concrete complex or cyclotomic carrier, stay open.",
       "statement": "Construct and verify a complete d+1 MUB family for the stated prime-power carrier, explicitly handling finite-field arithmetic, character sums and normalization.",
       "source": [
         "dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md",
         "papers/core/mub6/README.md",
         "dag/derivations/independent/mub-prime-power-construction.md",
-        "dag/research/campaign_mub-prime-power-construction_lean_replay.json"
+        "dag/research/campaign_mub-prime-power-construction_lean_replay.json",
+        "dag/derivations/independent/mub-prime-power-construction-odd.md",
+        "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json"
       ],
       "lean": [
         "lean4/CampaignMubPrimePowerConstruction.lean::i_squared",
@@ -19075,11 +19108,16 @@
         "lean4/CampaignMubPrimePowerConstruction.lean::basis_orthogonal",
         "lean4/CampaignMubPrimePowerConstruction.lean::cross_unbiased",
         "lean4/CampaignMubPrimePowerConstruction.lean::char_values",
-        "lean4/CampaignMubPrimePowerConstruction.lean::char_of_double"
+        "lean4/CampaignMubPrimePowerConstruction.lean::char_of_double",
+        "lean4/CampaignMubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.mub_family",
+        "lean4/CampaignMubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.weil_sum_mul_star",
+        "lean4/CampaignMubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.basis_unbiased",
+        "lean4/CampaignMubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.basis_orthogonal",
+        "lean4/CampaignMubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.card_bases"
       ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "This is the dimension-2 characteristic-two family only. It does not construct a complete family for any larger prime power, does not treat odd characteristic, does not run a general character sum, and does not infer a dimension-six family from this carrier.",
+      "bottleneck": "The characteristic-two family is dimension 2 only. For odd characteristic the construction is now general: for every finite field F with 2 ≠ 0, every commutative domain R with a star ring structure, and every nontrivial additive character ψ : F → R with star (ψ t) = ψ (−t), the q+1 bases indexed by Option F (the standard basis and x ↦ ψ(a x² + b x)) are pairwise orthogonal within a basis, have nonzero norms, and satisfy |⟨u, v⟩|² · q = ‖u‖² ‖v‖² across bases, with q+1 = card (Option F) (mub_family, card_bases). The vectors are left unnormalised, so normalisation is the statement about norms, not a division. What remains: a complete family for characteristic two beyond dimension 2 (which needs the Galois-ring or symplectic-spread construction, not quadratic phases), the instantiation of ψ over the concrete complex or cyclotomic carrier the node names (ψ is a parameter here), and the dimension-six question, which this node does not address.",
       "tags": [
         "application-branch",
         "TFQ-0403"
@@ -48726,11 +48764,19 @@
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.probability_simplex",
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.double_not_normalized",
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.signed_not_nonneg",
-        "lean4/H001Rats.lean::FableHilbertWalk20260819.H001Rats.qrel_equivalence"
+        "lean4/H001Rats.lean::FableHilbertWalk20260819.H001Rats.qrel_equivalence",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.positivePairMassNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.oneOneMass",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.twoNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.emptyMassNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.halfPairSumsToOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.oneOneNotUnit",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.unnormalizedPairDiffers",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.normalizeByTotal"
       ],
       "local_id": "A06-006",
       "name": "Do not collapse unnormalized finite valuations into the normalized rational probability simplex",
-      "obligation": "Do not collapse unnormalized finite valuations into the normalized rational probability simplex.",
+      "obligation": "Positive natural masses on two coordinates are separated from the unit sum, and dividing by a positive total returns a rational unit sum. The obligation to keep an unnormalized valuation from standing in for a law that sums to one, including the Rust files and an empty carrier refused by Fin n, remains open. AuthorityEffect: None.",
       "parent_id": "TFQ-0167",
       "python": [
         "checks/independent/tfq-0171.py::run_all_checks"
@@ -48744,7 +48790,7 @@
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",
-      "summary": "Unnormalized mass is a different carrier from the probability simplex. src/finite_valuation.rs states exact nonnegative Boolean valuations with no normalization requirement, and it admits an empty carrier that FinN refuses. src/lib.rs also declares signed_representation.rs, local_deterministic.rs, and marginal_compatibility.rs; those three bodies were not opened, so only the module declarations are in scope. The obligation is to keep an unnormalized valuation from standing in for a law that sums to one. H001ProbabilitySimplex.lean says its scaled integer grid is not the ordinary rational simplex.",
+      "summary": "For all natural numbers a and b, if a is at least 1 and b is at least 1, then a + b is not 1. The pair (1, 1) sums to 2, and 2 is not 1. The empty mass 0 is not 1. In the rationals, 1/2 + 1/2 = 1, the pair (1, 1) is not the pair (1/2, 1/2), and 1 + 1 is not 1. If a + b is positive, then a/(a + b) + b/(a + b) = 1. An unnormalized Boolean valuation on a general carrier, the Rust module contracts, and a ban on standing in for a unit-sum law stay outside this finite case.",
       "uuid": "ad624434-8292-540c-b408-bc43541823ec"
     },
     {
@@ -49205,7 +49251,10 @@
         "dag/research/campaign_tfq-0184_independent.json",
         "docs/overclaim/reviews/2026-10-24_campaign-tfq-0184-precommit.md",
         "checks/independent/tfq-0184.py",
-        "lean4/CampaignTfq0184ImplementationSibling.lean"
+        "lean4/CampaignTfq0184ImplementationSibling.lean",
+        "lean4/CampaignTfq0184CubicCount.lean",
+        "dag/research/campaign_tfq-0184_cubic_count_lean_replay.json",
+        "docs/overclaim/reviews/2026-10-26_campaign-tfq-0184-cubic-count.md"
       ],
       "id": "TFQ-0184",
       "lean4": [
@@ -49218,7 +49267,15 @@
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence",
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.majorana_evaluator_is_companion_control_not_gap_closure_fence",
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.wdp_carrier_manifest_homology_conversion_fence",
-        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence"
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.cubicReflexivity",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.eliminationSplit",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.gapAtLeastTwo",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.eliminationBelowTwiceCube",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourCube",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourSumOfSquares",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourClosedForm",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourCountBelowCube"
       ],
       "local_id": "A06-019",
       "name": "Do not read paper 009 reflexivity declarations as measured tetron homology",
@@ -49235,7 +49292,7 @@
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",
-      "summary": "Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap.",
+      "summary": "Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap. Narrowed in Lean 4 and an independent Python check to Nat arithmetic, with no status change. For every natural number n, the product n * n * n is at most n * n * n. For every natural number n at least 1, twice that cube equals (n - 1) * n * (2 * n - 1) plus n * (3 * n - 1), the product (n - 1) * n * (2 * n - 1) is strictly below twice the cube, and n * (3 * n - 1) is at least 2. At n = 4 the cube is 64, the sum 1 * 1 + 2 * 2 + 3 * 3 is 14, the quotient (3 * 4 * (2 * 4 - 1)) / 6 is 14, and 14 is strictly below 64. A measured tetron-homology reading of those count facts, custody of the README title, the F004 realization-packet gap, noise sweeps, and the evaluator role stay outside this arithmetic.",
       "uuid": "7e0a95bd-f3d3-5e79-b862-6b33a4eab241"
     },
     {

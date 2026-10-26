@@ -8,7 +8,14 @@ target:
     is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology.
     The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a
     separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations.
-    majorana_evaluator.py is a companion control, not a closure of that gap.'
+    majorana_evaluator.py is a companion control, not a closure of that gap. Narrowed in Lean 4 and an
+    independent Python check to Nat arithmetic, with no status change. For every natural number n, the
+    product n * n * n is at most n * n * n. For every natural number n at least 1, twice that cube equals
+    (n - 1) * n * (2 * n - 1) plus n * (3 * n - 1), the product (n - 1) * n * (2 * n - 1) is strictly
+    below twice the cube, and n * (3 * n - 1) is at least 2. At n = 4 the cube is 64, the sum 1 * 1 +
+    2 * 2 + 3 * 3 is 14, the quotient (3 * 4 * (2 * 4 - 1)) / 6 is 14, and 14 is strictly below 64. A
+    measured tetron-homology reading of those count facts, custody of the README title, the F004 realization-packet
+    gap, noise sweeps, and the evaluator role stay outside this arithmetic.'
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
   source_bottleneck: Do not read paper 009 reflexivity declarations as measured tetron homology.
@@ -21,6 +28,9 @@ target:
   - docs/overclaim/reviews/2026-10-24_campaign-tfq-0184-precommit.md
   - checks/independent/tfq-0184.py
   - lean4/CampaignTfq0184ImplementationSibling.lean
+  - lean4/CampaignTfq0184CubicCount.lean
+  - dag/research/campaign_tfq-0184_cubic_count_lean_replay.json
+  - docs/overclaim/reviews/2026-10-26_campaign-tfq-0184-cubic-count.md
   paper_refs:
   - dag/derivations/22_implementation_sibling/tfq_0184_do_not_read_paper_009_reflexivity_declarations_as_measured_tetron_homology.md
   source_claim_label: OPEN
@@ -29,7 +39,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/22_implementation_sibling/tfq_0184_do_not_read_paper_009_reflexivity_declarations_as_measured_tetron_homology.md
-    sha256: 67c2fbb4f785ca66cb50b34b9f525fe8e4c36844801e5b88f840cf0425a9d742
+    sha256: 6a82baed905a0c7e345cfc44b53bb484b9fab99ed5077aeee8ce9892ab3ba535
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -330,6 +340,90 @@ relation_candidates:
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
+- kind: theorem
+  name: cubicReflexivity
+  line: 9
+  signature_excerpt: 'theorem cubicReflexivity (n : Nat) : n * n * n ≤ n * n * n'
+  source: lean4/CampaignTfq0184CubicCount.lean
+  repository: this_repository
+  source_sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: eliminationSplit
+  line: 90
+  signature_excerpt: |-
+    theorem eliminationSplit (n : Nat) (hn : 1 ≤ n) :
+        2 * (n * n * n) = (n - 1) * n * (2 * n - 1) + n * (3 * n - 1)
+  source: lean4/CampaignTfq0184CubicCount.lean
+  repository: this_repository
+  source_sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: gapAtLeastTwo
+  line: 99
+  signature_excerpt: 'theorem gapAtLeastTwo (n : Nat) (hn : 1 ≤ n) : 2 ≤ n * (3 * n - 1)'
+  source: lean4/CampaignTfq0184CubicCount.lean
+  repository: this_repository
+  source_sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: eliminationBelowTwiceCube
+  line: 103
+  signature_excerpt: |-
+    theorem eliminationBelowTwiceCube (n : Nat) (hn : 1 ≤ n) :
+        (n - 1) * n * (2 * n - 1) < 2 * (n * n * n)
+  source: lean4/CampaignTfq0184CubicCount.lean
+  repository: this_repository
+  source_sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: fourCube
+  line: 115
+  signature_excerpt: 'theorem fourCube : (4 : Nat) * 4 * 4 = 64'
+  source: lean4/CampaignTfq0184CubicCount.lean
+  repository: this_repository
+  source_sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: fourSumOfSquares
+  line: 118
+  signature_excerpt: 'theorem fourSumOfSquares : (1 * 1 + 2 * 2 + 3 * 3 : Nat) = 14'
+  source: lean4/CampaignTfq0184CubicCount.lean
+  repository: this_repository
+  source_sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: fourClosedForm
+  line: 121
+  signature_excerpt: 'theorem fourClosedForm : (3 * 4 * (2 * 4 - 1)) / 6 = 14'
+  source: lean4/CampaignTfq0184CubicCount.lean
+  repository: this_repository
+  source_sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: fourCountBelowCube
+  line: 124
+  signature_excerpt: 'theorem fourCountBelowCube : (14 : Nat) < 64'
+  source: lean4/CampaignTfq0184CubicCount.lean
+  repository: this_repository
+  source_sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound
   availability: local
@@ -420,6 +514,78 @@ source_bindings:
   sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   declaration_status: declaration_found_not_proof_checked
   line: 222
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.cubicReflexivity
+  availability: local
+  symbol: CampaignTfq0184CubicCount.cubicReflexivity
+  path: lean4/CampaignTfq0184CubicCount.lean
+  repository: this_repository
+  sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
+  declaration_status: declaration_found_not_proof_checked
+  line: 9
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.eliminationSplit
+  availability: local
+  symbol: CampaignTfq0184CubicCount.eliminationSplit
+  path: lean4/CampaignTfq0184CubicCount.lean
+  repository: this_repository
+  sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
+  declaration_status: declaration_found_not_proof_checked
+  line: 90
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.gapAtLeastTwo
+  availability: local
+  symbol: CampaignTfq0184CubicCount.gapAtLeastTwo
+  path: lean4/CampaignTfq0184CubicCount.lean
+  repository: this_repository
+  sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
+  declaration_status: declaration_found_not_proof_checked
+  line: 99
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.eliminationBelowTwiceCube
+  availability: local
+  symbol: CampaignTfq0184CubicCount.eliminationBelowTwiceCube
+  path: lean4/CampaignTfq0184CubicCount.lean
+  repository: this_repository
+  sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
+  declaration_status: declaration_found_not_proof_checked
+  line: 103
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourCube
+  availability: local
+  symbol: CampaignTfq0184CubicCount.fourCube
+  path: lean4/CampaignTfq0184CubicCount.lean
+  repository: this_repository
+  sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
+  declaration_status: declaration_found_not_proof_checked
+  line: 115
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourSumOfSquares
+  availability: local
+  symbol: CampaignTfq0184CubicCount.fourSumOfSquares
+  path: lean4/CampaignTfq0184CubicCount.lean
+  repository: this_repository
+  sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
+  declaration_status: declaration_found_not_proof_checked
+  line: 118
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourClosedForm
+  availability: local
+  symbol: CampaignTfq0184CubicCount.fourClosedForm
+  path: lean4/CampaignTfq0184CubicCount.lean
+  repository: this_repository
+  sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
+  declaration_status: declaration_found_not_proof_checked
+  line: 121
+  role: source_lead_only
+- original_ref: lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourCountBelowCube
+  availability: local
+  symbol: CampaignTfq0184CubicCount.fourCountBelowCube
+  path: lean4/CampaignTfq0184CubicCount.lean
+  repository: this_repository
+  sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
+  declaration_status: declaration_found_not_proof_checked
+  line: 124
   role: source_lead_only
 - original_ref: code/rust/src/wdp/lib.rs::to_homology_carrier
   availability: local

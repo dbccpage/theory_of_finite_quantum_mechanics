@@ -10,9 +10,9 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 16
-- cited Lean, Rust or Python symbols found in their in-repo files: 35
-- distinct cited Lean declarations covered by a current replay receipt: 35
+- counted in-repo evidence files: 20
+- cited Lean, Rust or Python symbols found in their in-repo files: 45
+- distinct cited Lean declarations covered by a current replay receipt: 45
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -32,7 +32,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n \>= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized. Gaussian-rational frame functions (Fable API run 20261022T193631Z, receipt dag/research/fable_gleason_run2_lean_replay.json): over Q(i)^3 a frame function on nonzero vectors is constant on rays (frameFunction_smul); and a frame function whose value on every Gaussian-integer vector with not all of a+b, c+d, e+g even depends only on ((a+b) mod 2, (c+d) mod 2, (e+g) mod 2) has the value 1/3 on all of those vectors (parity_class_function_is_third). That excludes only this (1+i)-parity-class ansatz: other parity-type constructions (for example residues modulo 2 in Z\[i\]) are not covered, the identification of the class with (1+i)-divisibility is not formalised, and the 1/3 is not stated outside those vectors. Existence of a non-quadratic frame function on Q(i)^3 rays and quadraticity of all of them both remain open.
+The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n \>= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized. Gaussian-rational frame functions (Fable API run 20261022T193631Z, receipt dag/research/fable_gleason_run2_lean_replay.json): over Q(i)^3 a frame function on nonzero vectors is constant on rays (frameFunction_smul); and a frame function whose value on every Gaussian-integer vector with not all of a+b, c+d, e+g even depends only on ((a+b) mod 2, (c+d) mod 2, (e+g) mod 2) has the value 1/3 on all of those vectors (parity_class_function_is_third). That excludes only this (1+i)-parity-class ansatz: other parity-type constructions (for example residues modulo 2 in Z\[i\]) are not covered, the identification of the class with (1+i)-divisibility is not formalised, and the 1/3 is not stated outside those vectors. Campaign run (receipt dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json): over Q^3 the mod-4 function exotic(v) = (1 + sgn v)/3 on integer vectors not all even is a frame function on all rational rays, takes the values 0, 1/3, 2/3, and is not quadratic (CampaignBornRationalRayObstruction: exotic_frame_function, exotic_not_quadratic), so on the rational carrier frame additivity on all orthogonal triples does not select the Born form even among nonnegative frame functions; and over Q(i)^3 a frame function that is a residue-modulo-2 class function on (1+i)-primitive Gaussian-integer vectors is 1/3 there (CampaignBornGaussianMod2ClassRigidity: mod2_class_function_is_third, 56 explicit frames). Existence of a non-quadratic frame function on Q(i)^3 rays and quadraticity of all of them both remain open, as does whether the Q^3 function extends to Q(i)^3.
 
 ## Source status
 
@@ -258,6 +258,44 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Lean: `lean4/CampaignBornGaussianMod2ClassRigidity.lean`
+
+- file: [lean4/CampaignBornGaussianMod2ClassRigidity.lean](../../../lean4/CampaignBornGaussianMod2ClassRigidity.lean)
+- sha256 (`bytes`): `30113133f6be241b205d4111a079f437d4831ae0b4c598407f9ea1fbceceeeec`
+- cited in: node.lean, receipt dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json (CampaignBornGaussianMod2ClassRigidity)
+- replay: `verified`
+  - receipt [dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json](../../../dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json) (module `CampaignBornGaussianMod2ClassRigidity`): recorded sha256 `30113133f6be241b205d4111a079f437d4831ae0b4c598407f9ea1fbceceeeec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignBornGaussianMod2ClassRigidity`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `BornFable.GaussianFrames.class_value2` | yes | yes | yes | Quot.sound, propext | `#print axioms BornFable.GaussianFrames.class_value2` |
+| `BornFable.GaussianFrames.mod2_class_function_is_third` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.GaussianFrames.mod2_class_function_is_third` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/CampaignBornRationalRayObstruction.lean`
+
+- file: [lean4/CampaignBornRationalRayObstruction.lean](../../../lean4/CampaignBornRationalRayObstruction.lean)
+- sha256 (`bytes`): `4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740`
+- cited in: node.lean, receipt dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json (CampaignBornRationalRayObstruction)
+- replay: `verified`
+  - receipt [dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json](../../../dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json) (module `CampaignBornRationalRayObstruction`): recorded sha256 `4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignBornRationalRayObstruction`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `BornFable.RationalRays.exotic_frame_function` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.RationalRays.exotic_frame_function` |
+| `BornFable.RationalRays.exotic_neg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.RationalRays.exotic_neg` |
+| `BornFable.RationalRays.exotic_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.RationalRays.exotic_nonneg` |
+| `BornFable.RationalRays.exotic_not_quadratic` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.RationalRays.exotic_not_quadratic` |
+| `BornFable.RationalRays.exotic_odd_smul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.RationalRays.exotic_odd_smul` |
+| `BornFable.RationalRays.exotic_values` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.RationalRays.exotic_values` |
+| `BornFable.RationalRays.pairSign_add_eq_zero` | yes | yes | yes | Quot.sound, propext | `#print axioms BornFable.RationalRays.pairSign_add_eq_zero` |
+| `BornFable.RationalRays.sgn_frame_sum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.RationalRays.sgn_frame_sum` |
+
+- counts toward the grade: yes
+
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
@@ -328,6 +366,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - generated view: listed, not counted
 - cited in: record TFQ-0307 (shared)
 - counts toward the grade: no
+
+### Documents and data: `dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md`
+
+- file: [dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md](../../../dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md)
+- sha256 (`lf-normalised`): `9d775feb067d794cd7ef9cb8734d8ce80f52637e6679b561042b35936c39b8f3`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json`
+
+- file: [dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json](../../../dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json)
+- sha256 (`lf-normalised`): `a01bdbfbd0a7249fdeef51f6a252861b9dfc2acc61d0507f9c62ac16e98e9c22`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml`
 

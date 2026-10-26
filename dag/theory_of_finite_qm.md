@@ -7642,9 +7642,9 @@ Obligation: Keep majorization, finite Markov laws, and row-stochastic maps on ex
 - Atlas paths:
   - `omega_engine_atlas/coda_atlas/F000_finite/floor.yaml`
 
-Unnormalized mass is a different carrier from the probability simplex. src/finite_valuation.rs states exact nonnegative Boolean valuations with no normalization requirement, and it admits an empty carrier that FinN refuses. src/lib.rs also declares signed_representation.rs, local_deterministic.rs, and marginal_compatibility.rs; those three bodies were not opened, so only the module declarations are in scope. The obligation is to keep an unnormalized valuation from standing in for a law that sums to one. H001ProbabilitySimplex.lean says its scaled integer grid is not the ordinary rational simplex.
+For all natural numbers a and b, if a is at least 1 and b is at least 1, then a + b is not 1. The pair (1, 1) sums to 2, and 2 is not 1. The empty mass 0 is not 1. In the rationals, 1/2 + 1/2 = 1, the pair (1, 1) is not the pair (1/2, 1/2), and 1 + 1 is not 1. If a + b is positive, then a/(a + b) + b/(a + b) = 1. An unnormalized Boolean valuation on a general carrier, the Rust module contracts, and a ban on standing in for a unit-sum law stay outside this finite case.
 
-Obligation: Do not collapse unnormalized finite valuations into the normalized rational probability simplex.
+Obligation: Positive natural masses on two coordinates are separated from the unit sum, and dividing by a positive total returns a rational unit sum. The obligation to keep an unnormalized valuation from standing in for a law that sums to one, including the Rust files and an empty carrier refused by Fin n, remains open. AuthorityEffect: None.
 
 ### TFQ-0172 Compute discrete gauge holonomy as exact ordered products on a finite cell
 
@@ -7811,7 +7811,7 @@ Obligation: The 1-by-1 disk cell arithmetic above is the checked slice. A superc
 - Atlas paths:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
 
-Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap.
+Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap. Narrowed in Lean 4 and an independent Python check to Nat arithmetic, with no status change. For every natural number n, the product n * n * n is at most n * n * n. For every natural number n at least 1, twice that cube equals (n - 1) * n * (2 * n - 1) plus n * (3 * n - 1), the product (n - 1) * n * (2 * n - 1) is strictly below twice the cube, and n * (3 * n - 1) is at least 2. At n = 4 the cube is 64, the sum 1 * 1 + 2 * 2 + 3 * 3 is 14, the quotient (3 * 4 * (2 * 4 - 1)) / 6 is 14, and 14 is strictly below 64. A measured tetron-homology reading of those count facts, custody of the README title, the F004 realization-packet gap, noise sweeps, and the evaluator role stay outside this arithmetic.
 
 Obligation: Do not read paper 009 reflexivity declarations as measured tetron homology.
 

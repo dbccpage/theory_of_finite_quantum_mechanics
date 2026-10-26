@@ -7,14 +7,25 @@ target:
     explicitly handling finite-field arithmetic, character sums and normalization.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: This is the dimension-2 characteristic-two family only. It does not construct a complete
-    family for any larger prime power, does not treat odd characteristic, does not run a general character
-    sum, and does not infer a dimension-six family from this carrier.
+  source_bottleneck: 'The characteristic-two family is dimension 2 only. For odd characteristic the construction
+    is now general: for every finite field F with 2 ≠ 0, every commutative domain R with a star ring structure,
+    every nontrivial additive character ψ : F → R with star (ψ t) = ψ (−t), and q = |F| nonzero in R (hypothesis
+    hq of mub_family), the q+1 bases indexed by Option F (the standard basis and x ↦ ψ(a x² + b x)) are
+    pairwise orthogonal within a basis, have nonzero norms, and satisfy |⟨u, v⟩|² · q = ‖u‖² ‖v‖² across
+    bases, with q+1 = card (Option F) (mub_family, card_bases). Spanning is not proved: the Lean statement
+    is about orthogonal families, which are R-bases of R^F when R is a field (so over ℂ or ℚ(ζ_p)) but
+    need not span over a domain in which q is not a unit (F = 𝔽₃, R = ℤ[ζ₃]). The vectors are left unnormalised,
+    so normalisation is the statement about norms, not a division. What remains: a complete family for
+    characteristic two beyond dimension 2 (which needs the Galois-ring or symplectic-spread construction,
+    not quadratic phases), the instantiation of ψ over the concrete complex or cyclotomic carrier the
+    node names (ψ is a parameter here), and the dimension-six question, which this node does not address.'
   source_refs:
   - dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md
   - papers/core/mub6/README.md
   - dag/derivations/independent/mub-prime-power-construction.md
   - dag/research/campaign_mub-prime-power-construction_lean_replay.json
+  - dag/derivations/independent/mub-prime-power-construction-odd.md
+  - dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json
   paper_refs:
   - dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md
   source_claim_label: OPEN
@@ -248,6 +259,72 @@ relation_candidates:
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
+- kind: theorem
+  name: mub_family
+  line: 229
+  signature_excerpt: |-
+    theorem mub_family {ψ : AddChar F R} (hψ : ψ ≠ 1) (hstar : ∀ t, star (ψ t) = ψ (-t))
+        (h2 : (2 : F) ≠ 0) (hq : (Fintype.card F : R) ≠ 0) :
+        (∀ i : Option F, ∀ u v : F,
+            pair (basisVec ψ i u) (basisVec ψ i v) = if u = v then basisNorm i else 0) ∧
+        (∀ i : Option F, basisNorm (F
+  source: lean4/CampaignMubPrimePowerOddCharacteristic.lean
+  repository: this_repository
+  source_sha256: a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: weil_sum_mul_star
+  line: 132
+  signature_excerpt: |-
+    theorem weil_sum_mul_star {ψ : AddChar F R} (hψ : ψ ≠ 1) (hstar : ∀ t, star (ψ t) = ψ (-t))
+        (h2 : (2 : F) ≠ 0) {c : F} (hc : c ≠ 0) (d : F) :
+        (∑ x, ψ (c * x ^ 2 + d * x)) * star (∑ x, ψ (c * x ^ 2 + d * x)) = (Fintype.card F : R)
+  source: lean4/CampaignMubPrimePowerOddCharacteristic.lean
+  repository: this_repository
+  source_sha256: a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: basis_unbiased
+  line: 195
+  signature_excerpt: |-
+    theorem basis_unbiased {ψ : AddChar F R} (hψ : ψ ≠ 1) (hstar : ∀ t, star (ψ t) = ψ (-t))
+        (h2 : (2 : F) ≠ 0) {i j : Option F} (hij : i ≠ j) (u v : F) :
+        pair (basisVec ψ i u) (basisVec ψ j v) * star (pair (basisVec ψ i u) (basisVec ψ j v)) *
+          (Fintype.card F : R) =
+          pair (basisVec ψ i u) (basisVec ψ i u) * pair (basisVec ψ j v) (basisVec ψ j v)
+  source: lean4/CampaignMubPrimePowerOddCharacteristic.lean
+  repository: this_repository
+  source_sha256: a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: basis_orthogonal
+  line: 186
+  signature_excerpt: |-
+    theorem basis_orthogonal {ψ : AddChar F R} (hψ : ψ ≠ 1) (hstar : ∀ t, star (ψ t) = ψ (-t))
+        (i : Option F) (u v : F) :
+        pair (basisVec ψ i u) (basisVec ψ i v) = if u = v then basisNorm i else 0
+  source: lean4/CampaignMubPrimePowerOddCharacteristic.lean
+  repository: this_repository
+  source_sha256: a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: card_bases
+  line: 246
+  signature_excerpt: 'theorem card_bases : Fintype.card (Option F) = Fintype.card F + 1'
+  source: lean4/CampaignMubPrimePowerOddCharacteristic.lean
+  repository: this_repository
+  source_sha256: a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: lean4/CampaignMubPrimePowerConstruction.lean::i_squared
   availability: local
@@ -311,6 +388,51 @@ source_bindings:
   sha256: 9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec
   declaration_status: declaration_found_not_proof_checked
   line: 68
+  role: source_lead_only
+- original_ref: lean4/CampaignMubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.mub_family
+  availability: local
+  symbol: MubFable.PrimePowerOdd.mub_family
+  path: lean4/CampaignMubPrimePowerOddCharacteristic.lean
+  repository: this_repository
+  sha256: a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b
+  declaration_status: declaration_found_not_proof_checked
+  line: 229
+  role: source_lead_only
+- original_ref: lean4/CampaignMubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.weil_sum_mul_star
+  availability: local
+  symbol: MubFable.PrimePowerOdd.weil_sum_mul_star
+  path: lean4/CampaignMubPrimePowerOddCharacteristic.lean
+  repository: this_repository
+  sha256: a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b
+  declaration_status: declaration_found_not_proof_checked
+  line: 132
+  role: source_lead_only
+- original_ref: lean4/CampaignMubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.basis_unbiased
+  availability: local
+  symbol: MubFable.PrimePowerOdd.basis_unbiased
+  path: lean4/CampaignMubPrimePowerOddCharacteristic.lean
+  repository: this_repository
+  sha256: a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b
+  declaration_status: declaration_found_not_proof_checked
+  line: 195
+  role: source_lead_only
+- original_ref: lean4/CampaignMubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.basis_orthogonal
+  availability: local
+  symbol: MubFable.PrimePowerOdd.basis_orthogonal
+  path: lean4/CampaignMubPrimePowerOddCharacteristic.lean
+  repository: this_repository
+  sha256: a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b
+  declaration_status: declaration_found_not_proof_checked
+  line: 186
+  role: source_lead_only
+- original_ref: lean4/CampaignMubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.card_bases
+  availability: local
+  symbol: MubFable.PrimePowerOdd.card_bases
+  path: lean4/CampaignMubPrimePowerOddCharacteristic.lean
+  repository: this_repository
+  sha256: a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b
+  declaration_status: declaration_found_not_proof_checked
+  line: 246
   role: source_lead_only
 presentation:
   colours: []
