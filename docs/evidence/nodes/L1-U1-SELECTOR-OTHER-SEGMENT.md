@@ -4,7 +4,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `OPEN`. Evidence grade: **E3**
 
 ## Statement
 
-> Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; a general finite-field/ring classification, cyclotomic extensions, completion and continuity remain open. Separate modulo-7 result: On the integers modulo 7, with product (a, b) * (c, d) = (a*c - b*d, a*d + b*c), the pairs (x, y) with x*x + y*y = 1 are exactly the eight powers of g = (2, 2): (1, 0), (2, 2), (0, 1), (5, 2), (6, 0), (5, 5), (0, 6) and (2, 5). The eighth power is (1, 0), and each of the seven earlier powers differs from (1, 0). The count 8 equals 7 + 1 and is not 4.
+> Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; a general finite-field/ring classification, cyclotomic extensions, completion and continuity remain open. Separate modulo-7 result: On the integers modulo 7, with product (a, b) * (c, d) = (a*c - b*d, a*d + b*c), the pairs (x, y) with x*x + y*y = 1 are exactly the powers g^0 through g^7, in exponent order, for g = (2, 2): (1, 0), (2, 2), (0, 1), (5, 2), (6, 0), (5, 5), (0, 6) and (2, 5). The next power g^8 is (1, 0), and g^1 through g^7 all differ from (1, 0). The count 8 equals 7 + 1 and is not 4.
 
 ## Grade
 
@@ -182,7 +182,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md](../../../dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md)
-- sha256 (`lf-normalised`): `409011c80cfb267938a50c22f7c2a9f917b0ca1a579df90d90ebb20c943ce882`
+- sha256 (`lf-normalised`): `e3a5b9eff94ae18b1e34972539f7e6d3edb897f252d9d55b03f55017f2671a53`
 - generated view: listed, not counted
 - cited in: record TFQ-1003
 - counts toward the grade: no

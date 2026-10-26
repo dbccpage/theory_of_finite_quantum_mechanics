@@ -125,3 +125,9 @@ These apply to every contribution. They are the reason the project keeps its lab
 The separately reviewed PR #421 adds one exact finite-group Pachner proof pin at L3D. Its explicitly revised finite-group statement alone is PROVED_LEAN; general triangulation, Regge and physical claims remain outside scope. Current authority is recorded in dag/research/current_review_pr421_finite_proof_authority_2026_10_26.json.
 
 The human also approved 33 exact-source maintenance pins (18 bounded implementations and 15 harnesses), retaining completed L2/L3D scores. See the [exact authority and list](evidence/quality/code_2026_10_26/approved_scoped_exceptions_20261026.json) and [governance limits](governance/README.md). Unlisted/changed hashes, grade E and incomplete scores remain blocked; the global L4/D floor and baseline are unchanged. Native/publication failures are not waived.
+
+PR #433's exact Lean proof hash retains L3D and the original OPEN target under the user's explicit approval of the DFM and LQG proof pins. This branch applies only the DFM pin; PR #434 carries the other source. The independent checker is outside the governed source population and needs no exception. The conditional infinite-limit result uses the existing technical category without asserting mathematical finiteness. See the [verbatim authorization](dag/research/approved_pr_433_continuum_exception_2026_10_26.json) and [integration scope](docs/maintenance/pr433_integration_scope.md).
+
+PR #434 applies the other exact Lean hash from the user's two-proof approval, retaining L3D and the original LQG OPEN target. The supplied-family probability extension does not derive physical LQG continuum data. See `dag/research/approved_pr_434_continuum_exception_2026_10_26.json`.
+
+PR #435 retains L2D and its original OPEN target under the user-approved exact source pin in `dag/research/approved_pr435_exact_pin_20261026.json`.

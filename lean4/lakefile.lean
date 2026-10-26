@@ -1487,6 +1487,14 @@ lean_lib «CampaignFiniteGroupPachner» where
   srcDir := "."
   roots := #[`CampaignFiniteGroupPachner]
 
--- Reviewed finite campaign: L1-U1-SELECTOR-OTHER-SEGMENT. Non-default target.
+-- Conditional continuum campaign: DFM-CONTINUUM-INTERFACE. Non-default target.
+lean_lib CampaignDfmRefinementLimit where
+  roots := #[`CampaignDfmRefinementLimit]
+
+-- Reviewed campaign module; non-default target.
+lean_lib CampaignLqgProjectiveLimit where
+  roots := #[`CampaignLqgProjectiveLimit]
+
+-- Reviewed campaign module; non-default target.
 lean_lib CampaignL1U1SelectorOtherSegment where
   roots := #[`CampaignL1U1SelectorOtherSegment]
