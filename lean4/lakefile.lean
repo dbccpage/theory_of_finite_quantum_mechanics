@@ -1487,6 +1487,10 @@ lean_lib «CampaignFiniteGroupPachner» where
   srcDir := "."
   roots := #[`CampaignFiniteGroupPachner]
 
--- Conditional continuum campaign: LQG-CONTINUUM-LIMIT-GAP. Non-default target.
+-- Conditional continuum campaign: DFM-CONTINUUM-INTERFACE. Non-default target.
+lean_lib CampaignDfmRefinementLimit where
+  roots := #[`CampaignDfmRefinementLimit]
+
+-- Reviewed campaign module; non-default target.
 lean_lib CampaignLqgProjectiveLimit where
   roots := #[`CampaignLqgProjectiveLimit]

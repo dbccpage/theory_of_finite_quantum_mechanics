@@ -8592,9 +8592,9 @@ Obligation: The rooted tree, given by a parent function and a strictly decreasin
 - DAG node: `DFM-CONTINUUM-INTERFACE`
 - Paper: [derivation](derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md)
 
-A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations. A supplied rooted tree on four vertices shows the dressed chord is not a function of the closed star.
+A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations. A supplied rooted tree on four vertices shows the dressed chord is not a function of the closed star. In a supplied complete metric topological group with d(ab,cd) <= d(a,c)+d(b,d), binary edge split errors bounded by C*q^depth, C >= 0 and 0 <= q < 1/2, yield unique transport limits with error at most C*q^depth*(2*q)^n/(1-2*q). The limits respect binary composition and compatible endpoint gauges. Continuous parameterized edge families with a common C and q converge uniformly to continuous limiting transports. At q=1/2, the additive edge values depth/2^depth have shrinking split defects but root transport n, with no limit.
 
-Obligation: Finite witness, not a continuum theorem: on the supplied rooted tree root-p-a, root-b with chord a-b, the dressed chord is U(root-b)^{-1} U(a-b) U(p-a) U(root-p). Outer labels 2 and 5 with the other three labels trivial give dressed chords 2 and 5, while every edge incident to {a, b} is unchanged. A refinement family, compatibility maps, a topology and a convergence theorem are still required before transporting finite identities to smooth gauge theory. Smooth-field existence, continuum patching and continuum dynamics stay open.
+Obligation: The complete metric, group topology, refinement family and geometric local bound are supplied. Smooth-field existence, arbitrary triangulation refinements, patching, physical locality and continuum dynamics are not derived; the original node and physical bridge remain OPEN.
 
 ### TFQ-1100 Tree and chord coordinates of a connection: triangle Mat2 witness
 
