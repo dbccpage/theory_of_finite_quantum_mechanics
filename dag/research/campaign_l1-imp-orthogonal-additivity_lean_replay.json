@@ -1,0 +1,138 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-26T19:03:49.881003+00:00",
+  "source_base": "b2a6bf8a831ca6187985a42a725ab06dca1f98c6",
+  "result": "Narrowed: finite integer coefficient-matrix algebra; original CONDITIONAL node retained. The integer coefficient matrix [[1,1],[-1,1]] has nonzero off-diagonal entries whose sum is zero, and its quadratic form equals a*a+b*b and the sum of its two axis readouts for every integer a,b.",
+  "proof_boundary": "One nonsymmetric coefficient matrix; no Gram-matrix or arbitrary orthogonal-frame/projection-measure theorem. General sector additivity remains supplied. Entrywise off-diagonal zero needs symmetry (and in the Hermitian setting the stated real/imaginary sector hypotheses).",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/review-open-20261026/440/lake",
+    "results": [
+      {
+        "module": "CampaignL1OrthogonalAdditivity",
+        "dag_node": "L1-IMP-ORTHOGONAL-ADDITIVITY",
+        "source": "lean4/CampaignL1OrthogonalAdditivity.lean",
+        "sha256": "50db47282d0bc3fedfe87161c63890be81b0c21a5708f1fc9f2514e6fa6370d2",
+        "sha256_after_build": "50db47282d0bc3fedfe87161c63890be81b0c21a5708f1fc9f2514e6fa6370d2",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignL1OrthogonalAdditivity.negCross",
+          "CampaignL1OrthogonalAdditivity.readout",
+          "CampaignL1OrthogonalAdditivity.axisSum",
+          "CampaignL1OrthogonalAdditivity.qf",
+          "CampaignL1OrthogonalAdditivity.pairSum",
+          "CampaignL1OrthogonalAdditivity.entriesNotZero"
+        ],
+        "axioms": {
+          "CampaignL1OrthogonalAdditivity.negCross": [
+            "propext"
+          ],
+          "CampaignL1OrthogonalAdditivity.readout": [
+            "propext"
+          ],
+          "CampaignL1OrthogonalAdditivity.axisSum": [
+            "propext"
+          ],
+          "CampaignL1OrthogonalAdditivity.qf": [],
+          "CampaignL1OrthogonalAdditivity.pairSum": [],
+          "CampaignL1OrthogonalAdditivity.entriesNotZero": []
+        },
+        "output": "'CampaignL1OrthogonalAdditivity.qf' does not depend on any axioms\n'CampaignL1OrthogonalAdditivity.pairSum' does not depend on any axioms\n'CampaignL1OrthogonalAdditivity.entriesNotZero' does not depend on any axioms\n'CampaignL1OrthogonalAdditivity.negCross' depends on axioms: [propext]\n'CampaignL1OrthogonalAdditivity.readout' depends on axioms: [propext]\n'CampaignL1OrthogonalAdditivity.axisSum' depends on axioms: [propext]\n"
+      }
+    ]
+  },
+  "lake_build": {
+    "command": [
+      "lake",
+      "--no-cache",
+      "build",
+      "CampaignL1OrthogonalAdditivity"
+    ],
+    "exit_code": 0,
+    "seconds": 0.344,
+    "output": "ℹ [2/3] Built CampaignL1OrthogonalAdditivity (291ms)\ninfo: CampaignL1OrthogonalAdditivity.lean:35:0: 'CampaignL1OrthogonalAdditivity.pairSum' does not depend on any axioms\ninfo: CampaignL1OrthogonalAdditivity.lean:36:0: 'CampaignL1OrthogonalAdditivity.entriesNotZero' does not depend on any axioms\ninfo: CampaignL1OrthogonalAdditivity.lean:37:0: 'CampaignL1OrthogonalAdditivity.readout' depends on axioms: [propext]\ninfo: CampaignL1OrthogonalAdditivity.lean:38:0: 'CampaignL1OrthogonalAdditivity.axisSum' depends on axioms: [propext]\nBuild completed successfully (3 jobs).\ninfo: campaign_replay: no previous manifest, creating one from scratch\ninfo: toolchain not updated; already up-to-date\n"
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/l1-imp-orthogonal-additivity.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.019,
+    "output": "{\"checks\": 874, \"failed\": 0, \"vectors\": 289, \"coefficient_identity\": [1, 0, 1], \"negative_controls\": 2, \"scope\": \"One nonsymmetric integer coefficient matrix and a finite input census; universal integer statements are separately Lean checked.\"}\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/review-open-20261026/440/registered-lakefile.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 5.273,
+    "output": ""
+  },
+  "build_scope": "Fresh core-only Lean package; all six explicit declarations audited, allowing only standard Lean axioms. No full repository build.",
+  "axiom_audit": {
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/review-open-20261026/440/lake",
+    "input_path": "Audit.lean",
+    "input_contents": "import CampaignL1OrthogonalAdditivity\n#print axioms CampaignL1OrthogonalAdditivity.qf\n#print axioms CampaignL1OrthogonalAdditivity.pairSum\n#print axioms CampaignL1OrthogonalAdditivity.entriesNotZero\n#print axioms CampaignL1OrthogonalAdditivity.negCross\n#print axioms CampaignL1OrthogonalAdditivity.readout\n#print axioms CampaignL1OrthogonalAdditivity.axisSum\n",
+    "input_sha256": "19590be4e7e180e1a92e3fda67eb124f3c4cd1ab6e18919d79f28012a52eead3",
+    "module_source_sha256": "50db47282d0bc3fedfe87161c63890be81b0c21a5708f1fc9f2514e6fa6370d2",
+    "exit_code": 0,
+    "output": "'CampaignL1OrthogonalAdditivity.qf' does not depend on any axioms\n'CampaignL1OrthogonalAdditivity.pairSum' does not depend on any axioms\n'CampaignL1OrthogonalAdditivity.entriesNotZero' does not depend on any axioms\n'CampaignL1OrthogonalAdditivity.negCross' depends on axioms: [propext]\n'CampaignL1OrthogonalAdditivity.readout' depends on axioms: [propext]\n'CampaignL1OrthogonalAdditivity.axisSum' depends on axioms: [propext]\n",
+    "scratch_package": {
+      "lakefile": "name = \"campaign_replay\"\nversion = \"0.1.0\"\n[[lean_lib]]\nname = \"CampaignL1OrthogonalAdditivity\"\n",
+      "lean_toolchain": "leanprover/lean4:v4.35.0\n",
+      "source_copy": {
+        "from": "lean4/CampaignL1OrthogonalAdditivity.lean",
+        "to": "CampaignL1OrthogonalAdditivity.lean",
+        "sha256": "50db47282d0bc3fedfe87161c63890be81b0c21a5708f1fc9f2514e6fa6370d2"
+      }
+    }
+  },
+  "independent_optimized_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-O",
+      "-X",
+      "utf8",
+      "checks/independent/l1-imp-orthogonal-additivity.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.065,
+    "output": "{\"checks\": 874, \"failed\": 0, \"vectors\": 289, \"coefficient_identity\": [1, 0, 1], \"negative_controls\": 2, \"scope\": \"One nonsymmetric integer coefficient matrix and a finite input census; universal integer statements are separately Lean checked.\"}\n"
+  },
+  "prior_receipt": {
+    "scope": "Historical receipt for the original source before correcting its misleading Gram-matrix comment. Exact UTF-8 bytes retained below; the active replay above binds the reviewed source.",
+    "sha256": "9fba5f78ef936cd4f0b03ca98fa0444680b23ab2b83c30171bb63e099e57d461",
+    "utf8": "{\n  \"schema_version\": \"campaign_lean_replay.v1\",\n  \"authority_effect\": \"None\",\n  \"checked_at\": \"2026-10-26T18:17:45Z\",\n  \"source_base\": \"4ead062a413c848c68bab12ac20879c077320f9d\",\n  \"result\": \"Narrowed to one 2 by 2 integer Gram matrix with entries 1, 1, -1 and 1. The off-diagonal pair sums to 0, neither off-diagonal entry is 0, and the quadratic form of every integer pair (a, b) equals a*a + b*b, matching the sum of the two axis forms. The lake build of CampaignL1OrthogonalAdditivity exited 0 in 26.154 seconds, with the module job at 2.0s. pairSum and entriesNotZero have empty axiom lists. readout and axisSum depend only on propext. The node stays CONDITIONAL.\",\n  \"proof_boundary\": \"This receipt records that lean4/CampaignL1OrthogonalAdditivity.lean type-checks and which axioms its print-axioms lines report. The recorded matrix is the 2 by 2 integer witness. Arbitrary orthogonal frames, projection measures, and Gleason-type uniqueness stay outside this module. The node stays CONDITIONAL.\",\n  \"lean_replay\": {\n    \"lean_version\": \"Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)\",\n    \"lake_version\": \"Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)\",\n    \"mathlib_source_sha\": \"56a005855ea17e0b0958f73ec801ae140b0a1679\",\n    \"lakefile_sha256\": \"199af8fc890456b949fc8a00b25d27e702d4b491cb19377f2f983ecd4050ed44\",\n    \"library\": \"CampaignL1OrthogonalAdditivity (lean_lib in lean4/lakefile.lean; not a default target)\",\n    \"build_directory\": \"lean4/b (lakefile buildDir)\",\n    \"dependency_packages\": \"read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run). The module imports no package.\",\n    \"command\": \"cd lean4 && lake build CampaignL1OrthogonalAdditivity\",\n    \"allowed_axioms\": [\n      \"propext\",\n      \"Classical.choice\",\n      \"Quot.sound\"\n    ],\n    \"results\": [\n      {\n        \"module\": \"CampaignL1OrthogonalAdditivity\",\n        \"dag_node\": \"L1-IMP-ORTHOGONAL-ADDITIVITY\",\n        \"source\": \"lean4/CampaignL1OrthogonalAdditivity.lean\",\n        \"sha256\": \"4cd851daef44f1583b0de85c2cf7729cb4c959c52568265be656c6ec62dd0421\",\n        \"sha256_after_build\": \"4cd851daef44f1583b0de85c2cf7729cb4c959c52568265be656c6ec62dd0421\",\n        \"source_unchanged_during_build\": true,\n        \"exit_code\": 0,\n        \"seconds\": 26.154,\n        \"module_job_ms\": 2000,\n        \"admission_scan_passed\": true,\n        \"axiom_audit_passed\": true,\n        \"built_successfully\": true,\n        \"anchors\": [\n          \"CampaignL1OrthogonalAdditivity.pairSum\",\n          \"CampaignL1OrthogonalAdditivity.entriesNotZero\",\n          \"CampaignL1OrthogonalAdditivity.readout\",\n          \"CampaignL1OrthogonalAdditivity.axisSum\"\n        ],\n        \"axioms\": {\n          \"CampaignL1OrthogonalAdditivity.pairSum\": [],\n          \"CampaignL1OrthogonalAdditivity.entriesNotZero\": [],\n          \"CampaignL1OrthogonalAdditivity.readout\": [\"propext\"],\n          \"CampaignL1OrthogonalAdditivity.axisSum\": [\"propext\"]\n        },\n        \"output\": \"'CampaignL1OrthogonalAdditivity.pairSum' does not depend on any axioms\\n'CampaignL1OrthogonalAdditivity.entriesNotZero' does not depend on any axioms\\n'CampaignL1OrthogonalAdditivity.readout' depends on axioms: [propext]\\n'CampaignL1OrthogonalAdditivity.axisSum' depends on axioms: [propext]\\n\"\n      }\n    ]\n  },\n  \"independent_check\": {\n    \"command\": [\n      \"python\",\n      \"-I\",\n      \"-X\",\n      \"utf8\",\n      \"checks/independent/l1-imp-orthogonal-additivity.py\"\n    ],\n    \"exit_code\": 0,\n    \"output\": \"matrix=[[1,1],[-1,1]] pair_sum=0 entries_nonzero=true census_a=-8..8 census_b=-8..8 failures=0\\nL1-IMP-ORTHOGONAL-ADDITIVITY INDEPENDENT CHECKER PASSED: checks=869 failed=0\\n\"\n  }\n}\n"
+  },
+  "summary_correction_history": {
+    "previous_record_sha256": "42e5f99e2d93c80a551b915cbcbb13df63c89b238a2a01a85e4bbb63f696f064",
+    "previous_record_utf8": "{\n  \"schema_version\": \"campaign_lean_replay.v1\",\n  \"authority_effect\": \"None\",\n  \"checked_at\": \"2026-10-26T19:03:49.881003+00:00\",\n  \"source_base\": \"b2a6bf8a831ca6187985a42a725ab06dca1f98c6\",\n  \"result\": \"Narrowed: conditional mathematical continuum result; original OPEN node retained. The integer coefficient matrix [[1,1],[-1,1]] has nonzero off-diagonal entries whose sum is zero, and its quadratic form equals a*a+b*b and the sum of its two axis readouts for every integer a,b.\",\n  \"proof_boundary\": \"One nonsymmetric coefficient matrix; no Gram-matrix or arbitrary orthogonal-frame/projection-measure theorem. General sector additivity remains supplied. Entrywise off-diagonal zero needs symmetry (and in the Hermitian setting the stated real/imaginary sector hypotheses).\",\n  \"lean_replay\": {\n    \"lean_version\": \"Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)\",\n    \"mathlib_source_sha\": null,\n    \"command\": [\n      \"lake\",\n      \"env\",\n      \"lean\",\n      \"Audit.lean\"\n    ],\n    \"cwd\": \"/workspace/review-open-20261026/440/lake\",\n    \"results\": [\n      {\n        \"module\": \"CampaignL1OrthogonalAdditivity\",\n        \"dag_node\": \"L1-IMP-ORTHOGONAL-ADDITIVITY\",\n        \"source\": \"lean4/CampaignL1OrthogonalAdditivity.lean\",\n        \"sha256\": \"50db47282d0bc3fedfe87161c63890be81b0c21a5708f1fc9f2514e6fa6370d2\",\n        \"sha256_after_build\": \"50db47282d0bc3fedfe87161c63890be81b0c21a5708f1fc9f2514e6fa6370d2\",\n        \"source_unchanged_during_build\": true,\n        \"exit_code\": 0,\n        \"admission_scan_passed\": true,\n        \"axiom_audit_passed\": true,\n        \"built_successfully\": true,\n        \"anchors\": [\n          \"CampaignL1OrthogonalAdditivity.negCross\",\n          \"CampaignL1OrthogonalAdditivity.readout\",\n          \"CampaignL1OrthogonalAdditivity.axisSum\",\n          \"CampaignL1OrthogonalAdditivity.qf\",\n          \"CampaignL1OrthogonalAdditivity.pairSum\",\n          \"CampaignL1OrthogonalAdditivity.entriesNotZero\"\n        ],\n        \"axioms\": {\n          \"CampaignL1OrthogonalAdditivity.negCross\": [\n            \"propext\"\n          ],\n          \"CampaignL1OrthogonalAdditivity.readout\": [\n            \"propext\"\n          ],\n          \"CampaignL1OrthogonalAdditivity.axisSum\": [\n            \"propext\"\n          ],\n          \"CampaignL1OrthogonalAdditivity.qf\": [],\n          \"CampaignL1OrthogonalAdditivity.pairSum\": [],\n          \"CampaignL1OrthogonalAdditivity.entriesNotZero\": []\n        },\n        \"output\": \"'CampaignL1OrthogonalAdditivity.qf' does not depend on any axioms\\n'CampaignL1OrthogonalAdditivity.pairSum' does not depend on any axioms\\n'CampaignL1OrthogonalAdditivity.entriesNotZero' does not depend on any axioms\\n'CampaignL1OrthogonalAdditivity.negCross' depends on axioms: [propext]\\n'CampaignL1OrthogonalAdditivity.readout' depends on axioms: [propext]\\n'CampaignL1OrthogonalAdditivity.axisSum' depends on axioms: [propext]\\n\"\n      }\n    ]\n  },\n  \"lake_build\": {\n    \"command\": [\n      \"lake\",\n      \"--no-cache\",\n      \"build\",\n      \"CampaignL1OrthogonalAdditivity\"\n    ],\n    \"exit_code\": 0,\n    \"seconds\": 0.344,\n    \"output\": \"ℹ [2/3] Built CampaignL1OrthogonalAdditivity (291ms)\\ninfo: CampaignL1OrthogonalAdditivity.lean:35:0: 'CampaignL1OrthogonalAdditivity.pairSum' does not depend on any axioms\\ninfo: CampaignL1OrthogonalAdditivity.lean:36:0: 'CampaignL1OrthogonalAdditivity.entriesNotZero' does not depend on any axioms\\ninfo: CampaignL1OrthogonalAdditivity.lean:37:0: 'CampaignL1OrthogonalAdditivity.readout' depends on axioms: [propext]\\ninfo: CampaignL1OrthogonalAdditivity.lean:38:0: 'CampaignL1OrthogonalAdditivity.axisSum' depends on axioms: [propext]\\nBuild completed successfully (3 jobs).\\ninfo: campaign_replay: no previous manifest, creating one from scratch\\ninfo: toolchain not updated; already up-to-date\\n\"\n  },\n  \"independent_check\": {\n    \"command\": [\n      \"/workspace/.cloud-setup/venv/bin/python\",\n      \"-I\",\n      \"-X\",\n      \"utf8\",\n      \"checks/independent/l1-imp-orthogonal-additivity.py\"\n    ],\n    \"exit_code\": 0,\n    \"seconds\": 0.019,\n    \"output\": \"{\\\"checks\\\": 874, \\\"failed\\\": 0, \\\"vectors\\\": 289, \\\"coefficient_identity\\\": [1, 0, 1], \\\"negative_controls\\\": 2, \\\"scope\\\": \\\"One nonsymmetric integer coefficient matrix and a finite input census; universal integer statements are separately Lean checked.\\\"}\\n\"\n  },\n  \"lake_configuration\": {\n    \"command\": [\n      \"lake\",\n      \"translate-config\",\n      \"toml\",\n      \"/workspace/review-open-20261026/440/registered-lakefile.toml\"\n    ],\n    \"exit_code\": 0,\n    \"seconds\": 5.273,\n    \"output\": \"\"\n  },\n  \"build_scope\": \"Fresh core-only Lean package; all six explicit declarations audited, allowing only standard Lean axioms. No full repository build.\",\n  \"axiom_audit\": {\n    \"command\": [\n      \"lake\",\n      \"env\",\n      \"lean\",\n      \"Audit.lean\"\n    ],\n    \"cwd\": \"/workspace/review-open-20261026/440/lake\",\n    \"input_path\": \"Audit.lean\",\n    \"input_contents\": \"import CampaignL1OrthogonalAdditivity\\n#print axioms CampaignL1OrthogonalAdditivity.qf\\n#print axioms CampaignL1OrthogonalAdditivity.pairSum\\n#print axioms CampaignL1OrthogonalAdditivity.entriesNotZero\\n#print axioms CampaignL1OrthogonalAdditivity.negCross\\n#print axioms CampaignL1OrthogonalAdditivity.readout\\n#print axioms CampaignL1OrthogonalAdditivity.axisSum\\n\",\n    \"input_sha256\": \"19590be4e7e180e1a92e3fda67eb124f3c4cd1ab6e18919d79f28012a52eead3\",\n    \"module_source_sha256\": \"50db47282d0bc3fedfe87161c63890be81b0c21a5708f1fc9f2514e6fa6370d2\",\n    \"exit_code\": 0,\n    \"output\": \"'CampaignL1OrthogonalAdditivity.qf' does not depend on any axioms\\n'CampaignL1OrthogonalAdditivity.pairSum' does not depend on any axioms\\n'CampaignL1OrthogonalAdditivity.entriesNotZero' does not depend on any axioms\\n'CampaignL1OrthogonalAdditivity.negCross' depends on axioms: [propext]\\n'CampaignL1OrthogonalAdditivity.readout' depends on axioms: [propext]\\n'CampaignL1OrthogonalAdditivity.axisSum' depends on axioms: [propext]\\n\",\n    \"scratch_package\": {\n      \"lakefile\": \"name = \\\"campaign_replay\\\"\\nversion = \\\"0.1.0\\\"\\n[[lean_lib]]\\nname = \\\"CampaignL1OrthogonalAdditivity\\\"\\n\",\n      \"lean_toolchain\": \"leanprover/lean4:v4.35.0\\n\",\n      \"source_copy\": {\n        \"from\": \"lean4/CampaignL1OrthogonalAdditivity.lean\",\n        \"to\": \"CampaignL1OrthogonalAdditivity.lean\",\n        \"sha256\": \"50db47282d0bc3fedfe87161c63890be81b0c21a5708f1fc9f2514e6fa6370d2\"\n      }\n    }\n  },\n  \"independent_optimized_check\": {\n    \"command\": [\n      \"/workspace/.cloud-setup/venv/bin/python\",\n      \"-I\",\n      \"-O\",\n      \"-X\",\n      \"utf8\",\n      \"checks/independent/l1-imp-orthogonal-additivity.py\"\n    ],\n    \"exit_code\": 0,\n    \"seconds\": 0.065,\n    \"output\": \"{\\\"checks\\\": 874, \\\"failed\\\": 0, \\\"vectors\\\": 289, \\\"coefficient_identity\\\": [1, 0, 1], \\\"negative_controls\\\": 2, \\\"scope\\\": \\\"One nonsymmetric integer coefficient matrix and a finite input census; universal integer statements are separately Lean checked.\\\"}\\n\"\n  },\n  \"prior_receipt\": {\n    \"scope\": \"Historical receipt for the original source before correcting its misleading Gram-matrix comment. Exact UTF-8 bytes retained below; the active replay above binds the reviewed source.\",\n    \"sha256\": \"9fba5f78ef936cd4f0b03ca98fa0444680b23ab2b83c30171bb63e099e57d461\",\n    \"utf8\": \"{\\n  \\\"schema_version\\\": \\\"campaign_lean_replay.v1\\\",\\n  \\\"authority_effect\\\": \\\"None\\\",\\n  \\\"checked_at\\\": \\\"2026-10-26T18:17:45Z\\\",\\n  \\\"source_base\\\": \\\"4ead062a413c848c68bab12ac20879c077320f9d\\\",\\n  \\\"result\\\": \\\"Narrowed to one 2 by 2 integer Gram matrix with entries 1, 1, -1 and 1. The off-diagonal pair sums to 0, neither off-diagonal entry is 0, and the quadratic form of every integer pair (a, b) equals a*a + b*b, matching the sum of the two axis forms. The lake build of CampaignL1OrthogonalAdditivity exited 0 in 26.154 seconds, with the module job at 2.0s. pairSum and entriesNotZero have empty axiom lists. readout and axisSum depend only on propext. The node stays CONDITIONAL.\\\",\\n  \\\"proof_boundary\\\": \\\"This receipt records that lean4/CampaignL1OrthogonalAdditivity.lean type-checks and which axioms its print-axioms lines report. The recorded matrix is the 2 by 2 integer witness. Arbitrary orthogonal frames, projection measures, and Gleason-type uniqueness stay outside this module. The node stays CONDITIONAL.\\\",\\n  \\\"lean_replay\\\": {\\n    \\\"lean_version\\\": \\\"Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)\\\",\\n    \\\"lake_version\\\": \\\"Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)\\\",\\n    \\\"mathlib_source_sha\\\": \\\"56a005855ea17e0b0958f73ec801ae140b0a1679\\\",\\n    \\\"lakefile_sha256\\\": \\\"199af8fc890456b949fc8a00b25d27e702d4b491cb19377f2f983ecd4050ed44\\\",\\n    \\\"library\\\": \\\"CampaignL1OrthogonalAdditivity (lean_lib in lean4/lakefile.lean; not a default target)\\\",\\n    \\\"build_directory\\\": \\\"lean4/b (lakefile buildDir)\\\",\\n    \\\"dependency_packages\\\": \\\"read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run). The module imports no package.\\\",\\n    \\\"command\\\": \\\"cd lean4 && lake build CampaignL1OrthogonalAdditivity\\\",\\n    \\\"allowed_axioms\\\": [\\n      \\\"propext\\\",\\n      \\\"Classical.choice\\\",\\n      \\\"Quot.sound\\\"\\n    ],\\n    \\\"results\\\": [\\n      {\\n        \\\"module\\\": \\\"CampaignL1OrthogonalAdditivity\\\",\\n        \\\"dag_node\\\": \\\"L1-IMP-ORTHOGONAL-ADDITIVITY\\\",\\n        \\\"source\\\": \\\"lean4/CampaignL1OrthogonalAdditivity.lean\\\",\\n        \\\"sha256\\\": \\\"4cd851daef44f1583b0de85c2cf7729cb4c959c52568265be656c6ec62dd0421\\\",\\n        \\\"sha256_after_build\\\": \\\"4cd851daef44f1583b0de85c2cf7729cb4c959c52568265be656c6ec62dd0421\\\",\\n        \\\"source_unchanged_during_build\\\": true,\\n        \\\"exit_code\\\": 0,\\n        \\\"seconds\\\": 26.154,\\n        \\\"module_job_ms\\\": 2000,\\n        \\\"admission_scan_passed\\\": true,\\n        \\\"axiom_audit_passed\\\": true,\\n        \\\"built_successfully\\\": true,\\n        \\\"anchors\\\": [\\n          \\\"CampaignL1OrthogonalAdditivity.pairSum\\\",\\n          \\\"CampaignL1OrthogonalAdditivity.entriesNotZero\\\",\\n          \\\"CampaignL1OrthogonalAdditivity.readout\\\",\\n          \\\"CampaignL1OrthogonalAdditivity.axisSum\\\"\\n        ],\\n        \\\"axioms\\\": {\\n          \\\"CampaignL1OrthogonalAdditivity.pairSum\\\": [],\\n          \\\"CampaignL1OrthogonalAdditivity.entriesNotZero\\\": [],\\n          \\\"CampaignL1OrthogonalAdditivity.readout\\\": [\\\"propext\\\"],\\n          \\\"CampaignL1OrthogonalAdditivity.axisSum\\\": [\\\"propext\\\"]\\n        },\\n        \\\"output\\\": \\\"'CampaignL1OrthogonalAdditivity.pairSum' does not depend on any axioms\\\\n'CampaignL1OrthogonalAdditivity.entriesNotZero' does not depend on any axioms\\\\n'CampaignL1OrthogonalAdditivity.readout' depends on axioms: [propext]\\\\n'CampaignL1OrthogonalAdditivity.axisSum' depends on axioms: [propext]\\\\n\\\"\\n      }\\n    ]\\n  },\\n  \\\"independent_check\\\": {\\n    \\\"command\\\": [\\n      \\\"python\\\",\\n      \\\"-I\\\",\\n      \\\"-X\\\",\\n      \\\"utf8\\\",\\n      \\\"checks/independent/l1-imp-orthogonal-additivity.py\\\"\\n    ],\\n    \\\"exit_code\\\": 0,\\n    \\\"output\\\": \\\"matrix=[[1,1],[-1,1]] pair_sum=0 entries_nonzero=true census_a=-8..8 census_b=-8..8 failures=0\\\\nL1-IMP-ORTHOGONAL-ADDITIVITY INDEPENDENT CHECKER PASSED: checks=869 failed=0\\\\n\\\"\\n  }\\n}\\n\"\n  }\n}\n",
+    "reason": "Correct only the active result summary; actual source hashes, proof boundary, replay outputs and prior_receipt are retained."
+  }
+}

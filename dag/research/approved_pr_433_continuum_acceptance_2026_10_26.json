@@ -1,0 +1,346 @@
+{
+  "schema_version": "approved_continuum_acceptance.v1",
+  "AuthorityEffect": "None",
+  "recorded_at_utc": "2026-10-26T17:36:35.470862+00:00",
+  "pull_request": "https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/433",
+  "approval_record": "dag/research/approved_pr_433_continuum_exception_2026_10_26.json",
+  "pre_approval_head": "14367814eca20635c6eb6054466ca21dbe06d292",
+  "integrated_main": "24afb82a6c84690446fb3ae4a9655cd7ae7dba56",
+  "source": "lean4/CampaignDfmRefinementLimit.lean",
+  "source_sha256": "b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb",
+  "score": "L3D",
+  "node_status": "OPEN",
+  "source_checker_scores_registry_and_dag_unchanged_since_preapproval": true,
+  "prior_76_proof_pins_preserved": true,
+  "main_maintenance_pins_preserved": true,
+  "global_floor_and_baseline_unchanged": true,
+  "only_one_new_proof_pin_in_this_branch": true,
+  "rust_python_population_equal": true,
+  "retained_proof_evidence": "Exact-source Lean, all-declaration axiom audits, optimized independent checks and joint imports are retained from the unchanged pre-approval sources; no new Lean build is claimed here.",
+  "resolved_historical_blocker": "The pre-approval 32-failure governance result described base 948f4e7102e67661381afce3fd9ad3742b719536. Main subsequently repaired those assessments through PRs #430 and #432; those already-merged changes are inherited here. The fresh current-main governance check now passes.",
+  "checks": {
+    "sync-check-0": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pfp_results.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.229,
+      "output": "pfp results synchronized\n"
+    },
+    "sync-check-1": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.394,
+      "output": "unified DAG synchronized\n"
+    },
+    "sync-check-2": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_application_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.249,
+      "output": "application branches synchronized\n"
+    },
+    "sync-check-3": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pregenesis_to_wdp.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.438,
+      "output": "pregenesis-to-wdp fragment synchronized\n"
+    },
+    "sync-check-4": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_frontier_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.359,
+      "output": "frontier branches synchronized\n"
+    },
+    "sync-check-5": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_genesis_to_higher.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.199,
+      "output": "genesis-to-higher synchronized\n"
+    },
+    "sync-check-6": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_foc035_observer_presheaf.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.275,
+      "output": "foc035 observer presheaf synchronized\n"
+    },
+    "invariants": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--invariants"
+      ],
+      "exit_code": 0,
+      "seconds": 0.162,
+      "output": "unified invariants failures=0\n"
+    },
+    "views": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/render_dag_views.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.126,
+      "output": "views match derivation_dag.json\n"
+    },
+    "validator": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/validate_derivation_dag.py",
+        "--no-files"
+      ],
+      "exit_code": 0,
+      "seconds": 0.995,
+      "output": "nodes=925 routes=934 records=977 failures=0\n"
+    },
+    "facts-check": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 19.74,
+      "output": "README facts current\n"
+    },
+    "status": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_status.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 5.934,
+      "output": "generated status files are current (16 files checked)\n"
+    },
+    "receipt-check": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.095,
+      "output": "receipts current\n"
+    },
+    "evidence-check": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/evidence/build_evidence.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 7.072,
+      "output": "evidence map current\n"
+    },
+    "scope": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "24afb82a6c84690446fb3ae4a9655cd7ae7dba56"
+      ],
+      "exit_code": 0,
+      "seconds": 3.337,
+      "output": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 2,\n    \"valid_contracts_and_scores\": 2,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 2\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 1,\n      \"Symbolic/Formal\": 1\n    },\n    \"completed_scores\": 2,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 2\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since 24afb82a6c84690446fb3ae4a9655cd7ae7dba56 (merge base 24afb82a6c84), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n"
+    },
+    "history": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/contract_scores.py",
+        "check",
+        "--changed-since",
+        "24afb82a6c84690446fb3ae4a9655cd7ae7dba56"
+      ],
+      "exit_code": 0,
+      "seconds": 3.531,
+      "output": "{\n  \"originals\": null,\n  \"combined_files\": 3,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n"
+    },
+    "overclaim": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "24afb82a6c84690446fb3ae4a9655cd7ae7dba56",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "seconds": 6.265,
+      "output": "overclaim_scan: scope=changes since 24afb82a6c84690446fb3ae4a9655cd7ae7dba56 (merge base 24afb82a6c84); HIGH=0 MEDIUM=0 LOW=3\n"
+    },
+    "tests": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "dag/test_tensor_countermodel_receipt.py",
+        "dag/test_tensor_measurement_receipt.py",
+        "dag/test_application_branches.py",
+        "dag/test_frontier_branches.py",
+        "dag/test_genesis_to_higher.py",
+        "dag/test_foc035_observer_presheaf.py",
+        "dag/evidence/test_evidence.py",
+        "scripts/test_governance_policy.py",
+        "scripts/test_overclaim_scan.py",
+        "scripts/auto/test_auto_checks.py",
+        "dag/test_unified_dag.py",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "seconds": 30.156,
+      "output": "........................................................................ [ 37%]\n........................................................................ [ 75%]\n...............................................                          [100%]\n191 passed in 29.68s\n"
+    },
+    "governance": {
+      "command": [
+        "/workspace/continuum-two/governance-target/release/governance-check",
+        "--root",
+        "/workspace/theory_of_finite_quantum_mechanics",
+        "check",
+        "--changed-since",
+        "24afb82a6c84690446fb3ae4a9655cd7ae7dba56"
+      ],
+      "exit_code": 0,
+      "seconds": 1.427,
+      "output": "changed since 24afb82a6c84690446fb3ae4a9655cd7ae7dba56 (24afb82a6c84690446fb3ae4a9655cd7ae7dba56): 37 paths\nchecked 8328: 181 pass, 8127 grandfathered, 20 boilerplate, 0 failed\n"
+    },
+    "proof-acceptance": {
+      "command": [
+        "/workspace/continuum-two/governance-target/release/governance-check",
+        "--root",
+        "/workspace/theory_of_finite_quantum_mechanics",
+        "explain",
+        "lean4/CampaignDfmRefinementLimit.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 0.017,
+      "output": "source:    lean4/CampaignDfmRefinementLimit.lean (Lean, Lean 4)\nsha256:    b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb\ncompanion: lean4/CampaignDfmRefinementLimit.contract.score.yaml\nbaseline:  Absent\ncontract:  urn:tfqm:continuum-two:dfm-continuum-refinement-limit:CampaignDfmRefinementLimit (21 symbols, 1 owned invariants)\ntoken:     L3D\n  schema       ok\n  binding      ok\n  completeness ok\n  floor        ok\noutcome:   PASS L3D\n"
+    },
+    "full-history": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/contract_scores.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 14.418,
+      "output": "{\n  \"originals\": 0,\n  \"combined_files\": 9044,\n  \"all_passed\": true,\n  \"errors\": []\n}\n"
+    },
+    "independent": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/dfm-continuum-refinement-limit.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.999,
+      "output": "{\n  \"AuthorityEffect\": \"None\",\n  \"status\": \"passed\",\n  \"checks\": 14642,\n  \"scalar\": {\n    \"sharp_geometric_example\": [\n      {\n        \"q\": \"1/4\",\n        \"C\": \"1/2\",\n        \"root_transports\": [\n          \"1\",\n          \"1/2\",\n          \"1/4\",\n          \"1/8\",\n          \"1/16\",\n          \"1/32\",\n          \"1/64\"\n        ],\n        \"limit\": \"0\"\n      }\n    ],\n    \"threshold_q\": \"1/2\",\n    \"threshold_root_transport\": \"n\",\n    \"negative_controls\": [\n      \"missing binary factor\",\n      \"q=1/2 is not convergent\"\n    ]\n  },\n  \"noncommutative\": {\n    \"group\": \"S3\",\n    \"ordered_covariance\": \"passed\",\n    \"zero_defect\": \"passed\",\n    \"negative_controls\": [\n      \"reversed order\",\n      \"missing inverse\"\n    ]\n  },\n  \"scope\": \"Exact finite controls; completeness, convergence and continuity are checked in Lean.\"\n}\n"
+    },
+    "generated-regressions": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "dag/test_tensor_countermodel_receipt.py",
+        "dag/test_tensor_measurement_receipt.py",
+        "dag/evidence/test_evidence.py",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "seconds": 9.456,
+      "output": "........................................                                 [100%]\n40 passed in 9.04s\n"
+    }
+  }
+}

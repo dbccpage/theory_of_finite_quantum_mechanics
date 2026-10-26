@@ -42,3 +42,11 @@ not supply a refinement family, a topology, or a convergence theorem.
 - [checks/independent/dfm-continuum-interface.py](../../../checks/independent/dfm-continuum-interface.py)
 
 The finite witness is proved. A refinement family, compatibility maps and a convergence theorem are still required before transporting finite identities to smooth gauge theory.
+
+## Controlled refinement limit
+
+In a supplied complete metric topological group with d(ab,cd) <= d(a,c)+d(b,d), binary edge split errors bounded by C*q^depth, C >= 0 and 0 <= q < 1/2, yield unique transport limits with error at most C*q^depth*(2*q)^n/(1-2*q). The limits respect binary composition and compatible endpoint gauges. Continuous parameterized edge families with a common C and q converge uniformly to continuous limiting transports. At q=1/2, the additive edge values depth/2^depth have shrinking split defects but root transport n, with no limit.
+
+The complete metric, group topology, refinement family and geometric local bound are supplied. Smooth-field existence, arbitrary triangulation refinements, patching, physical locality and continuum dynamics are not derived; the original node and physical bridge remain OPEN.
+
+See [the full derivation](../independent/dfm-continuum-refinement-limit.md) and `dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json`. The earlier finite-witness discussion above does not cover this new conditional result.
