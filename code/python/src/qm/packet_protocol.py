@@ -6,7 +6,7 @@ Origin: lean4/H001Rats.lean theorem padd_assoc
 Claim: urn:omega:fqm:packet:payload-checksum:v1
 AuthorityEffect: None
 Mutation-Kills: 9 non-equivalent source mutants, executed by code/python/tests/test_packet_protocol.py.
-Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 6; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 6.
+Gate 5: earlier measurements are retained in contract history; the changed source requires a fresh structural assessment.
 Scope Fence: payload_checksum returns the sum of a nonempty tuple of positive
 exact rationals after a left fold and a right fold agree. certified_checksum
 checks that sum on (1/2, 1/3, 1/7) and requires it to be 41/42. The cited
@@ -52,11 +52,16 @@ def _require_nonempty(entries: tuple[object, ...]) -> tuple[object, ...]:
 
 
 def _require_entry(value: object, index: int) -> Fraction:
-    if isinstance(value, float):
+    if issubclass(type(value), float):
         raise _fail("float refused at the payload boundary", index=index, received="float")
     if type(value) is bool:
         raise _fail("boolean refused where a rational entry was required", index=index)
-    if isinstance(value, Fraction):
+    if type(value) in (int, Fraction):
+        numerator = value if type(value) is int else value.numerator
+        denominator = 1 if type(value) is int else value.denominator
+        if max(numerator.bit_length(), denominator.bit_length()) > 1024:
+            raise _fail("exact scalar exceeds the 1024-bit limit", index=index)
+    if type(value) is Fraction:
         entry = value
     elif type(value) is int:
         entry = Fraction(value)

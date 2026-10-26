@@ -1,0 +1,699 @@
+............................................................F........... [  2%]
+........................................................................ [  5%]
+........................................................................ [  8%]
+........................................................................ [ 10%]
+........................................................................ [ 13%]
+........................................................................ [ 16%]
+........................................................................ [ 18%]
+........................................................................ [ 21%]
+........................................................................ [ 24%]
+.F...................................................................... [ 27%]
+........................................................................ [ 29%]
+.............s.......................................................... [ 32%]
+...............................................F.F.F.................................................................F.............. [ 37%]
+.....................................................F.................. [ 40%]
+......................................................... [ 42%]
+.......................................................................F [ 44%]
+........................................................................ [ 47%]
+........................................................................ [ 50%]
+........................................................................ [ 53%]
+........................................................................ [ 55%]
+........................................................................ [ 58%]
+........................................................................ [ 61%]
+.......................................................... [ 63%]
+........................................................................ [ 66%]
+........................................................................ [ 68%]
+........................................................................ [ 71%]
+.........F.....................................F........................ [ 74%]
+...........................F......F..................................... [ 76%]
+..................F.....F............................................... [ 79%]
+........................................................................ [ 82%]
+........................................................................ [ 84%]
+........................s................................F.............. [ 87%]
+......F....F.F.........................................................F [ 90%]
+............F.....F........................................ [ 92%]
+.........F.F............................................................ [ 95%]
+...........F............................................................ [ 98%]
+....................................... [ 99%]
+..............                                                           [100%]
+=================================== FAILURES ===================================
+____________________ test_quantum_double_projection_repair _____________________
+
+    def test_quantum_double_projection_repair():
+        """Validates that the quantum double projector P_QD restores real positive trace and ExactRepair."""
+        for k in [2, 3, 4]:
+            model = WangLevin3LoopBraidingModel(k_level=k, loop_fluxes=(0.5, 0.5, 0.5))
+            receipt_unproj = NonAbelianBfEngine.audit_nonabelian_3loop_braiding(model, use_quantum_double=False)
+            assert receipt_unproj.terminal_route == TerminalRoute.OPEN_SIGN_OBSTRUCTION
+    
+            receipt_proj = NonAbelianBfEngine.audit_nonabelian_3loop_braiding(model, use_quantum_double=True)
+            assert receipt_proj.is_quantum_double_projected is True
+            assert receipt_proj.involution_pairing_phi1 == 0.0
+            assert receipt_proj.cochain_curvature_gamma2 == 0.0
+            assert receipt_proj.average_sign_gin == 1.0
+            assert receipt_proj.terminal_route == TerminalRoute.EXACT_REPAIR
+    
+>           assert receipt_proj.trace_holonomy.real > 0.0
+E           AssertionError: assert -5.551115123125783e-17 > 0.0
+E            +  where -5.551115123125783e-17 = (-5.551115123125783e-17+0j).real
+E            +    where (-5.551115123125783e-17+0j) = WangLevin3LoopAuditReceipt(model_id='SU2_k4_3loop_braiding', k_level=4, loop_fluxes=(0.5, 0.5, 0.5), fusion_space_dim=...in=1.0, is_quantum_double_projected=True, terminal_route=<TerminalRoute.EXACT_REPAIR: 'ExactRepair'>, authority='None').trace_holonomy
+
+code/python/tests/fsp/integration/test_bf_nonabelian_3loop_braiding.py:121: AssertionError
+_______________________ test_sealed_preprint_and_archive _______________________
+
+sealed = PosixPath('/tmp/pytest-of-agent/pytest-10/test_sealed_preprint_and_archi0/preprint')
+
+    def test_sealed_preprint_and_archive(sealed):
+>       module.verify(sealed, ROOT / "mub6_publication.zip")
+
+code/python/tests/mub/test_publication_release.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/tmp/pytest-of-agent/pytest-10/test_sealed_preprint_and_archi0/preprint')
+archive = PosixPath('/workspace/tfqm-code/papers/core/mub6/mub6_publication.zip')
+
+    def verify(root: Path, archive: Path | None = None) -> None:
+        root = root.absolute()
+        for name in ("manifest.sha256", "sha256sums"):
+            regular_control(root / name)
+        payload = dict(read_manifest(root, root / "manifest.sha256"))
+        sums = dict(read_manifest(root, root / "sha256sums"))
+        if not payload or sums != {**payload, "manifest.sha256": sha(root / "manifest.sha256")}:
+            raise ValueError("Two-tier manifest disagreement or empty payload")
+        actual = {p.relative_to(root).as_posix() for p in walk_files(root, {"__pycache__"}, set(), {".pyc"})}
+        if actual != set(sums) | {"sha256sums"}:
+            raise ValueError(f"Manifest/tree disagreement: {sorted(actual ^ (set(sums) | {'sha256sums'}))}")
+        required = {"mub6.md", "mub6.tex", "mub6.pdf", "render_binding.json", "README.md",
+                    "LICENSE", "LICENSE-CODE", "zenodo_metadata.json", "release_identity.json",
+                    "docs/descriptions.md", "docs/references.md", "docs/keywords.md", "docs/quick_start.md",
+                    "scripts/verify_publication.py", "scripts/build_pdf.py", "scripts/paper_code_wrap.lua",
+                    "code/deposit_paths.py"}
+        if not required <= set(payload):
+            raise ValueError(f"Missing required publication files: {sorted(required - set(payload))}")
+        for relative, expected in sums.items():
+            path = safe_path(root, relative)
+            if sha(path) != expected:
+                raise ValueError(f"Hash mismatch: {relative}")
+        for name in ("descriptions", "references", "keywords", "quick_start"):
+            if (root / "docs" / f"{name}.md").stat().st_size < 100:
+                raise ValueError(f"Stub documentation: {name}")
+        meta = json.loads((root / "zenodo_metadata.json").read_text(encoding="utf-8"))
+        identity = json.loads((root / "release_identity.json").read_text(encoding="utf-8"))
+        header = (root / "mub6.md").read_text(encoding="utf-8").split("\n\n", 1)[0]
+        rows = re.findall(r'^<div align="center">(.+)</div>$', header, re.M)
+        if rows != ["# " + meta["title"], "Jeremy H. Carroll", meta["publication_date"], "Version " + meta["version"]]:
+            raise ValueError("Manuscript/metadata header disagreement")
+        if any(identity[k] != meta[k] for k in ("title", "version", "publication_date")):
+            raise ValueError("Release identity disagreement")
+        if meta["upload_type"] != "publication" or meta["publication_type"] != "preprint":
+            raise ValueError("Expected preprint metadata")
+        if meta["creators"] != [{"name": "Carroll, Jeremy H."}] or meta["license"] != "cc-by-4.0":
+            raise ValueError("Creator/license disagreement")
+        if identity.get("publication_ready") is not False or identity.get("external_deposit_performed") is not False:
+            raise ValueError("Candidate cannot assert publication approval or an external deposit")
+        for item in meta.get("related_identifiers", []):
+            if not all(item.get(k) for k in ("identifier", "relation", "resource_type", "scheme")):
+                raise ValueError("Incomplete related identifier")
+        if identity.get("concept_doi") and not any(
+            i["relation"] == "isVersionOf" and i["identifier"] == identity["concept_doi"]
+            for i in meta.get("related_identifiers", [])
+        ):
+            raise ValueError("Missing concept DOI lineage")
+        binding = json.loads((root / "render_binding.json").read_text(encoding="utf-8"))
+        expected_bound = {"mub6.md", "mub6.tex", "mub6.pdf", "scripts/build_pdf.py", "scripts/paper_code_wrap.lua"}
+        if set(binding["sha256"]) != expected_bound:
+            raise ValueError("Incomplete render binding")
+        for name, expected in binding["sha256"].items():
+            if sha(safe_path(root, name)) != expected:
+                raise ValueError(f"Stale render binding: {name}")
+        if binding["missing_glyphs"] or binding["overfull_hbox_gt_10pt"] or binding["pages"] < 1:
+            raise ValueError("Unclean PDF render")
+        if f"% manuscript-sha256: {sha(root / 'mub6.md')}\n" not in (root / "mub6.tex").read_text(encoding="utf-8"):
+            raise ValueError("TeX/source disagreement")
+        if archive is not None:
+            sidecar = archive.with_suffix(archive.suffix + ".sha256")
+            regular_control(archive)
+            regular_control(sidecar)
+            if sidecar.read_text(encoding="utf-8") != f"{sha(archive)}  {archive.name}\n":
+                raise ValueError("Archive sidecar disagreement")
+            with zipfile.ZipFile(archive) as z:
+                members = z.infolist()
+                names = [m.filename for m in members]
+                if len(names) != len(set(names)) or set(names) != actual:
+                    raise ValueError("Archive member set disagreement")
+                for member in members:
+                    path = safe_path(root, member.filename)
+                    if member.is_dir() or member.external_attr >> 16 != 0o100644:
+                        raise ValueError("Nonregular archive member")
+                    if hashlib.sha256(z.read(member)).hexdigest() != sha(path):
+                        raise ValueError(f"Archive member mismatch: {member.filename}")
+            if archive.read_bytes() != canonical_archive(root, actual, meta["publication_date"]):
+>               raise ValueError("Noncanonical complete archive bytes")
+E               ValueError: Noncanonical complete archive bytes
+
+papers/core/mub6/scripts/verify_publication.py:117: ValueError
+_________ ExtensionTests.test_born_valuation_is_blind_to_the_skew_part _________
+
+self = <tests.test_born_hermitian_valuation.ExtensionTests testMethod=test_born_valuation_is_blind_to_the_skew_part>
+
+    def test_born_valuation_is_blind_to_the_skew_part(self):
+>       v=m.born_valuation(RHO2);H=m.hermitian_part(SKEW2);self.assertFalse(m.is_hermitian(SKEW2));self.assertFalse(m.is_effect(SKEW2));self.assertTrue(m.is_effect(H));self.assertTrue(m.is_quadratic_preorder_effect(SKEW2));self.assertEqual(v(SKEW2),v(H));self.assertEqual(v(SKEW2),Q(7,16))
+                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: True is not false
+
+code/python/tests/test_born_hermitian_valuation.py:83: AssertionError
+_____ ExtensionTests.test_effect_certificate_is_consistent_with_its_parts ______
+
+self = <tests.test_born_hermitian_valuation.ExtensionTests testMethod=test_effect_certificate_is_consistent_with_its_parts>
+
+    def test_effect_certificate_is_consistent_with_its_parts(self):
+        for E in (m.identity(2),m.scale(2,m.identity(2)),[[1,I],[-I,0]],m.rank_one_effect([3,4*I]),HERM2):
+            c=m.effect_certificate(E);self.assertEqual(c['is_effect'],c['lower']['status']=='psd' and c['upper']['status']=='psd');self.assertEqual(c['is_effect'],m.is_effect(E))
+>       c=m.effect_certificate(SKEW2);self.assertFalse(c['is_carrier']);self.assertFalse(c['is_effect']);self.assertEqual(c['lower']['status'],'psd');self.assertEqual(c['upper']['status'],'psd')
+                                                       ^^^^^^^^^^^^^^^
+E       KeyError: 'is_carrier'
+
+code/python/tests/test_born_hermitian_valuation.py:105: KeyError
+_ ExtensionTests.test_imaginary_leak_control_is_unital_additive_hermitian_but_not_psd _
+
+self = <tests.test_born_hermitian_valuation.ExtensionTests testMethod=test_imaginary_leak_control_is_unital_additive_hermitian_but_not_psd>
+
+    def test_imaginary_leak_control_is_unital_additive_hermitian_but_not_psd(self):
+        v=m.imaginary_leak_valuation;c=m.born_certificate(v,2,effects2())
+>       self.assertEqual(c['rho'],[['1','1/2i'],['-1/2i','0']]);self.assertTrue(c['hermitian']);self.assertEqual(c['trace'],'1');self.assertTrue(c['trace_real']);self.assertFalse(c['psd']);self.assertTrue(c['agrees_on_effects'])
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Lists differ: [['1', '0'], ['-1i', '0']] != [['1', '1/2i'], ['-1/2i', '0']]
+E       
+E       First differing element 0:
+E       ['1', '0']
+E       ['1', '1/2i']
+E       
+E       - [['1', '0'], ['-1i', '0']]
+E       ?         ^
+E       
+E       + [['1', '1/2i'], ['-1/2i', '0']]
+E       ?         ^^^^        ++
+
+code/python/tests/test_born_hermitian_valuation.py:92: AssertionError
+_____________ LedgerTests.test_malformed_records_raise_typed_error _____________
+
+self = <tests.test_c500_ledger.LedgerTests testMethod=test_malformed_records_raise_typed_error>
+
+    def test_malformed_records_raise_typed_error(self):
+>       with self.assertRaises(ValueError):m.summarize({})
+                                           ^^^^^^^^^^^^^^^
+
+code/python/tests/test_c500_ledger.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def summarize(block):
+>       review,gap=block['review'],block['gap'];targets=review['targets'];scores=review['scores']
+                   ^^^^^^^^^^^^^^^
+E       KeyError: 'review'
+
+code/python/src/qm/c500_ledger.py:4: KeyError
+______________ CechTests.test_malformed_inputs_to_solve_and_rank _______________
+
+self = <tests.test_cech_f2.CechTests testMethod=test_malformed_inputs_to_solve_and_rank>
+
+    def test_malformed_inputs_to_solve_and_rank(self):
+        # Finding 3 reproductions
+>       with self.assertRaises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: ValueError not raised
+
+code/python/tests/test_cech_f2.py:25: AssertionError
+________________________ test_least_ready_kahn_ordering ________________________
+
+    def test_least_ready_kahn_ordering() -> None:
+        from src.qm.dag_witnesses import _kahn
+        # Finding 4 reproduction:
+        vertices = (0, 1, 2, 3)
+        edges = ((0, 1),)
+>       assert _kahn(vertices, edges) == (0, 1, 2, 3)
+E       assert (0, 2, 3, 1) == (0, 1, 2, 3)
+E         
+E         At index 1 diff: 2 != 1
+E         Use -v to get more diff
+
+code/python/tests/test_dag_witnesses.py:119: AssertionError
+__________________ ExactControls.test_adversarial_rejections ___________________
+
+self = <tests.test_l1_import_exact.ExactControls testMethod=test_adversarial_rejections>
+
+    def test_adversarial_rejections(self):
+        # 1. Float rejection
+>       with self.assertRaises(TypeError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: TypeError not raised
+
+code/python/tests/test_l1_import_exact.py:19: AssertionError
+_________________________ test_negative_type_failures __________________________
+
+    def test_negative_type_failures() -> None:
+        with pytest.raises(LegacySuiteError, match="float refused") as floated:
+            polynomial_gap((_probe("0.6"), Fraction(4, 5), 0))
+        assert floated.value.invariant == "float refused at the ray boundary"
+        assert floated.value.parameters["index"] == 0
+        assert type(floated.value) is LegacySuiteError
+    
+        with pytest.raises(LegacySuiteError, match="boolean refused") as boolean:
+            polynomial_gap((True, 0, 0))
+        assert boolean.value.invariant == "boolean refused where a rational amplitude was required"
+    
+        with pytest.raises(LegacySuiteError, match="not an exact rational") as text:
+            polynomial_gap(("3/5", Fraction(4, 5), 0))
+        assert text.value.parameters["received"] == "str"
+    
+>       with pytest.raises(LegacySuiteError, match="1024-bit limit"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LegacySuiteError
+
+code/python/tests/test_legacy_suites.py:70: Failed
+_________________________ test_negative_type_failures __________________________
+
+    def test_negative_type_failures() -> None:
+        with pytest.raises(ObserverFunctorError, match="float refused") as floated:
+            identity_failure(_probe("1.0"), 1)
+        assert floated.value.invariant == "float refused at the point boundary"
+        assert floated.value.parameters["role"] == "left"
+        assert type(floated.value) is ObserverFunctorError
+    
+        with pytest.raises(ObserverFunctorError, match="boolean refused") as boolean:
+            identity_failure(True, 1)
+        assert boolean.value.invariant == "boolean refused where an integer point was required"
+    
+        with pytest.raises(ObserverFunctorError, match="not an integer") as text:
+            identity_failure("0", 1)
+        assert text.value.parameters["received"] == "str"
+    
+>       with pytest.raises(ObserverFunctorError, match="1024-bit limit"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ObserverFunctorError
+
+code/python/tests/test_observer_functor.py:69: Failed
+_________________________ test_negative_type_failures __________________________
+
+    def test_negative_type_failures() -> None:
+        with pytest.raises(ObstructionError, match="float refused") as floated:
+            face_obstruction((_probe("1.0"), 2, 3))
+        assert floated.value.invariant == "float refused at the vertex boundary"
+        assert floated.value.parameters["index"] == 0
+        assert type(floated.value) is ObstructionError
+    
+        with pytest.raises(ObstructionError, match="boolean refused") as boolean:
+            face_obstruction((True, 2, 3))
+        assert boolean.value.invariant == "boolean refused where a rational vertex was required"
+    
+        with pytest.raises(ObstructionError, match="not an exact rational") as text:
+            face_obstruction(("0", 1, 2))
+        assert text.value.parameters["received"] == "str"
+    
+>       with pytest.raises(ObstructionError, match="1024-bit limit"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ObstructionError
+
+code/python/tests/test_obstruction_calc.py:71: Failed
+_________________________ test_negative_type_failures __________________________
+
+    def test_negative_type_failures() -> None:
+        with pytest.raises(PacketProtocolError, match="float refused") as floated:
+            payload_checksum((_probe("1.0"), 1))
+        assert floated.value.invariant == "float refused at the payload boundary"
+        assert floated.value.parameters["index"] == 0
+        assert type(floated.value) is PacketProtocolError
+    
+        with pytest.raises(PacketProtocolError, match="boolean refused") as boolean:
+            payload_checksum((True,))
+        assert boolean.value.invariant == "boolean refused where a rational entry was required"
+    
+        with pytest.raises(PacketProtocolError, match="not positive") as zero:
+            payload_checksum((0, 1))
+        assert zero.value.parameters["received"] == "0"
+    
+        with pytest.raises(PacketProtocolError, match="not positive") as negative:
+            payload_checksum((Fraction(-1, 2), Fraction(1, 2)))
+        assert negative.value.parameters["received"] == "-1/2"
+    
+>       with pytest.raises(PacketProtocolError, match="1024-bit limit"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PacketProtocolError
+
+code/python/tests/test_packet_protocol.py:73: Failed
+___________ test_tracked_release_outputs_cannot_enter_catalog_cycle ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-10/test_tracked_release_outputs_c0')
+
+    def test_tracked_release_outputs_cannot_enter_catalog_cycle(tmp_path: Path) -> None:
+        root = tmp_path / "checkout"
+        workspace_marker = root / "omega_engine/crates_rs/Cargo.toml"
+        workspace_marker.parent.mkdir(parents=True)
+        workspace_marker.write_text("[workspace]\n")
+        paper = root / "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm"
+        entrypoint = paper / ENTRYPOINT
+        entrypoint.parent.mkdir(parents=True)
+>       shutil.copyfile(PAPER / ENTRYPOINT, entrypoint)
+
+code/python/tests/test_paper_catalog.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('/workspace/tfqm-code/code/python/src/qm/entrypoints/review_estate.py')
+dst = PosixPath('/tmp/pytest-of-agent/pytest-10/test_tracked_release_outputs_c0/checkout/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/src/qm/entrypoints/review_estate.py')
+follow_symlinks = True
+
+    def copyfile(src, dst, *, follow_symlinks=True):
+        """Copy data from src to dst in the most efficient way possible.
+    
+        If follow_symlinks is not set and src is a symbolic link, a new
+        symlink will be created instead of copying the file it points to.
+    
+        """
+        sys.audit("shutil.copyfile", src, dst)
+    
+        if _samefile(src, dst):
+            raise SameFileError("{!r} and {!r} are the same file".format(src, dst))
+    
+        file_size = 0
+        for i, fn in enumerate([src, dst]):
+            try:
+                st = _stat(fn)
+            except OSError:
+                # File most likely does not exist
+                pass
+            else:
+                # XXX What about other special files? (sockets, devices...)
+                if stat.S_ISFIFO(st.st_mode):
+                    fn = fn.path if isinstance(fn, os.DirEntry) else fn
+                    raise SpecialFileError("`%s` is a named pipe" % fn)
+                if _WINDOWS and i == 0:
+                    file_size = st.st_size
+    
+        if not follow_symlinks and _islink(src):
+            os.symlink(os.readlink(src), dst)
+        else:
+>           with open(src, 'rb') as fsrc:
+                 ^^^^^^^^^^^^^^^
+E           FileNotFoundError: [Errno 2] No such file or directory: '/workspace/tfqm-code/code/python/src/qm/entrypoints/review_estate.py'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/shutil.py:260: FileNotFoundError
+_________________ PhaseScopeTests.test_adversarial_rejections __________________
+
+self = <tests.test_phase_scope.PhaseScopeTests testMethod=test_adversarial_rejections>
+
+    def test_adversarial_rejections(self):
+        # 1. Float rejection
+>       with self.assertRaises(TypeError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: TypeError not raised
+
+code/python/tests/test_phase_scope.py:47: AssertionError
+_______________________ test_end_to_end_public_contract ________________________
+
+    def test_end_to_end_public_contract() -> None:
+        package = linear_algebra.poly_roots
+        published = package.exact_spectrum(PURE)
+        package.validate_spectrum(PURE, published)
+        assert published["representation"] == package.REPRESENTATION
+>       envelope = package.report()
+                   ^^^^^^^^^^^^^^^^
+
+code/python/tests/test_poly_roots.py:307: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+code/python/src/linear_algebra/poly_roots.py:517: in report
+    {"input": case, "output": exact_spectrum(case)} for case in kernel.fixtures(interface)
+                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+code/python/src/linear_algebra/entropy_dichotomy.py:1357: in fixtures
+    envelope = json.loads((interface or INTERFACE).read_text(encoding="utf-8"))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/workspace/tfqm-code/code/python/src/qm/data/rational_quadratic_fixtures.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/workspace/tfqm-code/code/python/src/qm/data/rational_quadratic_fixtures.json'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_________________ test_integration_matches_cited_left_inverse __________________
+
+    def test_integration_matches_cited_left_inverse() -> None:
+        root = Path(__file__).resolve().parents[3]
+>       note = (root / "papers" / "core" / "mub6" / "artifacts" / "knowledge" / "category_moore_penrose_least_squares_annihilation.md").read_text(encoding="utf-8")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code/python/tests/test_pseudoinverse.py:199: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/workspace/tfqm-code/papers/core/mub6/artifacts/knowledge/category_moore_penrose_least_squares_annihilation.md')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/workspace/tfqm-code/papers/core/mub6/artifacts/knowledge/category_moore_penrose_least_squares_annihilation.md'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_________________________ test_origin_resolves_in_repo _________________________
+
+    def test_origin_resolves_in_repo() -> None:
+        root = Path(__file__).resolve().parents[3]
+>       note = (root / "papers" / "core" / "mub6" / "artifacts" / "knowledge" / "category_moore_penrose_least_squares_annihilation.md").read_text(encoding="utf-8")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code/python/tests/test_pseudoinverse.py:231: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/workspace/tfqm-code/papers/core/mub6/artifacts/knowledge/category_moore_penrose_least_squares_annihilation.md')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/workspace/tfqm-code/papers/core/mub6/artifacts/knowledge/category_moore_penrose_least_squares_annihilation.md'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_________________________ test_negative_type_failures __________________________
+
+    def test_negative_type_failures() -> None:
+        with pytest.raises(QuantumPacketError, match="float refused") as floated:
+            packet_norm((_probe("1.0"), 0))
+        assert floated.value.invariant == "float refused at the packet boundary"
+        assert floated.value.parameters["index"] == 0
+        assert type(floated.value) is QuantumPacketError
+    
+        with pytest.raises(QuantumPacketError, match="boolean refused") as boolean:
+            packet_norm((True, 0))
+        assert boolean.value.invariant == "boolean refused where a rational amplitude was required"
+    
+        with pytest.raises(QuantumPacketError, match="not an exact rational") as text:
+            packet_norm(("3/5", Fraction(4, 5)))
+        assert text.value.parameters["received"] == "str"
+    
+>       with pytest.raises(QuantumPacketError, match="1024-bit limit"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE QuantumPacketError
+
+code/python/tests/test_quantum_packet.py:70: Failed
+_____ RationalBellTests.test_actual_born_table_violation_and_full_support ______
+
+self = <tests.test_rational_bell.RationalBellTests testMethod=test_actual_born_table_violation_and_full_support>
+
+    def test_actual_born_table_violation_and_full_support(self):
+        result=bell.certify(*data())
+        self.assertEqual(result['chsh'],'14/5');self.assertEqual(result['minimum_probability'],'1/20')
+        self.assertEqual(result['support_assignments'],16)
+>       self.assertEqual(result['locally_supported_assignments'],16)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'locally_supported_assignments'
+
+code/python/tests/test_rational_bell.py:25: KeyError
+___ RationalBellTests.test_same_full_support_can_extend_for_uniform_density ____
+
+self = <tests.test_rational_bell.RationalBellTests testMethod=test_same_full_support_can_extend_for_uniform_density>
+
+    def test_same_full_support_can_extend_for_uniform_density(self):
+        _,a,b=data();rho=[[Q(i==j,4) for j in range(4)] for i in range(4)]
+        result=bell.certify(rho,a,b);self.assertEqual(result['support_assignments'],16)
+>       self.assertEqual(result['locally_supported_assignments'],16)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'locally_supported_assignments'
+
+code/python/tests/test_rational_bell.py:31: KeyError
+__________ test_integration_symmetric_difference_matches_the_gradient __________
+
+    def test_integration_symmetric_difference_matches_the_gradient() -> None:
+        root = Path(__file__).resolve().parents[3]
+        note = (
+            root
+            / "papers"
+            / "core"
+            / "mub6"
+            / "artifacts"
+            / "knowledge"
+            / "observation_quartic_overlap_secant_failure.md"
+>       ).read_text(encoding="utf-8")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code/python/tests/test_second_jet.py:100: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/workspace/tfqm-code/papers/core/mub6/artifacts/knowledge/observation_quartic_overlap_secant_failure.md')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/workspace/tfqm-code/papers/core/mub6/artifacts/knowledge/observation_quartic_overlap_secant_failure.md'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_________________________ test_origin_resolves_in_repo _________________________
+
+    def test_origin_resolves_in_repo() -> None:
+        root = Path(__file__).resolve().parents[3]
+        note = (
+            root
+            / "papers"
+            / "core"
+            / "mub6"
+            / "artifacts"
+            / "knowledge"
+            / "observation_quartic_overlap_secant_failure.md"
+        )
+>       assert note.is_file()
+E       AssertionError: assert False
+E        +  where False = is_file()
+E        +    where is_file = PosixPath('/workspace/tfqm-code/papers/core/mub6/artifacts/knowledge/observation_quartic_overlap_secant_failure.md').is_file
+
+code/python/tests/test_second_jet.py:142: AssertionError
+_______________________ test_end_to_end_public_contract ________________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fbf8fbd6c60>
+capsys = <_pytest.capture.CaptureFixture object at 0x7fbf8f639b50>
+
+    def test_end_to_end_public_contract(monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]) -> None:
+        package = linear_algebra.spectral_factors
+        published = package.dispatch({"operation": "bind_spectral_factors", "input": PURE})
+        package.validate_spectral_factor_binding(PURE, published)
+        assert published["schema"] == package.SCHEMA
+>       for case in fixtures():
+                    ^^^^^^^^^^
+
+code/python/tests/test_spectral_factors.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+code/python/src/linear_algebra/entropy_dichotomy.py:1357: in fixtures
+    envelope = json.loads((interface or INTERFACE).read_text(encoding="utf-8"))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/workspace/tfqm-code/code/python/src/qm/data/rational_quadratic_fixtures.json')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/workspace/tfqm-code/code/python/src/qm/data/rational_quadratic_fixtures.json'
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py:1013: FileNotFoundError
+=============================== warnings summary ===============================
+code/python/tests/test_hostile_dimension_fuzzing.py::TestBoundariesHostileFuzzing::test_boundaries_conforming_latency
+code/python/tests/test_hostile_dimension_fuzzing.py::TestBoundariesHostileFuzzing::test_boundaries_huge_matrix_timeout_measurement
+code/python/tests/test_hostile_dimension_fuzzing.py::TestBoundariesHostileFuzzing::test_boundaries_pathological_scalar_fuzzing
+code/python/tests/test_hostile_dimension_fuzzing.py::TestCabelloHostileFuzzing::test_cabello_combinatorial_budget_gate_vs_timeout
+code/python/tests/test_hostile_dimension_fuzzing.py::TestCabelloHostileFuzzing::test_cabello_conforming_system_latency
+code/python/tests/test_hostile_dimension_fuzzing.py::TestCabelloHostileFuzzing::test_cabello_hostile_combinatorial_timeout_measurement
+code/python/tests/test_hostile_dimension_fuzzing.py::TestCabelloHostileFuzzing::test_cabello_hostile_dimension_and_orthogonality_fuzzing
+code/python/tests/test_hostile_dimension_fuzzing.py::TestCabelloHostileFuzzing::test_cabello_hostile_negative_radius_boundaries
+  /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=32093) is multi-threaded, use of fork() may lead to deadlocks in the child.
+    self.pid = os.fork()
+
+code/python/tests/test_qm122_dual.py::test_mutation_suite_kills_dual_export_and_harness
+  qinit_0.py:13: DeprecationWarning: __package__ != __spec__.parent
+
+code/python/tests/test_qm122_dual.py::test_mutation_suite_kills_dual_export_and_harness
+  qinit_1.py:13: DeprecationWarning: __package__ != __spec__.parent
+
+code/python/tests/test_qm122_dual.py::test_mutation_suite_kills_dual_export_and_harness
+  qinit_2.py:13: DeprecationWarning: __package__ != __spec__.parent
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED code/python/tests/fsp/integration/test_bf_nonabelian_3loop_braiding.py::test_quantum_double_projection_repair
+FAILED code/python/tests/mub/test_publication_release.py::test_sealed_preprint_and_archive
+FAILED code/python/tests/test_born_hermitian_valuation.py::ExtensionTests::test_born_valuation_is_blind_to_the_skew_part
+FAILED code/python/tests/test_born_hermitian_valuation.py::ExtensionTests::test_effect_certificate_is_consistent_with_its_parts
+FAILED code/python/tests/test_born_hermitian_valuation.py::ExtensionTests::test_imaginary_leak_control_is_unital_additive_hermitian_but_not_psd
+FAILED code/python/tests/test_c500_ledger.py::LedgerTests::test_malformed_records_raise_typed_error
+FAILED code/python/tests/test_cech_f2.py::CechTests::test_malformed_inputs_to_solve_and_rank
+FAILED code/python/tests/test_dag_witnesses.py::test_least_ready_kahn_ordering
+FAILED code/python/tests/test_l1_import_exact.py::ExactControls::test_adversarial_rejections
+FAILED code/python/tests/test_legacy_suites.py::test_negative_type_failures
+FAILED code/python/tests/test_observer_functor.py::test_negative_type_failures
+FAILED code/python/tests/test_obstruction_calc.py::test_negative_type_failures
+FAILED code/python/tests/test_packet_protocol.py::test_negative_type_failures
+FAILED code/python/tests/test_paper_catalog.py::test_tracked_release_outputs_cannot_enter_catalog_cycle
+FAILED code/python/tests/test_phase_scope.py::PhaseScopeTests::test_adversarial_rejections
+FAILED code/python/tests/test_poly_roots.py::test_end_to_end_public_contract
+FAILED code/python/tests/test_pseudoinverse.py::test_integration_matches_cited_left_inverse
+FAILED code/python/tests/test_pseudoinverse.py::test_origin_resolves_in_repo
+FAILED code/python/tests/test_quantum_packet.py::test_negative_type_failures
+FAILED code/python/tests/test_rational_bell.py::RationalBellTests::test_actual_born_table_violation_and_full_support
+FAILED code/python/tests/test_rational_bell.py::RationalBellTests::test_same_full_support_can_extend_for_uniform_density
+FAILED code/python/tests/test_second_jet.py::test_integration_symmetric_difference_matches_the_gradient
+FAILED code/python/tests/test_second_jet.py::test_origin_resolves_in_repo - A...
+FAILED code/python/tests/test_spectral_factors.py::test_end_to_end_public_contract
+24 failed, 2637 passed, 2 skipped, 11 warnings, 87 subtests passed in 213.89s (0:03:33)

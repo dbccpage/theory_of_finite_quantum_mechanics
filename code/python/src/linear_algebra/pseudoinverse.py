@@ -1,6 +1,6 @@
 """Moore–Penrose pseudoinverse over Q from a full-rank factorization.
 
-Origin: papers/derivations/mub6/artifacts/knowledge/category_moore_penrose_least_squares_annihilation.md
+Origin: papers/core/mub6/documentation/category_moore_penrose_least_squares_annihilation.md
 formula R = (J^T J)^{-1} J^T, and papers/derivations/mub6/mub6.md, which
 records that a Moore–Penrose preconditioner is not defined for the rank-184
 Jacobian.

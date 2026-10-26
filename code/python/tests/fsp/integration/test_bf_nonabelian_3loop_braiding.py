@@ -12,7 +12,7 @@ Tests:
    and TerminalRoute.OpenSignObstruction.
 5. Orientation energy asymmetry: confirms thermal weight gap and TerminalRoute.SplitBrainRefusal.
 6. Quantum double projection repair (Drinfeld Double D(SU(2)_k)): confirms that folding M_WL (x) M_WL^dagger
-   identically restores real positive trace, nullifies defect mass Phi_1 = 0, and routes to TerminalRoute.ExactRepair.
+   identically restores real nonnegative trace, nullifies defect mass Phi_1 = 0, and routes to TerminalRoute.ExactRepair.
 """
 
 from __future__ import annotations
@@ -105,7 +105,7 @@ def test_orientation_energy_asymmetry_split_brain():
 
 
 def test_quantum_double_projection_repair():
-    """Validates that the quantum double projector P_QD restores real positive trace and ExactRepair."""
+    """Validates that the quantum double projector P_QD restores real nonnegative trace and ExactRepair."""
     for k in [2, 3, 4]:
         model = WangLevin3LoopBraidingModel(k_level=k, loop_fluxes=(0.5, 0.5, 0.5))
         receipt_unproj = NonAbelianBfEngine.audit_nonabelian_3loop_braiding(model, use_quantum_double=False)
@@ -118,6 +118,17 @@ def test_quantum_double_projection_repair():
         assert receipt_proj.average_sign_gin == 1.0
         assert receipt_proj.terminal_route == TerminalRoute.EXACT_REPAIR
 
-        assert receipt_proj.trace_holonomy.real > 0.0
+        assert receipt_proj.trace_holonomy.real >= 0.0
+        matrix = model.compute_3loop_holonomy_matrix()
+        direct = np.trace(model.compute_quantum_double_projection(matrix))
+        assert receipt_proj.trace_holonomy == pytest.approx(direct, abs=1e-12)
         assert abs(receipt_proj.trace_holonomy.imag) < 1e-12
 
+
+def test_doubled_trace_can_vanish(monkeypatch):
+    model = WangLevin3LoopBraidingModel()
+    matrix = np.diag([1.0, -1.0]).astype(complex)
+    monkeypatch.setattr(model, "compute_3loop_holonomy_matrix", lambda: matrix)
+    receipt = NonAbelianBfEngine.audit_nonabelian_3loop_braiding(model, use_quantum_double=True)
+    assert np.trace(model.compute_quantum_double_projection(matrix)) == 0
+    assert receipt.trace_holonomy == 0

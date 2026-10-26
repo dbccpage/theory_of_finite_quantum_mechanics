@@ -1,9 +1,32 @@
 """Exact finite l1 and import-boundary computations on declared small carriers."""
 from fractions import Fraction as Q
+import re
 from itertools import permutations, product
 
+def _exact(value):
+    if type(value) not in (int, Q, str):
+        raise TypeError('exact integer, Fraction or rational text required')
+    if type(value) is str and (len(value) > 1024 or re.fullmatch(r'[+-]?[0-9]+(?:/[0-9]+)?', value) is None):
+        raise ValueError('bounded integer or numerator/denominator text required')
+    if type(value) is int and value.bit_length() > 1024:
+        raise ValueError('integer exceeds 1024-bit limit')
+    q=Q(value)
+    if max(q.numerator.bit_length(),q.denominator.bit_length()) > 1024:
+        raise ValueError('rational exceeds 1024-bit limit')
+    return q
+
 def evaluate(kind, values):
-    x=list(map(Q,values));o=[]
+    if type(values) not in (list, tuple) or len(values) > 64:
+        raise ValueError('bounded sequence of exact values required')
+    arities = {'chain':4, 'kkt':12, 'edge':4, 'gauge':4, 'observer':4,
+               'quotient':9, 'window':10, 'replica':3, 'circle':1, 'gauss':2,
+               'complex':4, 'time':1, 'hilbert':1, 'dilation':3, 'gleason':2,
+               'tensor':4, 'lift':4, 'average':2, 'gram':4}
+    if kind == 'mass':
+        if not values:raise ValueError('nonempty mass vector required')
+    elif kind not in arities or len(values) != arities[kind]:
+        raise ValueError('unknown operation or incorrect input arity')
+    x=list(map(_exact,values));o=[]
     def emit(*v):o.extend(v)
     if kind=='chain':
         a,b,c,e=x;d=[b-a,c-b,a-c];emit(e,0,-e,*d,sum(d)+e*d[2],int(e==0))
@@ -35,7 +58,8 @@ def evaluate(kind, values):
         if not M:return ['0']
         emit(1,M,*(v/M for v in x),sum(x[:2])/M,sum(x[2:])/M,sum(v/M for v in x))
     elif kind=='circle':
-        n=int(x[0]);assert x[0]==n and n in (2,3,4)
+        n=int(x[0])
+        if x[0]!=n or n not in (2,3,4):raise ValueError('circle order must be 2, 3 or 4')
         emit(*(int((2*k)%n==0) for k in range(n)),*( (i+j)%n for i in range(n) for j in range(n)),int(all((2*k)%n==0 for k in range(n))),4,0)
     elif kind in ('gauss','complex'):
         a,b=x[:2];N=a*a+b*b
@@ -45,7 +69,8 @@ def evaluate(kind, values):
         else:
             c,d=x[2:];K=c*c+d*d;u=a*c-b*d;v=a*d+b*c;emit(N,K,u,v,u*u+v*v,N*K,int(N!=0),a/N if N else 0,-b/N if N else 0)
     elif kind=='time':
-        s=x[0];assert s in (-1,1)
+        s=x[0]
+        if s not in (-1,1):raise ValueError('time sign must be -1 or 1')
         maps=list(product(range(2),repeat=2));squares=[f[f[i]] for f in maps for i in range(2)];emit(*squares,sum([f[f[0]],f[f[1]]]==[1,0] for f in maps))
         U=[(Q(1,2),s/2),(Q(1,2),-s/2),(Q(1,2),-s/2),(Q(1,2),s/2)]
         def mul(z,w):return (z[0]*w[0]-z[1]*w[1],z[0]*w[1]+z[1]*w[0])
@@ -53,10 +78,12 @@ def evaluate(kind, values):
         adj=[(U[2*j+i][0],-U[2*j+i][1]) for i in range(2) for j in range(2)]
         emit(*(v for z in U+mm(U,U)+mm(adj,U) for v in z))
     elif kind=='hilbert':
-        n=int(x[0]);assert x[0]==n and 0<=n<=8
+        n=int(x[0])
+        if x[0]!=n or not 0<=n<=8:raise ValueError('Hilbert truncation must be an integer from 0 to 8')
         u=[Q(1,2**k) for k in range(1,n+1)];emit(*u,sum(v*v for v in u),Q(1,3*4**n),Q(1,4**(n+1)),Q(1,3),int(Q(1,3*4**n)>0))
     elif kind=='dilation':
-        a,b,d=x;assert a+d==1 and a>=0 and d>=0 and a*d>=b*b
+        a,b,d=x
+        if not (a+d==1 and a>=0 and d>=0 and a*d>=b*b):raise ValueError('positive trace-one input required')
         ds=[p for p in permutations(range(4)) if p[0]//2==0 and p[2]//2==0];emit(len(ds))
         for p in ds:emit(*p,*(p.index(i) for i in range(4)))
         # Choi in (input,output) order for reset to |0><0|, partial trace over output.
