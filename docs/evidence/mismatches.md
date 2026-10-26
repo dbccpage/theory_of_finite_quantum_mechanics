@@ -4,19 +4,28 @@ Part of the [evidence map](README.md). AuthorityEffect: None. Generated; every f
 
 | Flag | Count |
 |---|---|
-| `proved_lean_below_e3`: PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt | 0 |
+| `proved_lean_below_e3`: PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt | 8 |
 | `proved_lean_external_only`: PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none in this checkout | 0 |
-| `receipt_not_current`: A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit | 35 |
+| `receipt_not_current`: A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit | 50 |
 | `computational_no_runnable_test`: COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited | 126 |
 | `proved_prose_no_in_repo_document`: PROVED_PROSE with no in-repo source document cited | 12 |
 | `broken_reference`: A cited in-repo path or symbol cannot be found in this checkout | 53 |
 | `receipt_names_uncited_module`: A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence) | 27 |
 
-## `proved_lean_below_e3` (0)
+## `proved_lean_below_e3` (8)
 
 PROVED_LEAN below E3: no cited Lean declaration is covered by a current replay receipt. Ordered by downstream nodes, most first.
 
-None.
+| Node | Stage | Status | Grade | Downstream | Detail |
+|---|---|---|---|---|---|
+| [MUB6-CORNER-ROUTING-DEPHASING](nodes/MUB6-CORNER-ROUTING-DEPHASING.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 3 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: stale 2) |
+| [MUB6-TAO-MATRIX-CHM](nodes/MUB6-TAO-MATRIX-CHM.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 2 | grade E2; 1 Lean reference(s) cited, 1 in this checkout (replay: stale 1) |
+| [MUB6-FOURIER-DITA-FAMILY-CHM](nodes/MUB6-FOURIER-DITA-FAMILY-CHM.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 1 | grade E2; 1 Lean reference(s) cited, 1 in this checkout (replay: stale 1) |
+| [MUB6-COVER56-CURVATURE-PREMISE](nodes/MUB6-COVER56-CURVATURE-PREMISE.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | grade E2; 1 Lean reference(s) cited, 1 in this checkout (replay: stale 1) |
+| [MUB6-HAAGERUP-MATRIX-CHM](nodes/MUB6-HAAGERUP-MATRIX-CHM.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | grade E2; 1 Lean reference(s) cited, 1 in this checkout (replay: stale 1) |
+| [MUB6-INTERFACE-COUNTERMODEL](nodes/MUB6-INTERFACE-COUNTERMODEL.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | grade E2; 2 Lean reference(s) cited, 2 in this checkout (replay: stale 2) |
+| [MUB6-KARLSSON-AFFINE-ANSATZ](nodes/MUB6-KARLSSON-AFFINE-ANSATZ.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | grade E2; 1 Lean reference(s) cited, 1 in this checkout (replay: stale 1) |
+| [MUB6-ROUTE-C-LABEL-ARITHMETIC](nodes/MUB6-ROUTE-C-LABEL-ARITHMETIC.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | grade E2; 3 Lean reference(s) cited, 3 in this checkout (replay: stale 3) |
 
 ## `proved_lean_external_only` (0)
 
@@ -24,7 +33,7 @@ PROVED_LEAN whose cited Lean lies only in external or sibling-atlas paths, none 
 
 None.
 
-## `receipt_not_current` (35)
+## `receipt_not_current` (50)
 
 A replay receipt exists for a cited Lean file, but its sha256 no longer matches the file, it records a failure, or it records no passed axiom audit. Ordered by downstream nodes, most first.
 
@@ -35,8 +44,11 @@ A replay receipt exists for a cited Lean file, but its sha256 no longer matches 
 | [DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS](nodes/DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E3 | 48 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
 | [CT-MARLETTO-VEDRAL-2017-SOURCE](nodes/CT-MARLETTO-VEDRAL-2017-SOURCE.md) | CONSTRUCTOR_THEORY | `SOURCE_RECORD` | E1 | 29 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
 | [TFQ-0213](nodes/TFQ-0213.md) | ENGINE_CUSTODY | `SOURCE_RECORD` | E1 | 20 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
+| [MUB6-SZOLLOSI-TWO-CIRCULANT](nodes/MUB6-SZOLLOSI-TWO-CIRCULANT.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E3 | 12 | lean4/MasterClassification.lean: replay stale against 1 receipt(s) |
 | [TFQ-0225](nodes/TFQ-0225.md) | ENGINE_CUSTODY | `SOURCE_RECORD` | E1 | 8 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
 | [FQ-GAP-TENSOR-UNIQUENESS](nodes/FQ-GAP-TENSOR-UNIQUENESS.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 7 | lean4/CoupledRelationalProjectors.lean: replay failed against 1 receipt(s) |
+| [MUB6-CORNER-ROUTING-DEPHASING](nodes/MUB6-CORNER-ROUTING-DEPHASING.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 3 | lean4/MasterClassification.lean: replay stale against 1 receipt(s) |
+| [MUB6-CORNER-ROUTING-DEPHASING](nodes/MUB6-CORNER-ROUTING-DEPHASING.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 3 | lean4/MasterClassification.lean: replay stale against 1 receipt(s) |
 | [FQ-GAP-STONE-CONTINUOUS-TIME](nodes/FQ-GAP-STONE-CONTINUOUS-TIME.md) | FINITE_QM_DYNAMICS | `CONDITIONAL` | E3 | 2 | lean4/U1PhaseSynthesis.lean: replay failed against 1 receipt(s) |
 | [FQ-GAP-STONE-CONTINUOUS-TIME](nodes/FQ-GAP-STONE-CONTINUOUS-TIME.md) | FINITE_QM_DYNAMICS | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
 | [FQ-GAP-STONE-CONTINUOUS-TIME](nodes/FQ-GAP-STONE-CONTINUOUS-TIME.md) | FINITE_QM_DYNAMICS | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
@@ -60,10 +72,22 @@ A replay receipt exists for a cited Lean file, but its sha256 no longer matches 
 | [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
 | [FQ-GAP-U1-CIRCLE](nodes/FQ-GAP-U1-CIRCLE.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 2 | lean4/U1QuadraticTowerAndCayleyStone.lean: replay failed against 1 receipt(s) |
 | [FQ-TRACE-ZERO-DUALITY-K23](nodes/FQ-TRACE-ZERO-DUALITY-K23.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 2 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
+| [MUB6-TAO-MATRIX-CHM](nodes/MUB6-TAO-MATRIX-CHM.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 2 | lean4/MasterClassification.lean: replay stale against 1 receipt(s) |
 | [GP-GAP-EXACT-DUALITY](nodes/GP-GAP-EXACT-DUALITY.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 1 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
+| [MUB6-FOURIER-DITA-FAMILY-CHM](nodes/MUB6-FOURIER-DITA-FAMILY-CHM.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 1 | lean4/MasterClassification.lean: replay stale against 1 receipt(s) |
+| [MUB6-ROUTE-C-CONDITIONAL](nodes/MUB6-ROUTE-C-CONDITIONAL.md) | MUTUALLY_UNBIASED_BASES | `CONDITIONAL` | E2 | 1 | lean4/RouteCFourierLandingBypass.lean: replay stale against 1 receipt(s) |
+| [MUB6-ROUTE-C-CONDITIONAL](nodes/MUB6-ROUTE-C-CONDITIONAL.md) | MUTUALLY_UNBIASED_BASES | `CONDITIONAL` | E2 | 1 | lean4/RouteCFourierLandingBypass.lean: replay stale against 1 receipt(s) |
 | [CT-ENTANGLING-PHASE-FINITE-TARGET](nodes/CT-ENTANGLING-PHASE-FINITE-TARGET.md) | CONSTRUCTOR_THEORY | `PROVED_LEAN` | E3 | 0 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
 | [DS-QM080-IMPORT-FREE-TRACE-NORM-CORE](nodes/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE.md) | FINITE_QM_STRUCTURE | `PROVED_LEAN` | E3 | 0 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
 | [FQ-PRIM-TO-QM-SELECTION-OPEN](nodes/FQ-PRIM-TO-QM-SELECTION-OPEN.md) | FINITE_QM_CORE | `CONDITIONAL` | E3 | 0 | lean4/CoupledRelationalProjectors.lean: replay failed against 1 receipt(s) |
+| [MUB6-COVER56-CURVATURE-PREMISE](nodes/MUB6-COVER56-CURVATURE-PREMISE.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | lean4/TargetA12SmaleSentry.lean: replay stale against 1 receipt(s) |
+| [MUB6-HAAGERUP-MATRIX-CHM](nodes/MUB6-HAAGERUP-MATRIX-CHM.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | lean4/MasterClassification.lean: replay stale against 1 receipt(s) |
+| [MUB6-INTERFACE-COUNTERMODEL](nodes/MUB6-INTERFACE-COUNTERMODEL.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | lean4/MomentPositivityObligation.lean: replay stale against 1 receipt(s) |
+| [MUB6-INTERFACE-COUNTERMODEL](nodes/MUB6-INTERFACE-COUNTERMODEL.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | lean4/MomentPositivityObligation.lean: replay stale against 1 receipt(s) |
+| [MUB6-KARLSSON-AFFINE-ANSATZ](nodes/MUB6-KARLSSON-AFFINE-ANSATZ.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | lean4/MasterClassification.lean: replay stale against 1 receipt(s) |
+| [MUB6-ROUTE-C-LABEL-ARITHMETIC](nodes/MUB6-ROUTE-C-LABEL-ARITHMETIC.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | lean4/RouteCFourierLandingBypass.lean: replay stale against 1 receipt(s) |
+| [MUB6-ROUTE-C-LABEL-ARITHMETIC](nodes/MUB6-ROUTE-C-LABEL-ARITHMETIC.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | lean4/RouteCFourierLandingBypass.lean: replay stale against 1 receipt(s) |
+| [MUB6-ROUTE-C-LABEL-ARITHMETIC](nodes/MUB6-ROUTE-C-LABEL-ARITHMETIC.md) | MUTUALLY_UNBIASED_BASES | `PROVED_LEAN` | E2 | 0 | lean4/RouteCFourierLandingBypass.lean: replay stale against 1 receipt(s) |
 | [TFQ-0316](nodes/TFQ-0316.md) | FINITE_HILBERT | `SOURCE_RECORD` | E1 | 0 | lean4/DualWitness.lean: replay failed against 1 receipt(s) |
 
 ## `computational_no_runnable_test` (126)
