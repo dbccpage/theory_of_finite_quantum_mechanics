@@ -227,7 +227,7 @@ def query_openrouter_live(model: str, prompt: str, api_key: str, max_tokens: int
         headers={
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
-            "HTTP-Referer": "https://github.com/dbccpage/the_symbol_game",
+            "HTTP-Referer": "private-upstream",
             "X-Title": "The Symbol Game FSP Meron Benchmark",
         },
     )

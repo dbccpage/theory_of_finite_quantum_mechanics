@@ -528,9 +528,9 @@ The $\ell^1(E; \ell^2)$ geometry derived here integrates into general finite obs
 ## References
 
 
-[1] J. H. Carroll, "Primitive Axiomatics of Finite Obstruction Calculus: Evaluation Preorders, Quotient Residuals, Closure Charge, and Observer-Selected Geometry," preprint, 2026. [Repository source](https://github.com/dbccpage/the_symbol_game/tree/adc3d57001a0491945fce1ccd203f696c57c389b/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/006_primitive_axiomatics).
+[1] J. H. Carroll, "Primitive Axiomatics of Finite Obstruction Calculus: Evaluation Preorders, Quotient Residuals, Closure Charge, and Observer-Selected Geometry," preprint, 2026. Repository source.
 
-[2] J. H. Carroll, "M-Compatible Gauge Classification for Banach Presheaf Coboundaries: The ℓ¹ Maximal-Symmetry Endpoint," preprint, 2026. [Zenodo record 20677155](https://zenodo.org/records/20677155). [Companion source at the reviewed commit](https://github.com/dbccpage/the_symbol_game/tree/adc3d57001a0491945fce1ccd203f696c57c389b/omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/007_m_compatible_gauge_classification), finite-dimensional unit-body correspondence, §2.2, Theorem 2.2.
+[2] J. H. Carroll, "M-Compatible Gauge Classification for Banach Presheaf Coboundaries: The ℓ¹ Maximal-Symmetry Endpoint," preprint, 2026. [Zenodo record 20677155](https://zenodo.org/records/20677155). Companion source at the reviewed commit, finite-dimensional unit-body correspondence, §2.2, Theorem 2.2.
 
 [3] J. H. Carroll, "Projection Obstruction for Factorized States: Nonlinear Dynamics, Conditional ℓ1 Diagnostics, and Finite-Time Defect Bounds," preprint, 2026. [Zenodo record 21752743](https://zenodo.org/records/21752743).
 

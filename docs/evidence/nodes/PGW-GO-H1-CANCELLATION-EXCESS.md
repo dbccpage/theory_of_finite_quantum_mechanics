@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0483_go_h1_cancellation_excess.md`
 
 - file: [dag/derivations/02_genesis/tfq_0483_go_h1_cancellation_excess.md](../../../dag/derivations/02_genesis/tfq_0483_go_h1_cancellation_excess.md)
-- sha256 (`lf-normalised`): `18cd28c68f7110413e09785e6dd1d62a7b6c47879bc7f8dfcdbee8605c488cb0`
+- sha256 (`lf-normalised`): `9fc3bcced0328cd6e4a0691b1cca9e1af02a80dfc7896c74740e45d60af7d418`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0483
 - counts toward the grade: no
@@ -114,9 +114,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::cost`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::excess`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::plain`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::cost`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::excess`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::plain`
 
 ## Absences recorded by the TFQ records
 

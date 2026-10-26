@@ -47,7 +47,7 @@ CampaignCompC2Step3NotWordStep records three concrete one-hole list moves and th
 - *none*
 
 ### Cited by the source, not in this checkout
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Cost.lean::Step3 (not staged in this checkout)`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Cost.lean::Step3 (not staged in this checkout)`
 
 ---
 

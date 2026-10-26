@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0452_identity_is_index_not_profile.md`
 
 - file: [dag/derivations/02_genesis/tfq_0452_identity_is_index_not_profile.md](../../../dag/derivations/02_genesis/tfq_0452_identity_is_index_not_profile.md)
-- sha256 (`lf-normalised`): `28000bdb0b720cea505ee79cbf3c2e65f19a431007c0fb47ce710d9059d72fc4`
+- sha256 (`lf-normalised`): `94b6d978dd56dfdbad492ff15598dca5d5d7f62f45a63b6fa7760d4d27cd72a6`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0452
 - counts toward the grade: no
@@ -83,8 +83,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::profiles`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs::profiles`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::profiles`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs::profiles`
 
 ## Routes
 

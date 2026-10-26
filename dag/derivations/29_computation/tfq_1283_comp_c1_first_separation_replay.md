@@ -56,7 +56,7 @@ first_separation_replay is a decide on a closed term (replayE of the five-event 
 - `code/python/src/qm/genesis_tm.py::step_e`
 
 ### Cited by the source, not in this checkout
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean (sealed events; staged copy in dag/results/PG-GEN-SUPPLY-ERASURE)`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Basic.lean (sealed events; staged copy in dag/results/PG-GEN-SUPPLY-ERASURE)`
 
 ---
 

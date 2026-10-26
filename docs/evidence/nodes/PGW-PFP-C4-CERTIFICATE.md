@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/04_authorization/tfq_0509_pfp_c4_certificate.md`
 
 - file: [dag/derivations/04_authorization/tfq_0509_pfp_c4_certificate.md](../../../dag/derivations/04_authorization/tfq_0509_pfp_c4_certificate.md)
-- sha256 (`lf-normalised`): `7855ee8f69967de6a386c25bb3ae3eb6302c839c003cb5442063b6ad041d11dc`
+- sha256 (`lf-normalised`): `f552ade72d0b6a21330f1f877522ee5211d05ce2295f7b730045143d1f591638`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0509
 - counts toward the grade: no
@@ -82,9 +82,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs::PromptCochainEvaluator`
-- `external:the_symbol_game/omega_engine_pfp/infrastructure/finite_qm_cochain_judge.py::NativeCochainJudge`
-- `external:the_symbol_game/omega_engine_pfp/tests/finite_qm_workflow/test_finite_qm_reference_workflow.py::test_native_certificate_positive_and_decisive_mutations`
+- `external:upstream/omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs::PromptCochainEvaluator`
+- `external:upstream/omega_engine_pfp/infrastructure/finite_qm_cochain_judge.py::NativeCochainJudge`
+- `external:upstream/omega_engine_pfp/tests/finite_qm_workflow/test_finite_qm_reference_workflow.py::test_native_certificate_positive_and_decisive_mutations`
 
 ## Absences recorded by the TFQ records
 

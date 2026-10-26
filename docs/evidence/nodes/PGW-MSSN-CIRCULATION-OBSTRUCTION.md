@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0534_mssn_circulation_obstruction.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0534_mssn_circulation_obstruction.md](../../../dag/derivations/05_mssn_sn/tfq_0534_mssn_circulation_obstruction.md)
-- sha256 (`lf-normalised`): `a744cb7dbca27471eb99950268d83ef7f62abfb6935a7c84cd099a9a6661de08`
+- sha256 (`lf-normalised`): `a9da3e7dbede048fd6f4c0372a1fe858617818ee6f8c1be1389523f02b8c5f1a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0534
 - counts toward the grade: no
@@ -87,8 +87,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux`
-- `external:the_symbol_game/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::verify_four_gate_factorization`
+- `external:upstream/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux`
+- `external:upstream/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::verify_four_gate_factorization`
 
 ## Absences recorded by the TFQ records
 

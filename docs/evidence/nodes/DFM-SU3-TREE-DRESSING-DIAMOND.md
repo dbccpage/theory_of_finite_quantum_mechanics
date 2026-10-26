@@ -85,7 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1131_dfm_su3_tree_dressing_diamond.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1131_dfm_su3_tree_dressing_diamond.md](../../../dag/derivations/24_dressing_field/tfq_1131_dfm_su3_tree_dressing_diamond.md)
-- sha256 (`lf-normalised`): `624123a255c2d085136535b56e04de2e43abe6f8ae565d0273e328acd8ebfdb2`
+- sha256 (`lf-normalised`): `1a1285c70fcbaffc9ec386b5f10dfe3e919425627b09fb543569a01fa2147285`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1131
 - counts toward the grade: no

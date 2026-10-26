@@ -60,7 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0545_wdp_closure_needs_degree.md`
 
 - file: [dag/derivations/06_wdp/tfq_0545_wdp_closure_needs_degree.md](../../../dag/derivations/06_wdp/tfq_0545_wdp_closure_needs_degree.md)
-- sha256 (`lf-normalised`): `81222b9d557a6f2c1a0fdc7189df15c8439c3e16aa16ab7ed95c517ff2e1dac4`
+- sha256 (`lf-normalised`): `d308af38f222c4d63fceaaf3663e709d22ca4c7706de2c9be3166fb811c5399e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0545
 - counts toward the grade: no
@@ -83,7 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::degree_one_window`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::degree_one_window`
 
 ## Absences recorded by the TFQ records
 
