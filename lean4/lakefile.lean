@@ -1421,3 +1421,6 @@ lean_lib CampaignIdentityConvention where
 
 lean_lib CampaignReggeFiniteAction where
   roots := #[`CampaignReggeFiniteAction]
+
+lean_lib CampaignConstraintKernelProjector where
+  roots := #[`CampaignConstraintKernelProjector]
