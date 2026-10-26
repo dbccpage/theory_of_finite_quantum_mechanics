@@ -1,0 +1,350 @@
+{
+  "AuthorityEffect": "None",
+  "base": "b2a6bf8a831ca6187985a42a725ab06dca1f98c6",
+  "source": "lean4/CampaignL1OrthogonalAdditivity.lean",
+  "sha256": "50db47282d0bc3fedfe87161c63890be81b0c21a5708f1fc9f2514e6fa6370d2",
+  "status": "CONDITIONAL",
+  "score": "L2D",
+  "only_changed_node": "L1-IMP-ORTHOGONAL-ADDITIVITY",
+  "all_routes_unchanged": true,
+  "checks": {
+    "sync-check-0": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pfp_results.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.18,
+      "output": "pfp results synchronized\n"
+    },
+    "sync-check-1": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.346,
+      "output": "unified DAG synchronized\n"
+    },
+    "sync-check-2": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_application_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.189,
+      "output": "application branches synchronized\n"
+    },
+    "sync-check-3": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pregenesis_to_wdp.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.416,
+      "output": "pregenesis-to-wdp fragment synchronized\n"
+    },
+    "sync-check-4": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_frontier_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.34,
+      "output": "frontier branches synchronized\n"
+    },
+    "sync-check-5": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_genesis_to_higher.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.201,
+      "output": "genesis-to-higher synchronized\n"
+    },
+    "sync-check-6": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_foc035_observer_presheaf.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.224,
+      "output": "foc035 observer presheaf synchronized\n"
+    },
+    "invariants": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--invariants"
+      ],
+      "exit_code": 0,
+      "seconds": 0.17,
+      "output": "unified invariants failures=0\n"
+    },
+    "views": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/render_dag_views.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.094,
+      "output": "views match derivation_dag.json\n"
+    },
+    "validator": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/validate_derivation_dag.py",
+        "--no-files"
+      ],
+      "exit_code": 0,
+      "seconds": 0.848,
+      "output": "nodes=925 routes=934 records=977 failures=0\n"
+    },
+    "facts-check": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 19.484,
+      "output": "README facts current\n"
+    },
+    "status": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_status.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 6.093,
+      "output": "generated status files are current (16 files checked)\n"
+    },
+    "receipt-check": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.109,
+      "output": "receipts current\n"
+    },
+    "evidence-check": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/evidence/build_evidence.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 6.521,
+      "output": "evidence map current\n"
+    },
+    "scope": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "b2a6bf8a831ca6187985a42a725ab06dca1f98c6"
+      ],
+      "exit_code": 0,
+      "seconds": 2.981,
+      "output": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 6,\n    \"valid_contracts_and_scores\": 6,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 6\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 1,\n      \"Symbolic/Formal\": 5\n    },\n    \"completed_scores\": 6,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 6\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since b2a6bf8a831ca6187985a42a725ab06dca1f98c6 (merge base 867c667201ef), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n"
+    },
+    "history": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/contract_scores.py",
+        "check",
+        "--changed-since",
+        "b2a6bf8a831ca6187985a42a725ab06dca1f98c6"
+      ],
+      "exit_code": 0,
+      "seconds": 3.643,
+      "output": "{\n  \"originals\": null,\n  \"combined_files\": 11,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n"
+    },
+    "overclaim": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "b2a6bf8a831ca6187985a42a725ab06dca1f98c6",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "seconds": 6.262,
+      "output": "overclaim_scan: scope=changes since b2a6bf8a831ca6187985a42a725ab06dca1f98c6 (merge base 867c667201ef); HIGH=0 MEDIUM=0 LOW=4\n"
+    },
+    "tests": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "scripts/test_overclaim_scan.py::test_committed_baseline_is_consistent_with_a_fresh_scan",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "seconds": 6.315,
+      "output": ".                                                                        [100%]\n1 passed in 6.04s\n",
+      "prior_run": "190 other regression tests passed before the active receipt was corrected."
+    },
+    "full-history": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/contract_scores.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 13.152,
+      "output": "{\n  \"originals\": 0,\n  \"combined_files\": 9052,\n  \"all_passed\": true,\n  \"errors\": []\n}\n"
+    },
+    "anti-pattern": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/auto/anti_pattern_lint.py",
+        "--changed-since",
+        "b2a6bf8a831ca6187985a42a725ab06dca1f98c6"
+      ],
+      "exit_code": 0,
+      "seconds": 0.734,
+      "output": "anti_pattern_lint: 0 HIGH, 0 MEDIUM, 0 LOW (11 changed .lean/.py files since b2a6bf8a831ca6187985a42a725ab06dca1f98c6 (Lean rules: added lines))\n"
+    },
+    "estate": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/auto/estate_audit.py",
+        "skills"
+      ],
+      "exit_code": 0,
+      "seconds": 0.096,
+      "output": "[LOW] MISSING_PATH .claude/skills/audit/SKILL.md:42: cited path .agents/agents/ does not exist\n[LOW] MISSING_PATH .claude/skills/audit/SKILL.md:42: cited path .claude/agents/ does not exist\n[LOW] MISSING_PATH .claude/skills/overclaim-hunter/SKILL.md:37: cited path docs/overclaim/report.md does not exist\nestate_audit: 0 HIGH, 0 MEDIUM, 3 LOW (13 skills)\n"
+    },
+    "readme-tests": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "dag/test_readme_facts.py",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "seconds": 6.882,
+      "output": ".....                                                                    [100%]\n5 passed in 6.63s\n"
+    },
+    "governance": {
+      "command": [
+        "/workspace/continuum-two/governance-target/release/governance-check",
+        "--root",
+        "/workspace/theory_of_finite_quantum_mechanics",
+        "check",
+        "--changed-since",
+        "b2a6bf8a831ca6187985a42a725ab06dca1f98c6"
+      ],
+      "exit_code": 1,
+      "seconds": 1.535,
+      "output": "changed since b2a6bf8a831ca6187985a42a725ab06dca1f98c6 (867c667201efccec701ce3d4e6a418aece5dde96): 116 paths\nchecked 8332: 184 pass, 8127 grandfathered, 20 boilerplate, 1 failed\nFAIL lean4/CampaignL1OrthogonalAdditivity.lean (new or not grandfathered)\n  lean4/CampaignL1OrthogonalAdditivity.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L2D\n"
+    }
+  },
+  "temporary_pin_simulation": {
+    "candidate": {
+      "lean4/CampaignL1OrthogonalAdditivity.lean": {
+        "category": "finite_proof_example",
+        "sha256": "50db47282d0bc3fedfe87161c63890be81b0c21a5708f1fc9f2514e6fa6370d2",
+        "reason": "Proposed exact-source exception for PR #440 at honest L2D; original target CONDITIONAL. One nonsymmetric coefficient matrix; no Gram-matrix or arbitrary orthogonal-frame/projection-measure theorem. General sector additivity remains supplied. Entrywise off-diagonal zero needs symmetry (and in the Hermitian setting the stated real/imaginary sector hypotheses)."
+      }
+    },
+    "method": "Write candidate into support_exceptions temporarily, run governance, restore exact original policy bytes in finally. No pin remains applied.",
+    "check": {
+      "command": [
+        "/workspace/continuum-two/governance-target/release/governance-check",
+        "--root",
+        "/workspace/theory_of_finite_quantum_mechanics",
+        "check",
+        "--changed-since",
+        "b2a6bf8a831ca6187985a42a725ab06dca1f98c6"
+      ],
+      "exit_code": 0,
+      "seconds": 1.631,
+      "output": "changed since b2a6bf8a831ca6187985a42a725ab06dca1f98c6 (867c667201efccec701ce3d4e6a418aece5dde96): 116 paths\nchecked 8332: 185 pass, 8127 grandfathered, 20 boilerplate, 0 failed\n"
+    }
+  }
+}

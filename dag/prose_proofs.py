@@ -3,7 +3,9 @@
 A proof section is the part of a Markdown file under papers/ that starts at a line
 "DAG node: `ID`" (one or more backticked node ids) and runs to the next heading or the next such
 line. It must contain a paragraph opening with "*Proof.*", and every Lean reference written as
-`lean4/<file>.lean::<name>` in it must resolve in this checkout.
+`lean4/<file>.lean::<name>` in it must match a declaration in this checkout. Comments, strings and fenced Markdown
+examples are excluded. These lexical checks establish neither compilation nor the validity of a
+mathematical argument; coverage counts only sections passing the structural checks.
 
 A PROVED_PROSE node has a prose proof by definition (its cited source is one). A PROVED_LEAN or
 COMPUTATIONALLY_CHECKED node has one when a proof section names it. Run this file to print the
@@ -15,9 +17,15 @@ from __future__ import annotations
 import json
 import re
 import sys
+from functools import lru_cache
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+# Reuse the repository's comment-aware lexical Lean reader. This is a source
+# citation check, not Lean elaboration or verification of the prose argument.
+sys.path.insert(0, str(ROOT / "scripts"))
+from overclaim_lean import parse_decls, strip_lean  # noqa: E402
+
 PROOF_STATUSES = ("PROVED_LEAN", "PROVED_PROSE", "COMPUTATIONALLY_CHECKED")
 
 _NODE_LINE = re.compile(r"^DAG nodes?: (.+)$")
@@ -37,7 +45,16 @@ def proof_sections(root: Path = ROOT) -> list[dict]:
     for path in sorted((root / "papers").rglob("*.md")):
         lines = path.read_text(encoding="utf-8").splitlines()
         current = None
+        fence = None
         for lineno, line in enumerate(lines, 1):
+            marker = re.match(r"^ {0,3}(`{3,}|~{3,})(.*)$", line)
+            if fence is not None:
+                if marker and marker[1][0] == fence[0] and len(marker[1]) >= len(fence) and not marker[2].strip():
+                    fence = None
+                continue
+            if marker:
+                fence = marker[1]
+                continue
             match = _NODE_LINE.match(line)
             if match or _HEADING.match(line):
                 if current:
@@ -64,8 +81,21 @@ def lean_refs(text: str) -> list[tuple[str, str]]:
 
 
 def lean_ref_resolves(root: Path, path: str, name: str) -> bool:
-    file = root / path
-    return file.is_file() and name.split(".")[-1] in file.read_text(encoding="utf-8", errors="replace")
+    file = (root / path).resolve()
+    if ".." in Path(path).parts or not file.is_relative_to(root.resolve() / "lean4") or not file.is_file():
+        return False
+    declarations = declaration_names(file.read_text(encoding="utf-8"))
+    if name in declarations:
+        return True
+    # Historical citations may use an unqualified name or a namespace suffix.
+    # Require a unique declaration, and never accept only a matching leaf of a
+    # different supplied namespace.
+    return sum(full.endswith("." + name) for full in declarations) == 1
+
+
+@lru_cache(maxsize=128)
+def declaration_names(source: str) -> tuple[str, ...]:
+    return tuple(d.full for d in parse_decls(strip_lean(source)))
 
 
 def section_errors(section: dict, nodes: dict[str, dict], root: Path = ROOT) -> list[str]:
@@ -73,7 +103,7 @@ def section_errors(section: dict, nodes: dict[str, dict], root: Path = ROOT) -> 
     errs = []
     if not section["ids"]:
         errs.append(f"{where}: no node id on the DAG node line")
-    if "*Proof.*" not in section["text"]:
+    if not re.search(r"^\*Proof\.\*(?:\s|$)", section["text"], re.M):
         errs.append(f"{where}: no *Proof.* paragraph")
     refs = lean_refs(section["text"])
     for path, name in refs:
@@ -92,8 +122,11 @@ def section_errors(section: dict, nodes: dict[str, dict], root: Path = ROOT) -> 
     return errs
 
 
-def covered_ids(root: Path = ROOT) -> set[str]:
-    return {i for s in proof_sections(root) for i in s["ids"]}
+def covered_ids(root: Path = ROOT, nodes: dict[str, dict] | None = None) -> set[str]:
+    """Count only sections that pass the structural and citation checks."""
+    if nodes is None:
+        nodes = load_nodes(root)
+    return {i for s in proof_sections(root) if not section_errors(s, nodes, root) for i in s["ids"]}
 
 
 def main() -> int:
@@ -101,12 +134,12 @@ def main() -> int:
     errs = [e for s in proof_sections() for e in section_errors(s, nodes)]
     for e in errs:
         print(e)
-    covered = covered_ids()
+    covered = covered_ids(nodes=nodes)
     lean = [i for i, n in nodes.items() if n["status"] == "PROVED_LEAN"]
     prose = [i for i, n in nodes.items() if n["status"] == "PROVED_PROSE"]
     missing = [i for i in lean if i not in covered]
     print(f"PROVED_PROSE nodes: {len(prose)}")
-    print(f"PROVED_LEAN nodes with a prose proof: {len(lean) - len(missing)} of {len(lean)}")
+    print(f"PROVED_LEAN nodes with a valid linked prose section: {len(lean) - len(missing)} of {len(lean)}")
     if "--missing" in sys.argv:
         for i in missing:
             print(f"  {nodes[i]['stage']}\t{i}")

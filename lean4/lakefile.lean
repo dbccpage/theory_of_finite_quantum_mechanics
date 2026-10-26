@@ -1486,3 +1486,23 @@ lean_lib CampaignTfq0183FourModeDisk where
 lean_lib «CampaignFiniteGroupPachner» where
   srcDir := "."
   roots := #[`CampaignFiniteGroupPachner]
+
+-- Conditional continuum campaign: DFM-CONTINUUM-INTERFACE. Non-default target.
+lean_lib CampaignDfmRefinementLimit where
+  roots := #[`CampaignDfmRefinementLimit]
+
+-- Reviewed campaign module; non-default target.
+lean_lib CampaignLqgProjectiveLimit where
+  roots := #[`CampaignLqgProjectiveLimit]
+
+-- Reviewed campaign module; non-default target.
+lean_lib CampaignL1U1SelectorOtherSegment where
+  roots := #[`CampaignL1U1SelectorOtherSegment]
+
+-- Reviewed campaign module; non-default target.
+lean_lib CampaignOpsLeanGap where
+  roots := #[`CampaignOpsLeanGap]
+
+-- Reviewed campaign module; non-default target.
+lean_lib CampaignL1OrthogonalAdditivity where
+  roots := #[`CampaignL1OrthogonalAdditivity]

@@ -6,7 +6,7 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
-The DAG has 925 nodes in 36 stages. Evidence grades: E0 152, E1 196, E2 35, E3 542.
+The DAG has 925 nodes in 36 stages. Evidence grades: E0 152, E1 195, E2 35, E3 543.
 
 ### What is proved here, what is imported, what is open
 
@@ -24,11 +24,11 @@ The DAG has 925 nodes in 36 stages. Evidence grades: E0 152, E1 196, E2 35, E3 5
 
 Of the 268 `PROVED_LEAN` nodes, 268 reach grade E3 or E4 (100 percent); 0 do not. The second group is listed in [mismatches](mismatches.md).
 
-Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 542 nodes at E3, 166 have a qualifying review, 37 of those cite in-repo Rust or Python code that is not a test, and 39 have a runnable test but no review.
+Grade E4 needs an in-repo runnable test and a recorded review as well as a replayed Lean declaration. 0 nodes meet all three. Among the 543 nodes at E3, 166 have a qualifying review, 37 of those cite in-repo Rust or Python code that is not a test, and 39 have a runnable test but no review.
 
 ### Where the Lean evidence stands
 
-The `lean` fields of nodes cite 2414 distinct Lean declarations that lie in files of this checkout. 2342 of them are in a file whose current sha256 matches a passing replay receipt; 49 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches; 23 are in files whose current-hash receipt failed the build or axiom audit. The `PROVED_LEAN` nodes cite 1096 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
+The `lean` fields of nodes cite 2453 distinct Lean declarations that lie in files of this checkout. 2381 of them are in a file whose current sha256 matches a passing replay receipt; 49 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches; 23 are in files whose current-hash receipt failed the build or axiom audit. The `PROVED_LEAN` nodes cite 1096 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
 
 ### Status by evidence grade
 
@@ -42,9 +42,9 @@ The `lean` fields of nodes cite 2414 distinct Lean declarations that lie in file
 | `IMPORTED_ASSUMPTION` | 4 | 13 | 0 | 53 | 0 | 70 |
 | `ADMITTED_PRIMITIVE` | 0 | 0 | 0 | 3 | 0 | 3 |
 | `SOURCE_RECORD` | 52 | 28 | 0 | 1 | 0 | 81 |
-| `OPEN` | 21 | 60 | 6 | 87 | 0 | 174 |
+| `OPEN` | 21 | 59 | 6 | 88 | 0 | 174 |
 | `REFUTED` | 0 | 4 | 1 | 1 | 0 | 6 |
-| Total | 152 | 196 | 35 | 542 | 0 | 925 |
+| Total | 152 | 195 | 35 | 543 | 0 | 925 |
 
 ### Stage by evidence grade
 
@@ -83,7 +83,7 @@ The `lean` fields of nodes cite 2414 distinct Lean declarations that lie in file
 | [ADS_CFT](stages/ADS_CFT.md) | 5 | 1 | 0 | 7 | 0 | 13 | 3 | 0 |
 | [LOOP_QUANTUM_GRAVITY](stages/LOOP_QUANTUM_GRAVITY.md) | 8 | 2 | 0 | 6 | 0 | 16 | 4 | 0 |
 | [GENESIS_TO_HIGHER](stages/GENESIS_TO_HIGHER.md) | 0 | 10 | 0 | 2 | 0 | 12 | 0 | 0 |
-| [OBSERVER_PRESHEAF](stages/OBSERVER_PRESHEAF.md) | 0 | 23 | 4 | 6 | 0 | 33 | 2 | 0 |
+| [OBSERVER_PRESHEAF](stages/OBSERVER_PRESHEAF.md) | 0 | 22 | 4 | 7 | 0 | 33 | 2 | 0 |
 
 ## Evidence grades
 
@@ -103,7 +103,7 @@ Counting rules:
 - Derivation papers written by the syncs, and the generated JSONL and Markdown views, are listed and not counted: they restate the DAG and do not bear on a claim.
 - A symbol "exists" under the validator's leaf rule: the last name component occurs in the cited file. Counted symbols whose leaf occurs but for which no declaration form (`theorem`, `def`, `fn`, `struct`, ...) matched: 6. E3 additionally requires a declaration form or a listing in the receipt.
 - Paths that begin with `omega_engine` or `.claude` name sibling trees that are not in this repository. They are recorded as `external_unresolved`: neither confirmed nor refuted here.
-- Lean receipts are the files in `dag/research/` whose Lean results carry a module name and a sha256. A receipt covers a Lean file, not a single declaration, unless the receipt itemises the declaration's axioms. 2275 of the 2342 receipt-backed declarations are itemised; the others rest on the module-level audit. A cited symbol is matched to a receipt name only if the receipt name equals it or ends in a dot followed by it; when more than one receipt name matches, the match is recorded as ambiguous and no axiom list is copied (0 declarations).
+- Lean receipts are the files in `dag/research/` whose Lean results carry a module name and a sha256. A receipt covers a Lean file, not a single declaration, unless the receipt itemises the declaration's axioms. 2314 of the 2381 receipt-backed declarations are itemised; the others rest on the module-level audit. A cited symbol is matched to a receipt name only if the receipt name equals it or ends in a dot followed by it; when more than one receipt name matches, the match is recorded as ambiguous and no axiom list is copied (0 declarations).
 - File sha256 values are over the file bytes for `.lean`, `.rs`, `.py` and `.toml` files (their line endings are pinned in `.gitattributes`) and over the LF-normalised text for other files.
 
 ## Verify it yourself
@@ -174,6 +174,6 @@ The ten flags on `PROVED_LEAN` nodes with the most downstream nodes:
 - It does not check that a Lean statement says what the node says. Only a recorded review does that, and the grade E4 asks for one.
 - It does not rebuild Lean, run Rust or Python tests, or fetch anything. A receipt is a recorded result, checked here only for a matching file hash.
 - It does not resolve the sibling atlas trees. Their references stay `external_unresolved`.
-- It indexes the receipts in `dag/research/*.json` that carry per-module sha256 values. Other receipts are not indexed: `dag/research/campaign_fsp-majorana-clifford-parity_checks.json` (records Lean checks without per-module sha256); `dag/research/campaign_pg-gen-no-return_review_integration.json` (records Lean checks without per-module sha256); `dag/research/campaign_pgw-context-decision-procedure_review_validation.json` (records Lean checks without per-module sha256); `dag/research/campaign_tfq-0396_review_validation.json` (records Lean checks without per-module sha256); `dag/research/pr231_pillow_release_validation.json` (records Lean checks without per-module sha256); `dag/research/pr_320_campaign_pipeline.json` (records Lean checks without per-module sha256); `dag/research/pr_320_independent_review_validation.json` (records Lean checks without per-module sha256); `dag/research/tensor_composition_validation.json` (records Lean checks without per-module sha256); `dag/research/tensor_countermodel_failed_replay.json` (an attempt record, not a lean_replay receipt; at least one module exited with a nonzero code). The `*.axioms.txt` files, the per-run Lean receipts under `dag/results/`, and the Rust and Python test outcomes are not used for grading in this version.
+- It indexes the receipts in `dag/research/*.json` that carry per-module sha256 values. Other receipts are not indexed: `dag/research/approved_pr_433_continuum_acceptance_2026_10_26.json` (records Lean checks without per-module sha256); `dag/research/approved_pr_434_continuum_acceptance_2026_10_26.json` (records Lean checks without per-module sha256); `dag/research/campaign_fsp-majorana-clifford-parity_checks.json` (records Lean checks without per-module sha256); `dag/research/campaign_pg-gen-no-return_review_integration.json` (records Lean checks without per-module sha256); `dag/research/campaign_pgw-context-decision-procedure_review_validation.json` (records Lean checks without per-module sha256); `dag/research/campaign_tfq-0396_review_validation.json` (records Lean checks without per-module sha256); `dag/research/pr231_pillow_release_validation.json` (records Lean checks without per-module sha256); `dag/research/pr434_back_route_validation_20261026.json` (records Lean checks without per-module sha256); `dag/research/pr434_current_review_20261026.json` (records Lean checks without per-module sha256); `dag/research/pr434_main_integration_validation_20261026.json` (records Lean checks without per-module sha256); `dag/research/pr435_approved_acceptance_20261026.json` (records Lean checks without per-module sha256); `dag/research/pr435_repair_validation_20261026.json` (records Lean checks without per-module sha256); `dag/research/pr437_current_review_20261026.json` (records Lean checks without per-module sha256); `dag/research/pr439_approved_acceptance_20261026.json` (records Lean checks without per-module sha256); `dag/research/pr439_bottleneck_followup_20261026.json` (records Lean checks without per-module sha256); `dag/research/pr439_repair_validation_20261026.json` (records Lean checks without per-module sha256); `dag/research/pr440_preapproval_validation_20261026.json` (records Lean checks without per-module sha256); `dag/research/pr_320_campaign_pipeline.json` (records Lean checks without per-module sha256); `dag/research/pr_320_independent_review_validation.json` (records Lean checks without per-module sha256); `dag/research/tensor_composition_validation.json` (records Lean checks without per-module sha256); `dag/research/tensor_countermodel_failed_replay.json` (an attempt record, not a lean_replay receipt; at least one module exited with a nonzero code). The `*.axioms.txt` files, the per-run Lean receipts under `dag/results/`, and the Rust and Python test outcomes are not used for grading in this version.
 - A grade is a floor for the evidence found by following the node's own citations. A node with a low grade may have better evidence that it does not cite.
 

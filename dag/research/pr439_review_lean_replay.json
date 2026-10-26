@@ -1,0 +1,85 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "AuthorityEffect": "None",
+  "checked_at": "2026-10-26T18:44:58.051242+00:00",
+  "source_base": "867c667201efccec701ce3d4e6a418aece5dde96",
+  "scope": "For all four Boolean variables, the four specified parity constraints have no common assignment; their left XOR is false and the right XOR is true. The arithmetic identity 2*2*2*2 = 16 holds; the separate independent enumeration counts 16 assignments.",
+  "boundary": "This one parity box does not establish the listed global-section/NCF equivalences, strong-contextuality criterion, Vorobev theorem, no-signalling coboundary equivalence, rational normalization or Rust Scenario refinement. The Lean sixteen lemma is arithmetic, not a type-cardinality theorem. The original OPS obligation remains OPEN.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "results": [
+      {
+        "module": "CampaignOpsLeanGap",
+        "dag_node": "OPS-LEAN-GAP",
+        "source": "lean4/CampaignOpsLeanGap.lean",
+        "sha256": "28ba5a6e40e191c1060bd6bf67d33c795a5fdf937e95ed18b894e67649306414",
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignOpsLeanGap.lhsSum",
+          "CampaignOpsLeanGap.rhsSum",
+          "CampaignOpsLeanGap.noAssignment",
+          "CampaignOpsLeanGap.sixteen"
+        ],
+        "axioms": {
+          "CampaignOpsLeanGap.lhsSum": [],
+          "CampaignOpsLeanGap.rhsSum": [],
+          "CampaignOpsLeanGap.noAssignment": [],
+          "CampaignOpsLeanGap.sixteen": []
+        },
+        "output": "'CampaignOpsLeanGap.lhsSum' does not depend on any axioms\n'CampaignOpsLeanGap.rhsSum' does not depend on any axioms\n'CampaignOpsLeanGap.noAssignment' does not depend on any axioms\n'CampaignOpsLeanGap.sixteen' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "lake_build": {
+    "command": [
+      "lake",
+      "build",
+      "CampaignOpsLeanGap"
+    ],
+    "exit_code": 0,
+    "seconds": 0.451,
+    "output": "ℹ [2/3] Built CampaignOpsLeanGap (308ms)\ninfo: CampaignOpsLeanGap.lean:23:0: 'CampaignOpsLeanGap.lhsSum' does not depend on any axioms\ninfo: CampaignOpsLeanGap.lean:24:0: 'CampaignOpsLeanGap.rhsSum' does not depend on any axioms\ninfo: CampaignOpsLeanGap.lean:25:0: 'CampaignOpsLeanGap.noAssignment' does not depend on any axioms\ninfo: CampaignOpsLeanGap.lean:26:0: 'CampaignOpsLeanGap.sixteen' does not depend on any axioms\nBuild completed successfully (3 jobs).\ninfo: finite_review: no previous manifest, creating one from scratch\ninfo: toolchain not updated; already up-to-date\n"
+  },
+  "axiom_audit": {
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "exit_code": 0,
+    "seconds": 0.298,
+    "output": "'CampaignOpsLeanGap.lhsSum' does not depend on any axioms\n'CampaignOpsLeanGap.rhsSum' does not depend on any axioms\n'CampaignOpsLeanGap.noAssignment' does not depend on any axioms\n'CampaignOpsLeanGap.sixteen' does not depend on any axioms\n"
+  },
+  "independent_source_sha256": "360b54c718ad8a21b4f9c99a98c8450ab8c31b8d387ca9728f02b997a3d3453a",
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/ops-lean-gap.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.027,
+    "output": "{\n  \"status\": \"passed\",\n  \"checks\": 57,\n  \"assignments\": 16,\n  \"solutions\": 0,\n  \"left_parity\": 0,\n  \"right_parity\": 1,\n  \"three_constraint_solution_counts\": [\n    2,\n    2,\n    2,\n    2\n  ],\n  \"consistent_variant_solutions\": 2,\n  \"scope\": \"One finite parity box; the broader OPS Lean obligations remain open.\"\n}\n"
+  },
+  "independent_optimized_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-O",
+      "-X",
+      "utf8",
+      "checks/independent/ops-lean-gap.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.068,
+    "output": "{\n  \"status\": \"passed\",\n  \"checks\": 57,\n  \"assignments\": 16,\n  \"solutions\": 0,\n  \"left_parity\": 0,\n  \"right_parity\": 1,\n  \"three_constraint_solution_counts\": [\n    2,\n    2,\n    2,\n    2\n  ],\n  \"consistent_variant_solutions\": 2,\n  \"scope\": \"One finite parity box; the broader OPS Lean obligations remain open.\"\n}\n"
+  },
+  "build_scope": "Fresh Lean 4.35 minimal package using only core imports, no Mathlib or full repository workspace build."
+}

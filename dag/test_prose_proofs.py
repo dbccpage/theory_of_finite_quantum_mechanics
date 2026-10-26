@@ -1,12 +1,6 @@
 from pathlib import Path
 
-from prose_proofs import load_nodes, proof_sections, section_errors
-
-
-def test_every_proof_section_names_a_proved_node_and_resolves():
-    nodes = load_nodes()
-    errs = [e for s in proof_sections() for e in section_errors(s, nodes)]
-    assert errs == []
+from prose_proofs import covered_ids, lean_ref_resolves, proof_sections, section_errors
 
 
 def test_section_rules(tmp_path: Path):
@@ -30,3 +24,33 @@ def test_section_rules(tmp_path: Path):
     errs2 = " ".join(section_errors(sections[1], nodes, tmp_path))
     assert "no *Proof.*" in errs2 and "does not resolve" in errs2 and "cites none" in errs2
     assert "takes no proof" in " ".join(section_errors(sections[2], nodes, tmp_path))
+
+
+def test_lean_reference_rejects_comments_strings_prefixes_and_wrong_namespaces(tmp_path: Path):
+    (tmp_path / "lean4").mkdir()
+    (tmp_path / "lean4" / "A.lean").write_text(
+        '-- theorem commented : True := trivial\n'
+        '/- nested /- theorem nested : True := trivial -/ comment -/\n'
+        'def text := "theorem stringOnly : True := trivial"\n'
+        'namespace Actual\n'
+        'theorem good_longer : True := trivial\n'
+        'theorem good : True := trivial\n'
+        'end Actual\n'
+        'namespace Second\n'
+        'theorem good : True := trivial\n'
+        'end Second\n', encoding="utf-8")
+    for name in ("commented", "nested", "stringOnly", "good_long", "Wrong.good", "good"):
+        assert not lean_ref_resolves(tmp_path, "lean4/A.lean", name)
+    assert lean_ref_resolves(tmp_path, "lean4/A.lean", "Actual.good")
+    assert not lean_ref_resolves(tmp_path, "lean4/../lean4/A.lean", "Actual.good")
+
+
+def test_coverage_excludes_invalid_sections_and_fenced_examples(tmp_path: Path):
+    (tmp_path / "papers").mkdir()
+    (tmp_path / "papers" / "p.md").write_text(
+        '```markdown\nDAG node: `EXAMPLE`\n*Proof.* Example.\n```\n'
+        'DAG node: `INVALID`\nThe token *Proof.* is not a proof paragraph.\n'
+        '# next\nDAG node: `VALID`\n*Proof.* Text.\n', encoding="utf-8")
+    nodes = {key: {"status": "PROVED_PROSE", "lean": []} for key in ("EXAMPLE", "INVALID", "VALID")}
+    assert [s["ids"] for s in proof_sections(tmp_path)] == [["INVALID"], ["VALID"]]
+    assert covered_ids(tmp_path, nodes) == {"VALID"}

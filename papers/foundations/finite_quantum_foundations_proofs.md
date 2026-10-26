@@ -35,7 +35,7 @@ the $\ell^1$ norm on vectors; $X,Z$ are the Pauli matrices.
 
 DAG node: `DS-QM060-SUPERPOSITION-QUOTIENT-FIBER`
 
-**Proposition.** Let $c_s=\sqrt{w_s}\,e^{i\theta_s}$ for $s=1,2$. Then $|c_s|^2=w_s$ does not depend
+**Proposition.** Let $w_s\ge0$, $\theta_s\in\mathbb R$, and $c_s=\sqrt{w_s}\,e^{i\theta_s}$ for $s=1,2$. Then $|c_s|^2=w_s$ does not depend
 on $\theta_s$, and
 $$|c_1+c_2|^2=w_1+w_2+2\sqrt{w_1w_2}\cos(\theta_2-\theta_1).$$
 In particular $(1,1)$ and $(1,-1)$ have the same weights $(1,1)$ and the coherent sums $4$ and $0$.
@@ -276,7 +276,7 @@ $\|d\|_1=\max_{\|w\|_\infty\le1}\langle w,d\rangle$.
 *Proof.* (i) $(x+c)-(y+c)=x-y$. (ii) is §2.2 (iii). (iii)
 $\sum_i\operatorname{sgn}(d_i)d_i=\sum_i|d_i|$. $\square$
 
-For matrices, identifying the dual ball with the trace-zero operator-norm ball uses the spectral
+For matrices, identifying the dual of the trace norm on trace-zero matrices with the operator norm modulo scalar matrices uses the spectral
 theorem; that step is *Core* §2.5.
 
 Lean: `lean4/DualWitness.lean::dual_witness_certifies_trace_distance`,
@@ -361,7 +361,7 @@ Lean: `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosur
 
 DAG node: `DS-QM094-EVERETT-RELATIVE-STATE-CONTACT`
 
-**Proposition.** Let $\Psi=\sum_ic_i|i\rangle\otimes|r_i\rangle$ with orthonormal records $r_i$.
+**Proposition.** In finite dimension at least two, let $\Psi=\sum_ic_i|i\rangle\otimes|r_i\rangle$ with orthonormal records $r_i$.
 (i) $\operatorname{tr}_R|\Psi\rangle\langle\Psi|=\sum_i|c_i|^2|i\rangle\langle i|$. (ii) For any state
 $\rho$ and observable $A$,
 $|\operatorname{tr}(\rho A)-\operatorname{tr}(\Delta(\rho)A)|\le\max_{i\neq j}|A_{ji}|\cdot\sum_{i\neq j}|\rho_{ij}|$.

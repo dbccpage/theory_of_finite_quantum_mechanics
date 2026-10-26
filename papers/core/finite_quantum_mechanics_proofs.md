@@ -283,7 +283,7 @@ Lean: `lean4/H054GleasonCyclotomicObstruction.lean::cabello_no_integer_frame_ass
 
 DAG node: `FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY`
 
-**Theorem.** (i) Let $L$ be Hermitian on $\mathbb C^d$ with extreme eigenvalues
+**Theorem.** (i) Let $d\ge1$ and let $L$ be Hermitian on $\mathbb C^d$ with extreme eigenvalues
 $\lambda_{\max},\lambda_{\min}$. Then
 $$\sup\{\operatorname{tr}(LX): X=X^\dagger,\ \operatorname{tr}X=0,\ \|X\|_1\le2\}
 =\lambda_{\max}-\lambda_{\min}=2\min_{c\in\mathbb R}\|L-c\,I\|_\infty .$$
@@ -428,7 +428,7 @@ DAG node: `FQ-COMMUTATOR-TRACE-OBSTRUCTION`
 
 **Proposition.** Let $K$ be a field of characteristic 0 and $n\ge1$. If $A,B\in M_n(K)$ and
 $AB-BA=\lambda I$, then $\lambda=0$. In particular $[X,P]=i\hbar I$ has no solution in
-$M_n(\mathbb C)$.
+$M_n(\mathbb C)$ when $\hbar\ne0$.
 
 *Proof.* $\operatorname{tr}(AB)=\sum_{i,j}A_{ij}B_{ji}=\operatorname{tr}(BA)$, so
 $\operatorname{tr}(AB-BA)=0$, while $\operatorname{tr}(\lambda I)=n\lambda$. Since $n\neq0$ in $K$,
@@ -484,12 +484,11 @@ $H$ preserves the eigenspaces of $X$; on each (one-dimensional) eigenspace $e^{-
 modulo $2\pi$ and nothing more. $\square$
 
 A unitary step on a finite carrier admits square roots and logarithms over a suitable field, but
-not uniquely, and not at all on the report level (i). Selecting a continuous one-parameter group
+not uniquely; the report-level toggle in (i) has no square root. Selecting a continuous one-parameter group
 requires a branch choice that the discrete data do not supply.
 
 Lean: `lean4/H055DiscreteDynamicsStone.lean::no_bool_half_step` proves (i);
-`lean4/H055DiscreteDynamicsStone.lean::interpolant_not_unique` (cited through
-`lean4/H055DiscreteDynamicsStone.lean::stone_continuum_interface_priced`) checks (ii) as
+`lean4/H055DiscreteDynamicsStone.lean::interpolant_not_unique` checks (ii) as
 $M^2=4X$; `lean4/H055DiscreteDynamicsStone.lean::stone_discrete_generator_ambiguity` records that
 the odd branches $2k'+1$ are pairwise distinct.
 
@@ -586,8 +585,8 @@ $h_N=\sum_{i<N}\frac1{i+1}e_i\in c_{00}(\mathbb Q)$.
 3. A sequence $(f_k)$ in $c_{00}(\mathbb Q)$ has $(\lambda f_k)$ Cauchy if and only if for every
    rational $\varepsilon>0$ there is $K$ with $\|f_k-f_l\|^2<\varepsilon$ for $k,l\ge K$; every
    such sequence converges in $\mathcal H_{\mathbb K}$.
-4. For $\mathbb K=\mathbb R$: $\lambda$ has dense image, continuous maps out of
-   $\mathcal H_{\mathbb R}$ are determined by their values on $\lambda(c_{00}(\mathbb Q))$, and
+4. For $\mathbb K=\mathbb R$: $\lambda$ has dense image, continuous maps from
+   $\mathcal H_{\mathbb R}$ into a Hausdorff space are determined by their values on $\lambda(c_{00}(\mathbb Q))$, and
    $\lambda$ is not surjective.
 5. For $\mathbb K=\mathbb C$: pairs $(a,b)$ of rational sequences, read as $a+ib$, are dense, and
    $\langle a+ib,c+id\rangle=(\langle a,c\rangle+\langle b,d\rangle)+i(\langle a,d\rangle-\langle b,c\rangle)$.
@@ -619,8 +618,8 @@ Convergence follows from completeness.
 
 (4) Given $x\in\mathcal H_{\mathbb R}$ and $\varepsilon>0$, choose $f\in c_{00}(\mathbb R)$ with
 $\|x-f\|<\varepsilon/2$, then round each of the finitely many nonzero coordinates of $f$ to a
-rational within $\varepsilon/(2\sqrt{N})$, where $N$ is the support size. Two continuous maps into a
-Hausdorff space that agree on a dense set agree. The sequence $h_N$ is Cauchy, since
+rational within $\varepsilon/(2\sqrt{N})$, where $N>0$ is the support size (if the support is empty, take the zero rational sequence). Two continuous maps into a
+Hausdorff space that agree on a dense set agree. The sequence $h_N$ is Cauchy, since, for $M>N\ge1$,
 $\|h_M-h_N\|^2=\sum_{N\le i<M}(i+1)^{-2}<1/N$; its limit has coordinate $1/(i+1)$ at every $i$, so it
 is not $\lambda f$ for any finitely supported $f$.
 
@@ -644,7 +643,7 @@ continuity, hence $\mathbb R$-homogeneous by density of $\mathbb Q$ in $\mathbb 
 scalar multiplication, and $\|Tx\|^2\le C\|x\|^2$ passes to limits. The shift preserves
 $\|f\|^2$, so $C=1$ and $T$ is an isometry. If $\sigma$ had a continuous extension $\bar\sigma$, then
 $\bar\sigma(\lambda h_N)$ would converge, because $(\lambda h_N)$ converges; but
-$\sigma(h_N)=\sum_{i\le N}\frac1i$ diverges, although $\|h_N\|^2\le\sum_i i^{-2}<2$. $\square$
+$\sigma(h_N)=\sum_{i=1}^N\frac1i$ diverges, although $\|h_N\|^2\le\sum_i i^{-2}<2$. $\square$
 
 Dynamics and generators are not lifted here, and which exact operators satisfy a rational bound is
 a hypothesis on the operator.
@@ -725,7 +724,7 @@ case as an exact computation.
 
 DAG node: `FQ-U1-TRANSPORT-N-TORSION`
 
-Let $G$ be a finite connected graph with $V$ vertices, $E$ edges and $\beta_1=E-V+1$, and
+Let $N\ge1$ and let $G$ be a finite connected graph with at least one vertex, $V$ vertices, $E$ edges and $\beta_1=E-V+1$, and
 $\mu_N\subset\mathbb Q(\zeta_N)^\times$ the $N$-th roots of unity. An edge cochain
 $\tau\colon\vec E\to\mu_N$ ($\tau(\bar e)=\tau(e)^{-1}$) is gauge-equivalent to $\tau'$ when
 $\tau'(u\to v)=g(u)\tau(u\to v)g(v)^{-1}$ for some $g\colon V\to\mu_N$.
@@ -742,7 +741,7 @@ there are $N^E/N^{V-1}=N^{\beta_1}$ orbits. Holonomy around closed paths is gaug
 $g$ factors cancel at each vertex) and defines a homomorphism $H_1(G,\mathbb Z)\to\mu_N$. It is
 injective on classes: if all holonomies are trivial, fix a spanning tree $T$ and a root $r$, put
 $g(v)=\tau(\text{tree path } r\to v)$; then $g$ gauges $\tau$ to $1$ on $T$, and on each remaining
-edge to the holonomy of its fundamental cycle, which is $1$. Since $H_1(G,\mathbb Z)\cong\mathbb Z^{\beta_1}$,
+edge to the holonomy of its fundamental cycle, which is $1$. Apply this to the ratio of two cochains with equal holonomies to obtain injectivity. Since $H_1(G,\mathbb Z)\cong\mathbb Z^{\beta_1}$,
 $|\operatorname{Hom}(H_1,\mu_N)|=N^{\beta_1}$, so the injection is a bijection. (ii) Gauge factors at
 the interior vertices cancel and those at the common ends cancel between $p_1$ and $p_2^{-1}$.
 (iii) is immediate. $\square$
@@ -815,7 +814,7 @@ This node collects twenty-five finite controls. The part with a general mathemat
 the helium ground-state estimate with an effective nuclear charge.
 
 **Proposition.** In atomic units, with the trial state a product of hydrogenic $1s$ orbitals of
-charge $Z$ for nuclear charge 2, $E(Z)=Z^2-\frac{27}8Z$. Its minimum over $Z$ is at
+charge $Z>0$ for nuclear charge 2, $E(Z)=Z^2-\frac{27}8Z$. Its minimum over $Z$ is at
 $Z^\ast=\frac{27}{16}$ with $E(Z^\ast)=-\frac{729}{256}$, and $E(Z)-E(Z^\ast)=(Z-Z^\ast)^2$. At $Z^\ast$
 the virial relation $2T+V=0$ holds, and $E(Z^\ast)<-\frac{11}4$, the first-order perturbative value.
 
