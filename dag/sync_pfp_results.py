@@ -138,7 +138,7 @@ def decision_errors(decisions: dict, nodes: dict) -> list[str]:
         if entry['scope_effect'] == 'statement_narrowed' and 'statement' not in entry:
             errors.append(f'{nid}: statement_narrowed without a statement')
         status = entry.get('status', nodes[nid]['status']) if nid in nodes else None
-        if entry['scope_effect'] == 'statement_narrowed' and status in TARGET_STATUSES:
+        if 'statement' in entry and entry['scope_effect'] != 'status_lowered' and status in TARGET_STATUSES:
             errors.append(f'{nid}: a {status} node keeps its target statement; put the slice in the bottleneck')
     return errors
 

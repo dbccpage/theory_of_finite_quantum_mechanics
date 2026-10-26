@@ -1549,7 +1549,7 @@ Obligation: Reject any auditor that certifies the adopted state from a view π u
 - Parent: `TFQ-0426`
 - Status: `OPEN_OBLIGATION`
 
-On a two-value carrier, replay is the left fold of supplyDiamond, which keeps the value, and designateA, which sets the value true, starting from false. A one-step trace that is valid at a declared context s' need not be valid at a different replayed value s: when s differs from s' there is a trace valid at s' and not at s. A contract on this carrier preserves trace validity at replay(H) if and only if it accepts a context binding only when the context equals replay(H). The history consisting of supplyDiamond replays to false and the only-diamond answer on it is verified; the history supplyDiamond then designateA replays to true and the only-diamond answer on it is retracted.
+A trace that starts from a declared context s′ and takes steps valid relative to s′ need not be valid relative to the actual replayed state s ≠ s′: ValidTrace(τ | s′) does not imply ValidTrace(τ | s). Trial 2's Result 15 is the example, with internally consistent reasoning from the stale premise s′ = {<>} after Prompt 12 had designated <a> as current. A sound execution contract therefore accepts a context binding C(s′) only when s′ = Replay(H). The analysis calls this a clean theorem target and gives no proof. The Prompt 17 contrast fits it: a truncated window answered Verified and the full replay Retracted, each right for the history it received, which the appended analysis calls an information boundary rather than a reasoning failure.
 
 Obligation: Define a trace semantics in which ValidTrace(τ | s′) is checkable, and make the verifier reconstruct Replay(H) and accept a declared context s′ only when s′ = Replay(H) before certifying any step taken from s′.
 
@@ -3485,7 +3485,7 @@ Obligation: Treat the Genesis Ongoing cancellation, raising and marked-fill data
 - Parent: `TFQ-0554`
 - Status: `CONDITIONAL`
 
-For arbitrary types X, R and D, a report r:X→R and a decision d:X→D admit a unique decoder on the actual image of r exactly when d is constant on every fibre of r. Equal reports with unequal decisions remain an obstruction after every report-only postprocessor. The joint report (r,d) is sufficient for d.
+GEN-WDP-03: with actual cases X, a declared evaluation report E: X → Reports and a protected admission or permission decision A: X → Decisions, a decoder on the actual image of E exists exactly when E(x) = E(y) implies A(x) = A(y); necessity applies the decoder to equal reports, sufficiency assigns each occupied report the decision of any representative, and equal reports with unequal decisions forbid every decoder and every report-only postprocessor. GEN-WDP-06 records that event multisets can lose final state, final states can lose occurrence counts, and fresh hashes can bind false receipts. This is the fibre criterion of the S(n)/MSS-N hand-off (TFQ-0338) and of WDP adapter descent (TFQ-0553), so a protected question passes from the realized report to a WDP observer exactly when it is constant on the fibres of the declared report.
 
 Obligation: Keep declared report and decision assumptions explicit; no permission or physical authenticity follows from this factorization criterion.
 
@@ -7798,9 +7798,9 @@ Obligation: Treat GF(2) terminalize receipts as diagnostic schedule classes, not
 - Atlas paths:
   - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
 
-The counts are 4 modes, 4 channels and 1 island. Then 4 - 4 + 1 = 1. With those counts, (4 - 1) - (4 - 1) = 0. Also (1 + 1) mod 2 = 0, 4 * 2 = 8 and 8 mod 2 = 0. The mode count 4 is not 2.
+Tetron wording in the crate outruns the diagnostic fence and must not be promoted. src/tetron.rs says a tetron is a 2-cell, one superconducting island with four Majorana zero modes, and it assigns C0 to modes, C1 to parity channels, and C2 to islands. src/lib.rs, which owns the crate fence, says the playground does not claim physical Majorana modes. The obligation is to keep the tetron array inside the GF(2) schedule and to withhold any hardware reading. Noise modules noise_mc.rs and pauli_noise.rs are present in the source list; their sweeps are not an authority terminal either.
 
-Obligation: The 1-by-1 disk cell arithmetic above is the narrowed statement. A superconducting device, a physical Majorana zero mode, noise sweeps as an authority terminal, the GF(2) matrix rank of any larger grid, and the crate fence in lib.rs stay outside this statement. Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.
+Obligation: The 1-by-1 disk cell arithmetic above is the checked slice. A superconducting device, a physical Majorana zero mode, noise sweeps as an authority terminal, the GF(2) matrix rank of any larger grid, and the crate fence in lib.rs stay outside the checked slice. Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.
 
 ### TFQ-0184 Do not read paper 009 reflexivity declarations as measured tetron homology
 
@@ -9134,7 +9134,7 @@ Obligation: This rules out one construction route only; it gives no upper bound 
 - DAG node: `MUB6-WEYL-HEISENBERG-D6`
 - Paper: [derivation](derivations/25_mub/tfq_1223_mub6_weyl_heisenberg_d6.md)
 
-In the set of integer pairs (a, b) with product (a, b)*(c, d) = (a*c - b*d, a*d + b*c + b*d) and conjugate (a + b, -b), w = (0, 1) satisfies w*w = w - (1, 0), w*w*w = (-1, 0) and the sixth power of w is (1, 0). On 6 by 6 matrices over those pairs, shift X has a 1 at each (j+1 mod 6, j) and clock Z is diagonal with entry w^j. Then Z X = w X Z, while X Z and w Z X differ. For p, q, r, s from 0 through 5, the trace of the conjugate-transpose of X^p Z^q times X^r Z^s is (6, 0) when (p, q) = (r, s) and (0, 0) otherwise.
+On C^6 with shift X|j> = |j+1 mod 6> and clock Z|j> = w^j |j>, w = exp(2 pi i/6), one has Z X = w X Z, and the 36 operators X^p Z^q are pairwise orthogonal for the trace pairing tr(A* B).
 
 Obligation: This record is the 6 by 6 integer-pair table above. It does not construct a complex exponential, does not identify w with exp(2 pi i / 6), and does not count mutually unbiased bases. The source commutation X Z = w Z X is the opposite clock convention. AuthorityEffect: None.
 
@@ -9602,7 +9602,7 @@ Obligation: Infeasibility of these equations is open; the positive determinant b
 - DAG node: `MUB6-FINITE-CORNER-REDUCTION`
 - Paper: [derivation](derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md)
 
-For 3 by 3 integer matrices, let B have rows (1, 1, 0), (0, 1, 1) and (0, 0, 1), let E be the identity, and let C have rows (0, 1, 0), (0, 0, 1) and (1, 0, 0). The matrix with rows (1, -1, 1), (0, 1, -1) and (0, 0, 1) is a two-sided inverse of B. The matrix D with rows (1, -1, 0), (-1, 1, -1) and (-1, 0, 0) equals the negative of C times the transpose of E times the transpose of that inverse, and C times the transpose of E plus D times the transpose of B is the zero matrix. The same sum with the zero matrix in place of D is not the zero matrix.
+Using the external finite-corner classification of single 6x6 complex Hadamard matrices, quartet existence in C^6 is equivalent to raw quartet completion of some retained finite-corner reconstruction with D = -C E* (B^-1)*.
 
 Obligation: This record is that one integer block identity. It does not classify complex Hadamard matrices, does not list retained finite corners, and does not equate quartet existence with completion of an external reconstruction. The complex adjoint is not identified with this integer transpose. Exclusion over every retained reconstruction stays open. AuthorityEffect: None.
 
@@ -10084,7 +10084,7 @@ Obligation: A single-flavor det D_W can be negative; the JSONL claim that det D_
 - DAG node: `FSP-THETA-TERM-COMPLEX-WEIGHT`
 - Paper: [derivation](derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md)
 
-For angle indices 0, 1, 2 and 3, one quarter turn of the Gaussian integer (1, 0) by the pair (0, -1) yields (1, 0), (0, -1), (-1, 0) and (0, 1), and the fourth turn returns to (1, 0). That turn is multiplication by (0, -1), and (1, 0) times (0, -1) is (0, -1). Charge 0 keeps the weight (1, 0) at each of those four indices. Charge 1 uses the quarter-turn value. The second coordinate at charge 1 is 0, -1, 0 and 1, hence nonzero at indices 1 and 3. At index 2 with charge 1 the first coordinate is -1, so that pair is not positive in the first coordinate. Among the four charge-1 pairs, only index 0 has a positive first coordinate and second coordinate 0.
+Adding S_theta = i theta Q_top with real lattice charge Q_top multiplies the Boltzmann weight by exp(-i theta Q_top), which is nonreal unless theta Q_top lies in pi Z for every configuration, so positive-weight importance sampling is lost for generic theta != 0.
 
 Obligation: The record is this four-index Gaussian-integer table. It does not introduce an exponential, a real angle, a plaquette sum, or a Monte Carlo sampler. The source sentence that an added term i theta Q_top multiplies a Boltzmann weight by a complex phase, and that a positive-weight sampler fails for a nonzero angle outside a discrete set, stays an imported reading. AuthorityEffect is None.
 
@@ -10642,7 +10642,7 @@ Obligation: None for the lemma; its use on the legacy carrier needs the legacy d
 
 Given the recorded measurement that legacy tetron_carrier.py had dim H1 = 0 at T = 1..4, every closed residual on it was Exact, so its results support no statement about logical sectors and are superseded by the tetron-array family.
 
-Obligation: Standing text is the identity coboundary on functions Fin t to Bool: d1 after d0 is the zero function on one coordinate, every 1-cochain is exact, and none is a closed residual, including the sizes t = 1, 2, 3 and 4. The recorded measurement that tetron_carrier.py had dim H1 = 0 at those sizes is not in this checkout. A logical-sector reading of that missing file, and a comparison with the tetron-array family, stay open. The older citation legacy_carrier_obstruction assumes trivial first cohomology and does not discharge this slice.
+Obligation: The checked slice is the identity coboundary on functions Fin t to Bool: d1 after d0 is the zero function on one coordinate, every 1-cochain is exact, and none is a closed residual, including the sizes t = 1, 2, 3 and 4. The recorded measurement that tetron_carrier.py had dim H1 = 0 at those sizes is not in this checkout. A logical-sector reading of that missing file, and a comparison with the tetron-array family, stay open. The older citation legacy_carrier_obstruction assumes trivial first cohomology and does not discharge this slice.
 
 ### TFQ-1155 Per-class minimum weights 3, 4, 7 and distance 3 on the 3x4 torus
 
@@ -10676,7 +10676,7 @@ Obligation: Prove the distance formulas (e.g. by a cut argument on the dual grid
 - DAG node: `MAJ-IMPORT-COSET-WEIGHT-NP-HARD`
 - Paper: [derivation](derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md)
 
-For the 2 by 4 parity-check matrix over the two-element field with rows (1, 1, 0, 0) and (0, 1, 1, 1), among the 16 length-4 vectors labeled 0 through 15 with the least significant bit as coordinate 0, the vectors with syndrome (1, 0) are the labels 1, 6, 10 and 13. Their Hamming weights are 1, 2, 2 and 3, so the minimum weight is 1, and the single weight-1 vector in that list is label 1 with coordinates (1, 0, 0, 0). The vectors with syndrome (0, 0) are the labels 0, 7, 11 and 12.
+Minimum-weight coset decoding of a binary linear code given by its matrix is NP-hard (Berlekamp, McEliece and van Tilborg 1978).
 
 Obligation: Berlekamp, McEliece and van Tilborg 1978 remains an imported literature claim. No reduction is formalized. The 2 by 4 enumeration is one matrix and one syndrome and does not discharge hardness for a general binary matrix.
 
@@ -10796,7 +10796,7 @@ Obligation: Each non-claim is a scope rule; none is a theorem.
 - DAG node: `MAJ-IMPORT-KITAEV-CHAIN`
 - Paper: [derivation](derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md)
 
-For every natural number L with 2 <= L and every natural number j with 1 <= j and j <= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu < (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu < (2 * t) * (2 * t), and delta differs from 0.
+The spinless p-wave Kitaev chain H = -sum(t c_j^dag c_{j+1} + Delta c_j c_{j+1} + h.c.) - mu sum(c_j^dag c_j - 1/2), its BdG spectrum, the phase region |mu| < 2t with Delta nonzero, and the sweet-spot form H = -i t sum gamma_{2j} gamma_{2j+1} with free edge modes gamma_1, gamma_{2L} are imported models.
 
 Obligation: The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.
 
@@ -11148,7 +11148,7 @@ Obligation: One concrete machine; the general statement for every general-purpos
 
 If the map from an input to its start word were computable and one length bound witnessed every halting start word inside the bound, normal-form reachability would be decidable, contradicting nfReach_not_computable.
 
-Obligation: Standing text is one letter, no rewrite step, and length bound 1: (0) reaches itself, misses the empty word, and (0, 0) has length 2. A computable map from an input to a start word, one bound containing every halting start word, and a clash with normal-form reachability stay open. The older citations reachB_iff and nfReach_not_computable do not discharge this slice.
+Obligation: The checked slice is one letter, no rewrite step, and length bound 1: (0) reaches itself, misses the empty word, and (0, 0) has length 2. A computable map from an input to a start word, one bound containing every halting start word, and a clash with normal-form reachability stay open. The older citations reachB_iff and nfReach_not_computable do not discharge this slice.
 
 ### TFQ-1296 Genesis stepE has no cap on admission
 
@@ -11362,7 +11362,7 @@ Obligation: A code is not an isomorphism of free monoids; no claim that a machin
 - DAG node: `COMP-C8-MINIMALITY-FENCE`
 - Paper: [derivation](derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md)
 
-Two separated marks code the words of any finite alphabet and a blank is a third symbol, but the composite machine M0 is not minimal and no smallest general-purpose machine is claimed; small-machine records are literature only.
+Two separated marks code the words of any finite alphabet and a blank is a third symbol, but minimality of the composite machine M0 is not claimed and no smallest general-purpose machine is claimed; small-machine records are literature only.
 
 Obligation: Simulation of a machine over a coded alphabet by a machine over the two marks and a blank stays open, and it is required before any minimality sentence. A sentence that composite machine M0 is not a smallest general-purpose machine stays open. Small-machine records stay literature only.
 
@@ -11422,7 +11422,7 @@ Obligation: The location counts are declared; nothing here says how many repair 
 - DAG node: `QCV-IMPORT-THRESHOLD-THEOREM`
 - Paper: [derivation](derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md)
 
-The integer map t sends each integer n to 2*n*n. It sends 0 to 0, 1 to 2, 2 to 8 and 8 to 128, and three applications of t starting at 1 yield 128. The scale products 2*0 and 2*1 equal 0 and 2.
+The fault-tolerance threshold theorems (Shor 1996; Aharonov and Ben-Or 1997; Kitaev 1997; Knill, Laflamme and Zurek 1998; Aliferis, Gottesman and Preskill 2006) are cited under each theorem's own noise, locality and overhead hypotheses; they are not re-proved.
 
 Obligation: The fault-tolerance threshold theorems of Shor, Aharonov and Ben-Or, Kitaev, Knill, Laflamme and Zurek, and Aliferis, Gottesman and Preskill stay cited under each theorem's own noise, locality and overhead hypotheses. This integer orbit does not state those theorems, supplies no noise model, and identifies no code constant. The rational concatenation recurrence and its dichotomy stay on the concatenation-threshold record.
 
@@ -11458,7 +11458,7 @@ Obligation: The families are exact illustrations of the criterion, not claims th
 - DAG node: `QCV-IMPORT-NOISY-REVERSIBLE-LIMITS`
 - Paper: [derivation](derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md)
 
-The sequences defined by u(0) = 1, v(0) = 1, w(0) = 1, u(t+1) = 3*u(t), v(t+1) = 4*v(t) and w(t+1) = 3*w(t) + 0 satisfy u(1) = 3, v(1) = 4, u(2) = 9, v(2) = 16, u(3) = 27 and v(3) = 64, with u strictly below v at steps 1, 2 and 3, and with w equal to u at steps 0, 1, 2 and 3.
+Aharonov, Ben-Or, Impagliazzo and Nisan (1996) show that noisy reversible or quantum computation with no supply of fresh low-entropy bits cannot preserve its input beyond a short depth; the result is cited, not re-proved or imported as a proof here.
 
 Obligation: The Aharonov, Ben-Or, Impagliazzo and Nisan limitation for noisy reversible or quantum computation with no fresh low-entropy supply stays a citation under that paper's own noise and depth hypotheses. These four integer pairs are not that theorem. They are not a trace norm, not a depolarizing channel, and not an independent per-qubit noise model. The history-distance product for global depolarizing noise stays on the noisy-history record.
 
@@ -11496,7 +11496,7 @@ Obligation: The identification of the qubit trace norm with the Bloch distance u
 
 If the initial backlog q0 is nonnegative, g < 1, kappa > 0, r is at least lam/((1-g)*kappa), c(k) <= C for every natural number k, p(k) >= 0, max(C,1)*p(0) < 1, and p(k+1) <= c(k)*p(k)^2 whenever BacklogBounded lam g (kappa*r) q0 holds, then that backlog predicate holds and for every rational L >= 0 and every epsilon > 0 some level k has L*p(k) <= epsilon. If also max(C,1)*p(0) <= 1/2, then every natural number k with L <= epsilon*max(C,1)*2^(2^k) has L*p(k) <= epsilon.
 
-Obligation: The initial backlog q0 is nonnegative. The recurrence, the supply bound, and the overhead bound are hypotheses of the implication. A device, a noise process, and a classical decoder are outside this implication. A negative initial backlog is outside the narrowed statement.
+Obligation: The initial backlog q0 is nonnegative. The recurrence, the supply bound, and the overhead bound are hypotheses of the implication. A device, a noise process, and a classical decoder are outside this implication. A negative initial backlog is outside the checked slice.
 
 ### TFQ-1325 Inside the model, viability holds exactly when the fresh supply reaches threshold and the overhead means are bounded
 
@@ -11650,7 +11650,7 @@ Obligation: None of the eight fields is closed by the source: DTM0 and DTM1 are 
 - DAG node: `AUTH-RICE-THEOREM-IMPORT`
 - Paper: [derivation](derivations/29_computation/tfq_1337_auth_rice_theorem_import.md)
 
-On the two-point carrier, code 0 and code 1 both send 0 to 0 and 1 to 1, and code 2 sends 0 to 0 and 1 to 0. The identity-table bit is true at code 0, true at code 1, and false at code 2. The code-zero bit is true at code 0, false at code 1, and false at code 2.
+No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.
 
 Obligation: Rice's theorem for the programs of a Turing-complete language stays a citation. No declaration here states that no total computable procedure is sound and complete for a nontrivial extensional property. Mathlib ComputablePred.rice and rice₂ are not instantiated, and no semantic property of Nat.Partrec.Code is named. This three-code table does not decide an infinite language.
 
@@ -13054,7 +13054,7 @@ Obligation: The norm and Term rows are arithmetic on the defect 2, not receipts 
 - DAG node: `OPS-OBSERVER-DECLARATION-REFUSAL`
 - Paper: [derivation](derivations/35_foc035_observer_presheaf/tfq_2518_ops_observer_declaration_refusal.md)
 
-A five-field draft on one Bell label is classified by comparing each field with a fixed text, and the comparison does not read a defect. The kernel text is "support presheaf over the maximal-context cover {0,2}|{0,3}|{1,2}|{1,3} with arities 2,2,2,2". The admissibility text is "noncontextual polytope conv(A)". The norm text is "L1". The terminal text is "defect = 0 -> ExactRepair; defect > 0 and a support-level global section exists -> ClosedResidual; defect > 0 and none exists -> OpenObstruction". The layer text is "WDP-CH10-D01 diagnostic". Take a draft that already carries these five texts. Replacing one field by a missing value, the empty string, or one space yields the undeclared class of that field. Replacing one field by a text other than the empty string, one space, and that field's accepted text yields the unsupported class of that field and keeps the declared text. The draft of the five accepted texts is the accepted class, and the authority text of that class is "None".
+As the note states it for the Rust evaluator evaluate_l1_claim (Policy A2' and the profile binding): before any arithmetic it refuses an undeclared, empty or whitespace component with UndeclaredObserverComponent(name), and a component the evaluator does not implement with UnsupportedObserverComponent { component, declared }. The kernel must equal the label of the scenario under evaluation (for the Bell scenario "support presheaf over the maximal-context cover {0,2}|{0,3}|{1,2}|{1,3} with arities 2,2,2,2"); the other four components must equal the constants for the noncontextual polytope, the l1 norm, the terminal rule and the diagnostic layer. A supported tuple yields a receipt with authority_effect None, the terminal token and the typed profile. The refusal is a policy invariant by construction; the note does not derive it from Lemma A2.
 
 Obligation: The computing tests are Rust tests of the source repository. The in-repo copy of the module (code/rust/src/sheaf_theory/empirical_presheaf) uses omega_solvers, an external crate that is not a member of the code/rust workspace (cargo metadata --no-deps lists no such package), and the source test file was not imported. These tests are not run here. Outside this slice: a defect receipt, Unicode whitespace other than one space, the terminal token, the typed profile, and any kernel label other than the one Bell label. The Python gate on node OPS-THREE-ROLE-GATE checks its own observer field and is not this classifier.
 
@@ -13126,7 +13126,7 @@ Obligation: A name offered, not a result. No card or rule is created here.
 - DAG node: `OPS-AXIS1-WELLFOUNDED-ADMISSION`
 - Paper: [derivation](derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md)
 
-Finite admission chain on three candidates. Candidate 0 has no predecessor. Candidate 1 names candidate 0 as its predecessor. Candidate 2 names candidate 1 as its predecessor. For every base assignment of boolean bits, admission of candidate 0 equals the base bit at candidate 0, admission of candidate 1 equals the disjunction of the base bit at candidate 1 with admission of candidate 0, and admission of candidate 2 equals the disjunction of the base bit at candidate 2 with admission of candidate 1. The base assignment that is false at each candidate admits none of the three. The base assignment that is true at candidate 0 and false at candidate 1 and at candidate 2 admits all three. The Genesis theorem collapsed_of_no_insts stays imported by name and is not re-run. The chain says nothing about other shapes of admission.
+Axis 1 of WDP-CH14-T01 under the hypothesis that admission is the Genesis calculus, in which every AdmitInst depends on a previously admitted base datum: with no base instance no rule instance is admitted (the Genesis theorem collapsed_of_no_insts), so the process has nothing to certify. It says nothing about other shapes of admission. Imported by name: the theorem is Genesis's.
 
 Obligation: Cited by name, not re-run. WDP-CH14 has no node in this graph; the closest node is the admission gate PGW-GO-ADMISSION-GATE, and no source relates the two. The finite chain is a separate checked case and does not re-run collapsed_of_no_insts.
 
@@ -13150,9 +13150,9 @@ Obligation: Cited by name, not re-run. The level statement is a typing remark an
 - DAG node: `OPS-AXIS3-RELABELING`
 - Paper: [derivation](derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md)
 
-Let Exp send each history to an export and let Vbar send each export to a verdict. Define V(H) as Vbar applied to Exp(H). If sigma is a function on histories and Exp(sigma(H)) equals Exp(H) for each history H, then V(sigma(H)) equals V(H) for each history H. One such export is the length of a list of natural numbers. The map that sends 0 to 1, sends 1 to 0, and sends each other natural number to itself leaves that length unchanged, so a verdict of the length is unchanged.
+Axis 3 of WDP-CH14-T01 under three hypotheses. (i) NS-14: an injective renaming sigma of presentation tokens commutes with the transition step and with full-history replay. (ii) CL-13 (passage_charge_const): a quantity conserved by internal transitions is constant on reachable states and equals its genesis value. (iii) The verdict V reads a history only through a declared export Exp, so V = Vbar o Exp, with Exp(sigma(H)) = Exp(H) for every injective renaming sigma; this is the identical-accessible-exports premise of Proposition 3.1 of the Argon synthesis. Then V(sigma(H)) = V(H), because V(sigma(H)) = Vbar(Exp(sigma(H))) = Vbar(Exp(H)) = V(H). Without (iii) the statement is false (node OPS-REFUTED-AXIS3-WIDE). A drop in the internal defect Delta_O stays computable and renaming-invariant; whether a drop is a repair or a reinterpretation is a question about the grounding map of the tokens, which no export-reading verdict decides.
 
-Obligation: Hypotheses (i) NS-14 and (ii) CL-13 are cited, not re-run. Their Lean sources are not in this repository. The standing slice is the composition step: an export unchanged by sigma yields an unchanged verdict of that export, including list length under the map that swaps 0 with 1. Injectivity of sigma, a defect value, and whether a drop is a repair or a reinterpretation stay outside this slice. WDP-CH14 has no node in this graph. The unconditional form without an export hypothesis is node OPS-REFUTED-AXIS3-WIDE.
+Obligation: Hypotheses (i) NS-14 and (ii) CL-13 are cited, not re-run. Their Lean sources are not in this repository. The checked slice is the composition step: an export unchanged by sigma yields an unchanged verdict of that export, including list length under the map that swaps 0 with 1. Injectivity of sigma, a defect value, and whether a drop is a repair or a reinterpretation stay outside this slice. WDP-CH14 has no node in this graph. The unconditional form without an export hypothesis is node OPS-REFUTED-AXIS3-WIDE.
 
 ### TFQ-2527 WDP-CH14-C01 and the nonclaim N03
 

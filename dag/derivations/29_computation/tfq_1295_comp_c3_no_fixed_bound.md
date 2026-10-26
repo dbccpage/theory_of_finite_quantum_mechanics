@@ -14,7 +14,7 @@
 If the map from an input to its start word were computable and one length bound witnessed every halting start word inside the bound, normal-form reachability would be decidable, contradicting nfReach_not_computable.
 
 ### Governing Obligation
-Standing text is one letter, no rewrite step, and length bound 1: (0) reaches itself, misses the empty word, and (0, 0) has length 2. A computable map from an input to a start word, one bound containing every halting start word, and a clash with normal-form reachability stay open. The older citations reachB_iff and nfReach_not_computable do not discharge this slice.
+The checked slice is one letter, no rewrite step, and length bound 1: (0) reaches itself, misses the empty word, and (0, 0) has length 2. A computable map from an input to a start word, one bound containing every halting start word, and a clash with normal-form reachability stay open. The older citations reachB_iff and nfReach_not_computable do not discharge this slice.
 
 ### Witness Audit
 The campaign module checks the single-letter words [], [0] and [0,0], length bound 1 and reflexive-only reachability. A computable start-word map and a general no-fixed-bound theorem remain open. GenesisCompBounded.reachB_iff and GenesisCompUniv.nfReach_not_computable are background for that broader obligation, not witnesses of this fixed example.

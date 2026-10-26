@@ -4,7 +4,7 @@ Stage: [COMPUTATION](../stages/COMPUTATION.md). Status: `OPEN`. Evidence grade: 
 
 ## Statement
 
-> Two separated marks code the words of any finite alphabet and a blank is a third symbol, but the composite machine M0 is not minimal and no smallest general-purpose machine is claimed; small-machine records are literature only.
+> Two separated marks code the words of any finite alphabet and a blank is a third symbol, but minimality of the composite machine M0 is not claimed and no smallest general-purpose machine is claimed; small-machine records are literature only.
 
 ## Grade
 
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md`
 
 - file: [dag/derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md](../../../dag/derivations/29_computation/tfq_1313_comp_c8_minimality_fence.md)
-- sha256 (`lf-normalised`): `3a47ead888cc8dc984faceb7569a82b192577845f1f054b7341a62dadf1ba6a7`
+- sha256 (`lf-normalised`): `a4329cd7d0ce8ef7267e74c19dccb198d36d809185c6be7bacfca6634fb4798b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1313
 - counts toward the grade: no

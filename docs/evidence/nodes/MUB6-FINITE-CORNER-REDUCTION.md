@@ -4,7 +4,7 @@ Stage: [MUTUALLY_UNBIASED_BASES](../stages/MUTUALLY_UNBIASED_BASES.md). Status: 
 
 ## Statement
 
-> For 3 by 3 integer matrices, let B have rows (1, 1, 0), (0, 1, 1) and (0, 0, 1), let E be the identity, and let C have rows (0, 1, 0), (0, 0, 1) and (1, 0, 0). The matrix with rows (1, -1, 1), (0, 1, -1) and (0, 0, 1) is a two-sided inverse of B. The matrix D with rows (1, -1, 0), (-1, 1, -1) and (-1, 0, 0) equals the negative of C times the transpose of E times the transpose of that inverse, and C times the transpose of E plus D times the transpose of B is the zero matrix. The same sum with the zero matrix in place of D is not the zero matrix.
+> Using the external finite-corner classification of single 6x6 complex Hadamard matrices, quartet existence in C^6 is equivalent to raw quartet completion of some retained finite-corner reconstruction with D = -C E* (B^-1)*.
 
 ## Grade
 
@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md`
 
 - file: [dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md](../../../dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md)
-- sha256 (`lf-normalised`): `8d373d6117b1241216ea5889ed2f643bed9b50077e16530ef4a97302ba86e121`
+- sha256 (`lf-normalised`): `0c24a970b0b32ff5761cfc2d085886f309ffc7c9646de253ca766f0f0ea4539d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1261
 - counts toward the grade: no

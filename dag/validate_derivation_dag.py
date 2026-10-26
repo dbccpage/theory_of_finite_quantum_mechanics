@@ -686,8 +686,13 @@ def _check_target_statements(nodes: list[dict[str, object]]) -> list[str]:
         if _NARROWED_PREFIX.match(_text(node, "statement") or ""):
             errs.append(f"node {node_id}: {status} statement is a narrowed slice, not the target")
         review = _mapping(node.get("pfp_review"))
-        if review is not None and review.get("scope_effect") == "statement_narrowed":
+        if review is None:
+            continue
+        effect = review.get("scope_effect")
+        if effect == "statement_narrowed":
             errs.append(f"node {node_id}: {status} node has statement_narrowed; keep the target statement")
+        elif effect != "status_lowered" and review.get("prior_statement") not in (None, node.get("statement")):
+            errs.append(f"node {node_id}: {status} statement differs from pfp_review.prior_statement")
     return errs
 
 

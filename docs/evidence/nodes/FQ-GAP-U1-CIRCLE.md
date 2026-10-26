@@ -54,7 +54,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Bottleneck
 
-Still open: the circle group U(1) on the finite host, continuity of a one-parameter phase group, injectivity of n mapped to u^n for u = (3+4i)/5, and a homomorphism from (Q, +) into U(1)(Q(i)) sending 1 to u. Projective Cayley, the 5-adic half-angle, mod-5 Gaussian powers, Q/Z torsion, the quadratic sqrt(5) tower, Chebyshev and Taylor approximations, 4D Hermitian Born traces, and discrete Cayley steps stay outside this integer witness. Compact continuous R/Z remains an external completion.
+Still open: the circle group U(1) on the finite host and continuity of a one-parameter phase group. Injectivity of n mapped to u^n for u = (3+4i)/5 and the absence of a homomorphism from (Q, +) into U(1)(Q(i)) sending 1 to u are kernel-checked in the superseding run (u345IntPow_injective, no_rat_add_to_rat_circle_hom_u345). Projective Cayley, the 5-adic half-angle, mod-5 Gaussian powers, Q/Z torsion, the quadratic sqrt(5) tower, Chebyshev and Taylor approximations, 4D Hermitian Born traces, and discrete Cayley steps stay outside this integer witness. Compact continuous R/Z remains an external completion.
 
 ## Source status
 

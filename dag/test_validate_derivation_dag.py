@@ -169,6 +169,15 @@ def test_open_node_keeps_its_target_statement() -> None:
     assert any("keep the target statement" in err for err in dag.check(_graph([narrowed], []), None))
     proved = _reviewed(scope_effect="statement_narrowed", prior_statement="the target")
     assert not any("keep the target statement" in err for err in dag.check(_graph([proved], []), None))
+    replaced = _node("a", "PREGENESIS", "IMPORTED_ASSUMPTION")
+    replaced["statement"] = "4 - 4 + 1 = 1."
+    replaced["pfp_review"] = _review(prior_status="IMPORTED_ASSUMPTION", scope_effect="caveat_added",
+                                       prior_statement="the target")
+    assert any("differs from pfp_review.prior_statement" in err for err in dag.check(_graph([replaced], []), None))
+    lowered = _node("a", "PREGENESIS", "OPEN")
+    lowered["pfp_review"] = _review(prior_status="PROVED_LEAN", scope_effect="status_lowered",
+                                      prior_statement="the old claim")
+    assert not any("prior_statement" in err for err in dag.check(_graph([lowered], []), None))
 
 
 def test_pfp_review_file_and_sha256_are_checked(tmp_path: Path) -> None:
