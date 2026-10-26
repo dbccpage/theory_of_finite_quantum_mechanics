@@ -87,6 +87,30 @@ def test_negative_boundary_failures() -> None:
     assert defect.value.parameters["defect"] == "1"
 
 
+@pytest.mark.parametrize(
+    ("operation", "role"),
+    [
+        (lambda value: quadratic_value(value, 1), "x"),
+        (lambda value: quadratic_value(1, value), "y"),
+        (lambda value: second_jet(value, 1), "x"),
+        (lambda value: taylor_defect(0, 0, value, 1), "step_x"),
+        (lambda value: certify_taylor(0, 0, 1, value), "step_y"),
+    ],
+    ids=["value-x", "value-y", "jet-x", "defect-step-x", "certificate-step-y"],
+)
+def test_fraction_subclass_cannot_inject_float_arithmetic(operation, role) -> None:
+    class FractionOverride(Fraction):
+        def __mul__(self, other):
+            return 0.5
+
+        def __rmul__(self, other):
+            return 0.5
+
+    with pytest.raises(JetError, match="not an exact rational") as refused:
+        operation(FractionOverride(1))
+    assert refused.value.parameters == {"role": role, "received": "FractionOverride"}
+
+
 def test_integration_symmetric_difference_matches_the_gradient() -> None:
     root = Path(__file__).resolve().parents[3]
     note = (

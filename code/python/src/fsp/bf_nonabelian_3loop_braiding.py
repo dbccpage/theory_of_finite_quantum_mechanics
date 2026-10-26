@@ -1,33 +1,23 @@
 """
-bf_nonabelian_3loop_braiding.py — (3+1)D Non-Abelian Topological BF Theory, Wang-Levin 3-Loop Braiding, & Quantum Double Repairs.
+Floating-point fusion-matrix and route-label diagnostics.
 
 AuthorityEffect: None.
 Reference: sealed-derivation-v1 (3100c4e)
 
-Mechanizes:
-1. (3+1)D Non-Abelian Topological BF Theory with Gauge Group SU(2)_k:
-   - Level k in Z_{>=2}, representations labeled by spin j in {0, 1/2, ..., k/2}.
-   - Quantum dimensions d_j = sin((2j+1)pi / (k+2)) / sin(pi / (k+2)).
-   - Modular S and T matrices, conformal weights h_j = j(j+1)/(k+2), topological twists theta_j = exp(2pi i h_j).
-   - Fusion tensor associativity: F-matrices (Racah-Wigner 6j symbols) for fundamental representations.
-2. Wang-Levin Non-Abelian 3-Loop Braiding (Wang & Levin 2014):
-   - Coupled Wilson loops (1D) and 't Hooft flux surfaces (2D) in 3D spatial slices.
-   - Internal fusion space V_{j1, j2, j3}^{j_total}. For three spin-1/2 loops, dim(V) = 2 (singlet 0 and triplet 1).
-   - 3-loop braiding holonomy operator: M_WL in End(V) acting on fusion channels.
-3. Sign Problem Evaluation Under GIN Mode Indexing:
-   - Cochain curvature: Gamma_2 = ||log M_WL|| or |Arg(Tr(M_WL))|.
-   - Defect mass: Phi_1 = 1 - Re(<Sign>_GIN).
-   - Level Parity & Non-Abelian Obstruction:
-     * Chiral non-abelian braiding produces non-real traces Tr(M_WL) notin R or indefinite eigenvalues.
-     * Involution pairing Xi cannot cancel non-abelian matrix holonomies, leaving Phi_1 > 0
-       and routing deterministically to TerminalRoute.OpenSignObstruction.
-     * Thermal weight asymmetry (Delta E_orient > 0) routes to TerminalRoute.SplitBrainRefusal.
-4. Quantum Double Projection Repair (Drinfeld Double D(SU(2)_k)):
-   - Folding chiral sector with conjugate antichiral sector: M_QD = M_WL (x) M_WL^dagger.
-   - Tr(M_QD) = |Tr(M_WL)|^2 >= 0 real and nonnegative in exact arithmetic.
-   - The doubled-trace branch uses conventional diagnostic values Phi_1 = 0
-     and average_sign_gin = 1. These are not a physical ensemble average or a
-     proof of a sign-problem repair, especially when the trace vanishes.
+Computes selected trigonometric SU(2)_k-inspired scalar data, 2x2 F/R
+matrices, and the declared commutator B1 B2 B1^-1 B2^-1, with B1=R^2
+and B2=F B1 F^-1. All-zero flux flags select a 1x1 identity; other
+flux values do not independently determine a geometric loop configuration.
+
+This is not a mechanization of (3+1)D BF theory, a Wilson/'t Hooft network,
+a Wang-Levin invariant, a full modular category or a general sign obstruction.
+Existing public names and TerminalRoute labels identify this diagnostic API.
+No validated floating-point error enclosure or physical interpretation follows.
+
+The doubled matrix is M tensor M^dagger. Its trace identity motivates the
+numerical abs(trace(M))**2 calculation; diagnostic Phi_1=0 and average_sign_gin=1
+are conventions, not a physical ensemble average, exact certificate or proof
+of sign-problem repair, particularly when the trace vanishes.
 """
 
 from __future__ import annotations
@@ -49,7 +39,7 @@ from bqnf_sign_evaluator import TerminalRoute
 
 @dataclass(frozen=True)
 class SU2LevelKCategory:
-    """Modular tensor category SU(2)_k data for level k >= 2."""
+    """Selected floating-point SU(2)_k-inspired formulas for level k >= 2."""
     k: int
 
     def __post_init__(self) -> None:
@@ -117,7 +107,7 @@ class SU2LevelKCategory:
 
 @dataclass(frozen=True)
 class WangLevin3LoopAuditReceipt:
-    """Receipt auditing (3+1)D non-abelian topological BF theory and 3-loop braiding under GIN mode indexing."""
+    """Measured numerical matrix diagnostics and conventional route labels."""
     model_id: str
     k_level: int
     loop_fluxes: Tuple[float, float, float]
@@ -134,8 +124,8 @@ class WangLevin3LoopAuditReceipt:
 
 class WangLevin3LoopBraidingModel:
     """
-    (3+1)D Non-Abelian Topological BF Theory 3-Loop Braiding Model.
-    Evaluates Wang-Levin 3-loop braiding invariants on coupled Wilson loop / 't Hooft surface networks.
+    Declared finite fusion-matrix diagnostic with retained historical API names.
+    No geometric loop/surface network or Wang-Levin invariant is constructed.
     """
     def __init__(
         self,
@@ -156,9 +146,9 @@ class WangLevin3LoopBraidingModel:
 
     def compute_3loop_holonomy_matrix(self) -> np.ndarray:
         """
-        Computes the Wang-Levin 3-loop braiding holonomy matrix M_WL on the fusion space.
-        For fundamental fluxes (1/2, 1/2, 1/2), dim(V) = 2.
-        M_WL = R^2 @ F @ R^2 @ F^{-1}.
+        Return the supplied 2x2 fusion-matrix commutator, or a 1x1 identity.
+        B1 = R^2, B2 = F @ B1 @ F^{-1}; M = B1 @ B2 @ B1^{-1} @ B2^{-1}.
+        The name is not evidence for a geometric three-loop invariant.
         """
         if self.is_abelian:
             return np.array([[1.0 + 0.0j]], dtype=complex)
@@ -178,7 +168,7 @@ class WangLevin3LoopBraidingModel:
 
     def compute_quantum_double_projection(self, M_WL: np.ndarray) -> np.ndarray:
         """
-        Constructs the Drinfeld double / surface code projection:
+        Form a Kronecker matrix, not a categorical or physical repair:
         M_QD = M_WL (x) M_WL^dagger.
         Tr(M_QD) = |Tr(M_WL)|^2 >= 0 real and nonnegative in exact arithmetic.
         """
@@ -187,8 +177,7 @@ class WangLevin3LoopBraidingModel:
 
 class NonAbelianBfEngine:
     """
-    Evaluation engine executing GIN mode indexing and sign audits on
-    (3+1)D non-abelian topological BF theory.
+    Numerical trace statistics and conventional diagnostic routing only.
     """
     @classmethod
     def audit_nonabelian_3loop_braiding(
@@ -196,7 +185,7 @@ class NonAbelianBfEngine:
         model: WangLevin3LoopBraidingModel,
         use_quantum_double: bool = False,
     ) -> WangLevin3LoopAuditReceipt:
-        """Audits non-abelian 3-loop braiding, trace statistics, and sign cancellation."""
+        """Return numerical trace diagnostics; route labels do not certify physics."""
         M = model.compute_3loop_holonomy_matrix()
         dim_v = M.shape[0]
 
