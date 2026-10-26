@@ -1406,3 +1406,6 @@ lean_lib CampaignFqGapCustodyAndReceipts where
 
 lean_lib CampaignFqGapC500OriginalTargets where
   roots := #[`CampaignFqGapC500OriginalTargets]
+
+lean_lib CampaignGpImportGleason where
+  roots := #[`CampaignGpImportGleason]

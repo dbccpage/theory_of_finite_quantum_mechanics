@@ -502,7 +502,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1028` | `IMPLEMENTATION_CORE` | `COMPUTATIONAL_CONTROL` | `FQ-IMPL-PAIRING-AUDIT` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
 | `TFQ-1029` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-COMPLEX-FIELD` (IMPORTED_ASSUMPTION) | scoped_gaussian_integer_result_reviewed / statement_narrowed |
 | `TFQ-1030` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CIRCLE-U1` (IMPORTED_ASSUMPTION) | scoped_sign_pair_cycle_result_reviewed / statement_narrowed |
-| `TFQ-1031` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-GLEASON` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-1031` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-GLEASON` (IMPORTED_ASSUMPTION) | scoped_two_label_pairing_reviewed / statement_narrowed |
 | `TFQ-1032` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-TENSOR-PRODUCT` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1033` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CPTP-CLASS` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1034` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CONTINUOUS-TIME` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
@@ -4132,9 +4132,9 @@ Obligation: The circle group U(1), a continuous one-parameter phase group, and a
 - Status: `IMPORTED_ASSUMPTION`
 - DAG node: `GP-IMPORT-GLEASON` (`IMPORTED_ASSUMPTION`)
 
-Uniqueness of the Born quadratic form at dimension n >= 3 needs Gleason-type hypotheses (noncontextuality, sigma-additivity, continuity). On the two-label host the dimension extra already fails; the weaker unit-effect contract has two disagreeing pairings (4 versus 1 on the false-indicator at amplitudes (2,1)).
+On the two-label host, 2 < 3 and 3 ≤ 2 fails, and no three pairwise distinct labels exist. Amplitudes 2 on the false label and 1 on the true label have squared weights 4 and 1. The unit effect pairs both readout orders with 5. The false-indicator pairs as 4 in the direct order and as 1 after swapping the effect.
 
-Obligation: Necessity of Gleason uniqueness is OPEN; only rival-readout exclusions (quartic under scale-2 frame additivity) are proved.
+Obligation: Uniqueness of the Born quadratic form for dimension at least 3, under noncontextuality, sigma-additivity and continuity, stays imported. The two-label disagreements do not refute that uniqueness under those hypotheses. Quartic readout under scale-2 frame additivity stays outside this slice.
 
 ### TFQ-1032 gp-import-tensor-product
 

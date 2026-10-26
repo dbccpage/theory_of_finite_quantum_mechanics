@@ -6621,7 +6621,7 @@
       "stage": "L1_TO_L2",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "imported (OracleNeeded firewall, GTOC-8)",
-      "statement": "Uniqueness of the Born quadratic form at dimension n >= 3 needs Gleason-type hypotheses (noncontextuality, sigma-additivity, continuity). On the two-label host the dimension extra already fails; the weaker unit-effect contract has two disagreeing pairings (4 versus 1 on the false-indicator at amplitudes (2,1)).",
+      "statement": "On the two-label host, 2 < 3 and 3 ≤ 2 fails, and no three pairwise distinct labels exist. Amplitudes 2 on the false label and 1 on the true label have squared weights 4 and 1. The unit effect pairs both readout orders with 5. The false-indicator pairs as 4 in the direct order and as 1 after swapping the effect.",
       "source": [
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/gap_register.yaml#GAP-F001-S000-004",
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/gap_register.yaml#GAP-F001-S000-010",
@@ -6629,11 +6629,12 @@
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/finite_hilbert_boundary_from_primitive_difference.md:153"
       ],
       "lean": [
-        "lean4/H017Gleason.lean::two_label_host_not_gleason_dimension",
-        "lean4/H017Gleason.lean::gleason_pack_uniqueness_still_imported",
-        "lean4/H013SameContract.lean::two_effect_rules_share_unit_total_and_disagree",
-        "lean4/H013FrameAdditivity.lean::fourth_power_dies_under_frame_additivity",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels"
+        "lean4/CampaignGpImportGleason.lean::twoLabelsBelowThree",
+        "lean4/CampaignGpImportGleason.lean::dimensionExtraFails",
+        "lean4/CampaignGpImportGleason.lean::noThreeDistinctLabels",
+        "lean4/CampaignGpImportGleason.lean::squaredWeights",
+        "lean4/CampaignGpImportGleason.lean::unitPairingsAgree",
+        "lean4/CampaignGpImportGleason.lean::falseIndicatorDisagrees"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
@@ -6644,7 +6645,7 @@
         "Gleason hypotheses (noncontextuality, sigma-additivity, continuity): assumption",
         "dimension >= 3: assumption"
       ],
-      "bottleneck": "Necessity of Gleason uniqueness is OPEN; only rival-readout exclusions (quartic under scale-2 frame additivity) are proved.",
+      "bottleneck": "Uniqueness of the Born quadratic form for dimension at least 3, under noncontextuality, sigma-additivity and continuity, stays imported. The two-label disagreements do not refute that uniqueness under those hypotheses. Quartic readout under scale-2 frame additivity stays outside this slice.",
       "tags": [
         "alias:MUB6-DERIV-024"
       ],
@@ -6658,12 +6659,12 @@
         "review_refs": [
           "dag/results/GP-IMPORT-GLEASON/reviews/20261019_l1_import_audit/delivery_review_result.json"
         ],
-        "verdict": "scoped_result_or_obstruction_reviewed",
-        "narrowest_claim": "Exact unit-contract rivals and frame quartic obstruction arrays, with general quadratic/quartic frame identities in Lean.",
-        "does_not_support": "Prove uniqueness only after admitting the full intended Gleason/frame hypotheses and dimension. These counterexamples do not refute Gleason under its hypotheses.",
-        "next_test": "Prove uniqueness only after admitting the full intended Gleason/frame hypotheses and dimension. These counterexamples do not refute Gleason under its hypotheses.",
-        "scope_effect": "consistent",
-        "reason": "Imported node; the review adds unit-contract rivals. Later Born runs construct effect-valuation carriers.",
+        "verdict": "scoped_two_label_pairing_reviewed",
+        "narrowest_claim": "On the two-label host, 2 < 3 and 3 ≤ 2 fails, and no three pairwise distinct labels exist. Amplitudes 2 on the false label and 1 on the true label have squared weights 4 and 1. The unit effect pairs both readout orders with 5. The false-indicator pairs as 4 in the direct order and as 1 after swapping the effect.",
+        "does_not_support": "Uniqueness of the Born quadratic form for dimension at least 3 under noncontextuality, sigma-additivity and continuity, or a refutation of that uniqueness.",
+        "next_test": "Admit the Gleason hypotheses and a host with at least three labels before treating Born uniqueness as derived.",
+        "scope_effect": "statement_narrowed",
+        "reason": "Campaign narrowing records the two-label dimension failure and the unit-effect pairings 5 and 5 together with the false-indicator pairings 4 and 1. Status stays IMPORTED_ASSUMPTION.",
         "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "Uniqueness of the Born quadratic form at dimension n >= 3 needs Gleason-type hypotheses (noncontextuality, sigma-additivity, continuity). On the two-label host the dimension extra already fails; the weaker unit-effect contract has two disagreeing pairings (4 versus 1 on the false-indicator at amplitudes (2,1)).",
         "prior_bottleneck": "Necessity of Gleason uniqueness is OPEN; only rival-readout exclusions (quartic under scale-2 frame additivity) are proved.",
@@ -57605,15 +57606,16 @@
       ],
       "id": "TFQ-1031",
       "lean4": [
-        "lean4/H017Gleason.lean::two_label_host_not_gleason_dimension",
-        "lean4/H017Gleason.lean::gleason_pack_uniqueness_still_imported",
-        "lean4/H013SameContract.lean::two_effect_rules_share_unit_total_and_disagree",
-        "lean4/H013FrameAdditivity.lean::fourth_power_dies_under_frame_additivity",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels"
+        "lean4/CampaignGpImportGleason.lean::twoLabelsBelowThree",
+        "lean4/CampaignGpImportGleason.lean::dimensionExtraFails",
+        "lean4/CampaignGpImportGleason.lean::noThreeDistinctLabels",
+        "lean4/CampaignGpImportGleason.lean::squaredWeights",
+        "lean4/CampaignGpImportGleason.lean::unitPairingsAgree",
+        "lean4/CampaignGpImportGleason.lean::falseIndicatorDisagrees"
       ],
       "local_id": "GP-IMPORT-GLEASON",
       "name": "gp-import-gleason",
-      "obligation": "Necessity of Gleason uniqueness is OPEN; only rival-readout exclusions (quartic under scale-2 frame additivity) are proved.",
+      "obligation": "Uniqueness of the Born quadratic form for dimension at least 3, under noncontextuality, sigma-additivity and continuity, stays imported. The two-label disagreements do not refute that uniqueness under those hypotheses. Quartic readout under scale-2 frame additivity stays outside this slice.",
       "parent_id": "TFQ-0306",
       "pfp_review_refs": [
         "dag/results/GP-IMPORT-GLEASON/reviews/20261019_l1_import_audit/delivery_review_result.json"
@@ -57627,7 +57629,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "L1_TO_L2",
-      "summary": "Uniqueness of the Born quadratic form at dimension n >= 3 needs Gleason-type hypotheses (noncontextuality, sigma-additivity, continuity). On the two-label host the dimension extra already fails; the weaker unit-effect contract has two disagreeing pairings (4 versus 1 on the false-indicator at amplitudes (2,1)).",
+      "summary": "On the two-label host, 2 < 3 and 3 ≤ 2 fails, and no three pairwise distinct labels exist. Amplitudes 2 on the false label and 1 on the true label have squared weights 4 and 1. The unit effect pairs both readout orders with 5. The false-indicator pairs as 4 in the direct order and as 1 after swapping the effect.",
       "uuid": "9699bcf7-43c4-5fef-8733-d6b2fe1b16d8"
     },
     {
