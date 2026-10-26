@@ -58,7 +58,6 @@ Cited ReggePachnerWdw.lean::regge_deficit_angle_action_identity does not exist; 
 ## 4. Downstream Derivations (Outgoing DAG Links)
 
 - [TFQ-1213](tfq_1213_fsp_discrete_wdw_constraint.md)
-- [TFQ-1214](tfq_1214_fsp_pachner_invariance_claim.md)
 
 ---
 
