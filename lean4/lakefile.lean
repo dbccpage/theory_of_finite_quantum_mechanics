@@ -1399,3 +1399,7 @@ lean_lib CampaignGpImportComplexField where
 -- Campaign: GP-IMPORT-CIRCLE-U1. Not a default target.
 lean_lib CampaignGpImportCircleU1 where
   roots := #[`CampaignGpImportCircleU1]
+
+-- Campaign: MAJ-IMPORT-COSET-WEIGHT-NP-HARD. Not a default target.
+lean_lib CampaignMajImportCosetWeight where
+  roots := #[`CampaignMajImportCosetWeight]

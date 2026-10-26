@@ -2329,17 +2329,27 @@
       "stage": "MAJORANA",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "papers/core/majorana/the_majorana_problem.md record MAJ-IMPORT-BMVT claims IMPORTED_ASSUMPTION; audited status IMPORTED_ASSUMPTION",
-      "statement": "Minimum-weight coset decoding of a binary linear code given by its matrix is NP-hard (Berlekamp, McEliece and van Tilborg 1978).",
+      "statement": "For the 2 by 4 parity-check matrix over the two-element field with rows (1, 1, 0, 0) and (0, 1, 1, 1), among the 16 length-4 vectors labeled 0 through 15 with the least significant bit as coordinate 0, the vectors with syndrome (1, 0) are the labels 1, 6, 10 and 13. Their Hamming weights are 1, 2, 2 and 3, so the minimum weight is 1, and the single weight-1 vector in that list is label 1 with coordinates (1, 0, 0, 0). The vectors with syndrome (0, 0) are the labels 0, 7, 11 and 12.",
       "source": [
         "dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md",
         "papers/core/majorana/the_majorana_problem.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMajImportCosetWeight.lean::length_sixteen",
+        "lean4/CampaignMajImportCosetWeight.lean::row1_matches",
+        "lean4/CampaignMajImportCosetWeight.lean::row2_matches",
+        "lean4/CampaignMajImportCosetWeight.lean::coset_is",
+        "lean4/CampaignMajImportCosetWeight.lean::coset_weights",
+        "lean4/CampaignMajImportCosetWeight.lean::min_weight_one",
+        "lean4/CampaignMajImportCosetWeight.lean::weight_one_labels",
+        "lean4/CampaignMajImportCosetWeight.lean::label_one_coordinates",
+        "lean4/CampaignMajImportCosetWeight.lean::kernel_is"
+      ],
       "rust": [],
       "imported_structure": [
         "Berlekamp-McEliece-van Tilborg 1978 hardness of coset weights"
       ],
-      "bottleneck": "Literature result; no reduction is formalized or replayed here.",
+      "bottleneck": "Berlekamp, McEliece and van Tilborg 1978 remains an imported literature claim. No reduction is formalized. The 2 by 4 enumeration is one matrix and one syndrome and does not discharge hardness for a general binary matrix.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -9323,7 +9333,7 @@
       ],
       "output": "MAJ-IMPORT-COSET-WEIGHT-NP-HARD",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "Literature result; no reduction is formalized or replayed here.",
+      "mechanism": "Berlekamp, McEliece and van Tilborg 1978 remains an imported literature claim. No reduction is formalized. The 2 by 4 enumeration is one matrix and one syndrome and does not discharge hardness for a general binary matrix.",
       "source": [
         "dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md",
         "papers/core/majorana/the_majorana_problem.md"
@@ -14684,12 +14694,12 @@
       "id": "TFQ-1157",
       "uuid": "11ab146a-92b3-575f-b7b1-e2a119aa7eaf",
       "local_id": "MAJ-IMPORT-COSET-WEIGHT-NP-HARD",
-      "name": "Coset-weight decoding is NP-hard for general binary codes",
+      "name": "One 2 by 4 parity-check coset has minimum weight 1",
       "stage": "MAJORANA",
       "parent_id": "TFQ-1140",
       "record_status": "IMPORTED_ASSUMPTION",
-      "summary": "Minimum-weight coset decoding of a binary linear code given by its matrix is NP-hard (Berlekamp, McEliece and van Tilborg 1978).",
-      "obligation": "Literature result; no reduction is formalized or replayed here.",
+      "summary": "For the 2 by 4 parity-check matrix over the two-element field with rows (1, 1, 0, 0) and (0, 1, 1, 1), among the 16 length-4 vectors labeled 0 through 15 with the least significant bit as coordinate 0, the vectors with syndrome (1, 0) are the labels 1, 6, 10 and 13. Their Hamming weights are 1, 2, 2 and 3, so the minimum weight is 1, and the single weight-1 vector in that list is label 1 with coordinates (1, 0, 0, 0). The vectors with syndrome (0, 0) are the labels 0, 7, 11 and 12.",
+      "obligation": "Berlekamp, McEliece and van Tilborg 1978 remains an imported literature claim. No reduction is formalized. The 2 by 4 enumeration is one matrix and one syndrome and does not discharge hardness for a general binary matrix.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "MAJ-IMPORT-COSET-WEIGHT-NP-HARD"
@@ -14701,9 +14711,21 @@
         "papers/core/majorana/the_majorana_problem.md:283-283",
         "papers/core/majorana/the_majorana_problem.md:473-473"
       ],
-      "python": [],
+      "python": [
+        "checks/independent/maj-import-coset-weight-np-hard.py::main"
+      ],
       "rust": [],
-      "lean4": []
+      "lean4": [
+        "lean4/CampaignMajImportCosetWeight.lean::length_sixteen",
+        "lean4/CampaignMajImportCosetWeight.lean::row1_matches",
+        "lean4/CampaignMajImportCosetWeight.lean::row2_matches",
+        "lean4/CampaignMajImportCosetWeight.lean::coset_is",
+        "lean4/CampaignMajImportCosetWeight.lean::coset_weights",
+        "lean4/CampaignMajImportCosetWeight.lean::min_weight_one",
+        "lean4/CampaignMajImportCosetWeight.lean::weight_one_labels",
+        "lean4/CampaignMajImportCosetWeight.lean::label_one_coordinates",
+        "lean4/CampaignMajImportCosetWeight.lean::kernel_is"
+      ]
     },
     {
       "id": "TFQ-1158",

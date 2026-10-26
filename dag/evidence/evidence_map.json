@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "b71f6cd664e83d5a8304033ab7e2180da026ee83abf4713c128a0c99dc3f7c3a"
+  "sha256_lf": "47578e5f56c24b05016e17c2c62ac1f4f467dc11ac63d4512f1a0b1679973d15"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -191,6 +191,11 @@
    "sha256": "2c3d405d7ec94e0a1573b30ace3e7d3c19cf987f238977e712b64534e95ca0af",
    "sha256_basis": "bytes",
    "size": 3641
+  },
+  "checks/independent/maj-import-coset-weight-np-hard.py": {
+   "sha256": "d58ac1f34053f116695c5f485b0fdb13ab8dcfa4e8fa2e1194ed594d0cbce398",
+   "sha256_basis": "bytes",
+   "size": 1939
   },
   "checks/independent/maj-open-evidence-adequacy.py": {
    "sha256": "65239125adba7ab68743d194e0c9146b7566d59bfa89562f2331f6e3dfec1197",
@@ -1263,9 +1268,9 @@
    "size": 9170
   },
   "dag/derivation_dag.json": {
-   "sha256": "b71f6cd664e83d5a8304033ab7e2180da026ee83abf4713c128a0c99dc3f7c3a",
+   "sha256": "47578e5f56c24b05016e17c2c62ac1f4f467dc11ac63d4512f1a0b1679973d15",
    "sha256_basis": "lf-normalised",
-   "size": 4827831
+   "size": 4830297
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -5093,9 +5098,9 @@
    "size": 1705
   },
   "dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md": {
-   "sha256": "894d77b6f0e0bb14f85b84436be15c13b62344715eb7ed63b7fd95e987b745ee",
+   "sha256": "aa52b250db021250757a0b96d865b1971f6659fd84ee253cedecb762adf04c6e",
    "sha256_basis": "lf-normalised",
-   "size": 1476
+   "size": 2813
   },
   "dag/derivations/28_majorana/tfq_1158_maj_phi1_syndrome_decoding.md": {
    "sha256": "cc2f52f8823e81d6799ae89a5746100f8a8a64946eea6457a171a87f31eb9e6b",
@@ -7012,6 +7017,11 @@
    "sha256_basis": "lf-normalised",
    "size": 4564
   },
+  "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json": {
+   "sha256": "6cf43cfbfb0cffc912dfe9ece6ba1be07cf49510dc10099dc35043bb526831f7",
+   "sha256_basis": "lf-normalised",
+   "size": 3020
+  },
   "dag/research/campaign_maj-legacy-carrier-retraction_lean_replay.json": {
    "sha256": "a9c57288c233330b89f4045750e29aa4771869908ce7af41e77e15c51583bc44",
    "sha256_basis": "lf-normalised",
@@ -8118,9 +8128,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "sha256": "83e1300770d5a09d8f59c5eafde663002c760f49d7d2c80bdfb172e8786d74b1",
    "sha256_basis": "lf-normalised",
-   "size": 232565
+   "size": 235946
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -8711,6 +8721,11 @@
    "sha256": "da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f",
    "sha256_basis": "bytes",
    "size": 5418
+  },
+  "lean4/CampaignMajImportCosetWeight.lean": {
+   "sha256": "29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008",
+   "sha256_basis": "bytes",
+   "size": 1944
   },
   "lean4/CampaignMajLegacyCarrierRetraction.lean": {
    "sha256": "7de4257dd41044aeee748fbb68d9899c1e64b5b2fcab7483b3b7234cdc2a5ba9",
@@ -232245,17 +232260,658 @@
    "absent_notes": [],
    "dependents": 4,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 1,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 3,
+    "lean_receipt_backed": 9,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 19
    },
    "flags": [],
-   "grade": "E1",
+   "grade": "E3",
    "id": "MAJ-IMPORT-COSET-WEIGHT-NP-HARD",
    "items": [
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "receipt dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json (CampaignMajImportCosetWeight)"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.coset_is",
+     "cited_in": [
+      "receipt dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json (CampaignMajImportCosetWeight)"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.coset_is",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajImportCosetWeight.coset_is",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.coset_weights",
+     "cited_in": [
+      "receipt dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json (CampaignMajImportCosetWeight)"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.coset_weights",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajImportCosetWeight.coset_weights",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.kernel_is",
+     "cited_in": [
+      "receipt dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json (CampaignMajImportCosetWeight)"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.kernel_is",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajImportCosetWeight.kernel_is",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.label_one_coordinates",
+     "cited_in": [
+      "receipt dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json (CampaignMajImportCosetWeight)"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.label_one_coordinates",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajImportCosetWeight.label_one_coordinates",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.length_sixteen",
+     "cited_in": [
+      "receipt dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json (CampaignMajImportCosetWeight)"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.length_sixteen",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajImportCosetWeight.length_sixteen",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.min_weight_one",
+     "cited_in": [
+      "receipt dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json (CampaignMajImportCosetWeight)"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.min_weight_one",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajImportCosetWeight.min_weight_one",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.row1_matches",
+     "cited_in": [
+      "receipt dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json (CampaignMajImportCosetWeight)"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.row1_matches",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajImportCosetWeight.row1_matches",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.row2_matches",
+     "cited_in": [
+      "receipt dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json (CampaignMajImportCosetWeight)"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.row2_matches",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajImportCosetWeight.row2_matches",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.weight_one_labels",
+     "cited_in": [
+      "receipt dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json (CampaignMajImportCosetWeight)"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.weight_one_labels",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignMajImportCosetWeight.weight_one_labels",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.coset_is",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1157"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.coset_is",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "coset_is",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.coset_weights",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1157"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.coset_weights",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "coset_weights",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.kernel_is",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1157"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.kernel_is",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "kernel_is",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.label_one_coordinates",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1157"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.label_one_coordinates",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "label_one_coordinates",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.length_sixteen",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1157"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.length_sixteen",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "length_sixteen",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.min_weight_one",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1157"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.min_weight_one",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "min_weight_one",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.row1_matches",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1157"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.row1_matches",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "row1_matches",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.row2_matches",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1157"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.row2_matches",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "row2_matches",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignMajImportCosetWeight.weight_one_labels",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1157"
+     ],
+     "command": "cd lean4 && lake build CampaignMajImportCosetWeight",
+     "command_note": "then, in a scratch file that imports CampaignMajImportCosetWeight: #print axioms CampaignMajImportCosetWeight.weight_one_labels",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignMajImportCosetWeight.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "weight_one_labels",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "record TFQ-1157"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/maj-import-coset-weight-np-hard.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "main",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
     {
      "canonical_symbol": null,
      "cited_in": [
@@ -232306,7 +232962,7 @@
      "where": null
     }
    ],
-   "next_step": "cite a Lean, Rust or Python symbol that exists in an in-repo file",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-1157"
    ],
@@ -316899,6 +317555,28 @@
    "axioms_itemised": true,
    "axioms_standard": true,
    "axioms_union": [],
+   "built_successfully": null,
+   "checked_at": "2026-10-26",
+   "dag_node": "MAJ-IMPORT-COSET-WEIGHT-NP-HARD",
+   "decl_count": 9,
+   "exit_code": 0,
+   "id": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json#0:CampaignMajImportCosetWeight",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignMajImportCosetWeight",
+   "path": "lean4/CampaignMajImportCosetWeight.lean",
+   "receipt_file": "dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json",
+   "receipt_file_sha256": "6cf43cfbfb0cffc912dfe9ece6ba1be07cf49510dc10099dc35043bb526831f7",
+   "recorded_sha256": "29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008",
+   "source_unchanged_during_build": null,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [],
    "built_successfully": true,
    "checked_at": "2026-10-25T21:41:07.233795+00:00",
    "dag_node": "MAJ-LEGACY-CARRIER-RETRACTION",
@@ -329946,7 +330624,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "83e1300770d5a09d8f59c5eafde663002c760f49d7d2c80bdfb172e8786d74b1",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -329972,7 +330650,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "83e1300770d5a09d8f59c5eafde663002c760f49d7d2c80bdfb172e8786d74b1",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -329998,7 +330676,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "83e1300770d5a09d8f59c5eafde663002c760f49d7d2c80bdfb172e8786d74b1",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330024,7 +330702,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "83e1300770d5a09d8f59c5eafde663002c760f49d7d2c80bdfb172e8786d74b1",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330050,7 +330728,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "83e1300770d5a09d8f59c5eafde663002c760f49d7d2c80bdfb172e8786d74b1",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330076,7 +330754,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "83e1300770d5a09d8f59c5eafde663002c760f49d7d2c80bdfb172e8786d74b1",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330102,7 +330780,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "83e1300770d5a09d8f59c5eafde663002c760f49d7d2c80bdfb172e8786d74b1",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330128,7 +330806,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "83e1300770d5a09d8f59c5eafde663002c760f49d7d2c80bdfb172e8786d74b1",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330154,7 +330832,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "83e1300770d5a09d8f59c5eafde663002c760f49d7d2c80bdfb172e8786d74b1",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330180,7 +330858,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "83e1300770d5a09d8f59c5eafde663002c760f49d7d2c80bdfb172e8786d74b1",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330206,7 +330884,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "83e1300770d5a09d8f59c5eafde663002c760f49d7d2c80bdfb172e8786d74b1",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330232,7 +330910,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "83e1300770d5a09d8f59c5eafde663002c760f49d7d2c80bdfb172e8786d74b1",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330258,7 +330936,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "83e1300770d5a09d8f59c5eafde663002c760f49d7d2c80bdfb172e8786d74b1",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330284,7 +330962,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "83e1300770d5a09d8f59c5eafde663002c760f49d7d2c80bdfb172e8786d74b1",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330310,7 +330988,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "83e1300770d5a09d8f59c5eafde663002c760f49d7d2c80bdfb172e8786d74b1",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330912,9 +331590,9 @@
  "summary": {
   "by_grade": {
    "E0": 153,
-   "E1": 209,
+   "E1": 208,
    "E2": 35,
-   "E3": 528,
+   "E3": 529,
    "E4": 0
   },
   "by_status": {
@@ -330934,16 +331612,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 37,
   "e3_nodes_with_test_but_no_review": 39,
   "lean_declarations_in_repo": {
-   "distinct": 2121,
+   "distinct": 2130,
    "no_receipt": 38,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 2060,
-   "replay_verified_and_declaration_itemised": 1993,
+   "replay_verified": 2069,
+   "replay_verified_and_declaration_itemised": 2002,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 2440
+   "present": 2449
   },
   "mismatch_nodes": 190,
   "mismatches_by_kind": {
@@ -330964,7 +331642,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 620,
+  "receipts_indexed": 621,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
@@ -331157,9 +331835,9 @@
    },
    "MAJORANA": {
     "E0": 0,
-    "E1": 7,
+    "E1": 6,
     "E2": 11,
-    "E3": 28,
+    "E3": 29,
     "E4": 0
    },
    "MSSN_SN": {
@@ -331236,9 +331914,9 @@
    },
    "IMPORTED_ASSUMPTION": {
     "E0": 4,
-    "E1": 22,
+    "E1": 21,
     "E2": 0,
-    "E3": 44,
+    "E3": 45,
     "E4": 0
    },
    "OPEN": {
