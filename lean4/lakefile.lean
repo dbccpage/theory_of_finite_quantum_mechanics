@@ -1439,3 +1439,6 @@ lean_lib CampaignGpImportContinuousTime where
 
 lean_lib CampaignGpImportContinuumHilbert where
   roots := #[`CampaignGpImportContinuumHilbert]
+
+lean_lib CampaignDsContinuousTimeExpGenerator where
+  roots := #[`CampaignDsContinuousTimeExpGenerator]

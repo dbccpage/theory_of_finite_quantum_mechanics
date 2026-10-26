@@ -511,7 +511,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1037` | `FINITE_QM_CORE` | `PROVED_LEAN` | `GP-FIN-GAUSS-MATRIX-ALGEBRA` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1038` | `FINITE_QM_CORE` | `PROVED_LEAN` | `GP-DROP-ONE-CENSUS` (PROVED_LEAN) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1039` | `FINITE_QM_DYNAMICS` | `COMPUTATIONAL_CONTROL` | `DS-QM030-TRANSFER-OPERATOR-SHADOW` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
-| `TFQ-1040` | `FINITE_QM_DYNAMICS` | `IMPORTED_ASSUMPTION` | `DS-CONTINUOUS-TIME-EXP-GENERATOR` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-1040` | `FINITE_QM_DYNAMICS` | `IMPORTED_ASSUMPTION` | `DS-CONTINUOUS-TIME-EXP-GENERATOR` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1041` | `FINITE_QM_STRUCTURE` | `COMPUTATIONAL_CONTROL` | `DS-QM206-BOUNDARY-SYNTHESIS` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-1042` | `FINITE_QM_STRUCTURE` | `COMPUTATIONAL_CONTROL` | `DS-QM207-211-FIVE-IMPORT-CASCADE` (COMPUTATIONALLY_CHECKED) | scoped_result_or_obstruction_reviewed / status_lowered |
 | `TFQ-1043` | `FINITE_QM_STRUCTURE` | `IMPORTED_ASSUMPTION` | `DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
@@ -4882,9 +4882,9 @@ Obligation: Unmet after the PFP review: Formalize the full arbitrary finite acti
 - Status: `IMPORTED_ASSUMPTION`
 - DAG node: `DS-CONTINUOUS-TIME-EXP-GENERATOR` (`IMPORTED_ASSUMPTION`)
 
-The one-parameter family T(t)=exp(tH), the generator H=log T and the continuum path integral need real/complex time, convergence and a measure; none is constructed from the finite transport calculus. Refused as finite.
+Toggle sends false to true and true to false. No map on the labels false and true squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). The matrix with rows ((1, 1), (1, -1)) and ((1, -1), (1, 1)) squares to the matrix with diagonal entries (0, 0) and off-diagonal entries (4, 0). The coordinatewise negation of that matrix squares to the same matrix and differs from it. For every integer t, (1 - t*t) * (1 - t*t) + 4 * (t*t) equals (1 + t*t) * (1 + t*t). The branch energy 2*k + 1 equals 1 at k = 0 and 3 at k = 1, and distinct integers have distinct branch energies. The integers -1, 1, 1 and -1 give the corner value (-1)*(-1) + 1*1 = 2. No integers a, b, c and d satisfy a + 1 = 0, b = 1, c = 1, d + 1 = 0 together with a*a + b*c = 0, a*b + b*d = 0, c*a + d*c = 0 and c*b + d*d = 0.
 
-Obligation: Convergence oracle and generator selection are priced interfaces; no derivation.
+Obligation: The one-parameter family T(t) = exp(tH), the generator H = log T, and a continuum path integral stay imported. They still ask for real or complex time, a convergence oracle, and a measure, and none of those is constructed from the finite transport calculus. Generator selection among the odd branch energies stays a priced interface. The Boolean toggle, the two scale-4 matrices, the Cayley polynomial, the branch energies, and the absent nilpotent integer logarithm of the swap are one finite case.
 <!-- unified-dag:rows:FINITE_QM_DYNAMICS:end -->
 
 ## FINITE_QM_STRUCTURE

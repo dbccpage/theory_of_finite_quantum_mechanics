@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-The one-parameter family T(t)=exp(tH), the generator H=log T and the continuum path integral need real/complex time, convergence and a measure; none is constructed from the finite transport calculus. Refused as finite.
+Toggle sends false to true and true to false. No map on the labels false and true squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). The matrix with rows ((1, 1), (1, -1)) and ((1, -1), (1, 1)) squares to the matrix with diagonal entries (0, 0) and off-diagonal entries (4, 0). The coordinatewise negation of that matrix squares to the same matrix and differs from it. For every integer t, (1 - t*t) * (1 - t*t) + 4 * (t*t) equals (1 + t*t) * (1 + t*t). The branch energy 2*k + 1 equals 1 at k = 0 and 3 at k = 1, and distinct integers have distinct branch energies. The integers -1, 1, 1 and -1 give the corner value (-1)*(-1) + 1*1 = 2. No integers a, b, c and d satisfy a + 1 = 0, b = 1, c = 1, d + 1 = 0 together with a*a + b*c = 0, a*b + b*d = 0, c*a + d*c = 0 and c*b + d*d = 0.
 
 ### Governing Obligation
-Convergence oracle and generator selection are priced interfaces; no derivation.
+The one-parameter family T(t) = exp(tH), the generator H = log T, and a continuum path integral stay imported. They still ask for real or complex time, a convergence oracle, and a measure, and none of those is constructed from the finite transport calculus. Generator selection among the odd branch energies stays a priced interface. The Boolean toggle, the two scale-4 matrices, the Cayley polynomial, the branch energies, and the absent nilpotent integer logarithm of the swap are one finite case.
 
 ### Source Status
 [CONDITIONAL — OracleNeeded(Convergence); REFUSED as finite] (QM-030-C7); QM-031-C16 [SCOPE FENCE / IMPORTED]
@@ -35,6 +35,19 @@ Convergence oracle and generator selection are priced interfaces; no derivation.
 - `lean4/H016ContinuousDynamicsFork.lean::continuous_dynamics_fork`
 - `lean4/H055DiscreteDynamicsStone.lean::stone_discrete_generator_ambiguity`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels`
+- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.toggleImages`
+- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.noToggleSquare`
+- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.gAddCoords`
+- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.gMulCoords`
+- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.scaledSquare`
+- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.negSquare`
+- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.scaledDiffer`
+- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.cayleyNorm`
+- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.energyZero`
+- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.energyOne`
+- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.energyDistinct`
+- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.candidateCorner`
+- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.noNilpotentIntegerLog`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`
