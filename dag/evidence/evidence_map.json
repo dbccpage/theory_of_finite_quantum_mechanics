@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "aabbe9a4b35ee5f7be1f43503e379b0e1a951a1e2606a82ac856f43e7b3d40ae"
+  "sha256_lf": "82c82d769202e81124b28683bfd8a3f81070bac35096783c994bc02b05d10d21"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -1333,9 +1333,9 @@
    "size": 9170
   },
   "dag/derivation_dag.json": {
-   "sha256": "aabbe9a4b35ee5f7be1f43503e379b0e1a951a1e2606a82ac856f43e7b3d40ae",
+   "sha256": "82c82d769202e81124b28683bfd8a3f81070bac35096783c994bc02b05d10d21",
    "sha256_basis": "lf-normalised",
-   "size": 4891125
+   "size": 4895619
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -2643,19 +2643,19 @@
    "size": 3225
   },
   "dag/derivations/08_l1_to_l2/tfq_1032_gp_import_tensor_product.md": {
-   "sha256": "cf8bee3ea5b4ae34f451543aef1586ef81fb5abb41c22a43c2806a49a43bc4c9",
+   "sha256": "7a1296cbee4c1b34682a2c622c1755ef43090c266c63aa03a27e80eb6610fa2f",
    "sha256_basis": "lf-normalised",
-   "size": 3460
+   "size": 3748
   },
   "dag/derivations/08_l1_to_l2/tfq_1033_gp_import_cptp_class.md": {
-   "sha256": "a96fc316e7c58e5c6e76328f788e078300b6a8817d297c7dca830e62140bdeac",
+   "sha256": "e41431b3d5c5fc0973ad431cf5041411a0895230ffe9c668b9d0e77ffb954248",
    "sha256_basis": "lf-normalised",
-   "size": 3309
+   "size": 3539
   },
   "dag/derivations/08_l1_to_l2/tfq_1034_gp_import_continuous_time.md": {
-   "sha256": "f5f576586dd7b7a641ea66285d6d9929f4f06778dfaf5221accfb0f28a1edc12",
+   "sha256": "07a5e5f6f3642cdf9b0534bc4752443b5dbf8be07f8d2b12b75d122917b8e41a",
    "sha256_basis": "lf-normalised",
-   "size": 3365
+   "size": 3569
   },
   "dag/derivations/08_l1_to_l2/tfq_1035_gp_import_continuum_hilbert.md": {
    "sha256": "97f91be837764652ab1542bb8619f2cf079ec1083ee845bac40074ce489470dd",
@@ -8363,9 +8363,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "23267be96f34093d8e5a195c6d4a13b357af44c1e09372fc063de0728a783f92",
+   "sha256": "5dd0fb329849e6834be1a0fcc4337d462768850e6f5ee8c9a0b06ae21db2ae73",
    "sha256_basis": "lf-normalised",
-   "size": 248242
+   "size": 249946
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -9816,6 +9816,11 @@
    "sha256": "0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a",
    "sha256_basis": "bytes",
    "size": 2378
+  },
+  "lean4/H015CollapseDilations.lean": {
+   "sha256": "689bfa7562cf0a0205c346d902c8c2879b3ca0eaaee263a4fd4b4a3714f56bde",
+   "sha256_basis": "bytes",
+   "size": 8343
   },
   "lean4/H016ContinuousDynamicsFork.lean": {
    "sha256": "906b145d8626c1887b1075e9b900858ca3f0c16df6fa65a2d8a87aa68b06de85",
@@ -95213,11 +95218,11 @@
    "dependents": 102,
    "facts": {
     "cited_code_files_not_tests": 0,
-    "counted_files": 1,
-    "lean_receipt_backed": 12,
+    "counted_files": 4,
+    "lean_receipt_backed": 15,
     "qualifying_reviews": 1,
     "runnable_tests": 0,
-    "symbols_found": 24
+    "symbols_found": 27
    },
    "flags": [],
    "grade": "E3",
@@ -96072,6 +96077,105 @@
      "where": null
     },
     {
+     "canonical_symbol": "QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1032"
+     ],
+     "command": "cd lean4 && lake build DerivationDagQMClosure",
+     "command_note": "then, in a scratch file that imports DerivationDagQMClosure: #print axioms QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/DerivationDagQMClosure.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/lean_replay_campaign_finite_qm_structure.json#2:DerivationDagQMClosure",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1032"
+     ],
+     "command": "cd lean4 && lake build H014BilinearProduct",
+     "command_note": "then, in a scratch file that imports H014BilinearProduct: #print axioms embed_eq_tensor",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/H014BilinearProduct.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/lean_replay_campaign_finite_qm_structure.json#7:H014BilinearProduct",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "embed_eq_tensor",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1032"
+     ],
+     "command": "cd lean4 && lake build H014Interface",
+     "command_note": "then, in a scratch file that imports H014Interface: #print axioms two_combinings_share_interface_and_disagree",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/H014Interface.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/lean_replay_campaign_finite_qm_structure.json#8:H014Interface",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "two_combinings_share_interface_and_disagree",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
      "canonical_symbol": null,
      "cited_in": [
       "node.rust",
@@ -96296,11 +96400,11 @@
    "dependents": 96,
    "facts": {
     "cited_code_files_not_tests": 0,
-    "counted_files": 1,
-    "lean_receipt_backed": 11,
+    "counted_files": 3,
+    "lean_receipt_backed": 12,
     "qualifying_reviews": 1,
     "runnable_tests": 0,
-    "symbols_found": 22
+    "symbols_found": 24
    },
    "flags": [],
    "grade": "E3",
@@ -97062,6 +97166,67 @@
      "where": null
     },
     {
+     "canonical_symbol": "QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1033"
+     ],
+     "command": "cd lean4 && lake build DerivationDagQMClosure",
+     "command_note": "then, in a scratch file that imports DerivationDagQMClosure: #print axioms QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/DerivationDagQMClosure.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/lean_replay_campaign_finite_qm_structure.json#2:DerivationDagQMClosure",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1033"
+     ],
+     "command": "cd lean4 && lake build H015CollapseDilations",
+     "command_note": "then, in a scratch file that imports H015CollapseDilations: #print axioms four_reversible_dilations_of_collapse",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/H015CollapseDilations.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": "four_reversible_dilations_of_collapse",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
      "canonical_symbol": null,
      "cited_in": [
       "node.rust",
@@ -97230,11 +97395,11 @@
    "dependents": 96,
    "facts": {
     "cited_code_files_not_tests": 0,
-    "counted_files": 1,
-    "lean_receipt_backed": 11,
+    "counted_files": 3,
+    "lean_receipt_backed": 12,
     "qualifying_reviews": 1,
     "runnable_tests": 0,
-    "symbols_found": 22
+    "symbols_found": 24
    },
    "flags": [],
    "grade": "E3",
@@ -97996,6 +98161,67 @@
      "resolution": "present",
      "symbol": "witness_neg",
      "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1034"
+     ],
+     "command": "cd lean4 && lake build DerivationDagQMClosure",
+     "command_note": "then, in a scratch file that imports DerivationDagQMClosure: #print axioms QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/DerivationDagQMClosure.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/lean_replay_campaign_finite_qm_structure.json#2:DerivationDagQMClosure",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1034"
+     ],
+     "command": "cd lean4 && lake build H016ContinuousDynamicsFork",
+     "command_note": "then, in a scratch file that imports H016ContinuousDynamicsFork: #print axioms toggle",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/H016ContinuousDynamicsFork.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": "toggle",
+     "symbol_declared": false,
      "symbol_exists": true,
      "where": null
     },
@@ -151666,7 +151892,7 @@
     "lean_receipt_backed": 5,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 11
+    "symbols_found": 21
    },
    "flags": [],
    "grade": "E3",
@@ -151897,6 +152123,256 @@
      "symbol": null,
      "symbol_declared": null,
      "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.lean",
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.gf2_cell_incidence_is_not_superconducting_device_proof_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.gf2_cell_incidence_is_not_superconducting_device_proof_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.lean",
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.local_majorana_noise_skew_symmetry_and_zero_diagonal",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.local_majorana_noise_skew_symmetry_and_zero_diagonal",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.lean",
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.missing_tetron_carrier_py_recorded_and_repaired_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.missing_tetron_carrier_py_recorded_and_repaired_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.lean",
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.noise_mc_schedule_partition_conservation",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.noise_mc_schedule_partition_conservation",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.lean",
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.noise_sweeps_are_not_authority_terminals_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.noise_sweeps_are_not_authority_terminals_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.lean",
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.tetron_boundary_squares_to_zero_over_gf2",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.tetron_boundary_squares_to_zero_over_gf2",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.lean",
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.tetron_disk_cylinder_torus_euler_and_betti_formulas",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.tetron_disk_cylinder_torus_euler_and_betti_formulas",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.lean",
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.tetron_gf2_ranks_and_first_betti_numbers",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.tetron_gf2_ranks_and_first_betti_numbers",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.lean",
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.tetron_hardware_reading_withheld_by_gf2_diagnostic_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.tetron_hardware_reading_withheld_by_gf2_diagnostic_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.lean",
+      "record TFQ-0183"
+     ],
+     "command": "cd lean4 && lake build CampaignTfq0183ImplementationSibling",
+     "command_note": "then, in a scratch file that imports CampaignTfq0183ImplementationSibling: #print axioms CampaignTfq0183ImplementationSibling.tfq0183_tetron_gf2_diagnostic_and_noise_scope_ledger_fence",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignTfq0183ImplementationSibling.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": "CampaignTfq0183ImplementationSibling.tfq0183_tetron_gf2_diagnostic_and_noise_scope_ledger_fence",
+     "symbol_declared": true,
+     "symbol_exists": true,
      "where": null
     },
     {
@@ -349449,7 +349925,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "23267be96f34093d8e5a195c6d4a13b357af44c1e09372fc063de0728a783f92",
+   "receipt_file_sha256": "5dd0fb329849e6834be1a0fcc4337d462768850e6f5ee8c9a0b06ae21db2ae73",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -349475,7 +349951,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "23267be96f34093d8e5a195c6d4a13b357af44c1e09372fc063de0728a783f92",
+   "receipt_file_sha256": "5dd0fb329849e6834be1a0fcc4337d462768850e6f5ee8c9a0b06ae21db2ae73",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -349501,7 +349977,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "23267be96f34093d8e5a195c6d4a13b357af44c1e09372fc063de0728a783f92",
+   "receipt_file_sha256": "5dd0fb329849e6834be1a0fcc4337d462768850e6f5ee8c9a0b06ae21db2ae73",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -349527,7 +350003,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "23267be96f34093d8e5a195c6d4a13b357af44c1e09372fc063de0728a783f92",
+   "receipt_file_sha256": "5dd0fb329849e6834be1a0fcc4337d462768850e6f5ee8c9a0b06ae21db2ae73",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -349553,7 +350029,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "23267be96f34093d8e5a195c6d4a13b357af44c1e09372fc063de0728a783f92",
+   "receipt_file_sha256": "5dd0fb329849e6834be1a0fcc4337d462768850e6f5ee8c9a0b06ae21db2ae73",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -349579,7 +350055,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "23267be96f34093d8e5a195c6d4a13b357af44c1e09372fc063de0728a783f92",
+   "receipt_file_sha256": "5dd0fb329849e6834be1a0fcc4337d462768850e6f5ee8c9a0b06ae21db2ae73",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -349605,7 +350081,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "23267be96f34093d8e5a195c6d4a13b357af44c1e09372fc063de0728a783f92",
+   "receipt_file_sha256": "5dd0fb329849e6834be1a0fcc4337d462768850e6f5ee8c9a0b06ae21db2ae73",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -349631,7 +350107,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "23267be96f34093d8e5a195c6d4a13b357af44c1e09372fc063de0728a783f92",
+   "receipt_file_sha256": "5dd0fb329849e6834be1a0fcc4337d462768850e6f5ee8c9a0b06ae21db2ae73",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -349657,7 +350133,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "23267be96f34093d8e5a195c6d4a13b357af44c1e09372fc063de0728a783f92",
+   "receipt_file_sha256": "5dd0fb329849e6834be1a0fcc4337d462768850e6f5ee8c9a0b06ae21db2ae73",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -349683,7 +350159,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "23267be96f34093d8e5a195c6d4a13b357af44c1e09372fc063de0728a783f92",
+   "receipt_file_sha256": "5dd0fb329849e6834be1a0fcc4337d462768850e6f5ee8c9a0b06ae21db2ae73",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -349709,7 +350185,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "23267be96f34093d8e5a195c6d4a13b357af44c1e09372fc063de0728a783f92",
+   "receipt_file_sha256": "5dd0fb329849e6834be1a0fcc4337d462768850e6f5ee8c9a0b06ae21db2ae73",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -349735,7 +350211,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "23267be96f34093d8e5a195c6d4a13b357af44c1e09372fc063de0728a783f92",
+   "receipt_file_sha256": "5dd0fb329849e6834be1a0fcc4337d462768850e6f5ee8c9a0b06ae21db2ae73",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -349761,7 +350237,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "23267be96f34093d8e5a195c6d4a13b357af44c1e09372fc063de0728a783f92",
+   "receipt_file_sha256": "5dd0fb329849e6834be1a0fcc4337d462768850e6f5ee8c9a0b06ae21db2ae73",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -349787,7 +350263,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "23267be96f34093d8e5a195c6d4a13b357af44c1e09372fc063de0728a783f92",
+   "receipt_file_sha256": "5dd0fb329849e6834be1a0fcc4337d462768850e6f5ee8c9a0b06ae21db2ae73",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -349813,7 +350289,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "23267be96f34093d8e5a195c6d4a13b357af44c1e09372fc063de0728a783f92",
+   "receipt_file_sha256": "5dd0fb329849e6834be1a0fcc4337d462768850e6f5ee8c9a0b06ae21db2ae73",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -350432,21 +350908,21 @@
    "REFUTED": 6,
    "SOURCE_RECORD": 81
   },
-  "cited_symbols_found_but_no_declaration_form": 6,
+  "cited_symbols_found_but_no_declaration_form": 7,
   "e3_nodes_with_review": 166,
   "e3_nodes_with_review_and_cited_code_but_no_test": 37,
   "e3_nodes_with_test_but_no_review": 39,
   "lean_declarations_in_repo": {
-   "distinct": 2399,
-   "no_receipt": 36,
+   "distinct": 2413,
+   "no_receipt": 48,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 2340,
+   "replay_verified": 2342,
    "replay_verified_and_declaration_itemised": 2275,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 2707
+   "present": 2724
   },
   "mismatch_nodes": 190,
   "mismatches_by_kind": {
