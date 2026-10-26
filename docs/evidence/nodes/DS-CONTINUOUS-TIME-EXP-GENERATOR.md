@@ -4,7 +4,7 @@ Stage: [FINITE_QM_DYNAMICS](../stages/FINITE_QM_DYNAMICS.md). Status: `IMPORTED_
 
 ## Statement
 
-> Toggle sends false to true and true to false. No map on the labels false and true squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). The matrix with rows ((1, 1), (1, -1)) and ((1, -1), (1, 1)) squares to the matrix with diagonal entries (0, 0) and off-diagonal entries (4, 0). The coordinatewise negation of that matrix squares to the same matrix and differs from it. For every integer t, (1 - t*t) * (1 - t*t) + 4 * (t*t) equals (1 + t*t) * (1 + t*t). The branch energy 2*k + 1 equals 1 at k = 0 and 3 at k = 1, and distinct integers have distinct branch energies. The integers -1, 1, 1 and -1 give the corner value (-1)*(-1) + 1*1 = 2. No integers a, b, c and d satisfy a + 1 = 0, b = 1, c = 1, d + 1 = 0 together with a*a + b*c = 0, a*b + b*d = 0, c*a + d*c = 0 and c*b + d*d = 0.
+> The one-parameter family T(t)=exp(tH), the generator H=log T and the continuum path integral need real/complex time, convergence and a measure; none is constructed from the finite transport calculus. Refused as finite.
 
 ## Grade
 
@@ -38,7 +38,7 @@ The one-parameter family T(t) = exp(tH), the generator H = log T, and a continuu
 
 ## Review
 
-- PFP review: [dag/results/DS-CONTINUOUS-TIME-EXP-GENERATOR/reviews/20261019_structure_audit/review_result.json](../../../dag/results/DS-CONTINUOUS-TIME-EXP-GENERATOR/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-CONTINUOUS-TIME-EXP-GENERATOR/reviews/20261019_structure_audit/review_result.json](../../../dag/results/DS-CONTINUOUS-TIME-EXP-GENERATOR/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: No Boolean report-map half-step exists, while two distinct normalized Q(i) amplitude half-steps square to swap and are unitary. The source scaled-root and report obstruction proofs are rechecked.
   - does not support: Construct a continuous-time group, analytic logarithms, generator selection, convergence and any continuum measure with their actual hypotheses. Discrete roots or injective branch tags do not supply those interfaces.
   - next test: Construct a continuous-time group, analytic logarithms, generator selection, convergence and any continuum measure with their actual hypotheses. Discrete roots or injective branch tags do not supply those interfaces.
@@ -128,7 +128,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_1040_ds_continuous_time_exp_generator.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_1040_ds_continuous_time_exp_generator.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_1040_ds_continuous_time_exp_generator.md)
-- sha256 (`lf-normalised`): `eabe33cc8a4ea943c7c3c31188a9a2dc7e2b34cf5487699565aed738355a84fb`
+- sha256 (`lf-normalised`): `700e0ebe9bef80269b5ff4fa8559721887d31de325234fca221cd919de853b3b`
 - generated view: listed, not counted
 - cited in: record TFQ-1040
 - counts toward the grade: no

@@ -4,7 +4,7 @@ Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `IMPORTE
 
 ## Statement
 
-> For every natural number k, the remainder of k + 4 on division by 4 equals the remainder of k, the remainder of k + 1 equals the remainder of (the remainder of k, plus 1) on division by 4, the k-th right product by the matrix J equals the representative of the remainder of k, that product equals the identity matrix if and only if the remainder of k is 0, and the product at k + 4 equals the product at k. The identity matrix is the tuple (1, 0, 0, 1). The matrix J is the tuple (0, -1, 1, 0). Its square is the tuple (-1, 0, 0, -1). Its cube is the tuple (0, 1, -1, 0). The product of J with J equals the square, the product of the square with J equals the cube, and the product of the cube with J equals the identity. J, its square and its cube differ from the identity. The products at 1, 2, 3 and 4 equal J, the square, the cube and the identity. The remainders of 0, 1, 2, 3 and 4 on division by 4 are 0, 1, 2, 3 and 0. The integer 0 * 0 - 1 * 1 equals -1, and (-1) * (-1) equals 1.
+> Continuity of reversible dynamics and global field uniqueness across n (needs local tomography) are imported; the complex amplitude lift requires an explicit U(1) phase fiber and complex involution. The discrete shadow does not separate U(1) from Q/Z torsion (QM-062-C4).
 
 ## Grade
 
@@ -38,7 +38,7 @@ Continuity of reversible dynamics, global field uniqueness, local tomography, a 
 
 ## Review
 
-- PFP review: [dag/results/DS-QM062-U1-RESIDUES-IMPORT/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM062-U1-RESIDUES-IMPORT/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM062-U1-RESIDUES-IMPORT/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM062-U1-RESIDUES-IMPORT/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Actual J powers show order-four periodicity on retained indices; modulo-four aliasing is kernel checked for every natural k.
   - does not support: Supply continuity/topology, local tomography and a real exclusion/selection theorem if a full U(1) carrier is wanted. No finite-order exclusion follows from unbounded multiples.
   - next test: Supply continuity/topology, local tomography and a real exclusion/selection theorem if a full U(1) carrier is wanted. No finite-order exclusion follows from unbounded multiples.

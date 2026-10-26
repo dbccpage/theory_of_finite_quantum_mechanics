@@ -4,7 +4,7 @@ Stage: [MAJORANA](../stages/MAJORANA.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 ## Statement
 
-> For every natural number L with 2 \<= L and every natural number j with 1 \<= j and j \<= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu \< (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu \< (2 * t) * (2 * t), and delta differs from 0.
+> The spinless p-wave Kitaev chain H = -sum(t c_j^dag c_{j+1} + Delta c_j c_{j+1} + h.c.) - mu sum(c_j^dag c_j - 1/2), its BdG spectrum, the phase region |mu| \< 2t with Delta nonzero, and the sweet-spot form H = -i t sum gamma_{2j} gamma_{2j+1} with free edge modes gamma_1, gamma_{2L} are imported models.
 
 ## Grade
 
@@ -92,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md`
 
 - file: [dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md](../../../dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md)
-- sha256 (`lf-normalised`): `6e7890e727a3f97b52cc43d6dae878e6eb1c81b4d9bd51cd20e58e27017cdb4d`
+- sha256 (`lf-normalised`): `1b22a1fd3d8be6d706b4f2fbae29e9041e24506baf9db06a231187de7de589e7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1167
 - counts toward the grade: no

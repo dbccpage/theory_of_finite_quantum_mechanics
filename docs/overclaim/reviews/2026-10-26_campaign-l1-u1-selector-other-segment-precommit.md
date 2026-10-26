@@ -38,4 +38,6 @@ Each `#print axioms` line is empty. Allowed set: `propext`, `Classical.choice`, 
 
 ## Numbers recomputed
 
-The independent script `checks/independent/l1-u1-selector-other-segment.py` exited 0: 96 checks, 0 failures. It recomputes the eight powers, the return at step 8, the 49-pair solution list, and 8 = 7 + 1.
+The independent script `checks/independent/l1-u1-selector-other-segment.py` exited 0: 96 checks, 0 failures. It recomputes the eight powers, the return at step 8, the all 49 candidate pairs and the eight solutions, and 8 = 7 + 1.
+
+Review correction: this is a historical pre-repair review. The current node retains its original selection target and old Gaussian-rational result, with the modulo-7 case separately recorded. Current checker output and acceptance are in `dag/research/pr435_review_lean_replay.json` and `docs/overclaim/reviews/2026-10-26_review-pr-435.md`.

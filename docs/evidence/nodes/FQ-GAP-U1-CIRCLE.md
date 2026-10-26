@@ -4,14 +4,14 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 
 ## Statement
 
-> For every integer a, b and d, the equations 5*(a*a - b*b) = 3*(d*d) and a*a + b*b = d*d hold together only when a = 0, b = 0 and d = 0. For every natural number a and b, 5*a*a = 4*b*b holds only when b = 0. The identity 3*3 + 4*4 = 5*5 holds.
+> The circle group U(1) is not constructed on the finite host; continuity of a one-parameter phase group remains a hypothesis. In Q(i), u=(3+4i)/5 has no square root and n -\> u^n is injective, so no homomorphism (Q,+) -\> U(1)(Q(i)) sends 1 to u.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 11
-- cited Lean, Rust or Python symbols found in their in-repo files: 14
+- cited Lean, Rust or Python symbols found in their in-repo files: 15
 - distinct cited Lean declarations covered by a current replay receipt: 8
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
@@ -43,7 +43,6 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - `broken_reference`: symbol U1Fable.ChebyshevCauchyBridge.taylor_circle_norm_defect_identity not found in lean4/U1ChebyshevCauchyBridge.lean. A cited in-repo path or symbol cannot be found in this checkout.
 - `broken_reference`: symbol U1Fable.CyclotomicTorsionTower.ratPhaseQuot_divisible not found in lean4/U1CyclotomicTorsionTower.lean. A cited in-repo path or symbol cannot be found in this checkout.
 - `broken_reference`: symbol U1Fable.PhaseSynthesis.u1_phase_completion_synthesis not found in lean4/U1PhaseSynthesis.lean. A cited in-repo path or symbol cannot be found in this checkout.
-- `broken_reference`: symbol U1Fable.PythagoreanObstruction.no_rational_one_param_group_through_u345 not found in lean4/U1PythagoreanObstruction.lean. A cited in-repo path or symbol cannot be found in this checkout.
 - `broken_reference`: symbol U1Fable.QuadraticTowerAndCayleyStone.chebT2Pow_succ not found in lean4/U1QuadraticTowerAndCayleyStone.lean. A cited in-repo path or symbol cannot be found in this checkout.
 - `broken_reference`: symbol U1Fable.QuadraticTowerAndCayleyStone.u345_k2_double_angle_recovery not found in lean4/U1QuadraticTowerAndCayleyStone.lean. A cited in-repo path or symbol cannot be found in this checkout.
 
@@ -54,7 +53,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Bottleneck
 
-Still open: the circle group U(1) on the finite host, continuity of a one-parameter phase group, injectivity of n mapped to u^n for u = (3+4i)/5, and a homomorphism from (Q, +) into U(1)(Q(i)) sending 1 to u. Projective Cayley, the 5-adic half-angle, mod-5 Gaussian powers, Q/Z torsion, the quadratic sqrt(5) tower, Chebyshev and Taylor approximations, 4D Hermitian Born traces, and discrete Cayley steps stay outside this integer witness. Compact continuous R/Z remains an external completion.
+Still open: the circle group U(1) on the finite host and continuity of a one-parameter phase group. Injectivity of n mapped to u^n for u = (3+4i)/5 and the absence of a homomorphism from (Q, +) into U(1)(Q(i)) sending 1 to u are kernel-checked in the superseding run (u345IntPow_injective, no_rat_add_to_rat_circle_hom_u345). Projective Cayley, the 5-adic half-angle, mod-5 Gaussian powers, Q/Z torsion, the quadratic sqrt(5) tower, Chebyshev and Taylor approximations, 4D Hermitian Born traces, and discrete Cayley steps stay outside this integer witness. Compact continuous R/Z remains an external completion.
 
 ## Source status
 
@@ -62,7 +61,7 @@ Projective Cayley compactification P^1(Q) \<-\> S^1(Q), 5-adic half-angle obstru
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `CONDITIONAL`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-U1-CIRCLE/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `CONDITIONAL`; qualifies for E4: yes.
   - narrowest claim: The rational Cayley parametrization satisfies the unit-circle equation on retained points, with exact inverse t=y/(x+1), and a general cleared identity. The square-root equations force a^2=4/5; bounded powers are computed exactly.
   - does not support: Prove 4/5 is not a rational square, full power-map injectivity, and the additive-Q homomorphism obstruction without bounded-search substitution; compact continuous U(1) remains imported.
   - next test: Prove 4/5 is not a rational square, full power-map injectivity, and the additive-Q homomorphism obstruction without bounded-search substitution; compact continuous U(1) remains imported.
@@ -214,7 +213,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `U1Fable.PythagoreanObstruction.no_rational_one_param_group_through_u345` | yes | no | no | - | `#print axioms U1Fable.PythagoreanObstruction.no_rational_one_param_group_through_u345` |
+| `U1Fable.PythagoreanObstruction.no_rat_add_to_rat_circle_hom_u345` | yes | yes | yes | - | `#print axioms U1Fable.PythagoreanObstruction.no_rat_add_to_rat_circle_hom_u345` |
 
 - counts toward the grade: yes
 

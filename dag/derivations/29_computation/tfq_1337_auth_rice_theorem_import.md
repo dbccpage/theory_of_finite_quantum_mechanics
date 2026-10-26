@@ -11,7 +11,7 @@
 
 ## 1. Abstract & Formal Statement
 
-On the two-point carrier, code 0 and code 1 both send 0 to 0 and 1 to 1, and code 2 sends 0 to 0 and 1 to 0. The identity-table bit is true at code 0, true at code 1, and false at code 2. The code-zero bit is true at code 0, false at code 1, and false at code 2.
+No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.
 
 ### Governing Obligation
 Rice's theorem for the programs of a Turing-complete language stays a citation. No declaration here states that no total computable procedure is sound and complete for a nontrivial extensional property. Mathlib ComputablePred.rice and rice₂ are not instantiated, and no semantic property of Nat.Partrec.Code is named. This three-code table does not decide an infinite language.

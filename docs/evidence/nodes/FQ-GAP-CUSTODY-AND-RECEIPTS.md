@@ -4,7 +4,7 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `OPEN`. Evidence g
 
 ## Statement
 
-> The named untyped-row numerals satisfy 48 - 24 = 24. The named coverage numerals satisfy 53 - 22 = 31 and 22 \< 53.
+> Receipt and custody items: 48 (ledger) vs 24 (GAP-FQM-002 text) untyped claim rows; GAP-FQM-017 QM_208-211 claim maps point at nonexistent *_lib libraries (tautology tests); GAP-FQM-019 eight claims need a Mathlib build to promote; GAP-FQM-020 QM_122 axiom report covers 22 of 53 files and hides a Classical.choice dependency (H019.basisGen8_eval_pos); GAP-FQM-022 QM_122 provenance cites nonexistent sources; QM_020 and QM_080 are published (Zenodo) and not free to rewrite; README states the code-companion --check fails on the current tree.
 
 ## Grade
 
@@ -36,7 +36,7 @@ gap_register GAP-FQM-002/003/004/006..010/012/014/017/019/020/022 (statuses abse
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-CUSTODY-AND-RECEIPTS/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-CUSTODY-AND-RECEIPTS/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_numeral_slice_reviewed`; scope effect `statement_narrowed`; prior status `OPEN`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-GAP-CUSTODY-AND-RECEIPTS/reviews/20261019_scope_audit/review_result.json](../../../dag/results/FQ-GAP-CUSTODY-AND-RECEIPTS/reviews/20261019_scope_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_numeral_slice_reviewed`; scope effect `caveat_added`; prior status `OPEN`; qualifies for E4: yes.
   - narrowest claim: The named untyped-row numerals satisfy 48 - 24 = 24. The named coverage numerals satisfy 53 - 22 = 31 and 22 \< 53.
   - does not support: A recount of ledger rows, missing libraries, Mathlib promotion, the named Classical.choice dependency, provenance pointers, Zenodo publication status, or the README code-companion check.
   - next test: Recount the ledger rows, the named libraries, the Mathlib claims, the Classical.choice dependency, the provenance pointers, the Zenodo records, and the README check on a clean tree.
@@ -75,7 +75,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md](../../../dag/derivations/10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md)
-- sha256 (`lf-normalised`): `d075d79feba00257d72ea21de197535e85f57240aa21e3999a0734e249d9b8dc`
+- sha256 (`lf-normalised`): `65a4bb3dbb29b05ee4d5ad010954c88bf4e890fdefd0d56ffd7e6a7cadb60b46`
 - generated view: listed, not counted
 - cited in: record TFQ-1023
 - counts toward the grade: no

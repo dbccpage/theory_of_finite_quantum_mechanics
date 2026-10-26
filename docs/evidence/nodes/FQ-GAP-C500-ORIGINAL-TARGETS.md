@@ -4,7 +4,7 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `OPEN`. Evidence g
 
 ## Statement
 
-> For every natural number k, the numerals from 276 + 25 * k through 300 + 25 * k are a run of 25, and the next run starts at the next numeral. The ten runs for k from 1 through 10 begin at 301 and end at 550, covering 250 numerals, and 10 * 25 = 250. The ten clause-list lengths 0, 2, 4, 2, 4, 1, 1, 1, 1, 5 sum to 21, and the last length 5 is strictly greater than each earlier length. The five labels M2, M5, M7, J1 and J2 are pairwise distinct.
+> For each of ten C500 blocks the original target contract remains open; closure is recorded only for a scoped statement backed by evidence files (open or invalid bet clauses listed per block, e.g. M2, M5, M7, J1, J2 in Block 10).
 
 ## Grade
 
@@ -36,7 +36,7 @@ GAP-C500-B01..B10 RESOLVED_WITH_SCOPED_EVIDENCE: "original target contract remai
 
 ## Review
 
-- PFP review: [dag/results/FQ-GAP-C500-ORIGINAL-TARGETS/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-GAP-C500-ORIGINAL-TARGETS/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_block_numeral_slice_reviewed`; scope effect `statement_narrowed`; prior status `OPEN`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-GAP-C500-ORIGINAL-TARGETS/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-GAP-C500-ORIGINAL-TARGETS/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_block_numeral_slice_reviewed`; scope effect `caveat_added`; prior status `OPEN`; qualifies for E4: yes.
   - narrowest claim: For every natural number k, the numerals from 276 + 25 * k through 300 + 25 * k are a run of 25, and the next run starts at the next numeral. The ten runs for k from 1 through 10 begin at 301 and end at 550, covering 250 numerals, and 10 * 25 = 250. The ten clause-list lengths 0, 2, 4, 2, 4, 1, 1, 1, 1, 5 sum to 21, and the last length 5 is strictly greater than each earlier length. The five labels M2, M5, M7, J1 and J2 are pairwise distinct.
   - does not support: A fresh reading of each original target contract, the evidence files named beside the ten blocks, or a claim that a scoped receipt discharges a block.
   - next test: Read each original target contract and the evidence files named beside the ten blocks before treating any block as discharged.
@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1025_fq_gap_c500_original_targets.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1025_fq_gap_c500_original_targets.md](../../../dag/derivations/10_finite_qm_core/tfq_1025_fq_gap_c500_original_targets.md)
-- sha256 (`lf-normalised`): `7ffa5a5a617f9755d4cd4f001eb4e82a0d22883e9864b082a5b3c734b5ff230e`
+- sha256 (`lf-normalised`): `86ca9f9f761cebf2a297a2684fded7c51236b7349c2cf138046559f60b301a31`
 - generated view: listed, not counted
 - cited in: record TFQ-1025
 - counts toward the grade: no

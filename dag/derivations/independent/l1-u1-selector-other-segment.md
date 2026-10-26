@@ -2,7 +2,7 @@ Status: AI-drafted, awaiting human review.
 
 # L1-U1-SELECTOR-OTHER-SEGMENT
 
-Node status stays OPEN. The standing text is one circle over the integers modulo 7. Selection of a complex field or of a circle group, and every other modulus, stay outside this note.
+The original selection target remains OPEN. This note records a separate modulo-7 result; it does not replace the C/U(1) selection target or the existing Gaussian-rational torsion result.
 
 ## The product
 
@@ -30,6 +30,10 @@ The next product is (1, 0) again. Each of those seven pairs after the start diff
 ## The circle equation
 
 Each of the eight pairs satisfies x*x + y*y = 1 modulo 7. A direct check of all 49 residue pairs finds no other solution. So the solution set is exactly this list of eight. The count 8 equals 7 + 1 and is not 4. The generator (2, 2) is not one of the four axis pairs (1, 0), (0, 1), (6, 0), (0, 6).
+
+## Independent review controls
+
+The repaired checker compares the natural-subtraction implementation with ordinary integer arithmetic on every pair of residue pairs, verifies the complete power sequence and all norm-one solutions, and checks closure, inverses and associativity on that finite solution set. Its natural-number route uses truncated subtraction explicitly. Negative controls detect unbounded inputs outside that route's admitted domain, a missing solution, an extra non-solution and a wrong real-part sign. Output counts are computed from the enumeration rather than printed as fixed claimed results. These additional finite controls are not advertised as new general Lean theorems.
 
 ## What is proved
 

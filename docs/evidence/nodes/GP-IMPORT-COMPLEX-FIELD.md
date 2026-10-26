@@ -4,7 +4,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 ## Statement
 
-> For a Gaussian integer a+bi, the product (1+i)*(a+bi) equals (a-b)+(a+b)i and differs from the real unit, and (a+bi)*(1+i) differs from the real unit. The matrix with entries 0, 1, 1, 1 in row-major order has each diagonal entry equal to its own conjugate and each off-diagonal entry equal to the conjugate of the other, and it sends a column (x, y) to (y, x+y). When (x, y) differs from the zero column, (y, x+y) differs from lam*(x, y) for each Gaussian integer lam.
+> Complex numbers as a complete field. On the finite report host only Z\[i\] (Gaussian integers) is available: 1+i has no inverse, and a self-adjoint Gauss-integer matrix need not have a Gauss-integer eigenvalue.
 
 ## Grade
 
@@ -36,7 +36,7 @@ imported / lost on this host (GaussInt is not a field); conditional selection of
 
 ## Review
 
-- PFP review: [dag/research/pr_390_current_scope_review.json](../../../dag/research/pr_390_current_scope_review.json); file present and sha256 matches the node's record: yes; verdict `scoped_gaussian_integer_result_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/research/pr_390_current_scope_review.json](../../../dag/research/pr_390_current_scope_review.json); file present and sha256 matches the node's record: yes; verdict `scoped_gaussian_integer_result_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: For a Gaussian integer a+bi, the product (1+i)*(a+bi) equals (a-b)+(a+b)i and differs from the real unit, and (a+bi)*(1+i) differs from the real unit. The matrix with entries 0, 1, 1, 1 in row-major order has each diagonal entry equal to its own conjugate and each off-diagonal entry equal to the conjugate of the other, and it sends a column (x, y) to (y, x+y). When (x, y) differs from the zero column, (y, x+y) differs from lam*(x, y) for each Gaussian integer lam.
   - does not support: The example rules out Gaussian-integer eigenpairs for this one matrix. A spectral theorem after extending scalars to a complete complex field, and a derivation or selection of that field from primitive difference, remain imported. This obstruction does not prove that completion or the complex numbers are uniquely necessary; the cyclotomic ring Z\[zeta_n\] remains a recorded discrete substitute.
   - next test: Keep the complete-field import explicit while reusing the exact Gaussian-integer obstruction.
@@ -108,7 +108,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1029_gp_import_complex_field.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1029_gp_import_complex_field.md](../../../dag/derivations/08_l1_to_l2/tfq_1029_gp_import_complex_field.md)
-- sha256 (`lf-normalised`): `6e707a7a3d03f89bf728a29946a55dcd4b8e0276d709a3a490d16e80c617d2cc`
+- sha256 (`lf-normalised`): `67585207e087cf0bbce831d28fbb75cebb94018c1205c5c7384c7932e0095821`
 - generated view: listed, not counted
 - cited in: record TFQ-1029
 - counts toward the grade: no

@@ -1487,5 +1487,6 @@ lean_lib «CampaignFiniteGroupPachner» where
   srcDir := "."
   roots := #[`CampaignFiniteGroupPachner]
 
+-- Reviewed finite campaign: L1-U1-SELECTOR-OTHER-SEGMENT. Non-default target.
 lean_lib CampaignL1U1SelectorOtherSegment where
   roots := #[`CampaignL1U1SelectorOtherSegment]

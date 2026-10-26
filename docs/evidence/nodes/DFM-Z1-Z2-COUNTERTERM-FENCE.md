@@ -4,7 +4,7 @@ Stage: [DRESSING_FIELD](../stages/DRESSING_FIELD.md). Status: `OPEN`. Evidence g
 
 ## Statement
 
-> For every integer momentum pair and every integer mass, (slash(p+q) - m I) - (slash(p) - m I) = slash(q), where slash(v) = v0 g0 - v1 g1 - v2 g2 - v3 g3 in the stated Dirac representation. At p = (2, 0, 0, 0), q = (1, 0, 0, 1), loop momentum 0 and mass 1, S(p) = (slash(p) + I)/3 and S(p+q) = (slash(p+q) + I)/7 satisfy S(p+q) slash(q) S(p) = S(p) - S(p+q), and the lowered contraction q_mu I_Lambda^mu equals I_Sigma(p) - I_Sigma(p+q). That matrix has diagonal entries 2/7, 2/7, 26/21, 26/21 and off-diagonal entries (0,2)=-2/7, (1,3)=2/7, (2,0)=2/7, (3,1)=-2/7, with indices starting at 0. The counterterm equality Z_1/Z_2 = 1 is not proved.
+> The contraction q_mu I_Lambda^mu = I_Sigma(p) - I_Sigma(p+q) of the one-loop vertex integrand and the resulting counterterm equality Z_1/Z_2 = 1 are not computed by the cited replay.
 
 ## Grade
 
@@ -84,7 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md](../../../dag/derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md)
-- sha256 (`lf-normalised`): `ee4bfba4cb6dc781050cc86dfbb1a806a7f0e548ffc0f82ae1f4f773488fd064`
+- sha256 (`lf-normalised`): `6a6f91f03656713873f820a38da6a1229188182ce974e4cb3ce245a442d85220`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1114
 - counts toward the grade: no

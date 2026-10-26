@@ -4,7 +4,7 @@ Stage: [FERMION_SIGN](../stages/FERMION_SIGN.md). Status: `IMPORTED_ASSUMPTION`.
 
 ## Statement
 
-> In the formal angle-residue model modulo 2m, for every m\>1 the distinct residues 1 and m+1 have the same doubled residue 2. Thus full-braid monodromy alone does not select an exchange residue. At m=3 the two residues are 1 and 4. This is an algebraic ambiguity, not a Berry-phase derivation.
+> Arovas-Schrieffer-Wilczek: adiabatic exchange of two quasiholes in the nu = 1/m Laughlin state gives statistical phase theta = pi/m.
 
 ## Grade
 
@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md`
 
 - file: [dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md](../../../dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md)
-- sha256 (`lf-normalised`): `f056366808c5a37a5c63ad71a601c2684371b4b5902f580f51568e14b5f52ff8`
+- sha256 (`lf-normalised`): `e6a151bb3050790f1b44b5a880bba69e9d35402ab2475be18f00d4d1c0df2653`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1208
 - counts toward the grade: no
