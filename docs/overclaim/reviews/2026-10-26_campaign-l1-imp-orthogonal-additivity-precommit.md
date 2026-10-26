@@ -1,6 +1,6 @@
 # Review of campaign L1-IMP-ORTHOGONAL-ADDITIVITY
 
-Scope: branch `derive/L1-IMP-ORTHOGONAL-ADDITIVITY` against merge base `4ead062a413c848c68bab12ac20879c077320f9d`. Reviewed against the statement in `dag/derivation_dag.json` as it stands in this worktree. Rule applied: PROVED_LEAN only if Lean declarations in the repository state the node's full statement and compile with only propext, Classical.choice and Quot.sound.
+Scope: branch `derive/L1-IMP-ORTHOGONAL-ADDITIVITY` after one rebase onto `867c667201efccec701ce3d4e6a418aece5dde96`. The Lean file was built on `4ead062a413c848c68bab12ac20879c077320f9d` and was not edited again. Reviewed against the statement in `dag/derivation_dag.json` as it stands in this worktree. Rule applied: PROVED_LEAN only if Lean declarations in the repository state the node's full statement and compile with only propext, Classical.choice and Quot.sound.
 
 Method: `scripts/overclaim_scan.py --changed-since origin/main --strict` (HIGH 0, MEDIUM 0, LOW 4). Read the node statement and bottleneck, `lean4/CampaignL1OrthogonalAdditivity.lean`, the three cited declarations in `lean4/SectorFormUniqueness.lean`, the replay receipt, and `checks/independent/l1-imp-orthogonal-additivity.py`. This review pass did not rebuild Lean. The receipt records the earlier `lake build CampaignL1OrthogonalAdditivity` (exit 0). The source sha256 `4cd851daef44f1583b0de85c2cf7729cb4c959c52568265be656c6ec62dd0421` matches the file on disk.
 
