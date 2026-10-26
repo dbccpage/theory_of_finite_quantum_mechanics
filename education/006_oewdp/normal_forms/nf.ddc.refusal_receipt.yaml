@@ -1,0 +1,54 @@
+schema_version: smplx.nf.contract.v0
+contract_kind: form_contract
+identity:
+  id: nf.ddc.refusal_receipt
+  name: Refusal Receipt Normal Form
+  short_name: RRNF
+  version: v0
+  status: active
+  family: ddc_refusal
+  theory_status: established
+  contract_status: active
+  verification_status: executable
+classification:
+  hierarchy_level: form
+  subject_kind:
+    - operational_refusal
+    - typed_receipt
+    - state_preservation
+  data_posture: at_rest
+  mathematical_posture: operational
+purpose:
+  excludes_anomaly: untyped failure states, unhandled execution crashes, state-mutating refusals, or unconstrained retry loops
+  preserves_invariant: closed 7-member refusal vocabulary, state identity preservation step(s, M) = s, and Law 3 refusal absorption
+  protected_skeleton:
+    - refusal_reason
+    - unmutated_state_digest
+    - permitted_next_set
+    - receipt_signature
+  erased_structure:
+    - failed_execution_scratchpad
+  non_claims:
+    - does not claim refusal fixes the underlying obstruction
+    - does not permit retry of the identical failed operation without structural modification
+quadrilateral:
+  qualifies_as_true_normal_form: false
+  qualification_gap: failure_algebra_typing_not_relational_project_join
+  anomaly_exclusion: untyped exceptions, state corruption during refusal, or self-loop retries without context expansion
+  lossless_join:
+    status: state_identity_preservation
+    statement: the state before refusal is identical to the state after refusal; step is mathematically an identity on state
+  dependency_preservation:
+    status: invariant_firewall_preserved
+    statement: refusal reason is verified locally against the violated pre-condition fence
+  syntactic_decision:
+    status: closed_vocabulary_decidable
+    statement: membership is decidable by membership in the closed 7-element enum and checking permitted_next == {C, Lambda, T}
+governing_laws:
+  - law_3: Refusal absorption (only {C, Lambda, T} may follow a typed refusal)
+contracts_referenced:
+  - omega_engine_governance/contracts/contracts_omega_engine_crates/mathematics/discrete_deformation_algebra/mutation_operator.contract.yaml
+declarations_required:
+  - refusal_reason
+  - state_preserved
+  - permitted_next

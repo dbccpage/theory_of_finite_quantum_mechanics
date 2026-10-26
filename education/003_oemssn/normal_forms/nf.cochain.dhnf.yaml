@@ -1,0 +1,142 @@
+schema_version: smplx.nf.contract.v0
+schema_ref: ./normal_form_contract_schema.yaml
+contract_kind: normal_form_contract
+identity:
+  id: nf.cochain.dhnf
+  name: Discrete Hodge Normal Form
+  short_name: DHNF
+  version: v0
+  theory_status: established
+  contract_status: draft
+  verification_status: absent
+  family: shape
+  status: draft
+classification:
+  hierarchy_level: normal_form
+  subject_kind:
+  - cochain
+  - finite_cell_complex
+  data_posture: at_rest
+  mathematical_posture: formal_algebraic
+purpose:
+  excludes_anomaly: treating a gradient update, a harmonic cycle, and a coexact curl
+    as the same kind of cochain
+  preserves_invariant: a discrete 1-cochain splits uniquely into exact, harmonic,
+    and coexact parts for the declared rational inner product, and those parts sum
+    to the cochain
+  protected_skeleton:
+  - exact_part
+  - harmonic_part
+  - coexact_part
+  - inner_product
+  erased_structure: []
+  non_claims:
+  - a nonzero harmonic part is a component of a successful decomposition. It is not
+    a failure of the form
+  - a nonzero harmonic cochain is a residual_harmonic_class providing a canonical cohomology
+    representative; it is not an obstruction in isolation and promotes to an obstruction
+    only relative to a declared protected law via OBNF
+  - the orthogonal split is stated for a finite cell complex and a declared positive
+    definite rational inner product
+  - this directory does not execute the decomposition
+  - does not imply authorization
+definition:
+  source: coda_all_universe/mssn_sn_tower/definitions.md
+  section: '3.5'
+  formal_statement: 'On a finite cell complex with a positive definite inner product
+    taking rational values, every discrete 1-cochain c admits a unique decomposition
+    c = d0 p + h + d1* q, with p a 0-cochain, h harmonic, and q a 2-cochain. The three
+    summands are pairwise orthogonal. The harmonic summand satisfies d1 h = 0 and
+    d0* h = 0. Adding the three summands returns c with no remainder in the declared
+    rational arithmetic. Nilpotence d1 d0 = 0 is required of the complex.
+
+    '
+  quadrilateral:
+    qualifies_as_true_normal_form: false
+    qualification_gap: reconstruction_is_the_hodge_sum_not_a_relational_join
+    qualifies_as_extended_form: true
+    anomaly_exclusion: conflating an exact gradient, a harmonic cycle, and a coexact
+      curl
+    lossless_join:
+      status: direct_sum
+      statement: the exact, harmonic, and coexact summands add back to c
+    dependency_preservation:
+      status: orthogonality_retained
+      statement: each pair of summands has inner product zero, and nilpotence of the
+        coboundary is retained
+    syntactic_decision:
+      status: schema_decidable
+      statement: 'The split is computed from the declared complex, the inner product,
+        and the cochain. A nonzero harmonic component is recorded and the decomposition
+        still holds.
+
+        '
+declarations_required:
+- cell_complex
+- coboundary_d0
+- coboundary_d1
+- inner_product
+- cochain_c
+evidence_required: []
+validation_criteria:
+- d1 composed with d0 is zero
+- c equals d0 p + h + d1-star q in the declared rational arithmetic
+- the three summands are pairwise orthogonal
+- h is closed and coclosed
+terminal_routes:
+- Accept
+- RecordHarmonicComponent
+- RejectNilpotence
+- RejectReconstruction
+terminal_route_map:
+  Accept: Preserve
+  RecordHarmonicComponent: Preserve
+  RejectNilpotence: Refuse
+  RejectReconstruction: Reject
+certification:
+  certificate_required: false
+  certificate_kind: null
+  obstruction_class_required: false
+  loss_ledger_required: false
+  verifier_required: false
+  loss_ledger_trigger_id: null
+authorization:
+  authorized_by: null
+  certified_implies_authorized: false
+failure_modes:
+- symptom: d1 d0 is nonzero on some 0-cochain
+  diagnosis: the complex fails nilpotence
+  terminal: RejectNilpotence
+- symptom: the three summands do not add to c, or two of them have nonzero inner product
+  diagnosis: the exhibited split is not the orthogonal decomposition
+  terminal: RejectReconstruction
+- symptom: the harmonic summand is nonzero and the split otherwise holds
+  diagnosis: the cochain has a harmonic component, and the form holds
+  terminal: RecordHarmonicComponent
+examples:
+- ref: coda_all_universe/mssn_sn_tower/definitions.md
+  section: '3.5'
+references:
+- coda_all_universe/mssn_sn_tower/definitions.md
+obstruction_substrate:
+  policy_ref: ../substrate/default_finite_obstruction_policy.yaml
+  finite_carrier:
+    description: finite 2-dimensional cell complex K over rationals Q
+    max_rank: null
+  cochain_complex:
+    C0: node_potentials
+    C1: edge_flows
+    C2: face_curls
+    d0: 'gradient coboundary: maps C0 to C1'
+    d1: 'curl cocycle: maps C1 to C2'
+    quotient: H1 = ker(d1) / im(d0)
+  obstruction_class:
+    notation: '[harmonic_projection_h]'
+    exact: h == 0 and d1_star_q == 0 (pure gradient)
+    residual_closed: h != 0 and d1(c) == 0 (residual_harmonic_class; promotes to an obstruction only relative to a declared protected law via OBNF)
+    open: d1(c) != 0 (curl non-zero)
+proof_obligations:
+- id: dhnf.discrete_hodge_decomposition
+  status: theorem_shaped
+  ref: ../math/17_math_discrete_hodge_decomposition_and_bqnf_cochains.md
+  section: 1. Discrete Hodge Decomposition over Finite Complexes

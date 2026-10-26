@@ -1,0 +1,57 @@
+schema_version: smplx.nf.contract.v0
+contract_kind: form_contract
+identity:
+  id: nf.ddc.context_boundary
+  name: Context Boundary Normal Form
+  short_name: CBNF
+  version: v0
+  status: active
+  family: ddc_carrier
+  theory_status: established
+  contract_status: active
+  verification_status: executable
+classification:
+  hierarchy_level: form
+  subject_kind:
+    - carrier_complex
+    - observation_window
+    - boundary_subcomplex
+  data_posture: at_rest
+  mathematical_posture: operational
+purpose:
+  excludes_anomaly: scope laundering and unmonitored carrier expansion where boundary dependencies are disguised as resolved defects
+  preserves_invariant: disjoint carrier edge partition E(K') = E_int ⊔ E_bnd with monotonic non-decreasing defect mass Φ₁ and Γ₂
+  protected_skeleton:
+    - subcomplex_carrier_K
+    - ambient_carrier_K_prime
+    - internal_edges
+    - boundary_edges
+    - defect_evaluations
+  erased_structure:
+    - external_complex_topology_beyond_boundary
+  non_claims:
+    - does not claim context exposure reduces residual defect
+    - does not claim exposed boundary edges are gauge-repairable without further carrier inclusion
+quadrilateral:
+  qualifies_as_true_normal_form: false
+  qualification_gap: topological_sheaf_partition_not_relational_project_join
+  anomaly_exclusion: scope laundering (attempting to decrease Φ₁ or Γ₂ by expanding the carrier boundary)
+  lossless_join:
+    status: disjoint_sum_reconstruction
+    statement: E(K') is losslessly partitioned into E_int ⊔ E_bnd with explicit indicator functions
+  dependency_preservation:
+    status: subcomplex_embedding_preserved
+    statement: internal cochain relations are preserved identically on E_int
+  syntactic_decision:
+    status: combinatorial_subgraph_decidable
+    statement: membership is decidable by checking vertex incident inclusion and edge partition counts
+governing_laws:
+  - law_8: Context exposure is not repair (K strictly changes, and Φ₁/Γ₂ never decrease)
+contracts_referenced:
+  - omega_engine_governance/contracts/contracts_omega_engine_crates/mathematics/discrete_deformation_algebra/context_embedding_operator.contract.yaml
+declarations_required:
+  - base_carrier
+  - extended_carrier
+  - internal_edge_count
+  - boundary_edge_count
+  - defect_monotonicity_witness

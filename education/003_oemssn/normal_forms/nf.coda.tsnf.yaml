@@ -1,0 +1,138 @@
+schema_version: smplx.nf.contract.v0
+schema_ref: ./normal_form_contract_schema.yaml
+contract_kind: form_contract
+identity:
+  id: nf.coda.tsnf
+  name: Topological Simplex Normal Form
+  short_name: TSNF
+  version: v0
+  status: draft
+  family: topology
+  theory_status: established
+  contract_status: draft
+  verification_status: executable
+classification:
+  hierarchy_level: form
+  subject_kind:
+  - simplicial_complex
+  - boundary_matrix
+  - homology_presentation
+  data_posture: at_rest
+  mathematical_posture: operational
+purpose:
+  excludes_anomaly: un-oriented or inconsistent vertex presentations, unverified boundary
+    nilpotence, conflation of isolated boundary matrix invariant factors with homology torsion, or violation of the
+    Euler-Poincare index theorem
+  preserves_invariant: relative to a declared total order on vertex identifiers (vertex_total_order),
+    every finite cell presentation admits a unique canonical vertex ordering (v_0 < ... < v_k),
+    Stokes nilpotence (d_{k-1} . d_k = 0), integral homology groups H_k = ker(d_k)/im(d_{k+1})
+    computed via compatible basis reduction with Smith Normal Form quotient divisibility (d_i | d_{i+1}),
+    and exact Euler-Poincare equality
+  protected_skeleton:
+  - ordered_simplices
+  - boundary_matrices
+  - nilpotence_certificates
+  - smith_normal_form_diagonal
+  - betti_numbers
+  - torsion_coefficients
+  - euler_characteristic
+  erased_structure:
+  - arbitrary_vertex_permutations
+  - non-canonical_basis_orderings
+  non_claims:
+  - does not compute continuous homotopy groups pi_n(X) for n >= 2
+  - does not decide homeomorphisms between arbitrary triangulated 4-manifolds (undecidable
+    by Markov 1958)
+  - does not compute cohomology ring cup products without higher cochain coproducts
+  - 'does not imply authority minting (AuthorityEffect: None)'
+  - this is a homological presentation form for finite oriented complexes and integer homology quotients.
+    It is not a relational normal form and it has no project-join theorem
+  - canonical vertex ordering and orientation are defined relative to a declared vertex_total_order;
+    they are not intrinsic without such an order
+  - torsion invariants cannot be read from isolated boundary matrices in isolation; they are computed
+    in the quotient H_k = ker(d_k) / im(d_{k+1}) via compatible basis reduction
+quadrilateral:
+  qualifies_as_true_normal_form: false
+  qualification_gap: smith_form_of_boundary_matrices_not_a_relvar_decomposition
+  qualifies_as_extended_form: true
+  anomaly_exclusion: an unordered or repeated vertex tuple, a boundary whose square is nonzero,
+    or invariant factors that break divisibility
+  lossless_join:
+    status: homology_reconstruction
+    statement: 'The boundary matrices and compatible basis reduction determine the invariant
+      factors of the quotient H_k = ker(d_k)/im(d_{k+1}), the free Betti numbers, the torsion
+      coefficients, and the Euler characteristic
+      '
+  dependency_preservation:
+    status: divisibility_chain_retained
+    statement: each invariant factor divides the next
+  syntactic_decision:
+    status: schema_decidable
+    statement: the check reads the declared simplex registry, vertex total order, and the boundary matrices
+declarations_required:
+- vertex_total_order
+- simplex_registry
+- boundary_matrices_by_dim
+- max_dimension
+evidence_required:
+- f_vector
+- nilpotence_join_receipts
+- smith_normal_form_diagonal_factors
+- free_betti_numbers
+- torsion_divisors
+validation_criteria:
+- every k-simplex has strictly ordered distinct vertices v_0 < v_1 < ... < v_k relative to the declared vertex_total_order
+- boundary matrix d_k has signed entries (-1)^i for face omitting v_i
+- Stokes nilpotence d_{k-1} . d_k == 0 evaluates to zero with zero non-zero residuals
+- Smith Normal Form reduction on compatible bases computes non-negative diagonal invariant factors d_1 <= ... <= d_r of the quotient presentation matrix of im(d_{k+1}) in ker(d_k)
+- divisibility condition d_i | d_{i+1} holds for all 1 <= i < r
+- Betti numbers satisfy beta_k = dim(ker d_k) - rank(d_{k+1}) = n_k - rank(d_k) - rank(d_{k+1})
+- torsion coefficients of the homology group H_k = ker(d_k) / im(d_{k+1}) are the quotient elementary divisors d_i > 1 resulting from integer homology reduction (not uncoordinated invariant factors of an isolated boundary matrix)
+- Euler-Poincare formula sum (-1)^k n_k == sum (-1)^k beta_k holds identically
+proof_obligations:
+- id: tsnf.boundary_nilpotence_identity
+  status: machine_checked
+  ref: coda_all_universe/1_the_tower/2_mathematics/lean4/k_simplex_homology.lean
+  statement: Boundary of boundary vanishes identically on any oriented k-simplex
+- id: tsnf.euler_poincare_invariance
+  status: open_proof_obligation
+  ref: coda_all_universe/1_the_tower/2_mathematics/lean4/integral_homology_torsion.lean
+  note: Formal proof pending integration into repo NormalFormsCore target
+  statement: Alternating sum of simplex counts equals alternating sum of Betti numbers
+terminal_routes:
+- Preserve
+- Canonicalize
+- TorsionCertified
+- Refuse
+terminal_route_map:
+  Preserve: Preserve
+  Canonicalize: Repair
+  TorsionCertified: Preserve
+  Refuse: Refuse
+certification:
+  certificate_required: true
+  certificate_kind: tsnf_homology_certificate
+  obstruction_class_required: true
+  loss_ledger_required: false
+  verifier_required: true
+  loss_ledger_trigger_id: null
+authorization:
+  authorized_by: null
+  certified_implies_authorized: false
+failure_modes:
+- symptom: simplex declared with duplicate or un-ordered vertices
+  diagnosis: non-canonical simplex presentation
+  terminal: Canonicalize
+- symptom: d_{k-1} . d_k != 0
+  diagnosis: Stokes boundary orientation inconsistency
+  terminal: Refuse
+- symptom: diagonal invariant factors violate d_i | d_{i+1}
+  diagnosis: incomplete Smith Normal Form reduction
+  terminal: Refuse
+examples:
+- ref: coda_all_universe/1_the_tower/9_ansi_sql/bisimulation_receipt.md
+  section: 2. Test Execution & Parity Verification (RP2, Klein Bottle, Torus, S2)
+references:
+- coda_all_universe/1_the_tower/2_mathematics/lean4/integral_homology_torsion.lean
+- coda_all_universe/1_the_tower/9_ansi_sql/code/smith_normal_form_cte_evaluator.py
+- coda_all_universe/1_the_tower/9_ansi_sql/code/torsion_bisimulation_bridge.py

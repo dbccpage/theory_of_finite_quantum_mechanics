@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 540" width="100%" height="100%" style="background:#0b0f19; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <defs>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1e293b" stroke-width="0.8" opacity="0.6"/>
+    </pattern>
+    <radialGradient id="bgGlow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#1e1b4b" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0b0f19" stop-opacity="1"/>
+    </radialGradient>
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glowRed" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f43f5e"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#c084fc"/>
+    </marker>
+  </defs>
+
+  <rect width="880" height="540" fill="url(#bgGlow)"/>
+  <rect width="880" height="540" fill="url(#grid)"/>
+  <rect x="16" y="16" width="848" height="508" rx="12" fill="none" stroke="#334155" stroke-width="1.2"/>
+
+  <!-- Top Banner / Header -->
+  <g transform="translate(32, 32)">
+    <rect x="0" y="0" width="86" height="24" rx="6" fill="#0284c7" fill-opacity="0.2" stroke="#38bdf8" stroke-width="1"/>
+    <text x="43" y="16" fill="#38bdf8" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="1">MSS-18</text>
+
+    <rect x="94" y="0" width="56" height="24" rx="6" fill="#6366f1" fill-opacity="0.2" stroke="#818cf8" stroke-width="1"/>
+    <text x="122" y="16" fill="#a5b4fc" font-size="11" font-weight="700" text-anchor="middle">S(18)</text>
+
+    <rect x="158" y="0" width="136" height="24" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="226" y="16" fill="#94a3b8" font-size="10" font-weight="500" text-anchor="middle">AuthorityEffect: None</text>
+
+    <text x="0" y="52" fill="#f8fafc" font-size="19" font-weight="700" letter-spacing="0.2">Level 18: Discrete l^2 Hodge Decomposition (MSS-18)</text>
+    <text x="0" y="71" fill="#94a3b8" font-size="12" font-weight="400">Discrete Exterior Calculus, combinatorial Laplacian Delta_k = d d* + d* d, and 3-way orthogonal cochain split</text>
+
+    <g transform="translate(530, 0)">
+      <rect x="0" y="0" width="286" height="74" rx="8" fill="#030712" stroke="#1e293b" stroke-width="1"/>
+      <text x="12" y="18" fill="#64748b" font-size="10" font-weight="600" text-transform="uppercase" letter-spacing="0.8">Wire Grammar Packet</text>
+      <text x="12" y="44" fill="#38bdf8" font-size="12" font-family="ui-monospace, monospace" font-weight="600">&lt;&lt;hodge &lt;matrices&gt; &lt;input c&gt; &lt;exact&gt; &lt;harm&gt; &lt;coex&gt;&gt;&gt;</text>
+    </g>
+  </g>
+
+  <line x1="32" y1="120" x2="848" y2="120" stroke="#1e293b" stroke-width="1.2"/>
+
+  <!-- Center Visualization Canvas -->
+  <g transform="translate(32, 132)">
+    
+        <!-- Orthogonal 3-Way Vector Space Diagram -->
+        <g transform="translate(40, 20)">
+          <rect x="0" y="0" width="420" height="240" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+          <text x="210" y="26" fill="#38bdf8" font-size="12" font-weight="700" text-anchor="middle">3-Way Orthogonal Decomposition of Cochain c</text>
+
+          <!-- 3 Orthogonal Axes -->
+          <!-- Origin -->
+          <circle cx="160" cy="150" r="5" fill="#f8fafc"/>
+
+          <!-- Axis 1: Exact Subspace im(d) -->
+          <line x1="160" y1="150" x2="340" y2="150" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow)"/>
+          <text x="350" y="155" fill="#38bdf8" font-size="11" font-weight="700">im(d_{k-1}) [Exact]</text>
+
+          <!-- Axis 2: Harmonic Subspace H -->
+          <line x1="160" y1="150" x2="160" y2="50" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
+          <text x="160" y="40" fill="#10b981" font-size="11" font-weight="700" text-anchor="middle">ker(&#916;_k) [Harmonic]</text>
+
+          <!-- Axis 3: Coexact Subspace im(d*) -->
+          <line x1="160" y1="150" x2="80" y2="210" stroke="#c084fc" stroke-width="2.5" marker-end="url(#arrowPurple)"/>
+          <text x="80" y="228" fill="#c084fc" font-size="11" font-weight="700" text-anchor="middle">im(d_k*) [Coexact]</text>
+
+          <!-- Vector c Decomposition -->
+          <line x1="160" y1="150" x2="270" y2="80" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#arrowAmber)"/>
+          <text x="285" y="78" fill="#fbbf24" font-size="12" font-weight="700">c</text>
+
+          <text x="210" y="232" fill="#94a3b8" font-size="11" font-family="ui-monospace, monospace" text-anchor="middle">c = d_{k-1} p + h + d_k* q</text>
+        </g>
+
+        <!-- Laplacian Specs -->
+        <g transform="translate(480, 20)">
+          <rect x="0" y="0" width="300" height="240" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+          <text x="150" y="28" fill="#f8fafc" font-size="13" font-weight="700" text-anchor="middle">Combinatorial Laplacian</text>
+
+          <g transform="translate(15, 50)">
+            <rect x="0" y="0" width="270" height="65" rx="6" fill="#0f172a" stroke="#818cf8" stroke-width="1"/>
+            <text x="135" y="26" fill="#818cf8" font-size="12" font-weight="600" text-anchor="middle">Discrete Laplace-de Rham</text>
+            <text x="135" y="48" fill="#f8fafc" font-size="12" font-family="ui-monospace, monospace" text-anchor="middle">&#916;_k = d d* + d* d</text>
+          </g>
+
+          <g transform="translate(15, 130)">
+            <rect x="0" y="0" width="270" height="90" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+            <text x="135" y="24" fill="#10b981" font-size="11" font-weight="600" text-anchor="middle">Orthogonality Invariant</text>
+            <text x="135" y="46" fill="#94a3b8" font-size="10" text-anchor="middle">&#10216;dp, h&#10217; = 0 | &#10216;h, d*q&#10217; = 0</text>
+            <text x="135" y="64" fill="#94a3b8" font-size="10" text-anchor="middle">&#10216;dp, d*q&#10217; = 0 (Mutually Orthogonal)</text>
+            <text x="135" y="80" fill="#38bdf8" font-size="9" text-anchor="middle">Residual error = 0.0 over &#8474;</text>
+          </g>
+        </g>
+        
+  </g>
+
+  <!-- Bottom Footer -->
+  <g transform="translate(32, 468)">
+    <line x1="0" y1="0" x2="816" y2="0" stroke="#1e293b" stroke-width="1.2"/>
+    
+    <text x="0" y="22" fill="#64748b" font-size="10" font-weight="600" text-transform="uppercase" letter-spacing="0.5">Pipeline Evaluator:</text>
+    <text x="120" y="22" fill="#38bdf8" font-size="11" font-family="ui-monospace, monospace" font-weight="600">Evaluator::HodgeProjector</text>
+
+    <text x="380" y="22" fill="#64748b" font-size="10" font-weight="600" text-transform="uppercase" letter-spacing="0.5">Primary Error:</text>
+    <text x="470" y="22" fill="#f43f5e" font-size="11" font-family="ui-monospace, monospace" font-weight="600">ERR_HODGE_RESIDUAL_NONZERO</text>
+
+    <text x="0" y="44" fill="#64748b" font-size="10" font-weight="600" text-transform="uppercase" letter-spacing="0.5">Forcing Invariant:</text>
+    <text x="120" y="44" fill="#cbd5e1" font-size="11" font-weight="400">Hodge decomposition solves static harmonic forms but lacks discrete zeta spectra and transfer traces; forced lift to MSS-19.</text>
+  </g>
+</svg>

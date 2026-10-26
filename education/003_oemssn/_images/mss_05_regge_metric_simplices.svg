@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 540" width="100%" height="100%" style="background:#0b0f19; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <defs>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1e293b" stroke-width="0.8" opacity="0.6"/>
+    </pattern>
+    <radialGradient id="bgGlow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#1e1b4b" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0b0f19" stop-opacity="1"/>
+    </radialGradient>
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glowRed" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f43f5e"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#c084fc"/>
+    </marker>
+  </defs>
+
+  <rect width="880" height="540" fill="url(#bgGlow)"/>
+  <rect width="880" height="540" fill="url(#grid)"/>
+  <rect x="16" y="16" width="848" height="508" rx="12" fill="none" stroke="#334155" stroke-width="1.2"/>
+
+  <!-- Top Banner / Header -->
+  <g transform="translate(32, 32)">
+    <rect x="0" y="0" width="86" height="24" rx="6" fill="#0284c7" fill-opacity="0.2" stroke="#38bdf8" stroke-width="1"/>
+    <text x="43" y="16" fill="#38bdf8" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="1">MSS-05</text>
+
+    <rect x="94" y="0" width="56" height="24" rx="6" fill="#6366f1" fill-opacity="0.2" stroke="#818cf8" stroke-width="1"/>
+    <text x="122" y="16" fill="#a5b4fc" font-size="11" font-weight="700" text-anchor="middle">S(5)</text>
+
+    <rect x="158" y="0" width="136" height="24" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="226" y="16" fill="#94a3b8" font-size="10" font-weight="500" text-anchor="middle">AuthorityEffect: None</text>
+
+    <text x="0" y="52" fill="#f8fafc" font-size="19" font-weight="700" letter-spacing="0.2">Level 5: Regge Metric Simplices &amp; Deficit Obstructions (MSS-5)</text>
+    <text x="0" y="71" fill="#94a3b8" font-size="12" font-weight="400">Exact rational squared lengths l_e^2 in Q, Cayley-Menger determinants, and hinge curvature deficits</text>
+
+    <g transform="translate(530, 0)">
+      <rect x="0" y="0" width="286" height="74" rx="8" fill="#030712" stroke="#1e293b" stroke-width="1"/>
+      <text x="12" y="18" fill="#64748b" font-size="10" font-weight="600" text-transform="uppercase" letter-spacing="0.8">Wire Grammar Packet</text>
+      <text x="12" y="44" fill="#38bdf8" font-size="12" font-family="ui-monospace, monospace" font-weight="600">&lt;&lt;s &lt;1 a b&gt;&gt; &lt;l &lt;0 1 1&gt;&gt;&gt;</text>
+    </g>
+  </g>
+
+  <line x1="32" y1="120" x2="848" y2="120" stroke="#1e293b" stroke-width="1.2"/>
+
+  <!-- Center Visualization Canvas -->
+  <g transform="translate(32, 132)">
+    
+        <!-- Metric Hinge Diagram -->
+        <g transform="translate(40, 20)">
+          <rect x="0" y="0" width="370" height="240" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+          <text x="185" y="26" fill="#38bdf8" font-size="12" font-weight="700" text-anchor="middle">Triangulated Hinge with Deficit Angle</text>
+          
+          <!-- Hinge edge -->
+          <line x1="185" y1="50" x2="185" y2="190" stroke="#f59e0b" stroke-width="3.5"/>
+          <circle cx="185" cy="50" r="6" fill="#f59e0b"/>
+          <circle cx="185" cy="190" r="6" fill="#f59e0b"/>
+          <text x="195" y="125" fill="#f59e0b" font-size="11" font-weight="700">Hinge h</text>
+
+          <!-- Flanking triangles -->
+          <polygon points="185,50 80,120 185,190" fill="#0284c7" fill-opacity="0.2" stroke="#38bdf8" stroke-width="1.5"/>
+          <polygon points="185,50 290,120 185,190" fill="#0284c7" fill-opacity="0.2" stroke="#38bdf8" stroke-width="1.5"/>
+          <circle cx="80" cy="120" r="6" fill="#38bdf8"/>
+          <circle cx="290" cy="120" r="6" fill="#38bdf8"/>
+
+          <!-- Deficit angle arc -->
+          <path d="M 160 55 A 30 30 0 0 1 210 55" fill="none" stroke="#f43f5e" stroke-width="2"/>
+          <text x="185" y="40" fill="#f43f5e" font-size="11" font-weight="700" text-anchor="middle">&#948;_h &#8800; 0</text>
+
+          <text x="185" y="220" fill="#94a3b8" font-size="11" text-anchor="middle">Squared lengths: l_e&#178; &#8712; &#8474; (Exact Rationals)</text>
+        </g>
+
+        <!-- Cayley-Menger &amp; Curvature Math -->
+        <g transform="translate(440, 20)">
+          <rect x="0" y="0" width="340" height="240" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+          <text x="170" y="28" fill="#f8fafc" font-size="13" font-weight="700" text-anchor="middle">Regge Geometric Obstruction</text>
+
+          <g transform="translate(20, 50)">
+            <rect x="0" y="0" width="300" height="70" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+            <text x="150" y="26" fill="#38bdf8" font-size="12" font-weight="600" text-anchor="middle">Cayley-Menger Determinant</text>
+            <text x="150" y="50" fill="#10b981" font-size="11" font-family="ui-monospace, monospace" text-anchor="middle">det(CM) &gt; 0 &#8658; Valid Embedding</text>
+          </g>
+
+          <g transform="translate(20, 135)">
+            <rect x="0" y="0" width="300" height="85" rx="6" fill="#0f172a" stroke="#f43f5e" stroke-width="1"/>
+            <text x="150" y="24" fill="#f43f5e" font-size="12" font-weight="600" text-anchor="middle">Discrete Curvature Deficit</text>
+            <text x="150" y="46" fill="#f8fafc" font-size="11" font-family="ui-monospace, monospace" text-anchor="middle">&#948;_h = 2&#960; - &#8721; &amp;theta;_h(&#963;)</text>
+            <text x="150" y="68" fill="#94a3b8" font-size="10" text-anchor="middle">Non-zero deficit is exact curvature witness</text>
+          </g>
+        </g>
+        
+  </g>
+
+  <!-- Bottom Footer -->
+  <g transform="translate(32, 468)">
+    <line x1="0" y1="0" x2="816" y2="0" stroke="#1e293b" stroke-width="1.2"/>
+    
+    <text x="0" y="22" fill="#64748b" font-size="10" font-weight="600" text-transform="uppercase" letter-spacing="0.5">Pipeline Evaluator:</text>
+    <text x="120" y="22" fill="#38bdf8" font-size="11" font-family="ui-monospace, monospace" font-weight="600">Evaluator::InclusionGate</text>
+
+    <text x="380" y="22" fill="#64748b" font-size="10" font-weight="600" text-transform="uppercase" letter-spacing="0.5">Primary Error:</text>
+    <text x="470" y="22" fill="#f43f5e" font-size="11" font-family="ui-monospace, monospace" font-weight="600">ERR_CONSERVATIVITY_VIOLATION</text>
+
+    <text x="0" y="44" fill="#64748b" font-size="10" font-weight="600" text-transform="uppercase" letter-spacing="0.5">Forcing Invariant:</text>
+    <text x="120" y="44" fill="#cbd5e1" font-size="11" font-weight="400">Dimension-specific metric simplices cannot express unbounded tower down-maps; forced lift to MSS-6.</text>
+  </g>
+</svg>

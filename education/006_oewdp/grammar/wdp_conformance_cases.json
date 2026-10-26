@@ -1,0 +1,110 @@
+[
+  {
+    "id": "WDP_001_MASTER_DIFF_CUT",
+    "start": "wdp_statement",
+    "text": "<a!=b>",
+    "accept": true
+  },
+  {
+    "id": "WDP_002_MASTER_SIMPLEX_PAIR",
+    "start": "wdp_statement",
+    "text": "<x,y>",
+    "accept": true
+  },
+  {
+    "id": "WDP_003_MASTER_QUOTIENT",
+    "start": "wdp_statement",
+    "text": "quot<a/fiber1>",
+    "accept": true
+  },
+  {
+    "id": "WDP_004_MASTER_D0_TRANSPORT",
+    "start": "wdp_statement",
+    "text": "d0(t)",
+    "accept": true
+  },
+  {
+    "id": "WDP_005_MASTER_D1_TRANSPORT",
+    "start": "wdp_statement",
+    "text": "d1(a,b)",
+    "accept": true
+  },
+  {
+    "id": "WDP_006_MASTER_HOMOTOPY",
+    "start": "wdp_statement",
+    "text": "H(a,b)",
+    "accept": true
+  },
+  {
+    "id": "WDP_007_MASTER_WITNESS_EXACT",
+    "start": "wdp_statement",
+    "text": "witness<fiber:w1,status:EXACT_REPAIR>",
+    "accept": true
+  },
+  {
+    "id": "WDP_008_MASTER_WITNESS_HOMOTOPIC",
+    "start": "wdp_statement",
+    "text": "witness<fiber:w2,status:HOMOTOPIC_ZERO>",
+    "accept": true
+  },
+  {
+    "id": "WDP_009_MASTER_WITNESS_CLOSED",
+    "start": "wdp_statement",
+    "text": "witness<fiber:w3,status:CLOSED_CLASS>",
+    "accept": true
+  },
+  {
+    "id": "WDP_010_MASTER_BALANCE_MATRIX",
+    "start": "wdp_statement",
+    "text": "balance<sites:2,trace:1>",
+    "accept": true
+  },
+  {
+    "id": "WDP_011_MASTER_REFUSAL_NON_CONSTANT",
+    "start": "wdp_statement",
+    "text": "refusal<ERR_FIBER_NON_CONSTANT>",
+    "accept": true
+  },
+  {
+    "id": "WDP_012_MASTER_REFUSAL_MALFORMED",
+    "start": "wdp_statement",
+    "text": "refusal<ERR_MALFORMED_FILLER>",
+    "accept": true
+  },
+  {
+    "id": "WDP_013_DIFF_CUT_ACCEPT",
+    "start": "distinct_cut",
+    "text": "<u!=v>",
+    "accept": true
+  },
+  {
+    "id": "WDP_014_DIFF_CUT_REJECT_NO_BANG",
+    "start": "distinct_cut",
+    "text": "<u=v>",
+    "accept": false
+  },
+  {
+    "id": "WDP_015_TRANSPORT_D0_ACCEPT",
+    "start": "d0_map",
+    "text": "d0(x)",
+    "accept": true
+  },
+  {
+    "id": "WDP_016_TRANSPORT_D0_REJECT_EMPTY",
+    "start": "d0_map",
+    "text": "d0()",
+    "accept": false
+  },
+  {
+    "id": "WDP_017_WITNESS_REJECT_INVALID_STATUS",
+    "start": "quotient_witness",
+    "text": "witness<fiber:w,status:INVALID_STATUS>",
+    "accept": false
+  },
+  {
+    "id": "WDP_018_REFUSAL_REJECT_UNKNOWN_CODE",
+    "start": "refusal",
+    "text": "refusal<UNKNOWN_ERROR>",
+    "accept": false
+  }
+]

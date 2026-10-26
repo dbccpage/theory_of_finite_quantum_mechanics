@@ -1,0 +1,58 @@
+schema_version: smplx.nf.contract.v0
+contract_kind: form_contract
+identity:
+  id: nf.ddc.dual_witness
+  name: Dual Witness Normal Form
+  short_name: DWNF
+  version: v0
+  status: active
+  family: ddc_verification
+  theory_status: established
+  contract_status: active
+  verification_status: executable
+classification:
+  hierarchy_level: form
+  subject_kind:
+    - dual_circulation_flow
+    - phi1_certificate
+    - xi_tie_break
+  data_posture: at_rest
+  mathematical_posture: operational
+purpose:
+  excludes_anomaly: primal-only defect claims without dual circulation certificates, or unprincipled tie-breaking overriding primary defect worsening
+  preserves_invariant: exact rational dual circulation flow certificate g₃ certifying Φ₁([x]) and strict primary equality precondition on secondary metric Ξ
+  protected_skeleton:
+    - primal_defect_vector
+    - dual_flow_witness_g3
+    - spanning_forest_tight_potentials
+    - xi_tie_precondition
+  erased_structure:
+    - dual_solver_pivot_sequence
+  non_claims:
+    - does not permit secondary metric Ξ to break ties when Φ₁ or Γ₂ differ between candidates
+    - does not assert quotient norm without certifying both primal bound and dual witness
+quadrilateral:
+  qualifies_as_true_normal_form: false
+  qualification_gap: dual_witness_certification_not_relational_project_join
+  anomaly_exclusion: uncertified quotient claims, inadequate detector masking, or secondary metric overriding primary defect worsening
+  lossless_join:
+    status: primal_dual_duality_gap_zero
+    statement: the exact rational duality gap between primal circulation cost and dual flow witness is certified identically zero
+  dependency_preservation:
+    status: circulation_cycle_preserved
+    statement: cycle flow g₃ is verified locally against edge capacities and flow conservation at internal vertices
+  syntactic_decision:
+    status: rational_duality_decidable
+    statement: membership is decidable by checking primal-dual gap and evaluating XiTiePrecondition.is_satisfied()
+governing_laws:
+  - prop_3_2: Spanning forest tight potential deterministic selection
+  - xi_precondition_gate: Secondary metric Ξ admissible only when Φ_{1,A} == Φ_{1,B} and Γ_{2,A} == Γ_{2,B}
+contracts_referenced:
+  - omega_engine_governance/contracts/contracts_omega_engine_crates/mathematics/discrete_deformation_algebra/quotient_mass.contract.yaml
+  - omega_engine_governance/contracts/contracts_omega_engine_crates/mathematics/discrete_deformation_algebra/tie_r.contract.yaml
+  - omega_engine_governance/contracts/contracts_omega_engine_crates/mathematics/discrete_deformation_algebra/residual_projection.contract.yaml
+declarations_required:
+  - phi1_value
+  - dual_witness_g3
+  - xi_precondition
+  - tie_break_certificate

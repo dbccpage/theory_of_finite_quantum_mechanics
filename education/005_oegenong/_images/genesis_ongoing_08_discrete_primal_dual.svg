@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 580" width="100%" height="100%" style="background:#0b0f19; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#1e293b" stroke-width="0.7" opacity="0.6"/>
+    </pattern>
+    <radialGradient id="bgGlow" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#1e1b4b" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0b0f19" stop-opacity="1"/>
+    </radialGradient>
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glowAmber" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <rect width="940" height="580" fill="url(#bgGlow)"/>
+  <rect width="940" height="580" fill="url(#grid)"/>
+  <rect x="16" y="16" width="908" height="548" rx="12" fill="none" stroke="#334155" stroke-width="1.2"/>
+
+  <!-- Top Banner / Badges -->
+  <g transform="translate(32, 26)">
+    <rect x="0" y="0" width="165" height="24" rx="6" fill="#4338ca" fill-opacity="0.3" stroke="#818cf8" stroke-width="1.2"/>
+    <text x="82" y="16" fill="#a5b4fc" font-size="11" font-weight="700" text-anchor="middle">Ongoing Level 08: Duality</text>
+
+    <rect x="175" y="0" width="165" height="24" rx="6" fill="#0284c7" fill-opacity="0.3" stroke="#38bdf8" stroke-width="1.2"/>
+    <text x="257" y="16" fill="#38bdf8" font-size="10.5" font-weight="700" text-anchor="middle">Discrete Primal-Dual</text>
+
+    <rect x="350" y="0" width="165" height="24" rx="6" fill="#065f46" fill-opacity="0.3" stroke="#34d399" stroke-width="1.2"/>
+    <text x="432" y="16" fill="#34d399" font-size="10.5" font-weight="700" text-anchor="middle">Theorem: Dual Lower Bound</text>
+
+    <rect x="525" y="0" width="140" height="24" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="595" y="16" fill="#94a3b8" font-size="10" font-weight="500" text-anchor="middle">AuthorityEffect: None</text>
+
+    <text x="0" y="52" fill="#f8fafc" font-size="18" font-weight="700" letter-spacing="0.2">Level 8: Discrete Primal-Dual Bounds</text>
+    <text x="0" y="72" fill="#94a3b8" font-size="12" font-weight="400">Discrete Primal Path Lower Bound Matched by an Explicit Trajectory Witness (MSS-008 Dual Half)</text>
+  </g>
+
+  <!-- Left Box: Inference and Formal Rules -->
+  <g transform="translate(32, 115)">
+    <rect x="0" y="0" width="410" height="380" rx="8" fill="#111827" fill-opacity="0.9" stroke="#1f2937" stroke-width="1.2"/>
+    <rect x="0" y="0" width="410" height="36" rx="8" fill="#1e293b" fill-opacity="0.8"/>
+    <text x="16" y="23" fill="#f8fafc" font-size="12" font-weight="700">Discrete Duality Pairing Theorem</text>
+
+    <!-- Rule Fraction -->
+    <g transform="translate(30, 55)">
+      <rect x="0" y="0" width="350" height="90" rx="6" fill="#0f172a" stroke="#334155"/>
+      <text x="175" y="30" fill="#93c5fd" font-size="12.5" font-weight="600" text-anchor="middle" font-family="monospace">DualBound(s_0, s_res) &#8804; PathCost(P)</text>
+      <line x1="25" y1="44" x2="325" y2="44" stroke="#e2e8f0" stroke-width="1.8"/>
+      <text x="175" y="68" fill="#34d399" font-size="12.5" font-weight="700" text-anchor="middle" font-family="monospace">&#8707; P*, DualBound(s_0, s_res) = Cost(P*)   [Tight]</text>
+    </g>
+
+    <!-- Detailed Notes -->
+    <g transform="translate(20, 165)">
+      <text x="0" y="15" fill="#e2e8f0" font-size="12" font-weight="600">&#8226; Exact Primal/Dual Match:</text>
+      <text x="16" y="34" fill="#94a3b8" font-size="11">The lower bound formula derived in fewest_changes</text>
+      <text x="16" y="50" fill="#94a3b8" font-size="11">is proved tight by producing an explicit construction.</text>
+
+      <text x="0" y="78" fill="#e2e8f0" font-size="12" font-weight="600">&#8226; Claim Hygiene Fence (No LP Solvers):</text>
+      <text x="16" y="96" fill="#94a3b8" font-size="11">Derived blind without linear programming formulations,</text>
+      <text x="16" y="112" fill="#94a3b8" font-size="11">interior point methods, or continuous simplex machinery.</text>
+
+      <text x="0" y="140" fill="#e2e8f0" font-size="12" font-weight="600">&#8226; MSS-008 Structural Alignment:</text>
+      <text x="16" y="158" fill="#94a3b8" font-size="11">Aligns with the dual certificate half of MSS-008,</text>
+      <text x="16" y="174" fill="#94a3b8" font-size="11">proving tight potential lower bounds on graph transitions.</text>
+    </g>
+  </g>
+
+  <!-- Right Box: Operational Diagram (Duality Balance) -->
+  <g transform="translate(460, 115)">
+    <rect x="0" y="0" width="448" height="380" rx="8" fill="#111827" fill-opacity="0.9" stroke="#1f2937" stroke-width="1.2"/>
+    <rect x="0" y="0" width="448" height="36" rx="8" fill="#1e293b" fill-opacity="0.8"/>
+    <text x="16" y="23" fill="#f8fafc" font-size="12" font-weight="700">Primal Path vs Dual Certificate Bound</text>
+
+    <g transform="translate(30, 45)">
+      <!-- Dual Lower Bound Box -->
+      <rect x="15" y="10" width="370" height="75" rx="6" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.2"/>
+      <text x="35" y="32" fill="#a5b4fc" font-size="11.5" font-weight="700">Dual Certificate Bound (Closed Formula)</text>
+      <text x="35" y="50" fill="#38bdf8" font-size="10.5" font-family="monospace">&#934;* = |V_res| + |E_res| - (|V_0| + |E_0|) + 2&#183;D_dest</text>
+      <text x="35" y="68" fill="#94a3b8" font-size="9.5">Universal lower bound on any transition sequence</text>
+
+      <!-- Equality Balance Bridge -->
+      <rect x="150" y="100" width="100" height="30" rx="4" fill="#0f172a" stroke="#34d399" stroke-width="1.5"/>
+      <text x="200" y="120" fill="#34d399" font-size="12" font-weight="700" text-anchor="middle">Gap = 0</text>
+
+      <!-- Primal Path Box -->
+      <rect x="15" y="145" width="370" height="75" rx="6" fill="#064e3b" fill-opacity="0.3" stroke="#34d399" stroke-width="1.2"/>
+      <text x="35" y="167" fill="#34d399" font-size="11.5" font-weight="700">Primal Path Witness P* (Explicit Trajectory)</text>
+      <text x="35" y="185" fill="#a7f3d0" font-size="10.5" font-family="monospace">Cost(P*) = &#8721; step_cost(op_k) = &#934;*</text>
+      <text x="35" y="202" fill="#a7f3d0" font-size="9.5">Demonstrated minimal trajectory achieving the exact lower bound</text>
+
+      <!-- Bottom Card -->
+      <rect x="15" y="235" width="370" height="42" rx="6" fill="#1e293b" stroke="#475569"/>
+      <text x="200" y="253" fill="#f8fafc" font-size="10.5" font-weight="700" text-anchor="middle">Discrete Harmonic Balance Certified</text>
+      <text x="200" y="268" fill="#38bdf8" font-size="9.5" text-anchor="middle">Constructive Duality Tightness Proved in Lean 4</text>
+    </g>
+  </g>
+
+  <!-- Footer Status Bar -->
+  <g transform="translate(32, 510)">
+    <rect x="0" y="0" width="876" height="38" rx="6" fill="#0f172a" stroke="#1e293b"/>
+    <text x="16" y="23" fill="#94a3b8" font-size="11">Formal Status: <tspan fill="#34d399" font-weight="700">DUAL_LOWER_BOUND_TIGHT</tspan> | Proofs: <tspan fill="#e2e8f0">fewest_changes_A / B</tspan> | LP Solvers: <tspan fill="#fbbf24">Zero LP (Discrete)</tspan> | MSS Anchor: <tspan fill="#fbbf24">MSS-008 Analog</tspan></text>
+  </g>
+
+</svg>

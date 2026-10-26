@@ -1,0 +1,96 @@
+schema_version: smplx.nf.contract.v0
+contract_kind: normal_form_contract
+identity:
+  id: nf.representation.gnf
+  name: Gauge Normal Form
+  short_name: GNF
+  version: v0
+  status: draft
+  family: transport
+  theory_status: proposed
+  contract_status: draft
+  verification_status: absent
+classification:
+  hierarchy_level: normal_form
+  subject_kind:
+  - representation_transport
+  data_posture: in_motion
+  mathematical_posture: operational
+purpose:
+  excludes_anomaly: gauge drift
+  preserves_invariant: representation changes preserve authority-relevant content
+    under gauge transformations
+  protected_skeleton:
+  - authority_relevant_attributes
+  - equivalence_class_id
+  erased_structure:
+  - representation_syntax
+  - encoding_format
+  non_claims:
+  - does not guarantee physical transmission integrity
+  - "'gauge' in this contract refers strictly to serialization, encoding, and representation
+    equivalence across data schemas (e.g. JSON vs Protobuf vs wire tokens), not to
+    physical gauge theory or continuous spacetime gauge symmetries"
+declarations_required:
+- source_representation
+- target_representation
+- gauge_transformation
+- authority_skeleton
+evidence_required:
+- conversion_witness
+- target_validation_hash
+validation_criteria:
+- representations must be equivalent on the declared authority skeleton
+- conversion must map all protected fields without loss unless a loss ledger is present
+proof_obligations:
+- updates commute with gauge transformations on the authority skeleton
+terminal_routes:
+- TransportOk
+- Quarantine
+- Decompose
+- Unsupported
+- Refuse
+certification:
+  certificate_required: true
+  certificate_kind: gauge_certificate
+  obstruction_class_required: true
+  loss_ledger_required: conditional
+  verifier_required: true
+authorization:
+  authorized_by: null
+  certified_implies_authorized: false
+failure_modes:
+- symptom: two representations (e.g. JSON and Protobuf) are claimed equivalent but
+    differ in key currency attributes
+  diagnosis: gauge drift
+  terminal: Quarantine
+references:
+- ../1_normal_forms.md
+- ../1b_gtmur_representation_transport.md
+terminal_route_map:
+  TransportOk: Escalate
+  Quarantine: Quarantine
+  Decompose: Decompose
+  Unsupported: Unsupported
+  Refuse: Refuse
+definition:
+  source: coda_all_universe/mssn_sn_tower/definitions.md
+  formal_statement: gauge drift. representation changes preserve authority-relevant
+    content under gauge transformations
+  quadrilateral:
+    qualifies_as_true_normal_form: false
+    qualification_gap: reconstruction_is_not_a_relational_project_join
+    anomaly_exclusion: gauge drift
+    lossless_join:
+      status: declared_reconstruction
+      statement: representation changes preserve authority-relevant content under
+        gauge transformations
+    dependency_preservation:
+      status: declared_with_the_invariant
+      statement: The preserved invariant stays on the declared schema. This form does
+        not state a functional-dependency projection of a flat relvar decomposition.
+    syntactic_decision:
+      status: declaration_decidable
+      statement: The check reads the declared constraints and validation criteria.
+        One unrecorded runtime image is not the decider.
+schema_ref: ./normal_form_contract_schema.yaml
