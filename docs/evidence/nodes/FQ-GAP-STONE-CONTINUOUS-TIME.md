@@ -11,8 +11,8 @@ Stage: [FINITE_QM_DYNAMICS](../stages/FINITE_QM_DYNAMICS.md). Status: `CONDITION
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 6
-- cited Lean, Rust or Python symbols found in their in-repo files: 18
-- distinct cited Lean declarations covered by a current replay receipt: 12
+- cited Lean, Rust or Python symbols found in their in-repo files: 17
+- distinct cited Lean declarations covered by a current replay receipt: 11
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -80,7 +80,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
 | `QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_aliasing_and_real_embedding_conjugate` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_aliasing_and_real_embedding_conjugate` |
 | `QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction` |
 
@@ -181,7 +180,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `FQ-R-GAP-STONE` `CONDITIONAL_ON_IMPORT`: [FQ-DISCRETE-TIME-STONE-AMBIGUITY](FQ-DISCRETE-TIME-STONE-AMBIGUITY.md) (PROVED_LEAN), [FQ-COMMUTATOR-TRACE-OBSTRUCTION](FQ-COMMUTATOR-TRACE-OBSTRUCTION.md) (PROVED_LEAN)
+- `FQ-R-GAP-STONE` `CONDITIONAL_ON_IMPORT`: [FQ-DISCRETE-TIME-STONE-AMBIGUITY](FQ-DISCRETE-TIME-STONE-AMBIGUITY.md) (COMPUTATIONALLY_CHECKED), [FQ-COMMUTATOR-TRACE-OBSTRUCTION](FQ-COMMUTATOR-TRACE-OBSTRUCTION.md) (PROVED_PROSE)
 
 Outgoing (1):
 

@@ -1,6 +1,6 @@
 # [TFQ-1004] L1-QM020-C10-BRANCH-LOCALIZATION
 
-> **Stage**: `L1_TO_L2` | **Status**: `PROVED_LEAN` | **DAG node**: `L1-QM020-C10-BRANCH-LOCALIZATION` (`PROVED_LEAN`)  
+> **Stage**: `L1_TO_L2` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `L1-QM020-C10-BRANCH-LOCALIZATION` (`OPEN`)  
 > **UUID**: `94aa9074-ceee-5e5f-8d99-77c33033c272`  
 > **Parent Derivation**: [TFQ-0234](../10_finite_qm_core/tfq_0234_supplied_hilbert_carrier_after_the_conditional_lift.md)
 
@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Reviewed scope: Exact coherence/dephasing arrays and the resulting dynamical non-descent counterexample; literal sign/readout obstruction identities in Lean.
+Branch-localization and many-worlds readings of the lifted phases are conjectures, not part of the QM_020 theorems.
 
 ### Governing Obligation
-Unmet after the PFP review: Provide any branching or many-worlds interpretation and its empirical criteria separately; mathematical non-descent neither establishes nor refutes an interpretation. The broader source statement is kept in pfp_review.prior_statement.
+Interpretive readings (branch localization, many worlds) are not formalised. The cited Lean has 2x2 pinching and sign identities, which bear on dephasing but not on the readings.
 
 ### Source Status
 Z-decoherence pinching off-diagonal annihilation, Hadamard branch indistinguishability under diagonal shadows, and X-observable trace separation (2 != -2) mechanized in DerivationDagQMClosure.lean and mirrored in 006_finite_qm

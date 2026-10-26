@@ -10,9 +10,9 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `PROVED_LEAN`. Evi
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
-- distinct cited Lean declarations covered by a current replay receipt: 4
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 3
+- distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -51,16 +51,11 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
-- cited in: node.lean, record TFQ-0251 (shared)
+- cited in: record TFQ-0251 (shared)
 - replay: `verified`
   - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition` |
-
-- counts toward the grade: yes
+- counts toward the grade: no
 
 ### Lean: `lean4/H008PhaseBlindPresentation.lean`
 
@@ -150,7 +145,7 @@ Incoming (2):
 Outgoing (5):
 
 - `FQ-R-BORN-REDUNDANCY` `CONDITIONAL_ON_IMPORT`: [FQ-BORN-NORMALIZATION-REDUNDANCY](FQ-BORN-NORMALIZATION-REDUNDANCY.md) (PROVED_LEAN)
-- `FQ-R-DESCENT` `DERIVED_LEAN`: [FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED](FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED.md) (PROVED_LEAN)
+- `FQ-R-DESCENT` `COMPUTED`: [FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED](FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED.md) (COMPUTATIONALLY_CHECKED)
 - `FQ-R-NONDESCENT` `DERIVED_LEAN`: [FQ-INTERFERENCE-NONDESCENT](FQ-INTERFERENCE-NONDESCENT.md) (PROVED_LEAN)
-- `FQ-R-SORKIN-CLASS` `DERIVED_LEAN`: [FQ-SORKIN-READOUT-CLASS-QM208](FQ-SORKIN-READOUT-CLASS-QM208.md) (PROVED_LEAN)
-- `FQ-R-U1` `DERIVED_LEAN`: [FQ-U1-TRANSPORT-N-TORSION](FQ-U1-TRANSPORT-N-TORSION.md) (PROVED_LEAN)
+- `FQ-R-SORKIN-CLASS` `COMPUTED`: [FQ-SORKIN-READOUT-CLASS-QM208](FQ-SORKIN-READOUT-CLASS-QM208.md) (COMPUTATIONALLY_CHECKED)
+- `FQ-R-U1` `COMPUTED`: [FQ-U1-TRANSPORT-N-TORSION](FQ-U1-TRANSPORT-N-TORSION.md) (COMPUTATIONALLY_CHECKED)

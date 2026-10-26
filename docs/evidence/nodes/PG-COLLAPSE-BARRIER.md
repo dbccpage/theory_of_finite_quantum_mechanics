@@ -20,7 +20,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-- `receipt_names_uncited_module`: a replay receipt names this node for lean4/CollapseBarrier.lean, but the node's lean, rust and source fields do not cite it. A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence).
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -49,7 +49,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/CollapseBarrier.lean](../../../lean4/CollapseBarrier.lean)
 - sha256 (`bytes`): `2e19515baccbf10fe7fb8b82c5c58490ba6808cd877924acdef7eb56606e7561`
-- cited in: receipt dag/research/pfp_batch01_lean_replay.json (CollapseBarrier)
+- cited in: node.lean, receipt dag/research/pfp_batch01_lean_replay.json (CollapseBarrier)
 - replay: `verified`
   - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `CollapseBarrier`): recorded sha256 `2e19515baccbf10fe7fb8b82c5c58490ba6808cd877924acdef7eb56606e7561` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build CollapseBarrier`

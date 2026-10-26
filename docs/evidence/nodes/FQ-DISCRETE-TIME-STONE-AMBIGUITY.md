@@ -1,26 +1,26 @@
 # FQ-DISCRETE-TIME-STONE-AMBIGUITY
 
-Stage: [FINITE_QM_DYNAMICS](../stages/FINITE_QM_DYNAMICS.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_DYNAMICS](../stages/FINITE_QM_DYNAMICS.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: The report-map obstruction and two distinct scaled Gaussian roots are kernel checked; native enumeration and normalized unitarity are replayed.
+> The two-state toggle has no report-level square root (no_bool_half_step); complex interpolants are not unique because of matrix-logarithm branches (interpolant_not_unique, branch_ambiguity_distinct, stone_discrete_generator_ambiguity); dense-orbit closure already uses an ambient topology and selects no one-parameter interpolation.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
-- distinct cited Lean declarations covered by a current replay receipt: 4
+- counted in-repo evidence files: 2
+- cited Lean, Rust or Python symbols found in their in-repo files: 3
+- distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 0 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: Construct logarithms, an actual continuous one-parameter group, topology and a generator selection rule. Tags do not supply analytic branches. The broader source statement is kept in pfp_review.prior_statement.
+Lean states that the Boolean toggle has no square root as a map Bool -\> Bool (no_bool_half_step). The non-uniqueness of complex interpolants rests on two explicit Gaussian matrices checked natively; the cited branch theorems distinguish labels only.
 
 ## Source status
 
@@ -36,7 +36,7 @@ H055 header carries PR #205 scope correction; H016 import boundary
 
 ## Review
 
-- PFP review: [dag/results/FQ-DISCRETE-TIME-STONE-AMBIGUITY/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/FQ-DISCRETE-TIME-STONE-AMBIGUITY/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-DISCRETE-TIME-STONE-AMBIGUITY/reviews/20261019_dynamics_audit/review_result.json](../../../dag/results/FQ-DISCRETE-TIME-STONE-AMBIGUITY/reviews/20261019_dynamics_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: The report-map obstruction and two distinct scaled Gaussian roots are kernel checked; native enumeration and normalized unitarity are replayed.
   - does not support: Construct logarithms, an actual continuous one-parameter group, topology and a generator selection rule. Tags do not supply analytic branches.
   - next test: Construct logarithms, an actual continuous one-parameter group, topology and a generator selection rule. Tags do not supply analytic branches.
@@ -49,16 +49,11 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
-- cited in: node.lean, record TFQ-0246 (shared)
+- cited in: record TFQ-0246 (shared)
 - replay: `verified`
   - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition` |
-
-- counts toward the grade: yes
+- counts toward the grade: no
 
 ### Lean: `lean4/H055DiscreteDynamicsStone.lean`
 
@@ -110,7 +105,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `FQ-R-STONE-AMBIGUITY` `DERIVED_LEAN`: [FQ-DISCRETE-DYNAMICS-DICHOTOMY](FQ-DISCRETE-DYNAMICS-DICHOTOMY.md) (PROVED_LEAN)
+- `FQ-R-STONE-AMBIGUITY` `COMPUTED`: [FQ-DISCRETE-DYNAMICS-DICHOTOMY](FQ-DISCRETE-DYNAMICS-DICHOTOMY.md) (COMPUTATIONALLY_CHECKED)
 
 Outgoing (1):
 

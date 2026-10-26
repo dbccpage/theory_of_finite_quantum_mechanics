@@ -1,22 +1,22 @@
 # DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED
 
-Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Exact phase-reversed pure densities and their dephased mixture share populations but differ under an admitted coherent readout; scalar readout/purity differences are kernel checked.
+> The bit shadow is derived (P7-C1..C4) but the qubit and superposition are obstructed: the Q1-Q4 import price list names what must be added; completeness of that list is only an interpretive reading (P7-C7, fenced). The generalized Bloch-contraction statement (P7-C10) is a CONJECTURE and the ledger records a computation refuting a sharpened form.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 5
-- distinct cited Lean declarations covered by a current replay receipt: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 4
+- distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Unmet after the PFP review: Construct or admit the qubit/coherence carrier, transformations and measurement rule; no generalized Bloch-contraction conjecture is accepted. The broader source statement is kept in pfp_review.prior_statement.
+The obstruction is a record of what must be imported, not a theorem. The cited Lean consists of integer identities for fixed 2x2 matrices.
 
 ## Source status
 
@@ -36,7 +36,7 @@ P7-C1..C4 classical bit-shadow diagonal collapse, P7-C6/C8 Q1-Q4 off-diagonal X-
 
 ## Review
 
-- PFP review: [dag/results/DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM072-QUBIT-SUPERPOSITION-OBSTRUCTED/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact phase-reversed pure densities and their dephased mixture share populations but differ under an admitted coherent readout; scalar readout/purity differences are kernel checked.
   - does not support: Construct or admit the qubit/coherence carrier, transformations and measurement rule; no generalized Bloch-contraction conjecture is accepted.
   - next test: Construct or admit the qubit/coherence carrier, transformations and measurement rule; no generalized Bloch-contraction conjecture is accepted.
@@ -56,7 +56,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates` |
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm072_and_c10_hadamard_coherence_separation_vs_pinched_mixture` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm072_and_c10_hadamard_coherence_separation_vs_pinched_mixture` |
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm072_bit_shadow_q1_q4_obstruction_and_p7_c10_bloch_refutation` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm072_bit_shadow_q1_q4_obstruction_and_p7_c10_bloch_refutation` |
@@ -119,8 +118,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `DS-R-QUBIT` `DERIVED_LEAN`: [DS-QM070-PRODUCT-NONFACTORIZATION](DS-QM070-PRODUCT-NONFACTORIZATION.md) (PROVED_LEAN)
+- `DS-R-QUBIT` `GAP_NO_DERIVATION`: [DS-QM070-PRODUCT-NONFACTORIZATION](DS-QM070-PRODUCT-NONFACTORIZATION.md) (COMPUTATIONALLY_CHECKED)
 
 Outgoing (1):
 
-- `DS-R-BELL-THEOREM` `DERIVED_LEAN`: [DS-QM073-BELL-THEOREM-OBSTRUCTED](DS-QM073-BELL-THEOREM-OBSTRUCTED.md) (PROVED_LEAN)
+- `DS-R-BELL-THEOREM` `GAP_NO_DERIVATION`: [DS-QM073-BELL-THEOREM-OBSTRUCTED](DS-QM073-BELL-THEOREM-OBSTRUCTED.md) (OPEN)

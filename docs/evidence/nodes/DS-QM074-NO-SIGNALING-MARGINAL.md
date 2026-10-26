@@ -1,10 +1,10 @@
 # DS-QM074-NO-SIGNALING-MARGINAL
 
-Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Exact contextual marginals distinguish nonsignaling correlated tables from the signaling control; scalar PR-family marginal and nonproduct controls are kernel checked.
+> In a bipartite joint distribution rho(a,b|x,y), the no-signaling marginal condition holds under an admitted composition rule, and local marginals do not force product factorization. The statement is about admitted tables, not about relativistic causality (that is Q-held).
 
 ## Grade
 
@@ -15,12 +15,12 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 1 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -29,7 +29,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: Prove full admitted-composition/channel-to-table transport and justify physical subsystem/setting independence; no causality law is derived. The broader source statement is kept in pfp_review.prior_statement.
+Lean states the two-qubit case: under an admitted tensor composition, a unitary on Alice's factor leaves the partial trace over A unchanged (no_signalling_under_admitted_composition). General finite bipartite carriers are not in Lean.
 
 ## Source status
 
@@ -37,7 +37,7 @@ Unmet after the PFP review: Prove full admitted-composition/channel-to-table tra
 
 ## Review
 
-- PFP review: [dag/results/DS-QM074-NO-SIGNALING-MARGINAL/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM074-NO-SIGNALING-MARGINAL/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM074-NO-SIGNALING-MARGINAL/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM074-NO-SIGNALING-MARGINAL/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact contextual marginals distinguish nonsignaling correlated tables from the signaling control; scalar PR-family marginal and nonproduct controls are kernel checked.
   - does not support: Prove full admitted-composition/channel-to-table transport and justify physical subsystem/setting independence; no causality law is derived.
   - next test: Prove full admitted-composition/channel-to-table transport and justify physical subsystem/setting independence; no causality law is derived.
@@ -136,7 +136,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `DS-R-BELL-TO-NOSIGNALING` `DERIVED_LEAN`: [DS-QM073-FINITE-CHSH-AND-PR-BOX](DS-QM073-FINITE-CHSH-AND-PR-BOX.md) (PROVED_LEAN)
+- `DS-R-BELL-TO-NOSIGNALING` `COMPUTED`: [DS-QM073-FINITE-CHSH-AND-PR-BOX](DS-QM073-FINITE-CHSH-AND-PR-BOX.md) (COMPUTATIONALLY_CHECKED)
 
 Outgoing (2):
 

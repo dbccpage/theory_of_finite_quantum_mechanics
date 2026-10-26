@@ -1,6 +1,6 @@
 # [TFQ-1012] FQ-POWER-RULE-P2-SELECTION
 
-> **Stage**: `FINITE_QM_CORE` | **Status**: `PROVED_LEAN` | **DAG node**: `FQ-POWER-RULE-P2-SELECTION` (`PROVED_LEAN`)  
+> **Stage**: `FINITE_QM_CORE` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `FQ-POWER-RULE-P2-SELECTION` (`COMPUTATIONALLY_CHECKED`)  
 > **UUID**: `82ef8fec-294b-51c8-9b81-629746aeff47`  
 > **Parent Derivation**: [TFQ-1009](tfq_1009_fq_declared_quantum_interface.md)
 
@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Reviewed scope: The real power equation (3/5)^p+(4/5)^p=1 iff p=2 is kernel checked. Integer p=1..8 reproduce actual shared-ray context weights; mixed-sign p=1 supplies a retained counterexample to unrestricted Sorkin vanishing.
+Within the declared positive-power family P_p(i) = |c_i|^p / sum_j |c_j|^p on two rational orthonormal contexts sharing a ray (psi = (1,1,0), (3,4,5) rotation), context-independence holds iff (3/5)^p + (4/5)^p = 1, whose unique positive solution is p = 2. Classifies the power family; not a Gleason theorem. Sorkin I3 does not select p (vanishes at p=1 and p=2).
 
 ### Governing Obligation
-Unmet after the PFP review: The power-law family, real exponentiation and the real orthonormal contexts are admitted; formal transport of the concrete context normalization to the Real.rpow equation remains a separate bridge. No unrestricted readout uniqueness or Gleason theorem follows. The broader source statement is kept in pfp_review.prior_statement.
+The real equation (3/5)^p + (4/5)^p = 1 iff p = 2 is stated in lean4/PromptStructure.lean (power_real_unique). The step that context-independence on the declared pair of contexts is equivalent to this equation is checked natively for integer p = 1..8, not in Lean.
 
 ### Source Status
 paper s11.6 (proof in supplement s11.58); rational controls in Rust

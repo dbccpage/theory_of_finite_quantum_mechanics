@@ -1,10 +1,10 @@
 # DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS
 
-Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Q8 group operations, pure-gauge loops and noncommuting plaquette controls are native/kernel checked on the declared eight-element group.
+> On toy carriers: pure-gauge connections have trivial loop holonomy, Q8 plaquette gives a nonzero Wilson loop, Bianchi-shaped d1 d0 = 0, transport composes, an incomplete geodesic is a refusal. Imported: continuum connection and measure, SU(2) representation theory, spin-network Hilbert space, manifold, metric, Levi-Civita, Einstein tensor. Hamiltonian constraint and the Einstein equation are Q-held / open. Q8 is a shadow, not SU(2).
 
 ## Grade
 
@@ -15,12 +15,12 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 3
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (3 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (3 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 3 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -30,7 +30,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: Supply continuum manifold/metric/connection, SU(2) representations, measure, physical scales and Hamiltonian/Einstein dynamics before any quantum-gravity interpretation. The broader source statement is kept in pfp_review.prior_statement.
+Checked on the declared Q8 carrier natively. The cited Lean has spin admissibility for two triples and 360 - 6*60 = 0.
 
 ## Source status
 
@@ -38,7 +38,7 @@ Unmet after the PFP review: Supply continuum manifold/metric/connection, SU(2) r
 
 ## Review
 
-- PFP review: [dag/results/DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Q8 group operations, pure-gauge loops and noncommuting plaquette controls are native/kernel checked on the declared eight-element group.
   - does not support: Supply continuum manifold/metric/connection, SU(2) representations, measure, physical scales and Hamiltonian/Einstein dynamics before any quantum-gravity interpretation.
   - next test: Supply continuum manifold/metric/connection, SU(2) representations, measure, physical scales and Hamiltonian/Einstein dynamics before any quantum-gravity interpretation.
@@ -185,7 +185,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `DS-R-GR-LQG` `DERIVED_LEAN`: [DS-QM063-HOLONOMY-COHERENT-INTENSITY](DS-QM063-HOLONOMY-COHERENT-INTENSITY.md) (PROVED_LEAN)
+- `DS-R-GR-LQG` `COMPUTED`: [DS-QM063-HOLONOMY-COHERENT-INTENSITY](DS-QM063-HOLONOMY-COHERENT-INTENSITY.md) (COMPUTATIONALLY_CHECKED)
 
 Outgoing (2):
 

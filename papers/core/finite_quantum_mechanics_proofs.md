@@ -281,7 +281,8 @@ Lean: `lean4/H054GleasonCyclotomicObstruction.lean::cabello_no_integer_frame_ass
 
 ### 2.5 The trace norm on trace-zero differences
 
-DAG node: `FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY`
+The DAG node `FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY`, which says CPTP monotonicity selects the
+trace norm, is OPEN. This section proves two lemmas toward it and is not a proof of the node.
 
 **Theorem.** (i) Let $d\ge1$ and let $L$ be Hermitian on $\mathbb C^d$ with extreme eigenvalues
 $\lambda_{\max},\lambda_{\min}$. Then

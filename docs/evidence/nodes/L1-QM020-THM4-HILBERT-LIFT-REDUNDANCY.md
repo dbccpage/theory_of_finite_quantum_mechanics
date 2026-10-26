@@ -1,6 +1,6 @@
 # L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY
 
-Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_PROSE`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -30,7 +30,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-No Lean theorem for |c|^2 normalization over C found; BornNormalization.lean treats discrete 2x2 density / POVM. Rust exact_amplitudes returns None unless every p_j is a rational square.
+The identity is the substitution |c_i|^2 = w_i in numerator and denominator, so it holds whenever sum w is nonzero. No cited Lean declaration states it: the cited Lean concerns a 2x2 discrete density with a two-outcome POVM and diagonal expectations on three sectors.
 
 ## Source status
 
@@ -38,7 +38,7 @@ Thm 4 \[PROVEN\]; finite_qm audit: a lift need not exist over the chosen rationa
 
 ## Review
 
-- PFP review: [dag/results/L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact supplied-lift matching and Born/direct normalization arrays; generic equality under matching weights and an invalid-lift control in Lean.
   - does not support: Prove arbitrary source lift refinement and supply square-root/complex structure where required. Matching normalized probabilities alone is weaker than raw lift equality.
   - next test: Prove arbitrary source lift refinement and supply square-root/complex structure where required. Matching normalized probabilities alone is weaker than raw lift equality.
@@ -180,13 +180,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `L1-R-THM4` `DERIVED_LEAN`: [L1-QM020-THM1-DIRECT-NORMALIZATION](L1-QM020-THM1-DIRECT-NORMALIZATION.md) (PROVED_LEAN), [L1-IMP-SQRT-FIELD](L1-IMP-SQRT-FIELD.md) (IMPORTED_ASSUMPTION), [L1-IMP-COMPLEX-FIELD](L1-IMP-COMPLEX-FIELD.md) (CONDITIONAL), [L1-IMP-U1-PHASES](L1-IMP-U1-PHASES.md) (IMPORTED_ASSUMPTION)
+- `L1-R-THM4` `DERIVED_PROSE`: [L1-QM020-THM1-DIRECT-NORMALIZATION](L1-QM020-THM1-DIRECT-NORMALIZATION.md) (PROVED_LEAN), [L1-IMP-SQRT-FIELD](L1-IMP-SQRT-FIELD.md) (IMPORTED_ASSUMPTION), [L1-IMP-COMPLEX-FIELD](L1-IMP-COMPLEX-FIELD.md) (CONDITIONAL), [L1-IMP-U1-PHASES](L1-IMP-U1-PHASES.md) (IMPORTED_ASSUMPTION)
 
 Outgoing (6):
 
-- `L1-R-C10-BRANCH-PINCHING` `DERIVED_LEAN`: [L1-QM020-C10-BRANCH-LOCALIZATION](L1-QM020-C10-BRANCH-LOCALIZATION.md) (PROVED_LEAN)
-- `L1-R-LADDER` `DERIVED_LEAN`: [L1-QM121-LADDER-RUNGS-2-6](L1-QM121-LADDER-RUNGS-2-6.md) (PROVED_LEAN)
+- `L1-R-C10-BRANCH-PINCHING` `GAP_NO_DERIVATION`: [L1-QM020-C10-BRANCH-LOCALIZATION](L1-QM020-C10-BRANCH-LOCALIZATION.md) (OPEN)
+- `L1-R-LADDER` `COMPUTED`: [L1-QM121-LADDER-RUNGS-2-6](L1-QM121-LADDER-RUNGS-2-6.md) (COMPUTATIONALLY_CHECKED)
 - `L1-R-PHASE-BLIND-INTERFERENCE` `DERIVED_LEAN`: [L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE](L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE.md) (PROVED_LEAN)
-- `L1-R-THM5` `DERIVED_LEAN`: [L1-QM020-THM5-PHASE-AVERAGED-SHADOW](L1-QM020-THM5-PHASE-AVERAGED-SHADOW.md) (PROVED_LEAN)
+- `L1-R-THM5` `COMPUTED`: [L1-QM020-THM5-PHASE-AVERAGED-SHADOW](L1-QM020-THM5-PHASE-AVERAGED-SHADOW.md) (COMPUTATIONALLY_CHECKED)
 - `L1-R-THM6-P2` `CONDITIONAL_ON_IMPORT`: [L1-QM020-THM6-P2-GLEASON](L1-QM020-THM6-P2-GLEASON.md) (IMPORTED_ASSUMPTION)
-- `L1-R-THM7` `DERIVED_LEAN`: [L1-QM020-THM7-REPRESENTATION-CAPACITY](L1-QM020-THM7-REPRESENTATION-CAPACITY.md) (PROVED_LEAN)
+- `L1-R-THM7` `COMPUTED`: [L1-QM020-THM7-REPRESENTATION-CAPACITY](L1-QM020-THM7-REPRESENTATION-CAPACITY.md) (COMPUTATIONALLY_CHECKED)

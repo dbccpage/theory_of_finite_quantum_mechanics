@@ -1,26 +1,26 @@
 # FQ-TSIRELSON-SOS-Q-SQRT2
 
-Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Two exact Q(sqrt2) SOS matrix certificates and Bell-density expectation2sqrt2 are reproduced independently. general rational four-coordinate scaled SOS inequalities and attainment ratio are kernel checked for this fixed operator.
+> On the declared bipartite carrier with A0=Z, A1=X, B0=(Z+X)/sqrt2, B1=(Z-X)/sqrt2 and |Phi+\>, the CHSH operator satisfies two exact SOS inequalities and attains 2sqrt2; the witness lives in the real field Q(sqrt2) and is static, so complex U(1) phase and continuous time are not needed. Lean: unit-norm-squared-4 vectors over Z\[sqrt2\] with scaled CHSH sum 8.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 3
-- distinct cited Lean declarations covered by a current replay receipt: 3
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 0 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -30,7 +30,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: Formalize the concrete Q(sqrt2)-matrix to real quadratic-form transport before claiming a full Lean operator certificate; arbitrary observables, tensor selection and quantum probability are not derived. The broader source statement is kept in pfp_review.prior_statement.
+Lean exhibits four vectors over Z\[sqrt2\] with squared norm 4 whose scaled CHSH sum is 8 sqrt2 (q2_tsirelson_attainment). The two SOS operator inequalities are native exact checks, not Lean.
 
 ## Source status
 
@@ -38,7 +38,7 @@ paper s13.8.2: exact SOS certificates -2sqrt2 I \<= B_CHSH \<= 2sqrt2 I and atta
 
 ## Review
 
-- PFP review: [dag/results/FQ-TSIRELSON-SOS-Q-SQRT2/reviews/20261019_structure_audit/review_result.json](../../../dag/results/FQ-TSIRELSON-SOS-Q-SQRT2/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-TSIRELSON-SOS-Q-SQRT2/reviews/20261019_structure_audit/review_result.json](../../../dag/results/FQ-TSIRELSON-SOS-Q-SQRT2/reviews/20261019_structure_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Two exact Q(sqrt2) SOS matrix certificates and Bell-density expectation2sqrt2 are reproduced independently. general rational four-coordinate scaled SOS inequalities and attainment ratio are kernel checked for this fixed operator.
   - does not support: Formalize the concrete Q(sqrt2)-matrix to real quadratic-form transport before claiming a full Lean operator certificate; arbitrary observables, tensor selection and quantum probability are not derived.
   - next test: Formalize the concrete Q(sqrt2)-matrix to real quadratic-form transport before claiming a full Lean operator certificate; arbitrary observables, tensor selection and quantum probability are not derived.
@@ -51,16 +51,11 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
 - sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
-- cited in: node.lean, record TFQ-0260 (shared)
+- cited in: record TFQ-0260 (shared)
 - replay: `verified`
   - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition` |
-
-- counts toward the grade: yes
+- counts toward the grade: no
 
 ### Lean: `lean4/H064ContextualityThresholds.lean`
 
@@ -136,7 +131,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `FQ-R-TSIRELSON` `CONDITIONAL_ON_IMPORT`: [FQ-BELL-RATIONAL-VIOLATION-14-5](FQ-BELL-RATIONAL-VIOLATION-14-5.md) (PROVED_LEAN), [FQ-CARRIER-CONTRACT-V2](FQ-CARRIER-CONTRACT-V2.md) (DEFINITION)
+- `FQ-R-TSIRELSON` `CONDITIONAL_ON_IMPORT`: [FQ-BELL-RATIONAL-VIOLATION-14-5](FQ-BELL-RATIONAL-VIOLATION-14-5.md) (COMPUTATIONALLY_CHECKED), [FQ-CARRIER-CONTRACT-V2](FQ-CARRIER-CONTRACT-V2.md) (DEFINITION)
 
 Outgoing (0):
 

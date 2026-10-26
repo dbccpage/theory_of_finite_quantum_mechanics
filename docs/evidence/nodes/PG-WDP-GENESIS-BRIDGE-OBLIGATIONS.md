@@ -11,8 +11,8 @@ Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E3**. [Evidenc
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 8
-- cited Lean, Rust or Python symbols found in their in-repo files: 33
-- distinct cited Lean declarations covered by a current replay receipt: 32
+- cited Lean, Rust or Python symbols found in their in-repo files: 32
+- distinct cited Lean declarations covered by a current replay receipt: 31
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 4
 - recorded statement-match reviews that qualify: 0
@@ -79,7 +79,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
 | `QuantumMechanics.DerivationDagQMClosure.declare_then_assert_cost_floor` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.declare_then_assert_cost_floor` |
 | `QuantumMechanics.DerivationDagQMClosure.genesis_to_wdp_bridge_preserves_and_reflects` | yes | yes | yes | module-level | `#print axioms QuantumMechanics.DerivationDagQMClosure.genesis_to_wdp_bridge_preserves_and_reflects` |
 | `QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl` | yes | yes | yes | module-level | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl` |

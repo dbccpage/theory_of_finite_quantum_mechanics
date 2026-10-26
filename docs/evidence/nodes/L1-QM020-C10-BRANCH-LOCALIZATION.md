@@ -1,10 +1,10 @@
 # L1-QM020-C10-BRANCH-LOCALIZATION
 
-Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Exact coherence/dephasing arrays and the resulting dynamical non-descent counterexample; literal sign/readout obstruction identities in Lean.
+> Branch-localization and many-worlds readings of the lifted phases are conjectures, not part of the QM_020 theorems.
 
 ## Grade
 
@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Unmet after the PFP review: Provide any branching or many-worlds interpretation and its empirical criteria separately; mathematical non-descent neither establishes nor refutes an interpretation. The broader source statement is kept in pfp_review.prior_statement.
+Interpretive readings (branch localization, many worlds) are not formalised. The cited Lean has 2x2 pinching and sign identities, which bear on dephasing but not on the readings.
 
 ## Source status
 
@@ -36,7 +36,7 @@ Z-decoherence pinching off-diagonal annihilation, Hadamard branch indistinguisha
 
 ## Review
 
-- PFP review: [dag/results/L1-QM020-C10-BRANCH-LOCALIZATION/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM020-C10-BRANCH-LOCALIZATION/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/L1-QM020-C10-BRANCH-LOCALIZATION/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM020-C10-BRANCH-LOCALIZATION/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact coherence/dephasing arrays and the resulting dynamical non-descent counterexample; literal sign/readout obstruction identities in Lean.
   - does not support: Provide any branching or many-worlds interpretation and its empirical criteria separately; mathematical non-descent neither establishes nor refutes an interpretation.
   - next test: Provide any branching or many-worlds interpretation and its empirical criteria separately; mathematical non-descent neither establishes nor refutes an interpretation.
@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1004_l1_qm020_c10_branch_localization.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1004_l1_qm020_c10_branch_localization.md](../../../dag/derivations/08_l1_to_l2/tfq_1004_l1_qm020_c10_branch_localization.md)
-- sha256 (`lf-normalised`): `63a96e6a3958ffc40764e9ff69cca3f26f20641b3b22c79e588ac295989eb25d`
+- sha256 (`lf-normalised`): `d295103855ed68c63034ceb7a47bf1abb62c7056544d8b94dfe9054198269aeb`
 - generated view: listed, not counted
 - cited in: record TFQ-1004
 - counts toward the grade: no
@@ -107,7 +107,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `L1-R-C10-BRANCH-PINCHING` `DERIVED_LEAN`: [L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY](L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY.md) (PROVED_LEAN)
+- `L1-R-C10-BRANCH-PINCHING` `GAP_NO_DERIVATION`: [L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY](L1-QM020-THM4-HILBERT-LIFT-REDUNDANCY.md) (PROVED_PROSE)
 
 Outgoing (0):
 
