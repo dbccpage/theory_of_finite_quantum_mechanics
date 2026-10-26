@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "b71f6cd664e83d5a8304033ab7e2180da026ee83abf4713c128a0c99dc3f7c3a"
+  "sha256_lf": "6c12f19522b236860cef803b70bdf00c3734bbd82cff8e9efb5bfce67300edfe"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -1263,9 +1263,9 @@
    "size": 9170
   },
   "dag/derivation_dag.json": {
-   "sha256": "b71f6cd664e83d5a8304033ab7e2180da026ee83abf4713c128a0c99dc3f7c3a",
+   "sha256": "6c12f19522b236860cef803b70bdf00c3734bbd82cff8e9efb5bfce67300edfe",
    "sha256_basis": "lf-normalised",
-   "size": 4827831
+   "size": 4831131
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -6882,6 +6882,11 @@
    "sha256_basis": "lf-normalised",
    "size": 3332
   },
+  "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json": {
+   "sha256": "5dc83fcecbd4e72482ca732915ec471765840a32fe92276d90c0a64099d17341",
+   "sha256_basis": "lf-normalised",
+   "size": 7107
+  },
   "dag/research/campaign_fq-gap-continuum-hilbert-lift_lean_replay.json": {
    "sha256": "22d9ee8f914ff5b16d50b1068cba31fff30f4390675874dba5062514ffdf6ad2",
    "sha256_basis": "lf-normalised",
@@ -8118,9 +8123,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "sha256": "73c57f822adb4b4234b53eb2df6bdbaefc6a4c592c571a8573fd3bf00cf00178",
    "sha256_basis": "lf-normalised",
-   "size": 232565
+   "size": 234040
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -8551,6 +8556,11 @@
    "sha256": "1682fea96d404920c81783da2d5f2370df71a1b323468f725e077f45b78a3412",
    "sha256_basis": "bytes",
    "size": 13168
+  },
+  "lean4/CampaignDsQm043DecoherenceFunctional.lean": {
+   "sha256": "77246f908d3a9d244469f1b66b37372e97ca22707aee46f851507e27bee2e373",
+   "sha256_basis": "bytes",
+   "size": 3022
   },
   "lean4/CampaignFqGapContinuumHilbertLift.lean": {
    "sha256": "553d4dbe9de7fe4be1fd0c58d4ac71ff381ec730f55b8339a7811c68bc290894",
@@ -99946,16 +99956,724 @@
    "dependents": 35,
    "facts": {
     "cited_code_files_not_tests": 0,
-    "counted_files": 1,
-    "lean_receipt_backed": 2,
+    "counted_files": 2,
+    "lean_receipt_backed": 22,
     "qualifying_reviews": 1,
     "runnable_tests": 0,
-    "symbols_found": 2
+    "symbols_found": 22
    },
    "flags": [],
    "grade": "E3",
    "id": "DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT",
    "items": [
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.classSeparates",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.classSeparates",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.classSeparates",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.classSum",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.classSum",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.classSum",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.diagNonneg",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.diagNonneg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.diagNonneg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.fiveSquare",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.fiveSquare",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.fiveSquare",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.gramAtOnes",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.gramAtOnes",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.gramAtOnes",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.gramDet",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.gramDet",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.gramDet",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.gramProd",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.gramProd",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.gramProd",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.gramValueNonneg",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.gramValueNonneg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.gramValueNonneg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.halfClass",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.halfClass",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.halfClass",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.halfDenom",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.halfDenom",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.halfDenom",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.halfGlobal",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.halfGlobal",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.halfGlobal",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.halfGlobalOne",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.halfGlobalOne",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.halfGlobalOne",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.halfSeparates",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.halfSeparates",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.halfSeparates",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.halfSquares",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.halfSquares",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.halfSquares",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.krausHolds",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.krausHolds",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.krausHolds",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.krausSquares",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.krausSquares",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.krausSquares",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.negMulNeg",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.negMulNeg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.negMulNeg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.sevenSquare",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.sevenSquare",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.sevenSquare",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.squareNonneg",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.squareNonneg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.squareNonneg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignDsQm043DecoherenceFunctional.traceSquaresNonneg",
+     "cited_in": [
+      "node.lean",
+      "receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)"
+     ],
+     "command": "cd lean4 && lake build CampaignDsQm043DecoherenceFunctional",
+     "command_note": "then, in a scratch file that imports CampaignDsQm043DecoherenceFunctional: #print axioms CampaignDsQm043DecoherenceFunctional.traceSquaresNonneg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "Quot.sound",
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignDsQm043DecoherenceFunctional.traceSquaresNonneg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
     {
      "canonical_symbol": null,
      "cited_in": [
@@ -100163,7 +100881,7 @@
      "review": "dag/results/DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT/reviews/20261019_dynamics_audit/review_result.json",
      "review_file_ok": true,
      "review_sha256": "5f5a70b0fbab4d378412e10d18b03c84e5392efd92e4a8e43356af413f48d417",
-     "scope_effect": "consistent",
+     "scope_effect": "statement_narrowed",
      "source": "pfp_review",
      "verdict": "scoped_result_or_obstruction_reviewed"
     }
@@ -316251,6 +316969,31 @@
     "propext"
    ],
    "built_successfully": true,
+   "checked_at": "2026-10-26T07:04:20Z",
+   "dag_node": "DS-QM043-DECOHERENCE-FUNCTIONAL-IMPORT",
+   "decl_count": 20,
+   "exit_code": 0,
+   "id": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json#0:CampaignDsQm043DecoherenceFunctional",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignDsQm043DecoherenceFunctional",
+   "path": "lean4/CampaignDsQm043DecoherenceFunctional.lean",
+   "receipt_file": "dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json",
+   "receipt_file_sha256": "5dc83fcecbd4e72482ca732915ec471765840a32fe92276d90c0a64099d17341",
+   "recorded_sha256": "77246f908d3a9d244469f1b66b37372e97ca22707aee46f851507e27bee2e373",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "Quot.sound",
+    "propext"
+   ],
+   "built_successfully": true,
    "checked_at": "2026-10-25T21:41:06.515997+00:00",
    "dag_node": "FQ-GAP-CONTINUUM-HILBERT-LIFT",
    "decl_count": 6,
@@ -329946,7 +330689,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "73c57f822adb4b4234b53eb2df6bdbaefc6a4c592c571a8573fd3bf00cf00178",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -329972,7 +330715,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "73c57f822adb4b4234b53eb2df6bdbaefc6a4c592c571a8573fd3bf00cf00178",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -329998,7 +330741,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "73c57f822adb4b4234b53eb2df6bdbaefc6a4c592c571a8573fd3bf00cf00178",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330024,7 +330767,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "73c57f822adb4b4234b53eb2df6bdbaefc6a4c592c571a8573fd3bf00cf00178",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330050,7 +330793,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "73c57f822adb4b4234b53eb2df6bdbaefc6a4c592c571a8573fd3bf00cf00178",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330076,7 +330819,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "73c57f822adb4b4234b53eb2df6bdbaefc6a4c592c571a8573fd3bf00cf00178",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330102,7 +330845,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "73c57f822adb4b4234b53eb2df6bdbaefc6a4c592c571a8573fd3bf00cf00178",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330128,7 +330871,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "73c57f822adb4b4234b53eb2df6bdbaefc6a4c592c571a8573fd3bf00cf00178",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330154,7 +330897,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "73c57f822adb4b4234b53eb2df6bdbaefc6a4c592c571a8573fd3bf00cf00178",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330180,7 +330923,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "73c57f822adb4b4234b53eb2df6bdbaefc6a4c592c571a8573fd3bf00cf00178",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330206,7 +330949,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "73c57f822adb4b4234b53eb2df6bdbaefc6a4c592c571a8573fd3bf00cf00178",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330232,7 +330975,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "73c57f822adb4b4234b53eb2df6bdbaefc6a4c592c571a8573fd3bf00cf00178",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330258,7 +331001,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "73c57f822adb4b4234b53eb2df6bdbaefc6a4c592c571a8573fd3bf00cf00178",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330284,7 +331027,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "73c57f822adb4b4234b53eb2df6bdbaefc6a4c592c571a8573fd3bf00cf00178",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330310,7 +331053,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "73c57f822adb4b4234b53eb2df6bdbaefc6a4c592c571a8573fd3bf00cf00178",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330934,16 +331677,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 37,
   "e3_nodes_with_test_but_no_review": 39,
   "lean_declarations_in_repo": {
-   "distinct": 2121,
+   "distinct": 2141,
    "no_receipt": 38,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 2060,
-   "replay_verified_and_declaration_itemised": 1993,
+   "replay_verified": 2080,
+   "replay_verified_and_declaration_itemised": 2013,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 2440
+   "present": 2460
   },
   "mismatch_nodes": 190,
   "mismatches_by_kind": {
@@ -330964,7 +331707,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 620,
+  "receipts_indexed": 621,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,

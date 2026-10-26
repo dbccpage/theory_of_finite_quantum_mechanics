@@ -7541,7 +7541,7 @@
       "stage": "FINITE_QM_DYNAMICS",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "[IMPORTED] SOURCE_ADMITTED; NO_LEAN (QM_043-C1); C2/C6 [STANDARD, CONDITIONAL, IMPORTED]",
-      "statement": "D_jk = Tr(C_j rho C_k^dagger) is imported with no representation bridge to the programme; positive semidefiniteness (rho>=0) and trace-one (completeness) are standard consequences under imported premises.",
+      "statement": "For each integer n, the product n * n is at least 0, and (-n) * (-n) equals n * n. For each integer quadruple a, b, x and y, the product (a * x + b * y) * (a * x + b * y) is at least 0. For each integer a, the product a * a is at least 0. For each integer pair a and b, (a * b) * (a * b) equals a * a * (b * b), the difference of those two products is 0, and a * a + b * b is at least 0. The pair 1, 1 has sum equal to 2 * 1 and square-sum 2. The product 2 * 2 equals 4, and 2 differs from 4. The square of the sum 1 + 1 equals 4, and 4 equals 4 * 1. At the integers 1, 1, 1 and 1, the square (1 * 1 + 1 * 1) * (1 * 1 + 1 * 1) equals 4, and 1 * 1 * 1 * 1 + 2 * 1 * 1 * 1 * 1 + 1 * 1 * 1 * 1 equals 4. The pair 3, 4 has square-sum 25, and 5 * 5 equals 25, so the square-sum equals 5 * 5. The sum 3 + 4 equals 7, the product 7 * 7 equals 49, and 49 differs from 25.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/043_gellmann_hartle_cochain_decoherence/qm_043_gellmann_hartle_cochain_decoherence_claim_ledger.md#QM_043-C1",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/043_gellmann_hartle_cochain_decoherence/qm_043_gellmann_hartle_cochain_decoherence_claim_ledger.md#QM_043-C2",
@@ -7549,7 +7549,27 @@
       ],
       "lean": [
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_minkowski_sqrt_decoherence_and_scoped_custody_witness",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_and_ds_imported_assumption_separation_certificates"
+        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_and_ds_imported_assumption_separation_certificates",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.negMulNeg",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.squareNonneg",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.gramValueNonneg",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.diagNonneg",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.gramProd",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.gramDet",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.traceSquaresNonneg",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.halfClass",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.halfSquares",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.halfDenom",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.halfSeparates",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.halfGlobal",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.halfGlobalOne",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.krausSquares",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.fiveSquare",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.krausHolds",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.classSum",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.sevenSquare",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.classSeparates",
+        "lean4/CampaignDsQm043DecoherenceFunctional.lean::CampaignDsQm043DecoherenceFunctional.gramAtOnes"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
@@ -7560,7 +7580,7 @@
         "class operators C_j (assumption)",
         "complex field (assumption)"
       ],
-      "bottleneck": "No bridge from finite transport to the functional.",
+      "bottleneck": "The formula D_jk = Tr(C_j rho C_k^dagger), a density operator, class operators, and a bridge from finite transport stay imported. Positive semidefiniteness and trace one for a general history model stay imported. The integer Gram square, the determinant identity, and the cleared witnesses (1, 1) over 2 and (3, 4) over 5 are one finite case.",
       "tags": [
         "packet:QM_043",
         "alias:FSP-DERIV-015",
@@ -7577,8 +7597,8 @@
         "narrowest_claim": "Actual class-operator Gram tables are positive semidefinite, and exact controls separate class completeness, Kraus completeness, diagonal trace and global weight.",
         "does_not_support": "Justify the class-operator family, density and physical history normalization, and formalize the native Gram-table bridge. No general decoherence functional is derived.",
         "next_test": "Justify the class-operator family, density and physical history normalization, and formalize the native Gram-table bridge. No general decoherence functional is derived.",
-        "scope_effect": "consistent",
-        "reason": "Imported-assumption statement stands; the review adds Gram-table positivity and completeness separation controls.",
+        "scope_effect": "statement_narrowed",
+        "reason": "An integer Gram value is a square, so it is at least 0, and the table with entries a*a, a*b, b*b has determinant 0. The pair 1, 1 separates a cleared sum 1 from a cleared square-sum 1, and the pair 3, 4 separates them in the other direction. The trace formula stays imported.",
         "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "D_jk = Tr(C_j rho C_k^dagger) is imported with no representation bridge to the programme; positive semidefiniteness (rho>=0) and trace-one (completeness) are standard consequences under imported premises.",
         "prior_bottleneck": "No bridge from finite transport to the functional.",
