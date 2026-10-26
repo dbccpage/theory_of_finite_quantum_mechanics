@@ -189,12 +189,12 @@ status are not claimed as proved and have no proof section.
 
 ## IMPLEMENTATION
 
-1 of 4 with a prose proof.
+2 of 4 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
 | `IMPL-FSP-SWITCHING-NORMAL-FORM-NF002` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.1 The switching normal form of an edge signing](../papers/core/fermion_sign_and_majorana_proofs.md#11-the-switching-normal-form-of-an-edge-signing) |
-| `IMPL-LGGR-FINITE-RESULTS-LEAN` | PROVED_LEAN | *none yet* |
+| `IMPL-LGGR-FINITE-RESULTS-LEAN` | PROVED_LEAN | [frontier_finite_targets_proofs: 5.2 Parity cycles: holonomy, sections and joint measures](../papers/core/frontier_finite_targets_proofs.md#52-parity-cycles-holonomy-sections-and-joint-measures) |
 | `IMPL-THYMUS-SCREENING-SOUNDNESS` | PROVED_LEAN | *none yet* |
 | `PGW-PFP-CARRIER-ORIGIN-NILPOTENCY` | PROVED_LEAN | *none yet* |
 
@@ -353,53 +353,53 @@ status are not claimed as proved and have no proof section.
 
 ## CONSTRUCTOR_THEORY
 
-0 of 3 with a prose proof.
+3 of 3 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `CT-ENTANGLING-PHASE-FINITE-TARGET` | PROVED_LEAN | *none yet* |
-| `CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS` | PROVED_LEAN | *none yet* |
-| `CT-QUBIT-NO-CLONING-FINITE-TARGET` | PROVED_LEAN | *none yet* |
+| `CT-ENTANGLING-PHASE-FINITE-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 1.3 A diagonal phase that entangles](../papers/core/frontier_finite_targets_proofs.md#13-a-diagonal-phase-that-entangles) |
+| `CT-FINITE-DISTINGUISHABILITY-REPORT-FIBERS` | PROVED_LEAN | [frontier_finite_targets_proofs: 1.1 Separating two attributes through a report map](../papers/core/frontier_finite_targets_proofs.md#11-separating-two-attributes-through-a-report-map) |
+| `CT-QUBIT-NO-CLONING-FINITE-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 1.2 Which sets of Pauli eigenstates can be cloned](../papers/core/frontier_finite_targets_proofs.md#12-which-sets-of-pauli-eigenstates-can-be-cloned) |
 
 ## CAUSAL_QFT
 
-0 of 6 with a prose proof.
+6 of 6 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `CQFT-FINITE-POSET-NET-TARGET` | PROVED_LEAN | *none yet* |
-| `CQFT-FINITE-STRICT-POSET-SPACELIKE` | PROVED_LEAN | *none yet* |
-| `CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET` | PROVED_LEAN | *none yet* |
-| `CQFT-NO-SIGNALLING-PRODUCT-LEAN` | PROVED_LEAN | *none yet* |
-| `CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET` | PROVED_LEAN | *none yet* |
-| `CQFT-RS-FINITE-CYCLICITY-TARGET` | PROVED_LEAN | *none yet* |
+| `CQFT-FINITE-POSET-NET-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 2.2 Isotony and locality for site-factorized operators](../papers/core/frontier_finite_targets_proofs.md#22-isotony-and-locality-for-site-factorized-operators) |
+| `CQFT-FINITE-STRICT-POSET-SPACELIKE` | PROVED_LEAN | [frontier_finite_targets_proofs: 2.1 The spacelike relation](../papers/core/frontier_finite_targets_proofs.md#21-the-spacelike-relation) |
+| `CQFT-MYRHEIM-MEYER-ORDERING-FRACTION-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 2.6 Ordering fractions, the grid, and covering relations](../papers/core/frontier_finite_targets_proofs.md#26-ordering-fractions-the-grid-and-covering-relations) |
+| `CQFT-NO-SIGNALLING-PRODUCT-LEAN` | PROVED_LEAN | [frontier_finite_targets_proofs: 2.3 Product tables do not signal](../papers/core/frontier_finite_targets_proofs.md#23-product-tables-do-not-signal) |
+| `CQFT-ORDERED-PRODUCT-LINEAR-EXTENSION-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 2.5 Ordered products along linear extensions](../papers/core/frontier_finite_targets_proofs.md#25-ordered-products-along-linear-extensions) |
+| `CQFT-RS-FINITE-CYCLICITY-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 2.4 Cyclic and separating vectors in finite dimension](../papers/core/frontier_finite_targets_proofs.md#24-cyclic-and-separating-vectors-in-finite-dimension) |
 
 ## ADS_CFT
 
-0 of 3 with a prose proof.
+2 of 3 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET` | PROVED_LEAN | *none yet* |
+| `ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 3.1 The six-qubit perfect tensor](../papers/core/frontier_finite_targets_proofs.md#31-the-six-qubit-perfect-tensor) |
 | `ADS-HAPPY-ENTROPY-MINCUT-TARGET` | PROVED_LEAN | *none yet* |
-| `ADS-LOGICAL-RECONSTRUCTION-TARGET` | PROVED_LEAN | *none yet* |
+| `ADS-LOGICAL-RECONSTRUCTION-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 3.2 Reconstruction of logical operators on three qubits](../papers/core/frontier_finite_targets_proofs.md#32-reconstruction-of-logical-operators-on-three-qubits) |
 
 ## LOOP_QUANTUM_GRAVITY
 
-0 of 4 with a prose proof.
+1 of 4 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
 | `LQG-6J-EXACT-AND-PENTAGON-TARGET` | PROVED_LEAN | *none yet* |
-| `LQG-AREA-SPECTRUM-EXACT-TARGET` | PROVED_LEAN | *none yet* |
+| `LQG-AREA-SPECTRUM-EXACT-TARGET` | PROVED_LEAN | [frontier_finite_targets_proofs: 4.1 Degeneracy of the area spectrum for small puncture sets](../papers/core/frontier_finite_targets_proofs.md#41-degeneracy-of-the-area-spectrum-for-small-puncture-sets) |
 | `LQG-PR-ALLOWED-REGION-TARGET` | PROVED_LEAN | *none yet* |
 | `LQG-TV-LEVEL2-PENTAGON-TARGET` | PROVED_LEAN | *none yet* |
 
 ## OBSERVER_PRESHEAF
 
-0 of 2 with a prose proof.
+2 of 2 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `OPS-PARITY-HOLONOMY-LEAN` | PROVED_LEAN | *none yet* |
-| `OPS-PUSHFORWARD-FUNCTOR-LEAN` | PROVED_LEAN | *none yet* |
+| `OPS-PARITY-HOLONOMY-LEAN` | PROVED_LEAN | [frontier_finite_targets_proofs: 5.2 Parity cycles: holonomy, sections and joint measures](../papers/core/frontier_finite_targets_proofs.md#52-parity-cycles-holonomy-sections-and-joint-measures) |
+| `OPS-PUSHFORWARD-FUNCTOR-LEAN` | PROVED_LEAN | [frontier_finite_targets_proofs: 5.1 Pushforward is functorial](../papers/core/frontier_finite_targets_proofs.md#51-pushforward-is-functorial) |
