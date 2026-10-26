@@ -1216,7 +1216,7 @@ argument.
 
 ### 6.2 Weighted $\ell^1$ duality
 
-DAG node: `PGW-SN-E08-WEIGHTED-L1-DUALITY`
+DAG nodes: `PGW-SN-E08-WEIGHTED-L1-DUALITY` `L1-FRAMEWORK-KKT-CERT`
 
 **Proposition.** For a finite matrix $d_0$ over $\mathbb Q$, rational weights $\omega\ge0$ and a rational cochain $c$ (with rational optimization variables),
 $$\min_g\sum_e\omega_e|c_e-(d_0g)_e| \;=\; \max\{c^{\mathsf T}y:\ d_0^{\mathsf T}y=0,\ |y_e|\le\omega_e\},$$
@@ -1233,6 +1233,11 @@ $\pm(c-d_0g)_e\le t_e$; it is feasible and bounded below by $0$, so linear-progr
 problem. For the 3-cycle, $y=(1,1,1)$ is dual feasible with value $1$, and the two potentials
 have cost $1$. The harmonic potential $(0,2/3,1/3)$ has $d_0g=(2/3,-1/3,-1/3)$. $\square$
 
+The weak-duality step is the optimality certificate used for $\ell^1$ residuals: if
+$d_0^{\mathsf T}y=0$, $|y_e|\le\omega_e$ and $\sum_e\omega_e|r_e|=c^{\mathsf T}y$, then $r$ has
+the least weighted $\ell^1$ norm in the class $c-\operatorname{im}d_0$, because every member $x$
+of the class has $c^{\mathsf T}y=y^{\mathsf T}x\le\sum_e\omega_e|x_e|$.
+
 So an $\ell^1$ minimizer need not be unique and need not be the harmonic residual. The source
 also defines a categorical adjunction; the pair $d_0,d_0^{\mathsf T}$ is not one, and nothing here
 is claimed about adjunctions.
@@ -1246,6 +1251,8 @@ Lean: `lean4/CampaignSnE08WeightedL1Duality.lean::weighted_l1_strong_duality`,
 `lean4/CampaignSnE08WeightedL1Duality.lean::cyc_residuals_differ`,
 `lean4/CampaignSnE08WeightedL1Duality.lean::cyc_harmonic`,
 `lean4/CampaignSnE08WeightedL1Duality.lean::adjunctionCochain_not_cycD_transpose`.
+`lean4/Imported/L1ObstructionFramework/lp_general_certificate.lean::general_finite_certificate_optimality`
+states the certificate over integer lists, with an arbitrary coboundary map in place of $d_0$.
 
 ### 6.3 The exact sequence of the closure charge
 
