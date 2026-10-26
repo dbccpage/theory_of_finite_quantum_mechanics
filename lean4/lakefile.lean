@@ -1430,3 +1430,6 @@ lean_lib CampaignMajImportCosetWeight where
 
 lean_lib CampaignGpImportTensorProduct where
   roots := #[`CampaignGpImportTensorProduct]
+
+lean_lib CampaignGpImportCptpClass where
+  roots := #[`CampaignGpImportCptpClass]
