@@ -595,22 +595,30 @@ Lean: `lean4/AuthIncompleteness/Core.lean::AuthorizationIncompleteness.self_rece
 `lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.control_report_not_adequate_for_marked_cell_contract`,
 `lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.shared_stay_control_blocks_control_only_contract_decider`.
 
-### 3.4 Halting does not select a policy, and extensions are not unique
+### 3.4 Finite fixtures
 
-DAG nodes: `AUTHF-HALT-NOT-POLICY` `AUTHF-PD-EXTENSION-NONUNIQUE`
+DAG nodes: `AUTHF-HALT-NOT-POLICY` `AUTHF-PD-EXTENSION-NONUNIQUE` `AUTHF-TRANSITION-INVARIANTS` `AUTHF-REPLAY-BOUND-SUBMISSION`
 
-**Proposition.** In the direct machine model, the tape-control model and the replay model, a
-halted or verified outcome receives different terminal values from two supplied policies
-(accept halted against leave all open; accept halt against reject all; authorize on verified
-against leave verified open). Over the two-mark Boolean analogue of a primitive difference, the
-identity extension and the rejecting extension give different validity and terminal values at the
-same carrier point.
+**Proposition.**
 
-*Proof.* Evaluate each pair of policies, or each pair of extensions, at the stated outcome or
-point. $\square$
+1. In the direct machine model, the tape-control model and the replay model, a halted or verified
+   outcome receives different terminal values from two supplied policies (accept halted against
+   leave all open; accept halt against reject all; authorize on verified against leave verified
+   open).
+2. Over the two-mark Boolean analogue of a primitive difference, the identity extension and the
+   rejecting extension give different validity and terminal values at the same carrier point.
+3. The four-configuration transition table maps every configuration to one that the
+   clean-terminal contract accepts, so it preserves that contract. It does not preserve the
+   marked-cell contract: the running marked configuration is accepted and its successor, the
+   running blank configuration, is not.
+4. In the finite replay model, if replay of a receipt on an observed submission returns
+   *replayed*, the observed submission is the one bound in the receipt.
 
-The content is that the syntax (a halt, a verified replay, a primitive difference) is compatible
-with more than one policy, so the policy is an additional declaration.
+*Proof.* (1) to (3) are checks of finitely many cases. (4) Replay first compares the observed
+submission with the bound one and returns *replayed* only in the equal branch. $\square$
+
+Items (1) and (2) say that the syntax (a halt, a verified replay, a primitive difference) is
+compatible with more than one policy, so the policy is an additional declaration.
 
 Lean: `lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.DirectTuringMachineModels.syntactic_halt_does_not_select_direct_machine_policy`,
 `lean4/AuthIncompleteness/TapeControl.lean::AuthorizationIncompleteness.TapeControlModels.syntactic_halt_does_not_select_terminal_policy`,
@@ -618,7 +626,11 @@ Lean: `lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.Direc
 `lean4/AuthIncompleteness/PDModels.lean::AuthorizationIncompleteness.PrimitiveDifferenceModels.primitive_interface_has_distinct_authorization_extensions`,
 `lean4/AuthIncompleteness/PDModels.lean::AuthorizationIncompleteness.PrimitiveDifferenceModels.same_primitive_extensions_split_validity`,
 `lean4/AuthIncompleteness/PDModels.lean::AuthorizationIncompleteness.PrimitiveDifferenceModels.same_primitive_extensions_split_policy`,
-`lean4/AuthIncompleteness/PDModels.lean::AuthorizationIncompleteness.PrimitiveDifferenceModels.boolPrimitive`.
+`lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract`,
+`lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.marked_contract_countertrace`,
+`lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract`,
+`lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.replayed_status_requires_bound_submission`,
+`lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.replay`.
 
 ### 3.5 The direct machine model and its token code
 
@@ -649,24 +661,3 @@ Lean: `lean4/AuthIncompleteness/DirectTM.lean::AuthorizationIncompleteness.Direc
 `papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.truncated_rule_code_is_rejected`,
 `papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_symbol_tag_is_rejected`,
 `papers/foundations/authorization_incompleteness/evidence/original/formal/direct_turing_machine_token_code_models.lean::AuthorizationIncompleteness.DirectTuringMachineTokenCodeModels.invalid_move_tag_is_rejected`.
-
-### 3.6 Transition invariants and replay binding
-
-DAG nodes: `AUTHF-TRANSITION-INVARIANTS` `AUTHF-REPLAY-BOUND-SUBMISSION`
-
-**Proposition.** The four-configuration transition table maps every configuration to one that the
-clean-terminal contract accepts, so it preserves that contract; it does not preserve the
-marked-cell contract, since the running marked configuration is accepted and its successor, the
-running blank configuration, is not. In the finite replay model, if replay of a receipt on an
-observed submission returns *replayed*, the observed submission is the one bound in the receipt.
-
-*Proof.* The first two claims are checks of the four table entries. Replay compares the observed
-submission with the bound one and returns *replayed* only in the equal branch. $\square$
-
-Lean: `lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_preserves_clean_terminal_contract`,
-`lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.marked_contract_countertrace`,
-`lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_does_not_preserve_marked_cell_contract`,
-`lean4/AuthIncompleteness/TapeTransition.lean::AuthorizationIncompleteness.TapeTransitionInvariantModels.transition_output_satisfies_clean_terminal_contract`,
-`lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.replayed_status_requires_bound_submission`,
-`lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.replay`,
-`lean4/AuthIncompleteness/Replay.lean::AuthorizationIncompleteness.ReplayPacketBindingModels.issueReceipt`.

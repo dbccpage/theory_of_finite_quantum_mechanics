@@ -34,7 +34,7 @@ some $g:V\to S$, and *$f$ is constant on the fibres of $q$* means $q(x)=q(y)\Rig
 
 ### 1.1 The quotient barrier
 
-DAG nodes: `PG-COLLAPSE-BARRIER` `PGW-FORCED-SEPARATION-LIFT-NOT-UNIQUE`
+DAG nodes: `PG-COLLAPSE-BARRIER` `PGW-FORCED-SEPARATION-LIFT-NOT-UNIQUE` `PGW-REPLAY-NECESSITY`
 
 **Proposition.** If $q(x)=q(y)$ and $f(x)\neq f(y)$, then $f$ does not factor through $q$. In
 particular, if $\sim$ is an equivalence relation and $x\sim y$, every function on $A/{\sim}$ takes
@@ -55,31 +55,23 @@ false respectively). Full inscription identity separates the pair as well and ca
 one bit. A canonical tower of refinements therefore needs a declared selection policy; none is
 derived here.
 
+**Remark (replay).** Take $A$ the set of histories, $q=\pi$ the part of a history an auditor sees
+and $f=\sigma$ the state it produces. If two histories look the same to the auditor and produce
+different states, no auditor reports the state correctly on both. So state certification needs
+replay information that separates the relevant histories; on a declared finite population, a
+summary on whose fibres $\sigma$ is constant suffices (§1.2, §1.3). The audit trials of the source
+illustrate this but are not an instance: the truncated window and the full replay received
+different inputs.
+
 Lean: `lean4/Imported/PreGenesisToMssn/Paper.lean::collapsed_observation_barrier`,
 `lean4/Imported/Genesis19l57g1/Paper000.lean::separation_not_on_quotient`,
 `lean4/Imported/Genesis19l57g1/Derivation/Quot.lean::quotient_barrier`,
-`lean4/Imported/PreGenesisToMssn/Observation.lean::collapsed_quotient_barrier`. The two-predicate
+`lean4/Imported/PreGenesisToMssn/Observation.lean::collapsed_quotient_barrier`,
+`lean4/Imported/Genesis19l57g1/Paper000.lean::insufficient_history_view`,
+`lean4/Imported/Genesis19l57g1/Paper000.lean::no_factor_through_common_view`. The two-predicate
 example is not in Lean.
 
-### 1.2 Replay is necessary for state certification
-
-DAG node: `PGW-REPLAY-NECESSITY`
-
-**Proposition.** Let $H$ be a set of histories, $\sigma(h)$ the state that $h$ produces and
-$\pi(h)$ the part of $h$ an auditor sees. If $\pi(h_1)=\pi(h_2)$ and $\sigma(h_1)\neq\sigma(h_2)$,
-no auditor $A$ with $A(\pi(h))=\sigma(h)$ for all $h$ exists. Conversely such an auditor exists on
-the image of $\pi$ exactly when $\sigma$ is constant on the fibres of $\pi$.
-
-*Proof.* The first part is §1.1 with $q=\pi$ and $f=\sigma$. The converse is §1.3. $\square$
-
-The statement is what the audit trials illustrate: an auditor shown only the last turn receives
-the same view from histories that produce different regimes. The trials themselves are not a
-pair of histories with equal views and are not an instance of the theorem.
-
-Lean: `lean4/Imported/Genesis19l57g1/Paper000.lean::insufficient_history_view`,
-`lean4/Imported/Genesis19l57g1/Paper000.lean::no_factor_through_common_view`.
-
-### 1.3 The history and report criterion
+### 1.2 The history and report criterion
 
 DAG node: `PG-HISTORY-REPORT-CRITERION`
 
@@ -103,7 +95,7 @@ off the image. $\square$
 
 The choice of $h_v$ in (1) is the only non-constructive step. In Lean it uses
 `Classical.choice` for an arbitrary report; whether choice is needed for arbitrary history types
-is not decided. For explicitly listed histories §1.4 avoids it.
+is not decided. For explicitly listed histories §1.3 avoids it.
 
 Lean: `lean4/Imported/PreGenesisToMssn/Paper.lean::history_report_criterion`,
 `lean4/Imported/PreGenesisToMssn/Paper.lean::history_factor_unique`,
@@ -114,7 +106,7 @@ Lean: `lean4/Imported/PreGenesisToMssn/Paper.lean::history_report_criterion`,
 `lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean::factorization_iff_fiber_constancy`.
 Part (3) is not in Lean.
 
-### 1.4 A choice-free reconstruction for listed histories
+### 1.3 A choice-free reconstruction for listed histories
 
 DAG node: `PG-PREGEN-CONSTRUCTIVE-SUMMARY`
 
@@ -127,14 +119,14 @@ every $j$ if and only if $f$ is constant on the fibres of $r$ restricted to the 
 $i\le j$) and $f(h_i)=f(h_j)$. Conversely, if $r(h_j)=r(h_k)$ then
 $f(h_j)=\mathrm{recon}(r(h_j))=\mathrm{recon}(r(h_k))=f(h_k)$. $\square$
 
-The search for the least index replaces the choice in §1.3, so the argument uses no axiom. It
+The search for the least index replaces the choice in §1.2, so the argument uses no axiom. It
 says nothing about unlisted or infinite populations.
 
 Lean: `lean4/Imported/OePregen/ListedHistorySummary.lean::PreMssnListed.listed_history_report_criterion`,
 `lean4/Imported/OePregen/ListedHistorySummary.lean::PreMssnListed.recon_of_fiberConstant`,
 `lean4/Imported/OePregen/ListedHistorySummary.lean::PreMssnListed.fiberConstant_of_recon`.
 
-### 1.5 Refinement by a supplied tag
+### 1.4 Refinement by a supplied tag
 
 DAG node: `PG-REFINE-SEPARATES`
 
@@ -155,7 +147,7 @@ Lean: `lean4/Imported/PreGenesisToMssn/Paper.lean::refine_separates`,
 `lean4/Imported/SnMssn/Paper001.lean::supplied_tag_separates`. The colouring criterion is not in
 Lean, and nothing here finds a tag or bounds the cost of finding one.
 
-### 1.6 Quotient retention
+### 1.5 Quotient retention
 
 DAG node: `PGW-QUOTIENT-RETENTION`
 
@@ -175,7 +167,7 @@ Lean: `lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::collapse
 `lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::collapseMap_compose`,
 `lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::failed_identification_retains_two_classes`.
 
-### 1.7 Faithful common descent and round trips
+### 1.6 Faithful common descent and round trips
 
 DAG node: `PGW-FAITHFUL-DESCENT-ROUND-TRIP`
 
@@ -194,7 +186,7 @@ for that pair. Another pair of translations may still close.
 Lean: `lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean::faithful_descent_iff_round_trip_coherent`,
 `lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean::faithful_descent_to_coherent`.
 
-### 1.8 Lifts with a typed recovery
+### 1.7 Lifts with a typed recovery
 
 DAG node: `PG-OLD-IMAGE-INJECTIVE`
 
@@ -215,7 +207,7 @@ Lean: `lean4/Imported/PreGenesisToMssn/Paper.lean::old_image_injective`,
 `lean4/Imported/SnMssn/Paper001.lean::old_image_injective`,
 `lean4/Imported/SnMssn/Paper001.lean::off_image_not_implied`. The count is not in Lean.
 
-### 1.9 Free monoids on alphabets of different sizes
+### 1.8 Free monoids on alphabets of different sizes
 
 DAG node: `PG-FREE-MONOID-NONISO`
 
@@ -238,7 +230,7 @@ Lean: `lean4/Imported/PreGenesisToMssn/Paper.lean::unequal_finite_alphabets_not_
 `lean4/Imported/SnMssn/Paper001.lean::no_free_monoid_iso`,
 `lean4/Imported/SnMssn/Paper001.lean::no_discrete_equivalence`.
 
-### 1.10 A chain retraction cannot kill a class
+### 1.9 A chain retraction cannot kill a class
 
 DAG node: `PG-CHAIN-RETRACTION`
 
@@ -261,7 +253,7 @@ Lean: `lean4/Imported/PreGenesisToMssn/Paper.lean::chain_retraction_cannot_kill`
 `lean4/Imported/SnMssn/Paper001.lean::triangle_retraction_impossible`. The two cases are checked
 on their coordinate vectors, not on full complexes.
 
-### 1.11 Demand accounting
+### 1.10 Demand accounting
 
 DAG node: `PG-DEMAND-ACCOUNTING`
 
@@ -458,43 +450,32 @@ Lean: `lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::genesis_underivabl
 
 ### 3.4 Challenge 2: admitted but collapsed
 
-DAG nodes: `PGW-CHALLENGE2-ADMITTED-BUT-COLLAPSED` `PGW-SN2-OPAQUE-COLLAPSE`
+DAG nodes: `PGW-CHALLENGE2-ADMITTED-BUT-COLLAPSED` `PGW-SN2-OPAQUE-COLLAPSE` `PGW-CHALLENGE3-CURRENT-REGIME-FAILS`
 
 **Proposition.** The Challenge 0 to 3 histories replay to $R_{2L}=(2,[\,],[\,],[\,],[(0,1)])$ in
 reading L and $R_{2F}=(3,[\,],[\,],[\,],[(1,2)])$ in reading F. In both, every pair of data is
 collapsed. Admitting a further datum to $R_{2L}$ changes the regime and leaves $0,1$ collapsed.
+Hence the pair that Challenge 3 requires to be separated is not separable, and every function on
+the collapse classes of $R_{2L}$ takes the same value at the classes of $0$ and $1$.
 
 *Proof.* The replays are a direct evaluation of seven and eight events. Both regimes have no
-instances, so §3.2 applies, before and after the admission of a datum. $\square$
+instances, so §3.2 applies, before and after the admission of a datum. The last claim is §1.1
+applied to the collapse relation. $\square$
 
 So two externally distinct inscriptions stay internally indistinguishable, and a new external
 inscription need not increase internal expressive power. A collapsed pair is an obstruction only
-once a requirement or question demands that it be separated. The source does not decompose
-$\langle ab\rangle$ into $a$ and $b$.
+once a requirement or question demands that it be separated, as Challenge 3 does; a response must
+then change the regime (§3.6). The source does not decompose $\langle ab\rangle$ into $a$ and $b$.
 
 Lean: `lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::R2L_collapsed`,
 `lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::R2F_collapsed`,
 `lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::admission_without_expressive_increase`,
 `lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::historyL_replays`,
-`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::historyF_replays`.
+`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::historyF_replays`,
+`lean4/Imported/Genesis19l57g1/Derivation/Quot.lean::barrier_R2L`,
+`lean4/Imported/Genesis19l57g1/Derivation/Quot.lean::quot_barrier`.
 
-### 3.5 Challenge 3: the current regime fails
-
-DAG node: `PGW-CHALLENGE3-CURRENT-REGIME-FAILS`
-
-**Proposition.** In $R_{2L}$ and $R_{2F}$ the required pair is not separable, and every function
-on the collapse classes of $R_{2L}$ takes the same value at the classes of $0$ and $1$.
-
-*Proof.* §3.4 and §1.1 applied to the collapse relation. $\square$
-
-So a response must change the regime. The barrier bounds only operations on the given quotient,
-not what an admitted augmentation can separate; that is the subject of §3.7.
-
-Lean: `lean4/Imported/Genesis19l57g1/Derivation/Quot.lean::barrier_R2L`,
-`lean4/Imported/Genesis19l57g1/Derivation/Quot.lean::quot_barrier`,
-`lean4/Imported/Genesis19l57g1/Derivation/Quot.lean::quotient_barrier`.
-
-### 3.6 The number of contexts
+### 3.5 The number of contexts
 
 DAG node: `PGW-CONTEXT-COUNT-FORMULA`
 
@@ -515,7 +496,7 @@ Lean: `lean4/Imported/Genesis19l57g1/Paper.lean::contextWords_length`,
 `lean4/Imported/Genesis19l57g1/Paper.lean::contextWords_nodup`. The sum over forms is the written
 corollary.
 
-### 3.7 Cost two, and the shape of the minima
+### 3.6 Cost two, and the shape of the minima
 
 DAG nodes: `PGW-SN3-COST-TWO-UNARY-MARK` `PGW-MU1-MINIMUM-NOT-UNIQUE-L` `PGW-MU1-ARITY-INDEXED-TIE-FAMILY`
 
@@ -562,7 +543,7 @@ Lean: `lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::cost1_insuffici
 `lean4/Imported/Genesis19l57g1/Derivation/MinimalityF.lean::mu2_unique_F`. Parts (2) and (3) are
 stated for $R_{2L}$ only.
 
-### 3.8 A fresh mark always responds
+### 3.7 A fresh mark always responds
 
 DAG node: `PGW-RESPONSE-EXISTENCE-MARK-PROGRESS`
 
@@ -582,7 +563,7 @@ This is existence of a response to a supplied demand. It does not generate deman
 Lean: `lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::mark_progress`,
 `lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::derivable_extend`.
 
-### 3.9 Policy terminals separate every pair
+### 3.8 Policy terminals separate every pair
 
 DAG node: `PGW-POLICY-ENDPOINT-ALL-SEPARATED`
 
@@ -590,7 +571,7 @@ DAG node: `PGW-POLICY-ENDPOINT-ALL-SEPARATED`
 response. A well-formed policy terminal whose requirements are all separable separates every
 pair of data.
 
-*Proof.* A collapsed pair $i<j$ would have the response of §3.8. $\square$
+*Proof.* A collapsed pair $i<j$ would have the response of §3.7. $\square$
 
 So an unguarded maximal run of the closure policy cannot stop on an unresolved pair for lack of a
 response. A bounded implementation can still stop at a search or resource limit, which is a
@@ -598,7 +579,7 @@ different outcome.
 
 Lean: `lean4/Imported/Genesis19l57g1/Paper.lean::policy_terminal_separates`.
 
-### 3.10 Pruning: rules, unmentioned instances and fresh items
+### 3.9 Pruning: rules, unmentioned instances and fresh items
 
 DAG node: `PGW-PRUNING-LEMMAS-COST-TWO`
 
@@ -630,7 +611,7 @@ Lean: `lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::separable_of_subr
 `lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_datum`,
 `lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_form`.
 
-### 3.11 Collapse is invariant under renaming
+### 3.10 Collapse is invariant under renaming
 
 DAG node: `PGW-COUNT-INVARIANCE-TRANSPORT`
 
@@ -650,7 +631,7 @@ Lean: `lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean::collapsed_r
 `lean4/Imported/Genesis19l57g1/Derivation/IsoCollapse.lean::collapsed_transport`,
 `lean4/Imported/Genesis19l57g1/Derivation/FormTransport.lean::collapsed_renameDataForm`.
 
-### 3.12 Least-pair selection is not equivariant
+### 3.11 Least-pair selection is not equivariant
 
 DAG node: `PGW-ORBIT-BRANCHING-REPAIRS-LEAST-PAIR`
 
@@ -664,7 +645,7 @@ relation for $\sigma R$, and so are the numbers of valid responses in a supplied
 *Proof.* The only contexts are $(0,[\square])$. In $R$ neither $0$ nor $1$ gives a derivable
 plugging; in $\sigma R$, whose instances are $(0,[0])$ and $(0,[1])$, both do. So $(0,1)$ is
 collapsed in both, and it is the least collapsed pair in both, while $\sigma(0,1)=(2,3)$. The
-transport is §3.11 applied to the pair, the delta and its result, with the inverse permutation
+transport is §3.10 applied to the pair, the delta and its result, with the inverse permutation
 for the reverse inclusion. $\square$
 
 A selection rule that picks the least index pair therefore depends on the labelling. The repair
@@ -676,7 +657,7 @@ Lean: `lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::least_
 `lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::transStep_image_total`,
 `lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::validCount_rename`.
 
-### 3.13 Lists and sets
+### 3.12 Lists and sets
 
 DAG node: `PGW-COLLECTION-EXTENSIONALITY`
 
@@ -696,7 +677,7 @@ Lean: `lean4/Imported/Genesis19l57g1/Derivation/Ext.lean::derivable_ext`,
 `lean4/Imported/Genesis19l57g1/Derivation/Ext.lean::separable_ext`,
 `lean4/Imported/Genesis19l57g1/Derivation/Ext.lean::validResponse_ext`.
 
-### 3.14 Canonical keys classify regimes
+### 3.13 Canonical keys classify regimes
 
 DAG node: `PGW-CANONICAL-KEY-CLASSIFICATION`
 
@@ -727,7 +708,7 @@ Lean: `lean4/Imported/Genesis19l57g1/CanonicalMinimizer.lean::key_classification
 `lean4/Imported/Genesis19l57g1/PaperSearch.lean::canonicalBytes_classification`. The optimized
 Python and Rust searches are compared with this one by finite agreement, not by proof.
 
-### 3.15 Runs do not return
+### 3.14 Runs do not return
 
 DAG nodes: `PG-GEN-NO-RETURN` `PGW-C2-RUN-FORWARD-EVERY-HISTORY`
 
@@ -754,7 +735,7 @@ Lean: `lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::ereplay_elems_le`,
 `lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::cycle_regime_const`,
 `lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::not_separable_through`.
 
-### 3.16 Endogenous demands, exogenous payments
+### 3.15 Endogenous demands, exogenous payments
 
 DAG node: `PGW-ENDOGENOUS-DEMANDS-EXOGENOUS-PAYMENTS`
 
@@ -787,7 +768,7 @@ Lean: `lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean::closedRun_round_bou
 `lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean::g1_class_exclusion`,
 `lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean::clears_does_not_imply_not_fires`.
 
-### 3.17 A proposal record confers no execution
+### 3.16 A proposal record confers no execution
 
 DAG node: `PGW-STAGE-CHANGE-CONTRACT-PROPOSAL-RECORD`
 
@@ -810,7 +791,7 @@ Lean: `lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::ProposalRecor
 `lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::proposal_confers_no_execution`,
 `lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::upProposal`.
 
-### 3.18 The incidence reading and its Betti numbers
+### 3.17 The incidence reading and its Betti numbers
 
 DAG node: `PGW-INCIDENCE-CONSTRUCTION-BETTI`
 
@@ -1132,15 +1113,15 @@ when its stage is $n$ and its body has one of these five shapes.
    has no recovery satisfying the old-image law, and sends the refusal token back as the ground
    presentation.
 
-*Proof.* (1) Evaluate $r_n$ on each of the five shapes. Injectivity follows as in §1.8, and an
+*Proof.* (1) Evaluate $r_n$ on each of the five shapes. Injectivity follows as in §1.7, and an
 injective map preserves cardinality. (2) Read the definition of $r_n$: it returns `accepted` only
 in the five shape cases at stage $n$, and each case is the image of exactly one base
 presentation. (3) $1+g+3g^2\ge1$, so it is never $0$; it equals $1$ only for $g=0$; and
 $g+3g^2=1$ has no solution in $\mathbb N$. (4) The ground token and the refusal token have the
-same image; a recovery would make the lift injective (§1.8). $\square$
+same image; a recovery would make the lift injective (§1.7). $\square$
 
 The refusal in (2) comes from the soundness of the retraction, not from the old-image law, which
-does not refuse (§1.8). The table in (3) is a declaration with no theorem tying it to the lift.
+does not refuse (§1.7). The table in (3) is a declaration with no theorem tying it to the lift.
 
 Lean: `lean4/Imported/PreGenesisToMssn/SnCarrier.lean::BasePresentation`,
 `lean4/Imported/PreGenesisToMssn/SnCarrier.lean::sectionLift`,
