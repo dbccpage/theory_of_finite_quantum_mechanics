@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 580" width="100%" height="100%">
+  <defs>
+    <!-- Background & Grid -->
+    <radialGradient id="bg-glow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#1e1b4b" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#0b0f19" stop-opacity="1.0"/>
+    </radialGradient>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1e293b" stroke-width="0.5" stroke-opacity="0.6"/>
+    </pattern>
+
+    <!-- Gradients -->
+    <linearGradient id="card-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stroke-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0f172a" stroke-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="rose-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="100%" stop-color="#fb7185"/>
+    </linearGradient>
+    <linearGradient id="cyan-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="purple-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="glow-rose" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Markers -->
+    <marker id="arrow-rose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#f43f5e"/>
+    </marker>
+    <marker id="arrow-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#06b6d4"/>
+    </marker>
+  </defs>
+
+  <!-- Base Canvas -->
+  <rect width="940" height="580" fill="#0b0f19"/>
+  <rect width="940" height="580" fill="url(#bg-glow)"/>
+  <rect width="940" height="580" fill="url(#grid)"/>
+
+  <!-- Top Header / Navigation -->
+  <g id="header" transform="translate(40, 30)">
+    <rect x="0" y="0" width="860" height="60" rx="8" fill="url(#card-grad)" stroke="#334155" stroke-width="1"/>
+    <rect x="0" y="0" width="8" height="60" rx="4" fill="url(#rose-glow)"/>
+    
+    <text x="25" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#f43f5e" letter-spacing="1.5">LEVEL 18 • ADMITTED LEFTOVERS</text>
+    <text x="25" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" fill="#f8fafc">Leftover Feedback &amp; Unbounded Mass Expansion (Reach16)</text>
+    
+    <rect x="670" y="15" width="170" height="30" rx="15" fill="#4c0519" stroke="#f43f5e" stroke-width="1"/>
+    <circle cx="685" cy="30" r="4" fill="#f43f5e" filter="url(#glow-rose)"/>
+    <text x="698" y="35" font-family="monospace" font-size="11" font-weight="600" fill="#fecdd3">UNBOUNDED MASS</text>
+  </g>
+
+  <!-- Left Column: Formal Specification -->
+  <g id="left-col" transform="translate(40, 105)">
+    <rect x="0" y="0" width="370" height="400" rx="8" fill="url(#card-grad)" stroke="#334155" stroke-width="1"/>
+    
+    <path d="M 20 35 L 350 35" stroke="#1e293b" stroke-width="1"/>
+    <text x="20" y="25" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#94a3b8" letter-spacing="1">FORMAL SPECIFICATION (LEAN 4)</text>
+
+    <!-- Code Block -->
+    <rect x="15" y="48" width="340" height="150" rx="6" fill="#030712" stroke="#1e293b" stroke-width="1"/>
+    <text x="25" y="70" font-family="monospace" font-size="11" fill="#64748b">-- Derivation 16 Unbounded Theorem</text>
+    <text x="25" y="90" font-family="monospace" font-size="11" fill="#f43f5e">theorem <tspan fill="#38bdf8">Reach16.unbounded</tspan> :</text>
+    <text x="35" y="108" font-family="monospace" font-size="11" fill="#e2e8f0">  ∀ k : Nat, ∃ s : State16, </text>
+    <text x="45" y="126" font-family="monospace" font-size="11" fill="#fb7185">    Reach16 init_s s ∧ mass s ≥ k</text>
+    <text x="25" y="148" font-family="monospace" font-size="11" fill="#64748b">-- Leftover Feedback Invariant</text>
+    <text x="25" y="166" font-family="monospace" font-size="11" fill="#f43f5e">def <tspan fill="#38bdf8">LeftoverMassGrowth</tspan> (s : State16) : Nat :=</text>
+    <text x="35" y="184" font-family="monospace" font-size="11" fill="#e2e8f0">  s.nodes.card + s.leftover_edges.card</text>
+
+    <!-- Axiomatic Invariants -->
+    <text x="20" y="222" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#94a3b8" letter-spacing="0.5">ESTATE ARCHITECTURE / INVARIANTS</text>
+    
+    <g transform="translate(20, 235)">
+      <circle cx="5" cy="10" r="3" fill="#f43f5e"/>
+      <text x="18" y="13" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#cbd5e1"><tspan font-weight="600" fill="#f8fafc">Leftover Accumulation:</tspan> Admitted leftover cycles</text>
+      <text x="18" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#64748b">Uncancelled intermediate paths remain in graph carrier</text>
+
+      <circle cx="5" cy="45" r="3" fill="#06b6d4"/>
+      <text x="18" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#cbd5e1"><tspan font-weight="600" fill="#f8fafc">Reach16 Unboundedness:</tspan> Carrier mass exceeds k</text>
+      <text x="18" y="62" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#64748b">Formal proof that finite bounds fail without cancellation</text>
+
+      <circle cx="5" cy="80" r="3" fill="#a855f7"/>
+      <text x="18" y="83" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#cbd5e1"><tspan font-weight="600" fill="#f8fafc">State Inflation:</tspan> Expansion of search envelope</text>
+      <text x="18" y="97" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#64748b">Branching factor explodes if dead tokens are retained</text>
+
+      <circle cx="5" cy="115" r="3" fill="#10b981"/>
+      <text x="18" y="118" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#cbd5e1"><tspan font-weight="600" fill="#f8fafc">Demand Trigger:</tspan> Motivates Round R1 cancellation</text>
+      <text x="18" y="132" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#64748b">Provides empirical necessity for inverse rewrite tokens</text>
+    </g>
+  </g>
+
+  <!-- Right Column: Operational Diagram -->
+  <g id="right-col" transform="translate(430, 105)">
+    <rect x="0" y="0" width="470" height="400" rx="8" fill="url(#card-grad)" stroke="#334155" stroke-width="1"/>
+    
+    <path d="M 20 35 L 450 35" stroke="#1e293b" stroke-width="1"/>
+    <text x="20" y="25" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#94a3b8" letter-spacing="1">CARRIER MASS GROWTH CURVE &amp; LEFTOVER DYNAMICS</text>
+
+    <!-- Graph Coordinates: Unbounded Growth -->
+    <g transform="translate(45, 60)">
+      
+      <!-- Coordinate Axes -->
+      <line x1="40" y1="260" x2="380" y2="260" stroke="#475569" stroke-width="1.5"/>
+      <line x1="40" y1="260" x2="40" y2="30" stroke="#475569" stroke-width="1.5"/>
+      <text x="380" y="280" font-family="monospace" font-size="10" fill="#94a3b8" text-anchor="end">Steps / Derivations (n)</text>
+      <text x="30" y="25" font-family="monospace" font-size="10" fill="#94a3b8">Mass (k)</text>
+
+      <!-- Grid lines -->
+      <line x1="40" y1="200" x2="360" y2="200" stroke="#1e293b" stroke-width="1" stroke-dasharray="2,2"/>
+      <line x1="40" y1="140" x2="360" y2="140" stroke="#1e293b" stroke-width="1" stroke-dasharray="2,2"/>
+      <line x1="40" y1="80" x2="360" y2="80" stroke="#1e293b" stroke-width="1" stroke-dasharray="2,2"/>
+
+      <!-- Mass Growth Curve -->
+      <path d="M 40 250 Q 150 230 220 160 T 360 40" fill="none" stroke="url(#rose-glow)" stroke-width="3" filter="url(#glow-rose)"/>
+      
+      <!-- Critical Threshold k Points -->
+      <circle cx="120" cy="235" r="4" fill="#38bdf8"/>
+      <text x="130" y="238" font-family="monospace" font-size="9" fill="#7dd3fc">k = 4 (Seed)</text>
+
+      <circle cx="220" cy="160" r="5" fill="#f43f5e"/>
+      <text x="232" y="163" font-family="monospace" font-size="9" fill="#fda4af">k = 18 (Deriv 16)</text>
+
+      <circle cx="340" cy="55" r="5" fill="#fb7185"/>
+      <text x="260" y="45" font-family="monospace" font-size="10" font-weight="700" fill="#f43f5e">∀ k, mass ≥ k</text>
+
+      <!-- Feedback Loop Callout -->
+      <g transform="translate(60, 80)">
+        <rect x="0" y="0" width="160" height="65" rx="6" fill="#030712" stroke="#f43f5e" stroke-width="1.5"/>
+        <text x="10" y="18" font-family="monospace" font-size="10" font-weight="700" fill="#f43f5e">LEFTOVER FEEDBACK</text>
+        <text x="10" y="34" font-family="monospace" font-size="9" fill="#e2e8f0">Admit edge e → leftover</text>
+        <text x="10" y="48" font-family="monospace" font-size="9" fill="#e2e8f0">s.leftover_edges card ↑</text>
+        <text x="10" y="58" font-family="monospace" font-size="8" fill="#fda4af">No cancellation mechanism</text>
+      </g>
+
+      <path d="M 220 112 C 240 112, 250 135, 230 150" fill="none" stroke="#f43f5e" stroke-width="1.5" marker-end="url(#arrow-rose)"/>
+
+    </g>
+  </g>
+
+  <!-- Bottom Operational Status Bar -->
+  <g id="status-bar" transform="translate(40, 520)">
+    <rect x="0" y="0" width="860" height="35" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    
+    <text x="20" y="22" font-family="monospace" font-size="11" fill="#64748b">INVARIANT:</text>
+    <text x="95" y="22" font-family="monospace" font-size="11" font-weight="600" fill="#fb7185">Reach16.unbounded (Mass Monotonic Growth)</text>
+
+    <text x="430" y="22" font-family="monospace" font-size="11" fill="#64748b">PARITY ANCHOR:</text>
+    <text x="530" y="22" font-family="monospace" font-size="11" font-weight="600" fill="#f43f5e">MSS-018 (Carrier Unboundedness)</text>
+
+    <rect x="730" y="8" width="115" height="20" rx="4" fill="#4c0519" stroke="#f43f5e" stroke-width="1"/>
+    <text x="740" y="22" font-family="monospace" font-size="10" font-weight="700" fill="#fecdd3">UNBOUNDED</text>
+  </g>
+</svg>
