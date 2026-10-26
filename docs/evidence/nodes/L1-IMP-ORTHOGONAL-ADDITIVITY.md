@@ -219,7 +219,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/pr440_review_lean_replay.json`
 
 - file: [dag/research/pr440_review_lean_replay.json](../../../dag/research/pr440_review_lean_replay.json)
-- sha256 (`lf-normalised`): `ead716df6b94f34704480ae27c98dc04f67bdadb667463e1d6a831f04bc12a52`
+- sha256 (`lf-normalised`): `c5b218a1d2887c2727b8dfa0bfee8843dccfbaefe3ef0ba2107a595e2e72793d`
 - cited in: node.source
 - counts toward the grade: yes
 
