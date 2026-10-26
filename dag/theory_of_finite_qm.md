@@ -11650,9 +11650,9 @@ Obligation: None of the eight fields is closed by the source: DTM0 and DTM1 are 
 - DAG node: `AUTH-RICE-THEOREM-IMPORT`
 - Paper: [derivation](derivations/29_computation/tfq_1337_auth_rice_theorem_import.md)
 
-No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.
+On the two-point carrier, code 0 and code 1 both send 0 to 0 and 1 to 1, and code 2 sends 0 to 0 and 1 to 0. The identity-table bit is true at code 0, true at code 1, and false at code 2. The code-zero bit is true at code 0, false at code 1, and false at code 2.
 
-Obligation: State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.
+Obligation: Rice's theorem for the programs of a Turing-complete language stays a citation. No declaration here states that no total computable procedure is sound and complete for a nontrivial extensional property. Mathlib ComputablePred.rice and rice₂ are not instantiated, and no semantic property of Nat.Partrec.Code is named. This three-code table does not decide an infinite language.
 
 ### TFQ-1338 Global computability lift for an admitted carrier and a nontrivial extensional property
 

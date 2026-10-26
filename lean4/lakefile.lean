@@ -1472,3 +1472,6 @@ lean_lib CampaignQcvImportThresholdTheorem where
 
 lean_lib CampaignQcvImportNoisyReversibleLimits where
   roots := #[`CampaignQcvImportNoisyReversibleLimits]
+
+lean_lib CampaignAuthRiceTheoremImport where
+  roots := #[`CampaignAuthRiceTheoremImport]
