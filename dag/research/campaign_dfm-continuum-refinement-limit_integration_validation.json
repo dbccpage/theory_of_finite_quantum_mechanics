@@ -1,0 +1,556 @@
+{
+  "schema_version": "continuum_integration_validation.v1",
+  "AuthorityEffect": "None",
+  "context_annotation_20261026": {
+    "status": "HISTORICAL_PRE_APPROVAL_SNAPSHOT",
+    "original_record_sha256": "3102e647ed3207bf1e1f34e8d96ed9e504db23e41a7bf4eee2e8f8149b5871f2",
+    "original_record_git_object": "14367814eca20635c6eb6054466ca21dbe06d292:dag/research/campaign_dfm-continuum-refinement-limit_integration_validation.json",
+    "reported_acceptance": "The 76-pin census, proposed_pin_applied=false and 32 assessment failures describe the pre-approval historical source_base, not repaired main or the final approved integration. All original observation fields are retained below without changing their results.",
+    "joint_replay_scope": "Historical author-reported joint replay only; CampaignLqgProjectiveLimit.lean is absent from this PR. This record is not independent evidence for that sibling source and grants no PR434 approval. No fresh joint replay is asserted.",
+    "current_authority": "docs/maintenance/pr433_exact_source_approval_20261026.json",
+    "current_review_scope": "docs/maintenance/pr433_integration_scope.md",
+    "current_acceptance": "Existing-owner checks and hosted CI for the final candidate are verified separately; this annotation does not turn historical failures or an unverified joint replay into a current pass."
+  },
+  "source_base": "948f4e7102e67661381afce3fd9ad3742b719536",
+  "source": "lean4/CampaignDfmRefinementLimit.lean",
+  "source_sha256": "b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb",
+  "scope_guard": {
+    "base": "948f4e7102e67661381afce3fd9ad3742b719536",
+    "only_changed_node": "DFM-CONTINUUM-INTERFACE",
+    "all_node_and_route_statuses_unchanged": true,
+    "all_prior_76_pins_match": true,
+    "proposed_pin_applied": false,
+    "source_sha256": "b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb"
+  },
+  "checks": {
+    "sync-check-0": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pfp_results.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.27
+    },
+    "sync-check-1": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.407
+    },
+    "sync-check-2": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_application_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.261
+    },
+    "sync-check-3": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pregenesis_to_wdp.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.417
+    },
+    "sync-check-4": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_frontier_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.385
+    },
+    "sync-check-5": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_genesis_to_higher.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.255
+    },
+    "sync-check-6": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_foc035_observer_presheaf.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.24
+    },
+    "invariants": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--invariants"
+      ],
+      "exit_code": 0,
+      "seconds": 0.202
+    },
+    "views": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/render_dag_views.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.125
+    },
+    "validator": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/validate_derivation_dag.py",
+        "--no-files"
+      ],
+      "exit_code": 0,
+      "seconds": 0.967
+    },
+    "facts-check": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 19.807
+    },
+    "status": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_status.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 5.232
+    },
+    "receipt-check": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.083
+    },
+    "evidence-check": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/evidence/build_evidence.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 6.468
+    },
+    "scope": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "948f4e7102e67661381afce3fd9ad3742b719536"
+      ],
+      "exit_code": 0,
+      "seconds": 3.444
+    },
+    "history": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/contract_scores.py",
+        "check",
+        "--changed-since",
+        "948f4e7102e67661381afce3fd9ad3742b719536"
+      ],
+      "exit_code": 0,
+      "seconds": 3.683
+    },
+    "overclaim": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "948f4e7102e67661381afce3fd9ad3742b719536",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "seconds": 6.341
+    },
+    "tests": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "dag/test_tensor_countermodel_receipt.py",
+        "dag/test_tensor_measurement_receipt.py",
+        "dag/test_application_branches.py",
+        "dag/test_frontier_branches.py",
+        "dag/test_genesis_to_higher.py",
+        "dag/test_foc035_observer_presheaf.py",
+        "dag/evidence/test_evidence.py",
+        "scripts/test_governance_policy.py",
+        "scripts/test_overclaim_scan.py",
+        "scripts/auto/test_auto_checks.py",
+        "dag/test_unified_dag.py",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "seconds": 27.377
+    },
+    "governance-current": {
+      "command": [
+        "/workspace/code-improvement/governance/target/release/governance-check",
+        "--root",
+        "/workspace/theory_of_finite_quantum_mechanics",
+        "check",
+        "--changed-since",
+        "948f4e7102e67661381afce3fd9ad3742b719536"
+      ],
+      "exit_code": 1,
+      "seconds": 1.817
+    },
+    "governance-proposed": {
+      "command": [
+        "/workspace/code-improvement/governance/target/release/governance-check",
+        "--root",
+        "/workspace/theory_of_finite_quantum_mechanics",
+        "check",
+        "--changed-since",
+        "948f4e7102e67661381afce3fd9ad3742b719536"
+      ],
+      "exit_code": 1,
+      "seconds": 1.606
+    }
+  },
+  "regression_output": "........................................................................ [ 37%]\n........................................................................ [ 75%]\n...............................................                          [100%]\n191 passed in 26.93s\n",
+  "joint_replay": {
+    "base": "948f4e7102e67661381afce3fd9ad3742b719536",
+    "source_sha256": {
+      "lean4/CampaignDfmRefinementLimit.lean": "b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb",
+      "lean4/CampaignLqgProjectiveLimit.lean": "44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5"
+    },
+    "result": {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "Joint.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 3.134,
+      "output": "'CampaignDfmRefinementLimit.continuous_refinement_limit' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignLqgProjectiveLimit.exists_limit_iff_projective' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+    },
+    "scope": "Joint imports of the two exact-source modules; not a full repository workspace build."
+  },
+  "preexisting_main_failures": {
+    "base": "948f4e7102e67661381afce3fd9ad3742b719536",
+    "count": 32,
+    "failures": [
+      "FAIL code/python/src/fsp/bf_nonabelian_3loop_braiding.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/src/fsp/gin_cluster_scaling_benchmark.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/src/linear_algebra/entropy_dichotomy.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/src/linear_algebra/pseudoinverse.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/src/linear_algebra/second_jet.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/src/qm/born_effect_valuation.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/src/qm/born_hermitian_valuation.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/src/qm/c500_ledger.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/src/qm/cech_f2.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/src/qm/dag_witnesses.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/src/qm/l1_import_exact.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/src/qm/legacy_suites.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/src/qm/observer_functor.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/src/qm/obstruction_calc.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/src/qm/packet_protocol.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/src/qm/phase_scope.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/src/qm/quantum_packet.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/src/qm/rational_bell.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/tests/fsp/integration/test_bf_nonabelian_3loop_braiding.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/tests/fsp/test_gin_cluster_scaling.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/tests/mub/test_publication_release.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/tests/test_l1_import_exact.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/tests/test_legacy_suites.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/tests/test_observer_functor.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/tests/test_obstruction_calc.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/tests/test_packet_protocol.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/tests/test_paper_catalog.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/tests/test_phase_scope.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/tests/test_pseudoinverse.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/tests/test_quantum_packet.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/python/tests/test_second_jet.py (grandfathering lost: bytes changed since the baseline)",
+      "FAIL code/rust/quality/fixture_register/src/validator_tests.rs (grandfathering lost: bytes changed since the baseline)"
+    ],
+    "unchanged_source_and_companion_bindings": [
+      {
+        "source": "code/python/src/fsp/bf_nonabelian_3loop_braiding.py",
+        "source_sha256": "601a06276f853cddfcf1e2c0b94f854c900545183dbf6fb0660c37906c317c7b",
+        "companion": "code/python/src/fsp/bf_nonabelian_3loop_braiding.contract.score.yaml",
+        "companion_sha256": "d104561a6e3c69284c11e2ffff64b51dd350554128f3f466b1e57145216388b8"
+      },
+      {
+        "source": "code/python/src/fsp/gin_cluster_scaling_benchmark.py",
+        "source_sha256": "4cf11a3a912c0855c7607705b8e98bf3031ed6812ce6c1ea7787ee93ba9d2b0f",
+        "companion": "code/python/src/fsp/gin_cluster_scaling_benchmark.contract.score.yaml",
+        "companion_sha256": "85666b0950f28be584c7655f8a8267be9df4c2f901dbf2534bf686b98366de8d"
+      },
+      {
+        "source": "code/python/src/linear_algebra/entropy_dichotomy.py",
+        "source_sha256": "1dfa71debf9a487d0fe237565ef31fce26281371a99d17b5efcacb0ed4455e5b",
+        "companion": "code/python/src/linear_algebra/entropy_dichotomy.contract.score.yaml",
+        "companion_sha256": "e9bf0fbd91025f1ca09d2f60095b8ea344477cd7792bd249234ccaafa8b6d1e3"
+      },
+      {
+        "source": "code/python/src/linear_algebra/pseudoinverse.py",
+        "source_sha256": "e473ab612878e1269351a2f7524a2b898c7d8485506091ed7c3bc5bb30b172ed",
+        "companion": "code/python/src/linear_algebra/pseudoinverse.contract.score.yaml",
+        "companion_sha256": "bec8eabfbad9ad067011b57f8dbe3e125118091084073c54535823eaf74a5474"
+      },
+      {
+        "source": "code/python/src/linear_algebra/second_jet.py",
+        "source_sha256": "a57532689b411547c24d8b7743fe29f822f6070fb7bf84b7bebcf334d59e5592",
+        "companion": "code/python/src/linear_algebra/second_jet.contract.score.yaml",
+        "companion_sha256": "88cdd01caa84942de04ff5278f1c50de182196bffeff02799cdd4a21710a0b65"
+      },
+      {
+        "source": "code/python/src/qm/born_effect_valuation.py",
+        "source_sha256": "b4ef3afa02e1dbc7423ecb445ee2718d01e143bf31232d031e5792dd8edf4b35",
+        "companion": "code/python/src/qm/born_effect_valuation.contract.score.yaml",
+        "companion_sha256": "f6843c74efa1e78854e7663b7b34d21dc6592dc0564c8345ab5452a0f1bf9a61"
+      },
+      {
+        "source": "code/python/src/qm/born_hermitian_valuation.py",
+        "source_sha256": "bd992042c945c9abd5266fb71d41736bf507b04f12f7e05ad369452833c199ed",
+        "companion": "code/python/src/qm/born_hermitian_valuation.contract.score.yaml",
+        "companion_sha256": "bf1953f8b599d7d49e7936d97439ae8a2d028c6bc3076d1356f0c10f9690676b"
+      },
+      {
+        "source": "code/python/src/qm/c500_ledger.py",
+        "source_sha256": "e7871055d6c984bbe1bd5c6649d2b2e4ca053a5e4a718116fea328d88622b919",
+        "companion": "code/python/src/qm/c500_ledger.contract.score.yaml",
+        "companion_sha256": "955049735cd3b3d644535ec7ce36617c32ef806541d099c15d269d37cfcca110"
+      },
+      {
+        "source": "code/python/src/qm/cech_f2.py",
+        "source_sha256": "26c7b38588f8c8ace421e9c33abefea37c330b5685dd81fae1b3407c5dd437d3",
+        "companion": "code/python/src/qm/cech_f2.contract.score.yaml",
+        "companion_sha256": "25aeca92b39c671294d68d4d1a2a4dac06fbf53817ff12ee29a6dafa9cfbb3be"
+      },
+      {
+        "source": "code/python/src/qm/dag_witnesses.py",
+        "source_sha256": "0a11f425eb6fce2c8da529fac72ce7376c79046f04c9d49918cb0cecb68b9f2c",
+        "companion": "code/python/src/qm/dag_witnesses.contract.score.yaml",
+        "companion_sha256": "f4a1a5ae5b0b3579a973fe6a0d5b1d36e6244f22be55acd7562eed3e9864ec7f"
+      },
+      {
+        "source": "code/python/src/qm/l1_import_exact.py",
+        "source_sha256": "cb4f58775c6eb22fac61fc38ff972cfad97e3597b3d6861527720e1eabb57384",
+        "companion": "code/python/src/qm/l1_import_exact.contract.score.yaml",
+        "companion_sha256": "08c4c255a2c934bce4f8549c3dd9dfc5e0e358838dbfc6a8aa4648528c24f0cc"
+      },
+      {
+        "source": "code/python/src/qm/legacy_suites.py",
+        "source_sha256": "b09697a662f075541a7646c7b310275917784eff4c96311c504c8c71622c9aff",
+        "companion": "code/python/src/qm/legacy_suites.contract.score.yaml",
+        "companion_sha256": "01da18501f8bb47a7421dc1b52d4f964bb7d4c6e6df938b4edc8ffd95d65f0c1"
+      },
+      {
+        "source": "code/python/src/qm/observer_functor.py",
+        "source_sha256": "d17311b39d3397e0d7034dcfd23ec57e265517069fc0b34ccb156b717ec2ec83",
+        "companion": "code/python/src/qm/observer_functor.contract.score.yaml",
+        "companion_sha256": "db936e874e2e552bc4347b66a9a9b11db291715de1957f3e2beed59f59d2fb5e"
+      },
+      {
+        "source": "code/python/src/qm/obstruction_calc.py",
+        "source_sha256": "37ba5e578308f94cc70b8b609752bf0b787da221343ae3099b4e6731757a77c1",
+        "companion": "code/python/src/qm/obstruction_calc.contract.score.yaml",
+        "companion_sha256": "55d59695debd0f652de7eba98e4487b2f3c532bc347b2fcd011092c9fff482da"
+      },
+      {
+        "source": "code/python/src/qm/packet_protocol.py",
+        "source_sha256": "dfab5694c7813bc7862ef230ae0262b2ac93606986e5cececf816f0804f4b7d8",
+        "companion": "code/python/src/qm/packet_protocol.contract.score.yaml",
+        "companion_sha256": "6b96a059943eb8e9ad08455ea308cf77c0cf1e7436a5ecbe1474ddc7c15807f8"
+      },
+      {
+        "source": "code/python/src/qm/phase_scope.py",
+        "source_sha256": "b82150e94db0211989cfe16f1a66edc2ca5aecc0ddef01b2d125a3b3ca1edd7d",
+        "companion": "code/python/src/qm/phase_scope.contract.score.yaml",
+        "companion_sha256": "c0c8225e80b883a5f08d7d819d2d975a8877bd8b82d1bec770933224f27cd04d"
+      },
+      {
+        "source": "code/python/src/qm/quantum_packet.py",
+        "source_sha256": "c1aebfc41c86f072f7b4d52ac9103a393fbbb547ae5df0bd44b1ca4300bba9c9",
+        "companion": "code/python/src/qm/quantum_packet.contract.score.yaml",
+        "companion_sha256": "5c55f6081d193def3d666de16816d747e455e9f75b118c99d0d467bbd1c5df81"
+      },
+      {
+        "source": "code/python/src/qm/rational_bell.py",
+        "source_sha256": "ebebfcf4226e98d64f284c9074f964f3e781e4a70c1468c7322e3bfb46bcb2b4",
+        "companion": "code/python/src/qm/rational_bell.contract.score.yaml",
+        "companion_sha256": "2ee555699baa90ae4b88e3f3df6ac6713af7c0d160ccac0122598b99e0578852"
+      },
+      {
+        "source": "code/python/tests/fsp/integration/test_bf_nonabelian_3loop_braiding.py",
+        "source_sha256": "0aa55447cd40cdcba428dd22087160189459d8f851ea11c3e37e0f1128e18577",
+        "companion": "code/python/tests/fsp/integration/test_bf_nonabelian_3loop_braiding.contract.score.yaml",
+        "companion_sha256": "fb7f3071f8a4695c2f03c84d072acbd9b4500f09a0fe0d82a0596012f0837dfc"
+      },
+      {
+        "source": "code/python/tests/fsp/test_gin_cluster_scaling.py",
+        "source_sha256": "d7aab4da426ee6ac22f4053ea794ac0a94378ad2ec814f4d0882011755d3d521",
+        "companion": "code/python/tests/fsp/test_gin_cluster_scaling.contract.score.yaml",
+        "companion_sha256": "dfaab3e0c8d982b8262a37ea20efb909037b43d344bb9139f43e6ea882ae6ee9"
+      },
+      {
+        "source": "code/python/tests/mub/test_publication_release.py",
+        "source_sha256": "1662a0821fa26b45e1f61983ba278ffc94937429ded8362e562ec8191d20586c",
+        "companion": "code/python/tests/mub/test_publication_release.contract.score.yaml",
+        "companion_sha256": "e74e48e54ce0f95713fa63bd0af179dd821033784c22b1065795d4b4389ff1f5"
+      },
+      {
+        "source": "code/python/tests/test_l1_import_exact.py",
+        "source_sha256": "d64205ba2157c901eaf8293dee5b9cbaf923e3b8f61042e6f0606f48faa7744b",
+        "companion": "code/python/tests/test_l1_import_exact.contract.score.yaml",
+        "companion_sha256": "53368354476ee3a33a1f8fe809c8aaa47c848d875a5ea583b44f4cdde399dcac"
+      },
+      {
+        "source": "code/python/tests/test_legacy_suites.py",
+        "source_sha256": "83d2eb97af9f5ed632eb5cb7d8f609e698aaa0d5a86a58ab8e090717f03006b1",
+        "companion": "code/python/tests/test_legacy_suites.contract.score.yaml",
+        "companion_sha256": "708e8c523315993335aa01957e5e2bb1552ca42c8d3ecf46c303e25c0cb63b98"
+      },
+      {
+        "source": "code/python/tests/test_observer_functor.py",
+        "source_sha256": "a9f533c4fb09e44812de7b11334ced6d4d02c3783b707a0fcc4ead2ccfafed6a",
+        "companion": "code/python/tests/test_observer_functor.contract.score.yaml",
+        "companion_sha256": "c12bd3f22719eac6a98b3cb69ae0d8f6103e89b74f3883f13a76375a9ff66a4b"
+      },
+      {
+        "source": "code/python/tests/test_obstruction_calc.py",
+        "source_sha256": "ee22023dde3a2a536653569a21b4e26f9d2893a1dfb9ce94b6930e1fac01af8b",
+        "companion": "code/python/tests/test_obstruction_calc.contract.score.yaml",
+        "companion_sha256": "09e58f3ffdde5e7fd2d5fcc257fdc5f9014957bef3576f9b2937bb13857d7935"
+      },
+      {
+        "source": "code/python/tests/test_packet_protocol.py",
+        "source_sha256": "7764fa69aa0a0ae38e479fea6e2c163c8bdb3eeb6ee710185e6752a54b17230f",
+        "companion": "code/python/tests/test_packet_protocol.contract.score.yaml",
+        "companion_sha256": "6bb9433b6ea986430b4794b35baf7fd4c424af5214e34d839d124d9526766e09"
+      },
+      {
+        "source": "code/python/tests/test_paper_catalog.py",
+        "source_sha256": "95084bc71982e4b3909e38dc66c0bf38b9b1ccafaf9b43b7521b275bad7ca596",
+        "companion": "code/python/tests/test_paper_catalog.contract.score.yaml",
+        "companion_sha256": "35e3839a62d1ce64b85a13a840555d4081c19904b8c00c4374f0cbe77e7c2756"
+      },
+      {
+        "source": "code/python/tests/test_phase_scope.py",
+        "source_sha256": "1519a534f242d755b1654be6c36c39101a589458e417e7bfe43be009e684a696",
+        "companion": "code/python/tests/test_phase_scope.contract.score.yaml",
+        "companion_sha256": "4bbf7d4ba339c4adb81a80138cc57d4948e67a0e71741271a1d660ea625f0de7"
+      },
+      {
+        "source": "code/python/tests/test_pseudoinverse.py",
+        "source_sha256": "dc7fea63cb7a62e683cd09019a083e07a4af4f8da5fddfbfbf30d1067258f384",
+        "companion": "code/python/tests/test_pseudoinverse.contract.score.yaml",
+        "companion_sha256": "9a2f94150102961458a1722b81baeed94814b85262d25142e76c9e94cd15538d"
+      },
+      {
+        "source": "code/python/tests/test_quantum_packet.py",
+        "source_sha256": "6a03ccbf0738b32a98a877221be9a8470ab156f21ae1df9415a044e2e475fe7f",
+        "companion": "code/python/tests/test_quantum_packet.contract.score.yaml",
+        "companion_sha256": "3de7869d64a1760eb04bd4c57a348eb25742a5ee938b72e357837ec5761006ca"
+      },
+      {
+        "source": "code/python/tests/test_second_jet.py",
+        "source_sha256": "35a8fd7e46360544ee91776c81613977a4514668ead8fb106d64d6aafd6429e2",
+        "companion": "code/python/tests/test_second_jet.contract.score.yaml",
+        "companion_sha256": "f091c69c3562f8cd1d3097b55bf5efcec4280d6d6deba566d5ac6d8347379313"
+      },
+      {
+        "source": "code/rust/quality/fixture_register/src/validator_tests.rs",
+        "source_sha256": "bcdbef01e0fb6b2f16e2f2768dbc08733fb5f9ad55bcda0590d333222f9db603",
+        "companion": "code/rust/quality/fixture_register/src/validator_tests.contract.score.yaml",
+        "companion_sha256": "f5e47882c4d7abe9631d0a62590a10c02fa1f53eab9c166bfb13239741b0b64c"
+      }
+    ]
+  },
+  "clean_main_governance": {
+    "base": "948f4e7102e67661381afce3fd9ad3742b719536",
+    "result": {
+      "command": [
+        "/workspace/code-improvement/governance/target/release/governance-check",
+        "--root",
+        "/workspace/theory_of_finite_quantum_mechanics",
+        "check"
+      ],
+      "exit_code": 1,
+      "seconds": 0.996,
+      "output": "checked 8327: 147 pass, 8128 grandfathered, 20 boilerplate, 32 failed\nFAIL code/python/src/fsp/bf_nonabelian_3loop_braiding.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/fsp/bf_nonabelian_3loop_braiding.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/src/fsp/gin_cluster_scaling_benchmark.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/fsp/gin_cluster_scaling_benchmark.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/src/linear_algebra/entropy_dichotomy.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/linear_algebra/entropy_dichotomy.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/src/linear_algebra/pseudoinverse.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/linear_algebra/pseudoinverse.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/src/linear_algebra/second_jet.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/linear_algebra/second_jet.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/src/qm/born_effect_valuation.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/qm/born_effect_valuation.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/src/qm/born_hermitian_valuation.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/qm/born_hermitian_valuation.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/src/qm/c500_ledger.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/qm/c500_ledger.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/src/qm/cech_f2.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/qm/cech_f2.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/src/qm/dag_witnesses.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/qm/dag_witnesses.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/src/qm/l1_import_exact.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/qm/l1_import_exact.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/src/qm/legacy_suites.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/qm/legacy_suites.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/src/qm/observer_functor.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/qm/observer_functor.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/src/qm/obstruction_calc.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/qm/obstruction_calc.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/src/qm/packet_protocol.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/qm/packet_protocol.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/src/qm/phase_scope.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/qm/phase_scope.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/src/qm/quantum_packet.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/qm/quantum_packet.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/src/qm/rational_bell.py (grandfathering lost: bytes changed since the baseline)\n  code/python/src/qm/rational_bell.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/tests/fsp/integration/test_bf_nonabelian_3loop_braiding.py (grandfathering lost: bytes changed since the baseline)\n  code/python/tests/fsp/integration/test_bf_nonabelian_3loop_braiding.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/tests/fsp/test_gin_cluster_scaling.py (grandfathering lost: bytes changed since the baseline)\n  code/python/tests/fsp/test_gin_cluster_scaling.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/tests/mub/test_publication_release.py (grandfathering lost: bytes changed since the baseline)\n  code/python/tests/mub/test_publication_release.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/tests/test_l1_import_exact.py (grandfathering lost: bytes changed since the baseline)\n  code/python/tests/test_l1_import_exact.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/tests/test_legacy_suites.py (grandfathering lost: bytes changed since the baseline)\n  code/python/tests/test_legacy_suites.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/tests/test_observer_functor.py (grandfathering lost: bytes changed since the baseline)\n  code/python/tests/test_observer_functor.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/tests/test_obstruction_calc.py (grandfathering lost: bytes changed since the baseline)\n  code/python/tests/test_obstruction_calc.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/tests/test_packet_protocol.py (grandfathering lost: bytes changed since the baseline)\n  code/python/tests/test_packet_protocol.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/tests/test_paper_catalog.py (grandfathering lost: bytes changed since the baseline)\n  code/python/tests/test_paper_catalog.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/tests/test_phase_scope.py (grandfathering lost: bytes changed since the baseline)\n  code/python/tests/test_phase_scope.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/tests/test_pseudoinverse.py (grandfathering lost: bytes changed since the baseline)\n  code/python/tests/test_pseudoinverse.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/tests/test_quantum_packet.py (grandfathering lost: bytes changed since the baseline)\n  code/python/tests/test_quantum_packet.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/python/tests/test_second_jet.py (grandfathering lost: bytes changed since the baseline)\n  code/python/tests/test_second_jet.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\nFAIL code/rust/quality/fixture_register/src/validator_tests.rs (grandfathering lost: bytes changed since the baseline)\n  code/rust/quality/fixture_register/src/validator_tests.contract.score.yaml: [COMPLETENESS] gates: expected a grade on every gate, found unassessed G1, G2, G3, G4, G5\n"
+    },
+    "failure_count": 32
+  },
+  "new_pin": "Proposed only, no new proof exception applied.",
+  "acceptance_boundary": "The candidate new-proof pin removes only the new proof-floor failure; 32 source/companion assessments byte-identical to remote main remain incomplete. Full acceptance is blocked."
+}

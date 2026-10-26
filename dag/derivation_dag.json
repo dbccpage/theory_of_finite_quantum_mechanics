@@ -18639,12 +18639,16 @@
       "id": "DFM-CONTINUUM-INTERFACE",
       "stage": "DRESSING_FIELD",
       "status": "OPEN",
-      "source_status": "Source record or explicit branch obligation; status scoped to the statement.",
-      "statement": "A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations.",
+      "source_status": "Source record or explicit branch obligation; status scoped to the statement. Current controlled continuum theorem kernel-checked separately; the broader node remains OPEN.",
+      "statement": "A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations. Conditional continuum result: In a supplied complete metric topological group with d(ab,cd) <= d(a,c)+d(b,d), binary edge split errors bounded by C*q^depth, C >= 0 and 0 <= q < 1/2, yield unique transport limits with error at most C*q^depth*(2*q)^n/(1-2*q). The limits respect binary composition and compatible endpoint gauges. Continuous parameterized edge families with a common C and q converge uniformly to continuous limiting transports. At q=1/2, the additive edge values depth/2^depth have shrinking split defects but root transport n, with no limit.",
       "source": [
         "dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md",
         "dag/research/electroweak_dfm_weinberg_finite_map.md",
-        "papers/ravera_dfm_dossier.md"
+        "papers/ravera_dfm_dossier.md",
+        "lean4/CampaignDfmRefinementLimit.lean",
+        "checks/independent/dfm-continuum-refinement-limit.py",
+        "dag/derivations/independent/dfm-continuum-refinement-limit.md",
+        "dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json"
       ],
       "lean": [
         "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.dressed_chord_formula",
@@ -18657,11 +18661,25 @@
         "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.Dependency.Plan.changed_label",
         "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.Dependency.Plan.evaluate_agrees_on_superset",
         "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.witness_plan_evaluate",
-        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.outer_in_footprint"
+        "lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.outer_in_footprint",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.critical_transport",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.critical_split_defect",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.critical_no_limit",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.uniform_refinement_limit",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.continuous_refinement_limit",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.step_bound",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.exists_limit",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.error_bound",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.limit_split",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.dressed_tendsto"
       ],
       "rust": [],
-      "imported_structure": [],
-      "bottleneck": "Finite witness, not a continuum theorem: on the supplied rooted tree root-p-a, root-b with chord a-b, the dressed chord is U(root-b)^{-1} U(a-b) U(p-a) U(root-p). Outer labels 2 and 5 with the other three labels trivial give dressed chords 2 and 5, while every edge incident to {a, b} is unchanged. A refinement family, compatibility maps, a topology and a convergence theorem are still required before transporting finite identities to smooth gauge theory. Smooth-field existence, continuum patching and continuum dynamics stay open.",
+      "imported_structure": [
+        "complete metric topological group with the stated product-distance estimate",
+        "supplied binary edge-label family with C >= 0, q >= 0, 2*q < 1 and uniform split-defect bound",
+        "compatible endpoint gauges; for continuity, a parameter topology and continuous edge maps with common constants"
+      ],
+      "bottleneck": "New conditional result: In a supplied complete metric topological group with d(ab,cd) <= d(a,c)+d(b,d), binary edge split errors bounded by C*q^depth, C >= 0 and 0 <= q < 1/2, yield unique transport limits with error at most C*q^depth*(2*q)^n/(1-2*q). The limits respect binary composition and compatible endpoint gauges. Continuous parameterized edge families with a common C and q converge uniformly to continuous limiting transports. At q=1/2, the additive edge values depth/2^depth have shrinking split defects but root transport n, with no limit. Remaining obligation: The complete metric, group topology, refinement family and geometric local bound are supplied. Smooth-field existence, arbitrary triangulation refinements, patching, physical locality and continuum dynamics are not derived; the original node and physical bridge remain OPEN. Earlier finite witness boundary (historical): Finite witness, not a continuum theorem: on the supplied rooted tree root-p-a, root-b with chord a-b, the dressed chord is U(root-b)^{-1} U(a-b) U(p-a) U(root-p). Outer labels 2 and 5 with the other three labels trivial give dressed chords 2 and 5, while every edge incident to {a, b} is unchanged. A refinement family, compatibility maps, a topology and a convergence theorem are still required before transporting finite identities to smooth gauge theory. Smooth-field existence, continuum patching and continuum dynamics stay open.",
       "tags": [
         "application-branch",
         "TFQ-0401",
@@ -36585,7 +36603,7 @@
       ],
       "output": "DFM-CONTINUUM-INTERFACE",
       "status": "GAP_NO_DERIVATION",
-      "mechanism": "Specify a refinement family, compatibility maps and convergence theorem before transporting finite identities to smooth gauge theory.",
+      "mechanism": "Connect the supplied controlled binary refinement model and its metric limit to smooth gauge fields, patching, locality and dynamics; this physical bridge remains underived.",
       "source": []
     },
     {
@@ -63557,7 +63575,9 @@
       "f004_refs": [
         "dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md",
         "dag/research/electroweak_dfm_weinberg_finite_map.md",
-        "papers/ravera_dfm_dossier.md"
+        "papers/ravera_dfm_dossier.md",
+        "dag/derivations/independent/dfm-continuum-refinement-limit.md",
+        "dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json"
       ],
       "id": "TFQ-0401",
       "lean4": [
@@ -63565,20 +63585,31 @@
         "lean4/CampaignDfmContinuumInterface.lean::not_star_local",
         "lean4/CampaignDfmContinuumInterface.lean::witness_two_ne_five",
         "lean4/CampaignDfmContinuumInterface.lean::witness_star_agrees",
-        "lean4/CampaignDfmContinuumInterface.lean::outer_misses_star"
+        "lean4/CampaignDfmContinuumInterface.lean::outer_misses_star",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.critical_transport",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.critical_split_defect",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.critical_no_limit",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.uniform_refinement_limit",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.continuous_refinement_limit",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.step_bound",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.exists_limit",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.error_bound",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.limit_split",
+        "lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.dressed_tendsto"
       ],
       "local_id": "DFM-CONTINUUM-INTERFACE",
       "name": "Dressing-field continuum and physical interpretation obligations",
-      "obligation": "Finite witness, not a continuum theorem: on the supplied rooted tree root-p-a, root-b with chord a-b, the dressed chord is U(root-b)^{-1} U(a-b) U(p-a) U(root-p). Outer labels 2 and 5 with the other three labels trivial give dressed chords 2 and 5, while every edge incident to {a, b} is unchanged. A refinement family, compatibility maps, a topology and a convergence theorem are still required before transporting finite identities to smooth gauge theory. Smooth-field existence, continuum patching and continuum dynamics stay open.",
+      "obligation": "The complete metric, group topology, refinement family and geometric local bound are supplied. Smooth-field existence, arbitrary triangulation refinements, patching, physical locality and continuum dynamics are not derived; the original node and physical bridge remain OPEN.",
       "parent_id": "TFQ-0400",
       "python": [
-        "checks/independent/dfm-continuum-interface.py"
+        "checks/independent/dfm-continuum-interface.py",
+        "checks/independent/dfm-continuum-refinement-limit.py"
       ],
       "record_status": "GAP",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "DRESSING_FIELD",
-      "summary": "A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations. A supplied rooted tree on four vertices shows the dressed chord is not a function of the closed star.",
+      "summary": "A finite graph dressing theorem leaves smooth-field existence, patching, topology, locality and continuum dynamics as separate obligations. A supplied rooted tree on four vertices shows the dressed chord is not a function of the closed star. In a supplied complete metric topological group with d(ab,cd) <= d(a,c)+d(b,d), binary edge split errors bounded by C*q^depth, C >= 0 and 0 <= q < 1/2, yield unique transport limits with error at most C*q^depth*(2*q)^n/(1-2*q). The limits respect binary composition and compatible endpoint gauges. Continuous parameterized edge families with a common C and q converge uniformly to continuous limiting transports. At q=1/2, the additive edge values depth/2^depth have shrinking split defects but root transport n, with no limit.",
       "uuid": "bc218cca-9cda-5513-aa3e-2655ca2c514b"
     },
     {
