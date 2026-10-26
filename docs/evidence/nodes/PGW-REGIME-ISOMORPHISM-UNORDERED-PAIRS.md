@@ -83,7 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0431_regime_isomorphism_unordered_pairs.md`
 
 - file: [dag/derivations/02_genesis/tfq_0431_regime_isomorphism_unordered_pairs.md](../../../dag/derivations/02_genesis/tfq_0431_regime_isomorphism_unordered_pairs.md)
-- sha256 (`lf-normalised`): `09a432ad56f93633ca95664c5f1cde26139e0a51f61a8bc3cf0d0de89214a74f`
+- sha256 (`lf-normalised`): `33dcfc68663860ed53e3fc857084e7a890e6dcaca4926d243c0043056d1de3e9`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0431
 - counts toward the grade: no
@@ -106,9 +106,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::find_iso`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::find_iso`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_mathematics.py::test_unordered_requirement_identifies_unary_endpoint_responses`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::find_iso`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::find_iso`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_mathematics.py::test_unordered_requirement_identifies_unary_endpoint_responses`
 
 ## Routes
 

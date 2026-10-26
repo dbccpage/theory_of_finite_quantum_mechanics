@@ -266,7 +266,7 @@ construction. Those two measure constructions must stay distinct.
 ## 6. What the incoming Haar implementation actually checks
 
 This section binds the original functions at the source checkpoint
-[`ee274924111e1cbb4c4c7601cebeee05e569ecbb`](https://github.com/dbccpage/the_symbol_game/tree/ee274924111e1cbb4c4c7601cebeee05e569ecbb/omega_engine_projects/finite_to_continuum).
+`ee274924111e1cbb4c4c7601cebeee05e569ecbb`.
 They are called unchanged by the companion.
 
 - `HaarLimitCharacterPair.discrete_sum_at_level` returns the divisibility

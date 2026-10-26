@@ -1,1 +1,0 @@
-The previous discovery index is retained exactly; its links resolve at the original task folder. The frozen registry and manuscripts are separate immutable source snapshots, not patched by this review.

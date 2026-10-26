@@ -48,7 +48,7 @@ Step.map and Reach.map are by induction on the reach; Step.exists_of_map shows a
 - *none*
 
 ### Cited by the source, not in this checkout
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean::Step3.rename (staged partial copy in dag/results/PG-GEN-REWRITING-COMMUTATION)`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean::Step3.rename (staged partial copy in dag/results/PG-GEN-REWRITING-COMMUTATION)`
 
 ---
 

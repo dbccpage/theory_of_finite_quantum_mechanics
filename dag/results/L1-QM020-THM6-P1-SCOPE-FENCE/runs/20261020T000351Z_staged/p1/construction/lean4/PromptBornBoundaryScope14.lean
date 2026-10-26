@@ -1,3 +1,0 @@
-import PromptBornBoundaries
-#print axioms QuantumMechanics.PromptBornBoundaries.scope_law
-#print axioms QuantumMechanics.PromptBornBoundaries.scope_control

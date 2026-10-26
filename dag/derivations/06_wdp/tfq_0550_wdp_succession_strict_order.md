@@ -37,10 +37,10 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean::constitutiveOrder_trans`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_wdp/src/relational_retention.rs::RelationalRetentionPacket`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine/crates_rs/omega_wdp/src/relational_retention.rs)
+- `omega_engine/crates_rs/omega_wdp/src/relational_retention.rs::RelationalRetentionPacket` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/relational_retention.py::succession_classification`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/relational_retention.py)
+- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/relational_retention.py::succession_classification` (private upstream source, not in this repository)
 
 ---
 

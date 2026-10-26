@@ -99,7 +99,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md`
 
 - file: [dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md](../../../dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md)
-- sha256 (`lf-normalised`): `dc6ea6bb0264b4660a9aac9fc055177742de38ab6fdd82ad4b16f2db320e1e4c`
+- sha256 (`lf-normalised`): `5a877b1651c6101e1da0f48222575686c9ebe4ef3967b319592c46ccb1bd5ce6`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0558
 - counts toward the grade: no
@@ -143,8 +143,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine/crates_rs/omega_local_green_global_red_lggr/src/ledger.rs::register_stabilized_family`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature`
+- `external:upstream/omega_engine/crates_rs/omega_local_green_global_red_lggr/src/ledger.rs::register_stabilized_family`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature`
 
 ## Routes
 

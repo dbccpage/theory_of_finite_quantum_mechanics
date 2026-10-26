@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0478_go_contraction_step2_step3.md`
 
 - file: [dag/derivations/02_genesis/tfq_0478_go_contraction_step2_step3.md](../../../dag/derivations/02_genesis/tfq_0478_go_contraction_step2_step3.md)
-- sha256 (`lf-normalised`): `c18a005c4e6db538b4046b95553a5bfd9eec9a17ec40d494c7f068212ecd8608`
+- sha256 (`lf-normalised`): `012c4bf609cb5bbd6b1b2ca8f57de005ccb10c83b7eda98f25d012993216c974`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0478
 - counts toward the grade: no
@@ -107,8 +107,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/second/reach.py::carrying_map`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/third/reach.py::embedding`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/second/reach.py::carrying_map`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/third/reach.py::embedding`
 
 ## Absences recorded by the TFQ records
 

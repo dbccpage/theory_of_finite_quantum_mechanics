@@ -37,10 +37,10 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::Repair`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_wdp/src/obstruction.rs::solve_exact_potential_weighted`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine/crates_rs/omega_wdp/src/obstruction.rs)
+- `omega_engine/crates_rs/omega_wdp/src/obstruction.rs::solve_exact_potential_weighted` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::matrix_quotient_l1`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py)
+- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::matrix_quotient_l1` (private upstream source, not in this repository)
 
 ---
 

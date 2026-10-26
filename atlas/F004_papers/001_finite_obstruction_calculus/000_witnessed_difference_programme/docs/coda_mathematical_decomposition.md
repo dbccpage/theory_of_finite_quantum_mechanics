@@ -67,7 +67,7 @@ this consolidation does not claim a new compilation of all nine estates.
 | [FDA](source_archive/coda_component_packages/fda/coda_fda.md) | Operational standing is a terminal together with an actual path and seven derived guards. Regime standing is verification plus a recorded grant. Soundness follows under two additional universal soundness hypotheses; connecting these two standing models needs an explicit interpretation. |
 | [GTLA](source_archive/coda_component_packages/coda_gtla/coda_gtla_monograph.md.txt) | Comparison spans compose by a fiber product. Declared composite cost is a sum; trace erasure forgets work. Terminal constructors are disjoint. The finite Boolean evaluator copies declared answers and does not prove the component theorems or general Master Normal Form. |
 
-The [pinned source tree](https://github.com/dbccpage/the_symbol_game/tree/c8328f651eb231a4c1ede77f160a3f0a2e3e6c64/omega_engine_atlas/coda_atlas/F005_coda)
+The pinned source tree
 provides immutable retrieval of the same component paths.
 The component packages remain the owners of their historical papers, proof
 files, code and release records. WDP is the integrated mathematical reading

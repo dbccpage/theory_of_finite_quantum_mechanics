@@ -6,15 +6,15 @@ pinned to repository commit e4a1214bb3e47570b0f74ecc9117c98f27a26b5e.
 
 1. J. H. Carroll. *Local Green, Global Red I: Evaluated Path Kernels for
    Composed Agent Reliability*, v1.2.3 (2026).
-   [Pinned companion source](https://github.com/dbccpage/the_symbol_game/blob/e4a1214bb3e47570b0f74ecc9117c98f27a26b5e/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/012_local_green_global_red_foundational_series/lggr_i_evaluated_path_kernels/lggr_i_evaluated_path_kernels.md).
+   Pinned companion source.
    Context for the local/global distinction; no DDC proof depends on it.
 2. J. H. Carroll. *Finite Obstruction Calculus: Exact Quotient Diagnostics,
    Dual Witnesses, Two-Stage Coherence, and Transport*, v3.2.0.
-   [Pinned companion source](https://github.com/dbccpage/the_symbol_game/blob/e4a1214bb3e47570b0f74ecc9117c98f27a26b5e/omega_engine_atlas/coda_atlas/F005_coda/foc/coda_foc.md).
+   Pinned companion source.
    Context for §3; the DDC graph formulas and arguments are supplied locally.
 3. J. H. Carroll. *Six jobs, not one machine: obstruction, standing,
    transport, comparison, shadow, leftover*, v3.2.0 (2026).
-   [Pinned companion source](https://github.com/dbccpage/the_symbol_game/blob/e4a1214bb3e47570b0f74ecc9117c98f27a26b5e/omega_engine_atlas/coda_atlas/F005_coda/coda_gtla/coda_gtla_monograph.md).
+   Pinned companion source.
    Background to the authorization distinction. DDC's refusal terminal is an
    explicit local policy, not an application of an unstated external theorem.
 4. F. Birkmann, H.-P. Deifel and S. Milius. *Distributed Coalgebraic Partition

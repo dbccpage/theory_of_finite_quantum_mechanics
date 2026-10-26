@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0525_sn_e19_torsion_erased_over_q.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0525_sn_e19_torsion_erased_over_q.md](../../../dag/derivations/05_mssn_sn/tfq_0525_sn_e19_torsion_erased_over_q.md)
-- sha256 (`lf-normalised`): `9074b622e5eec713b89fa439dcb308747ed7c3e622725dcbae1b1c123c0e9597`
+- sha256 (`lf-normalised`): `ab2a60386028df3166cd717e63a377c1f400ebbf79ab37230e2ee2384502f9c3`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0525
 - counts toward the grade: no
@@ -75,7 +75,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_education/documentation/003_oemssn/code/rust/src/smith_normal_form.rs::compute_integral_homology`
+- `external:upstream/omega_engine_education/documentation/003_oemssn/code/rust/src/smith_normal_form.rs::compute_integral_homology`
 
 ## Absences recorded by the TFQ records
 

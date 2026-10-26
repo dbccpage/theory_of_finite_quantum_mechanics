@@ -46,3 +46,9 @@ normal_forms/sql/universe.sqlite
 
 # Raw model turns and thinking summaries from LLM runs stay out of the tree; a run keeps request.md, answer.md and receipt.json.
 dag/results/**/turn_*.md
+
+# Run output under dag/results is regenerable and stays out of the tree. Commit only review files and
+# the run files that a receipt, the DAG or tooling cites (git add -f).
+dag/results/*/runs/
+dag/results/batches/
+dag/results/*/user_submissions/

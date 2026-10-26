@@ -1,5 +1,0 @@
-# Exact contextuality overlap stage
-
-Peres-Mermin has a global-incidence rank of 5 and a distinct zero-sum-local overlap rank of 8; its augmented overlap rank is 9. Cabello has incidence rank8, overlap rank17 and augmented overlap rank18. Each selected obstruction has an explicit left-null all-ones character with pairing1. The actual C2 domains are empty because each measurement appears in exactly two contexts, giving native H1 dimension1. An actual zero-target Peres global section is retained. Source Lean theorems prove generic d-squared-zero, Cabello no-global-section and Mermin parity obstruction, with a valid source X2 control and generic character exclusion lemma. The concrete matrix-rank-to-Lean transport remains open.
-
-Every executed checkpoint retains an operad delta, source/candidate bindings and actual host results. This is local file-based PFP execution, not an external-provider transcript. No whole-repository or hosted-CI success is claimed. Awaiting the requested batch review. AuthorityEffect: None.

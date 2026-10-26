@@ -129,7 +129,7 @@
       "Dropped (unverified) refs: H053EverettForkingTree::everett_forking_tree; SemiringTransport::lsum_mul_right; cochain_repair_code.rs::cochain_repair_code; difference_transport_channel.rs::difference_transport_channel; everett.rs::everett; exact_channel.rs::exact_channel; finite_chsh_correlations.rs::finite_chsh_correlations; parity_context_packet.rs::parity_context_packet; qubit_bloch_map.rs::qubit_bloch_map; threshold_repair_certificate.rs::threshold_repair_certificate; trace_distance_quotient.rs::trace_distance_quotient; u1_graph_connection.rs::is_gauge_trivial"
     ],
     "pregenesis_to_wdp": [
-      "PREGENESIS-TO-WDP FRAGMENT (dag/fragments/pregenesis_to_wdp.json, records TFQ-0417 upward): one paper per on-route step from the inert inscription through Genesis, its expansion past the 19L57G1 freeze, S(n), MSS-N and WDP. Lean references prefixed external:github.com/dbccpage/19L57G1 name declarations at commit 85a83ae7ce64dc2123ff218568a4ecd37e566d33 that are not in this checkout or in the_symbol_game; their nodes are CONDITIONAL on that import and are not recorded as PROVED_LEAN. References without a prefix are paths in the_symbol_game at commit 7351ed452e518cb8cf2bf973d4c4881289084bce, as in the existing PG nodes."
+      "PREGENESIS-TO-WDP FRAGMENT (dag/fragments/pregenesis_to_wdp.json, records TFQ-0417 upward): one paper per on-route step from the inert inscription through Genesis, its expansion past the 19L57G1 freeze, S(n), MSS-N and WDP. Lean references prefixed external:github.com/dbccpage/19L57G1 name declarations at commit 85a83ae7ce64dc2123ff218568a4ecd37e566d33 that are not in this checkout or in the private upstream; their nodes are CONDITIONAL on that import and are not recorded as PROVED_LEAN. References without a prefix are paths in a private upstream repository at commit 7351ed452e518cb8cf2bf973d4c4881289084bce, as in the existing PG nodes."
     ],
     "unified_dag": [
       "derivation_dag.json and theory_of_finite_qm.jsonl are joined into one graph by dag/sync_unified_dag.py: a record that named no DAG node has a node with its own id (tag unified-dag) and a route from its parent record's node; a node that no record named has a record from TFQ-1000 upward. Record statuses map to DAG statuses without promotion; source fence labels map to SOURCE_RECORD and tree links without a derivation are RECORD_PARENT routes. Audited records of the FSP, MUB6, Majorana and Dressing Field Method corpora are application-branch nodes; their trunk restatements are alias: tags on trunk nodes."
@@ -5210,7 +5210,9 @@
       "statement": "Born uniqueness of the quadratic form needs imported Hilbert space, projection lattices and Gleason-type assumptions, with dimension n >= 3; Gleason frame additivity at n >= 3 is verified only over orthogonal frames of specific finite ray sets. The three-label cardinality surrogate (3 <= |Q|) is false on Bool; the unit-effect contract already has two disagreeing pairings.",
       "source": [
         "sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:193",
-        "sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:345"
+        "sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:345",
+        "dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md",
+        "dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json"
       ],
       "lean": [
         "lean4/H017Gleason.lean::gleason_pack_uniqueness_still_imported",
@@ -5236,7 +5238,11 @@
         "lean4/BornHermitianTraceRepresentation.lean::BornFable.HermitianCarrier.born_rule",
         "lean4/BornHermitianTraceRepresentation.lean::BornFable.HermitianCarrier.state_valuation_correspondence",
         "lean4/BornGaussianRationalFrameObstruction.lean::BornFable.GaussianFrames.parity_class_function_is_third",
-        "lean4/BornGaussianFrameRays.lean::BornFable.GaussianFrames.frameFunction_smul"
+        "lean4/BornGaussianFrameRays.lean::BornFable.GaussianFrames.frameFunction_smul",
+        "lean4/CampaignBornRationalRayObstruction.lean::BornFable.RationalRays.exotic_frame_function",
+        "lean4/CampaignBornRationalRayObstruction.lean::BornFable.RationalRays.exotic_not_quadratic",
+        "lean4/CampaignBornRationalRayObstruction.lean::BornFable.RationalRays.exotic_values",
+        "lean4/CampaignBornGaussianMod2ClassRigidity.lean::BornFable.GaussianFrames.mod2_class_function_is_third"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness",
@@ -5250,7 +5256,7 @@
         "projection lattice (assumption, projection-lattice route only)",
         "Hilbert space (assumption)"
       ],
-      "bottleneck": "The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n >= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized. Gaussian-rational frame functions (Fable API run 20261022T193631Z, receipt dag/research/fable_gleason_run2_lean_replay.json): over Q(i)^3 a frame function on nonzero vectors is constant on rays (frameFunction_smul); and a frame function whose value on every Gaussian-integer vector with not all of a+b, c+d, e+g even depends only on ((a+b) mod 2, (c+d) mod 2, (e+g) mod 2) has the value 1/3 on all of those vectors (parity_class_function_is_third). That excludes only this (1+i)-parity-class ansatz: other parity-type constructions (for example residues modulo 2 in Z[i]) are not covered, the identification of the class with (1+i)-divisibility is not formalised, and the 1/3 is not stated outside those vectors. Existence of a non-quadratic frame function on Q(i)^3 rays and quadraticity of all of them both remain open.",
+      "bottleneck": "The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n >= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized. Gaussian-rational frame functions (Fable API run 20261022T193631Z, receipt dag/research/fable_gleason_run2_lean_replay.json): over Q(i)^3 a frame function on nonzero vectors is constant on rays (frameFunction_smul); and a frame function whose value on every Gaussian-integer vector with not all of a+b, c+d, e+g even depends only on ((a+b) mod 2, (c+d) mod 2, (e+g) mod 2) has the value 1/3 on all of those vectors (parity_class_function_is_third). That excludes only this (1+i)-parity-class ansatz: other parity-type constructions (for example residues modulo 2 in Z[i]) are not covered, the identification of the class with (1+i)-divisibility is not formalised, and the 1/3 is not stated outside those vectors. Campaign run (receipt dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json): over Q^3 the mod-4 function exotic(v) = (1 + sgn v)/3 on integer vectors not all even is a frame function on all rational rays, takes the values 0, 1/3, 2/3, and is not quadratic (CampaignBornRationalRayObstruction: exotic_frame_function, exotic_not_quadratic), so on the rational carrier frame additivity on all orthogonal triples does not select the Born form even among nonnegative frame functions; and over Q(i)^3 a frame function that is a residue-modulo-2 class function on (1+i)-primitive Gaussian-integer vectors is 1/3 there (CampaignBornGaussianMod2ClassRigidity: mod2_class_function_is_third, 56 explicit frames). Existence of a non-quadratic frame function on Q(i)^3 rays and quadraticity of all of them both remain open, as does whether the Q^3 function extends to Q(i)^3.",
       "tags": [],
       "see_also": [
         "GP-IMPORT-GLEASON",
@@ -5270,7 +5276,7 @@
         "reason": "Review predates four later Born runs; current statement and bottleneck already cite them.",
         "prior_status": "CONDITIONAL",
         "prior_statement": "Born uniqueness of the quadratic form needs imported Hilbert space, projection lattices and Gleason-type assumptions, with dimension n >= 3; Gleason frame additivity at n >= 3 is verified only over orthogonal frames of specific finite ray sets. The three-label cardinality surrogate (3 <= |Q|) is false on Bool; the unit-effect contract already has two disagreeing pairings.",
-        "prior_bottleneck": "The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n >= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized. Gaussian-rational frame functions (Fable API run 20261022T193631Z, receipt dag/research/fable_gleason_run2_lean_replay.json): over Q(i)^3 a frame function on nonzero vectors is constant on rays (frameFunction_smul); and a frame function whose value on every Gaussian-integer vector with not all of a+b, c+d, e+g even depends only on ((a+b) mod 2, (c+d) mod 2, (e+g) mod 2) has the value 1/3 on all of those vectors (parity_class_function_is_third). That excludes only this (1+i)-parity-class ansatz: other parity-type constructions (for example residues modulo 2 in Z[i]) are not covered, the identification of the class with (1+i)-divisibility is not formalised, and the 1/3 is not stated outside those vectors. Existence of a non-quadratic frame function on Q(i)^3 rays and quadraticity of all of them both remain open.",
+        "prior_bottleneck": "The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n >= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized. Gaussian-rational frame functions (Fable API run 20261022T193631Z, receipt dag/research/fable_gleason_run2_lean_replay.json): over Q(i)^3 a frame function on nonzero vectors is constant on rays (frameFunction_smul); and a frame function whose value on every Gaussian-integer vector with not all of a+b, c+d, e+g even depends only on ((a+b) mod 2, (c+d) mod 2, (e+g) mod 2) has the value 1/3 on all of those vectors (parity_class_function_is_third). That excludes only this (1+i)-parity-class ansatz: other parity-type constructions (for example residues modulo 2 in Z[i]) are not covered, the identification of the class with (1+i)-divisibility is not formalised, and the 1/3 is not stated outside those vectors. Campaign run (receipt dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json): over Q^3 the mod-4 function exotic(v) = (1 + sgn v)/3 on integer vectors not all even is a frame function on all rational rays, takes the values 0, 1/3, 2/3, and is not quadratic (CampaignBornRationalRayObstruction: exotic_frame_function, exotic_not_quadratic), so on the rational carrier frame additivity on all orthogonal triples does not select the Born form even among nonnegative frame functions; and over Q(i)^3 a frame function that is a residue-modulo-2 class function on (1+i)-primitive Gaussian-integer vectors is 1/3 there (CampaignBornGaussianMod2ClassRigidity: mod2_class_function_is_third, 56 explicit frames). Existence of a non-quadratic frame function on Q(i)^3 rays and quadraticity of all of them both remain open, as does whether the Q^3 function extends to Q(i)^3.",
         "superseded_by": [
           "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T004525Z_fable51_born",
           "dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T162715Z_jordan_classical_qubit",
@@ -12640,7 +12646,7 @@
       "stage": "IMPLEMENTATION_SIBLING",
       "status": "OPEN",
       "source_status": "TFQ record_status GAP (source slice 06)",
-      "statement": "Unnormalized mass is a different carrier from the probability simplex. src/finite_valuation.rs states exact nonnegative Boolean valuations with no normalization requirement, and it admits an empty carrier that FinN refuses. src/lib.rs also declares signed_representation.rs, local_deterministic.rs, and marginal_compatibility.rs; those three bodies were not opened, so only the module declarations are in scope. The obligation is to keep an unnormalized valuation from standing in for a law that sums to one. H001ProbabilitySimplex.lean says its scaled integer grid is not the ordinary rational simplex.",
+      "statement": "For all natural numbers a and b, if a is at least 1 and b is at least 1, then a + b is not 1. The pair (1, 1) sums to 2, and 2 is not 1. The empty mass 0 is not 1. In the rationals, 1/2 + 1/2 = 1, the pair (1, 1) is not the pair (1/2, 1/2), and 1 + 1 is not 1. If a + b is positive, then a/(a + b) + b/(a + b) = 1. An unnormalized Boolean valuation on a general carrier, the Rust module contracts, and a ban on standing in for a unit-sum law stay outside this finite case.",
       "source": [
         "dag/derivations/22_implementation_sibling/tfq_0171_do_not_collapse_unnormalized_finite_valuations_into_the_normalized_rational_probability_simplex.md",
         "dag/derivations/independent/tfq-0171.md",
@@ -12665,7 +12671,15 @@
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.probability_simplex",
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.double_not_normalized",
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.signed_not_nonneg",
-        "lean4/H001Rats.lean::FableHilbertWalk20260819.H001Rats.qrel_equivalence"
+        "lean4/H001Rats.lean::FableHilbertWalk20260819.H001Rats.qrel_equivalence",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.positivePairMassNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.oneOneMass",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.twoNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.emptyMassNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.halfPairSumsToOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.oneOneNotUnit",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.unnormalizedPairDiffers",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.normalizeByTotal"
       ],
       "rust": [
         "code/rust/src/finite_probability/finite_valuation.rs::BooleanValuation::try_new",
@@ -12674,7 +12688,7 @@
         "code/rust/src/finite_probability/marginal_compatibility.rs::MarginalScenario::validate_probabilities"
       ],
       "imported_structure": [],
-      "bottleneck": "Do not collapse unnormalized finite valuations into the normalized rational probability simplex.",
+      "bottleneck": "Positive natural masses on two coordinates are separated from the unit sum, and dividing by a positive total returns a rational unit sum. The obligation to keep an unnormalized valuation from standing in for a law that sums to one, including the Rust files and an empty carrier refused by Fin n, remains open. AuthorityEffect: None.",
       "tags": [
         "unified-dag",
         "TFQ-0171",
@@ -12945,7 +12959,7 @@
       "stage": "IMPLEMENTATION_SIBLING",
       "status": "OPEN",
       "source_status": "TFQ record_status GAP (source slice 06)",
-      "statement": "Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap.",
+      "statement": "Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap. Narrowed in Lean 4 and an independent Python check to Nat arithmetic, with no status change. For every natural number n, the product n * n * n is at most n * n * n. For every natural number n at least 1, twice that cube equals (n - 1) * n * (2 * n - 1) plus n * (3 * n - 1), the product (n - 1) * n * (2 * n - 1) is strictly below twice the cube, and n * (3 * n - 1) is at least 2. At n = 4 the cube is 64, the sum 1 * 1 + 2 * 2 + 3 * 3 is 14, the quotient (3 * 4 * (2 * 4 - 1)) / 6 is 14, and 14 is strictly below 64. A measured tetron-homology reading of those count facts, custody of the README title, the F004 realization-packet gap, noise sweeps, and the evaluator role stay outside this arithmetic.",
       "source": [
         "dag/derivations/22_implementation_sibling/tfq_0184_do_not_read_paper_009_reflexivity_declarations_as_measured_tetron_homology.md",
         "dag/derivations/independent/tfq-0184.md",
@@ -12954,7 +12968,10 @@
         "dag/research/campaign_tfq-0184_independent.json",
         "docs/overclaim/reviews/2026-10-24_campaign-tfq-0184-precommit.md",
         "checks/independent/tfq-0184.py",
-        "lean4/CampaignTfq0184ImplementationSibling.lean"
+        "lean4/CampaignTfq0184ImplementationSibling.lean",
+        "lean4/CampaignTfq0184CubicCount.lean",
+        "dag/research/campaign_tfq-0184_cubic_count_lean_replay.json",
+        "docs/overclaim/reviews/2026-10-26_campaign-tfq-0184-cubic-count.md"
       ],
       "lean": [
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound",
@@ -12966,7 +12983,15 @@
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence",
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.majorana_evaluator_is_companion_control_not_gap_closure_fence",
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.wdp_carrier_manifest_homology_conversion_fence",
-        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence"
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.cubicReflexivity",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.eliminationSplit",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.gapAtLeastTwo",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.eliminationBelowTwiceCube",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourCube",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourSumOfSquares",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourClosedForm",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourCountBelowCube"
       ],
       "rust": [
         "code/rust/src/wdp/lib.rs::to_homology_carrier"
@@ -14933,7 +14958,7 @@
       ],
       "lean": [],
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/license.rs::License"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/license.rs::License"
       ],
       "imported_structure": [],
       "bottleneck": "Type every PFP act as repair, extend or promote, and refuse any route that turns a zero residual, a replay or an admission into an authorization.",
@@ -14954,7 +14979,7 @@
       ],
       "lean": [],
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs::PromptCochainEvaluator"
+        "external:upstream/omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs::PromptCochainEvaluator"
       ],
       "imported_structure": [],
       "bottleneck": "Compute Φ₁ as the exact quotient infimum and Γ₂ under the declared face map with exact rationals, report both, and accept only at Ξ = 0.",
@@ -19055,13 +19080,15 @@
       "id": "MUB-PRIME-POWER-CONSTRUCTION",
       "stage": "MUTUALLY_UNBIASED_BASES",
       "status": "OPEN",
-      "source_status": "Dimension-2 Gaussian-integer bases Z, X and Y; the two-element character sends 1+1 to 1. Larger prime powers stay open.",
+      "source_status": "Dimension-2 Gaussian-integer bases Z, X and Y (characteristic two). For every odd prime power q a complete q+1 family of orthogonal, mutually unbiased vector families is constructed over any commutative domain with a star ring structure (bases of R^F when R is a field; spanning is not formalised), given a nontrivial unitary additive character of F_q as a parameter (lean4/CampaignMubPrimePowerOddCharacteristic.lean). Characteristic two beyond dimension 2, and the existence of the character over the concrete complex or cyclotomic carrier, stay open.",
       "statement": "Construct and verify a complete d+1 MUB family for the stated prime-power carrier, explicitly handling finite-field arithmetic, character sums and normalization.",
       "source": [
         "dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md",
         "papers/core/mub6/README.md",
         "dag/derivations/independent/mub-prime-power-construction.md",
-        "dag/research/campaign_mub-prime-power-construction_lean_replay.json"
+        "dag/research/campaign_mub-prime-power-construction_lean_replay.json",
+        "dag/derivations/independent/mub-prime-power-construction-odd.md",
+        "dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json"
       ],
       "lean": [
         "lean4/CampaignMubPrimePowerConstruction.lean::i_squared",
@@ -19070,11 +19097,16 @@
         "lean4/CampaignMubPrimePowerConstruction.lean::basis_orthogonal",
         "lean4/CampaignMubPrimePowerConstruction.lean::cross_unbiased",
         "lean4/CampaignMubPrimePowerConstruction.lean::char_values",
-        "lean4/CampaignMubPrimePowerConstruction.lean::char_of_double"
+        "lean4/CampaignMubPrimePowerConstruction.lean::char_of_double",
+        "lean4/CampaignMubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.mub_family",
+        "lean4/CampaignMubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.weil_sum_mul_star",
+        "lean4/CampaignMubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.basis_unbiased",
+        "lean4/CampaignMubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.basis_orthogonal",
+        "lean4/CampaignMubPrimePowerOddCharacteristic.lean::MubFable.PrimePowerOdd.card_bases"
       ],
       "rust": [],
       "imported_structure": [],
-      "bottleneck": "This is the dimension-2 characteristic-two family only. It does not construct a complete family for any larger prime power, does not treat odd characteristic, does not run a general character sum, and does not infer a dimension-six family from this carrier.",
+      "bottleneck": "The characteristic-two family is dimension 2 only. For odd characteristic the construction is now general: for every finite field F with 2 ≠ 0, every commutative domain R with a star ring structure, and every nontrivial additive character ψ : F → R with star (ψ t) = ψ (−t), the q+1 bases indexed by Option F (the standard basis and x ↦ ψ(a x² + b x)) are pairwise orthogonal within a basis, have nonzero norms, and satisfy |⟨u, v⟩|² · q = ‖u‖² ‖v‖² across bases, with q+1 = card (Option F) (mub_family, card_bases). The vectors are left unnormalised, so normalisation is the statement about norms, not a division. What remains: a complete family for characteristic two beyond dimension 2 (which needs the Galois-ring or symplectic-spread construction, not quadratic phases), the instantiation of ψ over the concrete complex or cyclotomic carrier the node names (ψ is a parameter here), and the dimension-six question, which this node does not address.",
       "tags": [
         "application-branch",
         "TFQ-0403"
@@ -48721,11 +48753,19 @@
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.probability_simplex",
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.double_not_normalized",
         "lean4/H001ProbabilitySimplex.lean::FableHilbertWalk20260819.H001.signed_not_nonneg",
-        "lean4/H001Rats.lean::FableHilbertWalk20260819.H001Rats.qrel_equivalence"
+        "lean4/H001Rats.lean::FableHilbertWalk20260819.H001Rats.qrel_equivalence",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.positivePairMassNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.oneOneMass",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.twoNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.emptyMassNotOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.halfPairSumsToOne",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.oneOneNotUnit",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.unnormalizedPairDiffers",
+        "lean4/CampaignTfq0171PositiveMass.lean::CampaignTfq0171PositiveMass.normalizeByTotal"
       ],
       "local_id": "A06-006",
       "name": "Do not collapse unnormalized finite valuations into the normalized rational probability simplex",
-      "obligation": "Do not collapse unnormalized finite valuations into the normalized rational probability simplex.",
+      "obligation": "Positive natural masses on two coordinates are separated from the unit sum, and dividing by a positive total returns a rational unit sum. The obligation to keep an unnormalized valuation from standing in for a law that sums to one, including the Rust files and an empty carrier refused by Fin n, remains open. AuthorityEffect: None.",
       "parent_id": "TFQ-0167",
       "python": [
         "checks/independent/tfq-0171.py::run_all_checks"
@@ -48739,7 +48779,7 @@
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",
-      "summary": "Unnormalized mass is a different carrier from the probability simplex. src/finite_valuation.rs states exact nonnegative Boolean valuations with no normalization requirement, and it admits an empty carrier that FinN refuses. src/lib.rs also declares signed_representation.rs, local_deterministic.rs, and marginal_compatibility.rs; those three bodies were not opened, so only the module declarations are in scope. The obligation is to keep an unnormalized valuation from standing in for a law that sums to one. H001ProbabilitySimplex.lean says its scaled integer grid is not the ordinary rational simplex.",
+      "summary": "For all natural numbers a and b, if a is at least 1 and b is at least 1, then a + b is not 1. The pair (1, 1) sums to 2, and 2 is not 1. The empty mass 0 is not 1. In the rationals, 1/2 + 1/2 = 1, the pair (1, 1) is not the pair (1/2, 1/2), and 1 + 1 is not 1. If a + b is positive, then a/(a + b) + b/(a + b) = 1. An unnormalized Boolean valuation on a general carrier, the Rust module contracts, and a ban on standing in for a unit-sum law stay outside this finite case.",
       "uuid": "ad624434-8292-540c-b408-bc43541823ec"
     },
     {
@@ -49200,7 +49240,10 @@
         "dag/research/campaign_tfq-0184_independent.json",
         "docs/overclaim/reviews/2026-10-24_campaign-tfq-0184-precommit.md",
         "checks/independent/tfq-0184.py",
-        "lean4/CampaignTfq0184ImplementationSibling.lean"
+        "lean4/CampaignTfq0184ImplementationSibling.lean",
+        "lean4/CampaignTfq0184CubicCount.lean",
+        "dag/research/campaign_tfq-0184_cubic_count_lean_replay.json",
+        "docs/overclaim/reviews/2026-10-26_campaign-tfq-0184-cubic-count.md"
       ],
       "id": "TFQ-0184",
       "lean4": [
@@ -49213,7 +49256,15 @@
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence",
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.majorana_evaluator_is_companion_control_not_gap_closure_fence",
         "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.wdp_carrier_manifest_homology_conversion_fence",
-        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence"
+        "lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.cubicReflexivity",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.eliminationSplit",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.gapAtLeastTwo",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.eliminationBelowTwiceCube",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourCube",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourSumOfSquares",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourClosedForm",
+        "lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourCountBelowCube"
       ],
       "local_id": "A06-019",
       "name": "Do not read paper 009 reflexivity declarations as measured tetron homology",
@@ -49230,7 +49281,7 @@
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",
-      "summary": "Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap.",
+      "summary": "Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap. Narrowed in Lean 4 and an independent Python check to Nat arithmetic, with no status change. For every natural number n, the product n * n * n is at most n * n * n. For every natural number n at least 1, twice that cube equals (n - 1) * n * (2 * n - 1) plus n * (3 * n - 1), the product (n - 1) * n * (2 * n - 1) is strictly below twice the cube, and n * (3 * n - 1) is at least 2. At n = 4 the cube is 64, the sum 1 * 1 + 2 * 2 + 3 * 3 is 14, the quotient (3 * 4 * (2 * 4 - 1)) / 6 is 14, and 14 is strictly below 64. A measured tetron-homology reading of those count facts, custody of the README title, the F004 realization-packet gap, noise sweeps, and the evaluator role stay outside this arithmetic.",
       "uuid": "7e0a95bd-f3d3-5e79-b862-6b33a4eab241"
     },
     {
@@ -59045,8 +59096,8 @@
       "obligation": "Parse Pre-Genesis words with the declared grammar only, refuse the empty word at every public start, and admit nothing by parsing; supply(<>) belongs to Genesis.",
       "parent_id": "TFQ-0362",
       "python": [
-        "external:the_symbol_game/omega_engine_education/documentation/000_oepregen/code/check_pre_genesis.py::validate_cases",
-        "external:the_symbol_game/omega_engine_education/documentation/000_oepregen/code/tests/test_pre_genesis_grammar.py::test_four_state_separation"
+        "external:upstream/omega_engine_education/documentation/000_oepregen/code/check_pre_genesis.py::validate_cases",
+        "external:upstream/omega_engine_education/documentation/000_oepregen/code/tests/test_pre_genesis_grammar.py::test_four_state_separation"
       ],
       "record_status": "DEFINITION",
       "rust": [
@@ -59289,12 +59340,12 @@
       "obligation": "Refuse any answer to a separation task computed only from the collapsed quotient, require an added separating observation, and keep every tied separating predicate as a branch unless a declared minimality or initiality policy selects one.",
       "parent_id": "TFQ-0424",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py::quotient_factor",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py::quotient_factor",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs::factor"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs::factor"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "PREGENESIS",
@@ -59323,12 +59374,12 @@
       "obligation": "Reject any auditor that certifies the adopted state from a view π under which two admissible histories with different states coincide, and give it the replayed history or a summary on which σ is constant per fiber.",
       "parent_id": "TFQ-0364",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py::history_auditor",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py::history_auditor",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_genesis_checks.py::test_quotient_and_history_refuse_collapsed_answers"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs::factor"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs::factor"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "PREGENESIS",
@@ -59358,11 +59409,11 @@
       "parent_id": "TFQ-0426",
       "python": [
         "checks/independent/pgw-context-fidelity.py::main",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::certify"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::certify"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs::certifies"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/certification.rs::certifies"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "PREGENESIS",
@@ -59388,7 +59439,7 @@
       "obligation": "Refuse to evaluate a separation task on a pair until both members are admitted, record supply as data and rule-pattern admission as tied first additions, and report an admitted pair with no declared operation as not separated.",
       "parent_id": "TFQ-0364",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py::single_admission_report"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py::single_admission_report"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -59419,8 +59470,8 @@
       "obligation": "Count the capabilities an extension adds against the six-operation spine, refuse to label it one-step when it adds more than one, and leave the undefined arrows of the spine undefined.",
       "parent_id": "TFQ-0428",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py::form_then_instance",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_genesis_checks.py::test_admission_cost_and_pair_rounds"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/genesis_checks.py::form_then_instance",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_genesis_checks.py::test_admission_cost_and_pair_rounds"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -59453,11 +59504,11 @@
       "obligation": "Keep every glyph, count, order and string-equality test in the metatheory, and let object-language observables read only admitted data indices, forms, instances, rules and requirements.",
       "parent_id": "TFQ-0002",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::serialize"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::serialize"
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/token.rs::tokens_are_forgotten_by_the_key"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/token.rs::tokens_are_forgotten_by_the_key"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -59489,12 +59540,12 @@
       "obligation": "Compare regimes by datum and form bijections that preserve arities, instances, rules and sorted requirement pairs, with tokens erased, and keep the unordered-requirement convention explicit.",
       "parent_id": "TFQ-0430",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::find_iso",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_mathematics.py::test_unordered_requirement_identifies_unary_endpoint_responses"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::find_iso",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/tests/test_mathematics.py::test_unordered_requirement_identifies_unary_endpoint_responses"
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::find_iso"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::find_iso"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -59525,11 +59576,11 @@
       "obligation": "Show that genesis and every instance-free, rule-free regime derive nothing, and that two admitted data require a datum admission of a token different from the first.",
       "parent_id": "TFQ-0430",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::challenge0_report"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::challenge0_report"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/reading.rs::challenge0_generates_nothing"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/reading.rs::challenge0_generates_nothing"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -59562,14 +59613,14 @@
       "obligation": "Enumerate well-formed contexts with at least one hole, plug by filling every hole with one datum, decide derivability by instance membership or a uniform rule only, and compare profiles.",
       "parent_id": "TFQ-0431",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::contexts",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::profile",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::separable"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::contexts",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::profile",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::separable"
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::contexts",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs::profile"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::contexts",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs::profile"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -59598,11 +59649,11 @@
       "obligation": "Show that a regime whose instance list is empty collapses every pair of data, whatever its forms and uniform rules.",
       "parent_id": "TFQ-0433",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::collapsed_pairs"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::collapsed_pairs"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs::coverage_is_constant_across_data_at_a_fixed_context"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs::coverage_is_constant_across_data_at_a_fixed_context"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -59634,11 +59685,11 @@
       "obligation": "Replay the recorded reading L and reading F histories to R2L and R2F, show every admitted pair collapsed in both, and exhibit one datum admission that changes the regime and leaves the pair collapsed.",
       "parent_id": "TFQ-0380",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::challenge2_report"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::challenge2_report"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/reading.rs::challenge2_admission_need_not_increase_expressive_power"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/reading.rs::challenge2_admission_need_not_increase_expressive_power"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -59670,13 +59721,13 @@
       "obligation": "Count the contexts of each admitted form as (n+1)^a − n^a, sum over forms, and check the count against an explicit context enumeration.",
       "parent_id": "TFQ-0433",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::contexts",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py::python_replay"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::contexts",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py::python_replay"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::contexts",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::a_binary_form_over_two_data_has_five_contexts"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::contexts",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::a_binary_form_over_two_data_has_five_contexts"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -59707,7 +59758,7 @@
       "obligation": "Show that membership-equal instance, rule and requirement lists with equal datum counts and form tables give the same derivability, collapse, separability, delta application and response validity.",
       "parent_id": "TFQ-0433",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::Regime"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::Regime"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
@@ -59743,14 +59794,14 @@
       "obligation": "Apply response items in order, cost them by mu1 and by lexicographic mu2, and accept a response only when it applies, separates the target and keeps every prior requirement separated.",
       "parent_id": "TFQ-0433",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::mu1",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::mu2",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::response_valid_naive"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::mu1",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::mu2",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::response_valid_naive"
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/measure.rs::arity_sum",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/response.rs::response_valid_naive"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/measure.rs::arity_sum",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/response.rs::response_valid_naive"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -59780,11 +59831,11 @@
       "obligation": "Show that the Challenge 3 regime collapses the required pair and that any function on its collapse quotient takes equal values on the two required data.",
       "parent_id": "TFQ-0435",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::separable"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::separable"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/separability.rs::challenge2_collapse_is_total_in_both_readings"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/separability.rs::challenge2_collapse_is_total_in_both_readings"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -59813,11 +59864,11 @@
       "obligation": "Show on R2L that two valid two-item responses have non-isomorphic results and that no response of at most one item is valid.",
       "parent_id": "TFQ-0439",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::min_responses"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::min_responses"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::nothing_below_two_items_separates_the_target"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::nothing_below_two_items_separates_the_target"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -59880,13 +59931,13 @@
       "obligation": "Enumerate every valid delta of at most two items and arity at most two for R2L and R2F, quotient by the declared isomorphism, and report 6 deltas in 3 classes for L and 10 in 5 for F under mu1, and 2 in 1 class for each reading under mu2.",
       "parent_id": "TFQ-0440",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py::python_replay",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::min_responses"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py::python_replay",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::min_responses"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::sealed_challenge3_reading_l",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::sealed_challenge3_reading_f"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::sealed_challenge3_reading_l",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::sealed_challenge3_reading_f"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -59914,11 +59965,11 @@
       "obligation": "Issue later demands only from the declared closure policy, one per automorphism orbit of collapsed pairs, and supply a fresh opaque token only through the declared external continuation policy at the closure fixpoint.",
       "parent_id": "TFQ-0382",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::closure_challenge_orbits"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::closure_challenge_orbits"
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::closure_challenge_orbits"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::closure_challenge_orbits"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -59949,12 +60000,12 @@
       "obligation": "Show that the index-least collapsed pair is not carried along a renaming of the regression regime, and that the selection-free transition relation and its valid-response counts transport under datum renamings.",
       "parent_id": "TFQ-0443",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::pair_orbits"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::pair_orbits"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs::pair_orbits",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs::orbits_are_equivariant_under_renaming"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs::pair_orbits",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs::orbits_are_equivariant_under_renaming"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -59983,7 +60034,7 @@
       "obligation": "Show that a fresh unary form with one instance at the second target datum is a valid, requirement-preserving response to every supplied separation demand on a well-formed regime whose requirements hold.",
       "parent_id": "TFQ-0444",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py::python_replay"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py::python_replay"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
@@ -60019,13 +60070,13 @@
       "obligation": "Show that rule items never occur in a minimum valid response and that unreferenced fresh data, unreferenced fresh forms and instances not mentioning a target datum cannot change the target pair's collapse.",
       "parent_id": "TFQ-0445",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::iter_cost2_deltas",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::iter_full_deltas"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::iter_cost2_deltas",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::iter_full_deltas"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::iter_cost2_deltas",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::pruned_and_unpruned_agree_on_valid_deltas"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::iter_cost2_deltas",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::pruned_and_unpruned_agree_on_valid_deltas"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -60058,13 +60109,13 @@
       "obligation": "Show that collapse and the collapsed-pair count over a supplied pair list are invariant under datum-index renaming, and that collapse transports across a regime isomorphism.",
       "parent_id": "TFQ-0444",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::collapsed_pairs",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::rename"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::collapsed_pairs",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::rename"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::the_key_is_invariant_under_every_renaming",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::a_single_collapsed_pair_transports_under_renaming"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::the_key_is_invariant_under_every_renaming",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::a_single_collapsed_pair_transports_under_renaming"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -60093,13 +60144,13 @@
       "obligation": "Regenerate the four quotiented trees within the declared bounds and report their node counts, cut kinds, leaf response counts and role counts over accepted edges.",
       "parent_id": "TFQ-0446",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::build_tree"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::build_tree"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs::depth_fifteen_reading_l_mu2_is_963_nodes_and_merges_carry_witnesses",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs::depth_fifteen_reading_f_mu2_is_1847_nodes_with_the_sealed_roles",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/role.rs::role"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs::depth_fifteen_reading_l_mu2_is_963_nodes_and_merges_carry_witnesses",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs::depth_fifteen_reading_f_mu2_is_1847_nodes_with_the_sealed_roles",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/role.rs::role"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -60127,12 +60178,12 @@
       "obligation": "Regenerate both closed-system baselines and report node counts, terminal branches and rounds used, with every maximal branch terminal within the n(n−1)/2 pair bound.",
       "parent_id": "TFQ-0383",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::build_tree"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::build_tree"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs::closed_system_baseline_reading_l",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs::closed_system_baseline_reading_f"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs::closed_system_baseline_reading_l",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/tree.rs::closed_system_baseline_reading_f"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -60161,11 +60212,11 @@
       "obligation": "Show that a well-formed regime with satisfied requirements and no valid response for any unseparated pair separates every admitted pair.",
       "parent_id": "TFQ-0449",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::closure_challenge_orbits"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::closure_challenge_orbits"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::the_fixpoint_is_empty_and_genesis_has_no_demand"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::the_fixpoint_is_empty_and_genesis_has_no_demand"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -60194,11 +60245,11 @@
       "obligation": "Record that closure under the declared policy stops at the all-pairs-separated fixpoint within n(n−1)/2 rounds and that any further requirement has to come from external supply or an external goal.",
       "parent_id": "TFQ-0450",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::closure_challenge_orbits"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::closure_challenge_orbits"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::closure_round_bound"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::closure_round_bound"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -60226,11 +60277,11 @@
       "obligation": "Keep datum identity as the admission index, and check on the reading-F mu2 minimum that data 0 and 2 have equal empty profiles.",
       "parent_id": "TFQ-0451",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::profiles"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::profiles"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs::profiles"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/profile.rs::profiles"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -60460,11 +60511,11 @@
       "obligation": "Show that the exhaustive-search canonical key and its portable byte encoding are equal exactly when two well-formed, duplicate-free regimes are isomorphic, within the unsigned-word bounds.",
       "parent_id": "TFQ-0431",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/portable_key.py::portable_key_v1"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/portable_key.py::portable_key_v1"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::portable_key_v1"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::portable_key_v1"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -60498,8 +60549,8 @@
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::cycle_construction",
-        "external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::homology"
+        "external:upstream/omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::cycle_construction",
+        "external:upstream/omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::homology"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -60529,13 +60580,13 @@
       "obligation": "Keep the three axes as separate verdicts, reproduce the w1 fresh-label collision, and report the axiom census and the finite cross-language agreement populations with their scopes.",
       "parent_id": "TFQ-0454",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py::python_replay",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py::compare_rust",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::delta_events"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py::python_replay",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py::compare_rust",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::delta_events"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/bin/genesis_replay.rs::run"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/bin/genesis_replay.rs::run"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -60567,7 +60618,7 @@
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/supply.rs::supply"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/supply.rs::supply"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -61067,7 +61118,7 @@
       "obligation": "Exhibit for every finite legal state with a term an edit path from either beginning of length removals plus added terms plus added assertions, and read N5 from it.",
       "parent_id": "TFQ-0389",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/xry/explore.py::explore"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/xry/explore.py::explore"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
@@ -61103,8 +61154,8 @@
       "obligation": "Carry the carrying map along every second-seed sequence, and embed every third-seed change and sequence into the second seed through Step2.toStep3 and Reach2.toReach3.",
       "parent_id": "TFQ-0477",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/second/reach.py::carrying_map",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/third/reach.py::embedding"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/second/reach.py::carrying_map",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/third/reach.py::embedding"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
@@ -61137,7 +61188,7 @@
       "obligation": "Carry multiplicity monotonicity at every ordered pair along every sequence of fourth-seed changes, through counted containment.",
       "parent_id": "TFQ-0478",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/fourth/invariants.py::never_decreases"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/fourth/invariants.py::never_decreases"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
@@ -61171,8 +61222,8 @@
       "obligation": "Carry the projection of two-relation states and sequences onto either relation, the embedding of one-relation states with nothing in s, and the exchange as an involution that is a symmetry of results, cost and reachability.",
       "parent_id": "TFQ-0479",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/ninth/state.py::swap",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/ninth/state.py::of_s"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/ninth/state.py::swap",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/ninth/state.py::of_s"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
@@ -61204,7 +61255,7 @@
       "obligation": "Record admission separately from reaching for every reached result, keep reaching at not-admitted, and never read a reached state as admitted by its generation.",
       "parent_id": "TFQ-0480",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/fifteenth/admission.py::admission_of_reaching"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/fifteenth/admission.py::admission_of_reaching"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -61236,7 +61287,7 @@
       "obligation": "Exhibit the two-change cycles of the sixteenth seed and carry Reach16 s t (2k + n) for every k from a well-formed state with a term.",
       "parent_id": "TFQ-0481",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/sixteenth/reach.py::reachable16"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/sixteenth/reach.py::reachable16"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
@@ -61270,9 +61321,9 @@
       "obligation": "Carry sameness as equal term count and equal excess after one rewriting, the plain state as the representative of each result, and fewest changes n + Σ|e| on every well-formed state.",
       "parent_id": "TFQ-0482",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::excess",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::plain",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::cost"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::excess",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::plain",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentysecond/state.py::cost"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
@@ -61307,8 +61358,8 @@
       "obligation": "Carry the gauge form of the H2 sameness, the invariance of loops, two-way sums and sums around three terms, and the countermodels to state-independence of adding a term.",
       "parent_id": "TFQ-0483",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentythird/state.py::raise_term",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentythird/state.py::around"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentythird/state.py::raise_term",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentythird/state.py::around"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -61347,9 +61398,9 @@
       "obligation": "Carry loop balance for filled terms, triangle balance for filled triples, the told criteria, blind_three_iff and cone_decides, and keep the rank figures as scratch computation.",
       "parent_id": "TFQ-0484",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfourth/state.py::balances",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfifth/told.py::decides",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfifth/told.py::rank"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfourth/state.py::balances",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfifth/told.py::decides",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/twentyfifth/told.py::rank"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
@@ -61416,12 +61467,12 @@
       "obligation": "Carry the three Lean statements with their hypotheses (ClosedRun from an empty store; n ≥ 3 in reflState; FiniteDeclaration k S) and keep the unary-innovation count as a finite computation over the exported mu2 trees.",
       "parent_id": "TFQ-0486",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::closure_challenge_orbits",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/local_strategy.py::classification"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::closure_challenge_orbits",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/local_strategy.py::classification"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::closure_round_bound"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/closure.rs::closure_round_bound"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -61449,11 +61500,11 @@
       "obligation": "Record each stage change with exactly one import row (kind fresh-datum or new-requirement-kind, its price, its source) and refuse a stage change that carries no import or an unrecorded one.",
       "parent_id": "TFQ-0487",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::build_tree"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::build_tree"
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Outside"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Outside"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -61529,13 +61580,13 @@
       "obligation": "Define the k-item delta grammar for k ≥ 3, state and prove the pruning lemmas it relies on, and certify the pruned enumeration against the unpruned space at each declared k before using any k-item minimum. This file checks one empty base with two data and arity one: 9 well-formed deltas of at most two items, 2 of them with unequal target bits. The 3-item rule extension equalizes those bits, and an instance of argument 2 keeps them false. Arity two, a grammar for 3 or more items, and the sealed cost-two minimum stay open.",
       "parent_id": "TFQ-0488",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::iter_cost2_deltas",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::iter_cost2_deltas",
         "external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_stream/stream.py::iter_k_item_deltas",
         "checks/independent/pgw-k-item-delta-grammar.py"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::iter_cost2_deltas"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::iter_cost2_deltas"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -61598,7 +61649,7 @@
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Proposal"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Proposal"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -61627,7 +61678,7 @@
       "obligation": "Report a residual as an active obstruction only when all four gates hold at the stated state and pair, and keep a collapsed pair that fails a gate as an observation, not a demand.",
       "parent_id": "TFQ-0492",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/primitive_passage.py::obst_p"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/primitive_passage.py::obst_p"
       ],
       "record_status": "DEFINITION",
       "rust": [
@@ -61659,8 +61710,8 @@
       "obligation": "Carry a stage change as a ProposalRecord with every obligation discharged, and execute it only through the separately gated step under a license and a budget.",
       "parent_id": "TFQ-0493",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/graph_genesis.py::ProposalRecord",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/graph_genesis.py::carries_no_authority"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/graph_genesis.py::ProposalRecord",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/graph_genesis.py::carries_no_authority"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -61722,11 +61773,11 @@
       "obligation": "State in Lean the responder's minimum, cost and tie relation over the sealed candidate space, extend its domain to ruled regimes or record why not, and read both demand kinds.",
       "parent_id": "TFQ-0486",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::min_responses"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::min_responses"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::min_responses"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::min_responses"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -61762,12 +61813,12 @@
       "obligation": "Use the complete finite context decisions for the remaining first-count and Y-2 history claims under their explicit predicates; establish the external implementation refinement separately.",
       "parent_id": "TFQ-0486",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::separable",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::separable",
         "checks/independent/pgw-context-decision-procedure.py::main"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::contexts"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/context.rs::contexts"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -61842,12 +61893,12 @@
       "obligation": "Keep these two replay results separate from a refinement. A refinement from each cited Python computation to its Lean statement stays open.",
       "parent_id": "TFQ-0486",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::replay",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/model.py::replay",
         "checks/independent/pgw-python-lean-carrier-bridge.py::main"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/replay.rs::replay"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/replay.rs::replay"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -61882,12 +61933,12 @@
       "obligation": "State and prove in Lean that equal implemented keys imply isomorphic regimes (and the converse where it is used), and check the Python automorphism orbits against the Lean orbits on the exported regimes. The implemented key, the regimes past the brute-force limit, and the orbit comparison stay open.",
       "parent_id": "TFQ-0486",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::canonical_bruteforce",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::canonical_bruteforce",
         "checks/independent/pgw-isomorphism-soundness-in-lean.py::main"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::canonical_bruteforce"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::canonical_bruteforce"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -62004,7 +62055,7 @@
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/event.rs::Event"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/event.rs::Event"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -62047,7 +62098,7 @@
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Outside"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Outside"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "GENESIS",
@@ -62108,7 +62159,7 @@
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/license.rs::License"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/license.rs::License"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "AUTHORIZATION",
@@ -62164,7 +62215,7 @@
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs::PromptCochainEvaluator"
+        "external:upstream/omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs::PromptCochainEvaluator"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "AUTHORIZATION",
@@ -62188,12 +62239,12 @@
       "obligation": "Check the C4 certificate with exact rationals: primal residual norm, dual feasibility (|wᵢ| ≤ 1, d₀ᵀw = 0), matching objectives w·c = ‖r‖₁ = 3, and γ₂ = |d₁c| = 3.",
       "parent_id": "TFQ-0508",
       "python": [
-        "external:the_symbol_game/omega_engine_pfp/tests/finite_qm_workflow/test_finite_qm_reference_workflow.py::test_native_certificate_positive_and_decisive_mutations",
-        "external:the_symbol_game/omega_engine_pfp/infrastructure/finite_qm_cochain_judge.py::NativeCochainJudge"
+        "external:upstream/omega_engine_pfp/tests/finite_qm_workflow/test_finite_qm_reference_workflow.py::test_native_certificate_positive_and_decisive_mutations",
+        "external:upstream/omega_engine_pfp/infrastructure/finite_qm_cochain_judge.py::NativeCochainJudge"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs::PromptCochainEvaluator"
+        "external:upstream/omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs::PromptCochainEvaluator"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "AUTHORIZATION",
@@ -62223,7 +62274,7 @@
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::evaluate_two_boxed_laws_gate"
+        "external:upstream/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::evaluate_two_boxed_laws_gate"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",
@@ -62252,7 +62303,7 @@
       "obligation": "Keep the two-byte, one-token presentation <> apart from the admitted carrier: at S(0) nothing is derivable, supply changes no admitted state, and the declared index-0 carrier has no element.",
       "parent_id": "TFQ-0510",
       "python": [
-        "external:the_symbol_game/omega_engine_education/documentation/002_oesn/code/sn_core.py::S0Ground"
+        "external:upstream/omega_engine_education/documentation/002_oesn/code/sn_core.py::S0Ground"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
@@ -62283,7 +62334,7 @@
       "obligation": "Model supply and admission as different events, so that a supply of <a> admits nothing, and keep s₁ = 1 as a declared ledger entry tied to an issued demand.",
       "parent_id": "TFQ-0511",
       "python": [
-        "external:the_symbol_game/omega_engine_education/documentation/002_oesn/code/sn_core.py::S1Supply"
+        "external:upstream/omega_engine_education/documentation/002_oesn/code/sn_core.py::S1Supply"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -62314,7 +62365,7 @@
       "obligation": "Keep <a> and <ab> as opaque admitted data with equal observation profiles, and record a collapse as an obstruction only after a separation demand is supplied.",
       "parent_id": "TFQ-0512",
       "python": [
-        "external:the_symbol_game/omega_engine_education/documentation/002_oesn/code/sn_core.py::S2Collapse"
+        "external:upstream/omega_engine_education/documentation/002_oesn/code/sn_core.py::S2Collapse"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -62348,12 +62399,12 @@
       "obligation": "Show that no response of at most one item separates the pair and that every valid two-item response with new-form arity sum at most 1 is isomorphic to the unary mark, and keep the binary edge out of the minimizer.",
       "parent_id": "TFQ-0513",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::iter_cost2_deltas",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::mu2"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::iter_cost2_deltas",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::mu2"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::min_responses"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::min_responses"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",
@@ -62382,7 +62433,7 @@
       "obligation": "From irreflexivity and R(a,b) derive a ≠ b, report endpoint count 2 separately from witness multiplicity, and give the unique point-preserving map from D₂ to each asserted pair.",
       "parent_id": "TFQ-0514",
       "python": [
-        "external:the_symbol_game/omega_engine_education/documentation/002_oesn/code/sn_audit.py::verify_wir"
+        "external:upstream/omega_engine_education/documentation/002_oesn/code/sn_audit.py::verify_wir"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
@@ -62413,7 +62464,7 @@
       "obligation": "Under the declared closure policy, reach W₄ = ∅ with H₄ retained, bound a closed run by n(n−1)/2 rounds, and compute the cycle-space dimension m(m−1)/2 − m + 1 of K_m as a graph count, not a demand count.",
       "parent_id": "TFQ-0514",
       "python": [
-        "external:the_symbol_game/omega_engine_education/documentation/002_oesn/code/sn_core.py::S4Orbit"
+        "external:upstream/omega_engine_education/documentation/002_oesn/code/sn_core.py::S4Orbit"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -62444,7 +62495,7 @@
       "obligation": "Record each continuation request as an external input before selecting its response, and state OB-1 as an unresolved question, not a no-go theorem about endogenous continuation.",
       "parent_id": "TFQ-0516",
       "python": [
-        "external:the_symbol_game/omega_engine_education/documentation/002_oesn/code/sn_core.py::S5Continuation"
+        "external:upstream/omega_engine_education/documentation/002_oesn/code/sn_core.py::S5Continuation"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -62476,7 +62527,7 @@
       "obligation": "Show that retractionDownMap n accepts exactly the images of sectionLift n, with a unique witness, an exact stage test and a decidable image test, inside the five base shapes of the pinned carrier.",
       "parent_id": "TFQ-0517",
       "python": [
-        "external:the_symbol_game/omega_engine_education/documentation/002_oesn/code/sn_core.py::S6Descent"
+        "external:upstream/omega_engine_education/documentation/002_oesn/code/sn_core.py::S6Descent"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -62586,8 +62637,8 @@
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_linear_algebra/src/exact_field/complex_tensor.rs::balance_map_with_limits",
-        "external:the_symbol_game/omega_engine/crates_rs/omega_linear_algebra/src/exact_field/complex_tensor.rs::balance_projector_with_limits"
+        "external:upstream/omega_engine/crates_rs/omega_linear_algebra/src/exact_field/complex_tensor.rs::balance_map_with_limits",
+        "external:upstream/omega_engine/crates_rs/omega_linear_algebra/src/exact_field/complex_tensor.rs::balance_projector_with_limits"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",
@@ -62711,7 +62762,7 @@
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:the_symbol_game/omega_engine_education/documentation/003_oemssn/code/rust/src/smith_normal_form.rs::compute_integral_homology"
+        "external:upstream/omega_engine_education/documentation/003_oemssn/code/rust/src/smith_normal_form.rs::compute_integral_homology"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",
@@ -62827,7 +62878,7 @@
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::CandidateLift"
+        "external:upstream/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::CandidateLift"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",
@@ -62851,7 +62902,7 @@
       "obligation": "Declare all eight dimensions for each MSS-N model, accept raw glyphs only from Γ38, and keep encoded, rewrite and observation relations distinct.",
       "parent_id": "TFQ-0529",
       "python": [
-        "external:the_symbol_game/omega_engine_education/documentation/003_oemssn/code/mssn_codec.py::RawGlyphs"
+        "external:upstream/omega_engine_education/documentation/003_oemssn/code/mssn_codec.py::RawGlyphs"
       ],
       "record_status": "DEFINITION",
       "rust": [
@@ -62882,8 +62933,8 @@
       "obligation": "Parse every MSS-N string under an explicitly named public start, and report acceptance per start rather than under a default reading.",
       "parent_id": "TFQ-0530",
       "python": [
-        "external:the_symbol_game/omega_engine_education/documentation/003_oemssn/code/check_mssn.py::main",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/code/sn_mssn_checks.py::grammar_inventory_matches"
+        "external:upstream/omega_engine_education/documentation/003_oemssn/code/check_mssn.py::main",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/code/sn_mssn_checks.py::grammar_inventory_matches"
       ],
       "record_status": "DEFINITION",
       "rust": [
@@ -62913,7 +62964,7 @@
       "obligation": "Classify each side condition as lexical, context-free or semantic, enforce semantic conditions in a decoder or evaluator, and never read a parse as a decoded value.",
       "parent_id": "TFQ-0531",
       "python": [
-        "external:the_symbol_game/omega_engine_education/documentation/003_oemssn/code/check_mssn.py::main"
+        "external:upstream/omega_engine_education/documentation/003_oemssn/code/check_mssn.py::main"
       ],
       "record_status": "DEFINITION",
       "rust": [
@@ -62977,8 +63028,8 @@
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
-        "external:the_symbol_game/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::verify_four_gate_factorization",
-        "external:the_symbol_game/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux"
+        "external:upstream/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::verify_four_gate_factorization",
+        "external:upstream/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",
@@ -63034,12 +63085,12 @@
       "obligation": "Report a failed declared comparison as non-interchangeability under that comparison only, and do not encode it as a difference p − q without first admitting a group or vector-space carrier.",
       "parent_id": "TFQ-0360",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/ground.py::primitive_difference",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py::test_primitive_difference_and_triangle_identity"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/ground.py::primitive_difference",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py::test_primitive_difference_and_triangle_identity"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/difference.rs::primitive_difference"
+        "external:upstream/omega_engine/crates_rs/omega_wdp/src/difference.rs::primitive_difference"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",
@@ -63068,12 +63119,12 @@
       "obligation": "Check the two countermodels and the irreflexive substitution step, and reproduce the bounded census 4674 / 2337 / 196 / 3104 with zero irreflexive related pairs having equal poles at carrier sizes 1 to 3.",
       "parent_id": "TFQ-0360",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/pointed_relation.py::enumerate_pointed_relations",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_pointed_relation.py::test_census_matches_the_closed_forms_on_carriers_up_to_three"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/pointed_relation.py::enumerate_pointed_relations",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_pointed_relation.py::test_census_matches_the_closed_forms_on_carriers_up_to_three"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs::GenesisAdmissionKernel"
+        "external:upstream/omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs::GenesisAdmissionKernel"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",
@@ -63101,11 +63152,11 @@
       "obligation": "Compute Φ_J as the infimum of J(δ − dα) over the declared repair space, record V, A, d and J as inputs, and never evaluate J on a single representative in its place.",
       "parent_id": "TFQ-0536",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::matrix_quotient_l1"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::matrix_quotient_l1"
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/obstruction.rs::solve_exact_potential_weighted"
+        "external:upstream/omega_engine/crates_rs/omega_wdp/src/obstruction.rs::solve_exact_potential_weighted"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",
@@ -63132,11 +63183,11 @@
       "obligation": "Carry the role and the proposition in every witness type, refuse a change of role without a declared adapter, and keep certificates, stored marks, repairs and counterexamples apart.",
       "parent_id": "TFQ-0538",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/observer.py::adapt_quotient"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/observer.py::adapt_quotient"
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/observer.rs::adapt_quotient"
+        "external:upstream/omega_engine/crates_rs/omega_wdp/src/observer.rs::adapt_quotient"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",
@@ -63163,7 +63214,7 @@
       "obligation": "Enter the first symmetry-breaking input of every selection in the injection ledger, and report frontier elements relative to the declared implementation class and preorder without claiming a unique or global minimum.",
       "parent_id": "TFQ-0536",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/symmetry.py::exhaustive_relation_audit"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/symmetry.py::exhaustive_relation_audit"
       ],
       "record_status": "DEFINITION",
       "rust": [
@@ -63196,12 +63247,12 @@
       "obligation": "Declare all four packet components before claiming retention, compute the greatest behavioural congruence by partition refinement on the declared finite packet, and keep the CM1–CM5 separations.",
       "parent_id": "TFQ-0539",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/observer.py::RetentionPacket",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/retention_choices.py::greatest_forward_relation"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/observer.py::RetentionPacket",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/retention_choices.py::greatest_forward_relation"
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/retention.rs::compute_exact_behavioral_quotient"
+        "external:upstream/omega_engine/crates_rs/omega_wdp/src/retention.rs::compute_exact_behavioral_quotient"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",
@@ -63228,12 +63279,12 @@
       "obligation": "Build C⁰, C¹ and d₀ from the declared oriented graph and coefficient space, treat Q¹ as a repair quotient, and withhold the name H¹ until a d₁ and a d₁d₀ = 0 certificate are supplied.",
       "parent_id": "TFQ-0360",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py::FiniteComplex",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py::d0"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py::FiniteComplex",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py::d0"
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/cochains.rs::FiniteComplex"
+        "external:upstream/omega_engine/crates_rs/omega_wdp/src/cochains.rs::FiniteComplex"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",
@@ -63269,7 +63320,7 @@
       "obligation": "Declare and check the transport from GenesisIncidence's boundary convention on (01, 02, 12) to the WDP coboundary convention on (01, 12, 02): a coordinate permutation after which d0 and d1 are the transposes of the boundary maps, with a sign for any edge reoriented as 20, verified by d1 d0 = 0 and the filled-triangle signature after transport. A transport for every window quantity, a derivation of the WDP window from Genesis admission, and the external orientation test stay open.",
       "parent_id": "TFQ-0542",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_obstruction.py::test_reversed_edge_orientation_changes_signs_not_the_signature",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_obstruction.py::test_reversed_edge_orientation_changes_signs_not_the_signature",
         "checks/independent/pgw-wdp-incidence-orientation-transport.py::main"
       ],
       "record_status": "OPEN_OBLIGATION",
@@ -63309,12 +63360,12 @@
       "obligation": "Return the same Φ_J for every representative of a class, report attainment only under the finite-dimensional norm hypothesis, and treat weighted-ℓ¹ strong duality as imported, accepting an instance only with a matching repair and bounded circulation.",
       "parent_id": "TFQ-0542",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py::finite_quotient_l1",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::exact_quotient_l1"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py::finite_quotient_l1",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::exact_quotient_l1"
       ],
       "record_status": "CONDITIONAL",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs::FenchelDualityReceipt"
+        "external:upstream/omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs::FenchelDualityReceipt"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",
@@ -63341,7 +63392,7 @@
       "obligation": "Compute K = d₁d₀ exactly for every declared pair, report a nonzero K as a typed composition defect, and apply closure descent, H¹ and the signature only when K = 0.",
       "parent_id": "TFQ-0542",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::degree_one_window"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::degree_one_window"
       ],
       "record_status": "DEFINITION",
       "rust": [
@@ -63405,12 +63456,12 @@
       "obligation": "Assign every class exactly one diagnostic class, check Γ₂ ≤ ‖d₁‖_{J→1}Φ₁ and 0 ≤ R_cl ≤ ‖d₁‖_{J→1} in exact arithmetic, refuse with NoRule a window missing its carrier, norm, closure data or d₁d₀ = 0 certificate, and apply none of this to a norm outside the norm hypothesis.",
       "parent_id": "TFQ-0546",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::classify_signature",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::classify_signature",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs::TriadSignature"
+        "external:upstream/omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs::TriadSignature"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",
@@ -63437,11 +63488,11 @@
       "obligation": "Reproduce the filled-triangle signature exactly over ℚ (d₁d₀ = 0; Φ₁ = 2 with its repair and circulation; Γ₂ = 2; ‖d₁‖_{1→1} = 1; R_cl = 1), the hollow comparison Φ₁ = 3, Γ₂ = 0, and refuse an orthogonal projection onto ker d₁ as a repair.",
       "parent_id": "TFQ-0348",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_obstruction.py::test_worked_filled_triangle_signature_and_certificate"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_obstruction.py::test_worked_filled_triangle_signature_and_certificate"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/obstruction.rs::DualWitnessCertificate"
+        "external:upstream/omega_engine/crates_rs/omega_wdp/src/obstruction.rs::DualWitnessCertificate"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",
@@ -63468,9 +63519,9 @@
       "obligation": "Verify δ^{k+1}δ^k = 0 exactly on each declared simplicial complex, reproduce the RP² ranks 10 over ℚ and 9 over F₂, and check the zero-sum balance and 1-cycle pairing invariance on finite graphs, stating the coefficient field with every answer.",
       "parent_id": "TFQ-0004",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/simplicial.py::verify_nilpotence",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/simplicial.py::rp2_torsion_witness",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/simplicial.py::gauss_law_solvable"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/simplicial.py::verify_nilpotence",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/simplicial.py::rp2_torsion_witness",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/simplicial.py::gauss_law_solvable"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -63502,11 +63553,11 @@
       "obligation": "Record π with every succession packet, compute reachability by transitive closure, accept it as a strict order only on an acyclic transition graph, and supply directional order data instead of deriving it from a symmetric carrier.",
       "parent_id": "TFQ-0541",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/relational_retention.py::succession_classification"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/relational_retention.py::succession_classification"
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/relational_retention.rs::RelationalRetentionPacket"
+        "external:upstream/omega_engine/crates_rs/omega_wdp/src/relational_retention.rs::RelationalRetentionPacket"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",
@@ -63535,8 +63586,8 @@
       "obligation": "Sum durations exactly along declared paths, report one of the four exactness statuses, construct t from a rooted path family only under the stated hypotheses, and return a period witness when two paths with common endpoints disagree.",
       "parent_id": "TFQ-0550",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/duration.py::classify_duration",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py::solve_potential"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/duration.py::classify_duration",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py::solve_potential"
       ],
       "record_status": "DEFINITION",
       "rust": [
@@ -63568,12 +63619,12 @@
       "obligation": "Exhibit the matching behind every congruence claim, normalize exact masses only on a declared partition with positive total, and select no Born exponent from normalization.",
       "parent_id": "TFQ-0541",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/probability.py::event_probability",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/probability.py::disjoint_additivity"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/probability.py::event_probability",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/probability.py::disjoint_additivity"
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/rust/src/foundational_bridges.rs::MultiplicityDistribution"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/rust/src/foundational_bridges.rs::MultiplicityDistribution"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",
@@ -63603,13 +63654,13 @@
       "obligation": "Admit a quotient observer only when Rd₀ = 0 exactly, refuse memory, policy and authority requests on it, report Φ_O only with a checked preimage and dual, check Φ_O(O q) ≤ Φ₁(q), and report grammar collisions.",
       "parent_id": "TFQ-0339",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/quotient_observer.py::make_linear_quotient_observer",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/quotient_observer.py::check_passivity",
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_quotient_observer.py::test_passivity_can_be_strict_and_core_identifications_survive"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/quotient_observer.py::make_linear_quotient_observer",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/quotient_observer.py::check_passivity",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_quotient_observer.py::test_passivity_can_be_strict_and_core_identifications_survive"
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_category_theory/src/finite_partial_structure.rs::descend"
+        "external:upstream/omega_engine/crates_rs/omega_category_theory/src/finite_partial_structure.rs::descend"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",
@@ -63638,11 +63689,11 @@
       "obligation": "Cite each Genesis-to-WDP bridge at its register scope (P, N, C or L), keep GEN-WDP-O01 to O05 open, and do not describe the S(n) stages as a Postnikov tower.",
       "parent_id": "TFQ-0553",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/foundational_bridges.py::apartness_witness"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/foundational_bridges.py::apartness_witness"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/rust/src/foundational_bridges.rs::apartness_witness"
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/rust/src/foundational_bridges.rs::apartness_witness"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",
@@ -63684,7 +63735,7 @@
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/genesis_ongoing_adapter.rs::GenesisOngoingAdapter"
+        "external:upstream/omega_engine/crates_rs/omega_wdp/src/genesis_ongoing_adapter.rs::GenesisOngoingAdapter"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",
@@ -63716,12 +63767,12 @@
       "obligation": "Keep declared report and decision assumptions explicit; no permission or physical authenticity follows from this factorization criterion.",
       "parent_id": "TFQ-0554",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py::decision_decoder",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py::decision_decoder",
         "checks/independent/pgw-wdp-bridge-report-fiber-observer.py"
       ],
       "record_status": "CONDITIONAL",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/proposal_admission_bridge.rs::ProposalAdmissionModel"
+        "external:upstream/omega_engine/crates_rs/omega_wdp/src/proposal_admission_bridge.rs::ProposalAdmissionModel"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",
@@ -63789,12 +63840,12 @@
       "obligation": "Keep the certified window open beyond this triangle: weighted l1 over the rationals, a bounded-circulation dual on a general carrier, the second coboundary diagnostic, and a checked adapter before any LGGR verdict reads the quotient value as a coboundary length.",
       "parent_id": "TFQ-0557",
       "python": [
-        "external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature",
+        "external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature",
         "checks/independent/pgw-wdp-handoff-to-l1.py::main"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [
-        "external:the_symbol_game/omega_engine/crates_rs/omega_local_green_global_red_lggr/src/ledger.rs::register_stabilized_family"
+        "external:upstream/omega_engine/crates_rs/omega_local_green_global_red_lggr/src/ledger.rs::register_stabilized_family"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "WDP",

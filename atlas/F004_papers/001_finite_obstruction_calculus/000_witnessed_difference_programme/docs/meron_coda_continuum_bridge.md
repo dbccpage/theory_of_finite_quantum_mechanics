@@ -10,7 +10,7 @@ execution and resource scopes.
 
 AuthorityEffect: None. Reviewed 2026-10-02 against merged
 revision `3bec3e2dd5659b53c33889d967fcd2b09689043c` from
-[PR #401](https://github.com/dbccpage/the_symbol_game/pull/401).
+PR #401.
 The written results are in [Appendix M](../witnessed_difference_programme.md#appendix-m-meron-characters-coda-shadows-and-conditional-limits).
 The [separate bridge register](genesis_bridge_register.md) records their
 scope. The five enlarged Genesis obligations remain open.
@@ -18,7 +18,7 @@ scope. The five enlarged Genesis obligations remain open.
 ## Source and actual verification
 
 The primary source is
-[`omega_engine_projects/finite_to_continuum`](https://github.com/dbccpage/the_symbol_game/tree/3bec3e2dd5659b53c33889d967fcd2b09689043c/omega_engine_projects/finite_to_continuum).
+`omega_engine_projects/finite_to_continuum`.
 Its project tests and demo regression were freshly replayed after the sync:
 
 ```powershell
@@ -31,7 +31,7 @@ has no Lean corpus. Existing WDP Lean and native receipts remain separate
 earlier evidence and were not recompiled for this manuscript-only update.
 
 An independent call of the original
-[`meron_transfer_trace`](https://github.com/dbccpage/the_symbol_game/blob/3bec3e2dd5659b53c33889d967fcd2b09689043c/omega_engine_projects/fsp/meron_sign_problem/code/meron_exact_model.py)
+`meron_transfer_trace`
 recomputed 912, 33012 and 973824 at L=4,6,8, repetitions=2, q=3. This bypasses
 the bridge's cached canonical values. All 28 tracked project files and the
 FSP transfer source were bound to the merged revision and their raw hashes

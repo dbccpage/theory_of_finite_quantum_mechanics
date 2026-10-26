@@ -44,11 +44,11 @@ In accordance with strict constructive principles:
 - [`lean4/CampaignPgwWdpHandoffToL1.lean::unequal_report_fails`](../../../lean4/CampaignPgwWdpHandoffToL1.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_local_green_global_red_lggr/src/ledger.rs::register_stabilized_family`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine/crates_rs/omega_local_green_global_red_lggr/src/ledger.rs)
+- `omega_engine/crates_rs/omega_local_green_global_red_lggr/src/ledger.rs::register_stabilized_family` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - [`checks/independent/pgw-wdp-handoff-to-l1.py::main`](../../../checks/independent/pgw-wdp-handoff-to-l1.py)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py)
+- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature` (private upstream source, not in this repository)
 
 ---
 
