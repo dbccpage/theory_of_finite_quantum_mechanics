@@ -36,7 +36,7 @@ All declarations compile with only `propext`, `Classical.choice`, `Quot.sound`.
 
 ## 4. Independent check
 
-`checks/independent/mub-prime-power-construction-odd.py` builds GF(q) for q in {3, 5, 7, 9, 11, 13, 25, 27} from explicit irreducible polynomials, represents Z[zeta_p] exactly as integer vectors modulo the p-th cyclotomic polynomial, takes psi(t) = zeta_p^{Tr(t)}, and verifies all pairings of all members of all q + 1 bases: 1,015,112 conditions, 0 failures. No floating point is used.
+`checks/independent/mub-prime-power-construction-odd.py` builds GF(q) for q in {3, 5, 7, 9, 11, 13, 25, 27} from explicit irreducible polynomials, represents Z[zeta_p] exactly as integer vectors modulo the p-th cyclotomic polynomial, takes psi(t) = zeta_p^{Tr(t)}, and verifies, for all q + 1 bases, every pairing of two quadratic-phase vectors (within a basis and across bases) and every standard-to-quadratic overlap: 1,015,112 conditions, 0 failures. Pairings of two standard basis vectors are orthonormal by definition and are not recomputed. No floating point is used.
 
 ## What is proved
 
