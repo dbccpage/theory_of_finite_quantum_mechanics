@@ -43,6 +43,14 @@ def test_lean_reference_rejects_comments_strings_prefixes_and_wrong_namespaces(t
         assert not lean_ref_resolves(tmp_path, "lean4/A.lean", name)
     assert lean_ref_resolves(tmp_path, "lean4/A.lean", "Actual.good")
     assert not lean_ref_resolves(tmp_path, "lean4/../lean4/A.lean", "Actual.good")
+    (tmp_path / "papers").mkdir()
+    (tmp_path / "papers" / "Original.lean").write_text(
+        'namespace Original\ntheorem result : True := trivial\nend Original\n', encoding="utf-8")
+    assert lean_ref_resolves(tmp_path, "papers/Original.lean", "Original.result")
+    assert not lean_ref_resolves(tmp_path, "papers/Original.lean", "Wrong.result")
+    assert not lean_ref_resolves(tmp_path, "papers/../lean4/A.lean", "Actual.good")
+    (tmp_path / "Outside.lean").write_text('theorem result : True := trivial\n', encoding="utf-8")
+    assert not lean_ref_resolves(tmp_path, "Outside.lean", "result")
 
 
 def test_coverage_excludes_invalid_sections_and_fenced_examples(tmp_path: Path):
