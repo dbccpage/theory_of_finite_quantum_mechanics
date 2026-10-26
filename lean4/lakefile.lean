@@ -1445,3 +1445,6 @@ lean_lib CampaignDsContinuousTimeExpGenerator where
 
 lean_lib CampaignDsQm043DecoherenceFunctional where
   roots := #[`CampaignDsQm043DecoherenceFunctional]
+
+lean_lib CampaignDsQm062U1Residues where
+  roots := #[`CampaignDsQm062U1Residues]
