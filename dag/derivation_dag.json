@@ -5132,7 +5132,7 @@
       "stage": "FINITE_QM_CORE",
       "status": "CONDITIONAL",
       "source_status": "The 20261019 scope audit remains a determinant obstruction on a supplied rational host. TFQ-0410--TFQ-0412 verify general Lean tomography, Schmidt reachability and operational state-cone reconstruction. TFQ-0414--TFQ-0416 verify the generated effect cone, saturated binary interval and finite POVM corollaries. TFQ-0413 verifies assumption countermodels in Lean: full-cone duality, all-dimension cone separations, exact two-qubit calibration failures and hidden-coordinate tomography failure; external classification and primitive selection remain outside scope.",
-      "statement": "General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises.",
+      "statement": "General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises. On integer coefficients, every 2 by 2 outer product of two vectors has determinant 0, and the matrix with entries 1, 0, 0 and 1 has determinant 1, so that matrix is not an outer product of two integer vectors.",
       "source": [
         "sources/atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:255",
         "sources/atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332",
@@ -5144,13 +5144,23 @@
         "dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md",
         "dag/derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md",
         "dag/derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md",
-        "dag/research/tensor_countermodel_validation.json"
+        "dag/research/tensor_countermodel_validation.json",
+        "lean4/CampaignFqGapTensorUniqueness.lean",
+        "dag/derivations/independent/fq-gap-tensor-uniqueness.md",
+        "dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json",
+        "checks/independent/fq-gap-tensor-uniqueness.py",
+        "dag/research/pr442_statement_review_20261026.json",
+        "dag/research/pr442_review_lean_replay.json"
       ],
       "lean": [
         "lean4/CoupledRelationalProjectors.lean::QuantumMechanics.CoupledRelationalProjectors.coupled_bipartite_and_tripartite_relational_master_certificate",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_tensor_uniqueness_min_vs_max_tensor_and_covariance",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
+        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
+        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.outerDet",
+        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityDet",
+        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityNotOuter",
+        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.productsEq"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/coupled_relational_operad.rs::evaluate_coupled_relational_operad",
@@ -5166,7 +5176,7 @@
         "fully coherently calibrated reversible controlled shift",
         "effect and finite-test saturation for full measurement availability"
       ],
-      "bottleneck": "The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional.",
+      "bottleneck": "The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional. The integer determinant split separates the matrix with entries 1, 0, 0 and 1 from the outer products of integer vectors. It does not select a tensor product, compare state or effect cones, or discharge the operational premises. AuthorityEffect: None.",
       "tags": [],
       "see_also": [
         "GP-IMPORT-TENSOR-PRODUCT",
@@ -5180,20 +5190,21 @@
         "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY"
       ],
       "pfp_review": {
-        "review": "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json",
-        "review_sha256": "fc43b2dca1747b4aa45e047291173713453b0aafd7d3d14539e06d1af7fa2c52",
+        "review": "dag/research/pr442_statement_review_20261026.json",
+        "review_sha256": "1949b49b9f993f18b02381ada3d14e4b79324089d25bac9994d37580b1e28ab0",
         "review_refs": [
-          "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json"
+          "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json",
+          "dag/research/pr442_statement_review_20261026.json"
         ],
         "verdict": "scoped_result_or_obstruction_reviewed",
-        "narrowest_claim": "On the admitted 2x2 rational coefficient host every simple tensor has zero coefficient determinant; [[1,0],[0,1]] has determinant one and is not simple. Native norm multiplication is checked on retained inputs.",
-        "does_not_support": "Formalize state/effect cones, covariance requirements, their min/max comparison and any uniqueness theorem; general tensor selection remains an import.",
-        "next_test": "Formalize state/effect cones, covariance requirements, their min/max comparison and any uniqueness theorem; general tensor selection remains an import.",
+        "narrowest_claim": "Every 2 by 2 outer product of integer vectors has determinant zero; the identity matrix has determinant one and is not such an outer product.",
+        "does_not_support": "This integer coefficient-matrix obstruction does not select a tensor product or establish state/effect-cone reconstruction. Previously verified conditional reconstruction and measurement results remain separately cited; local complex QM, tomography, calibrated reversible interactions and saturation hypotheses remain supplied.",
+        "next_test": "Derive the supplied operational hypotheses from primitive difference; do not replace the existing conditional reconstruction with this finite obstruction.",
         "scope_effect": "consistent",
-        "reason": "Review audits only a 2x2 coefficient host; the node text was rewritten from the later tensor receipts, which supersede it. The application sync owns the node text.",
+        "reason": "The application sync owns the conditional reconstruction statement; earlier reconstruction receipts remain authoritative for those claims. This current source review adds only the integer determinant lemma and retains the earlier scope audit as provenance.",
         "prior_status": "CONDITIONAL",
-        "prior_statement": "General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises.",
-        "prior_bottleneck": "The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional.",
+        "prior_statement": "General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises. On integer coefficients, every 2 by 2 outer product of two vectors has determinant 0, and the matrix with entries 1, 0, 0 and 1 has determinant 1, so that matrix is not an outer product of two integer vectors.",
+        "prior_bottleneck": "The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional. The integer determinant split separates the matrix with entries 1, 0, 0 and 1 from the outer products of integer vectors. It does not select a tensor product, compare state or effect cones, or discharge the operational premises. AuthorityEffect: None.",
         "superseded_by": [
           "dag/research/tensor_composition_validation.json",
           "dag/research/tensor_formalization_validation.json",
@@ -57564,21 +57575,32 @@
         "dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md",
         "dag/derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md",
         "dag/derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md",
-        "dag/research/tensor_countermodel_validation.json"
+        "dag/research/tensor_countermodel_validation.json",
+        "lean4/CampaignFqGapTensorUniqueness.lean",
+        "dag/derivations/independent/fq-gap-tensor-uniqueness.md",
+        "dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json",
+        "checks/independent/fq-gap-tensor-uniqueness.py",
+        "dag/research/pr442_statement_review_20261026.json",
+        "dag/research/pr442_review_lean_replay.json"
       ],
       "id": "TFQ-1019",
       "lean4": [
         "lean4/CoupledRelationalProjectors.lean::QuantumMechanics.CoupledRelationalProjectors.coupled_bipartite_and_tripartite_relational_master_certificate",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness",
         "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_tensor_uniqueness_min_vs_max_tensor_and_covariance",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
+        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
+        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.outerDet",
+        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityDet",
+        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityNotOuter",
+        "lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.productsEq"
       ],
       "local_id": "FQ-GAP-TENSOR-UNIQUENESS",
       "name": "fq-gap-tensor-uniqueness",
-      "obligation": "The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional.",
+      "obligation": "The state and measurement corollaries are verified under their stated operational hypotheses. Deriving local complex QM, tomography, calibrated reversible interactions and both saturation assumptions from primitive difference remains conditional. The integer determinant split separates the matrix with entries 1, 0, 0 and 1 from the outer products of integer vectors. It does not select a tensor product, compare state or effect cones, or discharge the operational premises. AuthorityEffect: None.",
       "parent_id": "TFQ-1018",
       "pfp_review_refs": [
-        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json"
+        "dag/results/FQ-GAP-TENSOR-UNIQUENESS/reviews/20261019_scope_audit/review_result.json",
+        "dag/research/pr442_statement_review_20261026.json"
       ],
       "python": [],
       "record_status": "CONDITIONAL",
@@ -57590,7 +57612,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "FINITE_QM_CORE",
-      "summary": "General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises.",
+      "summary": "General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises. On integer coefficients, every 2 by 2 outer product of two vectors has determinant 0, and the matrix with entries 1, 0, 0 and 1 has determinant 1, so that matrix is not an outer product of two integer vectors.",
       "uuid": "cb20fbff-3651-59bd-a95a-a9473aff959d"
     },
     {

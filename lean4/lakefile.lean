@@ -1506,3 +1506,7 @@ lean_lib CampaignOpsLeanGap where
 -- Reviewed campaign module; non-default target.
 lean_lib CampaignL1OrthogonalAdditivity where
   roots := #[`CampaignL1OrthogonalAdditivity]
+
+-- Reviewed campaign module; non-default target.
+lean_lib CampaignFqGapTensorUniqueness where
+  roots := #[`CampaignFqGapTensorUniqueness]

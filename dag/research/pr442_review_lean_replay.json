@@ -1,0 +1,128 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-26T19:21:52.377602+00:00",
+  "source_base": "03280c3e3761a07cdc1571b5fe31d27129956200",
+  "result": "Narrowed: integer outer-product determinant; original CONDITIONAL node retained. Every 2 by 2 outer product of integer vectors has determinant zero; the identity matrix has determinant one and is not such an outer product.",
+  "proof_boundary": "This integer coefficient-matrix obstruction does not select a tensor product or establish state/effect-cone reconstruction. Previously verified conditional reconstruction and measurement results remain separately cited; local complex QM, tomography, calibrated reversible interactions and saturation hypotheses remain supplied.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "mathlib_source_sha": null,
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/review-open-20261026/442/lake",
+    "results": [
+      {
+        "module": "CampaignFqGapTensorUniqueness",
+        "dag_node": "FQ-GAP-TENSOR-UNIQUENESS",
+        "source": "lean4/CampaignFqGapTensorUniqueness.lean",
+        "sha256": "e49a61cbcdcbd8f885d757b2cb03962e3db9ec07a5dcb1573308d0ebd2f3a971",
+        "sha256_after_build": "e49a61cbcdcbd8f885d757b2cb03962e3db9ec07a5dcb1573308d0ebd2f3a971",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignFqGapTensorUniqueness.productsEq",
+          "CampaignFqGapTensorUniqueness.outerDet",
+          "CampaignFqGapTensorUniqueness.identityDet",
+          "CampaignFqGapTensorUniqueness.identityNotOuter",
+          "CampaignFqGapTensorUniqueness.det"
+        ],
+        "axioms": {
+          "CampaignFqGapTensorUniqueness.productsEq": [
+            "propext"
+          ],
+          "CampaignFqGapTensorUniqueness.outerDet": [
+            "propext"
+          ],
+          "CampaignFqGapTensorUniqueness.identityDet": [
+            "propext"
+          ],
+          "CampaignFqGapTensorUniqueness.identityNotOuter": [
+            "propext"
+          ],
+          "CampaignFqGapTensorUniqueness.det": []
+        },
+        "output": "'CampaignFqGapTensorUniqueness.det' does not depend on any axioms\n'CampaignFqGapTensorUniqueness.productsEq' depends on axioms: [propext]\n'CampaignFqGapTensorUniqueness.outerDet' depends on axioms: [propext]\n'CampaignFqGapTensorUniqueness.identityDet' depends on axioms: [propext]\n'CampaignFqGapTensorUniqueness.identityNotOuter' depends on axioms: [propext]\n"
+      }
+    ]
+  },
+  "lake_build": {
+    "command": [
+      "lake",
+      "--no-cache",
+      "build",
+      "CampaignFqGapTensorUniqueness"
+    ],
+    "exit_code": 0,
+    "seconds": 0.347,
+    "output": "ℹ [2/3] Built CampaignFqGapTensorUniqueness (296ms)\ninfo: CampaignFqGapTensorUniqueness.lean:45:0: 'CampaignFqGapTensorUniqueness.productsEq' depends on axioms: [propext]\ninfo: CampaignFqGapTensorUniqueness.lean:46:0: 'CampaignFqGapTensorUniqueness.outerDet' depends on axioms: [propext]\ninfo: CampaignFqGapTensorUniqueness.lean:47:0: 'CampaignFqGapTensorUniqueness.identityDet' depends on axioms: [propext]\ninfo: CampaignFqGapTensorUniqueness.lean:48:0: 'CampaignFqGapTensorUniqueness.identityNotOuter' depends on axioms: [propext]\nBuild completed successfully (3 jobs).\ninfo: campaign_replay: no previous manifest, creating one from scratch\ninfo: toolchain not updated; already up-to-date\n"
+  },
+  "independent_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-X",
+      "utf8",
+      "checks/independent/fq-gap-tensor-uniqueness.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.035,
+    "output": "{\"checks\": 7212, \"failed\": 0, \"input_vectors\": 2403, \"negative_controls\": 3, \"identity_det\": 1, \"scope\": \"Exact finite census with independent elimination; the universal integer identity is separately Lean checked.\"}\n"
+  },
+  "lake_configuration": {
+    "command": [
+      "lake",
+      "translate-config",
+      "toml",
+      "/workspace/review-open-20261026/442/registered-lakefile.toml"
+    ],
+    "exit_code": 0,
+    "seconds": 5.751,
+    "output": ""
+  },
+  "build_scope": "Fresh core-only Lean package. All five explicit declarations audited; no full repository build.",
+  "axiom_audit": {
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "Audit.lean"
+    ],
+    "cwd": "/workspace/review-open-20261026/442/lake",
+    "input_path": "Audit.lean",
+    "input_contents": "import CampaignFqGapTensorUniqueness\n#print axioms CampaignFqGapTensorUniqueness.det\n#print axioms CampaignFqGapTensorUniqueness.productsEq\n#print axioms CampaignFqGapTensorUniqueness.outerDet\n#print axioms CampaignFqGapTensorUniqueness.identityDet\n#print axioms CampaignFqGapTensorUniqueness.identityNotOuter\n",
+    "input_sha256": "41a0608e9d8e9e7673e2d3f02ebf85f43f6ebbc3510b512511e1871889c9d527",
+    "module_source_sha256": "e49a61cbcdcbd8f885d757b2cb03962e3db9ec07a5dcb1573308d0ebd2f3a971",
+    "exit_code": 0,
+    "output": "'CampaignFqGapTensorUniqueness.det' does not depend on any axioms\n'CampaignFqGapTensorUniqueness.productsEq' depends on axioms: [propext]\n'CampaignFqGapTensorUniqueness.outerDet' depends on axioms: [propext]\n'CampaignFqGapTensorUniqueness.identityDet' depends on axioms: [propext]\n'CampaignFqGapTensorUniqueness.identityNotOuter' depends on axioms: [propext]\n",
+    "scratch_package": {
+      "lakefile": "name = \"campaign_replay\"\nversion = \"0.1.0\"\n[[lean_lib]]\nname = \"CampaignFqGapTensorUniqueness\"\n",
+      "lean_toolchain": "leanprover/lean4:v4.35.0\n",
+      "source_copy": {
+        "from": "lean4/CampaignFqGapTensorUniqueness.lean",
+        "to": "CampaignFqGapTensorUniqueness.lean",
+        "sha256": "e49a61cbcdcbd8f885d757b2cb03962e3db9ec07a5dcb1573308d0ebd2f3a971"
+      }
+    }
+  },
+  "independent_optimized_check": {
+    "command": [
+      "/workspace/.cloud-setup/venv/bin/python",
+      "-I",
+      "-O",
+      "-X",
+      "utf8",
+      "checks/independent/fq-gap-tensor-uniqueness.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.088,
+    "output": "{\"checks\": 7212, \"failed\": 0, \"input_vectors\": 2403, \"negative_controls\": 3, \"identity_det\": 1, \"scope\": \"Exact finite census with independent elimination; the universal integer identity is separately Lean checked.\"}\n"
+  }
+}
