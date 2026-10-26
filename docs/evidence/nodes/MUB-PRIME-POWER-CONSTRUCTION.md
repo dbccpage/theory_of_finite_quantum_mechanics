@@ -32,7 +32,7 @@ The characteristic-two family is dimension 2 only. For odd characteristic the co
 
 ## Source status
 
-Dimension-2 Gaussian-integer bases Z, X and Y (characteristic two). For every odd prime power q a complete q+1 family is constructed over any commutative domain with a star ring structure, given a nontrivial unitary additive character of F_q as a parameter (lean4/CampaignMubPrimePowerOddCharacteristic.lean). Characteristic two beyond dimension 2, and the existence of the character over the concrete complex and cyclotomic carriers, stay open.
+Dimension-2 Gaussian-integer bases Z, X and Y (characteristic two). For every odd prime power q a complete q+1 family of orthogonal, mutually unbiased vector families is constructed over any commutative domain with a star ring structure (bases of R^F when R is a field; spanning is not formalised), given a nontrivial unitary additive character of F_q as a parameter (lean4/CampaignMubPrimePowerOddCharacteristic.lean). Characteristic two beyond dimension 2, and the existence of the character over the concrete complex or cyclotomic carrier, stay open.
 
 ## Review
 
@@ -106,7 +106,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/mub-prime-power-construction-odd.md`
 
 - file: [dag/derivations/independent/mub-prime-power-construction-odd.md](../../../dag/derivations/independent/mub-prime-power-construction-odd.md)
-- sha256 (`lf-normalised`): `2ddec594b4490f26e2dbf7e337533090964013165bb30b187eaa92d7e29d0609`
+- sha256 (`lf-normalised`): `e80e8e33edd70a2b7379216a0660b3f6d5df26e28f7c0116a71af9b180a1b3ea`
 - cited in: node.source
 - counts toward the grade: yes
 
