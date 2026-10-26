@@ -17,6 +17,8 @@ Vectors are functions F -> R and the Hermitian pairing is <u, v> = sum_x star(u(
 
 No normalisation is performed: the vectors e_y have norm 1 and the v_{a,b} have norm q, and unbiasedness is stated as |<u, v>|^2 q = ||u||^2 ||v||^2 for u, v in different bases, which is |<u/||u||, v/||v||>|^2 = 1/q.
 
+Terminology. "Basis" names the q + 1 families of the construction. The Lean theorem proves orthogonality, nonzero norms and the unbiasedness identity; it does not prove spanning. Over any domain R the q members of one family are linearly independent (pairing a vanishing combination with v_{a,b} leaves c_{a,b} ||v_{a,b}||^2 = 0), so over a field R, in particular C or Q(zeta_p), each family is a basis of R^F. Over a domain in which q is not a unit the family need not span: for F = F_3 and R = Z[zeta_3], every quadratic-phase vector is constant modulo (1 - zeta_3). The linear-independence remark is not formalised.
+
 ## 2. Character sums
 
 Lemma 1 (`sum_mulShift_eq_zero`, `sum_mulShift`). For c in F, sum_x psi(c x) equals q if c = 0 and 0 otherwise. Proof: if c != 0 pick b with psi(b) != 1; the substitution x -> x + c^{-1} b shows that the sum S satisfies psi(b) S = S, so (psi(b) - 1) S = 0 and S = 0 in the domain R.
@@ -40,7 +42,7 @@ All declarations compile with only `propext`, `Classical.choice`, `Quot.sound`.
 
 ## What is proved
 
-- A complete family of q + 1 bases with the stated orthogonality and unbiasedness identities, for every finite field of odd characteristic, relative to any nontrivial unitary additive character into a domain with involution.
+- A complete family of q + 1 orthogonal vector families (bases of R^F when R is a field) with the stated orthogonality, nonzero-norm and unbiasedness identities, for every finite field of odd characteristic, relative to any nontrivial unitary additive character into a domain with involution.
 - The Weil-sum identity |sum_x psi(c x^2 + d x)|^2 = q for c != 0.
 
 ## What is assumed
@@ -52,4 +54,5 @@ All declarations compile with only `propext`, `Classical.choice`, `Quot.sound`.
 
 - Characteristic two: the construction of 2^k + 1 bases for k >= 2 (Galois rings GR(4, k)) is not formalised; dimension 2 remains covered only by the earlier Pauli-basis module.
 - The complex instance of psi inside Lean, and normalised (unit) vectors.
+- Spanning is not formalised: that each family is an R-basis of R^F when R is a field (immediate from orthogonality and nonzero norms) is a remark, not a Lean theorem, and it fails over a general domain.
 - Nothing about dimension six is inferred.
