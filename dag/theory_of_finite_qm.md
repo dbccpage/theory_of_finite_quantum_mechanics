@@ -796,7 +796,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1211` | `FERMION_SIGN` | `OPEN_OBLIGATION` | `FSP-COBORDISM-INTRINSIC-SIGN` (OPEN) | - |
 | `TFQ-1212` | `FERMION_SIGN` | `IMPORTED_ASSUMPTION` | `FSP-REGGE-DEFICIT-ACTION` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-1213` | `FERMION_SIGN` | `OPEN_OBLIGATION` | `FSP-DISCRETE-WDW-CONSTRAINT` (OPEN) | - |
-| `TFQ-1214` | `FERMION_SIGN` | `OPEN_OBLIGATION` | `FSP-PACHNER-INVARIANCE-CLAIM` (OPEN) | - |
+| `TFQ-1214` | `FERMION_SIGN` | `PROVED_LEAN` | `FSP-PACHNER-INVARIANCE-CLAIM` (PROVED_LEAN) | - |
 | `TFQ-1215` | `FERMION_SIGN` | `OPEN_OBLIGATION` | `FSP-CDT-FOLIATION-POSITIVITY` (OPEN) | - |
 | `TFQ-1216` | `FERMION_SIGN` | `OPEN_OBLIGATION` | `FSP-DIRAC-KAHLER-SPINFOAM-CLAIM` (OPEN) | - |
 | `TFQ-1217` | `FERMION_SIGN` | `IMPORTED_ASSUMPTION` | `FSP-XCUBE-FRACTON-MODEL` (IMPORTED_ASSUMPTION) | - |
@@ -10268,17 +10268,17 @@ On integer triples, the declared constraint H(x,y,z)=(0,2y,-z) is symmetric for 
 
 Obligation: This is a declared finite-dimensional integer model; its set of integer triples is infinite. It constructs no discrete Wheeler-DeWitt operator, triangulation dynamics, diffeomorphism action, physical state space or continuum limit. Its counterexample concerns an inference from symmetry and a nonzero kernel to positivity or idempotence, not a specified gravitational model. Original target retained as an obligation: Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegative and acts as a projection on diffeomorphism-invariant states; no such operator is constructed here, and the DeWitt supermetric of the continuum constraint is indefinite. Prior boundary: Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).
 
-### TFQ-1214 Pachner-move invariance of a triangulation sum (unsupported)
+### TFQ-1214 Untwisted finite-group state sum under 4D Pachner moves
 
 - UUID: `f484bc36-e1ec-5c89-92ad-bbe142989a70`
-- Parent: `TFQ-1212`
-- Status: `OPEN_OBLIGATION`
+- Parent: `TFQ-0397`
+- Status: `PROVED_LEAN`
 - DAG node: `FSP-PACHNER-INVARIANCE-CLAIM`
 - Paper: [derivation](derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md)
 
-Claimed: a discrete topological partition function on 4D triangulations is invariant under the 1-5, 2-4 and 3-3 Pachner moves; the source names no state-sum model, and the Regge action itself is not Pachner invariant.
+For every finite group G, the untwisted flat-connection count on the canonical 4D 1-5, 2-4 and 3-3 Pachner pairs, divided by |G| to the number of interior vertices, agrees for every fixed flat common boundary. The normalized total counts also agree for every finite compatible exterior family represented by dependent pairs, with the same outside-vertex count.
 
-Obligation: Fix a state-sum model (for example a Crane-Yetter type sum) and check its move invariance; nothing here bears on fermion signs.
+Obligation: Construct flat fillings by group potentials and boundary triangle cancellation; count them with interior-vertex normalization and sum over the declared exterior family. Remaining scope: The supplied finite group, untwisted flat-connection model, canonical local complexes and compatible finite exterior interface are explicit. No general triangulation/gluing-equivalence or PL-homeomorphism library is formalized; no Regge, twisted/Crane-Yetter, fermion-sign or continuum conclusion follows. Human review remains pending. Historical unnamed partition-function claim remains unsupported.
 
 ### TFQ-1215 CDT causal foliation and positive transfer matrix (unsupported)
 
