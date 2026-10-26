@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "b71f6cd664e83d5a8304033ab7e2180da026ee83abf4713c128a0c99dc3f7c3a"
+  "sha256_lf": "0441cdc67292cb5a883070594f4b58a377983cc5efa2e0905170d65ac8c806de"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -316,6 +316,11 @@
    "sha256": "c81e863a43fef5d200c457254fbcb535020cc36593508a46eed4d25e732d33ba",
    "sha256_basis": "bytes",
    "size": 2152
+  },
+  "checks/independent/qcv-import-noisy-reversible-limits.py": {
+   "sha256": "e63302be906e87895899c8ab3437ac87299f763396710847320faeaa0ca10c1b",
+   "sha256_basis": "bytes",
+   "size": 1037
   },
   "checks/independent/tfq-0003.py": {
    "sha256": "678a478fea1be4e7a2886aeafec1cf7f849cd5ca813ce022cbbd198489811560",
@@ -1263,9 +1268,9 @@
    "size": 9170
   },
   "dag/derivation_dag.json": {
-   "sha256": "b71f6cd664e83d5a8304033ab7e2180da026ee83abf4713c128a0c99dc3f7c3a",
+   "sha256": "0441cdc67292cb5a883070594f4b58a377983cc5efa2e0905170d65ac8c806de",
    "sha256_basis": "lf-normalised",
-   "size": 4827831
+   "size": 4831439
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -5418,9 +5423,9 @@
    "size": 3908
   },
   "dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md": {
-   "sha256": "214c92352394f02f001e8041289c11b37418dd47639692203d72801ace45c522",
+   "sha256": "70fe968448ac9159d574fb3b89365b3533572c77f9cc7b3688ceeac04f6cdf22",
    "sha256_basis": "lf-normalised",
-   "size": 1777
+   "size": 3464
   },
   "dag/derivations/29_computation/tfq_1322_qcv_noisy_history_trace_distance_decay.md": {
    "sha256": "e806ef87fd15d67692848a5c0a0036f8986114d8f07cc69b8d4d0acd65723b23",
@@ -7167,6 +7172,11 @@
    "sha256_basis": "lf-normalised",
    "size": 48561
   },
+  "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json": {
+   "sha256": "9c667b4a70cd9206bc073624eb6d80e145434ba7a96310580ecaf688ac4a67df",
+   "sha256_basis": "lf-normalised",
+   "size": 4520
+  },
   "dag/research/campaign_tfq-0003_lean_replay.json": {
    "sha256": "7c0560f059da49ee90605152bb8eff80cfa4cbe23106512c3f5688b9408454cd",
    "sha256_basis": "lf-normalised",
@@ -8118,9 +8128,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "sha256": "9b036fae749bfccbe40f381f15843a26f167eb052400c70fe9a515c81e5ccb34",
    "sha256_basis": "lf-normalised",
-   "size": 232565
+   "size": 234801
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -8826,6 +8836,11 @@
    "sha256": "06c68a7ea5e207d83a2211bb0c7960efb974cffc68ec30ea3c94042d8e903b0e",
    "sha256_basis": "bytes",
    "size": 1776
+  },
+  "lean4/CampaignQcvImportNoisyReversibleLimits.lean": {
+   "sha256": "08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655",
+   "sha256_basis": "bytes",
+   "size": 1490
   },
   "lean4/CampaignReportFiberDescent.lean": {
    "sha256": "135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56",
@@ -277069,17 +277084,1308 @@
    "absent_notes": [],
    "dependents": 6,
    "facts": {
-    "cited_code_files_not_tests": 0,
-    "counted_files": 1,
-    "lean_receipt_backed": 0,
+    "cited_code_files_not_tests": 1,
+    "counted_files": 3,
+    "lean_receipt_backed": 19,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
-    "symbols_found": 0
+    "symbols_found": 39
    },
    "flags": [],
-   "grade": "E1",
+   "grade": "E3",
    "id": "QCV-IMPORT-NOISY-REVERSIBLE-LIMITS",
    "items": [
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.below1",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.below1",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.below1",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.below2",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.below2",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.below2",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.below3",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.below3",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.below3",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.u1",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.u1",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.u1",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.u2",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.u2",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.u2",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.u3",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.u3",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.u3",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.u_step",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.u_step",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.u_step",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.u_zero",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.u_zero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.u_zero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.v1",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.v1",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.v1",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.v2",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.v2",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.v2",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.v3",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.v3",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.v3",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.v_step",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.v_step",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.v_step",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.v_zero",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.v_zero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.v_zero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.w0_u",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.w0_u",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.w0_u",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.w1",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.w1",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.w1",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.w2",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.w2",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.w2",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.w3",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.w3",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.w3",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.w_step",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.w_step",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.w_step",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.w_zero",
+     "cited_in": [
+      "receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits)"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.w_zero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignQcvImportNoisyReversibleLimits.w_zero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.below1",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.below1",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "below1",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.below2",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.below2",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "below2",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.below3",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.below3",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "below3",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.u1",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.u1",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "u1",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.u2",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.u2",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "u2",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.u3",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.u3",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "u3",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.u_step",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.u_step",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "u_step",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.u_zero",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.u_zero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "u_zero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.v1",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.v1",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "v1",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.v2",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.v2",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "v2",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.v3",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.v3",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "v3",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.v_step",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.v_step",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "v_step",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.v_zero",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.v_zero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "v_zero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.w0_u",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.w0_u",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "w0_u",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.w1",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.w1",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "w1",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.w2",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.w2",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "w2",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.w3",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.w3",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "w3",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.w_step",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.w_step",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "w_step",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignQcvImportNoisyReversibleLimits.w_zero",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1321"
+     ],
+     "command": "cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits",
+     "command_note": "then, in a scratch file that imports CampaignQcvImportNoisyReversibleLimits: #print axioms CampaignQcvImportNoisyReversibleLimits.w_zero",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "w_zero",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "record TFQ-1321"
+     ],
+     "command": null,
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "python_symbol",
+     "path": "checks/independent/qcv-import-noisy-reversible-limits.py",
+     "receipts": [],
+     "replay": "n/a",
+     "resolution": "present",
+     "symbol": "check",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
     {
      "canonical_symbol": null,
      "cited_in": [
@@ -277130,7 +278436,7 @@
      "where": null
     }
    ],
-   "next_step": "cite a Lean, Rust or Python symbol that exists in an in-repo file",
+   "next_step": "add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review",
    "records": [
     "TFQ-1321"
    ],
@@ -317706,6 +319012,28 @@
    "axiom_audit_passed": true,
    "axioms_itemised": true,
    "axioms_standard": true,
+   "axioms_union": [],
+   "built_successfully": true,
+   "checked_at": "2026-10-26T11:37:16Z",
+   "dag_node": "QCV-IMPORT-NOISY-REVERSIBLE-LIMITS",
+   "decl_count": 19,
+   "exit_code": 0,
+   "id": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json#0:CampaignQcvImportNoisyReversibleLimits",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignQcvImportNoisyReversibleLimits",
+   "path": "lean4/CampaignQcvImportNoisyReversibleLimits.lean",
+   "receipt_file": "dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json",
+   "receipt_file_sha256": "9c667b4a70cd9206bc073624eb6d80e145434ba7a96310580ecaf688ac4a67df",
+   "recorded_sha256": "08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
    "axioms_union": [
     "Quot.sound",
     "propext"
@@ -329946,7 +331274,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "9b036fae749bfccbe40f381f15843a26f167eb052400c70fe9a515c81e5ccb34",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -329972,7 +331300,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "9b036fae749bfccbe40f381f15843a26f167eb052400c70fe9a515c81e5ccb34",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -329998,7 +331326,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "9b036fae749bfccbe40f381f15843a26f167eb052400c70fe9a515c81e5ccb34",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330024,7 +331352,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "9b036fae749bfccbe40f381f15843a26f167eb052400c70fe9a515c81e5ccb34",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330050,7 +331378,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "9b036fae749bfccbe40f381f15843a26f167eb052400c70fe9a515c81e5ccb34",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330076,7 +331404,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "9b036fae749bfccbe40f381f15843a26f167eb052400c70fe9a515c81e5ccb34",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330102,7 +331430,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "9b036fae749bfccbe40f381f15843a26f167eb052400c70fe9a515c81e5ccb34",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330128,7 +331456,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "9b036fae749bfccbe40f381f15843a26f167eb052400c70fe9a515c81e5ccb34",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330154,7 +331482,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "9b036fae749bfccbe40f381f15843a26f167eb052400c70fe9a515c81e5ccb34",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330180,7 +331508,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "9b036fae749bfccbe40f381f15843a26f167eb052400c70fe9a515c81e5ccb34",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330206,7 +331534,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "9b036fae749bfccbe40f381f15843a26f167eb052400c70fe9a515c81e5ccb34",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330232,7 +331560,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "9b036fae749bfccbe40f381f15843a26f167eb052400c70fe9a515c81e5ccb34",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330258,7 +331586,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "9b036fae749bfccbe40f381f15843a26f167eb052400c70fe9a515c81e5ccb34",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330284,7 +331612,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "9b036fae749bfccbe40f381f15843a26f167eb052400c70fe9a515c81e5ccb34",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330310,7 +331638,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "9b036fae749bfccbe40f381f15843a26f167eb052400c70fe9a515c81e5ccb34",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330912,9 +332240,9 @@
  "summary": {
   "by_grade": {
    "E0": 153,
-   "E1": 209,
+   "E1": 208,
    "E2": 35,
-   "E3": 528,
+   "E3": 529,
    "E4": 0
   },
   "by_status": {
@@ -330934,16 +332262,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 37,
   "e3_nodes_with_test_but_no_review": 39,
   "lean_declarations_in_repo": {
-   "distinct": 2121,
+   "distinct": 2140,
    "no_receipt": 38,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 2060,
-   "replay_verified_and_declaration_itemised": 1993,
+   "replay_verified": 2079,
+   "replay_verified_and_declaration_itemised": 2012,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 2440
+   "present": 2459
   },
   "mismatch_nodes": 190,
   "mismatches_by_kind": {
@@ -330964,7 +332292,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 620,
+  "receipts_indexed": 621,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
@@ -330989,9 +332317,9 @@
    },
    "COMPUTATION": {
     "E0": 0,
-    "E1": 9,
+    "E1": 8,
     "E2": 3,
-    "E3": 70,
+    "E3": 71,
     "E4": 0
    },
    "CONSTRUCTOR_THEORY": {
@@ -331236,9 +332564,9 @@
    },
    "IMPORTED_ASSUMPTION": {
     "E0": 4,
-    "E1": 22,
+    "E1": 21,
     "E2": 0,
-    "E3": 44,
+    "E3": 45,
     "E4": 0
    },
    "OPEN": {

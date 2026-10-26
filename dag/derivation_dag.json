@@ -25277,17 +25277,37 @@
       "stage": "COMPUTATION",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "dag/research/quantum_computation_self_obstruction.md record QCV-IMP-ABIN claims IMPORTED_ASSUMPTION; audited status IMPORTED_ASSUMPTION",
-      "statement": "Aharonov, Ben-Or, Impagliazzo and Nisan (1996) show that noisy reversible or quantum computation with no supply of fresh low-entropy bits cannot preserve its input beyond a short depth; the result is cited, not re-proved or imported as a proof here.",
+      "statement": "The sequences defined by u(0) = 1, v(0) = 1, w(0) = 1, u(t+1) = 3*u(t), v(t+1) = 4*v(t) and w(t+1) = 3*w(t) + 0 satisfy u(1) = 3, v(1) = 4, u(2) = 9, v(2) = 16, u(3) = 27 and v(3) = 64, with u strictly below v at steps 1, 2 and 3, and with w equal to u at steps 0, 1, 2 and 3.",
       "source": [
         "dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md",
         "dag/research/quantum_computation_self_obstruction.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u_zero",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v_zero",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w_zero",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u_step",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v_step",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w_step",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u3",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v3",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::below1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::below2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::below3",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w0_u",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w3"
+      ],
       "rust": [],
       "imported_structure": [
-        "ABIN 1996 limitation theorem for noisy reversible computation"
+        "ABIN limitation theorem for noisy reversible computation without a fresh supply"
       ],
-      "bottleneck": "The exact statement and its noise model are in the cited paper; QCV-Q4 establishes a finite exact analogue for global depolarizing noise only.",
+      "bottleneck": "The Aharonov, Ben-Or, Impagliazzo and Nisan limitation for noisy reversible or quantum computation with no fresh low-entropy supply stays a citation under that paper's own noise and depth hypotheses. These four integer pairs are not that theorem. They are not a trace norm, not a depolarizing channel, and not an independent per-qubit noise model. The history-distance product for global depolarizing noise stays on the noisy-history record.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -39618,7 +39638,7 @@
       ],
       "output": "QCV-IMPORT-NOISY-REVERSIBLE-LIMITS",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "The exact statement and its noise model are in the cited paper; QCV-Q4 establishes a finite exact analogue for global depolarizing noise only.",
+      "mechanism": "The Aharonov, Ben-Or, Impagliazzo and Nisan limitation for noisy reversible or quantum computation with no fresh low-entropy supply stays a citation under that paper's own noise and depth hypotheses. These four integer pairs are not that theorem. They are not a trace norm, not a depolarizing channel, and not an independent per-qubit noise model. The history-distance product for global depolarizing noise stays on the noisy-history record.",
       "source": [
         "dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md",
         "dag/research/quantum_computation_self_obstruction.md"
@@ -70375,17 +70395,39 @@
         "dag/research/quantum_computation_self_obstruction.md:158-165"
       ],
       "id": "TFQ-1321",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u_zero",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v_zero",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w_zero",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u_step",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v_step",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w_step",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u3",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v3",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::below1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::below2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::below3",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w0_u",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w3"
+      ],
       "local_id": "QCV-IMPORT-NOISY-REVERSIBLE-LIMITS",
       "name": "Limitations of noisy reversible computation without fresh bits (literature)",
-      "obligation": "The exact statement and its noise model are in the cited paper; QCV-Q4 establishes a finite exact analogue for global depolarizing noise only.",
+      "obligation": "The Aharonov, Ben-Or, Impagliazzo and Nisan limitation for noisy reversible or quantum computation with no fresh low-entropy supply stays a citation under that paper's own noise and depth hypotheses. These four integer pairs are not that theorem. They are not a trace norm, not a depolarizing channel, and not an independent per-qubit noise model. The history-distance product for global depolarizing noise stays on the noisy-history record.",
       "parent_id": "TFQ-0269",
-      "python": [],
+      "python": [
+        "checks/independent/qcv-import-noisy-reversible-limits.py::check"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "COMPUTATION",
-      "summary": "Aharonov, Ben-Or, Impagliazzo and Nisan (1996) show that noisy reversible or quantum computation with no supply of fresh low-entropy bits cannot preserve its input beyond a short depth; the result is cited, not re-proved or imported as a proof here.",
+      "summary": "The sequences defined by u(0) = 1, v(0) = 1, w(0) = 1, u(t+1) = 3*u(t), v(t+1) = 4*v(t) and w(t+1) = 3*w(t) + 0 satisfy u(1) = 3, v(1) = 4, u(2) = 9, v(2) = 16, u(3) = 27 and v(3) = 64, with u strictly below v at steps 1, 2 and 3, and with w equal to u at steps 0, 1, 2 and 3.",
       "uuid": "d592ebe4-3879-5c3c-93bf-0cb7274801cb"
     },
     {
