@@ -244,7 +244,7 @@ cargo test -j 1 --offline --locked -p omega_wdp --test native_history_cost
 ```
 
 Use the configured shared Cargo target in a worktree. The
-[qualification receipt](https://github.com/dbccpage/the_symbol_game/blob/cd6205a801c4fa2e640e805ac556e704b6b51054/_intelligence/primitive_qm_eight_hour/native_history_cost_2026-10-11.json)
+qualification receipt
 records exact commands, versions, exits, warnings, source hashes and scopes.
 This block changes research notes, root Lean and native code; it does not alter
 the PO-000 release payload or any preserved source archive.

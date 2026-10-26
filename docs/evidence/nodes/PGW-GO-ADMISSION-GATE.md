@@ -61,7 +61,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0481_go_admission_gate.md`
 
 - file: [dag/derivations/02_genesis/tfq_0481_go_admission_gate.md](../../../dag/derivations/02_genesis/tfq_0481_go_admission_gate.md)
-- sha256 (`lf-normalised`): `6aef556cae96d6da0ba1cc28590b3024540a4fbce7dcacae96890ad4ed679c20`
+- sha256 (`lf-normalised`): `87752c157cb9520635be1a6c0b98008d6a1607076f4c76decc9c1be9b2969f99`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0481
 - counts toward the grade: no
@@ -84,7 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/fifteenth/admission.py::admission_of_reaching`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/code/fifteenth/admission.py::admission_of_reaching`
 
 ## Absences recorded by the TFQ records
 

@@ -99,7 +99,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0446_pruning_lemmas_cost_two.md`
 
 - file: [dag/derivations/02_genesis/tfq_0446_pruning_lemmas_cost_two.md](../../../dag/derivations/02_genesis/tfq_0446_pruning_lemmas_cost_two.md)
-- sha256 (`lf-normalised`): `eba366919ad4dce281545a1051bbbf9673ea3f5d407ceb51aab3b09ed875135a`
+- sha256 (`lf-normalised`): `e6df18da599af4a69c9a9b5471219d6ac60dbd39e99d996eb3e0c7a06906daad`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0446
 - counts toward the grade: no
@@ -115,10 +115,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::iter_cost2_deltas`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::iter_full_deltas`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::iter_cost2_deltas`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::pruned_and_unpruned_agree_on_valid_deltas`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::iter_cost2_deltas`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::iter_full_deltas`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::iter_cost2_deltas`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/enumeration.rs::pruned_and_unpruned_agree_on_valid_deltas`
 
 ## Routes
 

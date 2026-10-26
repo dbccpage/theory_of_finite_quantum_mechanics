@@ -60,7 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0540_wdp_asymmetry_injection_ledger.md`
 
 - file: [dag/derivations/06_wdp/tfq_0540_wdp_asymmetry_injection_ledger.md](../../../dag/derivations/06_wdp/tfq_0540_wdp_asymmetry_injection_ledger.md)
-- sha256 (`lf-normalised`): `3150d8467f4867d1fb9454b9b683235bbabb2441bb4ef5694b8fff68a97697e5`
+- sha256 (`lf-normalised`): `af0cb4de01faa44f378f9f0f91efb399503a8bb5d3395cde42906cb8cbe9b839`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0540
 - counts toward the grade: no
@@ -83,7 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/symmetry.py::exhaustive_relation_audit`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/symmetry.py::exhaustive_relation_audit`
 
 ## Absences recorded by the TFQ records
 

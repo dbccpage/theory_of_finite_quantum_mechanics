@@ -4,7 +4,7 @@ AuthorityEffect: None.
 
 ## What this is
 
-Seven paper folders copied byte for byte from a private research repository (`the_symbol_game`, folder `omega_engine_atlas/coda_atlas/F004_papers/`). They keep their original relative paths under `atlas/F004_papers/`:
+Seven paper folders copied from a private research repository. Each file is byte for byte except 38 files whose links into that repository were replaced by plain citations on 2026-10-26 (marked `edited_after_copy` in `PROVENANCE.json`). They keep their original relative paths under `atlas/F004_papers/`:
 
 - `001_finite_obstruction_calculus/000_genesis_19l57g1`
 - `001_finite_obstruction_calculus/000_pre_genesis_to_mssn`

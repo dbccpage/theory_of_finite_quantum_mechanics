@@ -5,7 +5,7 @@ GEN-WDP-O03/O04 for a supplied cyclic tower. It does not choose that tower,
 a topology or a physical continuum from the primitive mark.
 
 The actual source is
-[`coda_inductive_presentation.py` at the PR 407 merge](https://github.com/dbccpage/the_symbol_game/blob/4061122d1d4f8cf679bbd28c3bf2ef7a74bd9b7a/omega_engine_projects/finite_to_continuum/code/coda_inductive_presentation.py).
+`coda_inductive_presentation.py` at the PR 407 merge.
 The [original-function oracle](../evidence/dyadic_source_oracle.json) binds
 its bytes and those of `interval_calculus.py`. The following classification
 is derived from its declared maps; the source does not construct these limits.

@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0462_rung0_inheritance_replay.md`
 
 - file: [dag/derivations/02_genesis/tfq_0462_rung0_inheritance_replay.md](../../../dag/derivations/02_genesis/tfq_0462_rung0_inheritance_replay.md)
-- sha256 (`lf-normalised`): `7226f94d63e7a3a2c09e46a54012e27ba34a08959aa80f0b47ce826233fa4a05`
+- sha256 (`lf-normalised`): `5fb86e94dbb16252256710a316d0cf59d7a11589d993c0aa7f111337fd954a71`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0462
 - counts toward the grade: no
@@ -86,7 +86,7 @@ Named by the node; not in this repository and not checked here.
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second/claim_ledger.md:104`
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_inheritance/inheritance.py::all_free_growth`
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_inheritance/inheritance.py::supplies_are_inert`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/supply.rs::supply`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/supply.rs::supply`
 
 ## Routes
 

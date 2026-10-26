@@ -36,11 +36,11 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean statement of the C4 optimum`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs::PromptCochainEvaluator`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs)
+- `omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs::PromptCochainEvaluator` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_pfp/infrastructure/finite_qm_cochain_judge.py::NativeCochainJudge`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_pfp/infrastructure/finite_qm_cochain_judge.py)
-- [`omega_engine_pfp/tests/finite_qm_workflow/test_finite_qm_reference_workflow.py::test_native_certificate_positive_and_decisive_mutations`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_pfp/tests/finite_qm_workflow/test_finite_qm_reference_workflow.py)
+- `omega_engine_pfp/infrastructure/finite_qm_cochain_judge.py::NativeCochainJudge` (private upstream source, not in this repository)
+- `omega_engine_pfp/tests/finite_qm_workflow/test_finite_qm_reference_workflow.py::test_native_certificate_positive_and_decisive_mutations` (private upstream source, not in this repository)
 
 ---
 

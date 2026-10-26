@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0542_wdp_graph_cochain_host.md`
 
 - file: [dag/derivations/06_wdp/tfq_0542_wdp_graph_cochain_host.md](../../../dag/derivations/06_wdp/tfq_0542_wdp_graph_cochain_host.md)
-- sha256 (`lf-normalised`): `94080379782b293466c950601b94a8be04d860b959fcaeb86a772449fd7e0d06`
+- sha256 (`lf-normalised`): `7aebfb5f9897f60211dcf92658d4f767255cdd2fec8bb3eb4c8a7d32a954c022`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0542
 - counts toward the grade: no
@@ -90,9 +90,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/cochains.rs::FiniteComplex`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py::FiniteComplex`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py::d0`
+- `external:upstream/omega_engine/crates_rs/omega_wdp/src/cochains.rs::FiniteComplex`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py::FiniteComplex`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py::d0`
 
 ## Routes
 

@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0547_wdp_trichotomy_bounds.md`
 
 - file: [dag/derivations/06_wdp/tfq_0547_wdp_trichotomy_bounds.md](../../../dag/derivations/06_wdp/tfq_0547_wdp_trichotomy_bounds.md)
-- sha256 (`lf-normalised`): `91a8aa3730663d5c1bc6a4cacf678eaf0579187de879ed7d86decc02d5f62ba3`
+- sha256 (`lf-normalised`): `8ef860053168fef1c1fe63d45348649d14d146430a259b2dbc6942893fd15beb`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0547
 - counts toward the grade: no
@@ -91,9 +91,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs::TriadSignature`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::classify_signature`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature`
+- `external:upstream/omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs::TriadSignature`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::classify_signature`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature`
 
 ## Routes
 

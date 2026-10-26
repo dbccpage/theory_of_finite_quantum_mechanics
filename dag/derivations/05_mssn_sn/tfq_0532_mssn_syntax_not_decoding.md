@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust MSS-N decoder for scalar or edge-weight paths`
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_education/documentation/003_oemssn/code/check_mssn.py::main`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/003_oemssn/code/check_mssn.py)
+- `omega_engine_education/documentation/003_oemssn/code/check_mssn.py::main` (private upstream source, not in this repository)
 
 ---
 

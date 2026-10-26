@@ -69,7 +69,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0439_challenge3_current_regime_fails.md`
 
 - file: [dag/derivations/02_genesis/tfq_0439_challenge3_current_regime_fails.md](../../../dag/derivations/02_genesis/tfq_0439_challenge3_current_regime_fails.md)
-- sha256 (`lf-normalised`): `fbd1c08fc0f6ed8289a6921d2e71e15eb5f9449690f90ef80085dcae01841528`
+- sha256 (`lf-normalised`): `8d57ad1d6aca40f90599f195bafcfc426889cad34dd0d1a7b190cbd8db54fa7a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0439
 - counts toward the grade: no
@@ -85,8 +85,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::separable`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/separability.rs::challenge2_collapse_is_total_in_both_readings`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/observe.py::separable`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/separability.rs::challenge2_collapse_is_total_in_both_readings`
 
 ## Routes
 

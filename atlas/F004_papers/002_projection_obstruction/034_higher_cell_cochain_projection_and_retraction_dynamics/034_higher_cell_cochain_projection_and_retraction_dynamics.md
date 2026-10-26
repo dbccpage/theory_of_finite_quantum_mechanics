@@ -1600,7 +1600,7 @@ These are stated as unfinished work.
    [Primary manuscript](https://arxiv.org/abs/1307.3953).
    Distinguishes the closest product state from the product of marginals.
 5. Carroll, J. H. *Projection Obstruction repository series*.
-   [Repository collection](https://github.com/dbccpage/the_symbol_game/tree/main/omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction).
+   Repository collection.
    Related working papers motivate residual/cochain separation and
    projection-memory diagnostics. Their versions and deposition identities
    are not inferred from this package.

@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0538_wdp_quotient_defect_root_p.md`
 
 - file: [dag/derivations/06_wdp/tfq_0538_wdp_quotient_defect_root_p.md](../../../dag/derivations/06_wdp/tfq_0538_wdp_quotient_defect_root_p.md)
-- sha256 (`lf-normalised`): `788e6ecc41c72d9396746141f8a481ca6657122fffe8f16e8703c95920aaa5e2`
+- sha256 (`lf-normalised`): `ac36eb5f52dc37dd1dcdbbd7c3a6593ee0fa5ffd5596fb4a2f9dc1955d88ccff`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0538
 - counts toward the grade: no
@@ -91,8 +91,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/obstruction.rs::solve_exact_potential_weighted`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::matrix_quotient_l1`
+- `external:upstream/omega_engine/crates_rs/omega_wdp/src/obstruction.rs::solve_exact_potential_weighted`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/obstruction.py::matrix_quotient_l1`
 
 ## Routes
 
