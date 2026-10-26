@@ -1530,3 +1530,7 @@ lean_lib CampaignTfq0171PositiveMass where
 -- TFQ-0184 cubic count. Non-default target.
 lean_lib CampaignTfq0184CubicCount where
   roots := #[`CampaignTfq0184CubicCount]
+
+-- Campaign: L1-GS001-GAUGE-L1. Not a default target.
+lean_lib CampaignL1Gs001GaugeL1 where
+  roots := #[`CampaignL1Gs001GaugeL1]

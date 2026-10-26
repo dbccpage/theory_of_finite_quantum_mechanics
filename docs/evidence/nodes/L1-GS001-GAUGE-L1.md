@@ -4,15 +4,15 @@ Stage: [L1_EMERGENCE](../stages/L1_EMERGENCE.md). Status: `OPEN`. Evidence grade
 
 ## Statement
 
-> A faithful, edge-additive, maximal bounded-linear symmetry on the gauge presentation gives weighted l1 as the outer aggregation. Alternative route to l1 to L1-GS000-EDGEWISE-L1, with a different hypothesis set.
+> On two integer coordinates, for all integers x, y, and k and every coordinate swap and pair of coordinate signs, the aggregate |x| + |y| is unchanged by that signed permutation, equals |x| + |0| plus |0| + |y|, and after scaling both coordinates by k equals |k| times (|x| + |y|). The eight signed permutations send (1, 2) to (1, 2), (-1, 2), (1, -2), (-1, -2), (2, 1), (2, -1), (-2, 1), and (-2, -1), and these eight pairs are distinct, so equal images of (1, 2) force equal bit choices. For natural weights w1 and w2, w1 |x| + w2 |y| is unchanged by swapping the two coordinates for every integer pair if and only if w1 = w2, and in that case it equals w1 times (|x| + |y|). The weights 1 and 2 give 1 on (1, 0) and 2 on (0, 1). The pairs (3, 4) and (5, 0) both have squared length 25, and their aggregates are 7 and 5.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 3
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
-- distinct cited Lean declarations covered by a current replay receipt: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 11
+- distinct cited Lean declarations covered by a current replay receipt: 10
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Lean states intermediate steps only: under explicit norming, homogeneity and orbit hypotheses, the aggregate is constant on unit vectors and the edge weights are orbit-constant. The conclusion that the outer aggregation is weighted l1 is not derived in Lean.
+Two integer coordinates only. A faithful, edge-additive, maximal bounded-linear symmetry on a general gauge presentation is not derived, and weighted l1 is not obtained as that symmetry outer aggregation. Route L1-R-GS001 from L1-OBSERVER-AXIOMS-H1-H5 stays GAP_NO_DERIVATION. The conditional norming package in gs001_maximal_symmetry_direction_independence_and_gauge_proportionality remains a hypothesis package.
 
 ## Source status
 
@@ -45,20 +45,27 @@ Tier-1 direction independence (Lemma 4.1), gauge proportionality (Corollary 2), 
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/DerivationDagQMClosure.lean`
+### Lean: `lean4/CampaignL1Gs001GaugeL1.lean`
 
-- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
-- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
-- cited in: node.lean
+- file: [lean4/CampaignL1Gs001GaugeL1.lean](../../../lean4/CampaignL1Gs001GaugeL1.lean)
+- sha256 (`bytes`): `bf153360fcc3e39bfd6804c81ec821e576b85dbc4bd3cceab98f8835e55df7d7`
+- cited in: node.lean, receipt dag/research/campaign_l1-gs001-gauge-l1_lean_replay.json (CampaignL1Gs001GaugeL1)
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build DerivationDagQMClosure`
+  - receipt [dag/research/campaign_l1-gs001-gauge-l1_lean_replay.json](../../../dag/research/campaign_l1-gs001-gauge-l1_lean_replay.json) (module `CampaignL1Gs001GaugeL1`): recorded sha256 `bf153360fcc3e39bfd6804c81ec821e576b85dbc4bd3cceab98f8835e55df7d7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignL1Gs001GaugeL1`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.gs001_maximal_symmetry_direction_independence_and_gauge_proportionality` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.gs001_maximal_symmetry_direction_independence_and_gauge_proportionality` |
-| `QuantumMechanics.DerivationDagQMClosure.l1_gs001_and_wdp_ch08_replica_extensivity_vs_homogeneity` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_gs001_and_wdp_ch08_replica_extensivity_vs_homogeneity` |
-| `QuantumMechanics.DerivationDagQMClosure.l1_gs001_replica_and_phi1_quotient_invariance` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_gs001_replica_and_phi1_quotient_invariance` |
+| `CampaignL1Gs001GaugeL1.absolutely_homogeneous` | yes | yes | yes | propext | `#print axioms CampaignL1Gs001GaugeL1.absolutely_homogeneous` |
+| `CampaignL1Gs001GaugeL1.edge_additive` | yes | yes | yes | propext | `#print axioms CampaignL1Gs001GaugeL1.edge_additive` |
+| `CampaignL1Gs001GaugeL1.eight_images_of_one_two` | yes | yes | yes | none | `#print axioms CampaignL1Gs001GaugeL1.eight_images_of_one_two` |
+| `CampaignL1Gs001GaugeL1.equal_squared_length_splits_l1` | yes | yes | yes | none | `#print axioms CampaignL1Gs001GaugeL1.equal_squared_length_splits_l1` |
+| `CampaignL1Gs001GaugeL1.equal_weight_is_scaled_l1` | yes | yes | yes | propext | `#print axioms CampaignL1Gs001GaugeL1.equal_weight_is_scaled_l1` |
+| `CampaignL1Gs001GaugeL1.faithful_on_one_two` | yes | yes | yes | propext | `#print axioms CampaignL1Gs001GaugeL1.faithful_on_one_two` |
+| `CampaignL1Gs001GaugeL1.signed_permutation_gauge_shadow` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Gs001GaugeL1.signed_permutation_gauge_shadow` |
+| `CampaignL1Gs001GaugeL1.signed_permutation_preserves_l1` | yes | yes | yes | propext | `#print axioms CampaignL1Gs001GaugeL1.signed_permutation_preserves_l1` |
+| `CampaignL1Gs001GaugeL1.swap_invariant_weighted_iff` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Gs001GaugeL1.swap_invariant_weighted_iff` |
+| `CampaignL1Gs001GaugeL1.unequal_weights_separate_axes` | yes | yes | yes | none | `#print axioms CampaignL1Gs001GaugeL1.unequal_weights_separate_axes` |
 
 - counts toward the grade: yes
 
