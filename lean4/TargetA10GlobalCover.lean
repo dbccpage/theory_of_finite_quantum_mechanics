@@ -47,7 +47,7 @@ This module formalizes Target A10 of the MUB(6) formal derivations program:
 7. Exact Rational Volume Conservation:
    - Mathematical verification of exact volume conservation: $\sum \mathrm{vol}(C_i) = \mathrm{Vol}_{\mathrm{total}}$
      (`global_volume_conservation`), establishing that no uncovered gaps exist across chart boundaries.
-8. Grand Synthesis Theorem:
+8. Synthesis Theorem:
    - `target_a10_global_grand_synthesis`: Integrating the global partition cover with
      declared moduli reduction hypotheses to conclude `NoCompleteMUB6`.
 9. Axiom Audit:
@@ -753,10 +753,10 @@ theorem global_volume_conservation :
   rfl
 
 /-!
-### 9. Global Non-Extension Grand Synthesis Theorem
+### 9. Global Non-Extension Synthesis Theorem
 -/
 
-/-- **THE GLOBAL NON-EXTENSION GRAND SYNTHESIS THEOREM**:
+/-- **THE GLOBAL NON-EXTENSION SYNTHESIS THEOREM**:
     Integrating the certified global unified partition cover with moduli reduction:
     Assuming:
     1. A partition tree certified by kernel reflection (`checkGlobalUnifiedCover tree = true`);
@@ -768,8 +768,7 @@ theorem global_volume_conservation :
     Then for any point in the global atlas domain:
     - The real ZeroRel variety is empty: `ZeroRelVarietyEmpty pt.triple`;
     - No fourth mutually unbiased basis exists: `¬ HasFourthBasis pt.triple`;
-    - There exists no complete set of 7 mutually unbiased bases in dimension 6: `NoCompleteMUB6`.
-    Proven sorry-free with zero user axioms beyond standard Lean logic. -/
+    - Under the hypotheses of this theorem, there is no complete set of 7 mutually unbiased bases in dimension 6: `NoCompleteMUB6`. -/
 theorem target_a10_global_grand_synthesis
     (tree : GlobalUnifiedPartitionTree)
     (h_cover : checkGlobalUnifiedCover tree = true)

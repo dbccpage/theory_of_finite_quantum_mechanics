@@ -289,7 +289,7 @@ theorem szollosi_transition_unimodularity_obstruction_holds :
   trivial
 
 /-!
-### 4. Conjecture 2 & Proposition 4.2 Slice Moduli Bridge and Master Synthesis
+### 4. Conjecture 2 & Proposition 4.2 Slice Moduli Bridge and Synthesis
 
 Eliminates the external placeholder `ClassificationExhaustivenessPremise`
 (Beauchamp-Nicoară 2008 global classification conjecture) for MUB(6) by
@@ -455,7 +455,7 @@ theorem target_g1_orbit_exhaustiveness_theorem_pigeonhole_integrated
   have h_nomub := target_g1_orbit_exhaustiveness_theorem bridge h_bridge h_g3
   exact ⟨h_pairs, h_nomub⟩
 
-/-- **TARGET G1 MASTER PIGEONHOLE EXHAUSTIVENESS GRAND SYNTHESIS**:
+/-- **TARGET G1 MASTER PIGEONHOLE EXHAUSTIVENESS SYNTHESIS**:
     Unifies the Conjecture 2 & Proposition 4.2 slice bridge, the reindexed pigeonhole lemma,
     and the global cover bridge into a single comprehensive synthesis theorem:
     Under `Conjecture2SliceModuliBridge`:
@@ -502,7 +502,7 @@ theorem target_g1_orbit_exhaustiveness_theorem_legacy
     (pair_moduli_coverage_of_classification_premise h_class h_had)
     h_bridge h_g3
 
-/-- Legacy Target G1 Comprehensive Moduli Synthesis under `ClassificationExhaustivenessPremise`. -/
+/-- Legacy Target G1 Moduli Synthesis under `ClassificationExhaustivenessPremise`. -/
 theorem target_g1_comprehensive_moduli_synthesis_legacy
     (h_class : ClassificationExhaustivenessPremise)
     (h_had : TransitionHadamardProperty)
@@ -532,7 +532,7 @@ theorem target_g1_orbit_exhaustiveness_theorem_pigeonhole_integrated_legacy
   have h_nomub := target_g1_orbit_exhaustiveness_theorem_legacy h_class h_had h_bridge h_g3
   exact ⟨h_pairs, h_nomub⟩
 
-/-- Legacy Target G1 Master Pigeonhole Grand Synthesis under `ClassificationExhaustivenessPremise`. -/
+/-- Legacy Target G1 Master Pigeonhole Synthesis under `ClassificationExhaustivenessPremise`. -/
 theorem target_g1_master_pigeonhole_exhaustiveness_synthesis_legacy
     (h_class : ClassificationExhaustivenessPremise)
     (h_had : TransitionHadamardProperty)
@@ -558,7 +558,7 @@ theorem target_g1_master_pigeonhole_exhaustiveness_synthesis_legacy
 /-!
 ### 6. Axiom Audit
 Verifying that all theorems depend strictly on standard foundational axioms:
-`[propext, Classical.choice, Quot.sound]`. Zero sorry, zero admit.
+`[propext, Classical.choice, Quot.sound]`.
 -/
 
 #print axioms dephased_hadamard_imp_hadamard

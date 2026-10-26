@@ -277,7 +277,7 @@ theorem smale_krawczyk_equivalence
     exact hx_uniq y ⟨hy_zero, hy_box⟩
 
 /-!
-### 4. The Decisive Bifurcation Theorem
+### 4. The Bifurcation Theorem
 -/
 
 /-- A sentry witness for a partition cell C and reference triple T.
@@ -288,7 +288,7 @@ inductive CellSentryWitness (C : CertifiedPartitionCell) (T : MUTriple) : Prop w
   | obstruction (h_margin : 0 < C.margin.num) (h_cert : HasCurvatureCertificate T) : CellSentryWitness C T
   | root_found (U_star : Basis) (h_root : F_system T U_star) : CellSentryWitness C T
 
-/-- The two decisive branches of the Smale root sentry on a partition cell C for triple T:
+/-- The two branches of the Smale root sentry on a partition cell C for triple T:
     - `branchA`: Strictly positive curvature margin (ε_C > 0) certifying ZeroRelVarietyEmpty T
       and precluding fourth-basis extensions (¬ HasFourthBasis T);
     - `branchB`: An exact algebraic root U* ∈ C with F(T, U*) = 0 certifying HasFourthBasis T
@@ -297,7 +297,7 @@ inductive DecisiveBifurcation (T : MUTriple) : Prop where
   | branchA (ε : ExactFraction) (hε : 0 < ε.num) (h_empty : ZeroRelVarietyEmpty T) : DecisiveBifurcation T
   | branchB (U_star : Basis) (h_root : F_system T U_star) (h_ext : HasFourthBasis T ∧ MUB6_ge_4 T) : DecisiveBifurcation T
 
-/-- **The Decisive Bifurcation Theorem for a Certified Cell**:
+/-- **The Bifurcation Theorem for a Certified Cell**:
     For any certified cell C in the moduli atlas and reference triple T with sentry witness:
     Either the curvature margin is strictly positive (ε_C > 0), which implies that the
     real ZeroRel variety is empty (ZeroRelVarietyEmpty T) and no fourth basis exists;
@@ -314,7 +314,7 @@ theorem decisive_bifurcation_cell
     have h_ext := fourth_basis_of_system_root T U_star h_root
     exact DecisiveBifurcation.branchB U_star h_root h_ext
 
-/-- **Theorem: Decisive Bifurcation Mutual Exclusivity**:
+/-- **Theorem: Bifurcation Mutual Exclusivity**:
     Branch A and Branch B cannot hold simultaneously:
     a triple cannot simultaneously possess an empty ZeroRel variety and admit a root U*
     of the 108-polynomial system F(T, U*) = 0. -/
@@ -324,7 +324,7 @@ theorem decisive_bifurcation_exclusive (T : MUTriple) :
   have h_in : InZeroRelVariety T U := (F_system_iff_in_zerorel_variety T U).mp hU
   exact h_empty ⟨U, h_in⟩
 
-/-- **Theorem: Decisive Bifurcation Exhaustiveness**:
+/-- **Theorem: Bifurcation Exhaustiveness**:
     For any reference triple T, exactly one of the two outcomes holds:
     either ZeroRelVarietyEmpty T (Branch A), or ∃ U*, F_system T U* (Branch B).
     The two branches are mutually exclusive and exhaustive. -/
@@ -348,7 +348,7 @@ theorem decisive_bifurcation_exhaustive (T : MUTriple) :
       exact h_not_exists ⟨U, hF⟩
     exact ⟨h_empty, h_not_exists⟩
 
-/-- **The Decisive Bifurcation Sentry Theorem**:
+/-- **The Bifurcation Sentry Theorem**:
     The root sentry operates as an infallible detector:
     1. If any exact root U* exists with F(T, U*) = 0, the sentry cannot certify an empty variety
        (Branch A is precluded, Branch B holds, witnessing HasFourthBasis T and MUB6_ge_4 T).
@@ -480,7 +480,7 @@ theorem Cover56CellWitness (cover : CertifiedModuliPartitionCover56) (i : Fin 56
     (h_cert : HasCurvatureCertificate T) : CellSentryWitness (cover.cells i) T :=
   CellSentryWitness.obstruction (cover.cells_margin_pos i) h_cert
 
-/-- Decisive bifurcation on cell i of the 56-cell cover unconditionally selects Branch A. -/
+/-- Bifurcation on cell i of the 56-cell cover selects Branch A. -/
 theorem cover56_cell_decisive_bifurcation
     (cover : CertifiedModuliPartitionCover56) (i : Fin 56) (T : MUTriple)
     (h_cert : HasCurvatureCertificate T) :
@@ -536,16 +536,16 @@ theorem cover56_precludes_branch_b
   exact h_res.2.1 U hU
 
 /-!
-### 5. Grand Synthesis & Axiom Audit
+### 5. Synthesis & Axiom Audit
 -/
 
-/-- **Target A12 Grand Synthesis Theorem**:
+/-- **Target A12 Synthesis Theorem**:
     Smale α-Theory Root Sentry & Counterexample Extraction Engine:
     1. The 108-polynomial system F(T, U) = 0 is equivalent to ZeroRel and InZeroRelVariety.
     2. Smale point-estimate criterion certifies unique root existence when α < α₀ = 157/1000.
     3. Krawczyk interval contraction K(X) ⊂ int(X) verifies unique root existence.
     4. Smale and Krawczyk verifications are equivalent characterizations of exact algebraic zeros.
-    5. The Decisive Bifurcation Theorem partitions any cell into Branch A (empty variety) or Branch B (root found).
+    5. The Bifurcation Theorem partitions any cell into Branch A (empty variety) or Branch B (root found).
     6. Root sentry guarantees that Branch A and Branch B are exhaustive and mutually exclusive. -/
 theorem target_a12_grand_synthesis
     (T : MUTriple) :

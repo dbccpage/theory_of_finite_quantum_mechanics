@@ -16,13 +16,6 @@ Mateo Cárdenes Wuttig & Joseph Tindall (2026), "A Complete Classification of
 Complex Hadamard Matrices of Order Six", arXiv:2608.18053.
 CODA Campaign 7: 3D Dyadic Octree Volume Covering.
 
-Restricted words declaration:
-- equivalent: Defined precisely as Hadamard gauge equivalence (H ~_Had H') or Unitary equivalence.
-- complete: Used strictly for a 7-basis pairwise MU configuration (CompleteMUB6) or complete classification.
-- free: Used strictly in mathematical phrases such as sorry-free compilation or phase gauge freedom.
-- canonical: Used strictly for fixed reference matrix representatives in declared coordinates.
-- forced: Used strictly to denote deductive mathematical implication under established algebraic constraints.
-- No unproved mathematical claims are asserted globally or without declared conditional scope.
 
 ## Mathematical Architecture
 

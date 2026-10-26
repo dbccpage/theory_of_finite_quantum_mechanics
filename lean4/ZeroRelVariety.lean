@@ -5,12 +5,6 @@ import WallTransport
 
 AuthorityEffect: None
 
-Restricted words declaration:
-- equivalent: Defined precisely as Hadamard equivalence (gauge orbit) or Unitary equivalence.
-- complete: Used strictly for a 7-basis pairwise MU configuration or complete classification.
-- free: Used strictly in mathematical phrases such as sorry-free compilation or phase gauge freedom.
-- canonical: Used strictly for fixed reference matrix representatives in their declared coordinates.
-- No unproved mathematical claims are asserted globally or without declared scope.
 
 This module formalizes:
 1. The ZeroRel polynomial ideal and algebraic variety governing 3 mutually unbiased bases in dimension 6:
@@ -624,7 +618,7 @@ theorem curvature_bound_implies_variety_empty
   rw [h_zero] at h_le
   exact C.not_le_of_lt hε h_le
 
-/-- **THE GRAND SYNTHESIS THEOREM (Sub-Obligations G2.1, G2.2, G2.3 Unified)**:
+/-- **THE SYNTHESIS THEOREM (Sub-Obligations G2.1, G2.2, G2.3 Unified)**:
 For any MU triple T in dimension 6:
 1. The real vanishing locus of Psi^sq is the ZeroRel variety V_R(ZeroRel_T).
 2. The variety is invariant under all unitary transformations V ∈ U(6).

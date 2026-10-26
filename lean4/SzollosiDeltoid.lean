@@ -7,14 +7,6 @@ import ModuliReduction
 
 AuthorityEffect: None
 
-Restricted words declaration:
-- equivalent: Defined precisely as Hadamard gauge equivalence (H ~_Had H'), Unitary equivalence,
-  or mathematical logical equivalence (↔).
-- complete: Used strictly for a 7-basis pairwise MU configuration (CompleteMUB6) or complete classification.
-- free: Used strictly in mathematical phrases such as sorry-free compilation or phase gauge freedom.
-- canonical: Used strictly for fixed reference matrix representatives in declared coordinates.
-- forced: Used strictly to denote deductive mathematical implication under established algebraic constraints.
-- No unproved mathematical claims are asserted globally or without declared conditional scope.
 
 ## Mathematical Architecture
 
@@ -1259,7 +1251,7 @@ then:
 2. B₆(θ) admits NO mutually unbiased fourth basis:
    `¬ HasFourthBasis T`.
 
-Proven unconditionally using `curvature_bound_implies_variety_empty` from `ZeroRelVariety.lean`
+Proven using `curvature_bound_implies_variety_empty` from `ZeroRelVariety.lean`
 with standard Lean core logic only (`[propext]`). -/
 theorem szollosi_extension_obstruction
     {C : CurvatureCarrier} (CS : CurvatureSpace C)
@@ -1274,7 +1266,7 @@ theorem szollosi_extension_obstruction
     (no_fourth_basis_iff_variety_empty T_witness.triple).mpr h_empty
   exact ⟨h_empty, h_no4⟩
 
-/-- **Grand Synthesis for the Szöllősi Deltoid Arc**:
+/-- **Synthesis for the Szöllősi Deltoid Arc**:
 Combines 2-circulant column orthogonality, the complex Hadamard property,
 and the ZeroRel extension obstruction under certified curvature bounds. -/
 theorem szollosi_deltoid_arc_grand_synthesis

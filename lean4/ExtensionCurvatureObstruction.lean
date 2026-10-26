@@ -153,7 +153,7 @@ theorem finite_cover_min_pos {ι : Type*} (s : Finset ι) (hs : s.Nonempty)
 /-- The Invariant-Systems d=6 wall value `W = (88 + 3√6)/100` (cited; not derived). -/
 noncomputable def W : ℝ := (88 + 3 * Real.sqrt 6) / 100
 
-/-- `W < 1`, proved unconditionally from `√6 < 4` (i.e. `6 < 16`). This is the
+/-- `W < 1`, proved from `√6 < 4` (i.e. `6 < 16`). This is the
 strictness that turns the cited bound `max f = W` into "no perfect-unbiased vector"
 (ENC-1134 step 1). -/
 theorem W_lt_one : W < 1 := by

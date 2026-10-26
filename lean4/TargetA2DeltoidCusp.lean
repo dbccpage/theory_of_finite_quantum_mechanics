@@ -28,7 +28,7 @@ This module formalizes Target A2 Phase 2 of the MUB(6) formal derivations progra
 4. Desingularized Lipschitz Gap Propagation:
    - Pointwise gap propagation: f(u, v) ≥ ε_cusp - L_proj · δ = 12133 / 30000 > 0.
    - Propagation of strictly positive margin across desingularized chart neighborhoods.
-5. Deltoid Cusp Extension Obstruction & Grand Synthesis:
+5. Deltoid Cusp Extension Obstruction & Synthesis:
    - Proving that no putative MUB quadruple extends across deltoid cusp neighborhoods:
      ZeroRelVarietyEmpty (T p) ∧ ¬ HasFourthBasis (T p).
    - Integration with moduli reduction hypotheses (G1, G2, G3) concluding `NoCompleteMUB6`.
@@ -338,7 +338,7 @@ theorem desingularized_pointwise_gap_strictly_positive
   omega
 
 /-!
-### 5. Deltoid Cusp Obstruction & Grand Synthesis
+### 5. Deltoid Cusp Obstruction & Synthesis
 -/
 
 /-- **Deltoid Cusp Blow-Up Extension Obstruction**:
@@ -363,11 +363,11 @@ theorem deltoid_cusp_witness_extension_obstruction
     ZeroRelVarietyEmpty W.triple ∧ ¬ HasFourthBasis W.triple :=
   deltoid_cusp_no_fourth_basis CS params W h_bound
 
-/-- **Target A2 Deltoid Cusp Grand Synthesis Theorem**:
+/-- **Target A2 Deltoid Cusp Synthesis Theorem**:
     Under the desingularized blow-up deltoid cusp obstruction together with the moduli reduction
     hypotheses (`ModuliCoverageConjecture`, `AtlasCoversKnownModuli`, `GaugeInvariantClassMembership`,
     `G2_Variety`, `G3`), any deltoid cusp triple witness has empty ZeroRel variety, admits no fourth
-    basis, and unconditionally yields `NoCompleteMUB6`. -/
+    basis, and yields `NoCompleteMUB6`. -/
 theorem target_a2_deltoid_cusp_grand_synthesis
     {C : CurvatureCarrier} (CS : CurvatureSpace C)
     (params : DeltoidCuspParameters C)
@@ -385,7 +385,7 @@ theorem target_a2_deltoid_cusp_grand_synthesis
   have h_grand := moduli_reduction_grand_synthesis h_cov h_atlas h_gauge h_g2_var h_g3
   exact ⟨h_cusp.1, h_cusp.2, h_grand⟩
 
-/-- **Pointwise Deltoid Cusp Grand Synthesis Theorem**:
+/-- **Pointwise Deltoid Cusp Synthesis Theorem**:
     Across any parameterized family of triples T : BlowUpCoordinates → MUTriple in the deltoid cusp
     neighborhood, if T(c) satisfies the curvature bound, then ZeroRel variety is empty, no fourth basis
     exists, and NoCompleteMUB6 follows. -/

@@ -5,7 +5,7 @@ import TargetA11OrbitExhaustiveness
 import TargetA12SmaleSentry
 
 /-!
-# Target A13: Grand Synthesis Theorem Instantiation in Lean 4
+# Target A13: Synthesis Theorem Instantiation in Lean 4
 
 AuthorityEffect: None.
 The formal result is strictly scoped to the declared classification premises,
@@ -23,7 +23,7 @@ This module formalizes Target A13 of the MUB(6) formal derivations program:
    - G3 (Combinatorial Basis Gluing): Discharged constructively as a mathematical
      theorem in pure Lean 4 core (`g3_theorem`).
    - Structural unification: `GrandSynthesisTripod` and `grand_synthesis_tripod_assembly`.
-2. **Overarching Grand Synthesis Theorems**:
+2. **Synthesis Theorems**:
    - `mub6_grand_synthesis_conditional`:
      Under `ClassificationExhaustivenessPremise`, `TransitionHadamardProperty`, and
      `TransitionMatrixGlobalCoverBridge canonicalGlobalPartitionTree`, for every MU triple $T$
@@ -36,7 +36,7 @@ This module formalizes Target A13 of the MUB(6) formal derivations program:
      transition Hadamardness, atlas coverage of known moduli, gauge invariance, and G2.
    - `mub6_grand_synthesis_no_complete_mub6_variety`:
      Configuration-level non-existence `NoCompleteMUB6` under `G2_Variety`.
-3. **Decisive Bifurcation Synthesis & Smale Root Sentry**:
+3. **Bifurcation Synthesis & Smale Root Sentry**:
    - Equivalence of fourth basis existence with exact root existence of the 108 scalar
      polynomial system: `HasFourthBasis T ↔ ∃ U, F_system T U`.
    - Exact equivalence with Smale point estimate root existence: if a Smale point
@@ -48,13 +48,13 @@ This module formalizes Target A13 of the MUB(6) formal derivations program:
      and strictly precludes Branch B (`∀ U, ¬ F_system pt.triple U`, `¬ MUB6_ge_4 pt.triple`,
      and preclusion of any Smale point certificate).
 4. **Direct Connection to ModuliReduction.lean**:
-   - Connecting the overarching grand synthesis directly to `ModuliReduction.lean`'s
+   - Connecting the overarching synthesis directly to `ModuliReduction.lean`'s
      four foundational reduction theorems:
      (1) `connection_to_moduli_reduction_theorem`
      (2) `connection_to_moduli_reduction_via_zerorel_variety`
      (3) `connection_to_moduli_reduction_grand_synthesis`
      (4) `connection_to_no_complete_mub6_of_global_cover_bridge`
-5. **Master Synthesis & Axiom Audit**:
+5. **Synthesis & Axiom Audit**:
    - `target_a13_grand_synthesis_master`: Unified synthesis packaging all major
      pillars of the derivation into an exhaustive record with 0 `sorry`, 0 `admit`.
    - Full `#print axioms` audit verifying that every theorem depends solely on standard
@@ -85,7 +85,7 @@ structure GrandSynthesisTripod where
   g2_holds : G2
   g3_holds : G3
 
-/-- Assembling the Grand Synthesis Tripod into configuration-level non-existence `NoCompleteMUB6`. -/
+/-- Assembling the Synthesis Tripod into configuration-level non-existence `NoCompleteMUB6`. -/
 theorem grand_synthesis_tripod_assembly (tripod : GrandSynthesisTripod) :
     NoCompleteMUB6 :=
   gluing_assembly ⟨tripod.g1_holds, tripod.g2_holds, tripod.g3_holds⟩
@@ -116,7 +116,7 @@ def ClassCoveredByTree (tree : GlobalUnifiedPartitionTree) (c : TripleClass) : P
 
 /-- Premise G2 constructively verified from the certified canonical global partition tree:
     If all covered classes are represented in `canonicalGlobalPartitionTree`,
-    then Premise G2 holds unconditionally. -/
+    then Premise G2 holds. -/
 theorem g2_of_canonical_global_cover
     (h_cov : ∀ c, CoveredClasses c → ClassCoveredByTree canonicalGlobalPartitionTree c) :
     G2 := by
@@ -128,7 +128,7 @@ theorem g2_of_canonical_global_cover
 
 /-- Premise G2_Variety constructively verified from the certified canonical global partition tree:
     If all covered classes are represented in `canonicalGlobalPartitionTree`,
-    then Premise G2_Variety holds unconditionally. -/
+    then Premise G2_Variety holds. -/
 theorem g2_variety_of_canonical_global_cover
     (h_cov : ∀ c, CoveredClasses c → ClassCoveredByTree canonicalGlobalPartitionTree c) :
     G2_Variety := by
@@ -136,16 +136,15 @@ theorem g2_variety_of_canonical_global_cover
   exact g2_of_canonical_global_cover h_cov
 
 /-!
-### 2. Overarching Grand Synthesis Theorems
+### 2. Synthesis Theorems
 -/
 
-/-- **Overarching Grand Synthesis Theorem (Conditional Pointwise Non-Extension)**:
+/-- **Synthesis Theorem (Conditional Pointwise Non-Extension)**:
     Under the Beauchamp-Nicoară & Szöllősi classification exhaustiveness premise,
     transition Hadamardness, and the global partition cover bridge,
     for EVERY mutually unbiased triple T in dimension 6:
     1. The real ZeroRel variety is empty (`ZeroRelVarietyEmpty T`).
-    2. No fourth mutually unbiased basis exists (`¬ HasFourthBasis T`).
-    Proven sorry-free with 0 custom axioms. -/
+    2. No fourth mutually unbiased basis exists (`¬ HasFourthBasis T`). -/
 theorem mub6_grand_synthesis_conditional
     (h_class : ClassificationExhaustivenessPremise)
     (h_had : TransitionHadamardProperty)
@@ -163,7 +162,7 @@ theorem mub6_grand_synthesis_conditional_no_fourth_basis
     ¬ HasFourthBasis T :=
   (mub6_grand_synthesis_conditional h_class h_had h_bridge T).2
 
-/-- **Configuration-Level Grand Synthesis Theorem (via Abstract Classes)**:
+/-- **Configuration-Level Synthesis Theorem (via Abstract Classes)**:
     Under `ClassificationExhaustivenessPremise`, `TransitionHadamardProperty`,
     `AtlasCoversKnownModuli`, `GaugeInvariantClassMembership`, and `G2`,
     there exists no complete set of seven mutually unbiased bases in dimension 6:
@@ -178,7 +177,7 @@ theorem mub6_grand_synthesis_no_complete_mub6
   have hG1 : G1 := g1_from_classification_premise h_class h_had h_atlas h_gauge
   exact gluing_reduction_G1_G2 ⟨hG1, h_g2⟩
 
-/-- Configuration-level Grand Synthesis under `G2_Variety`. -/
+/-- Configuration-level Synthesis under `G2_Variety`. -/
 theorem mub6_grand_synthesis_no_complete_mub6_variety
     (h_class : ClassificationExhaustivenessPremise)
     (h_had : TransitionHadamardProperty)
@@ -188,7 +187,7 @@ theorem mub6_grand_synthesis_no_complete_mub6_variety
     NoCompleteMUB6 :=
   mub6_grand_synthesis_no_complete_mub6 h_class h_had h_atlas h_gauge (g2_iff_variety.mpr h_g2_var)
 
-/-- **Configuration-Level Grand Synthesis Theorem (via Global Cover Bridge)**:
+/-- **Configuration-Level Synthesis Theorem (via Global Cover Bridge)**:
     Under `ClassificationExhaustivenessPremise`, `TransitionHadamardProperty`,
     and `TransitionMatrixGlobalCoverBridge canonicalGlobalPartitionTree`,
     no complete set of 7 mutually unbiased bases exists in dimension 6 (`NoCompleteMUB6`).
@@ -203,7 +202,7 @@ theorem mub6_grand_synthesis_no_complete_mub6_bridged
   exact no_complete_mub6_of_global_cover_bridge h_pair h_bridge g3_theorem
 
 /-!
-### 3. Decisive Bifurcation Synthesis & Smale Root Sentry
+### 3. Bifurcation Synthesis & Smale Root Sentry
 -/
 
 /-- Equivalence between fourth basis existence and exact root existence of the 108 scalar polynomial system. -/
@@ -225,7 +224,7 @@ theorem smale_root_yields_fourth_basis
   have h_root := sc.cert.root_is_zero
   exact fourth_basis_of_system_root T sc.cert.root h_root
 
-/-- **The Decisive Bifurcation Synthesis Theorem**:
+/-- **The Bifurcation Synthesis Theorem**:
     For any point `pt` in the domain of the certified global partition tree:
     1. Exact equivalence: `HasFourthBasis pt.triple ↔ ∃ U, F_system pt.triple U`;
     2. Exact equivalence: `HasFourthBasis pt.triple ↔ MUB6_ge_4 pt.triple`;
@@ -267,7 +266,7 @@ theorem mub6_decisive_bifurcation_synthesis
     exact h_no_root K.root h_zero
   exact ⟨h_eq1, h_eq2, h_empty, h_no_root, h_no4, h_not_ge4, h_no_smale, h_no_krawczyk⟩
 
-/-- Decisive bifurcation synthesis specialized to the concrete canonical partition tree `canonicalGlobalPartitionTree`. -/
+/-- Bifurcation synthesis specialized to the concrete canonical partition tree `canonicalGlobalPartitionTree`. -/
 theorem mub6_decisive_bifurcation_canonical_synthesis
     (pt : GlobalPoint)
     (h_pt : CertifiedPointInGlobalDomain pt canonicalGlobalPartitionTree) :
@@ -313,7 +312,7 @@ theorem connection_to_moduli_reduction_via_zerorel_variety
     h_had h_atlas h_gauge h_g2_var
 
 /-- **Direct Connection to `moduli_reduction_grand_synthesis`**:
-    Deducing the Moduli Reduction Grand Synthesis from `ClassificationExhaustivenessPremise`
+    Deducing the Moduli Reduction Synthesis from `ClassificationExhaustivenessPremise`
     and `g3_theorem`. -/
 theorem connection_to_moduli_reduction_grand_synthesis
     (h_class : ClassificationExhaustivenessPremise)
@@ -337,7 +336,7 @@ theorem connection_to_no_complete_mub6_of_global_cover_bridge
   exact no_complete_mub6_of_global_cover_bridge h_pair h_bridge g3_theorem
 
 /-!
-### 5. Master Synthesis Theorem
+### 5. Synthesis Theorem
 -/
 
 /-- Conjecture 3 Szöllősi Deltoid Closure Synthesis:
@@ -352,19 +351,19 @@ theorem mub6_conjecture3_szollosi_closure_synthesis
     ¬ MUB6_ge_4 pt.triple :=
   canonical_conjecture3_szollosi_deltoid_closure pt h_pt
 
-/-- **TARGET A13 MASTER GRAND SYNTHESIS THEOREM**:
-    Overarching Synthesis of the MUB(6) Formal Derivations Program:
+/-- **TARGET A13 MASTER SYNTHESIS THEOREM**:
+    Synthesis of the MUB(6) Formal Derivations Program:
     1. Unification of Premises G1, G2, and G3:
        - G1 discharged from `ClassificationExhaustivenessPremise`;
        - G2 certified constructively by `checkGlobalUnifiedCover_certified_sound`;
        - G3 proved constructively in core Lean 4 (`g3_theorem`).
-    2. Overarching conditional non-extension:
+    2. conditional non-extension:
        `∀ T, ZeroRelVarietyEmpty T ∧ ¬ HasFourthBasis T`.
     3. Configuration-level non-existence:
        `NoCompleteMUB6` via both the global cover bridge and abstract class assembly.
-    4. Decisive bifurcation closure:
+    4. Bifurcation closure:
        `HasFourthBasis T ↔ ∃ U, F_system T U`;
-       Branch A is strictly certified and Branch B is unconditionally precluded across the global cover.
+       Branch A is strictly certified and Branch B is precluded across the global cover.
     5. Direct connection to all four reduction theorems of `ModuliReduction.lean`.
     6. Kernel reflection & volume conservation:
        `checkGlobalUnifiedCover canonicalGlobalPartitionTree = true` and `global_volume_conservation`.
@@ -385,7 +384,7 @@ theorem target_a13_grand_synthesis_master
     NoCompleteMUB6 ∧
     -- (3) Configuration-level non-existence via abstract classes (G1 ∧ G2 ∧ G3)
     (G1 ∧ G2 ∧ G3 → NoCompleteMUB6) ∧
-    -- (4) Pure combinatorial basis gluing holds unconditionally
+    -- (4) Pure combinatorial basis gluing holds
     G3 ∧
     -- (5) Premise G1 discharged from classification premise
     G1 ∧

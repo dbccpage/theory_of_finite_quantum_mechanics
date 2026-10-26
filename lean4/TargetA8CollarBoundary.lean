@@ -37,8 +37,8 @@ This module formalizes Target A8 of the MUB(6) formal derivations program:
    - Structure `CompositeBoundaryWitness` and theorem `composite_collar_karlsson_obstruction`:
      Any putative MUB quadruple admits no realization on the composite collar-Karlsson boundary domain
      (`ZeroRelVarietyEmpty (T p) ∧ ¬ HasFourthBasis (T p)`).
-6. Target A8 Grand Synthesis:
-   - Theorem `target_a8_collar_boundary_grand_synthesis`: Unconditional integration with moduli reduction hypotheses
+6. Target A8 Synthesis:
+   - Theorem `target_a8_collar_boundary_grand_synthesis`: integration with moduli reduction hypotheses
      (`ModuliCoverageConjecture`, `AtlasCoversKnownModuli`, `GaugeInvariantClassMembership`, `G2_Variety`, `G3`)
      establishing `NoCompleteMUB6`.
 7. Axiom Audit:
@@ -412,11 +412,11 @@ theorem composite_collar_karlsson_obstruction
     exact h_col
 
 /-!
-### 6. Target A8 Grand Synthesis
+### 6. Target A8 Synthesis
 -/
 
-/-- **Target A8 Grand Synthesis Theorem**.
-    Unconditional integration of the collar-boundary gluing and transition cocycle
+/-- **Target A8 Synthesis Theorem**.
+    integration of the collar-boundary gluing and transition cocycle
     with moduli reduction hypotheses (`ModuliCoverageConjecture`, `AtlasCoversKnownModuli`,
     `GaugeInvariantClassMembership`, `G2_Variety`, `G3`) establishing `NoCompleteMUB6`. -/
 theorem target_a8_collar_boundary_grand_synthesis

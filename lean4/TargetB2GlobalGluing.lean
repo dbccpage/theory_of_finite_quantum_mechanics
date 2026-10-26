@@ -49,7 +49,7 @@ This module formalizes Target B2 of the MUB(6) formal derivations program:
    - Lift of chartwise obstructions to all points m ∈ ℳ₆:
      ∀ m ∈ ℳ₆, ZeroRelVarietyEmpty(m.triple) ∧ ¬ HasFourthBasis(m.triple).
 7. **Master Global Gluing Synthesis**:
-   - Comprehensive synthesis `target_b2_master_global_gluing_synthesis` establishing
+   - synthesis `target_b2_master_global_gluing_synthesis` establishing
      configuration-level non-existence `NoCompleteMUB6`.
 8. **Axiom Verification Audit**:
    - Explicit `#print axioms` audit verifying strict dependence on standard foundational
@@ -835,7 +835,7 @@ theorem target_b2_master_global_gluing_synthesis
           h_global,
           h_no_complete⟩
 
-/-- Grand Synthesis Tripod unification for Target B2. -/
+/-- Synthesis Tripod unification for Target B2. -/
 theorem target_b2_grand_synthesis_tripod
     (h_class : ClassificationExhaustivenessPremise)
     (h_had : TransitionHadamardProperty)

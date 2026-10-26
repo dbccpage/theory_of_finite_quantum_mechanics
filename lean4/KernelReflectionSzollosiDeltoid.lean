@@ -305,7 +305,7 @@ theorem szollosi_deltoid_moduli_reduction_step
     NoCompleteMUB6 :=
   moduli_reduction_grand_synthesis h_cov h_atlas h_gauge h_g2_var h_g3
 
-/-- Deltoid master reduction step using `g3_theorem` to discharge Premise G3 constructively. -/
+/-- Deltoid reduction step using `g3_theorem` to discharge Premise G3 constructively. -/
 theorem szollosi_deltoid_master_reduction_step
     (h_cov : ModuliCoverageConjecture)
     (h_atlas : AtlasCoversKnownModuli)
