@@ -1451,3 +1451,6 @@ lean_lib CampaignDsQm062U1Residues where
 
 lean_lib CampaignDsCptpCompletePositivity where
   roots := #[`CampaignDsCptpCompletePositivity]
+
+lean_lib CampaignDsQm204BornUniqueness where
+  roots := #[`CampaignDsQm204BornUniqueness]
