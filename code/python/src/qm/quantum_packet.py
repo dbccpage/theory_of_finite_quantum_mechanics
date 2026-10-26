@@ -9,7 +9,7 @@ together with theorem phase_damping_triples
 Claim: urn:omega:fqm:packet:pythagorean-norm:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/tests/test_quantum_packet.py.
-Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 5; AST Sonar cognitive complexity max 5; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 5.
+Gate 5: earlier measurements are retained in contract history; the changed source requires a fresh structural assessment.
 Scope Fence: packet_norm returns the sum of squares of a length-2 exact
 rational amplitude pair after a second square-sum agrees.
 certified_packet_norm checks that sum on (3/5, 4/5) and requires it to be 1.
@@ -56,11 +56,16 @@ def _require_pair(amplitudes: tuple[object, ...]) -> tuple[object, ...]:
 
 
 def _require_amplitude(value: object, index: int) -> Fraction:
-    if isinstance(value, float):
+    if issubclass(type(value), float):
         raise _fail("float refused at the packet boundary", index=index, received="float")
     if type(value) is bool:
         raise _fail("boolean refused where a rational amplitude was required", index=index)
-    if isinstance(value, Fraction):
+    if type(value) in (int, Fraction):
+        numerator = value if type(value) is int else value.numerator
+        denominator = 1 if type(value) is int else value.denominator
+        if max(numerator.bit_length(), denominator.bit_length()) > 1024:
+            raise _fail("exact scalar exceeds the 1024-bit limit", index=index)
+    if type(value) is Fraction:
         amplitude = value
     elif type(value) is int:
         amplitude = Fraction(value)

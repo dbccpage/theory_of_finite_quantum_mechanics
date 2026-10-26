@@ -115,9 +115,13 @@ def rank_one_effect(x):
     return scale(1/nrm,outer(x,x))
 def order_unit_bound(A):return ceil(sum(abs(a.re)+abs(a.im) for r in matrix(A) for a in r))
 def bounded_by(A,t,x):A=matrix(A);t=_q(t);x=vector(x);q=re_hermitian_form(A,x);s=t*inner(x,x).re;return -s<=q<=s
-is_effect,effect_certificate,midpoint,extend,extension_consistency,_effects_of_dimension,valuation_axioms=extension_layer(matrix,identity,add,sub,scale,is_psd,psd_certificate,order_unit_bound)
+def is_quadratic_preorder_effect(E):
+    """Order bounds on the Hermitian part; this does not admit E as Hermitian."""
+    E=matrix(E)
+    return is_psd(E) and is_psd(sub(identity(len(E)),E))
+is_effect,effect_certificate,midpoint,extend,extension_consistency,_effects_of_dimension,valuation_axioms=extension_layer(matrix,identity,add,sub,scale,is_psd,psd_certificate,order_unit_bound,is_hermitian,hermitian_part)
 def representing_matrix(valuation,n):
-    """rho with rho[j][i] = L(e_ij) - i L(i e_ij), L the extension; then L(A) = re(trace_mul(rho,A)) for every A."""
+    """Hermitian rho representing the extension through the Hermitian part."""
     return [[extend(valuation,single(n,i,j,1))-I*extend(valuation,single(n,i,j,I)) for i in range(n)] for j in range(n)]
 def born_valuation(rho):rho=matrix(rho);return lambda E:trace_mul(rho,matrix(E)).re
 def born_certificate(valuation,n,effects=()):

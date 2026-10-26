@@ -94,8 +94,7 @@ def test_integration_symmetric_difference_matches_the_gradient() -> None:
         / "papers"
         / "core"
         / "mub6"
-        / "artifacts"
-        / "knowledge"
+        / "documentation"
         / "observation_quartic_overlap_secant_failure.md"
     ).read_text(encoding="utf-8")
     assert "holds strictly for systems of quadratic polynomials" in note
@@ -135,8 +134,7 @@ def test_origin_resolves_in_repo() -> None:
         / "papers"
         / "core"
         / "mub6"
-        / "artifacts"
-        / "knowledge"
+        / "documentation"
         / "observation_quartic_overlap_secant_failure.md"
     )
     assert note.is_file()

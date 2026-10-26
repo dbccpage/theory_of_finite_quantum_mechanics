@@ -1,0 +1,82 @@
+    Updating crates.io index
+ Downloading crates ...
+  Downloaded errno v0.3.14
+  Downloaded quote v1.0.47
+  Downloaded proc-macro2 v1.0.107
+  Downloaded fastrand v2.5.0
+  Downloaded serde v1.0.229
+  Downloaded serde_derive v1.0.229
+  Downloaded getrandom v0.4.3
+  Downloaded rustix v1.1.4
+  Downloaded libc v0.2.189
+  Downloaded syn v3.0.9
+  Downloaded bitflags v2.13.2
+  Downloaded unicode-ident v1.0.27
+  Downloaded tempfile v3.27.0
+  Downloaded syn v2.0.119
+  Downloaded linux-raw-sys v0.12.1
+  Downloaded once_cell v1.21.4
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling version_check v0.9.5
+   Compiling proc-macro2 v1.0.107
+   Compiling typenum v1.20.1
+   Compiling generic-array v0.14.7
+   Compiling serde_core v1.0.229
+   Compiling zmij v1.0.23
+   Compiling libc v0.2.189
+   Compiling cfg-if v1.0.5
+   Compiling syn v3.0.9
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling getrandom v0.4.3
+   Compiling rustix v1.1.4
+   Compiling serde v1.0.229
+   Compiling serde_json v1.0.154
+   Compiling digest v0.10.7
+   Compiling linux-raw-sys v0.12.1
+   Compiling bitflags v2.13.2
+   Compiling memchr v2.8.3
+   Compiling cpufeatures v0.2.17
+   Compiling itoa v1.0.18
+   Compiling serde_derive v1.0.229
+   Compiling sha2 v0.10.9
+   Compiling syn v2.0.119
+   Compiling once_cell v1.21.4
+   Compiling fastrand v2.5.0
+   Compiling tempfile v3.27.0
+   Compiling tfqm_fixture_register_review v0.1.0 (/workspace/tfqm-code/code/rust/quality/fixture_register)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 8.73s
+     Running unittests src/lib.rs (/workspace/code-improvement/fixture-target/debug/deps/tfqm_fixture_register_review-cd2f623bbd755ee2)
+
+running 14 tests
+test fixture_receipts::tests::compiled_candidate_binding ... ok
+test fixture_receipts::tests::canonical_link_escape_refuses ... ok
+test fixture_receipts::tests::declared_size_and_stream_limits ... ok
+test fixture_receipts::tests::digest_change_missing_empty_and_owned_result ... ok
+test fixture_receipts::tests::historical_paths_are_explicit_and_not_guessed ... ok
+test fixture_receipts::tests::duplicate_keys_unknown_fields_and_authority_refuse ... ok
+test fixture_receipts::tests::indexed_failure_and_value_file_check ... ok
+test fixture_receipts::tests::malformed_entry_cannot_be_success ... ok
+test fixture_receipts::tests::path_device_and_shape_refusals ... ok
+test fixture_receipts::tests::metadata_lists_digest_and_no_producer ... ok
+test fixture_receipts::tests::projected_path_duplicates_refuse ... ok
+test fixture_receipts::tests::actual_register_custody_does_not_promote_fixtures ... FAILED
+test fixture_receipts::tests::entry_count_limit_has_an_admitted_byte_envelope ... ok
+test fixture_receipts::tests::per_file_and_total_byte_caps_are_distinct ... ok
+
+failures:
+
+---- fixture_receipts::tests::actual_register_custody_does_not_promote_fixtures stdout ----
+
+thread 'fixture_receipts::tests::actual_register_custody_does_not_promote_fixtures' (33683) panicked at src/../../../src/tests/omega_mub/../../../quality/fixture_register/src/validator_tests.rs:393:57:
+called `Result::unwrap()` on an `Err` value: RegistryFailure { entry: Some(10), cause: DigestMismatch { expected: "403a692d6b156e70c89a8befc4cfe0c3e47f3e80670c8b282c7b315131b00a98", actual: "70299966492a6f4675c32b4ac5cca64c4ebffee8fe26af933c2da4b7f59876e3" } }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    fixture_receipts::tests::actual_register_custody_does_not_promote_fixtures
+
+test result: FAILED. 13 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.04s
+
+error: test failed, to rerun pass `--lib`

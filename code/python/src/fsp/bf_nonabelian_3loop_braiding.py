@@ -24,8 +24,10 @@ Mechanizes:
      * Thermal weight asymmetry (Delta E_orient > 0) routes to TerminalRoute.SplitBrainRefusal.
 4. Quantum Double Projection Repair (Drinfeld Double D(SU(2)_k)):
    - Folding chiral sector with conjugate antichiral sector: M_QD = M_WL (x) M_WL^dagger.
-   - Tr(M_QD) = |Tr(M_WL)|^2 >= 0 identically real and positive.
-   - Defect mass Phi_1 = 0.0, restoring <Sign>_GIN = 1.0, routing to TerminalRoute.ExactRepair.
+   - Tr(M_QD) = |Tr(M_WL)|^2 >= 0 real and nonnegative in exact arithmetic.
+   - The doubled-trace branch uses conventional diagnostic values Phi_1 = 0
+     and average_sign_gin = 1. These are not a physical ensemble average or a
+     proof of a sign-problem repair, especially when the trace vanishes.
 """
 
 from __future__ import annotations
@@ -178,7 +180,7 @@ class WangLevin3LoopBraidingModel:
         """
         Constructs the Drinfeld double / surface code projection:
         M_QD = M_WL (x) M_WL^dagger.
-        Tr(M_QD) = |Tr(M_WL)|^2 >= 0 identically real and positive.
+        Tr(M_QD) = |Tr(M_WL)|^2 >= 0 real and nonnegative in exact arithmetic.
         """
         return np.kron(M_WL, M_WL.conj().T)
 
@@ -199,8 +201,10 @@ class NonAbelianBfEngine:
         dim_v = M.shape[0]
 
         if use_quantum_double:
-            M_eff = model.compute_quantum_double_projection(M)
-            tr_val = np.trace(M_eff)
+            # tr(M tensor M*) = |tr(M)|^2. Evaluating the identity avoids
+            # cancellation that can give a tiny negative Kronecker trace.
+            # This is still floating-point diagnostics, not an exact proof.
+            tr_val = abs(np.trace(M)) ** 2
             norm_factor = dim_v**2
             norm_tr = tr_val / norm_factor
             gamma_2 = 0.0

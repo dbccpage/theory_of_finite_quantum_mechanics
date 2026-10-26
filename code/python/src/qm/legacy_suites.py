@@ -8,7 +8,7 @@ that file.
 Claim: urn:omega:fqm:suite:pythagorean-ray:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/tests/test_legacy_suites.py.
-Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 5; AST Sonar cognitive complexity max 4; AST nesting depth max 2; lizard 1.24.1 cyclomatic complexity max 5.
+Gate 5: earlier measurements are retained in contract history; the changed source requires a fresh structural assessment.
 Scope Fence: polynomial_gap returns P2^2 - (P4 + 2 * P22) for a rational
 triple. certified_ray checks (3/5, 4/5, 0) and returns P2, which is 1.
 suite_pass_count also checks the local product (2/3)*(3/5)*(5/2) and the
@@ -58,11 +58,16 @@ def _require_three(amplitudes: tuple[object, ...]) -> tuple[object, ...]:
 
 
 def _require_amplitude(value: object, index: int) -> Fraction:
-    if isinstance(value, float):
+    if issubclass(type(value), float):
         raise _fail("float refused at the ray boundary", index=index, received="float")
     if type(value) is bool:
         raise _fail("boolean refused where a rational amplitude was required", index=index)
-    if isinstance(value, Fraction):
+    if type(value) in (int, Fraction):
+        numerator = value if type(value) is int else value.numerator
+        denominator = 1 if type(value) is int else value.denominator
+        if max(numerator.bit_length(), denominator.bit_length()) > 1024:
+            raise _fail("exact scalar exceeds the 1024-bit limit", index=index)
+    if type(value) is Fraction:
         return value
     if type(value) is int:
         return Fraction(value)

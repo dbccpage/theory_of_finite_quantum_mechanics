@@ -8,7 +8,7 @@ and true otherwise), and theorem fin2_failure_coordinatewise_minimal
 Claim: urn:omega:fqm:observer:fin2-identity-failure:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/tests/test_observer_functor.py.
-Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 6; AST Sonar cognitive complexity max 5; AST nesting depth max 1; lizard 1.24.1 cyclomatic complexity max 6.
+Gate 5: earlier measurements are retained in contract history; the changed source requires a fresh structural assessment.
 Scope Fence: identity_failure(0, 1) returns 1 when that witness holds.
 Other integers use the same observe definitions and are not further Fin 2
 theorems. composition_defect returns the trace of the rational product
@@ -41,12 +41,14 @@ def _fail(invariant: str, **parameters: object) -> ObserverFunctorError:
 
 
 def _require_point(value: object, role: str) -> int:
-    if isinstance(value, float):
+    if issubclass(type(value), float):
         raise _fail("float refused at the point boundary", role=role, received="float")
     if type(value) is bool:
         raise _fail("boolean refused where an integer point was required", role=role)
     if type(value) is not int:
         raise _fail("point is not an integer", role=role, received=type(value).__name__)
+    if value.bit_length() > 1024:
+        raise _fail("point exceeds the 1024-bit limit", role=role)
     return value
 
 
