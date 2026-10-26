@@ -133,3 +133,5 @@ Run `governance-check baseline --write` after bringing grandfathered files up to
 | [`schema/contract-score.v1.json`](schema/contract-score.v1.json) | JSON Schema of a companion. |
 | [`hook/build.rs`](hook/build.rs) | The canonical build hook. |
 | `code/rust/src/governance/` | The `governance` crate: score vocabulary (`score.rs`), policy and baseline (`policy.rs`), companion view (`descriptor.rs`), verifiers (`verify.rs`), repository access (`repo.rs`), build-script support (`buildtime.rs`), and the `governance-check` binary. |
+
+The approved PR #433 conditional continuum module `CampaignDfmRefinementLimit` retains L3D under its exact-source `finite_proof_example` pin. This historical category is a legacy technical identifier, not mathematical finiteness or a generic conditional-proof exemption. Current direct approval covers only this proof and its bounded checker: [exact approval](../docs/maintenance/pr433_exact_source_approval_20261026.json), [integration limits](../docs/maintenance/pr433_integration_scope.md). No physical continuum result or node-status promotion follows.
