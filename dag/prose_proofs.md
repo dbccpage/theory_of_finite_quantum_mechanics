@@ -189,11 +189,11 @@ status are not claimed as proved and have no proof section.
 
 ## IMPLEMENTATION
 
-0 of 4 with a prose proof.
+1 of 4 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `IMPL-FSP-SWITCHING-NORMAL-FORM-NF002` | PROVED_LEAN | *none yet* |
+| `IMPL-FSP-SWITCHING-NORMAL-FORM-NF002` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.1 The switching normal form of an edge signing](../papers/core/fermion_sign_and_majorana_proofs.md#11-the-switching-normal-form-of-an-edge-signing) |
 | `IMPL-LGGR-FINITE-RESULTS-LEAN` | PROVED_LEAN | *none yet* |
 | `IMPL-THYMUS-SCREENING-SOUNDNESS` | PROVED_LEAN | *none yet* |
 | `PGW-PFP-CARRIER-ORIGIN-NILPOTENCY` | PROVED_LEAN | *none yet* |
@@ -226,15 +226,15 @@ status are not claimed as proved and have no proof section.
 
 ## FERMION_SIGN
 
-0 of 5 with a prose proof.
+4 of 5 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `FSP-INVOLUTION-PAIR-CANCELLATION` | PROVED_LEAN | *none yet* |
+| `FSP-INVOLUTION-PAIR-CANCELLATION` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.3 Sign-reversing involutions](../papers/core/fermion_sign_and_majorana_proofs.md#13-sign-reversing-involutions) |
 | `FSP-MERON-CHARACTER-CANCELLATION` | PROVED_LEAN | *none yet* |
-| `FSP-PACHNER-INVARIANCE-CLAIM` | PROVED_LEAN | *none yet* |
-| `FSP-SWITCHING-NORMAL-FORM` | PROVED_LEAN | *none yet* |
-| `FSP-U1-WILSON-ACTION` | PROVED_LEAN | *none yet* |
+| `FSP-PACHNER-INVARIANCE-CLAIM` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.5 Flat-connection counts under the 4D Pachner moves](../papers/core/fermion_sign_and_majorana_proofs.md#15-flat-connection-counts-under-the-4d-pachner-moves) |
+| `FSP-SWITCHING-NORMAL-FORM` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.1 The switching normal form of an edge signing](../papers/core/fermion_sign_and_majorana_proofs.md#11-the-switching-normal-form-of-an-edge-signing) |
+| `FSP-U1-WILSON-ACTION` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.4 The U(1) Wilson action](../papers/core/fermion_sign_and_majorana_proofs.md#14-the-u1-wilson-action) |
 
 ## TENSOR_COMPOSITION
 
@@ -252,15 +252,15 @@ status are not claimed as proved and have no proof section.
 
 ## MAJORANA
 
-0 of 5 with a prose proof.
+4 of 5 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
 | `MAJ-ENVELOPE-NAT-ARITHMETIC` | PROVED_LEAN | *none yet* |
-| `MAJ-GIN-INVOLUTION-PAIR-CANCEL` | PROVED_LEAN | *none yet* |
-| `MAJ-KITAEV-EDGE-INDEX-DISJOINT` | PROVED_LEAN | *none yet* |
-| `MAJ-TRICHOTOMY-PAIRWISE-EXCLUSION` | PROVED_LEAN | *none yet* |
-| `MAJ-TRIVIAL-H1-NO-CLOSED` | PROVED_LEAN | *none yet* |
+| `MAJ-GIN-INVOLUTION-PAIR-CANCEL` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 1.3 Sign-reversing involutions](../papers/core/fermion_sign_and_majorana_proofs.md#13-sign-reversing-involutions) |
+| `MAJ-KITAEV-EDGE-INDEX-DISJOINT` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 2.2 Edge Majorana indices of the Kitaev chain](../papers/core/fermion_sign_and_majorana_proofs.md#22-edge-majorana-indices-of-the-kitaev-chain) |
+| `MAJ-TRICHOTOMY-PAIRWISE-EXCLUSION` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 2.1 The residual trichotomy](../papers/core/fermion_sign_and_majorana_proofs.md#21-the-residual-trichotomy) |
+| `MAJ-TRIVIAL-H1-NO-CLOSED` | PROVED_LEAN | [fermion_sign_and_majorana_proofs: 2.1 The residual trichotomy](../papers/core/fermion_sign_and_majorana_proofs.md#21-the-residual-trichotomy) |
 
 ## MUTUALLY_UNBIASED_BASES
 
