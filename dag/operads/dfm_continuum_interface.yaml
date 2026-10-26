@@ -3,20 +3,42 @@ node_id: DFM-CONTINUUM-INTERFACE
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: A finite graph dressing theorem leaves smooth-field existence, patching, topology,
-    locality and continuum dynamics as separate obligations.
+  source_statement: 'A finite graph dressing theorem leaves smooth-field existence, patching, topology,
+    locality and continuum dynamics as separate obligations. Conditional continuum result: In a supplied
+    complete metric topological group with d(ab,cd) <= d(a,c)+d(b,d), binary edge split errors bounded
+    by C*q^depth, C >= 0 and 0 <= q < 1/2, yield unique transport limits with error at most C*q^depth*(2*q)^n/(1-2*q).
+    The limits respect binary composition and compatible endpoint gauges. Continuous parameterized edge
+    families with a common C and q converge uniformly to continuous limiting transports. At q=1/2, the
+    additive edge values depth/2^depth have shrinking split defects but root transport n, with no limit.'
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: []
-  source_bottleneck: 'Finite witness, not a continuum theorem: on the supplied rooted tree root-p-a, root-b
-    with chord a-b, the dressed chord is U(root-b)^{-1} U(a-b) U(p-a) U(root-p). Outer labels 2 and 5
-    with the other three labels trivial give dressed chords 2 and 5, while every edge incident to {a,
-    b} is unchanged. A refinement family, compatibility maps, a topology and a convergence theorem are
-    still required before transporting finite identities to smooth gauge theory. Smooth-field existence,
-    continuum patching and continuum dynamics stay open.'
+  declared_assumptions:
+  - complete metric topological group with the stated product-distance estimate
+  - supplied binary edge-label family with C >= 0, q >= 0, 2*q < 1 and uniform split-defect bound
+  - compatible endpoint gauges; for continuity, a parameter topology and continuous edge maps with common
+    constants
+  source_bottleneck: 'New conditional result: In a supplied complete metric topological group with d(ab,cd)
+    <= d(a,c)+d(b,d), binary edge split errors bounded by C*q^depth, C >= 0 and 0 <= q < 1/2, yield unique
+    transport limits with error at most C*q^depth*(2*q)^n/(1-2*q). The limits respect binary composition
+    and compatible endpoint gauges. Continuous parameterized edge families with a common C and q converge
+    uniformly to continuous limiting transports. At q=1/2, the additive edge values depth/2^depth have
+    shrinking split defects but root transport n, with no limit. Remaining obligation: The complete metric,
+    group topology, refinement family and geometric local bound are supplied. Smooth-field existence,
+    arbitrary triangulation refinements, patching, physical locality and continuum dynamics are not derived;
+    the original node and physical bridge remain OPEN. Earlier finite witness boundary (historical): Finite
+    witness, not a continuum theorem: on the supplied rooted tree root-p-a, root-b with chord a-b, the
+    dressed chord is U(root-b)^{-1} U(a-b) U(p-a) U(root-p). Outer labels 2 and 5 with the other three
+    labels trivial give dressed chords 2 and 5, while every edge incident to {a, b} is unchanged. A refinement
+    family, compatibility maps, a topology and a convergence theorem are still required before transporting
+    finite identities to smooth gauge theory. Smooth-field existence, continuum patching and continuum
+    dynamics stay open.'
   source_refs:
   - dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md
   - dag/research/electroweak_dfm_weinberg_finite_map.md
   - papers/ravera_dfm_dossier.md
+  - lean4/CampaignDfmRefinementLimit.lean
+  - checks/independent/dfm-continuum-refinement-limit.py
+  - dag/derivations/independent/dfm-continuum-refinement-limit.md
+  - dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json
   paper_refs:
   - dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md
   source_claim_label: OPEN
@@ -25,7 +47,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md
-    sha256: 07382677404f96207c41331bcad7fadfdcf634571bb9b6957cc7981f9cad07f4
+    sha256: 6718e2313508f6f6ff3610f99f9f0ae8c91fe48c9c10ac7e394f1deaee2206e3
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -210,6 +232,44 @@ operation_candidates:
   repository: this_repository
   source_sha256: c6fafdba1b47375722f5c8f537a089156dcc0a4fc739f5c2b0e2dea36cbf90e4
   status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Word
+  line: 17
+  signature_excerpt: abbrev Word
+  source: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  source_sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: transport
+  line: 22
+  signature_excerpt: |-
+    def transport (U : Word → G) : ℕ → Word → G
+      | 0, p => U p
+      | n + 1, p => transport U n (true :: p) * transport U n (false :: p)
+
+    /-- Endpoint gauges agree at the new midpoint and preserve the old endpoints. -/
+    structure EndpointGauge (G : Type*) [Group G]
+  source: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  source_sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: criticalEdge
+  line: 157
+  signature_excerpt: 'noncomputable def criticalEdge (p : Word) : Multiplicative ℝ'
+  source: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  source_sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Controlled
+  line: 67
+  signature_excerpt: 'structure Controlled (G : Type*) [Group G] [MetricSpace G]'
+  source: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  source_sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
   name: dressed_chord_formula
@@ -347,6 +407,141 @@ relation_candidates:
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
+- kind: theorem
+  name: critical_transport
+  line: 160
+  signature_excerpt: |-
+    theorem critical_transport (n : ℕ) (p : Word) :
+        Multiplicative.toAdd (transport criticalEdge n p) =
+          ((p.length : ℝ) + n) / (2:ℝ)^p.length
+  source: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  source_sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: critical_split_defect
+  line: 171
+  signature_excerpt: |-
+    theorem critical_split_defect (p : Word) :
+        |Multiplicative.toAdd (criticalEdge p) -
+          Multiplicative.toAdd (criticalEdge (true :: p) * criticalEdge (false :: p))| =
+          (1/2:ℝ)^p.length
+  source: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  source_sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: critical_no_limit
+  line: 184
+  signature_excerpt: |-
+    theorem critical_no_limit :
+        ¬ ∃ a : ℝ, Tendsto (fun n => Multiplicative.toAdd (transport criticalEdge n []))
+          atTop (𝓝 a)
+  source: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  source_sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: uniform_refinement_limit
+  line: 118
+  signature_excerpt: |-
+    theorem uniform_refinement_limit {X : Type*} (U : X → Controlled G)
+        (C q : ℝ) (hC : ∀ x, (U x).C = C) (hq : ∀ x, (U x).q = q)
+        (hq0 : 0 ≤ q) (hq1 : 2*q < 1) (p : Word) :
+        TendstoUniformly (fun n x => transport (U x).edge n p)
+          (fun x => (U x).limit hmul p) atTop
+  source: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  source_sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: continuous_refinement_limit
+  line: 146
+  signature_excerpt: |-
+    theorem continuous_refinement_limit {X : Type*} [TopologicalSpace X]
+        (U : X → Controlled G) (hc : ∀ p, Continuous (fun x => (U x).edge p))
+        (C q : ℝ) (hC : ∀ x, (U x).C = C) (hq : ∀ x, (U x).q = q)
+        (hq0 : 0 ≤ q) (hq1 : 2*q < 1) (p : Word) :
+        Continuous (fun x => (U x).limit hmul p)
+  source: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  source_sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: step_bound
+  line: 51
+  signature_excerpt: |-
+    theorem step_bound (U : Word → G) (C q : ℝ)
+        (hs : ∀ p, dist (U p) (U (true :: p) * U (false :: p)) ≤ C * q ^ p.length)
+        (n : ℕ) (p : Word) :
+        dist (transport U n p) (transport U (n + 1) p) ≤
+          (C * q ^ p.length) * (2 * q) ^ n
+  source: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  source_sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: Controlled.exists_limit
+  line: 78
+  signature_excerpt: |-
+    theorem Controlled.exists_limit (U : Controlled G) (p : Word) :
+        ∃ a : G, Tendsto (fun n => transport U.edge n p) atTop (𝓝 a)
+  source: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  source_sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: Controlled.error_bound
+  line: 91
+  signature_excerpt: |-
+    theorem Controlled.error_bound (U : Controlled G) (p : Word) (n : ℕ) :
+        dist (transport U.edge n p) (U.limit hmul p) ≤
+          (U.C * U.q ^ p.length) * (2*U.q)^n / (1-2*U.q)
+  source: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  source_sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: Controlled.limit_split
+  line: 104
+  signature_excerpt: |-
+    theorem Controlled.limit_split (U : Controlled G) (p : Word) :
+        U.limit hmul p = U.limit hmul (true :: p) * U.limit hmul (false :: p)
+  source: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  source_sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: Controlled.dressed_tendsto
+  line: 110
+  signature_excerpt: |-
+    theorem Controlled.dressed_tendsto (U : Controlled G) (g : EndpointGauge G) (p : Word) :
+        Tendsto (fun n => transport (g.dress U.edge) n p) atTop
+          (𝓝 ((g.finish p)⁻¹ * U.limit hmul p * g.start p))
+  source: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  source_sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: lean4/CampaignDfmContinuumInterface.lean::CampaignDfmContinuumInterface.dressed_chord_formula
   availability: local
@@ -447,6 +642,96 @@ source_bindings:
   declaration_status: declaration_found_not_proof_checked
   line: 234
   role: source_lead_only
+- original_ref: lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.critical_transport
+  availability: local
+  symbol: CampaignDfmRefinementLimit.critical_transport
+  path: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  declaration_status: declaration_found_not_proof_checked
+  line: 160
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.critical_split_defect
+  availability: local
+  symbol: CampaignDfmRefinementLimit.critical_split_defect
+  path: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  declaration_status: declaration_found_not_proof_checked
+  line: 171
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.critical_no_limit
+  availability: local
+  symbol: CampaignDfmRefinementLimit.critical_no_limit
+  path: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  declaration_status: declaration_found_not_proof_checked
+  line: 184
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.uniform_refinement_limit
+  availability: local
+  symbol: CampaignDfmRefinementLimit.uniform_refinement_limit
+  path: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  declaration_status: declaration_found_not_proof_checked
+  line: 118
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.continuous_refinement_limit
+  availability: local
+  symbol: CampaignDfmRefinementLimit.continuous_refinement_limit
+  path: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  declaration_status: declaration_found_not_proof_checked
+  line: 146
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.step_bound
+  availability: local
+  symbol: CampaignDfmRefinementLimit.step_bound
+  path: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  declaration_status: declaration_found_not_proof_checked
+  line: 51
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.exists_limit
+  availability: local
+  symbol: CampaignDfmRefinementLimit.Controlled.exists_limit
+  path: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  declaration_status: declaration_found_not_proof_checked
+  line: 78
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.error_bound
+  availability: local
+  symbol: CampaignDfmRefinementLimit.Controlled.error_bound
+  path: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  declaration_status: declaration_found_not_proof_checked
+  line: 91
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.limit_split
+  availability: local
+  symbol: CampaignDfmRefinementLimit.Controlled.limit_split
+  path: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  declaration_status: declaration_found_not_proof_checked
+  line: 104
+  role: source_lead_only
+- original_ref: lean4/CampaignDfmRefinementLimit.lean::CampaignDfmRefinementLimit.Controlled.dressed_tendsto
+  availability: local
+  symbol: CampaignDfmRefinementLimit.Controlled.dressed_tendsto
+  path: lean4/CampaignDfmRefinementLimit.lean
+  repository: this_repository
+  sha256: b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb
+  declaration_status: declaration_found_not_proof_checked
+  line: 110
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -465,7 +750,11 @@ operad_slots:
     mining_status: UNREVIEWED
     carrier: null
     coefficient_ring: null
-    assumptions: []
+    assumptions:
+    - complete metric topological group with the stated product-distance estimate
+    - supplied binary edge-label family with C >= 0, q >= 0, 2*q < 1 and uniform split-defect bound
+    - compatible endpoint gauges; for continuity, a parameter topology and continuous edge maps with common
+      constants
     source_pins: []
     public_input: {}
   slot_m2_layer1_forward_morphisms:
@@ -481,7 +770,11 @@ operad_slots:
     mining_status: UNREVIEWED
     certificate_predicates: []
     anchors: []
-    unpaid_imports: []
+    unpaid_imports:
+    - complete metric topological group with the stated product-distance estimate
+    - supplied binary edge-label family with C >= 0, q >= 0, 2*q < 1 and uniform split-defect bound
+    - compatible endpoint gauges; for continuity, a parameter topology and continuous edge maps with common
+      constants
 stage_history: []
 open_obligations:
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.

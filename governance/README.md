@@ -14,9 +14,25 @@ Under the default floor, `L4D`, `L4C` and `L5A+` pass. `L4E`, `L3A` and any scor
 
 **Governed sources** are the populations in [`policy.json`](policy.json): `code/**/*.rs`, `code/**/*.py` and `lean4/**/*.lean`, minus build and cache directories (`target`, `__pycache__`, `.lake`, `node_modules`) and sealed snapshots (`dag/results/**`, `dag/sealed_runs/**`, `sealed_runs/**`, `atlas/**`, `papers/**/archive/**`). Discovery is `git ls-files --cached --others --exclude-standard`, the same rule as `scripts/score_scope_contracts.py`.
 
-**Reviewed support exceptions.** The maintainer authorized lower capability levels for declarative build registrations, regression tests and byte-identical source archives, while keeping grade D and all integrity checks. `support_exceptions` pins each reviewed path and source digest, category and reason. The current reviewed paths, categories and exact digests are listed in `policy.json`. A changed hash or different path loses the exception; incomplete scores and grade E still fail. Substantive runtime and proof modules retain L4D except for the separately authorized finite-proof pins below. These are not baseline additions.
+**Reviewed support exceptions.** The maintainer authorized lower capability levels for declarative build registrations, regression tests and byte-identical source archives, while keeping grade D and all integrity checks. `support_exceptions` pins each reviewed path and source digest, category and reason. The current reviewed paths, categories and exact digests are listed in `policy.json`. A changed hash or different path loses the exception; incomplete scores and grade E still fail. The ordinary floor remains in force except for separately authorized exact-source pins. These are not baseline additions.
 
 **Reviewed finite-proof examples (2026-10-25).** The user authorized 31 exact campaign-module hashes: the initial 30 in `../dag/research/approved_finite_proof_exceptions_2026_10_25.json` and the additional PR #373 pin in `../dag/research/approved_pr_373_finite_proof_exception_2026_10_25.json`. Their category is `finite_proof_example`, restricted to a single `lean4/Campaign*.lean` module path. The modules retain honest L1–L3/D scores and their open or conditional research boundaries. Each exception requires its exact digest, a completed score and grade D or better. A changed digest or an unlisted source uses the ordinary L4/D floor. The baseline and all node statuses are unchanged.
+
+**Reviewed conditional proof and checker (2026-10-26).** Direct human approval
+covers the two exact PR433 sources in the
+[approval record](../docs/maintenance/pr433_exact_source_approval_20261026.json).
+The proof's existing `finite_proof_example` category is a legacy technical
+Campaign-module admission identifier here, not a mathematical classification:
+this is a conditional **infinite-limit theorem** with supplied metric,
+completeness and refinement hypotheses. Its score remains L3D and the physical
+continuum target remains OPEN. This one approved pin does not automatically
+admit any other conditional proof.
+
+The exact finite checker uses the existing `reviewed_test_harness` category at
+L3D. It remains outside the governed source populations; those populations are
+not expanded. All prior pins and all source/history, E/incomplete-score and
+ordinary-floor refusals remain intact. No parser, category allowlist, verifier,
+baseline, score or new gate is changed by these two pins.
 
 **Grandfathering.** No existing source had a completed score when this was introduced, so the floor applies to new and changed files. [`baseline.json`](baseline.json) lists every source that lacked a completed in-floor score on 2026-10-22, with the SHA-256 of its bytes then and its first deficit. A listed file with unchanged bytes is exempt. Changing it removes the exemption: the changed file must then meet the floor. The baseline only shrinks (see below).
 
