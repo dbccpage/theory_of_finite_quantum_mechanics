@@ -1,0 +1,443 @@
+# Narration and visuals for the 002 S(n) explainer.
+# AuthorityEffect: None. Grounded in the 002 research brief and curriculum.md.
+# Build: see ../../../education_app/_docs/video_builder.md
+title: "S(n): stage labels, two registers, and finite obstructions"
+strand: "002 S(n)"
+output_name: 002_s_n
+segments:
+
+  - id: s001
+    chapter: "Opening"
+    visual:
+      kind: title
+      title: "S(n)"
+      subtitle: "Stage labels, two registers, and finite obstructions"
+      tagline: "Strand 002 of the Omega Engine curriculum"
+    narration: >
+      S of n. Stage labels, two registers, and finite obstructions. This strand takes the Genesis challenges from the previous strand,
+      gives each moment a stage label, and keeps two kinds of records at every stage. Then it teaches a set of small, exact examples
+      that you can recompute by hand. Those examples are the most valuable part, and we will spend half the video on them.
+
+  - id: s002
+    chapter: "Opening"
+    visual:
+      kind: table
+      heading: "Three symbols that look alike"
+      columns: ["Symbol", "Meaning", "Where"]
+      rows:
+        - [{code: "S(n)"}, "a Genesis stage label", "this strand"]
+        - [{code: "S_n"}, "the symmetric group on n things", "permutations; PFP Mode 07"]
+        - [{code: "MSS-n"}, "an entry in the minimal symbol system atlas", "strand 010"]
+    narration: >
+      First, three symbols that look alike and mean different things. S of n, with parentheses, is a Genesis stage label, and that is what this strand is about.
+      S with a subscript n is the symmetric group, the permutations of n things. And M S S dash n is an entry in the atlas taught in strand zero ten.
+      The stage label and the permutation group are distinct objects.
+
+  - id: s003
+    chapter: "Opening"
+    visual:
+      kind: bullets
+      heading: "How to watch this strand"
+      items:
+        - {text: "Checked in the source: S(0)-S(3) facts from 19L57G1's Lean", colour: good}
+        - {text: "Bookkeeping: the S(0)-S(6) ladder and its registers", colour: accent2}
+        - {text: "Recomputable: twelve small exact examples", colour: good}
+        - {text: "Source correspondence and corrected model scopes are listed in the strand's README", colour: muted}
+    narration: >
+      Here is how to watch it. Some facts here are checked in the source, the Lean theorems of the Genesis study for stages zero through three.
+      Some things are bookkeeping, a way of labelling one particular history of challenges. And some things are exact examples you can recompute yourself.
+      The research for this video found several places where the strand's text diverges from its sources. They are listed in the README,
+      and the video follows the sources.
+
+  # ------------------------------------------------------------ 1
+  - id: s010
+    chapter: "1. Two Boxed Laws"
+    visual:
+      kind: math
+      heading: "The Two Boxed Laws"
+      lines:
+        - {text: "S(n+1) may contain only structure forced by an unresolved Genesis obstruction at S(n)."}
+        - {text: "A mathematical realization R(S(n)) has no authority to extend S(n)."}
+        - 'S(n) \xrightarrow{\ \rho\ } R(S(n))'
+    narration: >
+      Part one. The two boxed laws. The first: S of n plus one may contain only structure forced by an unresolved Genesis obstruction at S of n.
+      The second: a mathematical realization of a stage has no authority to extend the stage. The arrow goes one way. A stage can be mapped into a model,
+      a graph, a simplex, a category. A property proved in the model comes back only through an explicitly proved faithful bridge.
+
+  - id: s011
+    chapter: "1. Two Boxed Laws"
+    visual:
+      kind: bullets
+      heading: "What the laws forbid"
+      items:
+        - "\"The graph model has a spectral bound, so S(4) has spectral structure\""
+        - "\"The simplex is two-dimensional, so the stage is two-dimensional\""
+        - "\"The Regge model has curvature, so Genesis has geometry\""
+        - {text: "Design rules: no checker enforces them", colour: accent2}
+    narration: >
+      These laws are most useful as a list of forbidden arguments. The graph model has a spectral bound, so the next stage has spectral structure. Forbidden.
+      The simplex is two dimensional, so the stage is two dimensional. Forbidden. The curvature model has curvature, so Genesis has geometry. Forbidden.
+      Be clear about their status. These are design rules. No checker in the repository enforces them. Their job is to tell you which steps to refuse.
+
+  # ------------------------------------------------------------ 2
+  - id: s020
+    chapter: "2. The stages, read against the source"
+    visual:
+      kind: table
+      heading: "S(0) to S(3) in 19L57G1's own terms"
+      columns: ["Stage", "Source event", "Source result"]
+      wrap: [8, 34, 34]
+      rows:
+        - ["S(0)", "the seed <>", "inertia (genesis_underivable)"]
+        - ["S(1)", "supply <a>", "supply is not admission (supply_no_op)"]
+        - ["S(2)", "admit <a> and the opaque whole <ab>", "collapse (R2L_collapsed, R2F_collapsed)"]
+        - ["S(3)", "require <a> and <ab> to be separable", "two-item floor, tied minima"]
+    narration: >
+      Part two. The stages, read against the source. Stage zero is the seed, and nothing is derivable. Stage one supplies a in brackets, and supply is not admission.
+      Stage two admits a in brackets and a b in brackets, and the two collapse: no context can tell them apart. Stage three demands that they be separated,
+      and the cheapest response costs exactly two items, with ties. Every one of these results is a Lean theorem in the external study, which strand zero zero one covered in detail.
+
+  - id: s021
+    chapter: "2. The stages, read against the source"
+    visual:
+      kind: table
+      heading: "Where this strand's text diverges"
+      columns: ["Strand text", "Source"]
+      wrap: [36, 36]
+      rows:
+        - [{text: "<ab> records two marks, a and b", colour: bad}, {text: "<ab> is one opaque datum", colour: good}]
+        - [{text: "S(3) separates <a> from <b>", colour: bad}, {text: "S(3) separates <a> from <ab>", colour: good}]
+        - [{text: "admitting the mark <a> at S(1)", colour: bad}, {text: "supplying <a> admits nothing", colour: good}]
+    narration: >
+      Here the strand's own text diverges from its source, and it matters. The strand says the inscription a b records two marks, a and b,
+      and that stage three separates a from b. The source says a b in brackets is one opaque datum. Its glyphs, their count and their order are all unavailable inside the regime,
+      and stage three separates a in brackets from the whole a b. The strand also calls stage one an admission, where the source proves supply admits nothing.
+      Reading a b as a pair imports exactly the structure the source says is missing. The grammar and codec in this folder still use the pair reading,
+      so this is recorded as an open divergence rather than silently rewritten.
+
+  # ------------------------------------------------------------ 3
+  - id: s030
+    chapter: "3. Two registers"
+    visual:
+      kind: math
+      heading: "Active obstructions and history"
+      lines:
+        - 's_n = |W_n^{\mathrm{active}}|'
+        - 'W_n = (W_{n-1} \setminus D_n) \sqcup B_n \quad\Rightarrow\quad s_n = s_{n-1} - |D_n| + |B_n|'
+        - 'H_n = H_{n-1} \cup C_n \quad\text{(only grows)}'
+    narration: >
+      Part three. Two registers. The strand keeps two records at every stage. W n is the set of currently unresolved obstructions, and s n is its size.
+      Obstructions are born and die, so s n equals s n minus one, minus the deaths, plus the births. H n is the history, the receipts and certificates issued so far.
+      It only grows. The distinction is the lesson. Closing a problem lowers the active count. It never erases the record that the problem existed.
+
+  - id: s031
+    chapter: "3. Two registers"
+    visual:
+      kind: table
+      heading: "One prescribed history"
+      columns: ["Stage", "S(0)", "S(1)", "S(2)", "S(3)", "S(4)", "S(5)", "S(6)"]
+      rows:
+        - ["s_n", "0", "1", "1", "1", {text: "0", colour: good}, "1", "1"]
+      caption: "Bookkeeping for one challenge history (levels/README.md line 55), not a theorem. At S(4), s = 0 while |H| = 5."
+    narration: >
+      For the history this strand follows, the active counts are zero, one, one, one, zero, one, one. At stage four nothing is unresolved,
+      while five receipts sit in the history. Be careful with the status of this row of numbers. The strand's own index says it describes a prescribed challenge history,
+      not a universal theorem. The registers and the names of the obstructions are this strand's bookkeeping. They do not appear in the Genesis study.
+      And the study adds a sharper point. A collapsed pair is not an obstruction by itself. It becomes one only when someone declares a separation requirement.
+
+  # ------------------------------------------------------------ 4
+  - id: s040
+    chapter: "4. Endpoints and witnesses"
+    visual:
+      kind: math
+      heading: "The endpoint lemma"
+      lines:
+        - 'R\ \text{irreflexive},\ R(a,b) \;\Longrightarrow\; a\neq b'
+        - '\Delta_{\mathrm{support}}(a,b) = |\{a,b\}| = 2'
+        - {text: "PrimDiff.irrefl_witness_ne: depends on no axioms"}
+    narration: >
+      Part four. Endpoints and witnesses. This is the strand's cleanest result, and it is checked in the source. If a relation is irreflexive,
+      and it relates a to b, then a and b are different. So every cut has exactly two distinct endpoints. The Lean theorem depends on no axioms at all.
+
+  - id: s041
+    chapter: "4. Endpoints and witnesses"
+    visual:
+      kind: table
+      heading: "Four counts that are easy to confuse"
+      columns: ["Quantity", "Value"]
+      wrap: [40, 30]
+      rows:
+        - ["distinct endpoints of one cut", "exactly 2"]
+        - ["smallest carrier that supports a cut", "2"]
+        - ["witness occurrences", {text: "1, 2 or more", colour: accent2}]
+        - ["new elements added to the carrier", "may be 0"]
+    narration: >
+      Four counts are easy to confuse. A cut has exactly two distinct endpoints. The smallest carrier that can hold a cut has two elements.
+      But the number of witnesses can be one. The source has a theorem for a single oriented witness, one occurrence from false to true and none back.
+      And a new cut may add no new elements at all, if both endpoints already exist. Two endpoints does not mean two witnesses.
+
+  - id: s042
+    chapter: "4. Endpoints and witnesses"
+    visual:
+      kind: graph
+      heading: "The pointed germ D2"
+      nodes: {"0": [-1.5, 0], "1": [1.5, 0]}
+      edges: [["0", "1"]]
+      notes: ["Any related pair R(a, b) receives exactly one point-preserving map f with f(0) = a, f(1) = b (D2_initial_pointed)."]
+    narration: >
+      The smallest picture of a cut is called D two. Two points, zero and one, and a single edge from zero to one. For any related pair a, b,
+      there is exactly one point preserving map from D two that sends zero to a and one to b, and it carries the edge along.
+      The Lean statement needs only the relation. Irreflexivity is what makes the two images different.
+
+  - id: s043
+    chapter: "4. Endpoints and witnesses"
+    visual:
+      kind: bullets
+      heading: "Declared inputs, not consequences"
+      items:
+        - "Irreflexivity is a declared law (WDP-CH01-P02)"
+        - "Orientation, a to b rather than b to a, is a second choice"
+        - "The seed <> forces neither"
+        - {text: "The folder's grammar accepts <a->a>: spelling is not a law", colour: bad}
+    narration: >
+      Two cautions. Irreflexivity is a declared law, not something the seed forces. The Witnessed Difference Programme states this as proposition C H zero one P zero two.
+      Orientation, choosing a to b rather than b to a, is a second, independent choice. And the folder's own grammar accepts a self loop, a arrow a.
+      The text says a cut is not a self loop, but the grammar only checks spelling. If you want irreflexivity, you have to check it.
+
+  # ------------------------------------------------------------ 5
+  - id: s050
+    chapter: "5. Tagging and colouring"
+    visual:
+      kind: math
+      heading: "Resolving a collision by tagging"
+      lines:
+        - 'q(a)=q(b) \;\rightsquigarrow\; t(a)=0,\ t(b)=1'
+        - "q'(x) = (q(x),\\ t(x))"
+        - "\\mathrm{pr}_O \\circ q' = q"
+    narration: >
+      Part five. Tagging and colouring. When two data look the same to the current observation q, you can add a tag t that gives them different values,
+      and observe the pair, q of x together with t of x. The new observation separates them. And the old one is still there: project onto the first coordinate,
+      and you get q back. Nothing that was observed before is lost.
+
+  - id: s051
+    chapter: "5. Tagging and colouring"
+    visual:
+      kind: graph
+      heading: "Three collapsed data, every pair demanded"
+      nodes: {a: [-1.6, -0.6], b: [1.6, -0.6], c: [0, 0.9]}
+      edges: [[a, b, muted], [b, c, muted], [c, a, muted]]
+      notes: ["Tags t(a)=0, t(b)=1, t(c)=2: three values are needed. Binary coordinates: 2^k ≥ 3 forces k = 2."]
+    narration: >
+      Now suppose three data are all collapsed, and every pair is demanded apart. Tagging becomes graph colouring on a triangle.
+      Every vertex touches the other two, so three different tag values are needed. If tags must be binary coordinates, then two to the k must be at least three,
+      so k is two. For example zero zero, zero one, and one zero. The research replayed this: every one bit tagging leaves a collision. Compare this with strand zero zero one,
+      where the first separation cost two items. Different grammars of repair have different prices.
+
+  # ------------------------------------------------------------ 6
+  - id: s060
+    chapter: "6. Stages, Postnikov, and partial retraction"
+    visual:
+      kind: bullets
+      heading: "A stage index is not Postnikov depth"
+      items:
+        - "Postnikov truncations of one space keep its path components"
+        - "\"empty, then a point\" changes the path components"
+        - "so successive S(n) are not truncations of one space"
+        - {text: "Write two indices: P_j(ρ(S(n)))", colour: good}
+    narration: >
+      Part six. Stage index, Postnikov depth, and partial retraction. It is tempting to call a tower of stages a Postnikov tower. The strand explains why not.
+      Successive Postnikov truncations of one space keep its path components. But stage zero has an empty carrier and stage one has a point.
+      Going from empty to a point changes the path components, so these cannot be truncations of one space. If you need both ideas, use two indices.
+      On this point the strand is more careful than one of the Witnessed Difference Programme's own notes, which calls S of n a discrete Postnikov tower.
+      That note has been flagged for repair.
+
+  - id: s061
+    chapter: "6. Stages, Postnikov, and partial retraction"
+    visual:
+      kind: math
+      heading: "Section lift and partial retraction"
+      lines:
+        - 'u_n : P_n \hookrightarrow P_{n+1}'
+        - '\widehat{r}_n : P_{n+1} \to P_n \sqcup \{\mathrm{NON\_DESCENT}\}'
+        - '\widehat{r}_n \circ u_n = \mathrm{inl}, \qquad u_n \circ \widehat{r}_n \neq \mathrm{id}'
+    narration: >
+      Going up a stage is an inclusion, u n. Going down cannot always succeed, because the new stage may contain things that did not exist before.
+      So the way down is partial. It returns either an old element, or the refusal value non descent. The law is that going up and then down returns
+      what you started with. Going down and then up is not the identity, because new elements are refused. This is the standard option valued construction,
+      and it is this strand's own. The names do not come from the Genesis study.
+
+  - id: s062
+    chapter: "6. Stages, Postnikov, and partial retraction"
+    visual:
+      kind: code
+      heading: "The law in three lines (from the PFP notebook builder)"
+      code: |
+        def retract(term, old_terms):
+            kind, x = term
+            return x if kind == "old" and x in old_terms else "NON_DESCENT"
+
+        A = {a, b}  ⊂  B = {a, b, c}  ⊂  C = {a, b, c, d}
+        retract C → A:   a ↦ a,  b ↦ b,  c ↦ NON_DESCENT,  d ↦ NON_DESCENT
+    narration: >
+      Here is the whole law in three lines, taken from a notebook builder in the PFP strand. If a term is old and still in the old set, return it.
+      Otherwise return non descent. Composing two steps works the same way. From the set a, b, c, d down to the set a, b, the old elements come back
+      and c and d are refused. One more note: the strand's Python model of this law does not implement it. It always projects. Use this version.
+
+  # ------------------------------------------------------------ 7
+  - id: s070
+    chapter: "7. A circulation obstruction"
+    visual:
+      kind: math
+      heading: "The triangle (example E12)"
+      lines:
+        - 'd_0 = \begin{pmatrix} -1 & 1 & 0 \\ 0 & -1 & 1 \\ 1 & 0 & -1 \end{pmatrix}, \qquad x = (x_{ab}, x_{bc}, x_{ca}) = (1, 0, 0)'
+        - {text: "Find a potential g on the vertices with d0 g = x."}
+        - 'g = (0,1,1):\ \ (d_0 g)_{ab}=1,\ (d_0 g)_{bc}=0,\ (d_0 g)_{ca}=-1 \neq 0'
+    narration: >
+      Part seven. A circulation obstruction. This is the most important example in the strand. Take a triangle with edges a b, b c, and c a.
+      A potential g puts a number on each vertex, and d zero turns it into edge differences. The edge record is one, zero, zero. Can a potential produce it?
+      Try g equals zero, one, one. The first edge gives one minus zero, which is one. The second gives one minus one, zero. Two out of three.
+      But the third edge gives zero minus one, minus one, and we needed zero.
+
+  - id: s071
+    chapter: "7. A circulation obstruction"
+    visual:
+      kind: math
+      heading: "The obstruction is exact"
+      lines:
+        - 'I(x) = x_{ab} + x_{bc} + x_{ca}'
+        - 'I(d_0 g) = (g_b-g_a)+(g_c-g_b)+(g_a-g_c) = 0 \ \text{for every } g'
+        - 'I(1,0,0) = 1 \neq 0 \;\Rightarrow\; \text{no potential exists}'
+        - '\mathrm{im}(d_0) = \ker(I)'
+    narration: >
+      No potential works, and here is the certificate. Add up the three edge values. For any potential, the sum telescopes to zero.
+      For our record the sum is one. So no potential, integer or rational, can produce it. And the certificate is complete: if the sum is zero,
+      the potential zero, x a b, x a b plus x b c works. So the image of d zero is exactly the kernel of the circulation. One number, the circulation,
+      says everything about whether a record can be repaired by changing potentials. This is the shape of obstruction the Witnessed Difference Programme
+      builds its finite cochain diagnostics on.
+
+  - id: s072
+    chapter: "7. A circulation obstruction"
+    visual:
+      kind: table
+      heading: "Two priced responses"
+      columns: ["Response", "Cost", "Result"]
+      wrap: [30, 14, 30]
+      rows:
+        - ["change the edge data", "1 entry", "set x_ab = 0; the record becomes exact"]
+        - ["keep the evidence fixed", "0 changes", {text: "issue the certificate I(x) = 1", colour: accent2}]
+    narration: >
+      What can you do about it? Two responses, each with a price. If you are allowed to change the evidence, one changed entry is necessary and sufficient.
+      Set the first edge to zero. If the evidence must stay fixed, the honest result is the obstruction certificate itself. The circulation is one,
+      and no amount of extra computation on potentials will change that.
+
+  - id: s073
+    chapter: "7. A circulation obstruction"
+    visual:
+      kind: table
+      heading: "Two ways to choose a representative (E18)"
+      columns: ["Norm", "Minimum", "Representative", "Unique?"]
+      rows:
+        - ["ℓ1", "1", "(1,0,0), (1/2,1/2,0), ...", {text: "no", colour: accent2}]
+        - ["ℓ2", "‖h‖² = 1/3", "h = (1/3, 1/3, 1/3)", {text: "yes", colour: good}]
+      caption: "ℓ1 dual certificate y = (1,1,1). ℓ2 potential g = (0, 2/3, 1/3): d0 g + h = x. Both keep I(r) = 1."
+    narration: >
+      Since the record cannot be made exact, you might at least choose the smallest leftover residual. That depends on how you measure size.
+      In the l one norm, every residual has circulation one, so its size is at least one, and many residuals attain it, for example one, zero, zero,
+      or a half, a half, zero. The vector one, one, one certifies the bound. In the l two norm, the minimiser is unique: one third, one third, one third,
+      with squared size one third, reached from the potential zero, two thirds, one third. And notice: both leftovers still have circulation one.
+      Optimising picks a representative. It does not remove the obstruction.
+
+  - id: s074
+    chapter: "7. A circulation obstruction"
+    visual:
+      kind: math
+      heading: "Torsion: an obstruction a change of numbers hides (E19)"
+      lines:
+        - 'C_2=\mathbb{Z} \xrightarrow{\ 2\ } C_1=\mathbb{Z} \xrightarrow{\ 0\ } C_0=\mathbb{Z}'
+        - 'H_1(C;\mathbb{Z}) = \mathbb{Z}/2, \qquad H_1(C;\mathbb{Q}) = 0'
+        - {text: "Over Q, 1/2 is a primitive. Over Z it is not a repair."}
+    narration: >
+      One more obstruction, of a different kind. A chain complex whose only interesting map multiplies by two. Over the integers, the cycle one is not a boundary,
+      because no integer doubled is one. So the first homology is the integers mod two. Switch to rational numbers, and one half doubled is one, so the obstruction disappears.
+      But one half is not an integer repair. Changing the number system hid the obstruction. It did not fix it. An honest repair adds a new integer boundary generator.
+
+  # ------------------------------------------------------------ 8
+  - id: s080
+    chapter: "8. Observers and repair rank"
+    visual:
+      kind: math
+      heading: "A defective observer (E20)"
+      lines:
+        - 'Q_{\mathrm{bad}}(x) = x_1, \qquad z=(0,1,0):\ Q_{\mathrm{bad}}(z)=0,\ I(z)=1'
+        - 'Q_{\mathrm{complete}}(x) = (x_1,\ I(x)), \qquad \ker = \{(0,t,-t)\} \subset \ker(I)'
+        - '\ell = \dim K/(K\cap B) = 1'
+    narration: >
+      Part eight. Observers and repair rank. Return to the triangle, now over the rational numbers. An observer that reads only the first edge cannot see
+      the vector zero, one, zero, even though its circulation is one. It is blind to the obstruction. Add the circulation as a second coordinate,
+      and the completed observer's blind spots all lie inside the exact records. One added coordinate is necessary and sufficient, because the hidden part
+      has dimension one. One correction made during the research: the strand had called the kernel of the bad observer one dimensional. It is two dimensional.
+      The part that matters, the part not already exact, is one dimensional.
+
+  - id: s081
+    chapter: "8. Observers and repair rank"
+    visual:
+      kind: table
+      heading: "Repair rank, not receipt count (E21)"
+      columns: ["Faces adjoined", "rank ∂2", "dim H1", "Receipts"]
+      rows:
+        - ["z1 and z2 (independent)", {text: "2", colour: good}, {text: "0", colour: good}, "2"]
+        - ["z1 and z1 (duplicate)", {text: "1", colour: bad}, {text: "1", colour: bad}, "2"]
+      caption: "Edges (ab, bc, ac, cd, da). z1 = (1,1,-1,0,0) is triangle abc; z2 = (0,0,1,1,1) is triangle acd."
+    narration: >
+      The last example is about counting progress. Four vertices and five edges give two independent cycles, triangle a b c and triangle a c d.
+      Fill both with faces, and the boundary map has rank two and no cycles remain. Now suppose two contributors both fill triangle a b c.
+      That is two receipts, but the rank is one, and one cycle is still open. Progress is measured by the rank of the repairs, not by how many repairs were submitted.
+
+  - id: s082
+    chapter: "8. Observers and repair rank"
+    visual:
+      kind: flow
+      heading: "Generate, evaluate, admit"
+      nodes:
+        - "generate a candidate"
+        - "evaluate it"
+        - {text: "admit it (a separate act)", colour: good}
+      caption: "An evaluator's report is not an authorization (GEN-WDP-03, 04, 10). PFP: a candidate never certifies itself."
+    narration: >
+      All of these examples share one discipline. Generating a candidate, evaluating it, and admitting it are separate acts. An evaluator's report is not an authorization.
+      This is the same separation the Proposal Fidelity Protocol enforces when it talks to language models. A candidate never certifies itself, and only the host's receipt carries a status.
+      One warning for readers of the code: the strand's channel class promotes a candidate whenever a verifier passes, which merges exactly the acts this lesson keeps apart.
+      Do not use it as an example.
+
+  - id: s090
+    chapter: "Closing"
+    visual:
+      kind: bullets
+      heading: "What this strand does not claim"
+      items:
+        - "that the S(0)-S(6) ladder is proved or derived"
+        - "that S(4)-S(6), W_n, H_n or NON_DESCENT come from 19L57G1"
+        - "that <ab> is a pair, or that supplying <a> admits it"
+        - "that closure is autonomous (it is a declared policy) or that OB-1 is proved (it is open)"
+        - "that S(n) is a Postnikov tower, or that anything here derives physics"
+    narration: >
+      Here is what this strand does not claim. The stage ladder is not proved or derived. Stages four through six and the registers are not from the Genesis study.
+      A b in brackets is not a pair, and supplying a mark admits nothing. Closing orbits of demands is a declared policy, proved to terminate within stated bounds,
+      and the endogenous demand gap is open. S of n is not a Postnikov tower, and nothing here derives physics.
+
+  - id: s091
+    chapter: "Closing"
+    visual:
+      kind: flow
+      heading: "Next"
+      nodes:
+        - {text: "001 Genesis", colour: muted}
+        - {text: "002 S(n)", colour: good}
+        - "010 MSS-N"
+        - "070 WDP"
+      caption: "010 numbers a different object: an externally designed atlas of obligations."
+    narration: >
+      Next is strand zero ten, the minimal symbol system atlas. It uses a different index for a different object, an externally designed atlas of obligations,
+      and its entries are not Genesis stages. And for the mathematics of this strand's examples, the circulation, the representatives, the observers, the canonical treatment
+      is the Witnessed Difference Programme, strand zero seventy. The curriculum file has exercises with answers for all eight parts.

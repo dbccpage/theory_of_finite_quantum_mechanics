@@ -1,0 +1,61 @@
+schema_version: smplx.nf.contract.v0
+contract_kind: form_contract
+identity:
+  id: nf.ddc.trace_merkle
+  name: Trace Merkle Normal Form
+  short_name: TMNF
+  version: v0
+  status: active
+  family: ddc_tape
+  theory_status: established
+  contract_status: active
+  verification_status: executable
+classification:
+  hierarchy_level: form
+  subject_kind:
+    - execution_tape
+    - merkle_hash_chain
+    - step_receipt
+  data_posture: in_motion
+  mathematical_posture: operational
+purpose:
+  excludes_anomaly: non-reproducible, un-receipted, out-of-order, or mutated execution steps committed to trace
+  preserves_invariant: append-only cryptographic Merkle chaining with SHA-256 digests over RFC 8785 canonical JSON step receipts
+  protected_skeleton:
+    - step_index_sequence
+    - operational_rune
+    - previous_tape_hash
+    - current_tape_hash
+    - canonical_step_receipt
+  erased_structure:
+    - solver_wallclock_execution_time
+    - memory_heap_addresses
+  non_claims:
+    - does not claim a valid tape proves truth of outside prose
+    - does not confer operational authority; authority_effect is unconditionally None
+    - does not permit post-terminal continuation
+quadrilateral:
+  qualifies_as_true_normal_form: false
+  qualification_gap: cryptographic_hash_chain_not_relational_project_join
+  anomaly_exclusion: missing step receipts, un-recomputed tape digests, silent state mutations, or post-terminal insertions
+  lossless_join:
+    status: replay_reconstruction
+    statement: given initial state s₀ and tape entries T, the full sequence of intermediate states is losslessly and deterministically reconstructed
+  dependency_preservation:
+    status: step_receipt_hash_preserved
+    statement: each step hash h_k = SHA256(h_{k-1} || RFC8785(R_k)) is verifiable locally from adjacent steps
+  syntactic_decision:
+    status: schema_and_hash_decidable
+    statement: membership is decidable by parsing TapeEntry schema and re-evaluating SHA-256 chain equality
+governing_laws:
+  - law_1: Receipt determinism (every transition generates a typed, machine-verifiable step receipt)
+  - law_2: Terminal absorption (no steps admitted after terminal T)
+  - law_5: Integration requires receipt (without receipt, routes unconditionally to M)
+contracts_referenced:
+  - omega_engine_governance/contracts/contracts_omega_engine_crates/mathematics/discrete_deformation_algebra/dda_trace_cochain.contract.yaml
+declarations_required:
+  - tape_index
+  - operation_rune
+  - step_receipt
+  - prev_hash
+  - current_hash

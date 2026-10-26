@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 580" width="100%" height="100%" style="background:#0b0f19; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#1e293b" stroke-width="0.7" opacity="0.6"/>
+    </pattern>
+    <radialGradient id="bgGlow" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#1e1b4b" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0b0f19" stop-opacity="1"/>
+    </radialGradient>
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glowAmber" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glowPurple" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <marker id="arrowCyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#34d399"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#c084fc"/>
+    </marker>
+    <marker id="arrowRose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f43f5e"/>
+    </marker>
+  </defs>
+
+  <rect width="940" height="580" fill="url(#bgGlow)"/>
+  <rect width="940" height="580" fill="url(#grid)"/>
+  <rect x="16" y="16" width="908" height="548" rx="12" fill="none" stroke="#334155" stroke-width="1.2"/>
+
+
+  <!-- Top Banner / Badges -->
+  <g transform="translate(32, 26)">
+    <rect x="0" y="0" width="130" height="24" rx="6" fill="#4338ca" fill-opacity="0.3" stroke="#818cf8" stroke-width="1.2"/>
+    <text x="65" y="16" fill="#a5b4fc" font-size="11" font-weight="700" text-anchor="middle">Level 6: Genesis 06</text>
+
+    <rect x="140" y="0" width="150" height="24" rx="6" fill="#0284c7" fill-opacity="0.3" stroke="#38bdf8" stroke-width="1.2"/>
+    <text x="215" y="16" fill="#38bdf8" font-size="10.5" font-weight="700" text-anchor="middle">Search: &#916; Grammar</text>
+
+    <rect x="300" y="0" width="160" height="24" rx="6" fill="#065f46" fill-opacity="0.3" stroke="#34d399" stroke-width="1.2"/>
+    <text x="380" y="16" fill="#34d399" font-size="10.5" font-weight="700" text-anchor="middle">Cost Preorder: &#956;_1 = |&#916;|, &#956;_2</text>
+
+    <rect x="470" y="0" width="140" height="24" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="540" y="16" fill="#94a3b8" font-size="10" font-weight="500" text-anchor="middle">AuthorityEffect: None</text>
+
+    <text x="0" y="52" fill="#f8fafc" font-size="18" font-weight="700" letter-spacing="0.2">Level 6: Minimal Candidate Responses &amp; Cost Floor</text>
+    <text x="0" y="72" fill="#94a3b8" font-size="12" font-weight="400">The &#956;_1 = 2 Cost Floor and Non-Uniqueness of Minimal Responses</text>
+  </g>
+
+
+  <!-- Left: Delta Grammar &amp; Measures -->
+  <g transform="translate(32, 115)">
+    <rect x="0" y="0" width="410" height="380" rx="8" fill="#111827" fill-opacity="0.9" stroke="#1f2937" stroke-width="1.2"/>
+    <rect x="0" y="0" width="410" height="36" rx="8" fill="#1e293b" fill-opacity="0.8"/>
+    <text x="16" y="23" fill="#f8fafc" font-size="12" font-weight="700">Response Grammar &amp; Declared Cost Measures</text>
+
+    <!-- Response Grammar -->
+    <g transform="translate(20, 48)">
+      <text x="0" y="15" fill="#38bdf8" font-size="11" font-weight="700">Response Delta Item Grammar (code/candidates.py):</text>
+      <rect x="0" y="22" width="370" height="68" rx="6" fill="#0f172a" stroke="#334155"/>
+      <text x="15" y="42" fill="#93c5fd" font-size="11" font-family="monospace">&#916; &#8834; &#123; NewDatum,</text>
+      <text x="90" y="42" fill="#93c5fd" font-size="11" font-family="monospace">NewForm(n),</text>
+      <text x="180" y="42" fill="#93c5fd" font-size="11" font-family="monospace">NewInst(f, &#8407;a),</text>
+      <text x="15" y="68" fill="#93c5fd" font-size="11" font-family="monospace">      NewRuleAll(f) &#125;</text>
+    </g>
+
+    <!-- Cost Functions -->
+    <g transform="translate(20, 150)">
+      <text x="0" y="15" fill="#fbbf24" font-size="11" font-weight="700">Two Declared Cost Measures:</text>
+      <rect x="0" y="22" width="370" height="85" rx="6" fill="#0f172a" stroke="#334155"/>
+      <text x="15" y="44" fill="#fbbf24" font-size="12" font-family="monospace">&#956;_1(&#916;) = |&#916;|</text>
+      <text x="150" y="44" fill="#94a3b8" font-size="10.5">(Raw item count)</text>
+      <text x="15" y="74" fill="#fbbf24" font-size="12" font-family="monospace">&#956;_2(&#916;) = (|&#916;|, &#8721; arity(f))</text>
+      <text x="210" y="74" fill="#94a3b8" font-size="10.5">(Lexicographic)</text>
+    </g>
+
+    <!-- Key Principle -->
+    <g transform="translate(20, 270)">
+      <text x="0" y="15" fill="#f8fafc" font-size="11.5" font-weight="700">&#8226; Minimality is Model-Relative:</text>
+      <text x="16" y="33" fill="#94a3b8" font-size="10.5">Minimality is defined strictly relative to a declared grammar</text>
+      <text x="16" y="49" fill="#94a3b8" font-size="10.5">and cost preorder, not as an unanchored metaphysical truth.</text>
+    </g>
+  </g>
+
+  <!-- Right: Search Space &amp; Tie Structure -->
+  <g transform="translate(460, 115)">
+    <rect x="0" y="0" width="448" height="380" rx="8" fill="#111827" fill-opacity="0.9" stroke="#1f2937" stroke-width="1.2"/>
+    <rect x="0" y="0" width="448" height="36" rx="8" fill="#1e293b" fill-opacity="0.8"/>
+    <text x="16" y="23" fill="#f8fafc" font-size="12" font-weight="700">Cost-Two Floor (&#956;_1 = 2) &amp; Tied Minimal Responses</text>
+
+    <!-- Cost Hierarchy Visualization -->
+    <g transform="translate(24, 50)">
+      <!-- Cost 0: Fails -->
+      <rect x="0" y="0" width="400" height="34" rx="4" fill="#450a0a" fill-opacity="0.3" stroke="#f43f5e"/>
+      <text x="15" y="22" fill="#f43f5e" font-size="11" font-weight="700">&#956; = 0 (Empty response):</text>
+      <text x="175" y="22" fill="#fda4af" font-size="10.5">Ground inertia; Q remains unseparated.</text>
+
+      <!-- Cost 1: Fails -->
+      <rect x="0" y="42" width="400" height="34" rx="4" fill="#450a0a" fill-opacity="0.3" stroke="#f43f5e"/>
+      <text x="15" y="64" fill="#f43f5e" font-size="11" font-weight="700">&#956; = 1 (Single item):</text>
+      <text x="175" y="64" fill="#fda4af" font-size="10.5">Only Form OR Datum; cannot separate.</text>
+
+      <!-- Cost 2: MINIMAL FLOOR -->
+      <rect x="0" y="84" width="400" height="120" rx="6" fill="#065f46" fill-opacity="0.3" stroke="#34d399" stroke-width="1.5"/>
+      <rect x="10" y="94" width="130" height="22" rx="4" fill="#047857"/>
+      <text x="75" y="109" fill="#f8fafc" font-size="10.5" font-weight="700" text-anchor="middle">&#956;_1 = 2 (MINIMAL FLOOR)</text>
+
+      <text x="15" y="136" fill="#e2e8f0" font-size="10.5" font-weight="600">Candidate tied responses (NewForm + NewInst):</text>
+      <text x="25" y="156" fill="#38bdf8" font-size="10" font-family="monospace">&#8226; Branch A: NewForm(1) + NewInst(f, [d_0])   [Unary marking]</text>
+      <text x="25" y="174" fill="#818cf8" font-size="10" font-family="monospace">&#8226; Branch B: NewForm(2) + NewInst(f, [d_0, d_1]) [Binary link]</text>
+      <text x="25" y="192" fill="#c084fc" font-size="10" font-family="monospace">&#8226; Branch C: NewForm(2) + NewInst(f, [d_1, d_0]) [Reversed link]</text>
+    </g>
+
+    <!-- Pruning Lemmas Box -->
+    <g transform="translate(24, 260)">
+      <rect x="0" y="0" width="400" height="95" rx="6" fill="#0f172a" stroke="#334155"/>
+      <text x="15" y="20" fill="#38bdf8" font-size="11" font-weight="700">Four Sealed Pruning Lemmas (candidates.py):</text>
+      <text x="15" y="38" fill="#94a3b8" font-size="10">1. <tspan fill="#e2e8f0">Rule removal:</tspan> Adding unneeded rules increases cost without separation.</text>
+      <text x="15" y="54" fill="#94a3b8" font-size="10">2. <tspan fill="#e2e8f0">Datum irrelevance:</tspan> Fresh data without form instances cannot separate.</text>
+      <text x="15" y="70" fill="#94a3b8" font-size="10">3. <tspan fill="#e2e8f0">Form irrelevance:</tspan> Forms without instances are inert in observation.</text>
+      <text x="15" y="86" fill="#94a3b8" font-size="10">4. <tspan fill="#e2e8f0">Mention lemma:</tspan> A separating response must mention at least one target index.</text>
+    </g>
+  </g>
+
+
+  <!-- Bottom Invariant Bar -->
+  <g transform="translate(32, 510)">
+    <rect x="0" y="0" width="876" height="54" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <circle cx="16" cy="17" r="4" fill="#38bdf8"/>
+    <text x="28" y="21" fill="#e2e8f0" font-size="11" font-weight="600">Scoped statement:</text>
+    <text x="135" y="21" fill="#38bdf8" font-size="11" font-family="monospace">cost_two_floor: minimum response cost is exactly 2; minimal responses are non-unique</text>
+    <text x="28" y="47" fill="#64748b" font-size="9">Source locator: <tspan fill="#34d399" font-family="monospace">validResponse, ProposalRecord (Lean S, Gated)</tspan></text>
+  </g>
+
+</svg>

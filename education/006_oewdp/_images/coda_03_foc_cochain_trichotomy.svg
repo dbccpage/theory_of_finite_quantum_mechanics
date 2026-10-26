@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#161b22;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#21262d;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#30363d;stop-opacity:1"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <text x="400" y="38" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="18" font-weight="700" fill="#58a6ff" filter="url(#glow)">Level 03: Finite Obstruction Calculus (FOC)</text>
+  <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#484f58"/></marker></defs>
+  <text x="400" y="62" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12" fill="#8b949e">C⁰ →d₀ C¹ →d₁ C² with d₁∘d₀ = 0 over ℚ</text>
+  <rect x="60" y="95" width="140" height="55" rx="8" fill="url(#boxGrad)" stroke="#79c0ff" stroke-width="1.5"/>
+  <text x="130" y="127" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#79c0ff">C⁰</text>
+  <text x="130" y="144" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8b949e">Vertex space</text>
+  <rect x="260" y="95" width="140" height="55" rx="8" fill="url(#boxGrad)" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="330" y="127" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#d2a8ff">C¹</text>
+  <text x="330" y="144" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8b949e">Edge space</text>
+  <rect x="460" y="95" width="140" height="55" rx="8" fill="url(#boxGrad)" stroke="#7ee787" stroke-width="1.5"/>
+  <text x="530" y="127" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#7ee787">C²</text>
+  <text x="530" y="144" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8b949e">Face space</text>
+  <line x1="200" y1="122" x2="260" y2="122" stroke="#79c0ff" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="230" y="114" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8b949e">d₀</text>
+  <line x1="400" y1="122" x2="460" y2="122" stroke="#d2a8ff" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="430" y="114" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8b949e">d₁</text>
+  <rect x="640" y="95" width="120" height="55" rx="8" fill="url(#boxGrad)" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="700" y="127" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#f0883e">d₁∘d₀ = 0</text>
+  <rect x="80" y="185" width="280" height="50" rx="8" fill="url(#boxGrad)" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="220" y="215" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#d2a8ff">Φ₁([x]) = min_f ‖x + d₀f‖₁,w</text>
+  <text x="220" y="232" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8b949e">Quotient norm on C¹/im(d₀)</text>
+  <rect x="440" y="185" width="280" height="50" rx="8" fill="url(#boxGrad)" stroke="#7ee787" stroke-width="1.5"/>
+  <text x="580" y="215" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#7ee787">Γ₂([d₁x]) = min_u ‖d₁x + a₂u‖₁,w</text>
+  <text x="580" y="232" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8b949e">Quotient norm on C²/im(a₂)</text>
+  <rect x="50" y="275" width="220" height="55" rx="8" fill="url(#boxGrad)" stroke="#7ee787" stroke-width="1.5"/>
+  <text x="160" y="307" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#7ee787">ExactRepair</text>
+  <text x="160" y="324" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8b949e">Φ₁ = 0</text>
+  <rect x="290" y="275" width="220" height="55" rx="8" fill="url(#boxGrad)" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="400" y="307" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#f0883e">CoherentResidual</text>
+  <text x="400" y="324" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8b949e">Φ₁ > 0, Γ₂ = 0</text>
+  <rect x="530" y="275" width="220" height="55" rx="8" fill="url(#boxGrad)" stroke="#f85149" stroke-width="1.5"/>
+  <text x="640" y="307" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#f85149">NonclosedDefect</text>
+  <text x="640" y="324" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8b949e">Φ₁ > 0, Γ₂ > 0</text>
+  <rect x="140" y="360" width="520" height="50" rx="8" fill="url(#boxGrad)" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="400" y="390" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#58a6ff">CODA-05: Exactly one grade holds (Trichotomy)</text>
+  <text x="400" y="440" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12" fill="#8b949e">Finite dimension, strictly positive weights, closed affine repair sets</text>
+  <text x="400" y="470" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12" fill="#8b949e">AuthorityEffect: None</text>
+</svg>
