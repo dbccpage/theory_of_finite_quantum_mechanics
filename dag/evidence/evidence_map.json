@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "b71f6cd664e83d5a8304033ab7e2180da026ee83abf4713c128a0c99dc3f7c3a"
+  "sha256_lf": "8faed8a97f52fa891cdfd33fa6f10ea8b6474f66515e7e3de07ae470d0703854"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -1263,9 +1263,9 @@
    "size": 9170
   },
   "dag/derivation_dag.json": {
-   "sha256": "b71f6cd664e83d5a8304033ab7e2180da026ee83abf4713c128a0c99dc3f7c3a",
+   "sha256": "8faed8a97f52fa891cdfd33fa6f10ea8b6474f66515e7e3de07ae470d0703854",
    "sha256_basis": "lf-normalised",
-   "size": 4827831
+   "size": 4827389
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -2743,9 +2743,9 @@
    "size": 4554
   },
   "dag/derivations/10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md": {
-   "sha256": "e9de72ecc65b781a1174346159b68adcf3afec61c6f27ccb9498bcb5f2d3be16",
+   "sha256": "d075d79feba00257d72ea21de197535e85f57240aa21e3999a0734e249d9b8dc",
    "sha256_basis": "lf-normalised",
-   "size": 2591
+   "size": 2442
   },
   "dag/derivations/10_finite_qm_core/tfq_1024_fq_gap_corpus_rewrite.md": {
    "sha256": "65797e426e00d18ddfde5cbe8ab564c01dcd2bbae6de5a6ab6e2e126a7043ef3",
@@ -6887,6 +6887,11 @@
    "sha256_basis": "lf-normalised",
    "size": 16822
   },
+  "dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json": {
+   "sha256": "b214414efa2da7d2c2932766e1f65d782bf70cafd7fdcdc48b6c9a85b259826f",
+   "sha256_basis": "lf-normalised",
+   "size": 2366
+  },
   "dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json": {
    "sha256": "8bd2cdd20a70386abddc5c8cb28d12deb8b7d84a946125945cfd20cbce60a6cb",
    "sha256_basis": "lf-normalised",
@@ -8556,6 +8561,11 @@
    "sha256": "553d4dbe9de7fe4be1fd0c58d4ac71ff381ec730f55b8339a7811c68bc290894",
    "sha256_basis": "bytes",
    "size": 3117
+  },
+  "lean4/CampaignFqGapCustodyAndReceipts.lean": {
+   "sha256": "c33d992442c75c81cad274e786a8f34ae95fb666ba10298e89f5a2332011e012",
+   "sha256_basis": "bytes",
+   "size": 585
   },
   "lean4/CampaignFqGapStoneContinuousTime.lean": {
    "sha256": "7cd94d6cedb9da82eb4ac3682fbb8e097e6d1f5758c9f6e0dadbe1fd21d3f5a9",
@@ -87569,10 +87579,10 @@
    "facts": {
     "cited_code_files_not_tests": 0,
     "counted_files": 2,
-    "lean_receipt_backed": 2,
+    "lean_receipt_backed": 3,
     "qualifying_reviews": 1,
     "runnable_tests": 0,
-    "symbols_found": 2
+    "symbols_found": 6
    },
    "flags": [],
    "grade": "E3",
@@ -87581,11 +87591,10 @@
     {
      "canonical_symbol": null,
      "cited_in": [
-      "node.lean",
-      "record TFQ-1023"
+      "receipt dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json (CampaignFqGapCustodyAndReceipts)"
      ],
-     "command": "cd lean4 && lake build DerivationDagQMClosure",
-     "command_note": "then, in a scratch file that imports DerivationDagQMClosure: #print axioms QuantumMechanics.DerivationDagQMClosure.fq_gap_c500_ten_blocks_and_custody_axiom_audit_certificate",
+     "command": "cd lean4 && lake build CampaignFqGapCustodyAndReceipts",
+     "command_note": null,
      "counted": true,
      "counts": true,
      "decl_ambiguous": false,
@@ -87594,52 +87603,214 @@
      "file_exists": true,
      "generated": false,
      "kind": "lean_decl",
-     "path": "lean4/DerivationDagQMClosure.lean",
+     "path": "lean4/CampaignFqGapCustodyAndReceipts.lean",
      "receipts": [
       {
        "decl_ambiguous": false,
        "decl_listed": false,
-       "id": "dag/research/lean_replay_campaign_finite_qm_structure.json#2:DerivationDagQMClosure",
+       "id": "dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json#0:CampaignFqGapCustodyAndReceipts",
        "ok": true,
        "sha_match": true
       }
      ],
      "replay": "verified",
      "resolution": "present",
-     "symbol": "QuantumMechanics.DerivationDagQMClosure.fq_gap_c500_ten_blocks_and_custody_axiom_audit_certificate",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignFqGapCustodyAndReceipts.coverageIsProper",
+     "cited_in": [
+      "receipt dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json (CampaignFqGapCustodyAndReceipts)"
+     ],
+     "command": "cd lean4 && lake build CampaignFqGapCustodyAndReceipts",
+     "command_note": "then, in a scratch file that imports CampaignFqGapCustodyAndReceipts: #print axioms CampaignFqGapCustodyAndReceipts.coverageIsProper",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFqGapCustodyAndReceipts.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json#0:CampaignFqGapCustodyAndReceipts",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFqGapCustodyAndReceipts.coverageIsProper",
      "symbol_declared": true,
      "symbol_exists": true,
      "where": null
     },
     {
-     "canonical_symbol": null,
+     "canonical_symbol": "CampaignFqGapCustodyAndReceipts.coverageNumeralRemainder",
      "cited_in": [
-      "node.lean",
-      "record TFQ-1023"
+      "receipt dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json (CampaignFqGapCustodyAndReceipts)"
      ],
-     "command": "cd lean4 && lake build DerivationDagQMClosure",
-     "command_note": "then, in a scratch file that imports DerivationDagQMClosure: #print axioms QuantumMechanics.DerivationDagQMClosure.l1_minkowski_sqrt_decoherence_and_scoped_custody_witness",
+     "command": "cd lean4 && lake build CampaignFqGapCustodyAndReceipts",
+     "command_note": "then, in a scratch file that imports CampaignFqGapCustodyAndReceipts: #print axioms CampaignFqGapCustodyAndReceipts.coverageNumeralRemainder",
      "counted": true,
      "counts": true,
      "decl_ambiguous": false,
-     "decl_axioms": null,
-     "decl_listed": false,
+     "decl_axioms": [],
+     "decl_listed": true,
      "file_exists": true,
      "generated": false,
      "kind": "lean_decl",
-     "path": "lean4/DerivationDagQMClosure.lean",
+     "path": "lean4/CampaignFqGapCustodyAndReceipts.lean",
      "receipts": [
       {
        "decl_ambiguous": false,
-       "decl_listed": false,
-       "id": "dag/research/lean_replay_campaign_finite_qm_structure.json#2:DerivationDagQMClosure",
+       "decl_listed": true,
+       "id": "dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json#0:CampaignFqGapCustodyAndReceipts",
        "ok": true,
        "sha_match": true
       }
      ],
      "replay": "verified",
      "resolution": "present",
-     "symbol": "QuantumMechanics.DerivationDagQMClosure.l1_minkowski_sqrt_decoherence_and_scoped_custody_witness",
+     "symbol": "CampaignFqGapCustodyAndReceipts.coverageNumeralRemainder",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignFqGapCustodyAndReceipts.untypedRowNumeralGap",
+     "cited_in": [
+      "receipt dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json (CampaignFqGapCustodyAndReceipts)"
+     ],
+     "command": "cd lean4 && lake build CampaignFqGapCustodyAndReceipts",
+     "command_note": "then, in a scratch file that imports CampaignFqGapCustodyAndReceipts: #print axioms CampaignFqGapCustodyAndReceipts.untypedRowNumeralGap",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFqGapCustodyAndReceipts.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json#0:CampaignFqGapCustodyAndReceipts",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignFqGapCustodyAndReceipts.untypedRowNumeralGap",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignFqGapCustodyAndReceipts.coverageIsProper",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1023"
+     ],
+     "command": "cd lean4 && lake build CampaignFqGapCustodyAndReceipts",
+     "command_note": "then, in a scratch file that imports CampaignFqGapCustodyAndReceipts: #print axioms CampaignFqGapCustodyAndReceipts.coverageIsProper",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFqGapCustodyAndReceipts.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json#0:CampaignFqGapCustodyAndReceipts",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "coverageIsProper",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignFqGapCustodyAndReceipts.coverageNumeralRemainder",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1023"
+     ],
+     "command": "cd lean4 && lake build CampaignFqGapCustodyAndReceipts",
+     "command_note": "then, in a scratch file that imports CampaignFqGapCustodyAndReceipts: #print axioms CampaignFqGapCustodyAndReceipts.coverageNumeralRemainder",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFqGapCustodyAndReceipts.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json#0:CampaignFqGapCustodyAndReceipts",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "coverageNumeralRemainder",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignFqGapCustodyAndReceipts.untypedRowNumeralGap",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1023"
+     ],
+     "command": "cd lean4 && lake build CampaignFqGapCustodyAndReceipts",
+     "command_note": "then, in a scratch file that imports CampaignFqGapCustodyAndReceipts: #print axioms CampaignFqGapCustodyAndReceipts.untypedRowNumeralGap",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignFqGapCustodyAndReceipts.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json#0:CampaignFqGapCustodyAndReceipts",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "untypedRowNumeralGap",
      "symbol_declared": true,
      "symbol_exists": true,
      "where": null
@@ -87749,17 +87920,17 @@
    ],
    "reviews": [
     {
-     "does_not_support": "Resolve the original claim-row discrepancies, missing-library maps, publication/provenance corrections and full original axiom/build receipts individually. This scoped inventory does not discharge the historical custody register.",
-     "narrowest_claim": "Every retained available source is bound to actual bytes; unavailable or changed historical pins remain explicit. Fresh named Lean reports cover only the declarations listed in this run, not an H000-H053 campaign.",
-     "next_test": "Resolve the original claim-row discrepancies, missing-library maps, publication/provenance corrections and full original axiom/build receipts individually. This scoped inventory does not discharge the historical custody register.",
+     "does_not_support": "A recount of ledger rows, missing libraries, Mathlib promotion, the named Classical.choice dependency, provenance pointers, Zenodo publication status, or the README code-companion check.",
+     "narrowest_claim": "The named untyped-row numerals satisfy 48 - 24 = 24. The named coverage numerals satisfy 53 - 22 = 31 and 22 < 53.",
+     "next_test": "Recount the ledger rows, the named libraries, the Mathlib claims, the Classical.choice dependency, the provenance pointers, the Zenodo records, and the README check on a clean tree.",
      "prior_status": "OPEN",
      "qualifies": true,
      "review": "dag/results/FQ-GAP-CUSTODY-AND-RECEIPTS/reviews/20261019_scope_audit/review_result.json",
      "review_file_ok": true,
      "review_sha256": "441a0c84415922a2cb0518c7e19b7626346799d508498fdca35fec7a32c9699e",
-     "scope_effect": "consistent",
+     "scope_effect": "statement_narrowed",
      "source": "pfp_review",
-     "verdict": "scoped_result_or_obstruction_reviewed"
+     "verdict": "scoped_numeral_slice_reviewed"
     }
    ],
    "routes": {
@@ -316267,6 +316438,28 @@
    "toolchain": "4.35.0"
   },
   {
+   "admission_scan_passed": null,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [],
+   "built_successfully": null,
+   "checked_at": "2026-10-25",
+   "dag_node": "FQ-GAP-CUSTODY-AND-RECEIPTS",
+   "decl_count": 3,
+   "exit_code": 0,
+   "id": "dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json#0:CampaignFqGapCustodyAndReceipts",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignFqGapCustodyAndReceipts",
+   "path": "lean4/CampaignFqGapCustodyAndReceipts.lean",
+   "receipt_file": "dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json",
+   "receipt_file_sha256": "b214414efa2da7d2c2932766e1f65d782bf70cafd7fdcdc48b6c9a85b259826f",
+   "recorded_sha256": "c33d992442c75c81cad274e786a8f34ae95fb666ba10298e89f5a2332011e012",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
    "admission_scan_passed": true,
    "axiom_audit_passed": true,
    "axioms_itemised": true,
@@ -330934,16 +331127,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 37,
   "e3_nodes_with_test_but_no_review": 39,
   "lean_declarations_in_repo": {
-   "distinct": 2121,
+   "distinct": 2124,
    "no_receipt": 38,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 2060,
-   "replay_verified_and_declaration_itemised": 1993,
+   "replay_verified": 2063,
+   "replay_verified_and_declaration_itemised": 1996,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 2440
+   "present": 2441
   },
   "mismatch_nodes": 190,
   "mismatches_by_kind": {
@@ -330964,7 +331157,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 620,
+  "receipts_indexed": 621,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,
