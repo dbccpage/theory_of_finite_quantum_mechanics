@@ -1,10 +1,10 @@
 # L1-QM002-O022A-PHI1-QUOTIENT
 
-Stage: [L1_EMERGENCE](../stages/L1_EMERGENCE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [L1_EMERGENCE](../stages/L1_EMERGENCE.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Exact rational triangle primal construction, minimum weighted cost and gauge-shift invariance, plus general telescoping and lower-bound assumptions in Lean.
+> For a finite-dimensional repair packet with c = d0, Phi1(\[x\]) equals the Banach-quotient norm of the cofiber shadow. The Lean statement named in the ledger is definitional, so the analytic identity is carried by the prose proof only. The unrestricted CODA-A bridge is refused / OPEN.
 
 ## Grade
 
@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: Refine arbitrary finite repair packets to Banach quotients and the unrestricted CODA-A bridge. The literal Lean bound theorem is a scalar interface, not an array refinement. The broader source statement is kept in pfp_review.prior_statement.
+The identity Phi1(\[x\]) = Banach-quotient norm is not in Lean (the source says its Lean statement is definitional). The cited Lean has the gauge-shift identity on one edge and additivity of an edge residual sum. The prose argument in the source paper has not been reviewed here.
 
 ## Source status
 
@@ -36,7 +36,7 @@ Exact coboundary quotient invariance of edgewise residual mechanized in Derivati
 
 ## Review
 
-- PFP review: [dag/results/L1-QM002-O022A-PHI1-QUOTIENT/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-QM002-O022A-PHI1-QUOTIENT/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/L1-QM002-O022A-PHI1-QUOTIENT/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-QM002-O022A-PHI1-QUOTIENT/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact rational triangle primal construction, minimum weighted cost and gauge-shift invariance, plus general telescoping and lower-bound assumptions in Lean.
   - does not support: Refine arbitrary finite repair packets to Banach quotients and the unrestricted CODA-A bridge. The literal Lean bound theorem is a scalar interface, not an array refinement.
   - next test: Refine arbitrary finite repair packets to Banach quotients and the unrestricted CODA-A bridge. The literal Lean bound theorem is a scalar interface, not an array refinement.
@@ -101,8 +101,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `L1-R-PHI1-QUOTIENT` `DERIVED_LEAN`: [L1-WDP-WINDOW-PHI1-GAMMA2](L1-WDP-WINDOW-PHI1-GAMMA2.md) (DEFINITION), [L1-CHAIN-D1D0-AXIOM](L1-CHAIN-D1D0-AXIOM.md) (ADMITTED_PRIMITIVE)
+- `L1-R-PHI1-QUOTIENT` `GAP_NO_DERIVATION`: [L1-WDP-WINDOW-PHI1-GAMMA2](L1-WDP-WINDOW-PHI1-GAMMA2.md) (DEFINITION), [L1-CHAIN-D1D0-AXIOM](L1-CHAIN-D1D0-AXIOM.md) (ADMITTED_PRIMITIVE)
 
 Outgoing (1):
 
-- `L1-R-DENSITY-LIFT-PUB009` `DERIVED_LEAN`: [L1-DENSITY-LIFT-SIGNED-SQRT-PUB009](L1-DENSITY-LIFT-SIGNED-SQRT-PUB009.md) (PROVED_LEAN)
+- `L1-R-DENSITY-LIFT-PUB009` `GAP_NO_DERIVATION`: [L1-DENSITY-LIFT-SIGNED-SQRT-PUB009](L1-DENSITY-LIFT-SIGNED-SQRT-PUB009.md) (OPEN)

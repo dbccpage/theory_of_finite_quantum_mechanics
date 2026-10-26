@@ -1,10 +1,10 @@
 # L1-GS001-GAUGE-L1
 
-Stage: [L1_EMERGENCE](../stages/L1_EMERGENCE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [L1_EMERGENCE](../stages/L1_EMERGENCE.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: All eight signed-permutation gauge values, swap anisotropy, and equal-length direction countercontrol; exact sign/swap laws in Lean.
+> A faithful, edge-additive, maximal bounded-linear symmetry on the gauge presentation gives weighted l1 as the outer aggregation. Alternative route to l1 to L1-GS000-EDGEWISE-L1, with a different hypothesis set.
 
 ## Grade
 
@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Unmet after the PFP review: Establish the actual maximal bounded-linear symmetry and faithful edge-additive hypotheses; do not infer them from an eight-element test. The broader source statement is kept in pfp_review.prior_statement.
+Lean states intermediate steps only: under explicit norming, homogeneity and orbit hypotheses, the aggregate is constant on unit vectors and the edge weights are orbit-constant. The conclusion that the outer aggregation is weighted l1 is not derived in Lean.
 
 ## Source status
 
@@ -36,7 +36,7 @@ Tier-1 direction independence (Lemma 4.1), gauge proportionality (Corollary 2), 
 
 ## Review
 
-- PFP review: [dag/results/L1-GS001-GAUGE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-GS001-GAUGE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/L1-GS001-GAUGE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/L1-GS001-GAUGE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: All eight signed-permutation gauge values, swap anisotropy, and equal-length direction countercontrol; exact sign/swap laws in Lean.
   - does not support: Establish the actual maximal bounded-linear symmetry and faithful edge-additive hypotheses; do not infer them from an eight-element test.
   - next test: Establish the actual maximal bounded-linear symmetry and faithful edge-additive hypotheses; do not infer them from an eight-element test.
@@ -126,7 +126,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `L1-R-GS001` `DERIVED_LEAN`: [L1-OBSERVER-AXIOMS-H1-H5](L1-OBSERVER-AXIOMS-H1-H5.md) (ADMITTED_PRIMITIVE)
+- `L1-R-GS001` `GAP_NO_DERIVATION`: [L1-OBSERVER-AXIOMS-H1-H5](L1-OBSERVER-AXIOMS-H1-H5.md) (ADMITTED_PRIMITIVE)
 
 Outgoing (0):
 

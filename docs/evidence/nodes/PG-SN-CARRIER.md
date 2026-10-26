@@ -10,9 +10,9 @@ Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 23
-- distinct cited Lean declarations covered by a current replay receipt: 23
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 20
+- distinct cited Lean declarations covered by a current replay receipt: 20
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -20,7 +20,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-- `receipt_names_uncited_module`: a replay receipt names this node for lean4/SnCarrierPfp.lean, but the node's lean, rust and source fields do not cite it. A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence).
+None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
@@ -44,23 +44,6 @@ Pre-Genesis §10 / SnCarrier base presentation, section lift, retraction outcome
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
-
-### Lean: `lean4/DerivationDagQMClosure.lean`
-
-- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
-- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
-- cited in: node.lean
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build DerivationDagQMClosure`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` |
-| `QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` |
-| `QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition` |
-
-- counts toward the grade: yes
 
 ### Lean: `lean4/Imported/PreGenesisToMssn/SnCarrier.lean`
 
@@ -100,7 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/SnCarrierPfp.lean](../../../lean4/SnCarrierPfp.lean)
 - sha256 (`bytes`): `f55efb45cdedf884efc81d7dd16fd0f2f8bf04fc5e44b2d41f0b2fc36762ec2f`
-- cited in: receipt dag/research/pfp_batch01_lean_replay.json (SnCarrierPfp)
+- cited in: node.lean, receipt dag/research/pfp_batch01_lean_replay.json (SnCarrierPfp)
 - replay: `verified`
   - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `SnCarrierPfp`): recorded sha256 `f55efb45cdedf884efc81d7dd16fd0f2f8bf04fc5e44b2d41f0b2fc36762ec2f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SnCarrierPfp`

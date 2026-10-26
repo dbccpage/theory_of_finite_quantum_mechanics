@@ -1,10 +1,10 @@
 # L1-QM003-C17-COMPOSABLE-FACTORIZATION
 
-Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Exact stochastic composition/action equality and diagonal density presentation, plus scalar matrix multiplication identities and the Hadamard defect in Lean.
+> Diagonal Markov-composable channels factor through the residual density carrier (qm003_c17_diagonal_composable_factorization), while Hadamard off-diagonal coherence separates matrix composition from diagonal multiplication.
 
 ## Grade
 
@@ -15,12 +15,12 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 0 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Unmet after the PFP review: Prove source residual-density factorization on its full carrier and channel class. The source diagonal multiplication anchor alone does not prove it. The broader source statement is kept in pfp_review.prior_statement.
+Lean states the 2x2 case: products of diagonal 2x2 integer matrices are diagonal with entrywise products, and the Hadamard matrix gives an explicit off-diagonal counterexample. General dimension and general Markov kernels are not in Lean.
 
 ## Source status
 
@@ -36,7 +36,7 @@ QM_003 C17 diagonal composable factorization and off-diagonal coherence boundary
 
 ## Review
 
-- PFP review: [dag/results/L1-QM003-C17-COMPOSABLE-FACTORIZATION/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM003-C17-COMPOSABLE-FACTORIZATION/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/L1-QM003-C17-COMPOSABLE-FACTORIZATION/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM003-C17-COMPOSABLE-FACTORIZATION/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact stochastic composition/action equality and diagonal density presentation, plus scalar matrix multiplication identities and the Hadamard defect in Lean.
   - does not support: Prove source residual-density factorization on its full carrier and channel class. The source diagonal multiplication anchor alone does not prove it.
   - next test: Prove source residual-density factorization on its full carrier and channel class. The source diagonal multiplication anchor alone does not prove it.
@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1005_l1_qm003_c17_composable_factorization.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1005_l1_qm003_c17_composable_factorization.md](../../../dag/derivations/08_l1_to_l2/tfq_1005_l1_qm003_c17_composable_factorization.md)
-- sha256 (`lf-normalised`): `6a1f01c0e8d5555c308f6a47fa44b39e53633183b6d1e3e8788238e4a5c3a1f5`
+- sha256 (`lf-normalised`): `f341411606977b221380c611adbdf79db4fe42e1c498ffa12e51f21b8fb38a39`
 - generated view: listed, not counted
 - cited in: record TFQ-1005
 - counts toward the grade: no
@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `L1-R-QM003-C17-FACTORIZATION` `DERIVED_LEAN`: [L1-DENSITY-LIFT-SIGNED-SQRT-PUB009](L1-DENSITY-LIFT-SIGNED-SQRT-PUB009.md) (PROVED_LEAN)
+- `L1-R-QM003-C17-FACTORIZATION` `COMPUTED`: [L1-DENSITY-LIFT-SIGNED-SQRT-PUB009](L1-DENSITY-LIFT-SIGNED-SQRT-PUB009.md) (OPEN)
 
 Outgoing (0):
 

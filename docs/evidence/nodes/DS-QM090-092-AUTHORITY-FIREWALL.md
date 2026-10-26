@@ -11,8 +11,8 @@ Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `COMPUTA
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
-- distinct cited Lean declarations covered by a current replay receipt: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
@@ -57,8 +57,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm081_082_090_093_stochastic_contraction_channel_shadow_firewall_and_cochain` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm081_082_090_093_stochastic_contraction_channel_shadow_firewall_and_cochain` |
-| `QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` |
-| `QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` |
 | `QuantumMechanics.DerivationDagQMClosure.qm090_authority_firewall_zero_defect_iff` | yes | yes | yes | propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.qm090_authority_firewall_zero_defect_iff` |
 
 - counts toward the grade: yes
@@ -132,4 +130,4 @@ Incoming (1):
 Outgoing (2):
 
 - `DS-R-AUTHORITY-TO-REGISTRY` `DERIVED_LEAN`: [DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY](DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY.md) (PROVED_LEAN)
-- `DS-R-EVERETT` `DERIVED_LEAN`: [DS-QM094-EVERETT-RELATIVE-STATE-CONTACT](DS-QM094-EVERETT-RELATIVE-STATE-CONTACT.md) (PROVED_LEAN)
+- `DS-R-EVERETT` `COMPUTED`: [DS-QM094-EVERETT-RELATIVE-STATE-CONTACT](DS-QM094-EVERETT-RELATIVE-STATE-CONTACT.md) (COMPUTATIONALLY_CHECKED)

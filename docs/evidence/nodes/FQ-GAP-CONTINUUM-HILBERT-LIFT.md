@@ -11,8 +11,8 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 11
-- cited Lean, Rust or Python symbols found in their in-repo files: 28
-- distinct cited Lean declarations covered by a current replay receipt: 25
+- cited Lean, Rust or Python symbols found in their in-repo files: 27
+- distinct cited Lean declarations covered by a current replay receipt: 24
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 1
@@ -79,7 +79,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates` |
 | `QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction` |
 
@@ -351,7 +350,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (2):
 
-- `FQ-R-GAP-CONTINUUM` `CONDITIONAL_ON_IMPORT`: [FQ-COMMUTATOR-TRACE-OBSTRUCTION](FQ-COMMUTATOR-TRACE-OBSTRUCTION.md) (PROVED_LEAN), [FQ-CARRIER-CONTRACT-V2](FQ-CARRIER-CONTRACT-V2.md) (DEFINITION)
+- `FQ-R-GAP-CONTINUUM` `CONDITIONAL_ON_IMPORT`: [FQ-COMMUTATOR-TRACE-OBSTRUCTION](FQ-COMMUTATOR-TRACE-OBSTRUCTION.md) (PROVED_PROSE), [FQ-CARRIER-CONTRACT-V2](FQ-CARRIER-CONTRACT-V2.md) (DEFINITION)
 - `FQ-R-GAP-CONTINUUM-FROM-CONSTRUCTION` `GAP_NO_DERIVATION`: [FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION](FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION.md) (PROVED_LEAN)
 
 Outgoing (10):

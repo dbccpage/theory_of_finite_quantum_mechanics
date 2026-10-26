@@ -1,10 +1,10 @@
 # FQ-U1-TRANSPORT-N-TORSION
 
-Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Actual finite graph gauge normal forms, relative path phase and N² orbit-invariant counts are exact; cycle identities over ZMod n and pair-cardinality arithmetic are kernel checked.
+> N-torsion edge 1-cochain tau with values in mu_N in Q(zeta_N)^x: gauge classes Hom(H_1(G,Z), mu_N) have size N^{beta_1(G)}; relative report phase equals path holonomy tau(p1)tau(p2)^-1. Sign group {+1,-1} fails connectedness under "not exponent two"; Gaussian units and three-cycle meet it.
 
 ## Grade
 
@@ -15,12 +15,12 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 0 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -29,7 +29,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: Prove full graph gauge-orbit classification and the cyclotomic mu_N embedding/order hypotheses for arbitrary graphs/N; no continuous circle or topological connectedness is derived. The broader source statement is kept in pfp_review.prior_statement.
+Lean states gauge invariance of a triangle holonomy modulo N and small modular facts. The count N^beta_1(G) of gauge classes and the holonomy identity on general graphs are native exact checks on declared graphs, not Lean.
 
 ## Source status
 
@@ -37,7 +37,7 @@ Z_N cycle holonomy gauge invariance and exponent-2 vs Z_3/Z_4 separation mechani
 
 ## Review
 
-- PFP review: [dag/results/FQ-U1-TRANSPORT-N-TORSION/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/FQ-U1-TRANSPORT-N-TORSION/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-U1-TRANSPORT-N-TORSION/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/FQ-U1-TRANSPORT-N-TORSION/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Actual finite graph gauge normal forms, relative path phase and N² orbit-invariant counts are exact; cycle identities over ZMod n and pair-cardinality arithmetic are kernel checked.
   - does not support: Prove full graph gauge-orbit classification and the cyclotomic mu_N embedding/order hypotheses for arbitrary graphs/N; no continuous circle or topological connectedness is derived.
   - next test: Prove full graph gauge-orbit classification and the cyclotomic mu_N embedding/order hypotheses for arbitrary graphs/N; no continuous circle or topological connectedness is derived.
@@ -173,7 +173,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `FQ-R-U1` `DERIVED_LEAN`: [FQ-CARRIER-CONTRACT-V2](FQ-CARRIER-CONTRACT-V2.md) (DEFINITION), [FQ-PHASE-FIBER-QUOTIENT](FQ-PHASE-FIBER-QUOTIENT.md) (PROVED_LEAN)
+- `FQ-R-U1` `COMPUTED`: [FQ-CARRIER-CONTRACT-V2](FQ-CARRIER-CONTRACT-V2.md) (DEFINITION), [FQ-PHASE-FIBER-QUOTIENT](FQ-PHASE-FIBER-QUOTIENT.md) (PROVED_LEAN)
 
 Outgoing (1):
 

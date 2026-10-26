@@ -1,22 +1,22 @@
 # L1-QM122-LEFTOVER-MNC-NOT-RECOVERED
 
-Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: All matrix-unit products and noncommutativity are exact, alongside Gaussian unit/nonunit controls; generic matrix-unit scalar multiplication and a commutator control in Lean.
+> The finite Hilbert boundary from primitive difference does not recover ordinary M_n(C). Open: Gleason at n \>= 3, CPTP, tensor uniqueness, circle, Python dual. Imports listed in section 7: complex scalars as a field, circle phases, Born uniqueness (Gleason), Hilbert tensor, CPTP, continuous time. H017Finish gives a declared finish table, not a derivation.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 5
-- cited Lean, Rust or Python symbols found in their in-repo files: 5
-- distinct cited Lean declarations covered by a current replay receipt: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 4
+- distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Unmet after the PFP review: Recover the claimed complex field, circle, Born uniqueness, tensor/CPTP class, continuous time and source carrier maps, or retain them as admitted. A finish table is not completion evidence. The broader source statement is kept in pfp_review.prior_statement.
+This node records that no derivation of M_n(C) exists here; that is not a theorem. The cited Lean is a census of a declared Boolean table and Gaussian-integer norm identities. The listed imports stay imported.
 
 ## Source status
 
@@ -36,7 +36,7 @@ QM-122-C31..C37 eight-extra finish table (3 derived, 4 conditional, 1 false), Z\
 
 ## Review
 
-- PFP review: [dag/results/L1-QM122-LEFTOVER-MNC-NOT-RECOVERED/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM122-LEFTOVER-MNC-NOT-RECOVERED/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/L1-QM122-LEFTOVER-MNC-NOT-RECOVERED/reviews/20261020_born_boundary_audit/delivery_review_result.json](../../../dag/results/L1-QM122-LEFTOVER-MNC-NOT-RECOVERED/reviews/20261020_born_boundary_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: All matrix-unit products and noncommutativity are exact, alongside Gaussian unit/nonunit controls; generic matrix-unit scalar multiplication and a commutator control in Lean.
   - does not support: Recover the claimed complex field, circle, Born uniqueness, tensor/CPTP class, continuous time and source carrier maps, or retain them as admitted. A finish table is not completion evidence.
   - next test: Recover the claimed complex field, circle, Born uniqueness, tensor/CPTP class, continuous time and source carrier maps, or retain them as admitted. A finish table is not completion evidence.
@@ -56,7 +56,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates` |
 | `QuantumMechanics.DerivationDagQMClosure.fq_entropy_renyi_purity_dichotomy_and_qm122_six_import_drop_one_census` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_entropy_renyi_purity_dichotomy_and_qm122_six_import_drop_one_census` |
 | `QuantumMechanics.DerivationDagQMClosure.l1_qm122_leftover_mnc_eight_extra_finish_table_and_dilation_classifications` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_qm122_leftover_mnc_eight_extra_finish_table_and_dilation_classifications` |
@@ -149,7 +148,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `L1-R-MNC-LEFTOVER` `DERIVED_LEAN`: [L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE](L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE.md) (PROVED_LEAN), [L1-QM122-CIRCLE-SELECTOR-BOUNDARY](L1-QM122-CIRCLE-SELECTOR-BOUNDARY.md) (PROVED_LEAN), [L1-QM122-BORN-PAIRING-NONUNIQUE](L1-QM122-BORN-PAIRING-NONUNIQUE.md) (PROVED_LEAN), [L1-IMP-HILBERT-INNER-PRODUCT](L1-IMP-HILBERT-INNER-PRODUCT.md) (CONDITIONAL)
+- `L1-R-MNC-LEFTOVER` `GAP_NO_DERIVATION`: [L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE](L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE.md) (PROVED_LEAN), [L1-QM122-CIRCLE-SELECTOR-BOUNDARY](L1-QM122-CIRCLE-SELECTOR-BOUNDARY.md) (COMPUTATIONALLY_CHECKED), [L1-QM122-BORN-PAIRING-NONUNIQUE](L1-QM122-BORN-PAIRING-NONUNIQUE.md) (COMPUTATIONALLY_CHECKED), [L1-IMP-HILBERT-INNER-PRODUCT](L1-IMP-HILBERT-INNER-PRODUCT.md) (CONDITIONAL)
 
 Outgoing (0):
 

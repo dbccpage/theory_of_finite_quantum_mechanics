@@ -4,15 +4,15 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `PROVED_LEAN`. Evidence grade:
 
 ## Statement
 
-> Reviewed scope: Exact scalar and disjoint-vector defect arrays, with a general disjoint-sign identity and the opposite-sign counterexample in Lean.
+> For integers x and y, the l1 additivity defect D1(x, y) = |x| + |y| - |x + y| is zero iff x y \>= 0, that is, iff x and y are not of strictly opposite sign.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 3
-- distinct cited Lean declarations covered by a current replay receipt: 3
+- counted in-repo evidence files: 1
+- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Unmet after the PFP review: Prove source/list refinement and extend any l^p statement only under its real/natural exponent hypotheses. The false disjoint-same-sign biconditional is explicitly rejected. The broader source statement is kept in pfp_review.prior_statement.
+Stated for integer scalars in BornRedundancy.lean (D1_zero_iff_same_sign, D1_zero_iff_mul_nonneg). The coordinatewise vector version follows by summing over coordinates and is not separately in Lean. The l^p statements for p \> 1 are not in Lean. The source phrase 'for disjoint supports' is dropped: on disjoint supports the defect is always zero.
 
 ## Source status
 
@@ -58,21 +58,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `D1_zero_iff_mul_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms D1_zero_iff_mul_nonneg` |
 | `D1_zero_iff_same_sign` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms D1_zero_iff_same_sign` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/DerivationDagQMClosure.lean`
-
-- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
-- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
-- cited in: node.lean
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build DerivationDagQMClosure`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition` |
 
 - counts toward the grade: yes
 
@@ -109,4 +94,4 @@ Outgoing (4):
 - `L1-R-INNER-PRODUCT-SECTOR-FORM` `CONDITIONAL_ON_IMPORT`: [L1-IMP-HILBERT-INNER-PRODUCT](L1-IMP-HILBERT-INNER-PRODUCT.md) (CONDITIONAL)
 - `L1-R-ORTHOGONAL-ADDITIVITY-SECTOR-FORM` `CONDITIONAL_ON_IMPORT`: [L1-IMP-ORTHOGONAL-ADDITIVITY](L1-IMP-ORTHOGONAL-ADDITIVITY.md) (CONDITIONAL)
 - `L1-R-THM2B` `CONDITIONAL_ON_IMPORT`: [L1-QM020-THM2B-MINKOWSKI](L1-QM020-THM2B-MINKOWSKI.md) (IMPORTED_ASSUMPTION)
-- `L1-R-THM6-P1` `DERIVED_LEAN`: [L1-QM020-THM6-P1-SCOPE-FENCE](L1-QM020-THM6-P1-SCOPE-FENCE.md) (PROVED_LEAN)
+- `L1-R-THM6-P1` `COMPUTED`: [L1-QM020-THM6-P1-SCOPE-FENCE](L1-QM020-THM6-P1-SCOPE-FENCE.md) (COMPUTATIONALLY_CHECKED)

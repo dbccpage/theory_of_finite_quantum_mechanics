@@ -4,7 +4,7 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `PROVED_LEAN`. Evi
 
 ## Statement
 
-> Reviewed scope: Two explicit degree-two parity covers and a genuine global-section control, exact matrices/ranks and literal source kernel parity/differential signatures.
+> Over F2 the cochain complex of a finite measurement scenario satisfies d1 d0 = 0. The Cabello scenario X1 has no global section. No +/-1 assignment of the Mermin-Peres square has all row products +1 and column products +1, +1, -1.
 
 ## Grade
 
@@ -28,7 +28,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Bottleneck
 
-Unmet after the PFP review: Conflation of incidence rank with overlap rank, general sheaf equivalence, a kernel proof of the native rank outputs, or physical reconstruction. The broader source statement is kept in pfp_review.prior_statement.
+In Lean: d1 d0 = 0 for every finite scenario (differential_squares_to_zero), no global section for the Cabello scenario X1 (x1_has_no_global_section), and the Mermin-Peres parity contradiction (mermin_peres_parity_obstruction). The Peres-Mermin incidence rank 8 is a native exact computation and is not part of this statement.
 
 ## Source status
 

@@ -1,10 +1,10 @@
 # DS-QM063-HOLONOMY-COHERENT-INTENSITY
 
-Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Relative Gaussian holonomy and two-path intensity are invariant under the retained common unit phases; the rational unit-phase conditional is general in Lean.
+> For two paths, coherent intensity equals the L1 sum plus the real part of relative loop holonomy; holonomy and intensity are invariant under vertex gauge repair; U(1) connections on a tree are gauge-trivial; intensity does not factor through L1 weights when holonomy varies. Higher-form holonomy refused; matrix-valued SU(2) trace bound is a CONJECTURE.
 
 ## Grade
 
@@ -15,12 +15,12 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 5
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 1 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Unmet after the PFP review: Prove the full graph connection/tree gauge-trivialization and matrix-valued holonomy transports; no SU(2) trace bound or higher-form result is claimed. The broader source statement is kept in pfp_review.prior_statement.
+Lean states the two-path identity |z1 + z2|^2 = |z1|^2 + |z2|^2 + 2 Re(conj(z1) z2) over Gaussian integers, invariance under the common phase i, holonomy zero for coboundaries on closed vertex paths, and a three-edge tree gauge. General U(1) phases and general trees are not in Lean.
 
 ## Source status
 
@@ -36,7 +36,7 @@ QCS-C2 two-path coherent intensity identity, vertex gauge invariance, QCS-C4 3-e
 
 ## Review
 
-- PFP review: [dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Relative Gaussian holonomy and two-path intensity are invariant under the retained common unit phases; the rational unit-phase conditional is general in Lean.
   - does not support: Prove the full graph connection/tree gauge-trivialization and matrix-valued holonomy transports; no SU(2) trace bound or higher-form result is claimed.
   - next test: Prove the full graph connection/tree gauge-trivialization and matrix-valued holonomy transports; no SU(2) trace bound or higher-form result is claimed.
@@ -144,12 +144,12 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `DS-R-HOLONOMY-INTENSITY` `DERIVED_LEAN`: [DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE](DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE.md) (PROVED_LEAN)
+- `DS-R-HOLONOMY-INTENSITY` `COMPUTED`: [DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE](DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE.md) (PROVED_LEAN)
 
 Outgoing (5):
 
 - `APP-R-FSP-U1-WILSON-ACTION` `DERIVED_LEAN`: [FSP-U1-WILSON-ACTION](FSP-U1-WILSON-ACTION.md) (PROVED_LEAN)
 - `DS-R-BUILDABILITY` `COMPUTED`: [DS-QM061-BUILDABILITY-SET-S](DS-QM061-BUILDABILITY-SET-S.md) (COMPUTATIONALLY_CHECKED)
 - `DS-R-DECOHERENCE-FUNCTIONAL` `DERIVED_LEAN`: [DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY](DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY.md) (PROVED_LEAN)
-- `DS-R-GR-LQG` `DERIVED_LEAN`: [DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS](DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS.md) (PROVED_LEAN)
-- `DS-R-REDIRECT` `DERIVED_LEAN`: [DS-QM064-074-083-ANNEX-REDIRECT-ROWS](DS-QM064-074-083-ANNEX-REDIRECT-ROWS.md) (PROVED_LEAN)
+- `DS-R-GR-LQG` `COMPUTED`: [DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS](DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS.md) (COMPUTATIONALLY_CHECKED)
+- `DS-R-REDIRECT` `COMPUTED`: [DS-QM064-074-083-ANNEX-REDIRECT-ROWS](DS-QM064-074-083-ANNEX-REDIRECT-ROWS.md) (COMPUTATIONALLY_CHECKED)

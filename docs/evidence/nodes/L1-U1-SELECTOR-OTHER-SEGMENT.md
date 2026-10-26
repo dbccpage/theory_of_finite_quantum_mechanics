@@ -11,8 +11,8 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `OPEN`. Evidence grade: **E3**
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 8
-- cited Lean, Rust or Python symbols found in their in-repo files: 38
-- distinct cited Lean declarations covered by a current replay receipt: 37
+- cited Lean, Rust or Python symbols found in their in-repo files: 37
+- distinct cited Lean declarations covered by a current replay receipt: 36
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -89,7 +89,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure` |
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity` |
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm062_u1_selector_layers_and_ring_iso` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm062_u1_selector_layers_and_ring_iso` |
 | `QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle` |
@@ -182,7 +181,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md](../../../dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md)
-- sha256 (`lf-normalised`): `e3a5b9eff94ae18b1e34972539f7e6d3edb897f252d9d55b03f55017f2671a53`
+- sha256 (`lf-normalised`): `584cceb995b82dc577c4a6f103667e01fc67be6b8516c65e879f1d095027eb5d`
 - generated view: listed, not counted
 - cited in: record TFQ-1003
 - counts toward the grade: no
@@ -212,7 +211,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (2):
 
-- `L1-R-U1-SELECTOR` `GAP_NO_DERIVATION`: [L1-QM122-CIRCLE-SELECTOR-BOUNDARY](L1-QM122-CIRCLE-SELECTOR-BOUNDARY.md) (PROVED_LEAN)
+- `L1-R-U1-SELECTOR` `GAP_NO_DERIVATION`: [L1-QM122-CIRCLE-SELECTOR-BOUNDARY](L1-QM122-CIRCLE-SELECTOR-BOUNDARY.md) (COMPUTATIONALLY_CHECKED)
 - `L1-R-U1-SELECTOR-LAYERS` `GAP_NO_DERIVATION`: [DS-QM062-U1-SELECTOR-LAYERS](DS-QM062-U1-SELECTOR-LAYERS.md) (COMPUTATIONALLY_CHECKED)
 
 Outgoing (0):
