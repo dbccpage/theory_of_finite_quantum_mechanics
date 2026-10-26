@@ -1,0 +1,597 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/CampaignBornRationalRayObstruction.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/CampaignBornRationalRayObstruction.lean",
+      "sha256": "4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740"
+    },
+    "boundaries": [
+      "Q^3 only: frames are pairwise orthogonal integer vectors not all even; Gaussian frames are not considered.",
+      "Non-quadraticity excludes rational symmetric 3x3 forms agreeing with exotic(v)(a^2+b^2+c^2) on all rays, shown on seven rays.",
+      "Says nothing about Q(i)^3; the node stays CONDITIONAL."
+    ],
+    "contract_urn": "urn:tfqm:campaign:fq-gap-born-uniqueness-gleason-rays:BornRationalRayObstruction",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json",
+        "sha256": "a01bdbfbd0a7249fdeef51f6a252861b9dfc2acc61d0507f9c62ac16e98e9c22"
+      },
+      {
+        "path": "dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md",
+        "sha256": "9d775feb067d794cd7ef9cb8734d8ce80f52637e6679b561042b35936c39b8f3"
+      },
+      {
+        "path": "checks/independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+        "sha256": "0023b12fc6acdb65367fcdadd3fa8a58f4b758f1adeaa3ad96f4b892375eac8b"
+      }
+    ],
+    "owned_invariants": [
+      "Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3"
+    ],
+    "purpose": "Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "Vec3",
+      "Vec3.dot",
+      "Vec3.IsRay",
+      "pairSign",
+      "sgn",
+      "exotic",
+      "pairSign_add_eq_zero",
+      "mul_emod_two_eq_one",
+      "cancel_ab",
+      "cancel_ac",
+      "cancel_bc",
+      "sgn_frame_sum",
+      "exotic_frame_function",
+      "pairSign_values",
+      "sgn_values",
+      "exotic_values",
+      "exotic_nonneg",
+      "pairSign_odd_smul",
+      "sgn_odd_smul",
+      "sgn_neg",
+      "exotic_odd_smul",
+      "exotic_neg",
+      "ray_e1",
+      "ray_e2",
+      "ray_e3",
+      "ray_110",
+      "ray_101",
+      "ray_011",
+      "ray_111",
+      "exotic_e1",
+      "exotic_e2",
+      "exotic_e3",
+      "exotic_110",
+      "exotic_101",
+      "exotic_011",
+      "exotic_111",
+      "exotic_not_quadratic"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 1606,
+      "original_paths": [
+        "lean4/BornRationalRayObstruction.contract.score.yaml#coverage-contract"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/BornRationalRayObstruction.lean\",\n    \"sha256\": \"4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.\",\n    \"A completed engineering score requires evidence at the applicable public boundary under SCORING.md.\"\n  ],\n  \"contract_id\": \"source-coverage-baseline-v1\",\n  \"evidence\": [\n    {\n      \"path\": \"lean4/BornRationalRayObstruction.lean\",\n      \"sha256\": \"4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"operations\": {\n    \"scope_boundary\": \"This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.\",\n    \"source_identity\": \"The exact source bytes identified by subject and source_sha256.\"\n  },\n  \"owned_invariants\": [\n    \"The companion identifies one source path and its exact current SHA-256 digest.\",\n    \"AuthorityEffect is None; no scientific, mathematical, or release authority is promoted.\"\n  ],\n  \"purpose\": \"Pin this source artifact to the repository-wide contract-scoring population.\",\n  \"role\": \"Lean 4 formal source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740\",\n  \"subject\": \"lean4/BornRationalRayObstruction.lean\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/BornRationalRayObstruction.lean",
+          "sha256": "4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "No exported claim mapping, dependency audit, semantic review, failure review, or verification result is inferred from source shape.",
+          "A completed engineering score requires evidence at the applicable public boundary under SCORING.md."
+        ],
+        "contract_id": "source-coverage-baseline-v1",
+        "evidence": [
+          {
+            "path": "lean4/BornRationalRayObstruction.lean",
+            "sha256": "4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "operations": {
+          "scope_boundary": "This baseline establishes coverage and custody only; it does not certify semantics, safety, proof validity, or tests.",
+          "source_identity": "The exact source bytes identified by subject and source_sha256."
+        },
+        "owned_invariants": [
+          "The companion identifies one source path and its exact current SHA-256 digest.",
+          "AuthorityEffect is None; no scientific, mathematical, or release authority is promoted."
+        ],
+        "purpose": "Pin this source artifact to the repository-wide contract-scoring population.",
+        "role": "Lean 4 formal source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740",
+        "subject": "lean4/BornRationalRayObstruction.lean"
+      },
+      "sha256": "f45e05867be37a063a1757738caecf868b0beefc0f9347acd737c4a07865909b"
+    },
+    {
+      "bytes": 2254,
+      "original_paths": [
+        "lean4/BornRationalRayObstruction.contract.score.yaml#campaign-fq-gap-born-uniqueness-gleason-rays-BornRationalRayObstruction"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/BornRationalRayObstruction.lean\",\n    \"sha256\": \"4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740\"\n  },\n  \"boundaries\": [\n    \"Q^3 only: frames are pairwise orthogonal integer vectors not all even; Gaussian frames are not considered.\",\n    \"Non-quadraticity excludes rational symmetric 3x3 forms agreeing with exotic(v)(a^2+b^2+c^2) on all rays, shown on seven rays.\",\n    \"Says nothing about Q(i)^3; the node stays CONDITIONAL.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:campaign:fq-gap-born-uniqueness-gleason-rays:BornRationalRayObstruction\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json\",\n      \"sha256\": \"e46c6b74eb6ccc3194e2a96397a926b27a37f9b5caf92c598eef0492b4764006\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md\",\n      \"sha256\": \"6c4d1a3b04ac4e36da62eabdd9d4f7800c22cdb66b9e75a2cbace9dc894aebb1\"\n    },\n    {\n      \"path\": \"checks/independent/fq-gap-born-uniqueness-gleason-rational-rays.py\",\n      \"sha256\": \"0023b12fc6acdb65367fcdadd3fa8a58f4b758f1adeaa3ad96f4b892375eac8b\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3\"\n  ],\n  \"purpose\": \"Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"Vec3\",\n    \"Vec3.dot\",\n    \"Vec3.IsRay\",\n    \"pairSign\",\n    \"sgn\",\n    \"exotic\",\n    \"pairSign_add_eq_zero\",\n    \"mul_emod_two_eq_one\",\n    \"cancel_ab\",\n    \"cancel_ac\",\n    \"cancel_bc\",\n    \"sgn_frame_sum\",\n    \"exotic_frame_function\",\n    \"pairSign_values\",\n    \"sgn_values\",\n    \"exotic_values\",\n    \"exotic_nonneg\",\n    \"pairSign_odd_smul\",\n    \"sgn_odd_smul\",\n    \"sgn_neg\",\n    \"exotic_odd_smul\",\n    \"exotic_neg\",\n    \"ray_e1\",\n    \"ray_e2\",\n    \"ray_e3\",\n    \"ray_110\",\n    \"ray_101\",\n    \"ray_011\",\n    \"ray_111\",\n    \"exotic_e1\",\n    \"exotic_e2\",\n    \"exotic_e3\",\n    \"exotic_110\",\n    \"exotic_101\",\n    \"exotic_011\",\n    \"exotic_111\",\n    \"exotic_not_quadratic\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/BornRationalRayObstruction.lean",
+          "sha256": "4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740"
+        },
+        "boundaries": [
+          "Q^3 only: frames are pairwise orthogonal integer vectors not all even; Gaussian frames are not considered.",
+          "Non-quadraticity excludes rational symmetric 3x3 forms agreeing with exotic(v)(a^2+b^2+c^2) on all rays, shown on seven rays.",
+          "Says nothing about Q(i)^3; the node stays CONDITIONAL."
+        ],
+        "contract_urn": "urn:tfqm:campaign:fq-gap-born-uniqueness-gleason-rays:BornRationalRayObstruction",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json",
+            "sha256": "e46c6b74eb6ccc3194e2a96397a926b27a37f9b5caf92c598eef0492b4764006"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md",
+            "sha256": "6c4d1a3b04ac4e36da62eabdd9d4f7800c22cdb66b9e75a2cbace9dc894aebb1"
+          },
+          {
+            "path": "checks/independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+            "sha256": "0023b12fc6acdb65367fcdadd3fa8a58f4b758f1adeaa3ad96f4b892375eac8b"
+          }
+        ],
+        "owned_invariants": [
+          "Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3"
+        ],
+        "purpose": "Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "Vec3",
+          "Vec3.dot",
+          "Vec3.IsRay",
+          "pairSign",
+          "sgn",
+          "exotic",
+          "pairSign_add_eq_zero",
+          "mul_emod_two_eq_one",
+          "cancel_ab",
+          "cancel_ac",
+          "cancel_bc",
+          "sgn_frame_sum",
+          "exotic_frame_function",
+          "pairSign_values",
+          "sgn_values",
+          "exotic_values",
+          "exotic_nonneg",
+          "pairSign_odd_smul",
+          "sgn_odd_smul",
+          "sgn_neg",
+          "exotic_odd_smul",
+          "exotic_neg",
+          "ray_e1",
+          "ray_e2",
+          "ray_e3",
+          "ray_110",
+          "ray_101",
+          "ray_011",
+          "ray_111",
+          "exotic_e1",
+          "exotic_e2",
+          "exotic_e3",
+          "exotic_110",
+          "exotic_101",
+          "exotic_011",
+          "exotic_111",
+          "exotic_not_quadratic"
+        ]
+      },
+      "sha256": "9a1e32d02e8d991619ff458719ed9af1e36b145139b7e092036885cbd9a0608d"
+    },
+    {
+      "bytes": 2262,
+      "original_paths": [
+        "lean4/CampaignBornRationalRayObstruction.contract.score.yaml#campaign-fq-gap-born-uniqueness-gleason-rays-BornRationalRayObstruction"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignBornRationalRayObstruction.lean\",\n    \"sha256\": \"4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740\"\n  },\n  \"boundaries\": [\n    \"Q^3 only: frames are pairwise orthogonal integer vectors not all even; Gaussian frames are not considered.\",\n    \"Non-quadraticity excludes rational symmetric 3x3 forms agreeing with exotic(v)(a^2+b^2+c^2) on all rays, shown on seven rays.\",\n    \"Says nothing about Q(i)^3; the node stays CONDITIONAL.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:campaign:fq-gap-born-uniqueness-gleason-rays:BornRationalRayObstruction\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json\",\n      \"sha256\": \"c81ea6e74a156a1c826b52d9d3ffb07bbb4254cce57e13f0b34b3b6a5634a3f3\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md\",\n      \"sha256\": \"a83ec75cc007fcd46791b4f03ee99f923213b558a9d587433dd317b07066be17\"\n    },\n    {\n      \"path\": \"checks/independent/fq-gap-born-uniqueness-gleason-rational-rays.py\",\n      \"sha256\": \"0023b12fc6acdb65367fcdadd3fa8a58f4b758f1adeaa3ad96f4b892375eac8b\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3\"\n  ],\n  \"purpose\": \"Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"Vec3\",\n    \"Vec3.dot\",\n    \"Vec3.IsRay\",\n    \"pairSign\",\n    \"sgn\",\n    \"exotic\",\n    \"pairSign_add_eq_zero\",\n    \"mul_emod_two_eq_one\",\n    \"cancel_ab\",\n    \"cancel_ac\",\n    \"cancel_bc\",\n    \"sgn_frame_sum\",\n    \"exotic_frame_function\",\n    \"pairSign_values\",\n    \"sgn_values\",\n    \"exotic_values\",\n    \"exotic_nonneg\",\n    \"pairSign_odd_smul\",\n    \"sgn_odd_smul\",\n    \"sgn_neg\",\n    \"exotic_odd_smul\",\n    \"exotic_neg\",\n    \"ray_e1\",\n    \"ray_e2\",\n    \"ray_e3\",\n    \"ray_110\",\n    \"ray_101\",\n    \"ray_011\",\n    \"ray_111\",\n    \"exotic_e1\",\n    \"exotic_e2\",\n    \"exotic_e3\",\n    \"exotic_110\",\n    \"exotic_101\",\n    \"exotic_011\",\n    \"exotic_111\",\n    \"exotic_not_quadratic\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignBornRationalRayObstruction.lean",
+          "sha256": "4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740"
+        },
+        "boundaries": [
+          "Q^3 only: frames are pairwise orthogonal integer vectors not all even; Gaussian frames are not considered.",
+          "Non-quadraticity excludes rational symmetric 3x3 forms agreeing with exotic(v)(a^2+b^2+c^2) on all rays, shown on seven rays.",
+          "Says nothing about Q(i)^3; the node stays CONDITIONAL."
+        ],
+        "contract_urn": "urn:tfqm:campaign:fq-gap-born-uniqueness-gleason-rays:BornRationalRayObstruction",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json",
+            "sha256": "c81ea6e74a156a1c826b52d9d3ffb07bbb4254cce57e13f0b34b3b6a5634a3f3"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md",
+            "sha256": "a83ec75cc007fcd46791b4f03ee99f923213b558a9d587433dd317b07066be17"
+          },
+          {
+            "path": "checks/independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+            "sha256": "0023b12fc6acdb65367fcdadd3fa8a58f4b758f1adeaa3ad96f4b892375eac8b"
+          }
+        ],
+        "owned_invariants": [
+          "Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3"
+        ],
+        "purpose": "Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "Vec3",
+          "Vec3.dot",
+          "Vec3.IsRay",
+          "pairSign",
+          "sgn",
+          "exotic",
+          "pairSign_add_eq_zero",
+          "mul_emod_two_eq_one",
+          "cancel_ab",
+          "cancel_ac",
+          "cancel_bc",
+          "sgn_frame_sum",
+          "exotic_frame_function",
+          "pairSign_values",
+          "sgn_values",
+          "exotic_values",
+          "exotic_nonneg",
+          "pairSign_odd_smul",
+          "sgn_odd_smul",
+          "sgn_neg",
+          "exotic_odd_smul",
+          "exotic_neg",
+          "ray_e1",
+          "ray_e2",
+          "ray_e3",
+          "ray_110",
+          "ray_101",
+          "ray_011",
+          "ray_111",
+          "exotic_e1",
+          "exotic_e2",
+          "exotic_e3",
+          "exotic_110",
+          "exotic_101",
+          "exotic_011",
+          "exotic_111",
+          "exotic_not_quadratic"
+        ]
+      },
+      "sha256": "e56083909e4097232d8c5e25e18bf329370728a41e4ef542517c5f42067e189d"
+    },
+    {
+      "bytes": 2262,
+      "original_paths": [
+        "lean4/CampaignBornRationalRayObstruction.contract.score.yaml#campaign-fq-gap-born-uniqueness-gleason-rays-BornRationalRayObstruction"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignBornRationalRayObstruction.lean\",\n    \"sha256\": \"4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740\"\n  },\n  \"boundaries\": [\n    \"Q^3 only: frames are pairwise orthogonal integer vectors not all even; Gaussian frames are not considered.\",\n    \"Non-quadraticity excludes rational symmetric 3x3 forms agreeing with exotic(v)(a^2+b^2+c^2) on all rays, shown on seven rays.\",\n    \"Says nothing about Q(i)^3; the node stays CONDITIONAL.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:campaign:fq-gap-born-uniqueness-gleason-rays:BornRationalRayObstruction\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json\",\n      \"sha256\": \"a01bdbfbd0a7249fdeef51f6a252861b9dfc2acc61d0507f9c62ac16e98e9c22\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md\",\n      \"sha256\": \"9d775feb067d794cd7ef9cb8734d8ce80f52637e6679b561042b35936c39b8f3\"\n    },\n    {\n      \"path\": \"checks/independent/fq-gap-born-uniqueness-gleason-rational-rays.py\",\n      \"sha256\": \"0023b12fc6acdb65367fcdadd3fa8a58f4b758f1adeaa3ad96f4b892375eac8b\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3\"\n  ],\n  \"purpose\": \"Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"Vec3\",\n    \"Vec3.dot\",\n    \"Vec3.IsRay\",\n    \"pairSign\",\n    \"sgn\",\n    \"exotic\",\n    \"pairSign_add_eq_zero\",\n    \"mul_emod_two_eq_one\",\n    \"cancel_ab\",\n    \"cancel_ac\",\n    \"cancel_bc\",\n    \"sgn_frame_sum\",\n    \"exotic_frame_function\",\n    \"pairSign_values\",\n    \"sgn_values\",\n    \"exotic_values\",\n    \"exotic_nonneg\",\n    \"pairSign_odd_smul\",\n    \"sgn_odd_smul\",\n    \"sgn_neg\",\n    \"exotic_odd_smul\",\n    \"exotic_neg\",\n    \"ray_e1\",\n    \"ray_e2\",\n    \"ray_e3\",\n    \"ray_110\",\n    \"ray_101\",\n    \"ray_011\",\n    \"ray_111\",\n    \"exotic_e1\",\n    \"exotic_e2\",\n    \"exotic_e3\",\n    \"exotic_110\",\n    \"exotic_101\",\n    \"exotic_011\",\n    \"exotic_111\",\n    \"exotic_not_quadratic\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignBornRationalRayObstruction.lean",
+          "sha256": "4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740"
+        },
+        "boundaries": [
+          "Q^3 only: frames are pairwise orthogonal integer vectors not all even; Gaussian frames are not considered.",
+          "Non-quadraticity excludes rational symmetric 3x3 forms agreeing with exotic(v)(a^2+b^2+c^2) on all rays, shown on seven rays.",
+          "Says nothing about Q(i)^3; the node stays CONDITIONAL."
+        ],
+        "contract_urn": "urn:tfqm:campaign:fq-gap-born-uniqueness-gleason-rays:BornRationalRayObstruction",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json",
+            "sha256": "a01bdbfbd0a7249fdeef51f6a252861b9dfc2acc61d0507f9c62ac16e98e9c22"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md",
+            "sha256": "9d775feb067d794cd7ef9cb8734d8ce80f52637e6679b561042b35936c39b8f3"
+          },
+          {
+            "path": "checks/independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+            "sha256": "0023b12fc6acdb65367fcdadd3fa8a58f4b758f1adeaa3ad96f4b892375eac8b"
+          }
+        ],
+        "owned_invariants": [
+          "Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3"
+        ],
+        "purpose": "Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "Vec3",
+          "Vec3.dot",
+          "Vec3.IsRay",
+          "pairSign",
+          "sgn",
+          "exotic",
+          "pairSign_add_eq_zero",
+          "mul_emod_two_eq_one",
+          "cancel_ab",
+          "cancel_ac",
+          "cancel_bc",
+          "sgn_frame_sum",
+          "exotic_frame_function",
+          "pairSign_values",
+          "sgn_values",
+          "exotic_values",
+          "exotic_nonneg",
+          "pairSign_odd_smul",
+          "sgn_odd_smul",
+          "sgn_neg",
+          "exotic_odd_smul",
+          "exotic_neg",
+          "ray_e1",
+          "ray_e2",
+          "ray_e3",
+          "ray_110",
+          "ray_101",
+          "ray_011",
+          "ray_111",
+          "exotic_e1",
+          "exotic_e2",
+          "exotic_e3",
+          "exotic_110",
+          "exotic_101",
+          "exotic_011",
+          "exotic_111",
+          "exotic_not_quadratic"
+        ]
+      },
+      "sha256": "4eba681eabe6dba9614da5623aa4bc7dca46df63b9f75179bdf3ef0a8df4301e"
+    }
+  ],
+  "current_contract": "4eba681eabe6dba9614da5623aa4bc7dca46df63b9f75179bdf3ef0a8df4301e",
+  "current_scoring": "4ecac3ce6298b7ff64c974f249dc0f2282231fa26ff145461c1175cc1f00f42b",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 1594,
+      "original_paths": [
+        "lean4/BornRationalRayObstruction.contract.score.yaml#coverage-score"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/BornRationalRayObstruction.lean\",\n    \"sha256\": \"4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740\"\n  },\n  \"assessment_id\": \"source-coverage-baseline-v1\",\n  \"assessment_status\": \"incomplete_static_coverage_only\",\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-10-21T00:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"lean4/BornRationalRayObstruction.lean\",\n      \"sha256\": \"4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"A+\",\n  \"is_complete\": false,\n  \"level\": \"L1\",\n  \"level_assessment\": \"provisional static lower bound only; no capability certification is claimed\",\n  \"limiting_reason\": \"Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.\",\n  \"profile\": \"Symbolic/Formal\",\n  \"profile_status\": \"preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification\",\n  \"required_for_completion\": [\n    \"G1 claim and provenance mapping\",\n    \"G2 semantic and numeric discipline review\",\n    \"G3 failure/trust-boundary review\",\n    \"G4 boundary-appropriate proof or test receipt\",\n    \"G5 language-appropriate structural and resource review\"\n  ],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/BornRationalRayObstruction.lean",
+          "sha256": "4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740"
+        },
+        "assessment_id": "source-coverage-baseline-v1",
+        "assessment_status": "incomplete_static_coverage_only",
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-10-21T00:00:00+00:00",
+        "evidence": [
+          {
+            "path": "lean4/BornRationalRayObstruction.lean",
+            "sha256": "4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740"
+          }
+        ],
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "A+",
+        "is_complete": false,
+        "level": "L1",
+        "level_assessment": "provisional static lower bound only; no capability certification is claimed",
+        "limiting_reason": "Only source identity and scope coverage were audited. All five SCORING.md gates require independent evidence.",
+        "profile": "Symbolic/Formal",
+        "profile_status": "preliminary static classification; Gate G2 remains unassessed and this is not a semantic profile certification",
+        "required_for_completion": [
+          "G1 claim and provenance mapping",
+          "G2 semantic and numeric discipline review",
+          "G3 failure/trust-boundary review",
+          "G4 boundary-appropriate proof or test receipt",
+          "G5 language-appropriate structural and resource review"
+        ],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "9fa56c41dc5dc1038119759c21c5e8a72fc68ad866bafa0bfeef5a26c7dcd230"
+    },
+    {
+      "bytes": 2268,
+      "original_paths": [
+        "lean4/BornRationalRayObstruction.contract.score.yaml#campaign-fq-gap-born-uniqueness-gleason-rays-BornRationalRayObstruction"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/BornRationalRayObstruction.lean\",\n    \"sha256\": \"4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740\"\n  },\n  \"assessment_id\": \"campaign-fq-gap-born-uniqueness-gleason-rays-BornRationalRayObstruction\",\n  \"basis\": {\n    \"G1\": \"Exported statements inspected against the node statement; statement-versus-theorem table in the pull request; content hashes recorded in the replay receipt.\",\n    \"G2\": \"Exact integer and rational arithmetic only; Lean kernel replay and an independent exact-arithmetic recomputation both passed.\",\n    \"G3\": \"Local build and axiom audit (propext, Classical.choice, Quot.sound only); no external model or production authority is exercised.\",\n    \"G4\": \"Kernel replay and independent recomputation are recorded; no production-scale verification or mutation accounting.\",\n    \"G5\": \"Small self-contained module; no production lifecycle or performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T19:54:04.624147+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json\",\n      \"sha256\": \"e46c6b74eb6ccc3194e2a96397a926b27a37f9b5caf92c598eef0492b4764006\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md\",\n      \"sha256\": \"6c4d1a3b04ac4e36da62eabdd9d4f7800c22cdb66b9e75a2cbace9dc894aebb1\"\n    },\n    {\n      \"path\": \"checks/independent/fq-gap-born-uniqueness-gleason-rational-rays.py\",\n      \"sha256\": \"0023b12fc6acdb65367fcdadd3fa8a58f4b758f1adeaa3ad96f4b892375eac8b\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3. This assessment does not claim L4 production architecture.\",\n  \"open_higher_grade_findings\": [\n    \"The node's full statement (Born uniqueness) remains conditional.\",\n    \"Substantive proof remains below the repository L4 capability floor.\"\n  ],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/BornRationalRayObstruction.lean",
+          "sha256": "4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740"
+        },
+        "assessment_id": "campaign-fq-gap-born-uniqueness-gleason-rays-BornRationalRayObstruction",
+        "basis": {
+          "G1": "Exported statements inspected against the node statement; statement-versus-theorem table in the pull request; content hashes recorded in the replay receipt.",
+          "G2": "Exact integer and rational arithmetic only; Lean kernel replay and an independent exact-arithmetic recomputation both passed.",
+          "G3": "Local build and axiom audit (propext, Classical.choice, Quot.sound only); no external model or production authority is exercised.",
+          "G4": "Kernel replay and independent recomputation are recorded; no production-scale verification or mutation accounting.",
+          "G5": "Small self-contained module; no production lifecycle or performance claim."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T19:54:04.624147+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json",
+            "sha256": "e46c6b74eb6ccc3194e2a96397a926b27a37f9b5caf92c598eef0492b4764006"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md",
+            "sha256": "6c4d1a3b04ac4e36da62eabdd9d4f7800c22cdb66b9e75a2cbace9dc894aebb1"
+          },
+          {
+            "path": "checks/independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+            "sha256": "0023b12fc6acdb65367fcdadd3fa8a58f4b758f1adeaa3ad96f4b892375eac8b"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3. This assessment does not claim L4 production architecture.",
+        "open_higher_grade_findings": [
+          "The node's full statement (Born uniqueness) remains conditional.",
+          "Substantive proof remains below the repository L4 capability floor."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "6bb899bcf5aaefd4d2e501bee49297f99ffa45d8424bd846dad0df9aa54376cc"
+    },
+    {
+      "bytes": 2276,
+      "original_paths": [
+        "lean4/CampaignBornRationalRayObstruction.contract.score.yaml#campaign-fq-gap-born-uniqueness-gleason-rays-BornRationalRayObstruction"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignBornRationalRayObstruction.lean\",\n    \"sha256\": \"4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740\"\n  },\n  \"assessment_id\": \"campaign-fq-gap-born-uniqueness-gleason-rays-BornRationalRayObstruction\",\n  \"basis\": {\n    \"G1\": \"Exported statements inspected against the node statement; statement-versus-theorem table in the pull request; content hashes recorded in the replay receipt.\",\n    \"G2\": \"Exact integer and rational arithmetic only; Lean kernel replay and an independent exact-arithmetic recomputation both passed.\",\n    \"G3\": \"Local build and axiom audit (propext, Classical.choice, Quot.sound only); no external model or production authority is exercised.\",\n    \"G4\": \"Kernel replay and independent recomputation are recorded; no production-scale verification or mutation accounting.\",\n    \"G5\": \"Small self-contained module; no production lifecycle or performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T20:31:21.439719+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json\",\n      \"sha256\": \"c81ea6e74a156a1c826b52d9d3ffb07bbb4254cce57e13f0b34b3b6a5634a3f3\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md\",\n      \"sha256\": \"a83ec75cc007fcd46791b4f03ee99f923213b558a9d587433dd317b07066be17\"\n    },\n    {\n      \"path\": \"checks/independent/fq-gap-born-uniqueness-gleason-rational-rays.py\",\n      \"sha256\": \"0023b12fc6acdb65367fcdadd3fa8a58f4b758f1adeaa3ad96f4b892375eac8b\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3. This assessment does not claim L4 production architecture.\",\n  \"open_higher_grade_findings\": [\n    \"The node's full statement (Born uniqueness) remains conditional.\",\n    \"Substantive proof remains below the repository L4 capability floor.\"\n  ],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignBornRationalRayObstruction.lean",
+          "sha256": "4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740"
+        },
+        "assessment_id": "campaign-fq-gap-born-uniqueness-gleason-rays-BornRationalRayObstruction",
+        "basis": {
+          "G1": "Exported statements inspected against the node statement; statement-versus-theorem table in the pull request; content hashes recorded in the replay receipt.",
+          "G2": "Exact integer and rational arithmetic only; Lean kernel replay and an independent exact-arithmetic recomputation both passed.",
+          "G3": "Local build and axiom audit (propext, Classical.choice, Quot.sound only); no external model or production authority is exercised.",
+          "G4": "Kernel replay and independent recomputation are recorded; no production-scale verification or mutation accounting.",
+          "G5": "Small self-contained module; no production lifecycle or performance claim."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T20:31:21.439719+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json",
+            "sha256": "c81ea6e74a156a1c826b52d9d3ffb07bbb4254cce57e13f0b34b3b6a5634a3f3"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md",
+            "sha256": "a83ec75cc007fcd46791b4f03ee99f923213b558a9d587433dd317b07066be17"
+          },
+          {
+            "path": "checks/independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+            "sha256": "0023b12fc6acdb65367fcdadd3fa8a58f4b758f1adeaa3ad96f4b892375eac8b"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3. This assessment does not claim L4 production architecture.",
+        "open_higher_grade_findings": [
+          "The node's full statement (Born uniqueness) remains conditional.",
+          "Substantive proof remains below the repository L4 capability floor."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "4ecf5e33cf1e16e27327a63f7dc2ab0402a11249482b4d22f0b15c25391ed295"
+    },
+    {
+      "bytes": 2269,
+      "original_paths": [
+        "lean4/CampaignBornRationalRayObstruction.contract.score.yaml#campaign-fq-gap-born-uniqueness-gleason-rays-BornRationalRayObstruction"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignBornRationalRayObstruction.lean\",\n    \"sha256\": \"4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740\"\n  },\n  \"assessment_id\": \"campaign-fq-gap-born-uniqueness-gleason-rays-BornRationalRayObstruction\",\n  \"basis\": {\n    \"G1\": \"Exported statements inspected against the node statement; statement-versus-theorem table in the pull request; content hashes recorded in the replay receipt.\",\n    \"G2\": \"Exact integer and rational arithmetic only; Lean kernel replay and an independent exact-arithmetic recomputation both passed.\",\n    \"G3\": \"Local build and axiom audit (propext, Classical.choice, Quot.sound only); no external model or production authority is exercised.\",\n    \"G4\": \"Kernel replay and independent recomputation are recorded; no production-scale verification or mutation accounting.\",\n    \"G5\": \"Small self-contained module; no production lifecycle or performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T21:01:06+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json\",\n      \"sha256\": \"a01bdbfbd0a7249fdeef51f6a252861b9dfc2acc61d0507f9c62ac16e98e9c22\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md\",\n      \"sha256\": \"9d775feb067d794cd7ef9cb8734d8ce80f52637e6679b561042b35936c39b8f3\"\n    },\n    {\n      \"path\": \"checks/independent/fq-gap-born-uniqueness-gleason-rational-rays.py\",\n      \"sha256\": \"0023b12fc6acdb65367fcdadd3fa8a58f4b758f1adeaa3ad96f4b892375eac8b\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3. This assessment does not claim L4 production architecture.\",\n  \"open_higher_grade_findings\": [\n    \"The node's full statement (Born uniqueness) remains conditional.\",\n    \"Substantive proof remains below the repository L4 capability floor.\"\n  ],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignBornRationalRayObstruction.lean",
+          "sha256": "4012a17fc835a31f8940624c7f648d004c457b3d73a5c8ce0ed78279d2c56740"
+        },
+        "assessment_id": "campaign-fq-gap-born-uniqueness-gleason-rays-BornRationalRayObstruction",
+        "basis": {
+          "G1": "Exported statements inspected against the node statement; statement-versus-theorem table in the pull request; content hashes recorded in the replay receipt.",
+          "G2": "Exact integer and rational arithmetic only; Lean kernel replay and an independent exact-arithmetic recomputation both passed.",
+          "G3": "Local build and axiom audit (propext, Classical.choice, Quot.sound only); no external model or production authority is exercised.",
+          "G4": "Kernel replay and independent recomputation are recorded; no production-scale verification or mutation accounting.",
+          "G5": "Small self-contained module; no production lifecycle or performance claim."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T21:01:06+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json",
+            "sha256": "a01bdbfbd0a7249fdeef51f6a252861b9dfc2acc61d0507f9c62ac16e98e9c22"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md",
+            "sha256": "9d775feb067d794cd7ef9cb8734d8ce80f52637e6679b561042b35936c39b8f3"
+          },
+          {
+            "path": "checks/independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+            "sha256": "0023b12fc6acdb65367fcdadd3fa8a58f4b758f1adeaa3ad96f4b892375eac8b"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON - Narrowed: a nonnegative non-quadratic frame function on all rational rays of Q^3. This assessment does not claim L4 production architecture.",
+        "open_higher_grade_findings": [
+          "The node's full statement (Born uniqueness) remains conditional.",
+          "Substantive proof remains below the repository L4 capability floor."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "4ecac3ce6298b7ff64c974f249dc0f2282231fa26ff145461c1175cc1f00f42b"
+    }
+  ]
+}
