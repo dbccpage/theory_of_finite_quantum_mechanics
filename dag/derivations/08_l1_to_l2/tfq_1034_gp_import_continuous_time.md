@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Continuous time, topology, a one-parameter unitary group and Stone's theorem. The two-state toggle has no report-level square root; after complex coefficients, interpolants exist at scale 4 and are not unique.
+On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).
 
 ### Governing Obligation
-Finite substitutes: exact rational Cayley transform in SO(8,Q); hyperoctahedral signed permutations with irreversible monotone residue.
+Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.
 
 ### Source Status
 imported / refused on this host
@@ -37,8 +37,17 @@ imported / refused on this host
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/H016ContinuousDynamicsFork.lean::toggle`
-- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries`
+- `lean4/CampaignGpImportContinuousTime.lean::toggle_images`
+- `lean4/CampaignGpImportContinuousTime.lean::no_toggle_square_root`
+- `lean4/CampaignGpImportContinuousTime.lean::gAdd_coords`
+- `lean4/CampaignGpImportContinuousTime.lean::gMul_coords`
+- `lean4/CampaignGpImportContinuousTime.lean::swap_exchanges`
+- `lean4/CampaignGpImportContinuousTime.lean::scale4_swap`
+- `lean4/CampaignGpImportContinuousTime.lean::interp_twice_is_scaled_swap`
+- `lean4/CampaignGpImportContinuousTime.lean::interpNeg_twice_is_scaled_swap`
+- `lean4/CampaignGpImportContinuousTime.lean::witness_interp`
+- `lean4/CampaignGpImportContinuousTime.lean::witness_neg`
+- `lean4/CampaignGpImportContinuousTime.lean::interpolants_differ`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

@@ -4,15 +4,15 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 ## Statement
 
-> Transition from the finite presented carrier (integer weights, finite report labels) to a continuous infinite-dimensional Hilbert space. QM_122 section 6 refuses it; QM_020 demotion box fences it.
+> Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
-- distinct cited Lean declarations covered by a current replay receipt: 2
+- counted in-repo evidence files: 2
+- cited Lean, Rust or Python symbols found in their in-repo files: 13
+- distinct cited Lean declarations covered by a current replay receipt: 13
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -29,7 +29,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-The completion, its identification with l2 and the lift of bounded exact operators are recorded at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). What stays imported is the selection of the scalar field and of the l2 uniformity from finite-theory primitives, and the review of this node still asks for a verified topology, Cauchy completion and infinite-dimensional carrier.
+The transition from a finite presented carrier, with integer weights and finite report labels, to a continuous infinite-dimensional Hilbert space stays imported. Scalar-field selection, l2 uniformity, a verified topology, a Cauchy completion and the lift of bounded exact operators stay imported. The completion record sits at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). QM_122 section 6 refuses that transition, and the QM_020 demotion box fences it. The length-4 window and the finite power-of-four identity are one finite case.
 
 ## Source status
 
@@ -37,7 +37,7 @@ OPEN gap GAP-F001-S000-002 (continuum interface)
 
 ## Review
 
-- PFP review: [dag/results/GP-IMPORT-CONTINUUM-HILBERT/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-CONTINUUM-HILBERT/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `caveat_added`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/results/GP-IMPORT-CONTINUUM-HILBERT/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-CONTINUUM-HILBERT/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Exact truncation coordinates, norm, positive tail and successive difference controls; general finite recurrence identity and positivity interface in Lean.
   - does not support: Construct and verify the topology, Cauchy completion and infinite-dimensional Hilbert carrier. No finite truncation settles those imports.
   - next test: Construct and verify the topology, Cauchy completion and infinite-dimensional Hilbert carrier. No finite truncation settles those imports.
@@ -45,6 +45,31 @@ OPEN gap GAP-F001-S000-002 (continuum interface)
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignGpImportContinuumHilbert.lean`
+
+- file: [lean4/CampaignGpImportContinuumHilbert.lean](../../../lean4/CampaignGpImportContinuumHilbert.lean)
+- sha256 (`bytes`): `c295d54bb448053163b2de830650a5724201901cb8b4f00e1a3c70418524e965`
+- cited in: node.lean, receipt dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json (CampaignGpImportContinuumHilbert), record TFQ-1035
+- replay: `verified`
+  - receipt [dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json](../../../dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json) (module `CampaignGpImportContinuumHilbert`): recorded sha256 `c295d54bb448053163b2de830650a5724201901cb8b4f00e1a3c70418524e965` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignGpImportContinuumHilbert`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignGpImportContinuumHilbert.closedTail` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGpImportContinuumHilbert.closedTail` |
+| `CampaignGpImportContinuumHilbert.halves` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuumHilbert.halves` |
+| `CampaignGpImportContinuumHilbert.noPositiveDoubleOfOne` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGpImportContinuumHilbert.noPositiveDoubleOfOne` |
+| `CampaignGpImportContinuumHilbert.pow4Four` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuumHilbert.pow4Four` |
+| `CampaignGpImportContinuumHilbert.scaledTailIsOne` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGpImportContinuumHilbert.scaledTailIsOne` |
+| `CampaignGpImportContinuumHilbert.squareDiffs` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuumHilbert.squareDiffs` |
+| `CampaignGpImportContinuumHilbert.sumDiff` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGpImportContinuumHilbert.sumDiff` |
+| `CampaignGpImportContinuumHilbert.windowIsSum` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuumHilbert.windowIsSum` |
+| `CampaignGpImportContinuumHilbert.windowScaled` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuumHilbert.windowScaled` |
+| `CampaignGpImportContinuumHilbert.windowSquares` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuumHilbert.windowSquares` |
+| `CampaignGpImportContinuumHilbert.windowSum` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuumHilbert.windowSum` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
@@ -72,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1035_gp_import_continuum_hilbert.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1035_gp_import_continuum_hilbert.md](../../../dag/derivations/08_l1_to_l2/tfq_1035_gp_import_continuum_hilbert.md)
-- sha256 (`lf-normalised`): `cc839109a010bc3a8506db42773b8851542bd0b686589a80efd025b32bbee0ac`
+- sha256 (`lf-normalised`): `a66a10bf75543c4a11b54a42bb2d646ffd4fec231db024014cf80740482bfc82`
 - generated view: listed, not counted
 - cited in: record TFQ-1035
 - counts toward the grade: no

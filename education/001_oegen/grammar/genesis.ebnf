@@ -1,0 +1,56 @@
+(* Genesis / 19L57G1 Presentation & Event Grammar, Version 1.
+   AuthorityEffect: None. GenesisEffect: None.
+   Conforms to check_grammars.py EBNF subset. All productions defined here.
+   Encodes the object language, primitive admission events, candidate response
+   items (Delta), reading profiles (L and F), and regime state snapshots. *)
+
+(* Master start profile *)
+genesis_statement = genesis_event | delta_candidate | regime_snapshot | token ;
+
+(* 1. Object Language Presentation Tokens *)
+token = ground_token | supplied_token | pair_token | cut_token ;
+ground_token = "<>" ;
+supplied_token = "<", glyph, ">" ;
+pair_token = "<", glyph, glyph, ">" ;
+cut_token = "<", glyph, "->", glyph, ">" ;
+
+(* 2. Primitive Admission & Metatheoretic Events *)
+genesis_event = supply_event
+              | admit_datum_event
+              | admit_form_event
+              | admit_inst_event
+              | admit_rule_all_event
+              | impose_event ;
+
+supply_event = "supply(", token, ")" ;
+admit_datum_event = "admit_datum(", token, ")" ;
+admit_form_event = "admit_form(", digits, ")" ;
+admit_inst_event = "admit_inst(", digits, ",", "[", [ digits, { ",", digits } ], "]", ")" ;
+admit_rule_all_event = "admit_rule_all(", digits, ")" ;
+impose_event = "impose(", digits, ",", digits, ")" ;
+
+(* 3. Candidate Response Items (Delta), after 19L57G1 lean4/Derivation/Basic.lean
+   (NewDatum, NewForm, NewInst, NewRuleAll). Note: pair_token and cut_token
+   below are presentation conveniences. In 19L57G1 an inscription such as <ab>
+   is one opaque whole with no internal pair, and the cut <a->b> is the S(n)
+   stage-3 convention, not a 19L57G1 notion. regime_snapshot omits the
+   requirement list Q of the Lean Regime. *)
+delta_candidate = "delta<", [ candidate_item, { ";", candidate_item } ], ">" ;
+candidate_item = new_datum | new_form | new_inst | new_rule_all ;
+
+new_datum = "NewDatum" ;
+new_form = "NewForm(", digits, ")" ;
+new_inst = "NewInst(", digits, ",", "[", [ digits, { ",", digits } ], "]", ")" ;
+new_rule_all = "NewRuleAll(", digits, ")" ;
+
+(* 4. Regime State Snapshot *)
+regime_snapshot = "regime<", "data:", digits, ",", "forms:", digits, ",", "insts:", digits, ",", "rules:", digits, ">" ;
+
+(* 5. Terminals and Character Sets over Sigma36 *)
+glyph = lower_latin | digit ;
+digits = digit, { digit } ;
+digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+
+lower_latin = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j"
+            | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t"
+            | "u" | "v" | "w" | "x" | "y" | "z" ;

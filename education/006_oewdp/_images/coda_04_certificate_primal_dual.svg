@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#161b22;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#21262d;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#30363d;stop-opacity:1"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <text x="400" y="38" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="18" font-weight="700" fill="#58a6ff" filter="url(#glow)">Level 04: Certificate Verification &amp; Primal-Dual Bounds</text>
+  <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#484f58"/></marker></defs>
+  <text x="400" y="62" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12" fill="#8b949e">Matching dual bound: y∘d₀ = 0, |yᵢ| ≤ wᵢ, y(x) = ‖r‖₁,w</text>
+  <rect x="50" y="100" width="220" height="70" rx="8" fill="url(#boxGrad)" stroke="#79c0ff" stroke-width="1.5"/>
+  <text x="160" y="140" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#79c0ff">Primal Repair f</text>
+  <text x="160" y="157" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8b949e">r = x + d₀f</text>
+  <rect x="540" y="100" width="220" height="70" rx="8" fill="url(#boxGrad)" stroke="#d2a8ff" stroke-width="1.5"/>
+  <text x="650" y="140" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#d2a8ff">Dual Witness y</text>
+  <text x="650" y="157" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8b949e">y∘d₀ = 0, |yᵢ| ≤ wᵢ</text>
+  <rect x="290" y="100" width="220" height="70" rx="8" fill="url(#boxGrad)" stroke="#7ee787" stroke-width="1.5"/>
+  <text x="400" y="140" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#7ee787">Matching Value</text>
+  <text x="400" y="157" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8b949e">y(x) = ‖r‖₁,w = Φ₁</text>
+  <line x1="270" y1="135" x2="290" y2="135" stroke="#79c0ff" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <line x1="510" y1="135" x2="540" y2="135" stroke="#d2a8ff" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <rect x="140" y="210" width="520" height="50" rx="8" fill="url(#boxGrad)" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="400" y="240" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#f0883e">CODA-06: Certificate checks optimality</text>
+  <rect x="50" y="300" width="220" height="60" rx="8" fill="url(#boxGrad)" stroke="#7ee787" stroke-width="1.5"/>
+  <text x="160" y="335" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#7ee787">(2,0,0) → ExactRepair</text>
+  <text x="160" y="352" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8b949e">Φ₁=0, Γ₂=0</text>
+  <rect x="290" y="300" width="220" height="60" rx="8" fill="url(#boxGrad)" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="400" y="335" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#f0883e">(2,3,0) → Coherent</text>
+  <text x="400" y="352" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8b949e">Φ₁=3, Γ₂=0</text>
+  <rect x="530" y="300" width="220" height="60" rx="8" fill="url(#boxGrad)" stroke="#f85149" stroke-width="1.5"/>
+  <text x="640" y="335" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#f85149">(2,3,5) → Nonclosed</text>
+  <text x="640" y="352" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8b949e">Φ₁=8, Γ₂=5</text>
+  <text x="400" y="400" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12" fill="#8b949e">Certificate does not assert a solver always finds one</text>
+  <text x="400" y="430" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12" fill="#8b949e">Exact rational arithmetic: ℚ only, zero IEEE 754 floats</text>
+  <text x="400" y="470" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12" fill="#8b949e">AuthorityEffect: None</text>
+</svg>

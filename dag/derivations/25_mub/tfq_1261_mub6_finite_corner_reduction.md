@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-Using the external finite-corner classification of single 6x6 complex Hadamard matrices, quartet existence in C^6 is equivalent to raw quartet completion of some retained finite-corner reconstruction with D = -C E* (B^-1)*.
+For 3 by 3 integer matrices, let B have rows (1, 1, 0), (0, 1, 1) and (0, 0, 1), let E be the identity, and let C have rows (0, 1, 0), (0, 0, 1) and (1, 0, 0). The matrix with rows (1, -1, 1), (0, 1, -1) and (0, 0, 1) is a two-sided inverse of B. The matrix D with rows (1, -1, 0), (-1, 1, -1) and (-1, 0, 0) equals the negative of C times the transpose of E times the transpose of that inverse, and C times the transpose of E plus D times the transpose of B is the zero matrix. The same sum with the zero matrix in place of D is not the zero matrix.
 
 ### Governing Obligation
-MubFiniteCornerReduction.lean is not in this checkout; exclusion over every retained reconstruction is open, and finite fibres over continuous seeds give no finite global list.
+This record is that one integer block identity. It does not classify complex Hadamard matrices, does not list retained finite corners, and does not equate quartet existence with completion of an external reconstruction. The complex adjoint is not identified with this integer transpose. Exclusion over every retained reconstruction stays open. AuthorityEffect: None.
 
 ### Witness Audit
-Reported external replay; no local file to audit.
+CampaignMub6FiniteCornerReduction.lean checks one integer 3 by 3 inverse and the forced block identity for that triple. The external finite-corner classification and any quartet equivalence stay outside the module.
 
 ---
 
@@ -31,13 +31,17 @@ Reported external replay; no local file to audit.
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_left`
+- `lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_right`
+- `lean4/CampaignMub6FiniteCornerReduction.lean::d_formula`
+- `lean4/CampaignMub6FiniteCornerReduction.lean::cross_zero`
+- `lean4/CampaignMub6FiniteCornerReduction.lean::zero_cross_ne`
 
 ### Rust Certifiers
 - *none*
 
 ### Python Checks
-- *none*
+- `checks/independent/mub6-finite-corner-reduction.py::check`
 
 ### Cited by the source, not in this checkout
 - `external:lean4/research_programs/mub6/MubFiniteCornerReduction.lean (source monorepo, not in this checkout)`

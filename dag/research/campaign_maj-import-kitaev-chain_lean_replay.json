@@ -1,0 +1,67 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-26",
+  "source_base": "4fea09ae176aae31115e38bb2b21819237055811",
+  "result": "Narrowed to the sweet-spot index split for every natural L at least 2 and every bulk index j, the L = 2 witness, and two integer comparisons of mu * mu with (2 * t) * (2 * t). The 2026-10-26 lake build of CampaignMajImportKitaevChain exited 0 in 17077 ms, with the module job at 755 ms. Printed axioms are among propext, Classical.choice and Quot.sound. The node stays IMPORTED_ASSUMPTION.",
+  "proof_boundary": "This receipt records that lean4/CampaignMajImportKitaevChain.lean type-checks and which axioms its print-axioms lines report. The recorded arithmetic is the index split 2 * j and 2 * j + 1 against 1 and 2 * L, the witness 2, 3 and 4, and the comparisons 1 < 4 and the failure of 9 < 4. The fermion Hamiltonian, the BdG spectrum, and a physical wire stay outside this module. The node stays IMPORTED_ASSUMPTION.",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "lakefile_sha256": "32be4b6f8561ac815a529eeb648d6c96e5b18763d8f7c4c7d9444daec783e7d7",
+    "library": "CampaignMajImportKitaevChain (lean_lib in lean4/lakefile.lean; not a default target)",
+    "build_directory": "lean4/b (lakefile buildDir)",
+    "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run). The module imports no package.",
+    "command": "cd lean4 && lake build CampaignMajImportKitaevChain",
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "results": [
+      {
+        "module": "CampaignMajImportKitaevChain",
+        "dag_node": "MAJ-IMPORT-KITAEV-CHAIN",
+        "source": "lean4/CampaignMajImportKitaevChain.lean",
+        "sha256": "4be2d26217c40beea3ab808e5140bd95ff3aef37867556343ea2d9c18b582585",
+        "sha256_after_build": "4be2d26217c40beea3ab808e5140bd95ff3aef37867556343ea2d9c18b582585",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "seconds": 17.077,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "CampaignMajImportKitaevChain.edgeAbsent",
+          "CampaignMajImportKitaevChain.edgeWitness",
+          "CampaignMajImportKitaevChain.insidePoint",
+          "CampaignMajImportKitaevChain.outsidePoint"
+        ],
+        "axioms": {
+          "CampaignMajImportKitaevChain.edgeAbsent": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "CampaignMajImportKitaevChain.edgeWitness": [],
+          "CampaignMajImportKitaevChain.insidePoint": [],
+          "CampaignMajImportKitaevChain.outsidePoint": []
+        },
+        "output": "'CampaignMajImportKitaevChain.edgeAbsent' depends on axioms: [propext, Classical.choice, Quot.sound]\n'CampaignMajImportKitaevChain.edgeWitness' does not depend on any axioms\n'CampaignMajImportKitaevChain.insidePoint' does not depend on any axioms\n'CampaignMajImportKitaevChain.outsidePoint' does not depend on any axioms\n"
+      }
+    ]
+  },
+  "lake_build": {
+    "command": "cd lean4 && lake build CampaignMajImportKitaevChain",
+    "exit_code": 0,
+    "seconds": 17.077,
+    "module_job_ms": 755,
+    "output": "ℹ [2/3] Built CampaignMajImportKitaevChain (755ms)\ninfo: CampaignMajImportKitaevChain.lean:24:0: 'CampaignMajImportKitaevChain.edgeAbsent' depends on axioms: [propext, Classical.choice, Quot.sound]\ninfo: CampaignMajImportKitaevChain.lean:25:0: 'CampaignMajImportKitaevChain.edgeWitness' does not depend on any axioms\ninfo: CampaignMajImportKitaevChain.lean:26:0: 'CampaignMajImportKitaevChain.insidePoint' does not depend on any axioms\ninfo: CampaignMajImportKitaevChain.lean:27:0: 'CampaignMajImportKitaevChain.outsidePoint' does not depend on any axioms\nBuild completed successfully (3 jobs).\n"
+  },
+  "independent_check": {
+    "command": "python -I -X utf8 checks/independent/maj-import-kitaev-chain.py",
+    "exit_code": 0,
+    "output": "edge_box: True\nwitness_parts 2 3 4\nedge_witness: True\ninside_parts 1 4\ninside_point: True\noutside_parts 9 4\noutside_point: True\nchecked edge box through L=12, witness (2, 3) against 1 and 4, inside 1<4, outside 9<4 false\n"
+  }
+}

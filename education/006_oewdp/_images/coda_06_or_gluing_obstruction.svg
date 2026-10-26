@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#161b22;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#21262d;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#30363d;stop-opacity:1"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <text x="400" y="38" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="18" font-weight="700" fill="#58a6ff" filter="url(#glow)">Level 06: Local-to-Global Obstruction (OR)</text>
+  <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" fill="#484f58"/></marker></defs>
+  <text x="400" y="62" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12" fill="#8b949e">Local solutions exist; global section does not</text>
+  <polygon points="400,100 200,320 600,320" fill="none" stroke="#484f58" stroke-width="1.5"/>
+  <circle cx="400" cy="100" r="18" fill="#21262d" stroke="#79c0ff" stroke-width="2"/>
+  <text x="400" y="105" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12" fill="#79c0ff">s₀</text>
+  <circle cx="200" cy="320" r="18" fill="#21262d" stroke="#d2a8ff" stroke-width="2"/>
+  <text x="200" y="325" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12" fill="#d2a8ff">s₁</text>
+  <circle cx="600" cy="320" r="18" fill="#21262d" stroke="#7ee787" stroke-width="2"/>
+  <text x="600" y="325" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12" fill="#7ee787">s₂</text>
+  <text x="280" y="195" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" fill="#7ee787">s₀+s₁=0 ✓</text>
+  <text x="520" y="195" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" fill="#7ee787">s₁+s₂=0 ✓</text>
+  <text x="400" y="360" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" fill="#f85149">s₂+s₀=1 ✗ (globally)</text>
+  <rect x="160" y="390" width="480" height="45" rx="8" fill="url(#boxGrad)" stroke="#f85149" stroke-width="1.5"/>
+  <text x="400" y="417" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="600" fill="#f85149">CODA-08: Sum in F₂ gives 0=1 — No global solution</text>
+  <text x="400" y="460" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12" fill="#8b949e">4 local, 0 global. Averaging does not repair a contradictory system.</text>
+  <text x="400" y="485" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12" fill="#8b949e">AuthorityEffect: None</text>
+</svg>

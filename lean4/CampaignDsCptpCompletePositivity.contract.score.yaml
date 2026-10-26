@@ -1,0 +1,160 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/CampaignDsCptpCompletePositivity.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/CampaignDsCptpCompletePositivity.lean",
+      "sha256": "27282c5c83c9655fc167d6e9273702adf87d9b6068ec41b4e94ec21a9a741722"
+    },
+    "boundaries": [
+      "Complete positivity of a tensor extension, Kraus, Choi and Stinespring forms, and coherence transport above a classical kernel stay imported. The nonnegative product t * ((x + w) * (x + w)) for t at least 0, and the strict negative value t * (-2) for t greater than 0, are one finite scalar case. At t = 0 the product t * (-2) is 0.",
+      "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+    ],
+    "contract_urn": "urn:tfqm:review:20261026:CampaignDsCptpCompletePositivity",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_ds-cptp-complete-positivity-import_lean_replay.json",
+        "sha256": "640b82f1c9f83023a11a525720ea510af64ae4116793e15a18b52b62543adb84"
+      },
+      {
+        "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+        "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+      }
+    ],
+    "owned_invariants": [
+      "For every integer n, the product n * n is at least 0, and (-n) * (-n) equals n * n. For every natural pair k and m, the product of the integer of k with the integer of m equals the integer of k * m. For every integer pair a and b, if a is at least 0 and b is at least 0, then a * b is at least 0. For every integer triple t, x and w, if t is at least 0, then t * ((x + w) * (x + w)) is at least 0. The sum 1 * (-1) + (-1) * 1 equals -2. For every integer t, t times that sum equals (-2) * t, and t * (-2) equals 2 * (-t). If t is greater than 0, then t * (-2) is less than 0 and -t is less than 0. The product 0 * (-2) equals 0. The sum of squares 0 * 0 + 1 * 1 + (-1) * (-1) + 0 * 0 equals 2."
+    ],
+    "purpose": "For every integer n, the product n * n is at least 0, and (-n) * (-n) equals n * n. For every natural pair k and m, the product of the integer of k with the integer of m equals the integer of k * m. For every integer pair a and b, if a is at least 0 and b is at least 0, then a * b is at least 0. For every integer triple t, x and w, if t is at least 0, then t * ((x + w) * (x + w)) is at least 0. The sum 1 * (-1) + (-1) * 1 equals -2. For every integer t, t times that sum equals (-2) * t, and t * (-2) equals 2 * (-t). If t is greater than 0, then t * (-2) is less than 0 and -t is less than 0. The product 0 * (-2) equals 0. The sum of squares 0 * 0 + 1 * 1 + (-1) * (-1) + 0 * 0 equals 2.",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "negMulNeg",
+      "squareNonneg",
+      "mulOfNat",
+      "mulNonneg",
+      "bellNonneg",
+      "pairing",
+      "scaled",
+      "scaleTwice",
+      "negOut",
+      "negT",
+      "zeroScale",
+      "normSq"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 2843,
+      "original_paths": [
+        "lean4/CampaignDsCptpCompletePositivity.contract.score.yaml#qm-open-pr-review-20261026-27282c5c83c9"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignDsCptpCompletePositivity.lean\",\n    \"sha256\": \"27282c5c83c9655fc167d6e9273702adf87d9b6068ec41b4e94ec21a9a741722\"\n  },\n  \"boundaries\": [\n    \"Complete positivity of a tensor extension, Kraus, Choi and Stinespring forms, and coherence transport above a classical kernel stay imported. The nonnegative product t * ((x + w) * (x + w)) for t at least 0, and the strict negative value t * (-2) for t greater than 0, are one finite scalar case. At t = 0 the product t * (-2) is 0.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review:20261026:CampaignDsCptpCompletePositivity\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_ds-cptp-complete-positivity-import_lean_replay.json\",\n      \"sha256\": \"640b82f1c9f83023a11a525720ea510af64ae4116793e15a18b52b62543adb84\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_upper_campaign_review_20261026.md\",\n      \"sha256\": \"0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"For every integer n, the product n * n is at least 0, and (-n) * (-n) equals n * n. For every natural pair k and m, the product of the integer of k with the integer of m equals the integer of k * m. For every integer pair a and b, if a is at least 0 and b is at least 0, then a * b is at least 0. For every integer triple t, x and w, if t is at least 0, then t * ((x + w) * (x + w)) is at least 0. The sum 1 * (-1) + (-1) * 1 equals -2. For every integer t, t times that sum equals (-2) * t, and t * (-2) equals 2 * (-t). If t is greater than 0, then t * (-2) is less than 0 and -t is less than 0. The product 0 * (-2) equals 0. The sum of squares 0 * 0 + 1 * 1 + (-1) * (-1) + 0 * 0 equals 2.\"\n  ],\n  \"purpose\": \"For every integer n, the product n * n is at least 0, and (-n) * (-n) equals n * n. For every natural pair k and m, the product of the integer of k with the integer of m equals the integer of k * m. For every integer pair a and b, if a is at least 0 and b is at least 0, then a * b is at least 0. For every integer triple t, x and w, if t is at least 0, then t * ((x + w) * (x + w)) is at least 0. The sum 1 * (-1) + (-1) * 1 equals -2. For every integer t, t times that sum equals (-2) * t, and t * (-2) equals 2 * (-t). If t is greater than 0, then t * (-2) is less than 0 and -t is less than 0. The product 0 * (-2) equals 0. The sum of squares 0 * 0 + 1 * 1 + (-1) * (-1) + 0 * 0 equals 2.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"negMulNeg\",\n    \"squareNonneg\",\n    \"mulOfNat\",\n    \"mulNonneg\",\n    \"bellNonneg\",\n    \"pairing\",\n    \"scaled\",\n    \"scaleTwice\",\n    \"negOut\",\n    \"negT\",\n    \"zeroScale\",\n    \"normSq\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDsCptpCompletePositivity.lean",
+          "sha256": "27282c5c83c9655fc167d6e9273702adf87d9b6068ec41b4e94ec21a9a741722"
+        },
+        "boundaries": [
+          "Complete positivity of a tensor extension, Kraus, Choi and Stinespring forms, and coherence transport above a classical kernel stay imported. The nonnegative product t * ((x + w) * (x + w)) for t at least 0, and the strict negative value t * (-2) for t greater than 0, are one finite scalar case. At t = 0 the product t * (-2) is 0.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "contract_urn": "urn:tfqm:review:20261026:CampaignDsCptpCompletePositivity",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_ds-cptp-complete-positivity-import_lean_replay.json",
+            "sha256": "640b82f1c9f83023a11a525720ea510af64ae4116793e15a18b52b62543adb84"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+            "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+          }
+        ],
+        "owned_invariants": [
+          "For every integer n, the product n * n is at least 0, and (-n) * (-n) equals n * n. For every natural pair k and m, the product of the integer of k with the integer of m equals the integer of k * m. For every integer pair a and b, if a is at least 0 and b is at least 0, then a * b is at least 0. For every integer triple t, x and w, if t is at least 0, then t * ((x + w) * (x + w)) is at least 0. The sum 1 * (-1) + (-1) * 1 equals -2. For every integer t, t times that sum equals (-2) * t, and t * (-2) equals 2 * (-t). If t is greater than 0, then t * (-2) is less than 0 and -t is less than 0. The product 0 * (-2) equals 0. The sum of squares 0 * 0 + 1 * 1 + (-1) * (-1) + 0 * 0 equals 2."
+        ],
+        "purpose": "For every integer n, the product n * n is at least 0, and (-n) * (-n) equals n * n. For every natural pair k and m, the product of the integer of k with the integer of m equals the integer of k * m. For every integer pair a and b, if a is at least 0 and b is at least 0, then a * b is at least 0. For every integer triple t, x and w, if t is at least 0, then t * ((x + w) * (x + w)) is at least 0. The sum 1 * (-1) + (-1) * 1 equals -2. For every integer t, t times that sum equals (-2) * t, and t * (-2) equals 2 * (-t). If t is greater than 0, then t * (-2) is less than 0 and -t is less than 0. The product 0 * (-2) equals 0. The sum of squares 0 * 0 + 1 * 1 + (-1) * (-1) + 0 * 0 equals 2.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "negMulNeg",
+          "squareNonneg",
+          "mulOfNat",
+          "mulNonneg",
+          "bellNonneg",
+          "pairing",
+          "scaled",
+          "scaleTwice",
+          "negOut",
+          "negT",
+          "zeroScale",
+          "normSq"
+        ]
+      },
+      "sha256": "bfc3b7742677252dec4cbc6b151df413972792155833a906875e6afc0825701a"
+    }
+  ],
+  "current_contract": "bfc3b7742677252dec4cbc6b151df413972792155833a906875e6afc0825701a",
+  "current_scoring": "f1354b1b8afdaa06698b4a6be42d4b7716369ac9cb277bb52b18e6d7f21c3d45",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2532,
+      "original_paths": [
+        "lean4/CampaignDsCptpCompletePositivity.contract.score.yaml#qm-open-pr-review-20261026-27282c5c83c9"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignDsCptpCompletePositivity.lean\",\n    \"sha256\": \"27282c5c83c9655fc167d6e9273702adf87d9b6068ec41b4e94ec21a9a741722\"\n  },\n  \"assessment_id\": \"qm-open-pr-review-20261026-27282c5c83c9\",\n  \"basis\": {\n    \"G1\": \"Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.\",\n    \"G2\": \"Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.\",\n    \"G3\": \"Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.\",\n    \"G4\": \"Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.\",\n    \"G5\": \"Inspected 75 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T15:28:13.374819+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_ds-cptp-complete-positivity-import_lean_replay.json\",\n      \"sha256\": \"640b82f1c9f83023a11a525720ea510af64ae4116793e15a18b52b62543adb84\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_upper_campaign_review_20261026.md\",\n      \"sha256\": \"0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.\",\n  \"open_higher_grade_findings\": [\n    \"Complete positivity of a tensor extension, Kraus, Choi and Stinespring forms, and coherence transport above a classical kernel stay imported. The nonnegative product t * ((x + w) * (x + w)) for t at least 0, and the strict negative value t * (-2) for t greater than 0, are one finite scalar case. At t = 0 the product t * (-2) is 0.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDsCptpCompletePositivity.lean",
+          "sha256": "27282c5c83c9655fc167d6e9273702adf87d9b6068ec41b4e94ec21a9a741722"
+        },
+        "assessment_id": "qm-open-pr-review-20261026-27282c5c83c9",
+        "basis": {
+          "G1": "Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.",
+          "G2": "Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.",
+          "G3": "Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.",
+          "G4": "Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.",
+          "G5": "Inspected 75 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T15:28:13.374819+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_ds-cptp-complete-positivity-import_lean_replay.json",
+            "sha256": "640b82f1c9f83023a11a525720ea510af64ae4116793e15a18b52b62543adb84"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+            "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.",
+        "open_higher_grade_findings": [
+          "Complete positivity of a tensor extension, Kraus, Choi and Stinespring forms, and coherence transport above a classical kernel stay imported. The nonnegative product t * ((x + w) * (x + w)) for t at least 0, and the strict negative value t * (-2) for t greater than 0, are one finite scalar case. At t = 0 the product t * (-2) is 0.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "f1354b1b8afdaa06698b4a6be42d4b7716369ac9cb277bb52b18e6d7f21c3d45"
+    }
+  ]
+}

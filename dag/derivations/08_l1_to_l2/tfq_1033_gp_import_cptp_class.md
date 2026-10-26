@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-The class of completely positive trace-preserving maps. Collapse non-reversibility and failure of a same-basis isometry are not CPTP obstructions; exactly four reversible dilations of collapse exist under the declared convention that the ancilla starts at false.
+On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair.
 
 ### Governing Obligation
-No derived channel class; QM_082 supplies stochastic-kernel population shadow only.
+The class of completely positive trace-preserving maps on a Hilbert space is not derived. Choi positivity, Kraus form and a Stinespring realization of that class stay imported. The Boolean collapse, the integer mass image and the four ancilla-false reversible dilations are one finite case. This mass image is a stochastic-kernel population shadow in the sense of QM_082, and it is not that channel class.
 
 ### Source Status
 imported; no channel class defined on the finite host
@@ -34,8 +34,17 @@ imported; no channel class defined on the finite host
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/H015CollapseDilations.lean::four_reversible_dilations_of_collapse`
-- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries`
+- `lean4/CampaignGpImportCptpClass.lean::collapse_both_false`
+- `lean4/CampaignGpImportCptpClass.lean::collapse_labels_agree`
+- `lean4/CampaignGpImportCptpClass.lean::collapse_no_two_sided_inverse`
+- `lean4/CampaignGpImportCptpClass.lean::collapseMass_coords`
+- `lean4/CampaignGpImportCptpClass.lean::collapseMass_preserves_sum`
+- `lean4/CampaignGpImportCptpClass.lean::collapseMass_nonneg`
+- `lean4/CampaignGpImportCptpClass.lean::collapseMass_two_three`
+- `lean4/CampaignGpImportCptpClass.lean::prepared_is_false`
+- `lean4/CampaignGpImportCptpClass.lean::four_maps_pairwise_unequal`
+- `lean4/CampaignGpImportCptpClass.lean::four_named_are_dilations`
+- `lean4/CampaignGpImportCptpClass.lean::every_dilation_agrees`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

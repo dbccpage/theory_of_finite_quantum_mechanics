@@ -1399,3 +1399,85 @@ lean_lib CampaignGpImportComplexField where
 -- Campaign: GP-IMPORT-CIRCLE-U1. Not a default target.
 lean_lib CampaignGpImportCircleU1 where
   roots := #[`CampaignGpImportCircleU1]
+
+-- Campaign: FQ-GAP-CUSTODY-AND-RECEIPTS. Not a default target.
+lean_lib CampaignFqGapCustodyAndReceipts where
+  roots := #[`CampaignFqGapCustodyAndReceipts]
+
+lean_lib CampaignFqGapC500OriginalTargets where
+  roots := #[`CampaignFqGapC500OriginalTargets]
+
+lean_lib CampaignGpImportGleason where
+  roots := #[`CampaignGpImportGleason]
+
+lean_lib CampaignBfCocycleObstruction where
+  roots := #[`CampaignBfCocycleObstruction]
+
+lean_lib CampaignSignedTriangleSwitching where
+  roots := #[`CampaignSignedTriangleSwitching]
+
+lean_lib CampaignIdentityConvention where
+  roots := #[`CampaignIdentityConvention]
+
+lean_lib CampaignReggeFiniteAction where
+  roots := #[`CampaignReggeFiniteAction]
+
+lean_lib CampaignConstraintKernelProjector where
+  roots := #[`CampaignConstraintKernelProjector]
+
+lean_lib CampaignMajImportCosetWeight where
+  roots := #[`CampaignMajImportCosetWeight]
+
+lean_lib CampaignGpImportTensorProduct where
+  roots := #[`CampaignGpImportTensorProduct]
+
+lean_lib CampaignGpImportCptpClass where
+  roots := #[`CampaignGpImportCptpClass]
+
+lean_lib CampaignGpImportContinuousTime where
+  roots := #[`CampaignGpImportContinuousTime]
+
+lean_lib CampaignGpImportContinuumHilbert where
+  roots := #[`CampaignGpImportContinuumHilbert]
+
+lean_lib CampaignDsContinuousTimeExpGenerator where
+  roots := #[`CampaignDsContinuousTimeExpGenerator]
+
+lean_lib CampaignDsQm043DecoherenceFunctional where
+  roots := #[`CampaignDsQm043DecoherenceFunctional]
+
+lean_lib CampaignDsQm062U1Residues where
+  roots := #[`CampaignDsQm062U1Residues]
+
+lean_lib CampaignDsCptpCompletePositivity where
+  roots := #[`CampaignDsCptpCompletePositivity]
+
+lean_lib CampaignDsQm204BornUniqueness where
+  roots := #[`CampaignDsQm204BornUniqueness]
+
+lean_lib CampaignMajImportKitaevChain where
+  roots := #[`CampaignMajImportKitaevChain]
+
+lean_lib CampaignFspThetaTermComplexWeight where
+  roots := #[`CampaignFspThetaTermComplexWeight]
+
+lean_lib CampaignMub6WeylHeisenbergD6 where
+  roots := #[`CampaignMub6WeylHeisenbergD6]
+
+lean_lib CampaignMub6FiniteCornerReduction where
+  roots := #[`CampaignMub6FiniteCornerReduction]
+
+lean_lib CampaignQcvImportThresholdTheorem where
+  roots := #[`CampaignQcvImportThresholdTheorem]
+
+lean_lib CampaignQcvImportNoisyReversibleLimits where
+  roots := #[`CampaignQcvImportNoisyReversibleLimits]
+
+lean_lib CampaignAuthRiceTheoremImport where
+  roots := #[`CampaignAuthRiceTheoremImport]
+
+lean_lib CampaignOpsAxis1WellfoundedAdmission where
+  roots := #[`CampaignOpsAxis1WellfoundedAdmission]
+
+lean_lib CampaignTfq0183FourModeDisk where
+  roots := #[`CampaignTfq0183FourModeDisk]

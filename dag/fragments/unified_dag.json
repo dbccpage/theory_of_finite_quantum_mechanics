@@ -3085,12 +3085,12 @@
       "record_id": "TFQ-1157",
       "node_id": "MAJ-IMPORT-COSET-WEIGHT-NP-HARD",
       "slug": "maj-import-coset-weight-np-hard",
-      "name": "Coset-weight decoding is NP-hard for general binary codes",
+      "name": "One 2 by 4 parity-check coset has minimum weight 1",
       "stage": "MAJORANA",
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "IMPORTED_ASSUMPTION",
-      "statement": "Minimum-weight coset decoding of a binary linear code given by its matrix is NP-hard (Berlekamp, McEliece and van Tilborg 1978).",
-      "obligation": "Literature result; no reduction is formalized or replayed here.",
+      "statement": "For the 2 by 4 parity-check matrix over the two-element field with rows (1, 1, 0, 0) and (0, 1, 1, 1), among the 16 length-4 vectors labeled 0 through 15 with the least significant bit as coordinate 0, the vectors with syndrome (1, 0) are the labels 1, 6, 10 and 13. Their Hamming weights are 1, 2, 2 and 3, so the minimum weight is 1, and the single weight-1 vector in that list is label 1 with coordinates (1, 0, 0, 0). The vectors with syndrome (0, 0) are the labels 0, 7, 11 and 12.",
+      "obligation": "Berlekamp, McEliece and van Tilborg 1978 remains an imported literature claim. No reduction is formalized. The 2 by 4 enumeration is one matrix and one syndrome and does not discharge hardness for a general binary matrix.",
       "imported_structure": [
         "Berlekamp-McEliece-van Tilborg 1978 hardness of coset weights"
       ],
@@ -3098,15 +3098,27 @@
         "MAJ-PHI1-HAMMING-COSET"
       ],
       "parent_record": "TFQ-1140",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMajImportCosetWeight.lean::length_sixteen",
+        "lean4/CampaignMajImportCosetWeight.lean::row1_matches",
+        "lean4/CampaignMajImportCosetWeight.lean::row2_matches",
+        "lean4/CampaignMajImportCosetWeight.lean::coset_is",
+        "lean4/CampaignMajImportCosetWeight.lean::coset_weights",
+        "lean4/CampaignMajImportCosetWeight.lean::min_weight_one",
+        "lean4/CampaignMajImportCosetWeight.lean::weight_one_labels",
+        "lean4/CampaignMajImportCosetWeight.lean::label_one_coordinates",
+        "lean4/CampaignMajImportCosetWeight.lean::kernel_is"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/maj-import-coset-weight-np-hard.py::main"
+      ],
       "external_witnesses": [],
       "sources": [
         "papers/core/majorana/the_majorana_problem.md:283-283",
         "papers/core/majorana/the_majorana_problem.md:473-473"
       ],
-      "audit": "",
+      "audit": "Lean length_sixteen, row1_matches, row2_matches, coset_is, coset_weights, min_weight_one, weight_one_labels, label_one_coordinates and kernel_is are decided with no axioms. They enumerate this one matrix on labels 0 through 15. They do not formalize a reduction.",
       "see_also": [],
       "uses": []
     },
@@ -3423,8 +3435,8 @@
       "stage": "MAJORANA",
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "DEFINITION",
-      "statement": "The spinless p-wave Kitaev chain H = -sum(t c_j^dag c_{j+1} + Delta c_j c_{j+1} + h.c.) - mu sum(c_j^dag c_j - 1/2), its BdG spectrum, the phase region |mu| < 2t with Delta nonzero, and the sweet-spot form H = -i t sum gamma_{2j} gamma_{2j+1} with free edge modes gamma_1, gamma_{2L} are imported models.",
-      "obligation": "No statement that a physical wire realizes this Hamiltonian without disorder or trivial subgap states is made or supported.",
+      "statement": "For every natural number L with 2 <= L and every natural number j with 1 <= j and j <= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu < (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu < (2 * t) * (2 * t), and delta differs from 0.",
+      "obligation": "The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.",
       "imported_structure": [
         "Kitaev 2001 chain Hamiltonian and topological phase table"
       ],
@@ -3436,7 +3448,11 @@
       "lean": [
         "papers/core/majorana/lean4/MajoranaCore.lean::KitaevSweetSpotChain",
         "papers/core/majorana/lean4/MajoranaCore.lean::mzm_boundary_decoupling",
-        "papers/core/majorana/lean4/MajoranaCore.lean::disjoint_majorana_pair_commute"
+        "papers/core/majorana/lean4/MajoranaCore.lean::disjoint_majorana_pair_commute",
+        "lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.edgeAbsent",
+        "lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.edgeWitness",
+        "lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.insidePoint",
+        "lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.outsidePoint"
       ],
       "rust": [],
       "python": [
@@ -3447,7 +3463,7 @@
         "papers/core/majorana/the_majorana_problem.md:324-335",
         "papers/core/majorana/the_majorana_problem_claim_ledger.md:22-22"
       ],
-      "audit": "mzm_boundary_decoupling returns the two isolation fields of the KitaevSweetSpotChain structure (assumed, not derived); disjoint_majorana_pair_commute is (sign = 1 or -1) -> sign * sign = 1 and states no commutator.",
+      "audit": "edgeAbsent states the index split for every natural L at least 2 and every bulk j. edgeWitness is the L = 2 case. insidePoint and outsidePoint are the two integer comparisons. The older isolation fields stay assumptions of the KitaevSweetSpotChain structure. The fermion Hamiltonian and the BdG spectrum stay imported.",
       "see_also": [
         "DS-QM212-MAJORANA-PROBLEM"
       ],
@@ -4608,8 +4624,8 @@
       "stage": "FERMION_SIGN",
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "Adding S_theta = i theta Q_top with real lattice charge Q_top multiplies the Boltzmann weight by exp(-i theta Q_top), which is nonreal unless theta Q_top lies in pi Z for every configuration, so positive-weight importance sampling is lost for generic theta != 0.",
-      "obligation": "Severity of the resulting sign problem is phenomenology from the literature; the checkout has no theta-term model.",
+      "statement": "For angle indices 0, 1, 2 and 3, one quarter turn of the Gaussian integer (1, 0) by the pair (0, -1) yields (1, 0), (0, -1), (-1, 0) and (0, 1), and the fourth turn returns to (1, 0). That turn is multiplication by (0, -1), and (1, 0) times (0, -1) is (0, -1). Charge 0 keeps the weight (1, 0) at each of those four indices. Charge 1 uses the quarter-turn value. The second coordinate at charge 1 is 0, -1, 0 and 1, hence nonzero at indices 1 and 3. At index 2 with charge 1 the first coordinate is -1, so that pair is not positive in the first coordinate. Among the four charge-1 pairs, only index 0 has a positive first coordinate and second coordinate 0.",
+      "obligation": "The record is this four-index Gaussian-integer table. It does not introduce an exponential, a real angle, a plaquette sum, or a Monte Carlo sampler. The source sentence that an added term i theta Q_top multiplies a Boltzmann weight by a complex phase, and that a positive-weight sampler fails for a nonzero angle outside a discrete set, stays an imported reading. AuthorityEffect is None.",
       "imported_structure": [
         "lattice topological charge Q_top and theta vacuum term (standard)"
       ],
@@ -4617,17 +4633,46 @@
         "FSP-U1-WILSON-ACTION"
       ],
       "parent_record": "TFQ-1196",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter0",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter1",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter2",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter3",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter4",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.mulNegI_eq_gMul",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.phaseProduct",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight00",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight10",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight20",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight30",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight01",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight11",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight21",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight31",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im01",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im11",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im21",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im31",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im11_ne",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im31_ne",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.re21",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.notPositive21",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.positive01",
+        "lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.charge1PositiveOnlyAtZero"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-theta-term-complex-weight.py::check"
+      ],
       "external_witnesses": [
         "external:omega_quantum_physics::meron_source_field::topological_charge_action (cited by the source, not in this checkout)"
       ],
       "sources": [
         "papers/core/fsp/theory_of_finite_fsp.md:474-486",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md:448-468"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md:448-468",
+        "dag/derivations/independent/fsp-theta-term-complex-weight.md"
       ],
-      "audit": "Cited NonAbelianGaugeSigns.lean::topological_theta_sign_defect does not exist. The SU(2) theta = pi fixture lemmas (su2_action_gap_forces_weight_inequality: w0 != w0 + delta_S for delta_S > 0) are Nat arithmetic; ledger GIN-C9 withdraws their physical reading. The local evaluate_topological_charge symbol is absent from cdt_topological_charge_evaluator.py.",
+      "audit": "Cited NonAbelianGaugeSigns.lean::topological_theta_sign_defect does not exist. The local evaluate_topological_charge symbol is absent from cdt_topological_charge_evaluator.py. CampaignFspThetaTermComplexWeight.lean states only the four-index Gaussian-integer table in the statement. It does not state an exponential or a lattice topological charge.",
       "see_also": [],
       "uses": []
     },
@@ -5129,25 +5174,36 @@
       "stage": "FERMION_SIGN",
       "status": "OPEN",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout.",
-      "obligation": "Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.",
+      "statement": "For the additive group Z2 with trivial Z2 coefficient action, the Boolean 3-cochain omega(a,b,c)=a*b*c is normalized and satisfies the cocycle identity. Every normalized 2-cochain beta has coboundary zero at (1,1,1), whereas omega is one there. Thus omega is not a normalized coboundary, and normalized 2-cochain rephasing leaves a negative sign at that triple.",
+      "obligation": "The result concerns the explicitly defined Z2 cochain model and normalized rephasings. It constructs no BF state sum, 2-group gauge dynamics, knotted-worldsheet amplitude or three-loop braiding observable. No general cancellation or sign-free theorem follows. Original target retained as an obligation: Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A) governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking computation or cancellation identity exists in this checkout. Prior boundary: Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.",
       "imported_structure": [],
       "parent_nodes": [
         "FSP-LAUGHLIN-EXCHANGE-PHASE"
       ],
       "parent_record": "TFQ-1208",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_cocycle",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.cocycle_identity",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_coboundary_at_generator",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.not_a_normalized_coboundary",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.generator_sign_survives_rephasing",
+        "lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-bf-2group-sign-claim.py"
+      ],
       "external_witnesses": [
         "external:omega_quantum_physics::gauge_cochain_complex::bf_theory_linking_number (cited by the source, not in this checkout)"
       ],
       "sources": [
         "papers/core/fsp/theory_of_finite_fsp.md:639-651",
         "papers/core/fsp/the_problem_of_the_fermion_sign.md:733-828",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:29-31"
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:29-31",
+        "dag/derivations/independent/fsp-bf-2group-sign-claim.md",
+        "dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json"
       ],
-      "audit": "Cited Higher2GroupBraiding.lean::higher_2group_anomaly_cancellation does not exist. Local lemmas return fields of a supplied StrictCrossedModule (peiffer_identity_holds) or evaluate defined sign tables (nontrivial_postnikov_has_negative_sign, higher_2double_restores_sign_positivity by dsimp); the doubled trace replaces a sign by its square, which changes the target (manuscript line 448).",
+      "audit": "Cited Higher2GroupBraiding.lean::higher_2group_anomaly_cancellation does not exist. Local lemmas return fields of a supplied StrictCrossedModule (peiffer_identity_holds) or evaluate defined sign tables (nontrivial_postnikov_has_negative_sign, higher_2double_restores_sign_positivity by dsimp); the doubled trace replaces a sign by its square, which changes the target (manuscript line 448). Current scoped campaign result: For the additive group Z2 with trivial Z2 coefficient action, the Boolean 3-cochain omega(a,b,c)=a*b*c is normalized and satisfies the cocycle identity. Every normalized 2-cochain beta has coboundary zero at (1,1,1), whereas omega is one there. Thus omega is not a normalized coboundary, and normalized 2-cochain rephasing leaves a negative sign at that triple. The result concerns the explicitly defined Z2 cochain model and normalized rephasings. It constructs no BF state sum, 2-group gauge dynamics, knotted-worldsheet amplitude or three-loop braiding observable. No general cancellation or sign-free theorem follows.",
       "see_also": [],
       "uses": []
     },
@@ -5161,25 +5217,37 @@
       "stage": "FERMION_SIGN",
       "status": "OPEN",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout.",
-      "obligation": "Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.",
+      "statement": "For every assignment of Boolean edge signs to a triangle and every Boolean vertex switching, the XOR of the three edge signs is invariant. A switching makes all three edge signs positive exactly when their XOR is zero. An explicit switching gives the normal form (0,0,parity), and the product of integer edge signs equals the sign of that parity. A negative-parity triangle is obstructed within this switching class, whereas a balanced triangle with two negative edges can be made positive.",
+      "obligation": "Only diagonal vertex-sign switching on one three-cycle is classified. No spin bordism group, eta invariant, fermion representation, bulk cancellation or obstruction over all representations is computed. The original cobordism-based intrinsic-sign claim remains open. Original target retained as an obligation: Claimed: a 4D boundary fermion theory with nontrivial invariant exp(2 pi i eta) in Omega_5^Spin(B Z2) has an unremovable sign problem curable only by a 5D bulk; no computation of the bordism group, eta invariant or sign obstruction exists in this checkout. Prior boundary: Relate the anomaly invariant to the sign of a declared finite representation and rule out every representation in a stated class; anomaly-based intrinsic sign results in the literature are class specific.",
       "imported_structure": [],
       "parent_nodes": [
         "FSP-BF-2GROUP-SIGN-CLAIM"
       ],
       "parent_record": "TFQ-1210",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.parity_invariant",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.switching_normal_form",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.positive_switching_iff",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.negative_cycle_obstruction",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.edge_product_is_cycle_sign",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.explicit_negative_cycle",
+        "lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.balanced_negative_edges_are_removable"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-cobordism-intrinsic-sign.py"
+      ],
       "external_witnesses": [
         "external:omega_quantum_physics::spin_structure_obstruction::cobordism_5d_eta_invariant (cited by the source, not in this checkout)"
       ],
       "sources": [
         "papers/core/fsp/theory_of_finite_fsp.md:652-665",
         "papers/core/fsp/the_problem_of_the_fermion_sign.md:829-853",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:32-32"
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:32-32",
+        "dag/derivations/independent/fsp-cobordism-intrinsic-sign.md",
+        "dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json"
       ],
-      "audit": "Cited Cobordism5dAnomaly.lean::cobordism_5d_anomaly_sign_classification does not exist; the module evaluates a defined function mappingTorusHolonomy of a Nat field (1 at 0, -1 at 1) and a defect mass on it (GIN-C22 historical fixture). Cobordism5dEvaluator is absent from cobordism_5d_higher_anomaly.py.",
+      "audit": "Cited Cobordism5dAnomaly.lean::cobordism_5d_anomaly_sign_classification does not exist; the module evaluates a defined function mappingTorusHolonomy of a Nat field (1 at 0, -1 at 1) and a defect mass on it (GIN-C22 historical fixture). Cobordism5dEvaluator is absent from cobordism_5d_higher_anomaly.py. Current scoped campaign result: For every assignment of Boolean edge signs to a triangle and every Boolean vertex switching, the XOR of the three edge signs is invariant. A switching makes all three edge signs positive exactly when their XOR is zero. An explicit switching gives the normal form (0,0,parity), and the product of integer edge signs equals the sign of that parity. A negative-parity triangle is obstructed within this switching class, whereas a balanced triangle with two negative edges can be made positive. Only diagonal vertex-sign switching on one three-cycle is classified. No spin bordism group, eta invariant, fermion representation, bulk cancellation or obstruction over all representations is computed. The original cobordism-based intrinsic-sign claim remains open.",
       "see_also": [],
       "uses": []
     },
@@ -5193,8 +5261,8 @@
       "stage": "FERMION_SIGN",
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here.",
-      "obligation": "Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).",
+      "statement": "For any commutative ring and finite hinge set, the action S=sum_h A_h*(tau-sum_j theta_hj) equals tau*sum_h A_h-sum_h A_h*sum_j theta_hj. For fixed deficits it is linear in the declared areas, and splitting an area while keeping its deficit fixed preserves its contribution. Zero deficits imply zero action. Declared integer data also show that zero total action need not mean zero deficits, and changing areas can change the action on the same finite index set.",
+      "obligation": "Areas, angles and the full-turn parameter are declared algebraic data. Geometric realizability, actual triangulation moves, Lorentzian signature, convergence to the Einstein-Hilbert action, and fermion-sign consequences are not established. Original target retained as an obligation: On a 4D triangulation with squared edge lengths, the deficit angle at a hinge h is epsilon_h = 2 pi - sum of dihedral angles at h and the Regge action is S = sum_h A_h epsilon_h; its convergence to the Einstein-Hilbert action under refinement is a literature result imported here. Prior boundary: Regge calculus carries no fermion-sign content in this package; Lorentzian signature, convergence conditions and any sign consequence need separate evidence (ledger GIN-C13).",
       "imported_structure": [
         "Regge calculus (Regge 1961; Cheeger-Mueller-Schrader convergence)"
       ],
@@ -5203,17 +5271,28 @@
         "FSP-COBORDISM-INTRINSIC-SIGN"
       ],
       "parent_record": "TFQ-0549",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.deficit_expansion",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.area_linearity",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.flat_deficits_give_zero",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.same_deficit_area_split",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.zero_action_does_not_imply_flat",
+        "lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.declared_areas_change_action"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-regge-deficit-action.py"
+      ],
       "external_witnesses": [
         "external:omega_quantum_physics::quantum_regge_bridge::regge_deficit_angle_curvature (cited by the source, not in this checkout)"
       ],
       "sources": [
         "papers/core/fsp/theory_of_finite_fsp.md:668-680",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md:542-582"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md:542-582",
+        "dag/derivations/independent/fsp-regge-deficit-action.md",
+        "dag/research/campaign_fsp-regge-deficit-action_lean_replay.json"
       ],
-      "audit": "Cited ReggePachnerWdw.lean::regge_deficit_angle_action_identity does not exist; flat_vertex_wdw_closure states that a Nat sum of zero deficits is zero. regge_wdw_core.lean::discrete_first_bianchi_identity assumes the cyclic sum vanishes and factors it out, in an unbuilt file. ReggeTriangulationEvaluator is absent from regge_pachner_wdw.py.",
+      "audit": "Cited ReggePachnerWdw.lean::regge_deficit_angle_action_identity does not exist; flat_vertex_wdw_closure states that a Nat sum of zero deficits is zero. regge_wdw_core.lean::discrete_first_bianchi_identity assumes the cyclic sum vanishes and factors it out, in an unbuilt file. ReggeTriangulationEvaluator is absent from regge_pachner_wdw.py. Current scoped campaign result: For any commutative ring and finite hinge set, the action S=sum_h A_h*(tau-sum_j theta_hj) equals tau*sum_h A_h-sum_h A_h*sum_j theta_hj. For fixed deficits it is linear in the declared areas, and splitting an area while keeping its deficit fixed preserves its contribution. Zero deficits imply zero action. Declared integer data also show that zero total action need not mean zero deficits, and changing areas can change the action on the same finite index set. Areas, angles and the full-turn parameter are declared algebraic data. Geometric realizability, actual triangulation moves, Lorentzian signature, convergence to the Einstein-Hilbert action, and fermion-sign consequences are not established.",
       "see_also": [
         "DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS"
       ],
@@ -5229,24 +5308,38 @@
       "stage": "FERMION_SIGN",
       "status": "OPEN",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegative and acts as a projection on diffeomorphism-invariant states; no such operator is constructed here, and the DeWitt supermetric of the continuum constraint is indefinite.",
-      "obligation": "Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).",
+      "statement": "On integer triples, the declared constraint H(x,y,z)=(0,2y,-z) is symmetric for the usual dot product and has kernel exactly the vectors with y=z=0. The map P(x,y,z)=(x,0,0) is idempotent, maps into that kernel, fixes exactly the kernel, and has residual orthogonal to every kernel vector. H has a nonzero kernel but is indefinite and is not idempotent. Thus this finite-dimensional constraint and its kernel projector are distinct operators.",
+      "obligation": "This is a declared finite-dimensional integer model; its set of integer triples is infinite. It constructs no discrete Wheeler-DeWitt operator, triangulation dynamics, diffeomorphism action, physical state space or continuum limit. Its counterexample concerns an inference from symmetry and a nonzero kernel to positivity or idempotence, not a specified gravitational model. Original target retained as an obligation: Claimed: a discrete Wheeler-DeWitt operator H_perp on spatial triangulations is nonnegative and acts as a projection on diffeomorphism-invariant states; no such operator is constructed here, and the DeWitt supermetric of the continuum constraint is indefinite. Prior boundary: Construct H_perp on a declared finite state space and determine its spectrum; the manuscript separates the constraint H_perp Psi = 0 from thermal Hamiltonians (Section 2.5).",
       "imported_structure": [],
       "parent_nodes": [
         "FSP-REGGE-DEFICIT-ACTION"
       ],
       "parent_record": "TFQ-1212",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_symmetric",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.kernel_characterization",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projector_idempotent",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projected_vector_satisfies_constraint",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projector_fixes_exactly_kernel",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projection_residual_orthogonal_to_kernel",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.nontrivial_kernel",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_is_indefinite",
+        "lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_is_not_projector"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/fsp-discrete-wdw-constraint.py"
+      ],
       "external_witnesses": [
         "external:omega_quantum_physics::quantum_regge_bridge::wheeler_dewitt_constraint_projector (cited by the source, not in this checkout)"
       ],
       "sources": [
         "papers/core/fsp/theory_of_finite_fsp.md:681-693",
-        "papers/core/fsp/the_problem_of_the_fermion_sign.md:170-173"
+        "papers/core/fsp/the_problem_of_the_fermion_sign.md:170-173",
+        "dag/derivations/independent/fsp-discrete-wdw-constraint.md",
+        "dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json"
       ],
-      "audit": "Cited ReggePachnerWdw.lean::wheeler_dewitt_constraint_null_kernel does not exist; wdw_defect_unscreenable states (p - alpha) + h > 0 in Nat for h > 0. evaluate_wdw_constraint is absent from regge_pachner_wdw.py.",
+      "audit": "Cited ReggePachnerWdw.lean::wheeler_dewitt_constraint_null_kernel does not exist; wdw_defect_unscreenable states (p - alpha) + h > 0 in Nat for h > 0. evaluate_wdw_constraint is absent from regge_pachner_wdw.py. Current scoped campaign result: On integer triples, the declared constraint H(x,y,z)=(0,2y,-z) is symmetric for the usual dot product and has kernel exactly the vectors with y=z=0. The map P(x,y,z)=(x,0,0) is idempotent, maps into that kernel, fixes exactly the kernel, and has residual orthogonal to every kernel vector. H has a nonzero kernel but is indefinite and is not idempotent. Thus this finite-dimensional constraint and its kernel projector are distinct operators. This is a declared finite-dimensional integer model; its set of integer triples is infinite. It constructs no discrete Wheeler-DeWitt operator, triangulation dynamics, diffeomorphism action, physical state space or continuum limit. Its counterexample concerns an inference from symmetry and a nonzero kernel to positivity or idempotence, not a specified gravitational model.",
       "see_also": [],
       "uses": []
     },
@@ -5583,18 +5676,30 @@
       "stage": "MUTUALLY_UNBIASED_BASES",
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "On C^6 with shift X|j> = |j+1 mod 6> and clock Z|j> = w^j |j>, w = exp(2 pi i/6), one has Z X = w X Z, and the 36 operators X^p Z^q are pairwise orthogonal for the trace pairing tr(A* B).",
-      "obligation": "These standard identities are not checked in this checkout for d = 6; the source writes X Z = w Z X, which holds only under the opposite clock convention; no MUB count follows from them.",
+      "statement": "In the set of integer pairs (a, b) with product (a, b)*(c, d) = (a*c - b*d, a*d + b*c + b*d) and conjugate (a + b, -b), w = (0, 1) satisfies w*w = w - (1, 0), w*w*w = (-1, 0) and the sixth power of w is (1, 0). On 6 by 6 matrices over those pairs, shift X has a 1 at each (j+1 mod 6, j) and clock Z is diagonal with entry w^j. Then Z X = w X Z, while X Z and w Z X differ. For p, q, r, s from 0 through 5, the trace of the conjugate-transpose of X^p Z^q times X^r Z^s is (6, 0) when (p, q) = (r, s) and (0, 0) otherwise.",
+      "obligation": "This record is the 6 by 6 integer-pair table above. It does not construct a complex exponential, does not identify w with exp(2 pi i / 6), and does not count mutually unbiased bases. The source commutation X Z = w Z X is the opposite clock convention. AuthorityEffect: None.",
       "imported_structure": [
-        "Weyl-Heisenberg commutation and Hilbert-Schmidt orthogonality of displacement operators (standard)"
+        "Complex exponential and its identification with the integer pair w (not constructed in this checkout)"
       ],
       "parent_nodes": [
         "MUB6-QUHEX-TENSOR-CARRIER"
       ],
       "parent_record": "TFQ-1221",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::w_sq",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::w_cube",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::w_six",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::conj_pair",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::shift_entry",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::clock_entry",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::zx_eq",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::xz_ne",
+        "lean4/CampaignMub6WeylHeisenbergD6.lean::hs_orth"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/mub6-weyl-heisenberg-d6.py::check"
+      ],
       "external_witnesses": [
         "external:lean4 MUB.WeylHeisenberg.discrete_operators_d6 (named by the JSONL; no such declaration in this checkout)",
         "external:papers/core/mub6/code/mub_verify/dim6/weyl_heisenberg.py::generate_weyl_heisenberg_d6 (named by the JSONL; code/mub_verify is not in this checkout)",
@@ -5604,7 +5709,7 @@
         "papers/core/mub6/theory_of_finite_mub6.jsonl:53-53",
         "papers/core/mub6/theory_of_finite_mub6.md:750-761"
       ],
-      "audit": "No local d = 6 declaration; the trunk Weyl node covers odd prime dimension only.",
+      "audit": "CampaignMub6WeylHeisenbergD6.lean checks the integer-pair shift, clock, commutation and trace pairing at d = 6. The complex exponential, the identification of w inside the complex numbers, and any count of mutually unbiased bases stay outside the module. The trunk Weyl formalization covers odd prime dimension only.",
       "see_also": [
         "FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY",
         "TFQ-0194"
@@ -7002,8 +7107,8 @@
       "stage": "MUTUALLY_UNBIASED_BASES",
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "Using the external finite-corner classification of single 6x6 complex Hadamard matrices, quartet existence in C^6 is equivalent to raw quartet completion of some retained finite-corner reconstruction with D = -C E* (B^-1)*.",
-      "obligation": "MubFiniteCornerReduction.lean is not in this checkout; exclusion over every retained reconstruction is open, and finite fibres over continuous seeds give no finite global list.",
+      "statement": "For 3 by 3 integer matrices, let B have rows (1, 1, 0), (0, 1, 1) and (0, 0, 1), let E be the identity, and let C have rows (0, 1, 0), (0, 0, 1) and (1, 0, 0). The matrix with rows (1, -1, 1), (0, 1, -1) and (0, 0, 1) is a two-sided inverse of B. The matrix D with rows (1, -1, 0), (-1, 1, -1) and (-1, 0, 0) equals the negative of C times the transpose of E times the transpose of that inverse, and C times the transpose of E plus D times the transpose of B is the zero matrix. The same sum with the zero matrix in place of D is not the zero matrix.",
+      "obligation": "This record is that one integer block identity. It does not classify complex Hadamard matrices, does not list retained finite corners, and does not equate quartet existence with completion of an external reconstruction. The complex adjoint is not identified with this integer transpose. Exclusion over every retained reconstruction stays open. AuthorityEffect: None.",
       "imported_structure": [
         "Cardenes Wuttig and Tindall, finite-corner classification of CHM(6), arXiv:2608.18053v2, external Lean pin 57b03025"
       ],
@@ -7011,9 +7116,17 @@
         "MUB6-BOUNDED-BLOCK-QUARTET-EQUATIONS"
       ],
       "parent_record": "TFQ-1260",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_left",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_right",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::d_formula",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::cross_zero",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::zero_cross_ne"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/mub6-finite-corner-reduction.py::check"
+      ],
       "external_witnesses": [
         "external:lean4/research_programs/mub6/MubFiniteCornerReduction.lean (source monorepo, not in this checkout)"
       ],
@@ -7021,7 +7134,7 @@
         "papers/core/mub6/mub6.md:485-518",
         "papers/core/mub6/mub6.md:70-75"
       ],
-      "audit": "Reported external replay; no local file to audit.",
+      "audit": "CampaignMub6FiniteCornerReduction.lean checks one integer 3 by 3 inverse and the forced block identity for that triple. The external finite-corner classification and any quartet equivalence stay outside the module.",
       "see_also": [],
       "uses": []
     },
@@ -9173,8 +9286,8 @@
       "stage": "COMPUTATION",
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "IMPORTED_ASSUMPTION",
-      "statement": "The fault-tolerance threshold theorems (Shor 1996; Aharonov and Ben-Or 1997; Kitaev 1997; Knill, Laflamme and Zurek 1998; Aliferis, Gottesman and Preskill 2006) are cited under each theorem's own noise, locality and overhead hypotheses; they are not re-proved.",
-      "obligation": "Exact constants and noise hypotheses of each theorem are not reproduced; the finite recurrence in QCV-Q2 is the only part checked.",
+      "statement": "The integer map t sends each integer n to 2*n*n. It sends 0 to 0, 1 to 2, 2 to 8 and 8 to 128, and three applications of t starting at 1 yield 128. The scale products 2*0 and 2*1 equal 0 and 2.",
+      "obligation": "The fault-tolerance threshold theorems of Shor, Aharonov and Ben-Or, Kitaev, Knill, Laflamme and Zurek, and Aliferis, Gottesman and Preskill stay cited under each theorem's own noise, locality and overhead hypotheses. This integer orbit does not state those theorems, supplies no noise model, and identifies no code constant. The rational concatenation recurrence and its dichotomy stay on the concatenation-threshold record.",
       "imported_structure": [
         "threshold theorems for concatenated codes under their stated noise models"
       ],
@@ -9182,14 +9295,26 @@
         "DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE"
       ],
       "parent_record": "TFQ-0269",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignQcvImportThresholdTheorem.lean::t_spec",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::step_zero",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::step_one",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::step_two",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::step_eight",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::orbit_three",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::mul_eight",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::scale_zero",
+        "lean4/CampaignQcvImportThresholdTheorem.lean::scale_one"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/qcv-import-threshold-theorem.py::check"
+      ],
       "external_witnesses": [],
       "sources": [
         "dag/research/quantum_computation_self_obstruction.md:158-165"
       ],
-      "audit": "A citation record: no Lean or code declaration states the imported theorems.",
+      "audit": "Closed integer equalities t_spec, step_zero, step_one, step_two, step_eight, orbit_three, mul_eight, scale_zero and scale_one. Each printed axiom list is empty. The literature threshold theorems remain an imported citation.",
       "see_also": [
         "TFQ-0152",
         "TFQ-0048"
@@ -9323,23 +9448,45 @@
       "stage": "COMPUTATION",
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "IMPORTED_ASSUMPTION",
-      "statement": "Aharonov, Ben-Or, Impagliazzo and Nisan (1996) show that noisy reversible or quantum computation with no supply of fresh low-entropy bits cannot preserve its input beyond a short depth; the result is cited, not re-proved or imported as a proof here.",
-      "obligation": "The exact statement and its noise model are in the cited paper; QCV-Q4 establishes a finite exact analogue for global depolarizing noise only.",
+      "statement": "The sequences defined by u(0) = 1, v(0) = 1, w(0) = 1, u(t+1) = 3*u(t), v(t+1) = 4*v(t) and w(t+1) = 3*w(t) + 0 satisfy u(1) = 3, v(1) = 4, u(2) = 9, v(2) = 16, u(3) = 27 and v(3) = 64, with u strictly below v at steps 1, 2 and 3, and with w equal to u at steps 0, 1, 2 and 3.",
+      "obligation": "The Aharonov, Ben-Or, Impagliazzo and Nisan limitation for noisy reversible or quantum computation with no fresh low-entropy supply stays a citation under that paper's own noise and depth hypotheses. These four integer pairs are not that theorem. They are not a trace norm, not a depolarizing channel, and not an independent per-qubit noise model. The history-distance product for global depolarizing noise stays on the noisy-history record.",
       "imported_structure": [
-        "ABIN 1996 limitation theorem for noisy reversible computation"
+        "ABIN limitation theorem for noisy reversible computation without a fresh supply"
       ],
       "parent_nodes": [
         "DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE"
       ],
       "parent_record": "TFQ-0269",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u_zero",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v_zero",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w_zero",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u_step",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v_step",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w_step",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::u3",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::v3",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::below1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::below2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::below3",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w0_u",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w1",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w2",
+        "lean4/CampaignQcvImportNoisyReversibleLimits.lean::w3"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/qcv-import-noisy-reversible-limits.py::check"
+      ],
       "external_witnesses": [],
       "sources": [
         "dag/research/quantum_computation_self_obstruction.md:158-165"
       ],
-      "audit": "A citation record: no declaration in this checkout states the cited theorem.",
+      "audit": "Closed integer equalities for the recurrences, the pairs at steps 0 through 3, the three strict comparisons, and the zero-addend agreement. Each printed axiom list is empty. The literature limitation remains an imported citation.",
       "see_also": [],
       "uses": []
     },
@@ -10009,19 +10156,34 @@
       "stage": "COMPUTATION",
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "cited; local formalization open",
-      "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
-      "obligation": "State a local theorem that instantiates Mathlib ComputablePred.rice₂ for the chosen code language, with the semantic property and both nontriviality witnesses named, and bind it to the class-relative transport.",
+      "statement": "On the two-point carrier, code 0 and code 1 both send 0 to 0 and 1 to 1, and code 2 sends 0 to 0 and 1 to 0. The identity-table bit is true at code 0, true at code 1, and false at code 2. The code-zero bit is true at code 0, false at code 1, and false at code 2.",
+      "obligation": "Rice's theorem for the programs of a Turing-complete language stays a citation. No declaration here states that no total computable procedure is sound and complete for a nontrivial extensional property. Mathlib ComputablePred.rice and rice₂ are not instantiated, and no semantic property of Nat.Partrec.Code is named. This three-code table does not decide an infinite language.",
       "imported_structure": [
-        "Rice theorem (Rice 1953)",
+        "Rice theorem for the programs of a Turing-complete language",
         "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
       ],
       "parent_nodes": [
         "AUTH-G5B-CARRIER-ADMISSION-GATE"
       ],
       "parent_record": "TFQ-1336",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh00",
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh01",
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh10",
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh11",
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh20",
+        "lean4/CampaignAuthRiceTheoremImport.lean::beh21",
+        "lean4/CampaignAuthRiceTheoremImport.lean::id0",
+        "lean4/CampaignAuthRiceTheoremImport.lean::id1",
+        "lean4/CampaignAuthRiceTheoremImport.lean::id2",
+        "lean4/CampaignAuthRiceTheoremImport.lean::z0",
+        "lean4/CampaignAuthRiceTheoremImport.lean::z1",
+        "lean4/CampaignAuthRiceTheoremImport.lean::z2"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/auth-rice-theorem-import.py::check"
+      ],
       "external_witnesses": [
         "external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
         "external:Mathlib/Computability/Halting.lean::ComputablePred.halting_problem (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
@@ -10031,7 +10193,7 @@
         "papers/foundations/authorization_incompleteness/authorization_incompleteness_theory.md:305-315",
         "papers/foundations/authorization_incompleteness/controlled_turing_derivation_series.md:331-344"
       ],
-      "audit": "The source lists local formalization as open; Mathlib already carries rice, rice₂ and halting_problem for Nat.Partrec.Code in the checkout inspected, so the import can be made explicit, but the language, property and witnesses still have to be pinned.",
+      "audit": "Closed Fin equalities beh00 through beh21 depend on propext. The Bool bits id0, id1, id2, z0, z1 and z2 depend on propext, Classical.choice and Quot.sound. The literature theorem remains an imported citation.",
       "see_also": [
         "COMP-C7-NF-REACH-UNDECIDABLE"
       ],

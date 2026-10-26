@@ -1,0 +1,172 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/CampaignMub6FiniteCornerReduction.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/CampaignMub6FiniteCornerReduction.lean",
+      "sha256": "79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401"
+    },
+    "boundaries": [
+      "This record is that one integer block identity. It does not classify complex Hadamard matrices, does not list retained finite corners, and does not equate quartet existence with completion of an external reconstruction. The complex adjoint is not identified with this integer transpose. Exclusion over every retained reconstruction stays open. AuthorityEffect: None.",
+      "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+    ],
+    "contract_urn": "urn:tfqm:review:20261026:CampaignMub6FiniteCornerReduction",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_mub6-finite-corner-reduction_lean_replay.json",
+        "sha256": "a148f97da51a8ab67487d5a5626e051707f8580cfff01c72a6034aad0e29b8aa"
+      },
+      {
+        "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+        "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+      }
+    ],
+    "owned_invariants": [
+      "For 3 by 3 integer matrices, let B have rows (1, 1, 0), (0, 1, 1) and (0, 0, 1), let E be the identity, and let C have rows (0, 1, 0), (0, 0, 1) and (1, 0, 0). The matrix with rows (1, -1, 1), (0, 1, -1) and (0, 0, 1) is a two-sided inverse of B. The matrix D with rows (1, -1, 0), (-1, 1, -1) and (-1, 0, 0) equals the negative of C times the transpose of E times the transpose of that inverse, and C times the transpose of E plus D times the transpose of B is the zero matrix. The same sum with the zero matrix in place of D is not the zero matrix."
+    ],
+    "purpose": "For 3 by 3 integer matrices, let B have rows (1, 1, 0), (0, 1, 1) and (0, 0, 1), let E be the identity, and let C have rows (0, 1, 0), (0, 0, 1) and (1, 0, 0). The matrix with rows (1, -1, 1), (0, 1, -1) and (0, 0, 1) is a two-sided inverse of B. The matrix D with rows (1, -1, 0), (-1, 1, -1) and (-1, 0, 0) equals the negative of C times the transpose of E times the transpose of that inverse, and C times the transpose of E plus D times the transpose of B is the zero matrix. The same sum with the zero matrix in place of D is not the zero matrix.",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "Mat",
+      "mmul",
+      "madd",
+      "mneg",
+      "transp",
+      "eye",
+      "zero",
+      "bMat",
+      "bInv",
+      "eMat",
+      "cMat",
+      "dMat",
+      "eq_of_entries",
+      "b_inv_left",
+      "b_inv_right",
+      "d_formula",
+      "cross_zero",
+      "zero_cross_ne"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 2653,
+      "original_paths": [
+        "lean4/CampaignMub6FiniteCornerReduction.contract.score.yaml#qm-open-pr-review-20261026-79d7009cc565"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignMub6FiniteCornerReduction.lean\",\n    \"sha256\": \"79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401\"\n  },\n  \"boundaries\": [\n    \"This record is that one integer block identity. It does not classify complex Hadamard matrices, does not list retained finite corners, and does not equate quartet existence with completion of an external reconstruction. The complex adjoint is not identified with this integer transpose. Exclusion over every retained reconstruction stays open. AuthorityEffect: None.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review:20261026:CampaignMub6FiniteCornerReduction\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_mub6-finite-corner-reduction_lean_replay.json\",\n      \"sha256\": \"a148f97da51a8ab67487d5a5626e051707f8580cfff01c72a6034aad0e29b8aa\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_upper_campaign_review_20261026.md\",\n      \"sha256\": \"0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"For 3 by 3 integer matrices, let B have rows (1, 1, 0), (0, 1, 1) and (0, 0, 1), let E be the identity, and let C have rows (0, 1, 0), (0, 0, 1) and (1, 0, 0). The matrix with rows (1, -1, 1), (0, 1, -1) and (0, 0, 1) is a two-sided inverse of B. The matrix D with rows (1, -1, 0), (-1, 1, -1) and (-1, 0, 0) equals the negative of C times the transpose of E times the transpose of that inverse, and C times the transpose of E plus D times the transpose of B is the zero matrix. The same sum with the zero matrix in place of D is not the zero matrix.\"\n  ],\n  \"purpose\": \"For 3 by 3 integer matrices, let B have rows (1, 1, 0), (0, 1, 1) and (0, 0, 1), let E be the identity, and let C have rows (0, 1, 0), (0, 0, 1) and (1, 0, 0). The matrix with rows (1, -1, 1), (0, 1, -1) and (0, 0, 1) is a two-sided inverse of B. The matrix D with rows (1, -1, 0), (-1, 1, -1) and (-1, 0, 0) equals the negative of C times the transpose of E times the transpose of that inverse, and C times the transpose of E plus D times the transpose of B is the zero matrix. The same sum with the zero matrix in place of D is not the zero matrix.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"Mat\",\n    \"mmul\",\n    \"madd\",\n    \"mneg\",\n    \"transp\",\n    \"eye\",\n    \"zero\",\n    \"bMat\",\n    \"bInv\",\n    \"eMat\",\n    \"cMat\",\n    \"dMat\",\n    \"eq_of_entries\",\n    \"b_inv_left\",\n    \"b_inv_right\",\n    \"d_formula\",\n    \"cross_zero\",\n    \"zero_cross_ne\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignMub6FiniteCornerReduction.lean",
+          "sha256": "79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401"
+        },
+        "boundaries": [
+          "This record is that one integer block identity. It does not classify complex Hadamard matrices, does not list retained finite corners, and does not equate quartet existence with completion of an external reconstruction. The complex adjoint is not identified with this integer transpose. Exclusion over every retained reconstruction stays open. AuthorityEffect: None.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "contract_urn": "urn:tfqm:review:20261026:CampaignMub6FiniteCornerReduction",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_mub6-finite-corner-reduction_lean_replay.json",
+            "sha256": "a148f97da51a8ab67487d5a5626e051707f8580cfff01c72a6034aad0e29b8aa"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+            "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+          }
+        ],
+        "owned_invariants": [
+          "For 3 by 3 integer matrices, let B have rows (1, 1, 0), (0, 1, 1) and (0, 0, 1), let E be the identity, and let C have rows (0, 1, 0), (0, 0, 1) and (1, 0, 0). The matrix with rows (1, -1, 1), (0, 1, -1) and (0, 0, 1) is a two-sided inverse of B. The matrix D with rows (1, -1, 0), (-1, 1, -1) and (-1, 0, 0) equals the negative of C times the transpose of E times the transpose of that inverse, and C times the transpose of E plus D times the transpose of B is the zero matrix. The same sum with the zero matrix in place of D is not the zero matrix."
+        ],
+        "purpose": "For 3 by 3 integer matrices, let B have rows (1, 1, 0), (0, 1, 1) and (0, 0, 1), let E be the identity, and let C have rows (0, 1, 0), (0, 0, 1) and (1, 0, 0). The matrix with rows (1, -1, 1), (0, 1, -1) and (0, 0, 1) is a two-sided inverse of B. The matrix D with rows (1, -1, 0), (-1, 1, -1) and (-1, 0, 0) equals the negative of C times the transpose of E times the transpose of that inverse, and C times the transpose of E plus D times the transpose of B is the zero matrix. The same sum with the zero matrix in place of D is not the zero matrix.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "Mat",
+          "mmul",
+          "madd",
+          "mneg",
+          "transp",
+          "eye",
+          "zero",
+          "bMat",
+          "bInv",
+          "eMat",
+          "cMat",
+          "dMat",
+          "eq_of_entries",
+          "b_inv_left",
+          "b_inv_right",
+          "d_formula",
+          "cross_zero",
+          "zero_cross_ne"
+        ]
+      },
+      "sha256": "deabf47b46778b7446084e1c158579d3aa7cab59d402ed3400ccbd37aaba7f8e"
+    }
+  ],
+  "current_contract": "deabf47b46778b7446084e1c158579d3aa7cab59d402ed3400ccbd37aaba7f8e",
+  "current_scoring": "926c4f76a7ba28df8e6fe7c173a1e6480ab7bffa965a2bcf763e2c89f90b31bf",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2562,
+      "original_paths": [
+        "lean4/CampaignMub6FiniteCornerReduction.contract.score.yaml#qm-open-pr-review-20261026-79d7009cc565"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignMub6FiniteCornerReduction.lean\",\n    \"sha256\": \"79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401\"\n  },\n  \"assessment_id\": \"qm-open-pr-review-20261026-79d7009cc565\",\n  \"basis\": {\n    \"G1\": \"Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.\",\n    \"G2\": \"Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.\",\n    \"G3\": \"Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.\",\n    \"G4\": \"Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.\",\n    \"G5\": \"Inspected 125 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T15:48:23.043346+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_mub6-finite-corner-reduction_lean_replay.json\",\n      \"sha256\": \"a148f97da51a8ab67487d5a5626e051707f8580cfff01c72a6034aad0e29b8aa\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_upper_campaign_review_20261026.md\",\n      \"sha256\": \"0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.\",\n  \"open_higher_grade_findings\": [\n    \"This record is that one integer block identity. It does not classify complex Hadamard matrices, does not list retained finite corners, and does not equate quartet existence with completion of an external reconstruction. The complex adjoint is not identified with this integer transpose. Exclusion over every retained reconstruction stays open. AuthorityEffect: None.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignMub6FiniteCornerReduction.lean",
+          "sha256": "79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401"
+        },
+        "assessment_id": "qm-open-pr-review-20261026-79d7009cc565",
+        "basis": {
+          "G1": "Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.",
+          "G2": "Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.",
+          "G3": "Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.",
+          "G4": "Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.",
+          "G5": "Inspected 125 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T15:48:23.043346+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_mub6-finite-corner-reduction_lean_replay.json",
+            "sha256": "a148f97da51a8ab67487d5a5626e051707f8580cfff01c72a6034aad0e29b8aa"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+            "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.",
+        "open_higher_grade_findings": [
+          "This record is that one integer block identity. It does not classify complex Hadamard matrices, does not list retained finite corners, and does not equate quartet existence with completion of an external reconstruction. The complex adjoint is not identified with this integer transpose. Exclusion over every retained reconstruction stays open. AuthorityEffect: None.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "926c4f76a7ba28df8e6fe7c173a1e6480ab7bffa965a2bcf763e2c89f90b31bf"
+    }
+  ]
+}

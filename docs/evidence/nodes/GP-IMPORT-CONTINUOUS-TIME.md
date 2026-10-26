@@ -4,15 +4,15 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `IMPORTED_ASSUMPTION`. Evidenc
 
 ## Statement
 
-> Continuous time, topology, a one-parameter unitary group and Stone's theorem. The two-state toggle has no report-level square root; after complex coefficients, interpolants exist at scale 4 and are not unique.
+> On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
-- distinct cited Lean declarations covered by a current replay receipt: 1
+- counted in-repo evidence files: 1
+- cited Lean, Rust or Python symbols found in their in-repo files: 22
+- distinct cited Lean declarations covered by a current replay receipt: 11
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -31,7 +31,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Finite substitutes: exact rational Cayley transform in SO(8,Q); hyperoctahedral signed permutations with irreversible monotone residue.
+Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.
 
 ## Source status
 
@@ -39,7 +39,7 @@ imported / refused on this host
 
 ## Review
 
-- PFP review: [dag/results/GP-IMPORT-CONTINUOUS-TIME/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-CONTINUOUS-TIME/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/results/GP-IMPORT-CONTINUOUS-TIME/reviews/20261019_l1_import_audit/delivery_review_result.json](../../../dag/results/GP-IMPORT-CONTINUOUS-TIME/reviews/20261019_l1_import_audit/delivery_review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Complete Boolean square-root obstruction and both exact complex unitary square roots of toggle; generic projector-square algebra and Boolean enumeration in Lean.
   - does not support: Supply topology, continuous time and the one-parameter group; invoke Stone only under its hypotheses. Square roots alone do not define continuous dynamics.
   - next test: Supply topology, continuous time and the one-parameter group; invoke Stone only under its hypotheses. Square roots alone do not define continuous dynamics.
@@ -48,32 +48,39 @@ imported / refused on this host
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/DerivationDagQMClosure.lean`
+### Lean: `lean4/CampaignGpImportContinuousTime.lean`
 
-- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
-- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
-- cited in: node.lean, record TFQ-1034
+- file: [lean4/CampaignGpImportContinuousTime.lean](../../../lean4/CampaignGpImportContinuousTime.lean)
+- sha256 (`bytes`): `efc118c4a3ef4ec32ac5fdad45c4b4db15e393cc2298e84156076b31eeaaf7b1`
+- cited in: node.lean, receipt dag/research/campaign_gp-import-continuous-time_lean_replay.json (CampaignGpImportContinuousTime), record TFQ-1034
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build DerivationDagQMClosure`
+  - receipt [dag/research/campaign_gp-import-continuous-time_lean_replay.json](../../../dag/research/campaign_gp-import-continuous-time_lean_replay.json) (module `CampaignGpImportContinuousTime`): recorded sha256 `efc118c4a3ef4ec32ac5fdad45c4b4db15e393cc2298e84156076b31eeaaf7b1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignGpImportContinuousTime`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/H016ContinuousDynamicsFork.lean`
-
-- file: [lean4/H016ContinuousDynamicsFork.lean](../../../lean4/H016ContinuousDynamicsFork.lean)
-- sha256 (`bytes`): `906b145d8626c1887b1075e9b900858ca3f0c16df6fa65a2d8a87aa68b06de85`
-- cited in: node.lean, record TFQ-1034
-- replay: `none`
-- check: `cd lean4 && lake build H016ContinuousDynamicsFork`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `toggle` | yes | yes | no | - | `#print axioms toggle` |
+| `CampaignGpImportContinuousTime.gAdd_coords` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.gAdd_coords` |
+| `CampaignGpImportContinuousTime.gMul_coords` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.gMul_coords` |
+| `CampaignGpImportContinuousTime.interpNeg_twice_is_scaled_swap` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGpImportContinuousTime.interpNeg_twice_is_scaled_swap` |
+| `CampaignGpImportContinuousTime.interp_twice_is_scaled_swap` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGpImportContinuousTime.interp_twice_is_scaled_swap` |
+| `CampaignGpImportContinuousTime.interpolants_differ` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.interpolants_differ` |
+| `CampaignGpImportContinuousTime.no_toggle_square_root` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.no_toggle_square_root` |
+| `CampaignGpImportContinuousTime.scale4_swap` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.scale4_swap` |
+| `CampaignGpImportContinuousTime.swap_exchanges` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.swap_exchanges` |
+| `CampaignGpImportContinuousTime.toggle_images` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.toggle_images` |
+| `CampaignGpImportContinuousTime.witness_interp` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.witness_interp` |
+| `CampaignGpImportContinuousTime.witness_neg` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.witness_neg` |
+| `gAdd_coords` | yes | yes | yes | none | `#print axioms gAdd_coords` |
+| `gMul_coords` | yes | yes | yes | none | `#print axioms gMul_coords` |
+| `interpNeg_twice_is_scaled_swap` | yes | yes | yes | Quot.sound, propext | `#print axioms interpNeg_twice_is_scaled_swap` |
+| `interp_twice_is_scaled_swap` | yes | yes | yes | Quot.sound, propext | `#print axioms interp_twice_is_scaled_swap` |
+| `interpolants_differ` | yes | yes | yes | none | `#print axioms interpolants_differ` |
+| `no_toggle_square_root` | yes | yes | yes | none | `#print axioms no_toggle_square_root` |
+| `scale4_swap` | yes | yes | yes | none | `#print axioms scale4_swap` |
+| `swap_exchanges` | yes | yes | yes | none | `#print axioms swap_exchanges` |
+| `toggle_images` | yes | yes | yes | none | `#print axioms toggle_images` |
+| `witness_interp` | yes | yes | yes | none | `#print axioms witness_interp` |
+| `witness_neg` | yes | yes | yes | none | `#print axioms witness_neg` |
 
 - counts toward the grade: yes
 
@@ -87,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1034_gp_import_continuous_time.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1034_gp_import_continuous_time.md](../../../dag/derivations/08_l1_to_l2/tfq_1034_gp_import_continuous_time.md)
-- sha256 (`lf-normalised`): `0f46468a432525379356e6aba79a465137949a1d6d6fbc2cf0c194e6b2076a36`
+- sha256 (`lf-normalised`): `cc4ef1d5a0682ae4aefcde38cc41ddd8f70fdbe5f107e0149c48928dd9155886`
 - generated view: listed, not counted
 - cited in: record TFQ-1034
 - counts toward the grade: no

@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 580" width="100%" height="100%" style="background:#0b0f19; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#1e293b" stroke-width="0.7" opacity="0.6"/>
+    </pattern>
+    <radialGradient id="bgGlow" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#1e1b4b" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0b0f19" stop-opacity="1"/>
+    </radialGradient>
+    <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="glowRose" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#34d399"/>
+    </marker>
+    <marker id="arrowRose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f43f5e"/>
+    </marker>
+  </defs>
+
+  <rect width="940" height="580" fill="url(#bgGlow)"/>
+  <rect width="940" height="580" fill="url(#grid)"/>
+  <rect x="16" y="16" width="908" height="548" rx="12" fill="none" stroke="#334155" stroke-width="1.2"/>
+
+  <!-- Top Banner / Badges -->
+  <g transform="translate(32, 26)">
+    <rect x="0" y="0" width="165" height="24" rx="6" fill="#4338ca" fill-opacity="0.3" stroke="#818cf8" stroke-width="1.2"/>
+    <text x="82" y="16" fill="#a5b4fc" font-size="11" font-weight="700" text-anchor="middle">Ongoing Level 04: Lattice</text>
+
+    <rect x="175" y="0" width="165" height="24" rx="6" fill="#0284c7" fill-opacity="0.3" stroke="#38bdf8" stroke-width="1.2"/>
+    <text x="257" y="16" fill="#38bdf8" font-size="10.5" font-weight="700" text-anchor="middle">Ablation / Commitment</text>
+
+    <rect x="350" y="0" width="165" height="24" rx="6" fill="#065f46" fill-opacity="0.3" stroke="#34d399" stroke-width="1.2"/>
+    <text x="432" y="16" fill="#34d399" font-size="10.5" font-weight="700" text-anchor="middle">State vs Record Split</text>
+
+    <rect x="525" y="0" width="140" height="24" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="595" y="16" fill="#94a3b8" font-size="10" font-weight="500" text-anchor="middle">AuthorityEffect: None</text>
+
+    <text x="0" y="52" fill="#f8fafc" font-size="18" font-weight="700" letter-spacing="0.2">Level 4: State/Step vs. Side-Record Bifurcation</text>
+    <text x="0" y="72" fill="#94a3b8" font-size="12" font-weight="400">Modifying State/Step Relations Yields 125–149 Theorems vs. 27–34 Definitional Trivialities</text>
+  </g>
+
+  <!-- Left Box: Inference and Formal Rules -->
+  <g transform="translate(32, 115)">
+    <rect x="0" y="0" width="410" height="380" rx="8" fill="#111827" fill-opacity="0.9" stroke="#1f2937" stroke-width="1.2"/>
+    <rect x="0" y="0" width="410" height="36" rx="8" fill="#1e293b" fill-opacity="0.8"/>
+    <text x="16" y="23" fill="#f8fafc" font-size="12" font-weight="700">Capacity Bifurcation Law</text>
+
+    <!-- Rule Fraction -->
+    <g transform="translate(20, 55)">
+      <rect x="0" y="0" width="370" height="90" rx="6" fill="#0f172a" stroke="#334155"/>
+      <text x="185" y="30" fill="#93c5fd" font-size="12" font-weight="600" text-anchor="middle" font-family="monospace">&#916;StateStep &#8660; 125&#8211;149 Theorems &#8743; InvariantsProved</text>
+      <line x1="20" y1="44" x2="350" y2="44" stroke="#e2e8f0" stroke-width="1.8"/>
+      <text x="185" y="68" fill="#f43f5e" font-size="12" font-weight="700" text-anchor="middle" font-family="monospace">&#916;PassiveRecord &#8660; 27&#8211;34 Theorems &#8743; rfl_collapse</text>
+    </g>
+
+    <!-- Detailed Notes -->
+    <g transform="translate(20, 165)">
+      <text x="0" y="15" fill="#e2e8f0" font-size="12" font-weight="600">&#8226; Sharp Empirical Law of Derivations:</text>
+      <text x="16" y="34" fill="#94a3b8" font-size="11">Derivations 4, 8, 16 altered the state or transition step,</text>
+      <text x="16" y="50" fill="#94a3b8" font-size="11">yielding non-decreasing mass, exchange symmetry, and reach.</text>
+
+      <text x="0" y="78" fill="#e2e8f0" font-size="12" font-weight="600">&#8226; Passive Side-Record Trap (D10–D15):</text>
+      <text x="16" y="96" fill="#94a3b8" font-size="11">Appending records beside the state produced zero new</text>
+      <text x="16" y="112" fill="#94a3b8" font-size="11">dynamics; theorems collapsed to definitional identity (rfl).</text>
+
+      <text x="0" y="140" fill="#e2e8f0" font-size="12" font-weight="600">&#8226; Peer Review Narrowing:</text>
+      <text x="16" y="158" fill="#94a3b8" font-size="11">Every side-record paper was narrowed under adversarial</text>
+      <text x="16" y="174" fill="#94a3b8" font-size="11">second-model audit for definitional over-inflation.</text>
+    </g>
+  </g>
+
+  <!-- Right Box: Operational Diagram -->
+  <g transform="translate(460, 115)">
+    <rect x="0" y="0" width="448" height="380" rx="8" fill="#111827" fill-opacity="0.9" stroke="#1f2937" stroke-width="1.2"/>
+    <rect x="0" y="0" width="448" height="36" rx="8" fill="#1e293b" fill-opacity="0.8"/>
+    <text x="16" y="23" fill="#f8fafc" font-size="12" font-weight="700">The Two Commitment Addition Paths</text>
+
+    <g transform="translate(30, 45)">
+      <!-- Path A: State / Step Modified -->
+      <rect x="15" y="10" width="370" height="115" rx="6" fill="#064e3b" fill-opacity="0.3" stroke="#34d399" stroke-width="1.2"/>
+      <text x="35" y="32" fill="#34d399" font-size="11.5" font-weight="700">Track A: State or Step Relation Modified (D4, D8, D16)</text>
+      <text x="35" y="52" fill="#a7f3d0" font-size="9.5">&#8226; Derivation 4: Multiplicity &#8594; Strictly non-decreasing mass (Reach4.mult_le)</text>
+      <text x="35" y="70" fill="#a7f3d0" font-size="9.5">&#8226; Derivation 8: Second relation &#8594; Invariant exchange involution (swap9_swap)</text>
+      <text x="35" y="88" fill="#a7f3d0" font-size="9.5">&#8226; Derivation 16: Leftovers feedback &#8594; Constructive unboundedness (Reach16.unbounded)</text>
+      <text x="35" y="108" fill="#38bdf8" font-size="10" font-weight="700">Yield: 125&#8211;149 Lean 4 Theorems &#183; Genuine New Invariants</text>
+
+      <!-- Path B: Passive Side Record -->
+      <rect x="15" y="140" width="370" height="115" rx="6" fill="#4c0519" fill-opacity="0.3" stroke="#f43f5e" stroke-width="1.2"/>
+      <text x="35" y="162" fill="#f43f5e" font-size="11.5" font-weight="700">Track B: Passive Side Record Appended (D10–D15)</text>
+      <text x="35" y="182" fill="#fca5a5" font-size="9.5">&#8226; State definition &amp; step transitions completely unaltered</text>
+      <text x="35" y="200" fill="#fca5a5" font-size="9.5">&#8226; Proofs collapse to reflexivity: proj_ofR_false = rfl</text>
+      <text x="35" y="218" fill="#fca5a5" font-size="9.5">&#8226; Step relation identical to Derivation 9 baseline</text>
+      <text x="35" y="238" fill="#fca5a5" font-size="10" font-weight="700">Yield: 27&#8211;34 Lean Theorems &#183; All Narrowed Under Review</text>
+    </g>
+  </g>
+
+  <!-- Footer Status Bar -->
+  <g transform="translate(32, 510)">
+    <rect x="0" y="0" width="876" height="38" rx="6" fill="#0f172a" stroke="#1e293b"/>
+    <text x="16" y="23" fill="#94a3b8" font-size="11">Formal Status: <tspan fill="#34d399" font-weight="700">BIFURCATION_DISCLOSED</tspan> | Finding: <tspan fill="#fbbf24">State Changes &#8800; Side Records</tspan> | Audited: <tspan fill="#38bdf8">W1-G11 Synthesis</tspan> | MSS Anchor: <tspan fill="#fbbf24">MSS-004 Analog</tspan></text>
+  </g>
+
+</svg>

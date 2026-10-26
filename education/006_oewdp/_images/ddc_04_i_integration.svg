@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 580" width="100%" height="100%" style="background:#0b0f19; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <pattern id="grid4" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#1e293b" stroke-width="0.7" opacity="0.6"/>
+    </pattern>
+    <radialGradient id="bgGlow4" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#4c1d95" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0b0f19" stop-opacity="1"/>
+    </radialGradient>
+    <filter id="glowViolet" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <marker id="arrowViolet" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#8b5cf6"/>
+    </marker>
+    <marker id="arrowAmber4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+  </defs>
+
+  <rect width="940" height="580" fill="url(#bgGlow4)"/>
+  <rect width="940" height="580" fill="url(#grid4)"/>
+  <rect x="16" y="16" width="908" height="548" rx="12" fill="none" stroke="#334155" stroke-width="1.2"/>
+
+  <!-- Top Navigation Badges -->
+  <g transform="translate(32, 28)">
+    <rect x="0" y="0" width="130" height="26" rx="6" fill="#4c1d95" fill-opacity="0.5" stroke="#8b5cf6" stroke-width="1.2"/>
+    <text x="65" y="17" fill="#c4b5fd" font-size="11" font-weight="700" text-anchor="middle">Level 04: Letter I</text>
+
+    <rect x="140" y="0" width="150" height="26" rx="6" fill="#0284c7" fill-opacity="0.4" stroke="#38bdf8" stroke-width="1.2"/>
+    <text x="215" y="17" fill="#7dd3fc" font-size="11" font-weight="700" text-anchor="middle">Operation: Integration</text>
+
+    <rect x="300" y="0" width="170" height="26" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="385" y="17" fill="#94a3b8" font-size="10.5" font-weight="600" text-anchor="middle">Structure: Merkle Tape</text>
+
+    <rect x="480" y="0" width="160" height="26" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="560" y="17" fill="#94a3b8" font-size="10.5" font-weight="600" text-anchor="middle">Standard: RFC 8785 JSON</text>
+
+    <rect x="650" y="0" width="140" height="26" rx="6" fill="#7f1d1d" fill-opacity="0.3" stroke="#f87171" stroke-width="1"/>
+    <text x="720" y="17" fill="#fca5a5" font-size="10" font-weight="700" text-anchor="middle">AuthorityEffect: None</text>
+  </g>
+
+  <!-- Title & Formula Header -->
+  <text x="32" y="85" fill="#f8fafc" font-size="20" font-weight="800" letter-spacing="-0.02em">DDC Level 04 — Integration (I): Append-Only Merkle Tape Commitment</text>
+  <text x="32" y="106" fill="#94a3b8" font-size="12">Cryptographically binds operational transitions into an immutable hash chain; enables deterministic replay and verification.</text>
+
+  <!-- Left Card: Merkle Hash Chain Architecture -->
+  <g transform="translate(32, 126)">
+    <rect width="420" height="260" rx="10" fill="#0f172a" fill-opacity="0.8" stroke="#1e293b" stroke-width="1.2"/>
+    <rect x="12" y="12" width="210" height="20" rx="4" fill="#4c1d95" fill-opacity="0.5"/>
+    <text x="20" y="26" fill="#a78bfa" font-size="11" font-weight="700">APPEND-ONLY MERKLE CHAIN</text>
+
+    <!-- Block 0: Genesis TapeEntry -->
+    <g transform="translate(25, 45)">
+      <rect width="105" height="135" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.2"/>
+      <rect x="6" y="6" width="93" height="18" rx="3" fill="#312e81"/>
+      <text x="52" y="19" fill="#c7d2fe" font-size="9" font-weight="700" text-anchor="middle">TapeEntry[0]</text>
+      <text x="10" y="42" fill="#94a3b8" font-size="8">Op: <tspan fill="#6ee7b7" font-weight="700">GENESIS</tspan></text>
+      <text x="10" y="58" fill="#94a3b8" font-size="8">PrevHash:</text>
+      <text x="10" y="70" fill="#64748b" font-family="monospace" font-size="7.5">00000000...</text>
+      <text x="10" y="88" fill="#94a3b8" font-size="8">StepDigest:</text>
+      <text x="10" y="100" fill="#a78bfa" font-family="monospace" font-size="7.5">3a9f...e102</text>
+      <rect x="6" y="112" width="93" height="16" rx="2" fill="#030712"/>
+      <text x="52" y="124" fill="#34d399" font-size="8" font-weight="700" text-anchor="middle">h₀ = SHA256</text>
+    </g>
+
+    <!-- Arrow 0 -> 1 -->
+    <path d="M 132 110 L 158 110" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrowViolet)"/>
+
+    <!-- Block 1: Op C/R TapeEntry -->
+    <g transform="translate(160, 45)">
+      <rect width="105" height="135" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.2"/>
+      <rect x="6" y="6" width="93" height="18" rx="3" fill="#312e81"/>
+      <text x="52" y="19" fill="#c7d2fe" font-size="9" font-weight="700" text-anchor="middle">TapeEntry[1]</text>
+      <text x="10" y="42" fill="#94a3b8" font-size="8">Op: <tspan fill="#60a5fa" font-weight="700">C (Context)</tspan></text>
+      <text x="10" y="58" fill="#94a3b8" font-size="8">PrevHash:</text>
+      <text x="10" y="70" fill="#34d399" font-family="monospace" font-size="7.5">h₀</text>
+      <text x="10" y="88" fill="#94a3b8" font-size="8">ReceiptHash:</text>
+      <text x="10" y="100" fill="#a78bfa" font-family="monospace" font-size="7.5">8c4b...d391</text>
+      <rect x="6" y="112" width="93" height="16" rx="2" fill="#030712"/>
+      <text x="52" y="124" fill="#34d399" font-size="8" font-weight="700" text-anchor="middle">h₁ = H(h₀ || R₁)</text>
+    </g>
+
+    <!-- Arrow 1 -> 2 -->
+    <path d="M 267 110 L 293 110" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrowViolet)"/>
+
+    <!-- Block 2: Op E TapeEntry -->
+    <g transform="translate(295, 45)">
+      <rect width="105" height="135" rx="6" fill="#1e1b4b" stroke="#8b5cf6" stroke-width="1.5" filter="url(#glowViolet)"/>
+      <rect x="6" y="6" width="93" height="18" rx="3" fill="#4c1d95"/>
+      <text x="52" y="19" fill="#ede9fe" font-size="9" font-weight="700" text-anchor="middle">TapeEntry[k]</text>
+      <text x="10" y="42" fill="#94a3b8" font-size="8">Op: <tspan fill="#34d399" font-weight="700">E (Repair)</tspan></text>
+      <text x="10" y="58" fill="#94a3b8" font-size="8">PrevHash:</text>
+      <text x="10" y="70" fill="#34d399" font-family="monospace" font-size="7.5">h_{k-1}</text>
+      <text x="10" y="88" fill="#94a3b8" font-size="8">ReceiptHash:</text>
+      <text x="10" y="100" fill="#a78bfa" font-family="monospace" font-size="7.5">f210...99a4</text>
+      <rect x="6" y="112" width="93" height="16" rx="2" fill="#030712"/>
+      <text x="52" y="124" fill="#a78bfa" font-size="8" font-weight="700" text-anchor="middle">h_k = H(h_{k-1} || R_k)</text>
+    </g>
+
+    <!-- Formula Box bottom -->
+    <rect x="20" y="195" width="380" height="52" rx="5" fill="#030712" stroke="#334155" stroke-width="1"/>
+    <text x="30" y="212" fill="#c4b5fd" font-size="10" font-weight="700">Merkle Chaining Formula (Law 1):</text>
+    <text x="30" y="228" fill="#e2e8f0" font-family="monospace" font-size="9">h_k = SHA256(h_{k-1} || RFC8785_CanonicalJSON(Receipt_k))</text>
+    <text x="30" y="240" fill="#94a3b8" font-size="8.5">Byte-for-byte deterministic across Python, Rust, and Lean 4 evaluators.</text>
+  </g>
+
+  <!-- Right Card: Law 1 & Law 5 Verification Fence -->
+  <g transform="translate(472, 126)">
+    <rect width="436" height="260" rx="10" fill="#0f172a" fill-opacity="0.8" stroke="#1e293b" stroke-width="1.2"/>
+    <rect x="12" y="12" width="220" height="20" rx="4" fill="#312e81" fill-opacity="0.5"/>
+    <text x="20" y="26" fill="#a5b4fc" font-size="11" font-weight="700">LAWS 1 &amp; 5 INTEGRATION FENCES</text>
+
+    <!-- Law 1 Box -->
+    <g transform="translate(20, 44)">
+      <rect width="396" height="74" rx="6" fill="#090d16" stroke="#4338ca" stroke-width="1"/>
+      <text x="14" y="20" fill="#c7d2fe" font-size="10.5" font-weight="700">Law 1 (Receipt Determinism):</text>
+      <text x="14" y="38" fill="#cbd5e1" font-size="9.5">Every operational letter emits a typed, machine-verifiable step receipt:</text>
+      <text x="14" y="54" fill="#34d399" font-family="monospace" font-size="9.5">Receipt_k = (Op, PreState, PostState, Carrier_K, DualWitness)</text>
+      <text x="14" y="68" fill="#94a3b8" font-size="8.5">No untyped transitions or invisible side effects are admitted into the trace.</text>
+    </g>
+
+    <!-- Law 5 Box -->
+    <g transform="translate(20, 126)">
+      <rect width="396" height="120" rx="6" fill="#1e1b4b" fill-opacity="0.25" stroke="#8b5cf6" stroke-width="1.2"/>
+      <rect x="10" y="8" width="190" height="18" rx="3" fill="#4c1d95"/>
+      <text x="16" y="21" fill="#ede9fe" font-size="9.5" font-weight="700">LAW 5: RECEIPT REQUIREMENT</text>
+
+      <text x="14" y="44" fill="#cbd5e1" font-size="9.5">Integration <tspan font-weight="700" fill="#a78bfa">I</tspan> requires an explicit, cryptographically valid receipt.</text>
+      <text x="14" y="60" fill="#f87171" font-size="9.5" font-weight="700">Without a valid receipt, operation routes unconditionally to M:</text>
+
+      <rect x="14" y="68" width="368" height="24" rx="4" fill="#030712" stroke="#475569" stroke-width="0.8"/>
+      <text x="198" y="84" fill="#fbbf24" font-family="monospace" font-size="9" font-weight="700" text-anchor="middle">StepReceipt == None  ⟹  Route(M, REFUSED_MISSING_RECEIPT)</text>
+
+      <text x="14" y="104" fill="#94a3b8" font-size="8.5">Guarantees append-only tape integrity; replay from tape is bit-exact.</text>
+    </g>
+  </g>
+
+  <!-- Bottom Panel: TapeEntry Canonical Representation -->
+  <g transform="translate(32, 404)">
+    <rect width="876" height="144" rx="8" fill="#090d16" stroke="#1e293b" stroke-width="1.2"/>
+    <rect x="12" y="10" width="180" height="18" rx="3" fill="#1e293b"/>
+    <text x="18" y="23" fill="#94a3b8" font-size="10" font-weight="700">TAPE ENTRY CANONICAL STRUCTURE</text>
+
+    <!-- Tape Entry Code left -->
+    <rect x="16" y="36" width="460" height="96" rx="5" fill="#030712" stroke="#334155" stroke-width="0.8"/>
+    <text x="26" y="52" fill="#a5b4fc" font-family="monospace" font-size="9.5">@dataclass(frozen=True)</text>
+    <text x="26" y="68" fill="#93c5fd" font-family="monospace" font-size="9.5">class TapeEntry:</text>
+    <text x="44" y="84" fill="#cbd5e1" font-family="monospace" font-size="9">index: int; operation: str; receipt: Dict[str, Any]</text>
+    <text x="44" y="100" fill="#cbd5e1" font-family="monospace" font-size="9">prev_tape_hash: str; current_tape_hash: str</text>
+    <text x="44" y="116" fill="#f87171" font-family="monospace" font-size="9">authority_effect: str = "None"</text>
+
+    <!-- Replay Theorems right -->
+    <g transform="translate(490, 36)">
+      <rect width="370" height="96" rx="5" fill="#4c1d95" fill-opacity="0.2" stroke="#8b5cf6" stroke-width="1"/>
+      <text x="14" y="20" fill="#c4b5fd" font-size="10.5" font-weight="700">Replay Theorems (Lean 4 &amp; Python):</text>
+      <text x="14" y="38" fill="#e2e8f0" font-family="monospace" font-size="9">theorem Ddc.tape_replay_deterministic :</text>
+      <text x="26" y="54" fill="#a78bfa" font-family="monospace" font-size="9">∀ (T : Tape) (s₀ : State), replay T s₀ = replay T s₀</text>
+      <text x="14" y="74" fill="#94a3b8" font-size="9">Replay verifier: <tspan fill="#f8fafc" font-family="monospace">code/tests/test_tape_automaton.py</tspan></text>
+      <text x="14" y="88" fill="#94a3b8" font-size="9">Tape check: <tspan fill="#f8fafc" font-family="monospace">test_merkle_head_and_truncation_rejection()</tspan></text>
+    </g>
+  </g>
+</svg>

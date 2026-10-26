@@ -4,15 +4,15 @@ Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `IMPORTE
 
 ## Statement
 
-> Born-quadratic uniqueness (Gleason) is imported; L^p pairings for p != 2 are valid in L1 measure theory. The dedicated 204 slot is empty.
+> For every integer pair A and B, A + B equals (A + B) * 1. The sum 3 + 4 equals 7, and 7 differs from 0. The sum of squares 3 * 3 + 4 * 4 equals 25, and 5 * 5 equals 25. The sum of fourth products 3 * 3 * 3 * 3 + 4 * 4 * 4 * 4 equals 337. The product (3 * 3) * (3 * 3 * 3 * 3 + 4 * 4 * 4 * 4) differs from (3 * 3 * 3 * 3) * (5 * 5). The product 3 * (3 * 3 + 4 * 4) differs from (3 * 3) * (3 + 4). For every integer quadruple a, b, r and s, (r * a - s * b) * (r * a - s * b) + (s * a + r * b) * (s * a + r * b) equals (r * r + s * s) * (a * a + b * b). At a = 3, b = 4, r = 3 and s = 4, both sides equal 625.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
-- cited Lean, Rust or Python symbols found in their in-repo files: 2
-- distinct cited Lean declarations covered by a current replay receipt: 2
+- counted in-repo evidence files: 3
+- cited Lean, Rust or Python symbols found in their in-repo files: 15
+- distinct cited Lean declarations covered by a current replay receipt: 15
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-No derivation of quadratic uniqueness from L1 additivity.
+Gleason uniqueness, frame-function, effect, continuity and dimension hypotheses, and L^p pairings in measure theory stay imported. The integer sum identity, the rotation identity, and the two splits of the pair (3, 4) are one finite case. Bare normalization does not select a quadratic pairing.
 
 ## Source status
 
@@ -36,7 +36,7 @@ QM_204 ledger: stub "Band slot reserved" (QM_204-C0); content carried by QM-210-
 
 ## Review
 
-- PFP review: [dag/results/DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `consistent`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM204-BORN-UNIQUENESS-IMPORT-BOUNDARY/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `IMPORTED_ASSUMPTION`; qualifies for E4: yes.
   - narrowest claim: Exact normalized alternative profiles, quadratic rotation identity and a genuine Born/quartic divergence are kernel/native checked on the declared rational carrier.
   - does not support: Supply frame-function/effect/continuity/dimension hypotheses and a uniqueness theorem. Bare normalization does not derive Born pairing.
   - next test: Supply frame-function/effect/continuity/dimension hypotheses and a uniqueness theorem. Bare normalization does not derive Born pairing.
@@ -44,6 +44,33 @@ QM_204 ledger: stub "Band slot reserved" (QM_204-C0); content carried by QM-210-
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignDsQm204BornUniqueness.lean`
+
+- file: [lean4/CampaignDsQm204BornUniqueness.lean](../../../lean4/CampaignDsQm204BornUniqueness.lean)
+- sha256 (`bytes`): `bdd2ceee31b1ef7921444cb238d9ef940b188d5fafaad510e27cc70fa6ecfe53`
+- cited in: node.lean, receipt dag/research/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json (CampaignDsQm204BornUniqueness), record TFQ-1043
+- replay: `verified`
+  - receipt [dag/research/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json](../../../dag/research/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json) (module `CampaignDsQm204BornUniqueness`): recorded sha256 `bdd2ceee31b1ef7921444cb238d9ef940b188d5fafaad510e27cc70fa6ecfe53` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignDsQm204BornUniqueness`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignDsQm204BornUniqueness.addSq` | yes | yes | yes | propext | `#print axioms CampaignDsQm204BornUniqueness.addSq` |
+| `CampaignDsQm204BornUniqueness.cross` | yes | yes | yes | propext | `#print axioms CampaignDsQm204BornUniqueness.cross` |
+| `CampaignDsQm204BornUniqueness.denom34` | yes | yes | yes | none | `#print axioms CampaignDsQm204BornUniqueness.denom34` |
+| `CampaignDsQm204BornUniqueness.expandRight` | yes | yes | yes | propext | `#print axioms CampaignDsQm204BornUniqueness.expandRight` |
+| `CampaignDsQm204BornUniqueness.fourths34` | yes | yes | yes | none | `#print axioms CampaignDsQm204BornUniqueness.fourths34` |
+| `CampaignDsQm204BornUniqueness.linearSeparates` | yes | yes | yes | none | `#print axioms CampaignDsQm204BornUniqueness.linearSeparates` |
+| `CampaignDsQm204BornUniqueness.pairNorm` | yes | yes | yes | propext | `#print axioms CampaignDsQm204BornUniqueness.pairNorm` |
+| `CampaignDsQm204BornUniqueness.quarticSeparates` | yes | yes | yes | none | `#print axioms CampaignDsQm204BornUniqueness.quarticSeparates` |
+| `CampaignDsQm204BornUniqueness.rot` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsQm204BornUniqueness.rot` |
+| `CampaignDsQm204BornUniqueness.rotWitness` | yes | yes | yes | none | `#print axioms CampaignDsQm204BornUniqueness.rotWitness` |
+| `CampaignDsQm204BornUniqueness.sqPair` | yes | yes | yes | propext | `#print axioms CampaignDsQm204BornUniqueness.sqPair` |
+| `CampaignDsQm204BornUniqueness.squares34` | yes | yes | yes | none | `#print axioms CampaignDsQm204BornUniqueness.squares34` |
+| `CampaignDsQm204BornUniqueness.subSq` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsQm204BornUniqueness.subSq` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
@@ -85,7 +112,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1043_ds_qm204_born_uniqueness_import_boundary.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1043_ds_qm204_born_uniqueness_import_boundary.md](../../../dag/derivations/12_finite_qm_structure/tfq_1043_ds_qm204_born_uniqueness_import_boundary.md)
-- sha256 (`lf-normalised`): `b635491a2c7c79e97d8e06e501d4004ba89a67d86c64a34155e54a43513da471`
+- sha256 (`lf-normalised`): `a5fc7e2842c06a35317aa61b8431002b6446d1f7119d7293e1d8def64dd38c83`
 - generated view: listed, not counted
 - cited in: record TFQ-1043
 - counts toward the grade: no
