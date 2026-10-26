@@ -42,8 +42,8 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust parser for pre_genesis.ebnf`
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_education/documentation/000_oepregen/code/check_pre_genesis.py::validate_cases`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/000_oepregen/code/check_pre_genesis.py)
-- [`omega_engine_education/documentation/000_oepregen/code/tests/test_pre_genesis_grammar.py::test_four_state_separation`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/000_oepregen/code/tests/test_pre_genesis_grammar.py)
+- `omega_engine_education/documentation/000_oepregen/code/check_pre_genesis.py::validate_cases` (private upstream source, not in this repository)
+- `omega_engine_education/documentation/000_oepregen/code/tests/test_pre_genesis_grammar.py::test_four_state_separation` (private upstream source, not in this repository)
 
 ---
 

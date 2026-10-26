@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0529_mssn_ascent_triad.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0529_mssn_ascent_triad.md](../../../dag/derivations/05_mssn_sn/tfq_0529_mssn_ascent_triad.md)
-- sha256 (`lf-normalised`): `1d21cbc390bd1bde5e477802ba6b779fcdb0320553c00e2be707ee58585492c1`
+- sha256 (`lf-normalised`): `23dbf15beea0f95e0641766256f86f91af441c28ec6b8dd809d1ee452c1527d4`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0529
 - counts toward the grade: no
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::CandidateLift`
+- `external:upstream/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::CandidateLift`
 
 ## Absences recorded by the TFQ records
 

@@ -709,10 +709,10 @@ derivation and reproducible, source-bound certificate package.
 Repository sources were inspected at commit
 39aacbe33bc7e6fabb94323b14e1ddeebe15e86e.
 
-- [Projection Obstruction](https://github.com/dbccpage/the_symbol_game/blob/39aacbe33bc7e6fabb94323b14e1ddeebe15e86e/omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/000_projection_obstruction/projection_obstruction.md),
+- Projection Obstruction,
   Sections 7.2–7.3, 7.4.5, 7.4.7-B, 7.4.8, 7.4.12.
   Git blob: 886d5b23a7a5635847b21077b78d685284a96991.
-- [LGGR V](https://github.com/dbccpage/the_symbol_game/blob/39aacbe33bc7e6fabb94323b14e1ddeebe15e86e/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_local_green_global_red_foundational_series/lggr_v_local_green_global_red/lggr_v_local_green_global_red.md),
+- LGGR V,
   Sections 1, 3, 4, and the formalization boundary in Section 6.
   Git blob: e7cf055125ceea5eb1e3cdc2fe754c7e99406f4b.
 - The user-supplied WDP manuscript, version 0.5.0, dated 3 October 2026:
@@ -721,7 +721,7 @@ Repository sources were inspected at commit
   author's attachment provenance; those manuscript bytes were not supplied
   with this package for independent repository review. The three Git source
   blobs above and below were independently confirmed at the pinned commit.
-- [CODA](https://github.com/dbccpage/the_symbol_game/blob/39aacbe33bc7e6fabb94323b14e1ddeebe15e86e/omega_engine_atlas/coda_atlas/F005_coda/coda/coda.md),
+- CODA,
   Sections 4.1–4.2 and 7.
   Git blob: b2b2795c4bab93f5c927c9d034f7fdda5e774aef.
 

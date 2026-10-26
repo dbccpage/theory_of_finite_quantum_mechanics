@@ -257,7 +257,7 @@ cargo test -j 1 --offline --locked -p omega_wdp --test native_history_guard
 ```
 
 Use the configured shared Cargo target in a worktree. The
-[qualification receipt](https://github.com/dbccpage/the_symbol_game/blob/cd6205a801c4fa2e640e805ac556e704b6b51054/_intelligence/primitive_qm_eight_hour/native_history_guard_2026-10-11.json)
+qualification receipt
 records exact commands, versions, exits, dependency warnings and source hashes.
 No F004 release artifact or historical source archive is changed. The remaining
 primitive-to-QM obligations include native admission, wider context reflection,

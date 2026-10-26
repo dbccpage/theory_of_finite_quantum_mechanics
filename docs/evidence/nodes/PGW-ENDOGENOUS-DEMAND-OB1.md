@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md`
 
 - file: [dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md](../../../dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md)
-- sha256 (`lf-normalised`): `b6182f045fd50af9f5f90bb64cf9a81934865692246839f0e53de8cc395dcb85`
+- sha256 (`lf-normalised`): `91f9dbf28741508605024c9bff5bcac80e0ef6bee687455e2e6c98316bd3ae07`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0504
 - counts toward the grade: no
@@ -123,7 +123,7 @@ Named by the node; not in this repository and not checked here.
 
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/docs/ALPHA_HANDOFF.md:78-88`
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/harness.py::leftover_as_demand`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Outside`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Outside`
 
 ## Absences recorded by the TFQ records
 

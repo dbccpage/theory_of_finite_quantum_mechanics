@@ -61,7 +61,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0551_wdp_duration_exactness_period_witness.md`
 
 - file: [dag/derivations/06_wdp/tfq_0551_wdp_duration_exactness_period_witness.md](../../../dag/derivations/06_wdp/tfq_0551_wdp_duration_exactness_period_witness.md)
-- sha256 (`lf-normalised`): `90cd5f7b926e14230d4d5a695b8e83a290a7f74066789ac5a2118edb4f6b4816`
+- sha256 (`lf-normalised`): `9568cf0c2a80207f071e435ec132108ef18e7da427b176e9669ae61e1262f480`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0551
 - counts toward the grade: no
@@ -84,8 +84,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py::solve_potential`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/duration.py::classify_duration`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/cochains.py::solve_potential`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/duration.py::classify_duration`
 
 ## Absences recorded by the TFQ records
 

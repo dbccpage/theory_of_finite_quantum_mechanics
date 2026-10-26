@@ -83,7 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0553_wdp_observer_quotient_passivity.md`
 
 - file: [dag/derivations/06_wdp/tfq_0553_wdp_observer_quotient_passivity.md](../../../dag/derivations/06_wdp/tfq_0553_wdp_observer_quotient_passivity.md)
-- sha256 (`lf-normalised`): `caaec3da7b52141c8cdf96aed7336b1c3b5fbfbf45c90c69daca36d5edc56037`
+- sha256 (`lf-normalised`): `34d4bd6731ede43a7644e13e007ffffa468111d86587daa1e1a8c31321e686ca`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0553
 - counts toward the grade: no
@@ -106,10 +106,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine/crates_rs/omega_category_theory/src/finite_partial_structure.rs::descend`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_quotient_observer.py::test_passivity_can_be_strict_and_core_identifications_survive`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/quotient_observer.py::check_passivity`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/quotient_observer.py::make_linear_quotient_observer`
+- `external:upstream/omega_engine/crates_rs/omega_category_theory/src/finite_partial_structure.rs::descend`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_quotient_observer.py::test_passivity_can_be_strict_and_core_identifications_survive`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/quotient_observer.py::check_passivity`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/quotient_observer.py::make_linear_quotient_observer`
 
 ## Routes
 

@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0548_wdp_filled_triangle.md`
 
 - file: [dag/derivations/06_wdp/tfq_0548_wdp_filled_triangle.md](../../../dag/derivations/06_wdp/tfq_0548_wdp_filled_triangle.md)
-- sha256 (`lf-normalised`): `205376fe9f0cee7fc346a5cbc09cad6e5a1567f593907414784400735975c9e3`
+- sha256 (`lf-normalised`): `3c358f3d91f911caf0abd90a52ca68a38c5a276c126526c664cf118c7593fc6c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0548
 - counts toward the grade: no
@@ -83,8 +83,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/obstruction.rs::DualWitnessCertificate`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_obstruction.py::test_worked_filled_triangle_signature_and_certificate`
+- `external:upstream/omega_engine/crates_rs/omega_wdp/src/obstruction.rs::DualWitnessCertificate`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_obstruction.py::test_worked_filled_triangle_signature_and_certificate`
 
 ## Routes
 

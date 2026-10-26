@@ -98,7 +98,7 @@ def query_super_bunny():
     headers = {
         "Authorization": f"Bearer {API_KEY}",
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://github.com/dbccpage/the_symbol_game",
+        "HTTP-Referer": "private-upstream",
         "X-Title": "MUB6 Phase 1 R7 Evaluation",
     }
     payload = {

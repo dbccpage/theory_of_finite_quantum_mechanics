@@ -11,8 +11,10 @@ source text, not adopted as claims about this checkout.
 ## Provenance and inventory
 
 The six folders were copied from
-[the_symbol_game at 2ce57b4f06ff670e4b2bf673b6790effbd9575c8](https://github.com/dbccpage/the_symbol_game/tree/2ce57b4f06ff670e4b2bf673b6790effbd9575c8/omega_engine_education/documentation).
-All 1,033 imported file paths, Git blob identities and modes match that source.
+a private upstream repository at commit 2ce57b4f06ff670e4b2bf673b6790effbd9575c8.
+All 1,033 imported file paths and modes match that source. The Git blob identities match too,
+except for one file whose links into the private upstream were replaced by plain citations on
+2026-10-26 (listed under `post_import_edits`).
 [IMPORT_PROVENANCE.json](IMPORT_PROVENANCE.json) records the exact source,
 directory tree identities, counts and deterministic inventory digest.
 
@@ -39,7 +41,7 @@ declare Lean 4.35.0, which is not a claim that those packages were rebuilt here.
 
 Upstream reproduction commands still use `omega_engine_education/documentation`.
 Several checkers retain the old directory-depth assumptions and depend on the
-[shared PFP grammar owner](https://github.com/dbccpage/the_symbol_game/tree/2ce57b4f06ff670e4b2bf673b6790effbd9575c8/omega_engine_education/documentation/004_oepfp/grammar),
+shared PFP grammar owner,
 which was not imported. For example,
 [check_genesis.py](001_oegen/code/check_genesis.py) still searches the old grammar
 locations. The
@@ -49,7 +51,7 @@ this reference import.
 
 For historical replay, use a separate, complete upstream checkout at the exact
 source commit above, follow its
-[upstream documentation](https://github.com/dbccpage/the_symbol_game/tree/2ce57b4f06ff670e4b2bf673b6790effbd9575c8/omega_engine_education/documentation),
+upstream documentation,
 and supply each documented external source/environment dependency there.
 Changing only the working directory in QM does not restore the old context.
 No dependency installation, successful replay or upstream deletion is asserted.

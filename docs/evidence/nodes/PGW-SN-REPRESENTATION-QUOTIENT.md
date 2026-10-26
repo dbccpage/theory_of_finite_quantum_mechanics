@@ -69,7 +69,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0521_sn_representation_quotient.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0521_sn_representation_quotient.md](../../../dag/derivations/05_mssn_sn/tfq_0521_sn_representation_quotient.md)
-- sha256 (`lf-normalised`): `e17c6b94d04c34ba09ebc5dab51c1f3fc3920eee0bbe13df8e95809184a88c0b`
+- sha256 (`lf-normalised`): `175a9094a1d0add0f69661d374334d90a3bda8c0cd6fbfd6244b2163da7ce373`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0521
 - counts toward the grade: no
@@ -92,8 +92,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine/crates_rs/omega_linear_algebra/src/exact_field/complex_tensor.rs::balance_map_with_limits`
-- `external:the_symbol_game/omega_engine/crates_rs/omega_linear_algebra/src/exact_field/complex_tensor.rs::balance_projector_with_limits`
+- `external:upstream/omega_engine/crates_rs/omega_linear_algebra/src/exact_field/complex_tensor.rs::balance_map_with_limits`
+- `external:upstream/omega_engine/crates_rs/omega_linear_algebra/src/exact_field/complex_tensor.rs::balance_projector_with_limits`
 
 ## Absences recorded by the TFQ records
 
