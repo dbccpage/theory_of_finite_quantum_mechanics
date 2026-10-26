@@ -103,21 +103,21 @@ status are not claimed as proved and have no proof section.
 
 ## L1_EMERGENCE
 
-0 of 1 with a prose proof.
+1 of 1 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `L1-FRAMEWORK-KKT-CERT` | PROVED_LEAN | *none yet* |
+| `L1-FRAMEWORK-KKT-CERT` | PROVED_LEAN | [genesis_proofs: 6.2 Weighted $\ell^1$ duality](../papers/genesis/genesis_proofs.md#62-weighted-ell1-duality) |
 
 ## L1_TO_L2
 
-0 of 3 with a prose proof.
+3 of 3 with a prose proof.
 
 | Node | Status | Prose proof |
 |---|---|---|
-| `L1-QM020-THM1-DIRECT-NORMALIZATION` | PROVED_LEAN | *none yet* |
-| `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT` | PROVED_LEAN | *none yet* |
-| `L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE` | PROVED_LEAN | *none yet* |
+| `L1-QM020-THM1-DIRECT-NORMALIZATION` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.5 Normalization is redundant after the ray quotient](../papers/core/finite_quantum_mechanics_proofs.md#15-normalization-is-redundant-after-the-ray-quotient) |
+| `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.6 The $\ell^1$ additivity defect](../papers/core/finite_quantum_mechanics_proofs.md#16-the-ell1-additivity-defect) |
+| `L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.3 Interference does not descend to the phase-blind quotient](../papers/core/finite_quantum_mechanics_proofs.md#13-interference-does-not-descend-to-the-phase-blind-quotient) |
 
 ## FINITE_QM_CORE
 
@@ -141,7 +141,7 @@ status are not claimed as proved and have no proof section.
 | `FQ-SORKIN-READOUT-CLASS-QM208` | COMPUTATIONALLY_CHECKED | [finite_quantum_mechanics_proofs: 2.1 The Sorkin term of a polynomial readout](../papers/core/finite_quantum_mechanics_proofs.md#21-the-sorkin-term-of-a-polynomial-readout) |
 | `FQ-TSIRELSON-SOS-Q-SQRT2` | COMPUTATIONALLY_CHECKED | [finite_quantum_mechanics_proofs: 3.3 Tsirelson's bound and its attainment over $\mathbb Q(\sqrt2)$](../papers/core/finite_quantum_mechanics_proofs.md#33-tsirelsons-bound-and-its-attainment-over-mathbb-qsqrt2) |
 | `GP-DROP-ONE-CENSUS` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 7. Three supplied structures that the Gaussian carrier lacks](../papers/core/finite_quantum_mechanics_proofs.md#7-three-supplied-structures-that-the-gaussian-carrier-lacks) |
-| `GP-FIN-GAUSS-MATRIX-ALGEBRA` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.6 Linear maps on Gaussian report vectors are Gaussian matrices](../papers/core/finite_quantum_mechanics_proofs.md#16-linear-maps-on-gaussian-report-vectors-are-gaussian-matrices) |
+| `GP-FIN-GAUSS-MATRIX-ALGEBRA` | PROVED_LEAN | [finite_quantum_mechanics_proofs: 1.7 Linear maps on Gaussian report vectors are Gaussian matrices](../papers/core/finite_quantum_mechanics_proofs.md#17-linear-maps-on-gaussian-report-vectors-are-gaussian-matrices) |
 
 ## FINITE_QM_STRUCTURE
 
