@@ -462,7 +462,8 @@ mod tests {
     }
     #[test]
     fn support_pin_never_accepts_incomplete_or_grade_e() {
-        for category in ["regression_test", "finite_proof_example"] {
+        for category in ["regression_test", "finite_proof_example", "reviewed_bounded_research_runtime",
+            "reviewed_bounded_exact_helper", "reviewed_test_harness"] {
             let sha = "a".repeat(64);
             let mut policy = policy();
             policy.support_exceptions.insert(PATH.into(), crate::policy::SupportException {

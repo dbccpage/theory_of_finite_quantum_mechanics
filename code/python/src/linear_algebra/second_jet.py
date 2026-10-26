@@ -49,7 +49,7 @@ def _require_rational(value: object, role: str) -> Fraction:
         raise _fail("boolean refused where a rational coordinate was required", role=role)
     if isinstance(value, GaussianRational):
         raise _fail("Gaussian rational refused; the second jet in this module is over Q", role=role)
-    if isinstance(value, Fraction):
+    if type(value) is Fraction:
         return value
     if type(value) is int:
         return Fraction(value)

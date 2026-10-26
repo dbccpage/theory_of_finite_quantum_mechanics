@@ -1,0 +1,16 @@
+{
+  "schema": "tfqm.pr401.admission-bootstrap.v1",
+  "AuthorityEffect": "None",
+  "date": "2026-10-26",
+  "status": "SOURCE_REVIEWED_NATIVE_UNIT_RUN_PENDING",
+  "sources": [
+    {"path": "code/rust/src/governance/src/policy.rs", "sha256": "f4c3a5285558f2342671475a84c249e1dd37c6e26bc8877181adbf688a64e166"},
+    {"path": "code/rust/src/governance/src/verify.rs", "sha256": "a99fe98135e6594e49d5d636da52df40e94c04b382b2802fa5778e283d270abb"}
+  ],
+  "reviewed_delta": "Only the existing support-category vocabulary is extended by reviewed_bounded_research_runtime, reviewed_bounded_exact_helper and reviewed_test_harness. One policy parser unit test covers these categories, exact source digest, unlisted paths, and malformed/wildcard paths; the existing support-floor test now applies its D-acceptance/E-null-refusal controls to all three categories. The production floor lookup and schema/binding/completeness/floor verifier order are unchanged.",
+  "authority": {"path": "evidence/quality/code_2026_10_26/approved_scoped_exceptions_20261026.json", "sha256": "8ab6446cb6a52ad82baa294db43b47993dd1a2e2dfcef619d94da056b565c093"},
+  "test_evidence": {"new_native_unit_tests_executed": false, "hosted_unit_receipt": null, "local_native_build": false, "full_workspace_build": false},
+  "assessment": "Existing L4 governance-control-plane architecture remains the capability classification, not an uplift for any of the 33 L2/L3 sources. New current parser/verification-source G4 is explicitly null and the score is incomplete until a real current-source unit receipt is retained and assessed. No parser/verification-source policy exception is added.",
+  "bootstrap_boundary": "The ordinary enforcing build may refuse these incomplete current source records before its new unit tests run. This is an explicit bootstrap dependency, not a pass. Parent must obtain a real hosted source-bound unit run through an authorized existing test workflow, then append an evidence-backed G4 assessment before acceptance. This record supplies neither a bypass nor a new dev gate.",
+  "not_waived": ["Changed/unlisted source hashes", "Grade E or incomplete scores", "Current-source or raw-history integrity failures", "Native workspace or publication failures", "The global L4/D floor, baseline or governed population"]
+}
