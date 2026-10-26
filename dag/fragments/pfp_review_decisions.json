@@ -17,11 +17,13 @@
     {
       "node_id": "DS-CPTP-COMPLETE-POSITIVITY-IMPORT",
       "review": "dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/review_result.json",
-      "scope_effect": "consistent",
-      "reason": "Imported statement is unchanged by the review (Bell-input partial-transpose witness); scope_review_v2.json corrects the zero-scale carrier to nonnegative rank at most one with the witness conditional on t > 0, which review_result.json does not carry (see the addendum folder).",
+      "scope_effect": "statement_narrowed",
+      "reason": "A nonnegative integer times a square is at least 0. The pairing 1 * (-1) + (-1) * 1 equals -2, so for t greater than 0 the product t * (-2) is less than 0, while at t = 0 that product is 0. The sum of squares of 0, 1, -1 and 0 equals 2, and t * (-2) equals 2 * (-t). Complete positivity and Stinespring stay imported.",
       "superseded_by": [
         "dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/scope_review_v2.json"
-      ]
+      ],
+      "statement": "For every integer n, the product n * n is at least 0, and (-n) * (-n) equals n * n. For every natural pair k and m, the product of the integer of k with the integer of m equals the integer of k * m. For every integer pair a and b, if a is at least 0 and b is at least 0, then a * b is at least 0. For every integer triple t, x and w, if t is at least 0, then t * ((x + w) * (x + w)) is at least 0. The sum 1 * (-1) + (-1) * 1 equals -2. For every integer t, t times that sum equals (-2) * t, and t * (-2) equals 2 * (-t). If t is greater than 0, then t * (-2) is less than 0 and -t is less than 0. The product 0 * (-2) equals 0. The sum of squares 0 * 0 + 1 * 1 + (-1) * (-1) + 0 * 0 equals 2.",
+      "bottleneck": "Complete positivity of a tensor extension, Kraus, Choi and Stinespring forms, and coherence transport above a classical kernel stay imported. The nonnegative product t * ((x + w) * (x + w)) for t at least 0, and the strict negative value t * (-2) for t greater than 0, are one finite scalar case. At t = 0 the product t * (-2) is 0."
     },
     {
       "node_id": "DS-QM021-IDEMPOTENT-CONDITIONING",

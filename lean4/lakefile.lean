@@ -1399,3 +1399,7 @@ lean_lib CampaignGpImportComplexField where
 -- Campaign: GP-IMPORT-CIRCLE-U1. Not a default target.
 lean_lib CampaignGpImportCircleU1 where
   roots := #[`CampaignGpImportCircleU1]
+
+-- Campaign: DS-CPTP-COMPLETE-POSITIVITY-IMPORT. Not a default target.
+lean_lib CampaignDsCptpCompletePositivity where
+  roots := #[`CampaignDsCptpCompletePositivity]
