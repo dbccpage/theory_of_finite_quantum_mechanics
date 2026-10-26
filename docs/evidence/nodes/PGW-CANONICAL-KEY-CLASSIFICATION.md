@@ -113,7 +113,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0459_canonical_key_classification.md`
 
 - file: [dag/derivations/02_genesis/tfq_0459_canonical_key_classification.md](../../../dag/derivations/02_genesis/tfq_0459_canonical_key_classification.md)
-- sha256 (`lf-normalised`): `1e18965fe0ca720a9f6f0334287e89f1d115e9c14051bf81afda588a62b9c0e8`
+- sha256 (`lf-normalised`): `a5d33d812281b44005b4d97dd466becea00c7e7820a8e93633d3bab77b488386`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0459
 - counts toward the grade: no
@@ -136,8 +136,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/portable_key.py::portable_key_v1`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::portable_key_v1`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/portable_key.py::portable_key_v1`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/canonical.rs::portable_key_v1`
 
 ## Routes
 

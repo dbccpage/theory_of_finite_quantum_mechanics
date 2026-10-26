@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0539_wdp_seven_witness_roles.md`
 
 - file: [dag/derivations/06_wdp/tfq_0539_wdp_seven_witness_roles.md](../../../dag/derivations/06_wdp/tfq_0539_wdp_seven_witness_roles.md)
-- sha256 (`lf-normalised`): `b21ba644ca850c1ad2e4ae3f44ffbff3d3f43c6d0da9e1d3faf9f2f8b5faae90`
+- sha256 (`lf-normalised`): `633b0733b5d99716bfc5b8effc231a7d051794ba772220da7d96762fbb09780b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0539
 - counts toward the grade: no
@@ -75,8 +75,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/observer.rs::adapt_quotient`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/observer.py::adapt_quotient`
+- `external:upstream/omega_engine/crates_rs/omega_wdp/src/observer.rs::adapt_quotient`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/observer.py::adapt_quotient`
 
 ## Absences recorded by the TFQ records
 

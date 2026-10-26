@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0531_mssn_many_readings.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0531_mssn_many_readings.md](../../../dag/derivations/05_mssn_sn/tfq_0531_mssn_many_readings.md)
-- sha256 (`lf-normalised`): `992dde4edbc97f95ddedbcacfefa6b53080bbe08dc40bd7a8634674e1cddc567`
+- sha256 (`lf-normalised`): `3b232b9974ee75cf0a0c7fb3c315dc3d96f7a8a8c3633b3ff2847fa2369c77ba`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0531
 - counts toward the grade: no
@@ -75,8 +75,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/code/sn_mssn_checks.py::grammar_inventory_matches`
-- `external:the_symbol_game/omega_engine_education/documentation/003_oemssn/code/check_mssn.py::main`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_sn_mssn/code/sn_mssn_checks.py::grammar_inventory_matches`
+- `external:upstream/omega_engine_education/documentation/003_oemssn/code/check_mssn.py::main`
 
 ## Absences recorded by the TFQ records
 

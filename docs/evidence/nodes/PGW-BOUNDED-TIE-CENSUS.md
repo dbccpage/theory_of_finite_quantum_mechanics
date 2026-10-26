@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0442_bounded_tie_census.md`
 
 - file: [dag/derivations/02_genesis/tfq_0442_bounded_tie_census.md](../../../dag/derivations/02_genesis/tfq_0442_bounded_tie_census.md)
-- sha256 (`lf-normalised`): `57b6f20a9ca8a9420601f1cf1987a2a97d1a0ded0d531d515e582a3fd478976c`
+- sha256 (`lf-normalised`): `22398ebc97d13c51353955c44bf4acc5cac90729e008c8e9832e9a2cec1a51cd`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0442
 - counts toward the grade: no
@@ -82,10 +82,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::min_responses`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py::python_replay`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::sealed_challenge3_reading_f`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::sealed_challenge3_reading_l`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::min_responses`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/reproduce.py::python_replay`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::sealed_challenge3_reading_f`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::sealed_challenge3_reading_l`
 
 ## Absences recorded by the TFQ records
 

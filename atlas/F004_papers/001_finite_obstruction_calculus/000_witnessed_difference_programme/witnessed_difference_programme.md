@@ -275,7 +275,7 @@ part of the accompanying source archive, under these relative paths:
   detailed admission and transport arguments and their evidence boundaries.
 
 The archive preserves these paths; `MANIFEST.sha256` binds their exact bytes.
-The [repository snapshot](https://github.com/dbccpage/the_symbol_game/tree/096551f4f98d9e801d95acfa84fe85deaf309b70/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/docs)
+The repository snapshot
 provides an immutable location for the retained supplements. The present
 correction has no assigned version DOI; the older v0.5.0 DOI identifies that
 older edition. Appendix F includes the external bibliography in this PDF and
@@ -11055,7 +11055,7 @@ reported runs and from written or mechanized mathematical results.
 ## Appendix M. Meron characters, finite shadows and conditional limits
 
 This appendix integrates the finite-to-continuum source merged in
-[PR #401](https://github.com/dbccpage/the_symbol_game/pull/401), at revision
+PR #401, at revision
 `3bec3e2dd5659b53c33889d967fcd2b09689043c`. The
 [source review and replay boundaries](docs/meron_coda_continuum_bridge.md)
 identify the actual functions, assumptions and unfinished targets. These
@@ -13509,8 +13509,8 @@ fillers remain O02/O03 obligations.
 
 ### P.12 Five-edit model prices and complete runs under descriptor transport
 
-The declared [five-edit model native execution
-adapter](https://github.com/dbccpage/the_symbol_game/blob/4da25821759df3ccb1d2a33174e2df0cf42b7dd7/omega_engine/crates_rs/omega_wdp/src/genesis_source_execution.rs)
+The declared five-edit model native execution
+adapter
 retains two count tables, canonical term labels, all intermediate raw
 states and the ordered edit occurrences. Its two state quantities and
 its run price have the exact definitions
@@ -13582,8 +13582,8 @@ authorization. Those are separate O02/O03/O05 obligations.
 P.11 transports one word under a renaming; P.12 retains that word's ordered
 history. Here the question is different: when may a fixed collection of
 source edits be scheduled in different orders? The result concerns the
-declared [native five-edit model transition
-semantics](https://github.com/dbccpage/the_symbol_game/blob/b0baeb07af0cdcedec043bef6a689c07902cd04e/omega_engine/crates_rs/omega_wdp/src/genesis_source_execution.rs)
+declared native five-edit model transition
+semantics
 on constructible finite carriers. It does not treat an edit addressed to a
 term created *during* the schedule.
 
@@ -13712,8 +13712,8 @@ are outside these mathematical guards.
 P.13 compares edits addressed only to the starting carrier. A literal
 numeric address in this model is not a stable name for a newly created term when two
 `AddTerm` occurrences change order. Supply that missing comparison datum
-explicitly, without modifying the [native five-edit
-kernel](https://github.com/dbccpage/the_symbol_game/blob/b0baeb07af0cdcedec043bef6a689c07902cd04e/omega_engine/crates_rs/omega_wdp/src/genesis_source_execution.rs).
+explicitly, without modifying the native five-edit
+kernel.
 
 Fix an initial valid raw state `C=(X,r,s,F)`. Let `E` be a finite set of
 tagged edit occurrences with an acyclic precedence relation. Each `AddTerm`

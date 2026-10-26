@@ -83,7 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1135_dfm_dressed_affine_transport.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1135_dfm_dressed_affine_transport.md](../../../dag/derivations/24_dressing_field/tfq_1135_dfm_dressed_affine_transport.md)
-- sha256 (`lf-normalised`): `94be2734270fc4e841b4fe80ab3843bb8259ff8398690236e33429ecd0492c3a`
+- sha256 (`lf-normalised`): `846995c1b88c302afdbf1ca5e467e1e06c8298644c87a44e7ec994e337bb8923`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1135
 - counts toward the grade: no

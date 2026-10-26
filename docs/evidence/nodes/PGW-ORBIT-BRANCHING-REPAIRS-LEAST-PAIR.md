@@ -70,7 +70,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0444_orbit_branching_repairs_least_pair.md`
 
 - file: [dag/derivations/02_genesis/tfq_0444_orbit_branching_repairs_least_pair.md](../../../dag/derivations/02_genesis/tfq_0444_orbit_branching_repairs_least_pair.md)
-- sha256 (`lf-normalised`): `1e2932fd6bab2a9d48dd131e261e4817aa2ea4c715ac20ff0a2ee4abdc9ff99a`
+- sha256 (`lf-normalised`): `9bba7c2f03ba5bac8398d3898f4d81cdcb8e73eb6be5b36015a9cffc646dcef0`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0444
 - counts toward the grade: no
@@ -86,9 +86,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::pair_orbits`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs::orbits_are_equivariant_under_renaming`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs::pair_orbits`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::pair_orbits`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs::orbits_are_equivariant_under_renaming`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/automorphism.rs::pair_orbits`
 
 ## Routes
 

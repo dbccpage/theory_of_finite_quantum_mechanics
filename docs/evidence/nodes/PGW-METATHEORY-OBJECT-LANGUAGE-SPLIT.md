@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0430_metatheory_object_language_split.md`
 
 - file: [dag/derivations/02_genesis/tfq_0430_metatheory_object_language_split.md](../../../dag/derivations/02_genesis/tfq_0430_metatheory_object_language_split.md)
-- sha256 (`lf-normalised`): `f3a4b3738ec59809c0da5793b08997ecb4868774018dd33f9ef82a7a038e64f9`
+- sha256 (`lf-normalised`): `4d003a48b730cbee0df7c8cba32865759a51f60c446c8d86ce1bb2196509cb6d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0430
 - counts toward the grade: no
@@ -91,8 +91,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::serialize`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/token.rs::tokens_are_forgotten_by_the_key`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/iso.py::serialize`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/token.rs::tokens_are_forgotten_by_the_key`
 
 ## Routes
 

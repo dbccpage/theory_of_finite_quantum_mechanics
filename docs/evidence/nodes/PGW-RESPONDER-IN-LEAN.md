@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0496_responder_in_lean.md`
 
 - file: [dag/derivations/02_genesis/tfq_0496_responder_in_lean.md](../../../dag/derivations/02_genesis/tfq_0496_responder_in_lean.md)
-- sha256 (`lf-normalised`): `3a00db67e511959ddae82009cecd8e310d386c1972be3f13925f122417e7b6ee`
+- sha256 (`lf-normalised`): `8f04435f9e7da03d286184ae4d61e5d8c229c8911c4bdf5e0ddecf97485de841`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0496
 - counts toward the grade: no
@@ -68,8 +68,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::min_responses`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::min_responses`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py::min_responses`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs::min_responses`
 
 ## Absences recorded by the TFQ records
 

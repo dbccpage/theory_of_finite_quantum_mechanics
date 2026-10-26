@@ -40,7 +40,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean statement of the boxed laws; they are declared design rules`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::evaluate_two_boxed_laws_gate`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs)
+- `omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::evaluate_two_boxed_laws_gate` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - `missing obligation: no Python check of the boxed laws`
