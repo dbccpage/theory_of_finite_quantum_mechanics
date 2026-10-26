@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "b71f6cd664e83d5a8304033ab7e2180da026ee83abf4713c128a0c99dc3f7c3a"
+  "sha256_lf": "9bf671e03a4a922cbbb0bbf8c3ab071347ad0f93bc3ad73cdda26c25590e62d3"
  },
  "files": {
   "checks/independent/ads-cft-duality-import.py": {
@@ -1263,9 +1263,9 @@
    "size": 9170
   },
   "dag/derivation_dag.json": {
-   "sha256": "b71f6cd664e83d5a8304033ab7e2180da026ee83abf4713c128a0c99dc3f7c3a",
+   "sha256": "9bf671e03a4a922cbbb0bbf8c3ab071347ad0f93bc3ad73cdda26c25590e62d3",
    "sha256_basis": "lf-normalised",
-   "size": 4827831
+   "size": 4830993
   },
   "dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md": {
    "sha256": "a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094",
@@ -2578,9 +2578,9 @@
    "size": 2622
   },
   "dag/derivations/08_l1_to_l2/tfq_1033_gp_import_cptp_class.md": {
-   "sha256": "62168678d1c7990bddc1cdb82ea0e24564a6d06628715e18085909b40d8a90fc",
+   "sha256": "b8c80e5a9e52ca3b063800278b252122c5dffa295f08cb2d9538eab6eae8d644",
    "sha256_basis": "lf-normalised",
-   "size": 2501
+   "size": 3983
   },
   "dag/derivations/08_l1_to_l2/tfq_1034_gp_import_continuous_time.md": {
    "sha256": "0f46468a432525379356e6aba79a465137949a1d6d6fbc2cf0c194e6b2076a36",
@@ -6972,6 +6972,11 @@
    "sha256_basis": "lf-normalised",
    "size": 39069
   },
+  "dag/research/campaign_gp-import-cptp-class_lean_replay.json": {
+   "sha256": "b9dcbe8d819ec466a9f1426ff97aa0bca3d3254717ff74251471ed75c05ddb35",
+   "sha256_basis": "lf-normalised",
+   "size": 3854
+  },
   "dag/research/campaign_gth-lang-core_lean_replay.json": {
    "sha256": "de3044a046db59586dc0e9e7120ba3d3a2e29c5ec02e79e2ec650a0f5f7e6457",
    "sha256_basis": "lf-normalised",
@@ -8118,9 +8123,9 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "sha256": "8ad2b259528a4e4c2cd6892c1542f8befdf44cbccff3f1699230dddadaebf8ee",
    "sha256_basis": "lf-normalised",
-   "size": 232565
+   "size": 234422
   },
   "dag/research/tensor_formalization_validation.json": {
    "sha256": "ca55404cc4a6e1f125b85d21f9bd60a7bc9dfe0e65c85207110c788f0203c120",
@@ -8661,6 +8666,11 @@
    "sha256": "c090c3aa370fd870e88362aa4cd9f27302b427773acf8bf97c2a2f936929c5a6",
    "sha256_basis": "bytes",
    "size": 9103
+  },
+  "lean4/CampaignGpImportCptpClass.lean": {
+   "sha256": "5667a581f964eb7babec906cc92c49ea4dd4c859a71a49fdc4327c812fcf54b7",
+   "sha256_basis": "bytes",
+   "size": 9666
   },
   "lean4/CampaignGthLangCore.lean": {
    "sha256": "57cb0bcf3599400870ca47f0e0f11c87f3dabe90f04752f964f0ee0f591eef5f",
@@ -9431,11 +9441,6 @@
    "sha256": "0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a",
    "sha256_basis": "bytes",
    "size": 2378
-  },
-  "lean4/H015CollapseDilations.lean": {
-   "sha256": "689bfa7562cf0a0205c346d902c8c2879b3ca0eaaee263a4fd4b4a3714f56bde",
-   "sha256_basis": "bytes",
-   "size": 8343
   },
   "lean4/H016ContinuousDynamicsFork.lean": {
    "sha256": "906b145d8626c1887b1075e9b900858ca3f0c16df6fa65a2d8a87aa68b06de85",
@@ -94191,60 +94196,23 @@
    "dependents": 96,
    "facts": {
     "cited_code_files_not_tests": 0,
-    "counted_files": 2,
-    "lean_receipt_backed": 1,
+    "counted_files": 1,
+    "lean_receipt_backed": 11,
     "qualifying_reviews": 1,
     "runnable_tests": 0,
-    "symbols_found": 2
+    "symbols_found": 22
    },
    "flags": [],
    "grade": "E3",
    "id": "GP-IMPORT-CPTP-CLASS",
    "items": [
     {
-     "canonical_symbol": "QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries",
-     "cited_in": [
-      "node.lean",
-      "record TFQ-1033"
-     ],
-     "command": "cd lean4 && lake build DerivationDagQMClosure",
-     "command_note": "then, in a scratch file that imports DerivationDagQMClosure: #print axioms QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries",
-     "counted": true,
-     "counts": true,
-     "decl_ambiguous": false,
-     "decl_axioms": [
-      "Quot.sound",
-      "propext"
-     ],
-     "decl_listed": true,
-     "file_exists": true,
-     "generated": false,
-     "kind": "lean_decl",
-     "path": "lean4/DerivationDagQMClosure.lean",
-     "receipts": [
-      {
-       "decl_ambiguous": false,
-       "decl_listed": true,
-       "id": "dag/research/lean_replay_campaign_finite_qm_structure.json#2:DerivationDagQMClosure",
-       "ok": true,
-       "sha_match": true
-      }
-     ],
-     "replay": "verified",
-     "resolution": "present",
-     "symbol": "QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries",
-     "symbol_declared": true,
-     "symbol_exists": true,
-     "where": null
-    },
-    {
      "canonical_symbol": null,
      "cited_in": [
-      "node.lean",
-      "record TFQ-1033"
+      "receipt dag/research/campaign_gp-import-cptp-class_lean_replay.json (CampaignGpImportCptpClass)"
      ],
-     "command": "cd lean4 && lake build H015CollapseDilations",
-     "command_note": "then, in a scratch file that imports H015CollapseDilations: #print axioms four_reversible_dilations_of_collapse",
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": null,
      "counted": true,
      "counts": true,
      "decl_ambiguous": false,
@@ -94253,11 +94221,742 @@
      "file_exists": true,
      "generated": false,
      "kind": "lean_decl",
-     "path": "lean4/H015CollapseDilations.lean",
-     "receipts": [],
-     "replay": "none",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": false,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
      "resolution": "present",
-     "symbol": "four_reversible_dilations_of_collapse",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.collapseMass_coords",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-cptp-class_lean_replay.json (CampaignGpImportCptpClass)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.collapseMass_coords",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCptpClass.collapseMass_coords",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.collapseMass_nonneg",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-cptp-class_lean_replay.json (CampaignGpImportCptpClass)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.collapseMass_nonneg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCptpClass.collapseMass_nonneg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.collapseMass_preserves_sum",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-cptp-class_lean_replay.json (CampaignGpImportCptpClass)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.collapseMass_preserves_sum",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCptpClass.collapseMass_preserves_sum",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.collapseMass_two_three",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-cptp-class_lean_replay.json (CampaignGpImportCptpClass)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.collapseMass_two_three",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCptpClass.collapseMass_two_three",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.collapse_both_false",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-cptp-class_lean_replay.json (CampaignGpImportCptpClass)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.collapse_both_false",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCptpClass.collapse_both_false",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.collapse_labels_agree",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-cptp-class_lean_replay.json (CampaignGpImportCptpClass)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.collapse_labels_agree",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCptpClass.collapse_labels_agree",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.collapse_no_two_sided_inverse",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-cptp-class_lean_replay.json (CampaignGpImportCptpClass)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.collapse_no_two_sided_inverse",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCptpClass.collapse_no_two_sided_inverse",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.every_dilation_agrees",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-cptp-class_lean_replay.json (CampaignGpImportCptpClass)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.every_dilation_agrees",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCptpClass.every_dilation_agrees",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.four_maps_pairwise_unequal",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-cptp-class_lean_replay.json (CampaignGpImportCptpClass)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.four_maps_pairwise_unequal",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCptpClass.four_maps_pairwise_unequal",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.four_named_are_dilations",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-cptp-class_lean_replay.json (CampaignGpImportCptpClass)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.four_named_are_dilations",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCptpClass.four_named_are_dilations",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.prepared_is_false",
+     "cited_in": [
+      "receipt dag/research/campaign_gp-import-cptp-class_lean_replay.json (CampaignGpImportCptpClass)"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.prepared_is_false",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "CampaignGpImportCptpClass.prepared_is_false",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.collapseMass_coords",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1033"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.collapseMass_coords",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "collapseMass_coords",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.collapseMass_nonneg",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1033"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.collapseMass_nonneg",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "collapseMass_nonneg",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.collapseMass_preserves_sum",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1033"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.collapseMass_preserves_sum",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "collapseMass_preserves_sum",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.collapseMass_two_three",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1033"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.collapseMass_two_three",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "collapseMass_two_three",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.collapse_both_false",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1033"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.collapse_both_false",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "collapse_both_false",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.collapse_labels_agree",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1033"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.collapse_labels_agree",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "collapse_labels_agree",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.collapse_no_two_sided_inverse",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1033"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.collapse_no_two_sided_inverse",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "collapse_no_two_sided_inverse",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.every_dilation_agrees",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1033"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.every_dilation_agrees",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [
+      "propext"
+     ],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "every_dilation_agrees",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.four_maps_pairwise_unequal",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1033"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.four_maps_pairwise_unequal",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "four_maps_pairwise_unequal",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.four_named_are_dilations",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1033"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.four_named_are_dilations",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "four_named_are_dilations",
+     "symbol_declared": true,
+     "symbol_exists": true,
+     "where": null
+    },
+    {
+     "canonical_symbol": "CampaignGpImportCptpClass.prepared_is_false",
+     "cited_in": [
+      "node.lean",
+      "record TFQ-1033"
+     ],
+     "command": "cd lean4 && lake build CampaignGpImportCptpClass",
+     "command_note": "then, in a scratch file that imports CampaignGpImportCptpClass: #print axioms CampaignGpImportCptpClass.prepared_is_false",
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": [],
+     "decl_listed": true,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/CampaignGpImportCptpClass.lean",
+     "receipts": [
+      {
+       "decl_ambiguous": false,
+       "decl_listed": true,
+       "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+       "ok": true,
+       "sha_match": true
+      }
+     ],
+     "replay": "verified",
+     "resolution": "present",
+     "symbol": "prepared_is_false",
      "symbol_declared": true,
      "symbol_exists": true,
      "where": null
@@ -94399,7 +95098,7 @@
      "review": "dag/results/GP-IMPORT-CPTP-CLASS/reviews/20261019_l1_import_audit/delivery_review_result.json",
      "review_file_ok": true,
      "review_sha256": "a3340565be93a1a07d3f6951f32affa759a98e21cca727e3bcafd8b8347a992d",
-     "scope_effect": "consistent",
+     "scope_effect": "statement_narrowed",
      "source": "pfp_review",
      "verdict": "scoped_result_or_obstruction_reviewed"
     }
@@ -316696,6 +317395,30 @@
    "toolchain": "4.35.0"
   },
   {
+   "admission_scan_passed": true,
+   "axiom_audit_passed": true,
+   "axioms_itemised": true,
+   "axioms_standard": true,
+   "axioms_union": [
+    "propext"
+   ],
+   "built_successfully": true,
+   "checked_at": "2026-10-26T05:31:23+00:00",
+   "dag_node": "GP-IMPORT-CPTP-CLASS",
+   "decl_count": 11,
+   "exit_code": 0,
+   "id": "dag/research/campaign_gp-import-cptp-class_lean_replay.json#0:CampaignGpImportCptpClass",
+   "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+   "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+   "module": "CampaignGpImportCptpClass",
+   "path": "lean4/CampaignGpImportCptpClass.lean",
+   "receipt_file": "dag/research/campaign_gp-import-cptp-class_lean_replay.json",
+   "receipt_file_sha256": "b9dcbe8d819ec466a9f1426ff97aa0bca3d3254717ff74251471ed75c05ddb35",
+   "recorded_sha256": "5667a581f964eb7babec906cc92c49ea4dd4c859a71a49fdc4327c812fcf54b7",
+   "source_unchanged_during_build": true,
+   "toolchain": "4.35.0"
+  },
+  {
    "admission_scan_passed": null,
    "axiom_audit_passed": true,
    "axioms_itemised": true,
@@ -329946,7 +330669,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "8ad2b259528a4e4c2cd6892c1542f8befdf44cbccff3f1699230dddadaebf8ee",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -329972,7 +330695,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "8ad2b259528a4e4c2cd6892c1542f8befdf44cbccff3f1699230dddadaebf8ee",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -329998,7 +330721,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "8ad2b259528a4e4c2cd6892c1542f8befdf44cbccff3f1699230dddadaebf8ee",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330024,7 +330747,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "8ad2b259528a4e4c2cd6892c1542f8befdf44cbccff3f1699230dddadaebf8ee",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330050,7 +330773,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "8ad2b259528a4e4c2cd6892c1542f8befdf44cbccff3f1699230dddadaebf8ee",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330076,7 +330799,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "8ad2b259528a4e4c2cd6892c1542f8befdf44cbccff3f1699230dddadaebf8ee",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330102,7 +330825,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "8ad2b259528a4e4c2cd6892c1542f8befdf44cbccff3f1699230dddadaebf8ee",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330128,7 +330851,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "8ad2b259528a4e4c2cd6892c1542f8befdf44cbccff3f1699230dddadaebf8ee",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330154,7 +330877,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "8ad2b259528a4e4c2cd6892c1542f8befdf44cbccff3f1699230dddadaebf8ee",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330180,7 +330903,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "8ad2b259528a4e4c2cd6892c1542f8befdf44cbccff3f1699230dddadaebf8ee",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330206,7 +330929,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "8ad2b259528a4e4c2cd6892c1542f8befdf44cbccff3f1699230dddadaebf8ee",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330232,7 +330955,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "8ad2b259528a4e4c2cd6892c1542f8befdf44cbccff3f1699230dddadaebf8ee",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330258,7 +330981,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "8ad2b259528a4e4c2cd6892c1542f8befdf44cbccff3f1699230dddadaebf8ee",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330284,7 +331007,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "8ad2b259528a4e4c2cd6892c1542f8befdf44cbccff3f1699230dddadaebf8ee",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330310,7 +331033,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "e30cabe0ce93845a3d0c61f038a30579c7dccad403ae634344561d76e5ab5259",
+   "receipt_file_sha256": "8ad2b259528a4e4c2cd6892c1542f8befdf44cbccff3f1699230dddadaebf8ee",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -330934,16 +331657,16 @@
   "e3_nodes_with_review_and_cited_code_but_no_test": 37,
   "e3_nodes_with_test_but_no_review": 39,
   "lean_declarations_in_repo": {
-   "distinct": 2121,
-   "no_receipt": 38,
+   "distinct": 2131,
+   "no_receipt": 37,
    "replay_failed": 23,
    "replay_stale": 0,
-   "replay_verified": 2060,
-   "replay_verified_and_declaration_itemised": 1993,
+   "replay_verified": 2071,
+   "replay_verified_and_declaration_itemised": 2004,
    "replay_verified_with_ambiguous_receipt_name": 0
   },
   "lean_references_cited_in_node_lean_fields": {
-   "present": 2440
+   "present": 2449
   },
   "mismatch_nodes": 190,
   "mismatches_by_kind": {
@@ -330964,7 +331687,7 @@
    "total": 267,
    "with_in_repo_lean": 267
   },
-  "receipts_indexed": 620,
+  "receipts_indexed": 621,
   "stage_by_grade": {
    "ADS_CFT": {
     "E0": 5,

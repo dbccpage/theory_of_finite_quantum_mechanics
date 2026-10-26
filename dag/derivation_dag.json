@@ -6724,15 +6724,24 @@
       "stage": "L1_TO_L2",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "imported; no channel class defined on the finite host",
-      "statement": "The class of completely positive trace-preserving maps. Collapse non-reversibility and failure of a same-basis isometry are not CPTP obstructions; exactly four reversible dilations of collapse exist under the declared convention that the ancilla starts at false.",
+      "statement": "On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair.",
       "source": [
         "omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/gap_register.yaml#GAP-F001-S000-007",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/finite_hilbert_boundary_from_primitive_difference.md:155",
         "omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/finite_hilbert_boundary_from_primitive_difference.md:205"
       ],
       "lean": [
-        "lean4/H015CollapseDilations.lean::four_reversible_dilations_of_collapse",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries"
+        "lean4/CampaignGpImportCptpClass.lean::collapse_both_false",
+        "lean4/CampaignGpImportCptpClass.lean::collapse_labels_agree",
+        "lean4/CampaignGpImportCptpClass.lean::collapse_no_two_sided_inverse",
+        "lean4/CampaignGpImportCptpClass.lean::collapseMass_coords",
+        "lean4/CampaignGpImportCptpClass.lean::collapseMass_preserves_sum",
+        "lean4/CampaignGpImportCptpClass.lean::collapseMass_nonneg",
+        "lean4/CampaignGpImportCptpClass.lean::collapseMass_two_three",
+        "lean4/CampaignGpImportCptpClass.lean::prepared_is_false",
+        "lean4/CampaignGpImportCptpClass.lean::four_maps_pairwise_unequal",
+        "lean4/CampaignGpImportCptpClass.lean::four_named_are_dilations",
+        "lean4/CampaignGpImportCptpClass.lean::every_dilation_agrees"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness",
@@ -6742,7 +6751,7 @@
         "CPTP channel class: assumption",
         "ancilla prepared at false: declared convention"
       ],
-      "bottleneck": "No derived channel class; QM_082 supplies stochastic-kernel population shadow only.",
+      "bottleneck": "The class of completely positive trace-preserving maps on a Hilbert space is not derived. Choi positivity, Kraus form and a Stinespring realization of that class stay imported. The Boolean collapse, the integer mass image and the four ancilla-false reversible dilations are one finite case. This mass image is a stochastic-kernel population shadow in the sense of QM_082, and it is not that channel class.",
       "tags": [],
       "see_also": [
         "FQ-CPTP-CLASS-DEFINITION"
@@ -6757,8 +6766,8 @@
         "narrowest_claim": "Four actual reversible dilation maps/inverses and exact reset-channel Choi/TP/action arrays, with generic inverse and reset trace identities in Lean.",
         "does_not_support": "Prove the native-array-to-channel/dilation refinement and classify arbitrary CPTP maps under admitted complex Hilbert structure. The ancilla convention is essential.",
         "next_test": "Prove the native-array-to-channel/dilation refinement and classify arbitrary CPTP maps under admitted complex Hilbert structure. The ancilla convention is essential.",
-        "scope_effect": "consistent",
-        "reason": "Imported node; the review adds four reversible dilations and reset-channel arrays.",
+        "scope_effect": "statement_narrowed",
+        "reason": "Boolean collapse, the integer mass image and four ancilla-false reversible dilations are recorded. The Hilbert-space channel class stays imported.",
         "prior_status": "IMPORTED_ASSUMPTION",
         "prior_statement": "The class of completely positive trace-preserving maps. Collapse non-reversibility and failure of a same-basis isometry are not CPTP obstructions; exactly four reversible dilations of collapse exist under the declared convention that the ancilla starts at false.",
         "prior_bottleneck": "No derived channel class; QM_082 supplies stochastic-kernel population shadow only.",
@@ -57659,12 +57668,21 @@
       ],
       "id": "TFQ-1033",
       "lean4": [
-        "lean4/H015CollapseDilations.lean::four_reversible_dilations_of_collapse",
-        "lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries"
+        "lean4/CampaignGpImportCptpClass.lean::collapse_both_false",
+        "lean4/CampaignGpImportCptpClass.lean::collapse_labels_agree",
+        "lean4/CampaignGpImportCptpClass.lean::collapse_no_two_sided_inverse",
+        "lean4/CampaignGpImportCptpClass.lean::collapseMass_coords",
+        "lean4/CampaignGpImportCptpClass.lean::collapseMass_preserves_sum",
+        "lean4/CampaignGpImportCptpClass.lean::collapseMass_nonneg",
+        "lean4/CampaignGpImportCptpClass.lean::collapseMass_two_three",
+        "lean4/CampaignGpImportCptpClass.lean::prepared_is_false",
+        "lean4/CampaignGpImportCptpClass.lean::four_maps_pairwise_unequal",
+        "lean4/CampaignGpImportCptpClass.lean::four_named_are_dilations",
+        "lean4/CampaignGpImportCptpClass.lean::every_dilation_agrees"
       ],
       "local_id": "GP-IMPORT-CPTP-CLASS",
       "name": "gp-import-cptp-class",
-      "obligation": "No derived channel class; QM_082 supplies stochastic-kernel population shadow only.",
+      "obligation": "The class of completely positive trace-preserving maps on a Hilbert space is not derived. Choi positivity, Kraus form and a Stinespring realization of that class stay imported. The Boolean collapse, the integer mass image and the four ancilla-false reversible dilations are one finite case. This mass image is a stochastic-kernel population shadow in the sense of QM_082, and it is not that channel class.",
       "parent_id": "TFQ-0008",
       "pfp_review_refs": [
         "dag/results/GP-IMPORT-CPTP-CLASS/reviews/20261019_l1_import_audit/delivery_review_result.json"
@@ -57677,7 +57695,7 @@
       ],
       "source_slice": "unified_dag",
       "stage": "L1_TO_L2",
-      "summary": "The class of completely positive trace-preserving maps. Collapse non-reversibility and failure of a same-basis isometry are not CPTP obstructions; exactly four reversible dilations of collapse exist under the declared convention that the ancilla starts at false.",
+      "summary": "On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair.",
       "uuid": "5ee62308-5aef-54c9-8d0f-2858e661335c"
     },
     {

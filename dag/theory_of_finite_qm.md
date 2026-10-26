@@ -504,7 +504,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1030` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CIRCLE-U1` (IMPORTED_ASSUMPTION) | scoped_sign_pair_cycle_result_reviewed / statement_narrowed |
 | `TFQ-1031` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-GLEASON` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1032` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-TENSOR-PRODUCT` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
-| `TFQ-1033` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CPTP-CLASS` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
+| `TFQ-1033` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CPTP-CLASS` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / statement_narrowed |
 | `TFQ-1034` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CONTINUOUS-TIME` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / consistent |
 | `TFQ-1035` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `GP-IMPORT-CONTINUUM-HILBERT` (IMPORTED_ASSUMPTION) | scoped_result_or_obstruction_reviewed / caveat_added |
 | `TFQ-1036` | `FINITE_QM_STRUCTURE` | `COMPUTATIONAL_CONTROL` | `GP-GAP-EXACT-DUALITY` (COMPUTATIONALLY_CHECKED) | reviewed_with_targeted_native_integration / status_lowered |
@@ -4154,9 +4154,9 @@ Obligation: Combining-systems uniqueness not derived; needs a second presented c
 - Status: `IMPORTED_ASSUMPTION`
 - DAG node: `GP-IMPORT-CPTP-CLASS` (`IMPORTED_ASSUMPTION`)
 
-The class of completely positive trace-preserving maps. Collapse non-reversibility and failure of a same-basis isometry are not CPTP obstructions; exactly four reversible dilations of collapse exist under the declared convention that the ancilla starts at false.
+On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair.
 
-Obligation: No derived channel class; QM_082 supplies stochastic-kernel population shadow only.
+Obligation: The class of completely positive trace-preserving maps on a Hilbert space is not derived. Choi positivity, Kraus form and a Stinespring realization of that class stay imported. The Boolean collapse, the integer mass image and the four ancilla-false reversible dilations are one finite case. This mass image is a stochastic-kernel population shadow in the sense of QM_082, and it is not that channel class.
 
 ### TFQ-1034 gp-import-continuous-time
 
