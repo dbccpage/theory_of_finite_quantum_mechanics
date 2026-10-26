@@ -82,20 +82,38 @@ Lean: `lean4/H009PhaseFiber.lean::phasePD_zeroRel_iff`,
 
 ### 1.3 Interference does not descend to the phase-blind quotient
 
-DAG node: `FQ-INTERFERENCE-NONDESCENT`
+DAG nodes: `FQ-INTERFERENCE-NONDESCENT` `L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE`
 
 **Proposition.** Let $H(v)=(v_0+v_1,\;v_0-v_1)$ on $Q=\{0,1\}$ and let the readout be
-$r(v)=w_{H(v)}$. There is no function $f$ with $r=f\circ w$.
+$r(v)=w_{H(v)}$, so $r(a,b)=(|a+b|^2,|a-b|^2)$ for $a,b\in\mathbb Z[i]$. Then
+(i) $|a+b|^2+|a-b|^2=2(|a|^2+|b|^2)$ and $|a+b|^2-|a-b|^2=4\operatorname{Re}(a\bar b)$;
+(ii) if $a\neq0$ and $b\neq0$, one of $(a,-b)$ and $(a,ib)$ has the weights of $(a,b)$ and a
+different readout, so no function $f$ satisfies $r=f\circ w$ on the weight fibre of $(a,b)$;
+(iii) if $a=0$ or $b=0$, $r$ is a function of the weights.
 
-*Proof.* With $\psi_1,\psi_2$ as in §1.2, $w_{\psi_1}=w_{\psi_2}$ but $H\psi_1=(2,0)$ and
-$H\psi_2=(0,2)$, so $r(\psi_1)=(4,0)\neq(0,4)=r(\psi_2)$. A function of $w$ takes equal values on
-$\psi_1$ and $\psi_2$. $\square$
+*Proof.* (i) Expand $|a\pm b|^2=|a|^2+|b|^2\pm2\operatorname{Re}(a\bar b)$. (ii) Negating $b$ or
+multiplying it by $i$ keeps $|b|^2$. The readout difference of $(a,-b)$ is
+$-4\operatorname{Re}(a\bar b)$ and that of $(a,ib)$ is $4\operatorname{Re}(-i\,a\bar b)=4\operatorname{Im}(a\bar b)$.
+Since $a\bar b\neq0$, either $\operatorname{Re}(a\bar b)\neq0$, and $(a,-b)$ changes the
+difference, or $\operatorname{Re}(a\bar b)=0\neq\operatorname{Im}(a\bar b)$, and $(a,ib)$ changes
+it. In either case the total, by (i), is unchanged, so the readout changes and the weights do not.
+(iii) If $b=0$, $r=(|a|^2,|a|^2)$, and symmetrically if $a=0$. $\square$
+
+With $\psi_1=(1,1)$ and $\psi_2=(1,-1)$ from §1.2, $r(\psi_1)=(4,0)\neq(0,4)=r(\psi_2)$.
 
 Relative phase is thus invisible to $w$ and visible after a non-diagonal operation. The second
 context $H$ is supplied, not derived.
 
 Lean: `lean4/H010InterferenceNonDescent.lean::no_descent_through_fiber`,
-`lean4/H010InterferenceNonDescent.lean::mix_separates`.
+`lean4/H010InterferenceNonDescent.lean::mix_separates` (the witnesses $\psi_1,\psi_2$);
+`lean4/PhaseBlindFiber.lean::PhaseBlindFiber.readout_total`,
+`lean4/PhaseBlindFiber.lean::PhaseBlindFiber.readout_interference`,
+`lean4/PhaseBlindFiber.lean::PhaseBlindFiber.fiber_changes_readout`,
+`lean4/PhaseBlindFiber.lean::PhaseBlindFiber.descends_when_zero_sector`,
+`lean4/PhaseBlindFiber.lean::PhaseBlindFiber.descends_when_second_zero` and
+`lean4/PhaseBlindFiber.lean::PhaseBlindFiber.phase_blind_fiber_interference` ((i)–(iii) over a
+local copy of $\mathbb Z[i]$). Complex amplitudes, normalized states and more than two sectors
+are not covered.
 
 ### 1.4 Which linear maps descend to populations
 
@@ -127,7 +145,7 @@ row-sparse direction $(au)^2=(av)^2$ when $u^2=v^2$.
 
 ### 1.5 Normalization is redundant after the ray quotient
 
-DAG node: `FQ-BORN-NORMALIZATION-REDUNDANCY`
+DAG nodes: `FQ-BORN-NORMALIZATION-REDUNDANCY` `L1-QM020-THM1-DIRECT-NORMALIZATION`
 
 **Proposition.** For a finite list $w$ of rationals with $s(w)=\sum_k w_k\neq0$, let
 $N(w)=w/s(w)$. Then $N(N(w))=N(w)$. If $s(w_1)>0$ and $s(w_2)>0$, then $N(w_1)=N(w_2)$ if and only
@@ -138,12 +156,34 @@ $s(w_2)=cs(w_1)$ and $N(w_2)=cw_1/(cs(w_1))=N(w_1)$. Conversely, if $N(w_1)=N(w_
 $w_2=s(w_2)N(w_2)=s(w_2)N(w_1)=\frac{s(w_2)}{s(w_1)}\,w_1$ and $c=s(w_2)/s(w_1)>0$. $\square$
 
 So normalizing and then passing to positive rays gives the same classes as passing to rays
-directly: a normalized weight vector is a canonical representative of its ray, nothing more.
+directly: a normalized weight vector is a canonical representative of its ray, nothing more. The
+ray criterion needs positive totals. A nonzero total is not enough: $N(-w)=N(w)$, but $-w=cw$
+only for $c=-1$.
 
-Lean: `lean4/BornRedundancy.lean::normalize_idempotent`,
+Lean: `lean4/BornRedundancy.lean::listSum_normalize`,
+`lean4/BornRedundancy.lean::normalize_idempotent`,
 `lean4/BornRedundancy.lean::ray_quotient_classification`.
 
-### 1.6 Linear maps on Gaussian report vectors are Gaussian matrices
+### 1.6 The $\ell^1$ additivity defect
+
+DAG node: `L1-QM020-THM2A-L1-ADDITIVITY-DEFECT`
+
+**Proposition.** For real $x,y$ let $D_1(x,y)=|x|+|y|-|x+y|$. Then $D_1(x,y)\ge0$, and
+$D_1(x,y)=0$ if and only if $xy\ge0$. For vectors, $\|x\|_1+\|y\|_1-\|x+y\|_1=\sum_iD_1(x_i,y_i)$
+vanishes if and only if $x_iy_i\ge0$ for every $i$.
+
+*Proof.* $D_1\ge0$ is the triangle inequality. If $xy\ge0$, then $x$ and $y$ lie in one closed
+half-line and $|x+y|=|x|+|y|$. If $xy<0$, say $x>0>y$, then $|x+y|<\max(x,-y)<x-y=|x|+|y|$. The
+vector identity holds coordinate by coordinate, and a sum of nonnegative terms is zero only when
+every term is zero. $\square$
+
+On disjoint supports every $x_iy_i$ is $0$, so the defect vanishes there for any signs.
+
+Lean: `lean4/BornRedundancy.lean::D1_zero_iff_same_sign` and
+`lean4/BornRedundancy.lean::D1_zero_iff_mul_nonneg` state the scalar case over $\mathbb Z$. The
+vector sum is not in Lean.
+
+### 1.7 Linear maps on Gaussian report vectors are Gaussian matrices
 
 DAG node: `GP-FIN-GAUSS-MATRIX-ALGEBRA`
 
