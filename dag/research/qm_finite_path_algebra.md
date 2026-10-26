@@ -151,6 +151,6 @@ cargo test -j 1 --offline --locked -p omega_lie_theory --test finite_path_algebr
 Both final invocations exit zero with no warnings. These finite checks do not
 replace the general written proof. No new Lean elaboration or original-source
 reproduction was attempted in this block. The
-[receipt](https://github.com/dbccpage/the_symbol_game/blob/cd6205a801c4fa2e640e805ac556e704b6b51054/_intelligence/primitive_qm_eight_hour/finite_path_algebra_2026-10-11.json)
+receipt
 records outputs, versions, selected source hashes and these limits. Existing
 F004 artifacts and historical source archives are unchanged by this block.

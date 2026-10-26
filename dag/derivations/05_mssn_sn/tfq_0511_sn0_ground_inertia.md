@@ -42,7 +42,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust check of the S(0) ground in the S(n) strand`
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_education/documentation/002_oesn/code/sn_core.py::S0Ground`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/002_oesn/code/sn_core.py)
+- `omega_engine_education/documentation/002_oesn/code/sn_core.py::S0Ground` (private upstream source, not in this repository)
 
 ---
 

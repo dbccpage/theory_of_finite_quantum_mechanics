@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0532_mssn_syntax_not_decoding.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0532_mssn_syntax_not_decoding.md](../../../dag/derivations/05_mssn_sn/tfq_0532_mssn_syntax_not_decoding.md)
-- sha256 (`lf-normalised`): `718ea5a77f8590335dbcb9a1c21eb59715c9bb16ea040a0b4cf5ea7984bed051`
+- sha256 (`lf-normalised`): `79cfcf6072f1d76d6cf59640f7c3382c88b4728c74289288c9cd6017911fd430`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0532
 - counts toward the grade: no
@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine_education/documentation/003_oemssn/code/check_mssn.py::main`
+- `external:upstream/omega_engine_education/documentation/003_oemssn/code/check_mssn.py::main`
 
 ## Absences recorded by the TFQ records
 

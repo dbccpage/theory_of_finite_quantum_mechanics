@@ -52,7 +52,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0536_wdp_failed_sameness.md`
 
 - file: [dag/derivations/06_wdp/tfq_0536_wdp_failed_sameness.md](../../../dag/derivations/06_wdp/tfq_0536_wdp_failed_sameness.md)
-- sha256 (`lf-normalised`): `da15b746b176bdcc97e6f115bbab8bc0052105121ac63b148c6f7647015b5032`
+- sha256 (`lf-normalised`): `f515981e038c55d1f7a7bff87dc8acc12d27bbe778958560a2a135183a0efd13`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0536
 - counts toward the grade: no
@@ -75,9 +75,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/difference.rs::primitive_difference`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py::test_primitive_difference_and_triangle_identity`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/ground.py::primitive_difference`
+- `external:upstream/omega_engine/crates_rs/omega_wdp/src/difference.rs::primitive_difference`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py::test_primitive_difference_and_triangle_identity`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/ground.py::primitive_difference`
 
 ## Absences recorded by the TFQ records
 

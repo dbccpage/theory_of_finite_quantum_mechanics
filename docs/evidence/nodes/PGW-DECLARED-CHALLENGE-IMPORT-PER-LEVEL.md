@@ -53,7 +53,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0488_declared_challenge_import_per_level.md`
 
 - file: [dag/derivations/02_genesis/tfq_0488_declared_challenge_import_per_level.md](../../../dag/derivations/02_genesis/tfq_0488_declared_challenge_import_per_level.md)
-- sha256 (`lf-normalised`): `29a29432a34f23fd707e60200b696586545a3de68a680bd3399c72d334098e2c`
+- sha256 (`lf-normalised`): `0fabaaf957da73d3182ca37f0265b1ffd91e6383296c254b41d9f9f051f09753`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0488
 - counts toward the grade: no
@@ -77,8 +77,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 Named by the node; not in this repository and not checked here.
 
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/docs/ALPHA_HANDOFF.md:78-88`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::build_tree`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Outside`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/engine.py::build_tree`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/outside.rs::Outside`
 
 ## Absences recorded by the TFQ records
 

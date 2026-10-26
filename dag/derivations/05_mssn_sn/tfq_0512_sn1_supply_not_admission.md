@@ -40,7 +40,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust check of supply versus admission in the S(n) strand`
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_education/documentation/002_oesn/code/sn_core.py::S1Supply`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_education/documentation/002_oesn/code/sn_core.py)
+- `omega_engine_education/documentation/002_oesn/code/sn_core.py::S1Supply` (private upstream source, not in this repository)
 
 ---
 

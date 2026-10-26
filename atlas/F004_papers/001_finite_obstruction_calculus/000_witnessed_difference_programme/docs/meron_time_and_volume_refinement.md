@@ -7,7 +7,7 @@ field-theory limit, or formalize these analytic arguments in Lean.
 
 ## 1. Bind the actual source and its temperature
 
-The source is [`meron_transfer_trace`](https://github.com/dbccpage/the_symbol_game/blob/199a4d18714263d0b207e8a31ab5b7bb2281feda/omega_engine_projects/fsp/meron_sign_problem/code/meron_exact_model.py)
+The source is `meron_transfer_trace`
 at the inspected main checkpoint `199a4d18714263d0b207e8a31ab5b7bb2281feda`. It
 sums the full 2^L occupation basis, with an even periodic chain L>=4, M
 checkerboard repetitions and rational q>=1. The source's four-time-slice

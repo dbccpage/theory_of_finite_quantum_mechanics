@@ -917,6 +917,12 @@ lean_lib CampaignL1SectorSymmetry where
 lean_lib FableGleasonRun2 where
   roots := #[`BornGaussianRationalFrameObstruction, `BornGaussianFrameRays]
 
+-- Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON (frame functions on all rational rays of Q^3 and the
+-- residue-mod-2 class ansatz on Q(i)^3). Not a default target:
+-- build with `lake build CampaignFqGapBornGleasonRays`.
+lean_lib CampaignFqGapBornGleasonRays where
+  roots := #[`CampaignBornRationalRayObstruction, `CampaignBornGaussianMod2ClassRigidity]
+
 -- Derivation Campaign: PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT
 lean_lib CampaignPgwPresentationLift where
   roots := #[`CampaignPgwPresentationLift]
@@ -1284,6 +1290,12 @@ lean_lib CampaignPgwWdpHandoffToL1 where
 lean_lib CampaignMubPrimePowerConstruction where
   roots := #[`CampaignMubPrimePowerConstruction]
 
+
+-- Campaign: MUB-PRIME-POWER-CONSTRUCTION (odd characteristic). Not a default target:
+-- build with `lake build CampaignMubPrimePowerOdd`.
+lean_lib CampaignMubPrimePowerOdd where
+  roots := #[`CampaignMubPrimePowerOddCharacteristic]
+
 -- Campaign: MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE. Not a default target.
 lean_lib CampaignMajOpenLindbladTransferEnvelope where
   roots := #[`CampaignMajOpenLindbladTransferEnvelope]
@@ -1510,6 +1522,10 @@ lean_lib CampaignL1OrthogonalAdditivity where
 -- Reviewed campaign module; non-default target.
 lean_lib CampaignFqGapTensorUniqueness where
   roots := #[`CampaignFqGapTensorUniqueness]
+
+-- TFQ-0171 finite positive-mass separation. Not a default target.
+lean_lib CampaignTfq0171PositiveMass where
+  roots := #[`CampaignTfq0171PositiveMass]
 
 -- TFQ-0184 cubic count. Non-default target.
 lean_lib CampaignTfq0184CubicCount where

@@ -44,7 +44,7 @@ In accordance with strict constructive principles:
 - [`lean4/CampaignPgwDriverBSeventhEvent.lean::six_labels_admitted`](../../../lean4/CampaignPgwDriverBSeventhEvent.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/event.rs::Event`](https://github.com/dbccpage/the_symbol_game/blob/7351ed452e518cb8cf2bf973d4c4881289084bce/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/event.rs)
+- `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/event.rs::Event` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - [`checks/independent/pgw-driver-b-seventh-event.py::main`](../../../checks/independent/pgw-driver-b-seventh-event.py)

@@ -67,7 +67,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0541_wdp_retention_packet.md`
 
 - file: [dag/derivations/06_wdp/tfq_0541_wdp_retention_packet.md](../../../dag/derivations/06_wdp/tfq_0541_wdp_retention_packet.md)
-- sha256 (`lf-normalised`): `fd4d3b0e33ab4e27f45427573c3246e49cd59df2fcff12c1fd3036fba9413bf2`
+- sha256 (`lf-normalised`): `497e3a17422e374116d7e61327bde03f8423e56c189eb46e53d8dfea690a9417`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0541
 - counts toward the grade: no
@@ -90,9 +90,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:the_symbol_game/omega_engine/crates_rs/omega_wdp/src/retention.rs::compute_exact_behavioral_quotient`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/observer.py::RetentionPacket`
-- `external:the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/retention_choices.py::greatest_forward_relation`
+- `external:upstream/omega_engine/crates_rs/omega_wdp/src/retention.rs::compute_exact_behavioral_quotient`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/observer.py::RetentionPacket`
+- `external:upstream/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/code/witnessed_difference/retention_choices.py::greatest_forward_relation`
 
 ## Routes
 

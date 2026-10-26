@@ -60,7 +60,7 @@
 - Correct the Pre-Genesis arguments and their teaching materials; separate the trial comparison from an equal-report counterexample.
 - Correct primitive admission, freshness, response validation and bounds in Rust, with regression coverage and the corresponding WDP expectation.
 - Reconcile the four education strands with their actual examples, proofs and source status; retain historical records separately.
-- Record scoped validation and remaining work in the [historical review status](https://github.com/dbccpage/the_symbol_game/blob/d1d2f034198a72b730320a69691e63351557c019/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/review_status_2026-10-09.md). This checkpoint does not declare first-publication readiness.
+- Record scoped validation and remaining work in the historical review status. This checkpoint does not declare first-publication readiness.
 
 ## Consolidation draft 0.1 — 2026-10-09
 

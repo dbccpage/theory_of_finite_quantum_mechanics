@@ -49,7 +49,7 @@ su3_diagonal_klein_four_landau_gribov_copies is rational arithmetic on diagonal 
 - `code/python/tests/test_ravera_dfm.py::test_pillar8_su3_spanning_tree_vs_landau_gribov`
 
 ### Cited by the source, not in this checkout
-- `external:the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/ravera_dfm_finite_to_continuum.rs (implementation behind the local re-export shim code/rust/src/qm/campaigns/ravera_dfm.rs; not in this checkout)`
+- `external:upstream/omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/ravera_dfm_finite_to_continuum.rs (implementation behind the local re-export shim code/rust/src/qm/campaigns/ravera_dfm.rs; not in this checkout)`
 - `external:rust/ravera_dfm_finite_to_continuum.rs (path cited by the dossier; absent here)`
 - `external:code/ravera_dfm_dossier_replay.py (path cited by the dossier; absent here, the same verify_pillar* functions live in code/python/src/qm/ravera_dfm.py)`
 

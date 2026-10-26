@@ -7642,9 +7642,9 @@ Obligation: Keep majorization, finite Markov laws, and row-stochastic maps on ex
 - Atlas paths:
   - `omega_engine_atlas/coda_atlas/F000_finite/floor.yaml`
 
-Unnormalized mass is a different carrier from the probability simplex. src/finite_valuation.rs states exact nonnegative Boolean valuations with no normalization requirement, and it admits an empty carrier that FinN refuses. src/lib.rs also declares signed_representation.rs, local_deterministic.rs, and marginal_compatibility.rs; those three bodies were not opened, so only the module declarations are in scope. The obligation is to keep an unnormalized valuation from standing in for a law that sums to one. H001ProbabilitySimplex.lean says its scaled integer grid is not the ordinary rational simplex.
+For all natural numbers a and b, if a is at least 1 and b is at least 1, then a + b is not 1. The pair (1, 1) sums to 2, and 2 is not 1. The empty mass 0 is not 1. In the rationals, 1/2 + 1/2 = 1, the pair (1, 1) is not the pair (1/2, 1/2), and 1 + 1 is not 1. If a + b is positive, then a/(a + b) + b/(a + b) = 1. An unnormalized Boolean valuation on a general carrier, the Rust module contracts, and a ban on standing in for a unit-sum law stay outside this finite case.
 
-Obligation: Do not collapse unnormalized finite valuations into the normalized rational probability simplex.
+Obligation: Positive natural masses on two coordinates are separated from the unit sum, and dividing by a positive total returns a rational unit sum. The obligation to keep an unnormalized valuation from standing in for a law that sums to one, including the Rust files and an empty carrier refused by Fin n, remains open. AuthorityEffect: None.
 
 ### TFQ-0172 Compute discrete gauge holonomy as exact ordered products on a finite cell
 
