@@ -3,18 +3,27 @@ node_id: FSP-BF-2GROUP-SIGN-CLAIM
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A)
-    governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking
-    computation or cancellation identity exists in this checkout.'
+  source_statement: For the additive group Z2 with trivial Z2 coefficient action, the Boolean 3-cochain
+    omega(a,b,c)=a*b*c is normalized and satisfies the cocycle identity. Every normalized 2-cochain beta
+    has coboundary zero at (1,1,1), whereas omega is one there. Thus omega is not a normalized coboundary,
+    and normalized 2-cochain rephasing leaves a negative sign at that triple.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Define the finite BF or 2-group gauge model, compute the 3-loop braiding phases and
-    state exactly which weights become nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.
+  source_bottleneck: 'The result concerns the explicitly defined Z2 cochain model and normalized rephasings.
+    It constructs no BF state sum, 2-group gauge dynamics, knotted-worldsheet amplitude or three-loop
+    braiding observable. No general cancellation or sign-free theorem follows. Original target retained
+    as an obligation: Claimed: in BF theory on finite cell complexes, the Postnikov class in H^3(G, A)
+    governs cancellation of higher 2-group sign anomalies on knotted worldsheets; no BF model, linking
+    computation or cancellation identity exists in this checkout. Prior boundary: Define the finite BF
+    or 2-group gauge model, compute the 3-loop braiding phases and state exactly which weights become
+    nonnegative; ledger GIN-C19 to GIN-C21 withdraw the fixture readings.'
   source_refs:
   - dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md
   - papers/core/fsp/theory_of_finite_fsp.md
   - papers/core/fsp/the_problem_of_the_fermion_sign.md
   - papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md
+  - dag/derivations/independent/fsp-bf-2group-sign-claim.md
+  - dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json
   paper_refs:
   - dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md
   source_claim_label: OPEN
@@ -23,7 +32,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md
-    sha256: 57a38f1f8f37be33137d727759ba7de23ea512566bab52c947e8ee22035b75b3
+    sha256: bc4cf4b2fc61cdfd3b1e35d9943f514e08563a8c2168c65d39acd676935f54b5
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -31,9 +40,179 @@ source_provenance:
   dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
   path: dag/prompts/fermion_sign_fsp_bf_2group_sign_claim_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
-operation_candidates: []
-relation_candidates: []
-source_bindings: []
+operation_candidates:
+- kind: def
+  name: cocycle
+  line: 7
+  signature_excerpt: 'def cocycle (a b c : Bool) : Bool'
+  source: lean4/CampaignBfCocycleObstruction.lean
+  repository: this_repository
+  source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Normalized
+  line: 13
+  signature_excerpt: 'def Normalized (β : Bool → Bool → Bool) : Prop'
+  source: lean4/CampaignBfCocycleObstruction.lean
+  repository: this_repository
+  source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: coboundary
+  line: 9
+  signature_excerpt: 'def coboundary (β : Bool → Bool → Bool) (a b c : Bool) : Bool'
+  source: lean4/CampaignBfCocycleObstruction.lean
+  repository: this_repository
+  source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sign
+  line: 16
+  signature_excerpt: 'def sign (b : Bool) : Int'
+  source: lean4/CampaignBfCocycleObstruction.lean
+  repository: this_repository
+  source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rephase
+  line: 18
+  signature_excerpt: 'def rephase (β : Bool → Bool → Bool) (a b c : Bool) : Bool'
+  source: lean4/CampaignBfCocycleObstruction.lean
+  repository: this_repository
+  source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: normalized_cocycle
+  line: 21
+  signature_excerpt: |-
+    theorem normalized_cocycle : ∀ a b : Bool,
+        cocycle false a b = false ∧ cocycle a false b = false ∧
+        cocycle a b false = false
+  source: lean4/CampaignBfCocycleObstruction.lean
+  repository: this_repository
+  source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: cocycle_identity
+  line: 25
+  signature_excerpt: |-
+    theorem cocycle_identity : ∀ a b c d : Bool,
+        Bool.xor (Bool.xor (Bool.xor (Bool.xor (cocycle b c d)
+          (cocycle (Bool.xor a b) c d)) (cocycle a (Bool.xor b c) d))
+          (cocycle a b (Bool.xor c d))) (cocycle a b c) = false
+  source: lean4/CampaignBfCocycleObstruction.lean
+  repository: this_repository
+  source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: normalized_coboundary_at_generator
+  line: 30
+  signature_excerpt: |-
+    theorem normalized_coboundary_at_generator (β : Bool → Bool → Bool)
+        (h : Normalized β) : coboundary β true true true = false
+  source: lean4/CampaignBfCocycleObstruction.lean
+  repository: this_repository
+  source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: not_a_normalized_coboundary
+  line: 34
+  signature_excerpt: |-
+    theorem not_a_normalized_coboundary (β : Bool → Bool → Bool)
+        (h : Normalized β) : ¬ ∀ a b c, coboundary β a b c = cocycle a b c
+  source: lean4/CampaignBfCocycleObstruction.lean
+  repository: this_repository
+  source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: generator_sign_survives_rephasing
+  line: 41
+  signature_excerpt: |-
+    theorem generator_sign_survives_rephasing (β : Bool → Bool → Bool)
+        (h : Normalized β) : sign (rephase β true true true) = -1
+  source: lean4/CampaignBfCocycleObstruction.lean
+  repository: this_repository
+  source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: no_normalized_rephasing_makes_all_signs_positive
+  line: 45
+  signature_excerpt: |-
+    theorem no_normalized_rephasing_makes_all_signs_positive
+        (β : Bool → Bool → Bool) (h : Normalized β) :
+        ¬ ∀ a b c, sign (rephase β a b c) = 1
+  source: lean4/CampaignBfCocycleObstruction.lean
+  repository: this_repository
+  source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_cocycle
+  availability: local
+  symbol: CampaignBfCocycleObstruction.normalized_cocycle
+  path: lean4/CampaignBfCocycleObstruction.lean
+  repository: this_repository
+  sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
+  declaration_status: declaration_found_not_proof_checked
+  line: 21
+  role: source_lead_only
+- original_ref: lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.cocycle_identity
+  availability: local
+  symbol: CampaignBfCocycleObstruction.cocycle_identity
+  path: lean4/CampaignBfCocycleObstruction.lean
+  repository: this_repository
+  sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
+  declaration_status: declaration_found_not_proof_checked
+  line: 25
+  role: source_lead_only
+- original_ref: lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_coboundary_at_generator
+  availability: local
+  symbol: CampaignBfCocycleObstruction.normalized_coboundary_at_generator
+  path: lean4/CampaignBfCocycleObstruction.lean
+  repository: this_repository
+  sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
+  declaration_status: declaration_found_not_proof_checked
+  line: 30
+  role: source_lead_only
+- original_ref: lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.not_a_normalized_coboundary
+  availability: local
+  symbol: CampaignBfCocycleObstruction.not_a_normalized_coboundary
+  path: lean4/CampaignBfCocycleObstruction.lean
+  repository: this_repository
+  sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
+  declaration_status: declaration_found_not_proof_checked
+  line: 34
+  role: source_lead_only
+- original_ref: lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.generator_sign_survives_rephasing
+  availability: local
+  symbol: CampaignBfCocycleObstruction.generator_sign_survives_rephasing
+  path: lean4/CampaignBfCocycleObstruction.lean
+  repository: this_repository
+  sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
+  declaration_status: declaration_found_not_proof_checked
+  line: 41
+  role: source_lead_only
+- original_ref: lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive
+  availability: local
+  symbol: CampaignBfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive
+  path: lean4/CampaignBfCocycleObstruction.lean
+  repository: this_repository
+  sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
+  declaration_status: declaration_found_not_proof_checked
+  line: 45
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -71,8 +250,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
