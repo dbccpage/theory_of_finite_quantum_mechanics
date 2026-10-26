@@ -23716,17 +23716,23 @@
       "stage": "MUTUALLY_UNBIASED_BASES",
       "status": "IMPORTED_ASSUMPTION",
       "source_status": "papers/core/mub6/theory_of_finite_mub6.jsonl record MUB6-PAPER-FINITE-CORNER claims PROVED_LEAN; audited status IMPORTED_ASSUMPTION",
-      "statement": "Using the external finite-corner classification of single 6x6 complex Hadamard matrices, quartet existence in C^6 is equivalent to raw quartet completion of some retained finite-corner reconstruction with D = -C E* (B^-1)*.",
+      "statement": "For 3 by 3 integer matrices, let B have rows (1, 1, 0), (0, 1, 1) and (0, 0, 1), let E be the identity, and let C have rows (0, 1, 0), (0, 0, 1) and (1, 0, 0). The matrix with rows (1, -1, 1), (0, 1, -1) and (0, 0, 1) is a two-sided inverse of B. The matrix D with rows (1, -1, 0), (-1, 1, -1) and (-1, 0, 0) equals the negative of C times the transpose of E times the transpose of that inverse, and C times the transpose of E plus D times the transpose of B is the zero matrix. The same sum with the zero matrix in place of D is not the zero matrix.",
       "source": [
         "dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md",
         "papers/core/mub6/mub6.md"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_left",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_right",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::d_formula",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::cross_zero",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::zero_cross_ne"
+      ],
       "rust": [],
       "imported_structure": [
         "Cardenes Wuttig and Tindall, finite-corner classification of CHM(6), arXiv:2608.18053v2, external Lean pin 57b03025"
       ],
-      "bottleneck": "MubFiniteCornerReduction.lean is not in this checkout; exclusion over every retained reconstruction is open, and finite fibres over continuous seeds give no finite global list.",
+      "bottleneck": "This record is that one integer block identity. It does not classify complex Hadamard matrices, does not list retained finite corners, and does not equate quartet existence with completion of an external reconstruction. The complex adjoint is not identified with this integer transpose. Exclusion over every retained reconstruction stays open. AuthorityEffect: None.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -38998,7 +39004,7 @@
       ],
       "output": "MUB6-FINITE-CORNER-REDUCTION",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "MubFiniteCornerReduction.lean is not in this checkout; exclusion over every retained reconstruction is open, and finite fibres over continuous seeds give no finite global list.",
+      "mechanism": "This record is that one integer block identity. It does not classify complex Hadamard matrices, does not list retained finite corners, and does not equate quartet existence with completion of an external reconstruction. The complex adjoint is not identified with this integer transpose. Exclusion over every retained reconstruction stays open. AuthorityEffect: None.",
       "source": [
         "dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md",
         "papers/core/mub6/mub6.md"
@@ -68853,17 +68859,25 @@
         "papers/core/mub6/mub6.md:70-75"
       ],
       "id": "TFQ-1261",
-      "lean4": [],
+      "lean4": [
+        "lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_left",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_right",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::d_formula",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::cross_zero",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::zero_cross_ne"
+      ],
       "local_id": "MUB6-FINITE-CORNER-REDUCTION",
       "name": "Reduction to retained finite-corner reconstructions",
-      "obligation": "MubFiniteCornerReduction.lean is not in this checkout; exclusion over every retained reconstruction is open, and finite fibres over continuous seeds give no finite global list.",
+      "obligation": "This record is that one integer block identity. It does not classify complex Hadamard matrices, does not list retained finite corners, and does not equate quartet existence with completion of an external reconstruction. The complex adjoint is not identified with this integer transpose. Exclusion over every retained reconstruction stays open. AuthorityEffect: None.",
       "parent_id": "TFQ-1260",
-      "python": [],
+      "python": [
+        "checks/independent/mub6-finite-corner-reduction.py::check"
+      ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
       "source_slice": "application_branches",
       "stage": "MUTUALLY_UNBIASED_BASES",
-      "summary": "Using the external finite-corner classification of single 6x6 complex Hadamard matrices, quartet existence in C^6 is equivalent to raw quartet completion of some retained finite-corner reconstruction with D = -C E* (B^-1)*.",
+      "summary": "For 3 by 3 integer matrices, let B have rows (1, 1, 0), (0, 1, 1) and (0, 0, 1), let E be the identity, and let C have rows (0, 1, 0), (0, 0, 1) and (1, 0, 0). The matrix with rows (1, -1, 1), (0, 1, -1) and (0, 0, 1) is a two-sided inverse of B. The matrix D with rows (1, -1, 0), (-1, 1, -1) and (-1, 0, 0) equals the negative of C times the transpose of E times the transpose of that inverse, and C times the transpose of E plus D times the transpose of B is the zero matrix. The same sum with the zero matrix in place of D is not the zero matrix.",
       "uuid": "99793369-e2c0-5875-971e-86fa98914e48"
     },
     {

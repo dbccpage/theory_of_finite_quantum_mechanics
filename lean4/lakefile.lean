@@ -1463,3 +1463,6 @@ lean_lib CampaignFspThetaTermComplexWeight where
 
 lean_lib CampaignMub6WeylHeisenbergD6 where
   roots := #[`CampaignMub6WeylHeisenbergD6]
+
+lean_lib CampaignMub6FiniteCornerReduction where
+  roots := #[`CampaignMub6FiniteCornerReduction]

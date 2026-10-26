@@ -7107,8 +7107,8 @@
       "stage": "MUTUALLY_UNBIASED_BASES",
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
-      "statement": "Using the external finite-corner classification of single 6x6 complex Hadamard matrices, quartet existence in C^6 is equivalent to raw quartet completion of some retained finite-corner reconstruction with D = -C E* (B^-1)*.",
-      "obligation": "MubFiniteCornerReduction.lean is not in this checkout; exclusion over every retained reconstruction is open, and finite fibres over continuous seeds give no finite global list.",
+      "statement": "For 3 by 3 integer matrices, let B have rows (1, 1, 0), (0, 1, 1) and (0, 0, 1), let E be the identity, and let C have rows (0, 1, 0), (0, 0, 1) and (1, 0, 0). The matrix with rows (1, -1, 1), (0, 1, -1) and (0, 0, 1) is a two-sided inverse of B. The matrix D with rows (1, -1, 0), (-1, 1, -1) and (-1, 0, 0) equals the negative of C times the transpose of E times the transpose of that inverse, and C times the transpose of E plus D times the transpose of B is the zero matrix. The same sum with the zero matrix in place of D is not the zero matrix.",
+      "obligation": "This record is that one integer block identity. It does not classify complex Hadamard matrices, does not list retained finite corners, and does not equate quartet existence with completion of an external reconstruction. The complex adjoint is not identified with this integer transpose. Exclusion over every retained reconstruction stays open. AuthorityEffect: None.",
       "imported_structure": [
         "Cardenes Wuttig and Tindall, finite-corner classification of CHM(6), arXiv:2608.18053v2, external Lean pin 57b03025"
       ],
@@ -7116,9 +7116,17 @@
         "MUB6-BOUNDED-BLOCK-QUARTET-EQUATIONS"
       ],
       "parent_record": "TFQ-1260",
-      "lean": [],
+      "lean": [
+        "lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_left",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_right",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::d_formula",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::cross_zero",
+        "lean4/CampaignMub6FiniteCornerReduction.lean::zero_cross_ne"
+      ],
       "rust": [],
-      "python": [],
+      "python": [
+        "checks/independent/mub6-finite-corner-reduction.py::check"
+      ],
       "external_witnesses": [
         "external:lean4/research_programs/mub6/MubFiniteCornerReduction.lean (source monorepo, not in this checkout)"
       ],
@@ -7126,7 +7134,7 @@
         "papers/core/mub6/mub6.md:485-518",
         "papers/core/mub6/mub6.md:70-75"
       ],
-      "audit": "Reported external replay; no local file to audit.",
+      "audit": "CampaignMub6FiniteCornerReduction.lean checks one integer 3 by 3 inverse and the forced block identity for that triple. The external finite-corner classification and any quartet equivalence stay outside the module.",
       "see_also": [],
       "uses": []
     },
