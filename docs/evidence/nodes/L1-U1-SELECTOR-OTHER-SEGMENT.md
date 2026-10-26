@@ -4,19 +4,19 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `OPEN`. Evidence grade: **E3**
 
 ## Statement
 
-> Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; finite fields/rings (unit circle of order p -+ 1, native table only), cyclotomic extensions, completion and continuity are not treated.
+> Pointer to QM_028 / QM_062 (owned by another segment): selection of C and U(1) from finite carriers is not established here. The only general fact proved in this repository for it is that the torsion of the unit Gaussian rationals {(x,y) in Q^2 : x^2+y^2=1} is exactly mu_4 (U1SelectorSegment.circle_torsion_iff), so every finite phase group inside Q(i) lies in mu_4; a general finite-field/ring classification, cyclotomic extensions, completion and continuity remain open. Separate modulo-7 result: On the integers modulo 7, with product (a, b) * (c, d) = (a*c - b*d, a*d + b*c), the pairs (x, y) with x*x + y*y = 1 are exactly the powers g^0 through g^7, in exponent order, for g = (2, 2): (1, 0), (2, 2), (0, 1), (5, 2), (6, 0), (5, 5), (0, 6) and (2, 5). The next power g^8 is (1, 0), and g^1 through g^7 all differ from (1, 0). The count 8 equals 7 + 1 and is not 4.
 
 ## Grade
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 20
-- distinct cited Lean declarations covered by a current replay receipt: 19
+- counted in-repo evidence files: 8
+- cited Lean, Rust or Python symbols found in their in-repo files: 38
+- distinct cited Lean declarations covered by a current replay receipt: 37
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 1
+- counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
+- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved.
+Selection of C and U(1) from finite carriers proper (finite fields/rings, cyclotomic extensions, completion, continuity) is not derived; the pointer target in QM_028 / QM_062 is unresolved. Only the explicit modulo-7 carrier and its stated operations are covered. The Nat subtraction encoding agrees with integer subtraction only on the bounded residue domain. Selection of C or U(1), general prime or ring classification, cyclotomic fields, completion and continuity remain open; the older Gaussian-rational torsion result is retained separately.
 
 ## Source status
 
@@ -44,6 +44,39 @@ Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, s
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
+
+### Lean: `lean4/CampaignL1U1SelectorOtherSegment.lean`
+
+- file: [lean4/CampaignL1U1SelectorOtherSegment.lean](../../../lean4/CampaignL1U1SelectorOtherSegment.lean)
+- sha256 (`bytes`): `2e1bf569100aacfe8ddc51540eafa0d198880599a0893ab62a8cc552f2fb815d`
+- cited in: node.lean, node.source, receipt dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json (CampaignL1U1SelectorOtherSegment), receipt dag/research/pr435_review_lean_replay.json (CampaignL1U1SelectorOtherSegment), record TFQ-1003
+- replay: `verified`
+  - receipt [dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json](../../../dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json) (module `CampaignL1U1SelectorOtherSegment`): recorded sha256 `2e1bf569100aacfe8ddc51540eafa0d198880599a0893ab62a8cc552f2fb815d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr435_review_lean_replay.json](../../../dag/research/pr435_review_lean_replay.json) (module `CampaignL1U1SelectorOtherSegment`): recorded sha256 `2e1bf569100aacfe8ddc51540eafa0d198880599a0893ab62a8cc552f2fb815d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build CampaignL1U1SelectorOtherSegment`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CampaignL1U1SelectorOtherSegment.allDistinct` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.allDistinct` |
+| `CampaignL1U1SelectorOtherSegment.earlier_ne_one` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.earlier_ne_one` |
+| `CampaignL1U1SelectorOtherSegment.eight` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.eight` |
+| `CampaignL1U1SelectorOtherSegment.eight_distinct` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.eight_distinct` |
+| `CampaignL1U1SelectorOtherSegment.g` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.g` |
+| `CampaignL1U1SelectorOtherSegment.isPower` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.isPower` |
+| `CampaignL1U1SelectorOtherSegment.mul` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.mul` |
+| `CampaignL1U1SelectorOtherSegment.norms` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.norms` |
+| `CampaignL1U1SelectorOtherSegment.not_axis` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.not_axis` |
+| `CampaignL1U1SelectorOtherSegment.solutions_iff` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.solutions_iff` |
+| `CampaignL1U1SelectorOtherSegment.step1` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step1` |
+| `CampaignL1U1SelectorOtherSegment.step2` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step2` |
+| `CampaignL1U1SelectorOtherSegment.step3` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step3` |
+| `CampaignL1U1SelectorOtherSegment.step4` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step4` |
+| `CampaignL1U1SelectorOtherSegment.step5` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step5` |
+| `CampaignL1U1SelectorOtherSegment.step6` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step6` |
+| `CampaignL1U1SelectorOtherSegment.step7` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step7` |
+| `CampaignL1U1SelectorOtherSegment.step8` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step8` |
+
+- counts toward the grade: yes
 
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
@@ -139,13 +172,34 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Python: `checks/independent/l1-u1-selector-other-segment.py`
+
+- file: [checks/independent/l1-u1-selector-other-segment.py](../../../checks/independent/l1-u1-selector-other-segment.py)
+- sha256 (`bytes`): `c7f59f135fe8d796c916b685b02e5a68f2afac7a23f72a93d093e0b89ad1be56`
+- cited in: node.source
+- counts toward the grade: yes
+
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md](../../../dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md)
-- sha256 (`lf-normalised`): `c1e7086fadfc47e382a61f8f6333e8b6ffc07cee51e2016c307fc92dfdbbc381`
+- sha256 (`lf-normalised`): `e3a5b9eff94ae18b1e34972539f7e6d3edb897f252d9d55b03f55017f2671a53`
 - generated view: listed, not counted
 - cited in: record TFQ-1003
 - counts toward the grade: no
+
+### Documents and data: `dag/derivations/independent/l1-u1-selector-other-segment.md`
+
+- file: [dag/derivations/independent/l1-u1-selector-other-segment.md](../../../dag/derivations/independent/l1-u1-selector-other-segment.md)
+- sha256 (`lf-normalised`): `346ca89694be4477f8ce22b0e45b77c216db3880dc7a22594eefd6e530c27f88`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/pr435_review_lean_replay.json`
+
+- file: [dag/research/pr435_review_lean_replay.json](../../../dag/research/pr435_review_lean_replay.json)
+- sha256 (`lf-normalised`): `06c11e32a7356a9ff0ac2158377110ba9947f5660f7ebcd8a86a93c5571e2b41`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/121_the_finite_qm_ingredient_ladder/qm_121_the_finite_qm_ingredient_ladder_claim_ledger.md`
 
