@@ -1,10 +1,10 @@
 # FQ-BELL-RATIONAL-VIOLATION-14-5
 
-Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `COMPUTATIONALLY_CHECKED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Five literal kernel anchors for the fixed admitted quantum matrices and arbitrary Nat-weighted assignment obstruction, plus three independently checked exact native cases and actual mutation rejections.
+> A rational density matrix with (3,4,5)-triangle observables has S_CHSH = 14/5 \> 2 while the four pair distributions have full support and admit no positive common joint law (full-support Bell tables require positivity, not support alone).
 
 ## Grade
 
@@ -15,12 +15,12 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
-None. Status and evidence are consistent under the rules in the overview.
+- `computational_no_runnable_test`: 0 in-repo Rust or Python symbol(s) cited, none a test. COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited.
 
 ## Imported structure
 
@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: Deriving Born/tensor structure, physical locality/setting independence, a complete formal arbitrary-rational-table transport theorem, or general probability-subtype operad coherence. The broader source statement is kept in pfp_review.prior_statement.
+Lean checks the scaled value 5 S = 14 and that no deterministic mixture with integer weights summing to 25 reaches the quantum value. A joint law with arbitrary rational weights, and the full-support claim, are native checks, not Lean.
 
 ## Source status
 
@@ -36,7 +36,7 @@ Pythagorean (3,4,5) CHSH violation 14/5 \> 2 and impossibility of non-negative j
 
 ## Review
 
-- PFP review: [dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/reviews/20261019_next_ten_audit/review_result.json](../../../dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/reviews/20261019_next_ten_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Five literal kernel anchors for the fixed admitted quantum matrices and arbitrary Nat-weighted assignment obstruction, plus three independently checked exact native cases and actual mutation rejections.
   - does not support: Deriving Born/tensor structure, physical locality/setting independence, a complete formal arbitrary-rational-table transport theorem, or general probability-subtype operad coherence.
   - next test: Deriving Born/tensor structure, physical locality/setting independence, a complete formal arbitrary-rational-table transport theorem, or general probability-subtype operad coherence.
@@ -144,8 +144,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `FQ-R-BELL-VIOLATION` `DERIVED_LEAN`: [FQ-BELL-CLASSICAL-JOINT-EXTENSION](FQ-BELL-CLASSICAL-JOINT-EXTENSION.md) (PROVED_LEAN), [FQ-DECLARED-QUANTUM-INTERFACE](FQ-DECLARED-QUANTUM-INTERFACE.md) (IMPORTED_ASSUMPTION), [FQ-TENSOR-LU-RIVAL-EXCLUSION](FQ-TENSOR-LU-RIVAL-EXCLUSION.md) (PROVED_LEAN)
+- `FQ-R-BELL-VIOLATION` `COMPUTED`: [FQ-BELL-CLASSICAL-JOINT-EXTENSION](FQ-BELL-CLASSICAL-JOINT-EXTENSION.md) (PROVED_LEAN), [FQ-DECLARED-QUANTUM-INTERFACE](FQ-DECLARED-QUANTUM-INTERFACE.md) (IMPORTED_ASSUMPTION), [FQ-TENSOR-LU-RIVAL-EXCLUSION](FQ-TENSOR-LU-RIVAL-EXCLUSION.md) (PROVED_LEAN)
 
 Outgoing (1):
 
-- `FQ-R-TSIRELSON` `CONDITIONAL_ON_IMPORT`: [FQ-TSIRELSON-SOS-Q-SQRT2](FQ-TSIRELSON-SOS-Q-SQRT2.md) (PROVED_LEAN)
+- `FQ-R-TSIRELSON` `CONDITIONAL_ON_IMPORT`: [FQ-TSIRELSON-SOS-Q-SQRT2](FQ-TSIRELSON-SOS-Q-SQRT2.md) (COMPUTATIONALLY_CHECKED)

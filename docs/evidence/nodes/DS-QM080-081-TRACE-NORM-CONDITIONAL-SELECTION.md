@@ -1,10 +1,10 @@
 # DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION
 
-Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Exact diagonal half-trace/total-variation identity is kernel checked; rescaling controls retain normalization ambiguity.
+> The half trace norm is the distinguishability metric under four imports: quantum interface M_n(C), trace-distance axioms (unitary invariance, classical total-variation reduction, homogeneity), CPTP compatibility and edge additivity. Does not survive removal of those imports.
 
 ## Grade
 
@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -31,7 +31,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: Supply spectral/matrix interface, unitary invariance, CPTP compatibility, edge additivity and the actual uniqueness proof before promoting to full quantum half trace norm. The broader source statement is kept in pfp_review.prior_statement.
+Not in Lean. The cited Lean is integer arithmetic and the 2x2 pinching inequality.
 
 ## Source status
 
@@ -39,7 +39,7 @@ Unmet after the PFP review: Supply spectral/matrix interface, unitary invariance
 
 ## Review
 
-- PFP review: [dag/results/DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION/reviews/20261019_resources_audit/review_result.json](../../../dag/results/DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION/reviews/20261019_resources_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact diagonal half-trace/total-variation identity is kernel checked; rescaling controls retain normalization ambiguity.
   - does not support: Supply spectral/matrix interface, unitary invariance, CPTP compatibility, edge additivity and the actual uniqueness proof before promoting to full quantum half trace norm.
   - next test: Supply spectral/matrix interface, unitary invariance, CPTP compatibility, edge additivity and the actual uniqueness proof before promoting to full quantum half trace norm.
@@ -103,7 +103,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `DS-R-TRACE-NORM-SELECTION` `DERIVED_LEAN`: [DS-CPTP-COMPLETE-POSITIVITY-IMPORT](DS-CPTP-COMPLETE-POSITIVITY-IMPORT.md) (IMPORTED_ASSUMPTION), [DS-QM081-CPTP-MONOTONE-NOT-SELECTING](DS-QM081-CPTP-MONOTONE-NOT-SELECTING.md) (PROVED_LEAN)
+- `DS-R-TRACE-NORM-SELECTION` `GAP_NO_DERIVATION`: [DS-CPTP-COMPLETE-POSITIVITY-IMPORT](DS-CPTP-COMPLETE-POSITIVITY-IMPORT.md) (IMPORTED_ASSUMPTION), [DS-QM081-CPTP-MONOTONE-NOT-SELECTING](DS-QM081-CPTP-MONOTONE-NOT-SELECTING.md) (PROVED_LEAN)
 
 Outgoing (0):
 

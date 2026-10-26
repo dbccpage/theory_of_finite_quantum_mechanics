@@ -30,9 +30,7 @@ Selection of a declared quantum model or readout from primitive difference stays
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CoupledRelationalProjectors.lean::QuantumMechanics.CoupledRelationalProjectors.coupled_bipartite_and_tripartite_relational_master_certificate`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_prim_to_qm_selection_finite_quotient_vs_continuum_gap`
-- `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure`
 - `lean4/CampaignFqPrimToQmSelection.lean::quad_weights`
 - `lean4/CampaignFqPrimToQmSelection.lean::quart_weights`
 - `lean4/CampaignFqPrimToQmSelection.lean::normalized_first_weights_differ`

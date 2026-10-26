@@ -10,9 +10,9 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `DEFINITION`. Evid
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 5
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
-- distinct cited Lean declarations covered by a current replay receipt: 4
+- counted in-repo evidence files: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 2
+- distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -46,22 +46,6 @@ REVIEWED_DECLARATIONS (carrier_contract.yaml); minimality_proved: false; all_tar
 ## Evidence items
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
-
-### Lean: `lean4/DerivationDagQMClosure.lean`
-
-- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
-- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
-- cited in: node.lean, record TFQ-1006
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build DerivationDagQMClosure`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation` |
-| `QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure` |
-
-- counts toward the grade: yes
 
 ### Lean: `lean4/H052CyclotomicTowerDirected.lean`
 
@@ -110,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md](../../../dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md)
-- sha256 (`lf-normalised`): `9ebce71f008a50f9578bbded6858d4687aeb144c520deaf8530f51e45f57cc31`
+- sha256 (`lf-normalised`): `f99630e2edfc95bbc2973a4a2969557a076d9a252aa051d4e16b8257c3317648`
 - generated view: listed, not counted
 - cited in: record TFQ-1006
 - counts toward the grade: no
@@ -138,21 +122,21 @@ Outgoing (18):
 
 - `APP-R-DFM-GROUP-CONNECTION` `CONDITIONAL_ON_IMPORT`: [DFM-GROUP-CONNECTION](DFM-GROUP-CONNECTION.md) (DEFINITION)
 - `DS-R-GRADED-PATHSUM-FROM-CARRIER` `COMPUTED`: [DS-QM030-GRADED-PATHSUM](DS-QM030-GRADED-PATHSUM.md) (COMPUTATIONALLY_CHECKED)
-- `DS-R-PRODUCT-DEFECT` `DERIVED_LEAN`: [DS-QM070-PRODUCT-NONFACTORIZATION](DS-QM070-PRODUCT-NONFACTORIZATION.md) (PROVED_LEAN)
-- `DS-R-STOCHASTIC-KERNEL` `DERIVED_LEAN`: [DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL](DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL.md) (PROVED_LEAN)
-- `DS-R-TRACE-NORM-CORE-FROM-CARRIER` `DERIVED_LEAN`: [DS-QM080-IMPORT-FREE-TRACE-NORM-CORE](DS-QM080-IMPORT-FREE-TRACE-NORM-CORE.md) (PROVED_LEAN)
+- `DS-R-PRODUCT-DEFECT` `COMPUTED`: [DS-QM070-PRODUCT-NONFACTORIZATION](DS-QM070-PRODUCT-NONFACTORIZATION.md) (COMPUTATIONALLY_CHECKED)
+- `DS-R-STOCHASTIC-KERNEL` `COMPUTED`: [DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL](DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL.md) (COMPUTATIONALLY_CHECKED)
+- `DS-R-TRACE-NORM-CORE-FROM-CARRIER` `COMPUTED`: [DS-QM080-IMPORT-FREE-TRACE-NORM-CORE](DS-QM080-IMPORT-FREE-TRACE-NORM-CORE.md) (COMPUTATIONALLY_CHECKED)
 - `DS-R-UNGRADED-COUNT` `COMPUTED`: [DS-QM030-UNGRADED-OVERCOUNT](DS-QM030-UNGRADED-OVERCOUNT.md) (COMPUTATIONALLY_CHECKED)
 - `FQ-R-CARRIER-TO-INTERFACE` `CONDITIONAL_ON_IMPORT`: [FQ-DECLARED-QUANTUM-INTERFACE](FQ-DECLARED-QUANTUM-INTERFACE.md) (IMPORTED_ASSUMPTION)
 - `FQ-R-CONTINUUM-HILBERT-LIFT-CONSTRUCTION` `CONDITIONAL_ON_IMPORT`: [FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION](FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION.md) (PROVED_LEAN)
-- `FQ-R-DYN-DICHOTOMY` `DERIVED_LEAN`: [FQ-DISCRETE-DYNAMICS-DICHOTOMY](FQ-DISCRETE-DYNAMICS-DICHOTOMY.md) (PROVED_LEAN)
+- `FQ-R-DYN-DICHOTOMY` `COMPUTED`: [FQ-DISCRETE-DYNAMICS-DICHOTOMY](FQ-DISCRETE-DYNAMICS-DICHOTOMY.md) (COMPUTATIONALLY_CHECKED)
 - `FQ-R-EMBEDDING` `COMPUTED`: [FQ-GAP-REAL-EMBEDDING-CHOICE](FQ-GAP-REAL-EMBEDDING-CHOICE.md) (COMPUTATIONALLY_CHECKED)
 - `FQ-R-ENTROPY` `DERIVED_LEAN`: [FQ-ENTROPY-DICHOTOMY-BAKER](FQ-ENTROPY-DICHOTOMY-BAKER.md) (PROVED_LEAN)
-- `FQ-R-EVERETT` `DERIVED_LEAN`: [FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY](FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY.md) (PROVED_LEAN)
+- `FQ-R-EVERETT` `COMPUTED`: [FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY](FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY.md) (COMPUTATIONALLY_CHECKED)
 - `FQ-R-GAP-CONTINUUM` `CONDITIONAL_ON_IMPORT`: [FQ-GAP-CONTINUUM-HILBERT-LIFT](FQ-GAP-CONTINUUM-HILBERT-LIFT.md) (CONDITIONAL)
-- `FQ-R-QM207-231` `DERIVED_LEAN`: [FQ-QM207-231-FINITE-MAP-CONTROLS](FQ-QM207-231-FINITE-MAP-CONTROLS.md) (PROVED_LEAN)
-- `FQ-R-SORKIN-CLASS` `DERIVED_LEAN`: [FQ-SORKIN-READOUT-CLASS-QM208](FQ-SORKIN-READOUT-CLASS-QM208.md) (PROVED_LEAN)
-- `FQ-R-TSIRELSON` `CONDITIONAL_ON_IMPORT`: [FQ-TSIRELSON-SOS-Q-SQRT2](FQ-TSIRELSON-SOS-Q-SQRT2.md) (PROVED_LEAN)
-- `FQ-R-U1` `DERIVED_LEAN`: [FQ-U1-TRANSPORT-N-TORSION](FQ-U1-TRANSPORT-N-TORSION.md) (PROVED_LEAN)
+- `FQ-R-QM207-231` `COMPUTED`: [FQ-QM207-231-FINITE-MAP-CONTROLS](FQ-QM207-231-FINITE-MAP-CONTROLS.md) (COMPUTATIONALLY_CHECKED)
+- `FQ-R-SORKIN-CLASS` `COMPUTED`: [FQ-SORKIN-READOUT-CLASS-QM208](FQ-SORKIN-READOUT-CLASS-QM208.md) (COMPUTATIONALLY_CHECKED)
+- `FQ-R-TSIRELSON` `CONDITIONAL_ON_IMPORT`: [FQ-TSIRELSON-SOS-Q-SQRT2](FQ-TSIRELSON-SOS-Q-SQRT2.md) (COMPUTATIONALLY_CHECKED)
+- `FQ-R-U1` `COMPUTED`: [FQ-U1-TRANSPORT-N-TORSION](FQ-U1-TRANSPORT-N-TORSION.md) (COMPUTATIONALLY_CHECKED)
 - `FQ-R-WEYL` `DERIVED_LEAN`: [FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY](FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY.md) (PROVED_LEAN)
 
 No incoming route.

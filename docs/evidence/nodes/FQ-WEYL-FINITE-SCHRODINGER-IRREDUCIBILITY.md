@@ -4,7 +4,7 @@ Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_
 
 ## Statement
 
-> Reviewed scope: Exact d=3 Weyl basis reconstruction and commutator controls, plus the generic conditional scalar-commutant theorem and literal cubic-root algebra.
+> For every n \>= 1 and every field K, an (n+1) x (n+1) matrix that commutes with a diagonal clock matrix with distinct eigenvalues and with the cyclic shift is scalar. In particular, for odd prime d the clock and shift matrices over Q(zeta_d) have scalar commutant.
 
 ## Grade
 
@@ -29,7 +29,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Unmet after the PFP review: Transport the array model to field/matrix semantics and prove representation irreducibility for all admitted odd primes. Primitive-root existence, seed selection and infinite-dimensional results are not derived. The broader source statement is kept in pfp_review.prior_statement.
+Stated in WeylCommutant.lean (clock_shift_commutant_scalar). Irreducibility of the Schrodinger representation follows by Schur's lemma, and the Weyl commutator X^a Z^b X^-a Z^-b = omega^(-ab) I is a separate computation; neither is a cited Lean declaration. No statement for infinite dimension.
 
 ## Source status
 
@@ -100,7 +100,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1020_fq_weyl_finite_schrodinger_irreducibility.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1020_fq_weyl_finite_schrodinger_irreducibility.md](../../../dag/derivations/12_finite_qm_structure/tfq_1020_fq_weyl_finite_schrodinger_irreducibility.md)
-- sha256 (`lf-normalised`): `23b605c786fab2ff7ef3b12c2d095b4d9622b93e4d4740f446cd392046f4db92`
+- sha256 (`lf-normalised`): `425c1403f9c92eb56bcf8e07c8518c2a16fd32ebb031c39aefb394c32cf5462f`
 - generated view: listed, not counted
 - cited in: record TFQ-1020
 - counts toward the grade: no
@@ -120,4 +120,4 @@ Incoming (1):
 
 Outgoing (1):
 
-- `FQ-R-COMMUTATOR` `DERIVED_LEAN`: [FQ-COMMUTATOR-TRACE-OBSTRUCTION](FQ-COMMUTATOR-TRACE-OBSTRUCTION.md) (PROVED_LEAN)
+- `FQ-R-COMMUTATOR` `DERIVED_PROSE`: [FQ-COMMUTATOR-TRACE-OBSTRUCTION](FQ-COMMUTATOR-TRACE-OBSTRUCTION.md) (PROVED_PROSE)

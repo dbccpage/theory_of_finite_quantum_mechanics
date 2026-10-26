@@ -1,6 +1,6 @@
 # [TFQ-1005] L1-QM003-C17-COMPOSABLE-FACTORIZATION
 
-> **Stage**: `L1_TO_L2` | **Status**: `PROVED_LEAN` | **DAG node**: `L1-QM003-C17-COMPOSABLE-FACTORIZATION` (`PROVED_LEAN`)  
+> **Stage**: `L1_TO_L2` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `L1-QM003-C17-COMPOSABLE-FACTORIZATION` (`COMPUTATIONALLY_CHECKED`)  
 > **UUID**: `df80c035-84c4-519e-ac15-4e97875e7b37`  
 > **Parent Derivation**: [TFQ-0355](../07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md)
 
@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Reviewed scope: Exact stochastic composition/action equality and diagonal density presentation, plus scalar matrix multiplication identities and the Hadamard defect in Lean.
+Diagonal Markov-composable channels factor through the residual density carrier (qm003_c17_diagonal_composable_factorization), while Hadamard off-diagonal coherence separates matrix composition from diagonal multiplication.
 
 ### Governing Obligation
-Unmet after the PFP review: Prove source residual-density factorization on its full carrier and channel class. The source diagonal multiplication anchor alone does not prove it. The broader source statement is kept in pfp_review.prior_statement.
+Lean states the 2x2 case: products of diagonal 2x2 integer matrices are diagonal with entrywise products, and the Hadamard matrix gives an explicit off-diagonal counterexample. General dimension and general Markov kernels are not in Lean.
 
 ### Source Status
 QM_003 C17 diagonal composable factorization and off-diagonal coherence boundary mechanized in DerivationDagQMClosure.lean

@@ -10,10 +10,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Reviewed scope: Exact d=3 Weyl basis reconstruction and commutator controls, plus the generic conditional scalar-commutant theorem and literal cubic-root algebra.
+For every n >= 1 and every field K, an (n+1) x (n+1) matrix that commutes with a diagonal clock matrix with distinct eigenvalues and with the cyclic shift is scalar. In particular, for odd prime d the clock and shift matrices over Q(zeta_d) have scalar commutant.
 
 ### Governing Obligation
-Unmet after the PFP review: Transport the array model to field/matrix semantics and prove representation irreducibility for all admitted odd primes. Primitive-root existence, seed selection and infinite-dimensional results are not derived. The broader source statement is kept in pfp_review.prior_statement.
+Stated in WeylCommutant.lean (clock_shift_commutant_scalar). Irreducibility of the Schrodinger representation follows by Schur's lemma, and the Weyl commutator X^a Z^b X^-a Z^-b = omega^(-ab) I is a separate computation; neither is a cited Lean declaration. No statement for infinite dimension.
 
 ### Source Status
 paper s1.3 finite Weyl construction from an anchored seed; clock/shift commutant scalar

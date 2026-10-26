@@ -1,10 +1,10 @@
 # DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE
 
-Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_LEAN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
-> Reviewed scope: Exact finite backlog trajectories and declared gate controls are checked; lambda\<=mu implies non-increasing natural backlog in Lean.
+> If declared threshold hypotheses hold at the target workload and p_pair -\> 0, the projection-obstruction conditional no-go does not follow. The threshold theorem itself is cited as standard, not re-proved. The rate inequality mu_repair \>= lambda_proj at scale is open; physical scalability is not claimed.
 
 ## Grade
 
@@ -15,8 +15,8 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 - distinct cited Lean declarations covered by a current replay receipt: 3
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 1
-- recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
+- recorded statement-match reviews that qualify: 0
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test) and a recorded statement-match review
 
 ## Flags
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Unmet after the PFP review: Supply actual workload/noise/overhead assumptions, scaled repair rates and a p_pair convergence argument or the correctly cited threshold theorem. This toy queue is not a threshold theorem. The broader source statement is kept in pfp_review.prior_statement.
+A conditional record citing the standard threshold theorem. The cited Lean evaluates a declared Boolean certificate; the rate inequality at scale is open.
 
 ## Source status
 
@@ -36,7 +36,7 @@ QM-101-C1..C10 threshold repair-image monotonicity (B subseteq B' implies uncorr
 
 ## Review
 
-- PFP review: [dag/results/DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `statement_narrowed`; prior status `PROVED_LEAN`; qualifies for E4: yes.
+- PFP review: [dag/results/DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE/reviews/20261019_boundaries_audit/review_result.json](../../../dag/results/DS-QM101-THRESHOLD-AS-CONDITIONAL-REPAIR-CERTIFICATE/reviews/20261019_boundaries_audit/review_result.json); file present and sha256 matches the node's record: yes; verdict `scoped_result_or_obstruction_reviewed`; scope effect `status_lowered`; prior status `PROVED_LEAN`; qualifies for E4: no.
   - narrowest claim: Exact finite backlog trajectories and declared gate controls are checked; lambda\<=mu implies non-increasing natural backlog in Lean.
   - does not support: Supply actual workload/noise/overhead assumptions, scaled repair rates and a p_pair convergence argument or the correctly cited threshold theorem. This toy queue is not a threshold theorem.
   - next test: Supply actual workload/noise/overhead assumptions, scaled repair rates and a p_pair convergence argument or the correctly cited threshold theorem. This toy queue is not a threshold theorem.
@@ -111,7 +111,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `DS-R-THRESHOLD` `DERIVED_LEAN`: [DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE](DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE.md) (PROVED_LEAN)
+- `DS-R-THRESHOLD` `GAP_NO_DERIVATION`: [DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE](DS-QM061-L1-CANNOT-COMPUTE-INTERFERENCE.md) (PROVED_LEAN)
 
 Outgoing (6):
 
@@ -119,5 +119,5 @@ Outgoing (6):
 - `APP-R-QCV-IMPORT-THRESHOLD-THEOREM` `CONDITIONAL_ON_IMPORT`: [QCV-IMPORT-THRESHOLD-THEOREM](QCV-IMPORT-THRESHOLD-THEOREM.md) (IMPORTED_ASSUMPTION)
 - `APP-R-QCV-QUESTION-SELF-LIMITING-REPAIR` `GAP_NO_DERIVATION`: [QCV-QUESTION-SELF-LIMITING-REPAIR](QCV-QUESTION-SELF-LIMITING-REPAIR.md) (OPEN)
 - `APP-R-QCV-SELF-OBSTRUCTION-MODEL` `DERIVED_PROSE`: [QCV-SELF-OBSTRUCTION-MODEL](QCV-SELF-OBSTRUCTION-MODEL.md) (DEFINITION)
-- `DS-R-CAPACITY` `DERIVED_LEAN`: [DS-QM102-SYNDROME-CAPACITY-BOUND](DS-QM102-SYNDROME-CAPACITY-BOUND.md) (PROVED_LEAN)
+- `DS-R-CAPACITY` `COMPUTED`: [DS-QM102-SYNDROME-CAPACITY-BOUND](DS-QM102-SYNDROME-CAPACITY-BOUND.md) (COMPUTATIONALLY_CHECKED)
 - `DS-R-PACKET` `DERIVED_LEAN`: [DS-QM103-SHOW-THE-PACKET-PROTOCOL](DS-QM103-SHOW-THE-PACKET-PROTOCOL.md) (DEFINITION)
