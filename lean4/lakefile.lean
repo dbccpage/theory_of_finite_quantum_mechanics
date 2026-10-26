@@ -1498,3 +1498,7 @@ lean_lib CampaignLqgProjectiveLimit where
 -- Reviewed campaign module; non-default target.
 lean_lib CampaignL1U1SelectorOtherSegment where
   roots := #[`CampaignL1U1SelectorOtherSegment]
+
+-- Reviewed campaign module; non-default target.
+lean_lib CampaignOpsLeanGap where
+  roots := #[`CampaignOpsLeanGap]

@@ -1,0 +1,355 @@
+{
+  "AuthorityEffect": "None",
+  "pull_request": 439,
+  "original_head": "aa31adc5533515a5a5987a3afeb41eed8a746370",
+  "integrated_main": "867c667201efccec701ce3d4e6a418aece5dde96",
+  "source": "lean4/CampaignOpsLeanGap.lean",
+  "source_sha256": "28ba5a6e40e191c1060bd6bf67d33c795a5fdf937e95ed18b894e67649306414",
+  "score": "L1D",
+  "node_status": "OPEN",
+  "only_changed_node": "OPS-LEAN-GAP",
+  "all_routes_unchanged": true,
+  "prior_proof_pins_unchanged": true,
+  "new_pin_applied": false,
+  "source_checkers_and_scope": "The original Lean bytes are unchanged. The independent checker and source-bound companion are repaired; original broad research target and prior citations are retained.",
+  "checks": {
+    "sync-check-0": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pfp_results.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.237,
+      "output": "pfp results synchronized\n"
+    },
+    "sync-check-1": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.461,
+      "output": "unified DAG synchronized\n"
+    },
+    "sync-check-2": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_application_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.276,
+      "output": "application branches synchronized\n"
+    },
+    "sync-check-3": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_pregenesis_to_wdp.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.518,
+      "output": "pregenesis-to-wdp fragment synchronized\n"
+    },
+    "sync-check-4": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_frontier_branches.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.346,
+      "output": "frontier branches synchronized\n"
+    },
+    "sync-check-5": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_genesis_to_higher.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.29,
+      "output": "genesis-to-higher synchronized\n"
+    },
+    "sync-check-6": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_foc035_observer_presheaf.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.308,
+      "output": "foc035 observer presheaf synchronized\n"
+    },
+    "invariants": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/sync_unified_dag.py",
+        "--invariants"
+      ],
+      "exit_code": 0,
+      "seconds": 0.164,
+      "output": "unified invariants failures=0\n"
+    },
+    "views": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/render_dag_views.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.118,
+      "output": "views match derivation_dag.json\n"
+    },
+    "validator": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/validate_derivation_dag.py",
+        "--no-files"
+      ],
+      "exit_code": 0,
+      "seconds": 1.198,
+      "output": "nodes=925 routes=934 records=977 failures=0\n"
+    },
+    "facts-check": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_readme_facts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 21.72,
+      "output": "README facts current\n"
+    },
+    "status": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/build_status.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 6.239,
+      "output": "generated status files are current (16 files checked)\n"
+    },
+    "receipt-check": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/research/repin_tensor_receipts.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.118,
+      "output": "receipts current\n"
+    },
+    "evidence-check": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "dag/evidence/build_evidence.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 8.021,
+      "output": "evidence map current\n"
+    },
+    "scope": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "867c667201efccec701ce3d4e6a418aece5dde96"
+      ],
+      "exit_code": 0,
+      "seconds": 3.799,
+      "output": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 2,\n    \"valid_contracts_and_scores\": 2,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 2\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 1,\n      \"Symbolic/Formal\": 1\n    },\n    \"completed_scores\": 2,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 2\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since 867c667201efccec701ce3d4e6a418aece5dde96 (merge base e2caf73fa532), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n"
+    },
+    "history": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/contract_scores.py",
+        "check",
+        "--changed-since",
+        "867c667201efccec701ce3d4e6a418aece5dde96"
+      ],
+      "exit_code": 0,
+      "seconds": 3.616,
+      "output": "{\n  \"originals\": null,\n  \"combined_files\": 3,\n  \"all_passed\": true,\n  \"errors\": [],\n  \"scope\": \"changed files only; the rest of the tree was not read\"\n}\n"
+    },
+    "overclaim": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/overclaim_scan.py",
+        "--changed-since",
+        "867c667201efccec701ce3d4e6a418aece5dde96",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "seconds": 6.048,
+      "output": "overclaim_scan: scope=changes since 867c667201efccec701ce3d4e6a418aece5dde96 (merge base e2caf73fa532); HIGH=0 MEDIUM=0 LOW=8\n"
+    },
+    "tests": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "dag/test_tensor_countermodel_receipt.py",
+        "dag/test_tensor_measurement_receipt.py",
+        "dag/test_application_branches.py",
+        "dag/test_frontier_branches.py",
+        "dag/test_genesis_to_higher.py",
+        "dag/test_foc035_observer_presheaf.py",
+        "dag/evidence/test_evidence.py",
+        "scripts/test_governance_policy.py",
+        "scripts/test_overclaim_scan.py",
+        "scripts/auto/test_auto_checks.py",
+        "dag/test_unified_dag.py",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "seconds": 27.021,
+      "output": "........................................................................ [ 37%]\n........................................................................ [ 75%]\n...............................................                          [100%]\n191 passed in 26.47s\n"
+    },
+    "full-history": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/contract_scores.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "seconds": 13.179,
+      "output": "{\n  \"originals\": 0,\n  \"combined_files\": 9044,\n  \"all_passed\": true,\n  \"errors\": []\n}\n"
+    },
+    "anti-pattern": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/auto/anti_pattern_lint.py",
+        "--changed-since",
+        "867c667201efccec701ce3d4e6a418aece5dde96"
+      ],
+      "exit_code": 0,
+      "seconds": 0.676,
+      "output": "anti_pattern_lint: 0 HIGH, 0 MEDIUM, 0 LOW (8 changed .lean/.py files since 867c667201efccec701ce3d4e6a418aece5dde96 (Lean rules: added lines))\n"
+    },
+    "estate": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/auto/estate_audit.py",
+        "skills"
+      ],
+      "exit_code": 0,
+      "seconds": 0.084,
+      "output": "[LOW] MISSING_PATH .claude/skills/audit/SKILL.md:42: cited path .agents/agents/ does not exist\n[LOW] MISSING_PATH .claude/skills/audit/SKILL.md:42: cited path .claude/agents/ does not exist\n[LOW] MISSING_PATH .claude/skills/overclaim-hunter/SKILL.md:37: cited path docs/overclaim/report.md does not exist\nestate_audit: 0 HIGH, 0 MEDIUM, 3 LOW (13 skills)\n"
+    },
+    "readme-tests": {
+      "command": [
+        "/workspace/.cloud-setup/venv/bin/python",
+        "-I",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "dag/test_readme_facts.py",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "seconds": 6.671,
+      "output": ".....                                                                    [100%]\n5 passed in 6.44s\n"
+    },
+    "governance": {
+      "command": [
+        "/workspace/continuum-two/governance-target/release/governance-check",
+        "--root",
+        "/workspace/theory_of_finite_quantum_mechanics",
+        "check",
+        "--changed-since",
+        "867c667201efccec701ce3d4e6a418aece5dde96"
+      ],
+      "exit_code": 1,
+      "seconds": 1.359,
+      "output": "changed since 867c667201efccec701ce3d4e6a418aece5dde96 (e2caf73fa5321117fc93c8fbdd9ea39a52f38e04): 166 paths\nchecked 8328: 180 pass, 8127 grandfathered, 20 boilerplate, 1 failed\nFAIL lean4/CampaignOpsLeanGap.lean (new or not grandfathered)\n  lean4/CampaignOpsLeanGap.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L1D\n"
+    }
+  },
+  "temporary_exact_pin_simulation": {
+    "command": [
+      "/workspace/continuum-two/governance-target/release/governance-check",
+      "--root",
+      "/workspace/theory_of_finite_quantum_mechanics",
+      "check",
+      "--changed-since",
+      "867c667201efccec701ce3d4e6a418aece5dde96"
+    ],
+    "exit_code": 0,
+    "seconds": 1.461,
+    "output": "changed since 867c667201efccec701ce3d4e6a418aece5dde96 (e2caf73fa5321117fc93c8fbdd9ea39a52f38e04): 166 paths\nchecked 8328: 181 pass, 8127 grandfathered, 20 boilerplate, 0 failed\n"
+  },
+  "acceptance_boundary": "Only the new proof capability-floor failure remains. The tested exact-source pin is proposed, not authorized or applied."
+}

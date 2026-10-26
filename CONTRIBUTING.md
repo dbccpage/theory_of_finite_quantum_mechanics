@@ -131,3 +131,5 @@ PR #433's exact Lean proof hash retains L3D and the original OPEN target under t
 PR #434 applies the other exact Lean hash from the user's two-proof approval, retaining L3D and the original LQG OPEN target. The supplied-family probability extension does not derive physical LQG continuum data. See `dag/research/approved_pr_434_continuum_exception_2026_10_26.json`.
 
 PR #435 retains L2D and its original OPEN target under the user-approved exact source pin in `dag/research/approved_pr435_exact_pin_20261026.json`.
+
+PR #439 retains L1D and its original OPEN target under the user-approved exact source pin in `dag/research/approved_pr439_exact_pin_20261026.json`.
