@@ -20,5 +20,3 @@ Record the build's exit status first; only a build that exited 0 may contribute 
 ## Removes
 
 [AP_MD_022_axiom_lines_replace_failed_build](../../anti/markdown/AP_MD_022_axiom_lines_replace_failed_build.md). Applying this pattern leaves the anti-pattern's signature empty for the change it covers; it does not certify the rest of the file.
-
-Adapted from the_symbol_game card HP_MD_022_lake_exit_before_axiom_lines.md.

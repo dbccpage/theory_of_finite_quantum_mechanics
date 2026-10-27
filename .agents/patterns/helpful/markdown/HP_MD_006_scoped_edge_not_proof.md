@@ -20,5 +20,3 @@ Give a route the status its weakest input allows: GAP_NO_DERIVATION or CONDITION
 ## Removes
 
 [AP_MD_006_unchecked_edge_as_proof](../../anti/markdown/AP_MD_006_unchecked_edge_as_proof.md). Applying this pattern leaves the anti-pattern's signature empty for the change it covers; it does not certify the rest of the file.
-
-Adapted from the_symbol_game card HP_MD_006_scoped_edge_not_proof.md.

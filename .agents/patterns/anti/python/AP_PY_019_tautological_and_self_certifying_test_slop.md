@@ -27,5 +27,3 @@ Mechanical check: `scripts/auto/anti_pattern_lint.py` rule AP_PY_019 (an assert 
 ## Dual healthy pattern
 
 [HP_PY_019_tests_exercise_the_code](../../helpful/python/HP_PY_019_tests_exercise_the_code.md)
-
-Adapted from the_symbol_game card AP_PY_019_tautological_and_self_certifying_test_slop.md. The source's witnesses are the_symbol_game history and are not repeated here.

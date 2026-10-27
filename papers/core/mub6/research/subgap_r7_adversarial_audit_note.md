@@ -3,8 +3,7 @@
 > **AuthorityEffect**: None  
 > **Epistemic Firewall**:
 > $$\boxed{\text{stated region only; mints no authority}}$$
-> **Audit Locus**: Woland Reality Swarm (Apartment 50, the city / Yershalaim Chamber)  
-> **Primary Target**: ``omega_engine_projects/mub6/scripts/compute_r7_singular_segre_sos.py``
+> **Primary Target**: `papers/core/mub6/scripts/compute_r7_singular_segre_sos.py`
 
 ---
 
@@ -14,7 +13,7 @@ In `compute_r7_singular_segre_sos.py`, an explicit polynomial identity:
 $$-1 = h_{\text{segre}} f_{\text{segre}} + \sum_{k \in \{a,b,c,d\}} h_k f_k + \sigma_0 + \sigma_1 g_{\text{sep}}$$
 was presented as a certified Stengle Positivstellensatz refutation of non-catalog singular Segre cusps on the corner subvariety $\{P_{\text{corner}} = 0\}$ in dimension 6.
 
-Koroviev and the Woland examination council subjected this identity to an adversarial reality audit to determine whether it provides a genuine semi-algebraic non-existence certificate for points on the complex Hadamard variety $V(I_{55}) \cap \{P_{\text{corner}} = 0\}$.
+This note audits the identity to determine whether it provides a genuine semi-algebraic non-existence certificate for points on the complex Hadamard variety $V(I_{55}) \cap \{P_{\text{corner}} = 0\}$.
 
 The finding of this audit is decisive:
 **The identity is an exact algebraic telescoping identity in $\mathbb{Q}[a,b,c,d]$ that reduces to $-1$, but it provides zero elimination power against points on the algebraic variety $V(f_{\text{segre}}, f_a, f_b, f_c, f_d)$.**

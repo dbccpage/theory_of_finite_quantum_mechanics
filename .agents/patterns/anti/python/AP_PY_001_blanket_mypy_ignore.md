@@ -26,5 +26,3 @@ Mechanical check: `scripts/auto/anti_pattern_lint.py` rule AP_PY_001 (LOW).
 ## Dual healthy pattern
 
 [HP_PY_001_scoped_mypy_overrides](../../helpful/python/HP_PY_001_scoped_mypy_overrides.md)
-
-Adapted from the_symbol_game card AP_PY_001_blanket_mypy_ignore.md. The source's witnesses are the_symbol_game history and are not repeated here.

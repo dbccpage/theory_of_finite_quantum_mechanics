@@ -27,5 +27,3 @@ Mechanical check: `scripts/auto/anti_pattern_lint.py` rule AP_LN_001 (added line
 ## Dual healthy pattern
 
 [HP_LN_001_zero_sorry_axiom_allowlist](../../helpful/lean4/HP_LN_001_zero_sorry_axiom_allowlist.md)
-
-Adapted from the_symbol_game card AP_LN_001_unmechanized_sorry_proof_claim.md. The source's witnesses are the_symbol_game history and are not repeated here.

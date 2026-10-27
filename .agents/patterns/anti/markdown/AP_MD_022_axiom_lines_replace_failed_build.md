@@ -26,5 +26,3 @@ Mechanical check: none; read by hand.
 ## Dual healthy pattern
 
 [HP_MD_022_build_exit_before_axiom_lines](../../helpful/markdown/HP_MD_022_build_exit_before_axiom_lines.md)
-
-Adapted from the_symbol_game card AP_MD_022_axiom_lines_replace_failed_olean.md. The source's witnesses are the_symbol_game history and are not repeated here.

@@ -2,7 +2,6 @@
 
 > **AuthorityEffect**: None  
 > **Epistemic Firewall**:
-> **Locus**: Woland Reality Swarm (Apartment 50, the city / Yershalaim Chamber)  
 > **Date**: 2026-10-09  
 > **References**: Matolcsi–Matszangosz–Varga–Weiner (2025, arXiv:2503.14752, Conjecture 2 & Proposition 4.2)
 

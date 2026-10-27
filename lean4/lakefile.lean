@@ -914,7 +914,7 @@ lean_lib L1SectorSymmetry where
     `L1SectorSymmetry
   ]
 
-lean_lib FableGleasonRun2 where
+lean_lib BornGaussianFrames where
   roots := #[`BornGaussianRationalFrameObstruction, `BornGaussianFrameRays]
 
 -- FQ-GAP-BORN-UNIQUENESS-GLEASON (frame functions on all rational rays of Q^3 and the

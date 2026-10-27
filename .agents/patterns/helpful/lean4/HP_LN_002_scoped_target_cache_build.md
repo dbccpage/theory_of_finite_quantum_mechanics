@@ -21,5 +21,3 @@ Fetch the cache, then build only the module that is cited.
 ## Removes
 
 [AP_LN_002_unconstrained_lake_mathlib_rebuild](../../anti/lean4/AP_LN_002_unconstrained_lake_mathlib_rebuild.md). Applying this pattern leaves the anti-pattern's signature empty for the change it covers; it does not certify the rest of the file.
-
-Adapted from the_symbol_game card HP_LN_002_scoped_target_cache_build.md.

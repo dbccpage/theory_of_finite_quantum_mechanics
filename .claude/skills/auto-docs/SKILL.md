@@ -5,10 +5,8 @@ description: Check that the documentation a change touches still matches the rep
 
 # Docs check
 
-**AuthorityEffect:** None. Imported from the_symbol_game `auto-docs`, adapted. The source wrote session logs into a
-documentation tree of its own and ran a comment-slop router whose module is absent even in the source; neither exists
-here, so this skill checks documents against the repository instead. The review file the audit umbrella writes is the
-session record. Constraints: `.claude/rules/auto_skills_constraints.md`.
+**AuthorityEffect:** None. This skill checks documents against the repository. The review file the audit umbrella
+writes is the session record. Constraints: `.claude/rules/auto_skills_constraints.md`.
 
 ## Step 1. Links, paths and headers
 
@@ -39,7 +37,7 @@ PR and say so. Never hand-edit the facts block. `build_status` pages are not com
 
 For each changed Markdown file: does every number have a recomputation in the PR (overclaim-hunter Step 3)? Does every
 node id it names carry the status the sentence implies (overclaim rule R6)? Is a new script or skill mentioned where a
-reader would look for it (README, CONTRIBUTING.md, `.claude/skills/AUTO_SKILLS_IMPORT.md`)?
+reader would look for it (README, CONTRIBUTING.md)?
 
 ## Output
 

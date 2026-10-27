@@ -20,5 +20,3 @@ State the finite instance that is proved, and write the general case into the bo
 ## Removes
 
 [AP_MATH_006_bounded_check_unbounded_claim](../../anti/math/AP_MATH_006_bounded_check_unbounded_claim.md). Applying this pattern leaves the anti-pattern's signature empty for the change it covers; it does not certify the rest of the file.
-
-Adapted from the_symbol_game card HP_MATH_021_bounded_claim_hygiene_and_receipt_attestation.md.

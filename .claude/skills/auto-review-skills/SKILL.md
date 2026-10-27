@@ -5,9 +5,7 @@ description: Review the skills in this repository's .claude/skills for structure
 
 # Skill review
 
-**AuthorityEffect:** None. Imported from the_symbol_game `auto-review-skills`, adapted: the skill compiler, usage
-ledger, registry files and four-host mirrors it audits do not exist here. Constraints:
-`.claude/rules/auto_skills_constraints.md`.
+**AuthorityEffect:** None. Constraints: `.claude/rules/auto_skills_constraints.md`.
 
 ## Step 1. Scan
 
@@ -21,7 +19,7 @@ so a skill not yet force-added to git is still checked, plus each skill's other 
 | Rule | Sev | Meaning |
 |---|---|---|
 | INVALID_FRONT_MATTER, MISSING_FIELD, NAME_PATH_MISMATCH | HIGH | Claude Code cannot load the skill under its directory name |
-| FOREIGN_PATH | HIGH | the skill tells the reader to act on a the_symbol_game path |
+| FOREIGN_PATH | HIGH | the skill tells the reader to act on a path that is not in this repository |
 | NAME_FORMAT, DESCRIPTION_LENGTH | MEDIUM | name not lowercase-hyphenated within 64 characters; description outside 40 to 1024 characters |
 | AUTHORITY_UNSAFE | MEDIUM | wording such as "self-certify", "raise a status" or "admitted automatically", outside a negated sentence or a quoted mention |
 | BROKEN_LINK | MEDIUM | a relative link that does not resolve |

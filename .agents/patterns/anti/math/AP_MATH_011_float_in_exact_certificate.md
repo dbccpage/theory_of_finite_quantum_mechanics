@@ -26,5 +26,3 @@ Mechanical check: `scripts/auto/anti_pattern_lint.py` rule AP_MATH_011 (float li
 ## Dual healthy pattern
 
 [HP_MATH_011_exact_rational_certificate](../../helpful/math/HP_MATH_011_exact_rational_certificate.md)
-
-Adapted from the_symbol_game card AP_MATH_011_krawczyk_float_leak.md. The source's witnesses are the_symbol_game history and are not repeated here.

@@ -20,5 +20,3 @@ Say what was checked, with what, and under which named assumptions; quote the DA
 ## Removes
 
 [AP_MATH_022_premature_triumph_promotion](../../anti/math/AP_MATH_022_premature_triumph_promotion.md). Applying this pattern leaves the anti-pattern's signature empty for the change it covers; it does not certify the rest of the file.
-
-Adapted from the_symbol_game card HP_MATH_021_bounded_claim_hygiene_and_receipt_attestation.md.

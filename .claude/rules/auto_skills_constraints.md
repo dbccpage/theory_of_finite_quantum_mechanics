@@ -1,5 +1,5 @@
 ---
-description: Constraints cited by the auto-* skills in .claude/skills (imported from the_symbol_game, adapted). Apply when running or editing one of those skills.
+description: Constraints cited by the auto-* skills in .claude/skills . Apply when running or editing one of those skills.
 paths:
   - ".claude/skills/**"
   - ".agents/patterns/**"
@@ -8,8 +8,7 @@ paths:
 
 # Constraints for the auto-* skills
 
-**AuthorityEffect:** None. Adapted from the_symbol_game's shared skill constraints file; only the constraints
-the imported skills cite came in. The repository-wide rules are CONTRIBUTING.md's honesty rules, the honesty gate in
+**AuthorityEffect:** None. The repository-wide rules are CONTRIBUTING.md's honesty rules, the honesty gate in
 `dag/pfp/campaign/README.md`, the overclaim rubric (`.claude/skills/overclaim-hunter/rubric.md`) and SCORING.md. Where
 these constraints and those rules differ, those rules win.
 

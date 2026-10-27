@@ -21,5 +21,3 @@ Discharge the obligation with a proof, or carry the assumption as an explicit hy
 ## Removes
 
 [AP_LN_004_smuggled_custom_axiom_injection](../../anti/lean4/AP_LN_004_smuggled_custom_axiom_injection.md). Applying this pattern leaves the anti-pattern's signature empty for the change it covers; it does not certify the rest of the file.
-
-Adapted from the_symbol_game card HP_LN_004_constructive_kernel_discharge.md.

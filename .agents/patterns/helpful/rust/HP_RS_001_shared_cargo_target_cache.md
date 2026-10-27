@@ -20,5 +20,3 @@ Point every worktree at one `CARGO_TARGET_DIR` outside the worktrees, and prune 
 ## Removes
 
 [AP_RS_001_worktree_target_duplication](../../anti/rust/AP_RS_001_worktree_target_duplication.md). Applying this pattern leaves the anti-pattern's signature empty for the change it covers; it does not certify the rest of the file.
-
-Adapted from the_symbol_game card HP_RS_001_shared_cargo_target_cache.md.

@@ -2,9 +2,7 @@
 
 **AuthorityEffect:** None. A card describes a failure class and its repair. It changes no status and certifies nothing.
 
-Imported and adapted from the_symbol_game `.agents/patterns/` (see `.claude/skills/AUTO_SKILLS_IMPORT.md`). Only the
-classes that occur in this repository came in; each card was rewritten for this repository's paths and rules, and the
-source's witnesses (the_symbol_game run histories) were left out.
+Each card is written for this repository's paths and rules.
 
 ## Layout
 

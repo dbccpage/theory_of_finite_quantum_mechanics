@@ -21,5 +21,3 @@ Close every obligation in the kernel. A declaration counts only if it compiles w
 ## Removes
 
 [AP_LN_001_unmechanized_sorry_proof_claim](../../anti/lean4/AP_LN_001_unmechanized_sorry_proof_claim.md). Applying this pattern leaves the anti-pattern's signature empty for the change it covers; it does not certify the rest of the file.
-
-Adapted from the_symbol_game card HP_LN_001_zero_sorry_axiom_allowlist.md.

@@ -1,7 +1,6 @@
 # Signals for auto-skill
 
-**AuthorityEffect:** None. Condensed and adapted from the_symbol_game `auto-skill/references/signal_reference_table.md`;
-signals that only occur in the_symbol_game (councils, MCP servers, sprint tooling, databases) were dropped.
+**AuthorityEffect:** None.
 
 | Priority | Signal | Trigger | Record |
 |---|---|---|---|

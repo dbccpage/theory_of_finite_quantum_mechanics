@@ -83,9 +83,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/BornGaussianFrameRays.lean](../../../lean4/BornGaussianFrameRays.lean)
 - sha256 (`bytes`): `978b7e33c3accef4513c5d5151ee92bcd2612caf16b5bc084e095b764fadc7e6`
-- cited in: node.lean, receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianFrameRays)
+- cited in: node.lean, receipt dag/research/born_gaussian_frames_lean_replay.json (BornGaussianFrameRays)
 - replay: `verified`
-  - receipt [dag/research/fable_gleason_run2_lean_replay.json](../../../dag/research/fable_gleason_run2_lean_replay.json) (module `BornGaussianFrameRays`): recorded sha256 `978b7e33c3accef4513c5d5151ee92bcd2612caf16b5bc084e095b764fadc7e6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/born_gaussian_frames_lean_replay.json](../../../dag/research/born_gaussian_frames_lean_replay.json) (module `BornGaussianFrameRays`): recorded sha256 `978b7e33c3accef4513c5d5151ee92bcd2612caf16b5bc084e095b764fadc7e6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornGaussianFrameRays`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -117,9 +117,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [lean4/BornGaussianRationalFrameObstruction.lean](../../../lean4/BornGaussianRationalFrameObstruction.lean)
 - sha256 (`bytes`): `5564b1a4dd947620281406208466d2df9792aedc5e7eeae3073b7ba52a8134c2`
-- cited in: node.lean, receipt dag/research/fable_gleason_run2_lean_replay.json (BornGaussianRationalFrameObstruction)
+- cited in: node.lean, receipt dag/research/born_gaussian_frames_lean_replay.json (BornGaussianRationalFrameObstruction)
 - replay: `verified`
-  - receipt [dag/research/fable_gleason_run2_lean_replay.json](../../../dag/research/fable_gleason_run2_lean_replay.json) (module `BornGaussianRationalFrameObstruction`): recorded sha256 `5564b1a4dd947620281406208466d2df9792aedc5e7eeae3073b7ba52a8134c2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/born_gaussian_frames_lean_replay.json](../../../dag/research/born_gaussian_frames_lean_replay.json) (module `BornGaussianRationalFrameObstruction`): recorded sha256 `5564b1a4dd947620281406208466d2df9792aedc5e7eeae3073b7ba52a8134c2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornGaussianRationalFrameObstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

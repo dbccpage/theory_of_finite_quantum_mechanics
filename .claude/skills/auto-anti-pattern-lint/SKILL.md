@@ -5,8 +5,7 @@ description: Mechanical anti-pattern lint for this repository. Use on every PR (
 
 # Anti-pattern lint
 
-**AuthorityEffect:** None. Imported from the_symbol_game `auto-anti-pattern-lint`, adapted (see
-`.claude/skills/AUTO_SKILLS_IMPORT.md`). Constraints: `.claude/rules/auto_skills_constraints.md`.
+**AuthorityEffect:** None. Constraints: `.claude/rules/auto_skills_constraints.md`.
 
 ## Run
 

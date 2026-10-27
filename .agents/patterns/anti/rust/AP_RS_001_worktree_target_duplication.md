@@ -26,5 +26,3 @@ Mechanical check: none; read by hand.
 ## Dual healthy pattern
 
 [HP_RS_001_shared_cargo_target_cache](../../helpful/rust/HP_RS_001_shared_cargo_target_cache.md)
-
-Adapted from the_symbol_game card AP_RS_001_worktree_target_duplication.md. The source's witnesses are the_symbol_game history and are not repeated here.

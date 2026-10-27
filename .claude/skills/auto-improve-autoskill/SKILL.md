@@ -5,9 +5,7 @@ description: Audit what the learning skills (auto-skill, auto-learn, auto-sugges
 
 # Improve the learner
 
-**AuthorityEffect:** None. Imported from the_symbol_game `auto-improve-autoskill`, adapted: the residual-mass and
-symmetry-restoration gates, the Lean axiom-graph regeneration and the budget gate are OE machinery and were not ported;
-the claim vocabulary was mapped to this repository's statuses. Constraints: `.claude/rules/auto_skills_constraints.md`.
+**AuthorityEffect:** None. The claim vocabulary is this repository's statuses. Constraints: `.claude/rules/auto_skills_constraints.md`.
 
 This skill keeps the learning skills honest. It can weaken or reject what they produce; it never strengthens a claim.
 
