@@ -236,7 +236,7 @@ theorem gns_extraction_for_mub6
 /-- **Theorem: Sound Universal Exclusion via Discharged Rank-Loop Closure**.
     If a rank-loop closure $\operatorname{rank}(M_d) = \operatorname{rank}(M_{d-1})$ is established,
     GNS operator extraction guarantees that the moment pseudo-expectation refutation
-    upgrades unconditionally to universal physical projector exclusion. -/
+    upgrades to universal physical projector exclusion. -/
 theorem sound_universal_exclusion_via_rank_loop
     {d m numModes : Nat}
     (W : FactoredDualWitness m numModes)
@@ -277,7 +277,7 @@ theorem sound_universal_exclusion_via_emptiness
   MomentPositivity.sound_universal_exclusion_via_emptiness cert h_sound
 
 /-- **Theorem: Sound Universal Exclusion from Emptiness Certificate (Constructive)**.
-    Unconditional operator exclusion when emptiness certificate discharges algebraic contradiction. -/
+    operator exclusion when emptiness certificate discharges algebraic contradiction. -/
 theorem sound_universal_exclusion_from_emptiness_cert
     {deg : Nat}
     (cert : PositivstellensatzEmptinessCertificate 4 6 deg)
@@ -285,8 +285,8 @@ theorem sound_universal_exclusion_from_emptiness_cert
     UniversalPhysicalProjectorExclusion 4 6 :=
   MomentPositivity.sound_universal_exclusion_from_emptiness_cert cert h_contra
 
-/-- **THE OPERATOR-LEVEL SOUNDNESS BRIDGE THEOREM (UNCONDITIONAL EXCLUSION)**:
-    Proving that algebraic root emptiness of the moment polynomial system translates unconditionally
+/-- **THE OPERATOR-LEVEL SOUNDNESS BRIDGE THEOREM (EXCLUSION)**:
+    Proving that algebraic root emptiness of the moment polynomial system translates
     into physical Hilbert space projector non-existence. -/
 theorem sound_universal_exclusion_via_algebraic_emptiness
     {d m numModes : Nat}
@@ -314,7 +314,7 @@ theorem fail_closed_epistemic_audit_soundness
 /-!
 ### 7. Axiom Audit
 Verifying that all theorems depend strictly on foundational axioms:
-`[propext, Quot.sound]`. Zero sorry, zero admit.
+`[propext, Quot.sound]`.
 -/
 
 #print axioms archimedean_norm_bound_identity

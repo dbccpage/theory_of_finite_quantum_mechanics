@@ -10,35 +10,32 @@ import TargetA13GrandSynthesis
 import RouteCFourierLandingBypass
 
 /-!
-# Grand Unified Master Synthesis in Lean 4
+# MUB(6): assembly of the conditional pieces
 
 AuthorityEffect: None.
-Status: ADMITTED under Woland Terminal Reality Gate.
-Epistemic Scope: Comprehensive multi-phase formal synthesis uniting all derivation milestones.
-Discharges the non-existence of complete sets of 7 mutually unbiased bases in dimension 6
-via Route C: The Fourier Landing Bypass.
 
-This module formalizes the Grand Unified Master Synthesis for the MUB(6) derivation program:
-1. **Phase 1 (G1 Exhaustive Moduli Classification)**:
-   `MUB.MasterClassification.full_moduli_variety_classification`
-   Maps every branch-routed dephased complex Hadamard matrix to its certified realization parameters.
-2. **Phase 2 (G2 Unconditional Curvature Wall Certification)**:
-   `MUB6.Gluing.TargetA7.unconditional_curvature_wall_certified_atlas`
-   Certifies strictly positive curvature lower bounds across the covered atlas representatives.
-3. **Continuous Boundary Homotopy Positivstellensatz (G3 & G4)**:
-   `MUB6.AlgebraicGeometry.Homotopy.real_spectrum_continuous_gluing_theorem`
-   Establishes continuous Positivstellensatz homotopies with strictly positive margins along all 6 boundary interfaces.
-4. **Phase 3 (G5 Projector Moment Soundness Bridge Closure)**:
-   `MUB6.SDP.MomentPositivity.projector_moment_soundness_bridge_closure`
-   Combines dual witness trace refutations, rank-loop closures, and GNS extraction into physical projector exclusion.
-5. **Phase 4 (Decisive Bifurcation & Terminal Smale Root Sentry)**:
-   `MUB6.Gluing.TargetA12.sentry_global_cover_branchA` & `MUB6.Gluing.TargetA13.target_a13_grand_synthesis_master`
-   Certifies Branch A (empty ZeroRel variety, preclusion of 4th basis) across all 56 cells of the certified partition tree.
-6. **Phase 5 (Route C Fourier Landing Bypass)**:
-   `MUB6.RouteC.no_complete_mub6_via_route_c` & `MUB6.RouteC.route_c_grand_synthesis`
-   Demonstrates via discrete character theory on $\mathbb{Z}_6$ that 21 pairwise MUB transitions force
-   $\ge 15$ transitions into the 2-parameter affine Fourier orbit $F_6(a, b)$, triggering the
-   Jaming et al. (2009) non-extension contradiction and unconditionally closing `NoCompleteMUB6`.
+Whether dimension 6 admits a complete set of 7 mutually unbiased bases is open. This module does
+not settle it. It packages six results proved elsewhere into one record,
+`GrandUnifiedMasterSynthesisRecord`, and `grand_unified_master_synthesis_assembly` builds that
+record from one hypothesis, `ClassificationRealizationPremise`. The record's `NoCompleteMUB6`
+field is itself an implication: it holds only given a map
+`CompleteMUB6 → RouteCCompleteMUBFamily` (see `RouteCFourierLandingBypass.lean`), which no module
+constructs.
+
+The six fields, with their sources:
+1. `MUB.MasterClassification.full_moduli_variety_classification`: every dephased complex Hadamard
+   matrix of order 6 is realized by a catalogued moduli component, given `ClassificationRealizationPremise`.
+2. `MUB6.Gluing.TargetA7.unconditional_curvature_wall_certified_atlas`: an atlas-level curvature
+   certificate, given a representative lookup for each covered class (the name predates this
+   header and overstates it).
+3. `MUB6.AlgebraicGeometry.Homotopy.real_spectrum_continuous_gluing_theorem`: positive margins
+   along the 6 declared boundary homotopies.
+4. `MUB6.SDP.MomentPositivity.projector_moment_soundness_bridge_closure`: projector exclusion
+   from a dual witness, given a rank-loop certificate and a GNS realization hypothesis.
+5. `MUB6.Gluing.TargetA12.sentry_global_cover_branchA` and
+   `MUB6.Gluing.TargetA13.target_a13_grand_synthesis_master`: on points certified in the
+   56-cell partition tree, the ZeroRel variety is empty and no fourth basis exists.
+6. `MUB6.RouteC.no_complete_mub6_via_route_c`: `NoCompleteMUB6` from the landing map above.
 -/
 
 namespace MUB6.GrandUnifiedMasterSynthesis
@@ -58,8 +55,7 @@ open MUB6.Gluing.TargetA12
 open MUB6.Gluing.TargetA13
 open MUB6.RouteC
 
-/-- **Grand Unified Master Synthesis Structure**:
-    Packaging all six formal derivation milestones into a single grand record. -/
+/-- The six results listed in the module header, as one record. -/
 structure GrandUnifiedMasterSynthesisRecord where
   phase1_g1_classification :
     ∀ (D : Matrix (Fin 6) (Fin 6) ℂ), Dephased D → IsCH6 D →
@@ -91,8 +87,8 @@ structure GrandUnifiedMasterSynthesisRecord where
     (∀ (_fam : RouteCCompleteMUBFamily), False) ∧
     ((CompleteMUB6 → RouteCCompleteMUBFamily) → NoCompleteMUB6)
 
-/-- **THE GRAND UNIFIED MASTER SYNTHESIS THEOREM**:
-    Constructive assembly of all six core derivation pillars in Lean 4. -/
+/-- Builds the record from `ClassificationRealizationPremise`. It does not prove
+    `NoCompleteMUB6`; that field still needs the Route C landing map. -/
 theorem grand_unified_master_synthesis_assembly
     (h_class : ClassificationRealizationPremise) :
     GrandUnifiedMasterSynthesisRecord := by
@@ -110,7 +106,7 @@ theorem grand_unified_master_synthesis_assembly
 
 /-!
 ### Axiom Audits
-Verifying that the Grand Unified Master Synthesis depends solely on standard Lean 4 axioms.
+Verifying that the MUB(6) assembly depends solely on standard Lean 4 axioms.
 -/
 
 #print axioms full_moduli_variety_classification

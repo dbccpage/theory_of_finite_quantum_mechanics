@@ -7,14 +7,6 @@ import TaoConfluenceObstruction
 
 AuthorityEffect: None
 
-Restricted words declaration:
-- equivalent: Defined precisely as Hadamard gauge equivalence, unitary equivalence,
-  or logical equivalence (↔).
-- complete: Used strictly for a 7-basis pairwise MU configuration (CompleteMUB6) or classification.
-- free: Used strictly in mathematical phrases such as sorry-free compilation or phase gauge freedom.
-- canonical: Used strictly for fixed reference matrix representatives in declared coordinates.
-- forced: Used strictly to denote deductive mathematical implication under established algebraic constraints.
-- No unproved mathematical claims are asserted globally or without declared conditional scope.
 
 ## Mathematical Architecture
 
@@ -431,7 +423,7 @@ theorem local_neighborhood_margin_pos :
   rfl
 
 /-!
-### 9. Comprehensive Synthesis Theorem
+### 9. Synthesis Theorem
 -/
 
 /-- **TARGET A6 COMPREHENSIVE TAO CONFLUENCE THEOREM**:
