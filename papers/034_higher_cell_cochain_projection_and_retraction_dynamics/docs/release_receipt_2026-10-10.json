@@ -1,0 +1,101 @@
+{
+  "schema": "po034.publication-revision.v1",
+  "reviewed_snapshot": "79fd9db728055deb001b7618e321f86e9ed4f97c",
+  "base_commit": "df84a59644c2a6837756273ccedd7b1233525407",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "archive_path": "papers/034_higher_cell_cochain_projection_and_retraction_dynamics/034_higher_cell_cochain_projection_and_retraction_dynamics_2026-10-10.zip",
+  "archive_sha256": "9a4bdd42a2234be8281de0a20634360de105ea14c08ff628abb3997641ea8631",
+  "archive_members": 63,
+  "payload_files": 61,
+  "manifest_sha256": "ab0ad6e98e5b2edaf71619bf256ed69444ab7056ac5e3d2caf590d02b453c60f",
+  "sums_sha256": "cad7729ff68df33c4952c07e405d2d19d064a17a900aa489b18892b32684e145",
+  "qualification": "clean extraction; initial payload and controls rechecked after each subprocess",
+  "checks": [
+    {
+      "label": "targeted regressions",
+      "command": [
+        "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "code/tests/test_claim_evidence.py",
+        "code/tests/test_release_contract.py",
+        "code/tests/test_defect_bounds.py",
+        "-q",
+        "--import-mode=importlib",
+        "--basetemp",
+        "C:\\Users\\a343o\\AppData\\Local\\Temp\\po034-q-7hnngm2x\\pytest-tmp",
+        "-o",
+        "cache_dir=C:\\Users\\a343o\\AppData\\Local\\Temp\\po034-q-7hnngm2x\\pytest-cache"
+      ],
+      "passed": true,
+      "seconds": 6.453,
+      "output": "PASS targeted regressions\n........................................................................ [ 97%]\n..                                                                       [100%]\n============================== warnings summary ===============================\ntests/test_release_contract.py::test_full_archive_envelope_rejects_extra_bytes_and_members[duplicate]\n  C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\zipfile\\__init__.py:1611: UserWarning: Duplicate name: 'sample_paper/README.md'\n    return self._open_to_write(zinfo, force_zip64=force_zip64)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n74 passed, 1 warning in 4.56s\n"
+    },
+    {
+      "label": "static Lean census",
+      "command": [
+        "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+        "tools/replay_lean_axiom_census.py",
+        "--check"
+      ],
+      "passed": true,
+      "seconds": 1.688,
+      "output": "PASS static Lean census\nOK 034_higher_cell_cochain_projection_and_retraction_dynamics: Census.lean is up to date\n"
+    },
+    {
+      "label": "direct Python notebook replay",
+      "command": [
+        "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+        "scripts/replay_notebook.py",
+        "--direct"
+      ],
+      "passed": true,
+      "seconds": 3.359,
+      "output": "PASS direct Python notebook replay\nPASS direct-python-exec: 7 code cells; source 958d8fc23e44f036f6c07bc0e57d98d49deb83b47905df9f0fdaf7b770d57262; recorded=False\n"
+    },
+    {
+      "label": "selected ZIP integrity and evidence mappings",
+      "command": [
+        "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+        "verify_deposit.py",
+        "--integrity-only",
+        "--archive",
+        "papers/034_higher_cell_cochain_projection_and_retraction_dynamics\\034_higher_cell_cochain_projection_and_retraction_dynamics_2026-10-10.zip"
+      ],
+      "passed": true,
+      "seconds": 2.609,
+      "output": "PASS selected ZIP integrity and evidence mappings\nPASS complete payload, manifests, and canonical ZIP\nPASS claim mappings: 13 claims; 6 written-only; 7 numerical example mappings; 7 stored conditional abstract Lean targets (no fresh execution implied)\nPASS integrity only; tests, notebook execution, and Lean compilation not run\n"
+    }
+  ],
+  "not_executed": [
+    "full repository pytest",
+    "fresh pinned Lean compilation",
+    "native Jupyter kernel",
+    "new coverage measurement",
+    "Zenodo deposition"
+  ],
+  "control_mutation_scope": "OS file-type/reparse/symlink attributes simulated while bytes remain identical; no claim of Windows symlink creation",
+  "authority_effect": "None",
+  "execution_archive_sha256": "496a3e4200d50126587794686db163864f7fbb0add5209df19ba18c3d28c30ac",
+  "final_integrity_check": {
+    "command": [
+      "C:\\Users\\a343o\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+      "verify_deposit.py",
+      "--integrity-only",
+      "--archive",
+      "papers/034_higher_cell_cochain_projection_and_retraction_dynamics\\034_higher_cell_cochain_projection_and_retraction_dynamics_2026-10-10.zip"
+    ],
+    "cwd": "clean extraction",
+    "exit_code": 0,
+    "output": "PASS complete payload, manifests, and canonical ZIP\nPASS claim mappings: 13 claims; 6 written-only; 7 numerical example mappings; 7 stored conditional abstract Lean targets (no fresh execution implied)\nPASS integrity only; tests, notebook execution, and Lean compilation not run\n",
+    "archive_sha256": "9a4bdd42a2234be8281de0a20634360de105ea14c08ff628abb3997641ea8631"
+  },
+  "evidence_carry_forward": "The 74 focused tests, static census and direct notebook replay used execution_archive_sha256. Subsequent payload differences are date-line Markdown hard-break formatting, its source hash receipt, and preservation of the existing short-description/keywords/identity/license sections. TeX/PDF/compiler outputs and all executable evidence bytes remain identical. Final selected ZIP integrity was rechecked from a new clean extraction; no redundant test rerun.",
+  "byte_identical_rebuild": true,
+  "payload_delta_after_execution": [
+    "034_higher_cell_cochain_projection_and_retraction_dynamics.md",
+    "docs/descriptions.md",
+    "docs/pdf_build_receipt.md"
+  ],
+  "format_checks": "Markdownlint and authored-file git diff whitespace check pass; unmodified raw XeLaTeX .log/.aux whitespace is retained as compiler output."
+}
