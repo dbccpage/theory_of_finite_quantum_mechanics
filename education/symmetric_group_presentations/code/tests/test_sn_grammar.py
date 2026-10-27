@@ -14,7 +14,7 @@ import pytest
 
 HERE = Path(__file__).resolve().parent
 CODE_DIR = HERE.parent
-REPO = HERE.parents[4]
+REPO = HERE.parents[3]
 SN_EBNF_PATH = CODE_DIR.parent / "grammar" / "sn.ebnf"
 CASES_PATH = CODE_DIR.parent / "grammar" / "sn_conformance_cases.json"
 
@@ -22,6 +22,7 @@ GRAMMAR_DIR = next(
     (
         p
         for p in (
+            REPO / "atlas" / "papers" / "finite_obstruction_calculus" / "pregenesis_to_minimal_symbol_systems" / "code" / "grammar",
             REPO / "omega_engine_education" / "documentation" / "004_oepfp" / "grammar",
             REPO / "omega_engine_education" / "documentation" / "030_the_symbol_game_proposal_fidelity_protocol_pfp" / "grammar",
             REPO / "ow" / "omega_engine_pfp_v0.2" / "grammar",
