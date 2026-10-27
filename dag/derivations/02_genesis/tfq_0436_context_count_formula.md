@@ -30,9 +30,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Paper.lean::contextWords_length`](../../../lean4/Imported/Genesis19l57g1/Paper.lean)
-- [`lean4/Imported/Genesis19l57g1/Paper.lean::contextWords_mem`](../../../lean4/Imported/Genesis19l57g1/Paper.lean)
-- [`lean4/Imported/Genesis19l57g1/Paper.lean::contextWords_nodup`](../../../lean4/Imported/Genesis19l57g1/Paper.lean)
+- [`lean4/Imported/GenesisDerivation/Paper.lean::contextWords_length`](../../../lean4/Imported/GenesisDerivation/Paper.lean)
+- [`lean4/Imported/GenesisDerivation/Paper.lean::contextWords_mem`](../../../lean4/Imported/GenesisDerivation/Paper.lean)
+- [`lean4/Imported/GenesisDerivation/Paper.lean::contextWords_nodup`](../../../lean4/Imported/GenesisDerivation/Paper.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs::a_binary_form_over_two_data_has_five_contexts`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs)

@@ -73,10 +73,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/PointedRelation.lean`
 
 - file: [lean4/Imported/WitnessedDifference/WitnessedDifference/PointedRelation.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/PointedRelation.lean)
-- sha256 (`bytes`): `abf14f0a60ee68e7b9d5645f9241620f666ec6336c3f25d8e2b69507ffc827d0`
+- sha256 (`bytes`): `9a5d905d70db6124a31a54d1616dfb70308ee04c095302061e86919afbe9d5d8`
 - cited in: node.lean, node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.PointedRelation`): recorded sha256 `abf14f0a60ee68e7b9d5645f9241620f666ec6336c3f25d8e2b69507ffc827d0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.PointedRelation`): recorded sha256 `9a5d905d70db6124a31a54d1616dfb70308ee04c095302061e86919afbe9d5d8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/PointedRelation.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -88,10 +88,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/PrimitiveAdmissionFloor.lean`
 
 - file: [lean4/Imported/WitnessedDifference/WitnessedDifference/PrimitiveAdmissionFloor.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/PrimitiveAdmissionFloor.lean)
-- sha256 (`bytes`): `42c1b985479a375ccdc5da70c4c378cb18efd29b8b6f737c5d4b20087582648d`
+- sha256 (`bytes`): `e96f39ed83bdbf1bbf0b2141181770a58ee100528400ddda415e09a9426279ac`
 - cited in: node.lean, node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.PrimitiveAdmissionFloor`): recorded sha256 `42c1b985479a375ccdc5da70c4c378cb18efd29b8b6f737c5d4b20087582648d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.PrimitiveAdmissionFloor`): recorded sha256 `e96f39ed83bdbf1bbf0b2141181770a58ee100528400ddda415e09a9426279ac` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/PrimitiveAdmissionFloor.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

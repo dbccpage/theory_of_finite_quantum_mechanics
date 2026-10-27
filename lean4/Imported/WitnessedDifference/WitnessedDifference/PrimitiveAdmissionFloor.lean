@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PrimitiveAdmissionFloor.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: df9d149bbd06124fd7b6226656f0588be037bbbf121f12c99ec35ea4b123ae15 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.WitnessedDifference.WitnessedDifference.PrimitiveAdmissionFloor

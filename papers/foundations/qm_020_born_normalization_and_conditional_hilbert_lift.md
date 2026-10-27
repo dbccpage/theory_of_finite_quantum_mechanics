@@ -1247,7 +1247,7 @@ Changelog
 
 - Represented the finite rational phase-blind descent relation as the zero
   relation of a primitive difference
-  $\delta(c,c')_i=c_i^2-(c_i')^2$, aligning Theorem 3 with the OmegaCore
+  $\delta(c,c')_i=c_i^2-(c_i')^2$, aligning Theorem 3 with the ObstructionCore
   quotient-by-zero-difference discipline.
 
 - Added the finite rational quotient-factorization form for Theorem 3:

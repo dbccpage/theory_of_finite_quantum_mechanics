@@ -1,5 +1,4 @@
-/- Imported from the sibling the_symbol_game lean4/ tree so that this repository carries its own Lean.
-   Original path : the_symbol_game/lean4/research_programs/higher_category_theory/DendroidalSet.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: f64ff0ca87c216ee8c1f3d43470c827fae69688b1feeba37ced8fff3cd9ec945 (bytes as found)
    Imported on    : 2026-10-23
    Module         : Imported.HigherCategoryTheory.DendroidalSet

@@ -30,7 +30,7 @@ deriving DecidableEq
 
 def toPrimitiveLiftCandidate
     (packet : CoherenceLiftPacket) :
-    OmegaCore.PrimitiveLiftCandidate.LiftCandidate where
+    ObstructionCore.PrimitiveLiftCandidate.LiftCandidate where
   hasSourceObstruction := packet.sourceObstructionDeclared
   hasNewCarrier := packet.newCarrierDeclared
   hasReplay := packet.replayDeclared
@@ -39,14 +39,14 @@ def toPrimitiveLiftCandidate
 
 def LicensedCoherenceLift (packet : CoherenceLiftPacket) : Prop :=
   RDB06.LicensedCoherence packet.coherence ∧
-    OmegaCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate
+    ObstructionCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate
       (toPrimitiveLiftCandidate packet)
 
 theorem licensedCoherenceLift_iff
     (packet : CoherenceLiftPacket) :
     LicensedCoherenceLift packet ↔
       RDB06.LicensedCoherence packet.coherence ∧
-        OmegaCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate
+        ObstructionCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate
           (toPrimitiveLiftCandidate packet) := by
   rfl
 
@@ -60,7 +60,7 @@ theorem licensedCoherenceLift_implies_local_license
 theorem licensedCoherenceLift_implies_primitive_lift
     (packet : CoherenceLiftPacket) :
     LicensedCoherenceLift packet ->
-      OmegaCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate
+      ObstructionCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate
         (toPrimitiveLiftCandidate packet) := by
   intro h
   exact h.2
@@ -70,7 +70,7 @@ theorem missing_replay_blocks_coherenceLift
     ¬ LicensedCoherenceLift packet := by
   intro h
   exact
-    OmegaCore.PrimitiveLiftCandidate.missing_replay_blocks_lift
+    ObstructionCore.PrimitiveLiftCandidate.missing_replay_blocks_lift
       (toPrimitiveLiftCandidate packet) hReplay h.2
 
 theorem missing_residual_reduction_blocks_coherenceLift
@@ -79,13 +79,13 @@ theorem missing_residual_reduction_blocks_coherenceLift
     ¬ LicensedCoherenceLift packet := by
   intro h
   exact
-    OmegaCore.PrimitiveLiftCandidate.missing_reduction_blocks_lift
+    ObstructionCore.PrimitiveLiftCandidate.missing_reduction_blocks_lift
       (toPrimitiveLiftCandidate packet) hReduction h.2
 
 theorem licensedCoherence_does_not_construct_primitive_lift :
     ∃ packet : CoherenceLiftPacket,
       RDB06.LicensedCoherence packet.coherence ∧
-        ¬ OmegaCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate
+        ¬ ObstructionCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate
           (toPrimitiveLiftCandidate packet) := by
   let coherence : RDB06.CoherenceLicense :=
     ⟨true, true, true, true, true⟩
@@ -94,13 +94,13 @@ theorem licensedCoherence_does_not_construct_primitive_lift :
   refine ⟨packet, ?_, ?_⟩
   · exact ⟨rfl, rfl, rfl, rfl, rfl⟩
   · exact
-      OmegaCore.PrimitiveLiftCandidate.missing_replay_blocks_lift
+      ObstructionCore.PrimitiveLiftCandidate.missing_replay_blocks_lift
         (toPrimitiveLiftCandidate packet) rfl
 
 theorem not_licensedCoherence_implies_primitive_lift :
     ¬ (∀ packet : CoherenceLiftPacket,
       RDB06.LicensedCoherence packet.coherence ->
-        OmegaCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate
+        ObstructionCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate
           (toPrimitiveLiftCandidate packet)) := by
   intro h
   rcases licensedCoherence_does_not_construct_primitive_lift with

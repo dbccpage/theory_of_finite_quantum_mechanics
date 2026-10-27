@@ -30,10 +30,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean::collapsedCount_rename`](../../../lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean::collapsed_rename`](../../../lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/FormTransport.lean::collapsed_renameDataForm`](../../../lean4/Imported/Genesis19l57g1/Derivation/FormTransport.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/IsoCollapse.lean::collapsed_transport`](../../../lean4/Imported/Genesis19l57g1/Derivation/IsoCollapse.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/CountTransport.lean::collapsedCount_rename`](../../../lean4/Imported/GenesisDerivation/Derivation/CountTransport.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/CountTransport.lean::collapsed_rename`](../../../lean4/Imported/GenesisDerivation/Derivation/CountTransport.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/FormTransport.lean::collapsed_renameDataForm`](../../../lean4/Imported/GenesisDerivation/Derivation/FormTransport.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/IsoCollapse.lean::collapsed_transport`](../../../lean4/Imported/GenesisDerivation/Derivation/IsoCollapse.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs::the_key_is_invariant_under_every_renaming`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs)

@@ -64,11 +64,11 @@ illustrate this but are not an instance: the truncated window and the full repla
 different inputs.
 
 Lean: `lean4/Imported/PreGenesisToMssn/Paper.lean::collapsed_observation_barrier`,
-`lean4/Imported/Genesis19l57g1/Paper000.lean::separation_not_on_quotient`,
-`lean4/Imported/Genesis19l57g1/Derivation/Quot.lean::quotient_barrier`,
+`lean4/Imported/GenesisDerivation/Paper000.lean::separation_not_on_quotient`,
+`lean4/Imported/GenesisDerivation/Derivation/Quot.lean::quotient_barrier`,
 `lean4/Imported/PreGenesisToMssn/Observation.lean::collapsed_quotient_barrier`,
-`lean4/Imported/Genesis19l57g1/Paper000.lean::insufficient_history_view`,
-`lean4/Imported/Genesis19l57g1/Paper000.lean::no_factor_through_common_view`. The two-predicate
+`lean4/Imported/GenesisDerivation/Paper000.lean::insufficient_history_view`,
+`lean4/Imported/GenesisDerivation/Paper000.lean::no_factor_through_common_view`. The two-predicate
 example is not in Lean.
 
 ### 1.2 The history and report criterion
@@ -121,9 +121,9 @@ $f(h_j)=\mathrm{recon}(r(h_j))=\mathrm{recon}(r(h_k))=f(h_k)$. $\square$
 The search for the least index replaces the choice in §1.2, so the argument uses no axiom. It
 says nothing about unlisted or infinite populations.
 
-Lean: `lean4/Imported/OePregen/ListedHistorySummary.lean::PreMssnListed.listed_history_report_criterion`,
-`lean4/Imported/OePregen/ListedHistorySummary.lean::PreMssnListed.recon_of_fiberConstant`,
-`lean4/Imported/OePregen/ListedHistorySummary.lean::PreMssnListed.fiberConstant_of_recon`.
+Lean: `lean4/Imported/PregenesisEmptyMark/ListedHistorySummary.lean::PreMssnListed.listed_history_report_criterion`,
+`lean4/Imported/PregenesisEmptyMark/ListedHistorySummary.lean::PreMssnListed.recon_of_fiberConstant`,
+`lean4/Imported/PregenesisEmptyMark/ListedHistorySummary.lean::PreMssnListed.fiberConstant_of_recon`.
 
 ### 1.4 Refinement by a supplied tag
 
@@ -161,10 +161,10 @@ coarse class is $[x]_c=c([x]_f)$. $c([x]_f)=c([y]_f)$ means $x\approx_c y$, so i
 exactly that this implies $x\approx_f y$. Both sides of the composition send $[x]_f$ to $[x]_c$.
 The last claim restates the definitions. $\square$
 
-Lean: `lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::collapseMap_surjective`,
-`lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::collapseMap_injective_iff_reverse_refinement`,
-`lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::collapseMap_compose`,
-`lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::failed_identification_retains_two_classes`.
+Lean: `lean4/Imported/GenesisDerivation/Derivation/QuotientRetention.lean::collapseMap_surjective`,
+`lean4/Imported/GenesisDerivation/Derivation/QuotientRetention.lean::collapseMap_injective_iff_reverse_refinement`,
+`lean4/Imported/GenesisDerivation/Derivation/QuotientRetention.lean::collapseMap_compose`,
+`lean4/Imported/GenesisDerivation/Derivation/QuotientRetention.lean::failed_identification_retains_two_classes`.
 
 ### 1.6 Faithful common descent and round trips
 
@@ -182,8 +182,8 @@ and $i\circ g=g=j$. $\square$
 So a failed round trip for a declared pair of translations rules out a faithful common carrier
 for that pair. Another pair of translations may still close.
 
-Lean: `lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean::faithful_descent_iff_round_trip_coherent`,
-`lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean::faithful_descent_to_coherent`.
+Lean: `lean4/Imported/GenesisDerivation/Derivation/PresentationDescent.lean::faithful_descent_iff_round_trip_coherent`,
+`lean4/Imported/GenesisDerivation/Derivation/PresentationDescent.lean::faithful_descent_to_coherent`.
 
 ### 1.7 Lifts with a typed recovery
 
@@ -310,9 +310,9 @@ Lean:
 `lean4/Imported/GenesisOngoing/H3V7N5QF/Basic.lean::given_distinct`,
 `lean4/Imported/GenesisOngoing/H3V7N5QF/Basic.lean::bra_not_derived`,
 `lean4/Imported/PreGenesisToMssn/Paper.lean::irreflexive_endpoints`,
-`lean4/Imported/OeSn/SnTheorems.lean::irrefl_witness_distinct`,
-`lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::irrefl_witness_ne`,
-`lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::single_oriented_witness_consistent`.
+`lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean::irrefl_witness_distinct`,
+`lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean::irrefl_witness_ne`,
+`lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean::single_oriented_witness_consistent`.
 The census of pointed relations on carriers of size at most 3 is a computation.
 
 ### 2.2 The pointed two-element graph
@@ -330,8 +330,8 @@ The map represents the chosen witness only: it says nothing about the other edge
 non-edges, and $D_2$ is initial among pointed structures with an asserted pair, not in a category
 of all systems.
 
-Lean: `lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::D2_initial_pointed`,
-`lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::irrefl_witness_ne`.
+Lean: `lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean::D2_initial_pointed`,
+`lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean::irrefl_witness_ne`.
 
 ### 2.3 No point is fixed by every permutation
 
@@ -392,9 +392,9 @@ $\square$
 Reading L (the inscription $\langle\rangle$ supplied but not admitted) and reading F
 ($\langle\rangle$ admitted as datum $0$) differ by one admission event, and both are kept.
 
-Lean: `lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::supply_no_op`,
-`lean4/Imported/OeGenPrimitives/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_filter_supply`,
-`lean4/Imported/OeGenPrimitives/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_supply_only`.
+Lean: `lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::supply_no_op`,
+`lean4/Imported/GenesisPrimitives/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_filter_supply`,
+`lean4/Imported/GenesisPrimitives/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_supply_only`.
 The array and source representations of `lean4/GenesisReplayRefinement.lean` restate
 these for the engine's five-field encoding (for example
 `lean4/GenesisReplayRefinement.lean::GenesisReplayRefinement.array_supply_erasure`);
@@ -412,8 +412,8 @@ not depend on $d$. $\square$
 So at S(1), where $\langle a\rangle$ is supplied and possibly admitted, admission of a datum does
 not by itself increase what can be told apart; and supply alone changes nothing (§3.1).
 
-Lean: `lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::collapsed_of_no_insts`,
-`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::supply_no_op`.
+Lean: `lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::collapsed_of_no_insts`,
+`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::supply_no_op`.
 
 ### 3.3 Challenge 0: nothing derivable, and the second token
 
@@ -439,12 +439,12 @@ That no successor is internally forced at Challenge 0 is a property of the decla
 whose only state changes are external admissions; no forcing predicate is defined, so it is not a
 theorem.
 
-Lean: `lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::genesis_underivable`,
-`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::underivable_of_empty`,
-`lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean::single_token_carrier_bound`,
-`lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean::second_token_required`,
-`lean4/Imported/OeSn/SnTheorems.lean::ground_presentation_vs_carrier`,
-`lean4/Imported/OeSn/SnTheorems.lean::ground_carrier_empty`.
+Lean: `lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::genesis_underivable`,
+`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::underivable_of_empty`,
+`lean4/Imported/GenesisDerivation/Derivation/Bridge.lean::single_token_carrier_bound`,
+`lean4/Imported/GenesisDerivation/Derivation/Bridge.lean::second_token_required`,
+`lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean::ground_presentation_vs_carrier`,
+`lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean::ground_carrier_empty`.
 
 ### 3.4 Challenge 2: admitted but collapsed
 
@@ -465,13 +465,13 @@ inscription need not increase internal expressive power. A collapsed pair is an 
 once a requirement or question demands that it be separated, as Challenge 3 does; a response must
 then change the regime (§3.6). The source does not decompose $\langle ab\rangle$ into $a$ and $b$.
 
-Lean: `lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::R2L_collapsed`,
-`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::R2F_collapsed`,
-`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::admission_without_expressive_increase`,
-`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::historyL_replays`,
-`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::historyF_replays`,
-`lean4/Imported/Genesis19l57g1/Derivation/Quot.lean::barrier_R2L`,
-`lean4/Imported/Genesis19l57g1/Derivation/Quot.lean::quot_barrier`.
+Lean: `lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::R2L_collapsed`,
+`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::R2F_collapsed`,
+`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::admission_without_expressive_increase`,
+`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::historyL_replays`,
+`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::historyF_replays`,
+`lean4/Imported/GenesisDerivation/Derivation/Quot.lean::barrier_R2L`,
+`lean4/Imported/GenesisDerivation/Derivation/Quot.lean::quot_barrier`.
 
 ### 3.5 The number of contexts
 
@@ -489,9 +489,9 @@ hole. This gives the recursion
 $c_{k+1}=(n+1)^k+n\,c_k$, $c_0=0$, whose solution is $c_k=(n+1)^k-n^k$. The two cases are
 disjoint and each is duplicate-free, so the list has no repetitions. $\square$
 
-Lean: `lean4/Imported/Genesis19l57g1/Paper.lean::contextWords_length`,
-`lean4/Imported/Genesis19l57g1/Paper.lean::contextWords_mem`,
-`lean4/Imported/Genesis19l57g1/Paper.lean::contextWords_nodup`. The sum over forms is the written
+Lean: `lean4/Imported/GenesisDerivation/Paper.lean::contextWords_length`,
+`lean4/Imported/GenesisDerivation/Paper.lean::contextWords_mem`,
+`lean4/Imported/GenesisDerivation/Paper.lean::contextWords_nodup`. The sum over forms is the written
 corollary.
 
 ### 3.6 Cost two, and the shape of the minima
@@ -531,14 +531,14 @@ at $2$. $\square$
 The $\mu_2$ minimizer is a unary mark, not an edge. The counts of tied responses at item bound $2$
 and arity bound $2$ (6 in 3 classes in reading L, 10 in 5 in reading F) are engine enumerations.
 
-Lean: `lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::cost1_insufficient_general`,
-`lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::mu1_minimum_not_unique`,
-`lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::U0_not_iso_BL`,
-`lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::deltaK_valid`,
-`lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::deltaK_length`,
-`lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::markK_pairwise_noniso`,
-`lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::mu2_unique`,
-`lean4/Imported/Genesis19l57g1/Derivation/MinimalityF.lean::mu2_unique_F`. Parts (2) and (3) are
+Lean: `lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::cost1_insufficient_general`,
+`lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::mu1_minimum_not_unique`,
+`lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::U0_not_iso_BL`,
+`lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::deltaK_valid`,
+`lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::deltaK_length`,
+`lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::markK_pairwise_noniso`,
+`lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::mu2_unique`,
+`lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean::mu2_unique_F`. Parts (2) and (3) are
 stated for $R_{2L}$ only.
 
 ### 3.7 A fresh mark always responds
@@ -558,8 +558,8 @@ every old separating context still separates. $\square$
 
 This is existence of a response to a supplied demand. It does not generate demands.
 
-Lean: `lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::mark_progress`,
-`lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::derivable_extend`.
+Lean: `lean4/Imported/GenesisDerivation/Derivation/Progress.lean::mark_progress`,
+`lean4/Imported/GenesisDerivation/Derivation/Progress.lean::derivable_extend`.
 
 ### 3.8 Policy terminals separate every pair
 
@@ -575,7 +575,7 @@ So an unguarded maximal run of the closure policy cannot stop on an unresolved p
 response. A bounded implementation can still stop at a search or resource limit, which is a
 different outcome.
 
-Lean: `lean4/Imported/Genesis19l57g1/Paper.lean::policy_terminal_separates`.
+Lean: `lean4/Imported/GenesisDerivation/Paper.lean::policy_terminal_separates`.
 
 ### 3.9 Pruning: rules, unmentioned instances and fresh items
 
@@ -603,11 +603,11 @@ no instance and no rule, so its pluggings are never derivable. $\square$
 That the pruned cost-two enumeration contains every minimum is a bounded statement checked by
 computation, not proved here.
 
-Lean: `lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::separable_of_subrules`,
-`lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean::rule_item_never_minimal`,
-`lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_append_unmentioning`,
-`lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_datum`,
-`lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_form`.
+Lean: `lean4/Imported/GenesisDerivation/Derivation/Progress.lean::separable_of_subrules`,
+`lean4/Imported/GenesisDerivation/Derivation/RuleBridge.lean::rule_item_never_minimal`,
+`lean4/Imported/GenesisDerivation/Derivation/Mention.lean::collapsed_append_unmentioning`,
+`lean4/Imported/GenesisDerivation/Derivation/Mention.lean::collapsed_fresh_datum`,
+`lean4/Imported/GenesisDerivation/Derivation/Mention.lean::collapsed_fresh_form`.
 
 ### 3.10 Collapse is invariant under renaming
 
@@ -624,10 +624,10 @@ instance $x$ is derivable in $R$ exactly when $\sigma x$ is derivable in $\sigma
 handled the same way. The count statement follows by counting along the bijection
 $L\to\sigma L$. Requirements do not enter collapse. $\square$
 
-Lean: `lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean::collapsed_rename`,
-`lean4/Imported/Genesis19l57g1/Derivation/CountTransport.lean::collapsedCount_rename`,
-`lean4/Imported/Genesis19l57g1/Derivation/IsoCollapse.lean::collapsed_transport`,
-`lean4/Imported/Genesis19l57g1/Derivation/FormTransport.lean::collapsed_renameDataForm`.
+Lean: `lean4/Imported/GenesisDerivation/Derivation/CountTransport.lean::collapsed_rename`,
+`lean4/Imported/GenesisDerivation/Derivation/CountTransport.lean::collapsedCount_rename`,
+`lean4/Imported/GenesisDerivation/Derivation/IsoCollapse.lean::collapsed_transport`,
+`lean4/Imported/GenesisDerivation/Derivation/FormTransport.lean::collapsed_renameDataForm`.
 
 ### 3.11 Least-pair selection is not equivariant
 
@@ -650,10 +650,10 @@ A selection rule that picks the least index pair therefore depends on the labell
 branches once per automorphism orbit of collapsed pairs. That the two same-index choices give
 non-isomorphic children is a computation.
 
-Lean: `lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::least_pair_selection_not_congruent`,
-`lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::transStep_rename_fwd`,
-`lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::transStep_image_total`,
-`lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::validCount_rename`.
+Lean: `lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean::least_pair_selection_not_congruent`,
+`lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean::transStep_rename_fwd`,
+`lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean::transStep_image_total`,
+`lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean::validCount_rename`.
 
 ### 3.12 Lists and sets
 
@@ -670,10 +670,10 @@ notions. $\square$
 
 So two list representations of the same admitted sets cannot be told apart by these observables.
 
-Lean: `lean4/Imported/Genesis19l57g1/Derivation/Ext.lean::derivable_ext`,
-`lean4/Imported/Genesis19l57g1/Derivation/Ext.lean::collapsed_ext`,
-`lean4/Imported/Genesis19l57g1/Derivation/Ext.lean::separable_ext`,
-`lean4/Imported/Genesis19l57g1/Derivation/Ext.lean::validResponse_ext`.
+Lean: `lean4/Imported/GenesisDerivation/Derivation/Ext.lean::derivable_ext`,
+`lean4/Imported/GenesisDerivation/Derivation/Ext.lean::collapsed_ext`,
+`lean4/Imported/GenesisDerivation/Derivation/Ext.lean::separable_ext`,
+`lean4/Imported/GenesisDerivation/Derivation/Ext.lean::validResponse_ext`.
 
 ### 3.13 Canonical keys classify regimes
 
@@ -699,11 +699,11 @@ inverse of the other is an isomorphism, because the tuples list the arities, ins
 requirements as sets. A length-prefixed sequence of fixed-width words determines the sequence,
 so the byte encoding is injective. $\square$
 
-Lean: `lean4/Imported/Genesis19l57g1/CanonicalMinimizer.lean::key_classification`,
-`lean4/Imported/Genesis19l57g1/PaperCanonical.lean::serializedRelabel_sound`,
-`lean4/Imported/Genesis19l57g1/PaperWire.lean::portableBytes_injective`,
-`lean4/Imported/Genesis19l57g1/PaperSearch.lean::canonicalKey_attained`,
-`lean4/Imported/Genesis19l57g1/PaperSearch.lean::canonicalBytes_classification`. The optimized
+Lean: `lean4/Imported/GenesisDerivation/CanonicalMinimizer.lean::key_classification`,
+`lean4/Imported/GenesisDerivation/PaperCanonical.lean::serializedRelabel_sound`,
+`lean4/Imported/GenesisDerivation/PaperWire.lean::portableBytes_injective`,
+`lean4/Imported/GenesisDerivation/PaperSearch.lean::canonicalKey_attained`,
+`lean4/Imported/GenesisDerivation/PaperSearch.lean::canonicalBytes_classification`. The optimized
 Python and Rust searches are compared with this one by finite agreement, not by proof.
 
 ### 3.14 Runs do not return
@@ -726,11 +726,11 @@ differed from $s$ the second history could not return to $s$. (4) Collapse is tr
 The DAG node also reports 288 engine runs; that each run edge is such a history is read off the
 implementation, not proved.
 
-Lean: `lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::ereplay_elems_le`,
-`lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::ereplay_elems_lt_of_ne`,
-`lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::no_return`,
-`lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::cycle_regime_const`,
-`lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::not_separable_through`.
+Lean: `lean4/Imported/GenesisDerivation/SecondRun/Run.lean::ereplay_elems_le`,
+`lean4/Imported/GenesisDerivation/SecondRun/Run.lean::ereplay_elems_lt_of_ne`,
+`lean4/Imported/GenesisDerivation/SecondRun/Run.lean::no_return`,
+`lean4/Imported/GenesisDerivation/SecondRun/Run.lean::cycle_regime_const`,
+`lean4/Imported/GenesisDerivation/SecondRun/Run.lean::not_separable_through`.
 
 ### 3.15 Endogenous demands, exogenous payments
 
@@ -760,10 +760,10 @@ So in this model demands keep arising, and they are paid for by imports from out
 or a non-finite declaration. The innovation counts of the sealed trees (53 and 83 unary mark
 edges) are computations to a fixed depth.
 
-Lean: `lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean::closedRun_round_bound_from_empty`,
-`lean4/Imported/Genesis19l57g1/Derivation/Generator.lean::generation_never_dries`,
-`lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean::g1_class_exclusion`,
-`lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean::clears_does_not_imply_not_fires`.
+Lean: `lean4/Imported/GenesisDerivation/Derivation/Rounds.lean::closedRun_round_bound_from_empty`,
+`lean4/Imported/GenesisDerivation/Derivation/Generator.lean::generation_never_dries`,
+`lean4/Imported/GenesisDerivation/Derivation/G1Class.lean::g1_class_exclusion`,
+`lean4/Imported/GenesisDerivation/Derivation/G1Class.lean::clears_does_not_imply_not_fires`.
 
 ### 3.16 A proposal record confers no execution
 
@@ -784,9 +784,9 @@ and retraction satisfy the left-inverse and preservation fields trivially. $\squ
 The record has no licence or activation field, it is one sufficient schema with no minimality
 property, and its cost is a declared natural number, not a derived cost.
 
-Lean: `lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::ProposalRecord`,
-`lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::proposal_confers_no_execution`,
-`lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::upProposal`.
+Lean: `lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean::ProposalRecord`,
+`lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean::proposal_confers_no_execution`,
+`lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean::upProposal`.
 
 ### 3.17 The incidence reading and its Betti numbers
 
@@ -806,10 +806,10 @@ The interpretation is a construction choice, not extracted from the spelling of 
 The Lean covers this three-vertex complex only; for a general face-closed family the
 correspondence is a written argument.
 
-Lean: `lean4/Imported/OeWdp/GenesisIncidence.lean::cycle_rational_betti`,
-`lean4/Imported/OeWdp/GenesisIncidence.lean::filled_rational_betti`,
-`lean4/Imported/OeWdp/GenesisIncidence.lean::cycle_incidence_eq`,
-`lean4/Imported/OeWdp/GenesisIncidence.lean::filled_incidence_eq`.
+Lean: `lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean::cycle_rational_betti`,
+`lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean::filled_rational_betti`,
+`lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean::cycle_incidence_eq`,
+`lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean::filled_incidence_eq`.
 
 ## 4. The Genesis Ongoing seeds
 
@@ -1123,11 +1123,11 @@ Lean: `lean4/Imported/PreGenesisToMssn/SnCarrier.lean::BasePresentation`,
 `lean4/Imported/PreGenesisToMssn/SnCarrier.lean::retractionDownMap`,
 `lean4/Imported/PreGenesisToMssn/SnTheorems.lean::old_image_base`,
 `lean4/Imported/PreGenesisToMssn/SnTheorems.lean::ground_carrier_empty`,
-`lean4/Imported/OeSn/SnOffImage.lean::SnOffImage.nonDescent_iff_off_image`,
-`lean4/Imported/OeSn/SnOffImage.lean::SnOffImage.accepted_only_from_section`,
-`lean4/Imported/OeSn/SnOffImage.lean::sectionLift_injective`,
-`lean4/Imported/OeSn/SnOffImage.lean::retraction_stage_strict`,
-`lean4/Imported/OeSn/SnOffImage.lean::inImage_iff`,
+`lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean::SnOffImage.nonDescent_iff_off_image`,
+`lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean::SnOffImage.accepted_only_from_section`,
+`lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean::sectionLift_injective`,
+`lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean::retraction_stage_strict`,
+`lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean::inImage_iff`,
 `lean4/SnCarrierPfp.lean::card_image_sectionLift`,
 `lean4/SnCarrierPfp.lean::table_ne_base_stage_two`,
 `lean4/SnCarrierPfp.lean::table_eq_base_stage_one_iff`,
@@ -1207,11 +1207,11 @@ observation not separating); that factorization is a definitional identity.
 
 Lean: `lean4/Imported/PreGenesisToMssn/Cochain.lean::triangle_repair_exact_iff`,
 `lean4/Imported/PreGenesisToMssn/Cochain.lean::triangle_repair_invariant`,
-`lean4/Imported/OeMssn/MssnObstructionDetector.lean::cycle_circulation_coboundary_vanishes`,
-`lean4/Imported/OeMssn/MssnObstructionDetector.lean::circulation_flux_obstruction`,
-`lean4/Imported/OeMssn/MssnObstructionDetector.lean::no_scalar_potential_for_unit_flux`,
-`lean4/Imported/OeMssn/MssnObstructionDetector.lean::obstP_factors`,
-`lean4/Imported/OeMssn/MssnObstructionDetector.lean::obst_of_gates`. The rational case is the same
+`lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean::cycle_circulation_coboundary_vanishes`,
+`lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean::circulation_flux_obstruction`,
+`lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean::no_scalar_potential_for_unit_flux`,
+`lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean::obstP_factors`,
+`lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean::obst_of_gates`. The rational case is the same
 argument.
 
 ### 6.2 Weighted $\ell^1$ duality

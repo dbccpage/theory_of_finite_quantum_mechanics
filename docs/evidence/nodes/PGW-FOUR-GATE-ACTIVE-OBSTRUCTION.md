@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean`
+### Lean: `lean4/Imported/GenesisDerivation/Derivation/PrimitivePassage.lean`
 
-- file: [lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean)
-- sha256 (`bytes`): `02869440f9049c3a60bf5c3b1647a9f211d04370f2853718a6d2adaa82551612`
+- file: [lean4/Imported/GenesisDerivation/Derivation/PrimitivePassage.lean](../../../lean4/Imported/GenesisDerivation/Derivation/PrimitivePassage.lean)
+- sha256 (`bytes`): `f4447568db285df8fdf2d4362c579235072b4de42b4866d980e01ad2cb6ddbc4`
 - cited in: node.lean, node.source, record TFQ-0493
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.Genesis19l57g1.Derivation.PrimitivePassage`): recorded sha256 `02869440f9049c3a60bf5c3b1647a9f211d04370f2853718a6d2adaa82551612` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.PrimitivePassage`): recorded sha256 `f4447568db285df8fdf2d4362c579235072b4de42b4866d980e01ad2cb6ddbc4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/Derivation/PrimitivePassage.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -59,14 +59,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/Imported/OeMssn/MssnObstructionDetector.lean`
+### Lean: `lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean`
 
-- file: [lean4/Imported/OeMssn/MssnObstructionDetector.lean](../../../lean4/Imported/OeMssn/MssnObstructionDetector.lean)
-- sha256 (`bytes`): `8356b58bc10f92084ea96eeac89ca48e5979b5e911a339157caf1224ef9f6299`
+- file: [lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean](../../../lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean)
+- sha256 (`bytes`): `4c4d0d2348ce89a0caa80aa4860c8fbcd3a038c8a4a2bbcc55a4e58bb609894a`
 - cited in: node.lean, node.source, record TFQ-0493
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.OeMssn.MssnObstructionDetector`): recorded sha256 `8356b58bc10f92084ea96eeac89ca48e5979b5e911a339157caf1224ef9f6299` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/OeMssn/MssnObstructionDetector.lean`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.MinimalSymbolSystems.MssnObstructionDetector`): recorded sha256 `4c4d0d2348ce89a0caa80aa4860c8fbcd3a038c8a4a2bbcc55a4e58bb609894a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -89,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md`
 
 - file: [dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md](../../../dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md)
-- sha256 (`lf-normalised`): `efe260a136c7f63e929ce77dba1ef1f55c3c2d6ba9db2e64426cba449021b1a7`
+- sha256 (`lf-normalised`): `d548aeb18903ceedfa05c665a96610709dd554b15c6b2ee8ef903fecaa6cd093`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0493
 - counts toward the grade: no

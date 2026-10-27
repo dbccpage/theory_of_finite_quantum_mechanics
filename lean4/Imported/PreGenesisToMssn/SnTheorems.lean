@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnTheorems.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: cb87ca60eb6724a37b8d95a8ee468d0171053eb11cd8c603cbf17ab7762ae8cd (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.PreGenesisToMssn.SnTheorems

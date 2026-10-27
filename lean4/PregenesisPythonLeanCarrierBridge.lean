@@ -1,4 +1,4 @@
-import Imported.Genesis19l57g1.SecondRun.Kernel
+import Imported.GenesisDerivation.SecondRun.Kernel
 
 open SecondRun.Sealed
 

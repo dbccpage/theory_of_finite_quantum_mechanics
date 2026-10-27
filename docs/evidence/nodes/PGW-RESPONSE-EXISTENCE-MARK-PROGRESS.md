@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/Imported/Genesis19l57g1/Derivation/Progress.lean`
+### Lean: `lean4/Imported/GenesisDerivation/Derivation/Progress.lean`
 
-- file: [lean4/Imported/Genesis19l57g1/Derivation/Progress.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/Progress.lean)
-- sha256 (`bytes`): `1a6864314f6909227f3b41d3af68bcbca5b1c286e8a2c1e889381d302e8a92ce`
+- file: [lean4/Imported/GenesisDerivation/Derivation/Progress.lean](../../../lean4/Imported/GenesisDerivation/Derivation/Progress.lean)
+- sha256 (`bytes`): `0688f47a6b5ec1274e54a5bd595e6bc32ab8706df96000e4531f8adb3cefbdda`
 - cited in: node.lean, record TFQ-0445
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.Genesis19l57g1.Derivation.Progress`): recorded sha256 `1a6864314f6909227f3b41d3af68bcbca5b1c286e8a2c1e889381d302e8a92ce` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/Derivation/Progress.lean`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.Progress`): recorded sha256 `0688f47a6b5ec1274e54a5bd595e6bc32ab8706df96000e4531f8adb3cefbdda` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/Derivation/Progress.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0445_response_existence_mark_progress.md`
 
 - file: [dag/derivations/02_genesis/tfq_0445_response_existence_mark_progress.md](../../../dag/derivations/02_genesis/tfq_0445_response_existence_mark_progress.md)
-- sha256 (`lf-normalised`): `c750ac583b5524f1ec46695312659a8927f2b1090006b60ac761353d07a6337a`
+- sha256 (`lf-normalised`): `834e5d2b8e004617479f350706f49eb9bbd6cb18e0c0b3802852380d78297028`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0445
 - counts toward the grade: no

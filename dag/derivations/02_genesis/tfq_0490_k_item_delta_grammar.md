@@ -30,8 +30,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_datum`](../../../lean4/Imported/Genesis19l57g1/Derivation/Mention.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean::rule_item_never_minimal`](../../../lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Mention.lean::collapsed_fresh_datum`](../../../lean4/Imported/GenesisDerivation/Derivation/Mention.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/RuleBridge.lean::rule_item_never_minimal`](../../../lean4/Imported/GenesisDerivation/Derivation/RuleBridge.lean)
 - [`lean4/PregenesisKItemDeltaGrammar.lean::form_rule_both_true`](../../../lean4/PregenesisKItemDeltaGrammar.lean)
 - [`lean4/PregenesisKItemDeltaGrammar.lean::fresh_datum_pairs_do_not_separate`](../../../lean4/PregenesisKItemDeltaGrammar.lean)
 - [`lean4/PregenesisKItemDeltaGrammar.lean::nine_well_formed`](../../../lean4/PregenesisKItemDeltaGrammar.lean)

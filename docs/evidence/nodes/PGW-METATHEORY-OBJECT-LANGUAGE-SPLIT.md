@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean`
+### Lean: `lean4/Imported/GenesisDerivation/Derivation/Bridge.lean`
 
-- file: [lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean)
-- sha256 (`bytes`): `c6608bb88c7fcaf7c5d05e087c812033db60a3b3ee88fe28d209531279900f03`
+- file: [lean4/Imported/GenesisDerivation/Derivation/Bridge.lean](../../../lean4/Imported/GenesisDerivation/Derivation/Bridge.lean)
+- sha256 (`bytes`): `918ca909a3ca8ef5e2cdd9eccb272f166ea1acf488c9271a2934245dfe2fbd0e`
 - cited in: node.lean, record TFQ-0430
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.Genesis19l57g1.Derivation.Bridge`): recorded sha256 `c6608bb88c7fcaf7c5d05e087c812033db60a3b3ee88fe28d209531279900f03` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.Bridge`): recorded sha256 `918ca909a3ca8ef5e2cdd9eccb272f166ea1acf488c9271a2934245dfe2fbd0e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/Derivation/Bridge.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -92,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0430_metatheory_object_language_split.md`
 
 - file: [dag/derivations/02_genesis/tfq_0430_metatheory_object_language_split.md](../../../dag/derivations/02_genesis/tfq_0430_metatheory_object_language_split.md)
-- sha256 (`lf-normalised`): `119dc971375a671fa10f2765e198c5838acdb8f75f62469ab70c17944815d90f`
+- sha256 (`lf-normalised`): `cc1bed23549635aeca15fbb237f60fad7506f4caa404c759e06d3ba36e2d550a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0430
 - counts toward the grade: no

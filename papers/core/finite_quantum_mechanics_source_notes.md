@@ -1186,7 +1186,7 @@ uses the paper's own claim IDs.
   their hypotheses separated: the positivity hypothesis fails for an indefinite
   `rho`, and the completeness premise for a pair that sums to `I` without being
   complete.
-- Of the ten Lean declarations cited for C3, the three `OmegaCore` theorems are
+- Of the ten Lean declarations cited for C3, the three `ObstructionCore` theorems are
   in `lean4/PrimitiveDifference.lean`, a Lake root; no build
   was run for this entry. `QM.GellMann.DecoherenceMatrix2x2.*` and
   `QM.GellMann.decoherence_structure_not_auth` exist only as Markdown in
@@ -2198,7 +2198,7 @@ cochains, and points the rest at their owners.
 **Corrections and scope.**
 
 - The suite presents every row as machine-checked. The paper records a Lake
-  build of 2026-06-14, but the `OmegaCore` and `QM` modules it names are not
+  build of 2026-06-14, but the `ObstructionCore` and `QM` modules it names are not
   in this tree. The rows implemented here are Rust computations, not Lean
   replays.
 - TERM-DISJ-001's pairwise disjointness is a property of any Rust enum. Its
@@ -2352,7 +2352,7 @@ packet the mapping fills is checked by `realization_packet_protocol` (QM_103).
   The paper's "17-field schema" has 18 rows.
 - `lambda = p` and `mu = p_th` is the paper's own §2.0 reading. It is a
   declaration of the mapping, not a derived relation between rates.
-- `OmegaCore.QM.repair_monotone` (ENC-1066) is not in the repository; it
+- `ObstructionCore.QM.repair_monotone` (ENC-1066) is not in the repository; it
   survives only inside the reading guide
   `research/lean4/qm_survival_theorem.md`. C9 rests on the exhaustive check
   and is `FINITE COMPUTATION`; the general statement is set inclusion. The

@@ -2789,7 +2789,7 @@ Obligation: Type every PFP act as repair, extend or promote, and refuse any rout
 - Parent: `TFQ-0506`
 - Status: `PROVED_LEAN`
 
-CarrierOrigin.lean (namespace SymbolGame.V02) establishes two small facts about its own declarations. no_difference_without_distinguishability: a Simplex1 V carries a proof that its source and target differ, so when src = tgt no 1-simplex with those endpoints exists. nilpotency_composition: for d₀ : α → β and d₁ : β → γ with a zero on γ and the hypothesis ∀ x, d₁ (d₀ x) = 0, the composite vanishes at every 0-cochain a; the proof applies the hypothesis to a. The file has no imports and elaborates under Lean 4.33.1 with no sorry.
+CarrierOrigin.lean (namespace SymbolCarrier.V02) establishes two small facts about its own declarations. no_difference_without_distinguishability: a Simplex1 V carries a proof that its source and target differ, so when src = tgt no 1-simplex with those endpoints exists. nilpotency_composition: for d₀ : α → β and d₁ : β → γ with a zero on γ and the hypothesis ∀ x, d₁ (d₀ x) = 0, the composite vanishes at every 0-cochain a; the proof applies the hypothesis to a. The file has no imports and elaborates under Lean 4.33.1 with no sorry.
 
 Obligation: Use the two theorems only as stated: a 1-simplex needs distinct endpoints, and a supplied d₁ ∘ d₀ = 0 propagates pointwise; establish nilpotency for each concrete complex separately.
 

@@ -1,5 +1,4 @@
-/- Imported from the sibling the_symbol_game lean4/ tree so that this repository carries its own Lean.
-   Original path : the_symbol_game/lean4/research_programs/higher_category_theory/CompactlyGenerated.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 91ebcff75bf0102531c2139de4f7d268ffb4de92aeecc10e7db5405455dfff35 (bytes as found)
    Imported on    : 2026-10-23
    Module         : Imported.HigherCategoryTheory.CompactlyGenerated

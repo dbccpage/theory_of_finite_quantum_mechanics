@@ -4,7 +4,7 @@
 
 
 
-namespace OmegaCosmology
+namespace FiniteCosmology
 namespace Ontology
 
 universe u v
@@ -88,7 +88,7 @@ def TruthPacket.toValidatedClaimPacket (truth : TruthPacket.{u}) : ValidatedClai
   terminalized := Or.inl (Or.inr truth.terminalizedStructure)
   authority_descent := fun _ => Or.inr truth.terminalizedStructure
 
-structure AnomalonAxiomSet where
+structure OntologyAxiomSet where
   primitiveDifferenceIsReal :
     ∀ _D : PrimitiveDifference.{0, 0}, Real0
   structureIsReal :
@@ -107,7 +107,7 @@ def primitiveDifferenceReal (D : PrimitiveDifference) : Real0 :=
 def structureReal (S : Structure) : Real0 :=
   Real0.structure S
 
-def defaultAnomalonAxioms : AnomalonAxiomSet.{u} where
+def defaultOntologyAxioms : OntologyAxiomSet.{u} where
   primitiveDifferenceIsReal := fun D => Real0.primitiveDifference D
   structureIsReal := fun S => Real0.structure S
   claimsDescendOrRefuse := fun p => p.terminalized
@@ -150,7 +150,7 @@ theorem no_authority_without_descent
   h.1
 
 theorem authoritative_status_is_not_enough
-    (A : AnomalonAxiomSet.{u})
+    (A : OntologyAxiomSet.{u})
     (packet : ValidatedClaimPacket.{u})
     (hStatus : packet.toClaimPacket.terminalStatus.Authoritative) :
     packet.toClaimPacket.DescendsToReal0 :=
@@ -199,7 +199,7 @@ theorem structure_descent_terminalized
   Or.inl (Or.inr hStructure)
 
 end Ontology
-end OmegaCosmology
+end FiniteCosmology
 
 private def l5aProvenance : String :=
   "Origin: lean4/OntologyBasic.lean Claim: no_authority_without_descent AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

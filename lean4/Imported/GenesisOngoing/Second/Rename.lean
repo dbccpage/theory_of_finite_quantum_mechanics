@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 7345c48641a53a32a4952f3cd3900d3c4ef7e98e3f353df489e32429fed9a0b3 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.GenesisOngoing.Second.Rename

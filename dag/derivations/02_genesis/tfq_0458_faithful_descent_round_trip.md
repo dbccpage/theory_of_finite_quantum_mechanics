@@ -30,8 +30,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean::faithful_descent_iff_round_trip_coherent`](../../../lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean::faithful_descent_to_coherent`](../../../lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/PresentationDescent.lean::faithful_descent_iff_round_trip_coherent`](../../../lean4/Imported/GenesisDerivation/Derivation/PresentationDescent.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/PresentationDescent.lean::faithful_descent_to_coherent`](../../../lean4/Imported/GenesisDerivation/Derivation/PresentationDescent.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust check of presentation descent`
@@ -51,5 +51,5 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:469-482`
-  - `lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean:32-36`
+  - `lean4/Imported/GenesisDerivation/Derivation/PresentationDescent.lean:32-36`
   - `atlas/papers/finite_obstruction_calculus/genesis/code/fixtures/historical_claim_ledger.md:32`

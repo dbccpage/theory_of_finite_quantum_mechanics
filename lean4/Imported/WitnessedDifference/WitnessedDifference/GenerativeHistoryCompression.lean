@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/GenerativeHistoryCompression.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 9804d239b85207f6273a7b3a4a80d9f4c673afc9ca720b9899ec8c3439f3e6d4 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.WitnessedDifference.WitnessedDifference.GenerativeHistoryCompression

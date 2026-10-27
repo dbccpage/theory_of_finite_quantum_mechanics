@@ -6,7 +6,7 @@ import PrimitiveDifference
 
 
 
-namespace OmegaCore.FablePrimitiveDifferenceBridge
+namespace ObstructionCore.PrimitiveDifferenceBridge
 
 open PrimitiveDifference
 
@@ -178,18 +178,18 @@ theorem separator_outside_profile_derived_family
   exact (separator_not_derived_from_old_profile
     questions target hmissed hseparates) (hexhaustive target htarget)
 
-end OmegaCore.FablePrimitiveDifferenceBridge
+end ObstructionCore.PrimitiveDifferenceBridge
 
-#print axioms OmegaCore.FablePrimitiveDifferenceBridge.familyMisses_iff_zeroRel
-#print axioms OmegaCore.FablePrimitiveDifferenceBridge.retained_protected_miss_active
-#print axioms OmegaCore.FablePrimitiveDifferenceBridge.derived_observer_cannot_separate
-#print axioms OmegaCore.FablePrimitiveDifferenceBridge.separator_no_factor_through_old_quotient
-#print axioms OmegaCore.FablePrimitiveDifferenceBridge.separator_not_derived_from_old_profile
-#print axioms OmegaCore.FablePrimitiveDifferenceBridge.strictSplit_refines_zeroRel
-#print axioms OmegaCore.FablePrimitiveDifferenceBridge.residualRefinementMap_classOf
-#print axioms OmegaCore.FablePrimitiveDifferenceBridge.strictSplit_refines_residual_quotient
-#print axioms OmegaCore.FablePrimitiveDifferenceBridge.obstruction_persists_without_split
-#print axioms OmegaCore.FablePrimitiveDifferenceBridge.separator_outside_profile_derived_family
+#print axioms ObstructionCore.PrimitiveDifferenceBridge.familyMisses_iff_zeroRel
+#print axioms ObstructionCore.PrimitiveDifferenceBridge.retained_protected_miss_active
+#print axioms ObstructionCore.PrimitiveDifferenceBridge.derived_observer_cannot_separate
+#print axioms ObstructionCore.PrimitiveDifferenceBridge.separator_no_factor_through_old_quotient
+#print axioms ObstructionCore.PrimitiveDifferenceBridge.separator_not_derived_from_old_profile
+#print axioms ObstructionCore.PrimitiveDifferenceBridge.strictSplit_refines_zeroRel
+#print axioms ObstructionCore.PrimitiveDifferenceBridge.residualRefinementMap_classOf
+#print axioms ObstructionCore.PrimitiveDifferenceBridge.strictSplit_refines_residual_quotient
+#print axioms ObstructionCore.PrimitiveDifferenceBridge.obstruction_persists_without_split
+#print axioms ObstructionCore.PrimitiveDifferenceBridge.separator_outside_profile_derived_family
 
 private def l5aProvenance : String :=
   "Origin: lean4/PrimitiveDifferenceBridge.lean Claim: familyMisses_iff_zeroRel AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

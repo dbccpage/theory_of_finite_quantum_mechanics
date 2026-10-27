@@ -20,8 +20,8 @@ target:
     cost accounting the education audit describes.
   source_refs:
   - dag/derivations/02_genesis/tfq_0494_stage_change_contract_proposal_record.md
-  - lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean:369-389
-  - lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean:360-367
+  - lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean:369-389
+  - lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean:360-367
   - omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md:982-988
   paper_refs: []
   source_claim_label: PROVED_LEAN
@@ -41,7 +41,7 @@ operation_candidates:
   name: ProposalRecord
   line: 390
   signature_excerpt: 'structure ProposalRecord (s : PState)'
-  source: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean
   repository: this_repository
   source_sha256: 9b1fd8dd6555278cd102bde6b5702af9d8b185c899b34a67b490429043835056
   status: source_candidate_requires_semantic_review
@@ -51,7 +51,7 @@ operation_candidates:
   signature_excerpt: |-
     def upProposal (s : PState) (hwf : WFStores s) (hh : s.halted = false)
         (p : Nat) (hp : p < s.occ.length) : ProposalRecord s
-  source: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean
   repository: this_repository
   source_sha256: 9b1fd8dd6555278cd102bde6b5702af9d8b185c899b34a67b490429043835056
   status: source_candidate_requires_semantic_review
@@ -63,35 +63,35 @@ relation_candidates:
     theorem proposal_confers_no_execution (s : PState)
         (P : ProposalRecord s) (h : s.halted = true) :
         replayP P.block s = s
-  source: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean
   repository: this_repository
   source_sha256: 9b1fd8dd6555278cd102bde6b5702af9d8b185c899b34a67b490429043835056
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::ProposalRecord
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean::ProposalRecord
   availability: local
   symbol: ProposalRecord
-  path: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean
   repository: this_repository
   sha256: 9b1fd8dd6555278cd102bde6b5702af9d8b185c899b34a67b490429043835056
   declaration_status: declaration_found_not_proof_checked
   line: 390
   role: source_lead_only
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::proposal_confers_no_execution
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean::proposal_confers_no_execution
   availability: local
   symbol: proposal_confers_no_execution
-  path: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean
   repository: this_repository
   sha256: 9b1fd8dd6555278cd102bde6b5702af9d8b185c899b34a67b490429043835056
   declaration_status: declaration_found_not_proof_checked
   line: 450
   role: source_lead_only
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::upProposal
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean::upProposal
   availability: local
   symbol: upProposal
-  path: lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean
   repository: this_repository
   sha256: 9b1fd8dd6555278cd102bde6b5702af9d8b185c899b34a67b490429043835056
   declaration_status: declaration_found_not_proof_checked

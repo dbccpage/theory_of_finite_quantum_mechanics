@@ -2,7 +2,7 @@
 import PrimitiveLiftCandidate
 
 
-namespace OmegaCore
+namespace ObstructionCore
 namespace PrimitiveLiftCertificate
 
 structure LiftEvidence where
@@ -122,7 +122,7 @@ theorem no_lift_certificate_without_closure
       exact hNoClosure hClosure
 
 end PrimitiveLiftCertificate
-end OmegaCore
+end ObstructionCore
 
 private def l5aProvenance : String :=
   "Origin: lean4/PrimitiveLiftCertificate.lean Claim: liftCertificate_implies_source_obstruction AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

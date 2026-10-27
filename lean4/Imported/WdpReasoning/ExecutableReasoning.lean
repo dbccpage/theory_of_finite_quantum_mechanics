@@ -1,5 +1,4 @@
-/- Imported from the sibling the_symbol_game lean4/ tree so that this repository carries its own Lean.
-   Original path : the_symbol_game/lean4/research_programs/wdp_reasoning/ExecutableReasoning.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 45e84a8230275c507a559e30a2321fa2a01614460d64dceb03f5c3772bce9206 (bytes as found)
    Imported on    : 2026-10-23
    Module         : Imported.WdpReasoning.ExecutableReasoning

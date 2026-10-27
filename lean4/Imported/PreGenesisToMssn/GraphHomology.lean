@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/GraphHomology.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: ca85b02417bf1ce3d0d61ee15bf04c4842f107f69671bed4a35255219bdf0d52 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.PreGenesisToMssn.GraphHomology

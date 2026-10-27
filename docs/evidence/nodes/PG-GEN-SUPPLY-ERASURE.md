@@ -85,24 +85,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/Imported/Genesis19l57g1/Derivation/Erasure.lean`
+### Lean: `lean4/Imported/GenesisDerivation/Derivation/Erasure.lean`
 
-- file: [lean4/Imported/Genesis19l57g1/Derivation/Erasure.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/Erasure.lean)
-- sha256 (`bytes`): `1206da12f2f523d901faf328b459b6831933ce7b911b552ce1d30e46355ba1c4`
+- file: [lean4/Imported/GenesisDerivation/Derivation/Erasure.lean](../../../lean4/Imported/GenesisDerivation/Derivation/Erasure.lean)
+- sha256 (`bytes`): `14916819b36c6f1164b153ed9a0d6afeabed01ca3e56dfcc147ae9183ecfd72d`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.Genesis19l57g1.Derivation.Erasure`): recorded sha256 `1206da12f2f523d901faf328b459b6831933ce7b911b552ce1d30e46355ba1c4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/Derivation/Erasure.lean`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.Erasure`): recorded sha256 `14916819b36c6f1164b153ed9a0d6afeabed01ca3e56dfcc147ae9183ecfd72d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/Derivation/Erasure.lean`
 - counts toward the grade: yes
 
-### Lean: `lean4/Imported/OeGenPrimitives/SupplyErasure.lean`
+### Lean: `lean4/Imported/GenesisPrimitives/SupplyErasure.lean`
 
-- file: [lean4/Imported/OeGenPrimitives/SupplyErasure.lean](../../../lean4/Imported/OeGenPrimitives/SupplyErasure.lean)
-- sha256 (`bytes`): `8082e6a7fbb1f10b59c53bec87af703b6957ca0cfb34aef1d9722fd57b3d794d`
+- file: [lean4/Imported/GenesisPrimitives/SupplyErasure.lean](../../../lean4/Imported/GenesisPrimitives/SupplyErasure.lean)
+- sha256 (`bytes`): `7ebb3d1215781bd1706298b24e194812509f7e1f8b502e5eed6aa884103bd2f8`
 - cited in: node.lean, node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.OeGenPrimitives.SupplyErasure`): recorded sha256 `8082e6a7fbb1f10b59c53bec87af703b6957ca0cfb34aef1d9722fd57b3d794d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/OeGenPrimitives/SupplyErasure.lean`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisPrimitives.SupplyErasure`): recorded sha256 `7ebb3d1215781bd1706298b24e194812509f7e1f8b502e5eed6aa884103bd2f8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisPrimitives/SupplyErasure.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|

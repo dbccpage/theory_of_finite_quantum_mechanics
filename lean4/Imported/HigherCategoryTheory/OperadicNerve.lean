@@ -1,5 +1,4 @@
-/- Imported from the sibling the_symbol_game lean4/ tree so that this repository carries its own Lean.
-   Original path : the_symbol_game/lean4/research_programs/higher_category_theory/OperadicNerve.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 3d3f19d8d9295fa59e89481ca295dfee5c084067083a6d9859717d4a35aec8b0 (bytes as found)
    Imported on    : 2026-10-23
    Module         : Imported.HigherCategoryTheory.OperadicNerve

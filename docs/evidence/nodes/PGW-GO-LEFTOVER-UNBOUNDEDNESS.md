@@ -45,10 +45,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean`
 
 - file: [lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean](../../../lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean)
-- sha256 (`bytes`): `a566d3fd20c1d547de13b81216d8da513ee7b427cc9d8d51e9cdd2a2cf76e7b1`
+- sha256 (`bytes`): `0cd4d9c04cb208b88a2c86a80658f6c43ef3ac95886f0eb1c1c921a3f1e856eb`
 - cited in: node.lean, node.source, record TFQ-0482
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Sixteenth.Reach`): recorded sha256 `a566d3fd20c1d547de13b81216d8da513ee7b427cc9d8d51e9cdd2a2cf76e7b1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Sixteenth.Reach`): recorded sha256 `0cd4d9c04cb208b88a2c86a80658f6c43ef3ac95886f0eb1c1c921a3f1e856eb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

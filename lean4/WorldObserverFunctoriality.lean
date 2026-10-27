@@ -9,8 +9,8 @@ import PrimitiveDifference
 namespace ObserverWorld
 namespace ObserverFunctorialityW35
 
-open OmegaCore
-open OmegaCore.PrimitiveDifference
+open ObstructionCore
+open ObstructionCore.PrimitiveDifference
 
 universe u v w z
 

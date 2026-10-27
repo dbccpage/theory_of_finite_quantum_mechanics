@@ -46,7 +46,7 @@ relation_candidates:
     theorem insufficient_history_view {H V S : Type} (pi : H → V) (sigma : H → S)
         (h1 h2 : H) (sameView : pi h1 = pi h2) (differentState : sigma h1 ≠ sigma h2) :
         ¬ ∃ auditor : V → S, ∀ h, auditor (pi h) = sigma h
-  source: lean4/Imported/Genesis19l57g1/Paper000.lean
+  source: lean4/Imported/GenesisDerivation/Paper000.lean
   repository: this_repository
   source_sha256: 1257bc7a308228f6d966fb493abe022f65123d4d5b0bdfeb49ed9dcd9722ce46
   status: source_candidate_requires_semantic_review
@@ -59,26 +59,26 @@ relation_candidates:
     theorem no_factor_through_common_view {H V S : Type} (view : H → V) (answer : H → S)
         (h1 h2 : H) (sameView : view h1 = view h2) (differentAnswer : answer h1 ≠ answer h2) :
         ¬ ∃ auditor : V → S, ∀ h, auditor (view h) = answer h
-  source: lean4/Imported/Genesis19l57g1/Paper000.lean
+  source: lean4/Imported/GenesisDerivation/Paper000.lean
   repository: this_repository
   source_sha256: 1257bc7a308228f6d966fb493abe022f65123d4d5b0bdfeb49ed9dcd9722ce46
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/Imported/Genesis19l57g1/Paper000.lean::insufficient_history_view
+- original_ref: lean4/Imported/GenesisDerivation/Paper000.lean::insufficient_history_view
   availability: local
   symbol: insufficient_history_view
-  path: lean4/Imported/Genesis19l57g1/Paper000.lean
+  path: lean4/Imported/GenesisDerivation/Paper000.lean
   repository: this_repository
   sha256: 1257bc7a308228f6d966fb493abe022f65123d4d5b0bdfeb49ed9dcd9722ce46
   declaration_status: declaration_found_not_proof_checked
   line: 28
   role: source_lead_only
-- original_ref: lean4/Imported/Genesis19l57g1/Paper000.lean::no_factor_through_common_view
+- original_ref: lean4/Imported/GenesisDerivation/Paper000.lean::no_factor_through_common_view
   availability: local
   symbol: no_factor_through_common_view
-  path: lean4/Imported/Genesis19l57g1/Paper000.lean
+  path: lean4/Imported/GenesisDerivation/Paper000.lean
   repository: this_repository
   sha256: 1257bc7a308228f6d966fb493abe022f65123d4d5b0bdfeb49ed9dcd9722ce46
   declaration_status: declaration_found_not_proof_checked

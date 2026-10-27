@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/Imported/Genesis19l57g1/Derivation/Mention.lean`
+### Lean: `lean4/Imported/GenesisDerivation/Derivation/Mention.lean`
 
-- file: [lean4/Imported/Genesis19l57g1/Derivation/Mention.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/Mention.lean)
-- sha256 (`bytes`): `73f4b5ee8c91290124be0c39541217256f2ec47e26d23b887fa40f8ba9b97f38`
+- file: [lean4/Imported/GenesisDerivation/Derivation/Mention.lean](../../../lean4/Imported/GenesisDerivation/Derivation/Mention.lean)
+- sha256 (`bytes`): `8e8e765b632df333664a8d198f169ce7234aa5e91500cde0ed3fc4a05fc8e351`
 - cited in: node.lean, node.source, record TFQ-0446
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.Genesis19l57g1.Derivation.Mention`): recorded sha256 `73f4b5ee8c91290124be0c39541217256f2ec47e26d23b887fa40f8ba9b97f38` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/Derivation/Mention.lean`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.Mention`): recorded sha256 `8e8e765b632df333664a8d198f169ce7234aa5e91500cde0ed3fc4a05fc8e351` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/Derivation/Mention.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -59,14 +59,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/Imported/Genesis19l57g1/Derivation/Progress.lean`
+### Lean: `lean4/Imported/GenesisDerivation/Derivation/Progress.lean`
 
-- file: [lean4/Imported/Genesis19l57g1/Derivation/Progress.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/Progress.lean)
-- sha256 (`bytes`): `1a6864314f6909227f3b41d3af68bcbca5b1c286e8a2c1e889381d302e8a92ce`
+- file: [lean4/Imported/GenesisDerivation/Derivation/Progress.lean](../../../lean4/Imported/GenesisDerivation/Derivation/Progress.lean)
+- sha256 (`bytes`): `0688f47a6b5ec1274e54a5bd595e6bc32ab8706df96000e4531f8adb3cefbdda`
 - cited in: node.lean, record TFQ-0446
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.Genesis19l57g1.Derivation.Progress`): recorded sha256 `1a6864314f6909227f3b41d3af68bcbca5b1c286e8a2c1e889381d302e8a92ce` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/Derivation/Progress.lean`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.Progress`): recorded sha256 `0688f47a6b5ec1274e54a5bd595e6bc32ab8706df96000e4531f8adb3cefbdda` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/Derivation/Progress.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -74,14 +74,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean`
+### Lean: `lean4/Imported/GenesisDerivation/Derivation/RuleBridge.lean`
 
-- file: [lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean)
-- sha256 (`bytes`): `2f5e9cbd5fa01227b953951195d39129ad389ccad6d9098a99ac78920356f467`
+- file: [lean4/Imported/GenesisDerivation/Derivation/RuleBridge.lean](../../../lean4/Imported/GenesisDerivation/Derivation/RuleBridge.lean)
+- sha256 (`bytes`): `3c7cf77b34ed5617509b2be2d5c48a73555b5381c107cb12e992cd8d16e6fdc1`
 - cited in: node.lean, record TFQ-0446
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.Genesis19l57g1.Derivation.RuleBridge`): recorded sha256 `2f5e9cbd5fa01227b953951195d39129ad389ccad6d9098a99ac78920356f467` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.RuleBridge`): recorded sha256 `3c7cf77b34ed5617509b2be2d5c48a73555b5381c107cb12e992cd8d16e6fdc1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/Derivation/RuleBridge.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -125,7 +125,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0446_pruning_lemmas_cost_two.md`
 
 - file: [dag/derivations/02_genesis/tfq_0446_pruning_lemmas_cost_two.md](../../../dag/derivations/02_genesis/tfq_0446_pruning_lemmas_cost_two.md)
-- sha256 (`lf-normalised`): `23f5188cbc3fd45baffdc85574a710648d1d6cf3bcfabee089f47b8792ab6cae`
+- sha256 (`lf-normalised`): `382f5b76e5fe2ab986c84e3d85164c7b5f14bdf09e41f778960263d23d0c16dc`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0446
 - counts toward the grade: no

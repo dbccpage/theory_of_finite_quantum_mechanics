@@ -14,12 +14,12 @@ and exercises it on a concrete two-object middle slice over ℕ.
 The composition is canonical **only after slicing** (grading): the companion
 `QM.UngradedOvercount` (LT-O) exhibits the 3:1 over-count incurred when the slice
 is dropped. The continuum generator `exp(tH)` stays `OracleNeeded`. Mathlib-free;
-builds on `OmegaCore` only. No Born rule / inner product; no authority minted.
+builds on `ObstructionCore` only. No Born rule / inner product; no authority minted.
 -/
 
 namespace QM
 
-open OmegaCosmology.Primitives.SemiringTransportKernel
+open FiniteCosmology.Primitives.SemiringTransportKernel
 
 /-- **Sliced composition step (T1/T2).** Extending every enumerated partial path by
 a common final edge of weight `y` distributes into the path-sum:

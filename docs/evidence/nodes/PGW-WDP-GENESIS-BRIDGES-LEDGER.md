@@ -45,10 +45,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/FoundationalBridges.lean`
 
 - file: [lean4/Imported/WitnessedDifference/WitnessedDifference/FoundationalBridges.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/FoundationalBridges.lean)
-- sha256 (`bytes`): `b3f18641d80352faf0023d10748f222a135487fbd38e9186b5fca26ed363fcaf`
+- sha256 (`bytes`): `8161a0b6da00a7cc263adf34016c92abd78e79111d981f81c42e4c493e8e6683`
 - cited in: node.lean, record TFQ-0554
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_wdp.json](../../../dag/research/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.FoundationalBridges`): recorded sha256 `b3f18641d80352faf0023d10748f222a135487fbd38e9186b5fca26ed363fcaf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_wdp.json](../../../dag/research/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.FoundationalBridges`): recorded sha256 `8161a0b6da00a7cc263adf34016c92abd78e79111d981f81c42e4c493e8e6683` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/FoundationalBridges.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

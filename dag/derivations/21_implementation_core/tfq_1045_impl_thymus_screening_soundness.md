@@ -27,8 +27,8 @@ MECHANIZED in ThymusScreening.lean (empty axiom report) with Rust witness
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/Imported/OePfp/ThymusScreening.lean::Oeeis.Thymus.self_panel_soundness`
-- `lean4/Imported/OePfp/ThymusScreening.lean::Oeeis.Thymus.thymus_admit_iff`
+- `lean4/Imported/PfpCarriers/ThymusScreening.lean::EpistemicImmuneSystem.Thymus.self_panel_soundness`
+- `lean4/Imported/PfpCarriers/ThymusScreening.lean::EpistemicImmuneSystem.Thymus.thymus_admit_iff`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_impl_nf002_thymus_and_lggr_witness`
@@ -45,5 +45,5 @@ MECHANIZED in ThymusScreening.lean (empty axiom report) with Rust witness
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `lean4/Imported/OePfp/ThymusScreening.lean`
+  - `lean4/Imported/PfpCarriers/ThymusScreening.lean`
   - `sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml`

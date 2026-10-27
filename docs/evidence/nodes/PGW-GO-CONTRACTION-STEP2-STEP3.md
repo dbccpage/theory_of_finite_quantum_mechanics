@@ -45,10 +45,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/GenesisOngoing/Second/Carry.lean`
 
 - file: [lean4/Imported/GenesisOngoing/Second/Carry.lean](../../../lean4/Imported/GenesisOngoing/Second/Carry.lean)
-- sha256 (`bytes`): `6d7c19d48be69a2d3294f8a35763d53e0f77733e1bae5c83eb319df2e50ab65e`
+- sha256 (`bytes`): `e31778a48b6eb0b107c9d640fe3a7a8319034891bad0b33d20bfa47a1e524b3d`
 - cited in: node.lean, record TFQ-0478
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Second.Carry`): recorded sha256 `6d7c19d48be69a2d3294f8a35763d53e0f77733e1bae5c83eb319df2e50ab65e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Second.Carry`): recorded sha256 `e31778a48b6eb0b107c9d640fe3a7a8319034891bad0b33d20bfa47a1e524b3d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Second/Carry.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -61,10 +61,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/GenesisOngoing/Third/Step.lean`
 
 - file: [lean4/Imported/GenesisOngoing/Third/Step.lean](../../../lean4/Imported/GenesisOngoing/Third/Step.lean)
-- sha256 (`bytes`): `72cd8c548da465aba1f5c56f5f351e0489fbb6a2ef9b6a70a4f2bf65293e2eeb`
+- sha256 (`bytes`): `aceb819fa92ee7c3bee3f2aa0d8f3de9ea04b6fc902706c067e50450412bb215`
 - cited in: node.lean, record TFQ-0478
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Third.Step`): recorded sha256 `72cd8c548da465aba1f5c56f5f351e0489fbb6a2ef9b6a70a4f2bf65293e2eeb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Third.Step`): recorded sha256 `aceb819fa92ee7c3bee3f2aa0d8f3de9ea04b6fc902706c067e50450412bb215` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Third/Step.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

@@ -48,10 +48,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/PreGenesisToMssn/SnCarrier.lean`
 
 - file: [lean4/Imported/PreGenesisToMssn/SnCarrier.lean](../../../lean4/Imported/PreGenesisToMssn/SnCarrier.lean)
-- sha256 (`bytes`): `73a91689993eeefb0a501d4dbb23942ac14bb243f05e65fe2b16d78ba207fb4c`
+- sha256 (`bytes`): `260e999d08f1be537c217e8eb257699dd559b2ed3d6f742fe7fb6c6c99529d3e`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mssn_sn.json](../../../dag/research/lean_replay_campaign_mssn_sn.json) (module `Imported.PreGenesisToMssn.SnCarrier`): recorded sha256 `73a91689993eeefb0a501d4dbb23942ac14bb243f05e65fe2b16d78ba207fb4c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_mssn_sn.json](../../../dag/research/lean_replay_campaign_mssn_sn.json) (module `Imported.PreGenesisToMssn.SnCarrier`): recorded sha256 `260e999d08f1be537c217e8eb257699dd559b2ed3d6f742fe7fb6c6c99529d3e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/SnCarrier.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,10 +66,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/PreGenesisToMssn/SnTheorems.lean`
 
 - file: [lean4/Imported/PreGenesisToMssn/SnTheorems.lean](../../../lean4/Imported/PreGenesisToMssn/SnTheorems.lean)
-- sha256 (`bytes`): `0b3a26d57be1ddc3d5d808f1d2c6aaabf5ca45822d04e85dc0e51e072e5b1244`
+- sha256 (`bytes`): `6663ad7c6dbfb2bc041774fb9a259f3f487c511c901e8e85a9c5dc043710dcaf`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mssn_sn.json](../../../dag/research/lean_replay_campaign_mssn_sn.json) (module `Imported.PreGenesisToMssn.SnTheorems`): recorded sha256 `0b3a26d57be1ddc3d5d808f1d2c6aaabf5ca45822d04e85dc0e51e072e5b1244` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_mssn_sn.json](../../../dag/research/lean_replay_campaign_mssn_sn.json) (module `Imported.PreGenesisToMssn.SnTheorems`): recorded sha256 `6663ad7c6dbfb2bc041774fb9a259f3f487c511c901e8e85a9c5dc043710dcaf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/SnTheorems.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

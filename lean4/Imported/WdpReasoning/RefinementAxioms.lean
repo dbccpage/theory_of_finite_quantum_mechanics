@@ -1,5 +1,4 @@
-/- Imported from the sibling the_symbol_game lean4/ tree so that this repository carries its own Lean.
-   Original path : the_symbol_game/lean4/research_programs/wdp_reasoning/RefinementAxioms.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 09ac0b21525cbf7cd67af904346d7a44060296734cb7a55a68ccf82a30805df1 (bytes as found)
    Imported on    : 2026-10-23
    Module         : Imported.WdpReasoning.RefinementAxioms

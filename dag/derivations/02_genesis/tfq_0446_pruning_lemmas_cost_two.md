@@ -30,11 +30,11 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_append_unmentioning`](../../../lean4/Imported/Genesis19l57g1/Derivation/Mention.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_datum`](../../../lean4/Imported/Genesis19l57g1/Derivation/Mention.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_form`](../../../lean4/Imported/Genesis19l57g1/Derivation/Mention.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::separable_of_subrules`](../../../lean4/Imported/Genesis19l57g1/Derivation/Progress.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean::rule_item_never_minimal`](../../../lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Mention.lean::collapsed_append_unmentioning`](../../../lean4/Imported/GenesisDerivation/Derivation/Mention.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Mention.lean::collapsed_fresh_datum`](../../../lean4/Imported/GenesisDerivation/Derivation/Mention.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Mention.lean::collapsed_fresh_form`](../../../lean4/Imported/GenesisDerivation/Derivation/Mention.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Progress.lean::separable_of_subrules`](../../../lean4/Imported/GenesisDerivation/Derivation/Progress.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/RuleBridge.lean::rule_item_never_minimal`](../../../lean4/Imported/GenesisDerivation/Derivation/RuleBridge.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/enumeration.rs::iter_cost2_deltas`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/enumeration.rs)
@@ -56,5 +56,5 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:414-422`
-  - `lean4/Imported/Genesis19l57g1/Derivation/Mention.lean:94-96`
+  - `lean4/Imported/GenesisDerivation/Derivation/Mention.lean:94-96`
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:742-747`

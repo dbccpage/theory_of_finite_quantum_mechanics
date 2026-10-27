@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Same.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 08b55ce30724b47a6300012fbdc08bbecf3ef4b8f7689665bf900079cd8555c6 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.GenesisOngoingCore.Twentysecond.Same

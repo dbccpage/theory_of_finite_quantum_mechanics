@@ -46,10 +46,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/Probability.lean`
 
 - file: [lean4/Imported/WitnessedDifference/WitnessedDifference/Probability.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Probability.lean)
-- sha256 (`bytes`): `b1258e1ae67c5ff03ea365400ad78fb255e1342b550d28905d574297f7403936`
+- sha256 (`bytes`): `a61e58a20ff2fa0853e927e9877bdb5b7f7b5398901deb1c961cc58abf275fae`
 - cited in: node.lean, record TFQ-0552
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_wdp.json](../../../dag/research/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.Probability`): recorded sha256 `b1258e1ae67c5ff03ea365400ad78fb255e1342b550d28905d574297f7403936` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_wdp.json](../../../dag/research/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.Probability`): recorded sha256 `a61e58a20ff2fa0853e927e9877bdb5b7f7b5398901deb1c961cc58abf275fae` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/Probability.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

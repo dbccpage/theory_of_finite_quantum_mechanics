@@ -48,30 +48,30 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/GenesisOngoing/Sixteenth/State.lean`
 
 - file: [lean4/Imported/GenesisOngoing/Sixteenth/State.lean](../../../lean4/Imported/GenesisOngoing/Sixteenth/State.lean)
-- sha256 (`bytes`): `9145a76e1704bd1b8b47b858be313d8c85722ad1fe2cb15c9d8d1cc191b175dd`
+- sha256 (`bytes`): `0eea9d0d56ff41618586742ce2017cefc8d1db184a9ba71ac7bbb5885bd61c59`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Sixteenth.State`): recorded sha256 `9145a76e1704bd1b8b47b858be313d8c85722ad1fe2cb15c9d8d1cc191b175dd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Sixteenth.State`): recorded sha256 `0eea9d0d56ff41618586742ce2017cefc8d1db184a9ba71ac7bbb5885bd61c59` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Sixteenth/State.lean`
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/GenesisOngoing/Twentieth/Order.lean`
 
 - file: [lean4/Imported/GenesisOngoing/Twentieth/Order.lean](../../../lean4/Imported/GenesisOngoing/Twentieth/Order.lean)
-- sha256 (`bytes`): `3d2ba2dbac504fce151498a4ccec4314f70634d052fb36fcba20d7ca61974449`
+- sha256 (`bytes`): `bcd4e3ef7e802d6d122884d9e2f79417cdf70137c2a95a2dc5e2f99da99d8987`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Twentieth.Order`): recorded sha256 `3d2ba2dbac504fce151498a4ccec4314f70634d052fb36fcba20d7ca61974449` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Twentieth.Order`): recorded sha256 `bcd4e3ef7e802d6d122884d9e2f79417cdf70137c2a95a2dc5e2f99da99d8987` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Twentieth/Order.lean`
 - counts toward the grade: yes
 
 ### Lean: `lean4/Imported/GenesisOngoing/Twentyfirst/Refusal.lean`
 
 - file: [lean4/Imported/GenesisOngoing/Twentyfirst/Refusal.lean](../../../lean4/Imported/GenesisOngoing/Twentyfirst/Refusal.lean)
-- sha256 (`bytes`): `3dda5f94755bd75aeda3748fae0aff489903fd5b23ae582eeb695e5cf52b68b4`
+- sha256 (`bytes`): `139c137e1260134333baf13d6c40eb6261689198051f8ac156e2d22fa363fae3`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Twentyfirst.Refusal`): recorded sha256 `3dda5f94755bd75aeda3748fae0aff489903fd5b23ae582eeb695e5cf52b68b4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Twentyfirst.Refusal`): recorded sha256 `139c137e1260134333baf13d6c40eb6261689198051f8ac156e2d22fa363fae3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Twentyfirst/Refusal.lean`
 - counts toward the grade: yes
 

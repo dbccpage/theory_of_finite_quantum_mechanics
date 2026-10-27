@@ -63,10 +63,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/OperatorLifts/Lifts.lean`
 
 - file: [lean4/Imported/OperatorLifts/Lifts.lean](../../../lean4/Imported/OperatorLifts/Lifts.lean)
-- sha256 (`bytes`): `da77446b350410fd7d74b397108efa8ba81b0a0a3b0a0aedb0c8f371b23369fa`
+- sha256 (`bytes`): `3ea819f651d74f0f8ab63d4cedb40e89a4c1719ebfd304cc5f301f8ceccc3f82`
 - cited in: node.lean, node.source, record TFQ-1000
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `Imported.OperatorLifts.Lifts`): recorded sha256 `da77446b350410fd7d74b397108efa8ba81b0a0a3b0a0aedb0c8f371b23369fa` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `Imported.OperatorLifts.Lifts`): recorded sha256 `3ea819f651d74f0f8ab63d4cedb40e89a4c1719ebfd304cc5f301f8ceccc3f82` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/OperatorLifts/Lifts.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

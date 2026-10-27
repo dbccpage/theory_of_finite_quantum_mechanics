@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Undo.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: a1a423802de1d42bd805bce5c3f7ac9d104a394cfb4d34c1e5b02e1ba309ffda (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.GenesisOngoingCore.Twentysecond.Undo

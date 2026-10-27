@@ -11,7 +11,7 @@ import PrimitiveDifference
 namespace ObserverWorld
 namespace GateVacuityW810
 
-open OmegaCore
+open ObstructionCore
 
 universe u
 

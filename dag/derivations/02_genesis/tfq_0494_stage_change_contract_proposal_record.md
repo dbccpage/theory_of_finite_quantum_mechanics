@@ -30,9 +30,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::ProposalRecord`](../../../lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::proposal_confers_no_execution`](../../../lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean::upProposal`](../../../lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean::ProposalRecord`](../../../lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean::proposal_confers_no_execution`](../../../lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean::upProposal`](../../../lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust port of ProposalRecord`
@@ -52,6 +52,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean:369-389`
-  - `lean4/Imported/Genesis19l57g1/Derivation/GraphGenesis.lean:360-367`
+  - `lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean:369-389`
+  - `lean4/Imported/GenesisDerivation/Derivation/GraphGenesis.lean:360-367`
   - `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md:982-988`

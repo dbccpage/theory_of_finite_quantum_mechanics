@@ -30,8 +30,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Paper000.lean::form_then_instance_separates`](../../../lean4/Imported/Genesis19l57g1/Paper000.lean)
-- [`lean4/Imported/Genesis19l57g1/Paper000.lean::single_admission_does_not_separate`](../../../lean4/Imported/Genesis19l57g1/Paper000.lean)
+- [`lean4/Imported/GenesisDerivation/Paper000.lean::form_then_instance_separates`](../../../lean4/Imported/GenesisDerivation/Paper000.lean)
+- [`lean4/Imported/GenesisDerivation/Paper000.lean::single_admission_does_not_separate`](../../../lean4/Imported/GenesisDerivation/Paper000.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust count of the capabilities a proposed extension adds`

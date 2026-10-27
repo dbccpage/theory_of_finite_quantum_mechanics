@@ -1,5 +1,4 @@
-/- Imported from the sibling the_symbol_game lean4/ tree so that this repository carries its own Lean.
-   Original path : the_symbol_game/lean4/research_programs/higher_category_theory/CoherenceTheorems.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 093a78e4295db87030789e22bc4c890065cbbac6f16e8c9742b2f68f57262e3f (bytes as found)
    Imported on    : 2026-10-23
    Module         : Imported.HigherCategoryTheory.CoherenceTheorems
@@ -9,9 +8,7 @@
                     Port notes (version drift): none.
    AuthorityEffect: None. -/
 /-
-Copyright (c) 2026 Anomalon Research. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Worker M1 (Lean 4 HCT Formalization)
 -/
 
 import Imported.HigherCategoryTheory.Bicategory

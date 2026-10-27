@@ -2,7 +2,7 @@
 import PrimitiveObstructionPipeline
 
 
-namespace OmegaCore
+namespace ObstructionCore
 namespace PrimitiveRepairWitness
 
 universe u v
@@ -132,7 +132,7 @@ theorem bool_exact_without_identity_repair_witness :
         exact boolTrueClass_ne_zeroClass hq
 
 end PrimitiveRepairWitness
-end OmegaCore
+end ObstructionCore
 
 private def l5aProvenance : String :=
   "Origin: lean4/PrimitiveRepairWitness.lean Claim: repairWitness_implies_repaired_zero AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

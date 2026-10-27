@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Merge.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 0a6a803e9dc181ffc40c379a35d292d6cdcd3e6cdb37a4148f16d293990416a1 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.GenesisOngoingCore.Twentysecond.Merge

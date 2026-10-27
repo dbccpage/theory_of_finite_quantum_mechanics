@@ -35,9 +35,9 @@ theorem power_one_sign_control : i3 (fun t => |t|) 1 1 1=0 ∧
 theorem selection_distinct_readouts :
     (1/5:Rat)+4/5=1 ∧ (1/17:Rat)+16/17=1 ∧ (1/5:Rat)≠1/17 := by norm_num
 
-theorem quotient_equivalence {A B : Type} (P : OmegaCore.PrimitiveDifference A B) :
+theorem quotient_equivalence {A B : Type} (P : ObstructionCore.PrimitiveDifference A B) :
     Equivalence P.ZeroRel := P.zeroRel_equivalence
-theorem quotient_classes {A B : Type} (P : OmegaCore.PrimitiveDifference A B) (x y : A) :
+theorem quotient_classes {A B : Type} (P : ObstructionCore.PrimitiveDifference A B) (x y : A) :
     P.classOf x=P.classOf y ↔ P.ZeroRel x y := P.classOf_eq_iff_zeroRel
 theorem report_kernel {X Q : Type} (C : HilbertWalk.FinitePresentedCarrier.PresentedCarrier X Q) (x y : X) :
     HilbertWalk.FinitePresentedCarrier.sameReport C x y ↔ C.pres x=C.pres y :=

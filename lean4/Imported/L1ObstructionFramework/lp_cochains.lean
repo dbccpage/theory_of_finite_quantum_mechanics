@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/003_l1_obstruction_framework/lean4/lp_cochains.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: f629eedc1ec343f72fa878b879fa67c430a58dfc9ebfa8483cb9d602139927b4 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.L1ObstructionFramework.lp_cochains

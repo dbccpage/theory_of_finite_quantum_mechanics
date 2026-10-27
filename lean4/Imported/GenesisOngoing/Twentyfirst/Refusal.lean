@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Twentyfirst/Refusal.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: b5a0b9b45f2ce7b53c02c6775be83a723c7eca5ceb17ab09a8c5dee1322e7227 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.GenesisOngoing.Twentyfirst.Refusal

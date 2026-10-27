@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Homology.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 13d8de140051cd505e7c0b204c030f30fa51b1102cbfc6b58563c92adecb758c (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.PreGenesisToMssn.Homology

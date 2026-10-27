@@ -196,7 +196,7 @@ def derive_fermion_mass_spectrum_lggr(
         scaled_masses_gev = None
 
     return {
-        "lean4_proof_witness": "OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction",
+        "lean4_proof_witness": "ObstructionCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction",
         "input_cochain_omega": omega.tolist(),
         "phi_l1_primitive_difference": phi_l1_residual,
         "face_stiffness_multiplier": m_face_stiffness,
@@ -239,7 +239,7 @@ def derive_cosmological_constant_residual(
     lambda_residual_density = total_l1_residual / max(1e-12, total_cell_volume)
 
     return {
-        "lean4_proof_witness": "OmegaCore.PrimitiveDifferenceFinite.deltaFactorOn_exists_iff_deltaCongruentOn",
+        "lean4_proof_witness": "ObstructionCore.PrimitiveDifferenceFinite.deltaFactorOn_exists_iff_deltaCongruentOn",
         "hinge_valencies_4d": hinge_valencies_4d,
         "epsilon_4d_rad": epsilon_4d,
         "immirzi_gamma": immirzi_gamma,

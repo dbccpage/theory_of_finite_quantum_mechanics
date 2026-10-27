@@ -55,7 +55,7 @@ Mathlib-free; no imports; sorry-free / admit-free; `#print axioms` at the end.
 namespace QM
 namespace Survival
 
-/-! ## Terminal classes (mirrors `OmegaCore.QM.Terminal`, disjoint + exact) -/
+/-! ## Terminal classes (mirrors `ObstructionCore.QM.Terminal`, disjoint + exact) -/
 
 /-- The GTFDA-Q terminal tags. `auth` and `scopedNeg` are the two admissible
 landing classes for a surviving packet; `refusal` is the inadmissible class. The

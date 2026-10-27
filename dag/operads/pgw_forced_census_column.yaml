@@ -42,7 +42,7 @@ operation_candidates:
   name: EEvent
   line: 170
   signature_excerpt: inductive EEvent
-  source: lean4/Imported/Genesis19l57g1/SecondRun/Run.lean
+  source: lean4/Imported/GenesisDerivation/SecondRun/Run.lean
   repository: this_repository
   source_sha256: 4db53efe47bb57435f39520ea44cacaab6e0a73f03f8a9e4d5a3fee64c44259e
   status: source_candidate_requires_semantic_review
@@ -50,7 +50,7 @@ operation_candidates:
   name: EState
   line: 175
   signature_excerpt: structure EState
-  source: lean4/Imported/Genesis19l57g1/SecondRun/Run.lean
+  source: lean4/Imported/GenesisDerivation/SecondRun/Run.lean
   repository: this_repository
   source_sha256: 4db53efe47bb57435f39520ea44cacaab6e0a73f03f8a9e4d5a3fee64c44259e
   status: source_candidate_requires_semantic_review
@@ -58,7 +58,7 @@ operation_candidates:
   name: ereplay
   line: 187
   signature_excerpt: 'def ereplay (h : List EEvent) (s : EState) : Option EState'
-  source: lean4/Imported/Genesis19l57g1/SecondRun/Run.lean
+  source: lean4/Imported/GenesisDerivation/SecondRun/Run.lean
   repository: this_repository
   source_sha256: 4db53efe47bb57435f39520ea44cacaab6e0a73f03f8a9e4d5a3fee64c44259e
   status: source_candidate_requires_semantic_review
@@ -66,7 +66,7 @@ operation_candidates:
   name: elems
   line: 52
   signature_excerpt: 'def elems (r : Regime) : Nat'
-  source: lean4/Imported/Genesis19l57g1/SecondRun/Run.lean
+  source: lean4/Imported/GenesisDerivation/SecondRun/Run.lean
   repository: this_repository
   source_sha256: 4db53efe47bb57435f39520ea44cacaab6e0a73f03f8a9e4d5a3fee64c44259e
   status: source_candidate_requires_semantic_review
@@ -76,7 +76,7 @@ operation_candidates:
   signature_excerpt: |-
     def estep (s : EState) : EEvent → Option EState
       | .sealed e => (stepE s.regime e).map (fun r => { s with regime
-  source: lean4/Imported/Genesis19l57g1/SecondRun/Run.lean
+  source: lean4/Imported/GenesisDerivation/SecondRun/Run.lean
   repository: this_repository
   source_sha256: 4db53efe47bb57435f39520ea44cacaab6e0a73f03f8a9e4d5a3fee64c44259e
   status: source_candidate_requires_semantic_review
@@ -87,17 +87,17 @@ relation_candidates:
   signature_excerpt: |-
     theorem ereplay_elems_le (h : List EEvent) {s t : EState} (hr : ereplay h s = some t) :
         elems s.regime ≤ elems t.regime
-  source: lean4/Imported/Genesis19l57g1/SecondRun/Run.lean
+  source: lean4/Imported/GenesisDerivation/SecondRun/Run.lean
   repository: this_repository
   source_sha256: 4db53efe47bb57435f39520ea44cacaab6e0a73f03f8a9e4d5a3fee64c44259e
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::ereplay_elems_le
+- original_ref: lean4/Imported/GenesisDerivation/SecondRun/Run.lean::ereplay_elems_le
   availability: local
   symbol: ereplay_elems_le
-  path: lean4/Imported/Genesis19l57g1/SecondRun/Run.lean
+  path: lean4/Imported/GenesisDerivation/SecondRun/Run.lean
   repository: this_repository
   sha256: 4db53efe47bb57435f39520ea44cacaab6e0a73f03f8a9e4d5a3fee64c44259e
   declaration_status: declaration_found_not_proof_checked

@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean`
+### Lean: `lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean`
 
-- file: [lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean)
-- sha256 (`bytes`): `ce9a8032a365b78211d857e2356e0d2248a3731b02a2e38ab3e0deaac6903327`
+- file: [lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean](../../../lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean)
+- sha256 (`bytes`): `b209071a20863d17ded13c4276a25af87695a477f780cc95da6a3380a21ecd34`
 - cited in: node.lean, node.source, record TFQ-0444
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.Genesis19l57g1.Derivation.TransitionTransport`): recorded sha256 `ce9a8032a365b78211d857e2356e0d2248a3731b02a2e38ab3e0deaac6903327` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.TransitionTransport`): recorded sha256 `b209071a20863d17ded13c4276a25af87695a477f780cc95da6a3380a21ecd34` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -95,7 +95,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0444_orbit_branching_repairs_least_pair.md`
 
 - file: [dag/derivations/02_genesis/tfq_0444_orbit_branching_repairs_least_pair.md](../../../dag/derivations/02_genesis/tfq_0444_orbit_branching_repairs_least_pair.md)
-- sha256 (`lf-normalised`): `4e0f6ce7620a6a11d4a6cf1978ef48d199b25c9e02005661f6276a595b6512b5`
+- sha256 (`lf-normalised`): `4957a72969a7d1418e8507205204b4d1e97d9d7bf26875ea128776ca0ea0d226`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0444
 - counts toward the grade: no

@@ -1,11 +1,11 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/009_coordinate_wise_additivity/lean4/primitive_difference.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 73b5b468e5f64a8bdfb778822536e732a01183de02947594b352ea2c6ba12a95 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.CoordinateWiseAdditivity.primitive_difference
    Changes        : local import lines rewritten to the Imported namespace; line endings normalised to LF;
                     no declaration, proof or comment of the original was edited.
                     Port notes (version drift): none.
+   Renamed        : 2026-10-27, directory and namespace names only (lean4/RENAMES.json).
    AuthorityEffect: None. -/
 /-!
 Primitive difference quotient kernel.
@@ -17,7 +17,7 @@ the quotient.
 AuthorityEffect: None.
 -/
 
-namespace OmegaCore
+namespace ObstructionCore
 
 universe u v w z
 
@@ -795,4 +795,4 @@ def IsZeroClass
 
 end PointedPrimitiveDifference
 
-end OmegaCore
+end ObstructionCore

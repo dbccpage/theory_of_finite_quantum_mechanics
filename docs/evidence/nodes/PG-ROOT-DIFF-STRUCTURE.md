@@ -70,13 +70,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `cd lean4 && lake build FiniteDensity`
 - counts toward the grade: no
 
-### Lean: `lean4/Imported/AnomalonBoundary/OntologyBasic.lean`
+### Lean: `lean4/Imported/OntologyBoundary/OntologyBasic.lean`
 
-- file: [lean4/Imported/AnomalonBoundary/OntologyBasic.lean](../../../lean4/Imported/AnomalonBoundary/OntologyBasic.lean)
-- sha256 (`bytes`): `122848b820ebf20aa3cad5e8e198524bb1aa269498a2895c6e6ac786cb2e6b8a`
+- file: [lean4/Imported/OntologyBoundary/OntologyBasic.lean](../../../lean4/Imported/OntologyBoundary/OntologyBasic.lean)
+- sha256 (`bytes`): `650f6c5ba42f644345fb97863e49f4f81326103c739dea947254d767bf5a28b6`
 - cited in: node.lean
 - replay: `none`
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/AnomalonBoundary/OntologyBasic.lean`
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/OntologyBoundary/OntologyBasic.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -87,10 +87,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/RootDiffStructure.lean`
 
 - file: [lean4/RootDiffStructure.lean](../../../lean4/RootDiffStructure.lean)
-- sha256 (`bytes`): `63a62b1dcd98373ab6a5019b54e567ad7d55894f6eca73a95a19e6f5af305084`
+- sha256 (`bytes`): `ce8199c0bf04911639fbe7cd7fe1d7bc619e30b16fe11ecb88dbb1220beb855a`
 - cited in: receipt dag/research/pfp_batch01_lean_replay.json (RootDiffStructure)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `RootDiffStructure`): recorded sha256 `63a62b1dcd98373ab6a5019b54e567ad7d55894f6eca73a95a19e6f5af305084` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `RootDiffStructure`): recorded sha256 `ce8199c0bf04911639fbe7cd7fe1d7bc619e30b16fe11ecb88dbb1220beb855a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build RootDiffStructure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

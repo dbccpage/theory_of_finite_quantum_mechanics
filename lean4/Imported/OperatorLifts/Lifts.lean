@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Lifts.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: f88694fc02e8592bf0320db84e63176b8ecefbf3eae0cd34c17aeb16004768a0 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.OperatorLifts.Lifts

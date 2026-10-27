@@ -2,7 +2,7 @@
 import PrimitiveRepairWitness
 
 
-namespace OmegaCore
+namespace ObstructionCore
 namespace PrimitiveAdmissibleRepair
 
 universe u v
@@ -98,7 +98,7 @@ theorem noTrivialRepairCollapse_blocks_constant_zero_witness
   constantZeroRepair_inadmissible_blocks_constant_zero_witness S zeroClass q
 
 end PrimitiveAdmissibleRepair
-end OmegaCore
+end ObstructionCore
 
 private def l5aProvenance : String :=
   "Origin: lean4/PrimitiveAdmissibleRepair.lean Claim: budgetAdmissible_implies_admissible AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

@@ -33,11 +33,11 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/Basic.lean::collapsed`](../../../lean4/Imported/Genesis19l57g1/Derivation/Basic.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Basic.lean::derivable`](../../../lean4/Imported/Genesis19l57g1/Derivation/Basic.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Basic.lean::plug`](../../../lean4/Imported/Genesis19l57g1/Derivation/Basic.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Basic.lean::separable`](../../../lean4/Imported/Genesis19l57g1/Derivation/Basic.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Basic.lean::wfCtx`](../../../lean4/Imported/Genesis19l57g1/Derivation/Basic.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Basic.lean::collapsed`](../../../lean4/Imported/GenesisDerivation/Derivation/Basic.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Basic.lean::derivable`](../../../lean4/Imported/GenesisDerivation/Derivation/Basic.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Basic.lean::plug`](../../../lean4/Imported/GenesisDerivation/Derivation/Basic.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Basic.lean::separable`](../../../lean4/Imported/GenesisDerivation/Derivation/Basic.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Basic.lean::wfCtx`](../../../lean4/Imported/GenesisDerivation/Derivation/Basic.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs::contexts`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs)

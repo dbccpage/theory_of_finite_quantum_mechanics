@@ -1,5 +1,4 @@
-/- Imported from the sibling the_symbol_game lean4/ tree so that this repository carries its own Lean.
-   Original path : the_symbol_game/lean4/research_programs/higher_category_theory/Monoidal.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 63847acd16dfff482a97d97ff4734e14537d8546fa852828ef7e9d7d5f611554 (bytes as found)
    Imported on    : 2026-10-23
    Module         : Imported.HigherCategoryTheory.Monoidal
@@ -9,9 +8,7 @@
                     Port notes (version drift): none.
    AuthorityEffect: None. -/
 /-
-Copyright (c) 2026 Anomalon Research. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Worker M1 (Lean 4 HCT Formalization)
 -/
 
 import Imported.HigherCategoryTheory.Bicategory

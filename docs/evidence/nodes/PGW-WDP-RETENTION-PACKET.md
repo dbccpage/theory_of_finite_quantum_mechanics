@@ -45,10 +45,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/BehavioralQuotient.lean`
 
 - file: [lean4/Imported/WitnessedDifference/WitnessedDifference/BehavioralQuotient.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/BehavioralQuotient.lean)
-- sha256 (`bytes`): `a253353fd82047d9c632583c7fe39cd358b226806d9ef61e3de6de3335c812bf`
+- sha256 (`bytes`): `a7502f388dd68413470b77cf61617a7caeecbb0a5998589cf240e10323436ba5`
 - cited in: node.lean, record TFQ-0541
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_wdp.json](../../../dag/research/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.BehavioralQuotient`): recorded sha256 `a253353fd82047d9c632583c7fe39cd358b226806d9ef61e3de6de3335c812bf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_wdp.json](../../../dag/research/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.BehavioralQuotient`): recorded sha256 `a7502f388dd68413470b77cf61617a7caeecbb0a5998589cf240e10323436ba5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/BehavioralQuotient.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

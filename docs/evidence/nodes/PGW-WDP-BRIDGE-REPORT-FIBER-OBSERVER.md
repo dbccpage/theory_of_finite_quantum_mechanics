@@ -45,10 +45,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean`
 
 - file: [lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean)
-- sha256 (`bytes`): `dcf643dc81f991c62aedc6ce427ba87bfde4e5ff1103d15195009cfa7007a822`
+- sha256 (`bytes`): `96cc6757237ae9cfcc72783b985ad3f8b77e0452928dc43cf0a2f653475248a2`
 - cited in: node.lean, record TFQ-0556
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.ProposalAdmissionBridge`): recorded sha256 `dcf643dc81f991c62aedc6ce427ba87bfde4e5ff1103d15195009cfa7007a822` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.WitnessedDifference.WitnessedDifference.ProposalAdmissionBridge`): recorded sha256 `96cc6757237ae9cfcc72783b985ad3f8b77e0452928dc43cf0a2f653475248a2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

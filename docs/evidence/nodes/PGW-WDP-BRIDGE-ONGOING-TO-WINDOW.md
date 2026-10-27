@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean`
 
 - file: [lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean)
-- sha256 (`bytes`): `f5903c5710b93073138dc258841b75247dfb4f9a4d9b8cba8975934d000f44a3`
+- sha256 (`bytes`): `8b0940cfef8dfc04b1bfab85b772afeab1b45a67baf0d263f9e7c6550237763d`
 - cited in: node.lean, record TFQ-0555
 - replay: `none`
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean`

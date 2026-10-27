@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/Cochain.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 6b18ea730355ca987bae296c05568383f7bdff2bcd7decb29d2b11657bc6f99a (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.PreGenesisToMssn.Cochain

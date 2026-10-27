@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean`
+### Lean: `lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean`
 
-- file: [lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean)
-- sha256 (`bytes`): `1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26`
+- file: [lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean](../../../lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean)
+- sha256 (`bytes`): `c861f21ee5a8b701b4cf4f4acfd8ee03746074c4599827a972bd1c9c17fcd1fe`
 - cited in: node.lean, node.source, record TFQ-0455
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.Genesis19l57g1.Derivation.PrimDiff`): recorded sha256 `1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.PrimDiff`): recorded sha256 `c861f21ee5a8b701b4cf4f4acfd8ee03746074c4599827a972bd1c9c17fcd1fe` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -75,7 +75,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0455_d2_initial_pointed.md`
 
 - file: [dag/derivations/02_genesis/tfq_0455_d2_initial_pointed.md](../../../dag/derivations/02_genesis/tfq_0455_d2_initial_pointed.md)
-- sha256 (`lf-normalised`): `b9779befcd4148fc97b58d2b44f05bc24d0c0a619bfe7d300cb471e396bd1bec`
+- sha256 (`lf-normalised`): `3f90ef37b74f7f44824d184d7adcbc73600d74597a53adcc3695a068119bdccc`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0455
 - counts toward the grade: no

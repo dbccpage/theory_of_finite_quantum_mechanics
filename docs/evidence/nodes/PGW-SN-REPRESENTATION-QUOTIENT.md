@@ -45,10 +45,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/ComplexTensorBalancing.lean`
 
 - file: [lean4/Imported/WitnessedDifference/WitnessedDifference/ComplexTensorBalancing.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/ComplexTensorBalancing.lean)
-- sha256 (`bytes`): `562e6c759f9bbd7546ad5e6586a52af685f1890d5f9ee54aa9748c732acbe0ac`
+- sha256 (`bytes`): `fb81fdb117503c720c1f6c9c9a99b26b8ea0c3c9465407456a58a594059bf5be`
 - cited in: node.lean, record TFQ-0521
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mssn_sn.json](../../../dag/research/lean_replay_campaign_mssn_sn.json) (module `Imported.WitnessedDifference.WitnessedDifference.ComplexTensorBalancing`): recorded sha256 `562e6c759f9bbd7546ad5e6586a52af685f1890d5f9ee54aa9748c732acbe0ac` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_mssn_sn.json](../../../dag/research/lean_replay_campaign_mssn_sn.json) (module `Imported.WitnessedDifference.WitnessedDifference.ComplexTensorBalancing`): recorded sha256 `fb81fdb117503c720c1f6c9c9a99b26b8ea0c3c9465407456a58a594059bf5be` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/ComplexTensorBalancing.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

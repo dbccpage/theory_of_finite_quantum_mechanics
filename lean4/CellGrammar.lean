@@ -4,9 +4,9 @@ import CochainWindow
 
 
 
-namespace OmegaCore.CellGrammar
+namespace ObstructionCore.CellGrammar
 
-open OmegaCore.CochainWindow
+open ObstructionCore.CochainWindow
 
 structure ChainGrammar (C0 C1 C2 : Type) where
   zero0 : C0
@@ -78,7 +78,7 @@ theorem constructed_window_chain
 #print axioms boundarySquare_implies_cochain
 #print axioms constructed_window_chain
 
-end OmegaCore.CellGrammar
+end ObstructionCore.CellGrammar
 
 private def l5aProvenance : String :=
   "Origin: lean4/CellGrammar.lean Claim: boundarySquare_implies_cochain AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

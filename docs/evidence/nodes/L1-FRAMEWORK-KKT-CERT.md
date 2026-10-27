@@ -63,10 +63,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/L1ObstructionFramework/lp_general_certificate.lean`
 
 - file: [lean4/Imported/L1ObstructionFramework/lp_general_certificate.lean](../../../lean4/Imported/L1ObstructionFramework/lp_general_certificate.lean)
-- sha256 (`bytes`): `156b05c0f9947f8d842dede3fbc7ed50667ff60b7e7c252c03a19428731a96c6`
+- sha256 (`bytes`): `f0364fa7b80f8bd494d99da2e9703461b1bf0b88d33e605e175c19fc58f325f7`
 - cited in: node.lean, node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_emergence.json](../../../dag/research/lean_replay_campaign_l1_emergence.json) (module `Imported.L1ObstructionFramework.lp_general_certificate`): recorded sha256 `156b05c0f9947f8d842dede3fbc7ed50667ff60b7e7c252c03a19428731a96c6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_l1_emergence.json](../../../dag/research/lean_replay_campaign_l1_emergence.json) (module `Imported.L1ObstructionFramework.lp_general_certificate`): recorded sha256 `f0364fa7b80f8bd494d99da2e9703461b1bf0b88d33e605e175c19fc58f325f7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/L1ObstructionFramework/lp_general_certificate.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

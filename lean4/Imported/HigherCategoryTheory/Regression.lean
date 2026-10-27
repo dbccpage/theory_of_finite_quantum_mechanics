@@ -1,5 +1,4 @@
-/- Imported from the sibling the_symbol_game lean4/ tree so that this repository carries its own Lean.
-   Original path : the_symbol_game/lean4/research_programs/higher_category_theory/Regression.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: eb10852868d314ee3143ed9cd9e7374015e59de9fd94d0a203afadc0a4c90120 (bytes as found)
    Imported on    : 2026-10-23
    Module         : Imported.HigherCategoryTheory.Regression

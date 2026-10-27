@@ -99,7 +99,7 @@ import «phase_fiber_interference»
 Root module for the QM-series mechanization library (`lean4/QM`).
 
 All QM finite-descent Lean targets live here and import shared GTFOC/tower
-primitives from `OmegaCore`. No target in this library mints authority — authority
+primitives from `ObstructionCore`. No target in this library mints authority — authority
 is the sealed GTFDA-Q `Pi_sharp` terminal alone. See
 `research/published/qm/28_finite_descent_to_gtfoc_projection.md`.
 -/

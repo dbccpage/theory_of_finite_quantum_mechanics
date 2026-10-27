@@ -1,5 +1,4 @@
-/- Imported from the sibling the_symbol_game lean4/ tree so that this repository carries its own Lean.
-   Original path : the_symbol_game/lean4/research_programs/higher_category_theory/DGCategory.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 2db5ed1fcd3e5e8c314383e24d4261dedd8ac26c7e29fcc7180e8acdf7efbfe9 (bytes as found)
    Imported on    : 2026-10-23
    Module         : Imported.HigherCategoryTheory.DGCategory
@@ -9,9 +8,7 @@
                     Port notes (version drift): none.
    AuthorityEffect: None. -/
 /-
-Copyright (c) 2026 Anomalon Research. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Worker M1 (Lean 4 HCT Formalization)
 -/
 
 import Imported.HigherCategoryTheory.Monoidal

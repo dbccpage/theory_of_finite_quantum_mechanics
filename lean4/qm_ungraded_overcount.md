@@ -21,7 +21,7 @@ no authority minted.
 
 namespace QM
 
-open OmegaCosmology.Primitives.SemiringTransportKernel
+open FiniteCosmology.Primitives.SemiringTransportKernel
 
 /-- The graded path-sum over the single middle slice `{b}` of `a → b → c`, unit
 weights: one real path. -/

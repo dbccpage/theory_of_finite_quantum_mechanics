@@ -73,7 +73,7 @@ def scalarRayZero (p : (Γ → ℚ) × (Γ → ℚ)) : Prop :=
   ∃ a : ℚ, a ≠ 0 ∧ ∀ γ, p.2 γ = a * p.1 γ
 
 def scalarRayPrimitiveDifference :
-    OmegaCore.PrimitiveDifference (Γ → ℚ) ((Γ → ℚ) × (Γ → ℚ)) where
+    ObstructionCore.PrimitiveDifference (Γ → ℚ) ((Γ → ℚ) × (Γ → ℚ)) where
   δ := scalarRayDifference
   Zero := scalarRayZero
   zero_refl := by
@@ -119,7 +119,7 @@ theorem directProb_factor_exists_through_scalarRayQuotient :
       ∀ w : Γ → ℚ,
         F (scalarRayPrimitiveDifference.classOf w) = directProb w := by
   exact
-    (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+    (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
       scalarRayPrimitiveDifference (fun w : Γ → ℚ => directProb w)).mpr
       directProb_invariantCongruent_scalarRay
 
@@ -369,7 +369,7 @@ theorem bornProbFromNormSq_factor_exists_through_scalarRayQuotient :
         F (scalarRayPrimitiveDifference.classOf normSq) =
           bornProbFromNormSq normSq := by
   exact
-    (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+    (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
       scalarRayPrimitiveDifference
       (fun normSq : Γ → ℚ => bornProbFromNormSq normSq)).mpr
       bornProbFromNormSq_invariantCongruent_scalarRay
@@ -902,7 +902,7 @@ def squaredWeightZero (d : ι → ℚ) : Prop :=
   ∀ k, d k = 0
 
 def phaseBlindPrimitiveDifference :
-    OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ) where
+    ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ) where
   δ := squaredWeightDifference
   Zero := squaredWeightZero
   zero_refl := by
@@ -935,15 +935,15 @@ theorem finitePhaseBlind_iff_primitiveDifference_zeroRel
     (x y : ι → ℚ) :
     finitePhaseBlind x y ↔
       (phaseBlindPrimitiveDifference :
-        OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).ZeroRel x y := by
+        ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).ZeroRel x y := by
   constructor
   · intro h k
-    dsimp [OmegaCore.PrimitiveDifference.ZeroRel, phaseBlindPrimitiveDifference,
+    dsimp [ObstructionCore.PrimitiveDifference.ZeroRel, phaseBlindPrimitiveDifference,
       squaredWeightDifference, squaredWeightZero]
     exact sub_eq_zero.mpr (h k)
   · intro h k
     have hk := h k
-    dsimp [OmegaCore.PrimitiveDifference.ZeroRel, phaseBlindPrimitiveDifference,
+    dsimp [ObstructionCore.PrimitiveDifference.ZeroRel, phaseBlindPrimitiveDifference,
       squaredWeightDifference, squaredWeightZero] at hk
     exact sub_eq_zero.mp hk
 
@@ -1102,7 +1102,7 @@ theorem finiteRowDescentCompatible_iff_invariantCongruent
     (a : ι → ℚ) :
     finiteRowDescentCompatible a ↔
       (phaseBlindPrimitiveDifference :
-        OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).InvariantCongruent
+        ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).InvariantCongruent
         (finiteRowSquaredEval a) := by
   constructor
   · intro h x y hxy
@@ -1112,14 +1112,14 @@ theorem finiteRowDescentCompatible_iff_invariantCongruent
   · intro h x y hxy
     have hzero :
         (phaseBlindPrimitiveDifference :
-          OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).ZeroRel x y :=
+          ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).ZeroRel x y :=
       (finitePhaseBlind_iff_primitiveDifference_zeroRel x y).mp hxy
     simpa [finiteRowSquaredEval] using h x y hzero
 
 theorem finiteRowSquaredEval_invariantCongruent_iff_rowSupportSubsingleton
     (a : ι → ℚ) :
     (phaseBlindPrimitiveDifference :
-      OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).InvariantCongruent
+      ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).InvariantCongruent
         (finiteRowSquaredEval a) ↔ rowSupportSubsingleton a :=
   (finiteRowDescentCompatible_iff_invariantCongruent a).symm.trans
     (finiteRowDescentCompatible_iff_rowSupportSubsingleton a)
@@ -1128,26 +1128,26 @@ theorem finiteRowSquaredEval_factor_exists_iff_rowSupportSubsingleton
     (a : ι → ℚ) :
     (∃ F :
         (phaseBlindPrimitiveDifference :
-          OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).ResidualQuotient → ℚ,
+          ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).ResidualQuotient → ℚ,
         ∀ x : ι → ℚ,
           F ((phaseBlindPrimitiveDifference :
-            OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).classOf x) =
+            ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).classOf x) =
             finiteRowSquaredEval a x) ↔
       rowSupportSubsingleton a := by
   have hfactor :
       (∃ F :
           (phaseBlindPrimitiveDifference :
-            OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).ResidualQuotient → ℚ,
+            ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).ResidualQuotient → ℚ,
           ∀ x : ι → ℚ,
             F ((phaseBlindPrimitiveDifference :
-              OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).classOf x) =
+              ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).classOf x) =
               finiteRowSquaredEval a x) ↔
         (phaseBlindPrimitiveDifference :
-          OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).InvariantCongruent
+          ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).InvariantCongruent
           (finiteRowSquaredEval a) :=
-    OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+    ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
       (phaseBlindPrimitiveDifference :
-        OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ))
+        ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ))
       (finiteRowSquaredEval a)
   exact hfactor.trans
     (finiteRowSquaredEval_invariantCongruent_iff_rowSupportSubsingleton a)
@@ -1193,7 +1193,7 @@ theorem finiteMatrixDescentCompatible_iff_invariantCongruent
     (M : κ → ι → ℚ) :
     finiteMatrixDescentCompatible M ↔
       (phaseBlindPrimitiveDifference :
-        OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).InvariantCongruent
+        ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).InvariantCongruent
         (finiteMatrixSquaredEval M) := by
   constructor
   · intro h x y hxy
@@ -1205,7 +1205,7 @@ theorem finiteMatrixDescentCompatible_iff_invariantCongruent
   · intro h x y hxy j
     have hzero :
         (phaseBlindPrimitiveDifference :
-          OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).ZeroRel x y :=
+          ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).ZeroRel x y :=
       (finitePhaseBlind_iff_primitiveDifference_zeroRel x y).mp hxy
     have heq := congrFun (h x y hzero) j
     simpa [finiteMatrixSquaredEval, finiteMatrixEval, finiteRowSquaredEval]
@@ -1215,7 +1215,7 @@ omit [Fintype κ] [DecidableEq κ] in
 theorem finiteMatrixSquaredEval_invariantCongruent_iff_all_rows_rowSupportSubsingleton
     (M : κ → ι → ℚ) :
     (phaseBlindPrimitiveDifference :
-      OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).InvariantCongruent
+      ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).InvariantCongruent
         (finiteMatrixSquaredEval M) ↔
       ∀ j : κ, rowSupportSubsingleton (M j) :=
   (finiteMatrixDescentCompatible_iff_invariantCongruent M).symm.trans
@@ -1226,28 +1226,28 @@ theorem finiteMatrixSquaredEval_factor_exists_iff_all_rows_rowSupportSubsingleto
     (M : κ → ι → ℚ) :
     (∃ F :
         (phaseBlindPrimitiveDifference :
-          OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).ResidualQuotient →
+          ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).ResidualQuotient →
             (κ → ℚ),
         ∀ x : ι → ℚ,
           F ((phaseBlindPrimitiveDifference :
-            OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).classOf x) =
+            ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).classOf x) =
             finiteMatrixSquaredEval M x) ↔
       ∀ j : κ, rowSupportSubsingleton (M j) := by
   have hfactor :
       (∃ F :
           (phaseBlindPrimitiveDifference :
-            OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).ResidualQuotient →
+            ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).ResidualQuotient →
               (κ → ℚ),
           ∀ x : ι → ℚ,
             F ((phaseBlindPrimitiveDifference :
-              OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).classOf x) =
+              ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).classOf x) =
               finiteMatrixSquaredEval M x) ↔
         (phaseBlindPrimitiveDifference :
-          OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).InvariantCongruent
+          ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).InvariantCongruent
           (finiteMatrixSquaredEval M) :=
-    OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+    ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
       (phaseBlindPrimitiveDifference :
-        OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ))
+        ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ))
       (finiteMatrixSquaredEval M)
   exact hfactor.trans
     (finiteMatrixSquaredEval_invariantCongruent_iff_all_rows_rowSupportSubsingleton M)
@@ -1265,7 +1265,7 @@ def pairSquaredWeightZero (d : ℚ × ℚ) : Prop :=
   d.1 = 0 ∧ d.2 = 0
 
 def pairPhaseBlindPrimitiveDifference :
-    OmegaCore.PrimitiveDifference (ℚ × ℚ) (ℚ × ℚ) where
+    ObstructionCore.PrimitiveDifference (ℚ × ℚ) (ℚ × ℚ) where
   δ := pairSquaredWeightDifference
   Zero := pairSquaredWeightZero
   zero_refl := by
@@ -1299,14 +1299,14 @@ theorem pairPhaseBlind_iff_primitiveDifference_zeroRel
   · intro h
     rcases h with ⟨hx, hy⟩
     constructor <;>
-      dsimp [OmegaCore.PrimitiveDifference.ZeroRel,
+      dsimp [ObstructionCore.PrimitiveDifference.ZeroRel,
         pairPhaseBlindPrimitiveDifference, pairSquaredWeightDifference,
         pairSquaredWeightZero] <;>
       linarith
   · intro h
     rcases h with ⟨hx, hy⟩
     constructor <;>
-      dsimp [OmegaCore.PrimitiveDifference.ZeroRel,
+      dsimp [ObstructionCore.PrimitiveDifference.ZeroRel,
         pairPhaseBlindPrimitiveDifference, pairSquaredWeightDifference,
         pairSquaredWeightZero] at hx hy <;>
       linarith
@@ -1319,7 +1319,7 @@ theorem pairSquaredWeights_invariantCongruent :
   rcases q with ⟨x', y'⟩
   rcases hpq with ⟨hx, hy⟩
   ext <;>
-    dsimp [OmegaCore.PrimitiveDifference.ZeroRel,
+    dsimp [ObstructionCore.PrimitiveDifference.ZeroRel,
       pairPhaseBlindPrimitiveDifference, pairSquaredWeights,
       pairSquaredWeightDifference, pairSquaredWeightZero] at hx hy ⊢ <;>
     linarith
@@ -1330,7 +1330,7 @@ theorem pairSquaredWeights_factor_exists :
       ∀ p : ℚ × ℚ,
         F (pairPhaseBlindPrimitiveDifference.classOf p) = pairSquaredWeights p := by
   exact
-    (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+    (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
       pairPhaseBlindPrimitiveDifference pairSquaredWeights).mpr
       pairSquaredWeights_invariantCongruent
 
@@ -1354,7 +1354,7 @@ theorem twoRowMixWeights_no_factor_through_phaseBlindQuotient :
           F (pairPhaseBlindPrimitiveDifference.classOf p) =
             twoRowMixWeights p.1 p.2) := by
   exact
-    OmegaCore.PrimitiveDifference.invariantFactor_no_factor_of_not_invariant
+    ObstructionCore.PrimitiveDifference.invariantFactor_no_factor_of_not_invariant
       pairPhaseBlindPrimitiveDifference
       (fun p : ℚ × ℚ => twoRowMixWeights p.1 p.2)
       twoRowMixWeights_not_invariantCongruent
@@ -1510,7 +1510,7 @@ theorem pairSquaredDirectProb_factor_exists :
       ∀ p : ℚ × ℚ,
         F (pairPhaseBlindPrimitiveDifference.classOf p) = pairSquaredDirectProb p := by
   exact
-    (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+    (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
       pairPhaseBlindPrimitiveDifference pairSquaredDirectProb).mpr
       pairSquaredDirectProb_invariantCongruent
 
@@ -1959,7 +1959,7 @@ theorem twoRowMixWeights_normalized_no_factor_through_phaseBlindQuotient :
           F (pairPhaseBlindPrimitiveDifference.classOf p) =
             pairDirectNormalize (twoRowMixWeights p.1 p.2)) := by
   exact
-    OmegaCore.PrimitiveDifference.invariantFactor_no_factor_of_not_invariant
+    ObstructionCore.PrimitiveDifference.invariantFactor_no_factor_of_not_invariant
       pairPhaseBlindPrimitiveDifference
       (fun p : ℚ × ℚ => pairDirectNormalize (twoRowMixWeights p.1 p.2))
       twoRowMixWeights_normalized_not_invariantCongruent
@@ -1988,7 +1988,7 @@ theorem pairLocalGlobalDiagnostic_factor_exists_iff_components_invariant :
           (fun p : ℚ × ℚ =>
             pairDirectNormalize (twoRowMixWeights p.1 p.2)) := by
   simpa [pairLocalGlobalDiagnostic] using
-    (OmegaCore.PrimitiveDifference.invariantFactor_pair_exists_iff
+    (ObstructionCore.PrimitiveDifference.invariantFactor_pair_exists_iff
       pairPhaseBlindPrimitiveDifference
       pairSquaredDirectProb
       (fun p : ℚ × ℚ =>
@@ -2019,7 +2019,7 @@ theorem pairLocalGlobalDiagnostic_lggr_quotient_obstruction :
             F (pairPhaseBlindPrimitiveDifference.classOf p) =
               pairLocalGlobalDiagnostic p) := by
   simpa [pairLocalGlobalDiagnostic] using
-    (OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction
+    (ObstructionCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction
       pairPhaseBlindPrimitiveDifference
       pairSquaredDirectProb
       (fun p : ℚ × ℚ =>
@@ -2071,7 +2071,7 @@ theorem pairLocalGlobalDiagnostic_sign_flip_witness_and_quotient_obstruction
         pairDirectNormalize (twoRowMixWeights x (-y)) :=
     twoRowMixWeights_normalized_sign_flip_differs hxy
   simpa [pairLocalGlobalDiagnostic] using
-    (OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_witness_and_obstruction
+    (ObstructionCore.PrimitiveDifference.localGreenGlobalRed_pair_witness_and_obstruction
       pairPhaseBlindPrimitiveDifference
       pairSquaredDirectProb
       (fun p : ℚ × ℚ =>

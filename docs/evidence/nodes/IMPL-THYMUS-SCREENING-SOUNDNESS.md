@@ -45,19 +45,19 @@ MECHANIZED in ThymusScreening.lean (empty axiom report) with Rust witness
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/Imported/OePfp/ThymusScreening.lean`
+### Lean: `lean4/Imported/PfpCarriers/ThymusScreening.lean`
 
-- file: [lean4/Imported/OePfp/ThymusScreening.lean](../../../lean4/Imported/OePfp/ThymusScreening.lean)
-- sha256 (`bytes`): `e10cd45992cd38464dd24eee3e03b48f334726dc37ff010afb1d7dd027db8a74`
+- file: [lean4/Imported/PfpCarriers/ThymusScreening.lean](../../../lean4/Imported/PfpCarriers/ThymusScreening.lean)
+- sha256 (`bytes`): `a4a7de6d546ef8588222f5614406bad8e3507081e5b855ba43cadc952d673630`
 - cited in: node.lean, node.source, record TFQ-1045
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_implementation.json](../../../dag/research/lean_replay_campaign_implementation.json) (module `Imported.OePfp.ThymusScreening`): recorded sha256 `e10cd45992cd38464dd24eee3e03b48f334726dc37ff010afb1d7dd027db8a74` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/OePfp/ThymusScreening.lean`
+  - receipt [dag/research/lean_replay_campaign_implementation.json](../../../dag/research/lean_replay_campaign_implementation.json) (module `Imported.PfpCarriers.ThymusScreening`): recorded sha256 `a4a7de6d546ef8588222f5614406bad8e3507081e5b855ba43cadc952d673630` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/PfpCarriers/ThymusScreening.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `Oeeis.Thymus.self_panel_soundness` | yes | yes | yes | none | `#print axioms Oeeis.Thymus.self_panel_soundness` |
-| `Oeeis.Thymus.thymus_admit_iff` | yes | yes | yes | none | `#print axioms Oeeis.Thymus.thymus_admit_iff` |
+| `EpistemicImmuneSystem.Thymus.self_panel_soundness` | yes | yes | yes | none | `#print axioms EpistemicImmuneSystem.Thymus.self_panel_soundness` |
+| `EpistemicImmuneSystem.Thymus.thymus_admit_iff` | yes | yes | yes | none | `#print axioms EpistemicImmuneSystem.Thymus.thymus_admit_iff` |
 
 - counts toward the grade: yes
 
@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/21_implementation_core/tfq_1045_impl_thymus_screening_soundness.md`
 
 - file: [dag/derivations/21_implementation_core/tfq_1045_impl_thymus_screening_soundness.md](../../../dag/derivations/21_implementation_core/tfq_1045_impl_thymus_screening_soundness.md)
-- sha256 (`lf-normalised`): `919345e551a0f59909105d26639c1eb37d7461c1ed9e22cceb466eaa65127199`
+- sha256 (`lf-normalised`): `4bf369c8716104c09f13e980aa42e821cacbeacb473254264bb5f352a8540f28`
 - generated view: listed, not counted
 - cited in: record TFQ-1045
 - counts toward the grade: no

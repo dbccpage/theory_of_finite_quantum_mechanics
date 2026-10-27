@@ -4,7 +4,7 @@ Stage: [IMPLEMENTATION](../stages/IMPLEMENTATION.md). Status: `PROVED_LEAN`. Evi
 
 ## Statement
 
-> CarrierOrigin.lean (namespace SymbolGame.V02) establishes two small facts about its own declarations. no_difference_without_distinguishability: a Simplex1 V carries a proof that its source and target differ, so when src = tgt no 1-simplex with those endpoints exists. nilpotency_composition: for d₀ : α → β and d₁ : β → γ with a zero on γ and the hypothesis ∀ x, d₁ (d₀ x) = 0, the composite vanishes at every 0-cochain a; the proof applies the hypothesis to a. The file has no imports and elaborates under Lean 4.33.1 with no sorry.
+> CarrierOrigin.lean (namespace SymbolCarrier.V02) establishes two small facts about its own declarations. no_difference_without_distinguishability: a Simplex1 V carries a proof that its source and target differ, so when src = tgt no 1-simplex with those endpoints exists. nilpotency_composition: for d₀ : α → β and d₁ : β → γ with a zero on γ and the hypothesis ∀ x, d₁ (d₀ x) = 0, the composite vanishes at every 0-cochain a; the proof applies the hypothesis to a. The file has no imports and elaborates under Lean 4.33.1 with no sorry.
 
 ## Grade
 
@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/Imported/OePfp/CarrierOrigin.lean`
+### Lean: `lean4/Imported/PfpCarriers/CarrierOrigin.lean`
 
-- file: [lean4/Imported/OePfp/CarrierOrigin.lean](../../../lean4/Imported/OePfp/CarrierOrigin.lean)
-- sha256 (`bytes`): `bab619832676544fc9cef04b2bfe975dd91a5b450ca1eb112ac82afd9e2e1f34`
+- file: [lean4/Imported/PfpCarriers/CarrierOrigin.lean](../../../lean4/Imported/PfpCarriers/CarrierOrigin.lean)
+- sha256 (`bytes`): `a777a074f0104be599533d844ed727fdc962c8bc8d100eaf1c7ccb94990ab028`
 - cited in: node.lean, node.source, record TFQ-0507
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_implementation.json](../../../dag/research/lean_replay_campaign_implementation.json) (module `Imported.OePfp.CarrierOrigin`): recorded sha256 `bab619832676544fc9cef04b2bfe975dd91a5b450ca1eb112ac82afd9e2e1f34` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/OePfp/CarrierOrigin.lean`
+  - receipt [dag/research/lean_replay_campaign_implementation.json](../../../dag/research/lean_replay_campaign_implementation.json) (module `Imported.PfpCarriers.CarrierOrigin`): recorded sha256 `a777a074f0104be599533d844ed727fdc962c8bc8d100eaf1c7ccb94990ab028` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/PfpCarriers/CarrierOrigin.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -61,7 +61,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/04_authorization/tfq_0507_pfp_carrier_origin_nilpotency.md`
 
 - file: [dag/derivations/04_authorization/tfq_0507_pfp_carrier_origin_nilpotency.md](../../../dag/derivations/04_authorization/tfq_0507_pfp_carrier_origin_nilpotency.md)
-- sha256 (`lf-normalised`): `3c5d2acd65ff35864436395713f00c8c8e0126425e7497f978fbf95ebf2663f1`
+- sha256 (`lf-normalised`): `55a2cea9b13b1cc0bf9d0c283be00cb7e6727eb8b449ec87ba0581cbd0d8ab84`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0507
 - counts toward the grade: no

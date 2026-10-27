@@ -33,8 +33,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/OeWdp/GenesisIncidence.lean::boundary_boundary_filled`](../../../lean4/Imported/OeWdp/GenesisIncidence.lean)
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::triD1`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean)
+- [`lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean::boundary_boundary_filled`](../../../lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean)
 - [`lean4/PregenesisWdpIncidenceTransport.lean::defect_charge`](../../../lean4/PregenesisWdpIncidenceTransport.lean)
 - [`lean4/PregenesisWdpIncidenceTransport.lean::face_reorders`](../../../lean4/PregenesisWdpIncidenceTransport.lean)
 - [`lean4/PregenesisWdpIncidenceTransport.lean::incidence_face_boundary_zero`](../../../lean4/PregenesisWdpIncidenceTransport.lean)
@@ -62,7 +62,7 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `lean4/Imported/OeWdp/GenesisIncidence.lean:19-23`
+  - `lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean:19-23`
   - `lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean:291-293`
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1478-1483`
   - `dag/derivations/independent/pgw-wdp-incidence-orientation-transport.md:5`

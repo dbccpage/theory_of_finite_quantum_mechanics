@@ -3,7 +3,7 @@ import PrimitiveLiftCertificate
 import PrimitiveRepairBoundary
 
 
-namespace OmegaCore
+namespace ObstructionCore
 namespace PrimitiveSpineSummary
 
 universe u v w
@@ -202,7 +202,7 @@ theorem summaryWithCertificate_implies_admissible_witnessed_exact
     C S P.zeroClass q summary.certificate
 
 end PrimitiveSpineSummary
-end OmegaCore
+end ObstructionCore
 
 private def l5aProvenance : String :=
   "Origin: lean4/PrimitiveSpineSummary.lean Claim: spine_delta_descends_iff_congruent AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

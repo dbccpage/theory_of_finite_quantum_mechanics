@@ -55,10 +55,10 @@ theorem PL010_1_Theorem3_squared_row_factors_iff_sparse
     [Fintype ι] [DecidableEq ι] (a : ι → ℚ) :
     (∃ F :
         (phaseBlindPrimitiveDifference :
-          OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).ResidualQuotient → ℚ,
+          ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).ResidualQuotient → ℚ,
         ∀ x : ι → ℚ,
           F ((phaseBlindPrimitiveDifference :
-            OmegaCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).classOf x) =
+            ObstructionCore.PrimitiveDifference (ι → ℚ) (ι → ℚ)).classOf x) =
             finiteRowSquaredEval a x) ↔
       rowSupportSubsingleton a := by
   exact finiteRowSquaredEval_factor_exists_iff_rowSupportSubsingleton a
@@ -87,7 +87,7 @@ universe u v w
 variable {α : Type u} {β : Type v} {I Ω γ η Q : Type w}
 
 theorem operatorAtlas_invariant_of_each_chart
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (chart : I → α → γ)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x)) :
@@ -97,7 +97,7 @@ theorem operatorAtlas_invariant_of_each_chart
   exact hchart i x y hxy
 
 theorem operatorAtlas_localGreen_globalRed_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
@@ -116,13 +116,13 @@ theorem operatorAtlas_localGreen_globalRed_nonpromotion
   refine ⟨?_, ?_, ?_⟩
   · intro i
     exact
-      (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+      (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
           P (fun x : α => chart i x)).mpr (hchart i)
   · exact
-      (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+      (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
           P (fun x : α => fun i : I => chart i x)).mpr hatlas
   · exact
-      (OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction_of_witness
+      (ObstructionCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction_of_witness
           P (fun x : α => fun i : I => chart i x) global hatlas hxy hglobal).2
 
 def operatorAtlasOverlapPairs
@@ -131,7 +131,7 @@ def operatorAtlasOverlapPairs
   fun overlap => (chart (left overlap) x, chart (right overlap) x)
 
 theorem operatorAtlas_overlapPairs_invariant_of_each_chart
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x)) :
@@ -143,7 +143,7 @@ theorem operatorAtlas_overlapPairs_invariant_of_each_chart
     (hchart (right overlap) x y hxy)
 
 theorem operatorAtlas_overlapGate_globalRed_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
@@ -181,7 +181,7 @@ theorem operatorAtlas_overlapGate_globalRed_nonpromotion
         ∀ x : α,
           F (P.classOf x) =
             operatorAtlasOverlapPairs (α := α) left right chart x :=
-    (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+    (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
       P (operatorAtlasOverlapPairs (α := α) left right chart)).mpr hoverlap
   have hpairInvariant :
       P.InvariantCongruent
@@ -198,7 +198,7 @@ theorem operatorAtlas_overlapGate_globalRed_nonpromotion
             (((fun i : I => chart i x),
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x)) :=
-    (OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction_of_witness
+    (ObstructionCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction_of_witness
       P
       (fun x : α =>
         ((fun i : I => chart i x),
@@ -207,13 +207,13 @@ theorem operatorAtlas_overlapGate_globalRed_nonpromotion
   exact ⟨hlocal, hatlasFactor, hoverlapFactor, hno⟩
 
 theorem operatorAtlas_overlapGate_terminalCertificate_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
     {x y : α} (hxy : P.ZeroRel x y) (hglobal : global x ≠ global y)
-    (C : OmegaCore.ObstructionClassifier Q) (q : Q)
-    (packet : OmegaCore.PrimitiveTerminalPacket.TerminalPacket C q)
+    (C : ObstructionCore.ObstructionClassifier Q) (q : Q)
+    (packet : ObstructionCore.PrimitiveTerminalPacket.TerminalPacket C q)
     (hExact : C.IsExactRepair q) (hCertificate : packet.hasCertificate = false) :
     ((∀ i : I,
       ∃ F : P.ResidualQuotient → γ,
@@ -231,24 +231,24 @@ theorem operatorAtlas_overlapGate_terminalCertificate_nonpromotion
             (((fun i : I => chart i x),
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
-      ¬ OmegaCore.PrimitiveTerminalPacket.PacketRepaired packet := by
+      ¬ ObstructionCore.PrimitiveTerminalPacket.PacketRepaired packet := by
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
         P left right chart global hchart hxy hglobal,
-      OmegaCore.PrimitiveTerminalPacket.packet_exact_without_certificate_not_repaired
+      ObstructionCore.PrimitiveTerminalPacket.packet_exact_without_certificate_not_repaired
         C q packet hExact hCertificate⟩
 
 theorem operatorAtlas_overlapGate_terminalReady_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
     {x y : α} (hxy : P.ZeroRel x y) (hglobal : global x ≠ global y)
-    (C : OmegaCore.ObstructionClassifier Q) (q : Q)
-    (packet : OmegaCore.PrimitiveTerminalPacket.TerminalPacket C q)
+    (C : ObstructionCore.ObstructionClassifier Q) (q : Q)
+    (packet : ObstructionCore.PrimitiveTerminalPacket.TerminalPacket C q)
     (hBoundary :
       packet.boundary =
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired)
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired)
     (hCertificate : packet.hasCertificate = false) :
     ((∀ i : I,
       ∃ F : P.ResidualQuotient → γ,
@@ -266,25 +266,25 @@ theorem operatorAtlas_overlapGate_terminalReady_nonpromotion
             (((fun i : I => chart i x),
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
-      ¬ OmegaCore.PrimitiveTerminalPacket.PacketReady packet := by
+      ¬ ObstructionCore.PrimitiveTerminalPacket.PacketReady packet := by
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
         P left right chart global hchart hxy hglobal,
-      (OmegaCore.PrimitiveTerminalPacket.packet_not_ready_iff_repaired_boundary_without_certificate
+      (ObstructionCore.PrimitiveTerminalPacket.packet_not_ready_iff_repaired_boundary_without_certificate
         C q packet).mpr ⟨hBoundary, hCertificate⟩⟩
 
 theorem operatorAtlas_overlapGate_terminalBudget_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
     {x y : α} (hxy : P.ZeroRel x y) (hglobal : global x ≠ global y)
-    (C : OmegaCore.ObstructionClassifier Q) (q : Q)
-    (packet : OmegaCore.PrimitiveTerminalPacket.TerminalPacket C q)
-    (hTerminal : OmegaCore.PrimitiveTerminalPacket.PacketTerminal packet)
+    (C : ObstructionCore.ObstructionClassifier Q) (q : Q)
+    (packet : ObstructionCore.PrimitiveTerminalPacket.TerminalPacket C q)
+    (hTerminal : ObstructionCore.PrimitiveTerminalPacket.PacketTerminal packet)
     (hBoundary :
       packet.boundary =
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.budgetUnknown) :
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.budgetUnknown) :
     ((∀ i : I,
       ∃ F : P.ResidualQuotient → γ,
         ∀ x : α, F (P.classOf x) = chart i x) ∧
@@ -301,25 +301,25 @@ theorem operatorAtlas_overlapGate_terminalBudget_nonpromotion
             (((fun i : I => chart i x),
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
-      ¬ OmegaCore.PrimitiveTerminalPacket.PacketRepaired packet := by
+      ¬ ObstructionCore.PrimitiveTerminalPacket.PacketRepaired packet := by
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
         P left right chart global hchart hxy hglobal,
-      OmegaCore.PrimitiveTerminalPacket.packet_budgetUnknown_terminal_not_repaired
+      ObstructionCore.PrimitiveTerminalPacket.packet_budgetUnknown_terminal_not_repaired
         C q packet hTerminal hBoundary⟩
 
 theorem operatorAtlas_overlapGate_terminalRefused_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
     {x y : α} (hxy : P.ZeroRel x y) (hglobal : global x ≠ global y)
-    (C : OmegaCore.ObstructionClassifier Q) (q : Q)
-    (packet : OmegaCore.PrimitiveTerminalPacket.TerminalPacket C q)
-    (hTerminal : OmegaCore.PrimitiveTerminalPacket.PacketTerminal packet)
+    (C : ObstructionCore.ObstructionClassifier Q) (q : Q)
+    (packet : ObstructionCore.PrimitiveTerminalPacket.TerminalPacket C q)
+    (hTerminal : ObstructionCore.PrimitiveTerminalPacket.PacketTerminal packet)
     (hBoundary :
       packet.boundary =
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.refused) :
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.refused) :
     ((∀ i : I,
       ∃ F : P.ResidualQuotient → γ,
         ∀ x : α, F (P.classOf x) = chart i x) ∧
@@ -336,25 +336,25 @@ theorem operatorAtlas_overlapGate_terminalRefused_nonpromotion
             (((fun i : I => chart i x),
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
-      ¬ OmegaCore.PrimitiveTerminalPacket.PacketRepaired packet := by
+      ¬ ObstructionCore.PrimitiveTerminalPacket.PacketRepaired packet := by
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
         P left right chart global hchart hxy hglobal,
-      OmegaCore.PrimitiveTerminalPacket.packet_refused_terminal_not_repaired
+      ObstructionCore.PrimitiveTerminalPacket.packet_refused_terminal_not_repaired
         C q packet hTerminal hBoundary⟩
 
 theorem operatorAtlas_overlapGate_terminalNoRule_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
     {x y : α} (hxy : P.ZeroRel x y) (hglobal : global x ≠ global y)
-    (C : OmegaCore.ObstructionClassifier Q) (q : Q)
-    (packet : OmegaCore.PrimitiveTerminalPacket.TerminalPacket C q)
-    (hTerminal : OmegaCore.PrimitiveTerminalPacket.PacketTerminal packet)
+    (C : ObstructionCore.ObstructionClassifier Q) (q : Q)
+    (packet : ObstructionCore.PrimitiveTerminalPacket.TerminalPacket C q)
+    (hTerminal : ObstructionCore.PrimitiveTerminalPacket.PacketTerminal packet)
     (hBoundary :
       packet.boundary =
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.noRule) :
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.noRule) :
     ((∀ i : I,
       ∃ F : P.ResidualQuotient → γ,
         ∀ x : α, F (P.classOf x) = chart i x) ∧
@@ -371,22 +371,22 @@ theorem operatorAtlas_overlapGate_terminalNoRule_nonpromotion
             (((fun i : I => chart i x),
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
-      ¬ OmegaCore.PrimitiveTerminalPacket.PacketRepaired packet := by
+      ¬ ObstructionCore.PrimitiveTerminalPacket.PacketRepaired packet := by
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
         P left right chart global hchart hxy hglobal,
-      OmegaCore.PrimitiveTerminalPacket.packet_noRule_terminal_not_repaired
+      ObstructionCore.PrimitiveTerminalPacket.packet_noRule_terminal_not_repaired
         C q packet hTerminal hBoundary⟩
 
 theorem operatorAtlas_overlapGate_liftSource_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
     {x y : α} (hxy : P.ZeroRel x y) (hglobal : global x ≠ global y)
-    (L : OmegaCore.PrimitiveLiftCandidate.LiftCandidate)
+    (L : ObstructionCore.PrimitiveLiftCandidate.LiftCandidate)
     (hSourceBit : L.hasSourceObstruction = false)
-    (evidence : OmegaCore.PrimitiveLiftCertificate.LiftEvidence)
+    (evidence : ObstructionCore.PrimitiveLiftCertificate.LiftEvidence)
     (hNoSource : ¬ evidence.sourceObstruction) :
     ((∀ i : I,
       ∃ F : P.ResidualQuotient → γ,
@@ -404,10 +404,10 @@ theorem operatorAtlas_overlapGate_liftSource_nonpromotion
             (((fun i : I => chart i x),
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
-      ¬ OmegaCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate L ∧
-      ¬ OmegaCore.PrimitiveLiftCertificate.HasLiftCertificate evidence := by
+      ¬ ObstructionCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate L ∧
+      ¬ ObstructionCore.PrimitiveLiftCertificate.HasLiftCertificate evidence := by
   have hNoCert :
-      ¬ OmegaCore.PrimitiveLiftCertificate.HasLiftCertificate evidence := by
+      ¬ ObstructionCore.PrimitiveLiftCertificate.HasLiftCertificate evidence := by
     intro hCert
     cases hCert with
     | intro cert =>
@@ -418,19 +418,19 @@ theorem operatorAtlas_overlapGate_liftSource_nonpromotion
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
         P left right chart global hchart hxy hglobal,
-      OmegaCore.PrimitiveLiftCandidate.missing_source_obstruction_blocks_lift
+      ObstructionCore.PrimitiveLiftCandidate.missing_source_obstruction_blocks_lift
         L hSourceBit,
       hNoCert⟩
 
 theorem operatorAtlas_overlapGate_liftCarrier_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
     {x y : α} (hxy : P.ZeroRel x y) (hglobal : global x ≠ global y)
-    (L : OmegaCore.PrimitiveLiftCandidate.LiftCandidate)
+    (L : ObstructionCore.PrimitiveLiftCandidate.LiftCandidate)
     (hCarrierBit : L.hasNewCarrier = false)
-    (evidence : OmegaCore.PrimitiveLiftCertificate.LiftEvidence)
+    (evidence : ObstructionCore.PrimitiveLiftCertificate.LiftEvidence)
     (hNoCarrier : ¬ evidence.newCarrierDeclared) :
     ((∀ i : I,
       ∃ F : P.ResidualQuotient → γ,
@@ -448,10 +448,10 @@ theorem operatorAtlas_overlapGate_liftCarrier_nonpromotion
             (((fun i : I => chart i x),
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
-      ¬ OmegaCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate L ∧
-      ¬ OmegaCore.PrimitiveLiftCertificate.HasLiftCertificate evidence := by
+      ¬ ObstructionCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate L ∧
+      ¬ ObstructionCore.PrimitiveLiftCertificate.HasLiftCertificate evidence := by
   have hNoCert :
-      ¬ OmegaCore.PrimitiveLiftCertificate.HasLiftCertificate evidence := by
+      ¬ ObstructionCore.PrimitiveLiftCertificate.HasLiftCertificate evidence := by
     intro hCert
     cases hCert with
     | intro cert =>
@@ -462,19 +462,19 @@ theorem operatorAtlas_overlapGate_liftCarrier_nonpromotion
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
         P left right chart global hchart hxy hglobal,
-      OmegaCore.PrimitiveLiftCandidate.missing_new_carrier_blocks_lift
+      ObstructionCore.PrimitiveLiftCandidate.missing_new_carrier_blocks_lift
         L hCarrierBit,
       hNoCert⟩
 
 theorem operatorAtlas_overlapGate_liftReplay_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
     {x y : α} (hxy : P.ZeroRel x y) (hglobal : global x ≠ global y)
-    (L : OmegaCore.PrimitiveLiftCandidate.LiftCandidate)
+    (L : ObstructionCore.PrimitiveLiftCandidate.LiftCandidate)
     (hReplayBit : L.hasReplay = false)
-    (evidence : OmegaCore.PrimitiveLiftCertificate.LiftEvidence)
+    (evidence : ObstructionCore.PrimitiveLiftCertificate.LiftEvidence)
     (hNoReplay : ¬ evidence.replayAvailable) :
     ((∀ i : I,
       ∃ F : P.ResidualQuotient → γ,
@@ -492,25 +492,25 @@ theorem operatorAtlas_overlapGate_liftReplay_nonpromotion
             (((fun i : I => chart i x),
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
-      ¬ OmegaCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate L ∧
-      ¬ OmegaCore.PrimitiveLiftCertificate.HasLiftCertificate evidence := by
+      ¬ ObstructionCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate L ∧
+      ¬ ObstructionCore.PrimitiveLiftCertificate.HasLiftCertificate evidence := by
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
         P left right chart global hchart hxy hglobal,
-      OmegaCore.PrimitiveLiftCandidate.missing_replay_blocks_lift
+      ObstructionCore.PrimitiveLiftCandidate.missing_replay_blocks_lift
         L hReplayBit,
-      OmegaCore.PrimitiveLiftCertificate.no_lift_certificate_without_replay
+      ObstructionCore.PrimitiveLiftCertificate.no_lift_certificate_without_replay
         evidence hNoReplay⟩
 
 theorem operatorAtlas_overlapGate_liftReduction_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
     {x y : α} (hxy : P.ZeroRel x y) (hglobal : global x ≠ global y)
-    (L : OmegaCore.PrimitiveLiftCandidate.LiftCandidate)
+    (L : ObstructionCore.PrimitiveLiftCandidate.LiftCandidate)
     (hReductionBit : L.reducesPhi = false)
-    (evidence : OmegaCore.PrimitiveLiftCertificate.LiftEvidence)
+    (evidence : ObstructionCore.PrimitiveLiftCertificate.LiftEvidence)
     (hNoReduction : ¬ evidence.residualReduced) :
     ((∀ i : I,
       ∃ F : P.ResidualQuotient → γ,
@@ -528,25 +528,25 @@ theorem operatorAtlas_overlapGate_liftReduction_nonpromotion
             (((fun i : I => chart i x),
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
-      ¬ OmegaCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate L ∧
-      ¬ OmegaCore.PrimitiveLiftCertificate.HasLiftCertificate evidence := by
+      ¬ ObstructionCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate L ∧
+      ¬ ObstructionCore.PrimitiveLiftCertificate.HasLiftCertificate evidence := by
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
         P left right chart global hchart hxy hglobal,
-      OmegaCore.PrimitiveLiftCandidate.missing_reduction_blocks_lift
+      ObstructionCore.PrimitiveLiftCandidate.missing_reduction_blocks_lift
         L hReductionBit,
-      OmegaCore.PrimitiveLiftCertificate.no_lift_certificate_without_reduction
+      ObstructionCore.PrimitiveLiftCertificate.no_lift_certificate_without_reduction
         evidence hNoReduction⟩
 
 theorem operatorAtlas_overlapGate_liftClosure_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
     {x y : α} (hxy : P.ZeroRel x y) (hglobal : global x ≠ global y)
-    (L : OmegaCore.PrimitiveLiftCandidate.LiftCandidate)
+    (L : ObstructionCore.PrimitiveLiftCandidate.LiftCandidate)
     (hClosureBit : L.preservesClosure = false)
-    (evidence : OmegaCore.PrimitiveLiftCertificate.LiftEvidence)
+    (evidence : ObstructionCore.PrimitiveLiftCertificate.LiftEvidence)
     (hNoClosure : ¬ evidence.closurePreserved) :
     ((∀ i : I,
       ∃ F : P.ResidualQuotient → γ,
@@ -564,23 +564,23 @@ theorem operatorAtlas_overlapGate_liftClosure_nonpromotion
             (((fun i : I => chart i x),
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
-      ¬ OmegaCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate L ∧
-      ¬ OmegaCore.PrimitiveLiftCertificate.HasLiftCertificate evidence := by
+      ¬ ObstructionCore.PrimitiveLiftCandidate.IsLicensedLiftCandidate L ∧
+      ¬ ObstructionCore.PrimitiveLiftCertificate.HasLiftCertificate evidence := by
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
         P left right chart global hchart hxy hglobal,
-      OmegaCore.PrimitiveLiftCandidate.missing_closure_preservation_blocks_lift
+      ObstructionCore.PrimitiveLiftCandidate.missing_closure_preservation_blocks_lift
         L hClosureBit,
-      OmegaCore.PrimitiveLiftCertificate.no_lift_certificate_without_closure
+      ObstructionCore.PrimitiveLiftCertificate.no_lift_certificate_without_closure
         evidence hNoClosure⟩
 
 theorem operatorAtlas_overlapGate_repairBoundaryWitness_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
     {x y : α} (hxy : P.ZeroRel x y) (hglobal : global x ≠ global y)
-    (input : OmegaCore.PrimitiveRepairBoundary.RepairBoundaryInput)
+    (input : ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryInput)
     (hPolicy : input.policyAllowed = true)
     (hRule : input.hasRule = true)
     (hBudget : input.withinBudget = true)
@@ -601,20 +601,20 @@ theorem operatorAtlas_overlapGate_repairBoundaryWitness_nonpromotion
             (((fun i : I => chart i x),
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
-      OmegaCore.PrimitiveRepairBoundary.repairBoundaryDecision input =
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.noRule ∧
-      OmegaCore.PrimitiveRepairBoundary.repairBoundaryDecision input ≠
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired := by
+      ObstructionCore.PrimitiveRepairBoundary.repairBoundaryDecision input =
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.noRule ∧
+      ObstructionCore.PrimitiveRepairBoundary.repairBoundaryDecision input ≠
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired := by
   have hNoRule :
-      OmegaCore.PrimitiveRepairBoundary.repairBoundaryDecision input =
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.noRule :=
-    (OmegaCore.PrimitiveRepairBoundary.repairBoundary_noRule_iff input).mpr
+      ObstructionCore.PrimitiveRepairBoundary.repairBoundaryDecision input =
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.noRule :=
+    (ObstructionCore.PrimitiveRepairBoundary.repairBoundary_noRule_iff input).mpr
       (Or.inr ⟨hPolicy, hRule, hBudget, hWitness⟩)
   have hNotRepaired :
-      OmegaCore.PrimitiveRepairBoundary.repairBoundaryDecision input ≠
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired := by
+      ObstructionCore.PrimitiveRepairBoundary.repairBoundaryDecision input ≠
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired := by
     rw [hNoRule]
-    exact OmegaCore.PrimitiveRepairBoundary.noRule_not_repaired
+    exact ObstructionCore.PrimitiveRepairBoundary.noRule_not_repaired
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
         P left right chart global hchart hxy hglobal,
@@ -622,12 +622,12 @@ theorem operatorAtlas_overlapGate_repairBoundaryWitness_nonpromotion
       hNotRepaired⟩
 
 theorem operatorAtlas_overlapGate_repairBoundaryPolicy_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
     {x y : α} (hxy : P.ZeroRel x y) (hglobal : global x ≠ global y)
-    (input : OmegaCore.PrimitiveRepairBoundary.RepairBoundaryInput)
+    (input : ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryInput)
     (hPolicy : input.policyAllowed = false) :
     ((∀ i : I,
       ∃ F : P.ResidualQuotient → γ,
@@ -645,20 +645,20 @@ theorem operatorAtlas_overlapGate_repairBoundaryPolicy_nonpromotion
             (((fun i : I => chart i x),
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
-      OmegaCore.PrimitiveRepairBoundary.repairBoundaryDecision input =
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.refused ∧
-      OmegaCore.PrimitiveRepairBoundary.repairBoundaryDecision input ≠
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired := by
+      ObstructionCore.PrimitiveRepairBoundary.repairBoundaryDecision input =
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.refused ∧
+      ObstructionCore.PrimitiveRepairBoundary.repairBoundaryDecision input ≠
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired := by
   have hRefused :
-      OmegaCore.PrimitiveRepairBoundary.repairBoundaryDecision input =
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.refused :=
-    OmegaCore.PrimitiveRepairBoundary.policy_failure_routes_refused
+      ObstructionCore.PrimitiveRepairBoundary.repairBoundaryDecision input =
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.refused :=
+    ObstructionCore.PrimitiveRepairBoundary.policy_failure_routes_refused
       input hPolicy
   have hNotRepaired :
-      OmegaCore.PrimitiveRepairBoundary.repairBoundaryDecision input ≠
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired := by
+      ObstructionCore.PrimitiveRepairBoundary.repairBoundaryDecision input ≠
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired := by
     rw [hRefused]
-    exact OmegaCore.PrimitiveRepairBoundary.refused_not_repaired
+    exact ObstructionCore.PrimitiveRepairBoundary.refused_not_repaired
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
         P left right chart global hchart hxy hglobal,
@@ -666,12 +666,12 @@ theorem operatorAtlas_overlapGate_repairBoundaryPolicy_nonpromotion
       hNotRepaired⟩
 
 theorem operatorAtlas_overlapGate_repairBoundaryRule_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
     {x y : α} (hxy : P.ZeroRel x y) (hglobal : global x ≠ global y)
-    (input : OmegaCore.PrimitiveRepairBoundary.RepairBoundaryInput)
+    (input : ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryInput)
     (hPolicy : input.policyAllowed = true)
     (hRule : input.hasRule = false) :
     ((∀ i : I,
@@ -690,20 +690,20 @@ theorem operatorAtlas_overlapGate_repairBoundaryRule_nonpromotion
             (((fun i : I => chart i x),
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
-      OmegaCore.PrimitiveRepairBoundary.repairBoundaryDecision input =
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.noRule ∧
-      OmegaCore.PrimitiveRepairBoundary.repairBoundaryDecision input ≠
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired := by
+      ObstructionCore.PrimitiveRepairBoundary.repairBoundaryDecision input =
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.noRule ∧
+      ObstructionCore.PrimitiveRepairBoundary.repairBoundaryDecision input ≠
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired := by
   have hNoRule :
-      OmegaCore.PrimitiveRepairBoundary.repairBoundaryDecision input =
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.noRule :=
-    OmegaCore.PrimitiveRepairBoundary.missing_rule_routes_noRule
+      ObstructionCore.PrimitiveRepairBoundary.repairBoundaryDecision input =
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.noRule :=
+    ObstructionCore.PrimitiveRepairBoundary.missing_rule_routes_noRule
       input hPolicy hRule
   have hNotRepaired :
-      OmegaCore.PrimitiveRepairBoundary.repairBoundaryDecision input ≠
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired := by
+      ObstructionCore.PrimitiveRepairBoundary.repairBoundaryDecision input ≠
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired := by
     rw [hNoRule]
-    exact OmegaCore.PrimitiveRepairBoundary.noRule_not_repaired
+    exact ObstructionCore.PrimitiveRepairBoundary.noRule_not_repaired
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
         P left right chart global hchart hxy hglobal,
@@ -711,12 +711,12 @@ theorem operatorAtlas_overlapGate_repairBoundaryRule_nonpromotion
       hNotRepaired⟩
 
 theorem operatorAtlas_overlapGate_repairBoundaryBudget_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
     {x y : α} (hxy : P.ZeroRel x y) (hglobal : global x ≠ global y)
-    (input : OmegaCore.PrimitiveRepairBoundary.RepairBoundaryInput)
+    (input : ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryInput)
     (hPolicy : input.policyAllowed = true)
     (hRule : input.hasRule = true)
     (hBudget : input.withinBudget = false) :
@@ -736,20 +736,20 @@ theorem operatorAtlas_overlapGate_repairBoundaryBudget_nonpromotion
             (((fun i : I => chart i x),
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
-      OmegaCore.PrimitiveRepairBoundary.repairBoundaryDecision input =
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.budgetUnknown ∧
-      OmegaCore.PrimitiveRepairBoundary.repairBoundaryDecision input ≠
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired := by
+      ObstructionCore.PrimitiveRepairBoundary.repairBoundaryDecision input =
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.budgetUnknown ∧
+      ObstructionCore.PrimitiveRepairBoundary.repairBoundaryDecision input ≠
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired := by
   have hBudgetUnknown :
-      OmegaCore.PrimitiveRepairBoundary.repairBoundaryDecision input =
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.budgetUnknown :=
-    OmegaCore.PrimitiveRepairBoundary.budget_failure_routes_budgetUnknown
+      ObstructionCore.PrimitiveRepairBoundary.repairBoundaryDecision input =
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.budgetUnknown :=
+    ObstructionCore.PrimitiveRepairBoundary.budget_failure_routes_budgetUnknown
       input hPolicy hRule hBudget
   have hNotRepaired :
-      OmegaCore.PrimitiveRepairBoundary.repairBoundaryDecision input ≠
-        OmegaCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired := by
+      ObstructionCore.PrimitiveRepairBoundary.repairBoundaryDecision input ≠
+        ObstructionCore.PrimitiveRepairBoundary.RepairBoundaryStatus.repaired := by
     rw [hBudgetUnknown]
-    exact OmegaCore.PrimitiveRepairBoundary.budgetUnknown_not_repaired
+    exact ObstructionCore.PrimitiveRepairBoundary.budgetUnknown_not_repaired
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
         P left right chart global hchart hxy hglobal,
@@ -757,13 +757,13 @@ theorem operatorAtlas_overlapGate_repairBoundaryBudget_nonpromotion
       hNotRepaired⟩
 
 theorem operatorAtlas_overlapGate_repairCertificate_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
     {x y : α} (hxy : P.ZeroRel x y) (hglobal : global x ≠ global y)
-    (C : OmegaCore.ObstructionClassifier Q) (zeroClass q : Q)
-    (hExact : OmegaCore.PrimitiveRepairCertificate.ExactStatusOnly C q) :
+    (C : ObstructionCore.ObstructionClassifier Q) (zeroClass q : Q)
+    (hExact : ObstructionCore.PrimitiveRepairCertificate.ExactStatusOnly C q) :
     ((∀ i : I,
       ∃ F : P.ResidualQuotient → γ,
         ∀ x : α, F (P.classOf x) = chart i x) ∧
@@ -780,29 +780,29 @@ theorem operatorAtlas_overlapGate_repairCertificate_nonpromotion
             (((fun i : I => chart i x),
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
-      ∃ S : OmegaCore.PrimitiveAdmissibleRepair.AdmissibleRepairSystem Q,
-        OmegaCore.PrimitiveRepairCertificate.ExactStatusOnly C q ∧
-          ¬ OmegaCore.PrimitiveRepairCertificate.HasRepairCertificate
+      ∃ S : ObstructionCore.PrimitiveAdmissibleRepair.AdmissibleRepairSystem Q,
+        ObstructionCore.PrimitiveRepairCertificate.ExactStatusOnly C q ∧
+          ¬ ObstructionCore.PrimitiveRepairCertificate.HasRepairCertificate
             C S zeroClass q := by
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
         P left right chart global hchart hxy hglobal,
-      OmegaCore.PrimitiveRepairCertificate.exact_status_alone_is_not_repairCertificate
+      ObstructionCore.PrimitiveRepairCertificate.exact_status_alone_is_not_repairCertificate
         C zeroClass q hExact⟩
 
 theorem operatorAtlas_overlapGate_admissibleRepairWitness_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
     {x y : α} (hxy : P.ZeroRel x y) (hglobal : global x ≠ global y)
-    (C : OmegaCore.ObstructionClassifier Q)
-    (S : OmegaCore.PrimitiveAdmissibleRepair.AdmissibleRepairSystem Q)
+    (C : ObstructionCore.ObstructionClassifier Q)
+    (S : ObstructionCore.PrimitiveAdmissibleRepair.AdmissibleRepairSystem Q)
     (zeroClass q : Q)
     (hExact : C.IsExactRepair q)
     (hNoWitness :
       ¬ Nonempty
-        (OmegaCore.PrimitiveAdmissibleRepair.AdmissibleRepairWitness
+        (ObstructionCore.PrimitiveAdmissibleRepair.AdmissibleRepairWitness
           S zeroClass q)) :
     ((∀ i : I,
       ∃ F : P.ResidualQuotient → γ,
@@ -821,7 +821,7 @@ theorem operatorAtlas_overlapGate_admissibleRepairWitness_nonpromotion
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
       C.IsExactRepair q ∧
-      ¬ OmegaCore.PrimitiveAdmissibleRepair.AdmissibleWitnessedExactRepair
+      ¬ ObstructionCore.PrimitiveAdmissibleRepair.AdmissibleWitnessedExactRepair
         C S zeroClass q := by
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
@@ -830,15 +830,15 @@ theorem operatorAtlas_overlapGate_admissibleRepairWitness_nonpromotion
       fun hWitnessed => hNoWitness hWitnessed.2⟩
 
 theorem operatorAtlas_overlapGate_noTrivialRepairCollapse_nonpromotion
-    (P : OmegaCore.PrimitiveDifference α β)
+    (P : ObstructionCore.PrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
       P.InvariantCongruent (fun x : α => chart i x))
     {x y : α} (hxy : P.ZeroRel x y) (hglobal : global x ≠ global y)
-    (S : OmegaCore.PrimitiveAdmissibleRepair.AdmissibleRepairSystem Q)
+    (S : ObstructionCore.PrimitiveAdmissibleRepair.AdmissibleRepairSystem Q)
     (zeroClass q : Q)
     (hNoCollapse :
-      OmegaCore.PrimitiveAdmissibleRepair.NoTrivialRepairCollapse
+      ObstructionCore.PrimitiveAdmissibleRepair.NoTrivialRepairCollapse
         S zeroClass) :
     ((∀ i : I,
       ∃ F : P.ResidualQuotient → γ,
@@ -857,97 +857,97 @@ theorem operatorAtlas_overlapGate_noTrivialRepairCollapse_nonpromotion
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
       ¬ (∃ w :
-        OmegaCore.PrimitiveAdmissibleRepair.AdmissibleRepairWitness
+        ObstructionCore.PrimitiveAdmissibleRepair.AdmissibleRepairWitness
           S zeroClass q,
         w.repair =
-          OmegaCore.PrimitiveAdmissibleRepair.constantZeroRepair
+          ObstructionCore.PrimitiveAdmissibleRepair.constantZeroRepair
             zeroClass) := by
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
         P left right chart global hchart hxy hglobal,
-      OmegaCore.PrimitiveAdmissibleRepair.noTrivialRepairCollapse_blocks_constant_zero_witness
+      ObstructionCore.PrimitiveAdmissibleRepair.noTrivialRepairCollapse_blocks_constant_zero_witness
         S zeroClass q hNoCollapse⟩
 
 theorem operatorAtlas_overlapGate_repairWitness_nonpromotion
-    (P : OmegaCore.PointedPrimitiveDifference α β)
+    (P : ObstructionCore.PointedPrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ) (global : α → η)
     (hchart : ∀ i : I,
-      OmegaCore.PrimitiveDifference.InvariantCongruent
+      ObstructionCore.PrimitiveDifference.InvariantCongruent
         P.toPrimitiveDifference (fun x : α => chart i x))
     {x y : α} (hxy : P.toPrimitiveDifference.ZeroRel x y)
     (hglobal : global x ≠ global y)
-    (C : OmegaCore.ObstructionClassifier (OmegaCore.PointedResidualQuotient P))
-    (r : OmegaCore.PrimitiveRepairWitness.RepairMap P)
-    (q : OmegaCore.PointedResidualQuotient P)
+    (C : ObstructionCore.ObstructionClassifier (ObstructionCore.PointedResidualQuotient P))
+    (r : ObstructionCore.PrimitiveRepairWitness.RepairMap P)
+    (q : ObstructionCore.PointedResidualQuotient P)
     (hExact : C.IsExactRepair q)
     (hNoWitness :
-      ¬ OmegaCore.PrimitiveRepairWitness.ExactRepairHasWitness P C r q) :
+      ¬ ObstructionCore.PrimitiveRepairWitness.ExactRepairHasWitness P C r q) :
     ((∀ i : I,
-      ∃ F : OmegaCore.PointedResidualQuotient P → γ,
+      ∃ F : ObstructionCore.PointedResidualQuotient P → γ,
         ∀ x : α,
-          F (OmegaCore.PrimitiveDifference.classOf
+          F (ObstructionCore.PrimitiveDifference.classOf
             P.toPrimitiveDifference x) = chart i x) ∧
-      (∃ F : OmegaCore.PointedResidualQuotient P → (I → γ),
+      (∃ F : ObstructionCore.PointedResidualQuotient P → (I → γ),
         ∀ x : α,
-          F (OmegaCore.PrimitiveDifference.classOf
+          F (ObstructionCore.PrimitiveDifference.classOf
             P.toPrimitiveDifference x) = (fun i : I => chart i x)) ∧
-      (∃ F : OmegaCore.PointedResidualQuotient P → (Ω → γ × γ),
+      (∃ F : ObstructionCore.PointedResidualQuotient P → (Ω → γ × γ),
         ∀ x : α,
-          F (OmegaCore.PrimitiveDifference.classOf
+          F (ObstructionCore.PrimitiveDifference.classOf
             P.toPrimitiveDifference x) =
             operatorAtlasOverlapPairs (α := α) left right chart x) ∧
       ¬ (∃ F :
-        OmegaCore.PointedResidualQuotient P → ((I → γ) × (Ω → γ × γ)) × η,
+        ObstructionCore.PointedResidualQuotient P → ((I → γ) × (Ω → γ × γ)) × η,
         ∀ x : α,
-          F (OmegaCore.PrimitiveDifference.classOf
+          F (ObstructionCore.PrimitiveDifference.classOf
             P.toPrimitiveDifference x) =
             (((fun i : I => chart i x),
               operatorAtlasOverlapPairs (α := α) left right chart x),
               global x))) ∧
-      OmegaCore.PrimitiveRepairWitness.ExactRepairStatusOnly P C q ∧
-      ¬ OmegaCore.PrimitiveRepairWitness.WitnessedExactRepair P C r q := by
+      ObstructionCore.PrimitiveRepairWitness.ExactRepairStatusOnly P C q ∧
+      ¬ ObstructionCore.PrimitiveRepairWitness.WitnessedExactRepair P C r q := by
   exact
     ⟨operatorAtlas_overlapGate_globalRed_nonpromotion
         P.toPrimitiveDifference left right chart global hchart hxy hglobal,
-      OmegaCore.PrimitiveRepairWitness.exactRepair_status_without_witness_is_only_classifier
+      ObstructionCore.PrimitiveRepairWitness.exactRepair_status_without_witness_is_only_classifier
         P C q hExact,
       fun hWitnessed => hNoWitness hWitnessed.2⟩
 
 theorem operatorAtlas_rawPhiClassifier_nonpromotion
-    (P : OmegaCore.PointedPrimitiveDifference α β)
+    (P : ObstructionCore.PointedPrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ)
     (phiRaw : α → Nat)
     (hchart : ∀ i : I,
-      OmegaCore.PrimitiveDifference.InvariantCongruent
+      ObstructionCore.PrimitiveDifference.InvariantCongruent
         P.toPrimitiveDifference (fun x : α => chart i x))
     (hPhiNot :
-      ¬ OmegaCore.PrimitiveDifference.InvariantCongruent
+      ¬ ObstructionCore.PrimitiveDifference.InvariantCongruent
         P.toPrimitiveDifference phiRaw) :
     (∀ i : I,
-      ∃ F : OmegaCore.PointedResidualQuotient P → γ,
+      ∃ F : ObstructionCore.PointedResidualQuotient P → γ,
         ∀ x : α,
-          F (OmegaCore.PrimitiveDifference.classOf
+          F (ObstructionCore.PrimitiveDifference.classOf
             P.toPrimitiveDifference x) = chart i x) ∧
-      (∃ F : OmegaCore.PointedResidualQuotient P → (I → γ),
+      (∃ F : ObstructionCore.PointedResidualQuotient P → (I → γ),
         ∀ x : α,
-          F (OmegaCore.PrimitiveDifference.classOf
+          F (ObstructionCore.PrimitiveDifference.classOf
             P.toPrimitiveDifference x) = (fun i : I => chart i x)) ∧
-      (∃ F : OmegaCore.PointedResidualQuotient P → (Ω → γ × γ),
+      (∃ F : ObstructionCore.PointedResidualQuotient P → (Ω → γ × γ),
         ∀ x : α,
-          F (OmegaCore.PrimitiveDifference.classOf
+          F (ObstructionCore.PrimitiveDifference.classOf
             P.toPrimitiveDifference x) =
             operatorAtlasOverlapPairs (α := α) left right chart x) ∧
       ¬ (∃ C :
-        OmegaCore.ObstructionClassifier (OmegaCore.PointedResidualQuotient P),
+        ObstructionCore.ObstructionClassifier (ObstructionCore.PointedResidualQuotient P),
         ∀ x : α,
-          C.Phi (OmegaCore.PrimitiveDifference.classOf
+          C.Phi (ObstructionCore.PrimitiveDifference.classOf
             P.toPrimitiveDifference x) = phiRaw x) := by
   have hatlas :
-      OmegaCore.PrimitiveDifference.InvariantCongruent
+      ObstructionCore.PrimitiveDifference.InvariantCongruent
         P.toPrimitiveDifference (fun x : α => fun i : I => chart i x) :=
     operatorAtlas_invariant_of_each_chart P.toPrimitiveDifference chart hchart
   have hoverlap :
-      OmegaCore.PrimitiveDifference.InvariantCongruent
+      ObstructionCore.PrimitiveDifference.InvariantCongruent
         P.toPrimitiveDifference
         (operatorAtlasOverlapPairs (α := α) left right chart) :=
     operatorAtlas_overlapPairs_invariant_of_each_chart
@@ -955,55 +955,55 @@ theorem operatorAtlas_rawPhiClassifier_nonpromotion
   refine ⟨?_, ?_, ?_, ?_⟩
   · intro i
     exact
-      (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+      (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
         P.toPrimitiveDifference (fun x : α => chart i x)).mpr (hchart i)
   · exact
-      (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+      (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
         P.toPrimitiveDifference
         (fun x : α => fun i : I => chart i x)).mpr hatlas
   · exact
-      (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+      (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
         P.toPrimitiveDifference
         (operatorAtlasOverlapPairs (α := α) left right chart)).mpr hoverlap
   · exact
-      OmegaCore.PrimitiveSpineSummary.spine_raw_phi_noncongruent_blocks_classifier
+      ObstructionCore.PrimitiveSpineSummary.spine_raw_phi_noncongruent_blocks_classifier
         P phiRaw hPhiNot
 
 theorem operatorAtlas_rawGammaClassifier_nonpromotion
-    (P : OmegaCore.PointedPrimitiveDifference α β)
+    (P : ObstructionCore.PointedPrimitiveDifference α β)
     (left right : Ω → I) (chart : I → α → γ)
     (gammaRaw : α → Nat)
     (hchart : ∀ i : I,
-      OmegaCore.PrimitiveDifference.InvariantCongruent
+      ObstructionCore.PrimitiveDifference.InvariantCongruent
         P.toPrimitiveDifference (fun x : α => chart i x))
     (hGammaNot :
-      ¬ OmegaCore.PrimitiveDifference.InvariantCongruent
+      ¬ ObstructionCore.PrimitiveDifference.InvariantCongruent
         P.toPrimitiveDifference gammaRaw) :
     (∀ i : I,
-      ∃ F : OmegaCore.PointedResidualQuotient P → γ,
+      ∃ F : ObstructionCore.PointedResidualQuotient P → γ,
         ∀ x : α,
-          F (OmegaCore.PrimitiveDifference.classOf
+          F (ObstructionCore.PrimitiveDifference.classOf
             P.toPrimitiveDifference x) = chart i x) ∧
-      (∃ F : OmegaCore.PointedResidualQuotient P → (I → γ),
+      (∃ F : ObstructionCore.PointedResidualQuotient P → (I → γ),
         ∀ x : α,
-          F (OmegaCore.PrimitiveDifference.classOf
+          F (ObstructionCore.PrimitiveDifference.classOf
             P.toPrimitiveDifference x) = (fun i : I => chart i x)) ∧
-      (∃ F : OmegaCore.PointedResidualQuotient P → (Ω → γ × γ),
+      (∃ F : ObstructionCore.PointedResidualQuotient P → (Ω → γ × γ),
         ∀ x : α,
-          F (OmegaCore.PrimitiveDifference.classOf
+          F (ObstructionCore.PrimitiveDifference.classOf
             P.toPrimitiveDifference x) =
             operatorAtlasOverlapPairs (α := α) left right chart x) ∧
       ¬ (∃ C :
-        OmegaCore.ObstructionClassifier (OmegaCore.PointedResidualQuotient P),
+        ObstructionCore.ObstructionClassifier (ObstructionCore.PointedResidualQuotient P),
         ∀ x : α,
-          C.Gamma (OmegaCore.PrimitiveDifference.classOf
+          C.Gamma (ObstructionCore.PrimitiveDifference.classOf
             P.toPrimitiveDifference x) = gammaRaw x) := by
   have hatlas :
-      OmegaCore.PrimitiveDifference.InvariantCongruent
+      ObstructionCore.PrimitiveDifference.InvariantCongruent
         P.toPrimitiveDifference (fun x : α => fun i : I => chart i x) :=
     operatorAtlas_invariant_of_each_chart P.toPrimitiveDifference chart hchart
   have hoverlap :
-      OmegaCore.PrimitiveDifference.InvariantCongruent
+      ObstructionCore.PrimitiveDifference.InvariantCongruent
         P.toPrimitiveDifference
         (operatorAtlasOverlapPairs (α := α) left right chart) :=
     operatorAtlas_overlapPairs_invariant_of_each_chart
@@ -1011,21 +1011,21 @@ theorem operatorAtlas_rawGammaClassifier_nonpromotion
   refine ⟨?_, ?_, ?_, ?_⟩
   · intro i
     exact
-      (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+      (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
         P.toPrimitiveDifference (fun x : α => chart i x)).mpr (hchart i)
   · exact
-      (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+      (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
         P.toPrimitiveDifference
         (fun x : α => fun i : I => chart i x)).mpr hatlas
   · exact
-      (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+      (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
         P.toPrimitiveDifference
         (operatorAtlasOverlapPairs (α := α) left right chart)).mpr hoverlap
   · exact
       fun hClassifier => by
         rcases hClassifier with ⟨C, hGamma⟩
         exact
-          OmegaCore.PrimitiveObstructionPipeline.no_gammaQuot_if_not_congruent
+          ObstructionCore.PrimitiveObstructionPipeline.no_gammaQuot_if_not_congruent
             P gammaRaw hGammaNot ⟨C.Gamma, hGamma⟩
 
 end

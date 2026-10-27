@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Seventh.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 0a7e561987d7891c9bb9e28be6656fcf0b0d48ebf385b525ed470c3c202fd961 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.GenesisOngoingCore.Twentysecond.Seventh

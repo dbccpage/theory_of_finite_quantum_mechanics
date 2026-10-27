@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean`
+### Lean: `lean4/Imported/GenesisDerivation/Derivation/Rounds.lean`
 
-- file: [lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean)
-- sha256 (`bytes`): `516b2e4ea8d722a27a9ddd9509b1002f0a35354b6a0e586795318a0924f57655`
+- file: [lean4/Imported/GenesisDerivation/Derivation/Rounds.lean](../../../lean4/Imported/GenesisDerivation/Derivation/Rounds.lean)
+- sha256 (`bytes`): `4b99ab31fc2a384709450f7d9a664d6aa35026a69599d98524802846f2e25b2d`
 - cited in: node.lean, record TFQ-0516
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.Genesis19l57g1.Derivation.Rounds`): recorded sha256 `516b2e4ea8d722a27a9ddd9509b1002f0a35354b6a0e586795318a0924f57655` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.Rounds`): recorded sha256 `4b99ab31fc2a384709450f7d9a664d6aa35026a69599d98524802846f2e25b2d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/Derivation/Rounds.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -57,14 +57,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/Imported/OeSn/SnTheorems.lean`
+### Lean: `lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean`
 
-- file: [lean4/Imported/OeSn/SnTheorems.lean](../../../lean4/Imported/OeSn/SnTheorems.lean)
-- sha256 (`bytes`): `acbabe52a9557e71a1ca32cd81122a70859a1f25c7c4654ec78102c8fc1fcf81`
+- file: [lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean](../../../lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean)
+- sha256 (`bytes`): `1c2c2b2a0774d7bc849eb584d2b135353e6d7ceb0d77041e70c175182ef93016`
 - cited in: node.lean, record TFQ-0516
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mssn_sn.json](../../../dag/research/lean_replay_campaign_mssn_sn.json) (module `Imported.OeSn.SnTheorems`): recorded sha256 `acbabe52a9557e71a1ca32cd81122a70859a1f25c7c4654ec78102c8fc1fcf81` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/OeSn/SnTheorems.lean`
+  - receipt [dag/research/lean_replay_campaign_mssn_sn.json](../../../dag/research/lean_replay_campaign_mssn_sn.json) (module `Imported.SymmetricGroupPresentations.SnTheorems`): recorded sha256 `1c2c2b2a0774d7bc849eb584d2b135353e6d7ceb0d77041e70c175182ef93016` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md](../../../dag/derivations/05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md)
-- sha256 (`lf-normalised`): `714bc8f5572533ccd54b49a8db2389d750153cab8e1c0160c8f56e4a96db6476`
+- sha256 (`lf-normalised`): `21284dfe12202e12a52b6357e65193b9905887428ea7fc2fc82e2f1fced6d335`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0516
 - counts toward the grade: no

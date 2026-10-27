@@ -30,11 +30,11 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/CanonicalMinimizer.lean::key_classification`](../../../lean4/Imported/Genesis19l57g1/CanonicalMinimizer.lean)
-- [`lean4/Imported/Genesis19l57g1/PaperCanonical.lean::serializedRelabel_sound`](../../../lean4/Imported/Genesis19l57g1/PaperCanonical.lean)
-- [`lean4/Imported/Genesis19l57g1/PaperSearch.lean::canonicalBytes_classification`](../../../lean4/Imported/Genesis19l57g1/PaperSearch.lean)
-- [`lean4/Imported/Genesis19l57g1/PaperSearch.lean::canonicalKey_attained`](../../../lean4/Imported/Genesis19l57g1/PaperSearch.lean)
-- [`lean4/Imported/Genesis19l57g1/PaperWire.lean::portableBytes_injective`](../../../lean4/Imported/Genesis19l57g1/PaperWire.lean)
+- [`lean4/Imported/GenesisDerivation/CanonicalMinimizer.lean::key_classification`](../../../lean4/Imported/GenesisDerivation/CanonicalMinimizer.lean)
+- [`lean4/Imported/GenesisDerivation/PaperCanonical.lean::serializedRelabel_sound`](../../../lean4/Imported/GenesisDerivation/PaperCanonical.lean)
+- [`lean4/Imported/GenesisDerivation/PaperSearch.lean::canonicalBytes_classification`](../../../lean4/Imported/GenesisDerivation/PaperSearch.lean)
+- [`lean4/Imported/GenesisDerivation/PaperSearch.lean::canonicalKey_attained`](../../../lean4/Imported/GenesisDerivation/PaperSearch.lean)
+- [`lean4/Imported/GenesisDerivation/PaperWire.lean::portableBytes_injective`](../../../lean4/Imported/GenesisDerivation/PaperWire.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs::portable_key_v1`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs)

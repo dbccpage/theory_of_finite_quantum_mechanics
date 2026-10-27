@@ -2,7 +2,7 @@
 import PrimitiveRepairBoundary
 
 
-namespace OmegaCore
+namespace ObstructionCore
 namespace PrimitiveTerminalPacket
 
 universe u
@@ -213,7 +213,7 @@ theorem packet_blocked_not_repaired
   exact hBlocked hRepaired.1
 
 end PrimitiveTerminalPacket
-end OmegaCore
+end ObstructionCore
 
 private def l5aProvenance : String :=
   "Origin: lean4/PrimitiveTerminalPacket.lean Claim: packet_status_matches_terminalize AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

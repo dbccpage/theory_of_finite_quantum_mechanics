@@ -39,7 +39,7 @@ Evidence:    THR-001 mapping = construction; §2 corollary prose-proved (§2.1 a
              repair-image monotonicity MECHANIZED axiom-free (ENC-1066)
 Authority:   none minted. The only arrow into authority is CODA-FDA Pi_sharp.
 Result ID:   THR-001
-Lean:        lean4.OmegaCore.RepairMonotonicity (repair_monotone, MECHANIZED axiom-free, ENC-1066);
+Lean:        lean4.ObstructionCore.RepairMonotonicity (repair_monotone, MECHANIZED axiom-free, ENC-1066);
 Mechanization: MECHANIZED (ENC-1066: lean4/research_programs/quantum_foundations/repair_monotonicity.lean, lean4/shared_kernel/primitive_difference.lean; repair_monotone, threshold_repair_nonzero_of_unabsorbed)
 ```
 
@@ -168,7 +168,7 @@ read as a pro-QC packet, not refuted by the projection obstruction.
 
 The complementary direction — that enlarging the repair image cannot increase the
 count of stranded defects (repair-image monotonicity) — is the finite witness
-`OmegaCore.RepairMonotonicity` (theorem `OmegaCore.QM.repair_monotone`),
+`ObstructionCore.RepairMonotonicity` (theorem `ObstructionCore.QM.repair_monotone`),
 **MECHANIZED axiom-free** and secured as encyclopedia entry **ENC-1066**
 (REPAIR-MONO-001). Note this is the *combinatorial* monotonicity ($B\subseteq B'\Rightarrow
 |\{d\notin B'\}|\le|\{d\notin B\}|$), **not** the rate inequality $\mu_{\mathsf{repair}}\ge
@@ -218,7 +218,7 @@ This is **arithmetic on imported hypotheses**, not a claim that any device achie
 `p < p_th`: flip the inequality to `p > p_th` and `p_pair(d)` *grows*, populating the
 packet's `terminal_status` as the conditional no-go regime instead. The combinatorial
 repair-image monotonicity (enlarging the repair image strands no more defects) is the
-MECHANIZED axiom-free witness `OmegaCore.QM.repair_monotone` (ENC-1066); the *rate*
+MECHANIZED axiom-free witness `ObstructionCore.QM.repair_monotone` (ENC-1066); the *rate*
 inequality `mu_repair >= lambda_proj` at scale is the imported, never-mechanized
 burden of §3.
 
@@ -245,7 +245,7 @@ not slogans, and not discharged by THR-001.
 
 * **Evidence:** the packet-population mapping is a construction; the §2 scoped corollary is
   prose-proved (the §2.1 hand-runnable arithmetic). The combinatorial repair-image monotonicity
-  is MECHANIZED axiom-free (`OmegaCore.QM.repair_monotone`, ENC-1066); the §2 scoped corollary is
+  is MECHANIZED axiom-free (`ObstructionCore.QM.repair_monotone`, ENC-1066); the §2 scoped corollary is
   not yet mechanized (open Lean target, PL-QM015-2).
 
 * **Authority:** none minted. A complete packet records a *conditional* terminal;
@@ -286,7 +286,7 @@ not slogans, and not discharged by THR-001.
 `qm_103_show_the_packet_protocol`. Falsifier
 recorded in `QM_Series_Falsifiability_Ledger`
 Mechanized repair-image monotonicity at
-`OmegaCore.RepairMonotonicity`
+`ObstructionCore.RepairMonotonicity`
 (ENC-1066); the §2 scoped-corollary Lean target is open (PL-QM015-2). Overlapping kernel:
 QM_061 (archived to `qm_archived_stubs_022_026`)
 (cross-reference, not merged).
@@ -312,8 +312,8 @@ Version Note: v2.0 (2026-06-17)** — first hygiene-pipeline Improver pass. Adde
     qm_103_show_the_packet_protocol's bibliography.
 
 * *Stage 3 (proof sign-off):* corrected a paper↔encyclopedia status drift — the repair-image monotonicity
-    is **MECHANIZED axiom-free** (`OmegaCore.QM.repair_monotone`, ENC-1066), not the "open Lean target" the
-    draft claimed, and the cited path `QM.RepairMonotonicity` was wrong → `OmegaCore/...`.
+    is **MECHANIZED axiom-free** (`ObstructionCore.QM.repair_monotone`, ENC-1066), not the "open Lean target" the
+    draft claimed, and the cited path `QM.RepairMonotonicity` was wrong → `ObstructionCore/...`.
     Separated the (mechanized) combinatorial monotonicity from the (imported, never-mechanized) rate
     inequality; tightened the §2.1 crossover condition to `tau < C`. The remaining open Lean target is the §2
     scoped corollary (PL-QM015-2).

@@ -5,8 +5,8 @@ import PrimitiveDifference
 
 namespace RetainedProfileCECBridge
 
-open OmegaCore
-open OmegaCore.PrimitiveDifference
+open ObstructionCore
+open ObstructionCore.PrimitiveDifference
 
 universe u v w u' v' w' i o o'
 

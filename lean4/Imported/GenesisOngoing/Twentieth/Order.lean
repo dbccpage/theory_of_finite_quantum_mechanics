@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Twentieth/Order.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 896d39250d40cafc6981b9d2fec0bdedd51b2940906537bed73a823ea7520943 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.GenesisOngoing.Twentieth.Order

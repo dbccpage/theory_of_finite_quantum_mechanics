@@ -4,7 +4,7 @@ LT-I — Finite quantum packet: decidable obstruction classification (M₂ skele
 
 Paper: `09_finite_quantum_packet_theorem_m2.md` (PO-D19a–e).
 
-This lifts the general finite-obstruction trichotomy (`OmegaCore.QM`, TRI-001 /
+This lifts the general finite-obstruction trichotomy (`ObstructionCore.QM`, TRI-001 /
 LT-C) to a **decidable** classifier `triQ` for an *accepted* finite quantum
 packet: a 2-truncated cochain triple `d0 : C0 → C1`, `d1 : C1 → C2`, `z2 : C2`
 whose coboundary-membership `InImage d0` is decidable (a finite carrier supplies
@@ -19,12 +19,12 @@ cases are coherent.
 
 No Hilbert space, Born rule, or CPTP dynamics is derived; those enter as declared
 finite packet fields. No authority is minted — GTFOC-Q is a diagnostic classifier.
-Mathlib-free; builds on `OmegaCore` only.
+Mathlib-free; builds on `ObstructionCore` only.
 -/
 
 namespace QM
 
-open OmegaCore.QM
+open ObstructionCore.QM
 
 variable {C0 C1 C2 : Type}
 

@@ -36,8 +36,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::U0_not_iso_BL`](../../../lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::mu1_minimum_not_unique`](../../../lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::U0_not_iso_BL`](../../../lean4/Imported/GenesisDerivation/Derivation/Minimality.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::mu1_minimum_not_unique`](../../../lean4/Imported/GenesisDerivation/Derivation/Minimality.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs::nothing_below_two_items_separates_the_target`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs)
@@ -59,4 +59,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:295-299`
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:299-303`
-  - `lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean:290-292`
+  - `lean4/Imported/GenesisDerivation/Derivation/Minimality.lean:290-292`

@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Ninth/Reach.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: e3d72ce982f90890d5d5d9ed3982c9755e689c2e04f7bfb1eab26b5df9160c12 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.GenesisOngoing.Ninth.Reach

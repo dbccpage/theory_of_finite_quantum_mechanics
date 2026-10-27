@@ -36,9 +36,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/Constitution.lean::allDescs_length`](../../../lean4/Imported/Genesis19l57g1/Derivation/Constitution.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/ControllerCategory.lean::allKinds_length`](../../../lean4/Imported/Genesis19l57g1/Derivation/ControllerCategory.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Counting.lean::allPairs_length`](../../../lean4/Imported/Genesis19l57g1/Derivation/Counting.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Constitution.lean::allDescs_length`](../../../lean4/Imported/GenesisDerivation/Derivation/Constitution.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/ControllerCategory.lean::allKinds_length`](../../../lean4/Imported/GenesisDerivation/Derivation/ControllerCategory.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Counting.lean::allPairs_length`](../../../lean4/Imported/GenesisDerivation/Derivation/Counting.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust port of the stake menu`

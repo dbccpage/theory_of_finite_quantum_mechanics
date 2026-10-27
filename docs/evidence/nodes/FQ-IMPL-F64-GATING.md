@@ -64,10 +64,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/PrimitiveLiftCertificate.lean`
 
 - file: [lean4/PrimitiveLiftCertificate.lean](../../../lean4/PrimitiveLiftCertificate.lean)
-- sha256 (`bytes`): `62f111c027a1653c3bdca013d864cb4a090bf6837abbfbbac6fb8f1f2d9d5f9a`
+- sha256 (`bytes`): `73da713572ba165ec504c7abe70f3a19a15ede07357f7b85872d107dd8a31293`
 - cited in: record TFQ-0188
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_implementation.json](../../../dag/research/lean_replay_campaign_implementation.json) (module `PrimitiveLiftCertificate`): recorded sha256 `62f111c027a1653c3bdca013d864cb4a090bf6837abbfbbac6fb8f1f2d9d5f9a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_implementation.json](../../../dag/research/lean_replay_campaign_implementation.json) (module `PrimitiveLiftCertificate`): recorded sha256 `73da713572ba165ec504c7abe70f3a19a15ede07357f7b85872d107dd8a31293` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build PrimitiveLiftCertificate`
 - counts toward the grade: yes
 

@@ -37,10 +37,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean::clears_does_not_imply_not_fires`](../../../lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean::g1_class_exclusion`](../../../lean4/Imported/Genesis19l57g1/Derivation/G1Class.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Generator.lean::generation_never_dries`](../../../lean4/Imported/Genesis19l57g1/Derivation/Generator.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean::closedRun_round_bound_from_empty`](../../../lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/G1Class.lean::clears_does_not_imply_not_fires`](../../../lean4/Imported/GenesisDerivation/Derivation/G1Class.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/G1Class.lean::g1_class_exclusion`](../../../lean4/Imported/GenesisDerivation/Derivation/G1Class.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Generator.lean::generation_never_dries`](../../../lean4/Imported/GenesisDerivation/Derivation/Generator.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Rounds.lean::closedRun_round_bound_from_empty`](../../../lean4/Imported/GenesisDerivation/Derivation/Rounds.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/closure.rs::closure_round_bound`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/closure.rs)

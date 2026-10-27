@@ -33,7 +33,7 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean::closedRun_round_bound_from_empty`](../../../lean4/Imported/Genesis19l57g1/Derivation/Rounds.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Rounds.lean::closedRun_round_bound_from_empty`](../../../lean4/Imported/GenesisDerivation/Derivation/Rounds.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/tree.rs::closed_system_baseline_reading_f`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/tree.rs)
