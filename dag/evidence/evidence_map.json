@@ -9,7 +9,7 @@
   "nodes": 925,
   "path": "dag/derivation_dag.json",
   "routes": 934,
-  "sha256_lf": "a6d543e549bd4fe5eaf1a87f8f8eda217a1ce72f5e6f9c29ea1a404cc2a25fa3"
+  "sha256_lf": "b5bd647f75910a01718ab5885f058a66c328ade1ccf80a4a3f8d1d143f5e088d"
  },
  "files": {
   "atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py": {
@@ -1893,7 +1893,7 @@
    "size": 9170
   },
   "dag/derivation_dag.json": {
-   "sha256": "a6d543e549bd4fe5eaf1a87f8f8eda217a1ce72f5e6f9c29ea1a404cc2a25fa3",
+   "sha256": "b5bd647f75910a01718ab5885f058a66c328ade1ccf80a4a3f8d1d143f5e088d",
    "sha256_basis": "lf-normalised",
    "size": 4842635
   },
@@ -4693,9 +4693,9 @@
    "size": 4779
   },
   "dag/derivations/23_engine_custody/tfq_0205_exact_rational_carriers_cross_the_wire_as_text.md": {
-   "sha256": "c5ee7b2e07460998f2d84fe2187c00118845e3cd5799095922d94f64d7f15d61",
+   "sha256": "9b180c3e677411777db59039f7590f63a0b8198d589585fa5c1515bc5e76b748",
    "sha256_basis": "lf-normalised",
-   "size": 2601
+   "size": 2582
   },
   "dag/derivations/23_engine_custody/tfq_0206_a_float_computation_cannot_authorize.md": {
    "sha256": "89430f22d196855be5f15b07ccc40a8ae8a2266be9cf0ad56d9e2a7dbb522ee6",
@@ -4718,9 +4718,9 @@
    "size": 3034
   },
   "dag/derivations/23_engine_custody/tfq_0210_lean_4_names_the_finite_rational_statement.md": {
-   "sha256": "a37c17a941cb9dd1c8f75203b61c3ecb3a0075b610f619b2b6982fbfdff72a57",
+   "sha256": "d69cee93fc4170a9ee85bd3006bc91465fba13f878f21f358dffee66584e3a4d",
    "sha256_basis": "lf-normalised",
-   "size": 3156
+   "size": 3137
   },
   "dag/derivations/23_engine_custody/tfq_0211_three_languages_must_name_one_finite_statement.md": {
    "sha256": "731278249c2e5a74d7555faf038bd617fe0d4e39ec90e15563d61295d3a2e0c4",
@@ -4798,9 +4798,9 @@
    "size": 2506
   },
   "dag/derivations/23_engine_custody/tfq_0226_finite_valuations_stay_on_exact_rationals.md": {
-   "sha256": "24d5bdd67905b8d113f61b3b0321ff64735ee82b0b074c68794b5e4e8a46baa0",
+   "sha256": "206ff33887af24084437a4eaeb755b63d7ff06ecd906a97cca752d939be08513",
    "sha256_basis": "lf-normalised",
-   "size": 2695
+   "size": 2676
   },
   "dag/derivations/23_engine_custody/tfq_0227_pipeline_runtime_refuses_to_mint_authority.md": {
    "sha256": "62027ee526ab4d150ff3547062b27043de72fe26a5649a4706475d8239ee51c2",
@@ -9053,7 +9053,7 @@
    "size": 6731
   },
   "dag/research/tensor_countermodel_validation.json": {
-   "sha256": "0ce69681c02a475317514921915c60e6a740d40fc8dbd4706b6f7a585ef55e07",
+   "sha256": "fb727deba1d4990113ff748b724a0e5ffd52df25dd4f445eece9bbaa2dcd1824",
    "sha256_basis": "lf-normalised",
    "size": 272130
   },
@@ -9811,6 +9811,11 @@
    "sha256": "1dc256ecbad36c8d1a3cb128ba67fab5efc37880d9a58d58698dfc4765646b0e",
    "sha256_basis": "bytes",
    "size": 4834
+  },
+  "lean4/ExactRatBasic.lean": {
+   "sha256": "0589343819d4cef8a4e6f73e3446337e7169d52868382582152aa112d10abd27",
+   "sha256_basis": "bytes",
+   "size": 8944
   },
   "lean4/FermionSignHubbardProtected.lean": {
    "sha256": "365483617d0e2261ff3450ab9e5a891e0c51a8bc2ee69bfecbb702d00544f2e9",
@@ -160719,14 +160724,13 @@
   },
   {
    "absent_notes": [
-    "TFQ-0205 lean4: no local lean twin located for lean4/ExactRat/Basic.lean",
     "TFQ-0205 rust: no local rust twin located for omega_engine/crates_rs/omega_kernel/src/exact.rs",
     "TFQ-0205 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/exact_operator.rs"
    ],
    "dependents": 28,
    "facts": {
     "cited_code_files_not_tests": 0,
-    "counted_files": 1,
+    "counted_files": 2,
     "lean_receipt_backed": 0,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
@@ -160736,6 +160740,31 @@
    "grade": "E1",
    "id": "TFQ-0205",
    "items": [
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.lean",
+      "record TFQ-0205"
+     ],
+     "command": "cd lean4 && lake build ExactRatBasic",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/ExactRatBasic.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
     {
      "canonical_symbol": null,
      "cited_in": [
@@ -161319,7 +161348,6 @@
   },
   {
    "absent_notes": [
-    "TFQ-0210 lean4: no local lean twin located for lean4/ExactRat/Basic.lean",
     "TFQ-0210 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory/lean4/FromPrimitiveDifferenceToMTheory/ContinuumLimit.lean",
     "TFQ-0210 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/lean4/OmegaEnginePrimeAlgorithmsRuntime/Prime000.lean",
     "TFQ-0210 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/exact_operator.rs"
@@ -161327,7 +161355,7 @@
    "dependents": 23,
    "facts": {
     "cited_code_files_not_tests": 0,
-    "counted_files": 1,
+    "counted_files": 2,
     "lean_receipt_backed": 0,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
@@ -161337,6 +161365,31 @@
    "grade": "E1",
    "id": "TFQ-0210",
    "items": [
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.lean",
+      "record TFQ-0210"
+     ],
+     "command": "cd lean4 && lake build ExactRatBasic",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/ExactRatBasic.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
     {
      "canonical_symbol": null,
      "cited_in": [
@@ -163087,13 +163140,12 @@
   },
   {
    "absent_notes": [
-    "TFQ-0226 lean4: no local lean twin located for lean4/ExactRat/Basic.lean",
     "TFQ-0226 rust: no local rust twin located for omega_engine/crates_rs/omega_kernel/src/exact.rs"
    ],
    "dependents": 7,
    "facts": {
     "cited_code_files_not_tests": 1,
-    "counted_files": 1,
+    "counted_files": 2,
     "lean_receipt_backed": 0,
     "qualifying_reviews": 0,
     "runnable_tests": 0,
@@ -163108,6 +163160,31 @@
    "grade": "E1",
    "id": "TFQ-0226",
    "items": [
+    {
+     "canonical_symbol": null,
+     "cited_in": [
+      "node.lean",
+      "record TFQ-0226"
+     ],
+     "command": "cd lean4 && lake build ExactRatBasic",
+     "command_note": null,
+     "counted": true,
+     "counts": true,
+     "decl_ambiguous": false,
+     "decl_axioms": null,
+     "decl_listed": false,
+     "file_exists": true,
+     "generated": false,
+     "kind": "lean_decl",
+     "path": "lean4/ExactRatBasic.lean",
+     "receipts": [],
+     "replay": "none",
+     "resolution": "present",
+     "symbol": null,
+     "symbol_declared": null,
+     "symbol_exists": null,
+     "where": null
+    },
     {
      "canonical_symbol": null,
      "cited_in": [
@@ -356253,7 +356330,7 @@
    "module": "TensorConeReconstruction",
    "path": "lean4/TensorConeReconstruction.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "0ce69681c02a475317514921915c60e6a740d40fc8dbd4706b6f7a585ef55e07",
+   "receipt_file_sha256": "fb727deba1d4990113ff748b724a0e5ffd52df25dd4f445eece9bbaa2dcd1824",
    "recorded_sha256": "b95e0257776bed514b2bb0b08504f399650d11c0a8090668c32949ea576722d8",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -356279,7 +356356,7 @@
    "module": "TensorTomography",
    "path": "lean4/TensorTomography.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "0ce69681c02a475317514921915c60e6a740d40fc8dbd4706b6f7a585ef55e07",
+   "receipt_file_sha256": "fb727deba1d4990113ff748b724a0e5ffd52df25dd4f445eece9bbaa2dcd1824",
    "recorded_sha256": "eb4c4598cd7763211606bcd097a3bda46e6e0365cf42f7ea8ec97b6aae44b4de",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -356305,7 +356382,7 @@
    "module": "TensorSchmidt",
    "path": "lean4/TensorSchmidt.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "0ce69681c02a475317514921915c60e6a740d40fc8dbd4706b6f7a585ef55e07",
+   "receipt_file_sha256": "fb727deba1d4990113ff748b724a0e5ffd52df25dd4f445eece9bbaa2dcd1824",
    "recorded_sha256": "ef05cc11f534a796a50aa1755b06346ce37213a31cebd0c737fc2d0fe7deb528",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -356331,7 +356408,7 @@
    "module": "TensorCoordinates",
    "path": "lean4/TensorCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "0ce69681c02a475317514921915c60e6a740d40fc8dbd4706b6f7a585ef55e07",
+   "receipt_file_sha256": "fb727deba1d4990113ff748b724a0e5ffd52df25dd4f445eece9bbaa2dcd1824",
    "recorded_sha256": "9f218b9f0a2898ecf2e8307d63ea986089407afe9ac81944a254db1655b3bcba",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -356357,7 +356434,7 @@
    "module": "TensorReachability",
    "path": "lean4/TensorReachability.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "0ce69681c02a475317514921915c60e6a740d40fc8dbd4706b6f7a585ef55e07",
+   "receipt_file_sha256": "fb727deba1d4990113ff748b724a0e5ffd52df25dd4f445eece9bbaa2dcd1824",
    "recorded_sha256": "7c0eedbf908441983f51d2f431b01ca335087b44754b35a9db1ccea1f40bd38e",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -356383,7 +356460,7 @@
    "module": "TensorOperationalCone",
    "path": "lean4/TensorOperationalCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "0ce69681c02a475317514921915c60e6a740d40fc8dbd4706b6f7a585ef55e07",
+   "receipt_file_sha256": "fb727deba1d4990113ff748b724a0e5ffd52df25dd4f445eece9bbaa2dcd1824",
    "recorded_sha256": "087b80fa37cb33daa2e357d59e4c1d076feabdd7b8cdc01f5e78686b10c1c7c0",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -356409,7 +356486,7 @@
    "module": "TensorComposition",
    "path": "lean4/TensorComposition.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "0ce69681c02a475317514921915c60e6a740d40fc8dbd4706b6f7a585ef55e07",
+   "receipt_file_sha256": "fb727deba1d4990113ff748b724a0e5ffd52df25dd4f445eece9bbaa2dcd1824",
    "recorded_sha256": "f91adb5ff654e3da899a3b94c1c081433b7338daee17508b2ecc66be49457926",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -356435,7 +356512,7 @@
    "module": "TensorEffectOrder",
    "path": "lean4/TensorEffectOrder.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "0ce69681c02a475317514921915c60e6a740d40fc8dbd4706b6f7a585ef55e07",
+   "receipt_file_sha256": "fb727deba1d4990113ff748b724a0e5ffd52df25dd4f445eece9bbaa2dcd1824",
    "recorded_sha256": "7c7bd7e9d1f957a93c378f31e287ea459bc125c83d05a2843348334120372d52",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -356461,7 +356538,7 @@
    "module": "TensorEffectCone",
    "path": "lean4/TensorEffectCone.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "0ce69681c02a475317514921915c60e6a740d40fc8dbd4706b6f7a585ef55e07",
+   "receipt_file_sha256": "fb727deba1d4990113ff748b724a0e5ffd52df25dd4f445eece9bbaa2dcd1824",
    "recorded_sha256": "e88adf90c3f1f679209df8cb6ecf9a949fc00b1e272f06272c0cd679f1050f70",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -356487,7 +356564,7 @@
    "module": "TensorMeasurements",
    "path": "lean4/TensorMeasurements.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "0ce69681c02a475317514921915c60e6a740d40fc8dbd4706b6f7a585ef55e07",
+   "receipt_file_sha256": "fb727deba1d4990113ff748b724a0e5ffd52df25dd4f445eece9bbaa2dcd1824",
    "recorded_sha256": "41154dcd26b10ee87ae04b881c1c8bcc20cbd7fc7e9da12e94381eef67efcfd9",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -356513,7 +356590,7 @@
    "module": "TensorPartialTranspose",
    "path": "lean4/TensorPartialTranspose.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "0ce69681c02a475317514921915c60e6a740d40fc8dbd4706b6f7a585ef55e07",
+   "receipt_file_sha256": "fb727deba1d4990113ff748b724a0e5ffd52df25dd4f445eece9bbaa2dcd1824",
    "recorded_sha256": "b1b8ad92013a3edbb5ddf3700beabf705b411a82632f0a50cedcd525eb06580d",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -356539,7 +356616,7 @@
    "module": "TensorCountermodelCones",
    "path": "lean4/TensorCountermodelCones.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "0ce69681c02a475317514921915c60e6a740d40fc8dbd4706b6f7a585ef55e07",
+   "receipt_file_sha256": "fb727deba1d4990113ff748b724a0e5ffd52df25dd4f445eece9bbaa2dcd1824",
    "recorded_sha256": "00bb1a1bb491e342fa6aa91f2e55e2827d1d3d52eea5459370f85150cb14a5bd",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -356565,7 +356642,7 @@
    "module": "TensorHiddenCoordinates",
    "path": "lean4/TensorHiddenCoordinates.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "0ce69681c02a475317514921915c60e6a740d40fc8dbd4706b6f7a585ef55e07",
+   "receipt_file_sha256": "fb727deba1d4990113ff748b724a0e5ffd52df25dd4f445eece9bbaa2dcd1824",
    "recorded_sha256": "9dd11ca5ef7eacf97d9ed9f5ea1125a5fb146724ac34eb8bc10fdb4fbef67e27",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -356591,7 +356668,7 @@
    "module": "TensorCountermodelWitnesses",
    "path": "lean4/TensorCountermodelWitnesses.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "0ce69681c02a475317514921915c60e6a740d40fc8dbd4706b6f7a585ef55e07",
+   "receipt_file_sha256": "fb727deba1d4990113ff748b724a0e5ffd52df25dd4f445eece9bbaa2dcd1824",
    "recorded_sha256": "252376bed56d7ca7eae9e7edc23b64006a5fbdbd01ec640cee956133a8e0a37c",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"
@@ -356617,7 +356694,7 @@
    "module": "TensorCountermodelEmbeddings",
    "path": "lean4/TensorCountermodelEmbeddings.lean",
    "receipt_file": "dag/research/tensor_countermodel_validation.json",
-   "receipt_file_sha256": "0ce69681c02a475317514921915c60e6a740d40fc8dbd4706b6f7a585ef55e07",
+   "receipt_file_sha256": "fb727deba1d4990113ff748b724a0e5ffd52df25dd4f445eece9bbaa2dcd1824",
    "recorded_sha256": "c9186b3d5bf366ee248f398fff26ecea37b48f828fff7fafdcfe297c64581ae7",
    "source_unchanged_during_build": true,
    "toolchain": "4.35.0"

@@ -26,7 +26,7 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for lean4/ExactRat/Basic.lean`](../../lean4/)
+- [`lean4/ExactRatBasic.lean`](../../../lean4/ExactRatBasic.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`code/rust/src/finite_probability/finite_valuation.rs`](../../code/rust/src/)

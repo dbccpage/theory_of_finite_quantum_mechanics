@@ -1542,3 +1542,11 @@ lean_lib L1ReplicaScale where
 -- FSP-MAJORANA-CLIFFORD-PARITY. Not a default target.
 lean_lib MajoranaCliffordParity where
   roots := #[`MajoranaCliffordParity]
+
+-- Exact rationals as numerator/denominator pairs, core Lean only. Not a default target.
+lean_lib ExactRat where
+  roots := #[`ExactRat, `ExactRatBasic, `ExactRatLaws, `ExactRatLinear, `ExactRatPoly]
+
+-- Two-amplitude carrier tests over ExactRat. Not a default target.
+lean_lib CarrierTests where
+  roots := #[`CarrierTests]

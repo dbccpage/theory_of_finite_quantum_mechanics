@@ -1,0 +1,122 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/ExactRat.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/ExactRat.lean",
+      "sha256": "2b5164deba8f8d8e1e5405045eabb4ad2ab2fd0a9d62d12fb23456fae68e7a9d"
+    },
+    "boundaries": [
+      "Exact rational arithmetic and finite examples only; no continuum, real-number or floating-point claim.",
+      "Substantive proof remains below the repository L4 capability floor; retained by an exact-hash finite_proof_example pin."
+    ],
+    "contract_urn": "urn:tfqm:lean:exactrat-port:ExactRat",
+    "evidence": [
+      {
+        "path": "dag/research/exactrat_lean_replay.json",
+        "sha256": "b2d4ce776fedb01e4ce0aba5421a5bad3eecbe5501ebd6fcdbe4b09591072aa6"
+      }
+    ],
+    "owned_invariants": [
+      "Re-export module for the four ExactRat modules."
+    ],
+    "purpose": "Re-export module for the four ExactRat modules.",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": []
+  },
+  "contract_history": [
+    {
+      "bytes": 890,
+      "original_paths": [
+        "lean4/ExactRat.contract.score.yaml#exactrat-port-ExactRat"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/ExactRat.lean\",\n    \"sha256\": \"2b5164deba8f8d8e1e5405045eabb4ad2ab2fd0a9d62d12fb23456fae68e7a9d\"\n  },\n  \"boundaries\": [\n    \"Exact rational arithmetic and finite examples only; no continuum, real-number or floating-point claim.\",\n    \"Substantive proof remains below the repository L4 capability floor; retained by an exact-hash finite_proof_example pin.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:lean:exactrat-port:ExactRat\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/exactrat_lean_replay.json\",\n      \"sha256\": \"b2d4ce776fedb01e4ce0aba5421a5bad3eecbe5501ebd6fcdbe4b09591072aa6\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Re-export module for the four ExactRat modules.\"\n  ],\n  \"purpose\": \"Re-export module for the four ExactRat modules.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": []\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/ExactRat.lean",
+          "sha256": "2b5164deba8f8d8e1e5405045eabb4ad2ab2fd0a9d62d12fb23456fae68e7a9d"
+        },
+        "boundaries": [
+          "Exact rational arithmetic and finite examples only; no continuum, real-number or floating-point claim.",
+          "Substantive proof remains below the repository L4 capability floor; retained by an exact-hash finite_proof_example pin."
+        ],
+        "contract_urn": "urn:tfqm:lean:exactrat-port:ExactRat",
+        "evidence": [
+          {
+            "path": "dag/research/exactrat_lean_replay.json",
+            "sha256": "b2d4ce776fedb01e4ce0aba5421a5bad3eecbe5501ebd6fcdbe4b09591072aa6"
+          }
+        ],
+        "owned_invariants": [
+          "Re-export module for the four ExactRat modules."
+        ],
+        "purpose": "Re-export module for the four ExactRat modules.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": []
+      },
+      "sha256": "0a6dc0082721702ae80c95e8c6fbeaf0ce8626ed5631130984de66d2ba66298e"
+    }
+  ],
+  "current_contract": "0a6dc0082721702ae80c95e8c6fbeaf0ce8626ed5631130984de66d2ba66298e",
+  "current_scoring": "c97924c807dc5fc1e27e8a8ccef44809b32be633e42c63522c6793f43a0077f5",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 1981,
+      "original_paths": [
+        "lean4/ExactRat.contract.score.yaml#exactrat-port-ExactRat"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/ExactRat.lean\",\n    \"sha256\": \"2b5164deba8f8d8e1e5405045eabb4ad2ab2fd0a9d62d12fb23456fae68e7a9d\"\n  },\n  \"assessment_id\": \"exactrat-port-ExactRat\",\n  \"basis\": {\n    \"G1\": \"Source inspected against its stated purpose; the exported statements are what the docstrings say, and the DAG nodes citing ExactRat.Frac (TFQ-0205, TFQ-0210, TFQ-0226) match the definitions.\",\n    \"G2\": \"Exact integer and natural arithmetic, quotient equality by cross-multiplication; no float or real number. Lean kernel replay passed.\",\n    \"G3\": \"Core Lean only. Admission scan clean (no sorry, admit, axiom, native_decide or unsafe); every theorem audited with Lean.collectAxioms uses at most propext, Classical.choice and Quot.sound.\",\n    \"G4\": \"Kernel replay of every module and a whole-file axiom audit are recorded. Mutation accounting and broader target coverage are not established.\",\n    \"G5\": \"Small, structurally recursive definitions with bounded proofs; no production lifecycle or performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-27T04:41:35.396799+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/exactrat_lean_replay.json\",\n      \"sha256\": \"b2d4ce776fedb01e4ce0aba5421a5bad3eecbe5501ebd6fcdbe4b09591072aa6\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L1\",\n  \"level_basis\": \"Re-export module with no declarations of its own. This assessment does not claim L4 production architecture.\",\n  \"open_higher_grade_findings\": [\n    \"Exact rational arithmetic and finite examples only; no continuum, real-number or floating-point claim.\",\n    \"Substantive proof remains below the repository L4 capability floor; retained by an exact-hash finite_proof_example pin.\"\n  ],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L1D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/ExactRat.lean",
+          "sha256": "2b5164deba8f8d8e1e5405045eabb4ad2ab2fd0a9d62d12fb23456fae68e7a9d"
+        },
+        "assessment_id": "exactrat-port-ExactRat",
+        "basis": {
+          "G1": "Source inspected against its stated purpose; the exported statements are what the docstrings say, and the DAG nodes citing ExactRat.Frac (TFQ-0205, TFQ-0210, TFQ-0226) match the definitions.",
+          "G2": "Exact integer and natural arithmetic, quotient equality by cross-multiplication; no float or real number. Lean kernel replay passed.",
+          "G3": "Core Lean only. Admission scan clean (no sorry, admit, axiom, native_decide or unsafe); every theorem audited with Lean.collectAxioms uses at most propext, Classical.choice and Quot.sound.",
+          "G4": "Kernel replay of every module and a whole-file axiom audit are recorded. Mutation accounting and broader target coverage are not established.",
+          "G5": "Small, structurally recursive definitions with bounded proofs; no production lifecycle or performance claim."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-27T04:41:35.396799+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/exactrat_lean_replay.json",
+            "sha256": "b2d4ce776fedb01e4ce0aba5421a5bad3eecbe5501ebd6fcdbe4b09591072aa6"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L1",
+        "level_basis": "Re-export module with no declarations of its own. This assessment does not claim L4 production architecture.",
+        "open_higher_grade_findings": [
+          "Exact rational arithmetic and finite examples only; no continuum, real-number or floating-point claim.",
+          "Substantive proof remains below the repository L4 capability floor; retained by an exact-hash finite_proof_example pin."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L1D"
+      },
+      "sha256": "c97924c807dc5fc1e27e8a8ccef44809b32be633e42c63522c6793f43a0077f5"
+    }
+  ]
+}
