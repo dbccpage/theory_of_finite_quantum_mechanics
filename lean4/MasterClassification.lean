@@ -774,7 +774,7 @@ theorem boundary_leaves_excluded (z : Point) (i j : Fin 5)
     -1 ≤ z.x i j ∧ z.x i j ≤ 1 :=
   x_abs_le_one z i j h_circle
 
-/-- Comprehensive Moduli Exhaustiveness (Corner Routing):
+/-- Moduli Exhaustiveness (Corner Routing):
     Every 6x6 complex Hadamard matrix admits a dephased representative routing to one of the
     two certified corner determinant branches. -/
 theorem comprehensive_moduli_exhaustiveness (H : Matrix (Fin 6) (Fin 6) ℂ) (hH : IsCH6 H) :
@@ -816,7 +816,7 @@ def RegularCornerComponent (c : ModuliComponent) : Prop :=
   c = ModuliComponent.fourierDita ∨
   c = ModuliComponent.karlssonVolume
 
-/-- Disjunctive Master Classification Coverage:
+/-- Disjunctive Classification Coverage:
     Every moduli component belongs to either the singular Segre branch
     or the regular corner branch. -/
 theorem moduli_component_branch_cover (c : ModuliComponent) :

@@ -45,10 +45,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/MomentPositivityObligation.lean`
 
 - file: [lean4/MomentPositivityObligation.lean](../../../lean4/MomentPositivityObligation.lean)
-- sha256 (`bytes`): `8b6c7afd16124eaecccdf6984b44392f5746652a678801548651b9bbdb62d947`
+- sha256 (`bytes`): `2e30aeed4fb8b3bf7b2ac1a7d033d7ddca6d3f038918499779b27757420c1632`
 - cited in: node.lean, record TFQ-1279
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MomentPositivityObligation`): recorded sha256 `8b6c7afd16124eaecccdf6984b44392f5746652a678801548651b9bbdb62d947` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_mutually_unbiased_bases.json](../../../dag/research/lean_replay_campaign_mutually_unbiased_bases.json) (module `MomentPositivityObligation`): recorded sha256 `2e30aeed4fb8b3bf7b2ac1a7d033d7ddca6d3f038918499779b27757420c1632` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build MomentPositivityObligation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

@@ -223,8 +223,7 @@ Assuming:
 3. Atlas coverage of the known complex Hadamard moduli;
 4. Gauge invariance of class membership;
 5. Premise G2 (ZeroRel variety emptiness across covered classes);
-There exists no complete set of seven mutually unbiased bases in dimension 6.
-Proved sorry-free with 0 user axioms beyond standard Lean logic. -/
+Under the hypotheses of this theorem, there is no complete set of seven mutually unbiased bases in dimension 6. -/
 theorem moduli_reduction_theorem
     (h_exh : OrbitCatalogExhaustive)
     (h_had : TransitionHadamardProperty)
@@ -237,8 +236,7 @@ theorem moduli_reduction_theorem
 
 /-- **Theorem 2: Moduli Reduction via ZeroRel Algebraic Variety**.
 Explicitly formulating Premise G2 in terms of the real vanishing locus
-of the 108-polynomial ZeroRel variety.
-Proved sorry-free with 0 user axioms beyond standard Lean logic. -/
+of the 108-polynomial ZeroRel variety. -/
 theorem moduli_reduction_via_zerorel_variety
     (h_exh : OrbitCatalogExhaustive)
     (h_had : TransitionHadamardProperty)
@@ -254,8 +252,7 @@ Assembling the full pipeline:
 - Orbit catalog exhaustiveness for G1;
 - Curvature wall certification (Artin-Schreier Nullstellensatz) for G2 basepoints;
 - Lossless wall transport along gauge orbits for G2 propagation;
-- Combinatorial basis gluing for G3.
-Proved sorry-free with 0 user axioms beyond standard Lean logic. -/
+- Combinatorial basis gluing for G3. -/
 theorem moduli_reduction_from_curvature_and_transport
     (h_exh : OrbitCatalogExhaustive)
     (h_had : TransitionHadamardProperty)
@@ -269,14 +266,14 @@ theorem moduli_reduction_from_curvature_and_transport
   have h_g2 : G2 := g2_of_wall_and_transport h_wall h_trans
   exact moduli_reduction_theorem h_exh h_had h_atlas h_gauge h_g2
 
-/-- **Theorem 4: The Moduli Reduction Grand Synthesis Theorem**.
+/-- **Theorem 4: The Moduli Reduction Synthesis Theorem**.
 Unifying the entire MUB(6) gluing reduction architecture:
 - Orbit Catalog Exhaustiveness (Diță D_6(alpha), Szöllősi B_6(theta), Tao S_6)
   via transition Hadamard equivalence (mu_triple_hadamard_transition)
 - Premise G1 (Moduli Coverage)
 - Premise G2 (ZeroRel Variety Emptiness via Artin-Schreier Curvature Mass)
 - Premise G3 (Combinatorial Basis Gluing)
-All assembled sorry-free with zero user axioms beyond standard Lean logic (propext, Classical.choice, Quot.sound). -/
+Axioms: propext, Classical.choice, Quot.sound. -/
 theorem moduli_reduction_grand_synthesis
     (h_cov : ModuliCoverageConjecture)
     (h_atlas : AtlasCoversKnownModuli)
