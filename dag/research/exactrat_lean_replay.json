@@ -1,0 +1,637 @@
+{
+  "schema_version": "exactrat_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-27",
+  "result": "The four ExactRat modules, their umbrella module and CarrierTests compile under Lean 4.35.0 with core Lean only (no Mathlib). Every theorem they declare was audited with Lean.collectAxioms; every axiom set is a subset of propext, Classical.choice and Quot.sound.",
+  "proof_boundary": "This receipt records that the sources type-check and which axioms their theorems use. It changes no DAG node status. TFQ-0205, TFQ-0210 and TFQ-0226 now link ExactRatBasic.lean, which they previously listed as absent.",
+  "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+  "lakefile_sha256": "803f0e4b58f1049c3886c0910473884d42c733b8d9c9de5c80540e619067fdd2",
+  "reproduction": "From lean4, run `lake build <Module>` for each module, then run Lean.collectAxioms over every theorem of the module (dag/research/lean_replay_campaign/replay_campaign.py axiom_script with no cited symbols).",
+  "entries": [
+    {
+      "module": "ExactRatBasic",
+      "source": "lean4/ExactRatBasic.lean",
+      "dag_nodes": [
+        "TFQ-0205",
+        "TFQ-0210",
+        "TFQ-0226"
+      ],
+      "sha256": "0589343819d4cef8a4e6f73e3446337e7169d52868382582152aa112d10abd27",
+      "sha256_after_build": "0589343819d4cef8a4e6f73e3446337e7169d52868382582152aa112d10abd27",
+      "source_unchanged_during_build": true,
+      "exit_code": 0,
+      "built_successfully": true,
+      "admission_scan_passed": true,
+      "axiom_audit_passed": true,
+      "theorems_audited": 26,
+      "axioms_used": [
+        "Quot.sound",
+        "propext"
+      ],
+      "axioms": {
+        "ExactRat.Frac.Eqv.eq_1": [],
+        "ExactRat.Frac.add.eq_1": [],
+        "ExactRat.Frac.add_respects": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.Frac.den_ne": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.Frac.den_pos": [],
+        "ExactRat.Frac.den_pos'": [
+          "propext"
+        ],
+        "ExactRat.Frac.eqv_refl": [],
+        "ExactRat.Frac.eqv_symm": [],
+        "ExactRat.Frac.eqv_trans": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.Frac.inv_respects": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.Frac.mk.congr_simp": [],
+        "ExactRat.Frac.mk.inj": [],
+        "ExactRat.Frac.mk.injEq": [
+          "propext"
+        ],
+        "ExactRat.Frac.mk.sizeOf_spec": [],
+        "ExactRat.Frac.mul.eq_1": [],
+        "ExactRat.Frac.mul_respects": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.Frac.neg.eq_1": [],
+        "ExactRat.Frac.neg_of_eqv": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.Frac.neg_respects": [
+          "propext"
+        ],
+        "ExactRat.Frac.num_zero_of_eqv": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.Frac.pos_of_eqv": [
+          "propext"
+        ],
+        "ExactRat.Frac.pos_respects": [
+          "propext"
+        ],
+        "ExactRat.QN.div_def": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.exact_rat_div_sound": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.lt_def": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.sub_def": [
+          "Quot.sound",
+          "propext"
+        ]
+      },
+      "build_command": "cd lean4 && lake build ExactRatBasic"
+    },
+    {
+      "module": "ExactRatLaws",
+      "source": "lean4/ExactRatLaws.lean",
+      "dag_nodes": [],
+      "sha256": "1bdddd088cbe03ad8b86fc2b7b537c8779eace44eb01f0394b85158b2f369294",
+      "sha256_after_build": "1bdddd088cbe03ad8b86fc2b7b537c8779eace44eb01f0394b85158b2f369294",
+      "source_unchanged_during_build": true,
+      "exit_code": 0,
+      "built_successfully": true,
+      "admission_scan_passed": true,
+      "axiom_audit_passed": true,
+      "theorems_audited": 42,
+      "axioms_used": [
+        "Quot.sound",
+        "propext"
+      ],
+      "axioms": {
+        "ExactRat.Frac.one.eq_1": [],
+        "ExactRat.Frac.zero.eq_1": [],
+        "ExactRat.QN.add_assoc": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.add_comm": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.add_lt_add_right": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.add_mul": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.add_neg_cancel": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.add_zero": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.div_self": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.exact": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.inv_mul_cancel": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.inv_zero": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.lt_iff_pos_sub": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.lt_irrefl": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.lt_trans": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.lt_trichotomy": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.mk_eq_iff": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.mul_add": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.mul_assoc": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.mul_comm": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.mul_inv_cancel": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.mul_one": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.mul_pos": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.mul_zero": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.neg_add": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.neg_add_cancel": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.neg_zero": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.not_pos_and_pos_neg": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.not_pos_zero": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.one_def": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.one_mul": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.pos_add": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.pos_mk": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.pos_mul": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.sound": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.sub_self": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.sub_zero": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.trichotomy": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.zero_add": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.zero_def": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.zero_mul": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.zero_ne_one": [
+          "Quot.sound",
+          "propext"
+        ]
+      },
+      "build_command": "cd lean4 && lake build ExactRatLaws"
+    },
+    {
+      "module": "ExactRatLinear",
+      "source": "lean4/ExactRatLinear.lean",
+      "dag_nodes": [],
+      "sha256": "6260742fbd1d69d44025e2fae0d9d96a30181365452c01f54415c924c64c8570",
+      "sha256_after_build": "6260742fbd1d69d44025e2fae0d9d96a30181365452c01f54415c924c64c8570",
+      "source_unchanged_during_build": true,
+      "exit_code": 0,
+      "built_successfully": true,
+      "admission_scan_passed": true,
+      "axiom_audit_passed": true,
+      "theorems_audited": 2,
+      "axioms_used": [
+        "Quot.sound",
+        "propext"
+      ],
+      "axioms": {
+        "ExactRat.det_one_by_one": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.det_two_by_two": [
+          "Quot.sound",
+          "propext"
+        ]
+      },
+      "build_command": "cd lean4 && lake build ExactRatLinear"
+    },
+    {
+      "module": "ExactRatPoly",
+      "source": "lean4/ExactRatPoly.lean",
+      "dag_nodes": [],
+      "sha256": "03ec6c0e7b0d14c4f721f0f30eee374f4dea58741bfb5b2833528cfbe81039ed",
+      "sha256_after_build": "03ec6c0e7b0d14c4f721f0f30eee374f4dea58741bfb5b2833528cfbe81039ed",
+      "source_unchanged_during_build": true,
+      "exit_code": 0,
+      "built_successfully": true,
+      "admission_scan_passed": true,
+      "axiom_audit_passed": true,
+      "theorems_audited": 42,
+      "axioms_used": [
+        "Quot.sound",
+        "propext"
+      ],
+      "axioms": {
+        "ExactRat.QN.add_sub_cancel_left": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.eq_neg_of_add_eq_zero": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.eval_aboveBy": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.eval_append": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.eval_belowBy": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.eval_cons_zero": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.eval_const": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.eval_diff": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.eval_mulX1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.eval_padd": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.eval_pneg": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.eval_reverse": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.eval_scale": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.eval_shift": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.eval_single": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.eval_tailZero": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.halving_bound": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.instAssociativeHAdd_exactRatPoly": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.instAssociativeHMul_exactRatPoly": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.instCommutativeHAdd_exactRatPoly": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.instCommutativeHMul_exactRatPoly": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.mul_neg": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.natQ_nonneg": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.natQ_pos": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.nonneg_add": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.nonneg_from": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.nonneg_of_mul_pos_left": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.nonneg_step": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.pos_add_nonneg": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.pos_from": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.pos_step": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.pow_mul_inv": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.qpow_pos": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.startsNonneg.eq_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.startsNonneg.eq_2": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.startsNonneg.eq_def": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.startsPositive.eq_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.tailZero.eq_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.tailZero.eq_2": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.tailZero.eq_def": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.zero_lt_iff": [
+          "Quot.sound",
+          "propext"
+        ],
+        "ExactRat.QN.zero_lt_one": [
+          "Quot.sound",
+          "propext"
+        ]
+      },
+      "build_command": "cd lean4 && lake build ExactRatPoly"
+    },
+    {
+      "module": "ExactRat",
+      "source": "lean4/ExactRat.lean",
+      "dag_nodes": [],
+      "sha256": "2b5164deba8f8d8e1e5405045eabb4ad2ab2fd0a9d62d12fb23456fae68e7a9d",
+      "sha256_after_build": "2b5164deba8f8d8e1e5405045eabb4ad2ab2fd0a9d62d12fb23456fae68e7a9d",
+      "source_unchanged_during_build": true,
+      "exit_code": 0,
+      "built_successfully": true,
+      "admission_scan_passed": true,
+      "axiom_audit_passed": null,
+      "theorems_audited": 0,
+      "axioms_used": [],
+      "axioms": {},
+      "build_command": "cd lean4 && lake build ExactRat",
+      "axiom_audit_note": "Re-export module: it declares no theorem, so there is nothing to audit."
+    },
+    {
+      "module": "CarrierTests",
+      "source": "lean4/CarrierTests.lean",
+      "dag_nodes": [],
+      "sha256": "04a79df058c590f57c63a222c1e5f8e3d8641c41d8e15c8fd28078a96c52f6cc",
+      "sha256_after_build": "04a79df058c590f57c63a222c1e5f8e3d8641c41d8e15c8fd28078a96c52f6cc",
+      "source_unchanged_during_build": true,
+      "exit_code": 0,
+      "built_successfully": true,
+      "admission_scan_passed": true,
+      "axiom_audit_passed": true,
+      "theorems_audited": 42,
+      "axioms_used": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "axioms": {
+        "QuantumCarrierTests.Assignment.mk.inj": [],
+        "QuantumCarrierTests.Assignment.mk.injEq": [
+          "propext"
+        ],
+        "QuantumCarrierTests.Assignment.mk.sizeOf_spec": [],
+        "QuantumCarrierTests.PureBlock.mk.inj": [],
+        "QuantumCarrierTests.PureBlock.mk.injEq": [
+          "propext"
+        ],
+        "QuantumCarrierTests.PureBlock.mk.sizeOf_spec": [],
+        "QuantumCarrierTests.alice.eq_1": [],
+        "QuantumCarrierTests.bellNumerator.eq_1": [],
+        "QuantumCarrierTests.bell_has_no_positive_joint_extension": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "QuantumCarrierTests.bell_has_no_positive_joint_score": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "QuantumCarrierTests.bell_score_exact": [
+          "propext"
+        ],
+        "QuantumCarrierTests.bell_table_positive_normalized": [],
+        "QuantumCarrierTests.bob.eq_1": [],
+        "QuantumCarrierTests.central_mixture_has_no_pure_extension": [
+          "Quot.sound",
+          "propext"
+        ],
+        "QuantumCarrierTests.chsh.eq_1": [],
+        "QuantumCarrierTests.contextScore.eq_1": [],
+        "QuantumCarrierTests.contextScore.eq_2": [],
+        "QuantumCarrierTests.contextScore.eq_def": [],
+        "QuantumCarrierTests.context_score_from_marginals": [
+          "Quot.sound",
+          "propext"
+        ],
+        "QuantumCarrierTests.control_orthogonal": [
+          "Quot.sound",
+          "propext"
+        ],
+        "QuantumCarrierTests.fair_sector_mixture_obstructed": [
+          "Quot.sound",
+          "propext"
+        ],
+        "QuantumCarrierTests.future_answers": [
+          "Quot.sound",
+          "propext"
+        ],
+        "QuantumCarrierTests.future_separates": [
+          "Quot.sound",
+          "propext"
+        ],
+        "QuantumCarrierTests.marginal.eq_1": [],
+        "QuantumCarrierTests.marginal.eq_2": [],
+        "QuantumCarrierTests.marginal.eq_def": [],
+        "QuantumCarrierTests.mass.eq_1": [],
+        "QuantumCarrierTests.mass.eq_2": [],
+        "QuantumCarrierTests.mass.eq_def": [],
+        "QuantumCarrierTests.no_population_decoder": [
+          "Quot.sound",
+          "propext"
+        ],
+        "QuantumCarrierTests.present_question_descends": [
+          "Quot.sound",
+          "propext"
+        ],
+        "QuantumCarrierTests.pure_marginal_central_endpoint": [
+          "propext"
+        ],
+        "QuantumCarrierTests.pure_sector_control": [],
+        "QuantumCarrierTests.report_collision": [
+          "Quot.sound",
+          "propext"
+        ],
+        "QuantumCarrierTests.score.eq_1": [],
+        "QuantumCarrierTests.score.eq_2": [],
+        "QuantumCarrierTests.score.eq_def": [],
+        "QuantumCarrierTests.score_from_contexts": [
+          "Quot.sound",
+          "propext"
+        ],
+        "QuantumCarrierTests.sign.eq_1": [],
+        "QuantumCarrierTests.states_normalized": [
+          "Quot.sound",
+          "propext"
+        ],
+        "QuantumCarrierTests.vertex_bound": [],
+        "QuantumCarrierTests.weighted_chsh_bound": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ]
+      },
+      "build_command": "cd lean4 && lake build CarrierTests"
+    }
+  ]
+}

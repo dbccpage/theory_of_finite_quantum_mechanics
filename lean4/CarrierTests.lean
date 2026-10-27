@@ -1,6 +1,6 @@
 
 import ExactRat
-import ShadowBoundary
+import Imported.LegacyTopLevel.ShadowBoundary
 
 namespace QuantumCarrierTests
 open ExactRat
