@@ -1,0 +1,22 @@
+import ProjectionBounds
+
+#print axioms ProjectionBounds.lowerRate_le
+#print axioms ProjectionBounds.uncertain_onset
+#print axioms ProjectionBounds.half_slope_window
+#print axioms ProjectionBounds.zero_curvature
+#print axioms ProjectionBounds.uncertainty_explains_rate
+#print axioms ProjectionBounds.correction_window_iff
+#print axioms ProjectionBounds.zero_rate_window
+#print axioms ProjectionBounds.safe_horizon
+#print axioms ProjectionBounds.exhausted_budget
+#print axioms ProjectionBounds.transported_jump_bound
+#print axioms ProjectionBounds.corrected_step
+#print axioms ProjectionBounds.path_bound
+#print axioms ProjectionBounds.factor_replacement_bound
+#print axioms ProjectionBounds.defect_difference
+#print axioms ProjectionBounds.product_defect_uncertainty
+#print axioms ProjectionBounds.observed_defect_interval
+#print axioms ProjectionBounds.observed_residual_bound
+#print axioms ProjectionBounds.accumulated_budget
+#print axioms ProjectionBounds.residual_difference
+#print axioms ProjectionBounds.product_residual_uncertainty
