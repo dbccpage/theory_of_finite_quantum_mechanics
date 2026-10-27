@@ -97,20 +97,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `cd lean4 && lake build FiniteQM`
 - counts toward the grade: no
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/mass_phase_embedding.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/mass_phase_embedding.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`
 
 - file: `code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`
@@ -150,13 +136,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0234 (shared)
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
 ### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml`
 
 - file: [sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml)
@@ -164,17 +143,26 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:2367d7d43e194cf155298ace7054041ae444c67ab6cd71f51cc12cfacda6f3d4::born_weights`
+- `external:sha256:2367d7d43e194cf155298ace7054041ae444c67ab6cd71f51cc12cfacda6f3d4::exact_amplitudes`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_l1_to_l2_bridges_and_ladder_witness`
+- `external:sha256:8534bf2948b65ab72605a33c219105f09458247c00aa57acc8beb275df568d27:550`
+
 ## Absences recorded by the TFQ records
 
 - TFQ-0234 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
-- TFQ-0295 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/_code/qm_020/tests/test_qm020_born_lift.py
+- TFQ-0295 python: no local python twin located for external:unlocated
 - TFQ-0295 python: no local python twin located for sources/atlas/papers/quantum_foundations/_code/qm_020/code/qm_020_born_normalization_and_conditional_hilbert_lift_core.py
-- TFQ-0295 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mass_phase_embedding.rs
-- TFQ-0295 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_state.rs
-- TFQ-0318 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/_code/qm_020/tests/test_qm020_born_lift.py
+- TFQ-0295 rust: no local rust twin located for external:sha256:2367d7d43e194cf155298ace7054041ae444c67ab6cd71f51cc12cfacda6f3d4
+- TFQ-0295 rust: no local rust twin located for external:sha256:d58eb2c1f4ae2ac65cc7145554cd2a5c955e096776c1f6d9daafb2065b14450e
+- TFQ-0318 python: no local python twin located for external:unlocated
 - TFQ-0318 python: no local python twin located for sources/atlas/papers/quantum_foundations/_code/qm_020/code/qm_020_born_normalization_and_conditional_hilbert_lift_core.py
-- TFQ-0318 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mass_phase_embedding.rs
-- TFQ-0318 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_state.rs
+- TFQ-0318 rust: no local rust twin located for external:sha256:2367d7d43e194cf155298ace7054041ae444c67ab6cd71f51cc12cfacda6f3d4
+- TFQ-0318 rust: no local rust twin located for external:sha256:d58eb2c1f4ae2ac65cc7145554cd2a5c955e096776c1f6d9daafb2065b14450e
 
 ## Routes
 

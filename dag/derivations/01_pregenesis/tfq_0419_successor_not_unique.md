@@ -49,6 +49,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:658-676`
-  - `omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:868-884`
-  - `omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:45-52`
+  - `external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:658-676`
+  - `external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:868-884`
+  - `external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:45-52`

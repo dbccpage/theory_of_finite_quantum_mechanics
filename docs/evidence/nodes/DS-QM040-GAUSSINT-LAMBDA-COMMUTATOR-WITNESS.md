@@ -61,13 +61,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0249_trace_zero_summaries_do_not_fix_commutation.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0249_trace_zero_summaries_do_not_fix_commutation.md](../../../dag/derivations/12_finite_qm_structure/tfq_0249_trace_zero_summaries_do_not_fix_commutation.md)
@@ -76,12 +69,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0249
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/040_matrix_vs_diffeq_representation/qm_040_matrix_vs_diffeq_representation_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/040_matrix_vs_diffeq_representation/qm_040_matrix_vs_diffeq_representation_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:5339a2573e529a8f486d1179eee492f298d4af1f3aed22483ce2baa2acb4c3e3#QM_040-C3`
+- `external:sha256:5339a2573e529a8f486d1179eee492f298d4af1f3aed22483ce2baa2acb4c3e3#QM_040-C4`
+- `external:sha256:5339a2573e529a8f486d1179eee492f298d4af1f3aed22483ce2baa2acb4c3e3#QM_040-C5`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_ds_qm_dynamics_structure_and_majorana_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
 
 ## Routes
 

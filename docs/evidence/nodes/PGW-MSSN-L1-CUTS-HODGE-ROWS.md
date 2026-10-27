@@ -45,24 +45,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0535_mssn_l1_cuts_hodge_rows.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0535_mssn_l1_cuts_hodge_rows.md](../../../dag/derivations/05_mssn_sn/tfq_0535_mssn_l1_cuts_hodge_rows.md)
-- sha256 (`lf-normalised`): `6e9c41abe49d9a801a8c13ce4c7d268051e3c4b1bc8d87b8a4e9dd860dd046a3`
+- sha256 (`lf-normalised`): `a6b71c5172383d9f7097048cd903867582de1e83002a9de87328bf3805466da9`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0535
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/003_oemssn/levels/level_08_monadic_adjunction_cochains.md`
+### External sources
 
-- file: `omega_engine_education/documentation/003_oemssn/levels/level_08_monadic_adjunction_cochains.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_education/documentation/003_oemssn/levels/level_18_discrete_hodge_decomposition.md`
-
-- file: `omega_engine_education/documentation/003_oemssn/levels/level_18_discrete_hodge_decomposition.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:2e8d3a73acde99fa958aebc35782e04482da4bd3e02496770588b9b28cdb9c73:63-67`
+- `external:sha256:584042f0b0371f95e96e81c58a5f4c3e24fe37dc20103464999b3bbde4e461f6:40`
+- `external:sha256:584042f0b0371f95e96e81c58a5f4c3e24fe37dc20103464999b3bbde4e461f6:77-78`
 
 ## Absences recorded by the TFQ records
 

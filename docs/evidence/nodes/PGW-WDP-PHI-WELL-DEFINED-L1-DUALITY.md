@@ -95,13 +95,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py`
 
 - file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py)
@@ -136,7 +129,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md`
 
 - file: [dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md](../../../dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md)
-- sha256 (`lf-normalised`): `945bd4d50244a339ed7887828d5b92ed7f61224cfd47f7611d32b6b560912b7d`
+- sha256 (`lf-normalised`): `e136bc667d19dcf45f00a99fd1c5c7b51621b6558ad6965ed75bcee07cf76209`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0544
 - counts toward the grade: no
@@ -145,7 +138,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs::FenchelDualityReceipt`
+- `external:sha256:fc5a04df299e671184b29b3468bd5fd18b70680beadaeaf4aebd5d809976d3e1::FenchelDualityReceipt`
+- `external:upstream/external:sha256:fc5a04df299e671184b29b3468bd5fd18b70680beadaeaf4aebd5d809976d3e1::FenchelDualityReceipt`
 
 ## Routes
 

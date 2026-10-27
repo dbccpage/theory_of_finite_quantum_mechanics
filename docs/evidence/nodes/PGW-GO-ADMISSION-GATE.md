@@ -80,17 +80,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0481_go_admission_gate.md`
 
 - file: [dag/derivations/02_genesis/tfq_0481_go_admission_gate.md](../../../dag/derivations/02_genesis/tfq_0481_go_admission_gate.md)
-- sha256 (`lf-normalised`): `9c68dcbf98a6d229866c2c84d946f896f01d5a846b1deaa0d91cbde636aabb73`
+- sha256 (`lf-normalised`): `190b587ec9e79cc970e73f7b1f1c743a7eead451b87dd4a37398125571d402cb`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0481
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/005_oegenong/levels/level_15_admission_record_boundary.md`
+### External sources
 
-- file: `omega_engine_education/documentation/005_oegenong/levels/level_15_admission_record_boundary.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:0e64131ef8fa37dfd5979d1cd82872324bbe93c10dc82fbdd78643e39acb8684:38`
 
 ## Absences recorded by the TFQ records
 

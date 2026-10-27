@@ -76,24 +76,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/kochen_specker.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/kochen_specker.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1015
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1015
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1015_fq_cabello_no_integer_frame.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1015_fq_cabello_no_integer_frame.md](../../../dag/derivations/10_finite_qm_core/tfq_1015_fq_cabello_no_integer_frame.md)
-- sha256 (`lf-normalised`): `dba5d339f77921bc893d10bcdca8a497d3e4a74751d0db16819201527b046eb5`
+- sha256 (`lf-normalised`): `9dd0c96a6ddd06ee8b39bb6e98d54f27a55f29191a290f5ccb8e94f05c078ab3`
 - generated view: listed, not counted
 - cited in: record TFQ-1015
 - counts toward the grade: no
@@ -111,6 +97,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `259e971c72c485503b9c9f157bec6ec9412fe24b8c4cc266e1d0ab6aa7e2d1e0`
 - cited in: node.source
 - counts toward the grade: yes
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:604e2768b7d0ee3423792a93ba46749403a8df2cdfa61198bf69fa12243b52f7::cabello_18`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 
 ## Routes
 

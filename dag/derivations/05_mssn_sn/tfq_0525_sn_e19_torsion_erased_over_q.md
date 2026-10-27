@@ -33,7 +33,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean statement of E19; MssnSmithNormalForm.lean checks supplied invariant-factor records only`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine_education/documentation/003_oemssn/code/rust/src/smith_normal_form.rs::compute_integral_homology` (private upstream source, not in this repository)
+- `external:sha256:78cf459f4d860074ecad10cffdc415f211995b06e002bf7dd61f7bed216e0278::compute_integral_homology` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - `missing obligation: no Python check of E19 in the S(n) strand`
@@ -49,6 +49,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_education/documentation/002_oesn/levels/level_19_zeta_spectral_shadow.md:46-49`
-  - `omega_engine_education/documentation/002_oesn/levels/level_19_zeta_spectral_shadow.md:51-54`
-  - `omega_engine_education/documentation/002_oesn/curriculum.md:146-147`
+  - `external:sha256:5aef105ec34fddc0f0092687564bcbbf1a27ccde32e756b3050c2edbb23b6e9d:46-49`
+  - `external:sha256:5aef105ec34fddc0f0092687564bcbbf1a27ccde32e756b3050c2edbb23b6e9d:51-54`
+  - `external:sha256:a51ceb8d0d5703baac230c14caa4638cf25f3ae46fdc77013c7e09f27caaa1e9:146-147`

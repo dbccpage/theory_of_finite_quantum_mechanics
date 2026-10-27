@@ -88,27 +88,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: no
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_wdp/src/gauge_classification.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/gauge_classification.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
 - file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
@@ -144,9 +123,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0354 (shared)
 - counts toward the grade: no
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche4_edgewise_l1_u1_holonomy_chsh_and_cayley_witness`
+- `external:sha256:97b89a12d973cc3fa80d33c83b782f78b54982645db2d58ab9c4ac58c98aed40::standard_l1`
+- `external:sha256:b4a0392795f1e742a256ae815cdc26550b49a4f6e92e1b8c6beb0d28f159c92d::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness`
+
 ## Absences recorded by the TFQ records
 
-- TFQ-0353 python: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/tests_unit/test_so_k_gauge.py
+- TFQ-0353 python: no local python twin located for external:sha256:63fe87b0f4001f63e4cf817c382c38036c636bef507dc306d07320cdf814f817
 
 ## Routes
 

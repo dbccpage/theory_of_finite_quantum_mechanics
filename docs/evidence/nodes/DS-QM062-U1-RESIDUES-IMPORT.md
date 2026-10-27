@@ -119,13 +119,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md](../../../dag/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md)
@@ -134,19 +127,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0253 (shared)
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/062_the_u1_selector/qm_062_the_u1_selector_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/062_the_u1_selector/qm_062_the_u1_selector_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/207_complex_phase_fiber_and_u1_transport_lift/qm_207_complex_phase_fiber_and_u1_transport_lift_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/207_complex_phase_fiber_and_u1_transport_lift/qm_207_complex_phase_fiber_and_u1_transport_lift_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:679e96859aa828d9063d94ad24f73a041996618602d4bb23baf393330b4fb740#QM207-C2`
+- `external:sha256:80736e21321aa43e6bf1cf97fb3deb2e07039345a223d53af7c36162b2e4cae7#QM-062-C10`
+- `external:sha256:80736e21321aa43e6bf1cf97fb3deb2e07039345a223d53af7c36162b2e4cae7#QM-062-C4`
+- `external:sha256:80736e21321aa43e6bf1cf97fb3deb2e07039345a223d53af7c36162b2e4cae7#QM-062-C9`
 
 ## Routes
 

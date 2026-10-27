@@ -62,20 +62,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
 - file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
@@ -144,33 +130,37 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0114
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/032_gtta_feynman_finite_shadow_histories/qm_032_gtta_feynman_finite_shadow_histories_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/032_gtta_feynman_finite_shadow_histories/qm_032_gtta_feynman_finite_shadow_histories_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:187db3e0f25cc2fca3931f80f1ddde21a325df1192a4b8af98725a2fbe11cdbb#QM-032-C4`
+- `external:sha256:187db3e0f25cc2fca3931f80f1ddde21a325df1192a4b8af98725a2fbe11cdbb#QM-032-C7`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness`
+- `external:sha256:b4a0392795f1e742a256ae815cdc26550b49a4f6e92e1b8c6beb0d28f159c92d::verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness`
 
 ## Absences recorded by the TFQ records
 
 - TFQ-0059 lean4: not located
 - TFQ-0059 python: not located
-- TFQ-0059 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/feynman_diagram.rs
+- TFQ-0059 rust: no local rust twin located for external:sha256:5750c8892fd61b580168841520e2dbb88c42dc9a2870654a5b5a13df5a7e3be1
 - TFQ-0071 lean4: not located
 - TFQ-0071 python: not located
-- TFQ-0071 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/s_matrix.rs
+- TFQ-0071 rust: no local rust twin located for external:sha256:2d9da71f2a615ba2de86c6896030b306594bc1169d72e912cd6e525b06887b66
 - TFQ-0072 lean4: not located
 - TFQ-0072 python: not located
-- TFQ-0072 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/scattering_amplitude.rs
+- TFQ-0072 rust: no local rust twin located for external:sha256:a4ca67769f0cdeae91bce65233c44b0a2b18deb921c5d4e4fabd22880ee84034
 - TFQ-0083 lean4: not located
 - TFQ-0083 python: not located
-- TFQ-0083 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/s_matrix.rs
-- TFQ-0113 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory/lean4/FromPrimitiveDifferenceToMTheory/ContinuumLimit.lean
-- TFQ-0113 python: no local python twin located for omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory/python/src/mtheory_interfaces/cochain_limit.py
-- TFQ-0114 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory/lean4/FromPrimitiveDifferenceToMTheory/ContinuumLimit.lean
-- TFQ-0114 python: no local python twin located for omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory/python/src/mtheory_interfaces/cochain_limit.py
-- TFQ-0243 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/graded_path_sum.rs
-- TFQ-0243 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/path_integral.rs
+- TFQ-0083 rust: no local rust twin located for external:sha256:2d9da71f2a615ba2de86c6896030b306594bc1169d72e912cd6e525b06887b66
+- TFQ-0113 lean4: no local lean twin located for external:sha256:fa138464a47b0fe8c8163b9ac1f3c690215350943ffa16316bf0f63650f45efc
+- TFQ-0113 python: no local python twin located for external:sha256:3aa4b5bfeec3b0c5d4cb3be6ec214de49e023c1f7e36b1617b0452100e39a8fb
+- TFQ-0114 lean4: no local lean twin located for external:sha256:fa138464a47b0fe8c8163b9ac1f3c690215350943ffa16316bf0f63650f45efc
+- TFQ-0114 python: no local python twin located for external:sha256:3aa4b5bfeec3b0c5d4cb3be6ec214de49e023c1f7e36b1617b0452100e39a8fb
+- TFQ-0243 rust: no local rust twin located for external:sha256:4b48c2e282a2ea334c8e4d0c1fca71cdf5555a374d1aebd974794cd6dd92b489
+- TFQ-0243 rust: no local rust twin located for external:sha256:f51cea05c639d8d39b42c50d466f3fdf2ef0bb52291a1196d9ff27bc5e4111a1
 
 ## Routes
 

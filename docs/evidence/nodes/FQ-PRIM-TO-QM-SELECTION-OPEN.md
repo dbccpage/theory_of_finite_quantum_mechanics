@@ -79,34 +79,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/coupled_relational_operad.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/coupled_relational_operad.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1010
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1010
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1010
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_wdp/src/genesis_realification_adapter.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/genesis_realification_adapter.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1010
-- counts toward the grade: no
-
 ### Python: `checks/independent/fq-prim-to-qm-selection-open.py`
 
 - file: [checks/independent/fq-prim-to-qm-selection-open.py](../../../checks/independent/fq-prim-to-qm-selection-open.py)
@@ -117,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md](../../../dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md)
-- sha256 (`lf-normalised`): `950ebc69856a485ac0d7edd5ae7a48b069e660a955068a9955c7f59266435b45`
+- sha256 (`lf-normalised`): `6700bc4daeedb4a14847462d4b0f829d9fd7aca3050af211174651e7aea9e366`
 - generated view: listed, not counted
 - cited in: record TFQ-1010
 - counts toward the grade: no
@@ -135,6 +107,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:3dab36e238ec5c724db50e333358961506db6e3c22a04fbd6a26402ffe48f7fc::DeclaredRealComposite`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness`
+- `external:sha256:77726675ace7bc93c8e8203260618f203aa20359b38d15cd48dee38f04c7a89f::readout_quadratic`
+- `external:sha256:90a3d4db1c5ee741479f5a5ecbdd3100a808824a748a726b863e2d48bae270ad::evaluate_coupled_relational_operad`
 
 ## Routes
 

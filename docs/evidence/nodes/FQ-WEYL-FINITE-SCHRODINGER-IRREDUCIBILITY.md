@@ -76,31 +76,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/heisenberg_representation_uniqueness.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/heisenberg_representation_uniqueness.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1020
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_weyl.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_weyl.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1020
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1020
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1020_fq_weyl_finite_schrodinger_irreducibility.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1020_fq_weyl_finite_schrodinger_irreducibility.md](../../../dag/derivations/12_finite_qm_structure/tfq_1020_fq_weyl_finite_schrodinger_irreducibility.md)
-- sha256 (`lf-normalised`): `1a7dc1fcd177cfbfbd692e948dbe8310924fce07d21668877270e80321ff41e8`
+- sha256 (`lf-normalised`): `07d53e2e358f9901860ed0e7d96b72306e0f903c7905b0817e231441356da404`
 - generated view: listed, not counted
 - cited in: record TFQ-1020
 - counts toward the grade: no
@@ -111,6 +90,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:c909769a4fd87571dcd8d0055387b39ece498912ecda144cf50f94aa17478e10::OddPrimeWeylReport`
+- `external:sha256:cab5191a6b4532d9a2998e185a6e8a23eb54ad0425d560fd0ee2dbe8b33e0d44::certify_schrodinger_irreducibility`
 
 ## Routes
 

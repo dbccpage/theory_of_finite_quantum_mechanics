@@ -61,17 +61,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1045
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/21_implementation_core/tfq_1045_impl_thymus_screening_soundness.md`
 
 - file: [dag/derivations/21_implementation_core/tfq_1045_impl_thymus_screening_soundness.md](../../../dag/derivations/21_implementation_core/tfq_1045_impl_thymus_screening_soundness.md)
-- sha256 (`lf-normalised`): `4bf369c8716104c09f13e980aa42e821cacbeacb473254264bb5f352a8540f28`
+- sha256 (`lf-normalised`): `8ecf94f30fbf6a08f7f4d62109e936f1d3a1c38b1da064a51bb9fd88e04490fe`
 - generated view: listed, not counted
 - cited in: record TFQ-1045
 - counts toward the grade: no
@@ -82,6 +75,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `bb38e1e763dba36d1194fde3c597b73c19f651ec9b4137eeb694fd92fed6f8fb`
 - cited in: node.source
 - counts toward the grade: yes
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_impl_nf002_thymus_and_lggr_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
 
 ## Routes
 

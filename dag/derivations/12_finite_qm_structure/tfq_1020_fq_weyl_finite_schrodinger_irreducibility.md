@@ -35,10 +35,10 @@ paper s1.3 finite Weyl construction from an anchored seed; clock/shift commutant
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_power_p2_cabello_146_and_weyl_commutant_irreducibility`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_quantum_physics/src/heisenberg_representation_uniqueness.rs::certify_schrodinger_irreducibility`
-- `omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_weyl.rs::OddPrimeWeylReport`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:cab5191a6b4532d9a2998e185a6e8a23eb54ad0425d560fd0ee2dbe8b33e0d44::certify_schrodinger_irreducibility`
+- `external:sha256:c909769a4fd87571dcd8d0055387b39ece498912ecda144cf50f94aa17478e10::OddPrimeWeylReport`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
 
 ---
 

@@ -52,6 +52,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_education/documentation/002_oesn/levels/level_18_discrete_hodge_decomposition.md:44-47`
-  - `omega_engine_education/documentation/002_oesn/levels/level_18_discrete_hodge_decomposition.md:49-52`
-  - `omega_engine_education/documentation/002_oesn/levels/level_18_discrete_hodge_decomposition.md:55-57`
+  - `external:sha256:4f2631eb4418b0032c51f4cb9b3226a62faf5c2105e43d096706abaf578f805e:44-47`
+  - `external:sha256:4f2631eb4418b0032c51f4cb9b3226a62faf5c2105e43d096706abaf578f805e:49-52`
+  - `external:sha256:4f2631eb4418b0032c51f4cb9b3226a62faf5c2105e43d096706abaf578f805e:55-57`

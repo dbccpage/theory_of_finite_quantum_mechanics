@@ -115,17 +115,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0478_go_contraction_step2_step3.md`
 
 - file: [dag/derivations/02_genesis/tfq_0478_go_contraction_step2_step3.md](../../../dag/derivations/02_genesis/tfq_0478_go_contraction_step2_step3.md)
-- sha256 (`lf-normalised`): `56d4704730b0ac7ea5010afb2a18458ecd80f0ab15ba44c7e6c9f4031099df72`
+- sha256 (`lf-normalised`): `7f12fde8124710eb89c15e140ea419e095cf6acf5857ab546b62cd7970bf11fb`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0478
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/005_oegenong/levels/level_06_stage_embeddings.md`
+### External sources
 
-- file: `omega_engine_education/documentation/005_oegenong/levels/level_06_stage_embeddings.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:b9029b5bf217f6cd67b350aff6bfefe937ea4e879d7257db46c0949e33db8023:36`
 
 ## Absences recorded by the TFQ records
 

@@ -42,7 +42,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust check of continuation requests in the S(n) strand`
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_education/documentation/002_oesn/code/sn_core.py::S5Continuation` (private upstream source, not in this repository)
+- `external:sha256:afb535f684f1f4d2a5b16edf7f567e13da0863a4638d81b98586f08fcda6ef10::S5Continuation` (private upstream source, not in this repository)
 
 ---
 
@@ -57,4 +57,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:186-190`
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/closeout.txt:171-175`
-  - `omega_engine_education/documentation/002_oesn/levels/level_05_regge_metric_simplices.md:19-27`
+  - `external:sha256:a6861fa4948d2c22250d8262817e8da205083614703dd40737904803b7482d93:19-27`

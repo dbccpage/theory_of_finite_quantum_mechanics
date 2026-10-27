@@ -37,7 +37,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust check of opaque collapse in the S(n) strand`
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_education/documentation/002_oesn/code/sn_core.py::S2Collapse` (private upstream source, not in this repository)
+- `external:sha256:afb535f684f1f4d2a5b16edf7f567e13da0863a4638d81b98586f08fcda6ef10::S2Collapse` (private upstream source, not in this repository)
 
 ---
 
@@ -52,4 +52,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:243-248`
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:531-533`
-  - `omega_engine_education/documentation/002_oesn/levels/level_02_relational_pairings.md:33-35`
+  - `external:sha256:75489b76e5af44bcf0edfd71b8b4e127881c8275ecc8b3bfb767d121d38f6d9b:33-35`

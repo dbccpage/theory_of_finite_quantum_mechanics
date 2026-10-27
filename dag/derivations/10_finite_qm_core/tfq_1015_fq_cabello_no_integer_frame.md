@@ -35,8 +35,8 @@ H054 header carries "PR #205 scope correction" demotion; ledger typed LEAN PROVE
 - `lean4/EverettForkingTree.lean::cabello_parity_obstruction`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_quantum_physics/src/kochen_specker.rs::cabello_18`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:604e2768b7d0ee3423792a93ba46749403a8df2cdfa61198bf69fa12243b52f7::cabello_18`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 
 ---
 

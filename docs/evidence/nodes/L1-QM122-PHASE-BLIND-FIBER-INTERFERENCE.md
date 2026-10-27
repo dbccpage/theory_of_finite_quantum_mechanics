@@ -100,20 +100,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/09_finite_hilbert/tfq_0310_finite_hilbert_boundary_from_a_presented_carrier.md`
 
 - file: [dag/derivations/09_finite_hilbert/tfq_0310_finite_hilbert_boundary_from_a_presented_carrier.md](../../../dag/derivations/09_finite_hilbert/tfq_0310_finite_hilbert_boundary_from_a_presented_carrier.md)
@@ -122,18 +108,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0310
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/qm_122_finite_hilbert_boundary_from_primitive_difference_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/qm_122_finite_hilbert_boundary_from_primitive_difference_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
+- `external:sha256:86710ba8ef7db719a42a2165e71d3bc72ac5db63d0b2a51e57f48f14e137754e`
+- `external:sha256:a2c0d7450948662c89ffb80f0ebcfa02f1f013179a207d3d24db3421e81e84c6::discrete_fiber`
+- `external:sha256:a2c0d7450948662c89ffb80f0ebcfa02f1f013179a207d3d24db3421e81e84c6::phase_blind_projection`
 
 ## Absences recorded by the TFQ records
 
 - TFQ-0310 python: no local python twin located for sources/atlas/papers/quantum_foundations/_code/qm_122/qm122_lib/qm122_dual.py
-- TFQ-0310 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/hilbert_space.rs
-- TFQ-0310 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+- TFQ-0310 rust: no local rust twin located for external:sha256:904a09d9ca4b18f97838457416046361842e537e895afce0374f8b6c670a1ef1
+- TFQ-0310 rust: no local rust twin located for external:sha256:a2c0d7450948662c89ffb80f0ebcfa02f1f013179a207d3d24db3421e81e84c6
 
 ## Routes
 

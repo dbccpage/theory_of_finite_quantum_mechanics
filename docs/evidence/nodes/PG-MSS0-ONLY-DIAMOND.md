@@ -61,27 +61,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Python: `omega_engine_pfp/domain/tower/profile.py`
-
-- file: `omega_engine_pfp/domain/tower/profile.py`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
@@ -96,6 +75,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - generated view: listed, not counted
 - cited in: record TFQ-0377
 - counts toward the grade: no
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:101e8427c1ba1531e0570879a9bc1c4d6e04f629d2220d1c34c6e64fc5587c1d:63-65`
+- `external:sha256:2252c69f4bba9c28eb9ab8a435a9a62ed96fb8314f053e8de431be4b50ed2526::GenesisConstruction`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_genesis_rewriting_and_sameness_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
 
 ## Absences recorded by the TFQ records
 

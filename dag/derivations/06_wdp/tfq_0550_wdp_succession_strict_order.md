@@ -37,7 +37,7 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean::constitutiveOrder_trans`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine/crates_rs/omega_wdp/src/relational_retention.rs::RelationalRetentionPacket` (private upstream source, not in this repository)
+- `external:sha256:db10cc7ea0ed8a47ab985151883f1e3ad0f30be4fc21f5bc88fd661c4a19f789::RelationalRetentionPacket` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py::succession_classification`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py)
@@ -55,4 +55,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:2772-2785`
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:2809-2810`
-  - `omega_engine_education/documentation/006_oewdp/levels/level_05_retention_discrete_succession.md:128-158`
+  - `external:sha256:dd53cffa90b882e2551799359eb57f464bcbb2369600f4542d5410b9acce0d63:128-158`

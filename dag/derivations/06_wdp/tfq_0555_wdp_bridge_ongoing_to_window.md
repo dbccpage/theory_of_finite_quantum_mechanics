@@ -50,7 +50,7 @@ In accordance with strict constructive principles:
 - [`lean4/PregenesisWdpBridgeOngoing.lean::two_way_sum`](../../../lean4/PregenesisWdpBridgeOngoing.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine/crates_rs/omega_wdp/src/genesis_ongoing_adapter.rs::GenesisOngoingAdapter` (private upstream source, not in this repository)
+- `external:sha256:718c4c7d2dba17c2e8b55676b4edd2c41584c55fee175f1e129c8df01769c0bf::GenesisOngoingAdapter` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - [`checks/independent/pgw-wdp-bridge-ongoing-to-window.py::main`](../../../checks/independent/pgw-wdp-bridge-ongoing-to-window.py)
@@ -68,6 +68,6 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md:147-170`
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_ongoing_fixed_carrier_bridge.md:26-36`
-  - `omega_engine_education/documentation/006_oewdp/levels/level_22_genesis_to_wdp_bridges.md:116-137`
+  - `external:sha256:a11697dcdf5788b476d5c2e541b635a81c03e665684f69bd260bc463a03ee458:116-137`
   - `dag/derivations/independent/pgw-wdp-bridge-ongoing-to-window.md:5`
   - `dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json:6`

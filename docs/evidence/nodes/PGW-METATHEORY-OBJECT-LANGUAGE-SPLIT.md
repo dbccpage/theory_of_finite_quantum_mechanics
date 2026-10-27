@@ -92,17 +92,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0430_metatheory_object_language_split.md`
 
 - file: [dag/derivations/02_genesis/tfq_0430_metatheory_object_language_split.md](../../../dag/derivations/02_genesis/tfq_0430_metatheory_object_language_split.md)
-- sha256 (`lf-normalised`): `cc1bed23549635aeca15fbb237f60fad7506f4caa404c759e06d3ba36e2d550a`
+- sha256 (`lf-normalised`): `bbcfe9ce939be84ee61297904b13abc1d39ab3ddda4aa00d72ee9cc248c14303`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0430
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/001_oegen/genesis.md`
+### External sources
 
-- file: `omega_engine_education/documentation/001_oegen/genesis.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:ad3ab47c05abcec0f914042f034960d1143a7d7f023e1b4cedbfc0efd6023a3a:7`
 
 ## Routes
 

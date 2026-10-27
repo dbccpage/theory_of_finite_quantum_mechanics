@@ -36,8 +36,8 @@ Exact zero-duality-gap primal=dual certificates for K_{2,3} and 3-cycle mechaniz
 - `lean4/LggrFiniteResults.lean::LggrFiniteResults.totalSatWeight3_le_two_mul_mass`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_fq_core_and_k23_duality_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
 
 ---
 
@@ -50,5 +50,5 @@ Exact zero-duality-gap primal=dual certificates for K_{2,3} and 3-cycle mechaniz
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/gap_register.yaml#GAP-F001-S000-001`
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/continuum_price_ledger.yaml#PRICE-HD-05`
+  - `external:sha256:49250fc3940b574236fe8aeb8acabb9673af35fe28f17474e9deb52ecd18a713#GAP-F001-S000-001`
+  - `external:sha256:a635008d68c51a062b794996dc85a68693522928a157d619d01ffada1ba595f1#PRICE-HD-05`

@@ -104,13 +104,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md](../../../dag/derivations/12_finite_qm_structure/tfq_0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md)
@@ -127,25 +120,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0267 (shared)
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/082_channels_as_stochastic_kernels_and_the_cptp_lift/qm_082_channels_as_stochastic_kernels_and_the_cptp_lift_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/082_channels_as_stochastic_kernels_and_the_cptp_lift/qm_082_channels_as_stochastic_kernels_and_the_cptp_lift_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/083_completely_positive_import_boundary/qm_083_completely_positive_import_boundary_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/083_completely_positive_import_boundary/qm_083_completely_positive_import_boundary_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:31047098432c406509e13a12c95ce83041a099020c195e61eeb3dfa0d9b10d91#QM_083-C3`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:c223d9defa7e19e64a7c5c8c484d3063f47c07f01d8e763fcc5532ed210e33c0#QM-082-C6`
+- `external:sha256:c223d9defa7e19e64a7c5c8c484d3063f47c07f01d8e763fcc5532ed210e33c0#QM-082-C8`
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0266 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/cptp_channels_stinespring.rs
-- TFQ-0266 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/exact_channel.rs
-- TFQ-0266 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_channel.rs
+- TFQ-0266 rust: no local rust twin located for external:sha256:19f735a77b55e8182884060c73a1c66ccc64e14b24e1c3d5a173d64f8fe5b024
+- TFQ-0266 rust: no local rust twin located for external:sha256:7ecaf8b5a2fd5a4428b83ca6f579e8bda5323dd5ca0b2d87b0138227eb0e5cf3
+- TFQ-0266 rust: no local rust twin located for external:sha256:e17359f64c885efb596f3390cf43cc40c25011d24ded59d783982b1eb15318df
 
 ## Routes
 

@@ -84,30 +84,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0515_sn_endpoint_lemma.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0515_sn_endpoint_lemma.md](../../../dag/derivations/05_mssn_sn/tfq_0515_sn_endpoint_lemma.md)
-- sha256 (`lf-normalised`): `ec893cb0f0bf3052976a362825e4051d11add091e69a5df3c9baa0cf875475c4`
+- sha256 (`lf-normalised`): `277303f0903e695b00b654cb0e6acabac3835a8659776bb57fc21b033d730a93`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0515
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/002_oesn/reading_guide.md`
-
-- file: `omega_engine_education/documentation/002_oesn/reading_guide.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/002_oesn/sn.md`
-
-- file: `omega_engine_education/documentation/002_oesn/sn.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine_education/documentation/002_oesn/code/sn_audit.py::verify_wir`
+- `external:sha256:17ebebc4a063d888d237da44f44f0937e15f6920e8e6fc63fbdf83909718616c:32-35`
+- `external:sha256:7cd90f66662c2628f0fcc5d8fb3154cfa6b0c4274de439fb73be21b2eb5673f7:58-66`
+- `external:upstream/external:sha256:41be0ece4d1f0ecd255141dd5753d0c096aaa4cd31c6447a8fd3249217919f99::verify_wir`
 
 ## Absences recorded by the TFQ records
 

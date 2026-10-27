@@ -113,31 +113,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md](../../../dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md)
-- sha256 (`lf-normalised`): `dc1892741490011c6eeddc11922d8e437a69a5c8f656fa2f6366bd6148cac2cb`
+- sha256 (`lf-normalised`): `04d093f65c9ed09525c08b58fa61c39979a0fca44adf2ceab41bbbc9fe7617d7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0427
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/000_oepregen/02_trial_record.md`
+### External sources
 
-- file: `omega_engine_education/documentation/000_oepregen/02_trial_record.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md`
-
-- file: `omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md`
-
-- file: `omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:1065-1087`
+- `external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:127-134`
+- `external:sha256:2e49c338376d7a78a6a89cdd340c9b3c351c485c20d4127e3c455b3fb1570428:120-130`
 
 ## Routes
 

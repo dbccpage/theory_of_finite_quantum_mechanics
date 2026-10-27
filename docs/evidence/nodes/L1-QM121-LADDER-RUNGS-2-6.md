@@ -72,27 +72,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is theory_of_finite_qm
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/coherent_interference.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/coherent_interference.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`
 
 - file: `code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`
@@ -108,23 +87,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0309
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/121_the_finite_qm_ingredient_ladder/qm_121_the_finite_qm_ingredient_ladder_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/121_the_finite_qm_ingredient_ladder/qm_121_the_finite_qm_ingredient_ladder_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/121_the_finite_qm_ingredient_ladder/the_finite_qm_ingredient_ladder.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/121_the_finite_qm_ingredient_ladder/the_finite_qm_ingredient_ladder.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_l1_to_l2_bridges_and_ladder_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`
+- `external:sha256:91902ad0b3daed220b6cb851493f83faf8fe90131ef5b3e5e3260cc721968c14`
+- `external:sha256:98fc999af806971f93da6244c85ae5f6a48fd4de46a9f54fa9754dedc5f12918:168`
+- `external:sha256:be048d5e98615cff70b3cdc1ebaa78a56395d67d55ca655cbb41494e307cde65`
+- `external:sha256:ee8e39c10a0f428eec9ee784dadd1e19d791ccd38d73ad173f62abcdd1bdb3b6`
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0309 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+- TFQ-0309 rust: no local rust twin located for external:sha256:a2c0d7450948662c89ffb80f0ebcfa02f1f013179a207d3d24db3421e81e84c6
 
 ## Routes
 

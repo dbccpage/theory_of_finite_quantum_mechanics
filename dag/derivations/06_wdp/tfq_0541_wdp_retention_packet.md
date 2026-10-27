@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/BehavioralQuotient.lean::greatest_invariant_relation`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/BehavioralQuotient.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine/crates_rs/omega_wdp/src/retention.rs::compute_exact_behavioral_quotient` (private upstream source, not in this repository)
+- `external:sha256:771ef5c5655d71a9f40d00600090d1ee957e7209d7134a3e294c9d8e24dabe93::compute_exact_behavioral_quotient` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py::RetentionPacket`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py)

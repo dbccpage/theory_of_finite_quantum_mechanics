@@ -95,7 +95,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md](../../../dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md)
-- sha256 (`lf-normalised`): `f704453398b9e328b1a39135e3b884fba20dff9d49f68d39e5cb29a2abbcf4b8`
+- sha256 (`lf-normalised`): `0f585fff7119006d1b394dd6bf902e61a2fd74a48602d6827172c88ee4a0a760`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0522
 - counts toward the grade: no
@@ -107,19 +107,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `omega_engine_education/documentation/002_oesn/levels/README.md`
+### External sources
 
-- file: `omega_engine_education/documentation/002_oesn/levels/README.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_education/documentation/002_oesn/levels/level_08_monadic_adjunction_cochains.md`
-
-- file: `omega_engine_education/documentation/002_oesn/levels/level_08_monadic_adjunction_cochains.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:58f41876692a51be940c4e0f44bd2e1ef72cd873c70b4726ef3d5f0639137165:20`
+- `external:sha256:9edec90b2c87518d8a33cb78cbf439fe11ce6e4f33a3f613148b9137771649d6:19-29`
+- `external:sha256:9edec90b2c87518d8a33cb78cbf439fe11ce6e4f33a3f613148b9137771649d6:40-44`
 
 ## Absences recorded by the TFQ records
 

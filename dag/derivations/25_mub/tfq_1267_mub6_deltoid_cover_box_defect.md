@@ -37,7 +37,7 @@ Arithmetic from the stated box bound; the Rust box is external.
 - *none*
 
 ### Cited by the source, not in this checkout
-- `external:omega_engine/crates_rs/omega_mub mub6_szollosi_deltoid_cover.rs::canonical_candidate_basis_box (not in this checkout)`
+- `external:external:git-tree:40df6372e7bd64231db621e6beeea5924933170a mub6_szollosi_deltoid_cover.rs::canonical_candidate_basis_box (not in this checkout)`
 
 ---
 

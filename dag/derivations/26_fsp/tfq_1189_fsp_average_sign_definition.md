@@ -43,7 +43,7 @@ Cited FermionSignCore.lean::average_sign_free_energy_exponential_decay does not 
 - *none*
 
 ### Cited by the source, not in this checkout
-- `external:omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/sign_sql/evaluate_sign_ratio.py (cited by the source, not in this checkout)`
+- `external:external:unlocated (cited by the source, not in this checkout)`
 - `external:omega_quantum_physics::signed_sampling::average_sign_exponential_decay (cited by the source, not in this checkout)`
 
 ---

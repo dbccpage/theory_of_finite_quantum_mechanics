@@ -58,4 +58,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:186-190`
   - `github:dbccpage/19L57G1@85a83ae7c/docs/ALPHA_HANDOFF.md:78-88`
-  - `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md:947`
+  - `external:sha256:0d098004a566c40656af6035d6e66ff13f7e873b11966677df080686a1b29cf9:947`

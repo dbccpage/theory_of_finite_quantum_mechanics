@@ -134,24 +134,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md](../../../dag/derivations/01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md)
-- sha256 (`lf-normalised`): `4663c36be45f5380c64724c5308fe4766c10a80789313e07acebe3ebc95881ed`
+- sha256 (`lf-normalised`): `9f9870c26792172efdb98e78f65a8b53e5398e4f2f8b8b59664819c6d5c6d1e9`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0425
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md`
+### External sources
 
-- file: `omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md`
-
-- file: `omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:283-305`
+- `external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:81-88`
 
 ## Routes
 

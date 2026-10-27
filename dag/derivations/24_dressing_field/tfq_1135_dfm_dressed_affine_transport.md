@@ -49,7 +49,7 @@ The metric-compatibility computation is written in the dossier (line 256); invar
 - `code/python/tests/test_ravera_dfm.py::test_pillar9_cartan_regge_lorentz_tetrad_dfm`
 
 ### Cited by the source, not in this checkout
-- `external:upstream/omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/ravera_dfm_finite_to_continuum.rs (implementation behind the local re-export shim code/rust/src/qm/campaigns/ravera_dfm.rs; not in this checkout)`
+- `external:external:sha256:ffb1e75bcae5b8a374ff28751a7417535a65fb6b6f58a9600dd8af6818322aa8 (implementation behind the local re-export shim code/rust/src/qm/campaigns/ravera_dfm.rs; not in this checkout)`
 - `external:rust/ravera_dfm_finite_to_continuum.rs (path cited by the dossier; absent here)`
 - `external:code/ravera_dfm_dossier_replay.py (path cited by the dossier; absent here, the same verify_pillar* functions live in code/python/src/qm/ravera_dfm.py)`
 

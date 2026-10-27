@@ -35,9 +35,9 @@ QM-208 table row: exact finite invariant; residual "add-then-square composition 
 - `lean4/FiniteQM.lean::born_trace_vs_quartic_readout_and_three_ray_positivity_gap`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_quantum_physics/src/everett.rs::sorkin_3slit_i3`
-- `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs::evaluate_qm208_quadratic_readout`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
+- `external:sha256:6983e52032f87a31b351b356ab57a52f8f75e26e57b8e7746d75e3609470f99c::sorkin_3slit_i3`
+- `external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579::evaluate_qm208_quadratic_readout`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
 
 ---
 

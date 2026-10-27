@@ -45,31 +45,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0533_mssn_rows_1_to_6_specified.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0533_mssn_rows_1_to_6_specified.md](../../../dag/derivations/05_mssn_sn/tfq_0533_mssn_rows_1_to_6_specified.md)
-- sha256 (`lf-normalised`): `a86868e4035c4692b6f50db44c3acaf0f19aa2cc2932658af780365a4ee6924f`
+- sha256 (`lf-normalised`): `8c2d93981fb5be372a3d5a2546b268c3440d62b86ccb46485f2c8406bb297ebe`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0533
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/003_oemssn/levels/README.md`
+### External sources
 
-- file: `omega_engine_education/documentation/003_oemssn/levels/README.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_education/documentation/003_oemssn/levels/level_03_abstract_simplices.md`
-
-- file: `omega_engine_education/documentation/003_oemssn/levels/level_03_abstract_simplices.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/003_oemssn/levels/level_06_tower_extension_retraction.md`
-
-- file: `omega_engine_education/documentation/003_oemssn/levels/level_06_tower_extension_retraction.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:4e709507bd351074c9318b8454b2a4418ffc758a4f28222081607ad0fb3a4628:60`
+- `external:sha256:6313c51659873eb093e3ef4171a13eac33217dd96e168a97416623d6248005b9:49-75`
+- `external:sha256:c11eaf69b4acba8ce20f9899f30478cbafcf397f28894555048836e167a121b2:40`
 
 ## Absences recorded by the TFQ records
 

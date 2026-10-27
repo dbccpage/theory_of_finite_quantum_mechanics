@@ -56,4 +56,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md:1-21`
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md:189`
-  - `omega_engine_education/documentation/006_oewdp/levels/level_22_genesis_to_wdp_bridges.md:130-155`
+  - `external:sha256:a11697dcdf5788b476d5c2e541b635a81c03e665684f69bd260bc463a03ee458:130-155`

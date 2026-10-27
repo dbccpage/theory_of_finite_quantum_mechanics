@@ -92,17 +92,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0551_wdp_duration_exactness_period_witness.md`
 
 - file: [dag/derivations/06_wdp/tfq_0551_wdp_duration_exactness_period_witness.md](../../../dag/derivations/06_wdp/tfq_0551_wdp_duration_exactness_period_witness.md)
-- sha256 (`lf-normalised`): `939e18e66c7ba9cf2c1c6e55c9aa19c998e44af89b5cd6f1a7a4ebef129241ff`
+- sha256 (`lf-normalised`): `450eb7726a9a0812e78bf782e94fc10767c6766a29863023b02a9c4751e5304c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0551
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/006_oewdp/levels/level_06_finite_event_valuations.md`
+### External sources
 
-- file: `omega_engine_education/documentation/006_oewdp/levels/level_06_finite_event_valuations.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:9eb5111b5f2a0c000950364274bc8229128f2b782fee959999aa40ffaee74131:117-140`
 
 ## Absences recorded by the TFQ records
 

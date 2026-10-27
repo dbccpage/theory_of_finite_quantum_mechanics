@@ -78,27 +78,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
 - file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
@@ -127,17 +106,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0091
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/063_holonomy_structured_superposition/qm_063_holonomy_structured_superposition_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/063_holonomy_structured_superposition/qm_063_holonomy_structured_superposition_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_closure_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche4_edgewise_l1_u1_holonomy_chsh_and_cayley_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness`
+- `external:sha256:6573cc4b53a02a97b89680e4bce638a9b06c197bb1a8eea2aae104001597f30d::is_gauge_trivial`
+- `external:sha256:b4a0392795f1e742a256ae815cdc26550b49a4f6e92e1b8c6beb0d28f159c92d::verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_closure_witness`
+- `external:sha256:e7e54ff5b3dc7898d6be8c64e1469ccbabcc130b6d893746f36958121eea9b17#QCS-C11`
+- `external:sha256:e7e54ff5b3dc7898d6be8c64e1469ccbabcc130b6d893746f36958121eea9b17#QCS-C2`
+- `external:sha256:e7e54ff5b3dc7898d6be8c64e1469ccbabcc130b6d893746f36958121eea9b17#QCS-C4`
+- `external:sha256:e7e54ff5b3dc7898d6be8c64e1469ccbabcc130b6d893746f36958121eea9b17#QCS-C9`
 
 ## Absences recorded by the TFQ records
 
 - TFQ-0091 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/holonomy_bridge_control.py
-- TFQ-0091 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
+- TFQ-0091 rust: no local rust twin located for external:sha256:6573cc4b53a02a97b89680e4bce638a9b06c197bb1a8eea2aae104001597f30d
 - TFQ-0254 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
 
 ## Routes

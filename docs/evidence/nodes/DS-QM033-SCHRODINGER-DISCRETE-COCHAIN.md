@@ -62,34 +62,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/dynamics.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/dynamics.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/finite_schrodinger_step.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/finite_schrodinger_step.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
 - file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
@@ -110,19 +82,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0244
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/033_schrodinger_finite_shadow/qm_033_schrodinger_finite_shadow_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/033_schrodinger_finite_shadow/qm_033_schrodinger_finite_shadow_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/033_schrodinger_finite_shadow/schrodinger_finite_shadow.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/033_schrodinger_finite_shadow/schrodinger_finite_shadow.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:3d06e736ecbda88104eb42b1cbd6f6ffec0e50bb507af4f70f50113c731c40d7#QM_033-C1`
+- `external:sha256:3d06e736ecbda88104eb42b1cbd6f6ffec0e50bb507af4f70f50113c731c40d7#QM_033-C2`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche6_conditional_and_open_boundary_certificates_witness`
+- `external:sha256:6ab07bdd1ae577a675dc767e612844d3f4d1a9efd78e8392959395026af2e92e::cycle_product`
+- `external:sha256:6ab07bdd1ae577a675dc767e612844d3f4d1a9efd78e8392959395026af2e92e::euler_propagator`
+- `external:sha256:6ab07bdd1ae577a675dc767e612844d3f4d1a9efd78e8392959395026af2e92e::norm_rate`
+- `external:sha256:894812d28e3737288b66ac176480953a3d7a0023e824ab5f1e4879892d4db6b5::cayley_transform_toggle`
+- `external:sha256:9c7a84b488781585a8580b14ac3f57bc03609c55b38c436a194b0991bd901eaf`
+- `external:sha256:b4a0392795f1e742a256ae815cdc26550b49a4f6e92e1b8c6beb0d28f159c92d::verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness`
 
 ## Absences recorded by the TFQ records
 

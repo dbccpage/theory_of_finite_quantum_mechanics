@@ -61,13 +61,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md](../../../dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md)
@@ -76,12 +69,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0271
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/103_show_the_packet_protocol/qm_103_show_the_packet_protocol_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/103_show_the_packet_protocol/qm_103_show_the_packet_protocol_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_ds_qm_dynamics_structure_and_majorana_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- `external:sha256:b27bedb9a161c018cb3807f9499922f9381bedec8a94705fae098edca0c001e5#QM-101-C10`
+- `external:sha256:b27bedb9a161c018cb3807f9499922f9381bedec8a94705fae098edca0c001e5#QM-101-C4`
 
 ## Absences recorded by the TFQ records
 

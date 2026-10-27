@@ -84,30 +84,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0511_sn0_ground_inertia.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0511_sn0_ground_inertia.md](../../../dag/derivations/05_mssn_sn/tfq_0511_sn0_ground_inertia.md)
-- sha256 (`lf-normalised`): `2f2ff7b59b434da75654c05462eb537a6636e16e0559f2422038e1bb9d34c7ad`
+- sha256 (`lf-normalised`): `ea8ebad66a723c0ac30d666b0073a2c679e066c49e20d7b669032cf685e2904e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0511
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/002_oesn/levels/level_00_ground.md`
-
-- file: `omega_engine_education/documentation/002_oesn/levels/level_00_ground.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/002_oesn/sn.md`
-
-- file: `omega_engine_education/documentation/002_oesn/sn.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine_education/documentation/002_oesn/code/sn_core.py::S0Ground`
+- `external:sha256:46be6e64c1b376af4f99e0cf78752dbf88d38bac87e33e5d82079c639f54b582:19-22`
+- `external:sha256:7cd90f66662c2628f0fcc5d8fb3154cfa6b0c4274de439fb73be21b2eb5673f7:44-45`
+- `external:upstream/external:sha256:afb535f684f1f4d2a5b16edf7f567e13da0863a4638d81b98586f08fcda6ef10::S0Ground`
 
 ## Absences recorded by the TFQ records
 

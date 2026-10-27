@@ -48,7 +48,7 @@ In accordance with strict constructive principles:
 - [`lean4/PregenesisWdpPhiWellDefinedL1Duality.lean::shifted_ge`](../../../lean4/PregenesisWdpPhiWellDefinedL1Duality.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs::FenchelDualityReceipt` (private upstream source, not in this repository)
+- `external:sha256:fc5a04df299e671184b29b3468bd5fd18b70680beadaeaf4aebd5d809976d3e1::FenchelDualityReceipt` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py::finite_quotient_l1`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py)

@@ -76,24 +76,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1014
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1014
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1014_fq_gleason_d2_rational_plane_obstruction.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1014_fq_gleason_d2_rational_plane_obstruction.md](../../../dag/derivations/10_finite_qm_core/tfq_1014_fq_gleason_d2_rational_plane_obstruction.md)
-- sha256 (`lf-normalised`): `8cd76ccfede6b23a6c8ea9676a22d04cb337338365c9b281c90c15f052366d65`
+- sha256 (`lf-normalised`): `4b0afcd82b553b954f90065e50fdbaa31634795f8c8309bde1480a5c263d1839`
 - generated view: listed, not counted
 - cited in: record TFQ-1014
 - counts toward the grade: no
@@ -104,6 +90,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `722a38e963f9ae31ac005968a71e39dff5964e452f5aca1e5cb4506dc0ece190`
 - cited in: node.source
 - counts toward the grade: yes
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:ae888a69f68011cf2bdbe26b173cbe6cf818f2a9c044b25aa7b39f5592b688c5::FrameSystem`
 
 ## Routes
 

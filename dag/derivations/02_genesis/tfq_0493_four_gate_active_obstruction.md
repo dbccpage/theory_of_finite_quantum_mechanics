@@ -54,4 +54,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `lean4/Imported/GenesisDerivation/Derivation/PrimitivePassage.lean:216-226`
   - `lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean:63-66`
-  - `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md:1105-1107`
+  - `external:sha256:0d098004a566c40656af6035d6e66ff13f7e873b11966677df080686a1b29cf9:1105-1107`

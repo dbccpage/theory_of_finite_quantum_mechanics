@@ -58,13 +58,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py`
 
 - file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py)
@@ -88,23 +81,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0547_wdp_trichotomy_bounds.md`
 
 - file: [dag/derivations/06_wdp/tfq_0547_wdp_trichotomy_bounds.md](../../../dag/derivations/06_wdp/tfq_0547_wdp_trichotomy_bounds.md)
-- sha256 (`lf-normalised`): `cc300d68a2caabdaba8ab4601a3f2e7d608e1632f9cf198a326303d85474f303`
+- sha256 (`lf-normalised`): `972e466f11ceec982c9a8d2c08b89a2366ce8d88aceee48b7c1adc7f3457e97b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0547
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/006_oewdp/levels/level_03_discrete_complex_cochains.md`
-
-- file: `omega_engine_education/documentation/006_oewdp/levels/level_03_discrete_complex_cochains.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs::TriadSignature`
+- `external:sha256:3301e36106cfe1fb4415d4f6218951cd83516f0a714d773fcb477ea3dce63814::TriadSignature`
+- `external:sha256:f444bcaa3ae162d185a3a8a21cf0b59606958107ac5510e84015090750d5c3cc:309-312`
+- `external:upstream/external:sha256:3301e36106cfe1fb4415d4f6218951cd83516f0a714d773fcb477ea3dce63814::TriadSignature`
 
 ## Routes
 

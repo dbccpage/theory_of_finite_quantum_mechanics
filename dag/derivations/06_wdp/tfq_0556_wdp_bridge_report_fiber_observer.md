@@ -43,7 +43,7 @@ In accordance with strict constructive principles:
 - [`lean4/ReportFiberDescent.lean::ReportFiberDescent.unique_decoder_iff`](../../../lean4/ReportFiberDescent.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine/crates_rs/omega_wdp/src/proposal_admission_bridge.rs::ProposalAdmissionModel` (private upstream source, not in this repository)
+- `external:sha256:8f12bd5921d1b1e472ecaf9c5d7ccbc467a2b808ccd452c695dcfbac42e7bc55::ProposalAdmissionModel` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py::decision_decoder`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py)
@@ -62,6 +62,6 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md:14-17`
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md:64-92`
-  - `omega_engine_education/documentation/006_oewdp/levels/level_22_genesis_to_wdp_bridges.md:81-92`
+  - `external:sha256:a11697dcdf5788b476d5c2e541b635a81c03e665684f69bd260bc463a03ee458:81-92`
   - `dag/derivations/independent/pgw-wdp-bridge-report-fiber-observer.md:5`
   - `dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json:7`

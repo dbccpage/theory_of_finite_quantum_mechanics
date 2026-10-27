@@ -59,4 +59,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:2961-2990`
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:3025-3045`
-  - `omega_engine_education/documentation/006_oewdp/levels/level_06_finite_event_valuations.md:117-140`
+  - `external:sha256:9eb5111b5f2a0c000950364274bc8229128f2b782fee959999aa40ffaee74131:117-140`

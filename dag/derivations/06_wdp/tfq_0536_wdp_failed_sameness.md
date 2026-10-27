@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 - `missing obligation: the claim map lists WDP-CH01-P01 as prose-only; no Lean declaration states it`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine/crates_rs/omega_wdp/src/difference.rs::primitive_difference` (private upstream source, not in this repository)
+- `external:sha256:39e988784c38613df38c5f88b06efee27f73f0a7a02b8069458d6e2168e498b8::primitive_difference` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py::test_primitive_difference_and_triangle_identity`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_exact_ground_outcomes.py)
@@ -55,4 +55,4 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:420-432`
-  - `omega_engine_education/documentation/006_oewdp/levels/level_00_admitted_cut.md:111-123`
+  - `external:sha256:b3182646c084a1d31b4c382572524489dcfa76f74bf74ee0863573424d048c65:111-123`

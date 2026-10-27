@@ -76,27 +76,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1037
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1037_gp_fin_gauss_matrix_algebra.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1037_gp_fin_gauss_matrix_algebra.md](../../../dag/derivations/10_finite_qm_core/tfq_1037_gp_fin_gauss_matrix_algebra.md)
-- sha256 (`lf-normalised`): `038dd11a7a34ccbb4e257aaa9debcb80534679f423c9c123a9b2c2062561c6e3`
+- sha256 (`lf-normalised`): `f2f148106d257ced658c4d0a6bb85e8068eeff5e6ce95189297dbf4516ea4a56`
 - generated view: listed, not counted
 - cited in: record TFQ-1037
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/finite_hilbert_boundary_from_primitive_difference.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/finite_hilbert_boundary_from_primitive_difference.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:f4ef85f405ba846ddf92fd6bbd8fc7aaa86d658c4678b4b841989f2cb97ee004:211`
 
 ## Routes
 

@@ -70,13 +70,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is theory_of_finite_qm
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/20_continuum_interface/tfq_0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md`
 
 - file: [dag/derivations/20_continuum_interface/tfq_0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md](../../../dag/derivations/20_continuum_interface/tfq_0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md)
@@ -93,37 +86,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0124
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/033_schrodinger_finite_shadow/qm_033_schrodinger_finite_shadow_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/033_schrodinger_finite_shadow/qm_033_schrodinger_finite_shadow_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/064_phase_gauge_residual/qm_064_phase_gauge_residual_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/064_phase_gauge_residual/qm_064_phase_gauge_residual_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/074_no_signaling_finite_shadow/qm_074_no_signaling_finite_shadow_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/074_no_signaling_finite_shadow/qm_074_no_signaling_finite_shadow_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/083_completely_positive_import_boundary/qm_083_completely_positive_import_boundary_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/083_completely_positive_import_boundary/qm_083_completely_positive_import_boundary_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:30aec070f0d0ba7a6c7a79671ca572935ebe155f5b10c29577ee4c127c455799#QM_074-C4`
+- `external:sha256:31047098432c406509e13a12c95ce83041a099020c195e61eeb3dfa0d9b10d91#QM_083-C4`
+- `external:sha256:3d06e736ecbda88104eb42b1cbd6f6ffec0e50bb507af4f70f50113c731c40d7#QM_033-C4`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:b33b83fbc92bdce32f7ffe9662f6082ef96edc70e233ccf25b47560a6ad6968d#QM_064-C4`
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0124 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory/lean4/FromPrimitiveDifferenceToMTheory/ContinuumLimit.lean
+- TFQ-0124 lean4: no local lean twin located for external:sha256:fa138464a47b0fe8c8163b9ac1f3c690215350943ffa16316bf0f63650f45efc
 - TFQ-0124 python: no local python twin located for atlas/papers/projection_obstruction/zero_container_relational_spacetime_and_witness_holonomy/code/continuum_lorentz_causality.py
 
 ## Routes

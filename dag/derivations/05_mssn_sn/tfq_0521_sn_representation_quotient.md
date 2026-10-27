@@ -38,8 +38,8 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/ComplexTensorBalancing.lean::twice_project_square`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/ComplexTensorBalancing.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine/crates_rs/omega_linear_algebra/src/exact_field/complex_tensor.rs::balance_map_with_limits` (private upstream source, not in this repository)
-- `omega_engine/crates_rs/omega_linear_algebra/src/exact_field/complex_tensor.rs::balance_projector_with_limits` (private upstream source, not in this repository)
+- `external:sha256:ace457be747aa8d94ac925494121e8544607ba080acf104a152feaf524c8a294::balance_map_with_limits` (private upstream source, not in this repository)
+- `external:sha256:ace457be747aa8d94ac925494121e8544607ba080acf104a152feaf524c8a294::balance_projector_with_limits` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - `missing obligation: no Python check of the balance map in the S(n) strand`
@@ -57,4 +57,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md:16-21`
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/complex_tensor_balancing.md:28-31`
-  - `omega_engine_education/documentation/002_oesn/reading_guide.md:69-74`
+  - `external:sha256:17ebebc4a063d888d237da44f44f0937e15f6920e8e6fc63fbdf83909718616c:69-74`

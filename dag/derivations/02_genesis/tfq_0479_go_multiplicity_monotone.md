@@ -56,4 +56,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `lean4/Imported/GenesisOngoing/Fourth/Contain.lean:15-16`
   - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/fourth/claim_ledger.md:59`
-  - `omega_engine_education/documentation/005_oegenong/levels/level_05_monotone_mass_growth.md:37`
+  - `external:sha256:8b8d536217ef3d16457e9c7a2cdbc492da7bf00addbd2f6c83cfdae08870f395:37`

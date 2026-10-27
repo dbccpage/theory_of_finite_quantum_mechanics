@@ -38,8 +38,8 @@ GAP-C500-B01..B10 RESOLVED_WITH_SCOPED_EVIDENCE: "original target contract remai
 - `lean4/OriginalTargetNumerals.lean::block10ClausesNodup`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche6_conditional_and_open_boundary_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche6_conditional_and_open_boundary_certificates_witness`
 
 ---
 

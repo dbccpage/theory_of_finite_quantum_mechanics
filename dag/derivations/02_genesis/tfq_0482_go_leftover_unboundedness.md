@@ -52,4 +52,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/sixteenth/claim_ledger.md:48`
   - `lean4/Imported/GenesisOngoing/Sixteenth/Reach.lean:150-153`
-  - `omega_engine_education/documentation/005_oegenong/levels/level_18_leftovers_unboundedness.md:38`
+  - `external:sha256:eebe0e22e9fe941ee23747636ea5b160f75f6f5d3da3cbee14fc7212fc150be1:38`

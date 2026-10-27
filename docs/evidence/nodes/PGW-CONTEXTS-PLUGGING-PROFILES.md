@@ -109,17 +109,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0433_contexts_plugging_profiles.md`
 
 - file: [dag/derivations/02_genesis/tfq_0433_contexts_plugging_profiles.md](../../../dag/derivations/02_genesis/tfq_0433_contexts_plugging_profiles.md)
-- sha256 (`lf-normalised`): `85e531de9a1e971c6d11f6acc088a69de3a7c9a889c85d19a54565ee9b52836a`
+- sha256 (`lf-normalised`): `03d144ab788bad849afa4e69dde7b190375e0e2fbf0866325fddc2f1f37cc651`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0433
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/001_oegen/genesis.md`
+### External sources
 
-- file: `omega_engine_education/documentation/001_oegen/genesis.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:ad3ab47c05abcec0f914042f034960d1143a7d7f023e1b4cedbfc0efd6023a3a:15`
 
 ## Routes
 

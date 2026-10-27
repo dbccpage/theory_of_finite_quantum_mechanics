@@ -36,9 +36,9 @@ REVIEWED_DECLARATIONS (carrier_contract.yaml); minimality_proved: false; all_tar
 - `lean4/HigherDimConductorBounds.lean::css_horodecki_conductor_1_div_120`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_quantum_physics/src/tower.rs::CyclotomicTower`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`
+- `external:sha256:0ba65dffd00ca2ae423a972431eb56b48d31e223d7d05b4c7e2680aa2f0502fb::CyclotomicTower`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`
 
 ---
 

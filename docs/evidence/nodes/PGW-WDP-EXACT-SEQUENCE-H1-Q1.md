@@ -69,17 +69,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md`
 
 - file: [dag/derivations/06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md](../../../dag/derivations/06_wdp/tfq_0546_wdp_exact_sequence_h1_q1.md)
-- sha256 (`lf-normalised`): `8ecaf8bf42477d4f935786ebf92b718884c997966ffa2aee1fd5eee753abb54c`
+- sha256 (`lf-normalised`): `95d98a4021078bb514fba23c88b4b3e35c7368b1a91f369838ed2ecb3660b767`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0546
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/006_oewdp/levels/level_03_discrete_complex_cochains.md`
+### External sources
 
-- file: `omega_engine_education/documentation/006_oewdp/levels/level_03_discrete_complex_cochains.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:f444bcaa3ae162d185a3a8a21cf0b59606958107ac5510e84015090750d5c3cc:319-328`
 
 ## Absences recorded by the TFQ records
 

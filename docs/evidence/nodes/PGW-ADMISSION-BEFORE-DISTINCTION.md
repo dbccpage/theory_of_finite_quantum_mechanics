@@ -72,31 +72,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md](../../../dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md)
-- sha256 (`lf-normalised`): `9e0826c9065a8e29df1453774376ac99ebd95629e81117c7866fd65d5974d185`
+- sha256 (`lf-normalised`): `8b2d7971bd80ffd1fcdac4af8af1beacdf5c3ef30cae3183aa0d25b23a505556`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0428
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/000_oepregen/02_trial_record.md`
+### External sources
 
-- file: `omega_engine_education/documentation/000_oepregen/02_trial_record.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_education/documentation/000_oepregen/curriculum/README.md`
-
-- file: `omega_engine_education/documentation/000_oepregen/curriculum/README.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md`
-
-- file: `omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:605-609`
+- `external:sha256:2e49c338376d7a78a6a89cdd340c9b3c351c485c20d4127e3c455b3fb1570428:132-149`
+- `external:sha256:e15c1002c287921ce12959d4de7d7a313402443ec53dcb1d8159a017eb8c0b0d:179-194`
 
 ## Absences recorded by the TFQ records
 

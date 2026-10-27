@@ -45,17 +45,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0418_no_transition_quiescence.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0418_no_transition_quiescence.md](../../../dag/derivations/01_pregenesis/tfq_0418_no_transition_quiescence.md)
-- sha256 (`lf-normalised`): `fc5e148a0eb534f92fd41c391106009a43d8dfc4b5b2484453e46fb9b0eb5809`
+- sha256 (`lf-normalised`): `a0aee3f1692f0a0532144fede8cc16bf7f8d42a34890ed8b1d3e408cdbd3cfb2`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0418
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md`
+### External sources
 
-- file: `omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:21-27`
 
 ## Absences recorded by the TFQ records
 

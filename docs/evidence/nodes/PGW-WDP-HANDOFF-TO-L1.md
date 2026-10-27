@@ -77,13 +77,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_local_green_global_red_lggr/src/ledger.rs`
-
-- file: `omega_engine/crates_rs/omega_local_green_global_red_lggr/src/ledger.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py`
 
 - file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py)
@@ -118,7 +111,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md`
 
 - file: [dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md](../../../dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md)
-- sha256 (`lf-normalised`): `17eb61871f6ea02fa53ad6dc071f0efaffac1affcdf1d092916d1857e2b7fa32`
+- sha256 (`lf-normalised`): `6f8aadc25336314a081447887ed31482f6165f2fe07c549204180840b127eb9e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0558
 - counts toward the grade: no
@@ -137,25 +130,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `omega_engine_education/documentation/007_oelggr/curriculum/1000_local_green_global_red_foundations/concepts/lesson_1000_01_local_green_global_red_foundations.md`
-
-- file: `omega_engine_education/documentation/007_oelggr/curriculum/1000_local_green_global_red_foundations/concepts/lesson_1000_01_local_green_global_red_foundations.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/007_oelggr/local_green_global_red_foundational_series.md`
-
-- file: `omega_engine_education/documentation/007_oelggr/local_green_global_red_foundational_series.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine/crates_rs/omega_local_green_global_red_lggr/src/ledger.rs::register_stabilized_family`
+- `external:sha256:35f78837687555be2e5cc5c69fc60f0f4e25937d2fad1d38bd0efb491e573a31:116-120`
+- `external:sha256:9a1730f57c42c3111eb85d7b6cadcb15df23977da40a21fd46da4aee5383c594:147-161`
+- `external:sha256:e03d0f52eff29ce6729df9bb0833599249bd14163df72024abaf7a6289424cc0::register_stabilized_family`
+- `external:upstream/external:sha256:e03d0f52eff29ce6729df9bb0833599249bd14163df72024abaf7a6289424cc0::register_stabilized_family`
 
 ## Routes
 

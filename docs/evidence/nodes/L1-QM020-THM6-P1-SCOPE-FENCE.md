@@ -85,20 +85,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/pairing_audit.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/pairing_audit.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0305_sector_weights_do_not_force_the_quadratic_form.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0305_sector_weights_do_not_force_the_quadratic_form.md](../../../dag/derivations/08_l1_to_l2/tfq_0305_sector_weights_do_not_force_the_quadratic_form.md)
@@ -107,19 +93,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0305
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
 ### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml`
 
 - file: [sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml](../../../sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml)
 - sha256 (`lf-normalised`): `0d891e04d6b8ff46e95360a919f7c2a64074a2d4f9732a2e481f868e41c385a7`
 - cited in: node.source
 - counts toward the grade: yes
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_l1_to_l2_bridges_and_ladder_witness`
+- `external:sha256:8534bf2948b65ab72605a33c219105f09458247c00aa57acc8beb275df568d27:768`
+- `external:sha256:c8f020f9abf33d6d86e8630fd8f9d3da0bb1db91835d6dfcbe56cfa4709cad7e`
 
 ## Absences recorded by the TFQ records
 

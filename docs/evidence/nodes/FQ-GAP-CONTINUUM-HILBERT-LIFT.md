@@ -231,13 +231,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`
 
 - file: `code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`
@@ -324,26 +317,34 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche8_tensor_stone_continuum_embedding_and_leftover_mnc_witness`
+
 ## Absences recorded by the TFQ records
 
 - TFQ-0055 lean4: not located
 - TFQ-0055 python: not located
-- TFQ-0055 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/u1_gauge_triviality.rs
+- TFQ-0055 rust: no local rust twin located for external:sha256:e86ad3309b090c78f09e92fa9833a87b325a0513396663cbf2bd5c2ea1fd0c7b
 - TFQ-0056 lean4: not located
 - TFQ-0056 python: not located
-- TFQ-0056 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/dirac_gamma_admission.rs
+- TFQ-0056 rust: no local rust twin located for external:sha256:6d09fe3d269514b28dde4a6f6dec6760ac77e87653e9f18c490226f9f26bb231
 - TFQ-0071 lean4: not located
 - TFQ-0071 python: not located
-- TFQ-0071 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/s_matrix.rs
+- TFQ-0071 rust: no local rust twin located for external:sha256:2d9da71f2a615ba2de86c6896030b306594bc1169d72e912cd6e525b06887b66
 - TFQ-0073 lean4: not located
 - TFQ-0073 python: not located
-- TFQ-0073 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/algebraic_qft.rs
+- TFQ-0073 rust: no local rust twin located for external:sha256:2c3063603fd3462c580b0cbfda3f2af787a0b06292ac7ea296360d6330ce0139
 - TFQ-0083 lean4: not located
 - TFQ-0083 python: not located
-- TFQ-0083 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/s_matrix.rs
-- TFQ-0111 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory/lean4/FromPrimitiveDifferenceToMTheory/ContinuumLimit.lean
-- TFQ-0115 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory/lean4/FromPrimitiveDifferenceToMTheory/ContinuumLimit.lean
-- TFQ-0115 python: no local python twin located for omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory/python/src/mtheory_interfaces/cochain_limit.py
+- TFQ-0083 rust: no local rust twin located for external:sha256:2d9da71f2a615ba2de86c6896030b306594bc1169d72e912cd6e525b06887b66
+- TFQ-0111 lean4: no local lean twin located for external:sha256:fa138464a47b0fe8c8163b9ac1f3c690215350943ffa16316bf0f63650f45efc
+- TFQ-0115 lean4: no local lean twin located for external:sha256:fa138464a47b0fe8c8163b9ac1f3c690215350943ffa16316bf0f63650f45efc
+- TFQ-0115 python: no local python twin located for external:sha256:3aa4b5bfeec3b0c5d4cb3be6ec214de49e023c1f7e36b1617b0452100e39a8fb
 - TFQ-0234 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
 
 ## Routes

@@ -44,7 +44,7 @@ In accordance with strict constructive principles:
 - [`lean4/PregenesisWdpHandoffToL1.lean::unequal_report_fails`](../../../lean4/PregenesisWdpHandoffToL1.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine/crates_rs/omega_local_green_global_red_lggr/src/ledger.rs::register_stabilized_family` (private upstream source, not in this repository)
+- `external:sha256:e03d0f52eff29ce6729df9bb0833599249bd14163df72024abaf7a6289424cc0::register_stabilized_family` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py::obstruction_signature`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py)
@@ -62,7 +62,7 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1487-1498`
-  - `omega_engine_education/documentation/007_oelggr/local_green_global_red_foundational_series.md:147-161`
-  - `omega_engine_education/documentation/007_oelggr/curriculum/1000_local_green_global_red_foundations/concepts/lesson_1000_01_local_green_global_red_foundations.md:116-120`
+  - `external:sha256:9a1730f57c42c3111eb85d7b6cadcb15df23977da40a21fd46da4aee5383c594:147-161`
+  - `external:sha256:35f78837687555be2e5cc5c69fc60f0f4e25937d2fad1d38bd0efb491e573a31:116-120`
   - `dag/derivations/independent/pgw-wdp-handoff-to-l1.md:5`
   - `dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json:6`

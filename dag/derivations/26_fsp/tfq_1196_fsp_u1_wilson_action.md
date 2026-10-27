@@ -54,7 +54,7 @@ Cited NonAbelianGaugeSigns.lean::u1_plaquette_gauge_invariance does not exist. r
 - *none*
 
 ### Cited by the source, not in this checkout
-- `external:omega_engine_atlas/coda_atlas/F004_papers/008_fsp/code/tests/test_u1_qed.py::test_plaquette_holonomy (cited by the source, not in this checkout)`
+- `external:external:unlocated::test_plaquette_holonomy (cited by the source, not in this checkout)`
 - `external:omega_holonomy::strict_zero_float::lattice_u1_gauge_action (cited by the source, not in this checkout)`
 
 ---

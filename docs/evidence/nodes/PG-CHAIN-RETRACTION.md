@@ -152,27 +152,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: no
 
-### Rust: `omega_engine/crates_rs/omega_homology/src/chain_map.rs`
-
-- file: `omega_engine/crates_rs/omega_homology/src/chain_map.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_homology/src/integral_chain_equivalence.rs`
-
-- file: `omega_engine/crates_rs/omega_homology/src/integral_chain_equivalence.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
@@ -219,12 +198,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0195
 - counts toward the grade: no
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:11c6f3bb8f50e1cc3ffb444f3699282bcbac16b6207a5ecfde9f1a590e26dc33::CertifiedChainMap`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
+- `external:sha256:f4806506294f8696a4a072d760952f5454185e22ba8ec6ae9eb5ef62d0b154b2::CheckedChainEquivalence`
+
 ## Absences recorded by the TFQ records
 
 - TFQ-0195 python: not located
-- TFQ-0195 rust: no local rust twin located for omega_engine/crates_rs/omega_homology/src/chain_map.rs
-- TFQ-0195 rust: no local rust twin located for omega_engine/crates_rs/omega_homology/src/cochain_primitive_difference.rs
-- TFQ-0195 rust: no local rust twin located for omega_engine/crates_rs/omega_homology/src/finite_rational_homology.rs
+- TFQ-0195 rust: no local rust twin located for external:sha256:11c6f3bb8f50e1cc3ffb444f3699282bcbac16b6207a5ecfde9f1a590e26dc33
+- TFQ-0195 rust: no local rust twin located for external:sha256:7a038e117ed5c36acca9ef8559034cb9fc3965236d6c48cc1d7ac428428f85e9
+- TFQ-0195 rust: no local rust twin located for external:sha256:c03b90a1a4c10004a71a4988fae598c3cdd3f210e6d2f3e9cbd0d4833ce54ad8
 - TFQ-0337 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean
 - TFQ-0337 python: no local python twin located for atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/code/sn_mssn_checks.py
 - TFQ-0375 lean4: declaration obligation: chain_retraction_cannot_kill on a declared ChainFragment

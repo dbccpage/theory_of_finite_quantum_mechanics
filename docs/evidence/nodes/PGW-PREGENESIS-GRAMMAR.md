@@ -45,24 +45,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md](../../../dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md)
-- sha256 (`lf-normalised`): `7af474a89ed417f1e4c52c43d41d36466aaabeec3f15e4e9e255b9f382c280fa`
+- sha256 (`lf-normalised`): `5484b5b4e9178ab4e22ed58dbc07e9b1b102d37fbe6a0bd03aee6ac67f698c01`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0417
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/000_oepregen/grammar/pre_genesis.ebnf`
-
-- file: `omega_engine_education/documentation/000_oepregen/grammar/pre_genesis.ebnf`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine_education/documentation/000_oepregen/code/check_pre_genesis.py::validate_cases`
-- `external:upstream/omega_engine_education/documentation/000_oepregen/code/tests/test_pre_genesis_grammar.py::test_four_state_separation`
+- `external:sha256:2dcda2eed19147360712ae3e49934853801b016723b4acc1694c1de01f84764a:14-19`
+- `external:sha256:2dcda2eed19147360712ae3e49934853801b016723b4acc1694c1de01f84764a:26-28`
+- `external:upstream/external:sha256:0298d88a593c04c27c4bd73b2d5b270ad22dd27431e634a8477e8c4fd4acbe09::test_four_state_separation`
+- `external:upstream/external:sha256:50a901e02a211a3baa64630a3b8ba5228fb9a0e3ddcf97ce57ed59ff8adbc932::validate_cases`
 
 ## Absences recorded by the TFQ records
 

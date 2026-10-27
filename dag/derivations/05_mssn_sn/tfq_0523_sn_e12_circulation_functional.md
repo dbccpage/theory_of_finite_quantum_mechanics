@@ -56,5 +56,5 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md:797-803`
-  - `omega_engine_education/documentation/002_oesn/levels/level_12_observer_stack_dda.md:48-51`
-  - `omega_engine_education/documentation/002_oesn/levels/level_12_observer_stack_dda.md:52-54`
+  - `external:sha256:7756423a02888ae5532df2549868d088c1e68fb2bffc6a5de003d1c89fd93802:48-51`
+  - `external:sha256:7756423a02888ae5532df2549868d088c1e68fb2bffc6a5de003d1c89fd93802:52-54`

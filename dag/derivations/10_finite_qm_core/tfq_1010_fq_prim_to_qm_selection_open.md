@@ -37,11 +37,11 @@ Selection of a declared quantum model or readout from primitive difference stays
 - `lean4/PrimToQmSelection.lean::symmetric_agreement`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs::readout_quadratic`
-- `omega_engine/crates_rs/omega_wdp/src/genesis_realification_adapter.rs::DeclaredRealComposite`
-- `omega_engine/crates_rs/omega_symbol_game/src/coupled_relational_operad.rs::evaluate_coupled_relational_operad`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- `external:sha256:77726675ace7bc93c8e8203260618f203aa20359b38d15cd48dee38f04c7a89f::readout_quadratic`
+- `external:sha256:3dab36e238ec5c724db50e333358961506db6e3c22a04fbd6a26402ffe48f7fc::DeclaredRealComposite`
+- `external:sha256:90a3d4db1c5ee741479f5a5ecbdd3100a808824a748a726b863e2d48bae270ad::evaluate_coupled_relational_operad`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
 
 ---
 

@@ -234,20 +234,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md](../../../dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md)
@@ -295,20 +281,29 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness`
+- `external:sha256:77726675ace7bc93c8e8203260618f203aa20359b38d15cd48dee38f04c7a89f::half_exponent_obstruction`
+
 ## Absences recorded by the TFQ records
 
 - TFQ-0053 lean4: not located
 - TFQ-0053 python: not located
-- TFQ-0053 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/u1_graph_connection.rs
+- TFQ-0053 rust: no local rust twin located for external:sha256:c2b85e3d42e7b05c158b418cbf2a803bdc86262cde384177ac8264c9c67ef6fe
 - TFQ-0054 lean4: not located
 - TFQ-0054 python: not located
-- TFQ-0054 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/u1_gauge_triviality.rs
+- TFQ-0054 rust: no local rust twin located for external:sha256:e86ad3309b090c78f09e92fa9833a87b325a0513396663cbf2bd5c2ea1fd0c7b
 - TFQ-0055 lean4: not located
 - TFQ-0055 python: not located
-- TFQ-0055 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/u1_gauge_triviality.rs
-- TFQ-0294 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
-- TFQ-0294 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/phase_averaged_shadow.rs
-- TFQ-0294 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+- TFQ-0055 rust: no local rust twin located for external:sha256:e86ad3309b090c78f09e92fa9833a87b325a0513396663cbf2bd5c2ea1fd0c7b
+- TFQ-0294 rust: no local rust twin located for external:sha256:726fa8afa05803e040d092cf665b4a775fb5f3626f1631071aac9763510e15d5
+- TFQ-0294 rust: no local rust twin located for external:sha256:a2c0d7450948662c89ffb80f0ebcfa02f1f013179a207d3d24db3421e81e84c6
+- TFQ-0294 rust: no local rust twin located for external:sha256:ddaee3d0d77722244a6451750ca1e5acf7a57b4f02e75ecec70e810976d57d9e
 
 ## Routes
 

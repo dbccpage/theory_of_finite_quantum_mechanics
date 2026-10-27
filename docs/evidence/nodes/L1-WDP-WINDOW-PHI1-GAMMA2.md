@@ -85,27 +85,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: no
 
-### Rust: `omega_engine/crates_rs/omega_functional/src/phi1.rs`
-
-- file: `omega_engine/crates_rs/omega_functional/src/phi1.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_wdp/src/obstruction.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/obstruction.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md)
@@ -135,6 +114,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - generated view: listed, not counted
 - cited in: record TFQ-0354 (shared)
 - counts toward the grade: no
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:075755bfa5d217bf1c7ea42e9169ee078e6a15e40018e318b77d5ba829dda5d8::Phi1Functional`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness`
+- `external:sha256:67f95afb329218e2db037b98e7b7d632e0ee073156f58a6c3b03ff9a386b4702::Cochain1`
+- `external:sha256:67f95afb329218e2db037b98e7b7d632e0ee073156f58a6c3b03ff9a386b4702::solve_exact_potential_weighted`
 
 ## Routes
 

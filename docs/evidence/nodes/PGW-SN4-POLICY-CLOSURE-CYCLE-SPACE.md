@@ -82,23 +82,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md](../../../dag/derivations/05_mssn_sn/tfq_0516_sn4_policy_closure_cycle_space.md)
-- sha256 (`lf-normalised`): `21284dfe12202e12a52b6357e65193b9905887428ea7fc2fc82e2f1fced6d335`
+- sha256 (`lf-normalised`): `717760ca2ee41807b2840d3bd58094d0425e42806de5adb31b65126a6943f1f8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0516
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/002_oesn/levels/level_04_simplex_graph_expansions.md`
-
-- file: `omega_engine_education/documentation/002_oesn/levels/level_04_simplex_graph_expansions.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine_education/documentation/002_oesn/code/sn_core.py::S4Orbit`
+- `external:sha256:2e70889e739a5d0f329fc639a8a0a4b2e80e6a83d5232a9f2e92ae029c31fcca:24-27`
+- `external:sha256:2e70889e739a5d0f329fc639a8a0a4b2e80e6a83d5232a9f2e92ae029c31fcca:35-37`
+- `external:upstream/external:sha256:afb535f684f1f4d2a5b16edf7f567e13da0863a4638d81b98586f08fcda6ef10::S4Orbit`
 
 ## Absences recorded by the TFQ records
 

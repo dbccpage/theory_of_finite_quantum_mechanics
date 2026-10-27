@@ -91,34 +91,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/u1_graph_connection.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/u1_graph_connection.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md`
 
 - file: [dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md](../../../dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md)
@@ -157,17 +129,26 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579::evaluate_qm207_holonomy_bridge`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
+- `external:sha256:6573cc4b53a02a97b89680e4bce638a9b06c197bb1a8eea2aae104001597f30d::gauge_equivalence`
+- `external:sha256:c2b85e3d42e7b05c158b418cbf2a803bdc86262cde384177ac8264c9c67ef6fe::U1Connection`
+
 ## Absences recorded by the TFQ records
 
 - TFQ-0053 lean4: not located
 - TFQ-0053 python: not located
-- TFQ-0053 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/u1_graph_connection.rs
+- TFQ-0053 rust: no local rust twin located for external:sha256:c2b85e3d42e7b05c158b418cbf2a803bdc86262cde384177ac8264c9c67ef6fe
 - TFQ-0054 lean4: not located
 - TFQ-0054 python: not located
-- TFQ-0054 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/u1_gauge_triviality.rs
+- TFQ-0054 rust: no local rust twin located for external:sha256:e86ad3309b090c78f09e92fa9833a87b325a0513396663cbf2bd5c2ea1fd0c7b
 - TFQ-0057 lean4: not located
 - TFQ-0057 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/dirac_ward_takahashi_control.py
-- TFQ-0057 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+- TFQ-0057 rust: no local rust twin located for external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579
 
 ## Routes
 

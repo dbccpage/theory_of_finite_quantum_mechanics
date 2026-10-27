@@ -68,16 +68,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0491_capability_stage_counter.md`
 
 - file: [dag/derivations/02_genesis/tfq_0491_capability_stage_counter.md](../../../dag/derivations/02_genesis/tfq_0491_capability_stage_counter.md)
-- sha256 (`lf-normalised`): `fb8692ddce7f9228057ef6e02a62582cee244869c66bf7d8388153e15b12f91c`
+- sha256 (`lf-normalised`): `f58c2eee3bd1618e79542320de0274eb1c50298bdaec1a28718313abd082c7ef`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0491
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md`
-
-- file: `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
@@ -85,6 +78,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 Named by the node; not in this repository and not checked here.
 
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_succession/succession.py::counts`
+- `external:sha256:0d098004a566c40656af6035d6e66ff13f7e873b11966677df080686a1b29cf9:1102`
 
 ## Absences recorded by the TFQ records
 

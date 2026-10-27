@@ -61,20 +61,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_majorana/src/repair_capacity.rs`
-
-- file: `omega_engine/crates_rs/omega_majorana/src/repair_capacity.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0270_syndrome_distance_and_repair_capacity.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0270_syndrome_distance_and_repair_capacity.md](../../../dag/derivations/13_finite_qm_information/tfq_0270_syndrome_distance_and_repair_capacity.md)
@@ -83,12 +69,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0270
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/102_fault_tolerance_repair_capacity/qm_102_fault_tolerance_repair_capacity_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/102_fault_tolerance_repair_capacity/qm_102_fault_tolerance_repair_capacity_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:46de73c5a40726d0b5c25e6c7d2b90c639931cf1a5b130a6c5b422878b08bab1::repair_capacity`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness`
+- `external:sha256:d965c5d6c2d690c518241ce6dd2d12f6310b8c2351ce550744cee2d4e3dbd765#QM_102-C2`
+- `external:sha256:d965c5d6c2d690c518241ce6dd2d12f6310b8c2351ce550744cee2d4e3dbd765#QM_102-C3`
 
 ## Absences recorded by the TFQ records
 

@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1363_authf_rice_godel_open.md`
 
 - file: [dag/derivations/29_computation/tfq_1363_authf_rice_godel_open.md](../../../dag/derivations/29_computation/tfq_1363_authf_rice_godel_open.md)
-- sha256 (`lf-normalised`): `fa0f29d2d1b71525c5dbfb96d79c57ad47928313725a94d1a4d59fdba9411dfa`
+- sha256 (`lf-normalised`): `ead5173465a916243e4c7cd542892045da220da6e070701a2f3ee7ab86f02c86`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1363
 - counts toward the grade: no

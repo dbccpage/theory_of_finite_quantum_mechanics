@@ -86,13 +86,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0367_listed_history_choice_free_summary.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0367_listed_history_choice_free_summary.md](../../../dag/derivations/01_pregenesis/tfq_0367_listed_history_choice_free_summary.md)
@@ -113,6 +106,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 Named by the node; not in this repository and not checked here.
 
 - `external:prompts/fable_theorems_2026-10-17/04_pregenesis_constructive_summary.md`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_pregenesis_constructive_summary_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 
 ## Absences recorded by the TFQ records
 

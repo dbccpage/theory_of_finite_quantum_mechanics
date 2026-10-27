@@ -37,7 +37,7 @@ In accordance with strict constructive principles:
 
 ### Python Oracles & Numerical Evaluators
 - [`atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/code/sn_mssn_checks.py::grammar_inventory_matches`](../../../atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/code/sn_mssn_checks.py)
-- `omega_engine_education/documentation/003_oemssn/code/check_mssn.py::main` (private upstream source, not in this repository)
+- `external:sha256:f2944b0fca54f5d5a13593c337da8f9887447e447a6ffe2cc7c4731e750cec63::main` (private upstream source, not in this repository)
 
 ---
 
@@ -50,6 +50,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_education/documentation/003_oemssn/grammar/mssn.ebnf:3-4`
-  - `omega_engine_education/documentation/003_oemssn/curriculum.md:58-67`
+  - `external:sha256:2fa40c612d21ff06c530d2d586cb46d72df8d464d544de8f3536254191df6aac:3-4`
+  - `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:58-67`
   - `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md:679-680`

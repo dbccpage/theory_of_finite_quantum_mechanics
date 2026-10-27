@@ -69,20 +69,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_majorana/src/lib.rs`
-
-- file: `omega_engine/crates_rs/omega_majorana/src/lib.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md](../../../dag/derivations/22_implementation_sibling/tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md)
@@ -91,12 +77,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0181
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/212_microsoft_majorana_problem/qm_212_microsoft_majorana_problem_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/212_microsoft_majorana_problem/qm_212_microsoft_majorana_problem_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:4af94b48802f547227ece7d358369dd29800fa80fc78ee087c3dd70e8fa0d46c`
+- `external:sha256:5bc77d81deffd5ac0cfe0c3273f152b28c281ff38f60a61f8c3fdca45257b322`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_ds_qm_dynamics_structure_and_majorana_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
 
 ## Absences recorded by the TFQ records
 

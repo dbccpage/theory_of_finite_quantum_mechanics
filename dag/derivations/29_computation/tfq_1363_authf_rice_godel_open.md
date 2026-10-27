@@ -45,7 +45,7 @@ The prose ledger lists AIT-5, AIT-6 and AIT-7 as cited or pending. The recovered
 - *none*
 
 ### Cited by the source, not in this checkout
-- `external:omega_engine_atlas/.../001_authorization_an_incompleteness_theory/lean4/AuthorizationIncompletenessTheory/TuringBarrier.lean (named by TFQ-0330 as a finite diagonal on Nat to Nat to Bool, absent from this checkout and from the recovered folder)`
+- `external:external:unlocated (named by TFQ-0330 as a finite diagonal on Nat to Nat to Bool, absent from this checkout and from the recovered folder)`
 
 ---
 

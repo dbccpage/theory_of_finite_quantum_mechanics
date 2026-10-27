@@ -97,17 +97,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0480_go_two_relations_swap.md`
 
 - file: [dag/derivations/02_genesis/tfq_0480_go_two_relations_swap.md](../../../dag/derivations/02_genesis/tfq_0480_go_two_relations_swap.md)
-- sha256 (`lf-normalised`): `368fe19011e086b0e21228d9dc4d995a96343601b6a763cd96e39410264658ca`
+- sha256 (`lf-normalised`): `e63fca8bd326324ccc0fa3c75f9e4ca188ab51d63910d7f1f028ce5ca3b98e11`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0480
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/005_oegenong/genesis_ongoing.md`
+### External sources
 
-- file: `omega_engine_education/documentation/005_oegenong/genesis_ongoing.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:064fb17780045efefd70ca5b5e60edcdc3df7c7caf4cc260e251d77fd0e5aa64:108-110`
 
 ## Absences recorded by the TFQ records
 

@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust MSS-N decoder for scalar or edge-weight paths`
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_education/documentation/003_oemssn/code/check_mssn.py::main` (private upstream source, not in this repository)
+- `external:sha256:f2944b0fca54f5d5a13593c337da8f9887447e447a6ffe2cc7c4731e750cec63::main` (private upstream source, not in this repository)
 
 ---
 
@@ -50,5 +50,5 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md:681-684`
-  - `omega_engine_education/documentation/003_oemssn/curriculum.md:76-78`
-  - `omega_engine_education/documentation/003_oemssn/curriculum.md:79`
+  - `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:76-78`
+  - `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:79`

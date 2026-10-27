@@ -6,7 +6,7 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
-The DAG has 925 nodes in 36 stages. Evidence grades: E0 78, E1 258, E2 46, E3 543.
+The DAG has 925 nodes in 36 stages. Evidence grades: E0 76, E1 260, E2 46, E3 543.
 
 ### What is proved here, what is imported, what is open
 
@@ -41,10 +41,10 @@ The `lean` fields of nodes cite 2707 distinct Lean declarations that lie in file
 | `DEFINITION` | 6 | 27 | 6 | 53 | 0 | 92 |
 | `IMPORTED_ASSUMPTION` | 4 | 13 | 0 | 53 | 0 | 70 |
 | `ADMITTED_PRIMITIVE` | 0 | 0 | 0 | 3 | 0 | 3 |
-| `SOURCE_RECORD` | 42 | 38 | 0 | 1 | 0 | 81 |
+| `SOURCE_RECORD` | 40 | 40 | 0 | 1 | 0 | 81 |
 | `OPEN` | 16 | 63 | 7 | 100 | 0 | 186 |
 | `REFUTED` | 0 | 4 | 1 | 1 | 0 | 6 |
-| Total | 78 | 258 | 46 | 543 | 0 | 925 |
+| Total | 76 | 260 | 46 | 543 | 0 | 925 |
 
 ### Stage by evidence grade
 
@@ -71,7 +71,7 @@ The `lean` fields of nodes cite 2707 distinct Lean declarations that lie in file
 | [FINITE_QED](stages/FINITE_QED.md) | 0 | 0 | 0 | 1 | 0 | 1 | 0 | 0 |
 | [FINITE_QCD](stages/FINITE_QCD.md) | 3 | 16 | 0 | 13 | 0 | 32 | 1 | 18 |
 | [FINITE_TOPOLOGICAL](stages/FINITE_TOPOLOGICAL.md) | 2 | 5 | 0 | 2 | 0 | 9 | 0 | 7 |
-| [FINITE_QG](stages/FINITE_QG.md) | 5 | 7 | 0 | 3 | 0 | 15 | 0 | 0 |
+| [FINITE_QG](stages/FINITE_QG.md) | 3 | 9 | 0 | 3 | 0 | 15 | 0 | 0 |
 | [CONTINUUM_INTERFACE](stages/CONTINUUM_INTERFACE.md) | 2 | 3 | 0 | 4 | 0 | 9 | 0 | 0 |
 | [IMPLEMENTATION_CORE](stages/IMPLEMENTATION_CORE.md) | 0 | 41 | 0 | 0 | 0 | 41 | 0 | 68 |
 | [IMPLEMENTATION_SIBLING](stages/IMPLEMENTATION_SIBLING.md) | 1 | 20 | 0 | 5 | 0 | 26 | 0 | 23 |

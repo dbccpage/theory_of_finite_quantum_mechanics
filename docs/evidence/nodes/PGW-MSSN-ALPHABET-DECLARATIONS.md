@@ -45,30 +45,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md](../../../dag/derivations/05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md)
-- sha256 (`lf-normalised`): `abacfe11be0003ebc5389442542133d2d3c617067999a57268819e785f2b8cb8`
+- sha256 (`lf-normalised`): `623136df588c5d5ceba05fd5531af1a43180ed21be7769a0eeb2710d1ffebd1f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0530
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/003_oemssn/curriculum.md`
-
-- file: `omega_engine_education/documentation/003_oemssn/curriculum.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/003_oemssn/grammar/mssn.ebnf`
-
-- file: `omega_engine_education/documentation/003_oemssn/grammar/mssn.ebnf`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine_education/documentation/003_oemssn/code/mssn_codec.py::RawGlyphs`
+- `external:sha256:2fa40c612d21ff06c530d2d586cb46d72df8d464d544de8f3536254191df6aac:10-11`
+- `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:42-43`
+- `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:44-48`
+- `external:upstream/external:sha256:56626b2520b74d365419831189a5f3e91371b527e2f177f6c7a217222aed2ca1::RawGlyphs`
 
 ## Absences recorded by the TFQ records
 

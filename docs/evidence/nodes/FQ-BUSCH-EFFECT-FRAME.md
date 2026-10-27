@@ -77,24 +77,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/busch_effects.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/busch_effects.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1017
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1017
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1017_fq_busch_effect_frame.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1017_fq_busch_effect_frame.md](../../../dag/derivations/12_finite_qm_structure/tfq_1017_fq_busch_effect_frame.md)
-- sha256 (`lf-normalised`): `ab3a631d10dd83e85cb68593fd888e9e5e7b8e514d0334ebfa3b54df2534e2bf`
+- sha256 (`lf-normalised`): `a8a879bf7db7c7e4cc8a88cafe4d7f992ffd8c982f234edfb3f8537c296c8dd6`
 - generated view: listed, not counted
 - cited in: record TFQ-1017
 - counts toward the grade: no
@@ -112,6 +98,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `259e971c72c485503b9c9f157bec6ec9412fe24b8c4cc266e1d0ab6aa7e2d1e0`
 - cited in: node.source
 - counts toward the grade: yes
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:3e7e1210d5c49a5c5f40835b086b7d56e6812c4eb788e1714d989c931a3a1bf1::EffectAlgebra`
+- `external:sha256:3e7e1210d5c49a5c5f40835b086b7d56e6812c4eb788e1714d989c931a3a1bf1::TraceFrameFunction`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
 
 ## Routes
 

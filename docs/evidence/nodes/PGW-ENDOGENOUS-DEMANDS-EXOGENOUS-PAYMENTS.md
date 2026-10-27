@@ -135,17 +135,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0487_endogenous_demands_exogenous_payments.md`
 
 - file: [dag/derivations/02_genesis/tfq_0487_endogenous_demands_exogenous_payments.md](../../../dag/derivations/02_genesis/tfq_0487_endogenous_demands_exogenous_payments.md)
-- sha256 (`lf-normalised`): `36ce49904f591031a01b91b73fcc388d7906ed1c3ce0ca8b12c46e784f9928b4`
+- sha256 (`lf-normalised`): `d207bfef84719630ff2a9db1ace7bce4d77565614817cd5c51e4ad9683c53f4a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0487
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md`
+### External sources
 
-- file: `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:0d098004a566c40656af6035d6e66ff13f7e873b11966677df080686a1b29cf9:936-947`
 
 ## Routes
 

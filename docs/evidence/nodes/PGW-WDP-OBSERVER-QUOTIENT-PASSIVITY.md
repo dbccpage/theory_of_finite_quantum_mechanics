@@ -73,13 +73,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_category_theory/src/finite_partial_structure.rs`
-
-- file: `omega_engine/crates_rs/omega_category_theory/src/finite_partial_structure.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py`
 
 - file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py)
@@ -116,23 +109,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0553_wdp_observer_quotient_passivity.md`
 
 - file: [dag/derivations/06_wdp/tfq_0553_wdp_observer_quotient_passivity.md](../../../dag/derivations/06_wdp/tfq_0553_wdp_observer_quotient_passivity.md)
-- sha256 (`lf-normalised`): `1fef38d3dc07e355ad65a0f627b2ffe7ad30611eac7a42fb7b268f86301f468f`
+- sha256 (`lf-normalised`): `dd6ea7ddee411ff10c33988156d8b2f430a040442d5b4e6d2698a93765dbdb48`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0553
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/006_oewdp/levels/level_09_behavioral_quotients_finite_states.md`
-
-- file: `omega_engine_education/documentation/006_oewdp/levels/level_09_behavioral_quotients_finite_states.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine/crates_rs/omega_category_theory/src/finite_partial_structure.rs::descend`
+- `external:sha256:05ceb39d5b1945f0fbc1435f61344d788832e42ffc9969fcfbea4e7e6ab756c0:185-193`
+- `external:sha256:05ceb39d5b1945f0fbc1435f61344d788832e42ffc9969fcfbea4e7e6ab756c0:67-128`
+- `external:sha256:3a7641ede95a9b216375ab6fae723147f5ceb889a8dc0b5d5219fa6367e8b560::descend`
+- `external:upstream/external:sha256:3a7641ede95a9b216375ab6fae723147f5ceb889a8dc0b5d5219fa6367e8b560::descend`
 
 ## Routes
 

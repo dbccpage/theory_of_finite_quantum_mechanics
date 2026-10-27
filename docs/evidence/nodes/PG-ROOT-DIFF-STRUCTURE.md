@@ -115,20 +115,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_types/src/primitive_difference.rs`
-
-- file: `omega_engine/crates_rs/omega_types/src/primitive_difference.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`
 
 - file: `code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`
@@ -183,19 +169,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0087
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/029_the_anomalon_boundary/the_anomalon_boundary_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/029_the_anomalon_boundary/the_anomalon_boundary_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_library/coda_library/encyclopedia/entries/foundations/enc-1138-stratified-root-boundary.md`
-
-- file: `omega_engine_library/coda_library/encyclopedia/entries/foundations/enc-1138-stratified-root-boundary.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:0587b19021255ec2f3274cbc1fb9b1be46f6212601f36c5913468668cab9bab1:1-45`
+- `external:sha256:273fb96233ba30a85e30a4045bee2e4a1750a78880e5e26a58cd80c6da7e4a80::PrimitiveDifference`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:e6ea3ff314ed30f8cf8330f499f7152d6f45ccb334d260f549f8650572f8d1c1:16`
 
 ## Absences recorded by the TFQ records
 
@@ -203,7 +186,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - TFQ-0392 python: missing obligation: a negative check that no function in pregenesis_to_minimal_symbol_systems/code/preservation.py sends literal <> to a two-channel coproduct
 - TFQ-0392 rust: missing obligation: a refused conversion in omega_ooutwire_primitives from the inscription token to a Difference-Structure value
 - TFQ-0393 lean4: missing declaration obligation: a coproduct Real_0 distinct from HasRawDistinction in B001_raw_distinction.lean
-- TFQ-0393 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/B001_raw_distinction.lean
+- TFQ-0393 lean4: no local lean twin located for external:sha256:2e264c28e45671b646ce8e6ad290f689f7fb8ecf3625b109b9e97df3a74ee073
 - TFQ-0393 python: missing obligation: a two-summand carrier in the S000 python package that is not constructed from preservation.py token data
 - TFQ-0393 rust: missing obligation: a coproduct struct whose constructors are independent of the inscription token in omega_ooutwire_primitives
 

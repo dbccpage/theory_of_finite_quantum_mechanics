@@ -102,41 +102,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1043
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1043_ds_qm204_born_uniqueness_import_boundary.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1043_ds_qm204_born_uniqueness_import_boundary.md](../../../dag/derivations/12_finite_qm_structure/tfq_1043_ds_qm204_born_uniqueness_import_boundary.md)
-- sha256 (`lf-normalised`): `ac2fe1044c679d5e0c78eebe2b93102937c810d0e011bdc30d4106c636751a23`
+- sha256 (`lf-normalised`): `1f1f494100febd723d2072a04ba76d266e5f918466e240b615751cb8fb5dacf5`
 - generated view: listed, not counted
 - cited in: record TFQ-1043
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/204_born_uniqueness_import_boundary/qm_204_born_uniqueness_import_boundary_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/204_born_uniqueness_import_boundary/qm_204_born_uniqueness_import_boundary_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/206_universal_boundary_synthesis_and_cochain_lift/qm_206_universal_boundary_synthesis_and_cochain_lift_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/206_universal_boundary_synthesis_and_cochain_lift/qm_206_universal_boundary_synthesis_and_cochain_lift_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/210_born_rule_postulate_and_state_effect_pairing/qm_210_born_rule_postulate_and_state_effect_pairing_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/210_born_rule_postulate_and_state_effect_pairing/qm_210_born_rule_postulate_and_state_effect_pairing_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:00e380c0339e021857f8f47186d2e8bb5c77c3eddbb75d4c0906b21b104a612b#QM206-C5`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:de157adb681fa9dd392740354bc72c799b74b3c4493fb38c6da7685aa918b9cd#QM_204-C0`
+- `external:sha256:f9b815a51e8e2748a89001239a63f49274febcad5e3e958f9a01c13f0ec6b96a#QM210-C3`
 
 ## Routes
 

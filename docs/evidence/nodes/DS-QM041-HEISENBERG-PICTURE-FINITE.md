@@ -62,20 +62,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/heisenberg_picture.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/heisenberg_picture.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md)
@@ -84,12 +70,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0247
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/041_heisenberg_picture_shadow/qm_041_heisenberg_picture_shadow_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/041_heisenberg_picture_shadow/qm_041_heisenberg_picture_shadow_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness`
+- `external:sha256:7b0b2660ad891bea3744bbbc03f975cba7fbffe08950bf591beebcde7d5cfacc#QM_041-C3`
+- `external:sha256:7b0b2660ad891bea3744bbbc03f975cba7fbffe08950bf591beebcde7d5cfacc#QM_041-C4`
+- `external:sha256:d425fe2c91956b215477384bfdbca9273ec86548579684941d9656cc15f3659a::heisenberg_observable`
 
 ## Routes
 

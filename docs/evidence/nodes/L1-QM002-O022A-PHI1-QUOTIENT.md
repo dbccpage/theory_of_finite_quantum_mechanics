@@ -61,27 +61,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/cochain_repair_code.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/cochain_repair_code.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/trace_distance_quotient.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/trace_distance_quotient.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0359_keep_the_phi1_banach_quotient_reading_on_a_finite_dimensional_repair_packet_and_leave.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0359_keep_the_phi1_banach_quotient_reading_on_a_finite_dimensional_repair_packet_and_leave.md](../../../dag/derivations/07_l1_emergence/tfq_0359_keep_the_phi1_banach_quotient_reading_on_a_finite_dimensional_repair_packet_and_leave.md)
@@ -90,12 +69,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0359
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/002_cofiber_to_banach_quotient_bridge/qm_002_cofiber_to_banach_quotient_bridge_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/002_cofiber_to_banach_quotient_bridge/qm_002_cofiber_to_banach_quotient_bridge_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:0afca57b5b9d44930fdafc79b2199989c1617b63981a2718bcfd3960a957dfd0`
+- `external:sha256:0c0765fc5764c70a5288d29e18459286d32fe55a9848613a7092505ecd0e3526#O022a`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness`
+- `external:sha256:6d5d5d60c5905f79d67d8a8bc365e337b56a0ffb2270da01f2589b4c1a2620f0`
 
 ## Routes
 

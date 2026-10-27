@@ -75,17 +75,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0494_stage_change_contract_proposal_record.md`
 
 - file: [dag/derivations/02_genesis/tfq_0494_stage_change_contract_proposal_record.md](../../../dag/derivations/02_genesis/tfq_0494_stage_change_contract_proposal_record.md)
-- sha256 (`lf-normalised`): `3b3b4fc6841dd8b92e381637b0da820abf3b286d7967654e2c5f4a8d901c95b5`
+- sha256 (`lf-normalised`): `2644b2d00cf91236e1bb24cceb176988e9ae72c6ef9e2aef269413d908ac3d83`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0494
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md`
+### External sources
 
-- file: `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:0d098004a566c40656af6035d6e66ff13f7e873b11966677df080686a1b29cf9:982-988`
 
 ## Absences recorded by the TFQ records
 

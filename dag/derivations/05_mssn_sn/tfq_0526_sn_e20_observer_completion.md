@@ -49,6 +49,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_education/documentation/002_oesn/levels/level_20_autopoietic_reflection.md:46-49`
-  - `omega_engine_education/documentation/002_oesn/levels/level_20_autopoietic_reflection.md:57-59`
-  - `omega_engine_education/documentation/002_oesn/curriculum.md:159-162`
+  - `external:sha256:ff4048bf7ebdc3eb9d00b8635c5abdaa7a16bd79581901c5f38670ccb0b4ec15:46-49`
+  - `external:sha256:ff4048bf7ebdc3eb9d00b8635c5abdaa7a16bd79581901c5f38670ccb0b4ec15:57-59`
+  - `external:sha256:a51ceb8d0d5703baac230c14caa4638cf25f3ae46fdc77013c7e09f27caaa1e9:159-162`

@@ -79,16 +79,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0492_candidate_extension_generator.md`
 
 - file: [dag/derivations/02_genesis/tfq_0492_candidate_extension_generator.md](../../../dag/derivations/02_genesis/tfq_0492_candidate_extension_generator.md)
-- sha256 (`lf-normalised`): `b5403b368c49eb1f9544f6a26e51d47b65dcf8ca589787f01a7bca97685ce436`
+- sha256 (`lf-normalised`): `85b184e6b5247654f7a81733a084b358f0a92900f5e77d5f777aabddedc039e5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0492
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md`
-
-- file: `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
@@ -98,6 +91,7 @@ Named by the node; not in this repository and not checked here.
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/docs/ALPHA_HANDOFF.md:101-116`
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/driver_a.py::apply_licensed`
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/alpha_engine/evaluate.py::evaluate`
+- `external:sha256:0d098004a566c40656af6035d6e66ff13f7e873b11966677df080686a1b29cf9:1103`
 
 ## Routes
 

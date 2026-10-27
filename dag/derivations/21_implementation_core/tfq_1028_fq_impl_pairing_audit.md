@@ -34,9 +34,9 @@ module docs: "every candidate probability pairing is graded by the same finite c
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_quantum_physics/src/pairing_audit.rs::Pairing`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness`
+- `external:sha256:c8f020f9abf33d6d86e8630fd8f9d3da0bb1db91835d6dfcbe56cfa4709cad7e::Pairing`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_fq_core_and_k23_duality_witness`
 
 ---
 
@@ -49,4 +49,4 @@ module docs: "every candidate probability pairing is graded by the same finite c
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine/crates_rs/omega_quantum_physics/src/pairing_audit.rs:3`
+  - `external:sha256:c8f020f9abf33d6d86e8630fd8f9d3da0bb1db91835d6dfcbe56cfa4709cad7e:3`

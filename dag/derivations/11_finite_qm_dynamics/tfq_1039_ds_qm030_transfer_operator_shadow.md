@@ -34,8 +34,8 @@ Unmet after the PFP review: Formalize the full arbitrary finite action/dual sum 
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm030_032_graded_pathsum_overcount_transfer_and_feynman_shadow`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
 
 ---
 
@@ -48,5 +48,5 @@ Unmet after the PFP review: Formalize the full arbitrary finite action/dual sum 
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/030_finite_weighted_transport_calculus/qm_030_finite_weighted_transport_calculus_claim_ledger.md#QM-030-C6`
-  - `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/030_finite_weighted_transport_calculus/qm_030_finite_weighted_transport_calculus_claim_ledger.md#QM-030-C8`
+  - `external:sha256:e5ae08fbe8e7f3276392db13249b8444caff1fa746dec306f66e0a26fbbf9d2e#QM-030-C6`
+  - `external:sha256:e5ae08fbe8e7f3276392db13249b8444caff1fa746dec306f66e0a26fbbf9d2e#QM-030-C8`

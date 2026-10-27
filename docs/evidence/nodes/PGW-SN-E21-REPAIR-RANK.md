@@ -45,24 +45,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0527_sn_e21_repair_rank.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0527_sn_e21_repair_rank.md](../../../dag/derivations/05_mssn_sn/tfq_0527_sn_e21_repair_rank.md)
-- sha256 (`lf-normalised`): `e995d071306aba28e5b6225da732230a0fc529a4317f3109e8200e597a421d90`
+- sha256 (`lf-normalised`): `7973ef9da15cc5a3c660defaedde18381d6dda52f14b51f73c260a296e2da027`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0527
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/002_oesn/curriculum.md`
+### External sources
 
-- file: `omega_engine_education/documentation/002_oesn/curriculum.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_education/documentation/002_oesn/levels/level_21_discrete_4d_regge_curvature.md`
-
-- file: `omega_engine_education/documentation/002_oesn/levels/level_21_discrete_4d_regge_curvature.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:07dcae5e71386c1a44b8b6d660e80887b4d30c4671ed0c2ac97df6d141e17905:42-47`
+- `external:sha256:07dcae5e71386c1a44b8b6d660e80887b4d30c4671ed0c2ac97df6d141e17905:49-55`
+- `external:sha256:a51ceb8d0d5703baac230c14caa4638cf25f3ae46fdc77013c7e09f27caaa1e9:163-166`
 
 ## Absences recorded by the TFQ records
 

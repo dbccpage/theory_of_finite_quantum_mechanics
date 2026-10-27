@@ -77,55 +77,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/atomic_dirac_lamb_hartree_fock.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/atomic_dirac_lamb_hartree_fock.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/pauli_spin_statistics_graph.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/pauli_spin_statistics_graph.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/qed_weak_hadronic_finite_maps.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/qed_weak_hadronic_finite_maps.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/foundational_derivation_closure.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/foundational_derivation_closure.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/regge_gravity_ghz_chern_finite_maps.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/regge_gravity_ghz_chern_finite_maps.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0056_each_language_must_carry_clifford_admission_slash_square_exact_solution_rank_and_a.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0056_each_language_must_carry_clifford_admission_slash_square_exact_solution_rank_and_a.md](../../../dag/derivations/15_finite_qed/tfq_0056_each_language_must_carry_clifford_admission_slash_square_exact_solution_rank_and_a.md)
@@ -317,77 +268,90 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579::evaluate_qm207_holonomy_bridge`
+- `external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579::evaluate_qm211_clock_tower`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
+- `external:sha256:73ff1307c7f46b2f7648dd055f2db749abcaa4b8ab76c43fa35099fb1cd20ed4::evaluate_qm219_foundational_derivation_closure`
+- `external:sha256:7b92d189c034dc6bb19e748fa9689912254a5b0b9a50a1f25d2566b9a4d4744f::analyze_conf2_graph`
+- `external:sha256:b2756728a2444a8202ad7ab9078b63b94e2b41bb2addc311e7a2b1bebd8d9f44::ln_big_interval`
+- `external:sha256:c5ad48d5c22ea89b1e481b44062e0de0f36728afa54ea6439e12e592c239f77a::ppn_deflection_factor`
+- `external:sha256:dee13d74d257e960c55d1b3da0a35f7276c33ede91adba5203a17a7bb91cb34f::verify_qm224_dirac_coulomb_and_lamb_shift`
+
 ## Absences recorded by the TFQ records
 
 - TFQ-0056 lean4: not located
 - TFQ-0056 python: not located
-- TFQ-0056 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/dirac_gamma_admission.rs
+- TFQ-0056 rust: no local rust twin located for external:sha256:6d09fe3d269514b28dde4a6f6dec6760ac77e87653e9f18c490226f9f26bb231
 - TFQ-0057 lean4: not located
 - TFQ-0057 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/dirac_ward_takahashi_control.py
-- TFQ-0057 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+- TFQ-0057 rust: no local rust twin located for external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579
 - TFQ-0058 lean4: not located
 - TFQ-0058 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/dressed_qed_g2_control.py
-- TFQ-0058 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+- TFQ-0058 rust: no local rust twin located for external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579
 - TFQ-0060 lean4: not located
 - TFQ-0060 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/dressed_qed_g2_control.py
-- TFQ-0060 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+- TFQ-0060 rust: no local rust twin located for external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579
 - TFQ-0061 lean4: not located
 - TFQ-0061 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/symanzik_two_forest_bphz_control.py
-- TFQ-0061 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+- TFQ-0061 rust: no local rust twin located for external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579
 - TFQ-0063 lean4: not located
 - TFQ-0063 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/dirac_ward_takahashi_control.py
-- TFQ-0063 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+- TFQ-0063 rust: no local rust twin located for external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579
 - TFQ-0064 lean4: not located
 - TFQ-0064 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/dirac_ward_takahashi_control.py
-- TFQ-0064 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+- TFQ-0064 rust: no local rust twin located for external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579
 - TFQ-0065 lean4: not located
 - TFQ-0065 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/vacuum_polarization_lamb_shift_control.py
-- TFQ-0065 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/vacuum_polarization_lamb_shift.rs
+- TFQ-0065 rust: no local rust twin located for external:sha256:ac46ba7dd3e8763a1c8f6bf42bc9e263b13e63bcc8783cdaf598f6ec34d4c9e3
 - TFQ-0066 lean4: not located
 - TFQ-0066 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/vacuum_polarization_lamb_shift_control.py
-- TFQ-0066 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/vacuum_polarization_lamb_shift.rs
+- TFQ-0066 rust: no local rust twin located for external:sha256:ac46ba7dd3e8763a1c8f6bf42bc9e263b13e63bcc8783cdaf598f6ec34d4c9e3
 - TFQ-0067 lean4: not located
 - TFQ-0067 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/algebraic_bound_state_spectra_control.py
-- TFQ-0067 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/algebraic_bound_state_spectra.rs
+- TFQ-0067 rust: no local rust twin located for external:sha256:a10da92df13ef926419410d2e5c98c7366f31aa5dd28fa48718916ad8f904b62
 - TFQ-0068 lean4: not located
 - TFQ-0068 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/atomic_dirac_lamb_hartree_fock_control.py
-- TFQ-0068 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/atomic_dirac_lamb_hartree_fock.rs
+- TFQ-0068 rust: no local rust twin located for external:sha256:dee13d74d257e960c55d1b3da0a35f7276c33ede91adba5203a17a7bb91cb34f
 - TFQ-0069 lean4: not located
 - TFQ-0069 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/atomic_dirac_lamb_hartree_fock_control.py
-- TFQ-0069 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/atomic_dirac_lamb_hartree_fock.rs
+- TFQ-0069 rust: no local rust twin located for external:sha256:dee13d74d257e960c55d1b3da0a35f7276c33ede91adba5203a17a7bb91cb34f
 - TFQ-0070 lean4: not located
 - TFQ-0070 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/atomic_dirac_lamb_hartree_fock_control.py
-- TFQ-0070 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/atomic_dirac_lamb_hartree_fock.rs
+- TFQ-0070 rust: no local rust twin located for external:sha256:dee13d74d257e960c55d1b3da0a35f7276c33ede91adba5203a17a7bb91cb34f
 - TFQ-0074 lean4: not located
 - TFQ-0074 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/qed_weak_hadronic_control.py
-- TFQ-0074 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/qed_weak_hadronic_finite_maps.rs
+- TFQ-0074 rust: no local rust twin located for external:sha256:b2756728a2444a8202ad7ab9078b63b94e2b41bb2addc311e7a2b1bebd8d9f44
 - TFQ-0075 lean4: not located
 - TFQ-0075 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/electroweak_dfm_weinberg_control.py
-- TFQ-0075 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/electroweak_dfm_weinberg_control.rs
+- TFQ-0075 rust: no local rust twin located for external:sha256:12edc74432418787b0ed633d04e6c77602431a6969b5172b53a4ffaf55e38d9f
 - TFQ-0076 lean4: not located
 - TFQ-0076 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/electroweak_dfm_weinberg_control.py
-- TFQ-0076 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/electroweak_dfm_weinberg_control.rs
+- TFQ-0076 rust: no local rust twin located for external:sha256:12edc74432418787b0ed633d04e6c77602431a6969b5172b53a4ffaf55e38d9f
 - TFQ-0077 lean4: not located
 - TFQ-0077 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/electroweak_dfm_weinberg_control.py
-- TFQ-0077 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/electroweak_dfm_weinberg_control.rs
+- TFQ-0077 rust: no local rust twin located for external:sha256:12edc74432418787b0ed633d04e6c77602431a6969b5172b53a4ffaf55e38d9f
 - TFQ-0078 lean4: not located
 - TFQ-0078 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/electroweak_dfm_weinberg_control.py
-- TFQ-0078 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/electroweak_dfm_weinberg_control.rs
+- TFQ-0078 rust: no local rust twin located for external:sha256:12edc74432418787b0ed633d04e6c77602431a6969b5172b53a4ffaf55e38d9f
 - TFQ-0079 lean4: not located
 - TFQ-0079 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/qed_weak_hadronic_control.py
-- TFQ-0079 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/qed_weak_hadronic_finite_maps.rs
+- TFQ-0079 rust: no local rust twin located for external:sha256:b2756728a2444a8202ad7ab9078b63b94e2b41bb2addc311e7a2b1bebd8d9f44
 - TFQ-0080 lean4: not located
 - TFQ-0080 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/qed_weak_hadronic_control.py
-- TFQ-0080 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/qed_weak_hadronic_finite_maps.rs
+- TFQ-0080 rust: no local rust twin located for external:sha256:b2756728a2444a8202ad7ab9078b63b94e2b41bb2addc311e7a2b1bebd8d9f44
 - TFQ-0081 lean4: not located
 - TFQ-0081 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/qed_weak_hadronic_control.py
-- TFQ-0081 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/qed_weak_hadronic_finite_maps.rs
+- TFQ-0081 rust: no local rust twin located for external:sha256:b2756728a2444a8202ad7ab9078b63b94e2b41bb2addc311e7a2b1bebd8d9f44
 - TFQ-0082 lean4: not located
 - TFQ-0082 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/qed_weak_hadronic_control.py
-- TFQ-0082 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/qed_weak_hadronic_finite_maps.rs
+- TFQ-0082 rust: no local rust twin located for external:sha256:b2756728a2444a8202ad7ab9078b63b94e2b41bb2addc311e7a2b1bebd8d9f44
 - TFQ-0083 lean4: not located
 - TFQ-0083 python: not located
-- TFQ-0083 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/s_matrix.rs
+- TFQ-0083 rust: no local rust twin located for external:sha256:2d9da71f2a615ba2de86c6896030b306594bc1169d72e912cd6e525b06887b66
 
 ## Routes
 

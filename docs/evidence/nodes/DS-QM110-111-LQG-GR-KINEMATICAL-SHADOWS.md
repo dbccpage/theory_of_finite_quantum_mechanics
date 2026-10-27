@@ -87,13 +87,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_0092_qm_110_c11_hamiltonian_constraint_stays_q_held_continuum_su_2_data_in_qm_110_c10_are_imported.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_0092_qm_110_c11_hamiltonian_constraint_stays_q_held_continuum_su_2_data_in_qm_110_c10_are_imported.md](../../../dag/derivations/19_finite_qg/tfq_0092_qm_110_c11_hamiltonian_constraint_stays_q_held_continuum_su_2_data_in_qm_110_c10_are_imported.md)
@@ -158,28 +151,26 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0110
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/110_loop_quantum_gravity_kinematical_shadows/qm_110_loop_quantum_gravity_kinematical_shadows_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/110_loop_quantum_gravity_kinematical_shadows/qm_110_loop_quantum_gravity_kinematical_shadows_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/111_general_relativity_kinematical_shadows/qm_111_general_relativity_kinematical_shadows_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/111_general_relativity_kinematical_shadows/qm_111_general_relativity_kinematical_shadows_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:1892e34e319a1f165ed31402cae724d190be9fdc8fa3ea10e27672b8f38e5eed#QM-111-C7`
+- `external:sha256:1892e34e319a1f165ed31402cae724d190be9fdc8fa3ea10e27672b8f38e5eed#QM-111-C8`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_ds_qm_dynamics_structure_and_majorana_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- `external:sha256:865e924e88cdcae52987737e2871a0dce2e8ed5032c417c2d2a60c3682afd66c#QM-110-C10`
+- `external:sha256:865e924e88cdcae52987737e2871a0dce2e8ed5032c417c2d2a60c3682afd66c#QM-110-C11`
+- `external:sha256:865e924e88cdcae52987737e2871a0dce2e8ed5032c417c2d2a60c3682afd66c#QM-110-C2`
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0092 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/spin_area_spectrum.rs
-- TFQ-0093 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/spin_area_spectrum.rs
-- TFQ-0108 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_regge_bridge.rs
-- TFQ-0108 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/spin_area_spectrum.rs
+- TFQ-0092 rust: no local rust twin located for external:sha256:849b3a7c308df09c211ccfce2f4bfac5187a01e4dbba5b527ff6b4d32bc2796e
+- TFQ-0093 rust: no local rust twin located for external:sha256:849b3a7c308df09c211ccfce2f4bfac5187a01e4dbba5b527ff6b4d32bc2796e
+- TFQ-0108 rust: no local rust twin located for external:sha256:849b3a7c308df09c211ccfce2f4bfac5187a01e4dbba5b527ff6b4d32bc2796e
+- TFQ-0108 rust: no local rust twin located for external:sha256:daa2544f59a9e79153dd422e291957ad086cabfeed37aa2bf2d5ddc847a4aade
 - TFQ-0110 lean4: no local lean twin located for sources/atlas/papers/general_relativity/constraint_closure_and_the_l1_structure_of_physical_law/lean4/GR002.lean
-- TFQ-0110 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/004_general_relativity/002_constraint_closure_and_the_l1structure_of_physical_law/code/l1_regge.py
+- TFQ-0110 python: no local python twin located for papers/core/constraint_closure/code/l1_regge.py
 
 ## Routes
 

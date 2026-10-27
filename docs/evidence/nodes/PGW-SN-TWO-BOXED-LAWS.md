@@ -42,13 +42,6 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Rust: `omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs`
-
-- file: `omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/source_archive/000_sn/paper_claim_ledger.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/source_archive/000_sn/paper_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/source_archive/000_sn/paper_claim_ledger.md)
@@ -59,30 +52,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0510_sn_two_boxed_laws.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0510_sn_two_boxed_laws.md](../../../dag/derivations/05_mssn_sn/tfq_0510_sn_two_boxed_laws.md)
-- sha256 (`lf-normalised`): `ce5c91d912d83255b949a06a6b4054caeacad2215facb19e1ee960c6b644fa34`
+- sha256 (`lf-normalised`): `512dd9e06b1e0f38df48a1589298e00ce2761cf836064e6450ee9445c9f31721`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0510
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/002_oesn/curriculum.md`
-
-- file: `omega_engine_education/documentation/002_oesn/curriculum.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/002_oesn/sn.md`
-
-- file: `omega_engine_education/documentation/002_oesn/sn.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::evaluate_two_boxed_laws_gate`
+- `external:sha256:439bafc4a90225a06b9e80fb2d9458ecd3718cd1908db47b734056ef8b6c3de2::evaluate_two_boxed_laws_gate`
+- `external:sha256:7cd90f66662c2628f0fcc5d8fb3154cfa6b0c4274de439fb73be21b2eb5673f7:26-30`
+- `external:sha256:a51ceb8d0d5703baac230c14caa4638cf25f3ae46fdc77013c7e09f27caaa1e9:26-33`
+- `external:upstream/external:sha256:439bafc4a90225a06b9e80fb2d9458ecd3718cd1908db47b734056ef8b6c3de2::evaluate_two_boxed_laws_gate`
 
 ## Absences recorded by the TFQ records
 

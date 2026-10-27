@@ -34,8 +34,8 @@ Lean states only that the diagonal trace norm of an integer list is the sum of a
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 
 ---
 
@@ -48,5 +48,5 @@ Lean states only that the diagonal trace norm of an integer list is the sum of a
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/operator_lifts_trace_metrics_and_representation_limits_claim_ledger.md#C01`
+  - `external:sha256:58f452ea2bdaa31e5adb99897f9c74c742ca14c992f417f37305ebbfa918b1b9#C01`
   - `lean4/Imported/OperatorLifts/Lifts.lean:100`

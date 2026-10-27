@@ -54,10 +54,10 @@ The 20261019 scope audit remains a determinant obstruction on a supplied rationa
 - `lean4/TensorUniquenessOuterProducts.lean::TensorUniquenessOuterProducts.productsEq`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_symbol_game/src/coupled_relational_operad.rs::evaluate_coupled_relational_operad`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche8_tensor_stone_continuum_embedding_and_leftover_mnc_witness`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- `external:sha256:90a3d4db1c5ee741479f5a5ecbdd3100a808824a748a726b863e2d48bae270ad::evaluate_coupled_relational_operad`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche8_tensor_stone_continuum_embedding_and_leftover_mnc_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
 
 ---
 

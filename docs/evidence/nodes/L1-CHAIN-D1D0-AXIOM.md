@@ -69,13 +69,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0350_assume_d1_d0_0_only_by_a_declared_certificate_or_the.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0350_assume_d1_d0_0_only_by_a_declared_certificate_or_the.md](../../../dag/derivations/07_l1_emergence/tfq_0350_assume_d1_d0_0_only_by_a_declared_certificate_or_the.md)
@@ -92,18 +85,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0052 (shared)
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/003_l1_obstruction_framework/l1_obstruction_framework_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/003_l1_obstruction_framework/l1_obstruction_framework_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:fd65bc148e80462c1c467b0b5a483e5691a901b95d2789ac25425bb5da64eb19#C18`
 
 ## Absences recorded by the TFQ records
 
 - TFQ-0052 lean4: not located
 - TFQ-0052 python: not located
-- TFQ-0052 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/gauge_cochain_complex.rs
+- TFQ-0052 rust: no local rust twin located for external:sha256:1716598040aa40ee83bed4fdf0e76ab6111debd683decf50bbbe5df6dbc71b65
 
 ## Routes
 

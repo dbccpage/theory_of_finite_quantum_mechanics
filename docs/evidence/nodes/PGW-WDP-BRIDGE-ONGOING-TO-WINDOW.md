@@ -82,13 +82,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_wdp/src/genesis_ongoing_adapter.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/genesis_ongoing_adapter.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `checks/independent/pgw-wdp-bridge-ongoing-to-window.py`
 
 - file: [checks/independent/pgw-wdp-bridge-ongoing-to-window.py](../../../checks/independent/pgw-wdp-bridge-ongoing-to-window.py)
@@ -118,7 +111,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md`
 
 - file: [dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md](../../../dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md)
-- sha256 (`lf-normalised`): `07b9f8b84458b5fce48ee325454528eeb2673f5d82535477052da2535f649701`
+- sha256 (`lf-normalised`): `88162dd3b70af4751f5b980f7bac5dea896284ea820f1ef5a60356a07675041e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0555
 - counts toward the grade: no
@@ -137,18 +130,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `omega_engine_education/documentation/006_oewdp/levels/level_22_genesis_to_wdp_bridges.md`
-
-- file: `omega_engine_education/documentation/006_oewdp/levels/level_22_genesis_to_wdp_bridges.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine/crates_rs/omega_wdp/src/genesis_ongoing_adapter.rs::GenesisOngoingAdapter`
+- `external:sha256:718c4c7d2dba17c2e8b55676b4edd2c41584c55fee175f1e129c8df01769c0bf::GenesisOngoingAdapter`
+- `external:sha256:a11697dcdf5788b476d5c2e541b635a81c03e665684f69bd260bc463a03ee458:116-137`
+- `external:upstream/external:sha256:718c4c7d2dba17c2e8b55676b4edd2c41584c55fee175f1e129c8df01769c0bf::GenesisOngoingAdapter`
 
 ## Routes
 

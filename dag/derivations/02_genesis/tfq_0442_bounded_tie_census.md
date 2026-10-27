@@ -56,4 +56,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:305-318`
   - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:326-328`
-  - `omega_engine_education/documentation/001_oegen/genesis.md:19`
+  - `external:sha256:ad3ab47c05abcec0f914042f034960d1143a7d7f023e1b4cedbfc0efd6023a3a:19`

@@ -52,23 +52,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0532_mssn_syntax_not_decoding.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0532_mssn_syntax_not_decoding.md](../../../dag/derivations/05_mssn_sn/tfq_0532_mssn_syntax_not_decoding.md)
-- sha256 (`lf-normalised`): `6473d6a4109121058d014f416e9fc2b9efd83f97b2ee6a6501f10941839d133f`
+- sha256 (`lf-normalised`): `95b44ac923e946b524170031d3b03c9722155a657e3c502da691965463945d48`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0532
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/003_oemssn/curriculum.md`
-
-- file: `omega_engine_education/documentation/003_oemssn/curriculum.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine_education/documentation/003_oemssn/code/check_mssn.py::main`
+- `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:76-78`
+- `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:79`
+- `external:upstream/external:sha256:f2944b0fca54f5d5a13593c337da8f9887447e447a6ffe2cc7c4731e750cec63::main`
 
 ## Absences recorded by the TFQ records
 

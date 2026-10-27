@@ -96,17 +96,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0442_bounded_tie_census.md`
 
 - file: [dag/derivations/02_genesis/tfq_0442_bounded_tie_census.md](../../../dag/derivations/02_genesis/tfq_0442_bounded_tie_census.md)
-- sha256 (`lf-normalised`): `27d7dd0b3fd87282e3b4899308621b75e79d2710205c38c75b27d090eb66a943`
+- sha256 (`lf-normalised`): `3afea15c985a47b981aa327cf96c80738a48586df67a7ab3942fb3d38a46005f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0442
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/001_oegen/genesis.md`
+### External sources
 
-- file: `omega_engine_education/documentation/001_oegen/genesis.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:ad3ab47c05abcec0f914042f034960d1143a7d7f023e1b4cedbfc0efd6023a3a:19`
 
 ## Absences recorded by the TFQ records
 

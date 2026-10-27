@@ -86,20 +86,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/coupled_relational_operad.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/coupled_relational_operad.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1019
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1019
-- counts toward the grade: no
-
 ### Python: `checks/independent/fq-gap-tensor-uniqueness.py`
 
 - file: [checks/independent/fq-gap-tensor-uniqueness.py](../../../checks/independent/fq-gap-tensor-uniqueness.py)
@@ -110,7 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md](../../../dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md)
-- sha256 (`lf-normalised`): `c3b05daf0b848473309b77b636f4bbb46e65d811ed2667dc319cb3a8cb236235`
+- sha256 (`lf-normalised`): `4f0b039232e8a52f9cbc1ad8ecb3902e3921c4dc8f5d469b180b155d1600426b`
 - generated view: listed, not counted
 - cited in: record TFQ-1019
 - counts toward the grade: no
@@ -193,7 +179,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/tensor_countermodel_validation.json`
 
 - file: [dag/research/tensor_countermodel_validation.json](../../../dag/research/tensor_countermodel_validation.json)
-- sha256 (`lf-normalised`): `57cdc86b1a1ba3bcafe487c0a9a053e3385d49e771a6b0d80c61a287db5ba22a`
+- sha256 (`lf-normalised`): `45fe161af3ab63c249430c84e7577df791467ec4da2de1a356aa10f582d5715a`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -224,6 +210,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche8_tensor_stone_continuum_embedding_and_leftover_mnc_witness`
+- `external:sha256:90a3d4db1c5ee741479f5a5ecbdd3100a808824a748a726b863e2d48bae270ad::evaluate_coupled_relational_operad`
 
 ## Routes
 

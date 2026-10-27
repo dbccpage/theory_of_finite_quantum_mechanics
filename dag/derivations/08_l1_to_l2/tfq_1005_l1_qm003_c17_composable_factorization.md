@@ -31,8 +31,8 @@ QM_003 C17 diagonal composable factorization and off-diagonal coherence boundary
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.qm003_c17_off_diagonal_obstruction_to_diagonal_factorization`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_l1_to_l2_bridges_and_ladder_witness`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_l1_to_l2_bridges_and_ladder_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 
 ---
 
@@ -45,4 +45,4 @@ QM_003 C17 diagonal composable factorization and off-diagonal coherence boundary
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/003_residual_density_calculus_l1_l2_boundary/qm_003_residual_density_calculus_l1_l2_boundary_claim_ledger.md`
+  - `external:sha256:e3c1fb4d47cc71d77c93d54d3e25ddefd4cfd203d33b327084ad5d0426656e6e`

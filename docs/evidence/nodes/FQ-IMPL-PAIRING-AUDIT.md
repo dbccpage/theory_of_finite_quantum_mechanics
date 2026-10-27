@@ -61,27 +61,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/pairing_audit.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/pairing_audit.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, node.source, record TFQ-1028
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1028
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/21_implementation_core/tfq_1028_fq_impl_pairing_audit.md`
 
 - file: [dag/derivations/21_implementation_core/tfq_1028_fq_impl_pairing_audit.md](../../../dag/derivations/21_implementation_core/tfq_1028_fq_impl_pairing_audit.md)
-- sha256 (`lf-normalised`): `0049151b3e07c38c5f1167730847163d21a298eabf37b200a930dfaa267c2b3b`
+- sha256 (`lf-normalised`): `a5c09229b303a4ec2d40460074e33c31d4f9deeeebe6e7651f96423821a2baba`
 - generated view: listed, not counted
 - cited in: record TFQ-1028
 - counts toward the grade: no
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_fq_core_and_k23_duality_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:c8f020f9abf33d6d86e8630fd8f9d3da0bb1db91835d6dfcbe56cfa4709cad7e::Pairing`
+- `external:sha256:c8f020f9abf33d6d86e8630fd8f9d3da0bb1db91835d6dfcbe56cfa4709cad7e:3`
 
 ## Routes
 

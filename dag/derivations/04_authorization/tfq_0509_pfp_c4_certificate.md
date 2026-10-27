@@ -36,11 +36,11 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean statement of the C4 optimum`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs::PromptCochainEvaluator` (private upstream source, not in this repository)
+- `external:sha256:c324dc40d52818d23c350f65d7713acab9e81db6593ffcd6dd904086069807bd::PromptCochainEvaluator` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_pfp/infrastructure/finite_qm_cochain_judge.py::NativeCochainJudge` (private upstream source, not in this repository)
-- `omega_engine_pfp/tests/finite_qm_workflow/test_finite_qm_reference_workflow.py::test_native_certificate_positive_and_decisive_mutations` (private upstream source, not in this repository)
+- `external:sha256:669f33dced65b7f88d61dd17f9e7876f65c8ae044ba03c38020d04aa36f18a37::test_native_certificate_positive_and_decisive_mutations` (private upstream source, not in this repository)
+- `external:sha256:a0e1b641bd377518bac80db7c24ee5c8850a369402bb5e6ca1c741fc5fcddae6::NativeCochainJudge` (private upstream source, not in this repository)
 
 ---
 
@@ -53,6 +53,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_pfp/fixtures/finite_qm_workflow/c4_public_input.json:1-8`
-  - `omega_engine_education/documentation/004_oepfp/levels/level_finite_qm_certificate_walkthrough.md:84-93`
-  - `omega_engine_product_planning_office/plans/review_remediation/evidence/batch_13/c4_native_actual.json:174`
+  - `external:sha256:bacfa8ca0bcf63778acf28f60ecb84985b20b7332d38eebb7212d9008b08246c:1-8`
+  - `external:sha256:dbfd225f093e2e37d27cf508e9437092906353b692249f8e65ed1faac61c7516:84-93`
+  - `external:sha256:3512168b69694d721f7878accd7b9fb9a72493e3219e36b231bff25c485f4cb9:174`

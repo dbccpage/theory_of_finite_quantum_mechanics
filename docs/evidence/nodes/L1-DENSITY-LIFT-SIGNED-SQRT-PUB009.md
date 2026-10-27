@@ -71,20 +71,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/ConditionalDensityLift/Xi.lean`
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_functional/src/xi.rs`
-
-- file: `omega_engine/crates_rs/omega_functional/src/xi.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md](../../../dag/derivations/07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md)
@@ -93,12 +79,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0355 (shared)
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/009_conditional_density_lift_and_dual_witness_xi_functional/density_lift.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/009_conditional_density_lift_and_dual_witness_xi_functional/density_lift.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:39b240b2592290928123eb7f457c8e0ceacfb513a59042eba77418841a6bdb37`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_l1_sector_weights_and_density_lift_witness`
+- `external:sha256:ee8cc328a4002a16738b268758f63f60c3ce2d23632ab39a6cd65382cd457c2f::DensityLift`
+- `external:sha256:ee8cc328a4002a16738b268758f63f60c3ce2d23632ab39a6cd65382cd457c2f::XiResult`
 
 ## Routes
 

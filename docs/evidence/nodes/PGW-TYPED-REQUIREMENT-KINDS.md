@@ -97,16 +97,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0489_typed_requirement_kinds.md`
 
 - file: [dag/derivations/02_genesis/tfq_0489_typed_requirement_kinds.md](../../../dag/derivations/02_genesis/tfq_0489_typed_requirement_kinds.md)
-- sha256 (`lf-normalised`): `c8d6c95254a2469a83135beea2c2f54f9f4f4ffb64494ece61d8b48c2d968048`
+- sha256 (`lf-normalised`): `f1e641148537e86f70794ec9adbb1e023e6e6eb3f6bcb753de765e1069028eae`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0489
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md`
-
-- file: `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
@@ -115,6 +108,7 @@ Named by the node; not in this repository and not checked here.
 
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_stake/rules.py::StakeRule`
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_stake/rules.py::demands`
+- `external:sha256:0d098004a566c40656af6035d6e66ff13f7e873b11966677df080686a1b29cf9:1100`
 
 ## Absences recorded by the TFQ records
 

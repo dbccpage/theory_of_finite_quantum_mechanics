@@ -59,4 +59,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/claim_ledger.md:50`
   - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/twentysecond/claim_ledger.md:53`
-  - `omega_engine_education/documentation/005_oegenong/levels/level_19_round_r1_cancellation.md:47`
+  - `external:sha256:f016b739d1272d0f46037a65694f050bde85456ebe26cab5e029212bdbf8e34e:47`
