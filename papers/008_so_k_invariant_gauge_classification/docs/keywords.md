@@ -1,0 +1,12 @@
+- projection obstruction
+- SO(k) invariance
+- continuous rotational symmetry
+- Euclidean stalk
+- gauge rigidity
+- mixed norm
+- L1(E; L2) cochains
+- second-order cone programming
+- primal-dual quotient duality
+- cycle circulation
+- observer separation
+- Lean 4 formalization
