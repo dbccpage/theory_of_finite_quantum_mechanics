@@ -4,7 +4,7 @@ Stage: [CAUSAL_QFT](../stages/CAUSAL_QFT.md). Status: `IMPORTED_ASSUMPTION`. Evi
 
 ## Statement
 
-> Imported property: in a net of local algebras on Minkowski space with a translation action whose generators have positive spectrum (spectrum condition) and a vacuum vector, the vacuum is cyclic for every local algebra, and under further hypotheses separating for the algebra of a region with spacelike complement. The proof uses analytic continuation of translations, hence a continuous translation group and its generator (Stone theorem) on an infinite-dimensional Hilbert space. Both are open nodes of the repository. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) over any semiring R and for any dimensions dA, dB (even when dA \< dB), if Fin dA is inhabited then CyclicForA Omega implies SeparatingForAc Omega via matrix associativity (X * Omega) * Y = X * (Omega * Y), so any nonzero right-kernel vector or identically zero column precludes cyclicity even when dA \< dB; (2) discharging the open finite items of TFQ-2107, none of |000\>, |GHZ_3\>, or |W_3\> is cyclic on any single site (s in {0, 1, 2}), |000\> has neither a left inverse nor cyclicity on any pair of sites while |GHZ_3\> and |W_3\> are both cyclic and separating on every pair of sites, all three states have full complementary rank 1 and are cyclic on the full 3-site algebra, and across the 4-qubit 2+2 bipartition neither |0000\> nor |GHZ_4\> is cyclic whereas the 2-Bell-pair cluster state has full complementary rank 4 and is both cyclic and separating; and (3) on a finite N-site ring, cyclicShift N aliases with period N, translation-invariant constant vectors have zero discrete momentum difference, and the translation-invariant 3-qubit product vacuum |000\> fails cyclicity on every proper subsystem.
+> Imported property: in a net of local algebras on Minkowski space with a translation action whose generators have positive spectrum (spectrum condition) and a vacuum vector, the vacuum is cyclic for every local algebra, and under further hypotheses separating for the algebra of a region with spacelike complement. The proof uses analytic continuation of translations, hence a continuous translation group and its generator (Stone theorem) on an infinite-dimensional Hilbert space. Both are open nodes of the repository.
 
 ## Grade
 
@@ -29,7 +29,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-The inputs of the property are the continuum Hilbert lift and the Stone theorem, which the repository records as open. The gap route below lists them.
+The inputs of the property are the continuum Hilbert lift and the Stone theorem, which the repository records as open. The gap route below lists them. Checked slice, status unchanged. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) over any semiring R and for any dimensions dA, dB (even when dA \< dB), if Fin dA is inhabited then CyclicForA Omega implies SeparatingForAc Omega via matrix associativity (X * Omega) * Y = X * (Omega * Y), so any nonzero right-kernel vector or identically zero column precludes cyclicity even when dA \< dB; (2) discharging the open finite items of TFQ-2107, none of |000\>, |GHZ_3\>, or |W_3\> is cyclic on any single site (s in {0, 1, 2}), |000\> has neither a left inverse nor cyclicity on any pair of sites while |GHZ_3\> and |W_3\> are both cyclic and separating on every pair of sites, all three states have full complementary rank 1 and are cyclic on the full 3-site algebra, and across the 4-qubit 2+2 bipartition neither |0000\> nor |GHZ_4\> is cyclic whereas the 2-Bell-pair cluster state has full complementary rank 4 and is both cyclic and separating; and (3) on a finite N-site ring, cyclicShift N aliases with period N, translation-invariant constant vectors have zero discrete momentum difference, and the translation-invariant 3-qubit product vacuum |000\> fails cyclicity on every proper subsystem.
 
 ## Source status
 
@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2106_cqft_reeh_schlieder_theorem_import.md`
 
 - file: [dag/derivations/31_causal_qft/tfq_2106_cqft_reeh_schlieder_theorem_import.md](../../../dag/derivations/31_causal_qft/tfq_2106_cqft_reeh_schlieder_theorem_import.md)
-- sha256 (`lf-normalised`): `2078df707d6e398d567d5e620f5630411dc0d80b574f60bd7d287e875e412630`
+- sha256 (`lf-normalised`): `bf593a7c7aa27b7049de2c2fac693446fcc56d5948c1abe50fedfe3e324ef525`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2106
 - counts toward the grade: no

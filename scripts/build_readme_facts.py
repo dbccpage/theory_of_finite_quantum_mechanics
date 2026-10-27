@@ -33,6 +33,10 @@ ALLOWED_AXIOMS = ("propext", "Classical.choice", "Quot.sound")
 SCOPE_EFFECTS = ("consistent", "caveat_added", "statement_narrowed", "status_lowered")
 # Nodes named in the README text; their stage and status are read from the DAG.
 NAMED_NODES = (
+    "FQ-CABELLO-NO-INTEGER-FRAME",
+    "FQ-CONTEXTUALITY-CECH-F2",
+    "FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY",
+    "FQ-TENSOR-LU-RIVAL-EXCLUSION",
     "FQ-GAP-BORN-UNIQUENESS-GLEASON",
     "FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION",
     "FQ-GAP-CONTINUUM-HILBERT-LIFT",

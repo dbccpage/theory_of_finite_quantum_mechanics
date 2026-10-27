@@ -4,7 +4,7 @@ Stage: [GENESIS](../stages/GENESIS.md). Status: `OPEN`. Evidence grade: **E3**. 
 
 ## Statement
 
-> No floor proof exists for the count of declared inputs (D10, H-1); the count stays two. Continuation attempt two found, at its declared bounds (fifteen rounds, a node guard of 250 per run, growth below four data, two items) and under its literal reading of carrying forward, four engines that carry the grammar forward declaring the stake and not the stream (SD-R-11), and calls this neither a floor proof nor a reduction outside those bounds. The completion-gate clause admits two readings of these bounded one-input carriers and was frozen as NOT_ESTABLISHED; whether the four carry forward past the bounds is OPEN (H-1, which needs the responder in Lean). Narrowed in Lean 4 to two named inputs, stake and stream, and four carriers that each declare the stake and not the stream. The named list has length 2. Each of the four carriers has declared count 1, and 1 is below 2. The reading that every one of these four has count at least 2 is false. The reading that one of them has count 1 is true. The declared numerals are 15 rounds, a node guard of 250, a data bound of 4, and an item bound of 2. A carrier that declares neither input has count 0 and is not one of the four. These four carriers are not a floor for every later carrier, and the attempt-two search is not replayed. AuthorityEffect is None.
+> No floor proof exists for the count of declared inputs (D10, H-1); the count stays two. Continuation attempt two found, at its declared bounds (fifteen rounds, a node guard of 250 per run, growth below four data, two items) and under its literal reading of carrying forward, four engines that carry the grammar forward declaring the stake and not the stream (SD-R-11), and calls this neither a floor proof nor a reduction outside those bounds. The completion-gate clause admits two readings of these bounded one-input carriers and was frozen as NOT_ESTABLISHED; whether the four carry forward past the bounds is OPEN (H-1, which needs the responder in Lean).
 
 ## Grade
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Open; the bounded one-input carriers are a computation at declared bounds, and the clause's other reading was left to the author, who approved the freeze without a separate ruling. This file checks four carriers on the two names stake and stream: each declares the stake only, so the count is 1, below 2. The numerals 15, 250, 4, and 2 are recorded and are not a search. A floor for every carrier, a reduction past these four, and the attempt-two replay stay open.
+Open; the bounded one-input carriers are a computation at declared bounds, and the clause's other reading was left to the author, who approved the freeze without a separate ruling. This file checks four carriers on the two names stake and stream: each declares the stake only, so the count is 1, below 2. The numerals 15, 250, 4, and 2 are recorded and are not a search. A floor for every carrier, a reduction past these four, and the attempt-two replay stay open. Checked slice, status unchanged. Narrowed in Lean 4 to two named inputs, stake and stream, and four carriers that each declare the stake and not the stream. The named list has length 2. Each of the four carriers has declared count 1, and 1 is below 2. The reading that every one of these four has count at least 2 is false. The reading that one of them has count 1 is true. The declared numerals are 15 rounds, a node guard of 250, a data bound of 4, and an item bound of 2. A carrier that declares neither input has count 0 and is not one of the four. These four carriers are not a floor for every later carrier, and the attempt-two search is not replayed. AuthorityEffect is None.
 
 ## Source status
 
@@ -97,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0498_declared_input_floor.md`
 
 - file: [dag/derivations/02_genesis/tfq_0498_declared_input_floor.md](../../../dag/derivations/02_genesis/tfq_0498_declared_input_floor.md)
-- sha256 (`lf-normalised`): `a3f064981aca41a66f8d9fbc4930cfa2d978b47f51cfef554e5704f757ce8e9d`
+- sha256 (`lf-normalised`): `b152b2cea00ac9d42a1884a54bc99533f03d8cb0eefe967306388b8b8fa1f10c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0498
 - counts toward the grade: no

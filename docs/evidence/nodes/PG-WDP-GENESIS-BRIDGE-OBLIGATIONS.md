@@ -4,7 +4,7 @@ Stage: [WDP](../stages/WDP.md). Status: `OPEN`. Evidence grade: **E3**. [Evidenc
 
 ## Statement
 
-> Five open bridge obligations (register rows GEN-WDP-O01..O05): O01 carrier/signature/law/challenge-generation floor; O02 source transition/admission systems to the WDP bridge by preservation/reflection maps; O03 dynamic carrier transport and higher fillers; O04 effect/probability, scalar and Hilbert choices; O05 governance refinement. Narrowed finite case, status left OPEN: on any finite window, symmetrised adjacency is false at a pair exactly when both directed adjacencies are false; on two vertices that symmetrisation is not a directed-step certificate, since edge01 and edge10 differ as directed steps and both have pair-defect true at (0,1); the identity on adjacency is a directed-step certificate on every finite window; and no positive integers p, q satisfy p * p = 2 * q * q, with the numerical case 1 * 1 = 1 and 2 * 1 * 1 = 2. O01, O03, O04, O05, and the existence of an O02 map from a source admission system stay open.
+> Five open bridge obligations (register rows GEN-WDP-O01..O05): O01 carrier/signature/law/challenge-generation floor; O02 source transition/admission systems to the WDP bridge by preservation/reflection maps; O03 dynamic carrier transport and higher fillers; O04 effect/probability, scalar and Hilbert choices; O05 governance refinement.
 
 ## Grade
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-O01..O05 remain open in the register. CampaignPgwWdpBridgeObligations records the symmetrised-adjacency candidate only: it is not a directed-step certificate, while the identity on adjacency is one, so O02 is not refuted. The integer relation p * p = 2 * q * q has no positive solution and is not the O04 scalar or Hilbert choice. No source admission system is given a preservation map.
+O01..O05 remain open in the register. CampaignPgwWdpBridgeObligations records the symmetrised-adjacency candidate only: it is not a directed-step certificate, while the identity on adjacency is one, so O02 is not refuted. The integer relation p * p = 2 * q * q has no positive solution and is not the O04 scalar or Hilbert choice. No source admission system is given a preservation map. Checked slice, status unchanged. Narrowed finite case, status left OPEN: on any finite window, symmetrised adjacency is false at a pair exactly when both directed adjacencies are false; on two vertices that symmetrisation is not a directed-step certificate, since edge01 and edge10 differ as directed steps and both have pair-defect true at (0,1); the identity on adjacency is a directed-step certificate on every finite window; and no positive integers p, q satisfy p * p = 2 * q * q, with the numerical case 1 * 1 = 1 and 2 * 1 * 1 = 2. O01, O03, O04, O05, and the existence of an O02 map from a source admission system stay open.
 
 ## Source status
 

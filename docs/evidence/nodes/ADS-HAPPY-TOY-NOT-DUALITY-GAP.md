@@ -4,7 +4,7 @@ Stage: [ADS_CFT](../stages/ADS_CFT.md). Status: `OPEN`. Evidence grade: **E3**. 
 
 ## Statement
 
-> No source read for this change derives AdS/CFT, or its continuum entropy formula, from a finite stabilizer-code tensor network. The HaPPY codes are discrete kinematic models of the bulk-to-boundary map on a hyperbolic tiling with no Lorentzian time, no dynamics, no gravitational action and no large-N limit. Narrowed in Lean 4 and an independent Python verifier to three exact non-equivalence fences: (1) every stabilizer reduced state has flat Renyi spectrum S_n / S_1 = 1, whereas a 2D CFT single interval has Calabrese-Cardy / Ryu-Takayanagi Renyi ratio cftRenyiFactor(n) = (1 + 1/n)/2, yielding a strictly positive defect ((n - 1)/(2n)) * S_1 \> 0 for all n \> 1 and S_1 \> 0; (2) on the 20-qubit boundary state of the 6-pentagon {5,4} HaPPY patch (with bulk legs fixed in |0_L\>), all 280 contiguous intervals of lengths 1..7 and 13..19 satisfy S(A) = mincut(A), whereas lengths 8, 9, 10, 11, 12 exhibit 5, 10, 10, 10, 5 strict Ryu-Takayanagi deficits (S(A) = mincut(A) - 1, summing to 40), including the explicit 5-fold rotational orbit start = 4*k + 2 at len = 8 and its complement len = 12 (S = 4 \< 5 = mincut); and (3) disconnected boundary regions exhibit discrete integer mutual-information jumps (0, 0, 3, 1 bits) while for nBulk \< nBdry the bulk code subspace 2^{nBulk} has strictly positive orthogonal codimension 2^{nBdry} - 2^{nBulk} \> 0 (30, 1048512, 33552384 for 1, 6, and 11 pentagons).
+> No source read for this change derives AdS/CFT, or its continuum entropy formula, from a finite stabilizer-code tensor network. The HaPPY codes are discrete kinematic models of the bulk-to-boundary map on a hyperbolic tiling with no Lorentzian time, no dynamics, no gravitational action and no large-N limit.
 
 ## Grade
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Recorded as an explicit non-claim and non-equivalence fence so that finite stabilizer-code checks are not read as evidence for continuum AdS/CFT; Lorentzian time evolution, non-flat entanglement spectra, sub-AdS locality, and continuum gravitational dynamics remain open.
+Recorded as an explicit non-claim and non-equivalence fence so that finite stabilizer-code checks are not read as evidence for continuum AdS/CFT; Lorentzian time evolution, non-flat entanglement spectra, sub-AdS locality, and continuum gravitational dynamics remain open. Checked slice, status unchanged. Narrowed in Lean 4 and an independent Python verifier to three exact non-equivalence fences: (1) every stabilizer reduced state has flat Renyi spectrum S_n / S_1 = 1, whereas a 2D CFT single interval has Calabrese-Cardy / Ryu-Takayanagi Renyi ratio cftRenyiFactor(n) = (1 + 1/n)/2, yielding a strictly positive defect ((n - 1)/(2n)) * S_1 \> 0 for all n \> 1 and S_1 \> 0; (2) on the 20-qubit boundary state of the 6-pentagon {5,4} HaPPY patch (with bulk legs fixed in |0_L\>), all 280 contiguous intervals of lengths 1..7 and 13..19 satisfy S(A) = mincut(A), whereas lengths 8, 9, 10, 11, 12 exhibit 5, 10, 10, 10, 5 strict Ryu-Takayanagi deficits (S(A) = mincut(A) - 1, summing to 40), including the explicit 5-fold rotational orbit start = 4*k + 2 at len = 8 and its complement len = 12 (S = 4 \< 5 = mincut); and (3) disconnected boundary regions exhibit discrete integer mutual-information jumps (0, 0, 3, 1 bits) while for nBulk \< nBdry the bulk code subspace 2^{nBulk} has strictly positive orthogonal codimension 2^{nBdry} - 2^{nBulk} \> 0 (30, 1048512, 33552384 for 1, 6, and 11 pentagons).
 
 ## Source status
 
@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md](../../../dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md)
-- sha256 (`lf-normalised`): `f2e4e8b8e39901816ec80749f95fd159f8afdafe015662d54936c8b6bbfb9b77`
+- sha256 (`lf-normalised`): `0d11da6c2b9ba79e59d4aa0bd2546eed745c6f9a0733c5664f267d348742c947`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2212
 - counts toward the grade: no
