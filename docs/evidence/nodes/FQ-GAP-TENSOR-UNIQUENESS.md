@@ -165,7 +165,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json`
 
 - file: [dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json](../../../dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json)
-- sha256 (`lf-normalised`): `d96ab7a985deaf93c28d73c0aae5ca1c5e174a12877bfb5d60b0541197127e18`
+- sha256 (`lf-normalised`): `d5c2ce6d0f8f44b64c52a6e3f02149de0a93d547fa0500cf7b3728c42f569abe`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -193,7 +193,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/tensor_countermodel_validation.json`
 
 - file: [dag/research/tensor_countermodel_validation.json](../../../dag/research/tensor_countermodel_validation.json)
-- sha256 (`lf-normalised`): `e35424a9476545aa2e50f799756f7f59878baf1552ee08d8d088c93f10d212e0`
+- sha256 (`lf-normalised`): `0ce69681c02a475317514921915c60e6a740d40fc8dbd4706b6f7a585ef55e07`
 - cited in: node.source
 - counts toward the grade: yes
 

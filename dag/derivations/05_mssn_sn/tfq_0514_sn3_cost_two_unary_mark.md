@@ -33,9 +33,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::cost1_insufficient_general`](../../../lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::mu2_unique`](../../../lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/MinimalityF.lean::mu2_unique_F`](../../../lean4/Imported/Genesis19l57g1/Derivation/MinimalityF.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::cost1_insufficient_general`](../../../lean4/Imported/GenesisDerivation/Derivation/Minimality.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::mu2_unique`](../../../lean4/Imported/GenesisDerivation/Derivation/Minimality.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean::mu2_unique_F`](../../../lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs::min_responses`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs)

@@ -18,7 +18,7 @@ open ResidualDensityBridge
 
 theorem densityDiagnostics_no_authority_promotion
     {Alpha : Type u} {Beta : Type v} {Rho : Type w} {Authority : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (authority : Alpha -> Authority)
     (hDensity : QuotientCompatible P density)
     {x y : Alpha} (hxy : P.ZeroRel x y)

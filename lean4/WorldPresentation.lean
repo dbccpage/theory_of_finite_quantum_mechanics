@@ -20,7 +20,7 @@ structure Presentation where
   stage : Nat
   carrierSize : Nat
   differenceSize : Nat
-  primitive : OmegaCore.PrimitiveDifference (Fin carrierSize) (Fin differenceSize)
+  primitive : ObstructionCore.PrimitiveDifference (Fin carrierSize) (Fin differenceSize)
   admissible : Fin carrierSize -> Prop
   Repair : Type
   applyRepair : Repair -> Fin carrierSize -> Fin carrierSize

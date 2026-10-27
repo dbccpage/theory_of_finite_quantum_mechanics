@@ -26,7 +26,7 @@ AuthorityEffect: None.
   `InertDiamond.inscription_does_not_determine_coproduct` is the existing
   independence result; it is not re-proved here.
 * `AdmissionFloor.ExhibitedCut`.
-* `OmegaCore.CellGrammar.ChainGrammar`.
+* `ObstructionCore.CellGrammar.ChainGrammar`.
 * `FiniteCochain.d0`, `FiniteCochain.d1`, `FiniteCochain.d1_d0_zero`.
 * `PregenConstructive.recon` and `ChainRetraction` were read and are not
   imported. The first reconstructs a listed report. The second is a chain-map
@@ -528,13 +528,13 @@ theorem requirement_does_not_determine_cut :
       cutOneWay.relation ≠ cutSymmetric.relation :=
   ⟨rfl, cuts_differ⟩
 
-def chainToZero : OmegaCore.CellGrammar.ChainGrammar (Fin 2) (Fin 1) Empty where
+def chainToZero : ObstructionCore.CellGrammar.ChainGrammar (Fin 2) (Fin 1) Empty where
   zero0 := 0
   boundary1 := fun _ => 0
   boundary2 := Empty.elim
   boundarySquare := fun face => nomatch face
 
-def chainToOne : OmegaCore.CellGrammar.ChainGrammar (Fin 2) (Fin 1) Empty where
+def chainToOne : ObstructionCore.CellGrammar.ChainGrammar (Fin 2) (Fin 1) Empty where
   zero0 := 0
   boundary1 := fun _ => 1
   boundary2 := Empty.elim

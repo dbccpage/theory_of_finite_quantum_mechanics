@@ -36,11 +36,11 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/OeMssn/MssnObstructionDetector.lean::circulation_flux_obstruction`](../../../lean4/Imported/OeMssn/MssnObstructionDetector.lean)
-- [`lean4/Imported/OeMssn/MssnObstructionDetector.lean::cycle_circulation_coboundary_vanishes`](../../../lean4/Imported/OeMssn/MssnObstructionDetector.lean)
-- [`lean4/Imported/OeMssn/MssnObstructionDetector.lean::no_scalar_potential_for_unit_flux`](../../../lean4/Imported/OeMssn/MssnObstructionDetector.lean)
-- [`lean4/Imported/OeMssn/MssnObstructionDetector.lean::obstP_factors`](../../../lean4/Imported/OeMssn/MssnObstructionDetector.lean)
-- [`lean4/Imported/OeMssn/MssnObstructionDetector.lean::obst_of_gates`](../../../lean4/Imported/OeMssn/MssnObstructionDetector.lean)
+- [`lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean::circulation_flux_obstruction`](../../../lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean)
+- [`lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean::cycle_circulation_coboundary_vanishes`](../../../lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean)
+- [`lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean::no_scalar_potential_for_unit_flux`](../../../lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean)
+- [`lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean::obstP_factors`](../../../lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean)
+- [`lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean::obst_of_gates`](../../../lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux` (private upstream source, not in this repository)
@@ -60,6 +60,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `lean4/Imported/OeMssn/MssnObstructionDetector.lean:13-18`
-  - `lean4/Imported/OeMssn/MssnObstructionDetector.lean:132-133`
+  - `lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean:13-18`
+  - `lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean:132-133`
   - `omega_engine_education/documentation/003_oemssn/lean4/README.md:11`

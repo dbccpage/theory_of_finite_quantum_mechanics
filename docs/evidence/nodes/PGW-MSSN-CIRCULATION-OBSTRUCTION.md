@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/Imported/OeMssn/MssnObstructionDetector.lean`
+### Lean: `lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean`
 
-- file: [lean4/Imported/OeMssn/MssnObstructionDetector.lean](../../../lean4/Imported/OeMssn/MssnObstructionDetector.lean)
-- sha256 (`bytes`): `8356b58bc10f92084ea96eeac89ca48e5979b5e911a339157caf1224ef9f6299`
+- file: [lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean](../../../lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean)
+- sha256 (`bytes`): `4c4d0d2348ce89a0caa80aa4860c8fbcd3a038c8a4a2bbcc55a4e58bb609894a`
 - cited in: node.lean, node.source, record TFQ-0534
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.OeMssn.MssnObstructionDetector`): recorded sha256 `8356b58bc10f92084ea96eeac89ca48e5979b5e911a339157caf1224ef9f6299` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/OeMssn/MssnObstructionDetector.lean`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.MinimalSymbolSystems.MssnObstructionDetector`): recorded sha256 `4c4d0d2348ce89a0caa80aa4860c8fbcd3a038c8a4a2bbcc55a4e58bb609894a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0534_mssn_circulation_obstruction.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0534_mssn_circulation_obstruction.md](../../../dag/derivations/05_mssn_sn/tfq_0534_mssn_circulation_obstruction.md)
-- sha256 (`lf-normalised`): `a9da3e7dbede048fd6f4c0372a1fe858617818ee6f8c1be1389523f02b8c5f1a`
+- sha256 (`lf-normalised`): `8430037eb17ce8e2e9c87ee3f467530f90cb9c342dc75c0fe1bb29808985d822`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0534
 - counts toward the grade: no

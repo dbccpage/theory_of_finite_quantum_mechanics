@@ -19,7 +19,7 @@ namespace GOMC
 
 universe u v w z
 
-open OmegaCore
+open ObstructionCore
 
 /--
 A GOMC Diagnostic Representation is a map from the primitive space `Alpha`

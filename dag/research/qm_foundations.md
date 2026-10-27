@@ -13,7 +13,7 @@ The foundational architecture investigates how quantum mechanics can be construc
 ### 1.1 The Rung-by-Rung Analysis
 
 1. **Primitive Difference (Rung 1):**  
-   - Formalized in `lean4/PrimitiveDifference.lean` via the abstract `OmegaCore.PrimitiveDifference` structure and concrete integer difference kernel $D(x, y) = y - x$.
+   - Formalized in `lean4/PrimitiveDifference.lean` via the abstract `ObstructionCore.PrimitiveDifference` structure and concrete integer difference kernel $D(x, y) = y - x$.
    - Verified properties: reflexivity (`diff_self`), symmetry/antisymmetry (`diff_antisymm`), and the 1-cocycle condition (`diff_cocycle`).
    - Cochain differential $\delta^0 \alpha(u, v) = \alpha(v) - \alpha(u)$ on finite graph complexes verified in `FiniteCochain.lean`.
 

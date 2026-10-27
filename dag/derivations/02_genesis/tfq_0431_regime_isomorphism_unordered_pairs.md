@@ -36,9 +36,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/IsoCanon.lean::sortPair_comm`](../../../lean4/Imported/Genesis19l57g1/Derivation/IsoCanon.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/IsoCanon.lean::sortPair_eq_minmax`](../../../lean4/Imported/Genesis19l57g1/Derivation/IsoCanon.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::Iso`](../../../lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/IsoCanon.lean::sortPair_comm`](../../../lean4/Imported/GenesisDerivation/Derivation/IsoCanon.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/IsoCanon.lean::sortPair_eq_minmax`](../../../lean4/Imported/GenesisDerivation/Derivation/IsoCanon.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::Iso`](../../../lean4/Imported/GenesisDerivation/Derivation/Minimality.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs::find_iso`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs)
@@ -61,4 +61,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:206-212`
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:168-173`
-  - `lean4/Imported/Genesis19l57g1/Derivation/IsoCanon.lean:44-47`
+  - `lean4/Imported/GenesisDerivation/Derivation/IsoCanon.lean:44-47`

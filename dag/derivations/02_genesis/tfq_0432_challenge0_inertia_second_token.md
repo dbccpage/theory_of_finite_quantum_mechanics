@@ -33,10 +33,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean::second_token_required`](../../../lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean::single_token_carrier_bound`](../../../lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::genesis_underivable`](../../../lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::underivable_of_empty`](../../../lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Bridge.lean::second_token_required`](../../../lean4/Imported/GenesisDerivation/Derivation/Bridge.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Bridge.lean::single_token_carrier_bound`](../../../lean4/Imported/GenesisDerivation/Derivation/Bridge.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::genesis_underivable`](../../../lean4/Imported/GenesisDerivation/Derivation/Inertia.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::underivable_of_empty`](../../../lean4/Imported/GenesisDerivation/Derivation/Inertia.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/reading.rs::challenge0_generates_nothing`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/reading.rs)
@@ -57,4 +57,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:203-217`
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:218-224`
-  - `lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean:155-157`
+  - `lean4/Imported/GenesisDerivation/Derivation/Bridge.lean:155-157`

@@ -113,10 +113,10 @@ theorem local_green_global_residual
 /-- The same off-diagonal witness as a shared Primitive Difference residual. -/
 theorem offdiagonal_primitive_difference_nonzero
     (D : DecoherenceMatrix2x2) (h : D.d12 ≠ 0) :
-    OmegaCore.gellMannDecoherencePrimitiveDifference
+    ObstructionCore.gellMannDecoherencePrimitiveDifference
         (totalProbability D) (diagonalSum D) ≠ 0 := by
   dsimp [totalProbability, diagonalSum, globalWeight, localDiagonalWeight]
-  exact OmegaCore.decoherence_nonzero_of_offdiagonal_weight D.d11 D.d12 D.d22 h
+  exact ObstructionCore.decoherence_nonzero_of_offdiagonal_weight D.d11 D.d12 D.d22 h
 
 end DecoherenceMatrix2x2
 

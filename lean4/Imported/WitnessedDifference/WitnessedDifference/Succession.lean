@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Succession.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 5713213024bcd74fdadfb0dd0895b5efb13b35cd198e6a0328f9ad83f0c93223 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.WitnessedDifference.WitnessedDifference.Succession

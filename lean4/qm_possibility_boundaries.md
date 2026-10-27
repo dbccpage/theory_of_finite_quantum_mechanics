@@ -2,7 +2,7 @@
 Track-A boundary firewalls (papers 22–25) — Deutsch / Everett / Wolfram.
 
 Three scoped typed non-implications, each a special case of the general firewall
-`OmegaCosmology.Primitives.AuthorityNonPromotion` (LT-A): *formal coherence does not by itself
+`FiniteCosmology.Primitives.AuthorityNonPromotion` (LT-A): *formal coherence does not by itself
 construct world/physical authority*. Each is modelled (as in LT-G) by a situation
 carrying the formal property and, **independently**, the authority-bearing evidence;
 the formal property never forces the evidence.
@@ -78,7 +78,7 @@ The bare `StructureDerived ⇏ IsAuth` firewall, proved the genuine way: two
 INDEPENDENT decidable atoms plus a witness situation that IS structure-derived
 but is NOT authority. This is a real countermodel, exactly like the three
 per-program boundaries above — and unlike the vacuously-gated lemma in
-`OmegaCosmology/Primitives/AuthorityNonPromotion.lean`
+`FiniteCosmology/Primitives/AuthorityNonPromotion.lean`
 (`no_formal_to_authority_when_no_terminalizer`), which gates on the never-true
 hypothesis `TerminalizerEvidence → False` and therefore proves nothing about the
 actual model. Here `structure_not_auth` exhibits the gap directly.

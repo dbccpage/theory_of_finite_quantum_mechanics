@@ -1,7 +1,7 @@
 
 
 
-namespace OmegaCore.SolverFrontier
+namespace ObstructionCore.SolverFrontier
 
 structure Candidate (Plan Cost : Type) where
   plan : Plan
@@ -99,7 +99,7 @@ theorem coMinima_pair_retained {Plan Cost : Type}
 #print axioms all_verified_coMinima_retained
 #print axioms coMinima_pair_retained
 
-end OmegaCore.SolverFrontier
+end ObstructionCore.SolverFrontier
 
 private def l5aProvenance : String :=
   "Origin: lean4/SolverFrontier.lean Claim: mem_selectFrontier_iff AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/Imported/OeWdp/GenesisIncidence.lean`
+### Lean: `lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean`
 
-- file: [lean4/Imported/OeWdp/GenesisIncidence.lean](../../../lean4/Imported/OeWdp/GenesisIncidence.lean)
-- sha256 (`bytes`): `ea27798ed2765ce05c4ee2b822efd380aaf2948486db66fdc0d42b2ad63797c9`
+- file: [lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean](../../../lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean)
+- sha256 (`bytes`): `20095dfcd17780068df8483ca930df9e39504a4d5b6dbc11293abf514b921f35`
 - cited in: node.lean, record TFQ-0460
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.OeWdp.GenesisIncidence`): recorded sha256 `ea27798ed2765ce05c4ee2b822efd380aaf2948486db66fdc0d42b2ad63797c9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/OeWdp/GenesisIncidence.lean`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.WitnessedDifferenceProgramme.GenesisIncidence`): recorded sha256 `20095dfcd17780068df8483ca930df9e39504a4d5b6dbc11293abf514b921f35` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -84,7 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0460_incidence_construction_betti.md`
 
 - file: [dag/derivations/02_genesis/tfq_0460_incidence_construction_betti.md](../../../dag/derivations/02_genesis/tfq_0460_incidence_construction_betti.md)
-- sha256 (`lf-normalised`): `75a4997caa1813d853837b41a12a6959c6eb4e9e8afcb823b10fe16e28684be8`
+- sha256 (`lf-normalised`): `75309875315a3f6c894df88af464d3e6d675ed4d66ae838cc273e02bea636293`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0460
 - counts toward the grade: no

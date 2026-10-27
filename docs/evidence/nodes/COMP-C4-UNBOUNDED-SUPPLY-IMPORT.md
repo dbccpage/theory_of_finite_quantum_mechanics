@@ -62,7 +62,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0487_endogenous_demands_exogenous_payments.md`
 
 - file: [dag/derivations/02_genesis/tfq_0487_endogenous_demands_exogenous_payments.md](../../../dag/derivations/02_genesis/tfq_0487_endogenous_demands_exogenous_payments.md)
-- sha256 (`lf-normalised`): `f2e3905c524913cbca8063bd249f14844dffa9f0f08d0ef6cb5c7ea7c226702b`
+- sha256 (`lf-normalised`): `36ce49904f591031a01b91b73fcc388d7906ed1c3ce0ca8b12c46e784f9928b4`
 - generated view: listed, not counted
 - cited in: node.source
 - counts toward the grade: no

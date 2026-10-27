@@ -117,22 +117,22 @@ theorem finiteDomain_density_traceMass_q_bridge_not_authority_certificate
       PaperQF002.totalWeight mass ≠
         PaperQF002.totalWeight (fun e => a * mass e)) :
     (∃ F :
-        (OmegaCore.PrimitiveDifferenceFinite.restrict
+        (ObstructionCore.PrimitiveDifferenceFinite.restrict
           (PaperQF002.scalarRayPrimitiveDifference (Γ := E))
           (PaperQF003.twoScaleDomain (E := E) a mass)).ResidualQuotient ->
           (E -> ℚ),
       ∀ c : {w : E -> ℚ // PaperQF003.twoScaleDomain (E := E) a mass w},
-        F ((OmegaCore.PrimitiveDifferenceFinite.restrict
+        F ((ObstructionCore.PrimitiveDifferenceFinite.restrict
             (PaperQF002.scalarRayPrimitiveDifference (Γ := E))
             (PaperQF003.twoScaleDomain (E := E) a mass)).classOf c) =
           PaperQF003.densityLift c.val) ∧
       ¬ (∃ F :
-        (OmegaCore.PrimitiveDifferenceFinite.restrict
+        (ObstructionCore.PrimitiveDifferenceFinite.restrict
           (PaperQF002.scalarRayPrimitiveDifference (Γ := E))
           (PaperQF003.twoScaleDomain (E := E) a mass)).ResidualQuotient ->
           ((E -> ℚ) × ℚ),
       ∀ c : {w : E -> ℚ // PaperQF003.twoScaleDomain (E := E) a mass w},
-        F ((OmegaCore.PrimitiveDifferenceFinite.restrict
+        F ((ObstructionCore.PrimitiveDifferenceFinite.restrict
             (PaperQF002.scalarRayPrimitiveDifference (Γ := E))
             (PaperQF003.twoScaleDomain (E := E) a mass)).classOf c) =
           (PaperQF003.densityLift c.val, PaperQF002.totalWeight c.val)) := by
@@ -142,12 +142,12 @@ theorem finiteDomain_density_traceMass_q_bridge_not_authority_certificate
   let scaled : {w : E -> ℚ // S w} := ⟨fun e => a * mass e, Or.inr rfl⟩
   have hDensity :
       ResidualDensityBridge.QuotientCompatible
-        (OmegaCore.PrimitiveDifferenceFinite.restrict P S)
+        (ObstructionCore.PrimitiveDifferenceFinite.restrict P S)
         (fun c : {w : E -> ℚ // S w} => PaperQF003.densityLift c.val) := by
     intro x y hxy
     exact PaperQF002.directProb_invariantCongruent_scalarRay x.val y.val hxy
   have hxy :
-      (OmegaCore.PrimitiveDifferenceFinite.restrict P S).ZeroRel
+      (ObstructionCore.PrimitiveDifferenceFinite.restrict P S).ZeroRel
         base scaled := by
     exact PaperQF003.scalarRay_zeroRel_scaled ha mass
   have hne :
@@ -156,7 +156,7 @@ theorem finiteDomain_density_traceMass_q_bridge_not_authority_certificate
     simpa [base, scaled] using hMass
   have hBridge :=
     QLevelLGGRBridge.density_q_bridge_not_authority_certificate
-      (OmegaCore.PrimitiveDifferenceFinite.restrict P S)
+      (ObstructionCore.PrimitiveDifferenceFinite.restrict P S)
       (fun c : {w : E -> ℚ // S w} => PaperQF003.densityLift c.val)
       (fun c : {w : E -> ℚ // S w} => PaperQF002.totalWeight c.val)
       hDensity
@@ -218,22 +218,22 @@ theorem finiteDomain_density_traceMass_readout_q_bridge_not_authority_certificat
       readout (PaperQF002.totalWeight mass) ≠
         readout (PaperQF002.totalWeight (fun e => a * mass e))) :
     (∃ F :
-        (OmegaCore.PrimitiveDifferenceFinite.restrict
+        (ObstructionCore.PrimitiveDifferenceFinite.restrict
           (PaperQF002.scalarRayPrimitiveDifference (Γ := E))
           (PaperQF003.twoScaleDomain (E := E) a mass)).ResidualQuotient ->
           (E -> ℚ),
       ∀ c : {w : E -> ℚ // PaperQF003.twoScaleDomain (E := E) a mass w},
-        F ((OmegaCore.PrimitiveDifferenceFinite.restrict
+        F ((ObstructionCore.PrimitiveDifferenceFinite.restrict
             (PaperQF002.scalarRayPrimitiveDifference (Γ := E))
             (PaperQF003.twoScaleDomain (E := E) a mass)).classOf c) =
           PaperQF003.densityLift c.val) ∧
       ¬ (∃ F :
-        (OmegaCore.PrimitiveDifferenceFinite.restrict
+        (ObstructionCore.PrimitiveDifferenceFinite.restrict
           (PaperQF002.scalarRayPrimitiveDifference (Γ := E))
           (PaperQF003.twoScaleDomain (E := E) a mass)).ResidualQuotient ->
           ((E -> ℚ) × Readout),
       ∀ c : {w : E -> ℚ // PaperQF003.twoScaleDomain (E := E) a mass w},
-        F ((OmegaCore.PrimitiveDifferenceFinite.restrict
+        F ((ObstructionCore.PrimitiveDifferenceFinite.restrict
             (PaperQF002.scalarRayPrimitiveDifference (Γ := E))
             (PaperQF003.twoScaleDomain (E := E) a mass)).classOf c) =
           (PaperQF003.densityLift c.val,
@@ -244,12 +244,12 @@ theorem finiteDomain_density_traceMass_readout_q_bridge_not_authority_certificat
   let scaled : {w : E -> ℚ // S w} := ⟨fun e => a * mass e, Or.inr rfl⟩
   have hDensity :
       ResidualDensityBridge.QuotientCompatible
-        (OmegaCore.PrimitiveDifferenceFinite.restrict P S)
+        (ObstructionCore.PrimitiveDifferenceFinite.restrict P S)
         (fun c : {w : E -> ℚ // S w} => PaperQF003.densityLift c.val) := by
     intro x y hxy
     exact PaperQF002.directProb_invariantCongruent_scalarRay x.val y.val hxy
   have hxy :
-      (OmegaCore.PrimitiveDifferenceFinite.restrict P S).ZeroRel
+      (ObstructionCore.PrimitiveDifferenceFinite.restrict P S).ZeroRel
         base scaled := by
     exact PaperQF003.scalarRay_zeroRel_scaled ha mass
   have hne :
@@ -260,7 +260,7 @@ theorem finiteDomain_density_traceMass_readout_q_bridge_not_authority_certificat
     simpa [base, scaled] using hReadout
   have hBridge :=
     QLevelLGGRBridge.density_q_bridge_not_authority_certificate
-      (OmegaCore.PrimitiveDifferenceFinite.restrict P S)
+      (ObstructionCore.PrimitiveDifferenceFinite.restrict P S)
       (fun c : {w : E -> ℚ // S w} => PaperQF003.densityLift c.val)
       (fun c : {w : E -> ℚ // S w} =>
         readout (PaperQF002.totalWeight c.val))
@@ -313,22 +313,22 @@ theorem finiteDomain_density_dashboard_traceMass_readout_epk_not_authority_certi
       traceReadout (PaperQF002.totalWeight mass) ≠
         traceReadout (PaperQF002.totalWeight (fun e => a * mass e))) :
     (∃ F :
-        (OmegaCore.PrimitiveDifferenceFinite.restrict
+        (ObstructionCore.PrimitiveDifferenceFinite.restrict
           (PaperQF002.scalarRayPrimitiveDifference (Γ := E))
           (PaperQF003.twoScaleDomain (E := E) a mass)).ResidualQuotient ->
           (ι -> Local),
       ∀ c : {w : E -> ℚ // PaperQF003.twoScaleDomain (E := E) a mass w},
-        F ((OmegaCore.PrimitiveDifferenceFinite.restrict
+        F ((ObstructionCore.PrimitiveDifferenceFinite.restrict
             (PaperQF002.scalarRayPrimitiveDifference (Γ := E))
             (PaperQF003.twoScaleDomain (E := E) a mass)).classOf c) =
           (fun i => localReadout i (PaperQF003.densityLift c.val))) ∧
       ¬ (∃ F :
-        (OmegaCore.PrimitiveDifferenceFinite.restrict
+        (ObstructionCore.PrimitiveDifferenceFinite.restrict
           (PaperQF002.scalarRayPrimitiveDifference (Γ := E))
           (PaperQF003.twoScaleDomain (E := E) a mass)).ResidualQuotient ->
           ((ι -> Local) × Global),
       ∀ c : {w : E -> ℚ // PaperQF003.twoScaleDomain (E := E) a mass w},
-        F ((OmegaCore.PrimitiveDifferenceFinite.restrict
+        F ((ObstructionCore.PrimitiveDifferenceFinite.restrict
             (PaperQF002.scalarRayPrimitiveDifference (Γ := E))
             (PaperQF003.twoScaleDomain (E := E) a mass)).classOf c) =
           ((fun i => localReadout i (PaperQF003.densityLift c.val)),

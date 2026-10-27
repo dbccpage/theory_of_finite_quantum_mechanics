@@ -33,10 +33,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/OeWdp/GenesisIncidence.lean::cycle_incidence_eq`](../../../lean4/Imported/OeWdp/GenesisIncidence.lean)
-- [`lean4/Imported/OeWdp/GenesisIncidence.lean::cycle_rational_betti`](../../../lean4/Imported/OeWdp/GenesisIncidence.lean)
-- [`lean4/Imported/OeWdp/GenesisIncidence.lean::filled_incidence_eq`](../../../lean4/Imported/OeWdp/GenesisIncidence.lean)
-- [`lean4/Imported/OeWdp/GenesisIncidence.lean::filled_rational_betti`](../../../lean4/Imported/OeWdp/GenesisIncidence.lean)
+- [`lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean::cycle_incidence_eq`](../../../lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean)
+- [`lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean::cycle_rational_betti`](../../../lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean)
+- [`lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean::filled_incidence_eq`](../../../lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean)
+- [`lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean::filled_rational_betti`](../../../lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::cycle_construction` (private upstream source, not in this repository)

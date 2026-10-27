@@ -45,10 +45,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean`
 
 - file: [lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean)
-- sha256 (`bytes`): `c3cbbc5fac35e5044364dd95ee2180c4e1c5c924a63777b42831a7f8f613a1e7`
+- sha256 (`bytes`): `c9551ca491fb26fe0a6936a44fef4c5cd4da11454fe6e545b390cc76ca0b78c9`
 - cited in: node.lean, record TFQ-0551
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_wdp.json](../../../dag/research/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.Succession`): recorded sha256 `c3cbbc5fac35e5044364dd95ee2180c4e1c5c924a63777b42831a7f8f613a1e7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_wdp.json](../../../dag/research/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.Succession`): recorded sha256 `c9551ca491fb26fe0a6936a44fef4c5cd4da11454fe6e545b390cc76ca0b78c9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

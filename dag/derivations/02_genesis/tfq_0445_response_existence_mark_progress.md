@@ -33,8 +33,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::derivable_extend`](../../../lean4/Imported/Genesis19l57g1/Derivation/Progress.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::mark_progress`](../../../lean4/Imported/Genesis19l57g1/Derivation/Progress.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Progress.lean::derivable_extend`](../../../lean4/Imported/GenesisDerivation/Derivation/Progress.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Progress.lean::mark_progress`](../../../lean4/Imported/GenesisDerivation/Derivation/Progress.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust check of fresh-mark progress; the standalone replay checks it against the frozen Python model`

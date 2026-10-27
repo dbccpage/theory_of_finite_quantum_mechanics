@@ -60,5 +60,5 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:623-633`
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:626-629`
-  - `lean4/Imported/Genesis19l57g1/Derivation/Initiality.lean:49-52`
+  - `lean4/Imported/GenesisDerivation/Derivation/Initiality.lean:49-52`
   - `dag/derivations/independent/pgw-minimal-or-initial-refused.md:1`

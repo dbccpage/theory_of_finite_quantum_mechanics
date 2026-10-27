@@ -3,7 +3,7 @@ import PrimitiveDifference
 
 
 
-namespace OmegaCore.CochainWindow
+namespace ObstructionCore.CochainWindow
 
 structure AddCommGroupCarrier (C : Type) where
   zero : C
@@ -95,7 +95,7 @@ theorem active_closure_survives_every_repair
 #print axioms sector_trichotomy
 #print axioms active_closure_survives_every_repair
 
-end OmegaCore.CochainWindow
+end ObstructionCore.CochainWindow
 
 private def l5aProvenance : String :=
   "Origin: lean4/CochainWindow.lean Claim: AddCommGroupCarrier AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

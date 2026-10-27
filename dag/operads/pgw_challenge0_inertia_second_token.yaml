@@ -20,7 +20,7 @@ target:
   - dag/derivations/02_genesis/tfq_0432_challenge0_inertia_second_token.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:203-217
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:218-224
-  - lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean:155-157
+  - lean4/Imported/GenesisDerivation/Derivation/Bridge.lean:155-157
   paper_refs: []
   source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -39,7 +39,7 @@ operation_candidates:
   name: genesis
   line: 23
   signature_excerpt: 'def genesis : Regime'
-  source: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Inertia.lean
   repository: this_repository
   source_sha256: 9386f41cf6bbefae8ccb8fdae47f69a33140a0c45b3e6ca9a08f1e9596a922a7
   status: source_candidate_requires_semantic_review
@@ -47,7 +47,7 @@ operation_candidates:
   name: SingleTok
   line: 41
   signature_excerpt: 'def SingleTok (t0 : Nat) (e : TEvent) : Prop'
-  source: lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Bridge.lean
   repository: this_repository
   source_sha256: c6608bb88c7fcaf7c5d05e087c812033db60a3b3ee88fe28d209531279900f03
   status: source_candidate_requires_semantic_review
@@ -55,7 +55,7 @@ operation_candidates:
   name: AtMostTok
   line: 46
   signature_excerpt: 'def AtMostTok (t0 : Nat) (t : TRegime) : Prop'
-  source: lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Bridge.lean
   repository: this_repository
   source_sha256: c6608bb88c7fcaf7c5d05e087c812033db60a3b3ee88fe28d209531279900f03
   status: source_candidate_requires_semantic_review
@@ -64,7 +64,7 @@ relation_candidates:
   name: genesis_underivable
   line: 30
   signature_excerpt: 'theorem genesis_underivable (i : Inst) : ¬ derivable genesis i'
-  source: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Inertia.lean
   repository: this_repository
   source_sha256: 9386f41cf6bbefae8ccb8fdae47f69a33140a0c45b3e6ca9a08f1e9596a922a7
   status: source_candidate_requires_semantic_review
@@ -76,7 +76,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem underivable_of_empty (r : Regime) (hi : r.insts = [])
         (hr : r.rules = []) (i : Inst) : ¬ derivable r i
-  source: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Inertia.lean
   repository: this_repository
   source_sha256: 9386f41cf6bbefae8ccb8fdae47f69a33140a0c45b3e6ca9a08f1e9596a922a7
   status: source_candidate_requires_semantic_review
@@ -90,7 +90,7 @@ relation_candidates:
         (hall : ∀ e ∈ h, SingleTok t0 e) {t : TRegime}
         (ht : AtMostTok t0 t) {res : TRegime}
         (hr : replayT h t = some res) : res.tokens.length ≤ 1
-  source: lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Bridge.lean
   repository: this_repository
   source_sha256: c6608bb88c7fcaf7c5d05e087c812033db60a3b3ee88fe28d209531279900f03
   status: source_candidate_requires_semantic_review
@@ -105,44 +105,44 @@ relation_candidates:
         (hr : replayT h ⟨[], [], [], [], []⟩ = some res)
         (htwo : 2 ≤ res.tokens.length) :
         ∃ e ∈ h, ∃ tok, e = TEvent.admitDatum tok ∧ tok ≠ t0
-  source: lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Bridge.lean
   repository: this_repository
   source_sha256: c6608bb88c7fcaf7c5d05e087c812033db60a3b3ee88fe28d209531279900f03
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::genesis_underivable
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::genesis_underivable
   availability: local
   symbol: genesis_underivable
-  path: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/Inertia.lean
   repository: this_repository
   sha256: 9386f41cf6bbefae8ccb8fdae47f69a33140a0c45b3e6ca9a08f1e9596a922a7
   declaration_status: declaration_found_not_proof_checked
   line: 30
   role: source_lead_only
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::underivable_of_empty
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::underivable_of_empty
   availability: local
   symbol: underivable_of_empty
-  path: lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/Inertia.lean
   repository: this_repository
   sha256: 9386f41cf6bbefae8ccb8fdae47f69a33140a0c45b3e6ca9a08f1e9596a922a7
   declaration_status: declaration_found_not_proof_checked
   line: 39
   role: source_lead_only
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean::single_token_carrier_bound
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/Bridge.lean::single_token_carrier_bound
   availability: local
   symbol: single_token_carrier_bound
-  path: lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/Bridge.lean
   repository: this_repository
   sha256: c6608bb88c7fcaf7c5d05e087c812033db60a3b3ee88fe28d209531279900f03
   declaration_status: declaration_found_not_proof_checked
   line: 100
   role: source_lead_only
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean::second_token_required
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/Bridge.lean::second_token_required
   availability: local
   symbol: second_token_required
-  path: lean4/Imported/Genesis19l57g1/Derivation/Bridge.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/Bridge.lean
   repository: this_repository
   sha256: c6608bb88c7fcaf7c5d05e087c812033db60a3b3ee88fe28d209531279900f03
   declaration_status: declaration_found_not_proof_checked

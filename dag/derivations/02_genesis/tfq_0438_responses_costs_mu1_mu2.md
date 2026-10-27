@@ -33,9 +33,9 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/Basic.lean::applyDelta`](../../../lean4/Imported/Genesis19l57g1/Derivation/Basic.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Basic.lean::validResponse`](../../../lean4/Imported/Genesis19l57g1/Derivation/Basic.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::aritySum`](../../../lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Basic.lean::applyDelta`](../../../lean4/Imported/GenesisDerivation/Derivation/Basic.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Basic.lean::validResponse`](../../../lean4/Imported/GenesisDerivation/Derivation/Basic.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::aritySum`](../../../lean4/Imported/GenesisDerivation/Derivation/Minimality.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/measure.rs::arity_sum`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/measure.rs)

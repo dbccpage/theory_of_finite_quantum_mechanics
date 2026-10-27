@@ -1,5 +1,4 @@
-/- Imported from the sibling the_symbol_game lean4/ tree so that this repository carries its own Lean.
-   Original path : the_symbol_game/lean4/research_programs/higher_category_theory/ModelCategory.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: b011e1b9e7a41018c86b16b5e91a1f31bd4482fb72d3971331784db3606610ef (bytes as found)
    Imported on    : 2026-10-23
    Module         : Imported.HigherCategoryTheory.ModelCategory

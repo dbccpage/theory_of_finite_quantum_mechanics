@@ -29,7 +29,7 @@ theorem future_separates : future (psi false) ≠ future (psi true) := by decide
 theorem no_population_decoder :
     ¬ ∃ decode : (QN × QN) → QN, ∀ b : Bool,
       decode (populations (psi b)) = future (psi b) :=
-  SnSymbolGameAndPackets.no_factor_through_shadow_of_collision
+  SnPacketGame.no_factor_through_shadow_of_collision
     (fun b => populations (psi b)) (fun b => future (psi b))
     false true report_collision future_separates
 

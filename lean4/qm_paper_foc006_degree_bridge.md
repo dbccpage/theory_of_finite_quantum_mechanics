@@ -286,7 +286,7 @@ theorem proposalWith_global_gate_differs
 /-- Local fingerprint equality for QM proposal wrappers with arbitrary
 operator/density metadata. -/
 def proposalLocalPD (Operator : Type u) (DensityState : Type v) :
-    OmegaCore.PrimitiveDifference
+    ObstructionCore.PrimitiveDifference
       (DegreeDiagnosticProposal Operator DensityState) Prop where
   δ := fun x y =>
     LocalDegreeDiagnosticFingerprint x = LocalDegreeDiagnosticFingerprint y
@@ -340,7 +340,7 @@ theorem proposal_local_green_not_global_gate
           (LocalDegreeDiagnosticFingerprint proposal,
             GlobalDegreeDiagnosticGate proposal)) := by
   exact
-    OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction_of_witness
+    ObstructionCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction_of_witness
       (proposalLocalPD Operator DensityState)
       (fun proposal : DegreeDiagnosticProposal Operator DensityState =>
         LocalDegreeDiagnosticFingerprint proposal)
@@ -354,7 +354,7 @@ theorem proposal_local_green_not_global_gate
 
 /-- Local fingerprint equality for unit QM wrappers. -/
 def unitProposalLocalPD :
-    OmegaCore.PrimitiveDifference (DegreeDiagnosticProposal Unit Unit) Prop where
+    ObstructionCore.PrimitiveDifference (DegreeDiagnosticProposal Unit Unit) Prop where
   δ := fun x y =>
     LocalDegreeDiagnosticFingerprint x = LocalDegreeDiagnosticFingerprint y
   Zero := fun h => h
@@ -396,7 +396,7 @@ theorem unitProposal_local_green_not_global_gate :
           (LocalDegreeDiagnosticFingerprint proposal,
             GlobalDegreeDiagnosticGate proposal)) := by
   exact
-    OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction_of_witness
+    ObstructionCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction_of_witness
       unitProposalLocalPD
       (fun proposal : DegreeDiagnosticProposal Unit Unit =>
         LocalDegreeDiagnosticFingerprint proposal)

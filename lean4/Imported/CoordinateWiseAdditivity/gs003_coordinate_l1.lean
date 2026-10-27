@@ -1,11 +1,11 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/009_coordinate_wise_additivity/lean4/gs003_coordinate_l1.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 167995fc4b15e64d0b383d40798c44fa5bdb858ba1ff86cbb20fc7e0195e3d8c (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.CoordinateWiseAdditivity.gs003_coordinate_l1
    Changes        : local import lines rewritten to the Imported namespace; line endings normalised to LF;
                     no declaration, proof or comment of the original was edited.
                     Port notes (version drift): none.
+   Renamed        : 2026-10-27, directory and namespace names only (lean4/RENAMES.json).
    AuthorityEffect: None. -/
 import Mathlib.Algebra.BigOperators.Ring.Finset
 import Mathlib.Data.Real.Basic
@@ -524,7 +524,7 @@ structure CochainDiag (n : Nat) where
   weight : Fin n → Nat
 
 /-- Two cochains are zero-related when their per-edge diagnostics agree. -/
-def cochainPD (n : Nat) : OmegaCore.PrimitiveDifference (CochainDiag n) Prop where
+def cochainPD (n : Nat) : ObstructionCore.PrimitiveDifference (CochainDiag n) Prop where
   δ := fun c1 c2 => c1.diag = c2.diag
   Zero := fun p => p
   zero_refl := by
@@ -556,7 +556,7 @@ def unweightedTotalMap (n : Nat) : CochainDiag n → Nat :=
 /-- The intermediate primitive-difference relation that declares diagnostics and
     the weighted scalar total, but not the full weight profile. -/
 def cochainTotalPD (n : Nat) :
-    OmegaCore.PrimitiveDifference (CochainDiag n) Prop where
+    ObstructionCore.PrimitiveDifference (CochainDiag n) Prop where
   δ := fun c1 c2 =>
     c1.diag = c2.diag ∧ weightedTotalMap n c1 = weightedTotalMap n c2
   Zero := fun p => p
@@ -573,7 +573,7 @@ def cochainTotalPD (n : Nat) :
 /-- The finer primitive-difference relation that declares both diagnostics and
     weights as kernel data. -/
 def cochainWeightedPD (n : Nat) :
-    OmegaCore.PrimitiveDifference (CochainDiag n) Prop where
+    ObstructionCore.PrimitiveDifference (CochainDiag n) Prop where
   δ := fun c1 c2 => c1.diag = c2.diag ∧ c1.weight = c2.weight
   Zero := fun p => p
   zero_refl := by
@@ -624,7 +624,7 @@ theorem weight_not_invariant_succ (n : Nat) :
     ¬ (cochainPD (Nat.succ n)).InvariantCongruent
       (weightMap (Nat.succ n)) := by
   obtain ⟨x, y, hrel, hne⟩ := weight_witness_succ n
-  exact OmegaCore.PrimitiveDifference.not_invariantCongruent_of_zeroRel_ne
+  exact ObstructionCore.PrimitiveDifference.not_invariantCongruent_of_zeroRel_ne
     (cochainPD (Nat.succ n))
     (weightMap (Nat.succ n))
     hrel
@@ -646,7 +646,7 @@ theorem weighted_total_not_invariant_succ (n : Nat) :
     ¬ (cochainPD (Nat.succ n)).InvariantCongruent
       (weightedTotalMap (Nat.succ n)) := by
   obtain ⟨x, y, hrel, hne⟩ := weighted_total_witness_succ n
-  exact OmegaCore.PrimitiveDifference.not_invariantCongruent_of_zeroRel_ne
+  exact ObstructionCore.PrimitiveDifference.not_invariantCongruent_of_zeroRel_ne
     (cochainPD (Nat.succ n))
     (weightedTotalMap (Nat.succ n))
     hrel
@@ -667,7 +667,7 @@ theorem unweighted_total_factors_through_local_kernel (n : Nat) :
       ∀ c : CochainDiag n,
         F ((cochainPD n).classOf c) = unweightedTotalMap n c := by
   exact
-    (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+    (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
       (cochainPD n)
       (unweightedTotalMap n)).mpr
       (unweighted_total_invariant n)
@@ -687,7 +687,7 @@ theorem scalar_total_lggr_obstruction_succ (n : Nat) :
             weightedTotalMap (Nat.succ n) c)) := by
   constructor
   · exact unweighted_total_factors_through_local_kernel (Nat.succ n)
-  · exact OmegaCore.PrimitiveDifference.invariantPair_no_factor_of_right_not_invariant
+  · exact ObstructionCore.PrimitiveDifference.invariantPair_no_factor_of_right_not_invariant
       (cochainPD (Nat.succ n))
       (unweightedTotalMap (Nat.succ n))
       (weightedTotalMap (Nat.succ n))
@@ -712,7 +712,7 @@ theorem uniform_weighted_total_factors_through_local_kernel (n w : Nat) :
       ∀ c : CochainDiag n,
         F ((cochainPD n).classOf c) = uniformWeightedTotalMap n w c := by
   exact
-    (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+    (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
       (cochainPD n)
       (uniformWeightedTotalMap n w)).mpr
       (uniform_weighted_total_invariant n w)
@@ -725,7 +725,7 @@ theorem uniform_scalar_pair_factors_through_local_kernel (n w : Nat) :
         F ((cochainPD n).classOf c) =
           (unweightedTotalMap n c, uniformWeightedTotalMap n w c) := by
   exact
-    (OmegaCore.PrimitiveDifference.invariantFactor_pair_exists_iff
+    (ObstructionCore.PrimitiveDifference.invariantFactor_pair_exists_iff
       (cochainPD n)
       (unweightedTotalMap n)
       (uniformWeightedTotalMap n w)).mpr
@@ -750,7 +750,7 @@ theorem lggr_edgewise_uniformity_obstruction :
       ∀ c : CochainDiag 1,
         F ((cochainPD 1).classOf c) = (diagMap 1 c, weightMap 1 c)) := by
   obtain ⟨x, y, hrel, hne⟩ := weight_witness
-  exact OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction_of_witness
+  exact ObstructionCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction_of_witness
     (cochainPD 1)
     (diagMap 1)
     (weightMap 1)
@@ -772,7 +772,7 @@ theorem lggr_edgewise_uniformity_obstruction_succ (n : Nat) :
         F ((cochainPD (Nat.succ n)).classOf c) =
           (diagMap (Nat.succ n) c, weightMap (Nat.succ n) c)) := by
   obtain ⟨x, y, hrel, hne⟩ := weight_witness_succ n
-  exact OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction_of_witness
+  exact ObstructionCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction_of_witness
     (cochainPD (Nat.succ n))
     (diagMap (Nat.succ n))
     (weightMap (Nat.succ n))
@@ -795,7 +795,7 @@ theorem epk_local_kernel_does_not_determine_weighted_total (n : Nat) :
       ∀ c : CochainDiag (Nat.succ n),
         F ((cochainPD (Nat.succ n)).classOf c) =
           weightedTotalMap (Nat.succ n) c) := by
-  exact OmegaCore.PrimitiveDifference.invariantFactor_no_factor_of_not_invariant
+  exact ObstructionCore.PrimitiveDifference.invariantFactor_no_factor_of_not_invariant
     (cochainPD (Nat.succ n))
     (weightedTotalMap (Nat.succ n))
     (weighted_total_not_invariant_succ n)
@@ -810,7 +810,7 @@ theorem diagnostic_and_weighted_total_do_not_factor_through_local_kernel_succ
       ∀ c : CochainDiag (Nat.succ n),
         F ((cochainPD (Nat.succ n)).classOf c) =
           (diagMap (Nat.succ n) c, weightedTotalMap (Nat.succ n) c)) := by
-  exact OmegaCore.PrimitiveDifference.invariantPair_no_factor_of_right_not_invariant
+  exact ObstructionCore.PrimitiveDifference.invariantPair_no_factor_of_right_not_invariant
     (cochainPD (Nat.succ n))
     (diagMap (Nat.succ n))
     (weightedTotalMap (Nat.succ n))
@@ -844,7 +844,7 @@ theorem epk_weighted_total_factors_when_kernel_declares_total (n : Nat) :
       ∀ c : CochainDiag n,
         F ((cochainTotalPD n).classOf c) = weightedTotalMap n c := by
   exact
-    (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+    (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
       (cochainTotalPD n)
       (weightedTotalMap n)).mpr
       (weighted_total_invariant_with_total_kernel n)
@@ -858,7 +858,7 @@ theorem diagnostic_and_weighted_total_factor_when_kernel_declares_total
         F ((cochainTotalPD n).classOf c) =
           (diagMap n c, weightedTotalMap n c) := by
   exact
-    (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+    (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
       (cochainTotalPD n)
       (fun c : CochainDiag n => (diagMap n c, weightedTotalMap n c))).mpr
       (by
@@ -872,7 +872,7 @@ theorem total_quotient_projects_to_local_quotient (n : Nat) :
         F ((cochainTotalPD n).classOf c) = (cochainPD n).classOf c := by
   refine ⟨Quotient.lift (fun c : CochainDiag n => (cochainPD n).classOf c) ?_, ?_⟩
   · intro x y hxy
-    exact OmegaCore.PrimitiveDifference.classOf_eq_of_zero
+    exact ObstructionCore.PrimitiveDifference.classOf_eq_of_zero
       (cochainPD n) (total_kernel_refines_local_kernel n x y hxy)
   · intro c
     rfl
@@ -890,7 +890,7 @@ theorem local_quotient_does_not_lift_to_total_quotient_succ (n : Nat) :
   obtain ⟨x, y, hrel, hne⟩ := weighted_total_witness_succ n
   have hclass : (cochainPD (Nat.succ n)).classOf x =
       (cochainPD (Nat.succ n)).classOf y :=
-    OmegaCore.PrimitiveDifference.classOf_eq_of_zero
+    ObstructionCore.PrimitiveDifference.classOf_eq_of_zero
       (cochainPD (Nat.succ n)) hrel
   have htotal : (cochainTotalPD (Nat.succ n)).classOf x =
       (cochainTotalPD (Nat.succ n)).classOf y := by
@@ -918,7 +918,7 @@ theorem epk_weighted_total_factors_when_kernel_declares_weights (n : Nat) :
       ∀ c : CochainDiag n,
         F ((cochainWeightedPD n).classOf c) = weightedTotalMap n c := by
   exact
-    (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+    (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
       (cochainWeightedPD n)
       (weightedTotalMap n)).mpr
       (weighted_total_invariant_with_weight_kernel n)
@@ -946,7 +946,7 @@ theorem diagnostic_and_weighted_total_factor_when_kernel_declares_weights
         F ((cochainWeightedPD n).classOf c) =
           (diagMap n c, weightedTotalMap n c) := by
   exact
-    (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+    (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
       (cochainWeightedPD n)
       (fun c : CochainDiag n => (diagMap n c, weightedTotalMap n c))).mpr
       (by
@@ -978,7 +978,7 @@ theorem weighted_quotient_projects_to_local_quotient (n : Nat) :
         F ((cochainWeightedPD n).classOf c) = (cochainPD n).classOf c := by
   refine ⟨Quotient.lift (fun c : CochainDiag n => (cochainPD n).classOf c) ?_, ?_⟩
   · intro x y hxy
-    exact OmegaCore.PrimitiveDifference.classOf_eq_of_zero
+    exact ObstructionCore.PrimitiveDifference.classOf_eq_of_zero
       (cochainPD n) (weighted_kernel_refines_local_kernel n x y hxy)
   · intro c
     rfl
@@ -991,7 +991,7 @@ theorem weighted_quotient_projects_to_total_quotient (n : Nat) :
         F ((cochainWeightedPD n).classOf c) = (cochainTotalPD n).classOf c := by
   refine ⟨Quotient.lift (fun c : CochainDiag n => (cochainTotalPD n).classOf c) ?_, ?_⟩
   · intro x y hxy
-    exact OmegaCore.PrimitiveDifference.classOf_eq_of_zero
+    exact ObstructionCore.PrimitiveDifference.classOf_eq_of_zero
       (cochainTotalPD n) (weighted_kernel_refines_total_kernel n x y hxy)
   · intro c
     rfl
@@ -1009,7 +1009,7 @@ theorem local_quotient_does_not_lift_to_weighted_quotient_succ (n : Nat) :
   obtain ⟨x, y, hrel, hne⟩ := weight_witness_succ n
   have hclass : (cochainPD (Nat.succ n)).classOf x =
       (cochainPD (Nat.succ n)).classOf y :=
-    OmegaCore.PrimitiveDifference.classOf_eq_of_zero
+    ObstructionCore.PrimitiveDifference.classOf_eq_of_zero
       (cochainPD (Nat.succ n)) hrel
   have hrefined : (cochainWeightedPD (Nat.succ n)).classOf x =
       (cochainWeightedPD (Nat.succ n)).classOf y := by
@@ -1051,7 +1051,7 @@ theorem total_quotient_does_not_lift_to_weighted_quotient_two_edges :
     · decide
   have hclass : (cochainTotalPD 2).classOf totalWeightSwapX =
       (cochainTotalPD 2).classOf totalWeightSwapY :=
-    OmegaCore.PrimitiveDifference.classOf_eq_of_zero
+    ObstructionCore.PrimitiveDifference.classOf_eq_of_zero
       (cochainTotalPD 2) htotal
   have hrefined : (cochainWeightedPD 2).classOf totalWeightSwapX =
       (cochainWeightedPD 2).classOf totalWeightSwapY := by

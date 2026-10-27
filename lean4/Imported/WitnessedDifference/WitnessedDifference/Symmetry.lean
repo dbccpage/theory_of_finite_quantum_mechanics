@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Symmetry.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 5cbc349795aa927aca9a850768d539bc478ab1cca8a7367b1f7458bed8260f90 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.WitnessedDifference.WitnessedDifference.Symmetry

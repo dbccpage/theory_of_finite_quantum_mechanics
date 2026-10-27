@@ -12,80 +12,80 @@ namespace ResidualDensityBridge
 universe u v w z
 
 def QuotientCompatible {Alpha : Type u} {Beta : Type v} {Rho : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta) (lift : Alpha -> Rho) : Prop :=
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta) (lift : Alpha -> Rho) : Prop :=
   P.InvariantCongruent lift
 
 def FactorsThroughResidual {Alpha : Type u} {Beta : Type v} {Rho : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta) (lift : Alpha -> Rho) : Prop :=
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta) (lift : Alpha -> Rho) : Prop :=
   ∃ F : P.ResidualQuotient -> Rho, ∀ x : Alpha, F (P.classOf x) = lift x
 
 def QuotientCompatibleMod {Alpha : Type u} {Beta : Type v} {Rho : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta) (lift : Alpha -> Rho)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta) (lift : Alpha -> Rho)
     (RhoSetoid : Setoid Rho) : Prop :=
   P.InvariantCongruentMod lift RhoSetoid
 
 def FactorsThroughResidualMod {Alpha : Type u} {Beta : Type v} {Rho : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta) (lift : Alpha -> Rho)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta) (lift : Alpha -> Rho)
     (RhoSetoid : Setoid Rho) : Prop :=
   ∃ F : P.ResidualQuotient -> Quotient RhoSetoid,
     ∀ x : Alpha, F (P.classOf x) = Quotient.mk RhoSetoid (lift x)
 
 theorem quotientCompatible_iff_factorsThroughResidual
     {Alpha : Type u} {Beta : Type v} {Rho : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta) (lift : Alpha -> Rho) :
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta) (lift : Alpha -> Rho) :
     FactorsThroughResidual P lift ↔ QuotientCompatible P lift := by
   exact
-    OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+    ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
       P lift
 
 theorem quotientCompatibleMod_iff_factorsThroughResidualMod
     {Alpha : Type u} {Beta : Type v} {Rho : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta) (lift : Alpha -> Rho)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta) (lift : Alpha -> Rho)
     (RhoSetoid : Setoid Rho) :
     FactorsThroughResidualMod P lift RhoSetoid ↔
       QuotientCompatibleMod P lift RhoSetoid := by
   exact
-    OmegaCore.PrimitiveDifference.invariantFactorMod_exists_iff_invariantCongruentMod
+    ObstructionCore.PrimitiveDifference.invariantFactorMod_exists_iff_invariantCongruentMod
       P lift RhoSetoid
 
 theorem quotientCompatibleMod_preserved_by_coarser_output
     {Alpha : Type u} {Beta : Type v} {Rho : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta) (lift : Alpha -> Rho)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta) (lift : Alpha -> Rho)
     (FineSetoid : Setoid Rho) (CoarseSetoid : Setoid Rho)
     (hFineToCoarse :
       ∀ x y : Rho, FineSetoid.r x y -> CoarseSetoid.r x y)
     (hLift : QuotientCompatibleMod P lift FineSetoid) :
     QuotientCompatibleMod P lift CoarseSetoid := by
   exact
-    OmegaCore.PrimitiveDifference.invariantCongruentMod_of_setoid_imp
+    ObstructionCore.PrimitiveDifference.invariantCongruentMod_of_setoid_imp
       P lift FineSetoid CoarseSetoid hFineToCoarse hLift
 
 theorem factorsThroughResidualMod_preserved_by_coarser_output
     {Alpha : Type u} {Beta : Type v} {Rho : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta) (lift : Alpha -> Rho)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta) (lift : Alpha -> Rho)
     (FineSetoid : Setoid Rho) (CoarseSetoid : Setoid Rho)
     (hFineToCoarse :
       ∀ x y : Rho, FineSetoid.r x y -> CoarseSetoid.r x y)
     (hDescends : FactorsThroughResidualMod P lift FineSetoid) :
     FactorsThroughResidualMod P lift CoarseSetoid := by
   exact
-    OmegaCore.PrimitiveDifference.invariantFactorMod_exists_of_setoid_imp
+    ObstructionCore.PrimitiveDifference.invariantFactorMod_exists_of_setoid_imp
       P lift FineSetoid CoarseSetoid hFineToCoarse hDescends
 
 theorem quotientCompatible_pair
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (hLeft : QuotientCompatible P left)
     (hRight : QuotientCompatible P right) :
     QuotientCompatible P (fun x : Alpha => (left x, right x)) := by
   exact
-    (OmegaCore.PrimitiveDifference.invariantCongruent_pair_iff
+    (ObstructionCore.PrimitiveDifference.invariantCongruent_pair_iff
       P left right).mpr ⟨hLeft, hRight⟩
 
 theorem factorsThroughResidual_pair
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (hLeft : FactorsThroughResidual P left)
     (hRight : FactorsThroughResidual P right) :
@@ -101,17 +101,17 @@ theorem factorsThroughResidual_pair
 
 theorem factorsThroughResidual_pair_iff_component_factors
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma) :
     FactorsThroughResidual P (fun x : Alpha => (left x, right x)) ↔
       FactorsThroughResidual P left ∧ FactorsThroughResidual P right := by
   exact
-    OmegaCore.PrimitiveDifference.invariantFactor_pair_exists_iff_component_factors
+    ObstructionCore.PrimitiveDifference.invariantFactor_pair_exists_iff_component_factors
       P left right
 
 theorem pair_no_factor_of_left_not_factor
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (hLeft : ¬ FactorsThroughResidual P left) :
     ¬ FactorsThroughResidual P (fun x : Alpha => (left x, right x)) := by
@@ -121,7 +121,7 @@ theorem pair_no_factor_of_left_not_factor
 
 theorem pair_no_factor_of_right_not_factor
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (hRight : ¬ FactorsThroughResidual P right) :
     ¬ FactorsThroughResidual P (fun x : Alpha => (left x, right x)) := by
@@ -130,7 +130,7 @@ theorem pair_no_factor_of_right_not_factor
     P left right).mp hPair).2
 theorem factorsThroughResidual_triple_iff_component_factors
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Tau : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (middle : Alpha -> Sigma) (right : Alpha -> Tau) :
     FactorsThroughResidual P
         (fun x : Alpha => ((left x, middle x), right x)) ↔
@@ -159,7 +159,7 @@ theorem factorsThroughResidual_triple_iff_component_factors
 
 theorem triple_no_factor_of_left_not_factor
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Tau : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (middle : Alpha -> Sigma) (right : Alpha -> Tau)
     (hLeft : ¬ FactorsThroughResidual P left) :
     ¬ FactorsThroughResidual P
@@ -170,7 +170,7 @@ theorem triple_no_factor_of_left_not_factor
 
 theorem triple_no_factor_of_middle_not_factor
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Tau : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (middle : Alpha -> Sigma) (right : Alpha -> Tau)
     (hMiddle : ¬ FactorsThroughResidual P middle) :
     ¬ FactorsThroughResidual P
@@ -181,7 +181,7 @@ theorem triple_no_factor_of_middle_not_factor
 
 theorem triple_no_factor_of_right_not_factor
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Tau : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (middle : Alpha -> Sigma) (right : Alpha -> Tau)
     (hRight : ¬ FactorsThroughResidual P right) :
     ¬ FactorsThroughResidual P
@@ -192,26 +192,26 @@ theorem triple_no_factor_of_right_not_factor
 
 theorem quotientCompatibleMod_pair
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (LeftSetoid : Setoid Rho) (RightSetoid : Setoid Sigma)
     (hLeft : QuotientCompatibleMod P left LeftSetoid)
     (hRight : QuotientCompatibleMod P right RightSetoid) :
     QuotientCompatibleMod P (fun x : Alpha => (left x, right x))
-      (OmegaCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid) := by
+      (ObstructionCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid) := by
   exact
-    (OmegaCore.PrimitiveDifference.invariantCongruentMod_pair_iff
+    (ObstructionCore.PrimitiveDifference.invariantCongruentMod_pair_iff
       P left right LeftSetoid RightSetoid).mpr ⟨hLeft, hRight⟩
 
 theorem factorsThroughResidualMod_pair
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (LeftSetoid : Setoid Rho) (RightSetoid : Setoid Sigma)
     (hLeft : FactorsThroughResidualMod P left LeftSetoid)
     (hRight : FactorsThroughResidualMod P right RightSetoid) :
     FactorsThroughResidualMod P (fun x : Alpha => (left x, right x))
-      (OmegaCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid) := by
+      (ObstructionCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid) := by
   have hLeftCompat : QuotientCompatibleMod P left LeftSetoid :=
     (quotientCompatibleMod_iff_factorsThroughResidualMod
       P left LeftSetoid).mp hLeft
@@ -221,56 +221,56 @@ theorem factorsThroughResidualMod_pair
   exact
     (quotientCompatibleMod_iff_factorsThroughResidualMod
       P (fun x : Alpha => (left x, right x))
-        (OmegaCore.PrimitiveDifference.productSetoid
+        (ObstructionCore.PrimitiveDifference.productSetoid
           LeftSetoid RightSetoid)).mpr
       (quotientCompatibleMod_pair
         P left right LeftSetoid RightSetoid hLeftCompat hRightCompat)
 theorem factorsThroughResidualMod_pair_iff_component_factors
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (LeftSetoid : Setoid Rho) (RightSetoid : Setoid Sigma) :
     FactorsThroughResidualMod P (fun x : Alpha => (left x, right x))
-      (OmegaCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid) ↔
+      (ObstructionCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid) ↔
       FactorsThroughResidualMod P left LeftSetoid ∧
       FactorsThroughResidualMod P right RightSetoid := by
   exact
-    OmegaCore.PrimitiveDifference.invariantFactorMod_pair_exists_iff_component_factors
+    ObstructionCore.PrimitiveDifference.invariantFactorMod_pair_exists_iff_component_factors
       P left right LeftSetoid RightSetoid
 
 theorem pair_mod_no_factor_of_left_not_factor
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (LeftSetoid : Setoid Rho) (RightSetoid : Setoid Sigma)
     (hLeft : ¬ FactorsThroughResidualMod P left LeftSetoid) :
     ¬ FactorsThroughResidualMod P (fun x : Alpha => (left x, right x))
-      (OmegaCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid) := by
+      (ObstructionCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid) := by
   intro hPair
   exact hLeft ((factorsThroughResidualMod_pair_iff_component_factors
     P left right LeftSetoid RightSetoid).mp hPair).1
 
 theorem pair_mod_no_factor_of_right_not_factor
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (LeftSetoid : Setoid Rho) (RightSetoid : Setoid Sigma)
     (hRight : ¬ FactorsThroughResidualMod P right RightSetoid) :
     ¬ FactorsThroughResidualMod P (fun x : Alpha => (left x, right x))
-      (OmegaCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid) := by
+      (ObstructionCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid) := by
   intro hPair
   exact hRight ((factorsThroughResidualMod_pair_iff_component_factors
     P left right LeftSetoid RightSetoid).mp hPair).2
 theorem factorsThroughResidualMod_triple_iff_component_factors
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Tau : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (middle : Alpha -> Sigma) (right : Alpha -> Tau)
     (LeftSetoid : Setoid Rho) (MiddleSetoid : Setoid Sigma)
     (RightSetoid : Setoid Tau) :
     FactorsThroughResidualMod P
       (fun x : Alpha => ((left x, middle x), right x))
-      (OmegaCore.PrimitiveDifference.productSetoid
-        (OmegaCore.PrimitiveDifference.productSetoid
+      (ObstructionCore.PrimitiveDifference.productSetoid
+        (ObstructionCore.PrimitiveDifference.productSetoid
           LeftSetoid MiddleSetoid)
         RightSetoid) ↔
       FactorsThroughResidualMod P left LeftSetoid ∧
@@ -280,12 +280,12 @@ theorem factorsThroughResidualMod_triple_iff_component_factors
   · intro hTriple
     have hPairRight :
         FactorsThroughResidualMod P (fun x : Alpha => (left x, middle x))
-            (OmegaCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
               LeftSetoid MiddleSetoid) ∧
           FactorsThroughResidualMod P right RightSetoid :=
       (factorsThroughResidualMod_pair_iff_component_factors
         P (fun x : Alpha => (left x, middle x)) right
-        (OmegaCore.PrimitiveDifference.productSetoid
+        (ObstructionCore.PrimitiveDifference.productSetoid
           LeftSetoid MiddleSetoid)
         RightSetoid).mp hTriple
     have hLeftMiddle :
@@ -298,7 +298,7 @@ theorem factorsThroughResidualMod_triple_iff_component_factors
     exact
       factorsThroughResidualMod_pair
         P (fun x : Alpha => (left x, middle x)) right
-        (OmegaCore.PrimitiveDifference.productSetoid
+        (ObstructionCore.PrimitiveDifference.productSetoid
           LeftSetoid MiddleSetoid)
         RightSetoid
         (factorsThroughResidualMod_pair
@@ -308,15 +308,15 @@ theorem factorsThroughResidualMod_triple_iff_component_factors
 
 theorem triple_mod_no_factor_of_left_not_factor
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Tau : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (middle : Alpha -> Sigma) (right : Alpha -> Tau)
     (LeftSetoid : Setoid Rho) (MiddleSetoid : Setoid Sigma)
     (RightSetoid : Setoid Tau)
     (hLeft : ¬ FactorsThroughResidualMod P left LeftSetoid) :
     ¬ FactorsThroughResidualMod P
       (fun x : Alpha => ((left x, middle x), right x))
-      (OmegaCore.PrimitiveDifference.productSetoid
-        (OmegaCore.PrimitiveDifference.productSetoid
+      (ObstructionCore.PrimitiveDifference.productSetoid
+        (ObstructionCore.PrimitiveDifference.productSetoid
           LeftSetoid MiddleSetoid)
         RightSetoid) := by
   intro hTriple
@@ -325,15 +325,15 @@ theorem triple_mod_no_factor_of_left_not_factor
 
 theorem triple_mod_no_factor_of_middle_not_factor
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Tau : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (middle : Alpha -> Sigma) (right : Alpha -> Tau)
     (LeftSetoid : Setoid Rho) (MiddleSetoid : Setoid Sigma)
     (RightSetoid : Setoid Tau)
     (hMiddle : ¬ FactorsThroughResidualMod P middle MiddleSetoid) :
     ¬ FactorsThroughResidualMod P
       (fun x : Alpha => ((left x, middle x), right x))
-      (OmegaCore.PrimitiveDifference.productSetoid
-        (OmegaCore.PrimitiveDifference.productSetoid
+      (ObstructionCore.PrimitiveDifference.productSetoid
+        (ObstructionCore.PrimitiveDifference.productSetoid
           LeftSetoid MiddleSetoid)
         RightSetoid) := by
   intro hTriple
@@ -342,15 +342,15 @@ theorem triple_mod_no_factor_of_middle_not_factor
 
 theorem triple_mod_no_factor_of_right_not_factor
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Tau : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (middle : Alpha -> Sigma) (right : Alpha -> Tau)
     (LeftSetoid : Setoid Rho) (MiddleSetoid : Setoid Sigma)
     (RightSetoid : Setoid Tau)
     (hRight : ¬ FactorsThroughResidualMod P right RightSetoid) :
     ¬ FactorsThroughResidualMod P
       (fun x : Alpha => ((left x, middle x), right x))
-      (OmegaCore.PrimitiveDifference.productSetoid
-        (OmegaCore.PrimitiveDifference.productSetoid
+      (ObstructionCore.PrimitiveDifference.productSetoid
+        (ObstructionCore.PrimitiveDifference.productSetoid
           LeftSetoid MiddleSetoid)
         RightSetoid) := by
   intro hTriple
@@ -359,7 +359,7 @@ theorem triple_mod_no_factor_of_right_not_factor
 
 theorem quotientCompatible_postprocess
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (readout : Rho -> Sigma)
     (hDensity : QuotientCompatible P density) :
     QuotientCompatible P (fun x : Alpha => readout (density x)) := by
@@ -368,7 +368,7 @@ theorem quotientCompatible_postprocess
 
 theorem factorsThroughResidual_postprocess
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (readout : Rho -> Sigma)
     (hDensity : FactorsThroughResidual P density) :
     FactorsThroughResidual P (fun x : Alpha => readout (density x)) := by
@@ -377,7 +377,7 @@ theorem factorsThroughResidual_postprocess
 
 theorem quotientCompatibleMod_postprocess
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (readout : Rho -> Sigma)
     (DensitySetoid : Setoid Rho) (ReadoutSetoid : Setoid Sigma)
     (hRespect :
@@ -391,7 +391,7 @@ theorem quotientCompatibleMod_postprocess
 
 theorem factorsThroughResidualMod_postprocess
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (readout : Rho -> Sigma)
     (DensitySetoid : Setoid Rho) (ReadoutSetoid : Setoid Sigma)
     (hRespect :
@@ -411,7 +411,7 @@ theorem factorsThroughResidualMod_postprocess
         P density readout DensitySetoid ReadoutSetoid hRespect hDensityCompat)
 
 def GlobalJointRed {Alpha : Type u} {Beta : Type v} {Rho : Type w}
-    {Hidden : Type z} (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    {Hidden : Type z} (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (hidden : Alpha -> Hidden) : Prop :=
   ¬ FactorsThroughResidual P (fun x : Alpha => (density x, hidden x))
 
@@ -419,7 +419,7 @@ def GlobalJointRed {Alpha : Type u} {Beta : Type v} {Rho : Type w}
 
 theorem density_factor_not_joint_factor_of_hidden_witness
     {Alpha : Type u} {Beta : Type v} {Rho : Type w} {Hidden : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (hidden : Alpha -> Hidden)
     (hDensity : QuotientCompatible P density)
     {x y : Alpha} (hxy : P.ZeroRel x y) (hHidden : hidden x ≠ hidden y) :
@@ -429,7 +429,7 @@ theorem density_factor_not_joint_factor_of_hidden_witness
   · intro hJoint
     have hJointCompat :
         P.InvariantCongruent (fun x : Alpha => (density x, hidden x)) :=
-      (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+      (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
         P (fun x : Alpha => (density x, hidden x))).mp hJoint
     have hPair : (density x, hidden x) = (density y, hidden y) :=
       hJointCompat x y hxy
@@ -438,7 +438,7 @@ theorem density_factor_not_joint_factor_of_hidden_witness
 
 theorem marginal_factor_not_joint_factor_of_hidden_witness
     {Alpha : Type u} {Beta : Type v} {Rho : Type w} {Hidden : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (joint : Alpha -> Rho × Hidden)
     (hMarginal : QuotientCompatible P (fun x : Alpha => (joint x).1))
     {x y : Alpha} (hxy : P.ZeroRel x y) (hHidden : (joint x).2 ≠ (joint y).2) :
@@ -450,7 +450,7 @@ theorem marginal_factor_not_joint_factor_of_hidden_witness
         P (fun x : Alpha => (joint x).1)).mpr hMarginal
   · intro hJoint
     have hJointCompat : P.InvariantCongruent joint :=
-      (OmegaCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
+      (ObstructionCore.PrimitiveDifference.invariantFactor_exists_iff_invariantCongruent
         P joint).mp hJoint
     have hPair : joint x = joint y := hJointCompat x y hxy
     exact hHidden (congrArg Prod.snd hPair)
@@ -458,7 +458,7 @@ theorem marginal_factor_not_joint_factor_of_hidden_witness
 
 theorem density_diagnostic_not_authority_certificate
     {Alpha : Type u} {Beta : Type v} {Rho : Type w} {Authority : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (authority : Alpha -> Authority)
     (hDensity : QuotientCompatible P density)
     {x y : Alpha} (hxy : P.ZeroRel x y)
@@ -471,7 +471,7 @@ theorem density_diagnostic_not_authority_certificate
 
 theorem local_pair_factor_not_joint_factor_of_hidden_witness
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w} {Hidden : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (hidden : Alpha -> Hidden)
     (hLeft : QuotientCompatible P left)
@@ -489,7 +489,7 @@ theorem local_pair_factor_not_joint_factor_of_hidden_witness
 
 theorem diagnostic_readout_factor_not_joint_factor_of_hidden_witness
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w} {Hidden : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (readout : Rho -> Sigma)
     (hidden : Alpha -> Hidden)
     (hDensity : QuotientCompatible P density)
@@ -507,7 +507,7 @@ theorem diagnostic_readout_factor_not_joint_factor_of_hidden_witness
 theorem density_factor_not_hidden_readout_factor_of_witness
     {Alpha : Type u} {Beta : Type v} {Rho : Type w}
     {Hidden : Type z} {Readout : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (hidden : Alpha -> Hidden)
     (readout : Hidden -> Readout)
     (hDensity : QuotientCompatible P density)
@@ -524,7 +524,7 @@ theorem density_factor_not_hidden_readout_factor_of_witness
 
 theorem density_mod_factor_not_joint_mod_factor_of_hidden_witness
     {Alpha : Type u} {Beta : Type v} {Rho Hidden : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (hidden : Alpha -> Hidden)
     (DensitySetoid : Setoid Rho) (HiddenSetoid : Setoid Hidden)
     (hDensity : QuotientCompatibleMod P density DensitySetoid)
@@ -532,21 +532,21 @@ theorem density_mod_factor_not_joint_mod_factor_of_hidden_witness
     (hHidden : ¬ HiddenSetoid.r (hidden x) (hidden y)) :
     FactorsThroughResidualMod P density DensitySetoid ∧
       ¬ (∃ F : P.ResidualQuotient ->
-          Quotient (OmegaCore.PrimitiveDifference.productSetoid
+          Quotient (ObstructionCore.PrimitiveDifference.productSetoid
             DensitySetoid HiddenSetoid),
         ∀ a : Alpha,
           F (P.classOf a) =
             @Quotient.mk (Rho × Hidden)
-              (OmegaCore.PrimitiveDifference.productSetoid
+              (ObstructionCore.PrimitiveDifference.productSetoid
                 DensitySetoid HiddenSetoid)
               (density a, hidden a)) := by
   exact
-    OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_mod_obstruction_of_witness
+    ObstructionCore.PrimitiveDifference.localGreenGlobalRed_pair_mod_obstruction_of_witness
       P density hidden DensitySetoid HiddenSetoid hDensity hxy hHidden
 
 theorem density_mod_diagnostic_not_authority_certificate
     {Alpha : Type u} {Beta : Type v} {Rho Authority : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (authority : Alpha -> Authority)
     (DensitySetoid : Setoid Rho) (AuthoritySetoid : Setoid Authority)
     (hDensity : QuotientCompatibleMod P density DensitySetoid)
@@ -554,12 +554,12 @@ theorem density_mod_diagnostic_not_authority_certificate
     (hAuthority : ¬ AuthoritySetoid.r (authority x) (authority y)) :
     FactorsThroughResidualMod P density DensitySetoid ∧
       ¬ (∃ F : P.ResidualQuotient ->
-          Quotient (OmegaCore.PrimitiveDifference.productSetoid
+          Quotient (ObstructionCore.PrimitiveDifference.productSetoid
             DensitySetoid AuthoritySetoid),
         ∀ a : Alpha,
           F (P.classOf a) =
             @Quotient.mk (Rho × Authority)
-              (OmegaCore.PrimitiveDifference.productSetoid
+              (ObstructionCore.PrimitiveDifference.productSetoid
                 DensitySetoid AuthoritySetoid)
               (density a, authority a)) := by
   exact
@@ -569,7 +569,7 @@ theorem density_mod_diagnostic_not_authority_certificate
 
 theorem local_pair_mod_factor_not_joint_mod_factor_of_hidden_witness
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Hidden : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (hidden : Alpha -> Hidden)
     (LeftSetoid : Setoid Rho) (RightSetoid : Setoid Sigma)
@@ -579,35 +579,35 @@ theorem local_pair_mod_factor_not_joint_mod_factor_of_hidden_witness
     {x y : Alpha} (hxy : P.ZeroRel x y)
     (hHidden : ¬ HiddenSetoid.r (hidden x) (hidden y)) :
     FactorsThroughResidualMod P (fun a : Alpha => (left a, right a))
-      (OmegaCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid) ∧
+      (ObstructionCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid) ∧
       ¬ (∃ F : P.ResidualQuotient ->
-          Quotient (OmegaCore.PrimitiveDifference.productSetoid
-            (OmegaCore.PrimitiveDifference.productSetoid
+          Quotient (ObstructionCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
               LeftSetoid RightSetoid)
             HiddenSetoid),
         ∀ a : Alpha,
           F (P.classOf a) =
             @Quotient.mk ((Rho × Sigma) × Hidden)
-              (OmegaCore.PrimitiveDifference.productSetoid
-                (OmegaCore.PrimitiveDifference.productSetoid
+              (ObstructionCore.PrimitiveDifference.productSetoid
+                (ObstructionCore.PrimitiveDifference.productSetoid
                   LeftSetoid RightSetoid)
                 HiddenSetoid)
               ((left a, right a), hidden a)) := by
   have hPair :
       QuotientCompatibleMod P (fun a : Alpha => (left a, right a))
-        (OmegaCore.PrimitiveDifference.productSetoid
+        (ObstructionCore.PrimitiveDifference.productSetoid
           LeftSetoid RightSetoid) :=
     quotientCompatibleMod_pair
       P left right LeftSetoid RightSetoid hLeft hRight
   exact
     density_mod_factor_not_joint_mod_factor_of_hidden_witness
       P (fun a : Alpha => (left a, right a)) hidden
-      (OmegaCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid)
+      (ObstructionCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid)
       HiddenSetoid hPair hxy hHidden
 
 theorem local_pair_mod_diagnostic_not_authority_certificate
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Authority : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (authority : Alpha -> Authority)
     (LeftSetoid : Setoid Rho) (RightSetoid : Setoid Sigma)
@@ -617,17 +617,17 @@ theorem local_pair_mod_diagnostic_not_authority_certificate
     {x y : Alpha} (hxy : P.ZeroRel x y)
     (hAuthority : ¬ AuthoritySetoid.r (authority x) (authority y)) :
     FactorsThroughResidualMod P (fun a : Alpha => (left a, right a))
-      (OmegaCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid) ∧
+      (ObstructionCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid) ∧
       ¬ (∃ F : P.ResidualQuotient ->
-          Quotient (OmegaCore.PrimitiveDifference.productSetoid
-            (OmegaCore.PrimitiveDifference.productSetoid
+          Quotient (ObstructionCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
               LeftSetoid RightSetoid)
             AuthoritySetoid),
         ∀ a : Alpha,
           F (P.classOf a) =
             @Quotient.mk ((Rho × Sigma) × Authority)
-              (OmegaCore.PrimitiveDifference.productSetoid
-                (OmegaCore.PrimitiveDifference.productSetoid
+              (ObstructionCore.PrimitiveDifference.productSetoid
+                (ObstructionCore.PrimitiveDifference.productSetoid
                   LeftSetoid RightSetoid)
                 AuthoritySetoid)
               ((left a, right a), authority a)) := by
@@ -640,7 +640,7 @@ theorem local_pair_mod_diagnostic_not_authority_certificate
 
 theorem diagnostic_readout_mod_factor_not_joint_mod_factor_of_hidden_witness
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Hidden : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (readout : Rho -> Sigma)
     (hidden : Alpha -> Hidden)
     (DensitySetoid : Setoid Rho) (ReadoutSetoid : Setoid Sigma)
@@ -654,12 +654,12 @@ theorem diagnostic_readout_mod_factor_not_joint_mod_factor_of_hidden_witness
     FactorsThroughResidualMod P
       (fun a : Alpha => readout (density a)) ReadoutSetoid ∧
       ¬ (∃ F : P.ResidualQuotient ->
-          Quotient (OmegaCore.PrimitiveDifference.productSetoid
+          Quotient (ObstructionCore.PrimitiveDifference.productSetoid
             ReadoutSetoid HiddenSetoid),
         ∀ a : Alpha,
           F (P.classOf a) =
             @Quotient.mk (Sigma × Hidden)
-              (OmegaCore.PrimitiveDifference.productSetoid
+              (ObstructionCore.PrimitiveDifference.productSetoid
                 ReadoutSetoid HiddenSetoid)
               (readout (density a), hidden a)) := by
   exact
@@ -673,7 +673,7 @@ theorem diagnostic_readout_mod_factor_not_joint_mod_factor_of_hidden_witness
 
 theorem density_mod_factor_not_hidden_readout_mod_factor_of_witness
     {Alpha : Type u} {Beta : Type v} {Rho Hidden Readout : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (hidden : Alpha -> Hidden)
     (readout : Hidden -> Readout)
     (DensitySetoid : Setoid Rho) (ReadoutSetoid : Setoid Readout)
@@ -682,12 +682,12 @@ theorem density_mod_factor_not_hidden_readout_mod_factor_of_witness
     (hReadout : ¬ ReadoutSetoid.r (readout (hidden x)) (readout (hidden y))) :
     FactorsThroughResidualMod P density DensitySetoid ∧
       ¬ (∃ F : P.ResidualQuotient ->
-          Quotient (OmegaCore.PrimitiveDifference.productSetoid
+          Quotient (ObstructionCore.PrimitiveDifference.productSetoid
             DensitySetoid ReadoutSetoid),
         ∀ a : Alpha,
           F (P.classOf a) =
             @Quotient.mk (Rho × Readout)
-              (OmegaCore.PrimitiveDifference.productSetoid
+              (ObstructionCore.PrimitiveDifference.productSetoid
                 DensitySetoid ReadoutSetoid)
               (density a, readout (hidden a))) := by
   exact

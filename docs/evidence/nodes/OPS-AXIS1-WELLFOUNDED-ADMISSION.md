@@ -96,7 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json`
 
 - file: [dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json](../../../dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json)
-- sha256 (`lf-normalised`): `bd39fd2bef4e8282dcee1f886e78ec978dcb25760c9a566f4b26c77c98dff91f`
+- sha256 (`lf-normalised`): `2a655c87b7b3d79eaa943fc852f403e217bb343fb28dac7c3fdcdf7c7be71618`
 - cited in: node.source
 - counts toward the grade: yes
 

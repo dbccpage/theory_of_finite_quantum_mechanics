@@ -2,7 +2,7 @@
 import PrimitiveRepairCertificate
 
 
-namespace OmegaCore
+namespace ObstructionCore
 namespace PrimitiveRepairBoundary
 
 universe u
@@ -188,7 +188,7 @@ theorem exact_status_without_certificate_under_empty_system
   ⟨hExact, no_certificate_under_empty_system C zeroClass q⟩
 
 end PrimitiveRepairBoundary
-end OmegaCore
+end ObstructionCore
 
 private def l5aProvenance : String :=
   "Origin: lean4/PrimitiveRepairBoundary.lean Claim: policy_failure_routes_refused AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

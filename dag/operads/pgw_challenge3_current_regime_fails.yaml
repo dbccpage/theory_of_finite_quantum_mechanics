@@ -19,7 +19,7 @@ target:
   - dag/derivations/02_genesis/tfq_0439_challenge3_current_regime_fails.md
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:267-271
   - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/docs/sources/genesis_source.txt:587-591
-  - lean4/Imported/Genesis19l57g1/Derivation/Quot.lean:37-39
+  - lean4/Imported/GenesisDerivation/Derivation/Quot.lean:37-39
   paper_refs: []
   source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -38,7 +38,7 @@ operation_candidates:
   name: collapseRel
   line: 40
   signature_excerpt: 'def collapseRel (r : Regime) (d d'' : Nat) : Prop'
-  source: lean4/Imported/Genesis19l57g1/Derivation/Quot.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Quot.lean
   repository: this_repository
   source_sha256: e2cbacdf63dc0fb91a57c1f02f2dff617353b1973e80d6c78225289d5e08868f
   status: source_candidate_requires_semantic_review
@@ -49,7 +49,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem barrier_R2L {β : Sort v} (f : Quot (collapseRel R2L) → β) :
         f (Quot.mk _ 0) = f (Quot.mk _ 1)
-  source: lean4/Imported/Genesis19l57g1/Derivation/Quot.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Quot.lean
   repository: this_repository
   source_sha256: e2cbacdf63dc0fb91a57c1f02f2dff617353b1973e80d6c78225289d5e08868f
   status: source_candidate_requires_semantic_review
@@ -62,7 +62,7 @@ relation_candidates:
     theorem quot_barrier {α : Sort u} {β : Sort v} (rel : α → α → Prop)
         (f : Quot rel → β) {a b : α} (h : rel a b) :
         f (Quot.mk rel a) = f (Quot.mk rel b)
-  source: lean4/Imported/Genesis19l57g1/Derivation/Quot.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Quot.lean
   repository: this_repository
   source_sha256: e2cbacdf63dc0fb91a57c1f02f2dff617353b1973e80d6c78225289d5e08868f
   status: source_candidate_requires_semantic_review
@@ -75,35 +75,35 @@ relation_candidates:
     theorem quotient_barrier {α : Sort u} {β : Sort v} (s : Setoid α)
         (f : Quotient s → β) {a b : α} (h : a ≈ b) :
         f (Quotient.mk s a) = f (Quotient.mk s b)
-  source: lean4/Imported/Genesis19l57g1/Derivation/Quot.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Quot.lean
   repository: this_repository
   source_sha256: e2cbacdf63dc0fb91a57c1f02f2dff617353b1973e80d6c78225289d5e08868f
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Quot.lean::barrier_R2L
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/Quot.lean::barrier_R2L
   availability: local
   symbol: barrier_R2L
-  path: lean4/Imported/Genesis19l57g1/Derivation/Quot.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/Quot.lean
   repository: this_repository
   sha256: e2cbacdf63dc0fb91a57c1f02f2dff617353b1973e80d6c78225289d5e08868f
   declaration_status: declaration_found_not_proof_checked
   line: 42
   role: source_lead_only
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Quot.lean::quot_barrier
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/Quot.lean::quot_barrier
   availability: local
   symbol: quot_barrier
-  path: lean4/Imported/Genesis19l57g1/Derivation/Quot.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/Quot.lean
   repository: this_repository
   sha256: e2cbacdf63dc0fb91a57c1f02f2dff617353b1973e80d6c78225289d5e08868f
   declaration_status: declaration_found_not_proof_checked
   line: 32
   role: source_lead_only
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Quot.lean::quotient_barrier
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/Quot.lean::quotient_barrier
   availability: local
   symbol: quotient_barrier
-  path: lean4/Imported/Genesis19l57g1/Derivation/Quot.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/Quot.lean
   repository: this_repository
   sha256: e2cbacdf63dc0fb91a57c1f02f2dff617353b1973e80d6c78225289d5e08868f
   declaration_status: declaration_found_not_proof_checked

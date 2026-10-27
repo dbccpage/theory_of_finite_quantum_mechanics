@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fifteenth/State.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 27930e22216cc2b6bda448c173d8b2261009b7b05ffdd348d505294598f3ca19 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.GenesisOngoing.Fifteenth.State

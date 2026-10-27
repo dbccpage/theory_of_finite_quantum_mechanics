@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fourteenth/Step.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 60ad4aa850f5e69f5236dcef1c36a5dd1b175fefb7473367e78d9fecbc76f7dd (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.GenesisOngoing.Fourteenth.Step

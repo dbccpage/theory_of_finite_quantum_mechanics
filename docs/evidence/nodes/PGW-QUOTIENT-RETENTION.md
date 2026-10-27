@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean`
+### Lean: `lean4/Imported/GenesisDerivation/Derivation/QuotientRetention.lean`
 
-- file: [lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean)
-- sha256 (`bytes`): `21096d9353090ed454a70c74d01268b334e6a113a6adbb20a501aed8be9eb36c`
+- file: [lean4/Imported/GenesisDerivation/Derivation/QuotientRetention.lean](../../../lean4/Imported/GenesisDerivation/Derivation/QuotientRetention.lean)
+- sha256 (`bytes`): `2215ed7093fc89f5523420093c8a93dd8dfc692179ad2b43699700fc5399dcac`
 - cited in: node.lean, node.source, record TFQ-0457
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.Genesis19l57g1.Derivation.QuotientRetention`): recorded sha256 `21096d9353090ed454a70c74d01268b334e6a113a6adbb20a501aed8be9eb36c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.QuotientRetention`): recorded sha256 `2215ed7093fc89f5523420093c8a93dd8dfc692179ad2b43699700fc5399dcac` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/Derivation/QuotientRetention.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0457_quotient_retention.md`
 
 - file: [dag/derivations/02_genesis/tfq_0457_quotient_retention.md](../../../dag/derivations/02_genesis/tfq_0457_quotient_retention.md)
-- sha256 (`lf-normalised`): `e7f36ac67ed9ad69dbc2609112432c0d8818f676b3408dfbf9dd05a6e3eb27ee`
+- sha256 (`lf-normalised`): `a1cfd4232ef21aaef26f1dd6ccaf3c0e0f3dccc60bf0cfebd172e22143a268e0`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0457
 - counts toward the grade: no

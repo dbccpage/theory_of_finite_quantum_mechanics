@@ -63,6 +63,6 @@ In accordance with strict constructive principles:
 - **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(IMPL-THYMUS-SCREENING-SOUNDNESS): 4*idx(176) + 3*stage_rank(10) + route_degree(2) == 736` ($\text{value} = 736$)
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(IMPL-THYMUS-SCREENING-SOUNDNESS): R_raw(402) - G_cob(196) - S_decoy(10) == 196 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 196$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
-- **Lean 4 Theorem Anchor**: `omega_engine_education/documentation/004_oepfp/lean4/ThymusScreening.lean::Oeeis.Thymus.thymus_admit_iff`
+- **Lean 4 Theorem Anchor**: `omega_engine_education/documentation/004_oepfp/lean4/ThymusScreening.lean::EpistemicImmuneSystem.Thymus.thymus_admit_iff`
 - **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 02d68dc990b915c28a9158084cc22510fdf043166c2ff769189d185cf90e3a70`

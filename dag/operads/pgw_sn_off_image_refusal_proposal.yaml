@@ -21,7 +21,7 @@ target:
     integer example u(x) = (x,0).'
   source_refs:
   - dag/derivations/05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md
-  - lean4/Imported/OeSn/SnOffImage.lean:19-23
+  - lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean:19-23
   - omega_engine_education/documentation/002_oesn/docs/off_image_refusal_note.md:155-158
   - omega_engine_education/documentation/002_oesn/docs/off_image_refusal_note.md:98-99
   paper_refs: []
@@ -42,7 +42,7 @@ operation_candidates:
   name: inImage
   line: 195
   signature_excerpt: 'def inImage (n : Nat) (p : SnPresentation) : Bool'
-  source: lean4/Imported/OeSn/SnOffImage.lean
+  source: lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean
   repository: this_repository
   source_sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
   status: source_candidate_requires_semantic_review
@@ -54,7 +54,7 @@ relation_candidates:
     theorem accepted_only_from_section (n : Nat) (p : SnPresentation) (q : SnPresentation)
         (h : retractionDownMap n p = .accepted q) :
         ∃ b : BasePresentation, p = sectionLift n b ∧ q = b.toPresentation
-  source: lean4/Imported/OeSn/SnOffImage.lean
+  source: lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean
   repository: this_repository
   source_sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
   status: source_candidate_requires_semantic_review
@@ -66,7 +66,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem nonDescent_iff_off_image (n : Nat) (p : SnPresentation) :
         retractionDownMap n p = .nonDescent ↔ ∀ b : BasePresentation, p ≠ sectionLift n b
-  source: lean4/Imported/OeSn/SnOffImage.lean
+  source: lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean
   repository: this_repository
   source_sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
   status: source_candidate_requires_semantic_review
@@ -78,7 +78,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem sectionLift_injective (n : Nat) (b b' : BasePresentation)
         (h : sectionLift n b = sectionLift n b') : b = b'
-  source: lean4/Imported/OeSn/SnOffImage.lean
+  source: lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean
   repository: this_repository
   source_sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
   status: source_candidate_requires_semantic_review
@@ -90,7 +90,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem retraction_stage_strict (n m : Nat) (b : BasePresentation) (hm : m ≠ n) :
         retractionDownMap n (sectionLift m b) = .nonDescent
-  source: lean4/Imported/OeSn/SnOffImage.lean
+  source: lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean
   repository: this_repository
   source_sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
   status: source_candidate_requires_semantic_review
@@ -102,53 +102,53 @@ relation_candidates:
   signature_excerpt: |-
     theorem inImage_iff (n : Nat) (p : SnPresentation) :
         inImage n p = true ↔ ∃ b : BasePresentation, p = sectionLift n b
-  source: lean4/Imported/OeSn/SnOffImage.lean
+  source: lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean
   repository: this_repository
   source_sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/Imported/OeSn/SnOffImage.lean::accepted_only_from_section
+- original_ref: lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean::accepted_only_from_section
   availability: local
   symbol: accepted_only_from_section
-  path: lean4/Imported/OeSn/SnOffImage.lean
+  path: lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean
   repository: this_repository
   sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
   declaration_status: declaration_found_not_proof_checked
   line: 84
   role: source_lead_only
-- original_ref: lean4/Imported/OeSn/SnOffImage.lean::nonDescent_iff_off_image
+- original_ref: lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean::nonDescent_iff_off_image
   availability: local
   symbol: nonDescent_iff_off_image
-  path: lean4/Imported/OeSn/SnOffImage.lean
+  path: lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean
   repository: this_repository
   sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
   declaration_status: declaration_found_not_proof_checked
   line: 136
   role: source_lead_only
-- original_ref: lean4/Imported/OeSn/SnOffImage.lean::sectionLift_injective
+- original_ref: lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean::sectionLift_injective
   availability: local
   symbol: sectionLift_injective
-  path: lean4/Imported/OeSn/SnOffImage.lean
+  path: lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean
   repository: this_repository
   sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
   declaration_status: declaration_found_not_proof_checked
   line: 160
   role: source_lead_only
-- original_ref: lean4/Imported/OeSn/SnOffImage.lean::retraction_stage_strict
+- original_ref: lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean::retraction_stage_strict
   availability: local
   symbol: retraction_stage_strict
-  path: lean4/Imported/OeSn/SnOffImage.lean
+  path: lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean
   repository: this_repository
   sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
   declaration_status: declaration_found_not_proof_checked
   line: 183
   role: source_lead_only
-- original_ref: lean4/Imported/OeSn/SnOffImage.lean::inImage_iff
+- original_ref: lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean::inImage_iff
   availability: local
   symbol: inImage_iff
-  path: lean4/Imported/OeSn/SnOffImage.lean
+  path: lean4/Imported/SymmetricGroupPresentations/SnOffImage.lean
   repository: this_repository
   sha256: 2f6b3ed0fde0a25ccca9d065300752f7e897f4d4d488e6c6607adb82d236a20f
   declaration_status: declaration_found_not_proof_checked

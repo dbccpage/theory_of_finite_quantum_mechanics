@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/PointedRelation.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 2d36b5427b54767a391d0760ac563ea300c4e7381809c059610ad592bfa28fa5 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.WitnessedDifference.WitnessedDifference.PointedRelation

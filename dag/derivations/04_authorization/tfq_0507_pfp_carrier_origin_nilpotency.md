@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-CarrierOrigin.lean (namespace SymbolGame.V02) establishes two small facts about its own declarations. no_difference_without_distinguishability: a Simplex1 V carries a proof that its source and target differ, so when src = tgt no 1-simplex with those endpoints exists. nilpotency_composition: for d₀ : α → β and d₁ : β → γ with a zero on γ and the hypothesis ∀ x, d₁ (d₀ x) = 0, the composite vanishes at every 0-cochain a; the proof applies the hypothesis to a. The file has no imports and elaborates under Lean 4.33.1 with no sorry.
+CarrierOrigin.lean (namespace SymbolCarrier.V02) establishes two small facts about its own declarations. no_difference_without_distinguishability: a Simplex1 V carries a proof that its source and target differ, so when src = tgt no 1-simplex with those endpoints exists. nilpotency_composition: for d₀ : α → β and d₁ : β → γ with a zero on γ and the hypothesis ∀ x, d₁ (d₀ x) = 0, the composite vanishes at every 0-cochain a; the proof applies the hypothesis to a. The file has no imports and elaborates under Lean 4.33.1 with no sorry.
 
 ### Governing Obligation
 Use the two theorems only as stated: a 1-simplex needs distinct endpoints, and a supplied d₁ ∘ d₀ = 0 propagates pointwise; establish nilpotency for each concrete complex separately.
@@ -30,8 +30,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/OePfp/CarrierOrigin.lean::nilpotency_composition`](../../../lean4/Imported/OePfp/CarrierOrigin.lean)
-- [`lean4/Imported/OePfp/CarrierOrigin.lean::no_difference_without_distinguishability`](../../../lean4/Imported/OePfp/CarrierOrigin.lean)
+- [`lean4/Imported/PfpCarriers/CarrierOrigin.lean::nilpotency_composition`](../../../lean4/Imported/PfpCarriers/CarrierOrigin.lean)
+- [`lean4/Imported/PfpCarriers/CarrierOrigin.lean::no_difference_without_distinguishability`](../../../lean4/Imported/PfpCarriers/CarrierOrigin.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust counterpart of CarrierOrigin.lean`
@@ -50,5 +50,5 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `lean4/Imported/OePfp/CarrierOrigin.lean:70-79`
-  - `lean4/Imported/OePfp/CarrierOrigin.lean:81-88`
+  - `lean4/Imported/PfpCarriers/CarrierOrigin.lean:70-79`
+  - `lean4/Imported/PfpCarriers/CarrierOrigin.lean:81-88`

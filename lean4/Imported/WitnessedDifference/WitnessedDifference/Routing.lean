@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Routing.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: cd9087a9ef86a63ad055c7be4310ef2fbdba6f3470243cf6e16161f8bfc35e13 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.WitnessedDifference.WitnessedDifference.Routing

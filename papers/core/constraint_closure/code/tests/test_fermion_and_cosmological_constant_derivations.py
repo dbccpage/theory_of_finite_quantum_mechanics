@@ -30,7 +30,7 @@ def test_c3_hodge_split_inflation_sharp_ceiling():
 def test_fermion_mass_spectrum_lggr_witness_and_structure():
     res = derive_fermion_mass_spectrum_lggr(cochain_1cycle=[1.0, 1.0, 1.0], v_ew_gev=246.0)
 
-    assert res["lean4_proof_witness"] == "OmegaCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction"
+    assert res["lean4_proof_witness"] == "ObstructionCore.PrimitiveDifference.localGreenGlobalRed_pair_obstruction"
     assert len(res["z3_spectral_eigenvalues"]) == 3
     assert len(res["raw_residual_mass_gaps"]) == 3
     assert res["raw_residual_mass_gaps"][0] == pytest.approx(0.0, abs=1e-12)
@@ -46,7 +46,7 @@ def test_cosmological_constant_residual_witness_and_structure():
         hinge_valencies_4d=[5, 4, 5, 4], immirzi_gamma=0.274066, cell_volume_l_p4=1.0
     )
 
-    assert res["lean4_proof_witness"] == "OmegaCore.PrimitiveDifferenceFinite.deltaFactorOn_exists_iff_deltaCongruentOn"
+    assert res["lean4_proof_witness"] == "ObstructionCore.PrimitiveDifferenceFinite.deltaFactorOn_exists_iff_deltaCongruentOn"
     assert res["lambda_residual_density"] > 0.0
     assert len(res["epsilon_4d_rad"]) == 4
     assert res["authority"] == "None"

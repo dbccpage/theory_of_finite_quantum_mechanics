@@ -45,10 +45,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/PreGenesisToMssn/Cochain.lean`
 
 - file: [lean4/Imported/PreGenesisToMssn/Cochain.lean](../../../lean4/Imported/PreGenesisToMssn/Cochain.lean)
-- sha256 (`bytes`): `11bbea43679dd5a5ada9c0e251bc9a0776d158da96b0aa0bbceb6a69d311f7b6`
+- sha256 (`bytes`): `cf023d13e4f326637fdf44fcde7c8a76d47d4db40d969301885673b4b1573f9c`
 - cited in: node.lean, record TFQ-0523
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mssn_sn.json](../../../dag/research/lean_replay_campaign_mssn_sn.json) (module `Imported.PreGenesisToMssn.Cochain`): recorded sha256 `11bbea43679dd5a5ada9c0e251bc9a0776d158da96b0aa0bbceb6a69d311f7b6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_mssn_sn.json](../../../dag/research/lean_replay_campaign_mssn_sn.json) (module `Imported.PreGenesisToMssn.Cochain`): recorded sha256 `cf023d13e4f326637fdf44fcde7c8a76d47d4db40d969301885673b4b1573f9c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/PreGenesisToMssn/Cochain.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

@@ -13,7 +13,7 @@ namespace GOMC
 
 universe u v w z
 
-open OmegaCore
+open ObstructionCore
 
 /--
 Authority represents the terminal status of a node in the finite evaluator graph.

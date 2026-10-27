@@ -73,13 +73,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/Imported/Genesis19l57g1/Derivation/Initiality.lean`
+### Lean: `lean4/Imported/GenesisDerivation/Derivation/Initiality.lean`
 
-- file: [lean4/Imported/Genesis19l57g1/Derivation/Initiality.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/Initiality.lean)
-- sha256 (`bytes`): `cd20947d80573e7fc077b0bc455f53af63684c52ff4ed4f14893d845d9e51e1f`
+- file: [lean4/Imported/GenesisDerivation/Derivation/Initiality.lean](../../../lean4/Imported/GenesisDerivation/Derivation/Initiality.lean)
+- sha256 (`bytes`): `763612a54b156f21fe059c1c45b44bbe21daed8cce5126d4c2fc43b17c0b8b19`
 - cited in: node.source
 - replay: `none`
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/Derivation/Initiality.lean`
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/Derivation/Initiality.lean`
 - counts toward the grade: yes
 
 ### Python: `checks/independent/pgw-minimal-or-initial-refused.py`
@@ -99,7 +99,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md`
 
 - file: [dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md](../../../dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md)
-- sha256 (`lf-normalised`): `bb5e13eeeedc75ca3f7eee378fbb5622c4c56c66898cff332099fd16b665eec4`
+- sha256 (`lf-normalised`): `baf0afc80c49f5df350d8ddee088876e3c072984dc6af2b6631ce36618bb6672`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0453
 - counts toward the grade: no

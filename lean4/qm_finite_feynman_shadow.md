@@ -19,7 +19,7 @@ checked `SemiringTransportKernel` path-sum core; Mathlib-free; no authority mint
 
 namespace QM
 
-open OmegaCosmology.Primitives.SemiringTransportKernel
+open FiniteCosmology.Primitives.SemiringTransportKernel
 
 /-- Amplitude of one finite history = product of its declared step weights. -/
 def histAmp {R : Type} [FWSemiring R] : List R → R

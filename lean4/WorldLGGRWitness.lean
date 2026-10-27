@@ -8,7 +8,7 @@ import PrimitiveDifference
 namespace ObserverWorld
 namespace LGGRWitness
 
-open OmegaCore
+open ObstructionCore
 
 universe u v w
 

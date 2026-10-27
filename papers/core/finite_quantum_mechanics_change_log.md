@@ -881,7 +881,7 @@ carries structural repairs, not only text resolution.
 6. Lean evidence, measured not asserted. 122 modules, **1,398 theorems, 0 `sorry`,
    0 `True` stubs**. The receipt records 35 application declarations relying on
    `Classical.choice` outside QM_122's baseline `{propext, Quot.sound}` policy
-   (including `H019.basisGen8_eval_pos` and `OmegaCore.CochainWindow.sector_trichotomy`),
+   (including `H019.basisGen8_eval_pos` and `ObstructionCore.CochainWindow.sector_trichotomy`),
    all verified and tracked in `lake_replay_20260905.json` and pinned by tests.
 
 `AuthorityEffect: None.` A green suite certifies that no claim outruns its

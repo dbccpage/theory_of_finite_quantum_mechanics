@@ -29,7 +29,7 @@
 document_id: "QM_090"
 version: "1.0 (Mechanized Authority Non-Promotion Firewall)"
 status: "READY_FOR_AUTHOR_REVIEW"
-mechanization: "MECHANIZED (ENC-1063: lean4/007_authority_firewall/001_the_authority_firewall_a_machine_checked_separation_of_evidence_from_authority_in_finite_systems/OmegaCosmology/Primitives/AuthorityNonPromotion.lean, lean4/shared_kernel/primitive_difference.lean; authority_non_promotion_nonzero_of_unsealed)"
+mechanization: "MECHANIZED (ENC-1063: lean4/007_authority_firewall/001_the_authority_firewall_a_machine_checked_separation_of_evidence_from_authority_in_finite_systems/FiniteCosmology/Primitives/AuthorityNonPromotion.lean, lean4/shared_kernel/primitive_difference.lean; authority_non_promotion_nonzero_of_unsealed)"
 
 QM_090 — Interpretations as Packet-Indistinguishable Authority Shadows
 ======================================================================
@@ -74,7 +74,7 @@ Its firewall applies directly to this track and is the load-bearing content of t
 
 **[STANDARD — ENC-1063, MECHANIZED]** The authority firewall (the only formally-secured claim here):
 $$ \mathrm{StructureDerived}(x)\not\Rightarrow\mathrm{IsAuth}(x). $$
-This is proven and machine-checked in the encyclopedia (`OmegaCore.AuthorityNonPromotion`,
+This is proven and machine-checked in the encyclopedia (`ObstructionCore.AuthorityNonPromotion`,
 axiom-free); this paper *applies* it, it does not re-prove it.
 
 $$

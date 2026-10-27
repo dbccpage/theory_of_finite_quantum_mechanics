@@ -1,6 +1,6 @@
 
 
-namespace OmegaCore
+namespace ObstructionCore
 
 universe u v w z
 
@@ -915,7 +915,7 @@ theorem classical_limit_nonzero_of_unprojected (phase_state classical_proj : Int
   dsimp [classicalLimitPrimitiveDifference]
   omega
 
-end OmegaCore
+end ObstructionCore
 
 
 

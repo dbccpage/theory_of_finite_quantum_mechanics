@@ -10,8 +10,8 @@ import WorldObserverFunctoriality
 namespace ObserverWorld
 namespace ObserverDirectedColimitNoGoW84
 
-open OmegaCore
-open OmegaCore.PrimitiveDifference
+open ObstructionCore
+open ObstructionCore.PrimitiveDifference
 open ObserverFunctorialityW35
 
 universe u v

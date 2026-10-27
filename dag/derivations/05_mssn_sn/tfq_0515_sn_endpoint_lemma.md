@@ -33,10 +33,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::D2_initial_pointed`](../../../lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::irrefl_witness_ne`](../../../lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::single_oriented_witness_consistent`](../../../lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean)
-- [`lean4/Imported/OeSn/SnTheorems.lean::irrefl_witness_distinct`](../../../lean4/Imported/OeSn/SnTheorems.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean::D2_initial_pointed`](../../../lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean::irrefl_witness_ne`](../../../lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean::single_oriented_witness_consistent`](../../../lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean)
+- [`lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean::irrefl_witness_distinct`](../../../lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust check of the endpoint lemma in the S(n) strand`

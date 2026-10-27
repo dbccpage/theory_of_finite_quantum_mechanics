@@ -65,10 +65,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/CoordinateWiseAdditivity/gs003_coordinate_l1.lean`
 
 - file: [lean4/Imported/CoordinateWiseAdditivity/gs003_coordinate_l1.lean](../../../lean4/Imported/CoordinateWiseAdditivity/gs003_coordinate_l1.lean)
-- sha256 (`bytes`): `4fbc2f46a165defc1a4f7757223bd229a4ba3cf2418346be317cf67b22e4c698`
+- sha256 (`bytes`): `07ccbbad40edfdf33388fed09c701273fb3ef1e3ce3ae4ab7557d038dd17a42a`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_emergence.json](../../../dag/research/lean_replay_campaign_l1_emergence.json) (module `Imported.CoordinateWiseAdditivity.gs003_coordinate_l1`): recorded sha256 `4fbc2f46a165defc1a4f7757223bd229a4ba3cf2418346be317cf67b22e4c698` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_l1_emergence.json](../../../dag/research/lean_replay_campaign_l1_emergence.json) (module `Imported.CoordinateWiseAdditivity.gs003_coordinate_l1`): recorded sha256 `07ccbbad40edfdf33388fed09c701273fb3ef1e3ce3ae4ab7557d038dd17a42a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/CoordinateWiseAdditivity/gs003_coordinate_l1.lean`
 - counts toward the grade: yes
 

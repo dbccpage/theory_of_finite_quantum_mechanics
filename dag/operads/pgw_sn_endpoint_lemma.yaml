@@ -38,7 +38,7 @@ operation_candidates:
   name: Irrefl
   line: 37
   signature_excerpt: 'def Irrefl {α : Type} (r : α → α → Prop) : Prop'
-  source: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean
   repository: this_repository
   source_sha256: 1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26
   status: source_candidate_requires_semantic_review
@@ -46,7 +46,7 @@ operation_candidates:
   name: D2
   line: 98
   signature_excerpt: 'def D2 : Bool → Bool → Prop'
-  source: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean
   repository: this_repository
   source_sha256: 1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26
   status: source_candidate_requires_semantic_review
@@ -57,7 +57,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem irrefl_witness_distinct {α : Type} (r : α → α → Prop) (hirr : ∀ x, ¬ r x x)
         {a b : α} (hab : r a b) : a ≠ b
-  source: lean4/Imported/OeSn/SnTheorems.lean
+  source: lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean
   repository: this_repository
   source_sha256: acbabe52a9557e71a1ca32cd81122a70859a1f25c7c4654ec78102c8fc1fcf81
   status: source_candidate_requires_semantic_review
@@ -69,7 +69,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem irrefl_witness_ne {α : Type} {r : α → α → Prop} (hi : Irrefl r)
         {a b : α} (h : r a b) : a ≠ b
-  source: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean
   repository: this_repository
   source_sha256: 1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26
   status: source_candidate_requires_semantic_review
@@ -82,7 +82,7 @@ relation_candidates:
     theorem single_oriented_witness_consistent :
         ∃ W : Bool → Bool → Nat,
           W false true = 1 ∧ W true false = 0
-  source: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean
   repository: this_repository
   source_sha256: 1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26
   status: source_candidate_requires_semantic_review
@@ -98,44 +98,44 @@ relation_candidates:
           (f false = a ∧ f true = b ∧ ∀ x y, D2 x y → r (f x) (f y)) ∧
           ∀ g : Bool → α, g false = a → g true = b →
             ∀ t, g t = f t
-  source: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean
   repository: this_repository
   source_sha256: 1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/Imported/OeSn/SnTheorems.lean::irrefl_witness_distinct
+- original_ref: lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean::irrefl_witness_distinct
   availability: local
   symbol: irrefl_witness_distinct
-  path: lean4/Imported/OeSn/SnTheorems.lean
+  path: lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean
   repository: this_repository
   sha256: acbabe52a9557e71a1ca32cd81122a70859a1f25c7c4654ec78102c8fc1fcf81
   declaration_status: declaration_found_not_proof_checked
   line: 90
   role: source_lead_only
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::irrefl_witness_ne
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean::irrefl_witness_ne
   availability: local
   symbol: irrefl_witness_ne
-  path: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean
   repository: this_repository
   sha256: 1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26
   declaration_status: declaration_found_not_proof_checked
   line: 51
   role: source_lead_only
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::single_oriented_witness_consistent
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean::single_oriented_witness_consistent
   availability: local
   symbol: single_oriented_witness_consistent
-  path: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean
   repository: this_repository
   sha256: 1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26
   declaration_status: declaration_found_not_proof_checked
   line: 442
   role: source_lead_only
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean::D2_initial_pointed
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean::D2_initial_pointed
   availability: local
   symbol: D2_initial_pointed
-  path: lean4/Imported/Genesis19l57g1/Derivation/PrimDiff.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/PrimDiff.lean
   repository: this_repository
   sha256: 1f3f373e979d9199c73ef9e63ea863a0ac41692c247e23052dba6588c6e16f26
   declaration_status: declaration_found_not_proof_checked

@@ -53,7 +53,7 @@ operation_candidates:
     theorem fixedWords_mem (n k : Nat) (word : List (Option Nat)) :
         word ∈ fixedWords n k ↔
           word.length = k ∧ wellFormedWord n word ∧ none ∉ word
-  source: lean4/Imported/Genesis19l57g1/Paper.lean
+  source: lean4/Imported/GenesisDerivation/Paper.lean
   repository: this_repository
   source_sha256: 9503a9507c67532a9c0a7a51eb8f3ea66fc8c3371692bab8579b04e77ba4b89c
   status: source_candidate_requires_semantic_review
@@ -75,7 +75,7 @@ operation_candidates:
       | [] => True
       | none :: tail => wellFormedWord n tail
       | some d :: tail => d < n ∧ wellFormedWord n tail
-  source: lean4/Imported/Genesis19l57g1/Paper.lean
+  source: lean4/Imported/GenesisDerivation/Paper.lean
   repository: this_repository
   source_sha256: 9503a9507c67532a9c0a7a51eb8f3ea66fc8c3371692bab8579b04e77ba4b89c
   status: source_candidate_requires_semantic_review
@@ -91,7 +91,7 @@ operation_candidates:
     theorem fixedWords_mem (n k : Nat) (word : List (Option Nat)) :
         word ∈ fixedWords n k ↔
           word.length = k ∧ wellFormedWord n word ∧ none ∉ word
-  source: lean4/Imported/Genesis19l57g1/Paper.lean
+  source: lean4/Imported/GenesisDerivation/Paper.lean
   repository: this_repository
   source_sha256: 9503a9507c67532a9c0a7a51eb8f3ea66fc8c3371692bab8579b04e77ba4b89c
   status: source_candidate_requires_semantic_review
@@ -102,7 +102,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem contextWords_length (n k : Nat) :
         (contextWords n k).length = (n + 1) ^ k - n ^ k
-  source: lean4/Imported/Genesis19l57g1/Paper.lean
+  source: lean4/Imported/GenesisDerivation/Paper.lean
   repository: this_repository
   source_sha256: 9503a9507c67532a9c0a7a51eb8f3ea66fc8c3371692bab8579b04e77ba4b89c
   status: source_candidate_requires_semantic_review
@@ -115,7 +115,7 @@ relation_candidates:
     theorem contextWords_mem (n k : Nat) (word : List (Option Nat)) :
         word ∈ contextWords n k ↔
           word.length = k ∧ wellFormedWord n word ∧ none ∈ word
-  source: lean4/Imported/Genesis19l57g1/Paper.lean
+  source: lean4/Imported/GenesisDerivation/Paper.lean
   repository: this_repository
   source_sha256: 9503a9507c67532a9c0a7a51eb8f3ea66fc8c3371692bab8579b04e77ba4b89c
   status: source_candidate_requires_semantic_review
@@ -125,35 +125,35 @@ relation_candidates:
   name: contextWords_nodup
   line: 126
   signature_excerpt: 'theorem contextWords_nodup (n k : Nat) : (contextWords n k).Nodup'
-  source: lean4/Imported/Genesis19l57g1/Paper.lean
+  source: lean4/Imported/GenesisDerivation/Paper.lean
   repository: this_repository
   source_sha256: 9503a9507c67532a9c0a7a51eb8f3ea66fc8c3371692bab8579b04e77ba4b89c
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/Imported/Genesis19l57g1/Paper.lean::contextWords_length
+- original_ref: lean4/Imported/GenesisDerivation/Paper.lean::contextWords_length
   availability: local
   symbol: contextWords_length
-  path: lean4/Imported/Genesis19l57g1/Paper.lean
+  path: lean4/Imported/GenesisDerivation/Paper.lean
   repository: this_repository
   sha256: 9503a9507c67532a9c0a7a51eb8f3ea66fc8c3371692bab8579b04e77ba4b89c
   declaration_status: declaration_found_not_proof_checked
   line: 168
   role: source_lead_only
-- original_ref: lean4/Imported/Genesis19l57g1/Paper.lean::contextWords_mem
+- original_ref: lean4/Imported/GenesisDerivation/Paper.lean::contextWords_mem
   availability: local
   symbol: contextWords_mem
-  path: lean4/Imported/Genesis19l57g1/Paper.lean
+  path: lean4/Imported/GenesisDerivation/Paper.lean
   repository: this_repository
   sha256: 9503a9507c67532a9c0a7a51eb8f3ea66fc8c3371692bab8579b04e77ba4b89c
   declaration_status: declaration_found_not_proof_checked
   line: 85
   role: source_lead_only
-- original_ref: lean4/Imported/Genesis19l57g1/Paper.lean::contextWords_nodup
+- original_ref: lean4/Imported/GenesisDerivation/Paper.lean::contextWords_nodup
   availability: local
   symbol: contextWords_nodup
-  path: lean4/Imported/Genesis19l57g1/Paper.lean
+  path: lean4/Imported/GenesisDerivation/Paper.lean
   repository: this_repository
   sha256: 9503a9507c67532a9c0a7a51eb8f3ea66fc8c3371692bab8579b04e77ba4b89c
   declaration_status: declaration_found_not_proof_checked

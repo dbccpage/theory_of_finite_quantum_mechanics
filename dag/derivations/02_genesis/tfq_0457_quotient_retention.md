@@ -30,10 +30,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::collapseMap_compose`](../../../lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::collapseMap_injective_iff_reverse_refinement`](../../../lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::collapseMap_surjective`](../../../lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean::failed_identification_retains_two_classes`](../../../lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/QuotientRetention.lean::collapseMap_compose`](../../../lean4/Imported/GenesisDerivation/Derivation/QuotientRetention.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/QuotientRetention.lean::collapseMap_injective_iff_reverse_refinement`](../../../lean4/Imported/GenesisDerivation/Derivation/QuotientRetention.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/QuotientRetention.lean::collapseMap_surjective`](../../../lean4/Imported/GenesisDerivation/Derivation/QuotientRetention.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/QuotientRetention.lean::failed_identification_retains_two_classes`](../../../lean4/Imported/GenesisDerivation/Derivation/QuotientRetention.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust check of quotient retention`
@@ -53,5 +53,5 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:456-467`
-  - `lean4/Imported/Genesis19l57g1/Derivation/QuotientRetention.lean:27-31`
+  - `lean4/Imported/GenesisDerivation/Derivation/QuotientRetention.lean:27-31`
   - `atlas/papers/finite_obstruction_calculus/genesis/code/fixtures/historical_claim_ledger.md:31`

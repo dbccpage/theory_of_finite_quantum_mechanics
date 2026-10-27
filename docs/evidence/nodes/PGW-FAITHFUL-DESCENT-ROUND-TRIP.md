@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean`
+### Lean: `lean4/Imported/GenesisDerivation/Derivation/PresentationDescent.lean`
 
-- file: [lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean)
-- sha256 (`bytes`): `0031439e3cf7216aa25ed09bcc97dc19f42931238a4f53691d1789b023caab92`
+- file: [lean4/Imported/GenesisDerivation/Derivation/PresentationDescent.lean](../../../lean4/Imported/GenesisDerivation/Derivation/PresentationDescent.lean)
+- sha256 (`bytes`): `a06a45393920e6ef85542c552d2fa393f35a03712018e7e7886c62ebd8662df6`
 - cited in: node.lean, node.source, record TFQ-0458
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.Genesis19l57g1.Derivation.PresentationDescent`): recorded sha256 `0031439e3cf7216aa25ed09bcc97dc19f42931238a4f53691d1789b023caab92` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/Derivation/PresentationDescent.lean`
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisDerivation.Derivation.PresentationDescent`): recorded sha256 `a06a45393920e6ef85542c552d2fa393f35a03712018e7e7886c62ebd8662df6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/Derivation/PresentationDescent.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -75,7 +75,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0458_faithful_descent_round_trip.md`
 
 - file: [dag/derivations/02_genesis/tfq_0458_faithful_descent_round_trip.md](../../../dag/derivations/02_genesis/tfq_0458_faithful_descent_round_trip.md)
-- sha256 (`lf-normalised`): `2145ae1a7faad239e1145bc49c5297e997951898596606209cd5541af2dcb902`
+- sha256 (`lf-normalised`): `8bc7eb30b855bafcda2eb210281129d3d956fe5e5e3d6670e92a9fbefb7dc8bb`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0458
 - counts toward the grade: no

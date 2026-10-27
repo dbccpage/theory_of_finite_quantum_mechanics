@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentythird/Fewest.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 0203bf81df3f8a6c52e241d37c8f675b44b60d716d4f7ecfb9a722e87713455a (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.GenesisOngoingCore.Twentythird.Fewest

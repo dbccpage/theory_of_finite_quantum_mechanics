@@ -48,10 +48,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/Routing.lean`
 
 - file: [lean4/Imported/WitnessedDifference/WitnessedDifference/Routing.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Routing.lean)
-- sha256 (`bytes`): `ec70fc97a88d46e892a481f8b2f0b6cd48f61ecc335d60dbe583c4f74de0a566`
+- sha256 (`bytes`): `4fa11b70e328f2c42e32c89548b8970033b8f2da996181f2526febe6dcfca324`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_wdp.json](../../../dag/research/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.Routing`): recorded sha256 `ec70fc97a88d46e892a481f8b2f0b6cd48f61ecc335d60dbe583c4f74de0a566` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_wdp.json](../../../dag/research/lean_replay_campaign_wdp.json) (module `Imported.WitnessedDifference.WitnessedDifference.Routing`): recorded sha256 `4fa11b70e328f2c42e32c89548b8970033b8f2da996181f2526febe6dcfca324` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/Routing.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

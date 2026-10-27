@@ -64,10 +64,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/ConditionalDensityLift/Xi.lean`
 
 - file: [lean4/Imported/ConditionalDensityLift/Xi.lean](../../../lean4/Imported/ConditionalDensityLift/Xi.lean)
-- sha256 (`bytes`): `ec20e5338b66b27162a78229bffad75e3016f41bf7173eb1f55621dd41473d9e`
+- sha256 (`bytes`): `39768ebfef137380ba5af96445973d5d2777476867eb0a0edab787d9d961bbee`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `Imported.ConditionalDensityLift.Xi`): recorded sha256 `ec20e5338b66b27162a78229bffad75e3016f41bf7173eb1f55621dd41473d9e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `Imported.ConditionalDensityLift.Xi`): recorded sha256 `39768ebfef137380ba5af96445973d5d2777476867eb0a0edab787d9d961bbee` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/ConditionalDensityLift/Xi.lean`
 - counts toward the grade: yes
 

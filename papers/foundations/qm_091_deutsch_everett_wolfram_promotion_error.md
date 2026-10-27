@@ -30,7 +30,7 @@ document_id: "QM_091"
 version: "v1.0.0 (Mechanized Authority Non-Promotion Firewall)"
 status: "READY_FOR_AUTHOR_REVIEW"
 authority_effect: "None"
-mechanization: "MECHANIZED (ENC-1063: lean4/007_authority_firewall/001_the_authority_firewall_a_machine_checked_separation_of_evidence_from_authority_in_finite_systems/OmegaCosmology/Primitives/AuthorityNonPromotion.lean, lean4/shared_kernel/primitive_difference.lean; authorityNonPromotionPrimitiveDifference, authority_non_promotion_nonzero_of_unsealed)"
+mechanization: "MECHANIZED (ENC-1063: lean4/007_authority_firewall/001_the_authority_firewall_a_machine_checked_separation_of_evidence_from_authority_in_finite_systems/FiniteCosmology/Primitives/AuthorityNonPromotion.lean, lean4/shared_kernel/primitive_difference.lean; authorityNonPromotionPrimitiveDifference, authority_non_promotion_nonzero_of_unsealed)"
 claim_ledger: "../finite_quantum_mechanics/claims/claim_ledger.yaml"
 change_log: "../finite_quantum_mechanics/finite_quantum_mechanics_source_notes.md#1140-interpretations-as-authority-shadows-and-the-promotion-error"
 
@@ -149,7 +149,7 @@ tag overstated):
   `not_structureDerived_implies_isAuth`) — an inhabitant that is structure-derived
   yet not authority, so structure-derivation does not by itself mint authority.
 
-* **(b) the historical STRONGER only-via-`Pi_sharp` claim is [SUPERSEDED / DECODE-ONLY]**. The vacuously gated `OmegaCosmology.Primitives.AuthorityNonPromotion.no_formal_to_authority_when_no_terminalizer` lemma does not establish an authority factorization. Current semantics instead prohibit every model-facing diagnostic or terminal from constructing authority and reserve any bounded promotion for a separate external authenticated human decision.
+* **(b) the historical STRONGER only-via-`Pi_sharp` claim is [SUPERSEDED / DECODE-ONLY]**. The vacuously gated `FiniteCosmology.Primitives.AuthorityNonPromotion.no_formal_to_authority_when_no_terminalizer` lemma does not establish an authority factorization. Current semantics instead prohibit every model-facing diagnostic or terminal from constructing authority and reserve any bounded promotion for a separate external authenticated human decision.
 
 The boxed factorization below is retained as the superseded historical prose target; only part (a) is machine-checked and current:
 

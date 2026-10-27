@@ -3,7 +3,7 @@ node_id: PGW-PFP-CARRIER-ORIGIN-NILPOTENCY
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'CarrierOrigin.lean (namespace SymbolGame.V02) establishes two small facts about its
+  source_statement: 'CarrierOrigin.lean (namespace SymbolCarrier.V02) establishes two small facts about its
     own declarations. no_difference_without_distinguishability: a Simplex1 V carries a proof that its
     source and target differ, so when src = tgt no 1-simplex with those endpoints exists. nilpotency_composition:
     for d₀ : α → β and d₁ : β → γ with a zero on γ and the hypothesis ∀ x, d₁ (d₀ x) = 0, the composite
@@ -16,8 +16,8 @@ target:
     with no theorem about them.
   source_refs:
   - dag/derivations/04_authorization/tfq_0507_pfp_carrier_origin_nilpotency.md
-  - lean4/Imported/OePfp/CarrierOrigin.lean:70-79
-  - lean4/Imported/OePfp/CarrierOrigin.lean:81-88
+  - lean4/Imported/PfpCarriers/CarrierOrigin.lean:70-79
+  - lean4/Imported/PfpCarriers/CarrierOrigin.lean:81-88
   paper_refs: []
   source_claim_label: PROVED_LEAN
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
@@ -36,7 +36,7 @@ operation_candidates:
   name: Simplex1
   line: 65
   signature_excerpt: 'structure Simplex1 (V : Type)'
-  source: lean4/Imported/OePfp/CarrierOrigin.lean
+  source: lean4/Imported/PfpCarriers/CarrierOrigin.lean
   repository: this_repository
   source_sha256: bab619832676544fc9cef04b2bfe975dd91a5b450ca1eb112ac82afd9e2e1f34
   status: source_candidate_requires_semantic_review
@@ -47,7 +47,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem no_difference_without_distinguishability (V : Type) (src tgt : V) (h : src = tgt) :
         ¬ ∃ (e : Simplex1 V), e.src = src ∧ e.tgt = tgt
-  source: lean4/Imported/OePfp/CarrierOrigin.lean
+  source: lean4/Imported/PfpCarriers/CarrierOrigin.lean
   repository: this_repository
   source_sha256: bab619832676544fc9cef04b2bfe975dd91a5b450ca1eb112ac82afd9e2e1f34
   status: source_candidate_requires_semantic_review
@@ -60,26 +60,26 @@ relation_candidates:
     theorem nilpotency_composition {α β γ : Type} [Zero γ]
         (d0 : α → β) (d1 : β → γ) (h_nil : ∀ x, d1 (d0 x) = 0) (a : α) :
         d1 (d0 a) = 0
-  source: lean4/Imported/OePfp/CarrierOrigin.lean
+  source: lean4/Imported/PfpCarriers/CarrierOrigin.lean
   repository: this_repository
   source_sha256: bab619832676544fc9cef04b2bfe975dd91a5b450ca1eb112ac82afd9e2e1f34
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/Imported/OePfp/CarrierOrigin.lean::no_difference_without_distinguishability
+- original_ref: lean4/Imported/PfpCarriers/CarrierOrigin.lean::no_difference_without_distinguishability
   availability: local
   symbol: no_difference_without_distinguishability
-  path: lean4/Imported/OePfp/CarrierOrigin.lean
+  path: lean4/Imported/PfpCarriers/CarrierOrigin.lean
   repository: this_repository
   sha256: bab619832676544fc9cef04b2bfe975dd91a5b450ca1eb112ac82afd9e2e1f34
   declaration_status: declaration_found_not_proof_checked
   line: 74
   role: source_lead_only
-- original_ref: lean4/Imported/OePfp/CarrierOrigin.lean::nilpotency_composition
+- original_ref: lean4/Imported/PfpCarriers/CarrierOrigin.lean::nilpotency_composition
   availability: local
   symbol: nilpotency_composition
-  path: lean4/Imported/OePfp/CarrierOrigin.lean
+  path: lean4/Imported/PfpCarriers/CarrierOrigin.lean
   repository: this_repository
   sha256: bab619832676544fc9cef04b2bfe975dd91a5b450ca1eb112ac82afd9e2e1f34
   declaration_status: declaration_found_not_proof_checked

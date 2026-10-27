@@ -33,11 +33,11 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::R2F_collapsed`](../../../lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::R2L_collapsed`](../../../lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::admission_without_expressive_increase`](../../../lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::historyF_replays`](../../../lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::historyL_replays`](../../../lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::R2F_collapsed`](../../../lean4/Imported/GenesisDerivation/Derivation/Inertia.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::R2L_collapsed`](../../../lean4/Imported/GenesisDerivation/Derivation/Inertia.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::admission_without_expressive_increase`](../../../lean4/Imported/GenesisDerivation/Derivation/Inertia.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::historyF_replays`](../../../lean4/Imported/GenesisDerivation/Derivation/Inertia.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::historyL_replays`](../../../lean4/Imported/GenesisDerivation/Derivation/Inertia.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/reading.rs::challenge2_admission_need_not_increase_expressive_power`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/reading.rs)

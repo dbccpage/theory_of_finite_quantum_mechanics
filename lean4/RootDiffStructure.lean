@@ -10,7 +10,7 @@ AuthorityEffect: None.  This node is an ADMITTED PRIMITIVE.  Nothing below deriv
 two channels exist, or that either reduces to the other; the results show only that the typed coproduct
 construction is a genuine categorical coproduct and is NEUTRAL about the two posits.
 
-Scope: `Real0 PD S` has the same two-constructor shape as `OmegaCosmology.Ontology.Real0` in
+Scope: `Real0 PD S` has the same two-constructor shape as `FiniteCosmology.Ontology.Real0` in
 `lean4/OntologyBasic.lean` (constructors `primitiveDifference` and `structure` taking the payload of each
 channel); here the payload types `PD`, `S` are arbitrary types, because that file may not be imported.
 Properties of the actual `OntologyBasic.Real0` (its universe-polymorphic record payloads) are not claimed.
@@ -23,7 +23,7 @@ namespace RootDiffStructure
 
 variable {PD S C : Type}
 
-/-- Same shape as `OmegaCosmology.Ontology.Real0`: a tagged union of the two channels' payloads. -/
+/-- Same shape as `FiniteCosmology.Ontology.Real0`: a tagged union of the two channels' payloads. -/
 inductive Real0 (PD S : Type) where
   | primitiveDifference : PD → Real0 PD S
   | structureChannel : S → Real0 PD S

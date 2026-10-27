@@ -271,18 +271,18 @@ index §8/§9.3, and the housekeeping found in this pass. Ordered roughly by lev
   (`PaperQF000.TraceZeroDuality`, `PaperQF002.PaperQF002`,
   `PaperQF002.L010_01_BornRedundancy`) into `QM`, and author every new QM
   `LT-*` target there. Tower GT* kernels stay in `Paper99x_*`. The shared
-  tower/CODA-FOC primitives currently in `OmegaCore` that QM reuses
+  tower/CODA-FOC primitives currently in `ObstructionCore` that QM reuses
   (`FiniteObstructionTrichotomy`, `SemiringTransportKernel`, `AuthorityNonPromotion`,
   `TerminalDisjointness`, `ProjectionObstructionQuotient`, `RepairMonotonicity`,
-  `PacketSchemaRefusal`) stay in `OmegaCore` and `QM` **imports** them — *open
+  `PacketSchemaRefusal`) stay in `ObstructionCore` and `QM` **imports** them — *open
   sub-point:* the operator may instead elect to move the QM-authored kernels into `QM`.
 
 - `TARGETS` and `00_MASTER_INDEX` Lean paths are **stale**: GT* kernels moved
-  `OmegaCore/ → Paper99x_*`; tower ledgers moved from the historical theory tree
+  `ObstructionCore/ → Paper99x_*`; tower ledgers moved from the historical theory tree
   to the canonical Paper99x publication units; QM Lean now targets `QM`. Refresh both against these homes
   (master index partly refreshed 2026-06-13 §3.0c).
 
-- `FiniteObstructionTrichotomy` **already exists** in OmegaCore — re-verify with
+- `FiniteObstructionTrichotomy` **already exists** in ObstructionCore — re-verify with
   `Lean replay` and update `LT-C/LT-E` status (the ledger may understate progress).
 
 - Re-run `Lean replay` on the Tier-1 kernels (LT-B/D/E/F/T/P) and stamp green in

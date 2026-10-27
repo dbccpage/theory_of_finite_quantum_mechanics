@@ -30,10 +30,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean::gates_of_obst`](../../../lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean::obstP_factors`](../../../lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean::obst_of_gates`](../../../lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean)
-- [`lean4/Imported/OeMssn/MssnObstructionDetector.lean::obstP_factors`](../../../lean4/Imported/OeMssn/MssnObstructionDetector.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/PrimitivePassage.lean::gates_of_obst`](../../../lean4/Imported/GenesisDerivation/Derivation/PrimitivePassage.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/PrimitivePassage.lean::obstP_factors`](../../../lean4/Imported/GenesisDerivation/Derivation/PrimitivePassage.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/PrimitivePassage.lean::obst_of_gates`](../../../lean4/Imported/GenesisDerivation/Derivation/PrimitivePassage.lean)
+- [`lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean::obstP_factors`](../../../lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust port of the passage-system obstP; obstruction.rs::obstructed is the kernel's exhausted-menu notion, a different predicate`
@@ -52,6 +52,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `lean4/Imported/Genesis19l57g1/Derivation/PrimitivePassage.lean:216-226`
-  - `lean4/Imported/OeMssn/MssnObstructionDetector.lean:63-66`
+  - `lean4/Imported/GenesisDerivation/Derivation/PrimitivePassage.lean:216-226`
+  - `lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean:63-66`
   - `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md:1105-1107`

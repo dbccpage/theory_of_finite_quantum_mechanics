@@ -37,10 +37,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::cycle_regime_const`](../../../lean4/Imported/Genesis19l57g1/SecondRun/Run.lean)
-- [`lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::ereplay_elems_le`](../../../lean4/Imported/Genesis19l57g1/SecondRun/Run.lean)
-- [`lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::no_return`](../../../lean4/Imported/Genesis19l57g1/SecondRun/Run.lean)
-- [`lean4/Imported/Genesis19l57g1/SecondRun/Run.lean::not_separable_through`](../../../lean4/Imported/Genesis19l57g1/SecondRun/Run.lean)
+- [`lean4/Imported/GenesisDerivation/SecondRun/Run.lean::cycle_regime_const`](../../../lean4/Imported/GenesisDerivation/SecondRun/Run.lean)
+- [`lean4/Imported/GenesisDerivation/SecondRun/Run.lean::ereplay_elems_le`](../../../lean4/Imported/GenesisDerivation/SecondRun/Run.lean)
+- [`lean4/Imported/GenesisDerivation/SecondRun/Run.lean::no_return`](../../../lean4/Imported/GenesisDerivation/SecondRun/Run.lean)
+- [`lean4/Imported/GenesisDerivation/SecondRun/Run.lean::not_separable_through`](../../../lean4/Imported/GenesisDerivation/SecondRun/Run.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: the second-derivation run tree holds no Rust; the sealed Rust predates the switch marker`
@@ -62,4 +62,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:262`
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/continuation.txt:910-922`
-  - `lean4/Imported/Genesis19l57g1/SecondRun/Run.lean:276-280`
+  - `lean4/Imported/GenesisDerivation/SecondRun/Run.lean:276-280`

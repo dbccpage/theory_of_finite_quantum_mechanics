@@ -30,10 +30,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::least_pair_selection_not_congruent`](../../../lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::transStep_image_total`](../../../lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::transStep_rename_fwd`](../../../lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean::validCount_rename`](../../../lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean::least_pair_selection_not_congruent`](../../../lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean::transStep_image_total`](../../../lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean::transStep_rename_fwd`](../../../lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean::validCount_rename`](../../../lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/automorphism.rs::orbits_are_equivariant_under_renaming`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/automorphism.rs)
@@ -56,4 +56,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:371-379`
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:385-391`
-  - `lean4/Imported/Genesis19l57g1/Derivation/TransitionTransport.lean:1067-1072`
+  - `lean4/Imported/GenesisDerivation/Derivation/TransitionTransport.lean:1067-1072`

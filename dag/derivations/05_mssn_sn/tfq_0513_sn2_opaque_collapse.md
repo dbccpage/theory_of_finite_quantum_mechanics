@@ -30,8 +30,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::R2F_collapsed`](../../../lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::R2L_collapsed`](../../../lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::R2F_collapsed`](../../../lean4/Imported/GenesisDerivation/Derivation/Inertia.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::R2L_collapsed`](../../../lean4/Imported/GenesisDerivation/Derivation/Inertia.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust check of opaque collapse in the S(n) strand`

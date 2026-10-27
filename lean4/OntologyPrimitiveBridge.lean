@@ -3,15 +3,15 @@ import OntologyBasic
 import PrimitiveTerminalPacket
 
 
-namespace OmegaCosmology
+namespace FiniteCosmology
 namespace Ontology
 namespace PrimitiveBridge
 
 universe u
 
-open OmegaCore
-open OmegaCore.PrimitiveRepairBoundary
-open OmegaCore.PrimitiveTerminalPacket
+open ObstructionCore
+open ObstructionCore.PrimitiveRepairBoundary
+open ObstructionCore.PrimitiveTerminalPacket
 
 variable {Q : Type u}
 
@@ -137,7 +137,7 @@ theorem open_no_rule_packet_has_no_authority
 
 end PrimitiveBridge
 end Ontology
-end OmegaCosmology
+end FiniteCosmology
 
 private def l5aProvenance : String :=
   "Origin: lean4/OntologyPrimitiveBridge.lean Claim: paper000cClaimPacketEvidenceId_eq AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

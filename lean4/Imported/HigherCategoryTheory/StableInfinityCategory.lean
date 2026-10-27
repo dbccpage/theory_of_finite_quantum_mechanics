@@ -1,5 +1,4 @@
-/- Imported from the sibling the_symbol_game lean4/ tree so that this repository carries its own Lean.
-   Original path : the_symbol_game/lean4/research_programs/higher_category_theory/StableInfinityCategory.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 5c936f7f27a8a236da3b821d5866c7f17d02acaa864dda1046c76be1741f4e50 (bytes as found)
    Imported on    : 2026-10-23
    Module         : Imported.HigherCategoryTheory.StableInfinityCategory

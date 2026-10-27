@@ -4,7 +4,7 @@ import PrimitiveDifference
 
 
 
-namespace OmegaCore.EventEffects
+namespace ObstructionCore.EventEffects
 
 def replay {Event State : Type}
     (step : Event → State → State) : List Event → State → State
@@ -122,7 +122,7 @@ theorem traceEquivalent_trans {Event State : Type}
 #print axioms traceEquivalent_refl
 #print axioms traceEquivalent_trans
 
-end OmegaCore.EventEffects
+end ObstructionCore.EventEffects
 
 private def l5aProvenance : String :=
   "Origin: lean4/EventEffects.lean Claim: eventEquivalent_refl AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

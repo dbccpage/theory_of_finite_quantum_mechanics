@@ -587,7 +587,7 @@ the tracked reproducibility target PL-QM030-1) include:
 - `TRACE-001` (LT-L): CPTP monotonicity $\not\Rightarrow$ trace-norm selection (ENC-0247, `TraceNonSelect`). *(Distinct from `STOCH-L1-001` / LT-M, the §5 $\ell^1$ contraction lemma, ENC-1055.)*
 - `CONTINUUM-001` (LT-S): continuum structure $\not\Rightarrow$ finite authority (ENC-1078)
 - 3 DEU/EVE/WOL boundary firewalls (Deutsch, Everett, Wolfram interpretations cannot promote to authority)
-- 7 OmegaCore kernel theorems
+- 7 ObstructionCore kernel theorems
 - 13 QM library theorems.
 
 Together these establish bounded non-implications and compatibility checks for

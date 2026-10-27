@@ -33,10 +33,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::genesis_underivable`](../../../lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean)
-- [`lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::supply_no_op`](../../../lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean)
-- [`lean4/Imported/OeSn/SnTheorems.lean::ground_carrier_empty`](../../../lean4/Imported/OeSn/SnTheorems.lean)
-- [`lean4/Imported/OeSn/SnTheorems.lean::ground_presentation_vs_carrier`](../../../lean4/Imported/OeSn/SnTheorems.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::genesis_underivable`](../../../lean4/Imported/GenesisDerivation/Derivation/Inertia.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Inertia.lean::supply_no_op`](../../../lean4/Imported/GenesisDerivation/Derivation/Inertia.lean)
+- [`lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean::ground_carrier_empty`](../../../lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean)
+- [`lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean::ground_presentation_vs_carrier`](../../../lean4/Imported/SymmetricGroupPresentations/SnTheorems.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust check of the S(0) ground in the S(n) strand`

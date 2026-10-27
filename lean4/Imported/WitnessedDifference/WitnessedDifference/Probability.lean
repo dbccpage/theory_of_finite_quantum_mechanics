@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Probability.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 6d7504e83609d7d6f0d877d9adcfda00012d048f4c4d3e45f13203906c631ba7 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.WitnessedDifference.WitnessedDifference.Probability

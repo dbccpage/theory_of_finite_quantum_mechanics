@@ -18,7 +18,7 @@ open ResidualDensityBridge
 
 theorem localGreen_globalRed_marginal_density
     {Alpha : Type u} {Beta : Type v} {Rho : Type w} {Hidden : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (joint : Alpha -> Rho × Hidden)
     (hMarginal : QuotientCompatible P (fun x : Alpha => (joint x).1))
     {x y : Alpha} (hxy : P.ZeroRel x y)

@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/Imported/Genesis19l57g1/Derivation/MinimalityF.lean`
+### Lean: `lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean`
 
-- file: [lean4/Imported/Genesis19l57g1/Derivation/MinimalityF.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/MinimalityF.lean)
-- sha256 (`bytes`): `d9886a5c94b65a96b4f3364c3bb6cd63064a843e57d2afff536035ced039242f`
+- file: [lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean](../../../lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean)
+- sha256 (`bytes`): `d70d5131314c35edb40ce737ca0d1a796944c8d3bc15705436466313294f5214`
 - cited in: node.lean, record TFQ-0452
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_mssn_sn.json](../../../dag/research/lean_replay_campaign_mssn_sn.json) (module `Imported.Genesis19l57g1.Derivation.MinimalityF`): recorded sha256 `d9886a5c94b65a96b4f3364c3bb6cd63064a843e57d2afff536035ced039242f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/Genesis19l57g1/Derivation/MinimalityF.lean`
+  - receipt [dag/research/lean_replay_campaign_mssn_sn.json](../../../dag/research/lean_replay_campaign_mssn_sn.json) (module `Imported.GenesisDerivation.Derivation.MinimalityF`): recorded sha256 `d70d5131314c35edb40ce737ca0d1a796944c8d3bc15705436466313294f5214` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0452_identity_is_index_not_profile.md`
 
 - file: [dag/derivations/02_genesis/tfq_0452_identity_is_index_not_profile.md](../../../dag/derivations/02_genesis/tfq_0452_identity_is_index_not_profile.md)
-- sha256 (`lf-normalised`): `929ee18adb607b512631c984406ddec49a96c5fe035f6ec503c9bae89785ef96`
+- sha256 (`lf-normalised`): `2e830a8a798fa52991fc884ca35d6ea057627fda7d2df16c004e27ae295ad7ad`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0452
 - counts toward the grade: no

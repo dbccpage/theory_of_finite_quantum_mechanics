@@ -1,5 +1,4 @@
-/- Imported from the sibling the_symbol_game lean4/ tree so that this repository carries its own Lean.
-   Original path : the_symbol_game/lean4/research_programs/mub6/external_classification/MubFiniteCornerReduction.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 643812223a62d04d7c6c2bc3674b3aa98ce6a0f593cd198ab1f6e8d98115ed42 (bytes as found)
    Imported on    : 2026-10-23
    Module         : Imported.Mub6.external_classification.MubFiniteCornerReduction

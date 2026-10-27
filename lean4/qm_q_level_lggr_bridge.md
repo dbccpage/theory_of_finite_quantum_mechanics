@@ -30,7 +30,7 @@ factor through that same quotient. This is the QM-facing instance of
 -/
 theorem density_lggr_is_q_level_primitive_nonpromotion
     {Alpha : Type u} {Beta : Type v} {Rho : Type w} {Hidden : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (hidden : Alpha -> Hidden)
     (hDensity : ResidualDensityBridge.QuotientCompatible P density)
     {x y : Alpha} (hxy : P.ZeroRel x y) (hHidden : hidden x ≠ hidden y) :
@@ -51,7 +51,7 @@ representatives.
 -/
 theorem density_q_bridge_not_authority_certificate
     {Alpha : Type u} {Beta : Type v} {Rho : Type w} {Authority : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (authority : Alpha -> Authority)
     (hDensity : ResidualDensityBridge.QuotientCompatible P density)
     {x y : Alpha} (hxy : P.ZeroRel x y)
@@ -75,7 +75,7 @@ descend through the PrimitiveDifference residual quotient.
 -/
 theorem density_mod_lggr_is_q_level_primitive_nonpromotion
     {Alpha : Type u} {Beta : Type v} {Rho Hidden : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (hidden : Alpha -> Hidden)
     (DensitySetoid : Setoid Rho) (HiddenSetoid : Setoid Hidden)
     (hDensity :
@@ -85,12 +85,12 @@ theorem density_mod_lggr_is_q_level_primitive_nonpromotion
     (∃ F : P.ResidualQuotient -> Quotient DensitySetoid,
       ∀ a : Alpha, F (P.classOf a) = Quotient.mk DensitySetoid (density a)) ∧
     ¬ (∃ F : P.ResidualQuotient ->
-        Quotient (OmegaCore.PrimitiveDifference.productSetoid
+        Quotient (ObstructionCore.PrimitiveDifference.productSetoid
           DensitySetoid HiddenSetoid),
       ∀ a : Alpha,
         F (P.classOf a) =
           @Quotient.mk (Rho × Hidden)
-            (OmegaCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
               DensitySetoid HiddenSetoid)
             (density a, hidden a)) := by
   exact
@@ -104,7 +104,7 @@ separated authority/status coordinate ride inside a green density packet.
 -/
 theorem density_mod_q_bridge_not_authority_certificate
     {Alpha : Type u} {Beta : Type v} {Rho Authority : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (authority : Alpha -> Authority)
     (DensitySetoid : Setoid Rho) (AuthoritySetoid : Setoid Authority)
     (hDensity :
@@ -114,12 +114,12 @@ theorem density_mod_q_bridge_not_authority_certificate
     (∃ F : P.ResidualQuotient -> Quotient DensitySetoid,
       ∀ a : Alpha, F (P.classOf a) = Quotient.mk DensitySetoid (density a)) ∧
     ¬ (∃ F : P.ResidualQuotient ->
-        Quotient (OmegaCore.PrimitiveDifference.productSetoid
+        Quotient (ObstructionCore.PrimitiveDifference.productSetoid
           DensitySetoid AuthoritySetoid),
       ∀ a : Alpha,
         F (P.classOf a) =
           @Quotient.mk (Rho × Authority)
-            (OmegaCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
               DensitySetoid AuthoritySetoid)
             (density a, authority a)) := by
   exact
@@ -136,7 +136,7 @@ or authority coordinate.
 -/
 theorem density_mod_descent_preserved_by_diagnostic_coarsening
     {Alpha : Type u} {Beta : Type v} {Rho : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho)
     (FineDensitySetoid : Setoid Rho) (CoarseDensitySetoid : Setoid Rho)
     (hFineToCoarse :
@@ -159,7 +159,7 @@ declared equivalence.
 -/
 theorem density_mod_lggr_persists_under_density_coarsening
     {Alpha : Type u} {Beta : Type v} {Rho Hidden : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (hidden : Alpha -> Hidden)
     (FineDensitySetoid : Setoid Rho) (CoarseDensitySetoid : Setoid Rho)
     (HiddenSetoid : Setoid Hidden)
@@ -174,12 +174,12 @@ theorem density_mod_lggr_persists_under_density_coarsening
       ∀ a : Alpha,
         F (P.classOf a) = Quotient.mk CoarseDensitySetoid (density a)) ∧
     ¬ (∃ F : P.ResidualQuotient ->
-        Quotient (OmegaCore.PrimitiveDifference.productSetoid
+        Quotient (ObstructionCore.PrimitiveDifference.productSetoid
           CoarseDensitySetoid HiddenSetoid),
       ∀ a : Alpha,
         F (P.classOf a) =
           @Quotient.mk (Rho × Hidden)
-            (OmegaCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
               CoarseDensitySetoid HiddenSetoid)
             (density a, hidden a)) := by
   have hCoarse :
@@ -198,7 +198,7 @@ coordinate into a paired quotient factor.
 -/
 theorem density_mod_authority_firewall_persists_under_density_coarsening
     {Alpha : Type u} {Beta : Type v} {Rho Authority : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (authority : Alpha -> Authority)
     (FineDensitySetoid : Setoid Rho) (CoarseDensitySetoid : Setoid Rho)
     (AuthoritySetoid : Setoid Authority)
@@ -213,12 +213,12 @@ theorem density_mod_authority_firewall_persists_under_density_coarsening
       ∀ a : Alpha,
         F (P.classOf a) = Quotient.mk CoarseDensitySetoid (density a)) ∧
     ¬ (∃ F : P.ResidualQuotient ->
-        Quotient (OmegaCore.PrimitiveDifference.productSetoid
+        Quotient (ObstructionCore.PrimitiveDifference.productSetoid
           CoarseDensitySetoid AuthoritySetoid),
       ∀ a : Alpha,
         F (P.classOf a) =
           @Quotient.mk (Rho × Authority)
-            (OmegaCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
               CoarseDensitySetoid AuthoritySetoid)
             (density a, authority a)) := by
   exact
@@ -238,7 +238,7 @@ LGGR composition.
 -/
 theorem local_pair_lggr_is_q_level_primitive_nonpromotion
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w} {Hidden : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (hidden : Alpha -> Hidden)
     (hLeft : ResidualDensityBridge.QuotientCompatible P left)
@@ -263,7 +263,7 @@ authority/status coordinate remains separated on a primitive zero witness.
 theorem local_pair_q_bridge_not_authority_certificate
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w}
     {Authority : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (authority : Alpha -> Authority)
     (hLeft : ResidualDensityBridge.QuotientCompatible P left)
@@ -288,7 +288,7 @@ equivalence still blocks descent of the augmented product/hidden readout.
 -/
 theorem local_pair_mod_lggr_is_q_level_primitive_nonpromotion
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Hidden : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (hidden : Alpha -> Hidden)
     (LeftSetoid : Setoid Rho) (RightSetoid : Setoid Sigma)
@@ -300,38 +300,38 @@ theorem local_pair_mod_lggr_is_q_level_primitive_nonpromotion
     {x y : Alpha} (hxy : P.ZeroRel x y)
     (hHidden : ¬ HiddenSetoid.r (hidden x) (hidden y)) :
     (∃ F : P.ResidualQuotient ->
-        Quotient (OmegaCore.PrimitiveDifference.productSetoid
+        Quotient (ObstructionCore.PrimitiveDifference.productSetoid
           LeftSetoid RightSetoid),
       ∀ a : Alpha,
         F (P.classOf a) =
           @Quotient.mk (Rho × Sigma)
-            (OmegaCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
               LeftSetoid RightSetoid)
             (left a, right a)) ∧
     ¬ (∃ F : P.ResidualQuotient ->
-        Quotient (OmegaCore.PrimitiveDifference.productSetoid
-          (OmegaCore.PrimitiveDifference.productSetoid
+        Quotient (ObstructionCore.PrimitiveDifference.productSetoid
+          (ObstructionCore.PrimitiveDifference.productSetoid
             LeftSetoid RightSetoid)
           HiddenSetoid),
       ∀ a : Alpha,
         F (P.classOf a) =
           @Quotient.mk ((Rho × Sigma) × Hidden)
-            (OmegaCore.PrimitiveDifference.productSetoid
-              (OmegaCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
+              (ObstructionCore.PrimitiveDifference.productSetoid
                 LeftSetoid RightSetoid)
               HiddenSetoid)
             ((left a, right a), hidden a)) := by
   have hPair :
       ResidualDensityBridge.QuotientCompatibleMod
         P (fun a : Alpha => (left a, right a))
-        (OmegaCore.PrimitiveDifference.productSetoid
+        (ObstructionCore.PrimitiveDifference.productSetoid
           LeftSetoid RightSetoid) :=
     ResidualDensityBridge.quotientCompatibleMod_pair
       P left right LeftSetoid RightSetoid hLeft hRight
   exact
     Paper_Q.primitive_continuum_lggr_mod_nonpromotion
       P (fun a : Alpha => (left a, right a)) hidden
-      (OmegaCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid)
+      (ObstructionCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid)
       HiddenSetoid hPair hxy hHidden
 
 /--
@@ -341,7 +341,7 @@ separated authority/status coordinate descend through the Q residual quotient.
 -/
 theorem local_pair_mod_q_bridge_not_authority_certificate
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Authority : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (authority : Alpha -> Authority)
     (LeftSetoid : Setoid Rho) (RightSetoid : Setoid Sigma)
@@ -353,24 +353,24 @@ theorem local_pair_mod_q_bridge_not_authority_certificate
     {x y : Alpha} (hxy : P.ZeroRel x y)
     (hAuthority : ¬ AuthoritySetoid.r (authority x) (authority y)) :
     (∃ F : P.ResidualQuotient ->
-        Quotient (OmegaCore.PrimitiveDifference.productSetoid
+        Quotient (ObstructionCore.PrimitiveDifference.productSetoid
           LeftSetoid RightSetoid),
       ∀ a : Alpha,
         F (P.classOf a) =
           @Quotient.mk (Rho × Sigma)
-            (OmegaCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
               LeftSetoid RightSetoid)
             (left a, right a)) ∧
     ¬ (∃ F : P.ResidualQuotient ->
-        Quotient (OmegaCore.PrimitiveDifference.productSetoid
-          (OmegaCore.PrimitiveDifference.productSetoid
+        Quotient (ObstructionCore.PrimitiveDifference.productSetoid
+          (ObstructionCore.PrimitiveDifference.productSetoid
             LeftSetoid RightSetoid)
           AuthoritySetoid),
       ∀ a : Alpha,
         F (P.classOf a) =
           @Quotient.mk ((Rho × Sigma) × Authority)
-            (OmegaCore.PrimitiveDifference.productSetoid
-              (OmegaCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
+              (ObstructionCore.PrimitiveDifference.productSetoid
                 LeftSetoid RightSetoid)
               AuthoritySetoid)
             ((left a, right a), authority a)) := by
@@ -389,7 +389,7 @@ zero-related witness pair, the paired readout/hidden packet cannot descend.
 -/
 theorem diagnostic_readout_lggr_is_q_level_primitive_nonpromotion
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w} {Hidden : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (readout : Rho -> Sigma)
     (hidden : Alpha -> Hidden)
     (hDensity : ResidualDensityBridge.QuotientCompatible P density)
@@ -414,7 +414,7 @@ coordinate that still separates a zero-related witness blocks paired descent.
 theorem hidden_readout_lggr_is_q_level_primitive_nonpromotion
     {Alpha : Type u} {Beta : Type v} {Rho Readout : Type w}
     {Hidden : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (hidden : Alpha -> Hidden)
     (readout : Hidden -> Readout)
     (hDensity : ResidualDensityBridge.QuotientCompatible P density)
@@ -438,7 +438,7 @@ separated modulo its own declared equivalence still blocks paired descent.
 -/
 theorem diagnostic_readout_mod_lggr_is_q_level_primitive_nonpromotion
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Hidden : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (readout : Rho -> Sigma)
     (hidden : Alpha -> Hidden)
     (DensitySetoid : Setoid Rho) (ReadoutSetoid : Setoid Sigma)
@@ -454,12 +454,12 @@ theorem diagnostic_readout_mod_lggr_is_q_level_primitive_nonpromotion
       ∀ a : Alpha,
         F (P.classOf a) = Quotient.mk ReadoutSetoid (readout (density a))) ∧
     ¬ (∃ F : P.ResidualQuotient ->
-        Quotient (OmegaCore.PrimitiveDifference.productSetoid
+        Quotient (ObstructionCore.PrimitiveDifference.productSetoid
           ReadoutSetoid HiddenSetoid),
       ∀ a : Alpha,
         F (P.classOf a) =
           @Quotient.mk (Sigma × Hidden)
-            (OmegaCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
               ReadoutSetoid HiddenSetoid)
             (readout (density a), hidden a)) := by
   have hReadoutDensity :
@@ -482,7 +482,7 @@ declared readout equivalence blocks paired modulo descent.
 theorem hidden_readout_mod_lggr_is_q_level_primitive_nonpromotion
     {Alpha : Type u} {Beta : Type v} {Rho Readout : Type w}
     {Hidden : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (hidden : Alpha -> Hidden)
     (readout : Hidden -> Readout)
     (DensitySetoid : Setoid Rho) (ReadoutSetoid : Setoid Readout)
@@ -495,12 +495,12 @@ theorem hidden_readout_mod_lggr_is_q_level_primitive_nonpromotion
       ∀ a : Alpha,
         F (P.classOf a) = Quotient.mk DensitySetoid (density a)) ∧
     ¬ (∃ F : P.ResidualQuotient ->
-        Quotient (OmegaCore.PrimitiveDifference.productSetoid
+        Quotient (ObstructionCore.PrimitiveDifference.productSetoid
           DensitySetoid ReadoutSetoid),
       ∀ a : Alpha,
         F (P.classOf a) =
           @Quotient.mk (Rho × Readout)
-            (OmegaCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
               DensitySetoid ReadoutSetoid)
             (density a, readout (hidden a))) := by
   exact
@@ -515,7 +515,7 @@ locally green density profile.
 -/
 theorem joint_factor_implies_hidden_quotient_compatible
     {Alpha : Type u} {Beta : Type v} {Rho : Type w} {Hidden : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (hidden : Alpha -> Hidden)
     (hJoint : ∃ F : P.ResidualQuotient -> Rho × Hidden,
       ∀ a : Alpha, F (P.classOf a) = (density a, hidden a)) :
@@ -524,7 +524,7 @@ theorem joint_factor_implies_hidden_quotient_compatible
   intro x y hxy
   rcases hJoint with ⟨F, hF⟩
   have hClass : P.classOf x = P.classOf y :=
-    OmegaCore.PrimitiveDifference.classOf_eq_of_zero P hxy
+    ObstructionCore.PrimitiveDifference.classOf_eq_of_zero P hxy
   have hPair : (density x, hidden x) = (density y, hidden y) := by
     calc
       (density x, hidden x) = F (P.classOf x) := (hF x).symm
@@ -539,7 +539,7 @@ readout must already be invariant on zero-related worlds.
 -/
 theorem joint_density_authority_factor_implies_authority_quotient_compatible
     {Alpha : Type u} {Beta : Type v} {Rho : Type w} {Authority : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (authority : Alpha -> Authority)
     (hJoint : ∃ F : P.ResidualQuotient -> Rho × Authority,
       ∀ a : Alpha, F (P.classOf a) = (density a, authority a)) :
@@ -554,16 +554,16 @@ equivalence.
 -/
 theorem joint_mod_factor_implies_hidden_quotient_compatible
     {Alpha : Type u} {Beta : Type v} {Rho Hidden : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (hidden : Alpha -> Hidden)
     (DensitySetoid : Setoid Rho) (HiddenSetoid : Setoid Hidden)
     (hJoint : ∃ F : P.ResidualQuotient ->
-        Quotient (OmegaCore.PrimitiveDifference.productSetoid
+        Quotient (ObstructionCore.PrimitiveDifference.productSetoid
           DensitySetoid HiddenSetoid),
       ∀ a : Alpha,
         F (P.classOf a) =
           @Quotient.mk (Rho × Hidden)
-            (OmegaCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
               DensitySetoid HiddenSetoid)
             (density a, hidden a)) :
     ResidualDensityBridge.QuotientCompatibleMod P hidden HiddenSetoid := by
@@ -571,24 +571,24 @@ theorem joint_mod_factor_implies_hidden_quotient_compatible
   intro x y hxy
   rcases hJoint with ⟨F, hF⟩
   have hClass : P.classOf x = P.classOf y :=
-    OmegaCore.PrimitiveDifference.classOf_eq_of_zero P hxy
+    ObstructionCore.PrimitiveDifference.classOf_eq_of_zero P hxy
   have hQuot :
       @Quotient.mk (Rho × Hidden)
-          (OmegaCore.PrimitiveDifference.productSetoid
+          (ObstructionCore.PrimitiveDifference.productSetoid
             DensitySetoid HiddenSetoid)
           (density x, hidden x) =
         @Quotient.mk (Rho × Hidden)
-          (OmegaCore.PrimitiveDifference.productSetoid
+          (ObstructionCore.PrimitiveDifference.productSetoid
             DensitySetoid HiddenSetoid)
           (density y, hidden y) := by
     calc
       @Quotient.mk (Rho × Hidden)
-          (OmegaCore.PrimitiveDifference.productSetoid
+          (ObstructionCore.PrimitiveDifference.productSetoid
             DensitySetoid HiddenSetoid)
           (density x, hidden x) = F (P.classOf x) := (hF x).symm
       _ = F (P.classOf y) := by rw [hClass]
       _ = @Quotient.mk (Rho × Hidden)
-          (OmegaCore.PrimitiveDifference.productSetoid
+          (ObstructionCore.PrimitiveDifference.productSetoid
             DensitySetoid HiddenSetoid)
           (density y, hidden y) := hF y
   have hRel := Quotient.exact hQuot
@@ -599,16 +599,16 @@ Authority-coordinate specialization of the modulo converse firewall.
 -/
 theorem joint_mod_density_authority_factor_implies_authority_quotient_compatible
     {Alpha : Type u} {Beta : Type v} {Rho Authority : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (authority : Alpha -> Authority)
     (DensitySetoid : Setoid Rho) (AuthoritySetoid : Setoid Authority)
     (hJoint : ∃ F : P.ResidualQuotient ->
-        Quotient (OmegaCore.PrimitiveDifference.productSetoid
+        Quotient (ObstructionCore.PrimitiveDifference.productSetoid
           DensitySetoid AuthoritySetoid),
       ∀ a : Alpha,
         F (P.classOf a) =
           @Quotient.mk (Rho × Authority)
-            (OmegaCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
               DensitySetoid AuthoritySetoid)
             (density a, authority a)) :
     ResidualDensityBridge.QuotientCompatibleMod P authority AuthoritySetoid := by
@@ -625,7 +625,7 @@ hidden inside two local green visible diagnostics.
 -/
 theorem local_pair_factor_implies_hidden_quotient_compatible
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w} {Hidden : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (hidden : Alpha -> Hidden)
     (hJoint : ∃ F : P.ResidualQuotient -> (Rho × Sigma) × Hidden,
@@ -642,7 +642,7 @@ be quotient-compatible.
 -/
 theorem diagnostic_readout_factor_implies_hidden_quotient_compatible
     {Alpha : Type u} {Beta : Type v} {Rho Sigma : Type w} {Hidden : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (readout : Rho -> Sigma)
     (hidden : Alpha -> Hidden)
     (hJoint : ∃ F : P.ResidualQuotient -> Sigma × Hidden,
@@ -659,7 +659,7 @@ already quotient-compatible.
 -/
 theorem hidden_readout_factor_implies_readout_quotient_compatible
     {Alpha : Type u} {Beta : Type v} {Rho Readout : Type w} {Hidden : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (hidden : Alpha -> Hidden)
     (readout : Hidden -> Readout)
     (hJoint : ∃ F : P.ResidualQuotient -> Rho × Readout,
@@ -677,21 +677,21 @@ coordinate must itself be quotient-compatible modulo its declared equivalence.
 -/
 theorem local_pair_mod_factor_implies_hidden_quotient_compatible
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Hidden : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (hidden : Alpha -> Hidden)
     (LeftSetoid : Setoid Rho) (RightSetoid : Setoid Sigma)
     (HiddenSetoid : Setoid Hidden)
     (hJoint : ∃ F : P.ResidualQuotient ->
-        Quotient (OmegaCore.PrimitiveDifference.productSetoid
-          (OmegaCore.PrimitiveDifference.productSetoid
+        Quotient (ObstructionCore.PrimitiveDifference.productSetoid
+          (ObstructionCore.PrimitiveDifference.productSetoid
             LeftSetoid RightSetoid)
           HiddenSetoid),
       ∀ a : Alpha,
         F (P.classOf a) =
           @Quotient.mk ((Rho × Sigma) × Hidden)
-            (OmegaCore.PrimitiveDifference.productSetoid
-              (OmegaCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
+              (ObstructionCore.PrimitiveDifference.productSetoid
                 LeftSetoid RightSetoid)
               HiddenSetoid)
             ((left a, right a), hidden a)) :
@@ -699,7 +699,7 @@ theorem local_pair_mod_factor_implies_hidden_quotient_compatible
   exact
     joint_mod_factor_implies_hidden_quotient_compatible
       P (fun a : Alpha => (left a, right a)) hidden
-      (OmegaCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid)
+      (ObstructionCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid)
       HiddenSetoid hJoint
 
 /--
@@ -709,17 +709,17 @@ itself be quotient-compatible modulo its declared equivalence.
 -/
 theorem diagnostic_readout_mod_factor_implies_hidden_quotient_compatible
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Hidden : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (readout : Rho -> Sigma)
     (hidden : Alpha -> Hidden)
     (ReadoutSetoid : Setoid Sigma) (HiddenSetoid : Setoid Hidden)
     (hJoint : ∃ F : P.ResidualQuotient ->
-        Quotient (OmegaCore.PrimitiveDifference.productSetoid
+        Quotient (ObstructionCore.PrimitiveDifference.productSetoid
           ReadoutSetoid HiddenSetoid),
       ∀ a : Alpha,
         F (P.classOf a) =
           @Quotient.mk (Sigma × Hidden)
-            (OmegaCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
               ReadoutSetoid HiddenSetoid)
             (readout (density a), hidden a)) :
     ResidualDensityBridge.QuotientCompatibleMod P hidden HiddenSetoid := by
@@ -735,17 +735,17 @@ quotient-compatible modulo its declared readout equivalence.
 -/
 theorem hidden_readout_mod_factor_implies_readout_quotient_compatible
     {Alpha : Type u} {Beta : Type v} {Rho Hidden Readout : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (hidden : Alpha -> Hidden)
     (readout : Hidden -> Readout)
     (DensitySetoid : Setoid Rho) (ReadoutSetoid : Setoid Readout)
     (hJoint : ∃ F : P.ResidualQuotient ->
-        Quotient (OmegaCore.PrimitiveDifference.productSetoid
+        Quotient (ObstructionCore.PrimitiveDifference.productSetoid
           DensitySetoid ReadoutSetoid),
       ∀ a : Alpha,
         F (P.classOf a) =
           @Quotient.mk (Rho × Readout)
-            (OmegaCore.PrimitiveDifference.productSetoid
+            (ObstructionCore.PrimitiveDifference.productSetoid
               DensitySetoid ReadoutSetoid)
             (density a, readout (hidden a))) :
     ResidualDensityBridge.QuotientCompatibleMod
@@ -762,7 +762,7 @@ quotient compatibility.
 -/
 theorem local_pair_factor_iff_hidden_quotient_compatible
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Hidden : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (hidden : Alpha -> Hidden)
     (hLeft : ResidualDensityBridge.QuotientCompatible P left)
@@ -801,7 +801,7 @@ equivalent to hidden quotient compatibility.
 -/
 theorem diagnostic_readout_factor_iff_hidden_quotient_compatible
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Hidden : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (readout : Rho -> Sigma)
     (hidden : Alpha -> Hidden)
     (hDensity : ResidualDensityBridge.QuotientCompatible P density) :
@@ -839,7 +839,7 @@ compatibility of that hidden readout.
 -/
 theorem hidden_readout_factor_iff_readout_quotient_compatible
     {Alpha : Type u} {Beta : Type v} {Rho Readout : Type w} {Hidden : Type z}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (hidden : Alpha -> Hidden)
     (readout : Hidden -> Readout)
     (hDensity : ResidualDensityBridge.QuotientCompatible P density) :
@@ -873,7 +873,7 @@ modulo the product equivalence is equivalent to hidden modulo compatibility.
 -/
 theorem local_pair_mod_factor_iff_hidden_quotient_compatible
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Hidden : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (left : Alpha -> Rho) (right : Alpha -> Sigma)
     (hidden : Alpha -> Hidden)
     (LeftSetoid : Setoid Rho) (RightSetoid : Setoid Sigma)
@@ -884,8 +884,8 @@ theorem local_pair_mod_factor_iff_hidden_quotient_compatible
       P right RightSetoid) :
     ResidualDensityBridge.FactorsThroughResidualMod
       P (fun a : Alpha => ((left a, right a), hidden a))
-        (OmegaCore.PrimitiveDifference.productSetoid
-          (OmegaCore.PrimitiveDifference.productSetoid
+        (ObstructionCore.PrimitiveDifference.productSetoid
+          (ObstructionCore.PrimitiveDifference.productSetoid
             LeftSetoid RightSetoid)
           HiddenSetoid) ↔
     ResidualDensityBridge.QuotientCompatibleMod P hidden HiddenSetoid := by
@@ -897,18 +897,18 @@ theorem local_pair_mod_factor_iff_hidden_quotient_compatible
     have hVisibleCompat :
         ResidualDensityBridge.QuotientCompatibleMod
           P (fun a : Alpha => (left a, right a))
-          (OmegaCore.PrimitiveDifference.productSetoid
+          (ObstructionCore.PrimitiveDifference.productSetoid
             LeftSetoid RightSetoid) :=
       ResidualDensityBridge.quotientCompatibleMod_pair
         P left right LeftSetoid RightSetoid hLeft hRight
     have hVisibleFactor :
         ResidualDensityBridge.FactorsThroughResidualMod
           P (fun a : Alpha => (left a, right a))
-          (OmegaCore.PrimitiveDifference.productSetoid
+          (ObstructionCore.PrimitiveDifference.productSetoid
             LeftSetoid RightSetoid) :=
       (ResidualDensityBridge.quotientCompatibleMod_iff_factorsThroughResidualMod
         P (fun a : Alpha => (left a, right a))
-          (OmegaCore.PrimitiveDifference.productSetoid
+          (ObstructionCore.PrimitiveDifference.productSetoid
             LeftSetoid RightSetoid)).mpr hVisibleCompat
     have hHiddenFactor :
         ResidualDensityBridge.FactorsThroughResidualMod
@@ -918,7 +918,7 @@ theorem local_pair_mod_factor_iff_hidden_quotient_compatible
     exact
       ResidualDensityBridge.factorsThroughResidualMod_pair
         P (fun a : Alpha => (left a, right a)) hidden
-        (OmegaCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid)
+        (ObstructionCore.PrimitiveDifference.productSetoid LeftSetoid RightSetoid)
         HiddenSetoid hVisibleFactor hHiddenFactor
 
 /--
@@ -928,7 +928,7 @@ coordinate is quotient-compatible modulo its declared equivalence.
 -/
 theorem diagnostic_readout_mod_factor_iff_hidden_quotient_compatible
     {Alpha : Type u} {Beta : Type v} {Rho Sigma Hidden : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (readout : Rho -> Sigma)
     (hidden : Alpha -> Hidden)
     (DensitySetoid : Setoid Rho) (ReadoutSetoid : Setoid Sigma)
@@ -940,7 +940,7 @@ theorem diagnostic_readout_mod_factor_iff_hidden_quotient_compatible
       P density DensitySetoid) :
     ResidualDensityBridge.FactorsThroughResidualMod
       P (fun a : Alpha => (readout (density a), hidden a))
-        (OmegaCore.PrimitiveDifference.productSetoid
+        (ObstructionCore.PrimitiveDifference.productSetoid
           ReadoutSetoid HiddenSetoid) ↔
     ResidualDensityBridge.QuotientCompatibleMod P hidden HiddenSetoid := by
   constructor
@@ -976,7 +976,7 @@ readout is equivalent to modulo quotient compatibility of that hidden readout.
 -/
 theorem hidden_readout_mod_factor_iff_readout_quotient_compatible
     {Alpha : Type u} {Beta : Type v} {Rho Hidden Readout : Type w}
-    (P : OmegaCore.PrimitiveDifference Alpha Beta)
+    (P : ObstructionCore.PrimitiveDifference Alpha Beta)
     (density : Alpha -> Rho) (hidden : Alpha -> Hidden)
     (readout : Hidden -> Readout)
     (DensitySetoid : Setoid Rho) (ReadoutSetoid : Setoid Readout)
@@ -984,7 +984,7 @@ theorem hidden_readout_mod_factor_iff_readout_quotient_compatible
       P density DensitySetoid) :
     ResidualDensityBridge.FactorsThroughResidualMod
       P (fun a : Alpha => (density a, readout (hidden a)))
-        (OmegaCore.PrimitiveDifference.productSetoid
+        (ObstructionCore.PrimitiveDifference.productSetoid
           DensitySetoid ReadoutSetoid) ↔
     ResidualDensityBridge.QuotientCompatibleMod
       P (fun a : Alpha => readout (hidden a)) ReadoutSetoid := by

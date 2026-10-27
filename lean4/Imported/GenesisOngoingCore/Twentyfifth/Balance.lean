@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentyfifth/Balance.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: ae7ea5f7e16d1736a20387d0538beeeca21a96fe2e8a82d84737a6c6c52cdc95 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.GenesisOngoingCore.Twentyfifth.Balance

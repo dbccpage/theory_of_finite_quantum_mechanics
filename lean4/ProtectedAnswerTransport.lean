@@ -4,7 +4,7 @@ import Mathlib.Data.Fintype.Pi
 import Mathlib.SetTheory.Cardinal.Finite
 import Mathlib.Logic.Function.Iterate
 import OldImageInjective
-import Imported.OeSn.SnOffImage
+import Imported.SymmetricGroupPresentations.SnOffImage
 
 /-!
 # S(n) Protected Answer Transport and Commuting Transition Squares (`PGW-SN-PROTECTED-ANSWER-TRANSPORT`, `TFQ-0519`)

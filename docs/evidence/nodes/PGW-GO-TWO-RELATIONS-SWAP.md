@@ -45,10 +45,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/GenesisOngoing/Ninth/Reach.lean`
 
 - file: [lean4/Imported/GenesisOngoing/Ninth/Reach.lean](../../../lean4/Imported/GenesisOngoing/Ninth/Reach.lean)
-- sha256 (`bytes`): `d6c935917fae01bc184e560e2332ff3fbd6d2ba5695d2211f421439e4a14827a`
+- sha256 (`bytes`): `f9b1fba535c2105546c6abb89577903e1e0e59cb065c8681c6da0905d4e2a72c`
 - cited in: node.lean, record TFQ-0480
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Ninth.Reach`): recorded sha256 `d6c935917fae01bc184e560e2332ff3fbd6d2ba5695d2211f421439e4a14827a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Ninth.Reach`): recorded sha256 `f9b1fba535c2105546c6abb89577903e1e0e59cb065c8681c6da0905d4e2a72c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Ninth/Reach.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -60,10 +60,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/GenesisOngoing/Ninth/State.lean`
 
 - file: [lean4/Imported/GenesisOngoing/Ninth/State.lean](../../../lean4/Imported/GenesisOngoing/Ninth/State.lean)
-- sha256 (`bytes`): `9e9758caabc4303cdf8051c37ea6001e12448b2b4bde2798da2073a3a29d6433`
+- sha256 (`bytes`): `4ec0bf99da08f7babb46c74cd94421591ae577b648d5bcb40fe6201acb793f55`
 - cited in: node.lean, record TFQ-0480
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Ninth.State`): recorded sha256 `9e9758caabc4303cdf8051c37ea6001e12448b2b4bde2798da2073a3a29d6433` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Ninth.State`): recorded sha256 `4ec0bf99da08f7babb46c74cd94421591ae577b648d5bcb40fe6201acb793f55` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Ninth/State.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

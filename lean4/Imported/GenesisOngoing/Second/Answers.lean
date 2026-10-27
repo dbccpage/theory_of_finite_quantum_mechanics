@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Answers.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 2958207a10b461cdddf2486926bdbd85487773ff75dedaafc5ae0a6aea4fb889 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.GenesisOngoing.Second.Answers

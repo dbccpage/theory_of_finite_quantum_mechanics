@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/009_conditional_density_lift_and_dual_witness_xi_functional/lean4/Xi.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 857916859b96f8198f723ea349ff576a33c14a38abfcfafed050830138a58322 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.ConditionalDensityLift.Xi

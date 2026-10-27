@@ -1,5 +1,4 @@
-/- Imported from the sibling the_symbol_game lean4/ tree so that this repository carries its own Lean.
-   Original path : the_symbol_game/lean4/research_programs/wdp_reasoning/WitnessedReasoning.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: f063fd17bccdcfe8d5fea07a0032a3bc171c35b2a4dae76879fbf0b14c71eda0 (bytes as found)
    Imported on    : 2026-10-23
    Module         : Imported.WdpReasoning.WitnessedReasoning

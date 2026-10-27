@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4_core/Twentysecond/Rename.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: fe2faf332723af33fa47a89ff97cd2164f11ac95617c3517f8228ef6c8f38c1c (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.GenesisOngoingCore.Twentysecond.Rename

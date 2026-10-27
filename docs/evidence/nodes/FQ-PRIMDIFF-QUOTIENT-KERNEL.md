@@ -65,10 +65,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/PrimitiveDifference.lean`
 
 - file: [lean4/PrimitiveDifference.lean](../../../lean4/PrimitiveDifference.lean)
-- sha256 (`bytes`): `8748733821f0d959e698794f70d4db6595e8fe4a1a00581acd52961f751833a8`
+- sha256 (`bytes`): `f59243d870e042b6c44b46de65f54cca9f78edad19cb527e333a76b32cdc6dc4`
 - cited in: node.lean, record TFQ-1007
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `PrimitiveDifference`): recorded sha256 `8748733821f0d959e698794f70d4db6595e8fe4a1a00581acd52961f751833a8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `PrimitiveDifference`): recorded sha256 `f59243d870e042b6c44b46de65f54cca9f78edad19cb527e333a76b32cdc6dc4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
 - check: `cd lean4 && lake build PrimitiveDifference`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

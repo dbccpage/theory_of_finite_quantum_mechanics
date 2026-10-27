@@ -1,5 +1,4 @@
-/- Imported from the sibling the_symbol_game lean4/ tree so that this repository carries its own Lean.
-   Original path : the_symbol_game/lean4/research_programs/higher_category_theory/SimplicialSet.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: e0e5861993eac3f429981f08634379c76dd31b7f380fa689b8b88627321c98c7 (bytes as found)
    Imported on    : 2026-10-23
    Module         : Imported.HigherCategoryTheory.SimplicialSet

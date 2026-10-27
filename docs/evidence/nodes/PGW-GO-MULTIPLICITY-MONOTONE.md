@@ -45,10 +45,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/Imported/GenesisOngoing/Fourth/Contain.lean`
 
 - file: [lean4/Imported/GenesisOngoing/Fourth/Contain.lean](../../../lean4/Imported/GenesisOngoing/Fourth/Contain.lean)
-- sha256 (`bytes`): `3f7561b33d1b01be6a07be2d899c1fb748d7506019657242d28d536cb9b11c17`
+- sha256 (`bytes`): `9111abbe1c0bf66978e0788d1060342a9f33be4fb9b8352d2e6fc265b6c3426a`
 - cited in: node.lean, node.source, record TFQ-0479
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Fourth.Contain`): recorded sha256 `3f7561b33d1b01be6a07be2d899c1fb748d7506019657242d28d536cb9b11c17` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_genesis.json](../../../dag/research/lean_replay_campaign_genesis.json) (module `Imported.GenesisOngoing.Fourth.Contain`): recorded sha256 `9111abbe1c0bf66978e0788d1060342a9f33be4fb9b8352d2e6fc265b6c3426a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Fourth/Contain.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

@@ -3,7 +3,7 @@ import PrimitiveDifference
 
 
 
-namespace OmegaCore
+namespace ObstructionCore
 
 universe u v
 
@@ -143,7 +143,7 @@ theorem zeroClass_exact_if_phi_zeroClass_zero
   hPhi
 
 end ObstructionClassifier
-end OmegaCore
+end ObstructionCore
 
 private def l5aProvenance : String :=
   "Origin: lean4/PointedObstructionClassifier.lean Claim: exact_or_positive_phi AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

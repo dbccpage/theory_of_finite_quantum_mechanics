@@ -2,7 +2,7 @@
 import PrimitiveTerminalPacket
 
 
-namespace OmegaCore
+namespace ObstructionCore
 namespace PrimitiveLiftCandidate
 
 universe u v
@@ -225,7 +225,7 @@ theorem rollback_fixed_point_of_rejected
   simp [h_reject]
 
 end PrimitiveLiftCandidate
-end OmegaCore
+end ObstructionCore
 
 private def l5aProvenance : String :=
   "Origin: lean4/PrimitiveLiftCandidate.lean Claim: rawCarrier_class_eq AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

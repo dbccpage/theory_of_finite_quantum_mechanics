@@ -50,7 +50,7 @@ operation_candidates:
     /-- Single-item deltas decompose. -/
     theorem applyDelta_single (r : Regime) (a : Item) :
         applyDelta r [a] = applyItem r a
-  source: lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Minimality.lean
   repository: this_repository
   source_sha256: 7aa1197717f6c6e839c33f603ed4e30a7185fdfeb6b6c81cefef8c7eb220d925
   status: source_candidate_requires_semantic_review
@@ -58,7 +58,7 @@ operation_candidates:
   name: Iso
   line: 185
   signature_excerpt: 'structure Iso (r s : Regime)'
-  source: lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Minimality.lean
   repository: this_repository
   source_sha256: 7aa1197717f6c6e839c33f603ed4e30a7185fdfeb6b6c81cefef8c7eb220d925
   status: source_candidate_requires_semantic_review
@@ -66,7 +66,7 @@ operation_candidates:
   name: U0
   line: 47
   signature_excerpt: 'def U0 : Regime'
-  source: lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Minimality.lean
   repository: this_repository
   source_sha256: 7aa1197717f6c6e839c33f603ed4e30a7185fdfeb6b6c81cefef8c7eb220d925
   status: source_candidate_requires_semantic_review
@@ -74,7 +74,7 @@ operation_candidates:
   name: sortPair
   line: 178
   signature_excerpt: 'def sortPair (p : Nat × Nat) : Nat × Nat'
-  source: lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Minimality.lean
   repository: this_repository
   source_sha256: 7aa1197717f6c6e839c33f603ed4e30a7185fdfeb6b6c81cefef8c7eb220d925
   status: source_candidate_requires_semantic_review
@@ -82,7 +82,7 @@ operation_candidates:
   name: U0F
   line: 46
   signature_excerpt: 'def U0F : Regime'
-  source: lean4/Imported/Genesis19l57g1/Derivation/MinimalityF.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean
   repository: this_repository
   source_sha256: d9886a5c94b65a96b4f3364c3bb6cd63064a843e57d2afff536035ced039242f
   status: source_candidate_requires_semantic_review
@@ -94,7 +94,7 @@ relation_candidates:
     theorem cost1_insufficient_general (r : Regime) (hforms : r.forms = [])
         (hinsts : r.insts = []) (i j : Nat) (δ : List Item)
         (hlen : δ.length ≤ 1) : ¬ validResponse r i j δ
-  source: lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Minimality.lean
   repository: this_repository
   source_sha256: 7aa1197717f6c6e839c33f603ed4e30a7185fdfeb6b6c81cefef8c7eb220d925
   status: source_candidate_requires_semantic_review
@@ -107,7 +107,7 @@ relation_candidates:
     theorem mu2_unique (a b : Item) (hval : validResponse R2L 0 1 [a, b])
         (har : aritySum [a, b] ≤ 1) :
         ∃ s, applyDelta R2L [a, b] = some s ∧ Nonempty (Iso s U0)
-  source: lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Minimality.lean
   repository: this_repository
   source_sha256: 7aa1197717f6c6e839c33f603ed4e30a7185fdfeb6b6c81cefef8c7eb220d925
   status: source_candidate_requires_semantic_review
@@ -120,35 +120,35 @@ relation_candidates:
     theorem mu2_unique_F (a b : Item) (hval : validResponse R2F 1 2 [a, b])
         (har : aritySum [a, b] ≤ 1) :
         ∃ s, applyDelta R2F [a, b] = some s ∧ Nonempty (Iso s U0F)
-  source: lean4/Imported/Genesis19l57g1/Derivation/MinimalityF.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean
   repository: this_repository
   source_sha256: d9886a5c94b65a96b4f3364c3bb6cd63064a843e57d2afff536035ced039242f
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::cost1_insufficient_general
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::cost1_insufficient_general
   availability: local
   symbol: cost1_insufficient_general
-  path: lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/Minimality.lean
   repository: this_repository
   sha256: 7aa1197717f6c6e839c33f603ed4e30a7185fdfeb6b6c81cefef8c7eb220d925
   declaration_status: declaration_found_not_proof_checked
   line: 111
   role: source_lead_only
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean::mu2_unique
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/Minimality.lean::mu2_unique
   availability: local
   symbol: mu2_unique
-  path: lean4/Imported/Genesis19l57g1/Derivation/Minimality.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/Minimality.lean
   repository: this_repository
   sha256: 7aa1197717f6c6e839c33f603ed4e30a7185fdfeb6b6c81cefef8c7eb220d925
   declaration_status: declaration_found_not_proof_checked
   line: 380
   role: source_lead_only
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/MinimalityF.lean::mu2_unique_F
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean::mu2_unique_F
   availability: local
   symbol: mu2_unique_F
-  path: lean4/Imported/Genesis19l57g1/Derivation/MinimalityF.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/MinimalityF.lean
   repository: this_repository
   sha256: d9886a5c94b65a96b4f3364c3bb6cd63064a843e57d2afff536035ced039242f
   declaration_status: declaration_found_not_proof_checked

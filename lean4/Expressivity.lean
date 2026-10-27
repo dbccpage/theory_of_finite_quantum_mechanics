@@ -7,7 +7,7 @@
 
 
 
-namespace OmegaCosmology.SymbolGame
+namespace FiniteCosmology.SymbolCarrier
 
 def expressivityNorm (h : List Int) : Nat :=
   h.foldr (fun x acc => x.natAbs + acc) 0
@@ -41,7 +41,7 @@ theorem nonconstant_shift_changes_norm :
       expressivityNorm [1, -1] ≠ expressivityNorm [2, -1] := by
   decide
 
-end OmegaCosmology.SymbolGame
+end FiniteCosmology.SymbolCarrier
 
 private def l5aProvenance : String :=
   "Origin: lean4/Expressivity.lean Claim: expressivityNorm_nil AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

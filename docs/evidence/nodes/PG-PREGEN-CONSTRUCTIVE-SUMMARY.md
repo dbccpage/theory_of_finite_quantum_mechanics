@@ -45,14 +45,14 @@ MECHANIZED in ListedHistorySummary.lean (choice-free listed-history report crite
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/Imported/OePregen/ListedHistorySummary.lean`
+### Lean: `lean4/Imported/PregenesisEmptyMark/ListedHistorySummary.lean`
 
-- file: [lean4/Imported/OePregen/ListedHistorySummary.lean](../../../lean4/Imported/OePregen/ListedHistorySummary.lean)
-- sha256 (`bytes`): `b3cb2fad54a60c4dc4cfdfd59a7b2c83bc7e3650efed6ded32ffe0b89fa1c4ac`
+- file: [lean4/Imported/PregenesisEmptyMark/ListedHistorySummary.lean](../../../lean4/Imported/PregenesisEmptyMark/ListedHistorySummary.lean)
+- sha256 (`bytes`): `9c77c9962b40a4c4a61d291d0980d4a86b98c72b21e6ba07d747d604e5f0696a`
 - cited in: node.lean, node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.OePregen.ListedHistorySummary`): recorded sha256 `b3cb2fad54a60c4dc4cfdfd59a7b2c83bc7e3650efed6ded32ffe0b89fa1c4ac` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/OePregen/ListedHistorySummary.lean`
+  - receipt [dag/research/lean_replay_campaign_pregenesis.json](../../../dag/research/lean_replay_campaign_pregenesis.json) (module `Imported.PregenesisEmptyMark.ListedHistorySummary`): recorded sha256 `9c77c9962b40a4c4a61d291d0980d4a86b98c72b21e6ba07d747d604e5f0696a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/PregenesisEmptyMark/ListedHistorySummary.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|

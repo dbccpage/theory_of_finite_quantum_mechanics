@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Fifth/Cost.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: a649b8db9f9fa91004d5130cafcbfbd846060d580dac4631d8e2d4e5c4995db1 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.GenesisOngoing.Fifth.Cost

@@ -30,7 +30,7 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::mark_progress`](../../../lean4/Imported/Genesis19l57g1/Derivation/Progress.lean)
+- [`lean4/Imported/GenesisDerivation/Derivation/Progress.lean::mark_progress`](../../../lean4/Imported/GenesisDerivation/Derivation/Progress.lean)
 - [`lean4/PregenesisRunsPastDeclaredBounds.lean::pgwBoundDataFour`](../../../lean4/PregenesisRunsPastDeclaredBounds.lean)
 - [`lean4/PregenesisRunsPastDeclaredBounds.lean::pgwBoundItemPast`](../../../lean4/PregenesisRunsPastDeclaredBounds.lean)
 - [`lean4/PregenesisRunsPastDeclaredBounds.lean::pgwBoundNodePast`](../../../lean4/PregenesisRunsPastDeclaredBounds.lean)

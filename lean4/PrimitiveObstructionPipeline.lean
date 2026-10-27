@@ -2,7 +2,7 @@
 import PointedObstructionClassifier
 
 
-namespace OmegaCore
+namespace ObstructionCore
 namespace PrimitiveObstructionPipeline
 
 universe u v
@@ -162,7 +162,7 @@ theorem no_gammaQuot_if_not_congruent
       P.toPrimitiveDifference gammaRaw Gamma hGamma)
 
 end PrimitiveObstructionPipeline
-end OmegaCore
+end ObstructionCore
 
 private def l5aProvenance : String :=
   "Origin: lean4/PrimitiveObstructionPipeline.lean Claim: phiQuot_classOf AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

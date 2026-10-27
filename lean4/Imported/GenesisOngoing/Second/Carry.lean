@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Carry.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: df2417d7e8972791a7fc5f47b952afe9dc8c1b9df7dc599bed342c03f79d20cb (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.GenesisOngoing.Second.Carry

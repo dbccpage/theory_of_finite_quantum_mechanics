@@ -59,7 +59,7 @@ operation_candidates:
     /-- Admission never removes a rule. -/
     theorem applyItem_rules_mono {r s : Regime} {it : Item}
         (h : applyItem r it = some s) : ∀ g ∈ r.rules, g ∈ s.rules
-  source: lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/RuleBridge.lean
   repository: this_repository
   source_sha256: 2f5e9cbd5fa01227b953951195d39129ad389ccad6d9098a99ac78920356f467
   status: source_candidate_requires_semantic_review
@@ -201,7 +201,7 @@ relation_candidates:
         validResponse r i j (dropRules δ) ∧
         (dropRules δ).length < δ.length ∧
         aritySum (dropRules δ) = aritySum δ
-  source: lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/RuleBridge.lean
   repository: this_repository
   source_sha256: 2f5e9cbd5fa01227b953951195d39129ad389ccad6d9098a99ac78920356f467
   status: source_candidate_requires_semantic_review
@@ -214,7 +214,7 @@ relation_candidates:
     theorem collapsed_fresh_datum (r : Regime) (d d' : Nat)
         (hwf : ∀ p ∈ r.insts, ∀ a ∈ p.2, a < r.data) :
         collapsed { r with data
-  source: lean4/Imported/Genesis19l57g1/Derivation/Mention.lean
+  source: lean4/Imported/GenesisDerivation/Derivation/Mention.lean
   repository: this_repository
   source_sha256: 73f4b5ee8c91290124be0c39541217256f2ec47e26d23b887fa40f8ba9b97f38
   status: source_candidate_requires_semantic_review
@@ -380,19 +380,19 @@ relation_candidates:
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean::rule_item_never_minimal
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/RuleBridge.lean::rule_item_never_minimal
   availability: local
   symbol: rule_item_never_minimal
-  path: lean4/Imported/Genesis19l57g1/Derivation/RuleBridge.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/RuleBridge.lean
   repository: this_repository
   sha256: 2f5e9cbd5fa01227b953951195d39129ad389ccad6d9098a99ac78920356f467
   declaration_status: declaration_found_not_proof_checked
   line: 268
   role: source_lead_only
-- original_ref: lean4/Imported/Genesis19l57g1/Derivation/Mention.lean::collapsed_fresh_datum
+- original_ref: lean4/Imported/GenesisDerivation/Derivation/Mention.lean::collapsed_fresh_datum
   availability: local
   symbol: collapsed_fresh_datum
-  path: lean4/Imported/Genesis19l57g1/Derivation/Mention.lean
+  path: lean4/Imported/GenesisDerivation/Derivation/Mention.lean
   repository: this_repository
   sha256: 73f4b5ee8c91290124be0c39541217256f2ec47e26d23b887fa40f8ba9b97f38
   declaration_status: declaration_found_not_proof_checked

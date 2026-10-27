@@ -1,5 +1,4 @@
-/- Imported from the sibling atlas so that this repository carries its own Lean evidence.
-   Original path : omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/ObserverResolution.lean
+/- Imported so that this repository carries its own Lean evidence.
    Original sha256: 3c448fed2801b6e91a5b463a8b44d5d98bb5c8475dc0d1ddb66221966a81bc18 (bytes as found)
    Imported on    : 2026-10-22
    Module         : Imported.WitnessedDifference.WitnessedDifference.ObserverResolution
