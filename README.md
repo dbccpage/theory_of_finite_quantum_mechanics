@@ -6,6 +6,18 @@ The project does not claim to derive quantum mechanics. It records how far finit
 
 > **On the use of AI.** Much of the code, proofs, prose and review in this repository is drafted by AI models and LLM coding agents, directed and reviewed by the maintainer. The disclosure and the [acceptance rule](CONTRIBUTING.md#acceptance-rule) are in [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Headline results
+
+Four kernel-checked theorems and one open problem give a quick sense of the project. Each row links to the node's evidence page, which lists the Lean declarations, the independent checks and the evidence grade.
+
+| Result | Status | Evidence |
+|---|---|---|
+| **No integer frame on Cabello's rays.** The 18 Cabello integer rays in dimension four, arranged in 9 orthogonal tetrads, admit no 0/1 frame assignment: each ray lies in exactly two tetrads, so counting the 1s tetrad by tetrad gives an even number, while one 1 per tetrad gives 9. This is the 18-ray Kochen–Specker set. Frame additivity with bounded nonnegativity does not by itself force a positive semidefinite form. | `PROVED_LEAN` | [`FQ-CABELLO-NO-INTEGER-FRAME`](docs/evidence/nodes/FQ-CABELLO-NO-INTEGER-FRAME.md) |
+| **Contextuality as a cohomology obstruction over F2.** For a finite measurement scenario the cochain complex over F2 satisfies d1 d0 = 0; the Cabello scenario has no global section; and no ±1 assignment to the Mermin–Peres square has every row product +1 with column products +1, +1, −1. | `PROVED_LEAN` | [`FQ-CONTEXTUALITY-CECH-F2`](docs/evidence/nodes/FQ-CONTEXTUALITY-CECH-F2.md) |
+| **Finite Schrödinger irreducibility.** Over any field, an (n+1)×(n+1) matrix commuting with a diagonal clock matrix with distinct eigenvalues and with the cyclic shift is scalar. In particular the clock and shift matrices over Q(ζ_d), d an odd prime, have scalar commutant. | `PROVED_LEAN` | [`FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY`](docs/evidence/nodes/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY.md) |
+| **Local-unitary covariance excludes a tensor-product rival.** On Bool × Bool, a bilinear, integer-homogeneous, Kronecker-normalized combining rule is the pointwise product. Under weaker interface axioms the rival u ⊠ v = (⟨0\|v⟩ + ⟨1\|v⟩) u satisfies the interface, and it fails local-unitary covariance. | `PROVED_LEAN` | [`FQ-TENSOR-LU-RIVAL-EXCLUSION`](docs/evidence/nodes/FQ-TENSOR-LU-RIVAL-EXCLUSION.md) |
+| **Open: at most three MUBs in dimension six.** Whether C^6 has more than three pairwise mutually unbiased bases is open in the literature. The repository records the certificates its sources offer as `OPEN` claims, and none of them closes the question. | `OPEN` | [`MUB6-MAX-MUB-SIX-EQUALS-THREE`](docs/evidence/nodes/MUB6-MAX-MUB-SIX-EQUALS-THREE.md) |
+
 ## What makes this checkable
 
 | Layer | What it does | Where |
@@ -69,6 +81,10 @@ Nodes named in this README:
 
 | Node | Stage | Status |
 |---|---|---|
+| `FQ-CABELLO-NO-INTEGER-FRAME` | FINITE_QM_CORE | `PROVED_LEAN` |
+| `FQ-CONTEXTUALITY-CECH-F2` | FINITE_QM_CORE | `PROVED_LEAN` |
+| `FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY` | FINITE_QM_STRUCTURE | `PROVED_LEAN` |
+| `FQ-TENSOR-LU-RIVAL-EXCLUSION` | FINITE_QM_STRUCTURE | `PROVED_LEAN` |
 | `FQ-GAP-BORN-UNIQUENESS-GLEASON` | FINITE_QM_CORE | `CONDITIONAL` |
 | `FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION` | FINITE_QM_CORE | `PROVED_LEAN` |
 | `FQ-GAP-CONTINUUM-HILBERT-LIFT` | FINITE_QM_CORE | `CONDITIONAL` |

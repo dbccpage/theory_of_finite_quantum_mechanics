@@ -4,7 +4,7 @@ Stage: [ADS_CFT](../stages/ADS_CFT.md). Status: `OPEN`. Evidence grade: **E3**. 
 
 ## Statement
 
-> Open question: whether the exact rational Regge proxy of TFQ-0100 (squared hinge areas weighted by a holonomy defect, which is not the Einstein-Hilbert action) can supply the area term of a finite minimal-surface statement. The imported formula uses the area of a minimal surface in a bulk geometry; the HaPPY patch measures a bond count (one bit per bond). Matching the two needs a dictionary from geometry to network that no source supplies. Narrowed in Lean 4 and an independent Python verifier to three exact non-equivalence fences: (1) on the 20-qubit 6-pentagon HaPPY {5,4} patch (6 tensors, 5 internal bonds, 20 boundary legs), across all 380 proper nonempty contiguous boundary intervals the minimal bond cut intervalMincut takes values {1, 2, 3, 4, 5} with exact multiplicities (50, 90, 110, 100, 30), whereas the 4D orthogonal_pentatope simplex of TFQ-0100 has 6 right-triangle hinges of squared area 1/4 and 4 equilateral-triangle hinges of squared area 3/4 (240 Kuhn pentatopes on closed_s4_cube_boundary) and no single rational constant alpha maps both hinge classes to unit bond weight 1; (2) subdividing a planar surface of linear area A into m equal sub-hinges preserves the linear area sum m * (A / m) = A for all m != 0 but reduces the squared-area sum to m * (A / m)^2 = A^2 / m with strictly positive defect ((m - 1) / m) * A^2 \> 0 for all m \> 1 and A != 0; and (3) the TFQ-0100 rational Regge proxy scales linearly with bulk holonomy defect kappa ((9/2) * kappa on orthogonal_pentatope, vanishing at kappa = 0 as in ReggePachnerWdw flat_vertex_wdw_closure), whereas intervalMincut 2 len varies across (1, 2, 3, 4, 5) at len in {1, 2, 3, 4, 8} (with intervalMincut 0 4 = 1) as a function of the boundary subregion on a fixed background.
+> Open question: whether the exact rational Regge proxy of TFQ-0100 (squared hinge areas weighted by a holonomy defect, which is not the Einstein-Hilbert action) can supply the area term of a finite minimal-surface statement. The imported formula uses the area of a minimal surface in a bulk geometry; the HaPPY patch measures a bond count (one bit per bond). Matching the two needs a dictionary from geometry to network that no source supplies.
 
 ## Grade
 
@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-No source relates the Regge hinge areas of the repository to bond counts of a tensor network.
+No source relates the Regge hinge areas of the repository to bond counts of a tensor network. Checked slice, status unchanged. Narrowed in Lean 4 and an independent Python verifier to three exact non-equivalence fences: (1) on the 20-qubit 6-pentagon HaPPY {5,4} patch (6 tensors, 5 internal bonds, 20 boundary legs), across all 380 proper nonempty contiguous boundary intervals the minimal bond cut intervalMincut takes values {1, 2, 3, 4, 5} with exact multiplicities (50, 90, 110, 100, 30), whereas the 4D orthogonal_pentatope simplex of TFQ-0100 has 6 right-triangle hinges of squared area 1/4 and 4 equilateral-triangle hinges of squared area 3/4 (240 Kuhn pentatopes on closed_s4_cube_boundary) and no single rational constant alpha maps both hinge classes to unit bond weight 1; (2) subdividing a planar surface of linear area A into m equal sub-hinges preserves the linear area sum m * (A / m) = A for all m != 0 but reduces the squared-area sum to m * (A / m)^2 = A^2 / m with strictly positive defect ((m - 1) / m) * A^2 \> 0 for all m \> 1 and A != 0; and (3) the TFQ-0100 rational Regge proxy scales linearly with bulk holonomy defect kappa ((9/2) * kappa on orthogonal_pentatope, vanishing at kappa = 0 as in ReggePachnerWdw flat_vertex_wdw_closure), whereas intervalMincut 2 len varies across (1, 2, 3, 4, 5) at len in {1, 2, 3, 4, 8} (with intervalMincut 0 4 = 1) as a function of the boundary subregion on a fixed background.
 
 ## Source status
 
@@ -78,7 +78,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2211_ads_regge_area_rt_gap.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2211_ads_regge_area_rt_gap.md](../../../dag/derivations/32_ads_cft/tfq_2211_ads_regge_area_rt_gap.md)
-- sha256 (`lf-normalised`): `4760b1c12cc6e606c0c850339d2696f2daa446f4cf27b68dcfadee2a35a96088`
+- sha256 (`lf-normalised`): `72de87581492a00032de7b9362b3c2b70c3f68040971b5667dceba9bf63a4d86`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2211
 - counts toward the grade: no
