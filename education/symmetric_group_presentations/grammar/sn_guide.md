@@ -3,11 +3,6 @@
 **AuthorityEffect:** None. Status: Active.\
 **Genesis & WDP Alignment:** Standardizes wire tokens and mathematical invariants for the binary germ, the Witnessed Irreflexive Relation (WIR) endpoint support ($`\Delta_{\mathrm{support}} = 2`$), and later presentation constructions related to Genesis through the [source correspondence](../source_correspondence.md).
 
-> **Math rendering.** Inline math uses GitHub's $`\ldots`$ form and display math
-> uses fenced `math` blocks, so Markdown never reads `_` or `\_` inside a formula
-> as emphasis or an escape. Wire tokens such as `NON_DESCENT` are written as code,
-> not as math.
-
 ---
 
 ## 1. The Binary Germ & $`\Delta_{\mathrm{support}} = 2`$
