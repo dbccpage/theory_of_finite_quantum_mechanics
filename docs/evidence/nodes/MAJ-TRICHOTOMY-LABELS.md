@@ -61,10 +61,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/majorana_evaluator.py`
+### Python: `code/python/src/majorana/majorana_f2_trichotomy.py`
 
-- file: [papers/core/majorana/code/majorana_evaluator.py](../../../papers/core/majorana/code/majorana_evaluator.py)
-- sha256 (`bytes`): `86798eabea510363b59e164c516625c6055df24b4e12086cfe2fde5db16835c3`
+- file: [code/python/src/majorana/majorana_f2_trichotomy.py](../../../code/python/src/majorana/majorana_f2_trichotomy.py)
+- sha256 (`bytes`): `d6ffe11ba0e9fd0ba5a4a467147b95cf560b3d4c860b845a025e3b0e5e283b7a`
 - cited in: record TFQ-1139
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1139_maj_trichotomy_labels.md`
 
 - file: [dag/derivations/28_majorana/tfq_1139_maj_trichotomy_labels.md](../../../dag/derivations/28_majorana/tfq_1139_maj_trichotomy_labels.md)
-- sha256 (`lf-normalised`): `5bf725e110fd487246b9d79ae260855d6aea274818685d6e916d9ef9fae54983`
+- sha256 (`lf-normalised`): `69399c499254af73931d8f6cdd99e07f034fa2443d1cd17fb710eda58ae8ced1`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1139
 - counts toward the grade: no

@@ -37,8 +37,8 @@ f2_weight_l1_l2_coincide is rfl: F2Vec.weight v equals its own defining foldl; n
 - *none*
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::verify_norm_equivalence`
-- `papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_norm_equivalence_on_binary_vectors`
+- `code/python/src/majorana/majorana_f2_trichotomy.py::verify_norm_equivalence`
+- `code/python/src/majorana/test_gf2_trichotomy.py::test_norm_equivalence_on_binary_vectors`
 
 ### Cited by the source, not in this checkout
 - *none*

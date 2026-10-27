@@ -42,10 +42,10 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Python: `papers/core/majorana/code/majorana_evaluator.py`
+### Python: `code/python/src/majorana/majorana_f2_trichotomy.py`
 
-- file: [papers/core/majorana/code/majorana_evaluator.py](../../../papers/core/majorana/code/majorana_evaluator.py)
-- sha256 (`bytes`): `86798eabea510363b59e164c516625c6055df24b4e12086cfe2fde5db16835c3`
+- file: [code/python/src/majorana/majorana_f2_trichotomy.py](../../../code/python/src/majorana/majorana_f2_trichotomy.py)
+- sha256 (`bytes`): `d6ffe11ba0e9fd0ba5a4a467147b95cf560b3d4c860b845a025e3b0e5e283b7a`
 - cited in: record TFQ-1156
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -57,7 +57,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1156_maj_open_distance_family.md`
 
 - file: [dag/derivations/28_majorana/tfq_1156_maj_open_distance_family.md](../../../dag/derivations/28_majorana/tfq_1156_maj_open_distance_family.md)
-- sha256 (`lf-normalised`): `0f6d08c467cbc7f6eedbdfcb4b8380c0bfd8a1a224f65170b0ea64af504fe514`
+- sha256 (`lf-normalised`): `a6786a9aed195888ec9449778bfa90d5d4bc6341163ccab03149943cb3566ffb`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1156
 - counts toward the grade: no

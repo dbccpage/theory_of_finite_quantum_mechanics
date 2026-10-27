@@ -39,8 +39,8 @@ Lean toric_distance_3x4 is rfl of min 3 4 = 3 and torus_3x4_additive_weight is r
 - `code/rust/src/majorana/tetron.rs::logical_generators_are_closed`
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::compute_coset_weight`
-- `papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_torus_per_class_minimum_weights`
+- `code/python/src/majorana/majorana_f2_trichotomy.py::compute_coset_weight`
+- `code/python/src/majorana/test_tetron_surface_codes.py::test_torus_per_class_minimum_weights`
 
 ### Cited by the source, not in this checkout
 - *none*

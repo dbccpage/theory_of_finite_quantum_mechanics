@@ -49,7 +49,7 @@ edgeAbsent states the index split for every natural L at least 2 and every bulk 
 - *none*
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::KitaevSweetSpotChain`
+- `code/python/src/majorana/majorana_mzm_ising.py::KitaevSweetSpotChain`
 
 ### Cited by the source, not in this checkout
 - *none*

@@ -55,23 +55,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py`
+### Python: `code/python/src/majorana/test_gf2_trichotomy.py`
 
-- file: [papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py](../../../papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py)
-- sha256 (`bytes`): `3389fbeaad7f67b996a8bc8aa2cef6d2ae1ae841d8b6cfa83564a3305190a60b`
+- file: [code/python/src/majorana/test_gf2_trichotomy.py](../../../code/python/src/majorana/test_gf2_trichotomy.py)
+- sha256 (`bytes`): `ef02fedf569c136afcde5946b0a5b597fa108fd48c981f60494aa3d9f517ec75`
 - cited in: record TFQ-1174
-- check: `python -m pytest papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_parity_observable_algebra_and_sector_splitting`
+- check: `python -m pytest code/python/src/majorana/test_gf2_trichotomy.py::test_parity_observable_algebra_and_sector_splitting`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `test_parity_observable_algebra_and_sector_splitting` (python_test) | yes | yes | yes | - | `python -m pytest papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_parity_observable_algebra_and_sector_splitting` |
+| `test_parity_observable_algebra_and_sector_splitting` (python_test) | yes | yes | yes | - | `python -m pytest code/python/src/majorana/test_gf2_trichotomy.py::test_parity_observable_algebra_and_sector_splitting` |
 
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1174_maj_parity_sector_split_exact.md`
 
 - file: [dag/derivations/28_majorana/tfq_1174_maj_parity_sector_split_exact.md](../../../dag/derivations/28_majorana/tfq_1174_maj_parity_sector_split_exact.md)
-- sha256 (`lf-normalised`): `2aca2a3131a05f00e56c1016a007e687bd37da599270e13c8ed4bc09ef624778`
+- sha256 (`lf-normalised`): `746eee1c7c375aec1d5a869661db7fdaa98c55249d99ae539c9d8eeb66d463d5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1174
 - counts toward the grade: no

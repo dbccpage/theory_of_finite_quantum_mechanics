@@ -42,7 +42,7 @@ Lean defines the four predicates as Props on F2CochainComplex; TrichotomyClass i
 - *none*
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::TrichotomyClass`
+- `code/python/src/majorana/majorana_f2_trichotomy.py::TrichotomyClass`
 
 ### Cited by the source, not in this checkout
 - *none*

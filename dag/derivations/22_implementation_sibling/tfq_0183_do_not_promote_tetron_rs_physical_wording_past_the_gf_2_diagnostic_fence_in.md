@@ -42,8 +42,8 @@ The standing claim is integer arithmetic on the count triple 4, 4, 1. It does no
   - `LocalMajoranaNoise::from_rows`
 
 ### Python Oracles & Numerical Evaluators
-- `code/python/src/majorana/majorana_noise_sweep.py`:
-  - `DeterministicRationalNoiseGenerator`
+- `code/python/src/majorana/noise_mc.py`:
+  - `run_noise_mc`
 - `checks/independent/tfq-0183.py`:
   - `run_all_checks`
 

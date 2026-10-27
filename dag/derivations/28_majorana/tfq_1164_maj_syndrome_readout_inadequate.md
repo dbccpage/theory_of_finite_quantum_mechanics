@@ -37,8 +37,8 @@ audit_syndrome_readout computes both syndromes; audit_homology_readout returns a
 - *none*
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::DetectorAdequacyAudit.audit_syndrome_readout`
-- `papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_detector_adequacy_syndrome_vs_homology`
+- `code/python/src/majorana/majorana_transfer_bounds.py::DetectorAdequacyAudit.audit_syndrome_readout`
+- `code/python/src/majorana/test_tetron_surface_codes.py::test_detector_adequacy_syndrome_vs_homology`
 
 ### Cited by the source, not in this checkout
 - *none*

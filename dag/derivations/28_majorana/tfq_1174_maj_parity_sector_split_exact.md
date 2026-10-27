@@ -34,7 +34,7 @@ No audit note.
 - `code/rust/src/majorana/majorana_fock_algebra.rs::test_sector_restriction_and_refusals`
 
 ### Python Checks
-- `papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_parity_observable_algebra_and_sector_splitting`
+- `code/python/src/majorana/test_gf2_trichotomy.py::test_parity_observable_algebra_and_sector_splitting`
 
 ### Cited by the source, not in this checkout
 - *none*

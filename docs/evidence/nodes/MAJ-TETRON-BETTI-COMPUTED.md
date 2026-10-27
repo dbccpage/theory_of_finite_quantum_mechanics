@@ -57,16 +57,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py`
+### Python: `code/python/src/majorana/test_tetron_surface_codes.py`
 
-- file: [papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py](../../../papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py)
-- sha256 (`bytes`): `613eb90331749cead532af34aa06a1d61ff5c01a8cc6fd4bdce4bdb9923f7e32`
+- file: [code/python/src/majorana/test_tetron_surface_codes.py](../../../code/python/src/majorana/test_tetron_surface_codes.py)
+- sha256 (`bytes`): `6577a59d6a74b23a3f5a356b1ffaf308140451939f7541f472ac0de58bf6747e`
 - cited in: record TFQ-1152
-- check: `python -m pytest papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_tetron_homology_dimensions`
+- check: `python -m pytest code/python/src/majorana/test_tetron_surface_codes.py::test_tetron_homology_dimensions`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `test_tetron_homology_dimensions` (python_test) | yes | yes | yes | - | `python -m pytest papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_tetron_homology_dimensions` |
+| `test_tetron_homology_dimensions` (python_test) | yes | yes | yes | - | `python -m pytest code/python/src/majorana/test_tetron_surface_codes.py::test_tetron_homology_dimensions` |
 
 - counts toward the grade: yes
 
@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1152_maj_tetron_betti_computed.md`
 
 - file: [dag/derivations/28_majorana/tfq_1152_maj_tetron_betti_computed.md](../../../dag/derivations/28_majorana/tfq_1152_maj_tetron_betti_computed.md)
-- sha256 (`lf-normalised`): `f1d09f7fd779967fea3cabec0644a27951d9cc0512a48e646b4ecbef7abebd28`
+- sha256 (`lf-normalised`): `953f577e4c02a04eb9350308ca6157de06098a194b38105f3b188e5bfa0e1fd7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1152
 - counts toward the grade: no

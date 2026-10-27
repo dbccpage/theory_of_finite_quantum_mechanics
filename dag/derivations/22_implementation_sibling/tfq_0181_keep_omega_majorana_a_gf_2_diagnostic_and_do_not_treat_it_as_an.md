@@ -40,7 +40,7 @@ In accordance with strict constructive principles:
 - [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/009_ms_majorana/code/majorana_gf2_diagnostic.py`](../../code/python/)
+- None in this repository.
 
 ---
 

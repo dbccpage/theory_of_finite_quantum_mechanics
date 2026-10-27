@@ -42,7 +42,7 @@ Lean coset_weight_upper_bound C w a is defined as the weight of w + d0 a for one
 - *none*
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::compute_coset_weight`
+- `code/python/src/majorana/majorana_f2_trichotomy.py::compute_coset_weight`
 
 ### Cited by the source, not in this checkout
 - *none*

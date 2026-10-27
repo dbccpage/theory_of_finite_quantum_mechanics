@@ -49213,9 +49213,7 @@
       "pfp_review_refs": [
         "dag/results/DS-QM212-MAJORANA-PROBLEM/reviews/20261019_boundaries_audit/review_result.json"
       ],
-      "python": [
-        "code/python/src/majorana/majorana_gf2_diagnostic.py"
-      ],
+      "python": [],
       "record_status": "COMPUTATIONAL_CONTROL",
       "rust": [
         "code/rust/src/wdp/lib.rs"
@@ -49304,7 +49302,7 @@
       "obligation": "The 1-by-1 disk cell arithmetic above is the checked slice. A superconducting device, a physical Majorana zero mode, noise sweeps as an authority terminal, the GF(2) matrix rank of any larger grid, and the crate fence in lib.rs stay outside the checked slice. Do not promote tetron.rs physical wording past the GF(2) diagnostic fence in lib.rs.",
       "parent_id": "TFQ-0181",
       "python": [
-        "code/python/src/majorana/majorana_noise_sweep.py::DeterministicRationalNoiseGenerator",
+        "code/python/src/majorana/noise_mc.py::run_noise_mc",
         "checks/independent/tfq-0183.py::run_all_checks"
       ],
       "record_status": "GAP",
@@ -65382,8 +65380,8 @@
       "obligation": "The complex and its incidence matrices are declared inputs; nothing here derives them from a device or from the trunk window.",
       "parent_id": "TFQ-0181",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::F2CochainComplex",
-        "papers/core/majorana/code/majorana_evaluator.py::GF2Matrix"
+        "code/python/src/majorana/majorana_f2_trichotomy.py::F2CochainComplex",
+        "code/python/src/majorana/majorana_f2_trichotomy.py::GF2Matrix"
       ],
       "record_status": "DEFINITION",
       "rust": [
@@ -65417,7 +65415,7 @@
       "obligation": "These are diagnostic schedule classes only; their relation to FOC terminals is fenced by TFQ-0181.",
       "parent_id": "TFQ-1138",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::TrichotomyClass"
+        "code/python/src/majorana/majorana_f2_trichotomy.py::TrichotomyClass"
       ],
       "record_status": "DEFINITION",
       "rust": [],
@@ -65448,7 +65446,7 @@
       "obligation": "This is the unit-weight binary specialization of the trunk Phi1 quotient seminorm; the coefficient change from weighted l1 to F2 Hamming weight is declared, not derived.",
       "parent_id": "TFQ-1138",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::compute_coset_weight"
+        "code/python/src/majorana/majorana_f2_trichotomy.py::compute_coset_weight"
       ],
       "record_status": "DEFINITION",
       "rust": [],
@@ -65483,8 +65481,8 @@
       "obligation": "Exhaustiveness (each residual has at least one label) is not stated in Lean; it is the prose record MAJ-THM-TRICHOTOMY-EXHAUSTIVE.",
       "parent_id": "TFQ-1139",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::classify_residual",
-        "papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_residual_trichotomy_classification"
+        "code/python/src/majorana/majorana_f2_trichotomy.py::classify_residual",
+        "code/python/src/majorana/test_gf2_trichotomy.py::test_residual_trichotomy_classification"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
@@ -65543,9 +65541,9 @@
       "obligation": "No Lean statement of the algorithm or its operation count exists; gaussian_elimination_cubic_bound is a reflexivity and must not be cited for this theorem.",
       "parent_id": "TFQ-1142",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::GF2Matrix.solve",
-        "papers/core/majorana/code/majorana_evaluator.py::classify_residual",
-        "papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_gf2_matrix_rank_and_solve"
+        "code/python/src/majorana/majorana_f2_trichotomy.py::GF2Matrix.solve",
+        "code/python/src/majorana/majorana_f2_trichotomy.py::classify_residual",
+        "code/python/src/majorana/test_gf2_trichotomy.py::test_gf2_matrix_rank_and_solve"
       ],
       "record_status": "PROVED_PROSE",
       "rust": [
@@ -65577,9 +65575,9 @@
       "obligation": "The refusal is a rule of the procedure; the Lean lemma only records that a violating vector falsifies the nilpotency predicate.",
       "parent_id": "TFQ-1138",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::F2CochainComplex.is_nilpotent",
-        "papers/core/majorana/code/majorana_evaluator.py::classify_residual",
-        "papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_cochain_nilpotency_and_refusal"
+        "code/python/src/majorana/majorana_f2_trichotomy.py::F2CochainComplex.is_nilpotent",
+        "code/python/src/majorana/majorana_f2_trichotomy.py::classify_residual",
+        "code/python/src/majorana/test_gf2_trichotomy.py::test_cochain_nilpotency_and_refusal"
       ],
       "record_status": "DEFINITION",
       "rust": [
@@ -65774,8 +65772,8 @@
       "obligation": "A tetron here is a 2-cell of a declared combinatorial carrier under an idealized corner-shared layout, not a superconducting island.",
       "parent_id": "TFQ-1138",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::build_tetron_carrier",
-        "papers/core/majorana/code/majorana_evaluator.py::logical_representative"
+        "code/python/src/majorana/majorana_f2_trichotomy.py::build_tetron_carrier",
+        "code/python/src/majorana/majorana_f2_trichotomy.py::logical_representative"
       ],
       "record_status": "DEFINITION",
       "rust": [
@@ -65806,7 +65804,7 @@
       "obligation": "Fixed sizes only; a closed-form proof for all rows and cols is absent.",
       "parent_id": "TFQ-1151",
       "python": [
-        "papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_tetron_homology_dimensions"
+        "code/python/src/majorana/test_tetron_surface_codes.py::test_tetron_homology_dimensions"
       ],
       "record_status": "COMPUTATIONAL_CONTROL",
       "rust": [
@@ -65876,8 +65874,8 @@
       "obligation": "The checked slice is the identity coboundary on functions Fin t to Bool: d1 after d0 is the zero function on one coordinate, every 1-cochain is exact, and none is a closed residual, including the sizes t = 1, 2, 3 and 4. The recorded measurement that tetron_carrier.py had dim H1 = 0 at those sizes is not in this checkout. A logical-sector reading of that missing file, and a comparison with the tetron-array family, stay open. The older citation legacy_carrier_obstruction assumes trivial first cohomology and does not discharge this slice.",
       "parent_id": "TFQ-1153",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::audit_legacy_carrier",
-        "papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_audit_legacy_carrier_retraction"
+        "code/python/src/majorana/majorana_mzm_ising.py::audit_legacy_carrier",
+        "code/python/src/majorana/test_tetron_surface_codes.py::test_audit_legacy_carrier_retraction"
       ],
       "record_status": "CONDITIONAL",
       "rust": [],
@@ -65907,8 +65905,8 @@
       "obligation": "Fixed instance only; additivity and d = min(rows, cols) for other sizes are MAJ-CLAIM-DISTANCE-FAMILY.",
       "parent_id": "TFQ-1152",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::compute_coset_weight",
-        "papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_torus_per_class_minimum_weights"
+        "code/python/src/majorana/majorana_f2_trichotomy.py::compute_coset_weight",
+        "code/python/src/majorana/test_tetron_surface_codes.py::test_torus_per_class_minimum_weights"
       ],
       "record_status": "COMPUTATIONAL_CONTROL",
       "rust": [
@@ -65939,7 +65937,7 @@
       "obligation": "Prove the distance formulas (e.g. by a cut argument on the dual grid); the source gives a one-sentence traversal argument for additivity only.",
       "parent_id": "TFQ-1155",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::TetronCarrier"
+        "code/python/src/majorana/majorana_f2_trichotomy.py::TetronCarrier"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
@@ -66030,8 +66028,8 @@
       "obligation": "Fixed instances; the upper-bound property of any searched representative is immediate from the definition of the minimum.",
       "parent_id": "TFQ-1158",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::compute_coset_weight",
-        "papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_coset_weight_budget_capping"
+        "code/python/src/majorana/majorana_f2_trichotomy.py::compute_coset_weight",
+        "code/python/src/majorana/test_tetron_surface_codes.py::test_coset_weight_budget_capping"
       ],
       "record_status": "COMPUTATIONAL_CONTROL",
       "rust": [
@@ -66063,7 +66061,7 @@
       "obligation": "The body's 17 ms figure is not recorded in this checkout; the timed residual exits at the syndrome step, so the elimination step is not timed; timing is machine-dependent.",
       "parent_id": "TFQ-1143",
       "python": [
-        "papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_trichotomy_benchmark_6x6_torus"
+        "code/python/src/majorana/test_gf2_trichotomy.py::test_trichotomy_benchmark_6x6_torus"
       ],
       "record_status": "COMPUTATIONAL_CONTROL",
       "rust": [
@@ -66095,8 +66093,8 @@
       "obligation": "The Lean declaration does not state this identity; a Lean lemma over p-th powers of 0/1 entries is absent.",
       "parent_id": "TFQ-1140",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::verify_norm_equivalence",
-        "papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_norm_equivalence_on_binary_vectors"
+        "code/python/src/majorana/majorana_f2_trichotomy.py::verify_norm_equivalence",
+        "code/python/src/majorana/test_gf2_trichotomy.py::test_norm_equivalence_on_binary_vectors"
       ],
       "record_status": "PROVED_PROSE",
       "rust": [],
@@ -66178,8 +66176,8 @@
       "obligation": "Fixed instance; the adequacy of a syndrome-plus-class readout is asserted, not computed.",
       "parent_id": "TFQ-1163",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::DetectorAdequacyAudit.audit_syndrome_readout",
-        "papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_detector_adequacy_syndrome_vs_homology"
+        "code/python/src/majorana/majorana_transfer_bounds.py::DetectorAdequacyAudit.audit_syndrome_readout",
+        "code/python/src/majorana/test_tetron_surface_codes.py::test_detector_adequacy_syndrome_vs_homology"
       ],
       "record_status": "COMPUTATIONAL_CONTROL",
       "rust": [],
@@ -66267,7 +66265,7 @@
       "obligation": "The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.",
       "parent_id": "TFQ-0181",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::KitaevSweetSpotChain"
+        "code/python/src/majorana/majorana_mzm_ising.py::KitaevSweetSpotChain"
       ],
       "record_status": "IMPORTED_ASSUMPTION",
       "rust": [],
@@ -66298,7 +66296,7 @@
       "obligation": "Index-level statement only; operator commutation [H, gamma_1] = 0 is the exact instance MAJ-KITAEV-SWEETSPOT-EXACT.",
       "parent_id": "TFQ-1167",
       "python": [
-        "papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_kitaev_sweet_spot_boundary_isolation"
+        "code/python/src/majorana/test_tetron_surface_codes.py::test_kitaev_sweet_spot_boundary_isolation"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [],
@@ -66384,9 +66382,9 @@
       "obligation": "Run the identities in exact cyclotomic arithmetic; the paper code checks only Yang-Baxter in floating point.",
       "parent_id": "TFQ-1170",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::IsingFusionAlgebra.verify_yang_baxter_braid",
-        "papers/core/majorana/code/majorana_evaluator.py::IsingFusionAlgebra.verify_quantum_dimensions",
-        "papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_ising_fusion_and_braid_relations"
+        "code/python/src/majorana/majorana_mzm_ising.py::IsingFusionAlgebra.verify_yang_baxter_braid",
+        "code/python/src/majorana/majorana_mzm_ising.py::IsingFusionAlgebra.verify_quantum_dimensions",
+        "code/python/src/majorana/test_gf2_trichotomy.py::test_ising_fusion_and_braid_relations"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
@@ -66443,7 +66441,7 @@
       "obligation": "No experimental readout model is derived.",
       "parent_id": "TFQ-1165",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::ParityAlgebraModel"
+        "code/python/src/majorana/majorana_mzm_ising.py::ParityAlgebraModel"
       ],
       "record_status": "DEFINITION",
       "rust": [],
@@ -66469,7 +66467,7 @@
       "obligation": "Fixed 2-mode instance; the paper code's ParityAlgebraModel check is floating point.",
       "parent_id": "TFQ-1173",
       "python": [
-        "papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_parity_observable_algebra_and_sector_splitting"
+        "code/python/src/majorana/test_gf2_trichotomy.py::test_parity_observable_algebra_and_sector_splitting"
       ],
       "record_status": "COMPUTATIONAL_CONTROL",
       "rust": [
@@ -66596,7 +66594,7 @@
       "obligation": "Derive the bath term A_s T^p and p(s) from the spectral density; the calculus minimization of the stated envelope is not written out.",
       "parent_id": "TFQ-1177",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::NonMarkovianBosonicBathModel"
+        "code/python/src/majorana/majorana_transfer_bounds.py::NonMarkovianBosonicBathModel"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],
@@ -66629,7 +66627,7 @@
       "obligation": "Derive the envelope and the monotonicity in sigma_V; the gap-degradation law is posited.",
       "parent_id": "TFQ-1177",
       "python": [
-        "papers/core/majorana/code/majorana_evaluator.py::ContinuumCrossJunctionFemModel"
+        "code/python/src/majorana/majorana_transfer_bounds.py::ContinuumCrossJunctionFemModel"
       ],
       "record_status": "OPEN_OBLIGATION",
       "rust": [],

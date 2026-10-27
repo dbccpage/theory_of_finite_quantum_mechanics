@@ -70,10 +70,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/majorana_evaluator.py`
+### Python: `code/python/src/majorana/majorana_f2_trichotomy.py`
 
-- file: [papers/core/majorana/code/majorana_evaluator.py](../../../papers/core/majorana/code/majorana_evaluator.py)
-- sha256 (`bytes`): `86798eabea510363b59e164c516625c6055df24b4e12086cfe2fde5db16835c3`
+- file: [code/python/src/majorana/majorana_f2_trichotomy.py](../../../code/python/src/majorana/majorana_f2_trichotomy.py)
+- sha256 (`bytes`): `d6ffe11ba0e9fd0ba5a4a467147b95cf560b3d4c860b845a025e3b0e5e283b7a`
 - cited in: record TFQ-1143
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -83,23 +83,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py`
+### Python: `code/python/src/majorana/test_gf2_trichotomy.py`
 
-- file: [papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py](../../../papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py)
-- sha256 (`bytes`): `3389fbeaad7f67b996a8bc8aa2cef6d2ae1ae841d8b6cfa83564a3305190a60b`
+- file: [code/python/src/majorana/test_gf2_trichotomy.py](../../../code/python/src/majorana/test_gf2_trichotomy.py)
+- sha256 (`bytes`): `ef02fedf569c136afcde5946b0a5b597fa108fd48c981f60494aa3d9f517ec75`
 - cited in: record TFQ-1143
-- check: `python -m pytest papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_gf2_matrix_rank_and_solve`
+- check: `python -m pytest code/python/src/majorana/test_gf2_trichotomy.py::test_gf2_matrix_rank_and_solve`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `test_gf2_matrix_rank_and_solve` (python_test) | yes | yes | yes | - | `python -m pytest papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_gf2_matrix_rank_and_solve` |
+| `test_gf2_matrix_rank_and_solve` (python_test) | yes | yes | yes | - | `python -m pytest code/python/src/majorana/test_gf2_trichotomy.py::test_gf2_matrix_rank_and_solve` |
 
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1143_maj_trichotomy_elimination_decision.md`
 
 - file: [dag/derivations/28_majorana/tfq_1143_maj_trichotomy_elimination_decision.md](../../../dag/derivations/28_majorana/tfq_1143_maj_trichotomy_elimination_decision.md)
-- sha256 (`lf-normalised`): `fcc89a86bec2f522f418c3daa7a0654e10c89e4b83865990a436b280cc5fc1df`
+- sha256 (`lf-normalised`): `b8af2033861b18ee256b91cc69ad1e7a666dcca1d834c2a3664fa9d11f6693f2`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1143
 - counts toward the grade: no

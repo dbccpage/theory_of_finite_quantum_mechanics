@@ -10,13 +10,13 @@ Stage: [FINITE_QM_STRUCTURE](../stages/FINITE_QM_STRUCTURE.md). Status: `PROVED_
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
+- counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 2
 - distinct cited Lean declarations covered by a current replay receipt: 2
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 2
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (2 in-repo Rust or Python file(s) cited, none a test)
+- next step to raise the grade: add an in-repo Rust or Python runnable test (1 in-repo Rust or Python file(s) cited, none a test)
 
 ## Flags
 
@@ -83,17 +83,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.rust
 - counts toward the grade: no
 
-### Python: `code/python/src/majorana/majorana_gf2_diagnostic.py`
-
-- file: [code/python/src/majorana/majorana_gf2_diagnostic.py](../../../code/python/src/majorana/majorana_gf2_diagnostic.py)
-- sha256 (`bytes`): `3f7009456f96c97cc161e1aa8f94840e8fb3d52bd6feec74eae5fcb51e9d39ca`
-- cited in: record TFQ-0181
-- counts toward the grade: yes
-
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md](../../../dag/derivations/22_implementation_sibling/tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md)
-- sha256 (`lf-normalised`): `bcc4f7799cfbb5e0447711f996f366ee7fef956c87762eeda3c1d19981e30530`
+- sha256 (`lf-normalised`): `5c4c1c38af5d2e4dbe1283909b64f49d25dd4435c9532175614fce1db84c758a`
 - generated view: listed, not counted
 - cited in: record TFQ-0181
 - counts toward the grade: no

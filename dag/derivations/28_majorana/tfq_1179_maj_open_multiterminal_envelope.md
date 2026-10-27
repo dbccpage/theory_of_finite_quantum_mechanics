@@ -42,7 +42,7 @@ multiterminal_crosstalk_channels_pos establishes M (M - 1) / 2 > 0 for M >= 4, n
 - *none*
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::ContinuumCrossJunctionFemModel`
+- `code/python/src/majorana/majorana_transfer_bounds.py::ContinuumCrossJunctionFemModel`
 
 ### Cited by the source, not in this checkout
 - *none*

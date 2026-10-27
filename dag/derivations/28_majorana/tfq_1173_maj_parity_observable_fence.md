@@ -35,7 +35,7 @@ parity_eigenvalues is (lambda = 1 or lambda = -1) -> lambda * lambda = 1 over In
 - *none*
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::ParityAlgebraModel`
+- `code/python/src/majorana/majorana_mzm_ising.py::ParityAlgebraModel`
 
 ### Cited by the source, not in this checkout
 - *none*

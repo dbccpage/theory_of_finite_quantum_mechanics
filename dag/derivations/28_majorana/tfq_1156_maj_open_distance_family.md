@@ -34,7 +34,7 @@ TetronCarrier.code_distance is a declared label (rows + 1, min(rows, cols)), sta
 - *none*
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::TetronCarrier`
+- `code/python/src/majorana/majorana_f2_trichotomy.py::TetronCarrier`
 
 ### Cited by the source, not in this checkout
 - *none*

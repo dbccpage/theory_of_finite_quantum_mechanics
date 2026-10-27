@@ -56,10 +56,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/majorana_evaluator.py`
+### Python: `code/python/src/majorana/majorana_f2_trichotomy.py`
 
-- file: [papers/core/majorana/code/majorana_evaluator.py](../../../papers/core/majorana/code/majorana_evaluator.py)
-- sha256 (`bytes`): `86798eabea510363b59e164c516625c6055df24b4e12086cfe2fde5db16835c3`
+- file: [code/python/src/majorana/majorana_f2_trichotomy.py](../../../code/python/src/majorana/majorana_f2_trichotomy.py)
+- sha256 (`bytes`): `d6ffe11ba0e9fd0ba5a4a467147b95cf560b3d4c860b845a025e3b0e5e283b7a`
 - cited in: record TFQ-1159
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -68,23 +68,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py`
+### Python: `code/python/src/majorana/test_tetron_surface_codes.py`
 
-- file: [papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py](../../../papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py)
-- sha256 (`bytes`): `613eb90331749cead532af34aa06a1d61ff5c01a8cc6fd4bdce4bdb9923f7e32`
+- file: [code/python/src/majorana/test_tetron_surface_codes.py](../../../code/python/src/majorana/test_tetron_surface_codes.py)
+- sha256 (`bytes`): `6577a59d6a74b23a3f5a356b1ffaf308140451939f7541f472ac0de58bf6747e`
 - cited in: record TFQ-1159
-- check: `python -m pytest papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_coset_weight_budget_capping`
+- check: `python -m pytest code/python/src/majorana/test_tetron_surface_codes.py::test_coset_weight_budget_capping`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `test_coset_weight_budget_capping` (python_test) | yes | yes | yes | - | `python -m pytest papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_coset_weight_budget_capping` |
+| `test_coset_weight_budget_capping` (python_test) | yes | yes | yes | - | `python -m pytest code/python/src/majorana/test_tetron_surface_codes.py::test_coset_weight_budget_capping` |
 
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1159_maj_capped_coset_search.md`
 
 - file: [dag/derivations/28_majorana/tfq_1159_maj_capped_coset_search.md](../../../dag/derivations/28_majorana/tfq_1159_maj_capped_coset_search.md)
-- sha256 (`lf-normalised`): `ae6a75984c85f01f737b65785a8698fa1a98bc78a05d7205f0c5fc269bb96b60`
+- sha256 (`lf-normalised`): `b7489a2c1eebc6fb298fc6f8cfbe9c82d49901cab6e782b97b0ba68ec47b7706`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1159
 - counts toward the grade: no

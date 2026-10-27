@@ -34,9 +34,9 @@ verify_yang_baxter_braid uses numpy complex floats and allclose at atol 1e-12; v
 - *none*
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::IsingFusionAlgebra.verify_yang_baxter_braid`
-- `papers/core/majorana/code/majorana_evaluator.py::IsingFusionAlgebra.verify_quantum_dimensions`
-- `papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_ising_fusion_and_braid_relations`
+- `code/python/src/majorana/majorana_mzm_ising.py::IsingFusionAlgebra.verify_yang_baxter_braid`
+- `code/python/src/majorana/majorana_mzm_ising.py::IsingFusionAlgebra.verify_quantum_dimensions`
+- `code/python/src/majorana/test_gf2_trichotomy.py::test_ising_fusion_and_braid_relations`
 
 ### Cited by the source, not in this checkout
 - *none*

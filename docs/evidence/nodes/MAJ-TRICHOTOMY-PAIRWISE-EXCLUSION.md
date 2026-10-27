@@ -75,10 +75,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/majorana_evaluator.py`
+### Python: `code/python/src/majorana/majorana_f2_trichotomy.py`
 
-- file: [papers/core/majorana/code/majorana_evaluator.py](../../../papers/core/majorana/code/majorana_evaluator.py)
-- sha256 (`bytes`): `86798eabea510363b59e164c516625c6055df24b4e12086cfe2fde5db16835c3`
+- file: [code/python/src/majorana/majorana_f2_trichotomy.py](../../../code/python/src/majorana/majorana_f2_trichotomy.py)
+- sha256 (`bytes`): `d6ffe11ba0e9fd0ba5a4a467147b95cf560b3d4c860b845a025e3b0e5e283b7a`
 - cited in: record TFQ-1141
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -87,23 +87,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py`
+### Python: `code/python/src/majorana/test_gf2_trichotomy.py`
 
-- file: [papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py](../../../papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py)
-- sha256 (`bytes`): `3389fbeaad7f67b996a8bc8aa2cef6d2ae1ae841d8b6cfa83564a3305190a60b`
+- file: [code/python/src/majorana/test_gf2_trichotomy.py](../../../code/python/src/majorana/test_gf2_trichotomy.py)
+- sha256 (`bytes`): `ef02fedf569c136afcde5946b0a5b597fa108fd48c981f60494aa3d9f517ec75`
 - cited in: record TFQ-1141
-- check: `python -m pytest papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_residual_trichotomy_classification`
+- check: `python -m pytest code/python/src/majorana/test_gf2_trichotomy.py::test_residual_trichotomy_classification`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `test_residual_trichotomy_classification` (python_test) | yes | yes | yes | - | `python -m pytest papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_residual_trichotomy_classification` |
+| `test_residual_trichotomy_classification` (python_test) | yes | yes | yes | - | `python -m pytest code/python/src/majorana/test_gf2_trichotomy.py::test_residual_trichotomy_classification` |
 
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1141_maj_trichotomy_pairwise_exclusion.md`
 
 - file: [dag/derivations/28_majorana/tfq_1141_maj_trichotomy_pairwise_exclusion.md](../../../dag/derivations/28_majorana/tfq_1141_maj_trichotomy_pairwise_exclusion.md)
-- sha256 (`lf-normalised`): `98954ef0e2e9a5eeef8e6ce5897d360cd44b975caffae197ef43b329eb4b3d2b`
+- sha256 (`lf-normalised`): `886b672d855ddf42c3b8ac9e572a70c34f7af3e5fb7086d067081789b12117be`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1141
 - counts toward the grade: no

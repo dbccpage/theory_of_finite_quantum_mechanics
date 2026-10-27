@@ -43,8 +43,8 @@ audit_legacy_carrier returns a literal dict {T: 0} for the legacy dimensions and
 - *none*
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::audit_legacy_carrier`
-- `papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_audit_legacy_carrier_retraction`
+- `code/python/src/majorana/majorana_mzm_ising.py::audit_legacy_carrier`
+- `code/python/src/majorana/test_tetron_surface_codes.py::test_audit_legacy_carrier_retraction`
 
 ### Cited by the source, not in this checkout
 - `external:carriers/tetron_carrier.py (legacy carrier cited by Section 5.3; absent from this checkout)`

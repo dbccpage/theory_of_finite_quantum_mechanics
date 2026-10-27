@@ -70,16 +70,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py`
+### Python: `code/python/src/majorana/test_gf2_trichotomy.py`
 
-- file: [papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py](../../../papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py)
-- sha256 (`bytes`): `3389fbeaad7f67b996a8bc8aa2cef6d2ae1ae841d8b6cfa83564a3305190a60b`
+- file: [code/python/src/majorana/test_gf2_trichotomy.py](../../../code/python/src/majorana/test_gf2_trichotomy.py)
+- sha256 (`bytes`): `ef02fedf569c136afcde5946b0a5b597fa108fd48c981f60494aa3d9f517ec75`
 - cited in: record TFQ-1160
-- check: `python -m pytest papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_trichotomy_benchmark_6x6_torus`
+- check: `python -m pytest code/python/src/majorana/test_gf2_trichotomy.py::test_trichotomy_benchmark_6x6_torus`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `test_trichotomy_benchmark_6x6_torus` (python_test) | yes | yes | yes | - | `python -m pytest papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_trichotomy_benchmark_6x6_torus` |
+| `test_trichotomy_benchmark_6x6_torus` (python_test) | yes | yes | yes | - | `python -m pytest code/python/src/majorana/test_gf2_trichotomy.py::test_trichotomy_benchmark_6x6_torus` |
 
 - counts toward the grade: yes
 
@@ -93,7 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1160_maj_torus_6x6_benchmark.md`
 
 - file: [dag/derivations/28_majorana/tfq_1160_maj_torus_6x6_benchmark.md](../../../dag/derivations/28_majorana/tfq_1160_maj_torus_6x6_benchmark.md)
-- sha256 (`lf-normalised`): `aef932f77a78acccd711d2ae33f959ecd87c6fee28c84c0414b2beaf571d5348`
+- sha256 (`lf-normalised`): `7bd0f1c178e17e97a9e929823d91473d529b423bdd500084a24aa2e91eb6ef76`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1160
 - counts toward the grade: no

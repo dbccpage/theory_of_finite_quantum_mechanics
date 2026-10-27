@@ -41,7 +41,7 @@ sub_ohmic_exponent_shift is p_sub > p_ohm -> p_sub + 2 > p_ohm + 2 over Nat; the
 - *none*
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::NonMarkovianBosonicBathModel`
+- `code/python/src/majorana/majorana_transfer_bounds.py::NonMarkovianBosonicBathModel`
 
 ### Cited by the source, not in this checkout
 - *none*
