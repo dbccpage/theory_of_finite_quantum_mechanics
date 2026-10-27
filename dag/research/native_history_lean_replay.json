@@ -1,0 +1,297 @@
+{
+  "schema_version": "native_history_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-10-27",
+  "result": "NativeHistoryCost and NativeHistoryGuard compile under Lean 4.35.0 with core Lean only (no Mathlib), with no warnings. Every theorem of both modules was audited with Lean.collectAxioms; every axiom set is a subset of propext and Quot.sound.",
+  "proof_boundary": "This receipt records that the sources type-check and which axioms their theorems use. It changes no DAG node status. The modules formalize one assertion cell of the Source-25 transition system, not the full interpreter, and not its correspondence with any native or Python implementation.",
+  "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+  "lakefile_sha256": "71033f0c1b2811ebc1af756eeca32da23f779a8690aff8eb89d29661127f1637",
+  "reproduction": "In a scratch Lake package with a lean_lib NativeHistory over the two byte-identical sources (FQM lean4/ requires Mathlib, which this container cannot fetch), run `lake build NativeHistory`, then Lean.collectAxioms over every theorem constant of both modules. From FQM lean4/ with Mathlib available, `lake build NativeHistory` builds the same sources.",
+  "admission_scan": "No sorry, admit, user axiom, native_decide, unsafe or partial in either source.",
+  "entries": [
+    {
+      "module": "NativeHistoryCost",
+      "source": "lean4/NativeHistoryCost.lean",
+      "sha256": "031c3f82920edd64d491a6152a965afc1ed321c3b04c0b2000b0e7fffcdfb768",
+      "copied_from": "the_symbol_game@ad9dc4eb5bed958a9b18c951b44ce6acc06d9725 lean4/NativeHistoryCost.lean (byte-identical)",
+      "exit_code": 0,
+      "built_successfully": true,
+      "warnings": 0,
+      "admission_scan_passed": true,
+      "axiom_audit_passed": true,
+      "theorems_audited": 46,
+      "axioms_used": [
+        "Quot.sound",
+        "propext"
+      ],
+      "axioms": {
+        "NativeHistoryCost.Event.add.sizeOf_spec": [],
+        "NativeHistoryCost.Event.ofNat_ctorIdx": [],
+        "NativeHistoryCost.Event.remove.sizeOf_spec": [],
+        "NativeHistoryCost.bound._proof_1": [
+          "propext"
+        ],
+        "NativeHistoryCost.endpoint_does_not_recover_price": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryCost.endpoint_does_not_recover_price._proof_1_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryCost.finite_price_error_unbounded": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryCost.finite_price_error_unbounded._proof_1_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryCost.instDecidableEqEvent._proof_1": [],
+        "NativeHistoryCost.instDecidableEqEvent._proof_2": [],
+        "NativeHistoryCost.le_bound": [
+          "propext"
+        ],
+        "NativeHistoryCost.length_loops": [
+          "propext"
+        ],
+        "NativeHistoryCost.loops.eq_1": [],
+        "NativeHistoryCost.loops.eq_2": [],
+        "NativeHistoryCost.loops.eq_def": [],
+        "NativeHistoryCost.loops_injective": [
+          "propext"
+        ],
+        "NativeHistoryCost.no_finite_exact_price": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryCost.no_finite_exact_price._proof_1_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryCost.positive_loop_has_no_zero_price_continuation": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryCost.positive_loop_has_no_zero_price_continuation._proof_1_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryCost.price.eq_1": [],
+        "NativeHistoryCost.price.eq_2": [],
+        "NativeHistoryCost.price.eq_3": [],
+        "NativeHistoryCost.price.eq_def": [],
+        "NativeHistoryCost.price_append": [
+          "propext"
+        ],
+        "NativeHistoryCost.price_loops": [
+          "propext"
+        ],
+        "NativeHistoryCost.replay.eq_1": [],
+        "NativeHistoryCost.replay.eq_2": [],
+        "NativeHistoryCost.replay.eq_def": [],
+        "NativeHistoryCost.replay_loops": [],
+        "NativeHistoryCost.reversible_nonnegative_cost_zero": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryCost.reversible_nonnegative_cost_zero._proof_1_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryCost.reversible_zero_cost_inhabitant": [],
+        "NativeHistoryCost.step.eq_1": [],
+        "NativeHistoryCost.step.eq_2": [],
+        "NativeHistoryCost.step.eq_3": [],
+        "_private.NativeHistoryCost.0.NativeHistoryCost.loops.match_1.eq_1": [],
+        "_private.NativeHistoryCost.0.NativeHistoryCost.loops.match_1.eq_2": [],
+        "_private.NativeHistoryCost.0.NativeHistoryCost.price.match_1.eq_1": [],
+        "_private.NativeHistoryCost.0.NativeHistoryCost.price.match_1.eq_2": [],
+        "_private.NativeHistoryCost.0.NativeHistoryCost.price.match_1.eq_3": [],
+        "_private.NativeHistoryCost.0.NativeHistoryCost.replay.match_1.eq_1": [],
+        "_private.NativeHistoryCost.0.NativeHistoryCost.replay.match_1.eq_2": [],
+        "_private.NativeHistoryCost.0.NativeHistoryCost.step.match_1.eq_1": [],
+        "_private.NativeHistoryCost.0.NativeHistoryCost.step.match_1.eq_2": [],
+        "_private.NativeHistoryCost.0.NativeHistoryCost.step.match_1.eq_3": []
+      }
+    },
+    {
+      "module": "NativeHistoryGuard",
+      "source": "lean4/NativeHistoryGuard.lean",
+      "sha256": "0f7a83950f9e77293162cb88926547bbd912515e214dab0a1703233e3d2b2791",
+      "copied_from": "the_symbol_game@ad9dc4eb5bed958a9b18c951b44ce6acc06d9725 lean4/NativeHistoryGuard.lean (byte-identical)",
+      "exit_code": 0,
+      "built_successfully": true,
+      "warnings": 0,
+      "admission_scan_passed": true,
+      "axiom_audit_passed": true,
+      "theorems_audited": 46,
+      "axioms_used": [
+        "Quot.sound",
+        "propext"
+      ],
+      "axioms": {
+        "NativeHistoryGuard.all_depths_force_injective": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.all_depths_force_injective._proof_1_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.clipped_add_transition": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.clipped_add_transition._proof_1_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.clipped_depth_restriction": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.clipped_depth_restriction._proof_1_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.clipped_remove_transition": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.clipped_remove_transition._proof_1_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.clipped_report_inhabitant": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.depth_equivalent_iff": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.depth_equivalent_iff._proof_1_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.depth_equivalent_iff._proof_1_2": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.depth_equivalent_iff._proof_1_3": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.depth_equivalent_iff._proof_1_4": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.every_finite_depth_has_a_safe_state": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.fixed_depth_is_not_stable": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.fixed_depth_is_not_stable._proof_1_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.fixed_depth_is_not_stable._proof_1_2": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.legal.eq_1": [],
+        "NativeHistoryGuard.legal.eq_2": [],
+        "NativeHistoryGuard.legal.eq_def": [],
+        "NativeHistoryGuard.legal_clip": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.legal_clip._proof_1_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.legal_depth_congr": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.legal_depth_congr._proof_1_4": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.legal_depth_congr._proof_1_5": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.legal_depth_congr._proof_1_6": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.legal_depth_congr._proof_1_7": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.legal_eq_replay": [],
+        "NativeHistoryGuard.legal_removals": [
+          "propext"
+        ],
+        "NativeHistoryGuard.no_unrestricted_safe_native_state": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.no_unrestricted_safe_native_state._proof_1_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.removals_separate": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.removals_separate._proof_1_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.removals_separate._proof_1_2": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.removals_separate._proof_1_3": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.saturated_profile_has_no_native_representative": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.saturated_profile_has_no_native_representative._proof_1_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.sufficient_report_injective": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.sufficient_report_injective._proof_1_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.sufficient_reserve": [
+          "Quot.sound",
+          "propext"
+        ],
+        "NativeHistoryGuard.sufficient_reserve._proof_1_1": [
+          "Quot.sound",
+          "propext"
+        ],
+        "_private.NativeHistoryGuard.0.NativeHistoryGuard.legal.match_1.eq_1": [],
+        "_private.NativeHistoryGuard.0.NativeHistoryGuard.legal.match_1.eq_2": [],
+        "_private.NativeHistoryGuard.0.NativeHistoryGuard.legal.match_3.eq_1": [],
+        "_private.NativeHistoryGuard.0.NativeHistoryGuard.legal.match_3.eq_2": []
+      }
+    }
+  ]
+}

@@ -1550,3 +1550,9 @@ lean_lib ExactRat where
 -- Two-amplitude carrier tests over ExactRat. Not a default target.
 lean_lib CarrierTests where
   roots := #[`CarrierTests]
+
+-- One-cell native-history cost and future-legality guard (core Lean only).
+-- Cited by dag/research/qm_native_history_cost.md and
+-- qm_native_history_guard.md. Not a default target.
+lean_lib NativeHistory where
+  roots := #[`NativeHistoryCost, `NativeHistoryGuard]

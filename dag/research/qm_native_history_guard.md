@@ -221,7 +221,7 @@ embedding rules out an arbitrary fourth mutually unbiased basis.
 
 ## 7. Verified scope and reproduction
 
-[`NativeHistoryGuard.lean`](../../../../../lean4/NativeHistoryGuard.lean) imports
+[`NativeHistoryGuard.lean`](../../lean4/NativeHistoryGuard.lean) imports
 the existing one-cell transition definitions and proves NG1, separating words,
 injection of the canonical $r+1$ representatives into any sufficient report,
 unrestricted report injectivity, decreasing-depth transition laws, fixed-depth
