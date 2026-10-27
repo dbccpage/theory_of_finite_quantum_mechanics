@@ -1,0 +1,23 @@
+PASS complete payload, manifests, and canonical ZIP
+PASS claim mappings: 14 claims; 7 written-only; 7 numerical example mappings; 7 stored conditional abstract Lean targets (no fresh execution implied)
+PASS numerical regressions
+........................................................................ [ 46%]
+........................................................................ [ 92%]
+...........                                                              [100%]
+============================== warnings summary ===============================
+tests/test_release_contract.py::test_full_archive_envelope_rejects_extra_bytes_and_members[duplicate]
+  C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\zipfile\__init__.py:1611: UserWarning: Duplicate name: 'sample_paper/README.md'
+    return self._open_to_write(zinfo, force_zip64=force_zip64)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+155 passed, 1 warning in 8.49s
+PASS static Lean census
+OK 034_higher_cell_cochain_projection_and_retraction_dynamics: Census.lean is up to date
+PASS fresh pinned Lean replay
+OK 034_higher_cell_cochain_projection_and_retraction_dynamics: replayed census successfully
+PASS native Jupyter replay
+PASS native-jupyter-kernel: 7 code cells; source 958d8fc23e44f036f6c07bc0e57d98d49deb83b47905df9f0fdaf7b770d57262; recorded=False
+C:\Users\a343o\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\zmq\_future.py:718: RuntimeWarning: Proactor event loop does not implement add_reader family of methods required for zmq. Registering an additional selector thread for add_reader support via tornado. Use `asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy())` to avoid this warning.
+  self._get_loop()
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+PASS complete replay gate; authority effect: None
