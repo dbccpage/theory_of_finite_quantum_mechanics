@@ -1,0 +1,424 @@
+paper_id: 034_higher_cell_cochain_projection_and_retraction_dynamics
+title: Higher-Cell Product Retractions, Simplicial Cochains, and Finite Retraction Dynamics
+version: 0.2.0
+date: '2026-10-23'
+status: unpublished technical preprint; first publication review candidate; deposition unverified
+authority_effect: None
+evidence_policy: Analytic statements, numerical tests, conditional abstract Lean proofs, and protocol metadata are
+  separate evidence scopes.
+claims:
+- id: PO034-C1
+  name: Product projector idempotence and marginals
+  claim_type: Theorem
+  statement: On traceless Hermitian directions at a normalized product reference, P is idempotent, preserves single-site
+    marginals, and projects onto the algebraic product tangent space. Full-rank densities permit the usual interior
+    manifold interpretation. Normal defect projector Q has vanishing single-site marginal traces (Tr_{\setminus
+    j}[Q(Z)] = 0).
+  scope: Boundary feasibility is separate. The full-space software map is the derivative of the homogeneous extension.
+    Continuous U(1) transport requires an infinite period lattice distinct from finite torsion.
+  bridge_claims:
+  - id: PO034-C1-NS
+    name: Product projector marginal preservation and no-signalling holonomy bridge
+    statement: The product tangent projector P preserves local single-site marginals (Tr_{\setminus j}[P(Z)] = Tr_{\setminus
+      j}[Z]) while the normal defect projector Q has vanishing single-site marginal traces (Tr_{\setminus j}[Q(Z)]
+      = 0). Under two-site entangling Hamiltonian interactions on a simplicial cell, defect speed nu = ||Q[H, rho]||_1
+      > 0 accumulates boundary edge cochains and face holonomies without perturbing local marginals, matching Cycle
+      007 formal no-signalling (LT-NS / NoSignallingBA), continuous U(1) torsion exclusion (LT-U1), and discrete
+      rotation generators (LT-A).
+    lean4_reference: lean4/quantum_mechanics/NoSignalling.lean
+    python_bridge: coda_higher_cell.cochain_holonomy_bridge
+  code_evidence:
+    module: coda_higher_cell.k_cell_retraction
+    functions:
+    - k_cell_tangent_projector
+    - k_cell_normal_projector
+    - verify_marginal_preservation
+    tests:
+    - code/tests/test_k_cell_retraction.py::test_tangent_projector_idempotence_and_marginals
+    - code/tests/test_k_cell_retraction.py::test_full_space_extension_derivative_and_tiny_trace_linearity
+    - code/tests/test_holonomy_defect_bridge.py::test_single_site_hamiltonian_has_zero_defect_velocity
+    - code/tests/test_holonomy_defect_bridge.py::test_two_site_interaction_defect_and_marginal_annihilation
+    - code/tests/test_holonomy_defect_bridge.py::test_3simplex_cochain_mapping_and_face_holonomies
+    status: numerical_examples
+  lean4_evidence:
+    module: HigherCell.Theorem41_Idempotence
+    theorems:
+    - HigherCell.theorem41_marginal_preservation
+    - HigherCell.theorem41_idempotence
+    - HigherCell.theorem41_normal_annihilates_tangent
+    scope: Conditional abstract additive identities; trace/embedding laws are structure fields. No concrete matrix
+      instantiation. Formal completions for LT-A, LT-U1, and LT-NS reside in lean4/quantum_mechanics (RotationGroups.lean,
+      H011Circle.lean, NoSignalling.lean). Stored census only; no fresh build in this review.
+    status: conditional_abstract
+- id: PO034-C2
+  name: One-site isolation and a distinct highest-order projector
+  claim_type: Theorem and counterexample
+  statement: 'Q annihilates one-site Hamiltonian variations. Proper multi-site support need not be tangent: X1 X2
+    I3 at |000> has QL=L with trace norm 2. A separate projector R_k=product_j(I-E_j) annihilates reference-factorized
+    proper-support variations.'
+  scope: Q is not R_k for k>2. Neither full support nor a nonzero component alone establishes genuine multipartite
+    entanglement.
+  code_evidence:
+    module: coda_higher_cell.k_cell_retraction
+    functions:
+    - verify_generalized_tangent_isolation
+    - verify_1local_tangent_isolation
+    - highest_order_correlation_projector
+    - k_cell_boundary_face_projector
+    tests:
+    - code/tests/test_k_cell_retraction.py::test_one_site_tangent_isolation
+    - code/tests/test_k_cell_retraction.py::test_two_body_counterexample_and_highest_order_isolation
+    - code/tests/test_k_cell_retraction.py::test_full_support_can_commute
+    status: numerical_examples
+  lean4_evidence:
+    module: HigherCell.Theorem42_Isolation
+    theorems:
+    - HigherCell.theorem42_P_sigma_one_local
+    - HigherCell.theorem42_one_local_isolation
+    - HigherCell.theorem42_tangent_isolation
+    - HigherCell.theorem42_tangent_fixed
+    scope: One-site embedding identities and vectors explicitly assumed in im(P). No all-proper-support commutator
+      theorem and no R_k formalization.
+    status: conditional_abstract
+- id: PO034-C3
+  name: Finite-Hamiltonian short-time nonfactorization bound
+  claim_type: Analytic theorem
+  statement: For a finite closed system, product initial state, and ||H||_infinity <= g for the whole Hamiltonian,
+    D(t) >= nu*t - 2*(1+k^2)*g^2*t^2 >= nu*t - 6*k^2*g^2*t^2. For nu>0, t<=nu/(12*k^2*g^2) gives D(t)>=nu*t/2.
+  scope: The code evaluates the weaker formula and compares actual analytic states numerically. Lemma 4.3a (PO034-C3a)
+    is the closed-system site-budget refinement. Lemma 4.3b (PO034-C3b) is the finite-dilation extension. Lemma
+    4.3d (PO034-C3d) is the finite-jump coefficient with no Hamiltonian. Lemma 4.3e (PO034-C3e) places a bounded
+    Hamiltonian beside that family. The code does not evaluate these lemmas. The mixed quadratic coefficient is
+    2*(1+k^2)*(g+G)^2. A strictly smaller mixed coefficient is not certified. Lemma 4.3f (PO034-C3f) shows that
+    the state-acceleration bound cannot replace (g+G)^2 by g^2+G^2. That lemma does not change the defect coefficient.
+    Zero initial speed does not imply future factorization.
+  code_evidence:
+    module: coda_higher_cell.defect_bounds
+    functions:
+    - short_time_k_party_defect_lower_bound
+    - evaluate_k_party_trace_defect
+    tests:
+    - code/tests/test_defect_bounds.py::test_short_time_bound_against_analytic_ghz_state
+    - code/tests/test_defect_bounds.py::test_zero_initial_speed_does_not_imply_future_factorization
+    - code/tests/test_defect_bounds.py::test_classical_separable_state_has_defect_one
+    status: numerical_examples
+  lean4_evidence:
+    status: not_mechanized
+    scope: Not mechanized in this deposit.
+- id: PO034-C3a
+  name: Closed-system site-budget refinement of the short-time bound
+  claim_type: Lemma
+  statement: For H = sum_alpha h_alpha on a closed finite system, with each Hermitian h_alpha supported on a declared
+    subset X_alpha, g >= ||H||_infinity, and g_j = sum_{alpha:j in X_alpha} ||h_alpha||_infinity, Gamma = g^2 +
+    g*sum_j g_j + sum_{i != j} g_i*g_j. Then D(t) >= nu*t - 2*Gamma*t^2. If nu>0 and t <= nu/(4*Gamma), then D(t)
+    >= nu*t/2. The one-term decomposition h_1 = H with declared support X_1 = sigma and g = ||H||_infinity recovers
+    Gamma = (1+k^2)*g^2.
+  scope: Package version remains 0.1.0. The global factor g stays in Gamma. A redundant decomposition can make Gamma
+    larger than the Theorem 4.3 coefficient. Removing g is not claimed. The reduced-subsystem statement is Lemma
+    4.3b, not this lemma. Example 4.3a is an exact symbolic witness, not a Python test, and it does not evaluate
+    D(t).
+  witness: Example 4.3a. k=3, H=X tensor X tensor I, g=1, support {1,2}, g_1=g_2=1, g_3=0. Then sum_j g_j=2, sum_{i
+    != j} g_i g_j=2, Gamma=5, and 2*Gamma=10, against 2*(1+k^2)*g^2=20. Counterexample 4.2a gives nu=2, so D(t)>=2t-10t^2
+    and D(t)>=t on 0<=t<=1/10. The weaker Theorem 4.3 window is 0<=t<=1/54. The site-3 marginal is |0><0|, so its
+    velocity has trace norm 0. The site-1 marginal is diag(cos^2 t, sin^2 t), so its velocity has trace norm 2|sin(2t)|,
+    equal to 2*g_1 at t=pi/4. The witness does not evaluate D(t).
+  code_evidence:
+    module: none
+    note: Example 4.3a is the witness. The Theorem 4.3 code path is unchanged.
+    status: not_executed
+  lean4_evidence:
+    scope: Not mechanized in this deposit.
+    status: not_mechanized
+  written_evidence:
+    assumptions: Closed finite product carrier, Hermitian declared-support decomposition, whole-Hamiltonian norm
+      bound, product initial state.
+    proof_location:
+      path: 034_higher_cell_cochain_projection_and_retraction_dynamics.md
+      heading: '### Lemma 4.3a (Site-budget refinement on a closed system)'
+    execution_status: not_executed
+- id: PO034-C3b
+  name: Reduced site-budget bound on a finite dilation
+  claim_type: Lemma
+  statement: For a finite dilation on sigma disjoint-union epsilon with k=|sigma|>=2, a Hermitian decomposition
+    of the dilated Hamiltonian, g >= ||H||_infinity, and system site budgets g_j, the same Gamma = g^2 + g*sum_{j
+    in sigma} g_j + sum_{i != j} g_i*g_j gives D_sigma(t) >= nu_sigma*t - 2*Gamma*t^2. If nu_sigma>0 and t <= nu_sigma/(4*Gamma),
+    then D_sigma(t) >= nu_sigma*t/2. If H = H_sigma tensor I + I tensor H_epsilon, the reduced trajectory is the
+    unitary orbit of H_sigma and ||H_epsilon||_infinity does not enter it.
+  scope: Package version remains 0.1.0. The global factor g stays in Gamma. Replacement by max_j g_j is not claimed.
+    A Lindblad generator without a finite autonomous Hermitian dilation is not covered. An environment-only summand
+    can inflate g. Example 4.3b is an exact symbolic witness, not a Python test.
+  witness: Example 4.3b. sigma={1,2,3}, epsilon={4}, H=(X tensor X tensor I) tensor |0><0|, g=1, support {1,2,4},
+    g_1=g_2=1, g_3=0, Gamma=5, and 2*Gamma=10, against the closed three-site leading coefficient 20. Initial vector
+    (|0000>+|0001>)/sqrt(2). Exact reduced defect D_sigma=2*ab+2*max(ab,|w|) with a=(1+cos(t)^2)/2, b=sin(t)^2/2,
+    w=i*cos(t)*sin(t)/2, ab=sin(t)^2*(1+cos(t)^2)/4, and |w|=|cos(t)*sin(t)|/2. Then nu_sigma=1, so D_sigma >= t-10*t^2
+    and D_sigma >= t/2 on 0<=t<=1/20. Nonzero eigenvalues (1±cos(t))/2 on [0, pi/2] are not constant, so the reduced
+    trajectory is not a unitary orbit. At t=pi/2, purity is 1/2 and D_sigma=1.
+  code_evidence:
+    module: none
+    note: Example 4.3b is the witness. The Theorem 4.3 code path is unchanged.
+    status: not_executed
+  lean4_evidence:
+    scope: Not mechanized in this deposit.
+    status: not_mechanized
+  written_evidence:
+    assumptions: Finite total carrier, fixed Hermitian Hamiltonian, declared system site budgets, product reduced
+      initial state.
+    proof_location:
+      path: 034_higher_cell_cochain_projection_and_retraction_dynamics.md
+      heading: '### Lemma 4.3b (Reduced site-budget bound on a finite dilation)'
+    execution_status: not_executed
+- id: PO034-C3c
+  name: Jump trajectory with no finite autonomous Hermitian dilation
+  claim_type: Lemma
+  statement: For the two-qubit jump generator L(rho)=K rho K^dagger - (1/2){K^dagger K, rho} with K=|00><11| and
+    rho(0)=|11><11|, rho(t)=(1-e^{-t})|00><00|+e^{-t}|11><11|, D(t)=4*e^{-t}*(1-e^{-t}), and nu=4. Thus D(t)>=4*t-6*t^2,
+    and D(t)>=2*t on 0<=t<=1/3. The population e^{-t} is not a finite sum of characters e^{-i*omega*t}, so the trajectory
+    is not the reduction of any fixed finite-dimensional autonomous Hermitian evolution with a fixed initial total
+    state for all t>=0.
+  scope: Package version remains 0.1.0. This is one generator. The finite-jump coefficient with no Hamiltonian is
+    Lemma 4.3d, and it does not recover the coefficient 6. A bounded Hamiltonian beside a finite jump family is
+    Lemma 4.3e, and its coefficient does not recover 6. Lemma 4.3b's norm g and site budgets are unavailable. Replacement
+    of g by max_j g_j is not claimed. The witness is exact and symbolic, not a Python test.
+  witness: Lemma 4.3c. K=|00><11|, rho(0)=|11><11|, D(t)=4*exp(-t)*(1-exp(-t)), nu=4, coefficient 6, half-speed
+    window 0<=t<=1/3. Obstruction is linear independence of exp(-t) from the characters exp(-i*omega*t).
+  code_evidence:
+    module: none
+    note: Lemma 4.3c is the witness. The Theorem 4.3 code path is unchanged.
+    status: not_executed
+  lean4_evidence:
+    scope: Not mechanized in this deposit.
+    status: not_mechanized
+  written_evidence:
+    assumptions: Two-qubit jump K=|00><11|, fixed initial state |11><11|, all t>=0; no-go model is fixed finite
+      autonomous Hermitian evolution.
+    proof_location:
+      path: 034_higher_cell_cochain_projection_and_retraction_dynamics.md
+      heading: '### Lemma 4.3c (A jump trajectory with no finite autonomous Hermitian dilation)'
+    execution_status: not_executed
+- id: PO034-C3d
+  name: Quadratic coefficient for a finite family of jumps
+  claim_type: Lemma
+  statement: For k>=2 and a finite jump family with no Hamiltonian, L(X)=sum_alpha (K_alpha X K_alpha^dagger - (1/2){K_alpha^dagger
+    K_alpha, X}) and G >= sum_alpha ||K_alpha||_infinity^2, product initial data gives D(t) >= nu*t - 2*(1+k^2)*G^2*t^2
+    >= nu*t - 6*k^2*G^2*t^2, where nu=||f'(0)||_1. If nu>0 and t <= nu/(4*(1+k^2)*G^2), then D(t) >= nu*t/2. On
+    the Lemma 4.3c data, G=1 and k=2, so the quadratic coefficient is 10 and the half-speed window is 1/5, not the
+    scalar coefficient 6 and the window 1/3.
+  scope: Package version remains 0.1.0. No Hamiltonian term. No site budgets. The global factor g is not removed,
+    and replacement by max_j g_j is not claimed. No finite-dilation obstruction is claimed for a general jump family.
+    The witness is the comparison with Lemma 4.3c, not a Python test.
+  witness: Lemma 4.3c data inside Lemma 4.3d. m=1, K=|00><11|, G=1, k=2, nu=4, quadratic coefficient 2*(1+4)*G^2=10,
+    half-speed window 0<=t<=1/5. Lemma 4.3c gives coefficient 6 and window 1/3. At t=0, ||rho'(0)||_1=2=2*G, so
+    the first-derivative budget is achieved and the quadratic coefficient is not.
+  code_evidence:
+    module: none
+    note: Lemma 4.3d is the derivation. The Theorem 4.3 code path is unchanged.
+    status: not_executed
+  lean4_evidence:
+    scope: Not mechanized in this deposit.
+    status: not_mechanized
+  written_evidence:
+    assumptions: Finite product carrier, finite jump family, no Hamiltonian, G bounds summed squared jump norms,
+      product initial state.
+    proof_location:
+      path: 034_higher_cell_cochain_projection_and_retraction_dynamics.md
+      heading: '### Lemma 4.3d (Quadratic coefficient for a finite family of jumps)'
+    execution_status: not_executed
+- id: PO034-C3e
+  name: Quadratic coefficient for a bounded Hamiltonian beside a finite jump family
+  claim_type: Lemma
+  statement: For k>=2, H Hermitian with g >= ||H||_infinity, and a finite jump family with G >= sum_alpha ||K_alpha||_infinity^2,
+    the generator L(X)=-i[H,X]+sum_alpha (K_alpha X K_alpha^dagger - (1/2){K_alpha^dagger K_alpha, X}) and product
+    initial data give D(t) >= nu*t - 2*(1+k^2)*(g+G)^2*t^2 >= nu*t - 6*k^2*(g+G)^2*t^2, where nu=||f'(0)||_1. If
+    nu>0 and t <= nu/(4*(1+k^2)*(g+G)^2), then D(t) >= nu*t/2. G=0 recovers the leading coefficient of Theorem 4.3.
+    g=0 recovers Lemma 4.3d. The square (g+G)^2 keeps the cross term 2*g*G. On the commuting witness k=2, g=1, G=1,
+    the quadratic coefficient is 40 and the half-speed window is 1/20, not the scalar coefficient 6 and the window
+    1/3.
+  scope: Package version remains 0.1.0. No site budgets. The global factor g is not removed, and replacement by
+    max_j g_j is not claimed. The cross term is not removed, and (g+G)^2 is not replaced by g^2+G^2. Lemma 4.3f
+    shows that the state-acceleration form of that replacement is false and does not change this defect coefficient.
+    The scalar coefficient 6 and the window 1/3 are not recovered. No finite-dilation obstruction is claimed for
+    a general mixed family. The witness is exact and symbolic, not a Python test.
+  witness: k=2, m=1, K=|00><11|, H=|00><00|-|11><11|, rho(0)=|11><11|, g=1, G=1, nu=4. Quadratic coefficient 2*(1+4)*(1+1)^2=40.
+    Half-speed window 0<=t<=1/20. H commutes with the Lemma 4.3c trajectory, so D(t)=4*exp(-t)*(1-exp(-t)) and Lemma
+    4.3c still gives coefficient 6 and window 1/3. At t=0, ||rho'(0)||_1=2, while 2*(g+G)=4, so the first-derivative
+    budget is not achieved and the quadratic coefficient is not sharp. This one trajectory still has no finite autonomous
+    Hermitian dilation.
+  code_evidence:
+    module: none
+    note: Lemma 4.3e is the derivation. The Theorem 4.3 code path is unchanged.
+    status: not_executed
+  lean4_evidence:
+    scope: Not mechanized in this deposit.
+    status: not_mechanized
+  written_evidence:
+    assumptions: Finite product carrier, bounded Hermitian Hamiltonian, finite jump family, g and G bounds, product
+      initial state.
+    proof_location:
+      path: 034_higher_cell_cochain_projection_and_retraction_dynamics.md
+      heading: '### Lemma 4.3e (Quadratic coefficient for a bounded Hamiltonian beside jumps)'
+    execution_status: not_executed
+- id: PO034-C3f
+  name: The acceleration cross term does not drop
+  claim_type: Lemma
+  statement: For two qubits, S=|0><0|+i|1><1|, H=Z tensor I, K=S tensor I, and rho(0)=|+><+| tensor |0><0|, one
+    has g=1, G=1, and ||rho''(0)||_1=10. Thus 4*(g^2+G^2)=8 < ||rho''(0)||_1 < 16=4*(g+G)^2. The state-acceleration
+    estimate ||rho''(t)||_1 <= 4*(g+G)^2 cannot be replaced by ||rho''(t)||_1 <= 4*(g^2+G^2). The orbit is the product
+    A(t) tensor |0><0| with coherence c(t)=(1/2)*exp(-(1+3i)*t), so D(t)=0 and nu=0.
+  scope: Package version remains 0.1.0. No site budgets. The global factor g is not removed, and replacement by
+    max_j g_j is not claimed. The defect coefficient of Lemma 4.3e is not replaced by 2*(1+k^2)*(g^2+G^2), and this
+    witness does not establish that the defect replacement is false. The full cross contribution 8*g*G inside 4*(g+G)^2
+    is not achieved. The scalar coefficient 6 and the window 1/3 are not recovered. No finite-dilation obstruction
+    is claimed for a general mixed family. The witness is exact and symbolic, not a Python test.
+  witness: k=2, m=1, H=Z tensor I, K=S tensor I, rho(0)=|+><+| tensor |0><0|, g=1, G=1. Coherence c(t)=(1/2)*exp(-(1+3i)*t).
+    ||rho'(0)||_1=sqrt(10)<4=2*(g+G). ||rho''(0)||_1=10. The gap above 4*(g^2+G^2) is 2. The acceleration budget
+    16 is not achieved. D(t)=0 and nu=0. The factor exp(-t) is not a finite sum of characters, so this one trajectory
+    has no finite autonomous Hermitian dilation.
+  code_evidence:
+    module: none
+    note: Lemma 4.3f is the derivation. The Theorem 4.3 code path is unchanged.
+    status: not_executed
+  lean4_evidence:
+    scope: Not mechanized in this deposit.
+    status: not_mechanized
+  written_evidence:
+    assumptions: Two qubits with the displayed H, K and product initial state; acceleration statement only, all-time
+      autonomous no-go model.
+    proof_location:
+      path: 034_higher_cell_cochain_projection_and_retraction_dynamics.md
+      heading: '### Lemma 4.3f (The acceleration cross term does not drop)'
+    execution_status: not_executed
+- id: PO034-C4
+  name: Polar trace-norm duality without a tangent-annihilator claim
+  claim_type: Theorem and counterexample
+  statement: A polar partial isometry W has operator norm at most one and pairs with the residual to its trace norm.
+    A normal residual can have an optimal witness with nonzero tangent pairing.
+  scope: Numerical SVD; singular-value cutoffs contribute to the returned full complex alignment error. No nearest-tangent
+    or entanglement certificate.
+  code_evidence:
+    module: coda_higher_cell.defect_bounds
+    functions:
+    - schatten1_dual_witness
+    tests:
+    - code/tests/test_defect_bounds.py::test_polar_witness_does_not_annihilate_tangents
+    - code/tests/test_defect_bounds.py::test_complex_polar_alignment
+    - code/tests/test_defect_bounds.py::test_zero_and_thresholded_witness
+    status: numerical_examples
+  lean4_evidence:
+    status: not_mechanized
+    scope: Not mechanized in this deposit.
+- id: PO034-C5
+  name: Finite scalar Hodge decomposition
+  claim_type: Standard finite theorem
+  statement: Constant-coefficient scalar cochains decompose orthogonally into im(d_prev), im(d_next*), and ker(Delta).
+    Components are unique; potentials need not be. The hollow triangle cycle disappears on filling.
+  scope: Requires declared incidence, orientation, and coefficients. No general sheaf or protected-entanglement
+    interpretation is supplied.
+  code_evidence:
+    module: coda_higher_cell.simplicial_complex
+    functions:
+    - simplicial_laplacian
+    - hodge_decomposition
+    - simplicial_boundary_matrix
+    tests:
+    - code/tests/test_simplicial_laplacian.py::test_incidence_nilpotence
+    - code/tests/test_simplicial_laplacian.py::test_hollow_filled_triangle_and_complex_hodge
+    status: numerical_examples
+  lean4_evidence:
+    status: not_mechanized
+    scope: Not mechanized in this deposit.
+- id: PO034-C6
+  name: Graded-square sign and separate semigroup coefficient
+  claim_type: Finite algebra and analytic proposition
+  statement: With C=dh(q+1)dv(p)-dv(p+1)dh(q) and D=dh+(-1)^p dv, D^2=dh^2+dv^2+(-1)^p C. Independently, a C^2 retraction
+    gives mixed semigroup coefficient P A n + D^2Pi(Am,n), tangent under the genuine retraction hypotheses.
+  scope: The example double complex has nilpotent vertical maps. A supplied Hessian vector is not certified as a
+    retraction Hessian. No equality between square and semigroup defects or non-Abelian model is established.
+  code_evidence:
+    module: coda_higher_cell.bicomplex_ddc
+    functions:
+    - bicomplex_curvature_tensor
+    - semigroup_defect_tensor
+    tests:
+    - code/tests/test_bicomplex_and_prime_triad.py::test_commuting_double_complex_is_nilpotent
+    - code/tests/test_bicomplex_and_prime_triad.py::test_noncommuting_square_and_totalized_sign
+    - code/tests/test_bicomplex_and_prime_triad.py::test_semigroup_coefficient_checks_tangency_and_inputs
+    status: numerical_examples
+  lean4_evidence:
+    status: not_mechanized
+    scope: Not mechanized in this deposit.
+- id: PO034-C7
+  name: Metadata, aligned adapter losses, and local policy scaffold
+  claim_type: Local protocol schema
+  statement: Carrier degree equals simplex cardinality minus one. Adapter loss is the trace norm of an ambient defect
+    minus a sum of supplied common-space lifts. Continuation applies local policies to declared evidence; the seven-label
+    trace always reports receipt_verified=False.
+  scope: No executed DDC, automatic gluing, external Prime algorithm, or authority. Scalar residual equality does
+    not establish a cycle, and evidence identifiers do not replay their contents.
+  code_evidence:
+    module: coda_higher_cell.prime_triad_bridge
+    functions:
+    - prime_triad_carrier_declaration
+    - adapter_loss_ledger
+    - can_continue_predicate
+    tests:
+    - code/tests/test_bicomplex_and_prime_triad.py::test_carrier_declaration_requires_evidence_identifiers
+    - code/tests/test_bicomplex_and_prime_triad.py::test_adapter_loss_requires_aligned_operators
+    - code/tests/test_bicomplex_and_prime_triad.py::test_cycle_requires_declared_complete_state_identity
+    status: numerical_examples
+  lean4_evidence:
+    status: not_mechanized
+    scope: Not mechanized in this deposit.
+- id: PO034-C8
+  name: Robust product defects and observed cochains
+  claim_type: Proposition
+  statement: Product-retraction residuals vary by at most (k+1) times the trace-norm state change; bounded observations
+    and quotient distances inherit the corresponding radius.
+  scope: Finite density states on a fixed factorization and a declared bounded linear observation; the constant
+    is not claimed optimal.
+  code_evidence:
+    module: none
+    note: The general norm inequality is a written proof. The separate residual_error_budget companion tests only
+      the supplied scalar intervals.
+    status: not_executed
+  lean4_evidence:
+    scope: Concrete density-matrix instantiation not mechanized. General normed bound is formalized in supplemental_lean_evidence.
+    status: not_mechanized
+  written_evidence:
+    assumptions: Density operators on a common finite product carrier; validated trace-norm state and evaluation-error
+      radii; a declared bounded observation for the cochain consequence.
+    proof_location:
+      path: 034_higher_cell_cochain_projection_and_retraction_dynamics.md
+      heading: '### 4.3 Robust product defects and observed cochains (PO034-C8)'
+    execution_status: not_executed
+  supplemental_lean_evidence:
+    module: ProjectionBounds
+    scope: General real/normed inequalities formalized; concrete continuous quantum instantiation remains conditional
+    census: lean4/projection_axiom_census.json
+supplemental_formalization:
+  date: '2026-10-23'
+  module: ProjectionBounds
+  theorems:
+  - ProjectionBounds.lowerRate_le
+  - ProjectionBounds.uncertain_onset
+  - ProjectionBounds.half_slope_window
+  - ProjectionBounds.zero_curvature
+  - ProjectionBounds.uncertainty_explains_rate
+  - ProjectionBounds.correction_window_iff
+  - ProjectionBounds.zero_rate_window
+  - ProjectionBounds.safe_horizon
+  - ProjectionBounds.exhausted_budget
+  - ProjectionBounds.transported_jump_bound
+  - ProjectionBounds.corrected_step
+  - ProjectionBounds.path_bound
+  - ProjectionBounds.factor_replacement_bound
+  - ProjectionBounds.defect_difference
+  - ProjectionBounds.product_defect_uncertainty
+  - ProjectionBounds.observed_defect_interval
+  - ProjectionBounds.observed_residual_bound
+  - ProjectionBounds.accumulated_budget
+  - ProjectionBounds.residual_difference
+  - ProjectionBounds.product_residual_uncertainty
+  scope: Real/normed inequalities under explicit analytic and physical premises
+  census: lean4/projection_axiom_census.json
+  replay: python tools/replay_projection_bounds.py
+  no_custom_axioms: true
